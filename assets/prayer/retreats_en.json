@@ -1,0 +1,89 @@
+{
+  "morning": [
+    "Give thanks for the night, for the new day and for the good works that the Lord prepared in advance for this day.",
+    "Consecrate yourself to the Lord. Ask to be filled with the Holy Spirit.",
+    "Ask for your daily bread and your other basic needs: transport, etc.",
+    "Place your body, your life, your work, your finances, your feelings, your mind and your will under the blood of Jesus. Also place under the blood of Jesus all those you love and everything that belongs to them, for their protection against the attacks of Satan.",
+    "Pray for your job and for everything that will happen there today.",
+    "Pray again for your job.",
+    "Pray to have a right attitude towards everyone you will meet today.",
+    "Ask to be led to the person you will witness to today.",
+    "Ask that the person you will witness to may be saved.",
+    "Pray for all your appointments of the day.",
+    "Pray for the members of your family.",
+    "Pray for your friend, your friends and all those you love.",
+    "Pray for your appearance: what you will wear and how you will dress.",
+    "Pray for the way you use your time today: how to spend it, how to redeem it and how to prepare to give an account of it at the judgment seat of Christ.",
+    "Ask the Lord to prepare your heart for all the unexpected events and people that will come your way today. Praise the Lord."
+  ],
+  "noon": [
+    "Confess any sin committed since the morning. Be filled with the Holy Spirit.",
+    "Thank God for everything that has happened since the morning, point by point, and for answered prayers.",
+    "Pray for your assembly.",
+    "Pray for all spiritual leaders.",
+    "Pray for five people who have not yet believed.",
+    "Pray for the next five people on your list who have not yet believed in the Lord.",
+    "Pray for five believers.",
+    "Pray for five backsliders.",
+    "Pray for two ministries that serve the Lord in your country or elsewhere in the world.",
+    "Pray for the ministry you are part of, through your presence or through your giving.",
+    "Continue to pray for the ministry you are part of.",
+    "Continue once more to pray for the ministry you are part of.",
+    "Pray for an unevangelised region or country.",
+    "Pray for the political leaders of your country and for its progress: peace, stability, etc.",
+    "Thank the Lord for the privilege of praying and for this time of prayer. Sing him a hymn."
+  ],
+  "evening": [
+    "Confess all the sins committed this afternoon in thought, word and deed. Repent and forsake sin and the sinful way. Be filled with the Holy Spirit.",
+    "Pray for your prayer life.",
+    "Pray for the most important needs of your spiritual growth and progress, for example your difficulties with fasting.",
+    "Pray again for the needs of your spiritual growth and progress, for example your difficulties in ministry.",
+    "Pray again for the needs of your spiritual growth and progress, for example your difficulties in Christian character.",
+    "Pray for your ministry to the Lord.",
+    "Pray for your ministry to the Body of Christ.",
+    "Pray for your ministry to the world.",
+    "Ask the Lord for his guidance for the expansion of your ministry.",
+    "Pray for your fellow workers.",
+    "Pray again for your fellow workers.",
+    "Pray for the ministry of your friend or of the one you love.",
+    "Pray for the enemies of your ministry.",
+    "Pray for your growth in spiritual experience.",
+    "Give thanks for everything that has happened."
+  ],
+  "night": [
+    "Confess any sin committed since your last time of prayer. Give thanks to the Lord for everything that has been accomplished today, especially since the last prayer.",
+    "Pray for the signs that are to accompany your ministry.",
+    "Pray for the signs that are to accompany the ministry of others.",
+    "Pray for the expansion of your ministry.",
+    "Pray for the healing of some believers.",
+    "Pray for the healing of some unbelievers.",
+    "Pray for every financial need.",
+    "Pray for every material project you have undertaken.",
+    "Pray for Bible translation and publishing organisations.",
+    "Pray for the advance of the Gospel in a Muslim country.",
+    "Pray for the advance of the Gospel in a Hindu country.",
+    "Pray for the advance of the Gospel in China.",
+    "Pray for the advance of the Gospel in a tribe that the Gospel has not yet reached.",
+    "Praise the Lord for the blessings you have received in Christ.",
+    "Praise and thank the Lord for what has been accomplished today. Entrust yourself to him, together with all those you love, for his protection during the night."
+  ],
+  "nations": {
+    "unreached": [
+      "Afghanistan", "Algeria", "Saudi Arabia", "Bhutan", "Brunei", "Comoros", "North Korea",
+      "Djibouti", "United Arab Emirates", "The Gambia", "Guinea", "Iraq", "Iran", "Jordan", "Kuwait",
+      "Laos", "Libya", "Maldives", "Mali", "Morocco", "Mauritania", "Niger", "Oman", "Uzbekistan",
+      "Pakistan", "Qatar", "Senegal", "Somalia", "Sudan", "Syria", "Tajikistan", "Tunisia",
+      "Turkmenistan", "Turkey", "Yemen"
+    ],
+    "muslim": [
+      "Algeria", "Saudi Arabia", "Azerbaijan", "Bangladesh", "Egypt", "Indonesia", "Iraq", "Iran",
+      "Jordan", "Libya", "Malaysia", "Mali", "Morocco", "Mauritania", "Niger", "Oman", "Pakistan",
+      "Senegal", "Somalia", "Sudan", "Syria", "Tunisia", "Turkey", "Yemen"
+    ],
+    "hindu": ["India", "Nepal", "Mauritius", "Bali (Indonesia)"],
+    "peoples": [
+      "the Fulani", "the Hausa", "the Tuareg", "the Wolof", "the Kanuri", "the Somali",
+      "the Berbers", "the Shuwa Arabs", "the Mandinka", "the Soninke", "the Songhai", "the Kotoko"
+    ]
+  }
+}

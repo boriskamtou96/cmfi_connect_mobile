@@ -1,0 +1,8 @@
+# App icon of the prod flavor, generated from assets/brand (see tool/brand_assets_test.dart)
+flutter_launcher_icons:
+  android: true
+  ios: true
+  image_path: 'assets/brand/icon_prod.png'
+  adaptive_icon_background: '#0A5EA8'
+  adaptive_icon_foreground: 'assets/brand/icon_foreground_prod.png'
+  remove_alpha_ios: true

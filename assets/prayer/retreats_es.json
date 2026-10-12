@@ -1,0 +1,89 @@
+{
+  "morning": [
+    "Da gracias por la noche, por el nuevo día y por las buenas obras que el Señor preparó de antemano para este día.",
+    "Conságrate al Señor. Pide ser lleno del Espíritu Santo.",
+    "Pide tu pan de cada día y tus demás necesidades básicas: el transporte, etc.",
+    "Pon bajo la sangre de Jesús tu cuerpo, tu vida, tu trabajo, tus finanzas, tus sentimientos, tu mente y tu voluntad. Pon también bajo la sangre de Jesús a todos los que amas y todo lo que les pertenece, para su protección contra los ataques de Satanás.",
+    "Ora por tu empleo y por todo lo que suceda allí hoy.",
+    "Ora de nuevo por tu empleo.",
+    "Ora para tener una actitud correcta hacia todas las personas que encuentres hoy.",
+    "Pide ser guiado hacia la persona a quien darás testimonio hoy.",
+    "Pide que la persona a quien darás testimonio sea salva.",
+    "Ora por todas tus citas del día.",
+    "Ora por los miembros de tu familia.",
+    "Ora por tu amigo, tus amigos y todos los que amas.",
+    "Ora por tu apariencia: lo que te pondrás y cómo te vestirás.",
+    "Ora por la manera en que usarás el tiempo hoy: cómo emplearlo, cómo redimirlo y cómo prepararte para rendir cuentas de él ante el tribunal de Cristo.",
+    "Pídele al Señor que prepare tu corazón para todos los acontecimientos y todas las personas imprevistas que se crucen en tu camino hoy. Alaba al Señor."
+  ],
+  "noon": [
+    "Confiesa todo pecado cometido desde la mañana. Sé lleno del Espíritu Santo.",
+    "Agradece a Dios por todo lo que ha sucedido desde la mañana, punto por punto, y por las oraciones contestadas.",
+    "Ora por tu asamblea.",
+    "Ora por todos los líderes espirituales.",
+    "Ora por cinco personas que aún no han creído.",
+    "Ora por las cinco personas siguientes de tu lista que aún no han creído en el Señor.",
+    "Ora por cinco creyentes.",
+    "Ora por cinco descarriados.",
+    "Ora por dos ministerios que sirven al Señor en tu país o en otra parte del mundo.",
+    "Ora por el ministerio del que formas parte, con tu presencia o con tus ofrendas.",
+    "Continúa orando por el ministerio del que formas parte.",
+    "Sigue orando una vez más por el ministerio del que formas parte.",
+    "Ora por una región o un país no evangelizado.",
+    "Ora por los líderes políticos de tu país y por su progreso: la paz, la estabilidad, etc.",
+    "Agradece al Señor por el privilegio de orar y por este tiempo de oración. Cántale un himno."
+  ],
+  "evening": [
+    "Confiesa todos los pecados cometidos esta tarde en pensamiento, palabra y obra. Arrepiéntete y abandona el pecado y el camino de pecado. Sé lleno del Espíritu Santo.",
+    "Ora por tu vida de oración.",
+    "Ora por las necesidades más importantes de tu crecimiento y tu progreso espirituales, por ejemplo tus dificultades en el ayuno.",
+    "Ora de nuevo por las necesidades de tu crecimiento y tu progreso espirituales, por ejemplo tus dificultades en el ministerio.",
+    "Ora de nuevo por las necesidades de tu crecimiento y tu progreso espirituales, por ejemplo tus dificultades en el carácter cristiano.",
+    "Ora por tu ministerio al Señor.",
+    "Ora por tu ministerio al Cuerpo de Cristo.",
+    "Ora por tu ministerio al mundo.",
+    "Pídele al Señor su dirección para la expansión de tu ministerio.",
+    "Ora por tus colaboradores.",
+    "Ora de nuevo por tus colaboradores.",
+    "Ora por el ministerio de tu amigo o de la persona que amas.",
+    "Ora por los enemigos de tu ministerio.",
+    "Ora por tu crecimiento en la experiencia espiritual.",
+    "Da gracias por todo lo que ha sucedido."
+  ],
+  "night": [
+    "Confiesa todo pecado cometido desde tu último tiempo de oración. Da gracias al Señor por todo lo que se ha realizado hoy, sobre todo desde la última oración.",
+    "Ora por las señales que deben acompañar tu ministerio.",
+    "Ora por las señales que deben acompañar el ministerio de otros.",
+    "Ora por la expansión de tu ministerio.",
+    "Ora por la sanidad de algunos creyentes.",
+    "Ora por la sanidad de algunos incrédulos.",
+    "Ora por toda necesidad económica.",
+    "Ora por todo proyecto material que hayas emprendido.",
+    "Ora por las organizaciones de traducción y publicación de la Biblia.",
+    "Ora por el avance del Evangelio en un país musulmán.",
+    "Ora por el avance del Evangelio en un país hindú.",
+    "Ora por el avance del Evangelio en China.",
+    "Ora por el avance del Evangelio en una tribu a la que el Evangelio aún no ha llegado.",
+    "Alaba al Señor por las bendiciones que has recibido en Cristo.",
+    "Alaba y agradece al Señor por lo que se ha realizado hoy. Encomiéndate a él, junto con todos los que amas, para estar bajo su protección durante la noche."
+  ],
+  "nations": {
+    "unreached": [
+      "Afganistán", "Argelia", "Arabia Saudita", "Bután", "Brunéi", "Comoras", "Corea del Norte",
+      "Yibuti", "Emiratos Árabes Unidos", "Gambia", "Guinea", "Irak", "Irán", "Jordania", "Kuwait",
+      "Laos", "Libia", "Maldivas", "Malí", "Marruecos", "Mauritania", "Níger", "Omán", "Uzbekistán",
+      "Pakistán", "Catar", "Senegal", "Somalia", "Sudán", "Siria", "Tayikistán", "Túnez",
+      "Turkmenistán", "Turquía", "Yemen"
+    ],
+    "muslim": [
+      "Argelia", "Arabia Saudita", "Azerbaiyán", "Bangladés", "Egipto", "Indonesia", "Irak", "Irán",
+      "Jordania", "Libia", "Malasia", "Malí", "Marruecos", "Mauritania", "Níger", "Omán", "Pakistán",
+      "Senegal", "Somalia", "Sudán", "Siria", "Túnez", "Turquía", "Yemen"
+    ],
+    "hindu": ["India", "Nepal", "Mauricio", "Bali (Indonesia)"],
+    "peoples": [
+      "los fulanis", "los hausas", "los tuaregs", "los wólofs", "los kanuris", "los somalíes",
+      "los bereberes", "los árabes shuwa", "los mandingas", "los soninkés", "los songhais", "los kotokos"
+    ]
+  }
+}

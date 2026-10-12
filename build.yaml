@@ -1,0 +1,21 @@
+targets:
+  $default:
+    builders:
+      json_serializable:
+        options:
+          # The API speaks snake_case: firstName <-> first_name
+          field_rename: snake
+          explicit_to_json: true
+          include_if_null: false
+      slang_build_runner:
+        options:
+          base_locale: fr
+          fallback_strategy: base_locale
+          input_directory: lib/src/core/i18n
+          input_file_pattern: .i18n.json
+          output_directory: lib/src/core/i18n
+          output_file_name: strings.g.dart
+          # parameters are written {name}
+          string_interpolation: braces
+          # both languages always loaded: the language picker shows each name in its own language
+          lazy: false

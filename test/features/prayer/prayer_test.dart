@@ -1,0 +1,441 @@
+import 'dart:convert';
+import 'dart:io';
+
+import 'package:cmfi_connect/src/core/i18n/strings.g.dart';
+import 'package:cmfi_connect/src/core/utils/date_extensions.dart';
+import 'package:cmfi_connect/src/features/prayer/application/importunities.dart';
+import 'package:cmfi_connect/src/features/prayer/domain/prayer.dart';
+import 'package:cmfi_connect/src/features/prayer/domain/retreat.dart';
+import 'package:cmfi_connect/src/features/prayer/presentation/prayer_screen.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_test/flutter_test.dart';
+import 'package:intl/date_symbol_data_local.dart';
+import 'package:intl/intl.dart';
+
+import '../../helpers/fakes.dart';
+import '../../helpers/pump_app.dart';
+
+PrayerPerson person(
+  int id,
+  String name, {
+  PrayerList list = PrayerList.unbelievers,
+  DateTime? lastPrayedOn,
+  DateTime? answeredOn,
+}) => PrayerPerson(
+  id: id,
+  list: list,
+  name: name,
+  lastPrayedOn: lastPrayedOn,
+  answeredOn: answeredOn,
+);
+
+/// Opens the Prière tab.
+Future<void> openPrayer(WidgetTester tester) async {
+  await tester.tap(find.text('Prière').last);
+  await tester.pumpAndSettle();
+}
+
+void main() {
+  setUpAll(initializeDateFormatting);
+  setUp(() => LocaleSettings.setLocale(AppLocale.fr));
+
+  group('retreats, the rules', () {
+    test('the next people: never prayed first, then the oldest', () {
+      final yesterday = today().subtract(const Duration(days: 1));
+      final people = [
+        person(1, 'Prié hier', lastPrayedOn: yesterday),
+        person(2, 'Jamais prié'),
+        person(3, 'A cru', answeredOn: yesterday),
+        person(4, 'Prié il y a longtemps', lastPrayedOn: DateTime(2026)),
+        person(5, 'Croyant', list: PrayerList.believers),
+      ];
+
+      expect(nextPeople(people, PrayerList.unbelievers).map((p) => p.id), [
+        2,
+        4,
+        1,
+      ]);
+      expect(
+        nextPeople(
+          people,
+          PrayerList.unbelievers,
+          group: 1,
+          count: 2,
+        ).map((p) => p.id),
+        [1],
+      );
+      expect(nextPeople(people, PrayerList.believers).map((p) => p.id), [5]);
+    });
+
+    test('the retreat of the moment', () {
+      expect(momentAt(DateTime(2026, 10, 10, 6)), RetreatMoment.morning);
+      expect(momentAt(DateTime(2026, 10, 10, 12, 30)), RetreatMoment.noon);
+      expect(momentAt(DateTime(2026, 10, 10, 18)), RetreatMoment.evening);
+      expect(momentAt(DateTime(2026, 10, 10, 22)), RetreatMoment.night);
+      // done: the next one of the day; all done: none
+      expect(
+        nextRetreat({RetreatMoment.noon}, DateTime(2026, 10, 10, 12)),
+        RetreatMoment.evening,
+      );
+      expect(
+        nextRetreat(RetreatMoment.values.toSet(), DateTime(2026, 10, 10, 8)),
+        isNull,
+      );
+    });
+
+    test('every language has the four retreats and the same lists', () {
+      final french = RetreatContent.fromJson(
+        jsonDecode(File('assets/prayer/retreats_fr.json').readAsStringSync())
+            as Map<String, dynamic>,
+      );
+      for (final language in ['fr', 'en', 'de', 'es', 'ar', 'zh', 'hi']) {
+        final content = RetreatContent.fromJson(
+          jsonDecode(
+                File(
+                  'assets/prayer/retreats_$language.json',
+                ).readAsStringSync(),
+              )
+              as Map<String, dynamic>,
+        );
+        for (final moment in RetreatMoment.values) {
+          expect(
+            content.points[moment],
+            hasLength(retreatPoints),
+            reason: language,
+          );
+          expect(
+            content.points[moment]!.every((text) => text.trim().isNotEmpty),
+            isTrue,
+            reason: language,
+          );
+        }
+        for (final kind in NationKind.values) {
+          expect(
+            content.nations[kind],
+            hasLength(french.nations[kind]!.length),
+            reason: '$language $kind',
+          );
+        }
+      }
+    });
+
+    test('the country of the day changes every day, the same all day', () {
+      const content = RetreatContent(
+        points: {},
+        nations: {
+          NationKind.unreached: ['A', 'B', 'C'],
+        },
+      );
+      final monday = content.nationOfDay(
+        NationKind.unreached,
+        DateTime(2026, 10, 12, 8),
+      );
+      expect(
+        content.nationOfDay(NationKind.unreached, DateTime(2026, 10, 12, 22)),
+        monday,
+      );
+      expect(
+        content.nationOfDay(NationKind.unreached, DateTime(2026, 10, 13)),
+        isNot(monday),
+      );
+      expect(content.nationOfDay(NationKind.muslim, DateTime(2026)), isNull);
+    });
+  });
+
+  group('the Prière tab', () {
+    testWidgets('a retreat at my pace: 15 points, then the day and report', (
+      tester,
+    ) async {
+      final api = FakePrayerApi(
+        people: [
+          for (var i = 1; i <= 7; i++) person(i, 'Personne $i'),
+          person(20, 'Marc', list: PrayerList.believers),
+        ],
+      );
+      final app = await pumpApp(tester, token: 't', prayerApi: api);
+      await openPrayer(tester);
+
+      expect(find.text('15 minutes\navec le Seigneur'), findsOneWidget);
+      // the midday retreat, at its own pace
+      await tester.tap(find.text('Midi'));
+      await tester.pumpAndSettle();
+      expect(find.text('Retraites de 15 minutes'), findsOneWidget);
+      // the names the retreat will pray for
+      expect(
+        find.textContaining('Personne 1, Personne 2, Personne 3'),
+        findsOneWidget,
+      );
+      await tester.tap(find.text('Lire à mon rythme, sans minuteur'));
+      await tester.pumpAndSettle();
+
+      expect(find.text('Point 1 sur 15'), findsOneWidget);
+      for (var i = 0; i < 15; i++) {
+        await tester.tap(
+          find
+              .bySemanticsLabel(RegExp('Point suivant|Terminer la retraite'))
+              .first,
+        );
+        await tester.pumpAndSettle();
+      }
+
+      expect(find.text('Retraite de midi terminée'), findsOneWidget);
+      expect(find.text('1 retraite sur 4'), findsOneWidget);
+      expect(api.retreatList.single.moment, RetreatMoment.noon);
+      // the people prayed for go to the end of their lists
+      expect(api.markedPrayed.single, containsAll([1, 2, 3, 4, 5, 6, 7, 20]));
+      // 15 minutes of "Prière seule" in today's report
+      final saved = app.reportsApi.saves.last;
+      final alone = saved.entries.firstWhere((entry) => entry.code == 'PS');
+      expect(alone.durationMinutes, 15);
+      expect(
+        find.text('Prière seule : +15 min · 15 min aujourd\'hui'),
+        findsOneWidget,
+      );
+
+      // marked by mistake: the day and the report go back
+      await tester.tap(find.text('Annuler'));
+      await tester.pumpAndSettle();
+      expect(api.retreatList, isEmpty);
+      // "Prière seule" is empty again
+      expect(
+        app.reportsApi.saves.last.entries.where((entry) => entry.code == 'PS'),
+        isEmpty,
+      );
+    });
+
+    testWidgets('guided: a minute per point, a soft sound to the next', (
+      tester,
+    ) async {
+      final app = await pumpApp(tester, token: 't');
+      await openPrayer(tester);
+      await tester.tap(find.text('Commencer'));
+      // not pumpAndSettle: the clock of the retreat would run
+      await tester.pump();
+      await tester.pump(const Duration(milliseconds: 500));
+
+      expect(find.text('Point 1 sur 15'), findsOneWidget);
+      expect(find.text('1:00'), findsOneWidget);
+      await tester.pump(const Duration(seconds: 30));
+      expect(find.text('0:30'), findsOneWidget);
+      await tester.pump(const Duration(seconds: 30));
+      await tester.pump(const Duration(milliseconds: 500));
+      expect(find.text('Point 2 sur 15'), findsOneWidget);
+      expect(app.chime.played, 1);
+
+      // a pause stops the clock
+      await tester.tap(find.bySemanticsLabel('Pause'));
+      await tester.pump();
+      await tester.pump(const Duration(seconds: 10));
+      expect(find.text('1:00'), findsOneWidget);
+      expect(find.text('en pause'), findsOneWidget);
+
+      // leaving asks first, and counts nothing
+      await tester.tap(find.byTooltip('Fermer'));
+      await tester.pump();
+      await tester.pump(const Duration(milliseconds: 500));
+      expect(find.text('Arrêter la retraite ?'), findsOneWidget);
+      await tester.tap(find.text('Arrêter'));
+      await tester.pumpAndSettle();
+      expect(app.prayerApi.retreatList, isEmpty);
+      expect(find.text('15 minutes\navec le Seigneur'), findsOneWidget);
+    });
+
+    testWidgets('a topic of the community: each point checked once prayed', (
+      tester,
+    ) async {
+      final api = FakePrayerApi(topics: [sampleTopic()]);
+      await pumpApp(tester, token: 't', prayerApi: api);
+      await openPrayer(tester);
+
+      await tester.scrollUntilVisible(
+        find.text('Conférence annuelle 2026 : prions ensemble'),
+        200,
+      );
+      await tester.tap(find.text('Conférence annuelle 2026 : prions ensemble'));
+      await tester.pumpAndSettle();
+      expect(
+        find.text('12 frères et sœurs prient pour ces sujets'),
+        findsOneWidget,
+      );
+      expect(find.text('Document d\'origine'), findsOneWidget);
+
+      await tester.tap(find.text('Pour les participants.'));
+      await tester.pumpAndSettle();
+      expect(api.prayedCalls.single.$1, 1);
+      expect(api.prayedCalls.single.$2, [2]);
+      expect(
+        find.text('13 frères et sœurs prient pour ces sujets'),
+        findsOneWidget,
+      );
+
+      await tester.tap(find.text("J'ai prié pour tous ces sujets"));
+      await tester.pumpAndSettle();
+      expect(api.prayedCalls.last.$2, [1, 2, 3]);
+      expect(find.text('Tous priés aujourd\'hui'), findsOneWidget);
+    });
+
+    testWidgets('my lists: someone added, then believed in the Lord', (
+      tester,
+    ) async {
+      final api = FakePrayerApi();
+      await pumpApp(tester, token: 't', prayerApi: api);
+      await openPrayer(tester);
+      await tester.scrollUntilVisible(find.text('Pas encore cru'), 200);
+      await tester.tap(find.text('Pas encore cru'));
+      await tester.pumpAndSettle();
+
+      await tester.tap(find.text('Ajouter une personne'));
+      await tester.pumpAndSettle();
+      await tester.enterText(find.byType(TextField).first, 'Paul M.');
+      await tester.enterText(find.byType(TextField).at(1), 'Collègue');
+      await tester.tap(find.text('Enregistrer'));
+      await tester.pumpAndSettle();
+      expect(api.peopleList.single.name, 'Paul M.');
+      expect(find.text('Paul M.'), findsOneWidget);
+      expect(find.text('Collègue'), findsOneWidget);
+
+      await tester.tap(find.text('Paul M.'));
+      await tester.pumpAndSettle();
+      await tester.tap(find.text('A cru au Seigneur !'));
+      await tester.pumpAndSettle();
+      expect(api.peopleList.single.answeredOn, today());
+      // a section title, in capitals
+      expect(find.text('ONT CRU AU SEIGNEUR'), findsOneWidget);
+    });
+  });
+
+  group('importunity', () {
+    final topic = Importunity(
+      id: 7,
+      title: 'Seigneur, sauve Paul',
+      goal: 100,
+      total: 40,
+      myCount: 10,
+      owner: sampleMembers.values.first,
+      isOwner: true,
+      participants: 3,
+      members: [sampleMembers.values.first],
+    );
+
+    testWidgets('each tap counts, sent together a moment after', (
+      tester,
+    ) async {
+      final api = FakePrayerApi(importunities: [topic]);
+      await pumpApp(tester, token: 't', prayerApi: api);
+      await openPrayer(tester);
+      await tester.tap(find.text('Seigneur, sauve Paul'));
+      await tester.pumpAndSettle();
+      expect(find.text('40 sur 100'), findsOneWidget);
+
+      for (var i = 0; i < 3; i++) {
+        await tester.tap(find.text('Touche à chaque proclamation'));
+        await tester.pump();
+      }
+      expect(find.text('43 sur 100'), findsOneWidget);
+      expect(find.text('Toi : 13'), findsOneWidget);
+      expect(api.counts, isEmpty);
+
+      await tester.pump(const Duration(seconds: 3));
+      await tester.pumpAndSettle();
+      expect(api.counts, [(7, 3)]);
+      expect(find.text('43 sur 100'), findsOneWidget);
+    });
+
+    testWidgets('without network the taps wait, then leave', (tester) async {
+      final api = FakePrayerApi(importunities: [topic]);
+      final app = await pumpApp(tester, token: 't', prayerApi: api);
+      await openPrayer(tester);
+      await tester.tap(find.text('Seigneur, sauve Paul'));
+      await tester.pumpAndSettle();
+
+      api.offline = true;
+      await tester.tap(find.text('Touche à chaque proclamation'));
+      await tester.pump(const Duration(seconds: 3));
+      await tester.pumpAndSettle();
+      expect(api.counts, isEmpty);
+      expect(find.text('41 sur 100'), findsOneWidget);
+
+      api.offline = false;
+      await app.container.read(importunitiesProvider.notifier).sendCounts();
+      expect(api.counts, [(7, 1)]);
+    });
+
+    testWidgets('a new topic, and the spiritual family invited', (
+      tester,
+    ) async {
+      final api = FakePrayerApi(
+        spiritualFamily: PrayerFamily(
+          discipleMaker: sampleMembers.values.last,
+          members: 23,
+        ),
+      );
+      await pumpApp(tester, token: 't', prayerApi: api);
+      await openPrayer(tester);
+      // the action of the section title
+      final create = find.widgetWithText(TextButton, 'Nouveau sujet');
+      await tester.ensureVisible(create);
+      await tester.pumpAndSettle();
+      await tester.tap(create);
+      await tester.pumpAndSettle();
+
+      await tester.enterText(
+        find.byType(TextField).first,
+        'Seigneur, sauve Paul',
+      );
+      await tester.enterText(find.byType(TextField).last, '10000');
+      await tester.tap(find.text('Créer'));
+      await tester.pumpAndSettle();
+      expect(api.importunityList.single.goal, 10000);
+      expect(
+        find.text('0 sur ${NumberFormat.decimalPattern('fr').format(10000)}'),
+        findsOneWidget,
+      );
+
+      await tester.tap(find.text('Inviter'));
+      await tester.pumpAndSettle();
+      expect(
+        find.textContaining('et ses disciples : 23 personnes'),
+        findsOneWidget,
+      );
+      await tester.tap(find.byType(Checkbox));
+      await tester.pump();
+      await tester.tap(find.text('Envoyer les invitations'));
+      await tester.pumpAndSettle();
+      expect(api.invitations.single.family, isTrue);
+      expect(find.text('23 invitations en attente'), findsOneWidget);
+    });
+
+    testWidgets('an invitation: join and pray', (tester) async {
+      final invitation = topic.copyWith(
+        isOwner: false,
+        myStatus: ImportunityMemberStatus.invited,
+        invitedBy: sampleMembers.values.first,
+        myCount: 0,
+      );
+      final api = FakePrayerApi(importunities: [invitation]);
+      await pumpApp(tester, token: 't', prayerApi: api);
+      await openPrayer(tester);
+
+      final inviter = sampleMembers.values.first;
+      expect(
+        find.text('${inviter.firstName} ${inviter.lastName} t\'invite à prier'),
+        findsOneWidget,
+      );
+      await tester.tap(find.text('Je prie avec vous'));
+      await tester.pumpAndSettle();
+      expect(
+        api.importunityList.single.myStatus,
+        ImportunityMemberStatus.joined,
+      );
+      expect(find.text('Je prie avec vous'), findsNothing);
+      expect(find.text('Seigneur, sauve Paul'), findsOneWidget);
+    });
+  });
+
+  test('the report item the retreats fill exists in the samples', () {
+    expect(
+      sampleActivities.where((a) => a.code == 'PS' && a.tracksDuration),
+      hasLength(1),
+    );
+  });
+}

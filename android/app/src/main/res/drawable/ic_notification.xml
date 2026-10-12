@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Status bar icon of the notifications: the "C" and the cross of the CMFI
+     emblem, in white (Android tints it). Same 100x100 grid as CmfiLogoPainter. -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp"
+    android:height="24dp"
+    android:viewportWidth="100"
+    android:viewportHeight="100">
+  <path
+      android:fillColor="#FFFFFFFF"
+      android:pathData="M60.45,7.01 A46,46 0 1,0 89.34,68.97 A40.53,40.53 0 1,1 60.45,7.01 Z" />
+  <path
+      android:fillColor="#FFFFFFFF"
+      android:pathData="M51.66,10.5 h7 v51.5 h-7 Z M41.16,22.5 h28 v7 h-28 Z" />
+  <!-- the open Bible under the cross -->
+  <path
+      android:fillColor="#FFFFFFFF"
+      android:pathData="M55.16,64.5 C48.16,61 40.16,60.5 34.16,61.5 V75 C41.16,74 49.16,75 55.16,78.5 C61.16,75 69.16,74 76.16,75 V61.5 C70.16,60.5 62.16,61 55.16,64.5 Z" />
+</vector>

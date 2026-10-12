@@ -1,0 +1,2466 @@
+///
+/// Generated file. Do not edit.
+///
+// coverage:ignore-file
+// ignore_for_file: type=lint, unused_import
+// dart format off
+
+import 'package:flutter/widgets.dart';
+import 'package:intl/intl.dart';
+import 'package:slang/generated.dart';
+import 'strings.g.dart';
+
+// Path: <root>
+class TranslationsEs extends Translations with BaseTranslations<AppLocale, Translations> {
+	/// You can call this constructor and build your own translation instance of this locale.
+	/// Constructing via the enum [AppLocale.build] is preferred.
+	TranslationsEs({Map<String, Node>? overrides, PluralResolver? cardinalResolver, PluralResolver? ordinalResolver, TranslationMetadata<AppLocale, Translations>? meta})
+		: assert(overrides == null, 'Set "translation_overrides: true" in order to enable this feature.'),
+		  _meta = meta ?? TranslationMetadata(
+		    locale: AppLocale.es,
+		    overrides: overrides ?? {},
+		    cardinalResolver: cardinalResolver,
+		    ordinalResolver: ordinalResolver,
+		  ),
+		  super(cardinalResolver: cardinalResolver, ordinalResolver: ordinalResolver) {
+		_meta.setFlatMapFunction(_flatMapFunction);
+	}
+
+	/// Metadata for the translations of <es>.
+	final TranslationMetadata<AppLocale, Translations> _meta;
+	@override TranslationMetadata<AppLocale, Translations> get $meta => _meta;
+
+	/// Access flat map
+	@override dynamic operator[](String key) => _meta.getTranslation(key) ?? super[key];
+
+	late final TranslationsEs _root = this; // ignore: unused_field
+
+	@override 
+	TranslationsEs $copyWith({TranslationMetadata<AppLocale, Translations>? meta}) => TranslationsEs(meta: meta ?? this.$meta);
+
+	// Translations
+	@override late final _Translations$app$es app = _Translations$app$es._(_root);
+	@override late final _Translations$common$es common = _Translations$common$es._(_root);
+	@override late final _Translations$errors$es errors = _Translations$errors$es._(_root);
+	@override late final _Translations$validation$es validation = _Translations$validation$es._(_root);
+	@override late final _Translations$onboarding$es onboarding = _Translations$onboarding$es._(_root);
+	@override late final _Translations$welcome$es welcome = _Translations$welcome$es._(_root);
+	@override late final _Translations$auth$es auth = _Translations$auth$es._(_root);
+	@override late final _Translations$nav$es nav = _Translations$nav$es._(_root);
+	@override late final _Translations$home$es home = _Translations$home$es._(_root);
+	@override late final _Translations$reports$es reports = _Translations$reports$es._(_root);
+	@override late final _Translations$reminder$es reminder = _Translations$reminder$es._(_root);
+	@override late final _Translations$export$es export = _Translations$export$es._(_root);
+	@override late final _Translations$items$es items = _Translations$items$es._(_root);
+	@override late final _Translations$newItem$es newItem = _Translations$newItem$es._(_root);
+	@override late final _Translations$more$es more = _Translations$more$es._(_root);
+	@override late final _Translations$authorities$es authorities = _Translations$authorities$es._(_root);
+	@override late final _Translations$members$es members = _Translations$members$es._(_root);
+	@override late final _Translations$admin$es admin = _Translations$admin$es._(_root);
+	@override late final _Translations$hymns$es hymns = _Translations$hymns$es._(_root);
+	@override late final _Translations$comingSoon$es comingSoon = _Translations$comingSoon$es._(_root);
+	@override late final _Translations$events$es events = _Translations$events$es._(_root);
+	@override late final _Translations$prayer$es prayer = _Translations$prayer$es._(_root);
+}
+
+// Path: app
+class _Translations$app$es extends Translations$app$fr {
+	_Translations$app$es._(TranslationsEs root) : this._root = root, super.internal(root);
+
+	final TranslationsEs _root; // ignore: unused_field
+
+	// Translations
+	@override String get name => 'CMFI Connect';
+	@override String get tagline => 'Crecer juntos, cada día.';
+	@override String get languageName => 'Español';
+}
+
+// Path: common
+class _Translations$common$es extends Translations$common$fr {
+	_Translations$common$es._(TranslationsEs root) : this._root = root, super.internal(root);
+
+	final TranslationsEs _root; // ignore: unused_field
+
+	// Translations
+	@override String get retry => 'Reintentar';
+	@override String get cancel => 'Cancelar';
+	@override String get save => 'Guardar';
+	@override String get close => 'Cerrar';
+	@override String get back => 'Volver';
+	@override String get soon => 'Pronto';
+	@override String get optional => '(opcional)';
+	@override String get and => 'y';
+}
+
+// Path: errors
+class _Translations$errors$es extends Translations$errors$fr {
+	_Translations$errors$es._(TranslationsEs root) : this._root = root, super.internal(root);
+
+	final TranslationsEs _root; // ignore: unused_field
+
+	// Translations
+	@override String get network => 'Sin conexión a internet. Revisa tu red y vuelve a intentarlo.';
+	@override String get unauthorized => 'Tu sesión ha expirado. Vuelve a iniciar sesión.';
+	@override String get invalidCredentials => 'Número de teléfono o contraseña incorrectos.';
+	@override String get badRequest => 'Algunos datos no son válidos.';
+	@override String get conflict => 'Este elemento ya existe.';
+	@override String get notFound => 'Elemento no encontrado.';
+	@override String get server => 'El servidor tuvo un problema. Vuelve a intentarlo en un momento.';
+	@override String get unknown => 'Se produjo un error. Vuelve a intentarlo.';
+	@override String get forbidden => 'No tienes permiso para hacer esto.';
+	@override String get eventFull => 'Ya no quedan plazas para este evento.';
+	@override String get registrationClosed => 'Las inscripciones para este evento están cerradas.';
+	@override String get mediaTooLarge => 'Esta imagen es demasiado pesada (8 MB como máximo).';
+	@override String get mediaUnsupported => 'Elige una imagen JPEG o PNG.';
+	@override String get notParticipant => 'Únete primero a este motivo para contar tus proclamaciones.';
+	@override String get importunityClosed => 'Este motivo está cerrado: ya no cuenta proclamaciones.';
+	@override String get usernameNotFound => 'Nadie tiene este nombre de usuario. Revisa la ortografía.';
+	@override String get ownerCannotLeave => 'Tú creaste este motivo: elimínalo en lugar de dejarlo.';
+	@override String get tooManyPeople => 'Tus listas están llenas (500 personas como máximo).';
+}
+
+// Path: validation
+class _Translations$validation$es extends Translations$validation$fr {
+	_Translations$validation$es._(TranslationsEs root) : this._root = root, super.internal(root);
+
+	final TranslationsEs _root; // ignore: unused_field
+
+	// Translations
+	@override String get required => 'Este campo es obligatorio';
+	@override String get passwordTooShort => 'Al menos 6 caracteres';
+	@override String get invalidPhone => 'Número de teléfono no válido';
+	@override String get invalidEmail => 'Correo electrónico no válido';
+	@override String get invalidCode => 'Solo letras y números, sin espacios';
+}
+
+// Path: onboarding
+class _Translations$onboarding$es extends Translations$onboarding$fr {
+	_Translations$onboarding$es._(TranslationsEs root) : this._root = root, super.internal(root);
+
+	final TranslationsEs _root; // ignore: unused_field
+
+	// Translations
+	@override String get skip => 'Omitir';
+	@override String get next => 'Siguiente';
+	@override String get start => 'Empezar';
+	@override String step({required Object current, required Object total}) => 'Pantalla ${current} de ${total}';
+	@override late final _Translations$onboarding$reports$es reports = _Translations$onboarding$reports$es._(_root);
+	@override late final _Translations$onboarding$worship$es worship = _Translations$onboarding$worship$es._(_root);
+	@override late final _Translations$onboarding$community$es community = _Translations$onboarding$community$es._(_root);
+	@override late final _Translations$onboarding$sample$es sample = _Translations$onboarding$sample$es._(_root);
+}
+
+// Path: welcome
+class _Translations$welcome$es extends Translations$welcome$fr {
+	_Translations$welcome$es._(TranslationsEs root) : this._root = root, super.internal(root);
+
+	final TranslationsEs _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Te damos la bienvenida a CMFI Connect';
+	@override String get text => 'Crea tu cuenta en un minuto para completar tu informe y seguir la vida de tu comunidad.';
+	@override String get createAccount => 'Crear mi cuenta';
+	@override String get haveAccount => 'Ya tengo una cuenta';
+}
+
+// Path: auth
+class _Translations$auth$es extends Translations$auth$fr {
+	_Translations$auth$es._(TranslationsEs root) : this._root = root, super.internal(root);
+
+	final TranslationsEs _root; // ignore: unused_field
+
+	// Translations
+	@override String get phone => 'Teléfono';
+	@override String get phoneHint => '6 90 00 00 01';
+	@override String dialCode({required Object code}) => 'Código de país: ${code}';
+	@override String get password => 'Contraseña';
+	@override String get showPassword => 'Mostrar la contraseña';
+	@override String get hidePassword => 'Ocultar la contraseña';
+	@override late final _Translations$auth$login$es login = _Translations$auth$login$es._(_root);
+	@override late final _Translations$auth$register$es register = _Translations$auth$register$es._(_root);
+	@override late final _Translations$auth$church$es church = _Translations$auth$church$es._(_root);
+}
+
+// Path: nav
+class _Translations$nav$es extends Translations$nav$fr {
+	_Translations$nav$es._(TranslationsEs root) : this._root = root, super.internal(root);
+
+	final TranslationsEs _root; // ignore: unused_field
+
+	// Translations
+	@override String get home => 'Inicio';
+	@override String get reports => 'Informe';
+	@override String get hymns => 'Himnos';
+	@override String get prayer => 'Oración';
+	@override String get more => 'Más';
+}
+
+// Path: home
+class _Translations$home$es extends Translations$home$fr {
+	_Translations$home$es._(TranslationsEs root) : this._root = root, super.internal(root);
+
+	final TranslationsEs _root; // ignore: unused_field
+
+	// Translations
+	@override String greeting({required Object name}) => 'Hola, ${name}';
+	@override String get greetingNoName => 'Hola';
+	@override String get profile => 'Mi perfil';
+	@override String get todayTitle => 'Informe del día';
+	@override String progress({required Object filled, required Object total}) => '${filled} de ${total}';
+	@override String get progressLabel => 'elementos completados';
+	@override String get continueReport => 'Continuar';
+	@override String get startReport => 'Empezar';
+	@override String get weekTitle => 'Tu semana';
+	@override String weekScore({required num filled, required Object total}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('es'))(filled,
+		one: '${filled} día de ${total}',
+		other: '${filled} días de ${total}',
+	);
+	@override String get community => 'En tu comunidad';
+	@override String get prayerTitle => 'Motivos de oración';
+	@override String get prayerText => 'Pronto podrás orar cada día por los motivos de oración de tu asamblea.';
+	@override String get eventsTitle => 'Eventos';
+	@override String get hymnsTitle => 'Himnos';
+	@override String hymnsResume({required Object number}) => 'Volver al n.º ${number}';
+	@override String get hymnsOpen => 'Abrir el himnario';
+	@override String streak({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('es'))(n,
+		one: '${n} día seguido',
+		other: '${n} días seguidos',
+	);
+	@override String get streakKeep => 'Completa hoy para no romper la racha';
+	@override String get streakToday => '¡Bien hecho, sigue mañana!';
+}
+
+// Path: reports
+class _Translations$reports$es extends Translations$reports$fr {
+	_Translations$reports$es._(TranslationsEs root) : this._root = root, super.internal(root);
+
+	final TranslationsEs _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Informe diario';
+	@override String get myItems => 'Mis elementos';
+	@override late final _Translations$reports$tabs$es tabs = _Translations$reports$tabs$es._(_root);
+	@override String get pickDay => 'Elegir el día';
+	@override String filled({required Object filled, required Object total}) => '${filled} de ${total} completados';
+	@override String get statusSaved => 'Guardado';
+	@override String get statusModified => 'Sin guardar';
+	@override String get standard => 'Estándar';
+	@override String get personal => 'Mis elementos';
+	@override String get createItem => 'Crear un elemento';
+	@override String add({required Object label}) => 'Añadir ${label}';
+	@override String get note => 'Nota del día';
+	@override String get noteHint => 'Un versículo, un motivo de gratitud…';
+	@override String get save => 'Guardar el día';
+	@override String get saved => 'Día guardado';
+	@override late final _Translations$reports$measure$es measure = _Translations$reports$measure$es._(_root);
+	@override String times({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('es'))(n,
+		one: '${n} vez',
+		other: '${n} veces',
+	);
+	@override late final _Translations$reports$sheet$es sheet = _Translations$reports$sheet$es._(_root);
+	@override late final _Translations$reports$history$es history = _Translations$reports$history$es._(_root);
+	@override late final _Translations$reports$summary$es summary = _Translations$reports$summary$es._(_root);
+	@override String get noItems => 'Por ahora no hay elementos que completar.';
+	@override String get statusPending => 'Aún no enviado';
+	@override String get savedOffline => 'Sin conexión: el día se guarda en el teléfono y se enviará en cuanto sea posible.';
+	@override String pendingBanner({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('es'))(n,
+		one: '${n} día espera conexión para enviarse',
+		other: '${n} días esperan conexión para enviarse',
+	);
+	@override String get export => 'Exportar mi informe';
+	@override String goal({required Object value}) => 'Objetivo: ${value}';
+	@override String get goalReached => 'Objetivo alcanzado';
+}
+
+// Path: reminder
+class _Translations$reminder$es extends Translations$reminder$fr {
+	_Translations$reminder$es._(TranslationsEs root) : this._root = root, super.internal(root);
+
+	final TranslationsEs _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Tu informe del día';
+	@override String get body => 'Tómate un minuto para anotar tu lectura, tu oración… antes de que termine el día.';
+	@override String get channel => 'Recordatorio del informe';
+	@override String get settings => 'Recordatorio nocturno';
+	@override String get off => 'Desactivado';
+	@override String get switchLabel => 'Recordarme completar mi día';
+	@override String get switchHint => 'Solo si el día aún no está completado.';
+	@override String get time => 'Hora del recordatorio';
+	@override String get offerTitle => '¿Un recordatorio cada noche?';
+	@override String get offerText => 'Si tu día aún no está completado, la app te lo recuerda a la hora que elijas. Nada si ya lo hiciste.';
+	@override String get offerAccept => 'Activar el recordatorio';
+	@override String get offerLater => 'Más tarde';
+	@override String enabled({required Object time}) => 'Recordatorio activado a las ${time}';
+	@override String get denied => 'Las notificaciones están bloqueadas para CMFI Connect. Permítelas en los ajustes del teléfono.';
+}
+
+// Path: export
+class _Translations$export$es extends Translations$export$fr {
+	_Translations$export$es._(TranslationsEs root) : this._root = root, super.internal(root);
+
+	final TranslationsEs _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Exportar';
+	@override String get period => 'Período';
+	@override String get thisWeek => 'Esta semana';
+	@override String get lastWeek => 'La semana pasada';
+	@override String get thisMonth => 'Este mes';
+	@override String get lastMonth => 'El mes pasado';
+	@override String get thisYear => 'Este año';
+	@override String get custom => 'Otras fechas';
+	@override String get customPick => 'Elegir las fechas';
+	@override String get format => 'Formato';
+	@override String get pdf => 'PDF';
+	@override String get pdfHint => 'Un documento para enviar o imprimir';
+	@override String get csv => 'Hoja de cálculo';
+	@override String get csvHint => 'Un archivo CSV para Excel o Google Sheets';
+	@override String get text => 'Mensaje';
+	@override String get textHint => 'Un resumen para pegar en WhatsApp';
+	@override String get button => 'Exportar';
+	@override String get shareButton => 'Compartir';
+	@override String preview({required num filled, required Object total, required Object items}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('es'))(filled,
+		one: '${filled} día completado de ${total} · ${items}',
+		other: '${filled} días completados de ${total} · ${items}',
+	);
+	@override String previewItems({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('es'))(n,
+		one: '${n} elemento',
+		other: '${n} elementos',
+	);
+	@override String get empty => 'No hay informes en este período.';
+	@override String get tooLong => 'Elige 366 días como máximo.';
+	@override String get fileName => 'informe-diario';
+	@override String subject({required Object period}) => 'Mi informe, ${period}';
+	@override late final _Translations$export$doc$es doc = _Translations$export$doc$es._(_root);
+}
+
+// Path: items
+class _Translations$items$es extends Translations$items$fr {
+	_Translations$items$es._(TranslationsEs root) : this._root = root, super.internal(root);
+
+	final TranslationsEs _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Mis elementos';
+	@override String get standardSection => 'Estándar · para todos';
+	@override String get personalSection => 'Mis elementos personales';
+	@override String get emptyPersonal => 'Aún no tienes elementos personales.';
+	@override String get archive => 'Archivar';
+	@override String archiveTitle({required Object code}) => '¿Archivar ${code}?';
+	@override String get archiveText => 'Ya no aparecerá en tu informe. Sus cifras se quedan en tu historial.';
+	@override String archived({required Object code}) => '${code} archivado';
+	@override String get create => 'Crear un elemento';
+	@override String get footnote => 'Un elemento archivado ya no aparece en tu informe, pero sus cifras se quedan en tu historial.';
+	@override late final _Translations$items$measure$es measure = _Translations$items$measure$es._(_root);
+	@override String get goalAdd => 'Añadir un objetivo';
+	@override String goal({required Object value}) => 'Objetivo: ${value} al día';
+	@override String get goalTitle => 'Objetivo diario';
+	@override String get goalHint => 'Lo que te propones cada día. Se queda en tu teléfono.';
+	@override String get goalRemove => 'Quitar';
+	@override String get goalSaved => 'Objetivo guardado';
+	@override String get goalRemoved => 'Objetivo quitado';
+}
+
+// Path: newItem
+class _Translations$newItem$es extends Translations$newItem$fr {
+	_Translations$newItem$es._(TranslationsEs root) : this._root = root, super.internal(root);
+
+	final TranslationsEs _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Nuevo elemento';
+	@override String get code => 'Código';
+	@override String get label => 'Nombre';
+	@override String get help => 'Letras y números, 20 como máximo. El código de un elemento estándar (LB, PS…) no está disponible.';
+	@override String get measures => 'Lo que mides';
+	@override String get quantity => 'Una cantidad';
+	@override String get quantityHint => 'Capítulos, páginas, personas…';
+	@override String get unit => 'Unidad que aparece después del número';
+	@override String get unitHint => 'personas';
+	@override String get duration => 'Una duración';
+	@override String get durationHint => 'En horas y minutos';
+	@override String get noMeasure => 'Elige al menos una medida: una cantidad, una duración o ambas.';
+	@override String get preview => 'Vista previa en tu informe';
+	@override String get previewCode => 'CÓDIGO';
+	@override String get previewLabel => 'Nombre del elemento';
+	@override String get submit => 'Crear el elemento';
+	@override String created({required Object code}) => '${code} se ha creado.';
+	@override String get codeTaken => 'Este código ya está en uso, por un elemento estándar o por uno de tus elementos (aunque esté archivado).';
+	@override String get codeHint => 'EVG';
+	@override String get labelHint => 'Evangelización';
+}
+
+// Path: more
+class _Translations$more$es extends Translations$more$fr {
+	_Translations$more$es._(TranslationsEs root) : this._root = root, super.internal(root);
+
+	final TranslationsEs _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Más';
+	@override String get editProfile => 'Editar mi perfil';
+	@override String get community => 'Comunidad';
+	@override String get events => 'Eventos';
+	@override String get announcements => 'Anuncios';
+	@override String get reports => 'Informe diario';
+	@override String get myItems => 'Mis elementos';
+	@override String get app => 'Aplicación';
+	@override String get language => 'Idioma';
+	@override String get appearance => 'Apariencia';
+	@override String get themeSystem => 'Automático';
+	@override String get themeSystemHint => 'En automático, la app sigue el modo claro u oscuro del teléfono.';
+	@override String get themeLight => 'Claro';
+	@override String get themeDark => 'Oscuro';
+	@override String get logout => 'Cerrar sesión';
+	@override String get languageTitle => 'Idioma de la aplicación';
+	@override String get completeProfile => 'Añade tu nombre';
+	@override String get accompaniment => 'Acompañamiento';
+	@override String get exportReport => 'Exportar mi informe';
+	@override String get logoutPendingTitle => 'Días aún no enviados';
+	@override String logoutPendingText({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('es'))(n,
+		one: '${n} día guardado sin conexión aún no se ha enviado. Si cierras sesión ahora, se perderá.',
+		other: '${n} días guardados sin conexión aún no se han enviado. Si cierras sesión ahora, se perderán.',
+	);
+	@override String get logoutAnyway => 'Cerrar sesión';
+	@override String get admin => 'Administración';
+	@override String get staff => 'Equipo y roles';
+	@override String get manageEvents => 'Eventos';
+}
+
+// Path: authorities
+class _Translations$authorities$es extends Translations$authorities$fr {
+	_Translations$authorities$es._(TranslationsEs root) : this._root = root, super.internal(root);
+
+	final TranslationsEs _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Mis autoridades espirituales';
+	@override String get intro => 'Las personas que te acompañan en tu caminar con Dios: tu discipulador y tus otros líderes.';
+	@override String get discipleMaker => 'Discipulador';
+	@override String discipleMakerOf({required Object name}) => 'Discipulador: ${name}';
+	@override String get noDiscipleMaker => 'Aún no tienes discipulador';
+	@override String get others => 'Otras autoridades';
+	@override String get empty => 'Aún no has añadido a nadie.';
+	@override String get add => 'Añadir una autoridad';
+	@override String get remove => 'Quitar';
+	@override String removeTitle({required Object name}) => '¿Quitar a ${name}?';
+	@override String removeText({required Object name}) => '${name} ya no formará parte de tus autoridades espirituales.';
+	@override String removed({required Object name}) => '${name} ya no forma parte de tus autoridades.';
+	@override String count({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('es'))(n,
+		zero: 'Nadie por ahora',
+		one: '${n} persona',
+		other: '${n} personas',
+	);
+	@override late final _Translations$authorities$form$es form = _Translations$authorities$form$es._(_root);
+	@override String get statusPending => 'Pendiente';
+	@override String get statusDeclined => 'Rechazada';
+	@override String pendingHelp({required Object name}) => 'Sus datos de contacto aparecerán cuando ${name} acepte.';
+	@override String get requests => 'Solicitudes recibidas';
+	@override String get requestDiscipleMaker => 'te pide que seas su discipulador';
+	@override String get requestAuthority => 'te pide tu acompañamiento';
+	@override String get accept => 'Aceptar';
+	@override String get decline => 'Rechazar';
+	@override String acceptedRequest({required Object name}) => 'Ahora acompañas a ${name}.';
+	@override String declinedRequest({required Object name}) => 'Solicitud de ${name} rechazada.';
+	@override String requestsCount({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('es'))(n,
+		one: '${n} solicitud por revisar',
+		other: '${n} solicitudes por revisar',
+	);
+}
+
+// Path: members
+class _Translations$members$es extends Translations$members$fr {
+	_Translations$members$es._(TranslationsEs root) : this._root = root, super.internal(root);
+
+	final TranslationsEs _root; // ignore: unused_field
+
+	// Translations
+	@override String get username => 'Nombre de usuario';
+	@override String get usernameHint => 'nombre.apellido';
+	@override String get usernameHelp => 'Así te encontrarán los demás miembros.';
+	@override String get usernameChecking => 'Comprobando…';
+	@override String usernameFree({required Object username}) => '@${username} está disponible';
+	@override String get usernameCurrent => 'Es tu nombre de usuario actual';
+	@override String get usernameTaken => 'Este nombre de usuario ya está en uso.';
+	@override String get usernameInvalid => 'De 3 a 30 caracteres: letras, números, «.» y «_», sin empezar ni terminar con un signo.';
+	@override String get usernameReserved => 'Este nombre de usuario está reservado.';
+	@override String usernameSaved({required Object username}) => 'Nombre de usuario guardado: @${username}';
+	@override late final _Translations$members$deleteAccount$es deleteAccount = _Translations$members$deleteAccount$es._(_root);
+}
+
+// Path: admin
+class _Translations$admin$es extends Translations$admin$fr {
+	_Translations$admin$es._(TranslationsEs root) : this._root = root, super.internal(root);
+
+	final TranslationsEs _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Equipo y roles';
+	@override String get intro => 'Los admins gestionan lo que comparte toda la comunidad. Solo un superadmin da o quita un rol.';
+	@override String get roleUser => 'Miembro';
+	@override String get roleAdmin => 'Admin';
+	@override String get roleSuperadmin => 'Superadmin';
+	@override String get giveRole => 'Dar un rol';
+	@override String get you => 'tú';
+	@override String roleFor({required Object username}) => 'Rol de @${username}';
+	@override String roleChanged({required Object username, required Object role}) => '@${username}: ${role}';
+	@override String get memberUsername => 'Nombre de usuario del miembro';
+	@override String get empty => 'Aún no hay ningún admin.';
+}
+
+// Path: hymns
+class _Translations$hymns$es extends Translations$hymns$fr {
+	_Translations$hymns$es._(TranslationsEs root) : this._root = root, super.internal(root);
+
+	final TranslationsEs _root; // ignore: unused_field
+
+	// Translations
+	@override String get searchHint => 'Número, título o letra';
+	@override String get openNumber => 'Ir a un número';
+	@override late final _Translations$hymns$tabs$es tabs = _Translations$hymns$tabs$es._(_root);
+	@override String get chooseBook => 'Elegir el himnario';
+	@override String count({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('es'))(n,
+		one: '${n} himno',
+		other: '${n} himnos',
+	);
+	@override String number({required Object number}) => 'N.º ${number}';
+	@override String get emptyFavorites => 'Toca la estrella de un himno para encontrarlo aquí.';
+	@override String get emptyRecent => 'Los himnos que abras aparecerán aquí.';
+	@override String noResult({required Object query}) => 'Ningún himno coincide con «${query}».';
+	@override String get otherBooks => 'En los otros himnarios';
+	@override String get upToDate => 'Los himnarios están al día.';
+	@override String get updated => 'Los himnarios se han actualizado.';
+	@override String get chorus => 'Coro';
+	@override String chorusNumber({required Object label}) => 'Coro ${label}';
+	@override String verse({required Object label}) => 'Estrofa ${label}';
+	@override String times({required Object n}) => '×${n}';
+	@override String get loadFailed => 'No se pudieron abrir los himnarios.';
+	@override late final _Translations$hymns$reader$es reader = _Translations$hymns$reader$es._(_root);
+	@override late final _Translations$hymns$projection$es projection = _Translations$hymns$projection$es._(_root);
+	@override late final _Translations$hymns$pad$es pad = _Translations$hymns$pad$es._(_root);
+}
+
+// Path: comingSoon
+class _Translations$comingSoon$es extends Translations$comingSoon$fr {
+	_Translations$comingSoon$es._(TranslationsEs root) : this._root = root, super.internal(root);
+
+	final TranslationsEs _root; // ignore: unused_field
+
+	// Translations
+	@override String get badge => 'Próximamente';
+	@override String get backHome => 'Volver al inicio';
+}
+
+// Path: events
+class _Translations$events$es extends Translations$events$fr {
+	_Translations$events$es._(TranslationsEs root) : this._root = root, super.internal(root);
+
+	final TranslationsEs _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Eventos';
+	@override String get featured => 'Destacado';
+	@override String get upcoming => 'Próximos';
+	@override String get past => 'Ediciones anteriores';
+	@override String get emptyTitle => 'No hay eventos próximos';
+	@override String get emptyText => 'Las conferencias y los encuentros de toda la comunidad aparecerán aquí, con su programa.';
+	@override String get manage => 'Gestionar los eventos';
+	@override String get next => 'Próximo evento';
+	@override String get seeAll => 'Todos los eventos';
+	@override String get homeText => 'Los encuentros de la comunidad, su programa y sus novedades.';
+	@override String get today => 'Hoy';
+	@override String get tomorrow => 'Mañana';
+	@override String inDays({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('es'))(n,
+		one: 'En ${n} día',
+		other: 'En ${n} días',
+	);
+	@override String daysLeft({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('es'))(n,
+		other: 'Faltan ${n} días',
+	);
+	@override String get onNow => 'En curso';
+	@override String get over => 'Terminado';
+	@override String get cancelled => 'Cancelado';
+	@override String get draft => 'Borrador';
+	@override String get registered => 'Inscrito';
+	@override String get stateOpen => 'Inscripciones abiertas';
+	@override String get stateClosed => 'Inscripciones cerradas';
+	@override String get stateFull => 'Completo';
+	@override String registrations({required num n, required Object count}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('es'))(n,
+		zero: 'Sé el primero en inscribirte',
+		one: '${count} inscrito',
+		other: '${count} inscritos',
+	);
+	@override String people({required num n, required Object count}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('es'))(n,
+		one: '${count} persona',
+		other: '${count} personas',
+	);
+	@override String placesLeft({required num n, required Object count}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('es'))(n,
+		zero: 'no quedan plazas',
+		one: '${count} plaza disponible',
+		other: '${count} plazas disponibles',
+	);
+	@override String oneDay({required Object start, required Object end}) => 'De ${start} a ${end}';
+	@override String severalDays({required Object startDay, required Object start, required Object endDay, required Object end}) => 'Apertura el ${startDay} a las ${start}, clausura el ${endDay} a las ${end}';
+	@override String venueTime({required Object place}) => 'hora de ${place}';
+	@override String get addToCalendar => 'Añadir al calendario';
+	@override String get share => 'Compartir';
+	@override String get directions => 'Cómo llegar';
+	@override String get viewPoster => 'Ver el cartel';
+	@override late final _Translations$events$tabs$es tabs = _Translations$events$tabs$es._(_root);
+	@override String get noProgram => 'El programa se publicará pronto.';
+	@override String get noNews => 'Aún no hay novedades de este evento.';
+	@override String get pinned => 'Fijado';
+	@override String get now => 'Ahora mismo';
+	@override String hymn({required Object number}) => 'Himno ${number}';
+	@override String get about => 'Acerca de';
+	@override String get fees => 'Aportación';
+	@override String deadline({required Object date}) => 'Inscripciones hasta el ${date}';
+	@override String get contact => 'Contacto';
+	@override String call({required Object name}) => 'Llamar a ${name}';
+	@override String get otherEditions => 'Las otras ediciones';
+	@override String get cancelledBanner => 'Este evento está cancelado.';
+	@override String get calendarFailed => 'No se pudo abrir el calendario del teléfono.';
+	@override String get linkFailed => 'No se pudo abrir este enlace.';
+	@override String shareText({required Object title, required Object dates, required Object place}) => '${title}\n${dates} · ${place}\nInscríbete en la app CMFI Connect.';
+	@override String get full => 'Ya no quedan plazas para este evento.';
+	@override String get closed => 'Las inscripciones para este evento están cerradas.';
+	@override late final _Translations$events$register$es register = _Translations$events$register$es._(_root);
+	@override late final _Translations$events$reminder$es reminder = _Translations$events$reminder$es._(_root);
+	@override late final _Translations$events$admin$es admin = _Translations$events$admin$es._(_root);
+}
+
+// Path: prayer
+class _Translations$prayer$es extends Translations$prayer$fr {
+	_Translations$prayer$es._(TranslationsEs root) : this._root = root, super.internal(root);
+
+	final TranslationsEs _root; // ignore: unused_field
+
+	// Translations
+	@override Map<String, String> get moments => {
+		'morning': 'Mañana',
+		'noon': 'Mediodía',
+		'evening': 'Tarde',
+		'night': 'Noche',
+	};
+	@override Map<String, String> get retreatOf => {
+		'morning': 'Retiro de la mañana',
+		'noon': 'Retiro del mediodía',
+		'evening': 'Retiro de la tarde',
+		'night': 'Retiro de la noche',
+	};
+	@override late final _Translations$prayer$hero$es hero = _Translations$prayer$hero$es._(_root);
+	@override late final _Translations$prayer$today$es today = _Translations$prayer$today$es._(_root);
+	@override late final _Translations$prayer$reminders$es reminders = _Translations$prayer$reminders$es._(_root);
+	@override late final _Translations$prayer$retreat$es retreat = _Translations$prayer$retreat$es._(_root);
+	@override late final _Translations$prayer$session$es session = _Translations$prayer$session$es._(_root);
+	@override late final _Translations$prayer$done$es done = _Translations$prayer$done$es._(_root);
+	@override late final _Translations$prayer$topics$es topics = _Translations$prayer$topics$es._(_root);
+	@override late final _Translations$prayer$lists$es lists = _Translations$prayer$lists$es._(_root);
+	@override late final _Translations$prayer$importunity$es importunity = _Translations$prayer$importunity$es._(_root);
+}
+
+// Path: onboarding.reports
+class _Translations$onboarding$reports$es extends Translations$onboarding$reports$fr {
+	_Translations$onboarding$reports$es._(TranslationsEs root) : this._root = root, super.internal(root);
+
+	final TranslationsEs _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Tu caminar con Dios, día tras día';
+	@override String get text => 'Anota en pocos segundos tu lectura bíblica, tu oración, tus ayunos… y mira tu progreso semana tras semana.';
+}
+
+// Path: onboarding.worship
+class _Translations$onboarding$worship$es extends Translations$onboarding$worship$fr {
+	_Translations$onboarding$worship$es._(TranslationsEs root) : this._root = root, super.internal(root);
+
+	final TranslationsEs _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Canta y ora, estés donde estés';
+	@override String get text => 'Encuentra los himnos de la comunidad e intercede cada día por los motivos de oración junto a tus hermanos y hermanas.';
+}
+
+// Path: onboarding.community
+class _Translations$onboarding$community$es extends Translations$onboarding$community$fr {
+	_Translations$onboarding$community$es._(TranslationsEs root) : this._root = root, super.internal(root);
+
+	final TranslationsEs _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Mantente unido a tu comunidad';
+	@override String get text => 'Los eventos y los anuncios de tu asamblea, en un solo lugar, para que no te pierdas nada.';
+}
+
+// Path: onboarding.sample
+class _Translations$onboarding$sample$es extends Translations$onboarding$sample$fr {
+	_Translations$onboarding$sample$es._(TranslationsEs root) : this._root = root, super.internal(root);
+
+	final TranslationsEs _root; // ignore: unused_field
+
+	// Translations
+	@override String get today => 'Hoy';
+	@override String get bibleReading => 'Lectura bíblica';
+	@override String get prayerAlone => 'Oración a solas';
+	@override String get meditation => 'Meditación';
+	@override String get groupPrayer => 'Oración en grupo';
+	@override String get thisWeek => 'Esta semana';
+	@override String get weekScore => '4 días de 5';
+	@override String get hymn => 'Himno';
+	@override String get hymnNumber => 'N.º 12';
+	@override String get fullScreen => 'Pantalla completa';
+	@override String get prayerOfTheDay => 'Motivo de oración del día';
+	@override String get prayerTopic => 'Por los exámenes de nuestros jóvenes';
+	@override String get praying => '12 personas oran';
+	@override String get iPray => 'Oraré';
+	@override String get vigil => 'Vigilia de oración';
+	@override String get vigilMeta => '20:00 · Asamblea local';
+	@override String get join => 'Participaré';
+	@override String get retreat => 'Retiro de jóvenes';
+	@override String get retreatMeta => 'Todo el día';
+	@override String get announcement => 'Anuncio';
+	@override String get announcementText => 'El culto del domingo empieza a las 8:30.';
+	@override String get chapters => '10 cap.';
+}
+
+// Path: auth.login
+class _Translations$auth$login$es extends Translations$auth$login$fr {
+	_Translations$auth$login$es._(TranslationsEs root) : this._root = root, super.internal(root);
+
+	final TranslationsEs _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => '¡Hola de nuevo!';
+	@override String get subtitle => 'Inicia sesión para completar tu informe del día.';
+	@override String get submit => 'Iniciar sesión';
+	@override String get noAccount => '¿Aún no tienes cuenta?';
+	@override String get createAccount => 'Crear una cuenta';
+}
+
+// Path: auth.register
+class _Translations$auth$register$es extends Translations$auth$register$fr {
+	_Translations$auth$register$es._(TranslationsEs root) : this._root = root, super.internal(root);
+
+	final TranslationsEs _root; // ignore: unused_field
+
+	// Translations
+	@override String step({required Object current, required Object total}) => '${current} / ${total}';
+	@override String get title => 'Crea tu cuenta';
+	@override String get subtitle => 'Usarás tu número de teléfono para iniciar sesión.';
+	@override String get firstName => 'Nombre';
+	@override String get lastName => 'Apellido';
+	@override String get passwordHelp => 'Mínimo 6 caracteres';
+	@override String get email => 'Correo electrónico';
+	@override String get submit => 'Continuar';
+	@override String get haveAccount => '¿Ya tienes cuenta?';
+	@override String get login => 'Iniciar sesión';
+	@override String get alreadyUsed => 'Este número o este correo ya tiene una cuenta. Inicia sesión.';
+	@override String get emailHint => 'tu@ejemplo.com';
+}
+
+// Path: auth.church
+class _Translations$auth$church$es extends Translations$auth$church$fr {
+	_Translations$auth$church$es._(TranslationsEs root) : this._root = root, super.internal(root);
+
+	final TranslationsEs _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Tu iglesia';
+	@override String get subtitle => 'Estos datos ayudan a tus líderes a encontrarte. Podrás cambiarlos más tarde.';
+	@override String get editTitle => 'Mi perfil';
+	@override String get editSubtitle => 'Actualiza tu nombre, tu iglesia y tu asamblea.';
+	@override String get country => 'País';
+	@override String get countryHint => 'Camerún';
+	@override String get city => 'Ciudad';
+	@override String get cityHint => 'Yaoundé';
+	@override String get church => 'Iglesia';
+	@override String get churchHint => 'Nombre de tu iglesia';
+	@override String get assembly => 'Asamblea';
+	@override String get assemblyHint => 'Nombre de tu asamblea';
+	@override String get info => '¿Te mudaste o cambiaste de asamblea? Podrás actualizarlo todo desde tu perfil.';
+	@override String get submit => 'Terminar';
+	@override String get skip => 'Omitir este paso';
+	@override String get saved => 'Perfil guardado';
+}
+
+// Path: reports.tabs
+class _Translations$reports$tabs$es extends Translations$reports$tabs$fr {
+	_Translations$reports$tabs$es._(TranslationsEs root) : this._root = root, super.internal(root);
+
+	final TranslationsEs _root; // ignore: unused_field
+
+	// Translations
+	@override String get today => 'Hoy';
+	@override String get history => 'Historial';
+	@override String get summary => 'Resumen';
+}
+
+// Path: reports.measure
+class _Translations$reports$measure$es extends Translations$reports$measure$fr {
+	_Translations$reports$measure$es._(TranslationsEs root) : this._root = root, super.internal(root);
+
+	final TranslationsEs _root; // ignore: unused_field
+
+	// Translations
+	@override String quantity({required Object unit}) => '${unit}';
+	@override String get duration => 'duración';
+	@override String both({required Object unit}) => '${unit} y duración';
+	@override String get quantityNoUnit => 'cantidad';
+	@override String get bothNoUnit => 'cantidad y duración';
+}
+
+// Path: reports.sheet
+class _Translations$reports$sheet$es extends Translations$reports$sheet$fr {
+	_Translations$reports$sheet$es._(TranslationsEs root) : this._root = root, super.internal(root);
+
+	final TranslationsEs _root; // ignore: unused_field
+
+	// Translations
+	@override String get quantity => 'Cantidad';
+	@override String get duration => 'Duración';
+	@override String get minus1 => '− 1 min';
+	@override String get plus1 => '+ 1 min';
+	@override String get removeMinute => 'Quitar un minuto';
+	@override String get addMinute => 'Añadir un minuto';
+	@override String get holdToRepeat => 'Mantén presionado para ir más rápido';
+	@override String get decrease => 'Disminuir';
+	@override String get increase => 'Aumentar';
+	@override String get clear => 'Borrar';
+	@override String get validate => 'Listo';
+}
+
+// Path: reports.history
+class _Translations$reports$history$es extends Translations$reports$history$fr {
+	_Translations$reports$history$es._(TranslationsEs root) : this._root = root, super.internal(root);
+
+	final TranslationsEs _root; // ignore: unused_field
+
+	// Translations
+	@override String daysFilled({required Object filled, required Object total}) => '${filled} días completados de ${total}';
+	@override String get legendFilled => 'Completado';
+	@override String get legendMissing => 'Sin informe';
+	@override String get none => 'Sin informe';
+	@override String get fill => 'Completar';
+	@override String get inProgress => 'En curso';
+	@override String get previousMonth => 'Mes anterior';
+	@override String get nextMonth => 'Mes siguiente';
+	@override String get today => 'hoy';
+}
+
+// Path: reports.summary
+class _Translations$reports$summary$es extends Translations$reports$summary$fr {
+	_Translations$reports$summary$es._(TranslationsEs root) : this._root = root, super.internal(root);
+
+	final TranslationsEs _root; // ignore: unused_field
+
+	// Translations
+	@override String get week => 'Semana';
+	@override String get month => 'Mes';
+	@override String get year => 'Año';
+	@override String range({required Object from, required Object to}) => 'Del ${from} al ${to}';
+	@override String get regularity => 'Constancia';
+	@override String get daysFilled => 'días completados';
+	@override String missingDays({required num n, required Object days}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('es'))(n,
+		one: '${n} día sin informe: el ${days}',
+		other: '${n} días sin informe: los días ${days}',
+	);
+	@override String missingCount({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('es'))(n,
+		one: '${n} día sin informe',
+		other: '${n} días sin informe',
+	);
+	@override String get noMissing => 'No faltó ningún día, ¡bien hecho!';
+	@override String perDay({required Object value}) => '${value} por día completado';
+	@override String days({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('es'))(n,
+		one: '${n} día',
+		other: '${n} días',
+	);
+	@override String get notFilled => 'Aún sin completar';
+	@override String barsCaption({required Object max}) => 'Por día · barra más alta: ${max}';
+	@override String barsCaptionMonthly({required Object max}) => 'Por mes · barra más alta: ${max}';
+	@override String get empty => 'No hay informes en este período.';
+	@override String goalDays({required num n, required Object total}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('es'))(n,
+		one: 'Objetivo alcanzado ${n} día de ${total}',
+		other: 'Objetivo alcanzado ${n} días de ${total}',
+	);
+	@override String get share => 'Compartir este resumen';
+}
+
+// Path: export.doc
+class _Translations$export$doc$es extends Translations$export$doc$fr {
+	_Translations$export$doc$es._(TranslationsEs root) : this._root = root, super.internal(root);
+
+	final TranslationsEs _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Informe diario';
+	@override String get regularity => 'Constancia';
+	@override String daysFilled({required num filled, required Object total}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('es'))(filled,
+		one: '${filled} día completado de ${total}',
+		other: '${filled} días completados de ${total}',
+	);
+	@override String get totals => 'En el período';
+	@override String get item => 'Elemento';
+	@override String get total => 'Total';
+	@override String get days => 'Días';
+	@override String get average => 'Promedio / día completado';
+	@override String get goal => 'Objetivo alcanzado';
+	@override String get detail => 'Día a día';
+	@override String get date => 'Fecha';
+	@override String get values => 'Completado';
+	@override String get note => 'Nota';
+	@override String get noReport => 'Sin informe';
+	@override String generated({required Object date}) => 'Generado el ${date} con CMFI Connect';
+	@override String page({required Object n, required Object total}) => 'Página ${n} / ${total}';
+	@override String get filledColumn => 'Informe';
+	@override String get yes => 'sí';
+	@override String get no => 'no';
+	@override String get sentFrom => 'Enviado desde CMFI Connect';
+}
+
+// Path: items.measure
+class _Translations$items$measure$es extends Translations$items$measure$fr {
+	_Translations$items$measure$es._(TranslationsEs root) : this._root = root, super.internal(root);
+
+	final TranslationsEs _root; // ignore: unused_field
+
+	// Translations
+	@override String quantity({required Object unit}) => 'Cantidad · ${unit}';
+	@override String get quantityNoUnit => 'Cantidad';
+	@override String get duration => 'Duración';
+	@override String both({required Object unit}) => 'Cantidad (${unit}) y duración';
+	@override String get bothNoUnit => 'Cantidad y duración';
+}
+
+// Path: authorities.form
+class _Translations$authorities$form$es extends Translations$authorities$form$fr {
+	_Translations$authorities$form$es._(TranslationsEs root) : this._root = root, super.internal(root);
+
+	final TranslationsEs _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Nueva autoridad';
+	@override String get emailHint => 'nombre@ejemplo.com';
+	@override String get isDiscipleMaker => 'Es mi discipulador';
+	@override String get isDiscipleMakerHelp => 'La persona que te acompaña personalmente. Solo tienes uno.';
+	@override String discipleMakerTaken({required Object name}) => '${name} ya es tu discipulador. Quítalo de la lista para elegir a otro.';
+	@override String get submit => 'Añadir';
+	@override String added({required Object name}) => '${name} ahora forma parte de tus autoridades.';
+	@override String get searchLabel => 'Su nombre de usuario';
+	@override String get searchHint => 'usuario';
+	@override String get search => 'Buscar';
+	@override String get searchHelp => 'Si la persona usa CMFI Connect, búscala por su nombre de usuario. Recibirá tu solicitud, y sus datos de contacto aparecerán cuando la acepte.';
+	@override String notFound({required Object username}) => 'Nadie tiene el nombre de usuario @${username}.';
+	@override String get invite => 'Invitarla a unirse a CMFI Connect';
+	@override String get inviteText => '¡Hola! Uso CMFI Connect para llevar el registro de mi caminar con Dios, y me gustaría que me acompañaras. Instala la aplicación, crea tu cuenta y luego envíame tu nombre de usuario para que pueda añadirte.';
+	@override String inviteMine({required Object username}) => 'Mi nombre de usuario: @${username}';
+	@override String get manual => '¿No tiene la aplicación? Introducir sus datos';
+	@override String get backToSearch => 'Buscar por nombre de usuario';
+	@override String get request => 'Enviar la solicitud';
+	@override String requested({required Object name}) => 'Solicitud enviada a ${name}.';
+	@override String get alreadyAdded => 'Esta persona ya forma parte de tus autoridades.';
+	@override String get makerExists => 'Ya tienes un discipulador.';
+	@override String get yourself => 'Es tu propio nombre de usuario.';
+}
+
+// Path: members.deleteAccount
+class _Translations$members$deleteAccount$es extends Translations$members$deleteAccount$fr {
+	_Translations$members$deleteAccount$es._(TranslationsEs root) : this._root = root, super.internal(root);
+
+	final TranslationsEs _root; // ignore: unused_field
+
+	// Translations
+	@override String get button => 'Eliminar mi cuenta';
+	@override String get title => 'Eliminar mi cuenta';
+	@override String get intro => 'Es definitivo. Tu cuenta y todo lo relacionado con ella se borrará:';
+	@override String get itemProfile => 'tu perfil, tu nombre de usuario y tu contraseña';
+	@override String get itemReports => 'todos tus informes, tus elementos y tus objetivos';
+	@override String get itemAuthorities => 'tus autoridades espirituales y las solicitudes recibidas';
+	@override String get itemEvents => 'tus inscripciones a eventos';
+	@override String get itemPrayer => 'tus listas de oración, tus retiros y tus motivos de importunidad';
+	@override String get kept => 'Los eventos, novedades, fotos y motivos de oración que publicaste como admin se quedan para la comunidad, sin tu nombre.';
+	@override String get passwordHelp => 'Para confirmar que eres tú.';
+	@override String get confirm => 'Eliminar definitivamente';
+	@override String get done => 'Tu cuenta ha sido eliminada. ¡Dios te bendiga!';
+	@override String get wrongPassword => 'Contraseña incorrecta.';
+	@override String get lastSuperadmin => 'Eres el único superadmin: da este rol a otra persona antes de eliminar tu cuenta.';
+}
+
+// Path: hymns.tabs
+class _Translations$hymns$tabs$es extends Translations$hymns$tabs$fr {
+	_Translations$hymns$tabs$es._(TranslationsEs root) : this._root = root, super.internal(root);
+
+	final TranslationsEs _root; // ignore: unused_field
+
+	// Translations
+	@override String get all => 'Todos';
+	@override String get favorites => 'Favoritos';
+	@override String get recent => 'Recientes';
+}
+
+// Path: hymns.reader
+class _Translations$hymns$reader$es extends Translations$hymns$reader$fr {
+	_Translations$hymns$reader$es._(TranslationsEs root) : this._root = root, super.internal(root);
+
+	final TranslationsEs _root; // ignore: unused_field
+
+	// Translations
+	@override String get smaller => 'Reducir el texto';
+	@override String get larger => 'Ampliar el texto';
+	@override String get display => 'Visualización';
+	@override String get textSize => 'Tamaño del texto';
+	@override String get typeface => 'Fuente';
+	@override String get typefaceAuto => 'Auto';
+	@override String get typefaceSans => 'Moderna';
+	@override String get typefaceSerif => 'Clásica';
+	@override String get typefaceAutoHelp => 'Clásica cuando el texto es grande';
+	@override String get background => 'Fondo';
+	@override String get themeAuto => 'Auto';
+	@override String get themeLight => 'Claro';
+	@override String get themeSepia => 'Sepia';
+	@override String get themeDark => 'Oscuro';
+	@override String get repeatChorus => 'Repetir el coro después de cada estrofa';
+	@override String get keepScreenOn => 'Mantener la pantalla encendida';
+	@override String get addFavorite => 'Añadir a favoritos';
+	@override String get removeFavorite => 'Quitar de favoritos';
+	@override String get favoriteAdded => 'Añadido a favoritos';
+	@override String get favoriteRemoved => 'Quitado de favoritos';
+	@override String get more => 'Más opciones';
+	@override String get copy => 'Copiar la letra';
+	@override String get copied => 'Letra copiada';
+	@override String get project => 'Modo proyección';
+	@override String get pinchHint => 'Pellizca la pantalla para agrandar o reducir el texto.';
+	@override String get notFound => 'Este himno ya no está en el himnario.';
+	@override String get share => 'Compartir la letra';
+}
+
+// Path: hymns.projection
+class _Translations$hymns$projection$es extends Translations$hymns$projection$fr {
+	_Translations$hymns$projection$es._(TranslationsEs root) : this._root = root, super.internal(root);
+
+	final TranslationsEs _root; // ignore: unused_field
+
+	// Translations
+	@override String get exit => 'Salir del modo proyección';
+	@override String get previous => 'Estrofa anterior';
+	@override String get next => 'Estrofa siguiente';
+	@override String position({required Object current, required Object total}) => '${current} / ${total}';
+	@override String get hint => 'Toca a la derecha para avanzar y a la izquierda para volver.';
+}
+
+// Path: hymns.pad
+class _Translations$hymns$pad$es extends Translations$hymns$pad$fr {
+	_Translations$hymns$pad$es._(TranslationsEs root) : this._root = root, super.internal(root);
+
+	final TranslationsEs _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Ir al himno';
+	@override String get open => 'Abrir';
+	@override String get erase => 'Borrar';
+	@override String notFound({required Object number}) => 'No hay himno n.º ${number} en este himnario';
+	@override String get placeholder => 'Escribe un número';
+}
+
+// Path: events.tabs
+class _Translations$events$tabs$es extends Translations$events$tabs$fr {
+	_Translations$events$tabs$es._(TranslationsEs root) : this._root = root, super.internal(root);
+
+	final TranslationsEs _root; // ignore: unused_field
+
+	// Translations
+	@override String get program => 'Programa';
+	@override String get news => 'Novedades';
+	@override String get info => 'Info';
+	@override String get photos => 'Fotos';
+}
+
+// Path: events.register
+class _Translations$events$register$es extends Translations$events$register$fr {
+	_Translations$events$register$es._(TranslationsEs root) : this._root = root, super.internal(root);
+
+	final TranslationsEs _root; // ignore: unused_field
+
+	// Translations
+	@override String get cta => 'Participaré';
+	@override String get title => 'Participaré';
+	@override String get people => '¿Cuántas personas vendrán?';
+	@override String get peopleHint => 'Contándote a ti, con tu familia o tu grupo.';
+	@override String get less => 'Una persona menos';
+	@override String get more => 'Una persona más';
+	@override String get lodging => 'Necesito alojamiento';
+	@override String get lodgingHint => 'Los organizadores prevén las plazas.';
+	@override String get departure => 'Ciudad de salida';
+	@override String get departureHint => 'Ej.: Douala';
+	@override String get confirm => 'Confirmar mi inscripción';
+	@override String get update => 'Actualizar';
+	@override String get cancel => 'Cancelar mi inscripción';
+	@override String get done => '¡Listo, estás inscrito! Te lo recordaremos el día antes.';
+	@override String get updated => 'Tu inscripción está actualizada.';
+	@override String get cancelled => 'Tu inscripción se ha cancelado.';
+	@override String get edit => 'Modificar';
+	@override String get youAre => 'Estás inscrito';
+	@override String get cancelTitle => '¿Cancelar tu inscripción?';
+	@override String get cancelText => 'Tu plaza quedará libre para otra persona.';
+	@override String get keep => 'Mantener mi plaza';
+	@override String get lodgingShort => 'alojamiento';
+}
+
+// Path: events.reminder
+class _Translations$events$reminder$es extends Translations$events$reminder$fr {
+	_Translations$events$reminder$es._(TranslationsEs root) : this._root = root, super.internal(root);
+
+	final TranslationsEs _root; // ignore: unused_field
+
+	// Translations
+	@override String get channel => 'Recordatorios de eventos';
+	@override String tomorrow({required Object title}) => 'Mañana: ${title}';
+	@override String soon({required Object title}) => 'En 1 h: ${title}';
+}
+
+// Path: events.admin
+class _Translations$events$admin$es extends Translations$events$admin$fr {
+	_Translations$events$admin$es._(TranslationsEs root) : this._root = root, super.internal(root);
+
+	final TranslationsEs _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Gestionar los eventos';
+	@override String get create => 'Crear un evento';
+	@override String get edit => 'Editar el evento';
+	@override String get empty => 'Aún no hay eventos. ¡Crea el primero!';
+	@override String get poster => 'Cartel';
+	@override String get posterAdd => 'Elegir un cartel';
+	@override String get posterChange => 'Cambiar el cartel';
+	@override String get posterRemove => 'Quitar el cartel';
+	@override String get posterHint => 'Formato vertical 4:5 recomendado (1080 × 1350), JPEG o PNG.';
+	@override String get uploading => 'Enviando la imagen…';
+	@override String get general => 'El evento';
+	@override String get titleField => 'Título';
+	@override String get titleHint => 'Ej.: Conferencia anual 2026';
+	@override String get titleRequired => 'Ponle un título al evento.';
+	@override String get theme => 'Tema';
+	@override String get themeHint => 'Ej.: Andar en el Espíritu';
+	@override String get verse => 'Versículo del tema';
+	@override String get description => 'Presentación';
+	@override String get when => 'Fechas';
+	@override String get starts => 'Inicio';
+	@override String get ends => 'Fin';
+	@override String get endsBeforeStart => 'El fin debe ser posterior al inicio.';
+	@override String timeZone({required Object zone}) => 'Horario del lugar (${zone}).';
+	@override String get where => 'Lugar';
+	@override String get venue => 'Lugar';
+	@override String get venueHint => 'Ej.: Centro de conferencias de Mvolyé';
+	@override String get address => 'Dirección';
+	@override String get city => 'Ciudad';
+	@override String get country => 'País';
+	@override String get mapsUrl => 'Enlace de Google Maps';
+	@override String get registration => 'Inscripciones';
+	@override String get registrationOpen => 'Inscripciones abiertas';
+	@override String get deadline => 'Fecha límite';
+	@override String get noDeadline => 'Sin fecha límite';
+	@override String get capacity => 'Número de plazas';
+	@override String get capacityHint => 'Vacío: sin límite';
+	@override String get asksLodging => 'Preguntar quién necesita alojamiento';
+	@override String get asksDeparture => 'Preguntar la ciudad de salida';
+	@override String get fees => 'Aportación';
+	@override String get feesHint => 'Ej.: Entrada libre. Comidas: 2000 FCFA al día.';
+	@override String get contact => 'Contacto';
+	@override String get contactName => 'Nombre del contacto';
+	@override String get contactPhone => 'Teléfono del contacto';
+	@override String get visibility => 'Visibilidad';
+	@override String get statusDraft => 'Borrador';
+	@override String get statusDraftHint => 'Solo lo ven los admins';
+	@override String get statusPublished => 'Publicado';
+	@override String get statusPublishedHint => 'Lo ve toda la comunidad';
+	@override String get statusCancelled => 'Cancelado';
+	@override String get statusCancelledHint => 'Se muestra como cancelado, sin inscripción';
+	@override String get saved => 'Evento guardado.';
+	@override String get menu => 'Gestionar';
+	@override String get program => 'Programa';
+	@override String get registrants => 'Inscritos';
+	@override String get post => 'Publicar una novedad';
+	@override String get photos => 'Añadir fotos';
+	@override String get nextEdition => 'Preparar la próxima edición';
+	@override String get delete => 'Eliminar el evento';
+	@override String get deleteTitle => '¿Eliminar este evento?';
+	@override String get deleteText => 'También se eliminarán las inscripciones, las novedades y las fotos.';
+	@override String get deleteConfirm => 'Eliminar';
+	@override String get deleted => 'Evento eliminado.';
+	@override String get nextEditionTitle => '¿Preparar la próxima edición?';
+	@override String get nextEditionText => 'Se crea un borrador un año después, con el mismo lugar y el mismo programa. Podrás ajustarlo todo antes de publicarlo.';
+	@override String get nextEditionConfirm => 'Preparar';
+	@override String get nextEditionDone => 'La próxima edición está lista como borrador.';
+	@override String get programEmpty => 'Añade los momentos del evento: acogida, cultos, enseñanzas, vigilia…';
+	@override String get addSession => 'Añadir un momento';
+	@override String get editSession => 'Editar este momento';
+	@override String get sessionTitle => 'Título';
+	@override String get sessionTitleHint => 'Ej.: Culto de apertura';
+	@override String get speaker => 'Orador';
+	@override String get place => 'Sala';
+	@override String get day => 'Día';
+	@override String get from => 'De';
+	@override String get to => 'A';
+	@override String get hymns => 'Himnos';
+	@override String get hymnsHint => 'Números, ej.: 12, 45';
+	@override String get removeSession => 'Quitar';
+	@override String get saveProgram => 'Guardar el programa';
+	@override String get programSaved => 'Programa guardado.';
+	@override String get registrantsEmpty => 'Aún no hay nadie inscrito.';
+	@override String get totalRegistrations => 'Inscripciones';
+	@override String get totalPeople => 'Personas';
+	@override String get totalLodging => 'Por alojar';
+	@override String get byCity => 'Por ciudad de salida';
+	@override String get list => 'Lista';
+	@override String get exportCsv => 'Exportar la lista (CSV)';
+	@override String get csvHeader => 'Nombre;Usuario;Teléfono;Iglesia;Asamblea;Personas;Alojamiento;Ciudad de salida;Inscrito el';
+	@override String get yes => 'sí';
+	@override String get no => 'no';
+	@override String get postBody => 'Mensaje';
+	@override String get postBodyHint => 'Ej.: ¡Las inscripciones están abiertas!';
+	@override String get postImage => 'Añadir una imagen';
+	@override String get postPinned => 'Fijar arriba';
+	@override String get postSend => 'Publicar';
+	@override String get postDone => 'Novedad publicada.';
+	@override String get postDelete => 'Eliminar esta novedad';
+	@override String get postDeleted => 'Novedad eliminada.';
+	@override String photosAdded({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('es'))(n,
+		one: '${n} foto añadida.',
+		other: '${n} fotos añadidas.',
+	);
+	@override String photosSending({required Object done, required Object total}) => 'Enviando las fotos (${done}/${total})…';
+	@override String get photoDelete => 'Eliminar esta foto';
+	@override String get photoDeleted => 'Foto eliminada.';
+	@override String get confirmDelete => 'Eliminar';
+}
+
+// Path: prayer.hero
+class _Translations$prayer$hero$es extends Translations$prayer$hero$fr {
+	_Translations$prayer$hero$es._(TranslationsEs root) : this._root = root, super.internal(root);
+
+	final TranslationsEs _root; // ignore: unused_field
+
+	// Translations
+	@override String now({required Object retreat}) => '${retreat} · ahora';
+	@override String get title => '15 minutos\ncon el Señor';
+	@override Map<String, String> get preview => {
+		'morning': 'Da gracias, consagra tu día, tu trabajo, tu familia…',
+		'noon': 'Tu asamblea, tus líderes, 5 personas de tu lista, las naciones…',
+		'evening': 'Tu vida de oración, tu ministerio, tus colaboradores…',
+		'night': 'Los enfermos, el Evangelio en las naciones, la protección durante la noche…',
+	};
+	@override String get meta => '15 puntos · 1 min cada uno';
+	@override String get start => 'Empezar';
+	@override String get allDone => 'Hiciste los 4 retiros del día. ¡Que Dios conteste tus oraciones!';
+	@override String doneNow({required Object retreat, required Object next}) => '${retreat} hecho. Siguiente: ${next}';
+}
+
+// Path: prayer.today
+class _Translations$prayer$today$es extends Translations$prayer$today$fr {
+	_Translations$prayer$today$es._(TranslationsEs root) : this._root = root, super.internal(root);
+
+	final TranslationsEs _root; // ignore: unused_field
+
+	// Translations
+	@override String get toPray => 'Por orar';
+	@override String week({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('es'))(n,
+		zero: 'Ningún retiro esta semana',
+		one: '${n} retiro esta semana',
+		other: '${n} retiros esta semana',
+	);
+}
+
+// Path: prayer.reminders
+class _Translations$prayer$reminders$es extends Translations$prayer$reminders$fr {
+	_Translations$prayer$reminders$es._(TranslationsEs root) : this._root = root, super.internal(root);
+
+	final TranslationsEs _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Recordatorios de los retiros';
+	@override String get intro => 'Un recordatorio a la hora de cada retiro, solo si aún no lo has hecho.';
+	@override String get off => 'Desactivado';
+	@override String get channel => 'Retiros de oración';
+	@override String get body => '15 minutos con el Señor.';
+}
+
+// Path: prayer.retreat
+class _Translations$prayer$retreat$es extends Translations$prayer$retreat$fr {
+	_Translations$prayer$retreat$es._(TranslationsEs root) : this._root = root, super.internal(root);
+
+	final TranslationsEs _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Retiros de 15 minutos';
+	@override Map<String, String> get hours => {
+		'morning': 'Al despertar',
+		'noon': 'Entre las 12:00 y las 14:00',
+		'evening': 'Al final de la tarde',
+		'night': 'Antes de dormir',
+	};
+	@override String reminderAt({required Object time}) => 'recordatorio a las ${time}';
+	@override String get intro => '15 puntos, un minuto cada uno. Un sonido suave te lleva al siguiente.';
+	@override String get done => 'Hecho hoy';
+	@override String get start => 'Empezar · 15 min';
+	@override String get selfPaced => 'Leer a mi ritmo, sin temporizador';
+	@override late final _Translations$prayer$retreat$hints$es hints = _Translations$prayer$retreat$hints$es._(_root);
+}
+
+// Path: prayer.session
+class _Translations$prayer$session$es extends Translations$prayer$session$fr {
+	_Translations$prayer$session$es._(TranslationsEs root) : this._root = root, super.internal(root);
+
+	final TranslationsEs _root; // ignore: unused_field
+
+	// Translations
+	@override String point({required Object n}) => 'Punto ${n} de 15';
+	@override String get remaining => 'restantes';
+	@override String get paused => 'en pausa';
+	@override String inYourList({required Object list}) => 'En tu lista · ${list}';
+	@override String get tomorrow => 'Mañana, los siguientes.';
+	@override String get footer => 'Pantalla encendida · un sonido suave cada minuto';
+	@override String get previous => 'Punto anterior';
+	@override String get next => 'Punto siguiente';
+	@override String get pause => 'Pausa';
+	@override String get resume => 'Reanudar';
+	@override String get soundOn => 'Sonido activado';
+	@override String get soundOff => 'Sonido desactivado';
+	@override String get finish => 'Terminar el retiro';
+	@override String get quitTitle => '¿Detener el retiro?';
+	@override String get quitText => 'No se contará en tu día.';
+	@override String get quit => 'Detener';
+	@override String get keepPraying => 'Seguir orando';
+}
+
+// Path: prayer.done
+class _Translations$prayer$done$es extends Translations$prayer$done$fr {
+	_Translations$prayer$done$es._(TranslationsEs root) : this._root = root, super.internal(root);
+
+	final TranslationsEs _root; // ignore: unused_field
+
+	// Translations
+	@override String title({required Object retreat}) => '${retreat} terminado';
+	@override String get text => '15 minutos con el Señor.\nÉl escuchó cada una de tus oraciones.';
+	@override String get report => 'Añadido a tu informe';
+	@override String reportDetail({required Object added, required Object total}) => 'Oración a solas: +${added} min · ${total} min hoy';
+	@override String get undo => 'Deshacer';
+	@override String get undone => 'Retiro quitado de tu día.';
+	@override String get today => 'Hoy';
+	@override String count({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('es'))(n,
+		one: '${n} retiro de 4',
+		other: '${n} retiros de 4',
+	);
+	@override String get verse => '«Orad sin cesar.»';
+	@override String get reference => '1 Tesalonicenses 5:17';
+	@override String get finish => 'Terminar';
+	@override String get hymn => 'Cantar un himno';
+}
+
+// Path: prayer.topics
+class _Translations$prayer$topics$es extends Translations$prayer$topics$fr {
+	_Translations$prayer$topics$es._(TranslationsEs root) : this._root = root, super.internal(root);
+
+	final TranslationsEs _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Motivos de la comunidad';
+	@override String get all => 'Ver todo';
+	@override String get empty => 'No hay motivos por ahora. Los líderes publicarán los próximos aquí.';
+	@override Map<String, String> get categories => {
+		'church': 'Iglesia',
+		'nations': 'Naciones',
+		'sick': 'Enfermos',
+		'event': 'Evento',
+		'fasting': 'Ayuno',
+		'other': 'Motivo',
+	};
+	@override String points({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('es'))(n,
+		one: '${n} motivo',
+		other: '${n} motivos',
+	);
+	@override String until({required Object date}) => 'hasta el ${date}';
+	@override String since({required Object date}) => 'desde el ${date}';
+	@override String people({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('es'))(n,
+		zero: 'Nadie todavía',
+		one: '${n} ora',
+		other: '${n} oran',
+	);
+	@override String get withPdf => 'Con el PDF';
+	@override String get isNew => 'Nuevo';
+	@override String get screenTitle => 'Motivo de oración';
+	@override String period({required Object from, required Object to}) => 'Del ${from} al ${to}';
+	@override String peopleBanner({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('es'))(n,
+		zero: 'Sé el primero en orar por estos motivos.',
+		one: '${n} hermano o hermana ora por estos motivos',
+		other: '${n} hermanos y hermanas oran por estos motivos',
+	);
+	@override String prayedToday({required Object count, required Object prayed}) => '${count} · hoy oraste por ${prayed}';
+	@override String get document => 'Documento original';
+	@override String get prayAll => 'Oré por todos estos motivos';
+	@override String get allPrayed => 'Hoy oraste por todos';
+	@override String get archive => 'Motivos anteriores';
+	@override String get archiveEmpty => 'No hay motivos anteriores.';
+	@override String get current => 'En este momento';
+	@override String shareText({required Object title, required Object points}) => '${title}\n\n${points}\n\nOremos juntos en la app CMFI Connect.';
+	@override String documentSize({required Object kb}) => '${kb} KB';
+}
+
+// Path: prayer.lists
+class _Translations$prayer$lists$es extends Translations$prayer$lists$fr {
+	_Translations$prayer$lists$es._(TranslationsEs root) : this._root = root, super.internal(root);
+
+	final TranslationsEs _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Mis listas de oración';
+	@override String get private => 'Solo para ti';
+	@override Map<String, String> get names => {
+		'unbelievers': 'Aún no creyentes',
+		'believers': 'Creyentes',
+		'backsliders': 'Descarriados',
+		'coworkers': 'Colaboradores',
+	};
+	@override Map<String, String> get uses => {
+		'unbelievers': 'En el retiro del mediodía oras cada día por 10 personas de esta lista (5 + 5), por turnos.',
+		'believers': 'En el retiro del mediodía oras cada día por 5 personas de esta lista, por turnos.',
+		'backsliders': 'En el retiro del mediodía oras cada día por 5 personas de esta lista, por turnos.',
+		'coworkers': 'En el retiro de la tarde oras cada día por 10 de tus colaboradores (5 + 5), por turnos.',
+	};
+	@override String get privateNote => 'Solo tú puedes verla.';
+	@override String count({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('es'))(n,
+		zero: 'Nadie',
+		one: '${n} persona',
+		other: '${n} personas',
+	);
+	@override String get empty => 'Nadie por ahora. Añade a las personas por las que oras.';
+	@override String get add => 'Añadir una persona';
+	@override String get prayedToday => 'Hoy';
+	@override String get next => 'Próximamente';
+	@override Map<String, String> get answeredTitle => {
+		'unbelievers': 'Creyeron en el Señor',
+		'believers': 'Oraciones contestadas',
+		'backsliders': 'Volvieron al Señor',
+		'coworkers': 'Oraciones contestadas',
+	};
+	@override late final _Translations$prayer$lists$answeredOn$es answeredOn = _Translations$prayer$lists$answeredOn$es._(_root);
+	@override Map<String, String> get markAnswered => {
+		'unbelievers': '¡Creyó en el Señor!',
+		'believers': 'Oración contestada',
+		'backsliders': '¡Volvió al Señor!',
+		'coworkers': 'Oración contestada',
+	};
+	@override String get answeredToast => '¡Gloria a Dios!';
+	@override String get putBack => 'Devolver a la lista';
+	@override String answeredBanner({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('es'))(n,
+		one: '${n} oración contestada este mes',
+		other: '${n} oraciones contestadas este mes',
+	);
+	@override String lastAnswered({required Object name, required Object what}) => '${name}: ${what}';
+	@override late final _Translations$prayer$lists$sheet$es sheet = _Translations$prayer$lists$sheet$es._(_root);
+}
+
+// Path: prayer.importunity
+class _Translations$prayer$importunity$es extends Translations$prayer$importunity$fr {
+	_Translations$prayer$importunity$es._(TranslationsEs root) : this._root = root, super.internal(root);
+
+	final TranslationsEs _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Motivos de importunidad';
+	@override String get newTopic => 'Nuevo motivo';
+	@override String get intro => 'Un motivo que se presenta al Señor sin cansarse, hasta recibir la respuesta. Fija un número de proclamaciones e invita a tus hermanos y hermanas a orar contigo.';
+	@override String invitedBy({required Object name}) => '${name} te invita a orar';
+	@override String get join => 'Me uno a la oración';
+	@override String get decline => 'Ahora no';
+	@override String get joined => 'Ahora oras por este motivo.';
+	@override String progress({required Object total, required Object goal}) => '${total} de ${goal}';
+	@override String total({required num n, required Object count}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('es'))(n,
+		one: '${count} proclamación',
+		other: '${count} proclamaciones',
+	);
+	@override String get reached => '¡Objetivo alcanzado!';
+	@override String get closed => 'Cerrado';
+	@override String participants({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('es'))(n,
+		one: '${n} ora',
+		other: '${n} oran',
+	);
+	@override String mine({required Object n}) => 'Tú: ${n}';
+	@override String get tapHint => 'Toca en cada proclamación';
+	@override String get addMany => 'Añadir una cantidad';
+	@override String get addManyTitle => '¿Cuántas proclamaciones?';
+	@override String get addManyLabel => 'Proclamaciones';
+	@override String get add => 'Añadir';
+	@override String pending({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('es'))(n,
+		one: '${n} pendiente de envío',
+		other: '${n} pendientes de envío',
+	);
+	@override String get invite => 'Invitar';
+	@override String get members => 'Quienes oran';
+	@override String waiting({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('es'))(n,
+		one: '${n} invitación pendiente',
+		other: '${n} invitaciones pendientes',
+	);
+	@override String get edit => 'Editar';
+	@override String get close => 'Cerrar el motivo';
+	@override String get reopen => 'Reabrir el motivo';
+	@override String get delete => 'Eliminar el motivo';
+	@override String get deleteTitle => '¿Eliminar este motivo?';
+	@override String get deleteText => 'Desaparecerá para todos los que oran contigo.';
+	@override String get leave => 'Dejar este motivo';
+	@override String get leaveTitle => '¿Dejar este motivo?';
+	@override String get leaveText => 'Tus proclamaciones se quedan en el total.';
+	@override late final _Translations$prayer$importunity$form$es form = _Translations$prayer$importunity$form$es._(_root);
+	@override late final _Translations$prayer$importunity$inviteSheet$es inviteSheet = _Translations$prayer$importunity$inviteSheet$es._(_root);
+}
+
+// Path: prayer.retreat.hints
+class _Translations$prayer$retreat$hints$es extends Translations$prayer$retreat$hints$fr {
+	_Translations$prayer$retreat$hints$es._(TranslationsEs root) : this._root = root, super.internal(root);
+
+	final TranslationsEs _root; // ignore: unused_field
+
+	// Translations
+	@override String assembly({required Object name}) => 'Tu asamblea: ${name}';
+	@override String get assemblyMissing => 'Añade tu asamblea en tu perfil';
+	@override String authorities({required Object names}) => 'Tus autoridades: ${names}';
+	@override String get authoritiesMissing => 'Añade tus autoridades espirituales en «Más»';
+	@override String list({required Object list}) => 'Mis listas · ${list}';
+	@override String listEmpty({required Object list}) => 'Tu lista «${list}» está vacía: añade nombres';
+	@override String nation({required Object name}) => 'Hoy: ${name}';
+	@override String myCountry({required Object name}) => 'Tu país: ${name}';
+	@override String get hymn => 'Abrir los himnos';
+}
+
+// Path: prayer.lists.answeredOn
+class _Translations$prayer$lists$answeredOn$es extends Translations$prayer$lists$answeredOn$fr {
+	_Translations$prayer$lists$answeredOn$es._(TranslationsEs root) : this._root = root, super.internal(root);
+
+	final TranslationsEs _root; // ignore: unused_field
+
+	// Translations
+	@override String unbelievers({required Object date}) => 'Creyó en el Señor el ${date}';
+	@override String believers({required Object date}) => 'Contestada el ${date}';
+	@override String backsliders({required Object date}) => 'Volvió el ${date}';
+	@override String coworkers({required Object date}) => 'Contestada el ${date}';
+}
+
+// Path: prayer.lists.sheet
+class _Translations$prayer$lists$sheet$es extends Translations$prayer$lists$sheet$fr {
+	_Translations$prayer$lists$sheet$es._(TranslationsEs root) : this._root = root, super.internal(root);
+
+	final TranslationsEs _root; // ignore: unused_field
+
+	// Translations
+	@override String get addTitle => 'Añadir una persona';
+	@override String get editTitle => 'Editar';
+	@override String get name => 'Nombre';
+	@override String get namePlaceholder => 'Pablo M.';
+	@override String get note => 'Nota';
+	@override String get notePlaceholder => 'Colega, vecino, prima…';
+	@override String get list => 'Lista';
+	@override String get save => 'Guardar';
+	@override String get remove => 'Quitar de la lista';
+	@override String removeTitle({required Object name}) => '¿Quitar a ${name}?';
+	@override String get removeText => 'Ya no orarás por esta persona en tus retiros.';
+}
+
+// Path: prayer.importunity.form
+class _Translations$prayer$importunity$form$es extends Translations$prayer$importunity$form$fr {
+	_Translations$prayer$importunity$form$es._(TranslationsEs root) : this._root = root, super.internal(root);
+
+	final TranslationsEs _root; // ignore: unused_field
+
+	// Translations
+	@override String get newTitle => 'Nuevo motivo de importunidad';
+	@override String get editTitle => 'Editar el motivo';
+	@override String get subject => 'Motivo';
+	@override String get subjectPlaceholder => 'Señor, salva a Pablo';
+	@override String get description => 'Detalles';
+	@override String get descriptionPlaceholder => 'Por quién, por qué…';
+	@override String get goal => 'Objetivo';
+	@override String get goalHint => 'El número de proclamaciones por alcanzar juntos. Déjalo vacío para contar sin objetivo.';
+	@override String get goalPlaceholder => '10.000';
+	@override String get create => 'Crear';
+	@override String get save => 'Guardar';
+}
+
+// Path: prayer.importunity.inviteSheet
+class _Translations$prayer$importunity$inviteSheet$es extends Translations$prayer$importunity$inviteSheet$fr {
+	_Translations$prayer$importunity$inviteSheet$es._(TranslationsEs root) : this._root = root, super.internal(root);
+
+	final TranslationsEs _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Invitar a orar';
+	@override String get family => 'Mi familia espiritual';
+	@override String familyText({required num n, required Object name}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('es'))(n,
+		one: '${name} y sus discípulos: ${n} persona',
+		other: '${name} y sus discípulos: ${n} personas',
+	);
+	@override String get familyMissing => 'Vincula a tu discipulador en «Mis autoridades espirituales» para invitar a tu familia espiritual.';
+	@override String get byUsername => 'Por nombre de usuario';
+	@override String get usernameLabel => 'Nombre de usuario';
+	@override String get addUsername => 'Añadir';
+	@override String get send => 'Enviar las invitaciones';
+	@override String sent({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('es'))(n,
+		zero: 'Ya estaban invitados.',
+		one: '${n} invitación enviada',
+		other: '${n} invitaciones enviadas',
+	);
+}
+
+/// The flat map containing all translations for locale <es>.
+/// Only for edge cases! For simple maps, use the map function of this library.
+///
+/// The Dart AOT compiler has issues with very large switch statements,
+/// so the map is split into smaller functions (512 entries each).
+extension on TranslationsEs {
+	dynamic _flatMapFunction(String path) {
+		return switch (path) {
+			'app.name' => 'CMFI Connect',
+			'app.tagline' => 'Crecer juntos, cada día.',
+			'app.languageName' => 'Español',
+			'common.retry' => 'Reintentar',
+			'common.cancel' => 'Cancelar',
+			'common.save' => 'Guardar',
+			'common.close' => 'Cerrar',
+			'common.back' => 'Volver',
+			'common.soon' => 'Pronto',
+			'common.optional' => '(opcional)',
+			'common.and' => 'y',
+			'errors.network' => 'Sin conexión a internet. Revisa tu red y vuelve a intentarlo.',
+			'errors.unauthorized' => 'Tu sesión ha expirado. Vuelve a iniciar sesión.',
+			'errors.invalidCredentials' => 'Número de teléfono o contraseña incorrectos.',
+			'errors.badRequest' => 'Algunos datos no son válidos.',
+			'errors.conflict' => 'Este elemento ya existe.',
+			'errors.notFound' => 'Elemento no encontrado.',
+			'errors.server' => 'El servidor tuvo un problema. Vuelve a intentarlo en un momento.',
+			'errors.unknown' => 'Se produjo un error. Vuelve a intentarlo.',
+			'errors.forbidden' => 'No tienes permiso para hacer esto.',
+			'errors.eventFull' => 'Ya no quedan plazas para este evento.',
+			'errors.registrationClosed' => 'Las inscripciones para este evento están cerradas.',
+			'errors.mediaTooLarge' => 'Esta imagen es demasiado pesada (8 MB como máximo).',
+			'errors.mediaUnsupported' => 'Elige una imagen JPEG o PNG.',
+			'errors.notParticipant' => 'Únete primero a este motivo para contar tus proclamaciones.',
+			'errors.importunityClosed' => 'Este motivo está cerrado: ya no cuenta proclamaciones.',
+			'errors.usernameNotFound' => 'Nadie tiene este nombre de usuario. Revisa la ortografía.',
+			'errors.ownerCannotLeave' => 'Tú creaste este motivo: elimínalo en lugar de dejarlo.',
+			'errors.tooManyPeople' => 'Tus listas están llenas (500 personas como máximo).',
+			'validation.required' => 'Este campo es obligatorio',
+			'validation.passwordTooShort' => 'Al menos 6 caracteres',
+			'validation.invalidPhone' => 'Número de teléfono no válido',
+			'validation.invalidEmail' => 'Correo electrónico no válido',
+			'validation.invalidCode' => 'Solo letras y números, sin espacios',
+			'onboarding.skip' => 'Omitir',
+			'onboarding.next' => 'Siguiente',
+			'onboarding.start' => 'Empezar',
+			'onboarding.step' => ({required Object current, required Object total}) => 'Pantalla ${current} de ${total}',
+			'onboarding.reports.title' => 'Tu caminar con Dios, día tras día',
+			'onboarding.reports.text' => 'Anota en pocos segundos tu lectura bíblica, tu oración, tus ayunos… y mira tu progreso semana tras semana.',
+			'onboarding.worship.title' => 'Canta y ora, estés donde estés',
+			'onboarding.worship.text' => 'Encuentra los himnos de la comunidad e intercede cada día por los motivos de oración junto a tus hermanos y hermanas.',
+			'onboarding.community.title' => 'Mantente unido a tu comunidad',
+			'onboarding.community.text' => 'Los eventos y los anuncios de tu asamblea, en un solo lugar, para que no te pierdas nada.',
+			'onboarding.sample.today' => 'Hoy',
+			'onboarding.sample.bibleReading' => 'Lectura bíblica',
+			'onboarding.sample.prayerAlone' => 'Oración a solas',
+			'onboarding.sample.meditation' => 'Meditación',
+			'onboarding.sample.groupPrayer' => 'Oración en grupo',
+			'onboarding.sample.thisWeek' => 'Esta semana',
+			'onboarding.sample.weekScore' => '4 días de 5',
+			'onboarding.sample.hymn' => 'Himno',
+			'onboarding.sample.hymnNumber' => 'N.º 12',
+			'onboarding.sample.fullScreen' => 'Pantalla completa',
+			'onboarding.sample.prayerOfTheDay' => 'Motivo de oración del día',
+			'onboarding.sample.prayerTopic' => 'Por los exámenes de nuestros jóvenes',
+			'onboarding.sample.praying' => '12 personas oran',
+			'onboarding.sample.iPray' => 'Oraré',
+			'onboarding.sample.vigil' => 'Vigilia de oración',
+			'onboarding.sample.vigilMeta' => '20:00 · Asamblea local',
+			'onboarding.sample.join' => 'Participaré',
+			'onboarding.sample.retreat' => 'Retiro de jóvenes',
+			'onboarding.sample.retreatMeta' => 'Todo el día',
+			'onboarding.sample.announcement' => 'Anuncio',
+			'onboarding.sample.announcementText' => 'El culto del domingo empieza a las 8:30.',
+			'onboarding.sample.chapters' => '10 cap.',
+			'welcome.title' => 'Te damos la bienvenida a CMFI Connect',
+			'welcome.text' => 'Crea tu cuenta en un minuto para completar tu informe y seguir la vida de tu comunidad.',
+			'welcome.createAccount' => 'Crear mi cuenta',
+			'welcome.haveAccount' => 'Ya tengo una cuenta',
+			'auth.phone' => 'Teléfono',
+			'auth.phoneHint' => '6 90 00 00 01',
+			'auth.dialCode' => ({required Object code}) => 'Código de país: ${code}',
+			'auth.password' => 'Contraseña',
+			'auth.showPassword' => 'Mostrar la contraseña',
+			'auth.hidePassword' => 'Ocultar la contraseña',
+			'auth.login.title' => '¡Hola de nuevo!',
+			'auth.login.subtitle' => 'Inicia sesión para completar tu informe del día.',
+			'auth.login.submit' => 'Iniciar sesión',
+			'auth.login.noAccount' => '¿Aún no tienes cuenta?',
+			'auth.login.createAccount' => 'Crear una cuenta',
+			'auth.register.step' => ({required Object current, required Object total}) => '${current} / ${total}',
+			'auth.register.title' => 'Crea tu cuenta',
+			'auth.register.subtitle' => 'Usarás tu número de teléfono para iniciar sesión.',
+			'auth.register.firstName' => 'Nombre',
+			'auth.register.lastName' => 'Apellido',
+			'auth.register.passwordHelp' => 'Mínimo 6 caracteres',
+			'auth.register.email' => 'Correo electrónico',
+			'auth.register.submit' => 'Continuar',
+			'auth.register.haveAccount' => '¿Ya tienes cuenta?',
+			'auth.register.login' => 'Iniciar sesión',
+			'auth.register.alreadyUsed' => 'Este número o este correo ya tiene una cuenta. Inicia sesión.',
+			'auth.register.emailHint' => 'tu@ejemplo.com',
+			'auth.church.title' => 'Tu iglesia',
+			'auth.church.subtitle' => 'Estos datos ayudan a tus líderes a encontrarte. Podrás cambiarlos más tarde.',
+			'auth.church.editTitle' => 'Mi perfil',
+			'auth.church.editSubtitle' => 'Actualiza tu nombre, tu iglesia y tu asamblea.',
+			'auth.church.country' => 'País',
+			'auth.church.countryHint' => 'Camerún',
+			'auth.church.city' => 'Ciudad',
+			'auth.church.cityHint' => 'Yaoundé',
+			'auth.church.church' => 'Iglesia',
+			'auth.church.churchHint' => 'Nombre de tu iglesia',
+			'auth.church.assembly' => 'Asamblea',
+			'auth.church.assemblyHint' => 'Nombre de tu asamblea',
+			'auth.church.info' => '¿Te mudaste o cambiaste de asamblea? Podrás actualizarlo todo desde tu perfil.',
+			'auth.church.submit' => 'Terminar',
+			'auth.church.skip' => 'Omitir este paso',
+			'auth.church.saved' => 'Perfil guardado',
+			'nav.home' => 'Inicio',
+			'nav.reports' => 'Informe',
+			'nav.hymns' => 'Himnos',
+			'nav.prayer' => 'Oración',
+			'nav.more' => 'Más',
+			'home.greeting' => ({required Object name}) => 'Hola, ${name}',
+			'home.greetingNoName' => 'Hola',
+			'home.profile' => 'Mi perfil',
+			'home.todayTitle' => 'Informe del día',
+			'home.progress' => ({required Object filled, required Object total}) => '${filled} de ${total}',
+			'home.progressLabel' => 'elementos completados',
+			'home.continueReport' => 'Continuar',
+			'home.startReport' => 'Empezar',
+			'home.weekTitle' => 'Tu semana',
+			'home.weekScore' => ({required num filled, required Object total}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('es'))(filled, one: '${filled} día de ${total}', other: '${filled} días de ${total}', ), 
+			'home.community' => 'En tu comunidad',
+			'home.prayerTitle' => 'Motivos de oración',
+			'home.prayerText' => 'Pronto podrás orar cada día por los motivos de oración de tu asamblea.',
+			'home.eventsTitle' => 'Eventos',
+			'home.hymnsTitle' => 'Himnos',
+			'home.hymnsResume' => ({required Object number}) => 'Volver al n.º ${number}',
+			'home.hymnsOpen' => 'Abrir el himnario',
+			'home.streak' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('es'))(n, one: '${n} día seguido', other: '${n} días seguidos', ), 
+			'home.streakKeep' => 'Completa hoy para no romper la racha',
+			'home.streakToday' => '¡Bien hecho, sigue mañana!',
+			'reports.title' => 'Informe diario',
+			'reports.myItems' => 'Mis elementos',
+			'reports.tabs.today' => 'Hoy',
+			'reports.tabs.history' => 'Historial',
+			'reports.tabs.summary' => 'Resumen',
+			'reports.pickDay' => 'Elegir el día',
+			'reports.filled' => ({required Object filled, required Object total}) => '${filled} de ${total} completados',
+			'reports.statusSaved' => 'Guardado',
+			'reports.statusModified' => 'Sin guardar',
+			'reports.standard' => 'Estándar',
+			'reports.personal' => 'Mis elementos',
+			'reports.createItem' => 'Crear un elemento',
+			'reports.add' => ({required Object label}) => 'Añadir ${label}',
+			'reports.note' => 'Nota del día',
+			'reports.noteHint' => 'Un versículo, un motivo de gratitud…',
+			'reports.save' => 'Guardar el día',
+			'reports.saved' => 'Día guardado',
+			'reports.measure.quantity' => ({required Object unit}) => '${unit}',
+			'reports.measure.duration' => 'duración',
+			'reports.measure.both' => ({required Object unit}) => '${unit} y duración',
+			'reports.measure.quantityNoUnit' => 'cantidad',
+			'reports.measure.bothNoUnit' => 'cantidad y duración',
+			'reports.times' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('es'))(n, one: '${n} vez', other: '${n} veces', ), 
+			'reports.sheet.quantity' => 'Cantidad',
+			'reports.sheet.duration' => 'Duración',
+			'reports.sheet.minus1' => '− 1 min',
+			'reports.sheet.plus1' => '+ 1 min',
+			'reports.sheet.removeMinute' => 'Quitar un minuto',
+			'reports.sheet.addMinute' => 'Añadir un minuto',
+			'reports.sheet.holdToRepeat' => 'Mantén presionado para ir más rápido',
+			'reports.sheet.decrease' => 'Disminuir',
+			'reports.sheet.increase' => 'Aumentar',
+			'reports.sheet.clear' => 'Borrar',
+			'reports.sheet.validate' => 'Listo',
+			'reports.history.daysFilled' => ({required Object filled, required Object total}) => '${filled} días completados de ${total}',
+			'reports.history.legendFilled' => 'Completado',
+			'reports.history.legendMissing' => 'Sin informe',
+			'reports.history.none' => 'Sin informe',
+			'reports.history.fill' => 'Completar',
+			'reports.history.inProgress' => 'En curso',
+			'reports.history.previousMonth' => 'Mes anterior',
+			'reports.history.nextMonth' => 'Mes siguiente',
+			'reports.history.today' => 'hoy',
+			'reports.summary.week' => 'Semana',
+			'reports.summary.month' => 'Mes',
+			'reports.summary.year' => 'Año',
+			'reports.summary.range' => ({required Object from, required Object to}) => 'Del ${from} al ${to}',
+			'reports.summary.regularity' => 'Constancia',
+			'reports.summary.daysFilled' => 'días completados',
+			'reports.summary.missingDays' => ({required num n, required Object days}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('es'))(n, one: '${n} día sin informe: el ${days}', other: '${n} días sin informe: los días ${days}', ), 
+			'reports.summary.missingCount' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('es'))(n, one: '${n} día sin informe', other: '${n} días sin informe', ), 
+			'reports.summary.noMissing' => 'No faltó ningún día, ¡bien hecho!',
+			'reports.summary.perDay' => ({required Object value}) => '${value} por día completado',
+			'reports.summary.days' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('es'))(n, one: '${n} día', other: '${n} días', ), 
+			'reports.summary.notFilled' => 'Aún sin completar',
+			'reports.summary.barsCaption' => ({required Object max}) => 'Por día · barra más alta: ${max}',
+			'reports.summary.barsCaptionMonthly' => ({required Object max}) => 'Por mes · barra más alta: ${max}',
+			'reports.summary.empty' => 'No hay informes en este período.',
+			'reports.summary.goalDays' => ({required num n, required Object total}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('es'))(n, one: 'Objetivo alcanzado ${n} día de ${total}', other: 'Objetivo alcanzado ${n} días de ${total}', ), 
+			'reports.summary.share' => 'Compartir este resumen',
+			'reports.noItems' => 'Por ahora no hay elementos que completar.',
+			'reports.statusPending' => 'Aún no enviado',
+			'reports.savedOffline' => 'Sin conexión: el día se guarda en el teléfono y se enviará en cuanto sea posible.',
+			'reports.pendingBanner' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('es'))(n, one: '${n} día espera conexión para enviarse', other: '${n} días esperan conexión para enviarse', ), 
+			'reports.export' => 'Exportar mi informe',
+			'reports.goal' => ({required Object value}) => 'Objetivo: ${value}',
+			'reports.goalReached' => 'Objetivo alcanzado',
+			'reminder.title' => 'Tu informe del día',
+			'reminder.body' => 'Tómate un minuto para anotar tu lectura, tu oración… antes de que termine el día.',
+			'reminder.channel' => 'Recordatorio del informe',
+			'reminder.settings' => 'Recordatorio nocturno',
+			'reminder.off' => 'Desactivado',
+			'reminder.switchLabel' => 'Recordarme completar mi día',
+			'reminder.switchHint' => 'Solo si el día aún no está completado.',
+			'reminder.time' => 'Hora del recordatorio',
+			'reminder.offerTitle' => '¿Un recordatorio cada noche?',
+			'reminder.offerText' => 'Si tu día aún no está completado, la app te lo recuerda a la hora que elijas. Nada si ya lo hiciste.',
+			'reminder.offerAccept' => 'Activar el recordatorio',
+			'reminder.offerLater' => 'Más tarde',
+			'reminder.enabled' => ({required Object time}) => 'Recordatorio activado a las ${time}',
+			'reminder.denied' => 'Las notificaciones están bloqueadas para CMFI Connect. Permítelas en los ajustes del teléfono.',
+			'export.title' => 'Exportar',
+			'export.period' => 'Período',
+			'export.thisWeek' => 'Esta semana',
+			'export.lastWeek' => 'La semana pasada',
+			'export.thisMonth' => 'Este mes',
+			'export.lastMonth' => 'El mes pasado',
+			'export.thisYear' => 'Este año',
+			'export.custom' => 'Otras fechas',
+			'export.customPick' => 'Elegir las fechas',
+			'export.format' => 'Formato',
+			'export.pdf' => 'PDF',
+			'export.pdfHint' => 'Un documento para enviar o imprimir',
+			'export.csv' => 'Hoja de cálculo',
+			'export.csvHint' => 'Un archivo CSV para Excel o Google Sheets',
+			'export.text' => 'Mensaje',
+			'export.textHint' => 'Un resumen para pegar en WhatsApp',
+			'export.button' => 'Exportar',
+			'export.shareButton' => 'Compartir',
+			'export.preview' => ({required num filled, required Object total, required Object items}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('es'))(filled, one: '${filled} día completado de ${total} · ${items}', other: '${filled} días completados de ${total} · ${items}', ), 
+			'export.previewItems' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('es'))(n, one: '${n} elemento', other: '${n} elementos', ), 
+			'export.empty' => 'No hay informes en este período.',
+			'export.tooLong' => 'Elige 366 días como máximo.',
+			'export.fileName' => 'informe-diario',
+			'export.subject' => ({required Object period}) => 'Mi informe, ${period}',
+			'export.doc.title' => 'Informe diario',
+			'export.doc.regularity' => 'Constancia',
+			'export.doc.daysFilled' => ({required num filled, required Object total}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('es'))(filled, one: '${filled} día completado de ${total}', other: '${filled} días completados de ${total}', ), 
+			'export.doc.totals' => 'En el período',
+			'export.doc.item' => 'Elemento',
+			'export.doc.total' => 'Total',
+			'export.doc.days' => 'Días',
+			'export.doc.average' => 'Promedio / día completado',
+			'export.doc.goal' => 'Objetivo alcanzado',
+			'export.doc.detail' => 'Día a día',
+			'export.doc.date' => 'Fecha',
+			'export.doc.values' => 'Completado',
+			'export.doc.note' => 'Nota',
+			'export.doc.noReport' => 'Sin informe',
+			'export.doc.generated' => ({required Object date}) => 'Generado el ${date} con CMFI Connect',
+			'export.doc.page' => ({required Object n, required Object total}) => 'Página ${n} / ${total}',
+			'export.doc.filledColumn' => 'Informe',
+			'export.doc.yes' => 'sí',
+			'export.doc.no' => 'no',
+			'export.doc.sentFrom' => 'Enviado desde CMFI Connect',
+			'items.title' => 'Mis elementos',
+			'items.standardSection' => 'Estándar · para todos',
+			'items.personalSection' => 'Mis elementos personales',
+			'items.emptyPersonal' => 'Aún no tienes elementos personales.',
+			'items.archive' => 'Archivar',
+			'items.archiveTitle' => ({required Object code}) => '¿Archivar ${code}?',
+			'items.archiveText' => 'Ya no aparecerá en tu informe. Sus cifras se quedan en tu historial.',
+			'items.archived' => ({required Object code}) => '${code} archivado',
+			'items.create' => 'Crear un elemento',
+			'items.footnote' => 'Un elemento archivado ya no aparece en tu informe, pero sus cifras se quedan en tu historial.',
+			'items.measure.quantity' => ({required Object unit}) => 'Cantidad · ${unit}',
+			'items.measure.quantityNoUnit' => 'Cantidad',
+			'items.measure.duration' => 'Duración',
+			'items.measure.both' => ({required Object unit}) => 'Cantidad (${unit}) y duración',
+			'items.measure.bothNoUnit' => 'Cantidad y duración',
+			'items.goalAdd' => 'Añadir un objetivo',
+			'items.goal' => ({required Object value}) => 'Objetivo: ${value} al día',
+			'items.goalTitle' => 'Objetivo diario',
+			'items.goalHint' => 'Lo que te propones cada día. Se queda en tu teléfono.',
+			'items.goalRemove' => 'Quitar',
+			'items.goalSaved' => 'Objetivo guardado',
+			'items.goalRemoved' => 'Objetivo quitado',
+			'newItem.title' => 'Nuevo elemento',
+			'newItem.code' => 'Código',
+			'newItem.label' => 'Nombre',
+			'newItem.help' => 'Letras y números, 20 como máximo. El código de un elemento estándar (LB, PS…) no está disponible.',
+			'newItem.measures' => 'Lo que mides',
+			'newItem.quantity' => 'Una cantidad',
+			'newItem.quantityHint' => 'Capítulos, páginas, personas…',
+			'newItem.unit' => 'Unidad que aparece después del número',
+			'newItem.unitHint' => 'personas',
+			'newItem.duration' => 'Una duración',
+			'newItem.durationHint' => 'En horas y minutos',
+			'newItem.noMeasure' => 'Elige al menos una medida: una cantidad, una duración o ambas.',
+			'newItem.preview' => 'Vista previa en tu informe',
+			'newItem.previewCode' => 'CÓDIGO',
+			'newItem.previewLabel' => 'Nombre del elemento',
+			'newItem.submit' => 'Crear el elemento',
+			'newItem.created' => ({required Object code}) => '${code} se ha creado.',
+			'newItem.codeTaken' => 'Este código ya está en uso, por un elemento estándar o por uno de tus elementos (aunque esté archivado).',
+			'newItem.codeHint' => 'EVG',
+			'newItem.labelHint' => 'Evangelización',
+			'more.title' => 'Más',
+			'more.editProfile' => 'Editar mi perfil',
+			'more.community' => 'Comunidad',
+			'more.events' => 'Eventos',
+			'more.announcements' => 'Anuncios',
+			'more.reports' => 'Informe diario',
+			'more.myItems' => 'Mis elementos',
+			'more.app' => 'Aplicación',
+			'more.language' => 'Idioma',
+			'more.appearance' => 'Apariencia',
+			'more.themeSystem' => 'Automático',
+			'more.themeSystemHint' => 'En automático, la app sigue el modo claro u oscuro del teléfono.',
+			'more.themeLight' => 'Claro',
+			'more.themeDark' => 'Oscuro',
+			'more.logout' => 'Cerrar sesión',
+			'more.languageTitle' => 'Idioma de la aplicación',
+			'more.completeProfile' => 'Añade tu nombre',
+			'more.accompaniment' => 'Acompañamiento',
+			'more.exportReport' => 'Exportar mi informe',
+			'more.logoutPendingTitle' => 'Días aún no enviados',
+			'more.logoutPendingText' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('es'))(n, one: '${n} día guardado sin conexión aún no se ha enviado. Si cierras sesión ahora, se perderá.', other: '${n} días guardados sin conexión aún no se han enviado. Si cierras sesión ahora, se perderán.', ), 
+			'more.logoutAnyway' => 'Cerrar sesión',
+			'more.admin' => 'Administración',
+			'more.staff' => 'Equipo y roles',
+			'more.manageEvents' => 'Eventos',
+			'authorities.title' => 'Mis autoridades espirituales',
+			'authorities.intro' => 'Las personas que te acompañan en tu caminar con Dios: tu discipulador y tus otros líderes.',
+			'authorities.discipleMaker' => 'Discipulador',
+			'authorities.discipleMakerOf' => ({required Object name}) => 'Discipulador: ${name}',
+			'authorities.noDiscipleMaker' => 'Aún no tienes discipulador',
+			'authorities.others' => 'Otras autoridades',
+			'authorities.empty' => 'Aún no has añadido a nadie.',
+			'authorities.add' => 'Añadir una autoridad',
+			'authorities.remove' => 'Quitar',
+			'authorities.removeTitle' => ({required Object name}) => '¿Quitar a ${name}?',
+			'authorities.removeText' => ({required Object name}) => '${name} ya no formará parte de tus autoridades espirituales.',
+			'authorities.removed' => ({required Object name}) => '${name} ya no forma parte de tus autoridades.',
+			'authorities.count' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('es'))(n, zero: 'Nadie por ahora', one: '${n} persona', other: '${n} personas', ), 
+			'authorities.form.title' => 'Nueva autoridad',
+			'authorities.form.emailHint' => 'nombre@ejemplo.com',
+			'authorities.form.isDiscipleMaker' => 'Es mi discipulador',
+			'authorities.form.isDiscipleMakerHelp' => 'La persona que te acompaña personalmente. Solo tienes uno.',
+			'authorities.form.discipleMakerTaken' => ({required Object name}) => '${name} ya es tu discipulador. Quítalo de la lista para elegir a otro.',
+			'authorities.form.submit' => 'Añadir',
+			'authorities.form.added' => ({required Object name}) => '${name} ahora forma parte de tus autoridades.',
+			'authorities.form.searchLabel' => 'Su nombre de usuario',
+			'authorities.form.searchHint' => 'usuario',
+			'authorities.form.search' => 'Buscar',
+			'authorities.form.searchHelp' => 'Si la persona usa CMFI Connect, búscala por su nombre de usuario. Recibirá tu solicitud, y sus datos de contacto aparecerán cuando la acepte.',
+			'authorities.form.notFound' => ({required Object username}) => 'Nadie tiene el nombre de usuario @${username}.',
+			'authorities.form.invite' => 'Invitarla a unirse a CMFI Connect',
+			'authorities.form.inviteText' => '¡Hola! Uso CMFI Connect para llevar el registro de mi caminar con Dios, y me gustaría que me acompañaras. Instala la aplicación, crea tu cuenta y luego envíame tu nombre de usuario para que pueda añadirte.',
+			'authorities.form.inviteMine' => ({required Object username}) => 'Mi nombre de usuario: @${username}',
+			'authorities.form.manual' => '¿No tiene la aplicación? Introducir sus datos',
+			'authorities.form.backToSearch' => 'Buscar por nombre de usuario',
+			'authorities.form.request' => 'Enviar la solicitud',
+			'authorities.form.requested' => ({required Object name}) => 'Solicitud enviada a ${name}.',
+			'authorities.form.alreadyAdded' => 'Esta persona ya forma parte de tus autoridades.',
+			'authorities.form.makerExists' => 'Ya tienes un discipulador.',
+			'authorities.form.yourself' => 'Es tu propio nombre de usuario.',
+			'authorities.statusPending' => 'Pendiente',
+			'authorities.statusDeclined' => 'Rechazada',
+			'authorities.pendingHelp' => ({required Object name}) => 'Sus datos de contacto aparecerán cuando ${name} acepte.',
+			'authorities.requests' => 'Solicitudes recibidas',
+			'authorities.requestDiscipleMaker' => 'te pide que seas su discipulador',
+			'authorities.requestAuthority' => 'te pide tu acompañamiento',
+			'authorities.accept' => 'Aceptar',
+			'authorities.decline' => 'Rechazar',
+			'authorities.acceptedRequest' => ({required Object name}) => 'Ahora acompañas a ${name}.',
+			'authorities.declinedRequest' => ({required Object name}) => 'Solicitud de ${name} rechazada.',
+			'authorities.requestsCount' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('es'))(n, one: '${n} solicitud por revisar', other: '${n} solicitudes por revisar', ), 
+			'members.username' => 'Nombre de usuario',
+			'members.usernameHint' => 'nombre.apellido',
+			'members.usernameHelp' => 'Así te encontrarán los demás miembros.',
+			'members.usernameChecking' => 'Comprobando…',
+			'members.usernameFree' => ({required Object username}) => '@${username} está disponible',
+			'members.usernameCurrent' => 'Es tu nombre de usuario actual',
+			'members.usernameTaken' => 'Este nombre de usuario ya está en uso.',
+			'members.usernameInvalid' => 'De 3 a 30 caracteres: letras, números, «.» y «_», sin empezar ni terminar con un signo.',
+			'members.usernameReserved' => 'Este nombre de usuario está reservado.',
+			'members.usernameSaved' => ({required Object username}) => 'Nombre de usuario guardado: @${username}',
+			'members.deleteAccount.button' => 'Eliminar mi cuenta',
+			'members.deleteAccount.title' => 'Eliminar mi cuenta',
+			'members.deleteAccount.intro' => 'Es definitivo. Tu cuenta y todo lo relacionado con ella se borrará:',
+			'members.deleteAccount.itemProfile' => 'tu perfil, tu nombre de usuario y tu contraseña',
+			'members.deleteAccount.itemReports' => 'todos tus informes, tus elementos y tus objetivos',
+			'members.deleteAccount.itemAuthorities' => 'tus autoridades espirituales y las solicitudes recibidas',
+			'members.deleteAccount.itemEvents' => 'tus inscripciones a eventos',
+			'members.deleteAccount.itemPrayer' => 'tus listas de oración, tus retiros y tus motivos de importunidad',
+			'members.deleteAccount.kept' => 'Los eventos, novedades, fotos y motivos de oración que publicaste como admin se quedan para la comunidad, sin tu nombre.',
+			'members.deleteAccount.passwordHelp' => 'Para confirmar que eres tú.',
+			'members.deleteAccount.confirm' => 'Eliminar definitivamente',
+			'members.deleteAccount.done' => 'Tu cuenta ha sido eliminada. ¡Dios te bendiga!',
+			'members.deleteAccount.wrongPassword' => 'Contraseña incorrecta.',
+			'members.deleteAccount.lastSuperadmin' => 'Eres el único superadmin: da este rol a otra persona antes de eliminar tu cuenta.',
+			'admin.title' => 'Equipo y roles',
+			'admin.intro' => 'Los admins gestionan lo que comparte toda la comunidad. Solo un superadmin da o quita un rol.',
+			'admin.roleUser' => 'Miembro',
+			'admin.roleAdmin' => 'Admin',
+			'admin.roleSuperadmin' => 'Superadmin',
+			'admin.giveRole' => 'Dar un rol',
+			'admin.you' => 'tú',
+			'admin.roleFor' => ({required Object username}) => 'Rol de @${username}',
+			'admin.roleChanged' => ({required Object username, required Object role}) => '@${username}: ${role}',
+			'admin.memberUsername' => 'Nombre de usuario del miembro',
+			'admin.empty' => 'Aún no hay ningún admin.',
+			'hymns.searchHint' => 'Número, título o letra',
+			'hymns.openNumber' => 'Ir a un número',
+			'hymns.tabs.all' => 'Todos',
+			'hymns.tabs.favorites' => 'Favoritos',
+			'hymns.tabs.recent' => 'Recientes',
+			'hymns.chooseBook' => 'Elegir el himnario',
+			'hymns.count' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('es'))(n, one: '${n} himno', other: '${n} himnos', ), 
+			'hymns.number' => ({required Object number}) => 'N.º ${number}',
+			'hymns.emptyFavorites' => 'Toca la estrella de un himno para encontrarlo aquí.',
+			'hymns.emptyRecent' => 'Los himnos que abras aparecerán aquí.',
+			'hymns.noResult' => ({required Object query}) => 'Ningún himno coincide con «${query}».',
+			'hymns.otherBooks' => 'En los otros himnarios',
+			'hymns.upToDate' => 'Los himnarios están al día.',
+			'hymns.updated' => 'Los himnarios se han actualizado.',
+			'hymns.chorus' => 'Coro',
+			'hymns.chorusNumber' => ({required Object label}) => 'Coro ${label}',
+			'hymns.verse' => ({required Object label}) => 'Estrofa ${label}',
+			'hymns.times' => ({required Object n}) => '×${n}',
+			'hymns.loadFailed' => 'No se pudieron abrir los himnarios.',
+			'hymns.reader.smaller' => 'Reducir el texto',
+			'hymns.reader.larger' => 'Ampliar el texto',
+			'hymns.reader.display' => 'Visualización',
+			'hymns.reader.textSize' => 'Tamaño del texto',
+			'hymns.reader.typeface' => 'Fuente',
+			'hymns.reader.typefaceAuto' => 'Auto',
+			'hymns.reader.typefaceSans' => 'Moderna',
+			'hymns.reader.typefaceSerif' => 'Clásica',
+			'hymns.reader.typefaceAutoHelp' => 'Clásica cuando el texto es grande',
+			'hymns.reader.background' => 'Fondo',
+			'hymns.reader.themeAuto' => 'Auto',
+			'hymns.reader.themeLight' => 'Claro',
+			'hymns.reader.themeSepia' => 'Sepia',
+			'hymns.reader.themeDark' => 'Oscuro',
+			'hymns.reader.repeatChorus' => 'Repetir el coro después de cada estrofa',
+			'hymns.reader.keepScreenOn' => 'Mantener la pantalla encendida',
+			'hymns.reader.addFavorite' => 'Añadir a favoritos',
+			'hymns.reader.removeFavorite' => 'Quitar de favoritos',
+			'hymns.reader.favoriteAdded' => 'Añadido a favoritos',
+			'hymns.reader.favoriteRemoved' => 'Quitado de favoritos',
+			'hymns.reader.more' => 'Más opciones',
+			'hymns.reader.copy' => 'Copiar la letra',
+			'hymns.reader.copied' => 'Letra copiada',
+			'hymns.reader.project' => 'Modo proyección',
+			'hymns.reader.pinchHint' => 'Pellizca la pantalla para agrandar o reducir el texto.',
+			'hymns.reader.notFound' => 'Este himno ya no está en el himnario.',
+			'hymns.reader.share' => 'Compartir la letra',
+			'hymns.projection.exit' => 'Salir del modo proyección',
+			'hymns.projection.previous' => 'Estrofa anterior',
+			'hymns.projection.next' => 'Estrofa siguiente',
+			'hymns.projection.position' => ({required Object current, required Object total}) => '${current} / ${total}',
+			'hymns.projection.hint' => 'Toca a la derecha para avanzar y a la izquierda para volver.',
+			'hymns.pad.title' => 'Ir al himno',
+			'hymns.pad.open' => 'Abrir',
+			'hymns.pad.erase' => 'Borrar',
+			'hymns.pad.notFound' => ({required Object number}) => 'No hay himno n.º ${number} en este himnario',
+			'hymns.pad.placeholder' => 'Escribe un número',
+			'comingSoon.badge' => 'Próximamente',
+			'comingSoon.backHome' => 'Volver al inicio',
+			'events.title' => 'Eventos',
+			'events.featured' => 'Destacado',
+			'events.upcoming' => 'Próximos',
+			'events.past' => 'Ediciones anteriores',
+			'events.emptyTitle' => 'No hay eventos próximos',
+			'events.emptyText' => 'Las conferencias y los encuentros de toda la comunidad aparecerán aquí, con su programa.',
+			'events.manage' => 'Gestionar los eventos',
+			'events.next' => 'Próximo evento',
+			'events.seeAll' => 'Todos los eventos',
+			'events.homeText' => 'Los encuentros de la comunidad, su programa y sus novedades.',
+			'events.today' => 'Hoy',
+			'events.tomorrow' => 'Mañana',
+			'events.inDays' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('es'))(n, one: 'En ${n} día', other: 'En ${n} días', ), 
+			'events.daysLeft' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('es'))(n, other: 'Faltan ${n} días', ), 
+			'events.onNow' => 'En curso',
+			'events.over' => 'Terminado',
+			'events.cancelled' => 'Cancelado',
+			'events.draft' => 'Borrador',
+			'events.registered' => 'Inscrito',
+			'events.stateOpen' => 'Inscripciones abiertas',
+			'events.stateClosed' => 'Inscripciones cerradas',
+			'events.stateFull' => 'Completo',
+			'events.registrations' => ({required num n, required Object count}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('es'))(n, zero: 'Sé el primero en inscribirte', one: '${count} inscrito', other: '${count} inscritos', ), 
+			'events.people' => ({required num n, required Object count}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('es'))(n, one: '${count} persona', other: '${count} personas', ), 
+			'events.placesLeft' => ({required num n, required Object count}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('es'))(n, zero: 'no quedan plazas', one: '${count} plaza disponible', other: '${count} plazas disponibles', ), 
+			'events.oneDay' => ({required Object start, required Object end}) => 'De ${start} a ${end}',
+			'events.severalDays' => ({required Object startDay, required Object start, required Object endDay, required Object end}) => 'Apertura el ${startDay} a las ${start}, clausura el ${endDay} a las ${end}',
+			'events.venueTime' => ({required Object place}) => 'hora de ${place}',
+			'events.addToCalendar' => 'Añadir al calendario',
+			'events.share' => 'Compartir',
+			'events.directions' => 'Cómo llegar',
+			'events.viewPoster' => 'Ver el cartel',
+			'events.tabs.program' => 'Programa',
+			'events.tabs.news' => 'Novedades',
+			'events.tabs.info' => 'Info',
+			'events.tabs.photos' => 'Fotos',
+			'events.noProgram' => 'El programa se publicará pronto.',
+			'events.noNews' => 'Aún no hay novedades de este evento.',
+			'events.pinned' => 'Fijado',
+			'events.now' => 'Ahora mismo',
+			'events.hymn' => ({required Object number}) => 'Himno ${number}',
+			'events.about' => 'Acerca de',
+			'events.fees' => 'Aportación',
+			'events.deadline' => ({required Object date}) => 'Inscripciones hasta el ${date}',
+			'events.contact' => 'Contacto',
+			'events.call' => ({required Object name}) => 'Llamar a ${name}',
+			'events.otherEditions' => 'Las otras ediciones',
+			_ => null,
+		} ?? switch (path) {
+			'events.cancelledBanner' => 'Este evento está cancelado.',
+			'events.calendarFailed' => 'No se pudo abrir el calendario del teléfono.',
+			'events.linkFailed' => 'No se pudo abrir este enlace.',
+			'events.shareText' => ({required Object title, required Object dates, required Object place}) => '${title}\n${dates} · ${place}\nInscríbete en la app CMFI Connect.',
+			'events.full' => 'Ya no quedan plazas para este evento.',
+			'events.closed' => 'Las inscripciones para este evento están cerradas.',
+			'events.register.cta' => 'Participaré',
+			'events.register.title' => 'Participaré',
+			'events.register.people' => '¿Cuántas personas vendrán?',
+			'events.register.peopleHint' => 'Contándote a ti, con tu familia o tu grupo.',
+			'events.register.less' => 'Una persona menos',
+			'events.register.more' => 'Una persona más',
+			'events.register.lodging' => 'Necesito alojamiento',
+			'events.register.lodgingHint' => 'Los organizadores prevén las plazas.',
+			'events.register.departure' => 'Ciudad de salida',
+			'events.register.departureHint' => 'Ej.: Douala',
+			'events.register.confirm' => 'Confirmar mi inscripción',
+			'events.register.update' => 'Actualizar',
+			'events.register.cancel' => 'Cancelar mi inscripción',
+			'events.register.done' => '¡Listo, estás inscrito! Te lo recordaremos el día antes.',
+			'events.register.updated' => 'Tu inscripción está actualizada.',
+			'events.register.cancelled' => 'Tu inscripción se ha cancelado.',
+			'events.register.edit' => 'Modificar',
+			'events.register.youAre' => 'Estás inscrito',
+			'events.register.cancelTitle' => '¿Cancelar tu inscripción?',
+			'events.register.cancelText' => 'Tu plaza quedará libre para otra persona.',
+			'events.register.keep' => 'Mantener mi plaza',
+			'events.register.lodgingShort' => 'alojamiento',
+			'events.reminder.channel' => 'Recordatorios de eventos',
+			'events.reminder.tomorrow' => ({required Object title}) => 'Mañana: ${title}',
+			'events.reminder.soon' => ({required Object title}) => 'En 1 h: ${title}',
+			'events.admin.title' => 'Gestionar los eventos',
+			'events.admin.create' => 'Crear un evento',
+			'events.admin.edit' => 'Editar el evento',
+			'events.admin.empty' => 'Aún no hay eventos. ¡Crea el primero!',
+			'events.admin.poster' => 'Cartel',
+			'events.admin.posterAdd' => 'Elegir un cartel',
+			'events.admin.posterChange' => 'Cambiar el cartel',
+			'events.admin.posterRemove' => 'Quitar el cartel',
+			'events.admin.posterHint' => 'Formato vertical 4:5 recomendado (1080 × 1350), JPEG o PNG.',
+			'events.admin.uploading' => 'Enviando la imagen…',
+			'events.admin.general' => 'El evento',
+			'events.admin.titleField' => 'Título',
+			'events.admin.titleHint' => 'Ej.: Conferencia anual 2026',
+			'events.admin.titleRequired' => 'Ponle un título al evento.',
+			'events.admin.theme' => 'Tema',
+			'events.admin.themeHint' => 'Ej.: Andar en el Espíritu',
+			'events.admin.verse' => 'Versículo del tema',
+			'events.admin.description' => 'Presentación',
+			'events.admin.when' => 'Fechas',
+			'events.admin.starts' => 'Inicio',
+			'events.admin.ends' => 'Fin',
+			'events.admin.endsBeforeStart' => 'El fin debe ser posterior al inicio.',
+			'events.admin.timeZone' => ({required Object zone}) => 'Horario del lugar (${zone}).',
+			'events.admin.where' => 'Lugar',
+			'events.admin.venue' => 'Lugar',
+			'events.admin.venueHint' => 'Ej.: Centro de conferencias de Mvolyé',
+			'events.admin.address' => 'Dirección',
+			'events.admin.city' => 'Ciudad',
+			'events.admin.country' => 'País',
+			'events.admin.mapsUrl' => 'Enlace de Google Maps',
+			'events.admin.registration' => 'Inscripciones',
+			'events.admin.registrationOpen' => 'Inscripciones abiertas',
+			'events.admin.deadline' => 'Fecha límite',
+			'events.admin.noDeadline' => 'Sin fecha límite',
+			'events.admin.capacity' => 'Número de plazas',
+			'events.admin.capacityHint' => 'Vacío: sin límite',
+			'events.admin.asksLodging' => 'Preguntar quién necesita alojamiento',
+			'events.admin.asksDeparture' => 'Preguntar la ciudad de salida',
+			'events.admin.fees' => 'Aportación',
+			'events.admin.feesHint' => 'Ej.: Entrada libre. Comidas: 2000 FCFA al día.',
+			'events.admin.contact' => 'Contacto',
+			'events.admin.contactName' => 'Nombre del contacto',
+			'events.admin.contactPhone' => 'Teléfono del contacto',
+			'events.admin.visibility' => 'Visibilidad',
+			'events.admin.statusDraft' => 'Borrador',
+			'events.admin.statusDraftHint' => 'Solo lo ven los admins',
+			'events.admin.statusPublished' => 'Publicado',
+			'events.admin.statusPublishedHint' => 'Lo ve toda la comunidad',
+			'events.admin.statusCancelled' => 'Cancelado',
+			'events.admin.statusCancelledHint' => 'Se muestra como cancelado, sin inscripción',
+			'events.admin.saved' => 'Evento guardado.',
+			'events.admin.menu' => 'Gestionar',
+			'events.admin.program' => 'Programa',
+			'events.admin.registrants' => 'Inscritos',
+			'events.admin.post' => 'Publicar una novedad',
+			'events.admin.photos' => 'Añadir fotos',
+			'events.admin.nextEdition' => 'Preparar la próxima edición',
+			'events.admin.delete' => 'Eliminar el evento',
+			'events.admin.deleteTitle' => '¿Eliminar este evento?',
+			'events.admin.deleteText' => 'También se eliminarán las inscripciones, las novedades y las fotos.',
+			'events.admin.deleteConfirm' => 'Eliminar',
+			'events.admin.deleted' => 'Evento eliminado.',
+			'events.admin.nextEditionTitle' => '¿Preparar la próxima edición?',
+			'events.admin.nextEditionText' => 'Se crea un borrador un año después, con el mismo lugar y el mismo programa. Podrás ajustarlo todo antes de publicarlo.',
+			'events.admin.nextEditionConfirm' => 'Preparar',
+			'events.admin.nextEditionDone' => 'La próxima edición está lista como borrador.',
+			'events.admin.programEmpty' => 'Añade los momentos del evento: acogida, cultos, enseñanzas, vigilia…',
+			'events.admin.addSession' => 'Añadir un momento',
+			'events.admin.editSession' => 'Editar este momento',
+			'events.admin.sessionTitle' => 'Título',
+			'events.admin.sessionTitleHint' => 'Ej.: Culto de apertura',
+			'events.admin.speaker' => 'Orador',
+			'events.admin.place' => 'Sala',
+			'events.admin.day' => 'Día',
+			'events.admin.from' => 'De',
+			'events.admin.to' => 'A',
+			'events.admin.hymns' => 'Himnos',
+			'events.admin.hymnsHint' => 'Números, ej.: 12, 45',
+			'events.admin.removeSession' => 'Quitar',
+			'events.admin.saveProgram' => 'Guardar el programa',
+			'events.admin.programSaved' => 'Programa guardado.',
+			'events.admin.registrantsEmpty' => 'Aún no hay nadie inscrito.',
+			'events.admin.totalRegistrations' => 'Inscripciones',
+			'events.admin.totalPeople' => 'Personas',
+			'events.admin.totalLodging' => 'Por alojar',
+			'events.admin.byCity' => 'Por ciudad de salida',
+			'events.admin.list' => 'Lista',
+			'events.admin.exportCsv' => 'Exportar la lista (CSV)',
+			'events.admin.csvHeader' => 'Nombre;Usuario;Teléfono;Iglesia;Asamblea;Personas;Alojamiento;Ciudad de salida;Inscrito el',
+			'events.admin.yes' => 'sí',
+			'events.admin.no' => 'no',
+			'events.admin.postBody' => 'Mensaje',
+			'events.admin.postBodyHint' => 'Ej.: ¡Las inscripciones están abiertas!',
+			'events.admin.postImage' => 'Añadir una imagen',
+			'events.admin.postPinned' => 'Fijar arriba',
+			'events.admin.postSend' => 'Publicar',
+			'events.admin.postDone' => 'Novedad publicada.',
+			'events.admin.postDelete' => 'Eliminar esta novedad',
+			'events.admin.postDeleted' => 'Novedad eliminada.',
+			'events.admin.photosAdded' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('es'))(n, one: '${n} foto añadida.', other: '${n} fotos añadidas.', ), 
+			'events.admin.photosSending' => ({required Object done, required Object total}) => 'Enviando las fotos (${done}/${total})…',
+			'events.admin.photoDelete' => 'Eliminar esta foto',
+			'events.admin.photoDeleted' => 'Foto eliminada.',
+			'events.admin.confirmDelete' => 'Eliminar',
+			'prayer.moments.morning' => 'Mañana',
+			'prayer.moments.noon' => 'Mediodía',
+			'prayer.moments.evening' => 'Tarde',
+			'prayer.moments.night' => 'Noche',
+			'prayer.retreatOf.morning' => 'Retiro de la mañana',
+			'prayer.retreatOf.noon' => 'Retiro del mediodía',
+			'prayer.retreatOf.evening' => 'Retiro de la tarde',
+			'prayer.retreatOf.night' => 'Retiro de la noche',
+			'prayer.hero.now' => ({required Object retreat}) => '${retreat} · ahora',
+			'prayer.hero.title' => '15 minutos\ncon el Señor',
+			'prayer.hero.preview.morning' => 'Da gracias, consagra tu día, tu trabajo, tu familia…',
+			'prayer.hero.preview.noon' => 'Tu asamblea, tus líderes, 5 personas de tu lista, las naciones…',
+			'prayer.hero.preview.evening' => 'Tu vida de oración, tu ministerio, tus colaboradores…',
+			'prayer.hero.preview.night' => 'Los enfermos, el Evangelio en las naciones, la protección durante la noche…',
+			'prayer.hero.meta' => '15 puntos · 1 min cada uno',
+			'prayer.hero.start' => 'Empezar',
+			'prayer.hero.allDone' => 'Hiciste los 4 retiros del día. ¡Que Dios conteste tus oraciones!',
+			'prayer.hero.doneNow' => ({required Object retreat, required Object next}) => '${retreat} hecho. Siguiente: ${next}',
+			'prayer.today.toPray' => 'Por orar',
+			'prayer.today.week' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('es'))(n, zero: 'Ningún retiro esta semana', one: '${n} retiro esta semana', other: '${n} retiros esta semana', ), 
+			'prayer.reminders.title' => 'Recordatorios de los retiros',
+			'prayer.reminders.intro' => 'Un recordatorio a la hora de cada retiro, solo si aún no lo has hecho.',
+			'prayer.reminders.off' => 'Desactivado',
+			'prayer.reminders.channel' => 'Retiros de oración',
+			'prayer.reminders.body' => '15 minutos con el Señor.',
+			'prayer.retreat.title' => 'Retiros de 15 minutos',
+			'prayer.retreat.hours.morning' => 'Al despertar',
+			'prayer.retreat.hours.noon' => 'Entre las 12:00 y las 14:00',
+			'prayer.retreat.hours.evening' => 'Al final de la tarde',
+			'prayer.retreat.hours.night' => 'Antes de dormir',
+			'prayer.retreat.reminderAt' => ({required Object time}) => 'recordatorio a las ${time}',
+			'prayer.retreat.intro' => '15 puntos, un minuto cada uno. Un sonido suave te lleva al siguiente.',
+			'prayer.retreat.done' => 'Hecho hoy',
+			'prayer.retreat.start' => 'Empezar · 15 min',
+			'prayer.retreat.selfPaced' => 'Leer a mi ritmo, sin temporizador',
+			'prayer.retreat.hints.assembly' => ({required Object name}) => 'Tu asamblea: ${name}',
+			'prayer.retreat.hints.assemblyMissing' => 'Añade tu asamblea en tu perfil',
+			'prayer.retreat.hints.authorities' => ({required Object names}) => 'Tus autoridades: ${names}',
+			'prayer.retreat.hints.authoritiesMissing' => 'Añade tus autoridades espirituales en «Más»',
+			'prayer.retreat.hints.list' => ({required Object list}) => 'Mis listas · ${list}',
+			'prayer.retreat.hints.listEmpty' => ({required Object list}) => 'Tu lista «${list}» está vacía: añade nombres',
+			'prayer.retreat.hints.nation' => ({required Object name}) => 'Hoy: ${name}',
+			'prayer.retreat.hints.myCountry' => ({required Object name}) => 'Tu país: ${name}',
+			'prayer.retreat.hints.hymn' => 'Abrir los himnos',
+			'prayer.session.point' => ({required Object n}) => 'Punto ${n} de 15',
+			'prayer.session.remaining' => 'restantes',
+			'prayer.session.paused' => 'en pausa',
+			'prayer.session.inYourList' => ({required Object list}) => 'En tu lista · ${list}',
+			'prayer.session.tomorrow' => 'Mañana, los siguientes.',
+			'prayer.session.footer' => 'Pantalla encendida · un sonido suave cada minuto',
+			'prayer.session.previous' => 'Punto anterior',
+			'prayer.session.next' => 'Punto siguiente',
+			'prayer.session.pause' => 'Pausa',
+			'prayer.session.resume' => 'Reanudar',
+			'prayer.session.soundOn' => 'Sonido activado',
+			'prayer.session.soundOff' => 'Sonido desactivado',
+			'prayer.session.finish' => 'Terminar el retiro',
+			'prayer.session.quitTitle' => '¿Detener el retiro?',
+			'prayer.session.quitText' => 'No se contará en tu día.',
+			'prayer.session.quit' => 'Detener',
+			'prayer.session.keepPraying' => 'Seguir orando',
+			'prayer.done.title' => ({required Object retreat}) => '${retreat} terminado',
+			'prayer.done.text' => '15 minutos con el Señor.\nÉl escuchó cada una de tus oraciones.',
+			'prayer.done.report' => 'Añadido a tu informe',
+			'prayer.done.reportDetail' => ({required Object added, required Object total}) => 'Oración a solas: +${added} min · ${total} min hoy',
+			'prayer.done.undo' => 'Deshacer',
+			'prayer.done.undone' => 'Retiro quitado de tu día.',
+			'prayer.done.today' => 'Hoy',
+			'prayer.done.count' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('es'))(n, one: '${n} retiro de 4', other: '${n} retiros de 4', ), 
+			'prayer.done.verse' => '«Orad sin cesar.»',
+			'prayer.done.reference' => '1 Tesalonicenses 5:17',
+			'prayer.done.finish' => 'Terminar',
+			'prayer.done.hymn' => 'Cantar un himno',
+			'prayer.topics.title' => 'Motivos de la comunidad',
+			'prayer.topics.all' => 'Ver todo',
+			'prayer.topics.empty' => 'No hay motivos por ahora. Los líderes publicarán los próximos aquí.',
+			'prayer.topics.categories.church' => 'Iglesia',
+			'prayer.topics.categories.nations' => 'Naciones',
+			'prayer.topics.categories.sick' => 'Enfermos',
+			'prayer.topics.categories.event' => 'Evento',
+			'prayer.topics.categories.fasting' => 'Ayuno',
+			'prayer.topics.categories.other' => 'Motivo',
+			'prayer.topics.points' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('es'))(n, one: '${n} motivo', other: '${n} motivos', ), 
+			'prayer.topics.until' => ({required Object date}) => 'hasta el ${date}',
+			'prayer.topics.since' => ({required Object date}) => 'desde el ${date}',
+			'prayer.topics.people' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('es'))(n, zero: 'Nadie todavía', one: '${n} ora', other: '${n} oran', ), 
+			'prayer.topics.withPdf' => 'Con el PDF',
+			'prayer.topics.isNew' => 'Nuevo',
+			'prayer.topics.screenTitle' => 'Motivo de oración',
+			'prayer.topics.period' => ({required Object from, required Object to}) => 'Del ${from} al ${to}',
+			'prayer.topics.peopleBanner' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('es'))(n, zero: 'Sé el primero en orar por estos motivos.', one: '${n} hermano o hermana ora por estos motivos', other: '${n} hermanos y hermanas oran por estos motivos', ), 
+			'prayer.topics.prayedToday' => ({required Object count, required Object prayed}) => '${count} · hoy oraste por ${prayed}',
+			'prayer.topics.document' => 'Documento original',
+			'prayer.topics.prayAll' => 'Oré por todos estos motivos',
+			'prayer.topics.allPrayed' => 'Hoy oraste por todos',
+			'prayer.topics.archive' => 'Motivos anteriores',
+			'prayer.topics.archiveEmpty' => 'No hay motivos anteriores.',
+			'prayer.topics.current' => 'En este momento',
+			'prayer.topics.shareText' => ({required Object title, required Object points}) => '${title}\n\n${points}\n\nOremos juntos en la app CMFI Connect.',
+			'prayer.topics.documentSize' => ({required Object kb}) => '${kb} KB',
+			'prayer.lists.title' => 'Mis listas de oración',
+			'prayer.lists.private' => 'Solo para ti',
+			'prayer.lists.names.unbelievers' => 'Aún no creyentes',
+			'prayer.lists.names.believers' => 'Creyentes',
+			'prayer.lists.names.backsliders' => 'Descarriados',
+			'prayer.lists.names.coworkers' => 'Colaboradores',
+			'prayer.lists.uses.unbelievers' => 'En el retiro del mediodía oras cada día por 10 personas de esta lista (5 + 5), por turnos.',
+			'prayer.lists.uses.believers' => 'En el retiro del mediodía oras cada día por 5 personas de esta lista, por turnos.',
+			'prayer.lists.uses.backsliders' => 'En el retiro del mediodía oras cada día por 5 personas de esta lista, por turnos.',
+			'prayer.lists.uses.coworkers' => 'En el retiro de la tarde oras cada día por 10 de tus colaboradores (5 + 5), por turnos.',
+			'prayer.lists.privateNote' => 'Solo tú puedes verla.',
+			'prayer.lists.count' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('es'))(n, zero: 'Nadie', one: '${n} persona', other: '${n} personas', ), 
+			'prayer.lists.empty' => 'Nadie por ahora. Añade a las personas por las que oras.',
+			'prayer.lists.add' => 'Añadir una persona',
+			'prayer.lists.prayedToday' => 'Hoy',
+			'prayer.lists.next' => 'Próximamente',
+			'prayer.lists.answeredTitle.unbelievers' => 'Creyeron en el Señor',
+			'prayer.lists.answeredTitle.believers' => 'Oraciones contestadas',
+			'prayer.lists.answeredTitle.backsliders' => 'Volvieron al Señor',
+			'prayer.lists.answeredTitle.coworkers' => 'Oraciones contestadas',
+			'prayer.lists.answeredOn.unbelievers' => ({required Object date}) => 'Creyó en el Señor el ${date}',
+			'prayer.lists.answeredOn.believers' => ({required Object date}) => 'Contestada el ${date}',
+			'prayer.lists.answeredOn.backsliders' => ({required Object date}) => 'Volvió el ${date}',
+			'prayer.lists.answeredOn.coworkers' => ({required Object date}) => 'Contestada el ${date}',
+			'prayer.lists.markAnswered.unbelievers' => '¡Creyó en el Señor!',
+			'prayer.lists.markAnswered.believers' => 'Oración contestada',
+			'prayer.lists.markAnswered.backsliders' => '¡Volvió al Señor!',
+			'prayer.lists.markAnswered.coworkers' => 'Oración contestada',
+			'prayer.lists.answeredToast' => '¡Gloria a Dios!',
+			'prayer.lists.putBack' => 'Devolver a la lista',
+			'prayer.lists.answeredBanner' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('es'))(n, one: '${n} oración contestada este mes', other: '${n} oraciones contestadas este mes', ), 
+			'prayer.lists.lastAnswered' => ({required Object name, required Object what}) => '${name}: ${what}',
+			'prayer.lists.sheet.addTitle' => 'Añadir una persona',
+			'prayer.lists.sheet.editTitle' => 'Editar',
+			'prayer.lists.sheet.name' => 'Nombre',
+			'prayer.lists.sheet.namePlaceholder' => 'Pablo M.',
+			'prayer.lists.sheet.note' => 'Nota',
+			'prayer.lists.sheet.notePlaceholder' => 'Colega, vecino, prima…',
+			'prayer.lists.sheet.list' => 'Lista',
+			'prayer.lists.sheet.save' => 'Guardar',
+			'prayer.lists.sheet.remove' => 'Quitar de la lista',
+			'prayer.lists.sheet.removeTitle' => ({required Object name}) => '¿Quitar a ${name}?',
+			'prayer.lists.sheet.removeText' => 'Ya no orarás por esta persona en tus retiros.',
+			'prayer.importunity.title' => 'Motivos de importunidad',
+			'prayer.importunity.newTopic' => 'Nuevo motivo',
+			'prayer.importunity.intro' => 'Un motivo que se presenta al Señor sin cansarse, hasta recibir la respuesta. Fija un número de proclamaciones e invita a tus hermanos y hermanas a orar contigo.',
+			'prayer.importunity.invitedBy' => ({required Object name}) => '${name} te invita a orar',
+			'prayer.importunity.join' => 'Me uno a la oración',
+			'prayer.importunity.decline' => 'Ahora no',
+			'prayer.importunity.joined' => 'Ahora oras por este motivo.',
+			'prayer.importunity.progress' => ({required Object total, required Object goal}) => '${total} de ${goal}',
+			'prayer.importunity.total' => ({required num n, required Object count}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('es'))(n, one: '${count} proclamación', other: '${count} proclamaciones', ), 
+			'prayer.importunity.reached' => '¡Objetivo alcanzado!',
+			'prayer.importunity.closed' => 'Cerrado',
+			'prayer.importunity.participants' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('es'))(n, one: '${n} ora', other: '${n} oran', ), 
+			'prayer.importunity.mine' => ({required Object n}) => 'Tú: ${n}',
+			'prayer.importunity.tapHint' => 'Toca en cada proclamación',
+			'prayer.importunity.addMany' => 'Añadir una cantidad',
+			'prayer.importunity.addManyTitle' => '¿Cuántas proclamaciones?',
+			'prayer.importunity.addManyLabel' => 'Proclamaciones',
+			'prayer.importunity.add' => 'Añadir',
+			'prayer.importunity.pending' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('es'))(n, one: '${n} pendiente de envío', other: '${n} pendientes de envío', ), 
+			'prayer.importunity.invite' => 'Invitar',
+			'prayer.importunity.members' => 'Quienes oran',
+			'prayer.importunity.waiting' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('es'))(n, one: '${n} invitación pendiente', other: '${n} invitaciones pendientes', ), 
+			'prayer.importunity.edit' => 'Editar',
+			'prayer.importunity.close' => 'Cerrar el motivo',
+			'prayer.importunity.reopen' => 'Reabrir el motivo',
+			'prayer.importunity.delete' => 'Eliminar el motivo',
+			'prayer.importunity.deleteTitle' => '¿Eliminar este motivo?',
+			'prayer.importunity.deleteText' => 'Desaparecerá para todos los que oran contigo.',
+			'prayer.importunity.leave' => 'Dejar este motivo',
+			'prayer.importunity.leaveTitle' => '¿Dejar este motivo?',
+			'prayer.importunity.leaveText' => 'Tus proclamaciones se quedan en el total.',
+			'prayer.importunity.form.newTitle' => 'Nuevo motivo de importunidad',
+			'prayer.importunity.form.editTitle' => 'Editar el motivo',
+			'prayer.importunity.form.subject' => 'Motivo',
+			'prayer.importunity.form.subjectPlaceholder' => 'Señor, salva a Pablo',
+			'prayer.importunity.form.description' => 'Detalles',
+			'prayer.importunity.form.descriptionPlaceholder' => 'Por quién, por qué…',
+			'prayer.importunity.form.goal' => 'Objetivo',
+			'prayer.importunity.form.goalHint' => 'El número de proclamaciones por alcanzar juntos. Déjalo vacío para contar sin objetivo.',
+			'prayer.importunity.form.goalPlaceholder' => '10.000',
+			'prayer.importunity.form.create' => 'Crear',
+			'prayer.importunity.form.save' => 'Guardar',
+			'prayer.importunity.inviteSheet.title' => 'Invitar a orar',
+			'prayer.importunity.inviteSheet.family' => 'Mi familia espiritual',
+			'prayer.importunity.inviteSheet.familyText' => ({required num n, required Object name}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('es'))(n, one: '${name} y sus discípulos: ${n} persona', other: '${name} y sus discípulos: ${n} personas', ), 
+			'prayer.importunity.inviteSheet.familyMissing' => 'Vincula a tu discipulador en «Mis autoridades espirituales» para invitar a tu familia espiritual.',
+			'prayer.importunity.inviteSheet.byUsername' => 'Por nombre de usuario',
+			'prayer.importunity.inviteSheet.usernameLabel' => 'Nombre de usuario',
+			'prayer.importunity.inviteSheet.addUsername' => 'Añadir',
+			'prayer.importunity.inviteSheet.send' => 'Enviar las invitaciones',
+			'prayer.importunity.inviteSheet.sent' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('es'))(n, zero: 'Ya estaban invitados.', one: '${n} invitación enviada', other: '${n} invitaciones enviadas', ), 
+			_ => null,
+		};
+	}
+}

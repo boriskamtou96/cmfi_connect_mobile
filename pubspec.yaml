@@ -1,0 +1,187 @@
+name: cmfi_connect
+description: 'CMFI Connect'
+
+publish_to: 'none'
+
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.10.8
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_localizations:
+    sdk: flutter
+
+  cupertino_icons: ^1.0.8
+
+  # State management
+  hooks_riverpod: ^3.1.0
+  flutter_hooks: ^0.21.3+1
+  riverpod_annotation: ^4.0.0
+
+  # Models (immutable classes + JSON)
+  freezed_annotation: ^3.1.0
+  json_annotation: ^4.9.0
+
+  # HTTP client
+  dio: ^5.9.2
+  pretty_dio_logger: ^1.4.0
+
+  # Routing. 11.2+ needs a newer Flutter than 3.38 (Viewport.scrollCacheExtent)
+  auto_route: '>=11.1.0 <11.2.0'
+
+  # Internationalization
+  slang: ^4.13.0
+  slang_flutter: ^4.13.0
+  intl: ^0.20.2
+
+  # Secure storage (access token)
+  flutter_secure_storage: ^10.0.0
+
+  # Small local flags (onboarding already seen)
+  shared_preferences: ^2.5.4
+
+  # Native splash, kept on screen until the app knows where to go
+  flutter_native_splash: ^2.4.7
+
+  # Hymns: the latest books kept on the phone, and the screen kept on while singing
+  path_provider: ^2.1.6
+  wakelock_plus: ^1.6.1
+
+  # Reports: evening reminder at a set time, sharing and PDF export,
+  # days saved offline sent again when the network comes back
+  flutter_local_notifications: ^22.3.1
+  timezone: ^0.11.1
+  flutter_timezone: ^5.1.1
+  share_plus: ^13.3.1
+  pdf: ^3.12.0
+  connectivity_plus: ^7.3.1
+
+  # Popups for errors and confirmations
+  toastification: ^3.2.0
+  # Motion: simple effects (flutter_animate), Material transitions between
+  # screens and contents (animations: shared axis, fade through, container transform)
+  flutter_animate: ^4.5.2
+  animations: ^2.2.0
+  # Icons (Phosphor), only through AppIcons (core/theme/app_icons.dart)
+  phosphor_flutter: ^2.1.0
+
+  # Events: posters and photos (picked, uploaded, cached), "add to my
+  # calendar", directions and the organizers' phone
+  image_picker: ^1.2.3
+  cached_network_image: ^3.4.1
+  add_2_calendar: ^3.0.1
+  url_launcher: ^6.3.2
+
+  # Prayer: the soft sound between two points of a retreat
+  audioplayers: ^6.7.1
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  flutter_lints: ^6.0.0
+
+  # Code generation: dart run build_runner watch --force-jit
+  build_runner: ^2.12.2
+  riverpod_generator: ^4.0.0+1
+  freezed: ^3.2.3
+  json_serializable: ^6.11.2
+  auto_route_generator: ^10.4.0
+  slang_build_runner: ^4.13.0
+
+  # Flavors (dev / prod): dart run flutter_flavorizr
+  flutter_flavorizr: ^2.4.2
+
+  # App icons per flavor: dart run flutter_launcher_icons (flutter_launcher_icons-<flavor>.yaml)
+  flutter_launcher_icons: ^0.14.4
+
+  # Tests
+  mocktail: ^1.0.4
+  http_mock_adapter: ^0.6.1
+
+flutter:
+  uses-material-design: true
+
+  # Hymn books shipped with the app (offline from the first launch), in the API format.
+  # Refresh them from the API: see CLAUDE.md, "Cantiques".
+  assets:
+    - assets/hymns/
+    - assets/prayer/
+    - assets/sounds/
+
+  fonts:
+    - family: Onest
+      fonts:
+        - asset: assets/fonts/Onest-Regular.ttf
+          weight: 400
+        - asset: assets/fonts/Onest-Medium.ttf
+          weight: 500
+        - asset: assets/fonts/Onest-SemiBold.ttf
+          weight: 600
+        - asset: assets/fonts/Onest-Bold.ttf
+          weight: 700
+        - asset: assets/fonts/Onest-ExtraBold.ttf
+          weight: 800
+    # Serif for reading hymns (large text reads better with serifs)
+    - family: Lora
+      fonts:
+        - asset: assets/fonts/Lora-Regular.ttf
+          weight: 400
+        - asset: assets/fonts/Lora-SemiBold.ttf
+          weight: 600
+        - asset: assets/fonts/Lora-Italic.ttf
+          weight: 400
+          style: italic
+
+# Native splash (same for both flavors): dart run flutter_native_splash:create
+# The images come from tool/brand_assets_test.dart.
+flutter_native_splash:
+  color: '#072D5A'
+  image: assets/brand/splash_logo.png
+  android_12:
+    color: '#072D5A'
+    image: assets/brand/splash_logo_android12.png
+  web: false
+
+# Flavors: two apps that can live side by side on the same phone
+flavorizr:
+  ide: 'idea'
+  app:
+    android:
+      flavorDimensions: 'flavor-type'
+  instructions:
+    - assets:download
+    - assets:extract
+    - android:androidManifest
+    - android:flavorizrGradle
+    - android:buildGradle
+    - android:dummyAssets
+    - ios:podfile
+    - ios:xcconfig
+    - ios:buildTargets
+    - ios:schema
+    - ios:dummyAssets
+    - ios:plist
+    - ios:launchScreen
+    - assets:clean
+    - ide:config
+
+  flavors:
+    dev:
+      app:
+        name: 'CMFI Connect Dev'
+      android:
+        applicationId: 'com.cmfi.connect.dev'
+      ios:
+        bundleId: 'com.cmfi.connect.dev'
+
+    prod:
+      app:
+        name: 'CMFI Connect'
+      android:
+        applicationId: 'com.cmfi.connect'
+      ios:
+        bundleId: 'com.cmfi.connect'

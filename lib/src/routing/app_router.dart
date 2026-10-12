@@ -1,0 +1,210 @@
+import 'package:auto_route/auto_route.dart';
+import 'package:flutter/material.dart';
+import 'package:riverpod_annotation/riverpod_annotation.dart';
+
+import '../features/admin/presentation/admin_screen.dart';
+import '../features/auth/presentation/login_screen.dart';
+import '../features/auth/presentation/register_screen.dart';
+import '../features/authorities/presentation/authorities_screen.dart';
+import '../features/authorities/presentation/authority_form_screen.dart';
+import '../features/events/presentation/admin/admin_events_screen.dart';
+import '../features/events/presentation/admin/event_form_screen.dart';
+import '../features/events/presentation/admin/event_program_screen.dart';
+import '../features/events/presentation/admin/event_registrants_screen.dart';
+import '../features/events/presentation/event_screen.dart';
+import '../features/events/presentation/events_screen.dart';
+import '../features/home/presentation/home_screen.dart';
+import '../features/hymns/presentation/hymn_projection_screen.dart';
+import '../features/hymns/presentation/hymn_reader_screen.dart';
+import '../features/hymns/presentation/hymns_screen.dart';
+import '../features/members/presentation/delete_account_screen.dart';
+import '../features/more/presentation/more_screen.dart';
+import '../features/onboarding/presentation/onboarding_screen.dart';
+import '../features/onboarding/presentation/splash_screen.dart';
+import '../features/onboarding/presentation/welcome_screen.dart';
+import '../features/prayer/domain/prayer.dart';
+import '../features/prayer/presentation/importunity_screen.dart';
+import '../features/prayer/presentation/prayer_list_screen.dart';
+import '../features/prayer/presentation/prayer_screen.dart';
+import '../features/prayer/presentation/prayer_topic_screen.dart';
+import '../features/prayer/presentation/prayer_topics_screen.dart';
+import '../features/prayer/presentation/retreat_screen.dart';
+import '../features/prayer/presentation/retreat_session_screen.dart';
+import '../features/profile/presentation/church_form_screen.dart';
+import '../features/reports/presentation/export_screen.dart';
+import '../features/reports/presentation/items_screen.dart';
+import '../features/reports/presentation/new_item_screen.dart';
+import '../features/reports/presentation/reports_screen.dart';
+import '../features/shell/presentation/app_shell_screen.dart';
+import 'auth_guard.dart';
+import 'fade_through_route.dart';
+
+part 'app_router.g.dart';
+part 'app_router.gr.dart';
+
+@AutoRouterConfig(replaceInRouteName: 'Screen,Route')
+class AppRouter extends RootStackRouter {
+  AppRouter({required this.authGuard});
+
+  final AuthGuard authGuard;
+
+  // Pushed pages (items, authorities, sign-in forms…) slide like the platform,
+  // with the iOS back swipe. The root flows reached with replaceAll (launch,
+  // presentation, welcome, the app) fade through instead: see FadeThroughRoute.
+  @override
+  RouteType get defaultRouteType => const RouteType.adaptive();
+
+  @override
+  List<AutoRoute> get routes => [
+    // decides where to go at launch (see SplashScreen)
+    CustomRoute(
+      path: '/',
+      page: SplashRoute.page,
+      initial: true,
+      customRouteBuilder: FadeThroughRoute.darkBuilder,
+    ),
+    CustomRoute(
+      path: '/onboarding',
+      page: OnboardingRoute.page,
+      customRouteBuilder: FadeThroughRoute.builder,
+    ),
+    CustomRoute(
+      path: '/welcome',
+      page: WelcomeRoute.page,
+      customRouteBuilder: FadeThroughRoute.darkBuilder,
+    ),
+    AutoRoute(path: '/login', page: LoginRoute.page),
+    AutoRoute(path: '/register', page: RegisterRoute.page),
+    CustomRoute(
+      path: '/church',
+      page: ChurchFormRoute.page,
+      guards: [authGuard],
+      customRouteBuilder: _churchFormRoute,
+    ),
+    CustomRoute(
+      path: '/app',
+      page: AppShellRoute.page,
+      guards: [authGuard],
+      customRouteBuilder: FadeThroughRoute.builder,
+      children: [
+        AutoRoute(path: 'home', page: HomeRoute.page, initial: true),
+        AutoRoute(path: 'reports', page: ReportsRoute.page),
+        AutoRoute(path: 'hymns', page: HymnsRoute.page),
+        AutoRoute(path: 'prayer', page: PrayerRoute.page),
+        AutoRoute(path: 'more', page: MoreRoute.page),
+      ],
+    ),
+    AutoRoute(path: '/items', page: ItemsRoute.page, guards: [authGuard]),
+    AutoRoute(
+      path: '/prayer/retreat',
+      page: RetreatRoute.page,
+      guards: [authGuard],
+    ),
+    AutoRoute(
+      path: '/prayer/retreat/session',
+      page: RetreatSessionRoute.page,
+      guards: [authGuard],
+      fullscreenDialog: true,
+    ),
+    AutoRoute(
+      path: '/prayer/topics',
+      page: PrayerTopicsRoute.page,
+      guards: [authGuard],
+    ),
+    AutoRoute(
+      path: '/prayer/topics/:topicId',
+      page: PrayerTopicRoute.page,
+      guards: [authGuard],
+    ),
+    AutoRoute(
+      path: '/prayer/lists',
+      page: PrayerListRoute.page,
+      guards: [authGuard],
+    ),
+    AutoRoute(
+      path: '/prayer/importunities/:importunityId',
+      page: ImportunityRoute.page,
+      guards: [authGuard],
+    ),
+    AutoRoute(
+      path: '/hymns/:bookCode/:number',
+      page: HymnReaderRoute.page,
+      guards: [authGuard],
+    ),
+    AutoRoute(
+      path: '/hymns/:bookCode/:number/projection',
+      page: HymnProjectionRoute.page,
+      guards: [authGuard],
+      fullscreenDialog: true,
+    ),
+    AutoRoute(path: '/items/new', page: NewItemRoute.page, guards: [authGuard]),
+    AutoRoute(path: '/admin', page: AdminRoute.page, guards: [authGuard]),
+    AutoRoute(
+      path: '/reports/export',
+      page: ExportReportRoute.page,
+      guards: [authGuard],
+    ),
+    AutoRoute(
+      path: '/authorities',
+      page: AuthoritiesRoute.page,
+      guards: [authGuard],
+    ),
+    AutoRoute(
+      path: '/authorities/new',
+      page: AuthorityFormRoute.page,
+      guards: [authGuard],
+    ),
+    AutoRoute(
+      path: '/account/delete',
+      page: DeleteAccountRoute.page,
+      guards: [authGuard],
+    ),
+    AutoRoute(path: '/events', page: EventsRoute.page, guards: [authGuard]),
+    AutoRoute(
+      path: '/events/:eventId',
+      page: EventRoute.page,
+      guards: [authGuard],
+    ),
+    AutoRoute(
+      path: '/admin/events',
+      page: AdminEventsRoute.page,
+      guards: [authGuard],
+    ),
+    AutoRoute(
+      path: '/admin/events/:eventId/edit',
+      page: EventFormRoute.page,
+      guards: [authGuard],
+    ),
+    AutoRoute(
+      path: '/admin/events/:eventId/program',
+      page: EventProgramRoute.page,
+      guards: [authGuard],
+    ),
+    AutoRoute(
+      path: '/admin/events/:eventId/registrations',
+      page: EventRegistrantsRoute.page,
+      guards: [authGuard],
+    ),
+  ];
+}
+
+/// After sign-up the church step replaces everything (fade-through); opened
+/// from "Plus" to edit the profile, it is a regular page with the back swipe.
+Route<T> _churchFormRoute<T>(
+  BuildContext context,
+  Widget child,
+  AutoRoutePage<T> page,
+) {
+  final args = page.routeData.argsAs<ChurchFormRouteArgs>(
+    orElse: () => const ChurchFormRouteArgs(),
+  );
+  return FadeThroughRoute<T>(page: page, root: !args.isEditing);
+}
+
+/// Raw: the router is a ChangeNotifier that Riverpod neither listens to nor disposes.
+@Riverpod(keepAlive: true)
+Raw<AppRouter> appRouter(Ref ref) {
+  final router = AppRouter(authGuard: AuthGuard(ref));
+  ref.onDispose(router.dispose);
+  return router;
+}

@@ -1,0 +1,157 @@
+import 'dart:async';
+
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:flutter_timezone/flutter_timezone.dart';
+import 'package:riverpod_annotation/riverpod_annotation.dart';
+import 'package:timezone/data/latest_all.dart' as tz;
+import 'package:timezone/timezone.dart' as tz;
+
+import '../theme/app_colors.dart';
+
+part 'local_notifications.g.dart';
+
+/// A notification planned on the phone itself (no server push).
+typedef PlannedNotification = ({
+  int id,
+  DateTime at,
+  String title,
+  String body,
+  String? payload,
+});
+
+/// Notifications planned by the app (the evening reminder). Behind a provider
+/// so tests replace it.
+class LocalNotifications {
+  LocalNotifications();
+
+  final _plugin = FlutterLocalNotificationsPlugin();
+  final _taps = StreamController<String?>.broadcast();
+  Future<void>? _ready;
+  var _launchTaken = false;
+
+  /// Payloads of the notifications tapped while the app runs.
+  Stream<String?> get taps => _taps.stream;
+
+  Future<void> _init() => _ready ??= () async {
+    tz.initializeTimeZones();
+    try {
+      final zone = await FlutterTimezone.getLocalTimezone();
+      tz.setLocalLocation(tz.getLocation(zone.identifier));
+    } on Object {
+      // unknown zone name: UTC, the offsets below still come from DateTime
+    }
+    await _plugin.initialize(
+      settings: const InitializationSettings(
+        android: AndroidInitializationSettings('ic_notification'),
+        // asked when the user turns the reminder on, not at launch
+        iOS: DarwinInitializationSettings(
+          requestAlertPermission: false,
+          requestBadgePermission: false,
+          requestSoundPermission: false,
+        ),
+      ),
+      onDidReceiveNotificationResponse: (response) =>
+          _taps.add(response.payload),
+    );
+  }();
+
+  /// Asks the system for the right to notify. false when refused.
+  Future<bool> requestPermission() async {
+    await _init();
+    final ios = _plugin
+        .resolvePlatformSpecificImplementation<
+          IOSFlutterLocalNotificationsPlugin
+        >();
+    if (ios != null) {
+      return await ios.requestPermissions(alert: true, sound: true) ?? false;
+    }
+    final android = _plugin
+        .resolvePlatformSpecificImplementation<
+          AndroidFlutterLocalNotificationsPlugin
+        >();
+    return await android?.requestNotificationsPermission() ?? true;
+  }
+
+  /// Payload of the notification that opened the app, if one did. Given
+  /// once: signing out and in again doesn't replay it.
+  Future<String?> takeLaunchPayload() async {
+    await _init();
+    if (_launchTaken) {
+      return null;
+    }
+    _launchTaken = true;
+    final details = await _plugin.getNotificationAppLaunchDetails();
+    return details?.didNotificationLaunchApp ?? false
+        ? details?.notificationResponse?.payload
+        : null;
+  }
+
+  /// Replaces the planned notifications of [group] with [notifications]
+  /// (their ids count from 0 within the group); the other groups stay.
+  Future<void> replace(
+    NotificationGroup group,
+    List<PlannedNotification> notifications, {
+    required String channelName,
+  }) async {
+    await cancel(group);
+    final details = NotificationDetails(
+      android: AndroidNotificationDetails(
+        group.channelId,
+        channelName,
+        color: AppColors.primary,
+      ),
+      iOS: const DarwinNotificationDetails(),
+    );
+    for (final notification in notifications.take(NotificationGroup.size)) {
+      await _plugin.zonedSchedule(
+        id: group.firstId + notification.id,
+        scheduledDate: tz.TZDateTime.from(notification.at, tz.local),
+        notificationDetails: details,
+        // a few minutes late is fine for a reminder, and needs no permission
+        androidScheduleMode: AndroidScheduleMode.inexactAllowWhileIdle,
+        title: notification.title,
+        body: notification.body,
+        payload: notification.payload,
+      );
+    }
+  }
+
+  Future<void> cancel(NotificationGroup group) async {
+    await _init();
+    for (final pending in await _plugin.pendingNotificationRequests()) {
+      if (group.owns(pending.id)) {
+        await _plugin.cancel(id: pending.id);
+      }
+    }
+  }
+
+  Future<void> cancelAll() async {
+    await _init();
+    await _plugin.cancelAll();
+  }
+}
+
+/// Notifications replaced together, each with its own ids and Android channel.
+enum NotificationGroup {
+  /// The evening reminder to fill in the report.
+  reportReminder(firstId: 1, channelId: 'report_reminder'),
+
+  /// The day before and an hour before the events the user registered for.
+  events(firstId: 1000, channelId: 'events'),
+
+  /// The reminders of the 15-minute prayer retreats.
+  prayer(firstId: 2000, channelId: 'prayer');
+
+  const NotificationGroup({required this.firstId, required this.channelId});
+
+  /// Ids per group: plenty for two weeks of evenings or a few events.
+  static const size = 900;
+
+  final int firstId;
+  final String channelId;
+
+  bool owns(int id) => id >= firstId && id < firstId + size;
+}
+
+@Riverpod(keepAlive: true)
+LocalNotifications localNotifications(Ref ref) => LocalNotifications();

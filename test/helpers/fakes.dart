@@ -1,0 +1,1679 @@
+import 'dart:async';
+import 'dart:typed_data';
+
+import 'package:cmfi_connect/src/core/network/app_exception.dart';
+import 'package:cmfi_connect/src/core/services/calendar_service.dart';
+import 'package:cmfi_connect/src/core/services/chime.dart';
+import 'package:cmfi_connect/src/core/services/image_picking.dart';
+import 'package:cmfi_connect/src/core/services/link_launcher.dart';
+import 'package:cmfi_connect/src/core/services/local_notifications.dart';
+import 'package:cmfi_connect/src/core/services/media_images.dart';
+import 'package:cmfi_connect/src/core/services/network_status.dart';
+import 'package:cmfi_connect/src/core/services/screen_awake.dart';
+import 'package:cmfi_connect/src/core/services/share_service.dart';
+import 'package:cmfi_connect/src/core/session/account.dart';
+import 'package:cmfi_connect/src/core/storage/account_storage.dart';
+import 'package:cmfi_connect/src/core/storage/token_storage.dart';
+import 'package:cmfi_connect/src/core/widgets/app_toast.dart';
+import 'package:cmfi_connect/src/features/admin/infrastructure/admin_api.dart';
+import 'package:cmfi_connect/src/features/auth/infrastructure/auth_api.dart';
+import 'package:cmfi_connect/src/features/auth/infrastructure/login_response.dart';
+import 'package:cmfi_connect/src/features/authorities/domain/authority.dart';
+import 'package:cmfi_connect/src/features/authorities/infrastructure/authorities_api.dart';
+import 'package:cmfi_connect/src/features/events/domain/event.dart';
+import 'package:cmfi_connect/src/features/events/domain/event_draft.dart';
+import 'package:cmfi_connect/src/features/events/infrastructure/events_api.dart';
+import 'package:cmfi_connect/src/features/hymns/domain/hymn.dart';
+import 'package:cmfi_connect/src/features/hymns/infrastructure/hymn_book_storage.dart';
+import 'package:cmfi_connect/src/features/hymns/infrastructure/hymns_api.dart';
+import 'package:cmfi_connect/src/features/members/domain/member.dart';
+import 'package:cmfi_connect/src/features/members/infrastructure/members_api.dart';
+import 'package:cmfi_connect/src/features/prayer/domain/prayer.dart';
+import 'package:cmfi_connect/src/features/prayer/infrastructure/prayer_api.dart';
+import 'package:cmfi_connect/src/features/profile/domain/profile.dart';
+import 'package:cmfi_connect/src/features/profile/infrastructure/profile_api.dart';
+import 'package:cmfi_connect/src/features/reports/domain/activity_type.dart';
+import 'package:cmfi_connect/src/features/reports/domain/daily_report.dart';
+import 'package:cmfi_connect/src/features/reports/domain/report_summary.dart';
+import 'package:cmfi_connect/src/features/reports/infrastructure/activities_api.dart';
+import 'package:cmfi_connect/src/features/reports/infrastructure/reports_api.dart';
+import 'package:flutter/widgets.dart';
+
+/// In-memory token storage: the real one needs the Keychain / Keystore.
+class FakeTokenStorage implements TokenStorage {
+  FakeTokenStorage([this.token]);
+
+  String? token;
+
+  @override
+  Future<String?> read() async => token;
+
+  @override
+  Future<void> write(String value) async => token = value;
+
+  @override
+  Future<void> delete() async => token = null;
+}
+
+/// In-memory account storage.
+class FakeAccountStorage implements AccountStorage {
+  FakeAccountStorage([this.account]);
+
+  Account? account;
+
+  @override
+  Future<Account?> read() async => account;
+
+  @override
+  Future<void> write(Account value) async => account = value;
+
+  @override
+  Future<void> delete() async => account = null;
+}
+
+/// Answers login with a token, or throws [error] when given.
+class FakeAuthApi implements AuthApi {
+  FakeAuthApi({this.error, this.registerError});
+
+  final AppException? error;
+  final AppException? registerError;
+
+  /// Phone numbers registered through [register].
+  final registered = <String>[];
+
+  /// Pseudo of the last [register].
+  String? registeredUsername;
+
+  /// Phone number of the last [login].
+  String? loggedInWith;
+
+  @override
+  Future<void> register({
+    required String firstName,
+    required String lastName,
+    required String phoneNumber,
+    required String password,
+    required String username,
+    String? email,
+  }) async {
+    if (registerError case final error?) {
+      throw error;
+    }
+    registered.add(phoneNumber);
+    registeredUsername = username;
+  }
+
+  @override
+  Future<LoginResponse> login({
+    required String phoneNumber,
+    required String password,
+  }) async {
+    if (error case final error?) {
+      throw error;
+    }
+    loggedInWith = phoneNumber;
+    return LoginResponse(
+      account: Account(
+        firstName: 'Boris',
+        lastName: 'Kamtou',
+        phoneNumber: phoneNumber,
+      ),
+      accessToken: 'test-token',
+    );
+  }
+}
+
+/// Keeps the profile in memory; [updates] and [creates] record what was sent.
+/// A null [profile] answers 404, like a user without profile on the server.
+class FakeProfileApi implements ProfileApi {
+  FakeProfileApi([this.profile = defaultProfile]);
+
+  static const defaultProfile = Profile(
+    firstName: 'Boris',
+    lastName: 'Kamtou',
+    phoneNumber: '+237690000001',
+  );
+
+  Profile? profile;
+  final updates = <Profile>[];
+  final creates = <Profile>[];
+
+  @override
+  Future<Profile> get() async =>
+      profile ??
+      (throw const ApiException(
+        status: 404,
+        code: 'NOT_FOUND',
+        message: 'Profile not found',
+      ));
+
+  @override
+  Future<Profile> update(Profile profile) async {
+    updates.add(profile);
+    return this.profile = profile;
+  }
+
+  @override
+  Future<Profile> create(Profile profile) async {
+    creates.add(profile);
+    return this.profile = profile;
+  }
+}
+
+/// Keeps the authorities in memory and refuses a second disciple maker, like the database.
+class FakeAuthoritiesApi implements AuthoritiesApi {
+  FakeAuthoritiesApi([
+    List<Authority> authorities = const [],
+    List<AuthorityRequest> requests = const [],
+  ]) : authorities = [...authorities],
+       pendingRequests = [...requests];
+
+  final List<Authority> authorities;
+
+  /// Members asking the user to accompany them.
+  final List<AuthorityRequest> pendingRequests;
+
+  /// Requests answered: id -> accepted.
+  final answers = <int, bool>{};
+
+  @override
+  Future<Authority> createForMember({
+    required String username,
+    required bool isDiscipleMaker,
+  }) async {
+    final member = sampleMembers[username];
+    if (member == null) {
+      throw const ApiException(status: 404, code: 'NOT_FOUND', message: '');
+    }
+    if (authorities.any((a) => a.username == username)) {
+      throw const ApiException(
+        status: 409,
+        code: 'AUTHORITY_EXISTS',
+        message: '',
+      );
+    }
+    final created = Authority(
+      id: 100 + authorities.length,
+      firstName: member.firstName,
+      lastName: member.lastName,
+      isDiscipleMaker: isDiscipleMaker,
+      username: username,
+      church: member.church,
+      status: AuthorityStatus.pending,
+    );
+    authorities.add(created);
+    return created;
+  }
+
+  @override
+  Future<List<AuthorityRequest>> requests() async => [...pendingRequests];
+
+  @override
+  Future<void> answer(int requestId, {required bool accept}) async {
+    answers[requestId] = accept;
+    pendingRequests.removeWhere((request) => request.id == requestId);
+  }
+
+  @override
+  Future<List<Authority>> list() async => [...authorities];
+
+  @override
+  Future<Authority> create({
+    required String firstName,
+    required String lastName,
+    required String phoneNumber,
+    required String email,
+    required bool isDiscipleMaker,
+  }) async {
+    if (isDiscipleMaker && authorities.any((a) => a.isDiscipleMaker)) {
+      throw const ApiException(
+        status: 500,
+        code: 'INTERNAL_SERVER_ERROR',
+        message: 'unique violation',
+      );
+    }
+    final created = Authority(
+      id: 100 + authorities.length,
+      firstName: firstName,
+      lastName: lastName.isEmpty ? null : lastName,
+      phoneNumber: phoneNumber,
+      email: email.isEmpty ? null : email,
+      isDiscipleMaker: isDiscipleMaker,
+    );
+    authorities.add(created);
+    return created;
+  }
+
+  @override
+  Future<void> remove(int id) async =>
+      authorities.removeWhere((authority) => authority.id == id);
+}
+
+/// Two standard items and a personal one, like the dev database.
+const sampleActivities = [
+  ActivityType(
+    id: 1,
+    code: 'LB',
+    label: 'Lecture biblique',
+    tracksQuantity: true,
+    quantityUnit: 'chapitres',
+    isStandard: true,
+  ),
+  ActivityType(
+    id: 2,
+    code: 'PS',
+    label: 'Prière seule',
+    tracksDuration: true,
+    isStandard: true,
+  ),
+  ActivityType(
+    id: 30,
+    code: 'RQDQA',
+    label: 'RQDQA',
+    tracksQuantity: true,
+    quantityUnit: 'Nombre de fois',
+    tracksDuration: true,
+  ),
+];
+
+class FakeActivitiesApi implements ActivitiesApi {
+  FakeActivitiesApi([List<ActivityType> activities = sampleActivities])
+    : activities = [...activities];
+
+  final List<ActivityType> activities;
+
+  /// No network: every call fails like a lost connection.
+  bool offline = false;
+
+  @override
+  Future<List<ActivityType>> list() async {
+    if (offline) {
+      throw const NetworkException();
+    }
+    return activities;
+  }
+
+  @override
+  Future<ActivityType> create({
+    required String code,
+    required String label,
+    required bool tracksQuantity,
+    String? quantityUnit,
+    required bool tracksDuration,
+  }) async {
+    if (activities.any((activity) => activity.code == code)) {
+      throw const ApiException(
+        status: 409,
+        code: 'CONFLICT',
+        message: 'conflict',
+      );
+    }
+    final created = ActivityType(
+      id: 100 + activities.length,
+      code: code,
+      label: label,
+      tracksQuantity: tracksQuantity,
+      quantityUnit: quantityUnit,
+      tracksDuration: tracksDuration,
+    );
+    activities.add(created);
+    return created;
+  }
+
+  @override
+  Future<void> archive(int id) async =>
+      activities.removeWhere((activity) => activity.id == id);
+}
+
+/// Stores the saved days in memory, like the API would.
+class FakeReportsApi implements ReportsApi {
+  FakeReportsApi({this.activities = sampleActivities});
+
+  final List<ActivityType> activities;
+
+  /// No network: every call fails like a lost connection.
+  bool offline = false;
+
+  void _online() {
+    if (offline) {
+      throw const NetworkException();
+    }
+  }
+
+  /// Saved days, by date.
+  final days = <DateTime, DailyReport>{};
+
+  /// Every PUT, in order.
+  final saves = <DailyReport>[];
+
+  ReportEntry _empty(ActivityType activity) => ReportEntry(
+    activityTypeId: activity.id,
+    code: activity.code,
+    label: activity.label,
+    tracksQuantity: activity.tracksQuantity,
+    quantityUnit: activity.quantityUnit,
+    tracksDuration: activity.tracksDuration,
+  );
+
+  @override
+  Future<DailyReport> getDay(DateTime date) async {
+    _online();
+    final saved = days[date];
+    final values = {
+      for (final entry in saved?.entries ?? const <ReportEntry>[])
+        entry.activityTypeId: entry,
+    };
+    return DailyReport(
+      date: date,
+      note: saved?.note,
+      submitted: saved != null,
+      entries: [
+        for (final activity in activities)
+          _empty(activity).copyWith(
+            quantity: values[activity.id]?.quantity,
+            durationMinutes: values[activity.id]?.durationMinutes,
+          ),
+      ],
+    );
+  }
+
+  @override
+  Future<DailyReport> saveDay(
+    DateTime date, {
+    required String note,
+    required List<ReportEntry> entries,
+  }) async {
+    _online();
+    final report = DailyReport(
+      date: date,
+      note: note.trim().isEmpty ? null : note.trim(),
+      submitted: true,
+      entries: entries.where((entry) => entry.isFilled).toList(),
+    );
+    saves.add(report);
+    days[date] = report;
+    return getDay(date);
+  }
+
+  @override
+  Future<List<DailyReport>> history({
+    required DateTime from,
+    required DateTime to,
+  }) async {
+    _online();
+    return days.values
+        .where((day) => !day.date.isBefore(from) && !day.date.isAfter(to))
+        .toList()
+      ..sort((a, b) => b.date.compareTo(a.date));
+  }
+
+  @override
+  Future<ReportSummary> summary({
+    required DateTime from,
+    required DateTime to,
+  }) async {
+    _online();
+    final inRange = await history(from: from, to: to);
+    return ReportSummary(
+      from: from,
+      to: to,
+      daysInRange: to.difference(from).inDays + 1,
+      daysReported: inRange.length,
+      items: [
+        for (final activity in activities)
+          SummaryItem(
+            activityTypeId: activity.id,
+            code: activity.code,
+            label: activity.label,
+            quantityUnit: activity.quantityUnit,
+            tracksQuantity: activity.tracksQuantity,
+            tracksDuration: activity.tracksDuration,
+            daysCount: inRange
+                .where(
+                  (day) => day.entries.any(
+                    (entry) => entry.activityTypeId == activity.id,
+                  ),
+                )
+                .length,
+          ),
+      ],
+    );
+  }
+}
+
+// --- hymns ---------------------------------------------------------------------------
+
+/// A small French book: a chorus printed once, and a second hymn with accents.
+const sampleHymnBook = HymnBook(
+  code: 'rendons-ministere-1',
+  title: 'Rendons ministère au Seigneur, volume 1',
+  version: '20261008T224132.000000Z',
+  hymnCount: 3,
+  hymns: [
+    Hymn(
+      number: 1,
+      title: 'A Toi la gloire',
+      firstLine: 'À toi la gloire',
+      parts: [
+        HymnPart(
+          kind: HymnPartKind.verse,
+          label: '1',
+          lines: ['À toi la gloire', 'Ô Ressuscité'],
+        ),
+        HymnPart(
+          kind: HymnPartKind.chorus,
+          repeat: 2,
+          lines: ['À toi la victoire', "Pour l'éternité"],
+        ),
+        HymnPart(
+          kind: HymnPartKind.verse,
+          label: '2',
+          lines: ['Vois-le paraître', "C'est lui, c'est Jésus"],
+        ),
+      ],
+    ),
+    Hymn(
+      number: 2,
+      title: 'Saint, Saint, Saint',
+      author: 'EMPEYTAZ.',
+      firstLine: "Saint ! Saint ! Saint ! est l'Eternel",
+      parts: [
+        HymnPart(
+          kind: HymnPartKind.verse,
+          label: '1',
+          lines: [
+            "Saint ! Saint ! Saint ! est l'Eternel",
+            'Dieu le Tout-Puissant',
+          ],
+        ),
+      ],
+    ),
+    Hymn(
+      number: 3,
+      title: 'Ils ont mis le maître sur la croix',
+      firstLine: 'Ils ont mis le Maître sur la Croix',
+      parts: [
+        HymnPart(
+          kind: HymnPartKind.verse,
+          label: '1',
+          lines: [
+            'Ils ont mis le Maître sur la Croix',
+            'Oh je tremble, tremble encore',
+          ],
+        ),
+      ],
+    ),
+  ],
+);
+
+const sampleEnglishBook = HymnBook(
+  code: 'christ-the-victor',
+  title: 'Christ the Victor',
+  language: 'en',
+  version: '20261008T224132.000000Z',
+  hymnCount: 1,
+  hymns: [
+    Hymn(
+      number: 1,
+      title: "There's a Man on the Throne of God",
+      firstLine: "There's a Man on the Throne of God",
+      parts: [
+        HymnPart(
+          kind: HymnPartKind.verse,
+          label: '1',
+          lines: ["There's a Man on the Throne of God", 'Glory to the Lord'],
+        ),
+      ],
+    ),
+  ],
+);
+
+/// The books shipped with the app and those downloaded, in memory.
+class FakeHymnBookStorage implements HymnBookStorage {
+  FakeHymnBookStorage({
+    List<HymnBook> bundled = const [sampleHymnBook, sampleEnglishBook],
+  }) : bundled = {for (final book in bundled) book.code: book};
+
+  final Map<String, HymnBook> bundled;
+  final saved = <String, HymnBook>{};
+  List<String>? order;
+
+  @override
+  Future<List<String>> bundledCodes() async => bundled.keys.toList();
+
+  @override
+  Future<HymnBook?> readBundled(String code) async => bundled[code];
+
+  @override
+  Future<HymnBook?> readSaved(String code) async => saved[code];
+
+  @override
+  Future<void> save(HymnBook book) async => saved[book.code] = book;
+
+  @override
+  Future<List<String>?> readOrder() async => order;
+
+  @override
+  Future<void> saveOrder(List<String> codes) async => order = codes;
+}
+
+/// The server's books; answers "not modified" (null) when the phone has the current version.
+class FakeHymnsApi implements HymnsApi {
+  FakeHymnsApi({
+    List<HymnBook> books = const [sampleHymnBook, sampleEnglishBook],
+    this.error,
+  }) : books = [...books];
+
+  final List<HymnBook> books;
+  final AppException? error;
+  final downloads = <String>[];
+
+  @override
+  Future<List<HymnBookSummary>> listBooks() async {
+    if (error case final error?) {
+      throw error;
+    }
+    return [
+      for (final book in books)
+        HymnBookSummary(
+          code: book.code,
+          title: book.title,
+          language: book.language,
+          version: book.version,
+        ),
+    ];
+  }
+
+  @override
+  Future<HymnBook?> getBook(String code, {String? version}) async {
+    final book = books.firstWhere((book) => book.code == code);
+    if (book.version == version) {
+      return null;
+    }
+    downloads.add(code);
+    return book;
+  }
+}
+
+/// Records whether the screen is kept on.
+class FakeScreenAwake implements ScreenAwake {
+  bool on = false;
+
+  @override
+  Future<void> keepOn({required bool on}) async => this.on = on;
+}
+
+/// Records the planned reminders instead of asking the system.
+class FakeLocalNotifications implements LocalNotifications {
+  FakeLocalNotifications({this.granted = true, this.launchedWith});
+
+  /// What the user answers to the permission prompt.
+  bool granted;
+
+  /// Payload of the notification that "opened" the app.
+  String? launchedWith;
+
+  var permissionAsked = false;
+  final groups = <NotificationGroup, List<PlannedNotification>>{};
+  final tapsController = StreamController<String?>.broadcast();
+
+  @override
+  Stream<String?> get taps => tapsController.stream;
+
+  @override
+  Future<bool> requestPermission() async {
+    permissionAsked = true;
+    return granted;
+  }
+
+  @override
+  Future<String?> takeLaunchPayload() async {
+    final payload = launchedWith;
+    launchedWith = null;
+    return payload;
+  }
+
+  /// The evening reminders planned.
+  List<PlannedNotification> get planned =>
+      groups[NotificationGroup.reportReminder] ?? const [];
+
+  /// The reminders of the events the user registered for.
+  List<PlannedNotification> get plannedEvents =>
+      groups[NotificationGroup.events] ?? const [];
+
+  @override
+  Future<void> replace(
+    NotificationGroup group,
+    List<PlannedNotification> notifications, {
+    required String channelName,
+  }) async => groups[group] = [...notifications];
+
+  @override
+  Future<void> cancel(NotificationGroup group) async => groups.remove(group);
+
+  @override
+  Future<void> cancelAll() async => groups.clear();
+}
+
+/// Records what would have been shared.
+class FakeShareService implements ShareService {
+  final texts = <String>[];
+  final files = <({String name, String mimeType, Uint8List bytes})>[];
+
+  @override
+  Future<void> shareText(String text, {String? subject, Rect? origin}) async =>
+      texts.add(text);
+
+  @override
+  Future<void> shareFile(
+    Uint8List bytes, {
+    required String name,
+    required String mimeType,
+    String? subject,
+    Rect? origin,
+  }) async => files.add((name: name, mimeType: mimeType, bytes: bytes));
+}
+
+/// The network comes and goes when the test says so.
+class FakeNetworkStatus implements NetworkStatus {
+  final controller = StreamController<bool>.broadcast();
+
+  @override
+  Stream<bool> get changes => controller.stream;
+}
+
+/// Members of the app, by pseudo.
+const sampleMembers = {
+  'marc.tientcheu': MemberCard(
+    username: 'marc.tientcheu',
+    firstName: 'Marc',
+    lastName: 'Tientcheu',
+    church: 'PSU-Yaoundé',
+  ),
+  'clarisse.nguele': MemberCard(
+    username: 'clarisse.nguele',
+    firstName: 'Clarisse',
+    lastName: 'Nguele',
+  ),
+};
+
+/// The account of the tests, as GET /v1/users/me gives it.
+const sampleAccount = Account(
+  id: 1,
+  firstName: 'Boris',
+  lastName: 'Kamtou',
+  phoneNumber: '+237690000001',
+  username: 'boris.kamtou',
+);
+
+/// Pseudos and members in memory. [sampleMembers] are taken.
+class FakeMembersApi implements MembersApi {
+  FakeMembersApi({this.account = sampleAccount});
+
+  Account account;
+
+  /// Pseudos asked to [availability], in order.
+  final checked = <String>[];
+
+  bool _taken(String username) =>
+      sampleMembers.containsKey(username) || username == account.username;
+
+  @override
+  Future<UsernameCheck> availability({
+    String username = '',
+    String firstName = '',
+    String lastName = '',
+  }) async {
+    checked.add(username);
+    String slug(String name) =>
+        name.toLowerCase().replaceAll(RegExp('[^a-z0-9]'), '');
+    final first = slug(firstName);
+    final last = slug(lastName);
+    final suggestions = [
+      if (first.isNotEmpty && last.isNotEmpty) ...[
+        '$first.$last',
+        '$first$last',
+        '${first}_$last',
+        '$first.$last${2}',
+      ],
+    ].where((candidate) => !_taken(candidate)).take(3).toList();
+    final problem = username.isEmpty
+        ? null
+        : UsernameRules.check(username) ??
+              (username == 'admin'
+                  ? UsernameProblem.reserved
+                  : _taken(username)
+                  ? UsernameProblem.taken
+                  : null);
+    return UsernameCheck(
+      username: username,
+      available: username.isNotEmpty && problem == null,
+      problem: problem,
+      suggestions: suggestions,
+    );
+  }
+
+  @override
+  Future<MemberCard> byUsername(String username) async {
+    if (sampleMembers[username] case final member?) {
+      return member;
+    }
+    throw const ApiException(status: 404, code: 'NOT_FOUND', message: '');
+  }
+
+  @override
+  Future<Account> me() async => account;
+
+  /// The password [deleteAccount] accepts; the passwords it was given.
+  String password = 'Secret123';
+  final deletions = <String>[];
+
+  /// The server refuses: the account is the last superadmin's.
+  bool lastSuperadmin = false;
+
+  @override
+  Future<void> deleteAccount({required String password}) async {
+    deletions.add(password);
+    if (password != this.password) {
+      throw const ApiException(
+        status: 401,
+        code: 'INVALID_CREDENTIALS',
+        message: '',
+      );
+    }
+    if (lastSuperadmin) {
+      throw const ApiException(
+        status: 409,
+        code: 'LAST_SUPERADMIN',
+        message: '',
+      );
+    }
+  }
+
+  @override
+  Future<Account> updateUsername(String username) async {
+    if (_taken(username)) {
+      throw const ApiException(
+        status: 409,
+        code: 'USERNAME_TAKEN',
+        message: '',
+      );
+    }
+    return account = account.copyWith(username: username);
+  }
+}
+
+/// The team in memory; [roles] records what a superadmin gave.
+class FakeAdminApi implements AdminApi {
+  FakeAdminApi([List<StaffMember> staff = const []]) : members = [...staff];
+
+  final List<StaffMember> members;
+  final roles = <String, MemberRole>{};
+
+  @override
+  Future<List<StaffMember>> staff() async => [...members];
+
+  @override
+  Future<StaffMember> setRole(String username, MemberRole role) async {
+    final member = sampleMembers[username];
+    if (member == null) {
+      throw const ApiException(status: 404, code: 'NOT_FOUND', message: '');
+    }
+    roles[username] = role;
+    final updated = StaffMember(
+      username: username,
+      firstName: member.firstName,
+      lastName: member.lastName,
+      role: role,
+    );
+    members
+      ..removeWhere((other) => other.username == username)
+      ..add(updated);
+    return updated;
+  }
+}
+
+/// Records the popups instead of showing them.
+class FakeToaster implements Toaster {
+  final shown = <(ToastKind, String)>[];
+
+  List<String> get messages => [for (final (_, message) in shown) message];
+
+  List<String> get errors => [
+    for (final (kind, message) in shown)
+      if (kind == ToastKind.error) message,
+  ];
+
+  @override
+  ToastMessenger of(BuildContext context) =>
+      ToastMessenger((kind, message) => shown.add((kind, message)));
+}
+
+// ----- events -----
+
+/// A poster of the server (portrait, green).
+const samplePoster = EventImage(
+  id: 1,
+  url: '/v1/media/poster.jpg',
+  width: 1080,
+  height: 1350,
+  color: '#1F4D3A',
+);
+
+/// The yearly conference [daysAhead] days from now (3 days, program and news),
+/// and last year's edition.
+({CommunityEvent next, CommunityEvent past}) sampleEvents({
+  int daysAhead = 42,
+  DateTime? now,
+}) {
+  final today = now ?? DateTime.now();
+  final start = DateTime(today.year, today.month, today.day + daysAhead, 8);
+  DateTime at(int day, int hour) =>
+      DateTime(start.year, start.month, start.day + day, hour);
+  final past = CommunityEvent(
+    id: 1,
+    seriesId: 1,
+    title: 'Conférence annuelle 2025',
+    theme: 'La prière qui change tout',
+    startsAt: DateTime(today.year - 1, today.month, today.day, 8),
+    endsAt: DateTime(today.year - 1, today.month, today.day + 2, 13),
+    timeZone: '',
+    venue: 'Centre de conférences de Mvolyé',
+    city: 'Yaoundé',
+    country: 'Cameroun',
+    poster: samplePoster.copyWith(id: 2, url: '/v1/media/past.jpg'),
+    registration: const RegistrationSummary(
+      state: RegistrationState.ended,
+      registrations: 812,
+      people: 1290,
+    ),
+  );
+  final next = CommunityEvent(
+    id: 2,
+    seriesId: 1,
+    title: 'Conférence annuelle 2026',
+    theme: "Marcher dans l'Esprit",
+    themeVerse:
+        "« Si nous vivons par l'Esprit, marchons aussi par l'Esprit. » Galates 5.25",
+    description: 'Trois jours pour apprendre à marcher par l\'Esprit.',
+    startsAt: start,
+    endsAt: at(2, 13),
+    // the phone's own clock: the tests read the times as they are written
+    timeZone: '',
+    venue: 'Centre de conférences de Mvolyé',
+    address: 'Mvolyé',
+    city: 'Yaoundé',
+    country: 'Cameroun',
+    mapsUrl: 'https://maps.example/mvolye',
+    contactName: 'Secrétariat',
+    contactPhone: '+237690000000',
+    poster: samplePoster,
+    registration: const RegistrationSummary(
+      state: RegistrationState.open,
+      registrations: 128,
+      people: 340,
+    ),
+    capacity: 1500,
+    asksLodging: true,
+    asksDepartureCity: true,
+    feeNote: 'Participation libre. Repas : 2 000 FCFA par jour.',
+    sessions: [
+      EventSession(
+        id: 1,
+        startsAt: at(0, 8),
+        endsAt: at(0, 10),
+        title: 'Accueil et inscriptions',
+        place: 'Hall principal',
+      ),
+      EventSession(
+        id: 2,
+        startsAt: at(0, 10),
+        endsAt: at(0, 12),
+        title: "Culte d'ouverture",
+        speaker: 'Pasteur principal',
+        place: 'Grande salle',
+        hymns: const [SessionHymn(book: 'rendons-ministere-1', number: 1)],
+      ),
+      EventSession(
+        id: 3,
+        startsAt: at(1, 9),
+        endsAt: at(1, 12),
+        title: 'Enseignement : « Conduits par l\'Esprit »',
+        speaker: 'Pasteur invité',
+      ),
+      EventSession(
+        id: 4,
+        startsAt: at(2, 9),
+        endsAt: at(2, 12),
+        title: 'Culte de clôture',
+      ),
+    ],
+    posts: [
+      EventPost(
+        id: 1,
+        body: 'Les inscriptions sont ouvertes !',
+        pinned: true,
+        createdAt: today.subtract(const Duration(days: 2)),
+      ),
+    ],
+    editions: [
+      EventEdition(
+        id: past.id,
+        title: past.title,
+        startsAt: past.startsAt,
+        endsAt: past.endsAt,
+        timeZone: '',
+        poster: past.poster,
+      ),
+    ],
+  );
+  return (next: next, past: past);
+}
+
+/// The events of the server, in memory. [offline]: every call fails as
+/// without network. [registerError]: what registering answers.
+class FakeEventsApi implements EventsApi {
+  FakeEventsApi({List<CommunityEvent>? upcoming, List<CommunityEvent>? past}) {
+    final sample = sampleEvents();
+    for (final event in [
+      ...(upcoming ?? [sample.next]),
+      ...(past ?? [sample.past]),
+    ]) {
+      events[event.id] = event;
+    }
+    upcomingIds = [
+      for (final event in upcoming ?? [sample.next]) event.id,
+    ];
+    pastIds = [
+      for (final event in past ?? [sample.past]) event.id,
+    ];
+  }
+
+  final events = <int, CommunityEvent>{};
+  late List<int> upcomingIds;
+  late List<int> pastIds;
+  var offline = false;
+  AppException? registerError;
+  final drafts = <EventDraft>[];
+  final programs = <List<SessionDraft>>[];
+  final uploads = <String>[];
+
+  Future<void> _call() async {
+    if (offline) {
+      throw const NetworkException();
+    }
+  }
+
+  CommunityEvent _event(int id) =>
+      events[id] ??
+      (throw const ApiException(status: 404, code: 'NOT_FOUND', message: ''));
+
+  @override
+  Future<List<CommunityEvent>> list({
+    EventPeriod period = EventPeriod.upcoming,
+    int page = 1,
+    int size = 20,
+  }) async {
+    await _call();
+    return [
+      for (final id in period == EventPeriod.upcoming ? upcomingIds : pastIds)
+        events[id]!,
+    ];
+  }
+
+  @override
+  Future<CommunityEvent> get(int id) async {
+    await _call();
+    return _event(id);
+  }
+
+  @override
+  Future<CommunityEvent> register(
+    int id, {
+    required int people,
+    bool needsLodging = false,
+    String departureCity = '',
+  }) async {
+    await _call();
+    if (registerError != null) {
+      throw registerError!;
+    }
+    final event = _event(id);
+    final before = event.myRegistration?.people ?? 0;
+    return events[id] = event.copyWith(
+      myRegistration: MyRegistration(
+        people: people,
+        needsLodging: needsLodging,
+        departureCity: departureCity,
+      ),
+      registration: event.registration.copyWith(
+        registered: true,
+        registrations: event.registration.registrations + (before == 0 ? 1 : 0),
+        people: event.registration.people - before + people,
+      ),
+    );
+  }
+
+  @override
+  Future<CommunityEvent> unregister(int id) async {
+    await _call();
+    final event = _event(id);
+    return events[id] = event.copyWith(
+      myRegistration: null,
+      registration: event.registration.copyWith(
+        registered: false,
+        registrations: event.registration.registrations - 1,
+        people: event.registration.people - (event.myRegistration?.people ?? 0),
+      ),
+    );
+  }
+
+  @override
+  Future<List<CommunityEvent>> adminList({int page = 1, int size = 50}) async {
+    await _call();
+    return events.values.toList().reversed.toList();
+  }
+
+  @override
+  Future<EventImage> upload(Uint8List bytes, {required String filename}) async {
+    await _call();
+    uploads.add(filename);
+    return samplePoster.copyWith(id: 100 + uploads.length);
+  }
+
+  @override
+  Future<CommunityEvent> create(EventDraft draft) async {
+    await _call();
+    drafts.add(draft);
+    final id = events.keys.fold(0, (a, b) => a > b ? a : b) + 1;
+    return events[id] = CommunityEvent(
+      id: id,
+      title: draft.title,
+      theme: draft.theme,
+      startsAt: draft.startsAt,
+      endsAt: draft.endsAt,
+      timeZone: draft.timeZone,
+      venue: draft.venue,
+      city: draft.city,
+      country: draft.country,
+      status: draft.status,
+      poster: draft.posterId == null
+          ? null
+          : samplePoster.copyWith(id: draft.posterId!),
+    );
+  }
+
+  @override
+  Future<CommunityEvent> update(int id, EventDraft draft) async {
+    await _call();
+    drafts.add(draft);
+    return events[id] = _event(id).copyWith(
+      title: draft.title,
+      theme: draft.theme,
+      startsAt: draft.startsAt,
+      endsAt: draft.endsAt,
+      status: draft.status,
+    );
+  }
+
+  @override
+  Future<void> delete(int id) async {
+    await _call();
+    events.remove(id);
+    upcomingIds.remove(id);
+    pastIds.remove(id);
+  }
+
+  @override
+  Future<CommunityEvent> saveProgram(
+    int id,
+    List<SessionDraft> sessions,
+  ) async {
+    await _call();
+    programs.add(sessions);
+    return events[id] = _event(id).copyWith(
+      sessions: [
+        for (final (i, session) in sessions.indexed)
+          EventSession(
+            id: i + 1,
+            startsAt: session.startsAt,
+            endsAt: session.endsAt,
+            title: session.title,
+            speaker: session.speaker,
+            place: session.place,
+            hymns: session.hymns,
+          ),
+      ],
+    );
+  }
+
+  @override
+  Future<CommunityEvent> prepareNextEdition(int id) async {
+    await _call();
+    final event = _event(id);
+    final next = events.keys.fold(0, (a, b) => a > b ? a : b) + 1;
+    return events[next] = event.copyWith(
+      id: next,
+      status: EventStatus.draft,
+      startsAt: event.startsAt.add(const Duration(days: 365)),
+      endsAt: event.endsAt.add(const Duration(days: 365)),
+    );
+  }
+
+  @override
+  Future<EventRegistrations> registrations(int id) async {
+    await _call();
+    return EventRegistrations(
+      registrations: 2,
+      people: 5,
+      lodging: 3,
+      cities: const [CityCount(city: 'Douala', people: 3)],
+      registrants: [
+        Registrant(
+          username: 'marie.ngo',
+          firstName: 'Marie',
+          lastName: 'Ngo',
+          church: 'PSU-Yaoundé',
+          phoneNumber: '+237690000002',
+          people: 3,
+          needsLodging: true,
+          departureCity: 'Douala',
+          createdAt: DateTime(2026, 10, 1),
+        ),
+        Registrant(
+          username: 'paul.mbarga',
+          firstName: 'Paul',
+          lastName: 'Mbarga',
+          people: 2,
+          createdAt: DateTime(2026, 10, 2),
+        ),
+      ],
+    );
+  }
+
+  @override
+  Future<CommunityEvent> addPost(
+    int id, {
+    required String body,
+    int? imageId,
+    bool pinned = false,
+  }) async {
+    await _call();
+    final event = _event(id);
+    return events[id] = event.copyWith(
+      posts: [
+        EventPost(
+          id: event.posts.length + 10,
+          body: body,
+          pinned: pinned,
+          createdAt: DateTime.now(),
+        ),
+        ...event.posts,
+      ],
+    );
+  }
+
+  @override
+  Future<void> deletePost(int id, int postId) async => _call();
+
+  @override
+  Future<CommunityEvent> addPhotos(int id, List<int> imageIds) async {
+    await _call();
+    final event = _event(id);
+    return events[id] = event.copyWith(
+      photos: [
+        ...event.photos,
+        for (final imageId in imageIds)
+          EventPhoto(
+            id: imageId,
+            image: samplePoster.copyWith(id: imageId),
+          ),
+      ],
+    );
+  }
+
+  @override
+  Future<void> deletePhoto(int id, int photoId) async => _call();
+}
+
+/// The server's images, without network: [images] by URL (screenshots), a
+/// transparent pixel otherwise.
+class FakeMediaImages implements MediaImages {
+  FakeMediaImages([this.images = const {}]);
+
+  final Map<String, Uint8List> images;
+
+  static final _pixel = Uint8List.fromList(const [
+    0x89,
+    0x50,
+    0x4E,
+    0x47,
+    0x0D,
+    0x0A,
+    0x1A,
+    0x0A,
+    0x00,
+    0x00,
+    0x00,
+    0x0D,
+    0x49,
+    0x48,
+    0x44,
+    0x52,
+    0x00,
+    0x00,
+    0x00,
+    0x01,
+    0x00,
+    0x00,
+    0x00,
+    0x01,
+    0x08,
+    0x06,
+    0x00,
+    0x00,
+    0x00,
+    0x1F,
+    0x15,
+    0xC4,
+    0x89,
+    0x00,
+    0x00,
+    0x00,
+    0x0A,
+    0x49,
+    0x44,
+    0x41,
+    0x54,
+    0x78,
+    0x9C,
+    0x63,
+    0x00,
+    0x01,
+    0x00,
+    0x00,
+    0x05,
+    0x00,
+    0x01,
+    0x0D,
+    0x0A,
+    0x2D,
+    0xB4,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x49,
+    0x45,
+    0x4E,
+    0x44,
+    0xAE,
+    0x42,
+    0x60,
+    0x82,
+  ]);
+
+  @override
+  String resolve(String url) => 'http://localhost:8080$url';
+
+  @override
+  ImageProvider of(String url) => MemoryImage(images[url] ?? _pixel);
+}
+
+/// Records the entries added to the calendar.
+class FakeCalendarService implements CalendarService {
+  final added = <String>[];
+  var opens = true;
+
+  @override
+  Future<bool> add({
+    required String title,
+    required DateTime start,
+    required DateTime end,
+    String description = '',
+    String location = '',
+  }) async {
+    added.add(title);
+    return opens;
+  }
+}
+
+/// Records the links opened (maps, phone).
+class FakeLinkLauncher implements LinkLauncher {
+  final opened = <Uri>[];
+
+  @override
+  Future<bool> open(Uri uri) async {
+    opened.add(uri);
+    return true;
+  }
+
+  @override
+  Future<bool> call(String number) => open(Uri(scheme: 'tel', path: number));
+
+  @override
+  Future<bool> directions({String mapsUrl = '', String place = ''}) =>
+      open(Uri.parse(mapsUrl.isNotEmpty ? mapsUrl : 'maps:$place'));
+}
+
+/// Gives the pictures the test puts in [next].
+class FakeImagePicking implements ImagePicking {
+  final next = <PickedImage>[];
+
+  @override
+  Future<PickedImage?> pickOne() async =>
+      next.isEmpty ? null : next.removeAt(0);
+
+  @override
+  Future<List<PickedImage>> pickMany({int limit = 20}) async {
+    final picked = [...next];
+    next.clear();
+    return picked;
+  }
+}
+
+// ----- prayer -----
+
+/// A topic of the community: the conference, 3 points, 12 people praying.
+PrayerTopic sampleTopic({int id = 1, DateTime? startsOn, DateTime? endsOn}) =>
+    PrayerTopic(
+      id: id,
+      title: 'Conférence annuelle 2026 : prions ensemble',
+      category: PrayerTopicCategory.event,
+      verse: "« Si nous vivons par l'Esprit, marchons aussi par l'Esprit. »",
+      startsOn: startsOn ?? DateTime(2026, 11, 3),
+      endsOn: endsOn ?? DateTime(2099, 11, 22),
+      document: const PrayerDocument(
+        url: '/v1/media/sujets.pdf',
+        name: 'sujets.pdf',
+        sizeBytes: 184000,
+      ),
+      points: const [
+        'Pour les orateurs.',
+        'Pour les participants.',
+        'Pour les voyages.',
+      ],
+      people: 12,
+    );
+
+/// The prayer module in memory: topics, lists, retreats, importunities.
+class FakePrayerApi implements PrayerApi {
+  FakePrayerApi({
+    List<PrayerTopic>? topics,
+    List<PrayerPerson>? people,
+    List<Importunity>? importunities,
+    this.spiritualFamily = const PrayerFamily(),
+  }) : topicList = [...?topics],
+       peopleList = [...?people],
+       importunityList = [...?importunities];
+
+  final List<PrayerTopic> topicList;
+  final List<PrayerPerson> peopleList;
+  final List<Importunity> importunityList;
+  PrayerFamily spiritualFamily;
+
+  /// No network: every call fails like a lost connection.
+  bool offline = false;
+
+  final retreatList = <RetreatRecord>[];
+  final deletedRetreats = <(DateTime, RetreatMoment)>[];
+  final prayedCalls = <(int, List<int>)>[];
+  final markedPrayed = <List<int>>[];
+  final counts = <(int, int)>[];
+  final invitations = <({int id, List<String> usernames, bool family})>[];
+  var _nextId = 100;
+
+  void _online() {
+    if (offline) {
+      throw const NetworkException();
+    }
+  }
+
+  @override
+  Future<List<PrayerTopic>> topics({
+    required DateTime day,
+    bool archive = false,
+  }) async {
+    _online();
+    return archive ? const [] : [...topicList];
+  }
+
+  @override
+  Future<PrayerTopic> topic(int id, {required DateTime day}) async {
+    _online();
+    return topicList.firstWhere((topic) => topic.id == id);
+  }
+
+  @override
+  Future<PrayerTopic> setPrayed(
+    int id, {
+    required DateTime day,
+    required List<int> positions,
+  }) async {
+    _online();
+    prayedCalls.add((id, positions));
+    final at = topicList.indexWhere((topic) => topic.id == id);
+    final first = topicList[at].prayedToday.isEmpty && positions.isNotEmpty;
+    topicList[at] = topicList[at].copyWith(
+      prayedToday: positions,
+      people: topicList[at].people + (first ? 1 : 0),
+    );
+    return topicList[at];
+  }
+
+  @override
+  Future<List<PrayerPerson>> people() async {
+    _online();
+    return [...peopleList];
+  }
+
+  @override
+  Future<PrayerPerson> addPerson({
+    required PrayerList list,
+    required String name,
+    String note = '',
+  }) async {
+    _online();
+    final person = PrayerPerson(
+      id: _nextId++,
+      list: list,
+      name: name,
+      note: note,
+    );
+    peopleList.add(person);
+    return person;
+  }
+
+  @override
+  Future<PrayerPerson> updatePerson(PrayerPerson person) async {
+    _online();
+    final at = peopleList.indexWhere((other) => other.id == person.id);
+    peopleList[at] = person;
+    return person;
+  }
+
+  @override
+  Future<void> deletePerson(int id) async {
+    _online();
+    peopleList.removeWhere((person) => person.id == id);
+  }
+
+  @override
+  Future<List<PrayerPerson>> markPrayed(
+    List<int> ids, {
+    required DateTime day,
+  }) async {
+    _online();
+    markedPrayed.add(ids);
+    for (final (i, person) in peopleList.indexed) {
+      if (ids.contains(person.id)) {
+        peopleList[i] = person.copyWith(lastPrayedOn: day);
+      }
+    }
+    return [...peopleList];
+  }
+
+  @override
+  Future<List<RetreatRecord>> retreats({
+    required DateTime from,
+    required DateTime to,
+  }) async {
+    _online();
+    return [...retreatList];
+  }
+
+  @override
+  Future<void> saveRetreat(RetreatRecord record) async {
+    _online();
+    retreatList
+      ..removeWhere(
+        (other) => other.day == record.day && other.moment == record.moment,
+      )
+      ..add(record);
+  }
+
+  @override
+  Future<void> deleteRetreat(DateTime day, RetreatMoment moment) async {
+    _online();
+    deletedRetreats.add((day, moment));
+    retreatList.removeWhere(
+      (record) => record.day == day && record.moment == moment,
+    );
+  }
+
+  @override
+  Future<List<Importunity>> importunities() async {
+    _online();
+    return [...importunityList];
+  }
+
+  @override
+  Future<Importunity> importunity(int id) async {
+    _online();
+    return importunityList.firstWhere((topic) => topic.id == id);
+  }
+
+  void _put(Importunity topic) {
+    final at = importunityList.indexWhere((other) => other.id == topic.id);
+    if (at < 0) {
+      importunityList.insert(0, topic);
+    } else {
+      importunityList[at] = topic;
+    }
+  }
+
+  @override
+  Future<Importunity> createImportunity({
+    required String title,
+    String description = '',
+    int? goal,
+  }) async {
+    _online();
+    final topic = Importunity(
+      id: _nextId++,
+      title: title,
+      description: description,
+      goal: goal,
+      owner: sampleMembers.values.first,
+      isOwner: true,
+      participants: 1,
+      members: [sampleMembers.values.first],
+    );
+    _put(topic);
+    return topic;
+  }
+
+  @override
+  Future<Importunity> updateImportunity(
+    int id, {
+    required String title,
+    required String description,
+    required int? goal,
+    required ImportunityStatus status,
+  }) async {
+    _online();
+    final topic = (await importunity(id)).copyWith(
+      title: title,
+      description: description,
+      goal: goal,
+      status: status,
+    );
+    _put(topic);
+    return topic;
+  }
+
+  @override
+  Future<void> deleteImportunity(int id) async {
+    _online();
+    importunityList.removeWhere((topic) => topic.id == id);
+  }
+
+  @override
+  Future<Importunity> count(int id, int amount) async {
+    _online();
+    counts.add((id, amount));
+    final topic = await importunity(id);
+    final total = topic.total + amount;
+    final updated = topic.copyWith(
+      total: total,
+      myCount: topic.myCount + amount,
+      reachedAt: topic.goal != null && total >= topic.goal!
+          ? topic.reachedAt ?? DateTime(2026, 10, 10)
+          : null,
+    );
+    _put(updated);
+    return updated;
+  }
+
+  @override
+  Future<int> invite(
+    int id, {
+    List<String> usernames = const [],
+    bool family = false,
+  }) async {
+    _online();
+    invitations.add((id: id, usernames: usernames, family: family));
+    final count = usernames.length + (family ? spiritualFamily.members : 0);
+    _put((await importunity(id)).copyWith(invited: count));
+    return count;
+  }
+
+  @override
+  Future<Importunity?> answer(int id, {required bool join}) async {
+    _online();
+    final topic = await importunity(id);
+    if (!join) {
+      importunityList.removeWhere((other) => other.id == id);
+      return null;
+    }
+    final joined = topic.copyWith(
+      myStatus: ImportunityMemberStatus.joined,
+      participants: topic.participants + 1,
+    );
+    _put(joined);
+    return joined;
+  }
+
+  @override
+  Future<void> leave(int id) async {
+    _online();
+    importunityList.removeWhere((topic) => topic.id == id);
+  }
+
+  @override
+  Future<PrayerFamily> family() async {
+    _online();
+    return spiritualFamily;
+  }
+}
+
+/// The sound between two points: counted, not played.
+class FakeChime implements Chime {
+  var played = 0;
+
+  @override
+  Future<void> play() async => played++;
+
+  @override
+  Future<void> dispose() async {}
+}

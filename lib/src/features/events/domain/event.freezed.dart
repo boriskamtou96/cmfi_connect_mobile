@@ -3279,7 +3279,7 @@ as int,
 /// @nodoc
 mixin _$Registrant {
 
- String get username; String get firstName; String get lastName; String get church; String get assembly; String get phoneNumber; int get people; bool get needsLodging; String get departureCity; DateTime get createdAt;
+ String get username; String get firstName; String get lastName; String get church; String get assembly; String get phoneNumber; int get people; bool get needsLodging; String get departureCity; DateTime get createdAt; EventImage? get avatar;
 /// Create a copy of Registrant
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -3292,16 +3292,16 @@ $RegistrantCopyWith<Registrant> get copyWith => _$RegistrantCopyWithImpl<Registr
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is Registrant&&(identical(other.username, username) || other.username == username)&&(identical(other.firstName, firstName) || other.firstName == firstName)&&(identical(other.lastName, lastName) || other.lastName == lastName)&&(identical(other.church, church) || other.church == church)&&(identical(other.assembly, assembly) || other.assembly == assembly)&&(identical(other.phoneNumber, phoneNumber) || other.phoneNumber == phoneNumber)&&(identical(other.people, people) || other.people == people)&&(identical(other.needsLodging, needsLodging) || other.needsLodging == needsLodging)&&(identical(other.departureCity, departureCity) || other.departureCity == departureCity)&&(identical(other.createdAt, createdAt) || other.createdAt == createdAt));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is Registrant&&(identical(other.username, username) || other.username == username)&&(identical(other.firstName, firstName) || other.firstName == firstName)&&(identical(other.lastName, lastName) || other.lastName == lastName)&&(identical(other.church, church) || other.church == church)&&(identical(other.assembly, assembly) || other.assembly == assembly)&&(identical(other.phoneNumber, phoneNumber) || other.phoneNumber == phoneNumber)&&(identical(other.people, people) || other.people == people)&&(identical(other.needsLodging, needsLodging) || other.needsLodging == needsLodging)&&(identical(other.departureCity, departureCity) || other.departureCity == departureCity)&&(identical(other.createdAt, createdAt) || other.createdAt == createdAt)&&(identical(other.avatar, avatar) || other.avatar == avatar));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,username,firstName,lastName,church,assembly,phoneNumber,people,needsLodging,departureCity,createdAt);
+int get hashCode => Object.hash(runtimeType,username,firstName,lastName,church,assembly,phoneNumber,people,needsLodging,departureCity,createdAt,avatar);
 
 @override
 String toString() {
-  return 'Registrant(username: $username, firstName: $firstName, lastName: $lastName, church: $church, assembly: $assembly, phoneNumber: $phoneNumber, people: $people, needsLodging: $needsLodging, departureCity: $departureCity, createdAt: $createdAt)';
+  return 'Registrant(username: $username, firstName: $firstName, lastName: $lastName, church: $church, assembly: $assembly, phoneNumber: $phoneNumber, people: $people, needsLodging: $needsLodging, departureCity: $departureCity, createdAt: $createdAt, avatar: $avatar)';
 }
 
 
@@ -3312,11 +3312,11 @@ abstract mixin class $RegistrantCopyWith<$Res>  {
   factory $RegistrantCopyWith(Registrant value, $Res Function(Registrant) _then) = _$RegistrantCopyWithImpl;
 @useResult
 $Res call({
- String username, String firstName, String lastName, String church, String assembly, String phoneNumber, int people, bool needsLodging, String departureCity, DateTime createdAt
+ String username, String firstName, String lastName, String church, String assembly, String phoneNumber, int people, bool needsLodging, String departureCity, DateTime createdAt, EventImage? avatar
 });
 
 
-
+$EventImageCopyWith<$Res>? get avatar;
 
 }
 /// @nodoc
@@ -3329,7 +3329,7 @@ class _$RegistrantCopyWithImpl<$Res>
 
 /// Create a copy of Registrant
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? username = null,Object? firstName = null,Object? lastName = null,Object? church = null,Object? assembly = null,Object? phoneNumber = null,Object? people = null,Object? needsLodging = null,Object? departureCity = null,Object? createdAt = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? username = null,Object? firstName = null,Object? lastName = null,Object? church = null,Object? assembly = null,Object? phoneNumber = null,Object? people = null,Object? needsLodging = null,Object? departureCity = null,Object? createdAt = null,Object? avatar = freezed,}) {
   return _then(_self.copyWith(
 username: null == username ? _self.username : username // ignore: cast_nullable_to_non_nullable
 as String,firstName: null == firstName ? _self.firstName : firstName // ignore: cast_nullable_to_non_nullable
@@ -3341,10 +3341,23 @@ as String,people: null == people ? _self.people : people // ignore: cast_nullabl
 as int,needsLodging: null == needsLodging ? _self.needsLodging : needsLodging // ignore: cast_nullable_to_non_nullable
 as bool,departureCity: null == departureCity ? _self.departureCity : departureCity // ignore: cast_nullable_to_non_nullable
 as String,createdAt: null == createdAt ? _self.createdAt : createdAt // ignore: cast_nullable_to_non_nullable
-as DateTime,
+as DateTime,avatar: freezed == avatar ? _self.avatar : avatar // ignore: cast_nullable_to_non_nullable
+as EventImage?,
   ));
 }
+/// Create a copy of Registrant
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$EventImageCopyWith<$Res>? get avatar {
+    if (_self.avatar == null) {
+    return null;
+  }
 
+  return $EventImageCopyWith<$Res>(_self.avatar!, (value) {
+    return _then(_self.copyWith(avatar: value));
+  });
+}
 }
 
 
@@ -3426,10 +3439,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String username,  String firstName,  String lastName,  String church,  String assembly,  String phoneNumber,  int people,  bool needsLodging,  String departureCity,  DateTime createdAt)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String username,  String firstName,  String lastName,  String church,  String assembly,  String phoneNumber,  int people,  bool needsLodging,  String departureCity,  DateTime createdAt,  EventImage? avatar)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _Registrant() when $default != null:
-return $default(_that.username,_that.firstName,_that.lastName,_that.church,_that.assembly,_that.phoneNumber,_that.people,_that.needsLodging,_that.departureCity,_that.createdAt);case _:
+return $default(_that.username,_that.firstName,_that.lastName,_that.church,_that.assembly,_that.phoneNumber,_that.people,_that.needsLodging,_that.departureCity,_that.createdAt,_that.avatar);case _:
   return orElse();
 
 }
@@ -3447,10 +3460,10 @@ return $default(_that.username,_that.firstName,_that.lastName,_that.church,_that
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String username,  String firstName,  String lastName,  String church,  String assembly,  String phoneNumber,  int people,  bool needsLodging,  String departureCity,  DateTime createdAt)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String username,  String firstName,  String lastName,  String church,  String assembly,  String phoneNumber,  int people,  bool needsLodging,  String departureCity,  DateTime createdAt,  EventImage? avatar)  $default,) {final _that = this;
 switch (_that) {
 case _Registrant():
-return $default(_that.username,_that.firstName,_that.lastName,_that.church,_that.assembly,_that.phoneNumber,_that.people,_that.needsLodging,_that.departureCity,_that.createdAt);case _:
+return $default(_that.username,_that.firstName,_that.lastName,_that.church,_that.assembly,_that.phoneNumber,_that.people,_that.needsLodging,_that.departureCity,_that.createdAt,_that.avatar);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -3467,10 +3480,10 @@ return $default(_that.username,_that.firstName,_that.lastName,_that.church,_that
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String username,  String firstName,  String lastName,  String church,  String assembly,  String phoneNumber,  int people,  bool needsLodging,  String departureCity,  DateTime createdAt)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String username,  String firstName,  String lastName,  String church,  String assembly,  String phoneNumber,  int people,  bool needsLodging,  String departureCity,  DateTime createdAt,  EventImage? avatar)?  $default,) {final _that = this;
 switch (_that) {
 case _Registrant() when $default != null:
-return $default(_that.username,_that.firstName,_that.lastName,_that.church,_that.assembly,_that.phoneNumber,_that.people,_that.needsLodging,_that.departureCity,_that.createdAt);case _:
+return $default(_that.username,_that.firstName,_that.lastName,_that.church,_that.assembly,_that.phoneNumber,_that.people,_that.needsLodging,_that.departureCity,_that.createdAt,_that.avatar);case _:
   return null;
 
 }
@@ -3482,7 +3495,7 @@ return $default(_that.username,_that.firstName,_that.lastName,_that.church,_that
 @JsonSerializable()
 
 class _Registrant extends Registrant {
-  const _Registrant({required this.username, required this.firstName, this.lastName = '', this.church = '', this.assembly = '', this.phoneNumber = '', this.people = 1, this.needsLodging = false, this.departureCity = '', required this.createdAt}): super._();
+  const _Registrant({required this.username, required this.firstName, this.lastName = '', this.church = '', this.assembly = '', this.phoneNumber = '', this.people = 1, this.needsLodging = false, this.departureCity = '', required this.createdAt, this.avatar}): super._();
   factory _Registrant.fromJson(Map<String, dynamic> json) => _$RegistrantFromJson(json);
 
 @override final  String username;
@@ -3495,6 +3508,7 @@ class _Registrant extends Registrant {
 @override@JsonKey() final  bool needsLodging;
 @override@JsonKey() final  String departureCity;
 @override final  DateTime createdAt;
+@override final  EventImage? avatar;
 
 /// Create a copy of Registrant
 /// with the given fields replaced by the non-null parameter values.
@@ -3509,16 +3523,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Registrant&&(identical(other.username, username) || other.username == username)&&(identical(other.firstName, firstName) || other.firstName == firstName)&&(identical(other.lastName, lastName) || other.lastName == lastName)&&(identical(other.church, church) || other.church == church)&&(identical(other.assembly, assembly) || other.assembly == assembly)&&(identical(other.phoneNumber, phoneNumber) || other.phoneNumber == phoneNumber)&&(identical(other.people, people) || other.people == people)&&(identical(other.needsLodging, needsLodging) || other.needsLodging == needsLodging)&&(identical(other.departureCity, departureCity) || other.departureCity == departureCity)&&(identical(other.createdAt, createdAt) || other.createdAt == createdAt));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Registrant&&(identical(other.username, username) || other.username == username)&&(identical(other.firstName, firstName) || other.firstName == firstName)&&(identical(other.lastName, lastName) || other.lastName == lastName)&&(identical(other.church, church) || other.church == church)&&(identical(other.assembly, assembly) || other.assembly == assembly)&&(identical(other.phoneNumber, phoneNumber) || other.phoneNumber == phoneNumber)&&(identical(other.people, people) || other.people == people)&&(identical(other.needsLodging, needsLodging) || other.needsLodging == needsLodging)&&(identical(other.departureCity, departureCity) || other.departureCity == departureCity)&&(identical(other.createdAt, createdAt) || other.createdAt == createdAt)&&(identical(other.avatar, avatar) || other.avatar == avatar));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,username,firstName,lastName,church,assembly,phoneNumber,people,needsLodging,departureCity,createdAt);
+int get hashCode => Object.hash(runtimeType,username,firstName,lastName,church,assembly,phoneNumber,people,needsLodging,departureCity,createdAt,avatar);
 
 @override
 String toString() {
-  return 'Registrant(username: $username, firstName: $firstName, lastName: $lastName, church: $church, assembly: $assembly, phoneNumber: $phoneNumber, people: $people, needsLodging: $needsLodging, departureCity: $departureCity, createdAt: $createdAt)';
+  return 'Registrant(username: $username, firstName: $firstName, lastName: $lastName, church: $church, assembly: $assembly, phoneNumber: $phoneNumber, people: $people, needsLodging: $needsLodging, departureCity: $departureCity, createdAt: $createdAt, avatar: $avatar)';
 }
 
 
@@ -3529,11 +3543,11 @@ abstract mixin class _$RegistrantCopyWith<$Res> implements $RegistrantCopyWith<$
   factory _$RegistrantCopyWith(_Registrant value, $Res Function(_Registrant) _then) = __$RegistrantCopyWithImpl;
 @override @useResult
 $Res call({
- String username, String firstName, String lastName, String church, String assembly, String phoneNumber, int people, bool needsLodging, String departureCity, DateTime createdAt
+ String username, String firstName, String lastName, String church, String assembly, String phoneNumber, int people, bool needsLodging, String departureCity, DateTime createdAt, EventImage? avatar
 });
 
 
-
+@override $EventImageCopyWith<$Res>? get avatar;
 
 }
 /// @nodoc
@@ -3546,7 +3560,7 @@ class __$RegistrantCopyWithImpl<$Res>
 
 /// Create a copy of Registrant
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? username = null,Object? firstName = null,Object? lastName = null,Object? church = null,Object? assembly = null,Object? phoneNumber = null,Object? people = null,Object? needsLodging = null,Object? departureCity = null,Object? createdAt = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? username = null,Object? firstName = null,Object? lastName = null,Object? church = null,Object? assembly = null,Object? phoneNumber = null,Object? people = null,Object? needsLodging = null,Object? departureCity = null,Object? createdAt = null,Object? avatar = freezed,}) {
   return _then(_Registrant(
 username: null == username ? _self.username : username // ignore: cast_nullable_to_non_nullable
 as String,firstName: null == firstName ? _self.firstName : firstName // ignore: cast_nullable_to_non_nullable
@@ -3558,11 +3572,24 @@ as String,people: null == people ? _self.people : people // ignore: cast_nullabl
 as int,needsLodging: null == needsLodging ? _self.needsLodging : needsLodging // ignore: cast_nullable_to_non_nullable
 as bool,departureCity: null == departureCity ? _self.departureCity : departureCity // ignore: cast_nullable_to_non_nullable
 as String,createdAt: null == createdAt ? _self.createdAt : createdAt // ignore: cast_nullable_to_non_nullable
-as DateTime,
+as DateTime,avatar: freezed == avatar ? _self.avatar : avatar // ignore: cast_nullable_to_non_nullable
+as EventImage?,
   ));
 }
 
+/// Create a copy of Registrant
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$EventImageCopyWith<$Res>? get avatar {
+    if (_self.avatar == null) {
+    return null;
+  }
 
+  return $EventImageCopyWith<$Res>(_self.avatar!, (value) {
+    return _then(_self.copyWith(avatar: value));
+  });
+}
 }
 
 // dart format on

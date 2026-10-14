@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- The home-screen widget in the launcher's list (TodayWidgetProvider) -->
+<resources>
+    <string name="today_widget_name">今日报告</string>
+    <string name="today_widget_description">今天的报告和你的目标。</string>
+    <string name="today_widget_title">今天</string>
+    <string name="today_widget_todo">待填写</string>
+    <!-- the "Verset du jour" widget (VerseWidgetProvider) -->
+    <string name="verse_widget_name">每日经文</string>
+    <string name="verse_widget_description">每天一节圣经经文。</string>
+    <string name="verse_widget_title">每日经文</string>
+    <string name="verse_widget_empty">打开应用以获取每日经文。</string>
+    <string name="verse_widget_sample">神爱世人，甚至将他的独生子赐给他们。</string>
+    <string name="verse_widget_sample_reference">约翰福音 3:16</string>
+</resources>

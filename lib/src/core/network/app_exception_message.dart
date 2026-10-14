@@ -16,6 +16,7 @@ String userMessageFor(Object error, Translations t) => switch (error) {
   ApiException(code: 'REGISTRATION_CLOSED') => t.errors.registrationClosed,
   ApiException(code: 'MEDIA_TOO_LARGE') => t.errors.mediaTooLarge,
   ApiException(code: 'MEDIA_UNSUPPORTED') => t.errors.mediaUnsupported,
+  ApiException(code: 'AVATAR_INVALID') => t.errors.avatarInvalid,
   ApiException(code: 'LAST_SUPERADMIN') =>
     t.members.deleteAccount.lastSuperadmin,
   ApiException(code: 'NOT_PARTICIPANT') => t.errors.notParticipant,

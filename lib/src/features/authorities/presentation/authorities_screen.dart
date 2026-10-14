@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../core/i18n/strings.g.dart';
@@ -13,6 +14,7 @@ import '../../../core/widgets/fade_slide_in.dart';
 import '../../../core/widgets/motion.dart';
 import '../../../core/widgets/section_card.dart';
 import '../../../core/widgets/sub_page.dart';
+import '../../members/presentation/widgets/member_avatar.dart';
 import '../application/authorities_controller.dart';
 import '../domain/authority.dart';
 import 'authority_form_screen.dart';
@@ -160,6 +162,10 @@ class AuthoritiesScreen extends ConsumerWidget {
                               authority: maker,
                               onRemove: () => remove(maker),
                             ),
+                            // a member: sees the user's regularity
+                            if (maker.username != null &&
+                                maker.status != AuthorityStatus.declined)
+                              _SharingSwitch(maker: maker),
                           ],
                         )
                       else
@@ -243,26 +249,16 @@ class _AuthorityRow extends StatelessWidget {
       ),
       child: Row(
         children: [
-          Container(
-            width: 44,
-            height: 44,
-            alignment: Alignment.center,
-            decoration: BoxDecoration(
-              color: authority.isDiscipleMaker
-                  ? tones.personalSoft
-                  : scheme.primaryContainer,
-              shape: BoxShape.circle,
-            ),
-            child: Text(
-              authority.initials,
-              style: TextStyle(
-                fontSize: 15,
-                fontWeight: FontWeight.w800,
-                color: authority.isDiscipleMaker
-                    ? tones.personal
-                    : scheme.primary,
-              ),
-            ),
+          MemberAvatar(
+            initials: authority.initials,
+            photo: authority.avatar,
+            size: 44,
+            background: authority.isDiscipleMaker
+                ? tones.personalSoft
+                : scheme.primaryContainer,
+            foreground: authority.isDiscipleMaker
+                ? tones.personal
+                : scheme.primary,
           ),
           const SizedBox(width: AppSpacing.md),
           Expanded(
@@ -379,7 +375,11 @@ class _RequestRow extends StatelessWidget {
         children: [
           Row(
             children: [
-              InitialsAvatar(initials: from.initials, size: 44),
+              MemberAvatar(
+                initials: from.initials,
+                photo: from.avatar,
+                size: 44,
+              ),
               const SizedBox(width: AppSpacing.md),
               Expanded(
                 child: Column(
@@ -460,6 +460,69 @@ class _AddButton extends StatelessWidget {
         onPressed: open,
         icon: const Icon(AppIcons.userAdd),
         label: Text(context.t.authorities.add),
+      ),
+    );
+  }
+}
+
+/// Whether the disciple maker sees the user's regularity: the days filled in,
+/// the streak and the % of the goals, never the reports. On by default.
+class _SharingSwitch extends HookConsumerWidget {
+  const _SharingSwitch({required this.maker});
+
+  final Authority maker;
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final t = context.t.authorities.sharing;
+    final scheme = Theme.of(context).colorScheme;
+    final busy = useState(false);
+    final name = maker.firstName.isEmpty ? maker.fullName : maker.firstName;
+
+    Future<void> change(bool shares) async {
+      final toast = ref.read(toasterProvider).of(context);
+      final messages = context.t;
+      busy.value = true;
+      try {
+        await ref
+            .read(authoritiesControllerProvider.notifier)
+            .setSharing(maker, shares: shares);
+        toast.success(
+          shares
+              ? messages.authorities.sharing.on(name: name)
+              : messages.authorities.sharing.off(name: name),
+        );
+      } on Object catch (error) {
+        toast.error(userMessageFor(error, messages));
+      } finally {
+        if (context.mounted) {
+          busy.value = false;
+        }
+      }
+    }
+
+    return MergeSemantics(
+      child: SwitchListTile(
+        contentPadding: const EdgeInsetsDirectional.fromSTEB(
+          14,
+          AppSpacing.xs,
+          AppSpacing.md,
+          AppSpacing.xs,
+        ),
+        title: Text(
+          t.title,
+          style: const TextStyle(fontSize: 15, fontWeight: FontWeight.w600),
+        ),
+        subtitle: Text(
+          t.help(name: name),
+          style: TextStyle(
+            fontSize: 13,
+            height: 1.4,
+            color: scheme.onSurfaceVariant,
+          ),
+        ),
+        value: maker.sharesRegularity,
+        onChanged: busy.value ? null : change,
       ),
     );
   }

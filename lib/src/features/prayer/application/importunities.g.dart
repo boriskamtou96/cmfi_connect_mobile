@@ -42,7 +42,7 @@ final class ImportunitiesProvider
   Importunities create() => Importunities();
 }
 
-String _$importunitiesHash() => r'f450f8bd328633f7d41a99e86073357429d0c4e9';
+String _$importunitiesHash() => r'f6e56ee9c4e36e9c0a885de64fb19d2ad0b1c8b7';
 
 /// The importunity topics the user prays for or is invited to. The
 /// proclamations counted without network are added to what the server says,
@@ -204,3 +204,58 @@ final class PrayerFamilyProvider
 }
 
 String _$prayerFamilyHash() => r'0d62b70fac0ce6e6b82c73255ab416bdd2d659df';
+
+/// The members the user blocked (Plus › Membres bloqués): their invitations
+/// to pray don't reach the user any more.
+
+@ProviderFor(BlockedMembers)
+final blockedMembersProvider = BlockedMembersProvider._();
+
+/// The members the user blocked (Plus › Membres bloqués): their invitations
+/// to pray don't reach the user any more.
+final class BlockedMembersProvider
+    extends $AsyncNotifierProvider<BlockedMembers, List<MemberCard>> {
+  /// The members the user blocked (Plus › Membres bloqués): their invitations
+  /// to pray don't reach the user any more.
+  BlockedMembersProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'blockedMembersProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$blockedMembersHash();
+
+  @$internal
+  @override
+  BlockedMembers create() => BlockedMembers();
+}
+
+String _$blockedMembersHash() => r'9fe5e27a2449e31c3d8ee70582f695f8f6316c08';
+
+/// The members the user blocked (Plus › Membres bloqués): their invitations
+/// to pray don't reach the user any more.
+
+abstract class _$BlockedMembers extends $AsyncNotifier<List<MemberCard>> {
+  FutureOr<List<MemberCard>> build();
+  @$mustCallSuper
+  @override
+  void runBuild() {
+    final ref =
+        this.ref as $Ref<AsyncValue<List<MemberCard>>, List<MemberCard>>;
+    final element =
+        ref.element
+            as $ClassProviderElement<
+              AnyNotifier<AsyncValue<List<MemberCard>>, List<MemberCard>>,
+              AsyncValue<List<MemberCard>>,
+              Object?,
+              Object?
+            >;
+    element.handleCreate(ref, build);
+  }
+}

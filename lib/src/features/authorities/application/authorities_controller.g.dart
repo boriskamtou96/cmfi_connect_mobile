@@ -37,7 +37,7 @@ final class AuthoritiesControllerProvider
 }
 
 String _$authoritiesControllerHash() =>
-    r'e004169d43ffb5387ced4af2ef55833e34a6a045';
+    r'98e28384f3ef4cf3702d5480c6615cd457eb2699';
 
 /// The user's authorities, disciple maker first.
 

@@ -44,3 +44,10 @@ extension CapitalizeX on String {
   String get capitalized =>
       isEmpty ? this : this[0].toUpperCase() + substring(1);
 }
+
+extension PercentFormatX on BuildContext {
+  /// [ratio] (0 to 1) as a percentage in the app language: "72 %", "72%".
+  String formatPercent(double ratio) => NumberFormat.percentPattern(
+    Localizations.localeOf(this).toLanguageTag(),
+  ).format(ratio);
+}

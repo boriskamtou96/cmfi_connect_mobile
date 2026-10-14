@@ -7,8 +7,9 @@ part 'image_picking.g.dart';
 
 typedef PickedImage = ({Uint8List bytes, String name});
 
-/// Pictures chosen in the phone's gallery, made smaller first (2048 px, JPEG):
-/// the server takes 8 MB at most. Behind a provider so tests replace it.
+/// Pictures chosen in the phone's gallery (or taken with its camera), made
+/// smaller first (2048 px, JPEG): the server takes 8 MB at most. Behind a
+/// provider so tests replace it.
 class ImagePicking {
   ImagePicking();
 
@@ -17,10 +18,12 @@ class ImagePicking {
   static const _maxSide = 2048.0;
   static const _quality = 85;
 
-  /// null when the user gives up.
-  Future<PickedImage?> pickOne() async {
+  /// null when the user gives up. [camera]: a photo taken now (the front
+  /// camera first, for a profile photo).
+  Future<PickedImage?> pickOne({bool camera = false}) async {
     final file = await _picker.pickImage(
-      source: ImageSource.gallery,
+      source: camera ? ImageSource.camera : ImageSource.gallery,
+      preferredCameraDevice: CameraDevice.front,
       maxWidth: _maxSide,
       maxHeight: _maxSide,
       imageQuality: _quality,

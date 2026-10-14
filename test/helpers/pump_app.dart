@@ -1,15 +1,23 @@
 import 'package:cmfi_connect/app.dart';
 import 'package:cmfi_connect/src/core/config/flavor.dart';
 import 'package:cmfi_connect/src/core/i18n/strings.g.dart';
+import 'package:cmfi_connect/src/core/services/app_shortcuts.dart';
 import 'package:cmfi_connect/src/core/services/calendar_service.dart';
 import 'package:cmfi_connect/src/core/services/chime.dart';
+import 'package:cmfi_connect/src/core/services/crash_reporting.dart';
+import 'package:cmfi_connect/src/core/services/deep_links.dart';
+import 'package:cmfi_connect/src/core/services/home_widgets.dart';
 import 'package:cmfi_connect/src/core/services/image_picking.dart';
 import 'package:cmfi_connect/src/core/services/link_launcher.dart';
 import 'package:cmfi_connect/src/core/services/local_notifications.dart';
 import 'package:cmfi_connect/src/core/services/media_images.dart';
 import 'package:cmfi_connect/src/core/services/network_status.dart';
+import 'package:cmfi_connect/src/core/services/phone_verification.dart';
+import 'package:cmfi_connect/src/core/services/premium_store.dart';
+import 'package:cmfi_connect/src/core/services/push_messaging.dart';
 import 'package:cmfi_connect/src/core/services/screen_awake.dart';
 import 'package:cmfi_connect/src/core/services/share_service.dart';
+import 'package:cmfi_connect/src/core/services/store_review.dart';
 import 'package:cmfi_connect/src/core/session/account.dart';
 import 'package:cmfi_connect/src/core/storage/account_storage.dart';
 import 'package:cmfi_connect/src/core/storage/preferences.dart';
@@ -18,13 +26,19 @@ import 'package:cmfi_connect/src/core/widgets/app_toast.dart';
 import 'package:cmfi_connect/src/features/admin/infrastructure/admin_api.dart';
 import 'package:cmfi_connect/src/features/auth/infrastructure/auth_api.dart';
 import 'package:cmfi_connect/src/features/authorities/infrastructure/authorities_api.dart';
+import 'package:cmfi_connect/src/features/disciples/infrastructure/disciples_api.dart';
 import 'package:cmfi_connect/src/features/events/infrastructure/events_api.dart';
 import 'package:cmfi_connect/src/features/hymns/infrastructure/hymn_book_storage.dart';
 import 'package:cmfi_connect/src/features/hymns/infrastructure/hymns_api.dart';
 import 'package:cmfi_connect/src/features/members/infrastructure/members_api.dart';
+import 'package:cmfi_connect/src/features/ministry/infrastructure/ministry_api.dart';
+import 'package:cmfi_connect/src/features/notifications/infrastructure/notifications_api.dart';
 import 'package:cmfi_connect/src/features/prayer/infrastructure/prayer_api.dart';
+import 'package:cmfi_connect/src/features/profile/application/photo_decoding.dart';
 import 'package:cmfi_connect/src/features/profile/domain/profile.dart';
 import 'package:cmfi_connect/src/features/profile/infrastructure/profile_api.dart';
+import 'package:cmfi_connect/src/features/reports/domain/activity_type.dart';
+import 'package:cmfi_connect/src/features/reports/domain/daily_report.dart';
 import 'package:cmfi_connect/src/features/reports/infrastructure/activities_api.dart';
 import 'package:cmfi_connect/src/features/reports/infrastructure/reports_api.dart';
 import 'package:flutter/widgets.dart';
@@ -61,6 +75,15 @@ class TestApp {
     required this.picker,
     required this.prayerApi,
     required this.chime,
+    required this.push,
+    required this.notificationsApi,
+    required this.premium,
+    required this.homeWidgets,
+    required this.ministryApi,
+    required this.storeReview,
+    required this.shortcuts,
+    required this.incomingLinks,
+    required this.disciplesApi,
   });
 
   final ProviderContainer container;
@@ -88,7 +111,18 @@ class TestApp {
   final FakeLinkLauncher links;
   final FakeImagePicking picker;
   final FakePrayerApi prayerApi;
+  final FakePushMessaging push;
+  final FakeNotificationsApi notificationsApi;
+  final FakePremiumStore premium;
+  final FakeHomeWidgets homeWidgets;
+  final FakeMinistryApi ministryApi;
   final FakeChime chime;
+  final FakeStoreReview storeReview;
+  final FakeAppShortcuts shortcuts;
+
+  /// The links that open the app (cmfi-connect.com/open?to=…).
+  final FakeIncomingLinks incomingLinks;
+  final FakeDisciplesApi disciplesApi;
 }
 
 Future<TestApp> pumpApp(
@@ -109,6 +143,25 @@ Future<TestApp> pumpApp(
   FakeEventsApi? eventsApi,
   FakeMediaImages? mediaImages,
   FakePrayerApi? prayerApi,
+  FakePushMessaging? push,
+  FakeNotificationsApi? notificationsApi,
+  FakePremiumStore? premium,
+  FakeMinistryApi? ministryApi,
+  FakePhoneVerification? phoneVerification,
+  FakeStoreReview? storeReview,
+  FakeAppShortcuts? shortcuts,
+  FakeIncomingLinks? incomingLinks,
+  FakeDisciplesApi? disciplesApi,
+  // the pictures picked for a profile photo, decoded beforehand
+  PhotoDecoder? photoDecoder,
+  // v1 offers Premium to everyone (premiumForEveryoneProvider); the tests
+  // see the paywall unless they say so
+  bool premiumForEveryone = false,
+  // the items of the report and days already saved (store screenshots)
+  List<ActivityType> activities = sampleActivities,
+  Map<DateTime, DailyReport> reportDays = const {},
+  // a boundary around the whole app, to take a picture of the screen
+  GlobalKey? screenKey,
   Map<String, Object> initialPreferences = const {},
 }) async {
   SharedPreferences.setMockInitialValues({
@@ -131,20 +184,32 @@ Future<TestApp> pumpApp(
   final admin = adminApi ?? FakeAdminApi();
   final share = FakeShareService();
   final network = FakeNetworkStatus();
-  final activitiesApi = FakeActivitiesApi();
+  final activitiesApi = FakeActivitiesApi(activities);
   // the day form lists the active items, like the API
   final reportsApi = FakeReportsApi(activities: activitiesApi.activities);
+  reportsApi.days.addAll(reportDays);
   final events = eventsApi ?? FakeEventsApi();
   final calendar = FakeCalendarService();
   final links = FakeLinkLauncher();
   final picker = FakeImagePicking();
   final prayer = prayerApi ?? FakePrayerApi();
   final chime = FakeChime();
+  final pushMessaging = push ?? FakePushMessaging();
+  final notificationsApi0 = notificationsApi ?? FakeNotificationsApi();
+  final premiumStore = premium ?? FakePremiumStore();
+  final widgets = FakeHomeWidgets();
+  final ministry = ministryApi ?? FakeMinistryApi();
+  final review = storeReview ?? FakeStoreReview();
+  final appShortcuts = shortcuts ?? FakeAppShortcuts();
+  final appLinks = incomingLinks ?? FakeIncomingLinks();
+  final disciples = disciplesApi ?? FakeDisciplesApi();
 
   final container = ProviderContainer(
     overrides: [
       flavorProvider.overrideWithValue(Flavor.dev),
       sharedPreferencesProvider.overrideWithValue(preferences),
+      // phone numbers default to Cameroon, whatever the test machine's region
+      deviceRegionProvider.overrideWithValue('CM'),
       tokenStorageProvider.overrideWithValue(storage),
       accountStorageProvider.overrideWithValue(accountStorage),
       authoritiesApiProvider.overrideWithValue(authorities),
@@ -168,6 +233,22 @@ Future<TestApp> pumpApp(
       imagePickingProvider.overrideWithValue(picker),
       prayerApiProvider.overrideWithValue(prayer),
       chimeProvider.overrideWithValue(chime),
+      pushMessagingProvider.overrideWithValue(pushMessaging),
+      notificationsApiProvider.overrideWithValue(notificationsApi0),
+      premiumStoreProvider.overrideWithValue(premiumStore),
+      premiumForEveryoneProvider.overrideWithValue(premiumForEveryone),
+      storeReviewProvider.overrideWithValue(review),
+      appShortcutsProvider.overrideWithValue(appShortcuts),
+      incomingLinksProvider.overrideWithValue(appLinks),
+      disciplesApiProvider.overrideWithValue(disciples),
+      if (photoDecoder != null)
+        photoDecoderProvider.overrideWithValue(photoDecoder),
+      homeWidgetsProvider.overrideWithValue(widgets),
+      ministryApiProvider.overrideWithValue(ministry),
+      crashReportingProvider.overrideWithValue(const NoCrashReporting()),
+      phoneVerificationProvider.overrideWithValue(
+        phoneVerification ?? FakePhoneVerification(),
+      ),
     ],
   );
   addTearDown(container.dispose);
@@ -180,7 +261,9 @@ Future<TestApp> pumpApp(
   await tester.pumpWidget(
     UncontrolledProviderScope(
       container: container,
-      child: TranslationProvider(child: const App()),
+      child: TranslationProvider(
+        child: RepaintBoundary(key: screenKey, child: const App()),
+      ),
     ),
   );
   await tester.pumpAndSettle();
@@ -210,6 +293,15 @@ Future<TestApp> pumpApp(
     picker: picker,
     prayerApi: prayer,
     chime: chime,
+    push: pushMessaging,
+    notificationsApi: notificationsApi0,
+    premium: premiumStore,
+    homeWidgets: widgets,
+    ministryApi: ministry,
+    storeReview: review,
+    shortcuts: appShortcuts,
+    incomingLinks: appLinks,
+    disciplesApi: disciples,
   );
 }
 

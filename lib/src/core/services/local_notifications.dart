@@ -125,6 +125,23 @@ class LocalNotifications {
     }
   }
 
+  /// The Android channel of the pushes of the server ([channelId] is the
+  /// one the server sends), so the user can mute it in the settings.
+  Future<void> createPushChannel(String channelId, String name) async {
+    await _init();
+    await _plugin
+        .resolvePlatformSpecificImplementation<
+          AndroidFlutterLocalNotificationsPlugin
+        >()
+        ?.createNotificationChannel(
+          AndroidNotificationChannel(
+            channelId,
+            name,
+            importance: Importance.high,
+          ),
+        );
+  }
+
   Future<void> cancelAll() async {
     await _init();
     await _plugin.cancelAll();
@@ -140,7 +157,10 @@ enum NotificationGroup {
   events(firstId: 1000, channelId: 'events'),
 
   /// The reminders of the 15-minute prayer retreats.
-  prayer(firstId: 2000, channelId: 'prayer');
+  prayer(firstId: 2000, channelId: 'prayer'),
+
+  /// The report ready to be sent to the authorities.
+  reportSending(firstId: 3000, channelId: 'report_sending');
 
   const NotificationGroup({required this.firstId, required this.channelId});
 

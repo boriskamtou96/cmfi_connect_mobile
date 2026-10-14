@@ -6,9 +6,11 @@ import '../../../core/network/app_exception.dart';
 import '../../../core/services/network_status.dart';
 import '../../../core/utils/date_extensions.dart';
 import '../domain/daily_report.dart';
+import '../domain/report_goal.dart';
 import '../infrastructure/reports_api.dart';
 import '../infrastructure/reports_local_store.dart';
 import 'day_report_controller.dart';
+import 'report_goals.dart';
 import 'reports_providers.dart';
 
 part 'pending_reports.g.dart';
@@ -61,7 +63,15 @@ class PendingReports extends _$PendingReports {
         try {
           final saved = await ref
               .read(reportsApiProvider)
-              .saveDay(day.date, note: day.note ?? '', entries: day.entries);
+              .saveDay(
+                day.date,
+                note: day.note ?? '',
+                entries: day.entries,
+                goalPercent: dayGoalPercent(
+                  ref.read(reportGoalsProvider),
+                  day.entries,
+                ),
+              );
           await store.saveDay(saved);
         } on NetworkException {
           break;

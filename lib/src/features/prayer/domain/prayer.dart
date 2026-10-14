@@ -152,10 +152,17 @@ abstract class Importunity with _$Importunity {
   bool get isOpen => status == ImportunityStatus.open;
   bool get isInvitation => myStatus == ImportunityMemberStatus.invited;
 
+  /// Who invited the user (the author when the server doesn't say).
+  MemberCard get inviter => invitedBy ?? owner;
+
   /// 0 to 1, null without a goal.
   double? get progress =>
       goal == null ? null : (total / goal!).clamp(0, 1).toDouble();
 }
+
+/// Why a member is reported to the leaders (POST /v1/reports): unwanted,
+/// shocking or offensive, or something else (said in the comment).
+enum ReportReason { spam, offensive, other }
 
 /// Whom "invite my spiritual family" reaches: the user's disciple maker (FD)
 /// and their other disciples.

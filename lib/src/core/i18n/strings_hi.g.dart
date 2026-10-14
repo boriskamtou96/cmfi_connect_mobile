@@ -46,6 +46,7 @@ class TranslationsHi extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _Translations$onboarding$hi onboarding = _Translations$onboarding$hi._(_root);
 	@override late final _Translations$welcome$hi welcome = _Translations$welcome$hi._(_root);
 	@override late final _Translations$auth$hi auth = _Translations$auth$hi._(_root);
+	@override late final _Translations$countries$hi countries = _Translations$countries$hi._(_root);
 	@override late final _Translations$nav$hi nav = _Translations$nav$hi._(_root);
 	@override late final _Translations$home$hi home = _Translations$home$hi._(_root);
 	@override late final _Translations$reports$hi reports = _Translations$reports$hi._(_root);
@@ -60,7 +61,18 @@ class TranslationsHi extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _Translations$hymns$hi hymns = _Translations$hymns$hi._(_root);
 	@override late final _Translations$comingSoon$hi comingSoon = _Translations$comingSoon$hi._(_root);
 	@override late final _Translations$events$hi events = _Translations$events$hi._(_root);
+	@override late final _Translations$notifications$hi notifications = _Translations$notifications$hi._(_root);
+	@override late final _Translations$premium$hi premium = _Translations$premium$hi._(_root);
+	@override late final _Translations$homeWidget$hi homeWidget = _Translations$homeWidget$hi._(_root);
+	@override late final _Translations$ministry$hi ministry = _Translations$ministry$hi._(_root);
 	@override late final _Translations$prayer$hi prayer = _Translations$prayer$hi._(_root);
+	@override late final _Translations$sending$hi sending = _Translations$sending$hi._(_root);
+	@override late final _Translations$streak$hi streak = _Translations$streak$hi._(_root);
+	@override late final _Translations$shortcuts$hi shortcuts = _Translations$shortcuts$hi._(_root);
+	@override late final _Translations$blocking$hi blocking = _Translations$blocking$hi._(_root);
+	@override late final _Translations$verses$hi verses = _Translations$verses$hi._(_root);
+	@override late final _Translations$profilePhoto$hi profilePhoto = _Translations$profilePhoto$hi._(_root);
+	@override late final _Translations$disciples$hi disciples = _Translations$disciples$hi._(_root);
 }
 
 // Path: app
@@ -117,6 +129,7 @@ class _Translations$errors$hi extends Translations$errors$fr {
 	@override String get usernameNotFound => 'किसी का यह यूज़रनेम नहीं है। स्पेलिंग जाँचो।';
 	@override String get ownerCannotLeave => 'यह विषय तुमने बनाया है: इसे छोड़ने के बजाय हटा दो।';
 	@override String get tooManyPeople => 'तुम्हारी सूचियाँ भर गई हैं (अधिकतम 500 लोग)।';
+	@override String get avatarInvalid => 'यह फ़ोटो इस्तेमाल नहीं हो सकती। कोई दूसरी चुनें।';
 }
 
 // Path: validation
@@ -171,7 +184,6 @@ class _Translations$auth$hi extends Translations$auth$fr {
 
 	// Translations
 	@override String get phone => 'फ़ोन';
-	@override String get phoneHint => '6 90 00 00 01';
 	@override String dialCode({required Object code}) => 'देश कोड: ${code}';
 	@override String get password => 'पासवर्ड';
 	@override String get showPassword => 'पासवर्ड दिखाओ';
@@ -179,6 +191,21 @@ class _Translations$auth$hi extends Translations$auth$fr {
 	@override late final _Translations$auth$login$hi login = _Translations$auth$login$hi._(_root);
 	@override late final _Translations$auth$register$hi register = _Translations$auth$register$hi._(_root);
 	@override late final _Translations$auth$church$hi church = _Translations$auth$church$hi._(_root);
+	@override late final _Translations$auth$forgot$hi forgot = _Translations$auth$forgot$hi._(_root);
+}
+
+// Path: countries
+class _Translations$countries$hi extends Translations$countries$fr {
+	_Translations$countries$hi._(TranslationsHi root) : this._root = root, super.internal(root);
+
+	final TranslationsHi _root; // ignore: unused_field
+
+	// Translations
+	@override String get dialCodeTitle => 'देश कोड';
+	@override String get title => 'तुम्हारा देश';
+	@override String get search => 'देश या कोड खोजो';
+	@override String get none => 'कोई देश नहीं मिला';
+	@override String get change => 'देश बदलो';
 }
 
 // Path: nav
@@ -208,6 +235,7 @@ class _Translations$home$hi extends Translations$home$fr {
 	@override String get todayTitle => 'आज की रिपोर्ट';
 	@override String progress({required Object total, required Object filled}) => '${total} में से ${filled}';
 	@override String get progressLabel => 'आइटम भरे गए';
+	@override String get goals => 'लक्ष्य';
 	@override String get continueReport => 'जारी रखो';
 	@override String get startReport => 'शुरू करो';
 	@override String get weekTitle => 'तुम्हारा हफ़्ता';
@@ -215,9 +243,7 @@ class _Translations$home$hi extends Translations$home$fr {
 		one: '${total} में से ${filled} दिन',
 		other: '${total} में से ${filled} दिन',
 	);
-	@override String get community => 'तुम्हारे समुदाय में';
-	@override String get prayerTitle => 'प्रार्थना विषय';
-	@override String get prayerText => 'जल्द ही यहाँ तुम्हारी सभा के प्रार्थना विषय दिखेंगे, ताकि हर दिन उनके लिए प्रार्थना कर सको।';
+	@override String get community => 'अभी CMFI में';
 	@override String get eventsTitle => 'कार्यक्रम';
 	@override String get hymnsTitle => 'भजन';
 	@override String hymnsResume({required Object number}) => 'नं. ${number} पर लौटो';
@@ -270,6 +296,10 @@ class _Translations$reports$hi extends Translations$reports$fr {
 	@override String get export => 'मेरी रिपोर्ट एक्सपोर्ट करो';
 	@override String goal({required Object value}) => 'लक्ष्य: ${value}';
 	@override String get goalReached => 'लक्ष्य पूरा हुआ';
+	@override String get dayGoals => 'दिन के लक्ष्य';
+	@override String goalsReached({required Object total, required Object reached}) => 'पूरे हुए: ${total} में से ${reached}';
+	@override late final _Translations$reports$standardItems$hi standardItems = _Translations$reports$standardItems$hi._(_root);
+	@override late final _Translations$reports$units$hi units = _Translations$reports$units$hi._(_root);
 }
 
 // Path: reminder
@@ -402,7 +432,6 @@ class _Translations$more$hi extends Translations$more$fr {
 	@override String get editProfile => 'प्रोफ़ाइल बदलो';
 	@override String get community => 'समुदाय';
 	@override String get events => 'कार्यक्रम';
-	@override String get announcements => 'घोषणाएँ';
 	@override String get reports => 'दैनिक रिपोर्ट';
 	@override String get myItems => 'मेरे आइटम';
 	@override String get app => 'ऐप';
@@ -413,6 +442,7 @@ class _Translations$more$hi extends Translations$more$fr {
 	@override String get themeLight => 'लाइट';
 	@override String get themeDark => 'डार्क';
 	@override String get logout => 'लॉग आउट करो';
+	@override String get account => 'खाता';
 	@override String get languageTitle => 'ऐप की भाषा';
 	@override String get completeProfile => 'अपना नाम जोड़ो';
 	@override String get accompaniment => 'मार्गदर्शन';
@@ -426,6 +456,7 @@ class _Translations$more$hi extends Translations$more$fr {
 	@override String get admin => 'प्रबंधन';
 	@override String get staff => 'टीम और भूमिकाएँ';
 	@override String get manageEvents => 'कार्यक्रम';
+	@override String get disciples => 'मेरे शिष्य';
 }
 
 // Path: authorities
@@ -467,6 +498,7 @@ class _Translations$authorities$hi extends Translations$authorities$fr {
 		one: '${n} अनुरोध देखना बाकी है',
 		other: '${n} अनुरोध देखने बाकी हैं',
 	);
+	@override late final _Translations$authorities$sharing$hi sharing = _Translations$authorities$sharing$hi._(_root);
 }
 
 // Path: members
@@ -628,6 +660,169 @@ class _Translations$events$hi extends Translations$events$fr {
 	@override late final _Translations$events$register$hi register = _Translations$events$register$hi._(_root);
 	@override late final _Translations$events$reminder$hi reminder = _Translations$events$reminder$hi._(_root);
 	@override late final _Translations$events$admin$hi admin = _Translations$events$admin$hi._(_root);
+	@override String upcomingCount({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n,
+		one: '${n} आने वाला कार्यक्रम',
+		other: '${n} आने वाले कार्यक्रम',
+	);
+	@override String slide({required Object current, required Object total}) => 'कार्यक्रम ${current} / ${total}';
+}
+
+// Path: notifications
+class _Translations$notifications$hi extends Translations$notifications$fr {
+	_Translations$notifications$hi._(TranslationsHi root) : this._root = root, super.internal(root);
+
+	final TranslationsHi _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'सूचनाएँ';
+	@override String get channel => 'समुदाय की घोषणाएँ';
+	@override String get empty => 'अभी कोई सूचना नहीं';
+	@override String get emptyHint => 'समुदाय की घोषणाएँ यहाँ आएँगी।';
+	@override String unreadLabel({required Object title}) => 'अपठित: ${title}';
+	@override String documents({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n,
+		one: '${n} PDF दस्तावेज़',
+		other: '${n} PDF दस्तावेज़',
+	);
+	@override String unread({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n,
+		one: '${n} अपठित',
+		other: '${n} अपठित',
+	);
+	@override String image({required Object n}) => 'चित्र ${n}';
+	@override String get document => 'PDF दस्तावेज़';
+	@override String documentSize({required Object kb}) => '${kb} KB';
+	@override String received({required Object title}) => 'नई सूचना: ${title}';
+}
+
+// Path: premium
+class _Translations$premium$hi extends Translations$premium$fr {
+	_Translations$premium$hi._(TranslationsHi root) : this._root = root, super.internal(root);
+
+	final TranslationsHi _root; // ignore: unused_field
+
+	// Translations
+	@override String get name => 'CMFI Connect Premium';
+	@override String get pill => 'Premium';
+	@override String get subtitle => 'परमेश्वर के साथ अपनी चाल में आगे बढ़ो, और सेवकाई का साथ दो।';
+	@override String get widgetTitle => 'होम स्क्रीन विजेट';
+	@override String get widgetText => 'ऐप खोले बिना आज की रिपोर्ट और तुम्हारे लक्ष्य।';
+	@override String get statsTitle => 'पूरे साल के तुम्हारे लक्ष्य';
+	@override String get statsText => 'साल का सारांश और तुम्हारे लक्ष्यों की प्रगति, हफ़्ते दर हफ़्ते।';
+	@override String get supportTitle => 'तुम सेवकाई का साथ देते हो';
+	@override String get supportText => 'तुम्हारी सदस्यता पूरे समुदाय के लिए ऐप को चालू रखती है।';
+	@override String get annual => 'सालाना';
+	@override String get monthly => 'मासिक';
+	@override String perYear({required Object price}) => '${price} / साल';
+	@override String perMonth({required Object price}) => '${price} / महीना';
+	@override String annualPerMonth({required Object price}) => 'यानी ${price} प्रति महीना';
+	@override String get best => 'सबसे फ़ायदेमंद';
+	@override String trialDays({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n,
+		one: '${n} दिन मुफ़्त आज़माओ',
+		other: '${n} दिन मुफ़्त आज़माओ',
+	);
+	@override String trialMonths({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n,
+		one: '${n} महीना मुफ़्त आज़माओ',
+		other: '${n} महीने मुफ़्त आज़माओ',
+	);
+	@override String get subscribe => 'सदस्यता लो';
+	@override String get startTrial => 'मुफ़्त आज़माना शुरू करो';
+	@override String get restore => 'ख़रीदारी वापस लाओ';
+	@override String get restored => 'Premium इस फ़ोन पर वापस आ गया';
+	@override String get nothingToRestore => 'इस खाते के लिए कोई Premium ख़रीदारी नहीं';
+	@override String get thanks => 'धन्यवाद! Premium चालू है।';
+	@override String get failed => 'ख़रीदारी पूरी नहीं हुई। थोड़ी देर में फिर कोशिश करो।';
+	@override String get unavailable => 'अभी ऑफ़र उपलब्ध नहीं हैं।';
+	@override String renews({required Object store}) => 'सदस्यता अपने आप नवीनीकृत होती है। तुम इसे कभी भी अपने ${store} खाते की सेटिंग में रद्द कर सकते हो।';
+	@override String get terms => 'उपयोग की शर्तें';
+	@override String get privacy => 'गोपनीयता';
+	@override String get activeTitle => 'तुम्हारे पास Premium है';
+	@override String get activeText => 'CMFI Connect का साथ देने के लिए धन्यवाद! विजेट और तुम्हारे सारांश का साल खुले हैं।';
+	@override String get staffText => 'तुम CMFI Connect टीम का हिस्सा हो, इसलिए Premium तुम्हें मुफ़्त मिला है।';
+	@override String get moreSubtitle => 'विजेट, पूरे साल के लक्ष्य';
+	@override String get moreActive => 'चालू';
+	@override String get unlock => 'Premium से खोलो';
+	@override String trialThen({required Object trial, required Object price}) => '${trial}, फिर ${price}';
+	@override String savePercent({required Object percent}) => '−${percent}';
+	@override String get choose => 'अपना प्लान चुनो';
+	@override String get cancelAnytime => 'कोई बंधन नहीं, कभी भी रद्द करो';
+	@override String get restoreShort => 'बहाल करें';
+	@override String get termsShort => 'शर्तें';
+	@override String get semiannual => 'छमाही';
+	@override String perSemester({required Object price}) => '${price} / 6 महीने';
+}
+
+// Path: homeWidget
+class _Translations$homeWidget$hi extends Translations$homeWidget$fr {
+	_Translations$homeWidget$hi._(TranslationsHi root) : this._root = root, super.internal(root);
+
+	final TranslationsHi _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'आज';
+	@override String get done => 'हो गया';
+	@override String get todo => 'भरना बाकी';
+	@override String get open => 'भरो';
+	@override String get locked => 'Premium से विजेट चालू करो';
+	@override String get signedOut => 'ऐप में साइन इन करो';
+}
+
+// Path: ministry
+class _Translations$ministry$hi extends Translations$ministry$fr {
+	_Translations$ministry$hi._(TranslationsHi root) : this._root = root, super.internal(root);
+
+	final TranslationsHi _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'हमारी सेवकाई';
+	@override String get tagline => 'पृथ्वी की छोर तक';
+	@override String count({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n,
+		one: '${n} राष्ट्र',
+		other: '${n} राष्ट्र',
+	);
+	@override String get fromYaounde => 'याउंडे से, सुसमाचार एक राष्ट्र से दूसरे राष्ट्र तक जाता है।';
+	@override String get dragHint => 'उंगली से ग्लोब घुमाओ, किसी राष्ट्र को छुओ।';
+	@override String globeLabel({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n,
+		one: 'ग्लोब: ${n} राष्ट्र जहाँ सेवकाई मौजूद है। नीचे की सूची उसे बताती है।',
+		other: 'ग्लोब: ${n} राष्ट्र जहाँ सेवकाई मौजूद है। नीचे की सूची सबको बताती है।',
+	);
+	@override String get voyage => 'यात्रा';
+	@override String get pause => 'रोको';
+	@override String get previous => 'पिछला राष्ट्र';
+	@override String get next => 'अगला राष्ट्र';
+	@override String number({required Object n}) => 'राष्ट्र क्रमांक ${n}';
+	@override String since({required Object year}) => '${year} से';
+	@override String get pray => 'प्रार्थना';
+	@override String prayTitle({required Object country}) => '${country} के लिए प्रार्थना';
+	@override String prayThanks({required Object country}) => '${country} में परमेश्वर के काम के लिए धन्यवाद दो।';
+	@override String prayAssemblies({required Object country}) => '${country} की कलीसियाओं और उनके अगुवों के लिए प्रार्थना करो।';
+	@override String prayUnreached({required Object country}) => 'प्रार्थना करो कि ${country} में जिन्होंने अभी तक विश्वास नहीं किया, वे यीशु से मिलें।';
+	@override String get purpose => 'हमारा उद्देश्य';
+	@override String get nations => 'राष्ट्र';
+	@override String get search => 'राष्ट्र खोजो';
+	@override String get none => 'कोई राष्ट्र नहीं मिला';
+	@override String homeText({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n,
+		one: '${n} राष्ट्र में मौजूद',
+		other: '${n} राष्ट्रों में मौजूद',
+	);
+	@override String get nationsSubtitle => 'ग्लोब और एक राष्ट्र से दूसरे राष्ट्र की यात्रा';
+	@override String get purposeSubtitle => 'हमारे तीन लक्ष्य';
+	@override String get missionaries => 'हमारे मिशनरी';
+	@override String get missionariesSubtitle => 'जिन्हें प्रभु राष्ट्रों में भेजता है';
+	@override String get heroes => 'हमारे नायक';
+	@override String get heroesSubtitle => 'जिनका विश्वास हमें प्रेरित करता है';
+	@override String goalOf({required Object n, required Object total}) => 'हमारा लक्ष्य · ${n}/${total}';
+	@override String get previousGoal => 'पिछला लक्ष्य';
+	@override String get nextGoal => 'अगला लक्ष्य';
+	@override Map<String, String> get media => {
+		'books': 'पुस्तकें',
+		'tracts': 'पर्चे',
+		'magazines': 'पत्रिकाएँ',
+		'cds': 'सीडी',
+		'dvds': 'डीवीडी',
+		'radio': 'रेडियो',
+		'tv': 'टेलीविज़न',
+		'internet': 'इंटरनेट',
+	};
+	@override late final _Translations$ministry$goals$hi goals = _Translations$ministry$goals$hi._(_root);
 }
 
 // Path: prayer
@@ -658,6 +853,176 @@ class _Translations$prayer$hi extends Translations$prayer$fr {
 	@override late final _Translations$prayer$topics$hi topics = _Translations$prayer$topics$hi._(_root);
 	@override late final _Translations$prayer$lists$hi lists = _Translations$prayer$lists$hi._(_root);
 	@override late final _Translations$prayer$importunity$hi importunity = _Translations$prayer$importunity$hi._(_root);
+}
+
+// Path: sending
+class _Translations$sending$hi extends Translations$sending$fr {
+	_Translations$sending$hi._(TranslationsHi root) : this._root = root, super.internal(root);
+
+	final TranslationsHi _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'मेरे आत्मिक अगुवों को भेजना';
+	@override String get moreOff => 'बंद';
+	@override String get intro => 'चुने हुए समय पर CMFI Connect उस अवधि की तुम्हारी रिपोर्ट तैयार करता है। तुम्हें बस उसे अपने आत्मिक अगुवों को भेजना है।';
+	@override String get enabled => 'इसे नियमित रूप से तैयार करो';
+	@override String get rhythm => 'अंतराल';
+	@override String get weekly => 'हर हफ़्ते';
+	@override String get biweekly => 'हर 2 हफ़्ते';
+	@override String get monthly => 'हर महीने';
+	@override String get day => 'दिन';
+	@override String get monthlyDay => 'हर महीने की 1 तारीख़ को, पिछले महीने के लिए';
+	@override String get time => 'समय';
+	@override String get recipients => 'प्राप्तकर्ता';
+	@override String get noAuthorities => 'पहले अपने आत्मिक अगुवे जोड़ो।';
+	@override String get addAuthorities => 'मेरे अगुवे जोड़ो';
+	@override String get viaWhatsApp => 'WhatsApp से';
+	@override String get viaEmail => 'ई-मेल से';
+	@override String get viaBoth => 'WhatsApp या ई-मेल से';
+	@override String get viaShare => 'शेयर करके';
+	@override String next({required Object date}) => 'अगला: ${date}';
+	@override String get prepareNow => 'अभी तैयार करो';
+	@override String get history => 'पिछली बार भेजे गए';
+	@override String get notificationTitle => 'तुम्हारी रिपोर्ट तैयार है';
+	@override String get notificationBody => 'एक टैप में अपने अगुवों को भेजो।';
+	@override String get channel => 'रिपोर्ट भेजना';
+	@override String get readyTitle => 'तुम्हारी रिपोर्ट तैयार है';
+	@override String get preview => 'संदेश का पूर्वावलोकन';
+	@override String greeting({required Object name}) => 'नमस्ते ${name},';
+	@override String get whatsApp => 'WhatsApp';
+	@override String get email => 'ई-मेल';
+	@override String get sharePdf => 'PDF शेयर करो';
+	@override String get shareText => 'टेक्स्ट शेयर करो';
+	@override String get sent => 'भेजा गया';
+	@override String get shared => 'शेयर किया';
+	@override String get noRecipients => 'सेटिंग्स में प्राप्तकर्ता चुनो, या PDF शेयर करो।';
+	@override String get settings => 'सेटिंग्स';
+	@override String get permissionDenied => 'सही समय पर याद दिलाने के लिए सूचनाएँ चालू करो।';
+}
+
+// Path: streak
+class _Translations$streak$hi extends Translations$streak$fr {
+	_Translations$streak$hi._(TranslationsHi root) : this._root = root, super.internal(root);
+
+	final TranslationsHi _root; // ignore: unused_field
+
+	// Translations
+	@override String title({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n,
+		one: 'लगातार ${n} दिन!',
+		other: 'लगातार ${n} दिन!',
+	);
+	@override String cardDays({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n,
+		one: 'दिन परमेश्वर के साथ',
+		other: 'दिन परमेश्वर के साथ',
+	);
+	@override late final _Translations$streak$lines$hi lines = _Translations$streak$lines$hi._(_root);
+	@override String get share => 'शेयर करो';
+	@override String get close => 'आगे बढ़ो';
+}
+
+// Path: shortcuts
+class _Translations$shortcuts$hi extends Translations$shortcuts$fr {
+	_Translations$shortcuts$hi._(TranslationsHi root) : this._root = root, super.internal(root);
+
+	final TranslationsHi _root; // ignore: unused_field
+
+	// Translations
+	@override String get today => 'अपनी रिपोर्ट भरो';
+	@override String get hymns => 'भजन';
+	@override String get retreat => 'अभी का प्रार्थना-समय';
+}
+
+// Path: blocking
+class _Translations$blocking$hi extends Translations$blocking$fr {
+	_Translations$blocking$hi._(TranslationsHi root) : this._root = root, super.internal(root);
+
+	final TranslationsHi _root; // ignore: unused_field
+
+	// Translations
+	@override String get report => 'रिपोर्ट करो';
+	@override String block({required Object name}) => '${name} को ब्लॉक करो';
+	@override String blockTitle({required Object name}) => '${name} को ब्लॉक करो?';
+	@override String blockText({required Object name}) => 'तुम्हें ${name} से अब कोई न्योता नहीं मिलेगा। यह न्योता हटा दिया जाएगा।';
+	@override String get blockAction => 'ब्लॉक करो';
+	@override String blocked({required Object name}) => '${name} अब तुम्हें न्योता नहीं दे पाएगा।';
+	@override String get reportTitle => 'इस न्योते की रिपोर्ट करो';
+	@override String get reportText => 'हमें बताओ क्या गलत है: समुदाय के अगुवे इसे देखेंगे।';
+	@override late final _Translations$blocking$reasons$hi reasons = _Translations$blocking$reasons$hi._(_root);
+	@override String get comment => 'टिप्पणी';
+	@override String get commentHint => 'अगुवों को क्या जानना चाहिए';
+	@override String get send => 'रिपोर्ट भेजो';
+	@override String get reported => 'धन्यवाद, अगुवे इसे देखेंगे।';
+	@override String get listTitle => 'ब्लॉक किए गए सदस्य';
+	@override String get intro => 'उनके प्रार्थना के न्योते अब तुम तक नहीं पहुँचते।';
+	@override String get empty => 'तुमने किसी को ब्लॉक नहीं किया है।';
+	@override String get unblock => 'अनब्लॉक करो';
+	@override String unblocked({required Object name}) => '${name} तुम्हें फिर से न्योता दे सकता है।';
+}
+
+// Path: verses
+class _Translations$verses$hi extends Translations$verses$fr {
+	_Translations$verses$hi._(TranslationsHi root) : this._root = root, super.internal(root);
+
+	final TranslationsHi _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'आज का वचन';
+	@override String get share => 'वचन शेयर करो';
+	@override String get shareImage => 'चित्र शेयर करो';
+	@override String get shareText => 'टेक्स्ट शेयर करो';
+}
+
+// Path: profilePhoto
+class _Translations$profilePhoto$hi extends Translations$profilePhoto$fr {
+	_Translations$profilePhoto$hi._(TranslationsHi root) : this._root = root, super.internal(root);
+
+	final TranslationsHi _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'प्रोफ़ाइल फ़ोटो';
+	@override String get add => 'प्रोफ़ाइल फ़ोटो जोड़ें';
+	@override String get change => 'प्रोफ़ाइल फ़ोटो बदलें';
+	@override String get seenBy => 'जहाँ भी आपका नाम दिखता है, अन्य सदस्य इसे देखते हैं।';
+	@override String get camera => 'फ़ोटो लें';
+	@override String get gallery => 'गैलरी से चुनें';
+	@override String get remove => 'फ़ोटो हटाएँ';
+	@override String get cropTitle => 'अपनी फ़ोटो काटें';
+	@override String get cropHint => 'उंगलियों से फ़ोटो को खिसकाएँ और बड़ा करें।';
+	@override String get use => 'यह फ़ोटो इस्तेमाल करें';
+	@override String get unreadable => 'यह तस्वीर नहीं खुल सकती। कोई दूसरी चुनें।';
+	@override String get saved => 'आपकी प्रोफ़ाइल फ़ोटो सहेज ली गई है।';
+	@override String get removed => 'आपकी प्रोफ़ाइल फ़ोटो हटा दी गई है।';
+}
+
+// Path: disciples
+class _Translations$disciples$hi extends Translations$disciples$fr {
+	_Translations$disciples$hi._(TranslationsHi root) : this._root = root, super.internal(root);
+
+	final TranslationsHi _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'मेरे शिष्य';
+	@override String get intro => 'वे सदस्य जिन्होंने तुम्हें अपना शिष्य बनाने वाला चुना है। तुम उनकी नियमितता देखते हो, उनकी रिपोर्ट की सामग्री कभी नहीं।';
+	@override String get empty => 'अभी कोई शिष्य नहीं';
+	@override String get emptyText => 'जब कोई सदस्य तुम्हें अपना शिष्य बनाने वाला चुनता है और तुम उसका अनुरोध स्वीकार करते हो, तो वह यहाँ दिखता है।';
+	@override String count({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n,
+		other: '${n} शिष्य',
+	);
+	@override String filled({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n,
+		other: '30 में से ${n} दिन भरे',
+	);
+	@override String streak({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n,
+		other: 'लगातार ${n} दिन',
+	);
+	@override String get noStreak => 'कोई चालू सिलसिला नहीं';
+	@override String get lastToday => 'आज भरा';
+	@override String get lastYesterday => 'पिछली बार: कल';
+	@override String lastDaysAgo({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n,
+		other: 'पिछली बार: ${n} दिन पहले',
+	);
+	@override String get noReport => 'इस साल कोई रिपोर्ट नहीं';
+	@override String goals({required Object percent}) => 'लक्ष्य: ${percent} %';
+	@override String get notShared => 'अपनी नियमितता साझा नहीं करता';
 }
 
 // Path: onboarding.reports
@@ -771,7 +1136,7 @@ class _Translations$auth$church$hi extends Translations$auth$church$fr {
 	@override String get editTitle => 'मेरी प्रोफ़ाइल';
 	@override String get editSubtitle => 'अपना नाम, चर्च और सभा अपडेट करो।';
 	@override String get country => 'देश';
-	@override String get countryHint => 'भारत';
+	@override String get countryHint => 'अपना देश चुनो';
 	@override String get city => 'शहर';
 	@override String get cityHint => 'नई दिल्ली';
 	@override String get church => 'चर्च';
@@ -782,6 +1147,37 @@ class _Translations$auth$church$hi extends Translations$auth$church$fr {
 	@override String get submit => 'पूरा करो';
 	@override String get skip => 'यह चरण छोड़ो';
 	@override String get saved => 'प्रोफ़ाइल सेव हो गई';
+}
+
+// Path: auth.forgot
+class _Translations$auth$forgot$hi extends Translations$auth$forgot$fr {
+	_Translations$auth$forgot$hi._(TranslationsHi root) : this._root = root, super.internal(root);
+
+	final TranslationsHi _root; // ignore: unused_field
+
+	// Translations
+	@override String get link => 'पासवर्ड भूल गए?';
+	@override String get title => 'पासवर्ड भूल गए';
+	@override String get phoneText => 'अपना नंबर डालो: नया पासवर्ड चुनने के लिए हम SMS से एक कोड भेजेंगे।';
+	@override String get sendCode => 'कोड पाओ';
+	@override String get codeTitle => 'कोड डालो';
+	@override String codeText({required Object phone}) => 'हमने ${phone} पर 6 अंकों का कोड भेजा है।';
+	@override String get code => 'SMS से मिला कोड';
+	@override String get codeInvalid => 'कोड 6 अंकों का है';
+	@override String get verify => 'जाँचो';
+	@override String get resend => 'कोड फिर से भेजो';
+	@override String resendIn({required Object seconds}) => '${seconds} सेकंड में फिर भेजो';
+	@override String get changeNumber => 'नंबर बदलो';
+	@override String get passwordTitle => 'नया पासवर्ड';
+	@override String get passwordText => 'अपने खाते के लिए नया पासवर्ड चुनो।';
+	@override String get submit => 'सहेजो और साइन इन करो';
+	@override String get done => 'पासवर्ड बदल गया। फिर से स्वागत है!';
+	@override String get remembered => 'याद आ गया?';
+	@override String get invalidCode => 'यह कोड सही नहीं है।';
+	@override String get expired => 'कोड की अवधि खत्म हो गई। नया कोड माँगो।';
+	@override String get tooManyRequests => 'बहुत ज़्यादा कोशिशें। थोड़ी देर बाद फिर कोशिश करो।';
+	@override String get unavailable => 'अभी पासवर्ड रीसेट उपलब्ध नहीं है।';
+	@override String get noAccount => 'इस नंबर से कोई खाता नहीं है।';
 }
 
 // Path: reports.tabs
@@ -884,6 +1280,43 @@ class _Translations$reports$summary$hi extends Translations$reports$summary$fr {
 		other: '${total} में से ${n} दिन लक्ष्य पूरा हुआ',
 	);
 	@override String get share => 'यह सारांश शेयर करो';
+	@override String get goals => 'लक्ष्य';
+	@override String get goalsAverage => 'तुम्हारे लक्ष्यों की औसत पूर्ति';
+	@override String get goalsHint => 'हर दिन गिना जाता है, खाली भी। आज भरने के बाद गिना जाता है।';
+	@override String get evolution => 'तुम्हारे लक्ष्यों की प्रगति';
+	@override String get evolutionHint => 'हफ़्ते दर हफ़्ते, पिछले 12 हफ़्तों में।';
+	@override String get premiumYear => 'साल और तुम्हारे लक्ष्यों की प्रगति Premium के साथ आते हैं।';
+}
+
+// Path: reports.standardItems
+class _Translations$reports$standardItems$hi extends Translations$reports$standardItems$fr {
+	_Translations$reports$standardItems$hi._(TranslationsHi root) : this._root = root, super.internal(root);
+
+	final TranslationsHi _root; // ignore: unused_field
+
+	// Translations
+	@override String get lb => 'बाइबल पठन';
+	@override String get ps => 'व्यक्तिगत प्रार्थना';
+	@override String get rdqad => 'मनन';
+	@override String get pg => 'समूह प्रार्थना';
+	@override String get llc => 'मसीही साहित्य पठन';
+	@override String get jc => 'पूर्ण उपवास';
+	@override String get jp => 'आंशिक उपवास';
+	@override String get dimes => 'दशमांश';
+	@override String get off => 'भेंट';
+}
+
+// Path: reports.units
+class _Translations$reports$units$hi extends Translations$reports$units$fr {
+	_Translations$reports$units$hi._(TranslationsHi root) : this._root = root, super.internal(root);
+
+	final TranslationsHi _root; // ignore: unused_field
+
+	// Translations
+	@override late final _Translations$reports$units$chapters$hi chapters = _Translations$reports$units$chapters$hi._(_root);
+	@override late final _Translations$reports$units$times$hi times = _Translations$reports$units$times$hi._(_root);
+	@override late final _Translations$reports$units$pages$hi pages = _Translations$reports$units$pages$hi._(_root);
+	@override late final _Translations$reports$units$percent$hi percent = _Translations$reports$units$percent$hi._(_root);
 }
 
 // Path: export.doc
@@ -961,6 +1394,20 @@ class _Translations$authorities$form$hi extends Translations$authorities$form$fr
 	@override String get alreadyAdded => 'यह व्यक्ति पहले से तुम्हारे अगुवों में शामिल है।';
 	@override String get makerExists => 'तुम्हारे पास पहले से एक चेला बनाने वाला है।';
 	@override String get yourself => 'यह तुम्हारा अपना यूज़रनेम है।';
+	@override String get sharingHelp => 'तुम्हारा शिष्य बनाने वाला तुम्हारी नियमितता (भरे दिन, सिलसिला, लक्ष्यों का %) देखेगा, तुम्हारी रिपोर्ट की सामग्री कभी नहीं। तुम इसे उसके कार्ड पर बंद कर सकते हो।';
+}
+
+// Path: authorities.sharing
+class _Translations$authorities$sharing$hi extends Translations$authorities$sharing$fr {
+	_Translations$authorities$sharing$hi._(TranslationsHi root) : this._root = root, super.internal(root);
+
+	final TranslationsHi _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'मेरी नियमितता साझा करो';
+	@override String help({required Object name}) => '${name} तुम्हारे भरे हुए दिन, तुम्हारा सिलसिला और तुम्हारे लक्ष्यों का % देखता है, तुम्हारी रिपोर्ट की सामग्री कभी नहीं।';
+	@override String on({required Object name}) => 'तुम्हारी नियमितता ${name} के साथ साझा है।';
+	@override String off({required Object name}) => '${name} अब तुम्हारी नियमितता नहीं देखता।';
 }
 
 // Path: members.deleteAccount
@@ -973,7 +1420,7 @@ class _Translations$members$deleteAccount$hi extends Translations$members$delete
 	@override String get button => 'मेरा खाता हटाओ';
 	@override String get title => 'मेरा खाता हटाओ';
 	@override String get intro => 'यह स्थायी है। तुम्हारा खाता और उससे जुड़ा सब कुछ मिटा दिया जाएगा:';
-	@override String get itemProfile => 'तुम्हारी प्रोफ़ाइल, यूज़रनेम और पासवर्ड';
+	@override String get itemProfile => 'तुम्हारी प्रोफ़ाइल, फ़ोटो, यूज़रनेम और पासवर्ड';
 	@override String get itemReports => 'तुम्हारी सारी रिपोर्ट, आइटम और लक्ष्य';
 	@override String get itemAuthorities => 'तुम्हारे आत्मिक अगुवे और मिले हुए अनुरोध';
 	@override String get itemEvents => 'कार्यक्रमों के लिए तुम्हारे पंजीकरण';
@@ -1232,6 +1679,18 @@ class _Translations$events$admin$hi extends Translations$events$admin$fr {
 	@override String get photoDelete => 'यह फ़ोटो हटाओ';
 	@override String get photoDeleted => 'फ़ोटो हटा दी गई।';
 	@override String get confirmDelete => 'हटाओ';
+}
+
+// Path: ministry.goals
+class _Translations$ministry$goals$hi extends Translations$ministry$goals$fr {
+	_Translations$ministry$goals$hi._(TranslationsHi root) : this._root = root, super.internal(root);
+
+	final TranslationsHi _root; // ignore: unused_field
+
+	// Translations
+	@override late final _Translations$ministry$goals$crusade$hi crusade = _Translations$ministry$goals$crusade$hi._(_root);
+	@override late final _Translations$ministry$goals$disciples$hi disciples = _Translations$ministry$goals$disciples$hi._(_root);
+	@override late final _Translations$ministry$goals$revival$hi revival = _Translations$ministry$goals$revival$hi._(_root);
 }
 
 // Path: prayer.hero
@@ -1513,6 +1972,133 @@ class _Translations$prayer$importunity$hi extends Translations$prayer$importunit
 	@override late final _Translations$prayer$importunity$inviteSheet$hi inviteSheet = _Translations$prayer$importunity$inviteSheet$hi._(_root);
 }
 
+// Path: streak.lines
+class _Translations$streak$lines$hi extends Translations$streak$lines$fr {
+	_Translations$streak$lines$hi._(TranslationsHi root) : this._root = root, super.internal(root);
+
+	final TranslationsHi _root; // ignore: unused_field
+
+	// Translations
+	@override String get week => 'पूरा एक हफ़्ता प्रभु के साथ, हर दिन। शाबाश, ऐसे ही चलते रहो!';
+	@override String get month => 'एक महीने की वफ़ादारी! जो तुम हर दिन बोते हो, वह फल लाता है।';
+	@override String get hundred => 'परमेश्वर के साथ सौ दिन! तुम्हारी लगन एक सुंदर गवाही है।';
+	@override String get year => 'परमेश्वर के साथ पूरा एक साल! तुम्हारी वफ़ादारी के लिए उसकी महिमा हो।';
+}
+
+// Path: blocking.reasons
+class _Translations$blocking$reasons$hi extends Translations$blocking$reasons$fr {
+	_Translations$blocking$reasons$hi._(TranslationsHi root) : this._root = root, super.internal(root);
+
+	final TranslationsHi _root; // ignore: unused_field
+
+	// Translations
+	@override String get spam => 'अनचाहा';
+	@override String get offensive => 'चौंकाने वाली या आपत्तिजनक सामग्री';
+	@override String get other => 'अन्य';
+}
+
+// Path: reports.units.chapters
+class _Translations$reports$units$chapters$hi extends Translations$reports$units$chapters$fr {
+	_Translations$reports$units$chapters$hi._(TranslationsHi root) : this._root = root, super.internal(root);
+
+	final TranslationsHi _root; // ignore: unused_field
+
+	// Translations
+	@override String get name => 'अध्यायों की संख्या';
+	@override String get label => 'अध्याय';
+	@override String get symbol => 'अध्याय';
+	@override String count({required num n, required Object value}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n,
+		one: '${value} अध्याय',
+		other: '${value} अध्याय',
+	);
+}
+
+// Path: reports.units.times
+class _Translations$reports$units$times$hi extends Translations$reports$units$times$fr {
+	_Translations$reports$units$times$hi._(TranslationsHi root) : this._root = root, super.internal(root);
+
+	final TranslationsHi _root; // ignore: unused_field
+
+	// Translations
+	@override String get name => 'कितनी बार';
+	@override String get label => 'बार';
+	@override String get symbol => 'बार';
+	@override String count({required num n, required Object value}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n,
+		one: '${value} बार',
+		other: '${value} बार',
+	);
+}
+
+// Path: reports.units.pages
+class _Translations$reports$units$pages$hi extends Translations$reports$units$pages$fr {
+	_Translations$reports$units$pages$hi._(TranslationsHi root) : this._root = root, super.internal(root);
+
+	final TranslationsHi _root; // ignore: unused_field
+
+	// Translations
+	@override String get name => 'पृष्ठों की संख्या';
+	@override String get label => 'पृष्ठ';
+	@override String get symbol => 'पृष्ठ';
+	@override String count({required num n, required Object value}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n,
+		one: '${value} पृष्ठ',
+		other: '${value} पृष्ठ',
+	);
+}
+
+// Path: reports.units.percent
+class _Translations$reports$units$percent$hi extends Translations$reports$units$percent$fr {
+	_Translations$reports$units$percent$hi._(TranslationsHi root) : this._root = root, super.internal(root);
+
+	final TranslationsHi _root; // ignore: unused_field
+
+	// Translations
+	@override String get name => 'प्रतिशत';
+	@override String get label => 'प्रतिशत';
+	@override String get symbol => '%';
+	@override String count({required Object value}) => '${value}%';
+}
+
+// Path: ministry.goals.crusade
+class _Translations$ministry$goals$crusade$hi extends Translations$ministry$goals$crusade$fr {
+	_Translations$ministry$goals$crusade$hi._(TranslationsHi root) : this._root = root, super.internal(root);
+
+	final TranslationsHi _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'हर प्राणी तक सुसमाचार अभियान';
+	@override String get text => 'हमारी पीढ़ी में जीने वाले हर व्यक्ति को सुसमाचार सुनाना, ताकि पवित्र आत्मा की सामर्थ्य में प्रचारित सुसमाचार 10 अरब लोगों तक पहुँचे — संचार के हर साधन (हमारी पुस्तकें, पर्चे, पत्रिकाएँ, सीडी, डीवीडी, रेडियो, टेलीविज़न और इंटरनेट) का उपयोग करते हुए, जितनी जल्दी हो सके।';
+	@override String get reached => 'लोगों तक सुसमाचार';
+}
+
+// Path: ministry.goals.disciples
+class _Translations$ministry$goals$disciples$hi extends Translations$ministry$goals$disciples$fr {
+	_Translations$ministry$goals$disciples$hi._(TranslationsHi root) : this._root = root, super.internal(root);
+
+	final TranslationsHi _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'चेले बनाना';
+	@override String get text => '250 राष्ट्रों में 1 अरब लोगों को यीशु मसीह को प्रभु और उद्धारकर्ता के रूप में जानने तक ले जाना, उन्हें चेले बनाना ताकि वे हर बात में उसकी आज्ञा मानें, और उन्हें वर्ष 2065 तक 2.5 करोड़ घरेलू कलीसियाओं में इकट्ठा होने के लिए संगठित करना।';
+	@override String get people => 'चेले';
+	@override String get nations => 'राष्ट्र';
+	@override String get churches => 'घरेलू कलीसियाएँ';
+	@override String by({required Object year}) => '${year} तक';
+}
+
+// Path: ministry.goals.revival
+class _Translations$ministry$goals$revival$hi extends Translations$ministry$goals$revival$fr {
+	_Translations$ministry$goals$revival$hi._(TranslationsHi root) : this._root = root, super.internal(root);
+
+	final TranslationsHi _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'विश्वव्यापी जागृति को शीघ्र लाना';
+	@override String get text => 'उपवास और मध्यस्थ प्रार्थना के द्वारा परमेश्वर के साथ सहयोग करना, उस विश्वव्यापी जागृति के लिए जो आकाश को फाड़ देगी, पृथ्वी को हिला देगी और हमारी पीढ़ी में मसीह की महिमा करेगी, ताकि हमारे प्रभु यीशु मसीह का स्वर्ग से शीघ्र आगमन हो और वह अपनी तैयार की गई दुल्हन से मिले।';
+	@override String get fasting => 'उपवास';
+	@override String get intercession => 'मध्यस्थ प्रार्थना';
+	@override String get pray => 'अभी प्रार्थना करो';
+}
+
 // Path: prayer.retreat.hints
 class _Translations$prayer$retreat$hints$hi extends Translations$prayer$retreat$hints$fr {
 	_Translations$prayer$retreat$hints$hi._(TranslationsHi root) : this._root = root, super.internal(root);
@@ -1646,6 +2232,7 @@ extension on TranslationsHi {
 			'errors.usernameNotFound' => 'किसी का यह यूज़रनेम नहीं है। स्पेलिंग जाँचो।',
 			'errors.ownerCannotLeave' => 'यह विषय तुमने बनाया है: इसे छोड़ने के बजाय हटा दो।',
 			'errors.tooManyPeople' => 'तुम्हारी सूचियाँ भर गई हैं (अधिकतम 500 लोग)।',
+			'errors.avatarInvalid' => 'यह फ़ोटो इस्तेमाल नहीं हो सकती। कोई दूसरी चुनें।',
 			'validation.required' => 'यह फ़ील्ड ज़रूरी है',
 			'validation.passwordTooShort' => 'कम से कम 6 कैरेक्टर',
 			'validation.invalidPhone' => 'फ़ोन नंबर सही नहीं है',
@@ -1688,7 +2275,6 @@ extension on TranslationsHi {
 			'welcome.createAccount' => 'अकाउंट बनाओ',
 			'welcome.haveAccount' => 'मेरा अकाउंट पहले से है',
 			'auth.phone' => 'फ़ोन',
-			'auth.phoneHint' => '6 90 00 00 01',
 			'auth.dialCode' => ({required Object code}) => 'देश कोड: ${code}',
 			'auth.password' => 'पासवर्ड',
 			'auth.showPassword' => 'पासवर्ड दिखाओ',
@@ -1715,7 +2301,7 @@ extension on TranslationsHi {
 			'auth.church.editTitle' => 'मेरी प्रोफ़ाइल',
 			'auth.church.editSubtitle' => 'अपना नाम, चर्च और सभा अपडेट करो।',
 			'auth.church.country' => 'देश',
-			'auth.church.countryHint' => 'भारत',
+			'auth.church.countryHint' => 'अपना देश चुनो',
 			'auth.church.city' => 'शहर',
 			'auth.church.cityHint' => 'नई दिल्ली',
 			'auth.church.church' => 'चर्च',
@@ -1726,6 +2312,33 @@ extension on TranslationsHi {
 			'auth.church.submit' => 'पूरा करो',
 			'auth.church.skip' => 'यह चरण छोड़ो',
 			'auth.church.saved' => 'प्रोफ़ाइल सेव हो गई',
+			'auth.forgot.link' => 'पासवर्ड भूल गए?',
+			'auth.forgot.title' => 'पासवर्ड भूल गए',
+			'auth.forgot.phoneText' => 'अपना नंबर डालो: नया पासवर्ड चुनने के लिए हम SMS से एक कोड भेजेंगे।',
+			'auth.forgot.sendCode' => 'कोड पाओ',
+			'auth.forgot.codeTitle' => 'कोड डालो',
+			'auth.forgot.codeText' => ({required Object phone}) => 'हमने ${phone} पर 6 अंकों का कोड भेजा है।',
+			'auth.forgot.code' => 'SMS से मिला कोड',
+			'auth.forgot.codeInvalid' => 'कोड 6 अंकों का है',
+			'auth.forgot.verify' => 'जाँचो',
+			'auth.forgot.resend' => 'कोड फिर से भेजो',
+			'auth.forgot.resendIn' => ({required Object seconds}) => '${seconds} सेकंड में फिर भेजो',
+			'auth.forgot.changeNumber' => 'नंबर बदलो',
+			'auth.forgot.passwordTitle' => 'नया पासवर्ड',
+			'auth.forgot.passwordText' => 'अपने खाते के लिए नया पासवर्ड चुनो।',
+			'auth.forgot.submit' => 'सहेजो और साइन इन करो',
+			'auth.forgot.done' => 'पासवर्ड बदल गया। फिर से स्वागत है!',
+			'auth.forgot.remembered' => 'याद आ गया?',
+			'auth.forgot.invalidCode' => 'यह कोड सही नहीं है।',
+			'auth.forgot.expired' => 'कोड की अवधि खत्म हो गई। नया कोड माँगो।',
+			'auth.forgot.tooManyRequests' => 'बहुत ज़्यादा कोशिशें। थोड़ी देर बाद फिर कोशिश करो।',
+			'auth.forgot.unavailable' => 'अभी पासवर्ड रीसेट उपलब्ध नहीं है।',
+			'auth.forgot.noAccount' => 'इस नंबर से कोई खाता नहीं है।',
+			'countries.dialCodeTitle' => 'देश कोड',
+			'countries.title' => 'तुम्हारा देश',
+			'countries.search' => 'देश या कोड खोजो',
+			'countries.none' => 'कोई देश नहीं मिला',
+			'countries.change' => 'देश बदलो',
 			'nav.home' => 'होम',
 			'nav.reports' => 'रिपोर्ट',
 			'nav.hymns' => 'भजन',
@@ -1737,13 +2350,12 @@ extension on TranslationsHi {
 			'home.todayTitle' => 'आज की रिपोर्ट',
 			'home.progress' => ({required Object total, required Object filled}) => '${total} में से ${filled}',
 			'home.progressLabel' => 'आइटम भरे गए',
+			'home.goals' => 'लक्ष्य',
 			'home.continueReport' => 'जारी रखो',
 			'home.startReport' => 'शुरू करो',
 			'home.weekTitle' => 'तुम्हारा हफ़्ता',
 			'home.weekScore' => ({required num filled, required Object total}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(filled, one: '${total} में से ${filled} दिन', other: '${total} में से ${filled} दिन', ), 
-			'home.community' => 'तुम्हारे समुदाय में',
-			'home.prayerTitle' => 'प्रार्थना विषय',
-			'home.prayerText' => 'जल्द ही यहाँ तुम्हारी सभा के प्रार्थना विषय दिखेंगे, ताकि हर दिन उनके लिए प्रार्थना कर सको।',
+			'home.community' => 'अभी CMFI में',
 			'home.eventsTitle' => 'कार्यक्रम',
 			'home.hymnsTitle' => 'भजन',
 			'home.hymnsResume' => ({required Object number}) => 'नं. ${number} पर लौटो',
@@ -1811,6 +2423,12 @@ extension on TranslationsHi {
 			'reports.summary.empty' => 'इस अवधि में कोई रिपोर्ट नहीं है।',
 			'reports.summary.goalDays' => ({required num n, required Object total}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n, one: '${total} में से ${n} दिन लक्ष्य पूरा हुआ', other: '${total} में से ${n} दिन लक्ष्य पूरा हुआ', ), 
 			'reports.summary.share' => 'यह सारांश शेयर करो',
+			'reports.summary.goals' => 'लक्ष्य',
+			'reports.summary.goalsAverage' => 'तुम्हारे लक्ष्यों की औसत पूर्ति',
+			'reports.summary.goalsHint' => 'हर दिन गिना जाता है, खाली भी। आज भरने के बाद गिना जाता है।',
+			'reports.summary.evolution' => 'तुम्हारे लक्ष्यों की प्रगति',
+			'reports.summary.evolutionHint' => 'हफ़्ते दर हफ़्ते, पिछले 12 हफ़्तों में।',
+			'reports.summary.premiumYear' => 'साल और तुम्हारे लक्ष्यों की प्रगति Premium के साथ आते हैं।',
 			'reports.noItems' => 'अभी भरने के लिए कोई आइटम नहीं है।',
 			'reports.statusPending' => 'अभी भेजा नहीं गया',
 			'reports.savedOffline' => 'नेटवर्क नहीं है: यह दिन फ़ोन में सेव है और नेटवर्क मिलते ही भेज दिया जाएगा।',
@@ -1818,6 +2436,33 @@ extension on TranslationsHi {
 			'reports.export' => 'मेरी रिपोर्ट एक्सपोर्ट करो',
 			'reports.goal' => ({required Object value}) => 'लक्ष्य: ${value}',
 			'reports.goalReached' => 'लक्ष्य पूरा हुआ',
+			'reports.dayGoals' => 'दिन के लक्ष्य',
+			'reports.goalsReached' => ({required Object total, required Object reached}) => 'पूरे हुए: ${total} में से ${reached}',
+			'reports.standardItems.lb' => 'बाइबल पठन',
+			'reports.standardItems.ps' => 'व्यक्तिगत प्रार्थना',
+			'reports.standardItems.rdqad' => 'मनन',
+			'reports.standardItems.pg' => 'समूह प्रार्थना',
+			'reports.standardItems.llc' => 'मसीही साहित्य पठन',
+			'reports.standardItems.jc' => 'पूर्ण उपवास',
+			'reports.standardItems.jp' => 'आंशिक उपवास',
+			'reports.standardItems.dimes' => 'दशमांश',
+			'reports.standardItems.off' => 'भेंट',
+			'reports.units.chapters.name' => 'अध्यायों की संख्या',
+			'reports.units.chapters.label' => 'अध्याय',
+			'reports.units.chapters.symbol' => 'अध्याय',
+			'reports.units.chapters.count' => ({required num n, required Object value}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n, one: '${value} अध्याय', other: '${value} अध्याय', ), 
+			'reports.units.times.name' => 'कितनी बार',
+			'reports.units.times.label' => 'बार',
+			'reports.units.times.symbol' => 'बार',
+			'reports.units.times.count' => ({required num n, required Object value}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n, one: '${value} बार', other: '${value} बार', ), 
+			'reports.units.pages.name' => 'पृष्ठों की संख्या',
+			'reports.units.pages.label' => 'पृष्ठ',
+			'reports.units.pages.symbol' => 'पृष्ठ',
+			'reports.units.pages.count' => ({required num n, required Object value}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n, one: '${value} पृष्ठ', other: '${value} पृष्ठ', ), 
+			'reports.units.percent.name' => 'प्रतिशत',
+			'reports.units.percent.label' => 'प्रतिशत',
+			'reports.units.percent.symbol' => '%',
+			'reports.units.percent.count' => ({required Object value}) => '${value}%',
 			'reminder.title' => 'तुम्हारी आज की रिपोर्ट',
 			'reminder.body' => 'दिन ख़त्म होने से पहले एक मिनट निकालकर अपना बाइबल पठन, अपनी प्रार्थना… दर्ज करो।',
 			'reminder.channel' => 'रिपोर्ट रिमाइंडर',
@@ -1922,7 +2567,6 @@ extension on TranslationsHi {
 			'more.editProfile' => 'प्रोफ़ाइल बदलो',
 			'more.community' => 'समुदाय',
 			'more.events' => 'कार्यक्रम',
-			'more.announcements' => 'घोषणाएँ',
 			'more.reports' => 'दैनिक रिपोर्ट',
 			'more.myItems' => 'मेरे आइटम',
 			'more.app' => 'ऐप',
@@ -1933,6 +2577,7 @@ extension on TranslationsHi {
 			'more.themeLight' => 'लाइट',
 			'more.themeDark' => 'डार्क',
 			'more.logout' => 'लॉग आउट करो',
+			'more.account' => 'खाता',
 			'more.languageTitle' => 'ऐप की भाषा',
 			'more.completeProfile' => 'अपना नाम जोड़ो',
 			'more.accompaniment' => 'मार्गदर्शन',
@@ -1943,6 +2588,7 @@ extension on TranslationsHi {
 			'more.admin' => 'प्रबंधन',
 			'more.staff' => 'टीम और भूमिकाएँ',
 			'more.manageEvents' => 'कार्यक्रम',
+			'more.disciples' => 'मेरे शिष्य',
 			'authorities.title' => 'मेरे आत्मिक अगुवे',
 			'authorities.intro' => 'वे लोग जो परमेश्वर के साथ तुम्हारे सफ़र में तुम्हारा साथ देते हैं: तुम्हारा चेला बनाने वाला और तुम्हारे दूसरे अगुवे।',
 			'authorities.discipleMaker' => 'चेला बनाने वाला',
@@ -1978,6 +2624,7 @@ extension on TranslationsHi {
 			'authorities.form.alreadyAdded' => 'यह व्यक्ति पहले से तुम्हारे अगुवों में शामिल है।',
 			'authorities.form.makerExists' => 'तुम्हारे पास पहले से एक चेला बनाने वाला है।',
 			'authorities.form.yourself' => 'यह तुम्हारा अपना यूज़रनेम है।',
+			'authorities.form.sharingHelp' => 'तुम्हारा शिष्य बनाने वाला तुम्हारी नियमितता (भरे दिन, सिलसिला, लक्ष्यों का %) देखेगा, तुम्हारी रिपोर्ट की सामग्री कभी नहीं। तुम इसे उसके कार्ड पर बंद कर सकते हो।',
 			'authorities.statusPending' => 'इंतज़ार में',
 			'authorities.statusDeclined' => 'अस्वीकार',
 			'authorities.pendingHelp' => ({required Object name}) => '${name} के स्वीकार करने पर उनकी संपर्क जानकारी दिखेगी।',
@@ -1989,6 +2636,10 @@ extension on TranslationsHi {
 			'authorities.acceptedRequest' => ({required Object name}) => 'अब ${name} तुम्हारे मार्गदर्शन में हैं।',
 			'authorities.declinedRequest' => ({required Object name}) => '${name} का अनुरोध अस्वीकार किया गया।',
 			'authorities.requestsCount' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n, one: '${n} अनुरोध देखना बाकी है', other: '${n} अनुरोध देखने बाकी हैं', ), 
+			'authorities.sharing.title' => 'मेरी नियमितता साझा करो',
+			'authorities.sharing.help' => ({required Object name}) => '${name} तुम्हारे भरे हुए दिन, तुम्हारा सिलसिला और तुम्हारे लक्ष्यों का % देखता है, तुम्हारी रिपोर्ट की सामग्री कभी नहीं।',
+			'authorities.sharing.on' => ({required Object name}) => 'तुम्हारी नियमितता ${name} के साथ साझा है।',
+			'authorities.sharing.off' => ({required Object name}) => '${name} अब तुम्हारी नियमितता नहीं देखता।',
 			'members.username' => 'यूज़रनेम',
 			'members.usernameHint' => 'naam.surname',
 			'members.usernameHelp' => 'दूसरे सदस्य तुम्हें इसी नाम से ढूँढेंगे।',
@@ -2002,7 +2653,7 @@ extension on TranslationsHi {
 			'members.deleteAccount.button' => 'मेरा खाता हटाओ',
 			'members.deleteAccount.title' => 'मेरा खाता हटाओ',
 			'members.deleteAccount.intro' => 'यह स्थायी है। तुम्हारा खाता और उससे जुड़ा सब कुछ मिटा दिया जाएगा:',
-			'members.deleteAccount.itemProfile' => 'तुम्हारी प्रोफ़ाइल, यूज़रनेम और पासवर्ड',
+			'members.deleteAccount.itemProfile' => 'तुम्हारी प्रोफ़ाइल, फ़ोटो, यूज़रनेम और पासवर्ड',
 			'members.deleteAccount.itemReports' => 'तुम्हारी सारी रिपोर्ट, आइटम और लक्ष्य',
 			'members.deleteAccount.itemAuthorities' => 'तुम्हारे आत्मिक अगुवे और मिले हुए अनुरोध',
 			'members.deleteAccount.itemEvents' => 'कार्यक्रमों के लिए तुम्हारे पंजीकरण',
@@ -2064,6 +2715,8 @@ extension on TranslationsHi {
 			'hymns.reader.favoriteAdded' => 'पसंदीदा में जोड़ा गया',
 			'hymns.reader.favoriteRemoved' => 'पसंदीदा से हटाया गया',
 			'hymns.reader.more' => 'और विकल्प',
+			_ => null,
+		} ?? switch (path) {
 			'hymns.reader.copy' => 'बोल कॉपी करो',
 			'hymns.reader.copied' => 'बोल कॉपी हो गए',
 			'hymns.reader.project' => 'प्रोजेक्शन मोड',
@@ -2129,8 +2782,6 @@ extension on TranslationsHi {
 			'events.contact' => 'संपर्क',
 			'events.call' => ({required Object name}) => '${name} को कॉल करो',
 			'events.otherEditions' => 'दूसरे संस्करण',
-			_ => null,
-		} ?? switch (path) {
 			'events.cancelledBanner' => 'यह कार्यक्रम रद्द हो गया है।',
 			'events.calendarFailed' => 'फ़ोन का कैलेंडर नहीं खुल पाया।',
 			'events.linkFailed' => 'यह लिंक नहीं खुल पाया।',
@@ -2266,6 +2917,120 @@ extension on TranslationsHi {
 			'events.admin.photoDelete' => 'यह फ़ोटो हटाओ',
 			'events.admin.photoDeleted' => 'फ़ोटो हटा दी गई।',
 			'events.admin.confirmDelete' => 'हटाओ',
+			'events.upcomingCount' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n, one: '${n} आने वाला कार्यक्रम', other: '${n} आने वाले कार्यक्रम', ), 
+			'events.slide' => ({required Object current, required Object total}) => 'कार्यक्रम ${current} / ${total}',
+			'notifications.title' => 'सूचनाएँ',
+			'notifications.channel' => 'समुदाय की घोषणाएँ',
+			'notifications.empty' => 'अभी कोई सूचना नहीं',
+			'notifications.emptyHint' => 'समुदाय की घोषणाएँ यहाँ आएँगी।',
+			'notifications.unreadLabel' => ({required Object title}) => 'अपठित: ${title}',
+			'notifications.documents' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n, one: '${n} PDF दस्तावेज़', other: '${n} PDF दस्तावेज़', ), 
+			'notifications.unread' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n, one: '${n} अपठित', other: '${n} अपठित', ), 
+			'notifications.image' => ({required Object n}) => 'चित्र ${n}',
+			'notifications.document' => 'PDF दस्तावेज़',
+			'notifications.documentSize' => ({required Object kb}) => '${kb} KB',
+			'notifications.received' => ({required Object title}) => 'नई सूचना: ${title}',
+			'premium.name' => 'CMFI Connect Premium',
+			'premium.pill' => 'Premium',
+			'premium.subtitle' => 'परमेश्वर के साथ अपनी चाल में आगे बढ़ो, और सेवकाई का साथ दो।',
+			'premium.widgetTitle' => 'होम स्क्रीन विजेट',
+			'premium.widgetText' => 'ऐप खोले बिना आज की रिपोर्ट और तुम्हारे लक्ष्य।',
+			'premium.statsTitle' => 'पूरे साल के तुम्हारे लक्ष्य',
+			'premium.statsText' => 'साल का सारांश और तुम्हारे लक्ष्यों की प्रगति, हफ़्ते दर हफ़्ते।',
+			'premium.supportTitle' => 'तुम सेवकाई का साथ देते हो',
+			'premium.supportText' => 'तुम्हारी सदस्यता पूरे समुदाय के लिए ऐप को चालू रखती है।',
+			'premium.annual' => 'सालाना',
+			'premium.monthly' => 'मासिक',
+			'premium.perYear' => ({required Object price}) => '${price} / साल',
+			'premium.perMonth' => ({required Object price}) => '${price} / महीना',
+			'premium.annualPerMonth' => ({required Object price}) => 'यानी ${price} प्रति महीना',
+			'premium.best' => 'सबसे फ़ायदेमंद',
+			'premium.trialDays' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n, one: '${n} दिन मुफ़्त आज़माओ', other: '${n} दिन मुफ़्त आज़माओ', ), 
+			'premium.trialMonths' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n, one: '${n} महीना मुफ़्त आज़माओ', other: '${n} महीने मुफ़्त आज़माओ', ), 
+			'premium.subscribe' => 'सदस्यता लो',
+			'premium.startTrial' => 'मुफ़्त आज़माना शुरू करो',
+			'premium.restore' => 'ख़रीदारी वापस लाओ',
+			'premium.restored' => 'Premium इस फ़ोन पर वापस आ गया',
+			'premium.nothingToRestore' => 'इस खाते के लिए कोई Premium ख़रीदारी नहीं',
+			'premium.thanks' => 'धन्यवाद! Premium चालू है।',
+			'premium.failed' => 'ख़रीदारी पूरी नहीं हुई। थोड़ी देर में फिर कोशिश करो।',
+			'premium.unavailable' => 'अभी ऑफ़र उपलब्ध नहीं हैं।',
+			'premium.renews' => ({required Object store}) => 'सदस्यता अपने आप नवीनीकृत होती है। तुम इसे कभी भी अपने ${store} खाते की सेटिंग में रद्द कर सकते हो।',
+			'premium.terms' => 'उपयोग की शर्तें',
+			'premium.privacy' => 'गोपनीयता',
+			'premium.activeTitle' => 'तुम्हारे पास Premium है',
+			'premium.activeText' => 'CMFI Connect का साथ देने के लिए धन्यवाद! विजेट और तुम्हारे सारांश का साल खुले हैं।',
+			'premium.staffText' => 'तुम CMFI Connect टीम का हिस्सा हो, इसलिए Premium तुम्हें मुफ़्त मिला है।',
+			'premium.moreSubtitle' => 'विजेट, पूरे साल के लक्ष्य',
+			'premium.moreActive' => 'चालू',
+			'premium.unlock' => 'Premium से खोलो',
+			'premium.trialThen' => ({required Object trial, required Object price}) => '${trial}, फिर ${price}',
+			'premium.savePercent' => ({required Object percent}) => '−${percent}',
+			'premium.choose' => 'अपना प्लान चुनो',
+			'premium.cancelAnytime' => 'कोई बंधन नहीं, कभी भी रद्द करो',
+			'premium.restoreShort' => 'बहाल करें',
+			'premium.termsShort' => 'शर्तें',
+			'premium.semiannual' => 'छमाही',
+			'premium.perSemester' => ({required Object price}) => '${price} / 6 महीने',
+			'homeWidget.title' => 'आज',
+			'homeWidget.done' => 'हो गया',
+			'homeWidget.todo' => 'भरना बाकी',
+			'homeWidget.open' => 'भरो',
+			'homeWidget.locked' => 'Premium से विजेट चालू करो',
+			'homeWidget.signedOut' => 'ऐप में साइन इन करो',
+			'ministry.title' => 'हमारी सेवकाई',
+			'ministry.tagline' => 'पृथ्वी की छोर तक',
+			'ministry.count' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n, one: '${n} राष्ट्र', other: '${n} राष्ट्र', ), 
+			'ministry.fromYaounde' => 'याउंडे से, सुसमाचार एक राष्ट्र से दूसरे राष्ट्र तक जाता है।',
+			'ministry.dragHint' => 'उंगली से ग्लोब घुमाओ, किसी राष्ट्र को छुओ।',
+			'ministry.globeLabel' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n, one: 'ग्लोब: ${n} राष्ट्र जहाँ सेवकाई मौजूद है। नीचे की सूची उसे बताती है।', other: 'ग्लोब: ${n} राष्ट्र जहाँ सेवकाई मौजूद है। नीचे की सूची सबको बताती है।', ), 
+			'ministry.voyage' => 'यात्रा',
+			'ministry.pause' => 'रोको',
+			'ministry.previous' => 'पिछला राष्ट्र',
+			'ministry.next' => 'अगला राष्ट्र',
+			'ministry.number' => ({required Object n}) => 'राष्ट्र क्रमांक ${n}',
+			'ministry.since' => ({required Object year}) => '${year} से',
+			'ministry.pray' => 'प्रार्थना',
+			'ministry.prayTitle' => ({required Object country}) => '${country} के लिए प्रार्थना',
+			'ministry.prayThanks' => ({required Object country}) => '${country} में परमेश्वर के काम के लिए धन्यवाद दो।',
+			'ministry.prayAssemblies' => ({required Object country}) => '${country} की कलीसियाओं और उनके अगुवों के लिए प्रार्थना करो।',
+			'ministry.prayUnreached' => ({required Object country}) => 'प्रार्थना करो कि ${country} में जिन्होंने अभी तक विश्वास नहीं किया, वे यीशु से मिलें।',
+			'ministry.purpose' => 'हमारा उद्देश्य',
+			'ministry.nations' => 'राष्ट्र',
+			'ministry.search' => 'राष्ट्र खोजो',
+			'ministry.none' => 'कोई राष्ट्र नहीं मिला',
+			'ministry.homeText' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n, one: '${n} राष्ट्र में मौजूद', other: '${n} राष्ट्रों में मौजूद', ), 
+			'ministry.nationsSubtitle' => 'ग्लोब और एक राष्ट्र से दूसरे राष्ट्र की यात्रा',
+			'ministry.purposeSubtitle' => 'हमारे तीन लक्ष्य',
+			'ministry.missionaries' => 'हमारे मिशनरी',
+			'ministry.missionariesSubtitle' => 'जिन्हें प्रभु राष्ट्रों में भेजता है',
+			'ministry.heroes' => 'हमारे नायक',
+			'ministry.heroesSubtitle' => 'जिनका विश्वास हमें प्रेरित करता है',
+			'ministry.goalOf' => ({required Object n, required Object total}) => 'हमारा लक्ष्य · ${n}/${total}',
+			'ministry.previousGoal' => 'पिछला लक्ष्य',
+			'ministry.nextGoal' => 'अगला लक्ष्य',
+			'ministry.media.books' => 'पुस्तकें',
+			'ministry.media.tracts' => 'पर्चे',
+			'ministry.media.magazines' => 'पत्रिकाएँ',
+			'ministry.media.cds' => 'सीडी',
+			'ministry.media.dvds' => 'डीवीडी',
+			'ministry.media.radio' => 'रेडियो',
+			'ministry.media.tv' => 'टेलीविज़न',
+			'ministry.media.internet' => 'इंटरनेट',
+			'ministry.goals.crusade.title' => 'हर प्राणी तक सुसमाचार अभियान',
+			'ministry.goals.crusade.text' => 'हमारी पीढ़ी में जीने वाले हर व्यक्ति को सुसमाचार सुनाना, ताकि पवित्र आत्मा की सामर्थ्य में प्रचारित सुसमाचार 10 अरब लोगों तक पहुँचे — संचार के हर साधन (हमारी पुस्तकें, पर्चे, पत्रिकाएँ, सीडी, डीवीडी, रेडियो, टेलीविज़न और इंटरनेट) का उपयोग करते हुए, जितनी जल्दी हो सके।',
+			'ministry.goals.crusade.reached' => 'लोगों तक सुसमाचार',
+			'ministry.goals.disciples.title' => 'चेले बनाना',
+			'ministry.goals.disciples.text' => '250 राष्ट्रों में 1 अरब लोगों को यीशु मसीह को प्रभु और उद्धारकर्ता के रूप में जानने तक ले जाना, उन्हें चेले बनाना ताकि वे हर बात में उसकी आज्ञा मानें, और उन्हें वर्ष 2065 तक 2.5 करोड़ घरेलू कलीसियाओं में इकट्ठा होने के लिए संगठित करना।',
+			'ministry.goals.disciples.people' => 'चेले',
+			'ministry.goals.disciples.nations' => 'राष्ट्र',
+			'ministry.goals.disciples.churches' => 'घरेलू कलीसियाएँ',
+			'ministry.goals.disciples.by' => ({required Object year}) => '${year} तक',
+			'ministry.goals.revival.title' => 'विश्वव्यापी जागृति को शीघ्र लाना',
+			'ministry.goals.revival.text' => 'उपवास और मध्यस्थ प्रार्थना के द्वारा परमेश्वर के साथ सहयोग करना, उस विश्वव्यापी जागृति के लिए जो आकाश को फाड़ देगी, पृथ्वी को हिला देगी और हमारी पीढ़ी में मसीह की महिमा करेगी, ताकि हमारे प्रभु यीशु मसीह का स्वर्ग से शीघ्र आगमन हो और वह अपनी तैयार की गई दुल्हन से मिले।',
+			'ministry.goals.revival.fasting' => 'उपवास',
+			'ministry.goals.revival.intercession' => 'मध्यस्थ प्रार्थना',
+			'ministry.goals.revival.pray' => 'अभी प्रार्थना करो',
 			'prayer.moments.morning' => 'सुबह',
 			'prayer.moments.noon' => 'दोपहर',
 			'prayer.moments.evening' => 'शाम',
@@ -2460,6 +3225,106 @@ extension on TranslationsHi {
 			'prayer.importunity.inviteSheet.addUsername' => 'जोड़ो',
 			'prayer.importunity.inviteSheet.send' => 'न्योते भेजो',
 			'prayer.importunity.inviteSheet.sent' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n, zero: 'उन्हें पहले ही न्योता दिया जा चुका था।', one: '${n} न्योता भेजा गया', other: '${n} न्योते भेजे गए', ), 
+			'sending.title' => 'मेरे आत्मिक अगुवों को भेजना',
+			'sending.moreOff' => 'बंद',
+			'sending.intro' => 'चुने हुए समय पर CMFI Connect उस अवधि की तुम्हारी रिपोर्ट तैयार करता है। तुम्हें बस उसे अपने आत्मिक अगुवों को भेजना है।',
+			'sending.enabled' => 'इसे नियमित रूप से तैयार करो',
+			_ => null,
+		} ?? switch (path) {
+			'sending.rhythm' => 'अंतराल',
+			'sending.weekly' => 'हर हफ़्ते',
+			'sending.biweekly' => 'हर 2 हफ़्ते',
+			'sending.monthly' => 'हर महीने',
+			'sending.day' => 'दिन',
+			'sending.monthlyDay' => 'हर महीने की 1 तारीख़ को, पिछले महीने के लिए',
+			'sending.time' => 'समय',
+			'sending.recipients' => 'प्राप्तकर्ता',
+			'sending.noAuthorities' => 'पहले अपने आत्मिक अगुवे जोड़ो।',
+			'sending.addAuthorities' => 'मेरे अगुवे जोड़ो',
+			'sending.viaWhatsApp' => 'WhatsApp से',
+			'sending.viaEmail' => 'ई-मेल से',
+			'sending.viaBoth' => 'WhatsApp या ई-मेल से',
+			'sending.viaShare' => 'शेयर करके',
+			'sending.next' => ({required Object date}) => 'अगला: ${date}',
+			'sending.prepareNow' => 'अभी तैयार करो',
+			'sending.history' => 'पिछली बार भेजे गए',
+			'sending.notificationTitle' => 'तुम्हारी रिपोर्ट तैयार है',
+			'sending.notificationBody' => 'एक टैप में अपने अगुवों को भेजो।',
+			'sending.channel' => 'रिपोर्ट भेजना',
+			'sending.readyTitle' => 'तुम्हारी रिपोर्ट तैयार है',
+			'sending.preview' => 'संदेश का पूर्वावलोकन',
+			'sending.greeting' => ({required Object name}) => 'नमस्ते ${name},',
+			'sending.whatsApp' => 'WhatsApp',
+			'sending.email' => 'ई-मेल',
+			'sending.sharePdf' => 'PDF शेयर करो',
+			'sending.shareText' => 'टेक्स्ट शेयर करो',
+			'sending.sent' => 'भेजा गया',
+			'sending.shared' => 'शेयर किया',
+			'sending.noRecipients' => 'सेटिंग्स में प्राप्तकर्ता चुनो, या PDF शेयर करो।',
+			'sending.settings' => 'सेटिंग्स',
+			'sending.permissionDenied' => 'सही समय पर याद दिलाने के लिए सूचनाएँ चालू करो।',
+			'streak.title' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n, one: 'लगातार ${n} दिन!', other: 'लगातार ${n} दिन!', ), 
+			'streak.cardDays' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n, one: 'दिन परमेश्वर के साथ', other: 'दिन परमेश्वर के साथ', ), 
+			'streak.lines.week' => 'पूरा एक हफ़्ता प्रभु के साथ, हर दिन। शाबाश, ऐसे ही चलते रहो!',
+			'streak.lines.month' => 'एक महीने की वफ़ादारी! जो तुम हर दिन बोते हो, वह फल लाता है।',
+			'streak.lines.hundred' => 'परमेश्वर के साथ सौ दिन! तुम्हारी लगन एक सुंदर गवाही है।',
+			'streak.lines.year' => 'परमेश्वर के साथ पूरा एक साल! तुम्हारी वफ़ादारी के लिए उसकी महिमा हो।',
+			'streak.share' => 'शेयर करो',
+			'streak.close' => 'आगे बढ़ो',
+			'shortcuts.today' => 'अपनी रिपोर्ट भरो',
+			'shortcuts.hymns' => 'भजन',
+			'shortcuts.retreat' => 'अभी का प्रार्थना-समय',
+			'blocking.report' => 'रिपोर्ट करो',
+			'blocking.block' => ({required Object name}) => '${name} को ब्लॉक करो',
+			'blocking.blockTitle' => ({required Object name}) => '${name} को ब्लॉक करो?',
+			'blocking.blockText' => ({required Object name}) => 'तुम्हें ${name} से अब कोई न्योता नहीं मिलेगा। यह न्योता हटा दिया जाएगा।',
+			'blocking.blockAction' => 'ब्लॉक करो',
+			'blocking.blocked' => ({required Object name}) => '${name} अब तुम्हें न्योता नहीं दे पाएगा।',
+			'blocking.reportTitle' => 'इस न्योते की रिपोर्ट करो',
+			'blocking.reportText' => 'हमें बताओ क्या गलत है: समुदाय के अगुवे इसे देखेंगे।',
+			'blocking.reasons.spam' => 'अनचाहा',
+			'blocking.reasons.offensive' => 'चौंकाने वाली या आपत्तिजनक सामग्री',
+			'blocking.reasons.other' => 'अन्य',
+			'blocking.comment' => 'टिप्पणी',
+			'blocking.commentHint' => 'अगुवों को क्या जानना चाहिए',
+			'blocking.send' => 'रिपोर्ट भेजो',
+			'blocking.reported' => 'धन्यवाद, अगुवे इसे देखेंगे।',
+			'blocking.listTitle' => 'ब्लॉक किए गए सदस्य',
+			'blocking.intro' => 'उनके प्रार्थना के न्योते अब तुम तक नहीं पहुँचते।',
+			'blocking.empty' => 'तुमने किसी को ब्लॉक नहीं किया है।',
+			'blocking.unblock' => 'अनब्लॉक करो',
+			'blocking.unblocked' => ({required Object name}) => '${name} तुम्हें फिर से न्योता दे सकता है।',
+			'verses.title' => 'आज का वचन',
+			'verses.share' => 'वचन शेयर करो',
+			'verses.shareImage' => 'चित्र शेयर करो',
+			'verses.shareText' => 'टेक्स्ट शेयर करो',
+			'profilePhoto.title' => 'प्रोफ़ाइल फ़ोटो',
+			'profilePhoto.add' => 'प्रोफ़ाइल फ़ोटो जोड़ें',
+			'profilePhoto.change' => 'प्रोफ़ाइल फ़ोटो बदलें',
+			'profilePhoto.seenBy' => 'जहाँ भी आपका नाम दिखता है, अन्य सदस्य इसे देखते हैं।',
+			'profilePhoto.camera' => 'फ़ोटो लें',
+			'profilePhoto.gallery' => 'गैलरी से चुनें',
+			'profilePhoto.remove' => 'फ़ोटो हटाएँ',
+			'profilePhoto.cropTitle' => 'अपनी फ़ोटो काटें',
+			'profilePhoto.cropHint' => 'उंगलियों से फ़ोटो को खिसकाएँ और बड़ा करें।',
+			'profilePhoto.use' => 'यह फ़ोटो इस्तेमाल करें',
+			'profilePhoto.unreadable' => 'यह तस्वीर नहीं खुल सकती। कोई दूसरी चुनें।',
+			'profilePhoto.saved' => 'आपकी प्रोफ़ाइल फ़ोटो सहेज ली गई है।',
+			'profilePhoto.removed' => 'आपकी प्रोफ़ाइल फ़ोटो हटा दी गई है।',
+			'disciples.title' => 'मेरे शिष्य',
+			'disciples.intro' => 'वे सदस्य जिन्होंने तुम्हें अपना शिष्य बनाने वाला चुना है। तुम उनकी नियमितता देखते हो, उनकी रिपोर्ट की सामग्री कभी नहीं।',
+			'disciples.empty' => 'अभी कोई शिष्य नहीं',
+			'disciples.emptyText' => 'जब कोई सदस्य तुम्हें अपना शिष्य बनाने वाला चुनता है और तुम उसका अनुरोध स्वीकार करते हो, तो वह यहाँ दिखता है।',
+			'disciples.count' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n, other: '${n} शिष्य', ), 
+			'disciples.filled' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n, other: '30 में से ${n} दिन भरे', ), 
+			'disciples.streak' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n, other: 'लगातार ${n} दिन', ), 
+			'disciples.noStreak' => 'कोई चालू सिलसिला नहीं',
+			'disciples.lastToday' => 'आज भरा',
+			'disciples.lastYesterday' => 'पिछली बार: कल',
+			'disciples.lastDaysAgo' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n, other: 'पिछली बार: ${n} दिन पहले', ), 
+			'disciples.noReport' => 'इस साल कोई रिपोर्ट नहीं',
+			'disciples.goals' => ({required Object percent}) => 'लक्ष्य: ${percent} %',
+			'disciples.notShared' => 'अपनी नियमितता साझा नहीं करता',
 			_ => null,
 		};
 	}

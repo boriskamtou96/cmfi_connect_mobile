@@ -19,6 +19,7 @@ import '../../../core/widgets/labeled_field.dart';
 import '../../../core/widgets/section_card.dart';
 import '../../../core/widgets/sub_page.dart';
 import '../application/new_item_controller.dart';
+import '../domain/measure_format.dart';
 import 'widgets/measure_labels.dart';
 
 /// Creates a personal item: code, name, and what it measures.
@@ -287,7 +288,7 @@ class NewItemScreen extends HookConsumerWidget {
                                 t,
                                 quantity: tracksQuantity.value,
                                 duration: tracksDuration.value,
-                                unit: unitController.text,
+                                unit: ItemUnit.typed(unitController.text),
                               ),
                               style: TextStyle(
                                 fontSize: 12,

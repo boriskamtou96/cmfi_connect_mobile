@@ -108,6 +108,85 @@ void main() {
       final history = [day(1, lb: 3), day(2, lb: 1), day(3, lb: 5), day(4)];
       expect(goal.daysReached(history, 1), 2);
     });
+
+    const goals = {1: ReportGoal(quantity: 4), 2: ReportGoal(minutes: 30)};
+
+    test('the goals of a day: the mean of the items with a goal', () {
+      final result = dayGoals(goals, day(1, lb: 2, ps: 30).entries)!;
+      expect(result.progress, 0.75);
+      expect(result.reached, 1);
+      expect(result.total, 2);
+    });
+
+    test('an item left empty counts 0, an item without goal not at all', () {
+      final entries = [
+        ...day(1, lb: 4).entries,
+        // in the form but not filled in
+        const ReportEntry(activityTypeId: 2, code: 'PS', label: 'Prière seule'),
+        const ReportEntry(
+          activityTypeId: 9,
+          code: 'EV',
+          label: 'Évangélisation',
+          quantity: 1,
+        ),
+      ];
+      final result = dayGoals(goals, entries)!;
+      expect(result.progress, 0.5);
+      expect(result.total, 2);
+      expect(dayGoals(const {}, entries), isNull);
+    });
+
+    test('the goals of a period count every day, today once filled', () {
+      final history = [day(5, lb: 4, ps: 30), day(6, lb: 2)];
+      // 5, 6, 7 (no report) and 8 (today, not filled): three days count
+      final result = periodGoals(
+        goals,
+        itemIds: [1, 2],
+        history: history,
+        from: DateTime(2026, 10, 5),
+        to: DateTime(2026, 10, 8),
+        today: DateTime(2026, 10, 8),
+      )!;
+      expect(result.byItem[1], closeTo((1 + 0.5 + 0) / 3, 1e-9));
+      expect(result.byItem[2], closeTo(1 / 3, 1e-9));
+      expect(result.total, closeTo((0.5 + 1 / 3) / 2, 1e-9));
+
+      // today filled in: it counts
+      final withToday = periodGoals(
+        goals,
+        itemIds: [1, 2],
+        history: [...history, day(8, lb: 4, ps: 30)],
+        from: DateTime(2026, 10, 5),
+        to: DateTime(2026, 10, 8),
+        today: DateTime(2026, 10, 8),
+      )!;
+      expect(withToday.byItem[1], closeTo(2.5 / 4, 1e-9));
+    });
+
+    test('no goal, or only today not filled: no percentage', () {
+      expect(
+        periodGoals(
+          const {},
+          itemIds: [1],
+          history: const [],
+          from: DateTime(2026, 10, 5),
+          to: DateTime(2026, 10, 8),
+          today: DateTime(2026, 10, 8),
+        ),
+        isNull,
+      );
+      expect(
+        periodGoals(
+          goals,
+          itemIds: [1],
+          history: const [],
+          from: DateTime(2026, 10, 8),
+          to: DateTime(2026, 10, 8),
+          today: DateTime(2026, 10, 8),
+        ),
+        isNull,
+      );
+    });
   });
 
   group('reminder times', () {

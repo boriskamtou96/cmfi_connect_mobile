@@ -32,7 +32,8 @@
     "importunityClosed": "Dieses Anliegen ist abgeschlossen: Es werden keine Proklamationen mehr gezählt.",
     "usernameNotFound": "Niemand hat diesen Benutzernamen. Prüfe die Schreibweise.",
     "ownerCannotLeave": "Du hast dieses Anliegen erstellt: Lösche es, statt es zu verlassen.",
-    "tooManyPeople": "Deine Listen sind voll (höchstens 500 Personen)."
+    "tooManyPeople": "Deine Listen sind voll (höchstens 500 Personen).",
+    "avatarInvalid": "Dieses Foto kann nicht verwendet werden. Wähle ein anderes."
   },
   "validation": {
     "required": "Dieses Feld ist erforderlich",
@@ -91,7 +92,6 @@
   },
   "auth": {
     "phone": "Telefon",
-    "phoneHint": "6 90 00 00 01",
     "dialCode": "Ländervorwahl: {code}",
     "password": "Passwort",
     "showPassword": "Passwort anzeigen",
@@ -123,7 +123,7 @@
       "editTitle": "Mein Profil",
       "editSubtitle": "Aktualisiere deinen Namen, deine Kirche und deine Gemeinde.",
       "country": "Land",
-      "countryHint": "Kamerun",
+      "countryHint": "Wähle dein Land",
       "city": "Stadt",
       "cityHint": "Yaoundé",
       "church": "Kirche",
@@ -134,7 +134,38 @@
       "submit": "Fertig",
       "skip": "Diesen Schritt überspringen",
       "saved": "Profil gespeichert"
+    },
+    "forgot": {
+      "link": "Passwort vergessen?",
+      "title": "Passwort vergessen",
+      "phoneText": "Gib deine Nummer ein: Wir senden dir per SMS einen Code, um ein neues Passwort zu wählen.",
+      "sendCode": "Code erhalten",
+      "codeTitle": "Code eingeben",
+      "codeText": "Wir haben einen 6-stelligen Code an {phone} gesendet.",
+      "code": "Per SMS erhaltener Code",
+      "codeInvalid": "Der Code hat 6 Ziffern",
+      "verify": "Überprüfen",
+      "resend": "Code erneut senden",
+      "resendIn": "Erneut senden in {seconds} s",
+      "changeNumber": "Nummer ändern",
+      "passwordTitle": "Neues Passwort",
+      "passwordText": "Wähle ein neues Passwort für dein Konto.",
+      "submit": "Speichern und anmelden",
+      "done": "Passwort geändert. Willkommen zurück!",
+      "remembered": "Doch wieder eingefallen?",
+      "invalidCode": "Dieser Code ist nicht richtig.",
+      "expired": "Der Code ist abgelaufen. Fordere einen neuen an.",
+      "tooManyRequests": "Zu viele Versuche. Versuche es später erneut.",
+      "unavailable": "Das Zurücksetzen ist gerade nicht möglich.",
+      "noAccount": "Kein Konto verwendet diese Nummer."
     }
+  },
+  "countries": {
+    "dialCodeTitle": "Ländervorwahl",
+    "title": "Dein Land",
+    "search": "Land oder Vorwahl suchen",
+    "none": "Kein Land gefunden",
+    "change": "Land ändern"
   },
   "nav": {
     "home": "Start",
@@ -150,6 +181,7 @@
     "todayTitle": "Bericht von heute",
     "progress": "{filled} von {total}",
     "progressLabel": "Elemente ausgefüllt",
+    "goals": "Ziele",
     "continueReport": "Weiter",
     "startReport": "Beginnen",
     "weekTitle": "Deine Woche",
@@ -157,9 +189,7 @@
       "one": "{filled} von {total} Tagen",
       "other": "{filled} von {total} Tagen"
     },
-    "community": "In deiner Gemeinschaft",
-    "prayerTitle": "Gebetsanliegen",
-    "prayerText": "Bald kannst du jeden Tag die Gebetsanliegen deiner Gemeinde im Gebet mittragen.",
+    "community": "Aktuell bei der CMFI",
     "eventsTitle": "Veranstaltungen",
     "hymnsTitle": "Lieder",
     "hymnsResume": "Weiter bei Nr. {number}",
@@ -255,7 +285,13 @@
         "one": "Ziel an {n} von {total} Tagen erreicht",
         "other": "Ziel an {n} von {total} Tagen erreicht"
       },
-      "share": "Diese Übersicht teilen"
+      "share": "Diese Übersicht teilen",
+      "goals": "Ziele",
+      "goalsAverage": "Durchschnittliche Erfüllung deiner Ziele",
+      "goalsHint": "Jeder Tag zählt, auch ein leerer. Heute zählt, sobald er ausgefüllt ist.",
+      "evolution": "Entwicklung deiner Ziele",
+      "evolutionHint": "Woche für Woche, über die letzten 12.",
+      "premiumYear": "Das Jahr und die Entwicklung deiner Ziele gibt es mit Premium."
     },
     "noItems": "Im Moment gibt es nichts auszufüllen.",
     "statusPending": "Noch nicht gesendet",
@@ -266,7 +302,55 @@
     },
     "export": "Meinen Bericht exportieren",
     "goal": "Ziel: {value}",
-    "goalReached": "Ziel erreicht"
+    "goalReached": "Ziel erreicht",
+    "dayGoals": "Ziele des Tages",
+    "goalsReached": "Erreicht: {reached} von {total}",
+    "standardItems": {
+      "lb": "Bibellese",
+      "ps": "Persönliches Gebet",
+      "rdqad": "Meditation",
+      "pg": "Gebet in der Gruppe",
+      "llc": "Lektüre christlicher Literatur",
+      "jc": "Vollfasten",
+      "jp": "Teilfasten",
+      "dimes": "Zehnt",
+      "off": "Opfergaben"
+    },
+    "units": {
+      "chapters": {
+        "name": "Anzahl der Kapitel",
+        "label": "Kapitel",
+        "symbol": "Kapitel",
+        "count(plural, param=n)": {
+          "one": "{value} Kapitel",
+          "other": "{value} Kapitel"
+        }
+      },
+      "times": {
+        "name": "Anzahl",
+        "label": "Anzahl",
+        "symbol": "Mal",
+        "count(plural, param=n)": {
+          "one": "{value}-mal",
+          "other": "{value}-mal"
+        }
+      },
+      "pages": {
+        "name": "Anzahl der Seiten",
+        "label": "Seiten",
+        "symbol": "Seiten",
+        "count(plural, param=n)": {
+          "one": "{value} Seite",
+          "other": "{value} Seiten"
+        }
+      },
+      "percent": {
+        "name": "Prozentsatz",
+        "label": "Prozent",
+        "symbol": "%",
+        "count": "{value} %"
+      }
+    }
   },
   "reminder": {
     "title": "Dein Tagesbericht",
@@ -394,7 +478,6 @@
     "editProfile": "Profil bearbeiten",
     "community": "Gemeinschaft",
     "events": "Veranstaltungen",
-    "announcements": "Ankündigungen",
     "reports": "Tagesbericht",
     "myItems": "Meine Elemente",
     "app": "App",
@@ -405,6 +488,7 @@
     "themeLight": "Hell",
     "themeDark": "Dunkel",
     "logout": "Abmelden",
+    "account": "Konto",
     "languageTitle": "Sprache der App",
     "completeProfile": "Füge deinen Namen hinzu",
     "accompaniment": "Begleitung",
@@ -417,7 +501,8 @@
     "logoutAnyway": "Trotzdem abmelden",
     "admin": "Verwaltung",
     "staff": "Team und Rollen",
-    "manageEvents": "Veranstaltungen"
+    "manageEvents": "Veranstaltungen",
+    "disciples": "Meine Jünger"
   },
   "authorities": {
     "title": "Meine geistlichen Autoritäten",
@@ -459,7 +544,8 @@
       "requested": "Anfrage an {name} gesendet.",
       "alreadyAdded": "Diese Person gehört bereits zu deinen Autoritäten.",
       "makerExists": "Du hast bereits einen Jüngermacher.",
-      "yourself": "Das ist dein eigener Benutzername."
+      "yourself": "Das ist dein eigener Benutzername.",
+      "sharingHelp": "Dein Jüngermacher sieht deine Regelmäßigkeit (ausgefüllte Tage, Serie, % der Ziele), nie den Inhalt deiner Berichte. Du kannst das auf seiner Karte beenden."
     },
     "statusPending": "Ausstehend",
     "statusDeclined": "Abgelehnt",
@@ -474,6 +560,12 @@
     "requestsCount(plural, param=n)": {
       "one": "{n} offene Anfrage",
       "other": "{n} offene Anfragen"
+    },
+    "sharing": {
+      "title": "Meine Regelmäßigkeit teilen",
+      "help": "{name} sieht deine ausgefüllten Tage, deine Serie und den Anteil deiner Ziele, nie den Inhalt deiner Berichte.",
+      "on": "Deine Regelmäßigkeit wird mit {name} geteilt.",
+      "off": "{name} sieht deine Regelmäßigkeit nicht mehr."
     }
   },
   "members": {
@@ -491,7 +583,7 @@
       "button": "Mein Konto löschen",
       "title": "Mein Konto löschen",
       "intro": "Das ist endgültig. Dein Konto und alles, was dazugehört, wird gelöscht:",
-      "itemProfile": "dein Profil, dein Benutzername und dein Passwort",
+      "itemProfile": "dein Profil, dein Profilbild, dein Benutzername und dein Passwort",
       "itemReports": "alle deine Tagesberichte, Elemente und Ziele",
       "itemAuthorities": "deine geistlichen Autoritäten und die erhaltenen Anfragen",
       "itemEvents": "deine Anmeldungen zu Veranstaltungen",
@@ -799,6 +891,162 @@
       "photoDelete": "Dieses Foto löschen",
       "photoDeleted": "Foto gelöscht.",
       "confirmDelete": "Löschen"
+    },
+    "upcomingCount(plural, param=n)": {
+      "one": "{n} bevorstehende Veranstaltung",
+      "other": "{n} bevorstehende Veranstaltungen"
+    },
+    "slide": "Veranstaltung {current} von {total}"
+  },
+  "notifications": {
+    "title": "Mitteilungen",
+    "channel": "Ankündigungen der Gemeinschaft",
+    "empty": "Noch keine Mitteilungen",
+    "emptyHint": "Die Ankündigungen der Gemeinschaft erscheinen hier.",
+    "unreadLabel": "Ungelesen: {title}",
+    "documents(plural, param=n)": {
+      "one": "{n} PDF-Dokument",
+      "other": "{n} PDF-Dokumente"
+    },
+    "unread(plural, param=n)": {
+      "one": "{n} ungelesen",
+      "other": "{n} ungelesen"
+    },
+    "image": "Bild {n}",
+    "document": "PDF-Dokument",
+    "documentSize": "{kb} KB",
+    "received": "Neue Mitteilung: {title}"
+  },
+  "premium": {
+    "name": "CMFI Connect Premium",
+    "pill": "Premium",
+    "subtitle": "Geh weiter auf deinem Weg mit Gott und unterstütze das Werk.",
+    "widgetTitle": "Das Widget für den Startbildschirm",
+    "widgetText": "Dein Tagesbericht und deine Ziele, ohne die App zu öffnen.",
+    "statsTitle": "Deine Ziele über das Jahr",
+    "statsText": "Die Jahresbilanz und die Entwicklung deiner Ziele, Woche für Woche.",
+    "supportTitle": "Du unterstützt das Werk",
+    "supportText": "Dein Abo hält die App für die ganze Gemeinschaft am Leben.",
+    "annual": "Jährlich",
+    "monthly": "Monatlich",
+    "perYear": "{price} / Jahr",
+    "perMonth": "{price} / Monat",
+    "annualPerMonth": "also {price} pro Monat",
+    "best": "Am günstigsten",
+    "trialDays(plural, param=n)": {
+      "one": "{n} Tag gratis testen",
+      "other": "{n} Tage gratis testen"
+    },
+    "trialMonths(plural, param=n)": {
+      "one": "{n} Monat gratis testen",
+      "other": "{n} Monate gratis testen"
+    },
+    "subscribe": "Abonnieren",
+    "startTrial": "Gratis testen",
+    "restore": "Käufe wiederherstellen",
+    "restored": "Premium ist wieder auf diesem Telefon",
+    "nothingToRestore": "Kein Premium-Kauf für dieses Konto",
+    "thanks": "Danke! Premium ist aktiv.",
+    "failed": "Der Kauf hat nicht geklappt. Versuch es gleich noch einmal.",
+    "unavailable": "Die Angebote sind gerade nicht verfügbar.",
+    "renews": "Das Abo verlängert sich automatisch. Du kannst es jederzeit in den Einstellungen deines {store}-Kontos kündigen.",
+    "terms": "Nutzungsbedingungen",
+    "privacy": "Datenschutz",
+    "activeTitle": "Du hast Premium",
+    "activeText": "Danke, dass du CMFI Connect unterstützt! Das Widget und das Jahr deiner Bilanz sind offen.",
+    "staffText": "Premium ist für dich kostenlos, weil du zum Team von CMFI Connect gehörst.",
+    "moreSubtitle": "Widget, Ziele über das Jahr",
+    "moreActive": "Aktiv",
+    "unlock": "Mit Premium freischalten",
+    "trialThen": "{trial}, danach {price}",
+    "savePercent": "−{percent}",
+    "choose": "Wähle dein Angebot",
+    "cancelAnytime": "Ohne Bindung, jederzeit kündbar",
+    "restoreShort": "Wiederherstellen",
+    "termsShort": "Bedingungen",
+    "semiannual": "Halbjährlich",
+    "perSemester": "{price} / 6 Monate"
+  },
+  "homeWidget": {
+    "title": "Heute",
+    "done": "Erledigt",
+    "todo": "Auszufüllen",
+    "open": "Ausfüllen",
+    "locked": "Aktiviere das Widget mit Premium",
+    "signedOut": "Melde dich in der App an"
+  },
+  "ministry": {
+    "title": "Unser Dienst",
+    "tagline": "Bis an die Enden der Erde",
+    "count(plural, param=n)": {
+      "one": "{n} Nation",
+      "other": "{n} Nationen"
+    },
+    "fromYaounde": "Von Yaoundé aus geht das Evangelium von Nation zu Nation.",
+    "dragHint": "Dreh den Globus mit dem Finger, tippe auf eine Nation.",
+    "globeLabel(plural, param=n)": {
+      "one": "Globus: {n} Nation, in der das Werk vertreten ist. Die Liste unten nennt sie.",
+      "other": "Globus: {n} Nationen, in denen das Werk vertreten ist. Die Liste unten nennt sie alle."
+    },
+    "voyage": "Reise",
+    "pause": "Pause",
+    "previous": "Vorherige Nation",
+    "next": "Nächste Nation",
+    "number": "Nation Nr. {n}",
+    "since": "Seit {year}",
+    "pray": "Beten",
+    "prayTitle": "Beten für {country}",
+    "prayThanks": "Danke für Gottes Werk in {country}.",
+    "prayAssemblies": "Bete für die Gemeinden in {country} und ihre Leiter.",
+    "prayUnreached": "Bete, dass die, die in {country} noch nicht glauben, Jesus begegnen.",
+    "purpose": "Unser Ziel",
+    "nations": "Die Nationen",
+    "search": "Nation suchen",
+    "none": "Keine Nation gefunden",
+    "homeText(plural, param=n)": {
+      "one": "In {n} Nation vertreten",
+      "other": "In {n} Nationen vertreten"
+    },
+    "nationsSubtitle": "Der Globus und die Reise von Nation zu Nation",
+    "purposeSubtitle": "Unsere drei Ziele",
+    "missionaries": "Unsere Missionare",
+    "missionariesSubtitle": "Die, die der Herr zu den Nationen sendet",
+    "heroes": "Unsere Helden",
+    "heroesSubtitle": "Die, deren Glaube uns inspiriert",
+    "goalOf": "UNSER ZIEL · {n}/{total}",
+    "previousGoal": "Vorheriges Ziel",
+    "nextGoal": "Nächstes Ziel",
+    "media(map)": {
+      "books": "Bücher",
+      "tracts": "Traktate",
+      "magazines": "Zeitschriften",
+      "cds": "CDs",
+      "dvds": "DVDs",
+      "radio": "Radio",
+      "tv": "Fernsehen",
+      "internet": "Internet"
+    },
+    "goals": {
+      "crusade": {
+        "title": "Der Evangeliumsfeldzug zu jeder Kreatur",
+        "text": "Das Evangelium jedem Menschen zu predigen, der in unserer Generation leben wird, sodass 10 Milliarden Menschen mit dem in der Kraft des Heiligen Geistes gepredigten Evangelium erreicht werden – mit allen Kommunikationsmitteln (unseren Büchern, Traktaten, Zeitschriften, CDs, DVDs, unserem Radio, unserem Fernsehen und dem Internet) und so dringend wie möglich.",
+        "reached": "Menschen, die das Evangelium hören"
+      },
+      "disciples": {
+        "title": "Die Ausbildung von Jüngern",
+        "text": "1 Milliarde Menschen in 250 Nationen dahin zu führen, Jesus Christus als Herrn und Retter zu kennen, sie zu Jüngern zu machen, die ihm in allem gehorchen, und sie bis zum Jahr 2065 in 25 Millionen Hauskirchen zu sammeln.",
+        "people": "Jünger",
+        "nations": "Nationen",
+        "churches": "Hauskirchen",
+        "by": "bis {year}"
+      },
+      "revival": {
+        "title": "Die weltweite Erweckung beschleunigen",
+        "text": "Durch Fasten und Fürbitte mit Gott zusammenzuwirken für die weltweite Erweckung, die die Himmel zerreißen, die Erde erschüttern und Christus in unserer Generation verherrlichen wird, um die nahe Wiederkunft unseres Herrn Jesus Christus vom Himmel zu beschleunigen, zur Begegnung mit seiner bereiteten Braut.",
+        "fasting": "Fasten",
+        "intercession": "Fürbitte",
+        "pray": "Jetzt beten"
+      }
     }
   },
   "prayer": {
@@ -1086,5 +1334,139 @@
         }
       }
     }
+  },
+  "sending": {
+    "title": "An meine Leiter senden",
+    "moreOff": "Aus",
+    "intro": "Zur gewählten Zeit bereitet CMFI Connect deinen Bericht für den Zeitraum vor. Du musst ihn nur noch an deine geistlichen Leiter senden.",
+    "enabled": "Regelmäßig für mich vorbereiten",
+    "rhythm": "Rhythmus",
+    "weekly": "Jede Woche",
+    "biweekly": "Alle 2 Wochen",
+    "monthly": "Jeden Monat",
+    "day": "Tag",
+    "monthlyDay": "Am 1. jedes Monats, für den vergangenen Monat",
+    "time": "Uhrzeit",
+    "recipients": "Empfänger",
+    "noAuthorities": "Füge zuerst deine geistlichen Leiter hinzu.",
+    "addAuthorities": "Meine Leiter hinzufügen",
+    "viaWhatsApp": "Per WhatsApp",
+    "viaEmail": "Per E-Mail",
+    "viaBoth": "Per WhatsApp oder E-Mail",
+    "viaShare": "Über Teilen",
+    "next": "Nächster: {date}",
+    "prepareNow": "Jetzt vorbereiten",
+    "history": "Zuletzt gesendet",
+    "notificationTitle": "Dein Bericht ist fertig",
+    "notificationBody": "Sende ihn mit einem Tippen an deine Leiter.",
+    "channel": "Berichtsversand",
+    "readyTitle": "Dein Bericht ist fertig",
+    "preview": "Vorschau der Nachricht",
+    "greeting": "Hallo {name},",
+    "whatsApp": "WhatsApp",
+    "email": "E-Mail",
+    "sharePdf": "PDF teilen",
+    "shareText": "Text teilen",
+    "sent": "Gesendet",
+    "shared": "Geteilt",
+    "noRecipients": "Wähle deine Empfänger in den Einstellungen oder teile das PDF.",
+    "settings": "Einstellungen",
+    "permissionDenied": "Erlaube Benachrichtigungen, um rechtzeitig erinnert zu werden."
+  },
+  "streak": {
+    "title(plural, param=n)": {
+      "one": "{n} Tag in Folge!",
+      "other": "{n} Tage in Folge!"
+    },
+    "cardDays(plural, param=n)": {
+      "one": "Tag mit Gott",
+      "other": "Tage mit Gott"
+    },
+    "lines": {
+      "week": "Eine ganze Woche mit dem Herrn, Tag für Tag. Bravo, mach weiter!",
+      "month": "Ein Monat voller Treue! Was du jeden Tag säst, trägt Frucht.",
+      "hundred": "Hundert Tage mit Gott! Deine Ausdauer ist ein schönes Zeugnis.",
+      "year": "Ein ganzes Jahr mit Gott! Ehre sei Ihm für deine Treue."
+    },
+    "share": "Teilen",
+    "close": "Weiter"
+  },
+  "shortcuts": {
+    "today": "Meinen Bericht ausfüllen",
+    "hymns": "Lieder",
+    "retreat": "Aktuelle Gebetszeit"
+  },
+  "blocking": {
+    "report": "Melden",
+    "block": "{name} blockieren",
+    "blockTitle": "{name} blockieren?",
+    "blockText": "Du erhältst keine Einladungen mehr von {name}. Diese Einladung wird entfernt.",
+    "blockAction": "Blockieren",
+    "blocked": "{name} kann dich nicht mehr einladen.",
+    "reportTitle": "Diese Einladung melden",
+    "reportText": "Sag uns, was nicht stimmt: Die Verantwortlichen der Gemeinschaft sehen es sich an.",
+    "reasons": {
+      "spam": "Unerwünscht",
+      "offensive": "Schockierender oder anstößiger Inhalt",
+      "other": "Sonstiges"
+    },
+    "comment": "Kommentar",
+    "commentHint": "Was die Verantwortlichen wissen sollten",
+    "send": "Meldung senden",
+    "reported": "Danke, die Verantwortlichen sehen es sich an.",
+    "listTitle": "Blockierte Mitglieder",
+    "intro": "Ihre Gebetseinladungen erreichen dich nicht mehr.",
+    "empty": "Du hast niemanden blockiert.",
+    "unblock": "Freigeben",
+    "unblocked": "{name} kann dich wieder einladen."
+  },
+  "verses": {
+    "title": "Vers des Tages",
+    "share": "Vers teilen",
+    "shareImage": "Bild teilen",
+    "shareText": "Text teilen"
+  },
+  "profilePhoto": {
+    "title": "Profilbild",
+    "add": "Profilbild hinzufügen",
+    "change": "Profilbild ändern",
+    "seenBy": "Andere Mitglieder sehen es überall, wo dein Name erscheint.",
+    "camera": "Foto aufnehmen",
+    "gallery": "Aus der Galerie wählen",
+    "remove": "Foto entfernen",
+    "cropTitle": "Foto zuschneiden",
+    "cropHint": "Verschiebe und vergrößere das Foto mit deinen Fingern.",
+    "use": "Dieses Foto verwenden",
+    "unreadable": "Dieses Bild lässt sich nicht öffnen. Wähle ein anderes.",
+    "saved": "Dein Profilbild ist gespeichert.",
+    "removed": "Dein Profilbild ist entfernt."
+  },
+  "disciples": {
+    "title": "Meine Jünger",
+    "intro": "Die Mitglieder, die dich als Jüngermacher gewählt haben. Du siehst ihre Regelmäßigkeit, nie den Inhalt ihrer Berichte.",
+    "empty": "Noch keine Jünger",
+    "emptyText": "Wenn ein Mitglied dich als Jüngermacher wählt und du die Anfrage annimmst, erscheint es hier.",
+    "count(plural, param=n)": {
+      "one": "{n} Jünger",
+      "other": "{n} Jünger"
+    },
+    "filled(plural, param=n)": {
+      "one": "{n} Tag von 30 ausgefüllt",
+      "other": "{n} Tage von 30 ausgefüllt"
+    },
+    "streak(plural, param=n)": {
+      "one": "{n} Tag in Folge",
+      "other": "{n} Tage in Folge"
+    },
+    "noStreak": "Keine laufende Serie",
+    "lastToday": "Heute ausgefüllt",
+    "lastYesterday": "Zuletzt: gestern",
+    "lastDaysAgo(plural, param=n)": {
+      "one": "Zuletzt: vor {n} Tag",
+      "other": "Zuletzt: vor {n} Tagen"
+    },
+    "noReport": "Kein Bericht in diesem Jahr",
+    "goals": "Ziele: {percent} %",
+    "notShared": "Teilt seine Regelmäßigkeit nicht"
   }
 }

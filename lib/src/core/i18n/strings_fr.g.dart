@@ -48,6 +48,7 @@ class Translations with BaseTranslations<AppLocale, Translations> {
 	late final Translations$onboarding$fr onboarding = Translations$onboarding$fr.internal(_root);
 	late final Translations$welcome$fr welcome = Translations$welcome$fr.internal(_root);
 	late final Translations$auth$fr auth = Translations$auth$fr.internal(_root);
+	late final Translations$countries$fr countries = Translations$countries$fr.internal(_root);
 	late final Translations$nav$fr nav = Translations$nav$fr.internal(_root);
 	late final Translations$home$fr home = Translations$home$fr.internal(_root);
 	late final Translations$reports$fr reports = Translations$reports$fr.internal(_root);
@@ -62,7 +63,18 @@ class Translations with BaseTranslations<AppLocale, Translations> {
 	late final Translations$hymns$fr hymns = Translations$hymns$fr.internal(_root);
 	late final Translations$comingSoon$fr comingSoon = Translations$comingSoon$fr.internal(_root);
 	late final Translations$events$fr events = Translations$events$fr.internal(_root);
+	late final Translations$notifications$fr notifications = Translations$notifications$fr.internal(_root);
+	late final Translations$premium$fr premium = Translations$premium$fr.internal(_root);
+	late final Translations$homeWidget$fr homeWidget = Translations$homeWidget$fr.internal(_root);
+	late final Translations$ministry$fr ministry = Translations$ministry$fr.internal(_root);
 	late final Translations$prayer$fr prayer = Translations$prayer$fr.internal(_root);
+	late final Translations$sending$fr sending = Translations$sending$fr.internal(_root);
+	late final Translations$streak$fr streak = Translations$streak$fr.internal(_root);
+	late final Translations$shortcuts$fr shortcuts = Translations$shortcuts$fr.internal(_root);
+	late final Translations$blocking$fr blocking = Translations$blocking$fr.internal(_root);
+	late final Translations$verses$fr verses = Translations$verses$fr.internal(_root);
+	late final Translations$profilePhoto$fr profilePhoto = Translations$profilePhoto$fr.internal(_root);
+	late final Translations$disciples$fr disciples = Translations$disciples$fr.internal(_root);
 }
 
 // Path: app
@@ -177,6 +189,9 @@ class Translations$errors$fr {
 
 	/// fr: 'Tes listes sont pleines (500 personnes au plus).'
 	String get tooManyPeople => 'Tes listes sont pleines (500 personnes au plus).';
+
+	/// fr: 'Cette photo ne peut pas être utilisée. Choisis-en une autre.'
+	String get avatarInvalid => 'Cette photo ne peut pas être utilisée. Choisis-en une autre.';
 }
 
 // Path: validation
@@ -261,9 +276,6 @@ class Translations$auth$fr {
 	/// fr: 'Téléphone'
 	String get phone => 'Téléphone';
 
-	/// fr: '6 90 00 00 01'
-	String get phoneHint => '6 90 00 00 01';
-
 	/// fr: 'Indicatif : {code}'
 	String dialCode({required Object code}) => 'Indicatif : ${code}';
 
@@ -279,6 +291,31 @@ class Translations$auth$fr {
 	late final Translations$auth$login$fr login = Translations$auth$login$fr.internal(_root);
 	late final Translations$auth$register$fr register = Translations$auth$register$fr.internal(_root);
 	late final Translations$auth$church$fr church = Translations$auth$church$fr.internal(_root);
+	late final Translations$auth$forgot$fr forgot = Translations$auth$forgot$fr.internal(_root);
+}
+
+// Path: countries
+class Translations$countries$fr {
+	Translations$countries$fr.internal(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// fr: 'Indicatif du pays'
+	String get dialCodeTitle => 'Indicatif du pays';
+
+	/// fr: 'Ton pays'
+	String get title => 'Ton pays';
+
+	/// fr: 'Rechercher un pays ou un indicatif'
+	String get search => 'Rechercher un pays ou un indicatif';
+
+	/// fr: 'Aucun pays ne correspond'
+	String get none => 'Aucun pays ne correspond';
+
+	/// fr: 'Changer de pays'
+	String get change => 'Changer de pays';
 }
 
 // Path: nav
@@ -331,6 +368,9 @@ class Translations$home$fr {
 	/// fr: 'éléments renseignés'
 	String get progressLabel => 'éléments renseignés';
 
+	/// fr: 'objectifs'
+	String get goals => 'objectifs';
+
 	/// fr: 'Continuer'
 	String get continueReport => 'Continuer';
 
@@ -346,14 +386,8 @@ class Translations$home$fr {
 		other: '${filled} jours sur ${total}',
 	);
 
-	/// fr: 'Dans ta communauté'
-	String get community => 'Dans ta communauté';
-
-	/// fr: 'Sujets de prière'
-	String get prayerTitle => 'Sujets de prière';
-
-	/// fr: 'Bientôt, tu pourras porter chaque jour les sujets de prière de ton assemblée.'
-	String get prayerText => 'Bientôt, tu pourras porter chaque jour les sujets de prière de ton assemblée.';
+	/// fr: 'Actuellement à la CMCI'
+	String get community => 'Actuellement à la CMCI';
 
 	/// fr: 'Évènements'
 	String get eventsTitle => 'Évènements';
@@ -467,6 +501,15 @@ class Translations$reports$fr {
 
 	/// fr: 'Objectif atteint'
 	String get goalReached => 'Objectif atteint';
+
+	/// fr: 'Objectifs de la journée'
+	String get dayGoals => 'Objectifs de la journée';
+
+	/// fr: 'Atteints : {reached} sur {total}'
+	String goalsReached({required Object reached, required Object total}) => 'Atteints : ${reached} sur ${total}';
+
+	late final Translations$reports$standardItems$fr standardItems = Translations$reports$standardItems$fr.internal(_root);
+	late final Translations$reports$units$fr units = Translations$reports$units$fr.internal(_root);
 }
 
 // Path: reminder
@@ -760,9 +803,6 @@ class Translations$more$fr {
 	/// fr: 'Évènements'
 	String get events => 'Évènements';
 
-	/// fr: 'Annonces'
-	String get announcements => 'Annonces';
-
 	/// fr: 'Compte rendu'
 	String get reports => 'Compte rendu';
 
@@ -792,6 +832,9 @@ class Translations$more$fr {
 
 	/// fr: 'Se déconnecter'
 	String get logout => 'Se déconnecter';
+
+	/// fr: 'Compte'
+	String get account => 'Compte';
 
 	/// fr: 'Langue de l'application'
 	String get languageTitle => 'Langue de l\'application';
@@ -825,6 +868,9 @@ class Translations$more$fr {
 
 	/// fr: 'Évènements'
 	String get manageEvents => 'Évènements';
+
+	/// fr: 'Mes disciples'
+	String get disciples => 'Mes disciples';
 }
 
 // Path: authorities
@@ -915,6 +961,8 @@ class Translations$authorities$fr {
 		one: '${n} demande à voir',
 		other: '${n} demandes à voir',
 	);
+
+	late final Translations$authorities$sharing$fr sharing = Translations$authorities$sharing$fr.internal(_root);
 }
 
 // Path: members
@@ -1257,6 +1305,354 @@ class Translations$events$fr {
 	late final Translations$events$register$fr register = Translations$events$register$fr.internal(_root);
 	late final Translations$events$reminder$fr reminder = Translations$events$reminder$fr.internal(_root);
 	late final Translations$events$admin$fr admin = Translations$events$admin$fr.internal(_root);
+
+	/// fr: '(one) {{n} évènement à venir} (other) {{n} évènements à venir}'
+	String upcomingCount({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('fr'))(n,
+		one: '${n} évènement à venir',
+		other: '${n} évènements à venir',
+	);
+
+	/// fr: 'Évènement {current} sur {total}'
+	String slide({required Object current, required Object total}) => 'Évènement ${current} sur ${total}';
+}
+
+// Path: notifications
+class Translations$notifications$fr {
+	Translations$notifications$fr.internal(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// fr: 'Notifications'
+	String get title => 'Notifications';
+
+	/// fr: 'Annonces de la communauté'
+	String get channel => 'Annonces de la communauté';
+
+	/// fr: 'Aucune notification pour l'instant'
+	String get empty => 'Aucune notification pour l\'instant';
+
+	/// fr: 'Les annonces de la communauté arriveront ici.'
+	String get emptyHint => 'Les annonces de la communauté arriveront ici.';
+
+	/// fr: 'Non lue : {title}'
+	String unreadLabel({required Object title}) => 'Non lue : ${title}';
+
+	/// fr: '(one) {{n} document PDF} (other) {{n} documents PDF}'
+	String documents({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('fr'))(n,
+		one: '${n} document PDF',
+		other: '${n} documents PDF',
+	);
+
+	/// fr: '(one) {{n} non lue} (other) {{n} non lues}'
+	String unread({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('fr'))(n,
+		one: '${n} non lue',
+		other: '${n} non lues',
+	);
+
+	/// fr: 'Image {n}'
+	String image({required Object n}) => 'Image ${n}';
+
+	/// fr: 'Document PDF'
+	String get document => 'Document PDF';
+
+	/// fr: '{kb} Ko'
+	String documentSize({required Object kb}) => '${kb} Ko';
+
+	/// fr: 'Nouvelle notification : {title}'
+	String received({required Object title}) => 'Nouvelle notification : ${title}';
+}
+
+// Path: premium
+class Translations$premium$fr {
+	Translations$premium$fr.internal(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// fr: 'CMFI Connect Premium'
+	String get name => 'CMFI Connect Premium';
+
+	/// fr: 'Premium'
+	String get pill => 'Premium';
+
+	/// fr: 'Va plus loin dans ta marche avec Dieu, et soutiens l'œuvre.'
+	String get subtitle => 'Va plus loin dans ta marche avec Dieu, et soutiens l\'œuvre.';
+
+	/// fr: 'Le widget de l'écran d'accueil'
+	String get widgetTitle => 'Le widget de l\'écran d\'accueil';
+
+	/// fr: 'Ton compte rendu du jour et tes objectifs, sans ouvrir l'app.'
+	String get widgetText => 'Ton compte rendu du jour et tes objectifs, sans ouvrir l\'app.';
+
+	/// fr: 'Tes objectifs sur l'année'
+	String get statsTitle => 'Tes objectifs sur l\'année';
+
+	/// fr: 'Le bilan de l'année et l'évolution de tes objectifs, semaine après semaine.'
+	String get statsText => 'Le bilan de l\'année et l\'évolution de tes objectifs, semaine après semaine.';
+
+	/// fr: 'Tu soutiens l'œuvre'
+	String get supportTitle => 'Tu soutiens l\'œuvre';
+
+	/// fr: 'Ton abonnement fait vivre l'app pour toute la communauté.'
+	String get supportText => 'Ton abonnement fait vivre l\'app pour toute la communauté.';
+
+	/// fr: 'Annuel'
+	String get annual => 'Annuel';
+
+	/// fr: 'Mensuel'
+	String get monthly => 'Mensuel';
+
+	/// fr: '{price} / an'
+	String perYear({required Object price}) => '${price} / an';
+
+	/// fr: '{price} / mois'
+	String perMonth({required Object price}) => '${price} / mois';
+
+	/// fr: 'soit {price} par mois'
+	String annualPerMonth({required Object price}) => 'soit ${price} par mois';
+
+	/// fr: 'Le plus avantageux'
+	String get best => 'Le plus avantageux';
+
+	/// fr: '(one) {{n} jour d'essai gratuit} (other) {{n} jours d'essai gratuit}'
+	String trialDays({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('fr'))(n,
+		one: '${n} jour d\'essai gratuit',
+		other: '${n} jours d\'essai gratuit',
+	);
+
+	/// fr: '(one) {{n} mois d'essai gratuit} (other) {{n} mois d'essai gratuit}'
+	String trialMonths({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('fr'))(n,
+		one: '${n} mois d\'essai gratuit',
+		other: '${n} mois d\'essai gratuit',
+	);
+
+	/// fr: 'S'abonner'
+	String get subscribe => 'S\'abonner';
+
+	/// fr: 'Commencer l'essai gratuit'
+	String get startTrial => 'Commencer l\'essai gratuit';
+
+	/// fr: 'Restaurer mes achats'
+	String get restore => 'Restaurer mes achats';
+
+	/// fr: 'Premium est de retour sur ce téléphone'
+	String get restored => 'Premium est de retour sur ce téléphone';
+
+	/// fr: 'Aucun achat Premium pour ce compte'
+	String get nothingToRestore => 'Aucun achat Premium pour ce compte';
+
+	/// fr: 'Merci ! Premium est activé.'
+	String get thanks => 'Merci ! Premium est activé.';
+
+	/// fr: 'L'achat n'a pas abouti. Réessaie dans un instant.'
+	String get failed => 'L\'achat n\'a pas abouti. Réessaie dans un instant.';
+
+	/// fr: 'Les offres ne sont pas disponibles pour l'instant.'
+	String get unavailable => 'Les offres ne sont pas disponibles pour l\'instant.';
+
+	/// fr: 'L'abonnement se renouvelle automatiquement. Tu peux l'annuler quand tu veux dans les réglages de ton compte {store}.'
+	String renews({required Object store}) => 'L\'abonnement se renouvelle automatiquement. Tu peux l\'annuler quand tu veux dans les réglages de ton compte ${store}.';
+
+	/// fr: 'Conditions d'utilisation'
+	String get terms => 'Conditions d\'utilisation';
+
+	/// fr: 'Confidentialité'
+	String get privacy => 'Confidentialité';
+
+	/// fr: 'Tu as Premium'
+	String get activeTitle => 'Tu as Premium';
+
+	/// fr: 'Merci de soutenir CMFI Connect ! Le widget et l'année de ton bilan sont ouverts.'
+	String get activeText => 'Merci de soutenir CMFI Connect ! Le widget et l\'année de ton bilan sont ouverts.';
+
+	/// fr: 'Premium t'est offert parce que tu fais partie de l'équipe de CMFI Connect.'
+	String get staffText => 'Premium t\'est offert parce que tu fais partie de l\'équipe de CMFI Connect.';
+
+	/// fr: 'Widget, objectifs sur l'année'
+	String get moreSubtitle => 'Widget, objectifs sur l\'année';
+
+	/// fr: 'Actif'
+	String get moreActive => 'Actif';
+
+	/// fr: 'Débloquer avec Premium'
+	String get unlock => 'Débloquer avec Premium';
+
+	/// fr: '{trial}, puis {price}'
+	String trialThen({required Object trial, required Object price}) => '${trial}, puis ${price}';
+
+	/// fr: '−{percent}'
+	String savePercent({required Object percent}) => '−${percent}';
+
+	/// fr: 'Choisis ton offre'
+	String get choose => 'Choisis ton offre';
+
+	/// fr: 'Sans engagement, annulable à tout moment'
+	String get cancelAnytime => 'Sans engagement, annulable à tout moment';
+
+	/// fr: 'Restaurer'
+	String get restoreShort => 'Restaurer';
+
+	/// fr: 'Conditions'
+	String get termsShort => 'Conditions';
+
+	/// fr: 'Semestriel'
+	String get semiannual => 'Semestriel';
+
+	/// fr: '{price} / 6 mois'
+	String perSemester({required Object price}) => '${price} / 6 mois';
+}
+
+// Path: homeWidget
+class Translations$homeWidget$fr {
+	Translations$homeWidget$fr.internal(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// fr: 'Aujourd'hui'
+	String get title => 'Aujourd\'hui';
+
+	/// fr: 'Fait'
+	String get done => 'Fait';
+
+	/// fr: 'À remplir'
+	String get todo => 'À remplir';
+
+	/// fr: 'Remplir'
+	String get open => 'Remplir';
+
+	/// fr: 'Active le widget avec Premium'
+	String get locked => 'Active le widget avec Premium';
+
+	/// fr: 'Connecte-toi dans l'app'
+	String get signedOut => 'Connecte-toi dans l\'app';
+}
+
+// Path: ministry
+class Translations$ministry$fr {
+	Translations$ministry$fr.internal(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// fr: 'Notre ministère'
+	String get title => 'Notre ministère';
+
+	/// fr: 'Jusqu'aux extrémités de la terre'
+	String get tagline => 'Jusqu\'aux extrémités de la terre';
+
+	/// fr: '(one) {{n} nation} (other) {{n} nations}'
+	String count({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('fr'))(n,
+		one: '${n} nation',
+		other: '${n} nations',
+	);
+
+	/// fr: 'Depuis Yaoundé, l'Évangile va de nation en nation.'
+	String get fromYaounde => 'Depuis Yaoundé, l\'Évangile va de nation en nation.';
+
+	/// fr: 'Fais tourner le globe du doigt, touche une nation.'
+	String get dragHint => 'Fais tourner le globe du doigt, touche une nation.';
+
+	/// fr: '(one) {Globe : {n} nation où l'œuvre est présente. La liste plus bas la donne.} (other) {Globe : {n} nations où l'œuvre est présente. La liste plus bas les donne toutes.}'
+	String globeLabel({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('fr'))(n,
+		one: 'Globe : ${n} nation où l\'œuvre est présente. La liste plus bas la donne.',
+		other: 'Globe : ${n} nations où l\'œuvre est présente. La liste plus bas les donne toutes.',
+	);
+
+	/// fr: 'Voyage'
+	String get voyage => 'Voyage';
+
+	/// fr: 'Pause'
+	String get pause => 'Pause';
+
+	/// fr: 'Nation précédente'
+	String get previous => 'Nation précédente';
+
+	/// fr: 'Nation suivante'
+	String get next => 'Nation suivante';
+
+	/// fr: 'Nation n° {n}'
+	String number({required Object n}) => 'Nation n° ${n}';
+
+	/// fr: 'Depuis {year}'
+	String since({required Object year}) => 'Depuis ${year}';
+
+	/// fr: 'Prier'
+	String get pray => 'Prier';
+
+	/// fr: 'Prier pour {country}'
+	String prayTitle({required Object country}) => 'Prier pour ${country}';
+
+	/// fr: 'Rends grâce pour l'œuvre de Dieu en {country}.'
+	String prayThanks({required Object country}) => 'Rends grâce pour l\'œuvre de Dieu en ${country}.';
+
+	/// fr: 'Prie pour les assemblées de {country} et pour leurs responsables.'
+	String prayAssemblies({required Object country}) => 'Prie pour les assemblées de ${country} et pour leurs responsables.';
+
+	/// fr: 'Prie pour que ceux qui n'ont pas encore cru en {country} rencontrent Jésus.'
+	String prayUnreached({required Object country}) => 'Prie pour que ceux qui n\'ont pas encore cru en ${country} rencontrent Jésus.';
+
+	/// fr: 'Notre but'
+	String get purpose => 'Notre but';
+
+	/// fr: 'Les nations'
+	String get nations => 'Les nations';
+
+	/// fr: 'Rechercher une nation'
+	String get search => 'Rechercher une nation';
+
+	/// fr: 'Aucune nation ne correspond'
+	String get none => 'Aucune nation ne correspond';
+
+	/// fr: '(one) {Présente dans {n} nation} (other) {Présente dans {n} nations}'
+	String homeText({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('fr'))(n,
+		one: 'Présente dans ${n} nation',
+		other: 'Présente dans ${n} nations',
+	);
+
+	/// fr: 'Le globe et le voyage de nation en nation'
+	String get nationsSubtitle => 'Le globe et le voyage de nation en nation';
+
+	/// fr: 'Nos trois buts'
+	String get purposeSubtitle => 'Nos trois buts';
+
+	/// fr: 'Nos missionnaires'
+	String get missionaries => 'Nos missionnaires';
+
+	/// fr: 'Ceux que le Seigneur envoie aux nations'
+	String get missionariesSubtitle => 'Ceux que le Seigneur envoie aux nations';
+
+	/// fr: 'Nos héros'
+	String get heroes => 'Nos héros';
+
+	/// fr: 'Ceux dont la foi nous inspire'
+	String get heroesSubtitle => 'Ceux dont la foi nous inspire';
+
+	/// fr: 'NOTRE BUT · {n}/{total}'
+	String goalOf({required Object n, required Object total}) => 'NOTRE BUT · ${n}/${total}';
+
+	/// fr: 'But précédent'
+	String get previousGoal => 'But précédent';
+
+	/// fr: 'But suivant'
+	String get nextGoal => 'But suivant';
+
+	Map<String, String> get media => {
+		'books': 'Livres',
+		'tracts': 'Traités',
+		'magazines': 'Magazines',
+		'cds': 'CD',
+		'dvds': 'DVD',
+		'radio': 'Radio',
+		'tv': 'Télévision',
+		'internet': 'Internet',
+	};
+	late final Translations$ministry$goals$fr goals = Translations$ministry$goals$fr.internal(_root);
 }
 
 // Path: prayer
@@ -1287,6 +1683,364 @@ class Translations$prayer$fr {
 	late final Translations$prayer$topics$fr topics = Translations$prayer$topics$fr.internal(_root);
 	late final Translations$prayer$lists$fr lists = Translations$prayer$lists$fr.internal(_root);
 	late final Translations$prayer$importunity$fr importunity = Translations$prayer$importunity$fr.internal(_root);
+}
+
+// Path: sending
+class Translations$sending$fr {
+	Translations$sending$fr.internal(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// fr: 'Envoi à mes autorités'
+	String get title => 'Envoi à mes autorités';
+
+	/// fr: 'Désactivé'
+	String get moreOff => 'Désactivé';
+
+	/// fr: 'Au moment choisi, CMFI Connect prépare ton compte rendu de la période. Tu n'as plus qu'à l'envoyer à tes autorités spirituelles.'
+	String get intro => 'Au moment choisi, CMFI Connect prépare ton compte rendu de la période. Tu n\'as plus qu\'à l\'envoyer à tes autorités spirituelles.';
+
+	/// fr: 'Me le préparer régulièrement'
+	String get enabled => 'Me le préparer régulièrement';
+
+	/// fr: 'Rythme'
+	String get rhythm => 'Rythme';
+
+	/// fr: 'Chaque semaine'
+	String get weekly => 'Chaque semaine';
+
+	/// fr: 'Toutes les 2 semaines'
+	String get biweekly => 'Toutes les 2 semaines';
+
+	/// fr: 'Chaque mois'
+	String get monthly => 'Chaque mois';
+
+	/// fr: 'Jour'
+	String get day => 'Jour';
+
+	/// fr: 'Le 1er de chaque mois, pour le mois écoulé'
+	String get monthlyDay => 'Le 1er de chaque mois, pour le mois écoulé';
+
+	/// fr: 'Heure'
+	String get time => 'Heure';
+
+	/// fr: 'Destinataires'
+	String get recipients => 'Destinataires';
+
+	/// fr: 'Ajoute d'abord tes autorités spirituelles.'
+	String get noAuthorities => 'Ajoute d\'abord tes autorités spirituelles.';
+
+	/// fr: 'Ajouter mes autorités'
+	String get addAuthorities => 'Ajouter mes autorités';
+
+	/// fr: 'Par WhatsApp'
+	String get viaWhatsApp => 'Par WhatsApp';
+
+	/// fr: 'Par e-mail'
+	String get viaEmail => 'Par e-mail';
+
+	/// fr: 'Par WhatsApp ou e-mail'
+	String get viaBoth => 'Par WhatsApp ou e-mail';
+
+	/// fr: 'Par le partage'
+	String get viaShare => 'Par le partage';
+
+	/// fr: 'Prochain : {date}'
+	String next({required Object date}) => 'Prochain : ${date}';
+
+	/// fr: 'Préparer maintenant'
+	String get prepareNow => 'Préparer maintenant';
+
+	/// fr: 'Derniers envois'
+	String get history => 'Derniers envois';
+
+	/// fr: 'Ton compte rendu est prêt'
+	String get notificationTitle => 'Ton compte rendu est prêt';
+
+	/// fr: 'Envoie-le à tes autorités en un geste.'
+	String get notificationBody => 'Envoie-le à tes autorités en un geste.';
+
+	/// fr: 'Envoi du compte rendu'
+	String get channel => 'Envoi du compte rendu';
+
+	/// fr: 'Ton compte rendu est prêt'
+	String get readyTitle => 'Ton compte rendu est prêt';
+
+	/// fr: 'Aperçu du message'
+	String get preview => 'Aperçu du message';
+
+	/// fr: 'Bonjour {name},'
+	String greeting({required Object name}) => 'Bonjour ${name},';
+
+	/// fr: 'WhatsApp'
+	String get whatsApp => 'WhatsApp';
+
+	/// fr: 'E-mail'
+	String get email => 'E-mail';
+
+	/// fr: 'Partager le PDF'
+	String get sharePdf => 'Partager le PDF';
+
+	/// fr: 'Partager le texte'
+	String get shareText => 'Partager le texte';
+
+	/// fr: 'Envoyé'
+	String get sent => 'Envoyé';
+
+	/// fr: 'Partage'
+	String get shared => 'Partage';
+
+	/// fr: 'Choisis tes destinataires dans les réglages, ou partage le PDF.'
+	String get noRecipients => 'Choisis tes destinataires dans les réglages, ou partage le PDF.';
+
+	/// fr: 'Réglages'
+	String get settings => 'Réglages';
+
+	/// fr: 'Autorise les notifications pour être prévenu au bon moment.'
+	String get permissionDenied => 'Autorise les notifications pour être prévenu au bon moment.';
+}
+
+// Path: streak
+class Translations$streak$fr {
+	Translations$streak$fr.internal(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// fr: '(one) {{n} jour d'affilée !} (other) {{n} jours d'affilée !}'
+	String title({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('fr'))(n,
+		one: '${n} jour d\'affilée !',
+		other: '${n} jours d\'affilée !',
+	);
+
+	/// fr: '(one) {jour avec Dieu} (other) {jours avec Dieu}'
+	String cardDays({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('fr'))(n,
+		one: 'jour avec Dieu',
+		other: 'jours avec Dieu',
+	);
+
+	late final Translations$streak$lines$fr lines = Translations$streak$lines$fr.internal(_root);
+
+	/// fr: 'Partager'
+	String get share => 'Partager';
+
+	/// fr: 'Continuer'
+	String get close => 'Continuer';
+}
+
+// Path: shortcuts
+class Translations$shortcuts$fr {
+	Translations$shortcuts$fr.internal(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// fr: 'Remplir mon compte rendu'
+	String get today => 'Remplir mon compte rendu';
+
+	/// fr: 'Cantiques'
+	String get hymns => 'Cantiques';
+
+	/// fr: 'Retraite du moment'
+	String get retreat => 'Retraite du moment';
+}
+
+// Path: blocking
+class Translations$blocking$fr {
+	Translations$blocking$fr.internal(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// fr: 'Signaler'
+	String get report => 'Signaler';
+
+	/// fr: 'Bloquer {name}'
+	String block({required Object name}) => 'Bloquer ${name}';
+
+	/// fr: 'Bloquer {name} ?'
+	String blockTitle({required Object name}) => 'Bloquer ${name} ?';
+
+	/// fr: 'Tu ne recevras plus d'invitation de {name}. Cette invitation est retirée.'
+	String blockText({required Object name}) => 'Tu ne recevras plus d\'invitation de ${name}. Cette invitation est retirée.';
+
+	/// fr: 'Bloquer'
+	String get blockAction => 'Bloquer';
+
+	/// fr: '{name} ne pourra plus t'inviter.'
+	String blocked({required Object name}) => '${name} ne pourra plus t\'inviter.';
+
+	/// fr: 'Signaler cette invitation'
+	String get reportTitle => 'Signaler cette invitation';
+
+	/// fr: 'Dis-nous ce qui ne va pas : les responsables de la communauté regarderont.'
+	String get reportText => 'Dis-nous ce qui ne va pas : les responsables de la communauté regarderont.';
+
+	late final Translations$blocking$reasons$fr reasons = Translations$blocking$reasons$fr.internal(_root);
+
+	/// fr: 'Commentaire'
+	String get comment => 'Commentaire';
+
+	/// fr: 'Ce que les responsables doivent savoir'
+	String get commentHint => 'Ce que les responsables doivent savoir';
+
+	/// fr: 'Envoyer le signalement'
+	String get send => 'Envoyer le signalement';
+
+	/// fr: 'Merci, les responsables vont regarder.'
+	String get reported => 'Merci, les responsables vont regarder.';
+
+	/// fr: 'Membres bloqués'
+	String get listTitle => 'Membres bloqués';
+
+	/// fr: 'Leurs invitations à prier ne t'arrivent plus.'
+	String get intro => 'Leurs invitations à prier ne t\'arrivent plus.';
+
+	/// fr: 'Tu n'as bloqué personne.'
+	String get empty => 'Tu n\'as bloqué personne.';
+
+	/// fr: 'Débloquer'
+	String get unblock => 'Débloquer';
+
+	/// fr: '{name} peut de nouveau t'inviter.'
+	String unblocked({required Object name}) => '${name} peut de nouveau t\'inviter.';
+}
+
+// Path: verses
+class Translations$verses$fr {
+	Translations$verses$fr.internal(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// fr: 'Verset du jour'
+	String get title => 'Verset du jour';
+
+	/// fr: 'Partager le verset'
+	String get share => 'Partager le verset';
+
+	/// fr: 'Partager l'image'
+	String get shareImage => 'Partager l\'image';
+
+	/// fr: 'Partager le texte'
+	String get shareText => 'Partager le texte';
+}
+
+// Path: profilePhoto
+class Translations$profilePhoto$fr {
+	Translations$profilePhoto$fr.internal(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// fr: 'Photo de profil'
+	String get title => 'Photo de profil';
+
+	/// fr: 'Ajouter une photo de profil'
+	String get add => 'Ajouter une photo de profil';
+
+	/// fr: 'Changer la photo de profil'
+	String get change => 'Changer la photo de profil';
+
+	/// fr: 'Les autres membres la voient là où ton nom apparaît.'
+	String get seenBy => 'Les autres membres la voient là où ton nom apparaît.';
+
+	/// fr: 'Prendre une photo'
+	String get camera => 'Prendre une photo';
+
+	/// fr: 'Choisir dans la galerie'
+	String get gallery => 'Choisir dans la galerie';
+
+	/// fr: 'Retirer la photo'
+	String get remove => 'Retirer la photo';
+
+	/// fr: 'Recadre ta photo'
+	String get cropTitle => 'Recadre ta photo';
+
+	/// fr: 'Déplace et agrandis la photo avec tes doigts.'
+	String get cropHint => 'Déplace et agrandis la photo avec tes doigts.';
+
+	/// fr: 'Utiliser cette photo'
+	String get use => 'Utiliser cette photo';
+
+	/// fr: 'Impossible d'ouvrir cette image. Choisis-en une autre.'
+	String get unreadable => 'Impossible d\'ouvrir cette image. Choisis-en une autre.';
+
+	/// fr: 'Ta photo de profil est enregistrée.'
+	String get saved => 'Ta photo de profil est enregistrée.';
+
+	/// fr: 'Ta photo de profil est retirée.'
+	String get removed => 'Ta photo de profil est retirée.';
+}
+
+// Path: disciples
+class Translations$disciples$fr {
+	Translations$disciples$fr.internal(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// fr: 'Mes disciples'
+	String get title => 'Mes disciples';
+
+	/// fr: 'Les membres qui t'ont choisi comme faiseur de disciples. Tu vois leur régularité, jamais le contenu de leurs comptes rendus.'
+	String get intro => 'Les membres qui t\'ont choisi comme faiseur de disciples. Tu vois leur régularité, jamais le contenu de leurs comptes rendus.';
+
+	/// fr: 'Pas encore de disciple'
+	String get empty => 'Pas encore de disciple';
+
+	/// fr: 'Quand un membre te choisit comme faiseur de disciples et que tu acceptes sa demande, il apparaît ici.'
+	String get emptyText => 'Quand un membre te choisit comme faiseur de disciples et que tu acceptes sa demande, il apparaît ici.';
+
+	/// fr: '(one) {{n} disciple} (other) {{n} disciples}'
+	String count({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('fr'))(n,
+		one: '${n} disciple',
+		other: '${n} disciples',
+	);
+
+	/// fr: '(one) {{n} jour rempli sur 30} (other) {{n} jours remplis sur 30}'
+	String filled({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('fr'))(n,
+		one: '${n} jour rempli sur 30',
+		other: '${n} jours remplis sur 30',
+	);
+
+	/// fr: '(one) {{n} jour d'affilée} (other) {{n} jours d'affilée}'
+	String streak({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('fr'))(n,
+		one: '${n} jour d\'affilée',
+		other: '${n} jours d\'affilée',
+	);
+
+	/// fr: 'Pas de série en cours'
+	String get noStreak => 'Pas de série en cours';
+
+	/// fr: 'Rempli aujourd'hui'
+	String get lastToday => 'Rempli aujourd\'hui';
+
+	/// fr: 'Dernier : hier'
+	String get lastYesterday => 'Dernier : hier';
+
+	/// fr: '(one) {Dernier : il y a {n} jour} (other) {Dernier : il y a {n} jours}'
+	String lastDaysAgo({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('fr'))(n,
+		one: 'Dernier : il y a ${n} jour',
+		other: 'Dernier : il y a ${n} jours',
+	);
+
+	/// fr: 'Aucun compte rendu cette année'
+	String get noReport => 'Aucun compte rendu cette année';
+
+	/// fr: 'Objectifs : {percent} %'
+	String goals({required Object percent}) => 'Objectifs : ${percent} %';
+
+	/// fr: 'Ne partage pas sa régularité'
+	String get notShared => 'Ne partage pas sa régularité';
 }
 
 // Path: onboarding.reports
@@ -1501,8 +2255,8 @@ class Translations$auth$church$fr {
 	/// fr: 'Pays'
 	String get country => 'Pays';
 
-	/// fr: 'Cameroun'
-	String get countryHint => 'Cameroun';
+	/// fr: 'Choisis ton pays'
+	String get countryHint => 'Choisis ton pays';
 
 	/// fr: 'Ville'
 	String get city => 'Ville';
@@ -1533,6 +2287,81 @@ class Translations$auth$church$fr {
 
 	/// fr: 'Profil enregistré'
 	String get saved => 'Profil enregistré';
+}
+
+// Path: auth.forgot
+class Translations$auth$forgot$fr {
+	Translations$auth$forgot$fr.internal(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// fr: 'Mot de passe oublié ?'
+	String get link => 'Mot de passe oublié ?';
+
+	/// fr: 'Mot de passe oublié'
+	String get title => 'Mot de passe oublié';
+
+	/// fr: 'Entre ton numéro : on t'envoie un code par SMS pour choisir un nouveau mot de passe.'
+	String get phoneText => 'Entre ton numéro : on t\'envoie un code par SMS pour choisir un nouveau mot de passe.';
+
+	/// fr: 'Recevoir le code'
+	String get sendCode => 'Recevoir le code';
+
+	/// fr: 'Entre le code'
+	String get codeTitle => 'Entre le code';
+
+	/// fr: 'Nous avons envoyé un code à 6 chiffres au {phone}.'
+	String codeText({required Object phone}) => 'Nous avons envoyé un code à 6 chiffres au ${phone}.';
+
+	/// fr: 'Code reçu par SMS'
+	String get code => 'Code reçu par SMS';
+
+	/// fr: 'Le code a 6 chiffres'
+	String get codeInvalid => 'Le code a 6 chiffres';
+
+	/// fr: 'Vérifier'
+	String get verify => 'Vérifier';
+
+	/// fr: 'Renvoyer le code'
+	String get resend => 'Renvoyer le code';
+
+	/// fr: 'Renvoyer le code dans {seconds} s'
+	String resendIn({required Object seconds}) => 'Renvoyer le code dans ${seconds} s';
+
+	/// fr: 'Changer de numéro'
+	String get changeNumber => 'Changer de numéro';
+
+	/// fr: 'Nouveau mot de passe'
+	String get passwordTitle => 'Nouveau mot de passe';
+
+	/// fr: 'Choisis un nouveau mot de passe pour ton compte.'
+	String get passwordText => 'Choisis un nouveau mot de passe pour ton compte.';
+
+	/// fr: 'Enregistrer et me connecter'
+	String get submit => 'Enregistrer et me connecter';
+
+	/// fr: 'Mot de passe changé. Content de te revoir !'
+	String get done => 'Mot de passe changé. Content de te revoir !';
+
+	/// fr: 'Tu t'en souviens ?'
+	String get remembered => 'Tu t\'en souviens ?';
+
+	/// fr: 'Ce code n'est pas le bon.'
+	String get invalidCode => 'Ce code n\'est pas le bon.';
+
+	/// fr: 'Le code a expiré. Demandes-en un nouveau.'
+	String get expired => 'Le code a expiré. Demandes-en un nouveau.';
+
+	/// fr: 'Trop de tentatives. Réessaie dans un moment.'
+	String get tooManyRequests => 'Trop de tentatives. Réessaie dans un moment.';
+
+	/// fr: 'La réinitialisation n'est pas disponible pour l'instant.'
+	String get unavailable => 'La réinitialisation n\'est pas disponible pour l\'instant.';
+
+	/// fr: 'Aucun compte n'utilise ce numéro.'
+	String get noAccount => 'Aucun compte n\'utilise ce numéro.';
 }
 
 // Path: reports.tabs
@@ -1725,6 +2554,73 @@ class Translations$reports$summary$fr {
 
 	/// fr: 'Partager ce bilan'
 	String get share => 'Partager ce bilan';
+
+	/// fr: 'Objectifs'
+	String get goals => 'Objectifs';
+
+	/// fr: 'Accomplissement moyen de tes objectifs'
+	String get goalsAverage => 'Accomplissement moyen de tes objectifs';
+
+	/// fr: 'Chaque jour compte, même vide. Aujourd'hui compte une fois rempli.'
+	String get goalsHint => 'Chaque jour compte, même vide. Aujourd\'hui compte une fois rempli.';
+
+	/// fr: 'Évolution de tes objectifs'
+	String get evolution => 'Évolution de tes objectifs';
+
+	/// fr: 'Semaine après semaine, sur les 12 dernières.'
+	String get evolutionHint => 'Semaine après semaine, sur les 12 dernières.';
+
+	/// fr: 'L'année et l'évolution de tes objectifs viennent avec Premium.'
+	String get premiumYear => 'L\'année et l\'évolution de tes objectifs viennent avec Premium.';
+}
+
+// Path: reports.standardItems
+class Translations$reports$standardItems$fr {
+	Translations$reports$standardItems$fr.internal(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// fr: 'Lecture biblique'
+	String get lb => 'Lecture biblique';
+
+	/// fr: 'Prière seule'
+	String get ps => 'Prière seule';
+
+	/// fr: 'Méditation'
+	String get rdqad => 'Méditation';
+
+	/// fr: 'Prière en groupe'
+	String get pg => 'Prière en groupe';
+
+	/// fr: 'Lecture de la littérature chrétienne'
+	String get llc => 'Lecture de la littérature chrétienne';
+
+	/// fr: 'Jeûne complet'
+	String get jc => 'Jeûne complet';
+
+	/// fr: 'Jeûne partiel'
+	String get jp => 'Jeûne partiel';
+
+	/// fr: 'Dîmes'
+	String get dimes => 'Dîmes';
+
+	/// fr: 'Offrandes'
+	String get off => 'Offrandes';
+}
+
+// Path: reports.units
+class Translations$reports$units$fr {
+	Translations$reports$units$fr.internal(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+	late final Translations$reports$units$chapters$fr chapters = Translations$reports$units$chapters$fr.internal(_root);
+	late final Translations$reports$units$times$fr times = Translations$reports$units$times$fr.internal(_root);
+	late final Translations$reports$units$pages$fr pages = Translations$reports$units$pages$fr.internal(_root);
+	late final Translations$reports$units$percent$fr percent = Translations$reports$units$percent$fr.internal(_root);
 }
 
 // Path: export.doc
@@ -1896,6 +2792,30 @@ class Translations$authorities$form$fr {
 
 	/// fr: 'C'est ton propre pseudo.'
 	String get yourself => 'C\'est ton propre pseudo.';
+
+	/// fr: 'Ton faiseur de disciples verra ta régularité (jours remplis, série, % d'objectifs), jamais le contenu de tes comptes rendus. Tu peux l'arrêter sur sa fiche.'
+	String get sharingHelp => 'Ton faiseur de disciples verra ta régularité (jours remplis, série, % d\'objectifs), jamais le contenu de tes comptes rendus. Tu peux l\'arrêter sur sa fiche.';
+}
+
+// Path: authorities.sharing
+class Translations$authorities$sharing$fr {
+	Translations$authorities$sharing$fr.internal(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// fr: 'Partager ma régularité'
+	String get title => 'Partager ma régularité';
+
+	/// fr: '{name} voit tes jours remplis, ta série et le % de tes objectifs, jamais le contenu de tes comptes rendus.'
+	String help({required Object name}) => '${name} voit tes jours remplis, ta série et le % de tes objectifs, jamais le contenu de tes comptes rendus.';
+
+	/// fr: 'Ta régularité est partagée avec {name}.'
+	String on({required Object name}) => 'Ta régularité est partagée avec ${name}.';
+
+	/// fr: '{name} ne voit plus ta régularité.'
+	String off({required Object name}) => '${name} ne voit plus ta régularité.';
 }
 
 // Path: members.deleteAccount
@@ -1915,8 +2835,8 @@ class Translations$members$deleteAccount$fr {
 	/// fr: 'C'est définitif. Ton compte et tout ce qui y est lié seront effacés :'
 	String get intro => 'C\'est définitif. Ton compte et tout ce qui y est lié seront effacés :';
 
-	/// fr: 'ton profil, ton pseudo et ton mot de passe'
-	String get itemProfile => 'ton profil, ton pseudo et ton mot de passe';
+	/// fr: 'ton profil, ta photo, ton pseudo et ton mot de passe'
+	String get itemProfile => 'ton profil, ta photo, ton pseudo et ton mot de passe';
 
 	/// fr: 'tous tes comptes rendus, tes éléments et tes objectifs'
 	String get itemReports => 'tous tes comptes rendus, tes éléments et tes objectifs';
@@ -2543,6 +3463,18 @@ class Translations$events$admin$fr {
 	String get confirmDelete => 'Supprimer';
 }
 
+// Path: ministry.goals
+class Translations$ministry$goals$fr {
+	Translations$ministry$goals$fr.internal(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+	late final Translations$ministry$goals$crusade$fr crusade = Translations$ministry$goals$crusade$fr.internal(_root);
+	late final Translations$ministry$goals$disciples$fr disciples = Translations$ministry$goals$disciples$fr.internal(_root);
+	late final Translations$ministry$goals$revival$fr revival = Translations$ministry$goals$revival$fr.internal(_root);
+}
+
 // Path: prayer.hero
 class Translations$prayer$hero$fr {
 	Translations$prayer$hero$fr.internal(this._root);
@@ -3054,6 +3986,207 @@ class Translations$prayer$importunity$fr {
 	late final Translations$prayer$importunity$inviteSheet$fr inviteSheet = Translations$prayer$importunity$inviteSheet$fr.internal(_root);
 }
 
+// Path: streak.lines
+class Translations$streak$lines$fr {
+	Translations$streak$lines$fr.internal(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// fr: 'Une semaine entière avec le Seigneur, jour après jour. Bravo, continue !'
+	String get week => 'Une semaine entière avec le Seigneur, jour après jour. Bravo, continue !';
+
+	/// fr: 'Un mois de fidélité ! Ce que tu sèmes chaque jour porte du fruit.'
+	String get month => 'Un mois de fidélité ! Ce que tu sèmes chaque jour porte du fruit.';
+
+	/// fr: 'Cent jours avec Dieu ! Ta persévérance est un beau témoignage.'
+	String get hundred => 'Cent jours avec Dieu ! Ta persévérance est un beau témoignage.';
+
+	/// fr: 'Une année entière avec Dieu ! Gloire à Lui pour ta fidélité.'
+	String get year => 'Une année entière avec Dieu ! Gloire à Lui pour ta fidélité.';
+}
+
+// Path: blocking.reasons
+class Translations$blocking$reasons$fr {
+	Translations$blocking$reasons$fr.internal(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// fr: 'Indésirable'
+	String get spam => 'Indésirable';
+
+	/// fr: 'Contenu choquant ou offensant'
+	String get offensive => 'Contenu choquant ou offensant';
+
+	/// fr: 'Autre'
+	String get other => 'Autre';
+}
+
+// Path: reports.units.chapters
+class Translations$reports$units$chapters$fr {
+	Translations$reports$units$chapters$fr.internal(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// fr: 'Nombre de chapitres'
+	String get name => 'Nombre de chapitres';
+
+	/// fr: 'chapitres'
+	String get label => 'chapitres';
+
+	/// fr: 'chapitres'
+	String get symbol => 'chapitres';
+
+	/// fr: '(one) {{value} chapitre} (other) {{value} chapitres}'
+	String count({required num n, required Object value}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('fr'))(n,
+		one: '${value} chapitre',
+		other: '${value} chapitres',
+	);
+}
+
+// Path: reports.units.times
+class Translations$reports$units$times$fr {
+	Translations$reports$units$times$fr.internal(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// fr: 'Nombre de fois'
+	String get name => 'Nombre de fois';
+
+	/// fr: 'fois'
+	String get label => 'fois';
+
+	/// fr: 'fois'
+	String get symbol => 'fois';
+
+	/// fr: '(one) {{value} fois} (other) {{value} fois}'
+	String count({required num n, required Object value}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('fr'))(n,
+		one: '${value} fois',
+		other: '${value} fois',
+	);
+}
+
+// Path: reports.units.pages
+class Translations$reports$units$pages$fr {
+	Translations$reports$units$pages$fr.internal(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// fr: 'Nombre de pages'
+	String get name => 'Nombre de pages';
+
+	/// fr: 'pages'
+	String get label => 'pages';
+
+	/// fr: 'pages'
+	String get symbol => 'pages';
+
+	/// fr: '(one) {{value} page} (other) {{value} pages}'
+	String count({required num n, required Object value}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('fr'))(n,
+		one: '${value} page',
+		other: '${value} pages',
+	);
+}
+
+// Path: reports.units.percent
+class Translations$reports$units$percent$fr {
+	Translations$reports$units$percent$fr.internal(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// fr: 'Pourcentage'
+	String get name => 'Pourcentage';
+
+	/// fr: 'pourcentage'
+	String get label => 'pourcentage';
+
+	/// fr: '%'
+	String get symbol => '%';
+
+	/// fr: '{value} %'
+	String count({required Object value}) => '${value} %';
+}
+
+// Path: ministry.goals.crusade
+class Translations$ministry$goals$crusade$fr {
+	Translations$ministry$goals$crusade$fr.internal(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// fr: 'La toute-créature gospel crusade'
+	String get title => 'La toute-créature gospel crusade';
+
+	/// fr: 'Prêcher l’évangile à chacun de ceux qui vivront dans notre génération de sorte que 10 milliards de personnes soient atteintes avec l’évangile prêché dans la puissance du Saint-Esprit, en utilisant tous les moyens de communication (nos livres, nos traités, nos magazines, nos CD, nos DVD, notre radio, notre télévision et Internet) de la manière la plus urgente possible.'
+	String get text => 'Prêcher l’évangile à chacun de ceux qui vivront dans notre génération de sorte que 10 milliards de personnes soient atteintes avec l’évangile prêché dans la puissance du Saint-Esprit, en utilisant tous les moyens de communication (nos livres, nos traités, nos magazines, nos CD, nos DVD, notre radio, notre télévision et Internet) de la manière la plus urgente possible.';
+
+	/// fr: 'personnes atteintes par l’évangile'
+	String get reached => 'personnes atteintes par l’évangile';
+}
+
+// Path: ministry.goals.disciples
+class Translations$ministry$goals$disciples$fr {
+	Translations$ministry$goals$disciples$fr.internal(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// fr: 'La formation des disciples'
+	String get title => 'La formation des disciples';
+
+	/// fr: 'Amener 1 milliard de personnes dans 250 nations à connaître Jésus-Christ comme Seigneur et Sauveur et qu’elles soient faites disciples pour lui obéir en toutes choses et organisées pour se réunir dans 25 millions d’églises de maison d’ici l’an 2065.'
+	String get text => 'Amener 1 milliard de personnes dans 250 nations à connaître Jésus-Christ comme Seigneur et Sauveur et qu’elles soient faites disciples pour lui obéir en toutes choses et organisées pour se réunir dans 25 millions d’églises de maison d’ici l’an 2065.';
+
+	/// fr: 'disciples'
+	String get people => 'disciples';
+
+	/// fr: 'nations'
+	String get nations => 'nations';
+
+	/// fr: 'églises de maison'
+	String get churches => 'églises de maison';
+
+	/// fr: 'd’ici {year}'
+	String by({required Object year}) => 'd’ici ${year}';
+}
+
+// Path: ministry.goals.revival
+class Translations$ministry$goals$revival$fr {
+	Translations$ministry$goals$revival$fr.internal(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// fr: 'Précipiter le réveil global'
+	String get title => 'Précipiter le réveil global';
+
+	/// fr: 'Coopérer avec Dieu par le jeûne et l’intercession pour le réveil mondial qui va déchirer les cieux, secouer la terre, glorifier Christ dans notre génération pour précipiter le retour imminent de notre Seigneur Jésus-Christ du ciel pour la rencontre avec son Épouse rendue prête.'
+	String get text => 'Coopérer avec Dieu par le jeûne et l’intercession pour le réveil mondial qui va déchirer les cieux, secouer la terre, glorifier Christ dans notre génération pour précipiter le retour imminent de notre Seigneur Jésus-Christ du ciel pour la rencontre avec son Épouse rendue prête.';
+
+	/// fr: 'Jeûne'
+	String get fasting => 'Jeûne';
+
+	/// fr: 'Intercession'
+	String get intercession => 'Intercession';
+
+	/// fr: 'Prier maintenant'
+	String get pray => 'Prier maintenant';
+}
+
 // Path: prayer.retreat.hints
 class Translations$prayer$retreat$hints$fr {
 	Translations$prayer$retreat$hints$fr.internal(this._root);
@@ -3275,6 +4408,7 @@ extension on Translations {
 			'errors.usernameNotFound' => 'Personne n\'a ce pseudo. Vérifie l\'orthographe.',
 			'errors.ownerCannotLeave' => 'Tu as créé ce sujet : supprime-le plutôt que de le quitter.',
 			'errors.tooManyPeople' => 'Tes listes sont pleines (500 personnes au plus).',
+			'errors.avatarInvalid' => 'Cette photo ne peut pas être utilisée. Choisis-en une autre.',
 			'validation.required' => 'Ce champ est obligatoire',
 			'validation.passwordTooShort' => 'Au moins 6 caractères',
 			'validation.invalidPhone' => 'Numéro de téléphone invalide',
@@ -3317,7 +4451,6 @@ extension on Translations {
 			'welcome.createAccount' => 'Créer mon compte',
 			'welcome.haveAccount' => 'J\'ai déjà un compte',
 			'auth.phone' => 'Téléphone',
-			'auth.phoneHint' => '6 90 00 00 01',
 			'auth.dialCode' => ({required Object code}) => 'Indicatif : ${code}',
 			'auth.password' => 'Mot de passe',
 			'auth.showPassword' => 'Afficher le mot de passe',
@@ -3344,7 +4477,7 @@ extension on Translations {
 			'auth.church.editTitle' => 'Mon profil',
 			'auth.church.editSubtitle' => 'Mets à jour ton nom, ton église et ton assemblée.',
 			'auth.church.country' => 'Pays',
-			'auth.church.countryHint' => 'Cameroun',
+			'auth.church.countryHint' => 'Choisis ton pays',
 			'auth.church.city' => 'Ville',
 			'auth.church.cityHint' => 'Yaoundé',
 			'auth.church.church' => 'Église',
@@ -3355,6 +4488,33 @@ extension on Translations {
 			'auth.church.submit' => 'Terminer',
 			'auth.church.skip' => 'Passer cette étape',
 			'auth.church.saved' => 'Profil enregistré',
+			'auth.forgot.link' => 'Mot de passe oublié ?',
+			'auth.forgot.title' => 'Mot de passe oublié',
+			'auth.forgot.phoneText' => 'Entre ton numéro : on t\'envoie un code par SMS pour choisir un nouveau mot de passe.',
+			'auth.forgot.sendCode' => 'Recevoir le code',
+			'auth.forgot.codeTitle' => 'Entre le code',
+			'auth.forgot.codeText' => ({required Object phone}) => 'Nous avons envoyé un code à 6 chiffres au ${phone}.',
+			'auth.forgot.code' => 'Code reçu par SMS',
+			'auth.forgot.codeInvalid' => 'Le code a 6 chiffres',
+			'auth.forgot.verify' => 'Vérifier',
+			'auth.forgot.resend' => 'Renvoyer le code',
+			'auth.forgot.resendIn' => ({required Object seconds}) => 'Renvoyer le code dans ${seconds} s',
+			'auth.forgot.changeNumber' => 'Changer de numéro',
+			'auth.forgot.passwordTitle' => 'Nouveau mot de passe',
+			'auth.forgot.passwordText' => 'Choisis un nouveau mot de passe pour ton compte.',
+			'auth.forgot.submit' => 'Enregistrer et me connecter',
+			'auth.forgot.done' => 'Mot de passe changé. Content de te revoir !',
+			'auth.forgot.remembered' => 'Tu t\'en souviens ?',
+			'auth.forgot.invalidCode' => 'Ce code n\'est pas le bon.',
+			'auth.forgot.expired' => 'Le code a expiré. Demandes-en un nouveau.',
+			'auth.forgot.tooManyRequests' => 'Trop de tentatives. Réessaie dans un moment.',
+			'auth.forgot.unavailable' => 'La réinitialisation n\'est pas disponible pour l\'instant.',
+			'auth.forgot.noAccount' => 'Aucun compte n\'utilise ce numéro.',
+			'countries.dialCodeTitle' => 'Indicatif du pays',
+			'countries.title' => 'Ton pays',
+			'countries.search' => 'Rechercher un pays ou un indicatif',
+			'countries.none' => 'Aucun pays ne correspond',
+			'countries.change' => 'Changer de pays',
 			'nav.home' => 'Accueil',
 			'nav.reports' => 'Compte rendu',
 			'nav.hymns' => 'Cantiques',
@@ -3366,13 +4526,12 @@ extension on Translations {
 			'home.todayTitle' => 'Compte rendu du jour',
 			'home.progress' => ({required Object filled, required Object total}) => '${filled} sur ${total}',
 			'home.progressLabel' => 'éléments renseignés',
+			'home.goals' => 'objectifs',
 			'home.continueReport' => 'Continuer',
 			'home.startReport' => 'Commencer',
 			'home.weekTitle' => 'Ta semaine',
 			'home.weekScore' => ({required num filled, required Object total}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('fr'))(filled, one: '${filled} jour sur ${total}', other: '${filled} jours sur ${total}', ), 
-			'home.community' => 'Dans ta communauté',
-			'home.prayerTitle' => 'Sujets de prière',
-			'home.prayerText' => 'Bientôt, tu pourras porter chaque jour les sujets de prière de ton assemblée.',
+			'home.community' => 'Actuellement à la CMCI',
 			'home.eventsTitle' => 'Évènements',
 			'home.hymnsTitle' => 'Cantiques',
 			'home.hymnsResume' => ({required Object number}) => 'Reprendre le n° ${number}',
@@ -3440,6 +4599,12 @@ extension on Translations {
 			'reports.summary.empty' => 'Aucun compte rendu sur cette période.',
 			'reports.summary.goalDays' => ({required num n, required Object total}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('fr'))(n, one: 'Objectif atteint ${n} jour sur ${total}', other: 'Objectif atteint ${n} jours sur ${total}', ), 
 			'reports.summary.share' => 'Partager ce bilan',
+			'reports.summary.goals' => 'Objectifs',
+			'reports.summary.goalsAverage' => 'Accomplissement moyen de tes objectifs',
+			'reports.summary.goalsHint' => 'Chaque jour compte, même vide. Aujourd\'hui compte une fois rempli.',
+			'reports.summary.evolution' => 'Évolution de tes objectifs',
+			'reports.summary.evolutionHint' => 'Semaine après semaine, sur les 12 dernières.',
+			'reports.summary.premiumYear' => 'L\'année et l\'évolution de tes objectifs viennent avec Premium.',
 			'reports.noItems' => 'Aucun élément à renseigner pour le moment.',
 			'reports.statusPending' => 'Pas encore envoyé',
 			'reports.savedOffline' => 'Pas de réseau : la journée est gardée sur le téléphone et partira dès que possible.',
@@ -3447,6 +4612,33 @@ extension on Translations {
 			'reports.export' => 'Exporter mon compte rendu',
 			'reports.goal' => ({required Object value}) => 'Objectif : ${value}',
 			'reports.goalReached' => 'Objectif atteint',
+			'reports.dayGoals' => 'Objectifs de la journée',
+			'reports.goalsReached' => ({required Object reached, required Object total}) => 'Atteints : ${reached} sur ${total}',
+			'reports.standardItems.lb' => 'Lecture biblique',
+			'reports.standardItems.ps' => 'Prière seule',
+			'reports.standardItems.rdqad' => 'Méditation',
+			'reports.standardItems.pg' => 'Prière en groupe',
+			'reports.standardItems.llc' => 'Lecture de la littérature chrétienne',
+			'reports.standardItems.jc' => 'Jeûne complet',
+			'reports.standardItems.jp' => 'Jeûne partiel',
+			'reports.standardItems.dimes' => 'Dîmes',
+			'reports.standardItems.off' => 'Offrandes',
+			'reports.units.chapters.name' => 'Nombre de chapitres',
+			'reports.units.chapters.label' => 'chapitres',
+			'reports.units.chapters.symbol' => 'chapitres',
+			'reports.units.chapters.count' => ({required num n, required Object value}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('fr'))(n, one: '${value} chapitre', other: '${value} chapitres', ), 
+			'reports.units.times.name' => 'Nombre de fois',
+			'reports.units.times.label' => 'fois',
+			'reports.units.times.symbol' => 'fois',
+			'reports.units.times.count' => ({required num n, required Object value}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('fr'))(n, one: '${value} fois', other: '${value} fois', ), 
+			'reports.units.pages.name' => 'Nombre de pages',
+			'reports.units.pages.label' => 'pages',
+			'reports.units.pages.symbol' => 'pages',
+			'reports.units.pages.count' => ({required num n, required Object value}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('fr'))(n, one: '${value} page', other: '${value} pages', ), 
+			'reports.units.percent.name' => 'Pourcentage',
+			'reports.units.percent.label' => 'pourcentage',
+			'reports.units.percent.symbol' => '%',
+			'reports.units.percent.count' => ({required Object value}) => '${value} %',
 			'reminder.title' => 'Ton compte rendu du jour',
 			'reminder.body' => 'Prends une minute pour noter ta lecture, ta prière… avant la fin de la journée.',
 			'reminder.channel' => 'Rappel du compte rendu',
@@ -3551,7 +4743,6 @@ extension on Translations {
 			'more.editProfile' => 'Modifier mon profil',
 			'more.community' => 'Communauté',
 			'more.events' => 'Évènements',
-			'more.announcements' => 'Annonces',
 			'more.reports' => 'Compte rendu',
 			'more.myItems' => 'Mes éléments',
 			'more.app' => 'Application',
@@ -3562,6 +4753,7 @@ extension on Translations {
 			'more.themeLight' => 'Clair',
 			'more.themeDark' => 'Sombre',
 			'more.logout' => 'Se déconnecter',
+			'more.account' => 'Compte',
 			'more.languageTitle' => 'Langue de l\'application',
 			'more.completeProfile' => 'Ajoute ton nom',
 			'more.accompaniment' => 'Accompagnement',
@@ -3572,6 +4764,7 @@ extension on Translations {
 			'more.admin' => 'Administration',
 			'more.staff' => 'Équipe et rôles',
 			'more.manageEvents' => 'Évènements',
+			'more.disciples' => 'Mes disciples',
 			'authorities.title' => 'Mes autorités spirituelles',
 			'authorities.intro' => 'Les personnes qui t\'accompagnent dans ta marche avec Dieu : ton faiseur de disciples et tes autres responsables.',
 			'authorities.discipleMaker' => 'Faiseur de disciples',
@@ -3607,6 +4800,7 @@ extension on Translations {
 			'authorities.form.alreadyAdded' => 'Cette personne fait déjà partie de tes autorités.',
 			'authorities.form.makerExists' => 'Tu as déjà un faiseur de disciples.',
 			'authorities.form.yourself' => 'C\'est ton propre pseudo.',
+			'authorities.form.sharingHelp' => 'Ton faiseur de disciples verra ta régularité (jours remplis, série, % d\'objectifs), jamais le contenu de tes comptes rendus. Tu peux l\'arrêter sur sa fiche.',
 			'authorities.statusPending' => 'En attente',
 			'authorities.statusDeclined' => 'Refusée',
 			'authorities.pendingHelp' => ({required Object name}) => 'Ses coordonnées s\'afficheront quand ${name} aura accepté.',
@@ -3618,6 +4812,10 @@ extension on Translations {
 			'authorities.acceptedRequest' => ({required Object name}) => 'Tu accompagnes maintenant ${name}.',
 			'authorities.declinedRequest' => ({required Object name}) => 'Demande de ${name} refusée.',
 			'authorities.requestsCount' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('fr'))(n, one: '${n} demande à voir', other: '${n} demandes à voir', ), 
+			'authorities.sharing.title' => 'Partager ma régularité',
+			'authorities.sharing.help' => ({required Object name}) => '${name} voit tes jours remplis, ta série et le % de tes objectifs, jamais le contenu de tes comptes rendus.',
+			'authorities.sharing.on' => ({required Object name}) => 'Ta régularité est partagée avec ${name}.',
+			'authorities.sharing.off' => ({required Object name}) => '${name} ne voit plus ta régularité.',
 			'members.username' => 'Pseudo',
 			'members.usernameHint' => 'prenom.nom',
 			'members.usernameHelp' => 'C\'est ainsi que les autres membres te trouveront.',
@@ -3631,7 +4829,7 @@ extension on Translations {
 			'members.deleteAccount.button' => 'Supprimer mon compte',
 			'members.deleteAccount.title' => 'Supprimer mon compte',
 			'members.deleteAccount.intro' => 'C\'est définitif. Ton compte et tout ce qui y est lié seront effacés :',
-			'members.deleteAccount.itemProfile' => 'ton profil, ton pseudo et ton mot de passe',
+			'members.deleteAccount.itemProfile' => 'ton profil, ta photo, ton pseudo et ton mot de passe',
 			'members.deleteAccount.itemReports' => 'tous tes comptes rendus, tes éléments et tes objectifs',
 			'members.deleteAccount.itemAuthorities' => 'tes autorités spirituelles et les demandes reçues',
 			'members.deleteAccount.itemEvents' => 'tes inscriptions aux évènements',
@@ -3693,6 +4891,8 @@ extension on Translations {
 			'hymns.reader.favoriteAdded' => 'Ajouté aux favoris',
 			'hymns.reader.favoriteRemoved' => 'Retiré des favoris',
 			'hymns.reader.more' => 'Plus d\'options',
+			_ => null,
+		} ?? switch (path) {
 			'hymns.reader.copy' => 'Copier les paroles',
 			'hymns.reader.copied' => 'Paroles copiées',
 			'hymns.reader.project' => 'Mode projection',
@@ -3758,8 +4958,6 @@ extension on Translations {
 			'events.contact' => 'Contact',
 			'events.call' => ({required Object name}) => 'Appeler ${name}',
 			'events.otherEditions' => 'Les autres éditions',
-			_ => null,
-		} ?? switch (path) {
 			'events.cancelledBanner' => 'Cet évènement est annulé.',
 			'events.calendarFailed' => 'Impossible d\'ouvrir le calendrier du téléphone.',
 			'events.linkFailed' => 'Impossible d\'ouvrir ce lien.',
@@ -3895,6 +5093,120 @@ extension on Translations {
 			'events.admin.photoDelete' => 'Supprimer cette photo',
 			'events.admin.photoDeleted' => 'Photo supprimée.',
 			'events.admin.confirmDelete' => 'Supprimer',
+			'events.upcomingCount' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('fr'))(n, one: '${n} évènement à venir', other: '${n} évènements à venir', ), 
+			'events.slide' => ({required Object current, required Object total}) => 'Évènement ${current} sur ${total}',
+			'notifications.title' => 'Notifications',
+			'notifications.channel' => 'Annonces de la communauté',
+			'notifications.empty' => 'Aucune notification pour l\'instant',
+			'notifications.emptyHint' => 'Les annonces de la communauté arriveront ici.',
+			'notifications.unreadLabel' => ({required Object title}) => 'Non lue : ${title}',
+			'notifications.documents' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('fr'))(n, one: '${n} document PDF', other: '${n} documents PDF', ), 
+			'notifications.unread' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('fr'))(n, one: '${n} non lue', other: '${n} non lues', ), 
+			'notifications.image' => ({required Object n}) => 'Image ${n}',
+			'notifications.document' => 'Document PDF',
+			'notifications.documentSize' => ({required Object kb}) => '${kb} Ko',
+			'notifications.received' => ({required Object title}) => 'Nouvelle notification : ${title}',
+			'premium.name' => 'CMFI Connect Premium',
+			'premium.pill' => 'Premium',
+			'premium.subtitle' => 'Va plus loin dans ta marche avec Dieu, et soutiens l\'œuvre.',
+			'premium.widgetTitle' => 'Le widget de l\'écran d\'accueil',
+			'premium.widgetText' => 'Ton compte rendu du jour et tes objectifs, sans ouvrir l\'app.',
+			'premium.statsTitle' => 'Tes objectifs sur l\'année',
+			'premium.statsText' => 'Le bilan de l\'année et l\'évolution de tes objectifs, semaine après semaine.',
+			'premium.supportTitle' => 'Tu soutiens l\'œuvre',
+			'premium.supportText' => 'Ton abonnement fait vivre l\'app pour toute la communauté.',
+			'premium.annual' => 'Annuel',
+			'premium.monthly' => 'Mensuel',
+			'premium.perYear' => ({required Object price}) => '${price} / an',
+			'premium.perMonth' => ({required Object price}) => '${price} / mois',
+			'premium.annualPerMonth' => ({required Object price}) => 'soit ${price} par mois',
+			'premium.best' => 'Le plus avantageux',
+			'premium.trialDays' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('fr'))(n, one: '${n} jour d\'essai gratuit', other: '${n} jours d\'essai gratuit', ), 
+			'premium.trialMonths' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('fr'))(n, one: '${n} mois d\'essai gratuit', other: '${n} mois d\'essai gratuit', ), 
+			'premium.subscribe' => 'S\'abonner',
+			'premium.startTrial' => 'Commencer l\'essai gratuit',
+			'premium.restore' => 'Restaurer mes achats',
+			'premium.restored' => 'Premium est de retour sur ce téléphone',
+			'premium.nothingToRestore' => 'Aucun achat Premium pour ce compte',
+			'premium.thanks' => 'Merci ! Premium est activé.',
+			'premium.failed' => 'L\'achat n\'a pas abouti. Réessaie dans un instant.',
+			'premium.unavailable' => 'Les offres ne sont pas disponibles pour l\'instant.',
+			'premium.renews' => ({required Object store}) => 'L\'abonnement se renouvelle automatiquement. Tu peux l\'annuler quand tu veux dans les réglages de ton compte ${store}.',
+			'premium.terms' => 'Conditions d\'utilisation',
+			'premium.privacy' => 'Confidentialité',
+			'premium.activeTitle' => 'Tu as Premium',
+			'premium.activeText' => 'Merci de soutenir CMFI Connect ! Le widget et l\'année de ton bilan sont ouverts.',
+			'premium.staffText' => 'Premium t\'est offert parce que tu fais partie de l\'équipe de CMFI Connect.',
+			'premium.moreSubtitle' => 'Widget, objectifs sur l\'année',
+			'premium.moreActive' => 'Actif',
+			'premium.unlock' => 'Débloquer avec Premium',
+			'premium.trialThen' => ({required Object trial, required Object price}) => '${trial}, puis ${price}',
+			'premium.savePercent' => ({required Object percent}) => '−${percent}',
+			'premium.choose' => 'Choisis ton offre',
+			'premium.cancelAnytime' => 'Sans engagement, annulable à tout moment',
+			'premium.restoreShort' => 'Restaurer',
+			'premium.termsShort' => 'Conditions',
+			'premium.semiannual' => 'Semestriel',
+			'premium.perSemester' => ({required Object price}) => '${price} / 6 mois',
+			'homeWidget.title' => 'Aujourd\'hui',
+			'homeWidget.done' => 'Fait',
+			'homeWidget.todo' => 'À remplir',
+			'homeWidget.open' => 'Remplir',
+			'homeWidget.locked' => 'Active le widget avec Premium',
+			'homeWidget.signedOut' => 'Connecte-toi dans l\'app',
+			'ministry.title' => 'Notre ministère',
+			'ministry.tagline' => 'Jusqu\'aux extrémités de la terre',
+			'ministry.count' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('fr'))(n, one: '${n} nation', other: '${n} nations', ), 
+			'ministry.fromYaounde' => 'Depuis Yaoundé, l\'Évangile va de nation en nation.',
+			'ministry.dragHint' => 'Fais tourner le globe du doigt, touche une nation.',
+			'ministry.globeLabel' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('fr'))(n, one: 'Globe : ${n} nation où l\'œuvre est présente. La liste plus bas la donne.', other: 'Globe : ${n} nations où l\'œuvre est présente. La liste plus bas les donne toutes.', ), 
+			'ministry.voyage' => 'Voyage',
+			'ministry.pause' => 'Pause',
+			'ministry.previous' => 'Nation précédente',
+			'ministry.next' => 'Nation suivante',
+			'ministry.number' => ({required Object n}) => 'Nation n° ${n}',
+			'ministry.since' => ({required Object year}) => 'Depuis ${year}',
+			'ministry.pray' => 'Prier',
+			'ministry.prayTitle' => ({required Object country}) => 'Prier pour ${country}',
+			'ministry.prayThanks' => ({required Object country}) => 'Rends grâce pour l\'œuvre de Dieu en ${country}.',
+			'ministry.prayAssemblies' => ({required Object country}) => 'Prie pour les assemblées de ${country} et pour leurs responsables.',
+			'ministry.prayUnreached' => ({required Object country}) => 'Prie pour que ceux qui n\'ont pas encore cru en ${country} rencontrent Jésus.',
+			'ministry.purpose' => 'Notre but',
+			'ministry.nations' => 'Les nations',
+			'ministry.search' => 'Rechercher une nation',
+			'ministry.none' => 'Aucune nation ne correspond',
+			'ministry.homeText' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('fr'))(n, one: 'Présente dans ${n} nation', other: 'Présente dans ${n} nations', ), 
+			'ministry.nationsSubtitle' => 'Le globe et le voyage de nation en nation',
+			'ministry.purposeSubtitle' => 'Nos trois buts',
+			'ministry.missionaries' => 'Nos missionnaires',
+			'ministry.missionariesSubtitle' => 'Ceux que le Seigneur envoie aux nations',
+			'ministry.heroes' => 'Nos héros',
+			'ministry.heroesSubtitle' => 'Ceux dont la foi nous inspire',
+			'ministry.goalOf' => ({required Object n, required Object total}) => 'NOTRE BUT · ${n}/${total}',
+			'ministry.previousGoal' => 'But précédent',
+			'ministry.nextGoal' => 'But suivant',
+			'ministry.media.books' => 'Livres',
+			'ministry.media.tracts' => 'Traités',
+			'ministry.media.magazines' => 'Magazines',
+			'ministry.media.cds' => 'CD',
+			'ministry.media.dvds' => 'DVD',
+			'ministry.media.radio' => 'Radio',
+			'ministry.media.tv' => 'Télévision',
+			'ministry.media.internet' => 'Internet',
+			'ministry.goals.crusade.title' => 'La toute-créature gospel crusade',
+			'ministry.goals.crusade.text' => 'Prêcher l’évangile à chacun de ceux qui vivront dans notre génération de sorte que 10 milliards de personnes soient atteintes avec l’évangile prêché dans la puissance du Saint-Esprit, en utilisant tous les moyens de communication (nos livres, nos traités, nos magazines, nos CD, nos DVD, notre radio, notre télévision et Internet) de la manière la plus urgente possible.',
+			'ministry.goals.crusade.reached' => 'personnes atteintes par l’évangile',
+			'ministry.goals.disciples.title' => 'La formation des disciples',
+			'ministry.goals.disciples.text' => 'Amener 1 milliard de personnes dans 250 nations à connaître Jésus-Christ comme Seigneur et Sauveur et qu’elles soient faites disciples pour lui obéir en toutes choses et organisées pour se réunir dans 25 millions d’églises de maison d’ici l’an 2065.',
+			'ministry.goals.disciples.people' => 'disciples',
+			'ministry.goals.disciples.nations' => 'nations',
+			'ministry.goals.disciples.churches' => 'églises de maison',
+			'ministry.goals.disciples.by' => ({required Object year}) => 'd’ici ${year}',
+			'ministry.goals.revival.title' => 'Précipiter le réveil global',
+			'ministry.goals.revival.text' => 'Coopérer avec Dieu par le jeûne et l’intercession pour le réveil mondial qui va déchirer les cieux, secouer la terre, glorifier Christ dans notre génération pour précipiter le retour imminent de notre Seigneur Jésus-Christ du ciel pour la rencontre avec son Épouse rendue prête.',
+			'ministry.goals.revival.fasting' => 'Jeûne',
+			'ministry.goals.revival.intercession' => 'Intercession',
+			'ministry.goals.revival.pray' => 'Prier maintenant',
 			'prayer.moments.morning' => 'Matin',
 			'prayer.moments.noon' => 'Midi',
 			'prayer.moments.evening' => 'Soirée',
@@ -4089,6 +5401,106 @@ extension on Translations {
 			'prayer.importunity.inviteSheet.addUsername' => 'Ajouter',
 			'prayer.importunity.inviteSheet.send' => 'Envoyer les invitations',
 			'prayer.importunity.inviteSheet.sent' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('fr'))(n, zero: 'Ils étaient déjà invités.', one: '${n} invitation envoyée', other: '${n} invitations envoyées', ), 
+			'sending.title' => 'Envoi à mes autorités',
+			'sending.moreOff' => 'Désactivé',
+			'sending.intro' => 'Au moment choisi, CMFI Connect prépare ton compte rendu de la période. Tu n\'as plus qu\'à l\'envoyer à tes autorités spirituelles.',
+			'sending.enabled' => 'Me le préparer régulièrement',
+			_ => null,
+		} ?? switch (path) {
+			'sending.rhythm' => 'Rythme',
+			'sending.weekly' => 'Chaque semaine',
+			'sending.biweekly' => 'Toutes les 2 semaines',
+			'sending.monthly' => 'Chaque mois',
+			'sending.day' => 'Jour',
+			'sending.monthlyDay' => 'Le 1er de chaque mois, pour le mois écoulé',
+			'sending.time' => 'Heure',
+			'sending.recipients' => 'Destinataires',
+			'sending.noAuthorities' => 'Ajoute d\'abord tes autorités spirituelles.',
+			'sending.addAuthorities' => 'Ajouter mes autorités',
+			'sending.viaWhatsApp' => 'Par WhatsApp',
+			'sending.viaEmail' => 'Par e-mail',
+			'sending.viaBoth' => 'Par WhatsApp ou e-mail',
+			'sending.viaShare' => 'Par le partage',
+			'sending.next' => ({required Object date}) => 'Prochain : ${date}',
+			'sending.prepareNow' => 'Préparer maintenant',
+			'sending.history' => 'Derniers envois',
+			'sending.notificationTitle' => 'Ton compte rendu est prêt',
+			'sending.notificationBody' => 'Envoie-le à tes autorités en un geste.',
+			'sending.channel' => 'Envoi du compte rendu',
+			'sending.readyTitle' => 'Ton compte rendu est prêt',
+			'sending.preview' => 'Aperçu du message',
+			'sending.greeting' => ({required Object name}) => 'Bonjour ${name},',
+			'sending.whatsApp' => 'WhatsApp',
+			'sending.email' => 'E-mail',
+			'sending.sharePdf' => 'Partager le PDF',
+			'sending.shareText' => 'Partager le texte',
+			'sending.sent' => 'Envoyé',
+			'sending.shared' => 'Partage',
+			'sending.noRecipients' => 'Choisis tes destinataires dans les réglages, ou partage le PDF.',
+			'sending.settings' => 'Réglages',
+			'sending.permissionDenied' => 'Autorise les notifications pour être prévenu au bon moment.',
+			'streak.title' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('fr'))(n, one: '${n} jour d\'affilée !', other: '${n} jours d\'affilée !', ), 
+			'streak.cardDays' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('fr'))(n, one: 'jour avec Dieu', other: 'jours avec Dieu', ), 
+			'streak.lines.week' => 'Une semaine entière avec le Seigneur, jour après jour. Bravo, continue !',
+			'streak.lines.month' => 'Un mois de fidélité ! Ce que tu sèmes chaque jour porte du fruit.',
+			'streak.lines.hundred' => 'Cent jours avec Dieu ! Ta persévérance est un beau témoignage.',
+			'streak.lines.year' => 'Une année entière avec Dieu ! Gloire à Lui pour ta fidélité.',
+			'streak.share' => 'Partager',
+			'streak.close' => 'Continuer',
+			'shortcuts.today' => 'Remplir mon compte rendu',
+			'shortcuts.hymns' => 'Cantiques',
+			'shortcuts.retreat' => 'Retraite du moment',
+			'blocking.report' => 'Signaler',
+			'blocking.block' => ({required Object name}) => 'Bloquer ${name}',
+			'blocking.blockTitle' => ({required Object name}) => 'Bloquer ${name} ?',
+			'blocking.blockText' => ({required Object name}) => 'Tu ne recevras plus d\'invitation de ${name}. Cette invitation est retirée.',
+			'blocking.blockAction' => 'Bloquer',
+			'blocking.blocked' => ({required Object name}) => '${name} ne pourra plus t\'inviter.',
+			'blocking.reportTitle' => 'Signaler cette invitation',
+			'blocking.reportText' => 'Dis-nous ce qui ne va pas : les responsables de la communauté regarderont.',
+			'blocking.reasons.spam' => 'Indésirable',
+			'blocking.reasons.offensive' => 'Contenu choquant ou offensant',
+			'blocking.reasons.other' => 'Autre',
+			'blocking.comment' => 'Commentaire',
+			'blocking.commentHint' => 'Ce que les responsables doivent savoir',
+			'blocking.send' => 'Envoyer le signalement',
+			'blocking.reported' => 'Merci, les responsables vont regarder.',
+			'blocking.listTitle' => 'Membres bloqués',
+			'blocking.intro' => 'Leurs invitations à prier ne t\'arrivent plus.',
+			'blocking.empty' => 'Tu n\'as bloqué personne.',
+			'blocking.unblock' => 'Débloquer',
+			'blocking.unblocked' => ({required Object name}) => '${name} peut de nouveau t\'inviter.',
+			'verses.title' => 'Verset du jour',
+			'verses.share' => 'Partager le verset',
+			'verses.shareImage' => 'Partager l\'image',
+			'verses.shareText' => 'Partager le texte',
+			'profilePhoto.title' => 'Photo de profil',
+			'profilePhoto.add' => 'Ajouter une photo de profil',
+			'profilePhoto.change' => 'Changer la photo de profil',
+			'profilePhoto.seenBy' => 'Les autres membres la voient là où ton nom apparaît.',
+			'profilePhoto.camera' => 'Prendre une photo',
+			'profilePhoto.gallery' => 'Choisir dans la galerie',
+			'profilePhoto.remove' => 'Retirer la photo',
+			'profilePhoto.cropTitle' => 'Recadre ta photo',
+			'profilePhoto.cropHint' => 'Déplace et agrandis la photo avec tes doigts.',
+			'profilePhoto.use' => 'Utiliser cette photo',
+			'profilePhoto.unreadable' => 'Impossible d\'ouvrir cette image. Choisis-en une autre.',
+			'profilePhoto.saved' => 'Ta photo de profil est enregistrée.',
+			'profilePhoto.removed' => 'Ta photo de profil est retirée.',
+			'disciples.title' => 'Mes disciples',
+			'disciples.intro' => 'Les membres qui t\'ont choisi comme faiseur de disciples. Tu vois leur régularité, jamais le contenu de leurs comptes rendus.',
+			'disciples.empty' => 'Pas encore de disciple',
+			'disciples.emptyText' => 'Quand un membre te choisit comme faiseur de disciples et que tu acceptes sa demande, il apparaît ici.',
+			'disciples.count' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('fr'))(n, one: '${n} disciple', other: '${n} disciples', ), 
+			'disciples.filled' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('fr'))(n, one: '${n} jour rempli sur 30', other: '${n} jours remplis sur 30', ), 
+			'disciples.streak' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('fr'))(n, one: '${n} jour d\'affilée', other: '${n} jours d\'affilée', ), 
+			'disciples.noStreak' => 'Pas de série en cours',
+			'disciples.lastToday' => 'Rempli aujourd\'hui',
+			'disciples.lastYesterday' => 'Dernier : hier',
+			'disciples.lastDaysAgo' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('fr'))(n, one: 'Dernier : il y a ${n} jour', other: 'Dernier : il y a ${n} jours', ), 
+			'disciples.noReport' => 'Aucun compte rendu cette année',
+			'disciples.goals' => ({required Object percent}) => 'Objectifs : ${percent} %',
+			'disciples.notShared' => 'Ne partage pas sa régularité',
 			_ => null,
 		};
 	}

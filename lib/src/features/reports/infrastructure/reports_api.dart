@@ -25,15 +25,19 @@ class ReportsApi {
 
   /// Replaces the whole day: items left out are removed from it, an empty note erases it.
   /// Answers the saved day, like [getDay]. A future date answers 400.
+  /// [goalPercent]: how far the day's goals are reached (0 to 100), null
+  /// without goals; the disciple maker sees its mean, never the items.
   Future<DailyReport> saveDay(
     DateTime date, {
     required String note,
     required List<ReportEntry> entries,
+    int? goalPercent,
   }) => apiCall(() async {
     final response = await _dio.put<Map<String, dynamic>>(
       '/reports/${date.toApiDate()}',
       data: {
         'note': note.trim(),
+        'goal_percent': goalPercent,
         'entries': [
           for (final entry in entries.where((entry) => entry.isFilled))
             {

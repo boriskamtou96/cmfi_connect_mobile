@@ -5,11 +5,14 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../core/i18n/strings.g.dart';
 import '../../../core/network/app_exception_message.dart';
+import '../../../core/storage/preferences.dart';
 import '../../../core/theme/app_icons.dart';
 import '../../../core/theme/app_spacing.dart';
+import '../../../core/utils/countries.dart';
 import '../../../core/widgets/app_back_button.dart';
 import '../../../core/widgets/app_button.dart';
 import '../../../core/widgets/app_toast.dart';
+import '../../../core/widgets/country_field.dart';
 import '../../../core/widgets/labeled_field.dart';
 import '../../../core/widgets/step_progress.dart';
 import '../../../routing/app_router.dart';
@@ -18,6 +21,7 @@ import '../../members/domain/member.dart';
 import '../../members/presentation/widgets/username_field.dart';
 import '../application/church_form_controller.dart';
 import '../application/current_profile.dart';
+import 'widgets/profile_photo.dart';
 
 /// Your church: step 2 of the sign-up, and later "Edit my profile" from the More tab.
 @RoutePage()
@@ -36,7 +40,8 @@ class ChurchFormScreen extends HookConsumerWidget {
     final formKey = useMemoized(GlobalKey<FormState>.new);
     final firstNameController = useTextEditingController();
     final lastNameController = useTextEditingController();
-    final countryController = useTextEditingController();
+    // an ISO code ("CM"); an old profile may still hold a free text
+    final country = useState<String?>(null);
     final cityController = useTextEditingController();
     final churchController = useTextEditingController();
     final assemblyController = useTextEditingController();
@@ -66,10 +71,16 @@ class ChurchFormScreen extends HookConsumerWidget {
       if (profile == null) {
         return null;
       }
+      if (country.value == null) {
+        final saved = profile.country?.trim() ?? '';
+        // at sign-up, the country of the phone number is a good first guess
+        country.value = saved.isNotEmpty || isEditing
+            ? saved
+            : ref.read(phoneCountryProvider).code;
+      }
       for (final (controller, value) in [
         (firstNameController, profile.firstName),
         (lastNameController, profile.lastName),
-        (countryController, profile.country),
         (cityController, profile.city),
         (churchController, profile.church),
         (assemblyController, profile.assembly),
@@ -113,7 +124,8 @@ class ChurchFormScreen extends HookConsumerWidget {
             // the name is only editable from the profile, not at sign-up
             firstName: isEditing ? firstNameController.text : null,
             lastName: isEditing ? lastNameController.text : null,
-            country: countryController.text,
+            country:
+                Country.tryParse(country.value)?.code ?? country.value ?? '',
             city: cityController.text,
             church: churchController.text,
             assembly: assemblyController.text,
@@ -202,6 +214,8 @@ class ChurchFormScreen extends HookConsumerWidget {
                       ),
                       const SizedBox(height: AppSpacing.lg + 2),
                       if (isEditing) ...[
+                        const Center(child: ProfilePhotoButton()),
+                        const SizedBox(height: AppSpacing.lg),
                         Row(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
@@ -249,27 +263,19 @@ class ChurchFormScreen extends HookConsumerWidget {
                           const SizedBox(height: AppSpacing.lg),
                         ],
                       ],
-                      Row(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Expanded(
-                            child: field(
-                              t.auth.church.country,
-                              countryController,
-                              t.auth.church.countryHint,
-                              autofill: const [AutofillHints.countryName],
-                            ),
-                          ),
-                          const SizedBox(width: AppSpacing.md),
-                          Expanded(
-                            child: field(
-                              t.auth.church.city,
-                              cityController,
-                              t.auth.church.cityHint,
-                              autofill: const [AutofillHints.addressCity],
-                            ),
-                          ),
-                        ],
+                      // the whole width: a country's name is often long
+                      CountryField(
+                        label: t.auth.church.country,
+                        hint: t.auth.church.countryHint,
+                        value: country.value,
+                        onChanged: (picked) => country.value = picked.code,
+                      ),
+                      const SizedBox(height: AppSpacing.lg),
+                      field(
+                        t.auth.church.city,
+                        cityController,
+                        t.auth.church.cityHint,
+                        autofill: const [AutofillHints.addressCity],
                       ),
                       const SizedBox(height: AppSpacing.lg),
                       field(

@@ -6,7 +6,9 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import '../../../core/i18n/strings.g.dart';
 import '../../../core/network/app_exception.dart';
 import '../../../core/network/app_exception_message.dart';
+import '../../../core/storage/preferences.dart';
 import '../../../core/theme/app_spacing.dart';
+import '../../../core/utils/phone.dart';
 import '../../../core/widgets/app_back_button.dart';
 import '../../../core/widgets/app_button.dart';
 import '../../../core/widgets/app_toast.dart';
@@ -32,6 +34,7 @@ class RegisterScreen extends HookConsumerWidget {
     final firstNameController = useTextEditingController();
     final lastNameController = useTextEditingController();
     final phoneController = useTextEditingController();
+    final country = ref.watch(phoneCountryProvider);
     final passwordController = useTextEditingController();
     final emailController = useTextEditingController();
     final usernameController = useTextEditingController();
@@ -62,7 +65,10 @@ class RegisterScreen extends HookConsumerWidget {
           .submit(
             firstName: firstNameController.text,
             lastName: lastNameController.text,
-            phoneNumber: phoneController.text,
+            phoneNumber: toInternationalPhone(
+              phoneController.text,
+              country: country,
+            ),
             password: passwordController.text,
             username: usernameController.text,
             email: emailController.text,
@@ -165,7 +171,13 @@ class RegisterScreen extends HookConsumerWidget {
                           autofill: true,
                         ),
                         const SizedBox(height: AppSpacing.lg),
-                        PhoneField(controller: phoneController),
+                        PhoneField(
+                          controller: phoneController,
+                          country: country,
+                          onCountryChanged: ref
+                              .read(phoneCountryProvider.notifier)
+                              .save,
+                        ),
                         const SizedBox(height: AppSpacing.lg),
                         PasswordField(
                           controller: passwordController,

@@ -6,6 +6,7 @@ import 'app_tones.dart';
 
 abstract final class AppTheme {
   static const fontFamily = 'Onest';
+  static const emojiFallback = ['Apple Color Emoji', 'Noto Color Emoji'];
 
   static ThemeData light() => _build(
     ColorScheme.fromSeed(
@@ -65,6 +66,9 @@ abstract final class AppTheme {
     final base = ThemeData(
       colorScheme: scheme,
       fontFamily: fontFamily,
+      // the flags and emoji: the phone's colour font (named, so the store
+      // screenshots, drawn without the system fonts, find it too)
+      fontFamilyFallback: emojiFallback,
       useMaterial3: true,
     );
     final text = base.textTheme;

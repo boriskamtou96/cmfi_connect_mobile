@@ -11,6 +11,7 @@ import '../../../core/utils/date_format.dart';
 import '../domain/daily_report.dart';
 import '../domain/measure_format.dart';
 import '../domain/report_export.dart';
+import 'report_item_texts.dart';
 
 /// Who the report is about, written at the top of the files.
 typedef ReportOwner = ({String name, String? church});
@@ -36,30 +37,42 @@ String exportPeriodLabel(
   );
 }
 
+/// The name of an item in the files: translated for a standard one.
+String _label(Translations t, ExportItem item) =>
+    t.itemLabel(item.code, item.label);
+
+ItemUnit? _unit(Translations t, ExportItem item) =>
+    t.itemUnit(item.code, item.unit);
+
 /// "2 chapitres", "1 h 30" per day filled, like the summary view.
-String _average(ExportItem item, String locale) {
-  final quantity =
-      NumberFormat.decimalPatternDigits(locale: locale, decimalDigits: 1)
-          .format(item.totalQuantity / item.daysCount)
-          .replaceFirst(RegExp(r'[.,]0$'), '');
-  final unit = MeasureFormat.unitSymbol(item.unit);
+String _average(Translations t, ExportItem item, String locale) {
+  // rounded as written, so that "1 chapter" is singular
+  final average = double.parse(
+    (item.totalQuantity / item.daysCount).toStringAsFixed(1),
+  );
+  final quantity = NumberFormat.decimalPatternDigits(
+    locale: locale,
+    decimalDigits: 1,
+  ).format(average).replaceFirst(RegExp(r'[.,]0$'), '');
+  final unit = _unit(t, item);
   return [
-    if (item.tracksQuantity) unit == null ? quantity : '$quantity $unit',
+    if (item.tracksQuantity)
+      unit == null ? quantity : unit.count(average, number: quantity),
     if (item.tracksDuration)
       (item.totalMinutes / item.daysCount).round().toDurationLabel(),
   ].join(' · ');
 }
 
-String _total(ExportItem item) => MeasureFormat.value(
+String _total(Translations t, ExportItem item) => MeasureFormat.value(
   quantity: item.tracksQuantity ? item.totalQuantity : null,
   minutes: item.tracksDuration ? item.totalMinutes : null,
-  unit: item.unit,
+  unit: _unit(t, item),
 );
 
 /// "LB 3 chapitres · PS 1 h": what a day holds, in one line.
-String _dayValues(DailyReport report) => [
+String _dayValues(Translations t, DailyReport report) => [
   for (final entry in report.entries.where((entry) => entry.isFilled))
-    '${entry.code} ${MeasureFormat.value(quantity: entry.quantity, minutes: entry.durationMinutes, unit: entry.quantityUnit)}',
+    '${entry.code} ${MeasureFormat.value(quantity: entry.quantity, minutes: entry.durationMinutes, unit: t.itemUnit(entry.code, entry.quantityUnit))}',
 ].join(' · ');
 
 /// A short summary to paste in a chat (WhatsApp understands *bold*).
@@ -84,11 +97,10 @@ String reportAsText(
         ? ''
         : ' · ${t.reports.summary.goalDays(n: item.goalDays, total: export.daysInRange).toLowerCase()}';
     // an item named like its code is written once
-    final name = item.label == item.code
-        ? item.code
-        : '${item.code} ${item.label}';
+    final label = _label(t, item);
+    final name = label == item.code ? item.code : '${item.code} $label';
     buffer.writeln(
-      '• $name : ${_total(item)} (${t.reports.summary.days(n: item.daysCount)})$goal',
+      '• $name : ${_total(t, item)} (${t.reports.summary.days(n: item.daysCount)})$goal',
     );
   }
   buffer
@@ -118,7 +130,7 @@ Uint8List reportAsCsv(
     for (final item in items) ...[
       if (item.tracksQuantity)
         (
-          '${item.code} – ${item.label}${switch (MeasureFormat.unitSymbol(item.unit)) {
+          '${item.code} – ${_label(t, item)}${switch (_unit(t, item)?.symbol) {
             final unit? => ' ($unit)',
             null => '',
           }}',
@@ -127,7 +139,7 @@ Uint8List reportAsCsv(
         ),
       if (item.tracksDuration)
         (
-          '${item.code} – ${item.label} (min)',
+          '${item.code} – ${_label(t, item)} (min)',
           (ReportEntry e) => e.activityTypeId == item.activityTypeId
               ? e.durationMinutes
               : null,
@@ -455,7 +467,7 @@ Future<Uint8List> reportAsPdf(
                           pw.SizedBox(width: 6),
                           pw.Expanded(
                             child: pw.Text(
-                              item.label,
+                              _label(t, item),
                               style: pw.TextStyle(font: semiBold, fontSize: 9),
                             ),
                           ),
@@ -463,12 +475,12 @@ Future<Uint8List> reportAsPdf(
                       ),
                     ),
                     cell(
-                      _total(item),
+                      _total(t, item),
                       align: pw.TextAlign.right,
                       font: semiBold,
                     ),
                     cell('${item.daysCount}', align: pw.TextAlign.right),
-                    cell(_average(item, locale), align: pw.TextAlign.right),
+                    cell(_average(t, item, locale), align: pw.TextAlign.right),
                     if (hasGoals)
                       cell(
                         item.goal == null
@@ -518,7 +530,7 @@ Future<Uint8List> reportAsPdf(
                       ),
                       report == null
                           ? cell(doc.noReport, color: _muted)
-                          : cell(_dayValues(report)),
+                          : cell(_dayValues(t, report)),
                       cell(report?.note ?? '', color: _muted),
                     ],
                   ),

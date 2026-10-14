@@ -77,8 +77,25 @@ dependencies:
 
   # Prayer: the soft sound between two points of a retreat
   audioplayers: ^6.7.1
+
+  # Phone numbers from every country: checked and formatted for the chosen country
+  phone_numbers_parser: ^9.0.28
+
+  # Premium (RevenueCat)
   purchases_flutter: ^10.15.2
-  purchases_ui_flutter: ^10.15.2
+
+  # Notifications sent by the admins (Firebase Cloud Messaging)
+  firebase_core: ^4.15.0
+  firebase_messaging: ^16.7.0
+  home_widget: ^0.10.0
+  firebase_auth: ^6.7.0
+  firebase_crashlytics: ^5.4.0
+
+  # The store rating, asked once at the right moment (7 days in a row)
+  in_app_review: ^2.0.12
+  # Shortcuts on the app icon (long press): today's report, hymns, retreat
+  quick_actions: ^1.1.1
+  app_links: ^7.0.0
 
 dev_dependencies:
   flutter_test:
@@ -113,6 +130,12 @@ flutter:
     - assets/hymns/
     - assets/prayer/
     - assets/sounds/
+    # Our ministry: the nations (copy of GET /v1/ministry/nations) and the land
+    # of the globe (Natural Earth, public domain: see features/ministry/application/land.dart)
+    - assets/ministry/
+    # the verse of the day: one per day in each language, picked from public
+    # domain Bibles (Hindi: IRV, CC BY-SA 4.0), see features/verses
+    - assets/verses/
 
   fonts:
     - family: Onest
@@ -176,14 +199,14 @@ flavorizr:
       app:
         name: 'CMFI Connect Dev'
       android:
-        applicationId: 'com.cmfi.connect.dev'
+        applicationId: 'com.cmficonnect.app.dev'
       ios:
-        bundleId: 'com.cmfi.connect.dev'
+        bundleId: 'com.cmficonnect.app.dev'
 
     prod:
       app:
         name: 'CMFI Connect'
       android:
-        applicationId: 'com.cmfi.connect'
+        applicationId: 'com.cmficonnect.app'
       ios:
-        bundleId: 'com.cmfi.connect'
+        bundleId: 'com.cmficonnect.app'

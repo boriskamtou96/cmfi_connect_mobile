@@ -32,7 +32,8 @@
     "importunityClosed": "这个事项已结束，不再记录宣告。",
     "usernameNotFound": "没有人使用这个用户名。请检查拼写。",
     "ownerCannotLeave": "这个事项是你创建的：请删除它，而不是退出。",
-    "tooManyPeople": "你的名单已满（最多 500 人）。"
+    "tooManyPeople": "你的名单已满（最多 500 人）。",
+    "avatarInvalid": "这张照片无法使用，请选择另一张。"
   },
   "validation": {
     "required": "此项为必填",
@@ -91,7 +92,6 @@
   },
   "auth": {
     "phone": "手机号",
-    "phoneHint": "6 90 00 00 01",
     "dialCode": "国际区号：{code}",
     "password": "密码",
     "showPassword": "显示密码",
@@ -123,7 +123,7 @@
       "editTitle": "我的资料",
       "editSubtitle": "更新你的姓名、教会和聚会点。",
       "country": "国家",
-      "countryHint": "喀麦隆",
+      "countryHint": "选择你的国家/地区",
       "city": "城市",
       "cityHint": "雅温得",
       "church": "教会",
@@ -134,7 +134,38 @@
       "submit": "完成",
       "skip": "跳过此步",
       "saved": "资料已保存"
+    },
+    "forgot": {
+      "link": "忘记密码？",
+      "title": "忘记密码",
+      "phoneText": "输入你的号码：我们会通过短信发送验证码，用来设置新密码。",
+      "sendCode": "获取验证码",
+      "codeTitle": "输入验证码",
+      "codeText": "我们已向 {phone} 发送了 6 位验证码。",
+      "code": "短信验证码",
+      "codeInvalid": "验证码为 6 位数字",
+      "verify": "验证",
+      "resend": "重新发送验证码",
+      "resendIn": "{seconds} 秒后可重新发送",
+      "changeNumber": "更换号码",
+      "passwordTitle": "新密码",
+      "passwordText": "为你的账号设置一个新密码。",
+      "submit": "保存并登录",
+      "done": "密码已更改，欢迎回来！",
+      "remembered": "想起来了？",
+      "invalidCode": "验证码不正确。",
+      "expired": "验证码已过期，请重新获取。",
+      "tooManyRequests": "尝试次数过多，请稍后再试。",
+      "unavailable": "暂时无法重置密码。",
+      "noAccount": "没有账号使用这个号码。"
     }
+  },
+  "countries": {
+    "dialCodeTitle": "国家/地区区号",
+    "title": "你的国家/地区",
+    "search": "搜索国家/地区或区号",
+    "none": "没有匹配的国家/地区",
+    "change": "更改国家/地区"
   },
   "nav": {
     "home": "首页",
@@ -150,15 +181,14 @@
     "todayTitle": "今日汇报",
     "progress": "{filled}/{total}",
     "progressLabel": "项已填写",
+    "goals": "目标",
     "continueReport": "继续填写",
     "startReport": "开始填写",
     "weekTitle": "你的一周",
     "weekScore(plural, param=filled)": {
       "other": "{filled}/{total} 天"
     },
-    "community": "团契动态",
-    "prayerTitle": "代祷事项",
-    "prayerText": "很快，你就能每天为聚会点的代祷事项祷告。",
+    "community": "CMFI 近况",
     "eventsTitle": "活动",
     "hymnsTitle": "诗歌",
     "hymnsResume": "回到第 {number} 首",
@@ -248,7 +278,13 @@
       "goalDays(plural, param=n)": {
         "other": "{total} 天中有 {n} 天达成目标"
       },
-      "share": "分享这份总结"
+      "share": "分享这份总结",
+      "goals": "目标",
+      "goalsAverage": "目标平均完成度",
+      "goalsHint": "每一天都计算在内，空白的也算。今天填写后才计入。",
+      "evolution": "目标的进展",
+      "evolutionHint": "最近 12 周，一周接一周。",
+      "premiumYear": "年度视图和目标进展随 Premium 提供。"
     },
     "noItems": "暂时没有需要填写的项目。",
     "statusPending": "尚未发送",
@@ -258,7 +294,52 @@
     },
     "export": "导出我的汇报",
     "goal": "目标：{value}",
-    "goalReached": "已达成目标"
+    "goalReached": "已达成目标",
+    "dayGoals": "当天目标",
+    "goalsReached": "已达成：{reached}/{total}",
+    "standardItems": {
+      "lb": "读经",
+      "ps": "个人祷告",
+      "rdqad": "默想",
+      "pg": "小组祷告",
+      "llc": "阅读属灵书籍",
+      "jc": "完全禁食",
+      "jp": "部分禁食",
+      "dimes": "十一奉献",
+      "off": "奉献"
+    },
+    "units": {
+      "chapters": {
+        "name": "章数",
+        "label": "章数",
+        "symbol": "章",
+        "count(plural, param=n)": {
+          "other": "{value} 章"
+        }
+      },
+      "times": {
+        "name": "次数",
+        "label": "次数",
+        "symbol": "次",
+        "count(plural, param=n)": {
+          "other": "{value} 次"
+        }
+      },
+      "pages": {
+        "name": "页数",
+        "label": "页数",
+        "symbol": "页",
+        "count(plural, param=n)": {
+          "other": "{value} 页"
+        }
+      },
+      "percent": {
+        "name": "百分比",
+        "label": "百分比",
+        "symbol": "%",
+        "count": "{value}%"
+      }
+    }
   },
   "reminder": {
     "title": "你的今日汇报",
@@ -383,7 +464,6 @@
     "editProfile": "编辑我的资料",
     "community": "团契",
     "events": "活动",
-    "announcements": "通知",
     "reports": "每日汇报",
     "myItems": "我的项目",
     "app": "应用",
@@ -394,6 +474,7 @@
     "themeLight": "浅色",
     "themeDark": "深色",
     "logout": "退出登录",
+    "account": "账户",
     "languageTitle": "应用语言",
     "completeProfile": "添加你的姓名",
     "accompaniment": "属灵陪伴",
@@ -405,7 +486,8 @@
     "logoutAnyway": "仍然退出",
     "admin": "管理",
     "staff": "团队与角色",
-    "manageEvents": "活动"
+    "manageEvents": "活动",
+    "disciples": "我的门徒"
   },
   "authorities": {
     "title": "我的属灵带领者",
@@ -446,7 +528,8 @@
       "requested": "已向 {name} 发送请求。",
       "alreadyAdded": "此人已经是你的带领者。",
       "makerExists": "你已经有门训者了。",
-      "yourself": "这是你自己的用户名。"
+      "yourself": "这是你自己的用户名。",
+      "sharingHelp": "你的门徒培育者将能看到你的规律性（填写天数、连续天数、目标百分比），但永远看不到你报告的内容。你可以在他的卡片上停止分享。"
     },
     "statusPending": "等待中",
     "statusDeclined": "已拒绝",
@@ -460,6 +543,12 @@
     "declinedRequest": "已拒绝 {name} 的请求。",
     "requestsCount(plural, param=n)": {
       "other": "{n} 个请求待查看"
+    },
+    "sharing": {
+      "title": "分享我的规律性",
+      "help": "{name} 能看到你填写的天数、连续天数和目标完成百分比，但永远看不到你报告的内容。",
+      "on": "你的规律性已与 {name} 分享。",
+      "off": "{name} 不再能看到你的规律性。"
     }
   },
   "members": {
@@ -477,7 +566,7 @@
       "button": "删除我的账户",
       "title": "删除我的账户",
       "intro": "此操作无法撤销。你的账户及其相关的一切都将被删除：",
-      "itemProfile": "你的个人资料、用户名和密码",
+      "itemProfile": "你的个人资料、头像、用户名和密码",
       "itemReports": "你所有的汇报、项目和目标",
       "itemAuthorities": "你的属灵带领者以及收到的请求",
       "itemEvents": "你的活动报名",
@@ -779,6 +868,154 @@
       "photoDelete": "删除此照片",
       "photoDeleted": "照片已删除。",
       "confirmDelete": "删除"
+    },
+    "upcomingCount(plural, param=n)": {
+      "other": "{n} 个即将举行的活动"
+    },
+    "slide": "第 {current} 个活动，共 {total} 个"
+  },
+  "notifications": {
+    "title": "通知",
+    "channel": "团契公告",
+    "empty": "暂无通知",
+    "emptyHint": "团契的公告会显示在这里。",
+    "unreadLabel": "未读：{title}",
+    "documents(plural, param=n)": {
+      "other": "{n} 个 PDF 文档"
+    },
+    "unread(plural, param=n)": {
+      "other": "{n} 条未读"
+    },
+    "image": "图片 {n}",
+    "document": "PDF 文档",
+    "documentSize": "{kb} KB",
+    "received": "新通知：{title}"
+  },
+  "premium": {
+    "name": "CMFI Connect Premium",
+    "pill": "Premium",
+    "subtitle": "在与神同行的路上走得更远，并支持这份事工。",
+    "widgetTitle": "主屏幕小组件",
+    "widgetText": "无需打开应用，即可查看今天的报告和目标。",
+    "statsTitle": "全年的目标",
+    "statsText": "年度总结和目标的进展，一周接一周。",
+    "supportTitle": "你在支持这份事工",
+    "supportText": "你的订阅让整个团契都能继续使用这个应用。",
+    "annual": "按年",
+    "monthly": "按月",
+    "perYear": "{price} / 年",
+    "perMonth": "{price} / 月",
+    "annualPerMonth": "相当于每月 {price}",
+    "best": "最划算",
+    "trialDays(plural, param=n)": {
+      "other": "免费试用 {n} 天"
+    },
+    "trialMonths(plural, param=n)": {
+      "other": "免费试用 {n} 个月"
+    },
+    "subscribe": "订阅",
+    "startTrial": "开始免费试用",
+    "restore": "恢复购买",
+    "restored": "Premium 已在这部手机上恢复",
+    "nothingToRestore": "此账户没有 Premium 购买记录",
+    "thanks": "谢谢你！Premium 已开启。",
+    "failed": "购买未完成，请稍后再试。",
+    "unavailable": "暂时无法获取订阅方案。",
+    "renews": "订阅会自动续订。你可以随时在 {store} 账户设置中取消。",
+    "terms": "使用条款",
+    "privacy": "隐私",
+    "activeTitle": "你已拥有 Premium",
+    "activeText": "感谢你支持 CMFI Connect！小组件和年度总结已经开放。",
+    "staffText": "你是 CMFI Connect 团队的成员，Premium 免费为你开放。",
+    "moreSubtitle": "小组件、全年目标",
+    "moreActive": "已开启",
+    "unlock": "用 Premium 解锁",
+    "trialThen": "{trial}，之后 {price}",
+    "savePercent": "−{percent}",
+    "choose": "选择你的方案",
+    "cancelAnytime": "无需承诺，随时可取消",
+    "restoreShort": "恢复购买",
+    "termsShort": "条款",
+    "semiannual": "半年",
+    "perSemester": "{price} / 6 个月"
+  },
+  "homeWidget": {
+    "title": "今天",
+    "done": "已完成",
+    "todo": "待填写",
+    "open": "填写",
+    "locked": "用 Premium 开启小组件",
+    "signedOut": "请在应用中登录"
+  },
+  "ministry": {
+    "title": "我们的事工",
+    "tagline": "直到地极",
+    "count(plural, param=n)": {
+      "other": "{n} 个国家"
+    },
+    "fromYaounde": "福音从雅温得出发，传到一个又一个国家。",
+    "dragHint": "用手指转动地球，点一个国家。",
+    "globeLabel(plural, param=n)": {
+      "other": "地球：事工所在的 {n} 个国家。下面的列表列出了全部。"
+    },
+    "voyage": "环游",
+    "pause": "暂停",
+    "previous": "上一个国家",
+    "next": "下一个国家",
+    "number": "第 {n} 个国家",
+    "since": "自 {year} 年起",
+    "pray": "祷告",
+    "prayTitle": "为{country}祷告",
+    "prayThanks": "为神在{country}的工作献上感谢。",
+    "prayAssemblies": "为{country}的教会和他们的带领人祷告。",
+    "prayUnreached": "祷告让{country}还未信主的人遇见耶稣。",
+    "purpose": "我们的目标",
+    "nations": "国家",
+    "search": "搜索国家",
+    "none": "没有匹配的国家",
+    "homeText(plural, param=n)": {
+      "other": "遍及 {n} 个国家"
+    },
+    "nationsSubtitle": "地球与逐国之旅",
+    "purposeSubtitle": "我们的三个目标",
+    "missionaries": "我们的宣教士",
+    "missionariesSubtitle": "主差往万国的人",
+    "heroes": "我们的英雄",
+    "heroesSubtitle": "他们的信心激励着我们",
+    "goalOf": "我们的目标 · {n}/{total}",
+    "previousGoal": "上一个目标",
+    "nextGoal": "下一个目标",
+    "media(map)": {
+      "books": "书籍",
+      "tracts": "单张",
+      "magazines": "杂志",
+      "cds": "CD",
+      "dvds": "DVD",
+      "radio": "广播",
+      "tv": "电视",
+      "internet": "互联网"
+    },
+    "goals": {
+      "crusade": {
+        "title": "向凡受造的传福音运动",
+        "text": "把福音传给我们这一代将要活着的每一个人，使福音借着圣灵的大能传扬，临到100亿人；运用一切传播途径（我们的书籍、单张、杂志、CD、DVD、广播、电视和互联网），以最迫切的方式进行。",
+        "reached": "人听闻福音"
+      },
+      "disciples": {
+        "title": "门徒培训",
+        "text": "到2065年，带领250个国家的10亿人认识耶稣基督为主和救主，使他们成为门徒，在凡事上顺服祂，并组织他们在2500万个家庭教会中聚会。",
+        "people": "门徒",
+        "nations": "个国家",
+        "churches": "家庭教会",
+        "by": "{year}年前"
+      },
+      "revival": {
+        "title": "催促全球复兴",
+        "text": "借着禁食和代祷与神同工，为那将要裂开天、震动地、在我们这一代荣耀基督的全球大复兴祷告，以催促我们的主耶稣基督从天降临，迎接祂已预备好的新妇。",
+        "fasting": "禁食",
+        "intercession": "代祷",
+        "pray": "现在祷告"
+      }
     }
   },
   "prayer": {
@@ -1053,5 +1290,133 @@
         }
       }
     }
+  },
+  "sending": {
+    "title": "发送给我的属灵长辈",
+    "moreOff": "已关闭",
+    "intro": "到了你选定的时间，CMFI Connect 会准备好这段时间的报告，你只需发送给你的属灵长辈。",
+    "enabled": "定期为我准备",
+    "rhythm": "频率",
+    "weekly": "每周",
+    "biweekly": "每两周",
+    "monthly": "每月",
+    "day": "日期",
+    "monthlyDay": "每月 1 日，发送上个月的报告",
+    "time": "时间",
+    "recipients": "收件人",
+    "noAuthorities": "请先添加你的属灵长辈。",
+    "addAuthorities": "添加属灵长辈",
+    "viaWhatsApp": "通过 WhatsApp",
+    "viaEmail": "通过电子邮件",
+    "viaBoth": "通过 WhatsApp 或电子邮件",
+    "viaShare": "通过分享",
+    "next": "下一次：{date}",
+    "prepareNow": "立即准备",
+    "history": "最近发送",
+    "notificationTitle": "你的报告已准备好",
+    "notificationBody": "一键发送给你的属灵长辈。",
+    "channel": "报告发送",
+    "readyTitle": "你的报告已准备好",
+    "preview": "消息预览",
+    "greeting": "{name}，你好：",
+    "whatsApp": "WhatsApp",
+    "email": "电子邮件",
+    "sharePdf": "分享 PDF",
+    "shareText": "分享文字",
+    "sent": "已发送",
+    "shared": "已分享",
+    "noRecipients": "请在设置中选择收件人，或分享 PDF。",
+    "settings": "设置",
+    "permissionDenied": "请允许通知，以便按时提醒你。"
+  },
+  "streak": {
+    "title(plural, param=n)": {
+      "other": "连续 {n} 天！"
+    },
+    "cardDays(plural, param=n)": {
+      "other": "天，与神同在"
+    },
+    "lines": {
+      "week": "整整一周，天天与主同在。真棒，继续加油！",
+      "month": "一个月的忠心！你每天所撒的种必结出果子。",
+      "hundred": "与神同在一百天！你的坚持是美好的见证。",
+      "year": "与神同在整整一年！为你的忠心将荣耀归给祂。"
+    },
+    "share": "分享",
+    "close": "继续"
+  },
+  "shortcuts": {
+    "today": "填写我的汇报",
+    "hymns": "诗歌",
+    "retreat": "此刻的祷告"
+  },
+  "blocking": {
+    "report": "举报",
+    "block": "屏蔽{name}",
+    "blockTitle": "屏蔽{name}？",
+    "blockText": "你将不再收到{name}的邀请。这条邀请会被移除。",
+    "blockAction": "屏蔽",
+    "blocked": "{name}将无法再邀请你。",
+    "reportTitle": "举报这条邀请",
+    "reportText": "告诉我们哪里不对：团契的负责人会查看。",
+    "reasons": {
+      "spam": "垃圾信息",
+      "offensive": "令人震惊或冒犯的内容",
+      "other": "其他"
+    },
+    "comment": "备注",
+    "commentHint": "负责人需要了解的情况",
+    "send": "提交举报",
+    "reported": "谢谢，负责人会查看。",
+    "listTitle": "已屏蔽的成员",
+    "intro": "他们的祷告邀请不会再发给你。",
+    "empty": "你还没有屏蔽任何人。",
+    "unblock": "取消屏蔽",
+    "unblocked": "{name}可以再次邀请你。"
+  },
+  "verses": {
+    "title": "每日经文",
+    "share": "分享经文",
+    "shareImage": "分享图片",
+    "shareText": "分享文字"
+  },
+  "profilePhoto": {
+    "title": "头像",
+    "add": "添加头像",
+    "change": "更换头像",
+    "seenBy": "其他成员在你的名字出现的地方都能看到它。",
+    "camera": "拍照",
+    "gallery": "从相册选择",
+    "remove": "移除照片",
+    "cropTitle": "裁剪你的照片",
+    "cropHint": "用手指移动和放大照片。",
+    "use": "使用这张照片",
+    "unreadable": "无法打开此图片，请选择另一张。",
+    "saved": "你的头像已保存。",
+    "removed": "你的头像已移除。"
+  },
+  "disciples": {
+    "title": "我的门徒",
+    "intro": "选择你作为门徒培育者的成员。你能看到他们的规律性，但永远看不到他们报告的内容。",
+    "empty": "还没有门徒",
+    "emptyText": "当有成员选择你作为门徒培育者、并且你接受了请求，他就会出现在这里。",
+    "count(plural, param=n)": {
+      "other": "{n} 位门徒"
+    },
+    "filled(plural, param=n)": {
+      "other": "30 天中填写了 {n} 天"
+    },
+    "streak(plural, param=n)": {
+      "other": "连续 {n} 天"
+    },
+    "noStreak": "当前没有连续记录",
+    "lastToday": "今天已填写",
+    "lastYesterday": "最近一次：昨天",
+    "lastDaysAgo(plural, param=n)": {
+      "other": "最近一次：{n} 天前"
+    },
+    "noReport": "今年没有报告",
+    "goals": "目标：{percent} %",
+    "notShared": "未分享其规律性"
   }
 }

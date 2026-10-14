@@ -15,6 +15,7 @@ import '../../../core/widgets/section_card.dart';
 import '../../../core/widgets/sub_page.dart';
 import '../../members/application/my_account.dart';
 import '../../members/domain/member.dart';
+import '../../members/presentation/widgets/member_avatar.dart';
 import '../infrastructure/admin_api.dart';
 
 String roleLabel(Translations t, MemberRole role) => switch (role) {
@@ -102,8 +103,9 @@ class AdminScreen extends ConsumerWidget {
                           horizontal: 14,
                           vertical: AppSpacing.xs,
                         ),
-                        leading: InitialsAvatar(
+                        leading: MemberAvatar(
                           initials: member.initials,
+                          photo: member.avatar,
                           size: 42,
                         ),
                         title: Text(

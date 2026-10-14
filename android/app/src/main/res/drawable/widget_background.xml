@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- The CMFI blue of the home card (AppColors.primary) -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android" android:shape="rectangle">
+    <solid android:color="#0A5EA8" />
+    <corners android:radius="22dp" />
+</shape>

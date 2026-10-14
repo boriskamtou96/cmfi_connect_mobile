@@ -32,7 +32,8 @@
     "importunityClosed": "Este motivo está cerrado: ya no cuenta proclamaciones.",
     "usernameNotFound": "Nadie tiene este nombre de usuario. Revisa la ortografía.",
     "ownerCannotLeave": "Tú creaste este motivo: elimínalo en lugar de dejarlo.",
-    "tooManyPeople": "Tus listas están llenas (500 personas como máximo)."
+    "tooManyPeople": "Tus listas están llenas (500 personas como máximo).",
+    "avatarInvalid": "Esta foto no se puede usar. Elige otra."
   },
   "validation": {
     "required": "Este campo es obligatorio",
@@ -91,7 +92,6 @@
   },
   "auth": {
     "phone": "Teléfono",
-    "phoneHint": "6 90 00 00 01",
     "dialCode": "Código de país: {code}",
     "password": "Contraseña",
     "showPassword": "Mostrar la contraseña",
@@ -123,7 +123,7 @@
       "editTitle": "Mi perfil",
       "editSubtitle": "Actualiza tu nombre, tu iglesia y tu asamblea.",
       "country": "País",
-      "countryHint": "Camerún",
+      "countryHint": "Elige tu país",
       "city": "Ciudad",
       "cityHint": "Yaoundé",
       "church": "Iglesia",
@@ -134,7 +134,38 @@
       "submit": "Terminar",
       "skip": "Omitir este paso",
       "saved": "Perfil guardado"
+    },
+    "forgot": {
+      "link": "¿Olvidaste tu contraseña?",
+      "title": "Contraseña olvidada",
+      "phoneText": "Escribe tu número: te enviamos un código por SMS para elegir una nueva contraseña.",
+      "sendCode": "Recibir el código",
+      "codeTitle": "Escribe el código",
+      "codeText": "Enviamos un código de 6 cifras al {phone}.",
+      "code": "Código recibido por SMS",
+      "codeInvalid": "El código tiene 6 cifras",
+      "verify": "Verificar",
+      "resend": "Reenviar el código",
+      "resendIn": "Reenviar en {seconds} s",
+      "changeNumber": "Cambiar de número",
+      "passwordTitle": "Nueva contraseña",
+      "passwordText": "Elige una nueva contraseña para tu cuenta.",
+      "submit": "Guardar e iniciar sesión",
+      "done": "Contraseña cambiada. ¡Qué bueno verte de nuevo!",
+      "remembered": "¿La recordaste?",
+      "invalidCode": "Ese código no es correcto.",
+      "expired": "El código caducó. Pide uno nuevo.",
+      "tooManyRequests": "Demasiados intentos. Inténtalo más tarde.",
+      "unavailable": "El restablecimiento no está disponible por ahora.",
+      "noAccount": "Ninguna cuenta usa este número."
     }
+  },
+  "countries": {
+    "dialCodeTitle": "Código de país",
+    "title": "Tu país",
+    "search": "Buscar un país o un código",
+    "none": "Ningún país coincide",
+    "change": "Cambiar de país"
   },
   "nav": {
     "home": "Inicio",
@@ -150,6 +181,7 @@
     "todayTitle": "Informe del día",
     "progress": "{filled} de {total}",
     "progressLabel": "elementos completados",
+    "goals": "objetivos",
     "continueReport": "Continuar",
     "startReport": "Empezar",
     "weekTitle": "Tu semana",
@@ -157,9 +189,7 @@
       "one": "{filled} día de {total}",
       "other": "{filled} días de {total}"
     },
-    "community": "En tu comunidad",
-    "prayerTitle": "Motivos de oración",
-    "prayerText": "Pronto podrás orar cada día por los motivos de oración de tu asamblea.",
+    "community": "Actualmente en la CMCI",
     "eventsTitle": "Eventos",
     "hymnsTitle": "Himnos",
     "hymnsResume": "Volver al n.º {number}",
@@ -255,7 +285,13 @@
         "one": "Objetivo alcanzado {n} día de {total}",
         "other": "Objetivo alcanzado {n} días de {total}"
       },
-      "share": "Compartir este resumen"
+      "share": "Compartir este resumen",
+      "goals": "Objetivos",
+      "goalsAverage": "Cumplimiento medio de tus objetivos",
+      "goalsHint": "Cada día cuenta, incluso vacío. Hoy cuenta una vez rellenado.",
+      "evolution": "Evolución de tus objetivos",
+      "evolutionHint": "Semana tras semana, en las últimas 12.",
+      "premiumYear": "El año y la evolución de tus objetivos vienen con Premium."
     },
     "noItems": "Por ahora no hay elementos que completar.",
     "statusPending": "Aún no enviado",
@@ -266,7 +302,55 @@
     },
     "export": "Exportar mi informe",
     "goal": "Objetivo: {value}",
-    "goalReached": "Objetivo alcanzado"
+    "goalReached": "Objetivo alcanzado",
+    "dayGoals": "Objetivos del día",
+    "goalsReached": "Alcanzados: {reached} de {total}",
+    "standardItems": {
+      "lb": "Lectura bíblica",
+      "ps": "Oración personal",
+      "rdqad": "Meditación",
+      "pg": "Oración en grupo",
+      "llc": "Lectura de literatura cristiana",
+      "jc": "Ayuno completo",
+      "jp": "Ayuno parcial",
+      "dimes": "Diezmos",
+      "off": "Ofrendas"
+    },
+    "units": {
+      "chapters": {
+        "name": "Número de capítulos",
+        "label": "capítulos",
+        "symbol": "capítulos",
+        "count(plural, param=n)": {
+          "one": "{value} capítulo",
+          "other": "{value} capítulos"
+        }
+      },
+      "times": {
+        "name": "Número de veces",
+        "label": "veces",
+        "symbol": "veces",
+        "count(plural, param=n)": {
+          "one": "{value} vez",
+          "other": "{value} veces"
+        }
+      },
+      "pages": {
+        "name": "Número de páginas",
+        "label": "páginas",
+        "symbol": "páginas",
+        "count(plural, param=n)": {
+          "one": "{value} página",
+          "other": "{value} páginas"
+        }
+      },
+      "percent": {
+        "name": "Porcentaje",
+        "label": "porcentaje",
+        "symbol": "%",
+        "count": "{value} %"
+      }
+    }
   },
   "reminder": {
     "title": "Tu informe del día",
@@ -394,7 +478,6 @@
     "editProfile": "Editar mi perfil",
     "community": "Comunidad",
     "events": "Eventos",
-    "announcements": "Anuncios",
     "reports": "Informe diario",
     "myItems": "Mis elementos",
     "app": "Aplicación",
@@ -405,6 +488,7 @@
     "themeLight": "Claro",
     "themeDark": "Oscuro",
     "logout": "Cerrar sesión",
+    "account": "Cuenta",
     "languageTitle": "Idioma de la aplicación",
     "completeProfile": "Añade tu nombre",
     "accompaniment": "Acompañamiento",
@@ -417,7 +501,8 @@
     "logoutAnyway": "Cerrar sesión",
     "admin": "Administración",
     "staff": "Equipo y roles",
-    "manageEvents": "Eventos"
+    "manageEvents": "Eventos",
+    "disciples": "Mis discípulos"
   },
   "authorities": {
     "title": "Mis autoridades espirituales",
@@ -459,7 +544,8 @@
       "requested": "Solicitud enviada a {name}.",
       "alreadyAdded": "Esta persona ya forma parte de tus autoridades.",
       "makerExists": "Ya tienes un discipulador.",
-      "yourself": "Es tu propio nombre de usuario."
+      "yourself": "Es tu propio nombre de usuario.",
+      "sharingHelp": "Tu hacedor de discípulos verá tu regularidad (días rellenados, racha, % de objetivos), nunca el contenido de tus informes. Puedes detenerlo en su ficha."
     },
     "statusPending": "Pendiente",
     "statusDeclined": "Rechazada",
@@ -474,6 +560,12 @@
     "requestsCount(plural, param=n)": {
       "one": "{n} solicitud por revisar",
       "other": "{n} solicitudes por revisar"
+    },
+    "sharing": {
+      "title": "Compartir mi regularidad",
+      "help": "{name} ve los días que rellenaste, tu racha y el % de tus objetivos, nunca el contenido de tus informes.",
+      "on": "Tu regularidad se comparte con {name}.",
+      "off": "{name} ya no ve tu regularidad."
     }
   },
   "members": {
@@ -491,7 +583,7 @@
       "button": "Eliminar mi cuenta",
       "title": "Eliminar mi cuenta",
       "intro": "Es definitivo. Tu cuenta y todo lo relacionado con ella se borrará:",
-      "itemProfile": "tu perfil, tu nombre de usuario y tu contraseña",
+      "itemProfile": "tu perfil, tu foto, tu nombre de usuario y tu contraseña",
       "itemReports": "todos tus informes, tus elementos y tus objetivos",
       "itemAuthorities": "tus autoridades espirituales y las solicitudes recibidas",
       "itemEvents": "tus inscripciones a eventos",
@@ -799,6 +891,162 @@
       "photoDelete": "Eliminar esta foto",
       "photoDeleted": "Foto eliminada.",
       "confirmDelete": "Eliminar"
+    },
+    "upcomingCount(plural, param=n)": {
+      "one": "{n} evento próximo",
+      "other": "{n} eventos próximos"
+    },
+    "slide": "Evento {current} de {total}"
+  },
+  "notifications": {
+    "title": "Notificaciones",
+    "channel": "Anuncios de la comunidad",
+    "empty": "Aún no hay notificaciones",
+    "emptyHint": "Los anuncios de la comunidad llegarán aquí.",
+    "unreadLabel": "Sin leer: {title}",
+    "documents(plural, param=n)": {
+      "one": "{n} documento PDF",
+      "other": "{n} documentos PDF"
+    },
+    "unread(plural, param=n)": {
+      "one": "{n} sin leer",
+      "other": "{n} sin leer"
+    },
+    "image": "Imagen {n}",
+    "document": "Documento PDF",
+    "documentSize": "{kb} KB",
+    "received": "Nueva notificación: {title}"
+  },
+  "premium": {
+    "name": "CMFI Connect Premium",
+    "pill": "Premium",
+    "subtitle": "Avanza en tu camino con Dios y apoya la obra.",
+    "widgetTitle": "El widget de la pantalla de inicio",
+    "widgetText": "Tu informe del día y tus objetivos, sin abrir la app.",
+    "statsTitle": "Tus objetivos durante el año",
+    "statsText": "El balance del año y la evolución de tus objetivos, semana tras semana.",
+    "supportTitle": "Apoyas la obra",
+    "supportText": "Tu suscripción mantiene la app para toda la comunidad.",
+    "annual": "Anual",
+    "monthly": "Mensual",
+    "perYear": "{price} / año",
+    "perMonth": "{price} / mes",
+    "annualPerMonth": "es decir, {price} al mes",
+    "best": "La más ventajosa",
+    "trialDays(plural, param=n)": {
+      "one": "{n} día de prueba gratis",
+      "other": "{n} días de prueba gratis"
+    },
+    "trialMonths(plural, param=n)": {
+      "one": "{n} mes de prueba gratis",
+      "other": "{n} meses de prueba gratis"
+    },
+    "subscribe": "Suscribirme",
+    "startTrial": "Empezar la prueba gratis",
+    "restore": "Restaurar compras",
+    "restored": "Premium vuelve a estar en este teléfono",
+    "nothingToRestore": "No hay compras Premium para esta cuenta",
+    "thanks": "¡Gracias! Premium está activado.",
+    "failed": "La compra no se completó. Inténtalo de nuevo en un momento.",
+    "unavailable": "Las ofertas no están disponibles por ahora.",
+    "renews": "La suscripción se renueva automáticamente. Puedes cancelarla cuando quieras en los ajustes de tu cuenta de {store}.",
+    "terms": "Condiciones de uso",
+    "privacy": "Privacidad",
+    "activeTitle": "Tienes Premium",
+    "activeText": "¡Gracias por apoyar CMFI Connect! El widget y el año de tu balance están abiertos.",
+    "staffText": "Tienes Premium gratis porque formas parte del equipo de CMFI Connect.",
+    "moreSubtitle": "Widget, objetivos del año",
+    "moreActive": "Activo",
+    "unlock": "Desbloquear con Premium",
+    "trialThen": "{trial}, luego {price}",
+    "savePercent": "−{percent}",
+    "choose": "Elige tu plan",
+    "cancelAnytime": "Sin compromiso, cancela cuando quieras",
+    "restoreShort": "Restaurar",
+    "termsShort": "Condiciones",
+    "semiannual": "Semestral",
+    "perSemester": "{price} / 6 meses"
+  },
+  "homeWidget": {
+    "title": "Hoy",
+    "done": "Hecho",
+    "todo": "Por rellenar",
+    "open": "Rellenar",
+    "locked": "Activa el widget con Premium",
+    "signedOut": "Inicia sesión en la app"
+  },
+  "ministry": {
+    "title": "Nuestro ministerio",
+    "tagline": "Hasta lo último de la tierra",
+    "count(plural, param=n)": {
+      "one": "{n} nación",
+      "other": "{n} naciones"
+    },
+    "fromYaounde": "Desde Yaundé, el Evangelio va de nación en nación.",
+    "dragHint": "Gira el globo con el dedo, toca una nación.",
+    "globeLabel(plural, param=n)": {
+      "one": "Globo: {n} nación donde está presente la obra. La lista de abajo la indica.",
+      "other": "Globo: {n} naciones donde está presente la obra. La lista de abajo las indica todas."
+    },
+    "voyage": "Viaje",
+    "pause": "Pausa",
+    "previous": "Nación anterior",
+    "next": "Nación siguiente",
+    "number": "Nación n.º {n}",
+    "since": "Desde {year}",
+    "pray": "Orar",
+    "prayTitle": "Orar por {country}",
+    "prayThanks": "Da gracias por la obra de Dios en {country}.",
+    "prayAssemblies": "Ora por las asambleas de {country} y por sus responsables.",
+    "prayUnreached": "Ora para que quienes aún no han creído en {country} encuentren a Jesús.",
+    "purpose": "Nuestro propósito",
+    "nations": "Las naciones",
+    "search": "Buscar una nación",
+    "none": "Ninguna nación coincide",
+    "homeText(plural, param=n)": {
+      "one": "Presente en {n} nación",
+      "other": "Presente en {n} naciones"
+    },
+    "nationsSubtitle": "El globo y el viaje de nación en nación",
+    "purposeSubtitle": "Nuestros tres objetivos",
+    "missionaries": "Nuestros misioneros",
+    "missionariesSubtitle": "Los que el Señor envía a las naciones",
+    "heroes": "Nuestros héroes",
+    "heroesSubtitle": "Aquellos cuya fe nos inspira",
+    "goalOf": "NUESTRO OBJETIVO · {n}/{total}",
+    "previousGoal": "Objetivo anterior",
+    "nextGoal": "Siguiente objetivo",
+    "media(map)": {
+      "books": "Libros",
+      "tracts": "Tratados",
+      "magazines": "Revistas",
+      "cds": "CD",
+      "dvds": "DVD",
+      "radio": "Radio",
+      "tv": "Televisión",
+      "internet": "Internet"
+    },
+    "goals": {
+      "crusade": {
+        "title": "La cruzada evangelística a toda criatura",
+        "text": "Predicar el evangelio a cada persona que viva en nuestra generación, de modo que 10 mil millones de personas sean alcanzadas con el evangelio predicado en el poder del Espíritu Santo, usando todos los medios de comunicación (nuestros libros, tratados, revistas, CD, DVD, nuestra radio, nuestra televisión e Internet) de la manera más urgente posible.",
+        "reached": "personas alcanzadas por el evangelio"
+      },
+      "disciples": {
+        "title": "La formación de discípulos",
+        "text": "Llevar a 1000 millones de personas en 250 naciones a conocer a Jesucristo como Señor y Salvador, que sean hechas discípulos para obedecerle en todo y organizadas para reunirse en 25 millones de iglesias en casas de aquí al año 2065.",
+        "people": "discípulos",
+        "nations": "naciones",
+        "churches": "iglesias en casas",
+        "by": "para {year}"
+      },
+      "revival": {
+        "title": "Precipitar el avivamiento global",
+        "text": "Cooperar con Dios mediante el ayuno y la intercesión por el avivamiento mundial que rasgará los cielos, sacudirá la tierra y glorificará a Cristo en nuestra generación, para precipitar el inminente regreso de nuestro Señor Jesucristo desde el cielo al encuentro de su Esposa preparada.",
+        "fasting": "Ayuno",
+        "intercession": "Intercesión",
+        "pray": "Orar ahora"
+      }
     }
   },
   "prayer": {
@@ -1086,5 +1334,139 @@
         }
       }
     }
+  },
+  "sending": {
+    "title": "Envío a mis autoridades",
+    "moreOff": "Desactivado",
+    "intro": "En el momento elegido, CMFI Connect prepara tu informe del período. Solo tienes que enviarlo a tus autoridades espirituales.",
+    "enabled": "Prepararlo regularmente",
+    "rhythm": "Ritmo",
+    "weekly": "Cada semana",
+    "biweekly": "Cada 2 semanas",
+    "monthly": "Cada mes",
+    "day": "Día",
+    "monthlyDay": "El día 1 de cada mes, para el mes anterior",
+    "time": "Hora",
+    "recipients": "Destinatarios",
+    "noAuthorities": "Primero añade tus autoridades espirituales.",
+    "addAuthorities": "Añadir mis autoridades",
+    "viaWhatsApp": "Por WhatsApp",
+    "viaEmail": "Por e-mail",
+    "viaBoth": "Por WhatsApp o e-mail",
+    "viaShare": "Compartiendo",
+    "next": "Próximo: {date}",
+    "prepareNow": "Preparar ahora",
+    "history": "Últimos envíos",
+    "notificationTitle": "Tu informe está listo",
+    "notificationBody": "Envíalo a tus autoridades con un toque.",
+    "channel": "Envío del informe",
+    "readyTitle": "Tu informe está listo",
+    "preview": "Vista previa del mensaje",
+    "greeting": "Hola {name},",
+    "whatsApp": "WhatsApp",
+    "email": "E-mail",
+    "sharePdf": "Compartir el PDF",
+    "shareText": "Compartir el texto",
+    "sent": "Enviado",
+    "shared": "Compartido",
+    "noRecipients": "Elige tus destinatarios en los ajustes, o comparte el PDF.",
+    "settings": "Ajustes",
+    "permissionDenied": "Permite las notificaciones para recibir el aviso a tiempo."
+  },
+  "streak": {
+    "title(plural, param=n)": {
+      "one": "¡{n} día seguido!",
+      "other": "¡{n} días seguidos!"
+    },
+    "cardDays(plural, param=n)": {
+      "one": "día con Dios",
+      "other": "días con Dios"
+    },
+    "lines": {
+      "week": "Una semana entera con el Señor, día tras día. ¡Bravo, sigue así!",
+      "month": "¡Un mes de fidelidad! Lo que siembras cada día da fruto.",
+      "hundred": "¡Cien días con Dios! Tu perseverancia es un hermoso testimonio.",
+      "year": "¡Un año entero con Dios! Gloria a Él por tu fidelidad."
+    },
+    "share": "Compartir",
+    "close": "Continuar"
+  },
+  "shortcuts": {
+    "today": "Llenar mi informe",
+    "hymns": "Himnos",
+    "retreat": "Retiro del momento"
+  },
+  "blocking": {
+    "report": "Reportar",
+    "block": "Bloquear a {name}",
+    "blockTitle": "¿Bloquear a {name}?",
+    "blockText": "Ya no recibirás invitaciones de {name}. Esta invitación se retira.",
+    "blockAction": "Bloquear",
+    "blocked": "{name} ya no podrá invitarte.",
+    "reportTitle": "Reportar esta invitación",
+    "reportText": "Dinos qué pasa: los responsables de la comunidad lo revisarán.",
+    "reasons": {
+      "spam": "No deseado",
+      "offensive": "Contenido chocante u ofensivo",
+      "other": "Otro"
+    },
+    "comment": "Comentario",
+    "commentHint": "Lo que los responsables deben saber",
+    "send": "Enviar el reporte",
+    "reported": "Gracias, los responsables lo revisarán.",
+    "listTitle": "Miembros bloqueados",
+    "intro": "Sus invitaciones a orar ya no te llegan.",
+    "empty": "No has bloqueado a nadie.",
+    "unblock": "Desbloquear",
+    "unblocked": "{name} puede volver a invitarte."
+  },
+  "verses": {
+    "title": "Versículo del día",
+    "share": "Compartir el versículo",
+    "shareImage": "Compartir la imagen",
+    "shareText": "Compartir el texto"
+  },
+  "profilePhoto": {
+    "title": "Foto de perfil",
+    "add": "Añadir una foto de perfil",
+    "change": "Cambiar la foto de perfil",
+    "seenBy": "Los demás miembros la ven allí donde aparece tu nombre.",
+    "camera": "Hacer una foto",
+    "gallery": "Elegir de la galería",
+    "remove": "Quitar la foto",
+    "cropTitle": "Recorta tu foto",
+    "cropHint": "Mueve y amplía la foto con los dedos.",
+    "use": "Usar esta foto",
+    "unreadable": "No se puede abrir esta imagen. Elige otra.",
+    "saved": "Tu foto de perfil está guardada.",
+    "removed": "Tu foto de perfil se ha quitado."
+  },
+  "disciples": {
+    "title": "Mis discípulos",
+    "intro": "Los miembros que te eligieron como hacedor de discípulos. Ves su regularidad, nunca el contenido de sus informes.",
+    "empty": "Aún no hay discípulos",
+    "emptyText": "Cuando un miembro te elige como hacedor de discípulos y aceptas su solicitud, aparece aquí.",
+    "count(plural, param=n)": {
+      "one": "{n} discípulo",
+      "other": "{n} discípulos"
+    },
+    "filled(plural, param=n)": {
+      "one": "{n} día rellenado de 30",
+      "other": "{n} días rellenados de 30"
+    },
+    "streak(plural, param=n)": {
+      "one": "{n} día seguido",
+      "other": "{n} días seguidos"
+    },
+    "noStreak": "Sin racha en curso",
+    "lastToday": "Rellenado hoy",
+    "lastYesterday": "Último: ayer",
+    "lastDaysAgo(plural, param=n)": {
+      "one": "Último: hace {n} día",
+      "other": "Último: hace {n} días"
+    },
+    "noReport": "Ningún informe este año",
+    "goals": "Objetivos: {percent} %",
+    "notShared": "No comparte su regularidad"
   }
 }

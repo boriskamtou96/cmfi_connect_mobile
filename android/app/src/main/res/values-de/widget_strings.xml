@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- The home-screen widget in the launcher's list (TodayWidgetProvider) -->
+<resources>
+    <string name="today_widget_name">Tagesbericht</string>
+    <string name="today_widget_description">Dein Tagesbericht und deine Ziele.</string>
+    <string name="today_widget_title">Heute</string>
+    <string name="today_widget_todo">Auszufüllen</string>
+    <!-- the "Verset du jour" widget (VerseWidgetProvider) -->
+    <string name="verse_widget_name">Vers des Tages</string>
+    <string name="verse_widget_description">Jeden Tag ein Bibelvers.</string>
+    <string name="verse_widget_title">Vers des Tages</string>
+    <string name="verse_widget_empty">Öffne die App, um den Vers des Tages zu erhalten.</string>
+    <string name="verse_widget_sample">Denn also hat Gott die Welt geliebt, dass er seinen eingeborenen Sohn gab.</string>
+    <string name="verse_widget_sample_reference">Johannes 3,16</string>
+</resources>

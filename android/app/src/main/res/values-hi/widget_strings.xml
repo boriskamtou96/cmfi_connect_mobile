@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- The home-screen widget in the launcher's list (TodayWidgetProvider) -->
+<resources>
+    <string name="today_widget_name">आज की रिपोर्ट</string>
+    <string name="today_widget_description">आज की तुम्हारी रिपोर्ट और लक्ष्य।</string>
+    <string name="today_widget_title">आज</string>
+    <string name="today_widget_todo">भरना बाकी</string>
+    <!-- the "Verset du jour" widget (VerseWidgetProvider) -->
+    <string name="verse_widget_name">आज का वचन</string>
+    <string name="verse_widget_description">हर दिन बाइबल का एक वचन।</string>
+    <string name="verse_widget_title">आज का वचन</string>
+    <string name="verse_widget_empty">आज का वचन पाने के लिए ऐप खोलो।</string>
+    <string name="verse_widget_sample">क्योंकि परमेश्वर ने जगत से ऐसा प्रेम रखा कि उसने अपना एकलौता पुत्र दे दिया।</string>
+    <string name="verse_widget_sample_reference">यूहन्ना 3:16</string>
+</resources>

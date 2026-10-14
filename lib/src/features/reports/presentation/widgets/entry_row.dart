@@ -6,6 +6,7 @@ import '../../../../core/theme/app_motion.dart';
 import '../../../../core/theme/app_tones.dart';
 import '../../../../core/widgets/animated_progress_bar.dart';
 import '../../../../core/widgets/code_chip.dart';
+import '../../application/report_item_texts.dart';
 import '../../domain/daily_report.dart';
 import '../../domain/measure_format.dart';
 import '../../domain/report_goal.dart';
@@ -35,10 +36,12 @@ class EntryRow extends StatelessWidget {
     final tones = AppTones.of(context);
     final accent = personal ? tones.personal : scheme.primary;
     final accentSoft = personal ? tones.personalSoft : scheme.primaryContainer;
+    final label = t.itemLabel(entry.code, entry.label);
+    final unit = t.itemUnit(entry.code, entry.quantityUnit);
     final value = MeasureFormat.value(
       quantity: entry.quantity,
       minutes: entry.durationMinutes,
-      unit: entry.quantityUnit,
+      unit: unit,
     );
     final goal = this.goal;
     final reached =
@@ -51,15 +54,12 @@ class EntryRow extends StatelessWidget {
         ? null
         : reached
         ? t.reports.goalReached
-        : t.reports.goal(value: goalLabel(goal, entry.quantityUnit));
+        : t.reports.goal(value: goalLabel(goal, unit));
 
     return Semantics(
       button: true,
       label: [
-        if (entry.isFilled)
-          '${entry.label}, $value'
-        else
-          t.reports.add(label: entry.label),
+        if (entry.isFilled) '$label, $value' else t.reports.add(label: label),
         ?goalText,
       ].join(', '),
       excludeSemantics: true,
@@ -82,7 +82,7 @@ class EntryRow extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        entry.label,
+                        label,
                         style: const TextStyle(
                           fontSize: 15,
                           fontWeight: FontWeight.w600,
@@ -94,7 +94,7 @@ class EntryRow extends StatelessWidget {
                             t,
                             quantity: entry.tracksQuantity,
                             duration: entry.tracksDuration,
-                            unit: entry.quantityUnit,
+                            unit: unit,
                           ),
                           style: TextStyle(
                             fontSize: 12,
@@ -200,7 +200,7 @@ class EntryRow extends StatelessWidget {
 }
 
 /// "3 chapitres", "1 h", "2 fois · 30 min": a goal written like a value.
-String goalLabel(ReportGoal goal, String? unit) => MeasureFormat.value(
+String goalLabel(ReportGoal goal, ItemUnit? unit) => MeasureFormat.value(
   quantity: goal.quantity,
   minutes: goal.minutes,
   unit: unit,

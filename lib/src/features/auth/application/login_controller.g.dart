@@ -36,7 +36,7 @@ final class LoginControllerProvider
   LoginController create() => LoginController();
 }
 
-String _$loginControllerHash() => r'641836bad3b0e3f91834704326e8e488db05ead1';
+String _$loginControllerHash() => r'f4d0b69ff3842ff539eee197e385a67320effa66';
 
 /// State of the login form: AsyncData (idle or done), AsyncLoading, AsyncError(AppException).
 

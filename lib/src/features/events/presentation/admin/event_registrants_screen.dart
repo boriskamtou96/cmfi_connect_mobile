@@ -20,6 +20,7 @@ import '../../../../core/widgets/fade_slide_in.dart';
 import '../../../../core/widgets/rolling_text.dart';
 import '../../../../core/widgets/section_card.dart';
 import '../../../../core/widgets/sub_page.dart';
+import '../../../members/presentation/widgets/member_avatar.dart';
 import '../../application/event_admin.dart';
 import '../../application/events_providers.dart';
 import '../../domain/event.dart';
@@ -239,7 +240,7 @@ class _RegistrantRow extends ConsumerWidget {
       ),
       child: Row(
         children: [
-          InitialsAvatar(initials: card.initials, size: 40),
+          MemberAvatar(initials: card.initials, photo: card.avatar, size: 40),
           const SizedBox(width: AppSpacing.md),
           Expanded(
             child: Column(

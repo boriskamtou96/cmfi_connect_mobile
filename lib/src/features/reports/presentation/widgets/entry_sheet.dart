@@ -13,6 +13,7 @@ import '../../../../core/theme/app_theme.dart';
 import '../../../../core/utils/date_extensions.dart';
 import '../../../../core/widgets/code_chip.dart';
 import '../../../../core/widgets/rolling_text.dart';
+import '../../application/report_item_texts.dart';
 import '../../domain/daily_report.dart';
 
 /// What the sheet answers: the new values, or null values to clear the item.
@@ -131,7 +132,7 @@ class EntrySheet extends HookWidget {
                 const SizedBox(width: AppSpacing.md),
                 Expanded(
                   child: Text(
-                    entry.label,
+                    t.itemLabel(entry.code, entry.label),
                     style: Theme.of(context).textTheme.titleLarge,
                   ),
                 ),
@@ -163,7 +164,8 @@ class EntrySheet extends HookWidget {
             if (entry.tracksQuantity) ...[
               const SizedBox(height: 22),
               Text(
-                entry.quantityUnit ?? t.reports.sheet.quantity,
+                t.itemUnit(entry.code, entry.quantityUnit)?.name ??
+                    t.reports.sheet.quantity,
                 style: sectionTitle,
               ),
               const SizedBox(height: 10),

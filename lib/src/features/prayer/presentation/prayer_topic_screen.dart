@@ -7,6 +7,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../core/i18n/strings.g.dart';
 import '../../../core/network/app_exception_message.dart';
+import '../../../core/services/deep_links.dart';
 import '../../../core/services/link_launcher.dart';
 import '../../../core/services/media_images.dart';
 import '../../../core/services/share_service.dart';
@@ -108,12 +109,14 @@ class _TopicView extends ConsumerWidget {
       ref
           .read(shareServiceProvider)
           .shareText(
-            t.prayer.topics.shareText(
-              title: topic.title,
-              points: [
-                for (final (i, point) in topic.points.indexed)
-                  '${i + 1}. $point',
-              ].join('\n'),
+            PrayerTopicLink(topic.id).under(
+              t.prayer.topics.shareText(
+                title: topic.title,
+                points: [
+                  for (final (i, point) in topic.points.indexed)
+                    '${i + 1}. $point',
+                ].join('\n'),
+              ),
             ),
             origin: box == null
                 ? null

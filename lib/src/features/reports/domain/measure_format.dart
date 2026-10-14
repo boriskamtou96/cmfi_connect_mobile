@@ -1,7 +1,54 @@
 import '../../../core/utils/date_extensions.dart';
 
-/// Units come from the database as typed by an admin ("Nombre de fois",
-/// "Pourcentage", "chapitres"...). These helpers make them readable next to a number.
+/// An item's unit, ready to be written: after a number ("4 chapitres"), under
+/// the item's name ("chapitres", "pourcentage"), in a list or a column header
+/// ("%") and above the quantity field ("Nombre de fois").
+///
+/// [ItemUnit.typed] reads a unit as typed by a user; the standard items get
+/// theirs in the app's language (`ReportItemTexts.itemUnit`).
+class ItemUnit {
+  const ItemUnit({
+    required this.name,
+    required this.label,
+    required this.symbol,
+    required String Function(num n, String number) count,
+  }) : _count = count;
+
+  /// "Nombre de fois" -> "fois", "Pourcentage" -> "%", "chapitres" -> "4 chapitres".
+  /// null when there is no unit.
+  static ItemUnit? typed(String? unit) {
+    final label = MeasureFormat.unitLabel(unit);
+    final symbol = MeasureFormat.unitSymbol(unit);
+    if (label == null || symbol == null) {
+      return null;
+    }
+    return ItemUnit(
+      name: unit!.trim(),
+      label: label,
+      symbol: symbol,
+      count: (_, number) => '$number $symbol',
+    );
+  }
+
+  /// The unit as a title: "Nombre de fois", "Chapitres".
+  final String name;
+
+  /// What the item counts, under its name: "fois", "pourcentage".
+  final String label;
+
+  /// Written after a number in a list or a header: "fois", "%".
+  final String symbol;
+
+  final String Function(num n, String number) _count;
+
+  /// "4 chapitres", "1 chapitre", "10 %". [number] is [n] as written ("1,5"),
+  /// [n] itself by default; [n] picks the plural form.
+  String count(num n, {String? number}) => _count(n, number ?? '$n');
+}
+
+/// Units come from the database as typed by an admin or a user ("Nombre de
+/// fois", "Pourcentage", "chapitres"...). These helpers make them readable next
+/// to a number.
 abstract final class MeasureFormat {
   static const _countPrefixes = ['nombre de ', "nombre d'", 'number of '];
   static const _percent = {'pourcentage', 'percentage', 'pourcent', '%'};
@@ -33,12 +80,12 @@ abstract final class MeasureFormat {
   static String value({
     int? quantity,
     int? minutes,
-    String? unit,
+    ItemUnit? unit,
     bool withUnit = true,
   }) {
-    final symbol = withUnit ? unitSymbol(unit) : null;
+    final shown = withUnit ? unit : null;
     return [
-      if (quantity != null) symbol == null ? '$quantity' : '$quantity $symbol',
+      if (quantity != null) shown == null ? '$quantity' : shown.count(quantity),
       if (minutes != null) minutes.toDurationLabel(),
     ].join(' · ');
   }

@@ -15,7 +15,8 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$Profile {
 
- String get firstName; String get lastName; String get phoneNumber; String get email; DateTime? get birthDate; String? get city; String? get country; String? get church; String? get assembly;/// false when the server has no profile for this user yet (it must be created).
+ String get firstName; String get lastName; String get phoneNumber; String get email; DateTime? get birthDate; String? get city; String? get country; String? get church; String? get assembly;/// The profile photo (a square image of the media storage), or null.
+ EventImage? get avatar;/// false when the server has no profile for this user yet (it must be created).
 @JsonKey(includeFromJson: false, includeToJson: false) bool get exists;
 /// Create a copy of Profile
 /// with the given fields replaced by the non-null parameter values.
@@ -29,16 +30,16 @@ $ProfileCopyWith<Profile> get copyWith => _$ProfileCopyWithImpl<Profile>(this as
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is Profile&&(identical(other.firstName, firstName) || other.firstName == firstName)&&(identical(other.lastName, lastName) || other.lastName == lastName)&&(identical(other.phoneNumber, phoneNumber) || other.phoneNumber == phoneNumber)&&(identical(other.email, email) || other.email == email)&&(identical(other.birthDate, birthDate) || other.birthDate == birthDate)&&(identical(other.city, city) || other.city == city)&&(identical(other.country, country) || other.country == country)&&(identical(other.church, church) || other.church == church)&&(identical(other.assembly, assembly) || other.assembly == assembly)&&(identical(other.exists, exists) || other.exists == exists));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is Profile&&(identical(other.firstName, firstName) || other.firstName == firstName)&&(identical(other.lastName, lastName) || other.lastName == lastName)&&(identical(other.phoneNumber, phoneNumber) || other.phoneNumber == phoneNumber)&&(identical(other.email, email) || other.email == email)&&(identical(other.birthDate, birthDate) || other.birthDate == birthDate)&&(identical(other.city, city) || other.city == city)&&(identical(other.country, country) || other.country == country)&&(identical(other.church, church) || other.church == church)&&(identical(other.assembly, assembly) || other.assembly == assembly)&&(identical(other.avatar, avatar) || other.avatar == avatar)&&(identical(other.exists, exists) || other.exists == exists));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,firstName,lastName,phoneNumber,email,birthDate,city,country,church,assembly,exists);
+int get hashCode => Object.hash(runtimeType,firstName,lastName,phoneNumber,email,birthDate,city,country,church,assembly,avatar,exists);
 
 @override
 String toString() {
-  return 'Profile(firstName: $firstName, lastName: $lastName, phoneNumber: $phoneNumber, email: $email, birthDate: $birthDate, city: $city, country: $country, church: $church, assembly: $assembly, exists: $exists)';
+  return 'Profile(firstName: $firstName, lastName: $lastName, phoneNumber: $phoneNumber, email: $email, birthDate: $birthDate, city: $city, country: $country, church: $church, assembly: $assembly, avatar: $avatar, exists: $exists)';
 }
 
 
@@ -49,11 +50,11 @@ abstract mixin class $ProfileCopyWith<$Res>  {
   factory $ProfileCopyWith(Profile value, $Res Function(Profile) _then) = _$ProfileCopyWithImpl;
 @useResult
 $Res call({
- String firstName, String lastName, String phoneNumber, String email, DateTime? birthDate, String? city, String? country, String? church, String? assembly,@JsonKey(includeFromJson: false, includeToJson: false) bool exists
+ String firstName, String lastName, String phoneNumber, String email, DateTime? birthDate, String? city, String? country, String? church, String? assembly, EventImage? avatar,@JsonKey(includeFromJson: false, includeToJson: false) bool exists
 });
 
 
-
+$EventImageCopyWith<$Res>? get avatar;
 
 }
 /// @nodoc
@@ -66,7 +67,7 @@ class _$ProfileCopyWithImpl<$Res>
 
 /// Create a copy of Profile
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? firstName = null,Object? lastName = null,Object? phoneNumber = null,Object? email = null,Object? birthDate = freezed,Object? city = freezed,Object? country = freezed,Object? church = freezed,Object? assembly = freezed,Object? exists = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? firstName = null,Object? lastName = null,Object? phoneNumber = null,Object? email = null,Object? birthDate = freezed,Object? city = freezed,Object? country = freezed,Object? church = freezed,Object? assembly = freezed,Object? avatar = freezed,Object? exists = null,}) {
   return _then(_self.copyWith(
 firstName: null == firstName ? _self.firstName : firstName // ignore: cast_nullable_to_non_nullable
 as String,lastName: null == lastName ? _self.lastName : lastName // ignore: cast_nullable_to_non_nullable
@@ -77,11 +78,24 @@ as DateTime?,city: freezed == city ? _self.city : city // ignore: cast_nullable_
 as String?,country: freezed == country ? _self.country : country // ignore: cast_nullable_to_non_nullable
 as String?,church: freezed == church ? _self.church : church // ignore: cast_nullable_to_non_nullable
 as String?,assembly: freezed == assembly ? _self.assembly : assembly // ignore: cast_nullable_to_non_nullable
-as String?,exists: null == exists ? _self.exists : exists // ignore: cast_nullable_to_non_nullable
+as String?,avatar: freezed == avatar ? _self.avatar : avatar // ignore: cast_nullable_to_non_nullable
+as EventImage?,exists: null == exists ? _self.exists : exists // ignore: cast_nullable_to_non_nullable
 as bool,
   ));
 }
+/// Create a copy of Profile
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$EventImageCopyWith<$Res>? get avatar {
+    if (_self.avatar == null) {
+    return null;
+  }
 
+  return $EventImageCopyWith<$Res>(_self.avatar!, (value) {
+    return _then(_self.copyWith(avatar: value));
+  });
+}
 }
 
 
@@ -163,10 +177,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String firstName,  String lastName,  String phoneNumber,  String email,  DateTime? birthDate,  String? city,  String? country,  String? church,  String? assembly, @JsonKey(includeFromJson: false, includeToJson: false)  bool exists)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String firstName,  String lastName,  String phoneNumber,  String email,  DateTime? birthDate,  String? city,  String? country,  String? church,  String? assembly,  EventImage? avatar, @JsonKey(includeFromJson: false, includeToJson: false)  bool exists)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _Profile() when $default != null:
-return $default(_that.firstName,_that.lastName,_that.phoneNumber,_that.email,_that.birthDate,_that.city,_that.country,_that.church,_that.assembly,_that.exists);case _:
+return $default(_that.firstName,_that.lastName,_that.phoneNumber,_that.email,_that.birthDate,_that.city,_that.country,_that.church,_that.assembly,_that.avatar,_that.exists);case _:
   return orElse();
 
 }
@@ -184,10 +198,10 @@ return $default(_that.firstName,_that.lastName,_that.phoneNumber,_that.email,_th
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String firstName,  String lastName,  String phoneNumber,  String email,  DateTime? birthDate,  String? city,  String? country,  String? church,  String? assembly, @JsonKey(includeFromJson: false, includeToJson: false)  bool exists)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String firstName,  String lastName,  String phoneNumber,  String email,  DateTime? birthDate,  String? city,  String? country,  String? church,  String? assembly,  EventImage? avatar, @JsonKey(includeFromJson: false, includeToJson: false)  bool exists)  $default,) {final _that = this;
 switch (_that) {
 case _Profile():
-return $default(_that.firstName,_that.lastName,_that.phoneNumber,_that.email,_that.birthDate,_that.city,_that.country,_that.church,_that.assembly,_that.exists);case _:
+return $default(_that.firstName,_that.lastName,_that.phoneNumber,_that.email,_that.birthDate,_that.city,_that.country,_that.church,_that.assembly,_that.avatar,_that.exists);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -204,10 +218,10 @@ return $default(_that.firstName,_that.lastName,_that.phoneNumber,_that.email,_th
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String firstName,  String lastName,  String phoneNumber,  String email,  DateTime? birthDate,  String? city,  String? country,  String? church,  String? assembly, @JsonKey(includeFromJson: false, includeToJson: false)  bool exists)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String firstName,  String lastName,  String phoneNumber,  String email,  DateTime? birthDate,  String? city,  String? country,  String? church,  String? assembly,  EventImage? avatar, @JsonKey(includeFromJson: false, includeToJson: false)  bool exists)?  $default,) {final _that = this;
 switch (_that) {
 case _Profile() when $default != null:
-return $default(_that.firstName,_that.lastName,_that.phoneNumber,_that.email,_that.birthDate,_that.city,_that.country,_that.church,_that.assembly,_that.exists);case _:
+return $default(_that.firstName,_that.lastName,_that.phoneNumber,_that.email,_that.birthDate,_that.city,_that.country,_that.church,_that.assembly,_that.avatar,_that.exists);case _:
   return null;
 
 }
@@ -219,7 +233,7 @@ return $default(_that.firstName,_that.lastName,_that.phoneNumber,_that.email,_th
 @JsonSerializable()
 
 class _Profile extends Profile {
-  const _Profile({required this.firstName, this.lastName = '', required this.phoneNumber, this.email = '', this.birthDate, this.city, this.country, this.church, this.assembly, @JsonKey(includeFromJson: false, includeToJson: false) this.exists = true}): super._();
+  const _Profile({required this.firstName, this.lastName = '', required this.phoneNumber, this.email = '', this.birthDate, this.city, this.country, this.church, this.assembly, this.avatar, @JsonKey(includeFromJson: false, includeToJson: false) this.exists = true}): super._();
   factory _Profile.fromJson(Map<String, dynamic> json) => _$ProfileFromJson(json);
 
 @override final  String firstName;
@@ -231,6 +245,8 @@ class _Profile extends Profile {
 @override final  String? country;
 @override final  String? church;
 @override final  String? assembly;
+/// The profile photo (a square image of the media storage), or null.
+@override final  EventImage? avatar;
 /// false when the server has no profile for this user yet (it must be created).
 @override@JsonKey(includeFromJson: false, includeToJson: false) final  bool exists;
 
@@ -247,16 +263,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Profile&&(identical(other.firstName, firstName) || other.firstName == firstName)&&(identical(other.lastName, lastName) || other.lastName == lastName)&&(identical(other.phoneNumber, phoneNumber) || other.phoneNumber == phoneNumber)&&(identical(other.email, email) || other.email == email)&&(identical(other.birthDate, birthDate) || other.birthDate == birthDate)&&(identical(other.city, city) || other.city == city)&&(identical(other.country, country) || other.country == country)&&(identical(other.church, church) || other.church == church)&&(identical(other.assembly, assembly) || other.assembly == assembly)&&(identical(other.exists, exists) || other.exists == exists));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Profile&&(identical(other.firstName, firstName) || other.firstName == firstName)&&(identical(other.lastName, lastName) || other.lastName == lastName)&&(identical(other.phoneNumber, phoneNumber) || other.phoneNumber == phoneNumber)&&(identical(other.email, email) || other.email == email)&&(identical(other.birthDate, birthDate) || other.birthDate == birthDate)&&(identical(other.city, city) || other.city == city)&&(identical(other.country, country) || other.country == country)&&(identical(other.church, church) || other.church == church)&&(identical(other.assembly, assembly) || other.assembly == assembly)&&(identical(other.avatar, avatar) || other.avatar == avatar)&&(identical(other.exists, exists) || other.exists == exists));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,firstName,lastName,phoneNumber,email,birthDate,city,country,church,assembly,exists);
+int get hashCode => Object.hash(runtimeType,firstName,lastName,phoneNumber,email,birthDate,city,country,church,assembly,avatar,exists);
 
 @override
 String toString() {
-  return 'Profile(firstName: $firstName, lastName: $lastName, phoneNumber: $phoneNumber, email: $email, birthDate: $birthDate, city: $city, country: $country, church: $church, assembly: $assembly, exists: $exists)';
+  return 'Profile(firstName: $firstName, lastName: $lastName, phoneNumber: $phoneNumber, email: $email, birthDate: $birthDate, city: $city, country: $country, church: $church, assembly: $assembly, avatar: $avatar, exists: $exists)';
 }
 
 
@@ -267,11 +283,11 @@ abstract mixin class _$ProfileCopyWith<$Res> implements $ProfileCopyWith<$Res> {
   factory _$ProfileCopyWith(_Profile value, $Res Function(_Profile) _then) = __$ProfileCopyWithImpl;
 @override @useResult
 $Res call({
- String firstName, String lastName, String phoneNumber, String email, DateTime? birthDate, String? city, String? country, String? church, String? assembly,@JsonKey(includeFromJson: false, includeToJson: false) bool exists
+ String firstName, String lastName, String phoneNumber, String email, DateTime? birthDate, String? city, String? country, String? church, String? assembly, EventImage? avatar,@JsonKey(includeFromJson: false, includeToJson: false) bool exists
 });
 
 
-
+@override $EventImageCopyWith<$Res>? get avatar;
 
 }
 /// @nodoc
@@ -284,7 +300,7 @@ class __$ProfileCopyWithImpl<$Res>
 
 /// Create a copy of Profile
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? firstName = null,Object? lastName = null,Object? phoneNumber = null,Object? email = null,Object? birthDate = freezed,Object? city = freezed,Object? country = freezed,Object? church = freezed,Object? assembly = freezed,Object? exists = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? firstName = null,Object? lastName = null,Object? phoneNumber = null,Object? email = null,Object? birthDate = freezed,Object? city = freezed,Object? country = freezed,Object? church = freezed,Object? assembly = freezed,Object? avatar = freezed,Object? exists = null,}) {
   return _then(_Profile(
 firstName: null == firstName ? _self.firstName : firstName // ignore: cast_nullable_to_non_nullable
 as String,lastName: null == lastName ? _self.lastName : lastName // ignore: cast_nullable_to_non_nullable
@@ -295,12 +311,25 @@ as DateTime?,city: freezed == city ? _self.city : city // ignore: cast_nullable_
 as String?,country: freezed == country ? _self.country : country // ignore: cast_nullable_to_non_nullable
 as String?,church: freezed == church ? _self.church : church // ignore: cast_nullable_to_non_nullable
 as String?,assembly: freezed == assembly ? _self.assembly : assembly // ignore: cast_nullable_to_non_nullable
-as String?,exists: null == exists ? _self.exists : exists // ignore: cast_nullable_to_non_nullable
+as String?,avatar: freezed == avatar ? _self.avatar : avatar // ignore: cast_nullable_to_non_nullable
+as EventImage?,exists: null == exists ? _self.exists : exists // ignore: cast_nullable_to_non_nullable
 as bool,
   ));
 }
 
+/// Create a copy of Profile
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$EventImageCopyWith<$Res>? get avatar {
+    if (_self.avatar == null) {
+    return null;
+  }
 
+  return $EventImageCopyWith<$Res>(_self.avatar!, (value) {
+    return _then(_self.copyWith(avatar: value));
+  });
+}
 }
 
 // dart format on

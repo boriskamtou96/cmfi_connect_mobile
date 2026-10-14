@@ -1,6 +1,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 import '../../../core/session/account.dart';
+import '../../events/domain/event.dart';
 
 part 'profile.freezed.dart';
 part 'profile.g.dart';
@@ -18,6 +19,9 @@ abstract class Profile with _$Profile {
     String? country,
     String? church,
     String? assembly,
+
+    /// The profile photo (a square image of the media storage), or null.
+    EventImage? avatar,
 
     /// false when the server has no profile for this user yet (it must be created).
     @JsonKey(includeFromJson: false, includeToJson: false)

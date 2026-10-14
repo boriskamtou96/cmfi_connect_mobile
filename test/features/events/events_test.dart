@@ -20,6 +20,9 @@ void main() {
   /// From the home card to the event page.
   Future<void> openEvent(WidgetTester tester) async {
     await tester.scrollUntilVisible(find.text('PROCHAIN ÉVÈNEMENT'), 200);
+    // brought to the top: the bottom of the list runs under the tab bar
+    await tester.ensureVisible(find.text('Conférence annuelle 2026'));
+    await tester.pumpAndSettle();
     await tester.tap(find.text('Conférence annuelle 2026'));
     await tester.pumpAndSettle();
   }
@@ -185,6 +188,43 @@ void main() {
     expect(find.text('ÉDITIONS PASSÉES'), findsOneWidget);
   });
 
+  testWidgets('several events: a carousel of posters on the home screen', (
+    tester,
+  ) async {
+    final next = sampleEvents().next;
+    await pumpApp(
+      tester,
+      token: 't',
+      eventsApi: FakeEventsApi(
+        upcoming: [
+          next,
+          next.copyWith(id: 3, title: 'Retraite des jeunes'),
+          next.copyWith(id: 4, title: 'Campagne d\'évangélisation'),
+        ],
+      ),
+    );
+    final carousel = find.byType(PageView);
+    await tester.scrollUntilVisible(
+      carousel,
+      200,
+      scrollable: find.byType(Scrollable).first,
+    );
+    await tester.drag(find.byType(Scrollable).first, const Offset(0, -250));
+    await tester.pumpAndSettle();
+
+    expect(find.text('Conférence annuelle 2026'), findsOneWidget);
+    expect(find.bySemanticsLabel(RegExp('Évènement 1 sur 3')), findsOneWidget);
+    // one card at a time, the next one peeking
+    for (var i = 0; i < 3; i++) {
+      await tester.drag(carousel, const Offset(-300, 0));
+      await tester.pumpAndSettle();
+    }
+    expect(find.text('3 évènements à venir'), findsOneWidget);
+    await tester.tap(find.text('Tous les évènements'));
+    await tester.pumpAndSettle();
+    expect(find.text('À LA UNE'), findsOneWidget);
+  });
+
   testWidgets('without network, the events kept on the phone show', (
     tester,
   ) async {
@@ -219,7 +259,17 @@ void main() {
       ),
       200,
     );
-    await tester.tap(find.text('Évènements').first);
+    await tester.ensureVisible(
+      find.text(
+        'Les rencontres de la communauté, leur programme et leurs actualités.',
+      ),
+    );
+    await tester.pumpAndSettle();
+    await tester.tap(
+      find.text(
+        'Les rencontres de la communauté, leur programme et leurs actualités.',
+      ),
+    );
     await tester.pumpAndSettle();
 
     expect(find.text('Aucun évènement à venir'), findsOneWidget);

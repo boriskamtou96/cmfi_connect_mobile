@@ -152,10 +152,42 @@ void main() {
 
         await fillBibleReading(tester, '2');
         expect(find.text('Objectif : 3 chapitres'), findsOneWidget);
+        expect(find.text('Objectifs de la journée'), findsOneWidget);
+        expect(find.text('Atteints : 0 sur 1'), findsOneWidget);
+        expect(find.text('67\u00a0%'), findsOneWidget);
         await fillBibleReading(tester, '3');
         expect(find.text('Objectif atteint'), findsOneWidget);
+        expect(find.text('Atteints : 1 sur 1'), findsOneWidget);
+        expect(find.text('100\u00a0%'), findsOneWidget);
       },
     );
+
+    testWidgets('the home and the summary show how far the goals go', (
+      tester,
+    ) async {
+      final app = await pumpApp(
+        tester,
+        token: 't',
+        initialPreferences: {'report_goals': '{"1":{"quantity":2}}'},
+      );
+      // yesterday reached: 2 chapters
+      seedDay(app, 1);
+      app.container.invalidate(reportHistoryProvider);
+      await tester.pumpAndSettle();
+
+      // today is not filled in yet
+      expect(find.text('objectifs'), findsOneWidget);
+      expect(find.text('0\u00a0%'), findsOneWidget);
+
+      await openReports(tester);
+      await tester.tap(find.text('Bilan'));
+      await tester.pumpAndSettle();
+
+      expect(
+        find.text('Accomplissement moyen de tes objectifs'),
+        findsOneWidget,
+      );
+    });
 
     testWidgets('the home screen shows the days in a row', (tester) async {
       final app = await pumpApp(tester, token: 't');

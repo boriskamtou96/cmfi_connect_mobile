@@ -17,9 +17,11 @@ import '../../../core/widgets/motion.dart';
 import '../../../core/widgets/section_card.dart';
 import '../../../core/widgets/sub_page.dart';
 import '../application/report_goals.dart';
+import '../application/report_item_texts.dart';
 import '../application/reports_providers.dart';
 import '../domain/activity_type.dart';
 import '../domain/daily_report.dart';
+import '../domain/measure_format.dart';
 import '../domain/report_goal.dart';
 import '../infrastructure/activities_api.dart';
 import 'new_item_screen.dart';
@@ -111,6 +113,9 @@ class ItemsScreen extends HookConsumerWidget {
       }
     }
 
+    ItemUnit? unitOf(ActivityType item) =>
+        t.itemUnit(item.code, item.quantityUnit, standard: item.isStandard);
+
     Widget goalLine(ActivityType item) {
       final goal = goals[item.id];
       final color = goal == null
@@ -132,7 +137,7 @@ class ItemsScreen extends HookConsumerWidget {
               child: Text(
                 goal == null
                     ? t.items.goalAdd
-                    : t.items.goal(value: goalLabel(goal, item.quantityUnit)),
+                    : t.items.goal(value: goalLabel(goal, unitOf(item))),
                 style: TextStyle(
                   fontSize: 12,
                   fontWeight: FontWeight.w600,
@@ -166,7 +171,11 @@ class ItemsScreen extends HookConsumerWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      item.label,
+                      t.itemLabel(
+                        item.code,
+                        item.label,
+                        standard: item.isStandard,
+                      ),
                       style: const TextStyle(
                         fontSize: 15,
                         fontWeight: FontWeight.w600,
@@ -177,7 +186,7 @@ class ItemsScreen extends HookConsumerWidget {
                         t,
                         quantity: item.tracksQuantity,
                         duration: item.tracksDuration,
-                        unit: item.quantityUnit,
+                        unit: unitOf(item),
                       ),
                       style: TextStyle(
                         fontSize: 12,

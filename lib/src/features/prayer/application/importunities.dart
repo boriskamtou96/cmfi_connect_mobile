@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../../../core/network/app_exception.dart';
+import '../../members/domain/member.dart';
 import '../domain/prayer.dart';
 import '../infrastructure/prayer_api.dart';
 import '../infrastructure/prayer_local_store.dart';
@@ -91,6 +92,31 @@ class Importunities extends _$Importunities {
     }
     return joined;
   }
+
+  /// Blocks whoever sent this invitation: the server removes their pending
+  /// invitations to the user and drops the next ones. The list comes again
+  /// from the server.
+  Future<void> blockInviter(Importunity topic) async {
+    await ref.read(prayerApiProvider).block(topic.inviter.username);
+    await _forget(topic.id);
+    ref
+      ..invalidate(blockedMembersProvider)
+      ..invalidateSelf();
+  }
+
+  /// Reports this invitation (and who sent it) to the leaders.
+  Future<void> reportInvitation(
+    Importunity topic, {
+    required ReportReason reason,
+    String comment = '',
+  }) => ref
+      .read(prayerApiProvider)
+      .report(
+        username: topic.inviter.username,
+        importunityId: topic.id,
+        reason: reason,
+        comment: comment,
+      );
 
   /// How many new invitations went out (USERNAME_NOT_FOUND…).
   Future<int> invite(
@@ -220,3 +246,22 @@ Future<Importunity> importunityDetail(Ref ref, int id) =>
 @riverpod
 Future<PrayerFamily> prayerFamily(Ref ref) =>
     ref.watch(prayerApiProvider).family();
+
+/// The members the user blocked (Plus › Membres bloqués): their invitations
+/// to pray don't reach the user any more.
+@riverpod
+class BlockedMembers extends _$BlockedMembers {
+  @override
+  Future<List<MemberCard>> build() => ref.watch(prayerApiProvider).blocked();
+
+  /// They can invite the user again. Throws an AppException on failure.
+  Future<void> unblock(MemberCard member) async {
+    await ref.read(prayerApiProvider).unblock(member.username);
+    if (ref.mounted) {
+      state = AsyncData([
+        for (final other in state.value ?? const <MemberCard>[])
+          if (other.username != member.username) other,
+      ]);
+    }
+  }
+}

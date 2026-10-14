@@ -4,6 +4,7 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 import '../../../core/network/api_call.dart';
 import '../../../core/network/dio_provider.dart';
 import '../../../core/utils/date_extensions.dart';
+import '../../members/domain/member.dart';
 import '../domain/prayer.dart';
 
 part 'prayer_api.g.dart';
@@ -231,6 +232,47 @@ class PrayerApi {
       '/prayer/importunities/family',
     );
     return PrayerFamily.fromJson(response.content);
+  });
+
+  // ----- blocking and reporting a member (/v1/members, /v1/reports) -----
+
+  /// Their pending invitations to the user are removed, and the next ones
+  /// silently dropped by the server. Idempotent. 400 BAD_REQUEST for
+  /// oneself, 404 NOT_FOUND.
+  Future<void> block(String username) => apiCall(() async {
+    await _dio.post<void>('/members/${Uri.encodeComponent(username)}/block');
+  });
+
+  Future<void> unblock(String username) => apiCall(() async {
+    await _dio.delete<void>('/members/${Uri.encodeComponent(username)}/block');
+  });
+
+  Future<List<MemberCard>> blocked() => apiCall(() async {
+    final response = await _dio.get<Map<String, dynamic>>('/members/blocked');
+    return [
+      for (final json in response.contentList)
+        MemberCard.fromJson(json as Map<String, dynamic>),
+    ];
+  });
+
+  /// Reports a member (and the invitation they sent) to the leaders; the
+  /// number of the report. 404 NOT_FOUND for an unknown pseudo.
+  Future<int> report({
+    required String username,
+    required ReportReason reason,
+    int? importunityId,
+    String comment = '',
+  }) => apiCall(() async {
+    final response = await _dio.post<Map<String, dynamic>>(
+      '/reports',
+      data: {
+        'username': username,
+        'importunity_id': ?importunityId,
+        'reason': reason.name,
+        if (comment.trim().isNotEmpty) 'comment': comment.trim(),
+      },
+    );
+    return response.content['id'] as int;
   });
 
   static List<PrayerPerson> _people(Response<Map<String, dynamic>> response) =>

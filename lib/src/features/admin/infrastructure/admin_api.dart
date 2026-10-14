@@ -4,6 +4,7 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../../../core/network/api_call.dart';
 import '../../../core/network/dio_provider.dart';
+import '../../events/domain/event.dart';
 
 part 'admin_api.freezed.dart';
 part 'admin_api.g.dart';
@@ -19,6 +20,7 @@ abstract class StaffMember with _$StaffMember {
     required String firstName,
     @Default('') String lastName,
     @JsonKey(unknownEnumValue: MemberRole.user) required MemberRole role,
+    EventImage? avatar,
   }) = _StaffMember;
 
   const StaffMember._();

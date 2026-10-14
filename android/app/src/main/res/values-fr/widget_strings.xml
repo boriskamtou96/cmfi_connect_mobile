@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- The home-screen widget in the launcher's list (TodayWidgetProvider) -->
+<resources>
+    <string name="today_widget_name">Compte rendu du jour</string>
+    <string name="today_widget_description">Ton compte rendu du jour et tes objectifs.</string>
+    <string name="today_widget_title">Aujourd’hui</string>
+    <string name="today_widget_todo">À remplir</string>
+    <!-- the "Verset du jour" widget (VerseWidgetProvider) -->
+    <string name="verse_widget_name">Verset du jour</string>
+    <string name="verse_widget_description">Un verset de la Bible chaque jour.</string>
+    <string name="verse_widget_title">Verset du jour</string>
+    <string name="verse_widget_empty">Ouvre l’app pour recevoir le verset du jour.</string>
+    <string name="verse_widget_sample">Car Dieu a tant aimé le monde qu’il a donné son Fils unique.</string>
+    <string name="verse_widget_sample_reference">Jean 3.16</string>
+</resources>

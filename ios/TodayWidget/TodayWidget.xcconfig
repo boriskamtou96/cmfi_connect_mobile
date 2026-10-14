@@ -1,0 +1,8 @@
+// The version of the app (pubspec.yaml), which the widget must share.
+#include "../Flutter/Generated.xcconfig"
+
+// The widget is plain Swift. Without this, it takes the bridging header of
+// the app (set for the whole project by flavorizr), which imports Flutter:
+// built before the app, the widget then fails on 'Flutter/Flutter.h' as soon
+// as DerivedData is empty.
+SWIFT_OBJC_BRIDGING_HEADER =

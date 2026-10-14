@@ -1,5 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
+import '../../events/domain/event.dart';
 import '../../members/domain/member.dart';
 
 part 'authority.freezed.dart';
@@ -30,6 +31,13 @@ abstract class Authority with _$Authority {
     @JsonKey(unknownEnumValue: AuthorityStatus.accepted)
     @Default(AuthorityStatus.accepted)
     AuthorityStatus status,
+
+    /// The profile photo of a member found by pseudo, or null.
+    EventImage? avatar,
+
+    /// A disciple maker found by pseudo sees the user's regularity (days
+    /// filled in, streak, % of goals; never the reports), unless turned off.
+    @Default(true) bool sharesRegularity,
   }) = _Authority;
 
   const Authority._();

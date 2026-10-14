@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- The home-screen widget in the launcher's list (TodayWidgetProvider) -->
+<resources>
+    <string name="today_widget_name">تقرير اليوم</string>
+    <string name="today_widget_description">تقرير يومك وأهدافك.</string>
+    <string name="today_widget_title">اليوم</string>
+    <string name="today_widget_todo">للتعبئة</string>
+    <!-- the "Verset du jour" widget (VerseWidgetProvider) -->
+    <string name="verse_widget_name">آية اليوم</string>
+    <string name="verse_widget_description">آية من الكتاب المقدس كل يوم.</string>
+    <string name="verse_widget_title">آية اليوم</string>
+    <string name="verse_widget_empty">افتح التطبيق لتصلك آية اليوم.</string>
+    <string name="verse_widget_sample">لأنه هكذا أحب الله العالم حتى بذل ابنه الوحيد.</string>
+    <string name="verse_widget_sample_reference">يوحنا 3: 16</string>
+</resources>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- App icon shortcut "Retraite du moment" (core/services/app_shortcuts.dart):
+     the sun on the horizon, in CMFI blue on a sky-blue disc. -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="48dp"
+    android:height="48dp"
+    android:viewportWidth="48"
+    android:viewportHeight="48">
+  <path
+      android:fillColor="#FFE2EEFA"
+      android:pathData="M24,2 A22,22 0 1,1 23.99,2 Z" />
+  <group
+      android:translateX="12"
+      android:translateY="12">
+    <path
+        android:fillColor="#FF0A5EA8"
+        android:pathData="M7,16 A5,5 0 0 1 17,16 Z M3,18 H21 V20 H3 Z" />
+    <path
+        android:strokeColor="#FF0A5EA8"
+        android:strokeWidth="2"
+        android:strokeLineCap="round"
+        android:pathData="M12,4 V7 M5.6,7.6 L7.7,9.7 M18.4,7.6 L16.3,9.7" />
+  </group>
+</vector>

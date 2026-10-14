@@ -13,27 +13,42 @@ void main() {
 
   test('a percentage is written with %', () {
     expect(MeasureFormat.unitSymbol('Pourcentage'), '%');
-    expect(MeasureFormat.value(quantity: 10, unit: 'Pourcentage'), '10 %');
+    expect(
+      MeasureFormat.value(quantity: 10, unit: ItemUnit.typed('Pourcentage')),
+      '10 %',
+    );
   });
 
   test('values join quantity and duration', () {
     expect(
-      MeasureFormat.value(quantity: 10, unit: 'chapitres'),
+      MeasureFormat.value(quantity: 10, unit: ItemUnit.typed('chapitres')),
       '10 chapitres',
     );
     expect(MeasureFormat.value(minutes: 120), '2 h');
     expect(
-      MeasureFormat.value(quantity: 1, minutes: 30, unit: 'Nombre de fois'),
+      MeasureFormat.value(
+        quantity: 1,
+        minutes: 30,
+        unit: ItemUnit.typed('Nombre de fois'),
+      ),
       '1 fois · 30 min',
     );
     expect(
       MeasureFormat.value(
         quantity: 1,
         minutes: 30,
-        unit: 'Nombre de fois',
+        unit: ItemUnit.typed('Nombre de fois'),
         withUnit: false,
       ),
       '1 · 30 min',
     );
+  });
+
+  test('a typed unit keeps its words, as a title too', () {
+    final unit = ItemUnit.typed(' Nombre de personnes ')!;
+    expect(unit.name, 'Nombre de personnes');
+    expect(unit.label, 'personnes');
+    expect(unit.count(1), '1 personnes');
+    expect(ItemUnit.typed(''), isNull);
   });
 }

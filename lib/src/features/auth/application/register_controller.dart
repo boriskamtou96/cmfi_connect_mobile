@@ -1,7 +1,6 @@
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../../../core/session/session.dart';
-import '../../../core/utils/phone.dart';
 import '../../members/domain/member.dart';
 import '../infrastructure/auth_api.dart';
 
@@ -18,6 +17,7 @@ class RegisterController extends _$RegisterController {
   FutureOr<void> build() {}
 
   /// True once the account exists and the user is signed in.
+  /// [phoneNumber] is international ("+237690000001").
   Future<bool> submit({
     required String firstName,
     required String lastName,
@@ -28,7 +28,7 @@ class RegisterController extends _$RegisterController {
   }) async {
     state = const AsyncLoading();
 
-    final phone = toInternationalPhone(phoneNumber);
+    final phone = phoneNumber;
     final result = await AsyncValue.guard(() async {
       final api = ref.read(authApiProvider);
       if (!_registered) {

@@ -157,7 +157,7 @@ final class RetreatPlanProvider
   }
 }
 
-String _$retreatPlanHash() => r'150a24804697eb4b388010ffb94a7b4ca08c578b';
+String _$retreatPlanHash() => r'fb939c28b137f8c57c0c3122caa16ce7018e519b';
 
 /// The fifteen points of a retreat, filled with the user's data. Without
 /// network, what is kept on the phone (or nothing) fills them.

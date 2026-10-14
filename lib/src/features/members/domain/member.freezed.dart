@@ -15,7 +15,8 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$MemberCard {
 
- String get username; String get firstName; String get lastName; String get church; String get assembly;
+ String get username; String get firstName; String get lastName; String get church; String get assembly;/// Their profile photo (a square image of the media storage), or null.
+ EventImage? get avatar;
 /// Create a copy of MemberCard
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -28,16 +29,16 @@ $MemberCardCopyWith<MemberCard> get copyWith => _$MemberCardCopyWithImpl<MemberC
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is MemberCard&&(identical(other.username, username) || other.username == username)&&(identical(other.firstName, firstName) || other.firstName == firstName)&&(identical(other.lastName, lastName) || other.lastName == lastName)&&(identical(other.church, church) || other.church == church)&&(identical(other.assembly, assembly) || other.assembly == assembly));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is MemberCard&&(identical(other.username, username) || other.username == username)&&(identical(other.firstName, firstName) || other.firstName == firstName)&&(identical(other.lastName, lastName) || other.lastName == lastName)&&(identical(other.church, church) || other.church == church)&&(identical(other.assembly, assembly) || other.assembly == assembly)&&(identical(other.avatar, avatar) || other.avatar == avatar));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,username,firstName,lastName,church,assembly);
+int get hashCode => Object.hash(runtimeType,username,firstName,lastName,church,assembly,avatar);
 
 @override
 String toString() {
-  return 'MemberCard(username: $username, firstName: $firstName, lastName: $lastName, church: $church, assembly: $assembly)';
+  return 'MemberCard(username: $username, firstName: $firstName, lastName: $lastName, church: $church, assembly: $assembly, avatar: $avatar)';
 }
 
 
@@ -48,11 +49,11 @@ abstract mixin class $MemberCardCopyWith<$Res>  {
   factory $MemberCardCopyWith(MemberCard value, $Res Function(MemberCard) _then) = _$MemberCardCopyWithImpl;
 @useResult
 $Res call({
- String username, String firstName, String lastName, String church, String assembly
+ String username, String firstName, String lastName, String church, String assembly, EventImage? avatar
 });
 
 
-
+$EventImageCopyWith<$Res>? get avatar;
 
 }
 /// @nodoc
@@ -65,17 +66,30 @@ class _$MemberCardCopyWithImpl<$Res>
 
 /// Create a copy of MemberCard
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? username = null,Object? firstName = null,Object? lastName = null,Object? church = null,Object? assembly = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? username = null,Object? firstName = null,Object? lastName = null,Object? church = null,Object? assembly = null,Object? avatar = freezed,}) {
   return _then(_self.copyWith(
 username: null == username ? _self.username : username // ignore: cast_nullable_to_non_nullable
 as String,firstName: null == firstName ? _self.firstName : firstName // ignore: cast_nullable_to_non_nullable
 as String,lastName: null == lastName ? _self.lastName : lastName // ignore: cast_nullable_to_non_nullable
 as String,church: null == church ? _self.church : church // ignore: cast_nullable_to_non_nullable
 as String,assembly: null == assembly ? _self.assembly : assembly // ignore: cast_nullable_to_non_nullable
-as String,
+as String,avatar: freezed == avatar ? _self.avatar : avatar // ignore: cast_nullable_to_non_nullable
+as EventImage?,
   ));
 }
+/// Create a copy of MemberCard
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$EventImageCopyWith<$Res>? get avatar {
+    if (_self.avatar == null) {
+    return null;
+  }
 
+  return $EventImageCopyWith<$Res>(_self.avatar!, (value) {
+    return _then(_self.copyWith(avatar: value));
+  });
+}
 }
 
 
@@ -157,10 +171,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String username,  String firstName,  String lastName,  String church,  String assembly)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String username,  String firstName,  String lastName,  String church,  String assembly,  EventImage? avatar)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _MemberCard() when $default != null:
-return $default(_that.username,_that.firstName,_that.lastName,_that.church,_that.assembly);case _:
+return $default(_that.username,_that.firstName,_that.lastName,_that.church,_that.assembly,_that.avatar);case _:
   return orElse();
 
 }
@@ -178,10 +192,10 @@ return $default(_that.username,_that.firstName,_that.lastName,_that.church,_that
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String username,  String firstName,  String lastName,  String church,  String assembly)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String username,  String firstName,  String lastName,  String church,  String assembly,  EventImage? avatar)  $default,) {final _that = this;
 switch (_that) {
 case _MemberCard():
-return $default(_that.username,_that.firstName,_that.lastName,_that.church,_that.assembly);case _:
+return $default(_that.username,_that.firstName,_that.lastName,_that.church,_that.assembly,_that.avatar);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -198,10 +212,10 @@ return $default(_that.username,_that.firstName,_that.lastName,_that.church,_that
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String username,  String firstName,  String lastName,  String church,  String assembly)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String username,  String firstName,  String lastName,  String church,  String assembly,  EventImage? avatar)?  $default,) {final _that = this;
 switch (_that) {
 case _MemberCard() when $default != null:
-return $default(_that.username,_that.firstName,_that.lastName,_that.church,_that.assembly);case _:
+return $default(_that.username,_that.firstName,_that.lastName,_that.church,_that.assembly,_that.avatar);case _:
   return null;
 
 }
@@ -213,7 +227,7 @@ return $default(_that.username,_that.firstName,_that.lastName,_that.church,_that
 @JsonSerializable()
 
 class _MemberCard extends MemberCard {
-  const _MemberCard({required this.username, required this.firstName, this.lastName = '', this.church = '', this.assembly = ''}): super._();
+  const _MemberCard({required this.username, required this.firstName, this.lastName = '', this.church = '', this.assembly = '', this.avatar}): super._();
   factory _MemberCard.fromJson(Map<String, dynamic> json) => _$MemberCardFromJson(json);
 
 @override final  String username;
@@ -221,6 +235,8 @@ class _MemberCard extends MemberCard {
 @override@JsonKey() final  String lastName;
 @override@JsonKey() final  String church;
 @override@JsonKey() final  String assembly;
+/// Their profile photo (a square image of the media storage), or null.
+@override final  EventImage? avatar;
 
 /// Create a copy of MemberCard
 /// with the given fields replaced by the non-null parameter values.
@@ -235,16 +251,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _MemberCard&&(identical(other.username, username) || other.username == username)&&(identical(other.firstName, firstName) || other.firstName == firstName)&&(identical(other.lastName, lastName) || other.lastName == lastName)&&(identical(other.church, church) || other.church == church)&&(identical(other.assembly, assembly) || other.assembly == assembly));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _MemberCard&&(identical(other.username, username) || other.username == username)&&(identical(other.firstName, firstName) || other.firstName == firstName)&&(identical(other.lastName, lastName) || other.lastName == lastName)&&(identical(other.church, church) || other.church == church)&&(identical(other.assembly, assembly) || other.assembly == assembly)&&(identical(other.avatar, avatar) || other.avatar == avatar));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,username,firstName,lastName,church,assembly);
+int get hashCode => Object.hash(runtimeType,username,firstName,lastName,church,assembly,avatar);
 
 @override
 String toString() {
-  return 'MemberCard(username: $username, firstName: $firstName, lastName: $lastName, church: $church, assembly: $assembly)';
+  return 'MemberCard(username: $username, firstName: $firstName, lastName: $lastName, church: $church, assembly: $assembly, avatar: $avatar)';
 }
 
 
@@ -255,11 +271,11 @@ abstract mixin class _$MemberCardCopyWith<$Res> implements $MemberCardCopyWith<$
   factory _$MemberCardCopyWith(_MemberCard value, $Res Function(_MemberCard) _then) = __$MemberCardCopyWithImpl;
 @override @useResult
 $Res call({
- String username, String firstName, String lastName, String church, String assembly
+ String username, String firstName, String lastName, String church, String assembly, EventImage? avatar
 });
 
 
-
+@override $EventImageCopyWith<$Res>? get avatar;
 
 }
 /// @nodoc
@@ -272,18 +288,31 @@ class __$MemberCardCopyWithImpl<$Res>
 
 /// Create a copy of MemberCard
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? username = null,Object? firstName = null,Object? lastName = null,Object? church = null,Object? assembly = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? username = null,Object? firstName = null,Object? lastName = null,Object? church = null,Object? assembly = null,Object? avatar = freezed,}) {
   return _then(_MemberCard(
 username: null == username ? _self.username : username // ignore: cast_nullable_to_non_nullable
 as String,firstName: null == firstName ? _self.firstName : firstName // ignore: cast_nullable_to_non_nullable
 as String,lastName: null == lastName ? _self.lastName : lastName // ignore: cast_nullable_to_non_nullable
 as String,church: null == church ? _self.church : church // ignore: cast_nullable_to_non_nullable
 as String,assembly: null == assembly ? _self.assembly : assembly // ignore: cast_nullable_to_non_nullable
-as String,
+as String,avatar: freezed == avatar ? _self.avatar : avatar // ignore: cast_nullable_to_non_nullable
+as EventImage?,
   ));
 }
 
+/// Create a copy of MemberCard
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$EventImageCopyWith<$Res>? get avatar {
+    if (_self.avatar == null) {
+    return null;
+  }
 
+  return $EventImageCopyWith<$Res>(_self.avatar!, (value) {
+    return _then(_self.copyWith(avatar: value));
+  });
+}
 }
 
 

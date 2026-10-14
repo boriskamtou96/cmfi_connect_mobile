@@ -48,6 +48,20 @@ class AuthApi {
       },
     );
   });
+
+  /// Forgot password: [firebaseToken] proves the phone (the SMS code), then
+  /// log in with [password]. 404 NOT_FOUND without account for the number,
+  /// 401 INVALID_PHONE_VERIFICATION when the proof expired, 503
+  /// PASSWORD_RESET_UNAVAILABLE when the server can't check it.
+  Future<void> resetPassword({
+    required String firebaseToken,
+    required String password,
+  }) => apiCall(() async {
+    await _dio.post<void>(
+      '/users/password/reset',
+      data: {'firebase_token': firebaseToken, 'password': password},
+    );
+  });
 }
 
 @riverpod

@@ -94,6 +94,16 @@ class AuthoritiesApi {
   Future<void> remove(int id) => apiCall(() async {
     await _dio.delete<void>('/authorities/$id');
   });
+
+  /// Whether the disciple maker [id] sees the user's regularity.
+  Future<Authority> setSharing(int id, {required bool shares}) =>
+      apiCall(() async {
+        final response = await _dio.put<Map<String, dynamic>>(
+          '/authorities/$id/sharing',
+          data: {'shares': shares},
+        );
+        return Authority.fromJson(response.content);
+      });
 }
 
 @riverpod

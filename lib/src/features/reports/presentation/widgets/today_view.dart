@@ -4,6 +4,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../../core/i18n/strings.g.dart';
 import '../../../../core/network/app_exception_message.dart';
+import '../../../../core/services/store_review.dart';
 import '../../../../core/theme/app_icons.dart';
 import '../../../../core/theme/app_motion.dart';
 import '../../../../core/theme/app_spacing.dart';
@@ -14,19 +15,25 @@ import '../../../../core/widgets/animated_progress_bar.dart';
 import '../../../../core/widgets/app_toast.dart';
 import '../../../../core/widgets/error_view.dart';
 import '../../../../core/widgets/fade_slide_in.dart';
+import '../../../../core/widgets/goal_ring.dart';
 import '../../../../core/widgets/labeled_field.dart';
 import '../../../../core/widgets/motion.dart';
 import '../../../../core/widgets/rolling_text.dart';
 import '../../../../core/widgets/section_card.dart';
 import '../../application/day_report_controller.dart';
 import '../../application/report_goals.dart';
+import '../../application/report_item_texts.dart';
 import '../../application/report_reminder.dart';
 import '../../application/reports_providers.dart';
+import '../../application/streak_milestones.dart';
 import '../../domain/daily_report.dart';
+import '../../domain/report_goal.dart';
+import '../../domain/report_streak.dart';
 import '../new_item_screen.dart';
 import 'entry_row.dart';
 import 'entry_sheet.dart';
 import 'reminder_sheets.dart';
+import 'streak_celebration.dart';
 import 'week_strip.dart';
 
 /// "Today" view: fill in the items of the selected day.
@@ -50,7 +57,12 @@ class TodayView extends ConsumerWidget {
         personal: personal,
         caption: goal == null
             ? null
-            : t.items.goal(value: goalLabel(goal, entry.quantityUnit)),
+            : t.items.goal(
+                value: goalLabel(
+                  goal,
+                  t.itemUnit(entry.code, entry.quantityUnit),
+                ),
+              ),
       );
       if (values != null) {
         ref
@@ -91,7 +103,9 @@ class TodayView extends ConsumerWidget {
           header,
           ...switch (report) {
             AsyncValue(value: final draft?) => [
-              FadeSlideIn(child: _Progress(draft: draft)),
+              FadeSlideIn(
+                child: _Progress(draft: draft, goals: goals),
+              ),
               const SizedBox(height: 14),
               if (draft.entries.isEmpty)
                 Padding(
@@ -159,9 +173,10 @@ class TodayView extends ConsumerWidget {
 }
 
 class _Progress extends StatelessWidget {
-  const _Progress({required this.draft});
+  const _Progress({required this.draft, required this.goals});
 
   final DayDraft draft;
+  final Map<int, ReportGoal> goals;
 
   @override
   Widget build(BuildContext context) {
@@ -170,6 +185,7 @@ class _Progress extends StatelessWidget {
     final tones = AppTones.of(context);
     final total = draft.entries.length;
     final isToday = draft.date.isSameDay(today());
+    final goalsOfDay = dayGoals(goals, draft.entries);
 
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: AppSpacing.xs),
@@ -243,6 +259,44 @@ class _Progress extends StatelessWidget {
             value: total == 0 ? 0 : draft.filledCount / total,
             backgroundColor: scheme.outlineVariant,
           ),
+          if (goalsOfDay != null) ...[
+            const SizedBox(height: AppSpacing.md),
+            Row(
+              children: [
+                GoalRing(
+                  value: goalsOfDay.progress,
+                  label: t.reports.dayGoals,
+                  size: 48,
+                ),
+                const SizedBox(width: AppSpacing.md),
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        t.reports.dayGoals,
+                        style: const TextStyle(
+                          fontSize: 14,
+                          fontWeight: FontWeight.w700,
+                        ),
+                      ),
+                      const SizedBox(height: 2),
+                      Text(
+                        t.reports.goalsReached(
+                          reached: goalsOfDay.reached,
+                          total: goalsOfDay.total,
+                        ),
+                        style: TextStyle(
+                          fontSize: 13,
+                          color: scheme.onSurfaceVariant,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ],
         ],
       ),
     );
@@ -367,6 +421,10 @@ class SaveDayBar extends HookConsumerWidget {
 
     Future<void> save() async {
       final toast = ref.read(toasterProvider).of(context);
+      final milestones = ref.read(streakMilestonesProvider.notifier);
+      // the streak before this save (shown on Home), to see if it crosses
+      // a milestone
+      final before = ref.read(reportStreakProvider).value;
       try {
         final outcome = await ref
             .read(dayReportControllerProvider(day).notifier)
@@ -379,6 +437,22 @@ class SaveDayBar extends HookConsumerWidget {
           toast.success(t.reports.saved);
         } else {
           toast.info(t.reports.savedOffline);
+        }
+        // 7, 30, 100 or 365 days in a row: Zoé celebrates (once each), and
+        // after the first week, the store rating may be asked
+        final milestone = await ref
+            .read(reportStreakProvider.future)
+            .then<int?>(
+              (after) => milestones.reached(before: before, after: after),
+              // no network: the streak is unknown, nothing to celebrate
+              onError: (Object _) => null,
+            );
+        if (milestone != null && context.mounted) {
+          final rating = ref.read(ratingPromptProvider);
+          await showStreakCelebration(context, days: milestone);
+          if (milestone == streakMilestones.first) {
+            await rating.maybeAsk();
+          }
         }
         // the first saved day is the moment to offer the evening reminder
         if (context.mounted && !ref.read(reportReminderProvider).offered) {

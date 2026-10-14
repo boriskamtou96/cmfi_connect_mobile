@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$StaffMember {
 
- String get username; String get firstName; String get lastName;@JsonKey(unknownEnumValue: MemberRole.user) MemberRole get role;
+ String get username; String get firstName; String get lastName;@JsonKey(unknownEnumValue: MemberRole.user) MemberRole get role; EventImage? get avatar;
 /// Create a copy of StaffMember
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -28,16 +28,16 @@ $StaffMemberCopyWith<StaffMember> get copyWith => _$StaffMemberCopyWithImpl<Staf
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is StaffMember&&(identical(other.username, username) || other.username == username)&&(identical(other.firstName, firstName) || other.firstName == firstName)&&(identical(other.lastName, lastName) || other.lastName == lastName)&&(identical(other.role, role) || other.role == role));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is StaffMember&&(identical(other.username, username) || other.username == username)&&(identical(other.firstName, firstName) || other.firstName == firstName)&&(identical(other.lastName, lastName) || other.lastName == lastName)&&(identical(other.role, role) || other.role == role)&&(identical(other.avatar, avatar) || other.avatar == avatar));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,username,firstName,lastName,role);
+int get hashCode => Object.hash(runtimeType,username,firstName,lastName,role,avatar);
 
 @override
 String toString() {
-  return 'StaffMember(username: $username, firstName: $firstName, lastName: $lastName, role: $role)';
+  return 'StaffMember(username: $username, firstName: $firstName, lastName: $lastName, role: $role, avatar: $avatar)';
 }
 
 
@@ -48,11 +48,11 @@ abstract mixin class $StaffMemberCopyWith<$Res>  {
   factory $StaffMemberCopyWith(StaffMember value, $Res Function(StaffMember) _then) = _$StaffMemberCopyWithImpl;
 @useResult
 $Res call({
- String username, String firstName, String lastName,@JsonKey(unknownEnumValue: MemberRole.user) MemberRole role
+ String username, String firstName, String lastName,@JsonKey(unknownEnumValue: MemberRole.user) MemberRole role, EventImage? avatar
 });
 
 
-
+$EventImageCopyWith<$Res>? get avatar;
 
 }
 /// @nodoc
@@ -65,16 +65,29 @@ class _$StaffMemberCopyWithImpl<$Res>
 
 /// Create a copy of StaffMember
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? username = null,Object? firstName = null,Object? lastName = null,Object? role = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? username = null,Object? firstName = null,Object? lastName = null,Object? role = null,Object? avatar = freezed,}) {
   return _then(_self.copyWith(
 username: null == username ? _self.username : username // ignore: cast_nullable_to_non_nullable
 as String,firstName: null == firstName ? _self.firstName : firstName // ignore: cast_nullable_to_non_nullable
 as String,lastName: null == lastName ? _self.lastName : lastName // ignore: cast_nullable_to_non_nullable
 as String,role: null == role ? _self.role : role // ignore: cast_nullable_to_non_nullable
-as MemberRole,
+as MemberRole,avatar: freezed == avatar ? _self.avatar : avatar // ignore: cast_nullable_to_non_nullable
+as EventImage?,
   ));
 }
+/// Create a copy of StaffMember
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$EventImageCopyWith<$Res>? get avatar {
+    if (_self.avatar == null) {
+    return null;
+  }
 
+  return $EventImageCopyWith<$Res>(_self.avatar!, (value) {
+    return _then(_self.copyWith(avatar: value));
+  });
+}
 }
 
 
@@ -156,10 +169,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String username,  String firstName,  String lastName, @JsonKey(unknownEnumValue: MemberRole.user)  MemberRole role)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String username,  String firstName,  String lastName, @JsonKey(unknownEnumValue: MemberRole.user)  MemberRole role,  EventImage? avatar)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _StaffMember() when $default != null:
-return $default(_that.username,_that.firstName,_that.lastName,_that.role);case _:
+return $default(_that.username,_that.firstName,_that.lastName,_that.role,_that.avatar);case _:
   return orElse();
 
 }
@@ -177,10 +190,10 @@ return $default(_that.username,_that.firstName,_that.lastName,_that.role);case _
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String username,  String firstName,  String lastName, @JsonKey(unknownEnumValue: MemberRole.user)  MemberRole role)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String username,  String firstName,  String lastName, @JsonKey(unknownEnumValue: MemberRole.user)  MemberRole role,  EventImage? avatar)  $default,) {final _that = this;
 switch (_that) {
 case _StaffMember():
-return $default(_that.username,_that.firstName,_that.lastName,_that.role);case _:
+return $default(_that.username,_that.firstName,_that.lastName,_that.role,_that.avatar);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -197,10 +210,10 @@ return $default(_that.username,_that.firstName,_that.lastName,_that.role);case _
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String username,  String firstName,  String lastName, @JsonKey(unknownEnumValue: MemberRole.user)  MemberRole role)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String username,  String firstName,  String lastName, @JsonKey(unknownEnumValue: MemberRole.user)  MemberRole role,  EventImage? avatar)?  $default,) {final _that = this;
 switch (_that) {
 case _StaffMember() when $default != null:
-return $default(_that.username,_that.firstName,_that.lastName,_that.role);case _:
+return $default(_that.username,_that.firstName,_that.lastName,_that.role,_that.avatar);case _:
   return null;
 
 }
@@ -212,13 +225,14 @@ return $default(_that.username,_that.firstName,_that.lastName,_that.role);case _
 @JsonSerializable()
 
 class _StaffMember extends StaffMember {
-  const _StaffMember({required this.username, required this.firstName, this.lastName = '', @JsonKey(unknownEnumValue: MemberRole.user) required this.role}): super._();
+  const _StaffMember({required this.username, required this.firstName, this.lastName = '', @JsonKey(unknownEnumValue: MemberRole.user) required this.role, this.avatar}): super._();
   factory _StaffMember.fromJson(Map<String, dynamic> json) => _$StaffMemberFromJson(json);
 
 @override final  String username;
 @override final  String firstName;
 @override@JsonKey() final  String lastName;
 @override@JsonKey(unknownEnumValue: MemberRole.user) final  MemberRole role;
+@override final  EventImage? avatar;
 
 /// Create a copy of StaffMember
 /// with the given fields replaced by the non-null parameter values.
@@ -233,16 +247,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _StaffMember&&(identical(other.username, username) || other.username == username)&&(identical(other.firstName, firstName) || other.firstName == firstName)&&(identical(other.lastName, lastName) || other.lastName == lastName)&&(identical(other.role, role) || other.role == role));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _StaffMember&&(identical(other.username, username) || other.username == username)&&(identical(other.firstName, firstName) || other.firstName == firstName)&&(identical(other.lastName, lastName) || other.lastName == lastName)&&(identical(other.role, role) || other.role == role)&&(identical(other.avatar, avatar) || other.avatar == avatar));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,username,firstName,lastName,role);
+int get hashCode => Object.hash(runtimeType,username,firstName,lastName,role,avatar);
 
 @override
 String toString() {
-  return 'StaffMember(username: $username, firstName: $firstName, lastName: $lastName, role: $role)';
+  return 'StaffMember(username: $username, firstName: $firstName, lastName: $lastName, role: $role, avatar: $avatar)';
 }
 
 
@@ -253,11 +267,11 @@ abstract mixin class _$StaffMemberCopyWith<$Res> implements $StaffMemberCopyWith
   factory _$StaffMemberCopyWith(_StaffMember value, $Res Function(_StaffMember) _then) = __$StaffMemberCopyWithImpl;
 @override @useResult
 $Res call({
- String username, String firstName, String lastName,@JsonKey(unknownEnumValue: MemberRole.user) MemberRole role
+ String username, String firstName, String lastName,@JsonKey(unknownEnumValue: MemberRole.user) MemberRole role, EventImage? avatar
 });
 
 
-
+@override $EventImageCopyWith<$Res>? get avatar;
 
 }
 /// @nodoc
@@ -270,17 +284,30 @@ class __$StaffMemberCopyWithImpl<$Res>
 
 /// Create a copy of StaffMember
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? username = null,Object? firstName = null,Object? lastName = null,Object? role = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? username = null,Object? firstName = null,Object? lastName = null,Object? role = null,Object? avatar = freezed,}) {
   return _then(_StaffMember(
 username: null == username ? _self.username : username // ignore: cast_nullable_to_non_nullable
 as String,firstName: null == firstName ? _self.firstName : firstName // ignore: cast_nullable_to_non_nullable
 as String,lastName: null == lastName ? _self.lastName : lastName // ignore: cast_nullable_to_non_nullable
 as String,role: null == role ? _self.role : role // ignore: cast_nullable_to_non_nullable
-as MemberRole,
+as MemberRole,avatar: freezed == avatar ? _self.avatar : avatar // ignore: cast_nullable_to_non_nullable
+as EventImage?,
   ));
 }
 
+/// Create a copy of StaffMember
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$EventImageCopyWith<$Res>? get avatar {
+    if (_self.avatar == null) {
+    return null;
+  }
 
+  return $EventImageCopyWith<$Res>(_self.avatar!, (value) {
+    return _then(_self.copyWith(avatar: value));
+  });
+}
 }
 
 // dart format on

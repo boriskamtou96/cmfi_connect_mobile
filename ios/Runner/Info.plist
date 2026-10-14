@@ -2,6 +2,28 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 	<dict>
+	<!-- Firebase Authentication (forgot password): back from the reCAPTCHA check -->
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>$(FIREBASE_URL_SCHEME)</string>
+			</array>
+		</dict>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLName</key>
+			<string>com.cmficonnect.app.links</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>cmficonnect</string>
+			</array>
+		</dict>
+	</array>
 		<key>CADisableMinimumFrameDurationOnPhone</key>
 		<true/>
 		<key>CFBundleDevelopmentRegion</key>
@@ -42,8 +64,10 @@
 		<string>Pour ajouter un évènement de la communauté à ton calendrier.</string>
 		<key>NSContactsUsageDescription</key>
 		<string>Pour choisir le lieu d'un évènement que tu ajoutes à ton calendrier.</string>
+		<key>NSCameraUsageDescription</key>
+		<string>Pour prendre ta photo de profil.</string>
 		<key>NSPhotoLibraryUsageDescription</key>
-		<string>Pour choisir l'affiche ou les photos d'un évènement.</string>
+		<string>Pour choisir ta photo de profil, ou l'affiche et les photos d'un évènement.</string>
 		<key>NSAppTransportSecurity</key>
 		<dict>
 			<key>NSAllowsLocalNetworking</key>
@@ -75,5 +99,13 @@
     <key>NSAllowsArbitraryLoads</key>
     <true/>
 </dict>
-	</dict>
+		<key>FlutterDeepLinkingEnabled</key>
+	<false/>
+	<key>AppGroupId</key>
+	<string>$(APP_GROUP_ID)</string>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>remote-notification</string>
+	</array>
+</dict>
 </plist>

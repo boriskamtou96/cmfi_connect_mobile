@@ -18,6 +18,9 @@ _Profile _$ProfileFromJson(Map<String, dynamic> json) => _Profile(
   country: json['country'] as String?,
   church: json['church'] as String?,
   assembly: json['assembly'] as String?,
+  avatar: json['avatar'] == null
+      ? null
+      : EventImage.fromJson(json['avatar'] as Map<String, dynamic>),
 );
 
 Map<String, dynamic> _$ProfileToJson(_Profile instance) => <String, dynamic>{
@@ -30,4 +33,5 @@ Map<String, dynamic> _$ProfileToJson(_Profile instance) => <String, dynamic>{
   'country': ?instance.country,
   'church': ?instance.church,
   'assembly': ?instance.assembly,
+  'avatar': ?instance.avatar?.toJson(),
 };

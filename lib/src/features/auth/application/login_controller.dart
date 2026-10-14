@@ -1,7 +1,6 @@
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../../../core/session/session.dart';
-import '../../../core/utils/phone.dart';
 import '../infrastructure/auth_api.dart';
 
 part 'login_controller.g.dart';
@@ -13,6 +12,7 @@ class LoginController extends _$LoginController {
   FutureOr<void> build() {}
 
   /// True once signed in: the screen then opens the app.
+  /// [phoneNumber] is international ("+237690000001").
   Future<bool> submit({
     required String phoneNumber,
     required String password,
@@ -22,10 +22,7 @@ class LoginController extends _$LoginController {
     final result = await AsyncValue.guard(() async {
       final response = await ref
           .read(authApiProvider)
-          .login(
-            phoneNumber: toInternationalPhone(phoneNumber),
-            password: password,
-          );
+          .login(phoneNumber: phoneNumber, password: password);
       await ref
           .read(sessionProvider.notifier)
           .signIn(response.accessToken, account: response.account);

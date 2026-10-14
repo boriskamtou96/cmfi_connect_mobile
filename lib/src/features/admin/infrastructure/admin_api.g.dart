@@ -15,6 +15,9 @@ _StaffMember _$StaffMemberFromJson(Map<String, dynamic> json) => _StaffMember(
     json['role'],
     unknownValue: MemberRole.user,
   ),
+  avatar: json['avatar'] == null
+      ? null
+      : EventImage.fromJson(json['avatar'] as Map<String, dynamic>),
 );
 
 Map<String, dynamic> _$StaffMemberToJson(_StaffMember instance) =>
@@ -23,6 +26,7 @@ Map<String, dynamic> _$StaffMemberToJson(_StaffMember instance) =>
       'first_name': instance.firstName,
       'last_name': instance.lastName,
       'role': _$MemberRoleEnumMap[instance.role]!,
+      'avatar': ?instance.avatar?.toJson(),
     };
 
 const _$MemberRoleEnumMap = {

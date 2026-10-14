@@ -8,6 +8,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../core/i18n/strings.g.dart';
 import '../../../core/services/calendar_service.dart';
+import '../../../core/services/deep_links.dart';
 import '../../../core/services/link_launcher.dart';
 import '../../../core/services/share_service.dart';
 import '../../../core/theme/app_colors.dart';
@@ -122,17 +123,19 @@ class _EventPage extends HookConsumerWidget {
     Future<void> share(Rect? origin) => ref
         .read(shareServiceProvider)
         .shareText(
-          t.shareText(
-            title: [
-              event.title,
-              event.theme,
-            ].where((part) => part.isNotEmpty).join(' · '),
-            dates: context.eventDates(
-              event.startsAt,
-              event.endsAt,
-              event.timeZone,
+          EventLink(event.id).under(
+            t.shareText(
+              title: [
+                event.title,
+                event.theme,
+              ].where((part) => part.isNotEmpty).join(' · '),
+              dates: context.eventDates(
+                event.startsAt,
+                event.endsAt,
+                event.timeZone,
+              ),
+              place: event.place,
             ),
-            place: event.place,
           ),
           subject: event.title,
           origin: origin,

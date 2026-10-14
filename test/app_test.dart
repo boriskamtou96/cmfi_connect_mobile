@@ -89,6 +89,53 @@ void main() {
       expect(app.authApi.loggedInWith, '+237690000001');
     });
 
+    testWidgets('another country: its dial code, kept for the next time', (
+      tester,
+    ) async {
+      final app = await pumpApp(tester);
+
+      await tapText(tester, "J'ai déjà un compte");
+      await tester.tap(find.text('+237'));
+      await tester.pumpAndSettle();
+      await tester.enterText(
+        find.descendant(
+          of: find.byType(BottomSheet),
+          matching: find.byType(TextField),
+        ),
+        'franc',
+      );
+      await tester.pumpAndSettle();
+      await tapText(tester, 'France');
+
+      expect(find.text('+33'), findsOneWidget);
+      await tester.enterText(
+        find.byType(TextFormField).at(0),
+        '06 12 34 56 78',
+      );
+      await tester.enterText(find.byType(TextFormField).at(1), 'Secret123');
+      await tester.tap(find.widgetWithText(FilledButton, 'Se connecter'));
+      await tester.pumpAndSettle();
+
+      expect(app.authApi.loggedInWith, '+33612345678');
+      expect(app.preferences.getString('phone_country'), 'FR');
+    });
+
+    testWidgets('a number typed with its prefix switches the country', (
+      tester,
+    ) async {
+      await pumpApp(tester);
+
+      await tapText(tester, "J'ai déjà un compte");
+      await tester.enterText(
+        find.byType(TextFormField).at(0),
+        '+33 7 81 23 45 67',
+      );
+      await tester.pump();
+
+      expect(find.text('+33'), findsOneWidget);
+      expect(find.text('7 81 23 45 67'), findsOneWidget);
+    });
+
     testWidgets('wrong password shows a translated message in a popup', (
       tester,
     ) async {
@@ -160,13 +207,16 @@ void main() {
       expect(app.storage.token, 'test-token');
       expect(find.text('Ton église'), findsOneWidget);
 
-      await tester.enterText(find.byType(TextField).at(2), 'CMFI Yaoundé');
+      // the country of the phone number is chosen already
+      expect(find.text('Cameroun'), findsOneWidget);
+      await tester.enterText(find.byType(TextField).at(1), 'CMFI Yaoundé');
       await tester.tap(find.widgetWithText(FilledButton, 'Terminer'));
       await tester.pumpAndSettle();
 
       expect(find.text('Bonjour Boris'), findsOneWidget);
       final saved = app.profileApi.updates.single;
       expect(saved.church, 'CMFI Yaoundé');
+      expect(saved.country, 'CM');
       // the API overwrites these two: they must be sent back unchanged
       expect(saved.firstName, 'Boris');
       expect(saved.phoneNumber, '+237690000001');

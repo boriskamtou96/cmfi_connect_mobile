@@ -116,33 +116,44 @@ class StatusPill extends StatelessWidget {
   }
 }
 
-/// Round avatar with the user's initials.
+/// Round avatar with the user's initials (a member's photo, when they have
+/// one: `MemberAvatar`). [background] and [foreground] default to the brand
+/// blue.
 class InitialsAvatar extends StatelessWidget {
-  const InitialsAvatar({required this.initials, this.size = 46, super.key});
+  const InitialsAvatar({
+    required this.initials,
+    this.size = 46,
+    this.background,
+    this.foreground,
+    super.key,
+  });
 
   final String initials;
   final double size;
+  final Color? background;
+  final Color? foreground;
 
   @override
   Widget build(BuildContext context) {
     final scheme = Theme.of(context).colorScheme;
+    final ink = foreground ?? scheme.primary;
 
     return Container(
       width: size,
       height: size,
       alignment: Alignment.center,
       decoration: BoxDecoration(
-        color: scheme.primaryContainer,
+        color: background ?? scheme.primaryContainer,
         shape: BoxShape.circle,
       ),
       child: initials.isEmpty
-          ? Icon(AppIcons.user, color: scheme.primary, size: size * 0.5)
+          ? Icon(AppIcons.user, color: ink, size: size * 0.5)
           : Text(
               initials,
               style: TextStyle(
                 fontSize: size * 0.34,
                 fontWeight: FontWeight.w800,
-                color: scheme.primary,
+                color: ink,
               ),
             ),
     );

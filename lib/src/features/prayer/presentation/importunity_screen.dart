@@ -21,8 +21,10 @@ import '../../../core/widgets/section_card.dart';
 import '../../../core/widgets/sub_page.dart';
 import '../../../routing/app_router.dart';
 import '../../members/domain/member.dart';
+import '../../members/presentation/widgets/member_avatar.dart';
 import '../application/importunities.dart';
 import '../domain/prayer.dart';
+import 'widgets/invitation_menu.dart';
 import 'widgets/prayer_look.dart';
 
 /// An importunity topic: the counter of proclamations (one tap, one
@@ -208,16 +210,12 @@ class ImportunityScreen extends HookConsumerWidget {
             children: [
               for (final member in members)
                 ListTile(
-                  leading: CircleAvatar(
-                    backgroundColor: tone.soft,
-                    foregroundColor: tone.onSoft,
-                    child: Text(
-                      [member.firstName, member.lastName]
-                          .where((part) => part.isNotEmpty)
-                          .map((part) => part.characters.first.toUpperCase())
-                          .join(),
-                      style: const TextStyle(fontWeight: FontWeight.w800),
-                    ),
+                  leading: MemberAvatar(
+                    initials: member.initials,
+                    photo: member.avatar,
+                    size: 40,
+                    background: tone.soft,
+                    foreground: tone.onSoft,
                   ),
                   title: Text('${member.firstName} ${member.lastName}'.trim()),
                   subtitle: Text('@${member.username}'),
@@ -369,15 +367,29 @@ class _Invitation extends ConsumerWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          Text(
-            t.prayer.importunity.invitedBy(
-              name: '${inviter.firstName} ${inviter.lastName}'.trim(),
-            ),
-            style: TextStyle(
-              fontSize: 15,
-              fontWeight: FontWeight.w700,
-              color: tone.onSoft,
-            ),
+          Row(
+            children: [
+              MemberAvatar(
+                initials: inviter.initials,
+                photo: inviter.avatar,
+                size: 40,
+                background: Theme.of(context).colorScheme.surface,
+                foreground: tone.onSoft,
+              ),
+              const SizedBox(width: AppSpacing.md),
+              Expanded(
+                child: Text(
+                  t.prayer.importunity.invitedBy(
+                    name: '${inviter.firstName} ${inviter.lastName}'.trim(),
+                  ),
+                  style: TextStyle(
+                    fontSize: 15,
+                    fontWeight: FontWeight.w700,
+                    color: tone.onSoft,
+                  ),
+                ),
+              ),
+            ],
           ),
           const SizedBox(height: AppSpacing.md),
           FilledButton(
@@ -399,7 +411,8 @@ class _Invitation extends ConsumerWidget {
   }
 }
 
-/// The author's actions (change, close, delete) or a participant's (leave).
+/// The author's actions (change, close, delete) or a participant's (leave);
+/// on an invitation, report it or block whoever sent it.
 class _Menu extends ConsumerWidget {
   const _Menu({required this.topic});
 
@@ -410,7 +423,11 @@ class _Menu extends ConsumerWidget {
     final t = context.t.prayer.importunity;
     final scheme = Theme.of(context).colorScheme;
     if (topic.isInvitation) {
-      return const SizedBox.shrink();
+      final router = context.router;
+      return InvitationMenu(
+        topic: topic,
+        onBlocked: () => unawaited(router.maybePop()),
+      );
     }
 
     Future<bool> confirm(String title, String text, String action) async =>

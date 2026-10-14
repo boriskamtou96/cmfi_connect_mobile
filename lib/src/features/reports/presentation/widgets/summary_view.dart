@@ -1,9 +1,11 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:intl/intl.dart';
 
 import '../../../../core/i18n/strings.g.dart';
+import '../../../../core/services/premium_store.dart';
 import '../../../../core/services/share_service.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/theme/app_icons.dart';
@@ -17,11 +19,14 @@ import '../../../../core/widgets/cmfi_logo.dart';
 import '../../../../core/widgets/code_chip.dart';
 import '../../../../core/widgets/error_view.dart';
 import '../../../../core/widgets/fade_slide_in.dart';
+import '../../../../core/widgets/goal_ring.dart';
 import '../../../../core/widgets/rolling_text.dart';
 import '../../../../core/widgets/section_card.dart';
+import '../../../../routing/app_router.dart';
 import '../../../profile/application/current_profile.dart';
 import '../../application/report_files.dart';
 import '../../application/report_goals.dart';
+import '../../application/report_item_texts.dart';
 import '../../application/reports_providers.dart';
 import '../../domain/activity_type.dart';
 import '../../domain/daily_report.dart';
@@ -54,6 +59,7 @@ class SummaryView extends HookConsumerWidget {
         if (activity.isStandard) activity.id,
     };
     final goals = ref.watch(reportGoalsProvider);
+    final premium = ref.watch(premiumProvider).value ?? false;
 
     Future<void> share(Rect? origin) async {
       final days = history;
@@ -104,7 +110,11 @@ class SummaryView extends HookConsumerWidget {
             _PeriodPill(
               label: label,
               selected: period.value == value,
-              onTap: () => period.value = value,
+              // the year comes with Premium
+              locked: value == SummaryPeriod.year && !premium,
+              onTap: value == SummaryPeriod.year && !premium
+                  ? () => context.router.push(const PremiumRoute())
+                  : () => period.value = value,
             ),
           ],
         ],
@@ -133,6 +143,7 @@ class SummaryView extends HookConsumerWidget {
               history,
               standardIds,
               goals,
+              premium: premium,
               onShare: history == null ? null : share,
             ),
             AsyncError(:final error) => [
@@ -160,11 +171,22 @@ class SummaryView extends HookConsumerWidget {
     List<DailyReport>? history,
     Set<int> standardIds,
     Map<int, ReportGoal> goals, {
+    required bool premium,
     required Future<void> Function(Rect? origin)? onShare,
   }) {
     final t = context.t;
     final filled = summary.items.where((item) => item.daysCount > 0).toList();
     final empty = summary.items.where((item) => item.daysCount == 0).toList();
+    final goalsOfPeriod = history == null
+        ? null
+        : periodGoals(
+            goals,
+            itemIds: summary.items.map((item) => item.activityTypeId),
+            history: history,
+            from: summary.from,
+            to: summary.to,
+            today: today(),
+          );
 
     return [
       FadeSlideIn(
@@ -175,6 +197,16 @@ class SummaryView extends HookConsumerWidget {
         ),
       ),
       const SizedBox(height: 14),
+      if (goalsOfPeriod != null) ...[
+        FadeSlideIn(
+          key: ValueKey(('goals', period)),
+          index: 1,
+          child: _GoalsCard(total: goalsOfPeriod.total),
+        ),
+        const SizedBox(height: 14),
+        FadeSlideIn(index: 1, child: _EvolutionCard(premium: premium)),
+        const SizedBox(height: 14),
+      ],
       if (summary.daysReported == 0)
         Padding(
           padding: const EdgeInsets.all(AppSpacing.lg),
@@ -193,6 +225,7 @@ class SummaryView extends HookConsumerWidget {
             to: summary.to,
             history: history,
             goal: goals[item.activityTypeId],
+            goalShare: goalsOfPeriod?.byItem[item.activityTypeId],
             daysInRange: summary.daysInRange,
           ),
         ),
@@ -222,7 +255,7 @@ class SummaryView extends HookConsumerWidget {
                       const SizedBox(width: AppSpacing.md),
                       Expanded(
                         child: Text(
-                          item.label,
+                          t.itemLabel(item.code, item.label),
                           style: const TextStyle(
                             fontSize: 15,
                             fontWeight: FontWeight.w600,
@@ -280,11 +313,15 @@ class _PeriodPill extends StatelessWidget {
     required this.label,
     required this.selected,
     required this.onTap,
+    this.locked = false,
   });
 
   final String label;
   final bool selected;
   final VoidCallback onTap;
+
+  /// Premium only: a padlock, and the Premium page on tap.
+  final bool locked;
 
   @override
   Widget build(BuildContext context) {
@@ -329,7 +366,20 @@ class _PeriodPill extends StatelessWidget {
                         : scheme.onSurfaceVariant,
                   ),
                 ),
-                child: Text(label),
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    if (locked) ...[
+                      Icon(
+                        AppIcons.premiumLock,
+                        size: 12,
+                        semanticLabel: context.t.premium.pill,
+                      ),
+                      const SizedBox(width: 4),
+                    ],
+                    Text(label),
+                  ],
+                ),
               ),
             ),
           ),
@@ -456,6 +506,151 @@ class _RegularityCard extends StatelessWidget {
   }
 }
 
+/// The goals week after week (Premium); a padlock and the Premium page
+/// otherwise.
+class _EvolutionCard extends ConsumerWidget {
+  const _EvolutionCard({required this.premium});
+
+  final bool premium;
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final t = context.t;
+    final scheme = Theme.of(context).colorScheme;
+    final weeks = premium ? ref.watch(goalsEvolutionProvider()).value : null;
+
+    return Container(
+      padding: const EdgeInsets.all(AppSpacing.lg),
+      decoration: BoxDecoration(
+        color: scheme.surface,
+        borderRadius: BorderRadius.circular(AppRadius.xl),
+        border: Border.all(color: scheme.outlineVariant),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          Row(
+            children: [
+              Expanded(
+                child: Text(
+                  t.reports.summary.evolution,
+                  style: const TextStyle(
+                    fontSize: 15,
+                    fontWeight: FontWeight.w700,
+                  ),
+                ),
+              ),
+              if (!premium)
+                StatusPill(
+                  t.premium.pill,
+                  background: AppColors.gold,
+                  foreground: AppColors.ink,
+                ),
+            ],
+          ),
+          const SizedBox(height: 2),
+          Text(
+            premium
+                ? t.reports.summary.evolutionHint
+                : t.reports.summary.premiumYear,
+            style: TextStyle(fontSize: 12, color: scheme.onSurfaceVariant),
+          ),
+          const SizedBox(height: AppSpacing.md),
+          if (!premium)
+            Align(
+              alignment: AlignmentDirectional.centerStart,
+              child: OutlinedButton.icon(
+                onPressed: () => context.router.push(const PremiumRoute()),
+                icon: const Icon(AppIcons.premiumLock, size: 16),
+                label: Text(t.premium.unlock),
+              ),
+            )
+          else if (weeks != null)
+            _Bars(
+              values: [
+                for (final week in weeks) ((week.progress ?? 0) * 100).round(),
+              ],
+              labels: [
+                for (final (i, week) in weeks.indexed)
+                  // the first, the middle and the last weeks are enough
+                  i == 0 || i == weeks.length ~/ 2 || i == weeks.length - 1
+                      ? context.formatDate(week.monday, 'd/M')
+                      : '',
+              ],
+              color: scheme.primary,
+              scale: 100,
+            )
+          else
+            const Padding(
+              padding: EdgeInsets.all(AppSpacing.md),
+              child: Center(child: CircularProgressIndicator()),
+            ),
+        ],
+      ),
+    );
+  }
+}
+
+/// The goals over the period: the mean of every item with a goal.
+class _GoalsCard extends StatelessWidget {
+  const _GoalsCard({required this.total});
+
+  final double total;
+
+  @override
+  Widget build(BuildContext context) {
+    final t = context.t;
+    final scheme = Theme.of(context).colorScheme;
+
+    return Container(
+      padding: const EdgeInsets.all(AppSpacing.lg),
+      decoration: BoxDecoration(
+        color: scheme.surface,
+        borderRadius: BorderRadius.circular(AppRadius.xl),
+        border: Border.all(color: scheme.outlineVariant),
+      ),
+      child: Row(
+        children: [
+          GoalRing(value: total, label: t.reports.summary.goalsAverage),
+          const SizedBox(width: AppSpacing.lg),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  t.reports.summary.goals.toUpperCase(),
+                  style: TextStyle(
+                    fontSize: 12,
+                    fontWeight: FontWeight.w700,
+                    letterSpacing: 0.8,
+                    color: scheme.onSurfaceVariant,
+                  ),
+                ),
+                const SizedBox(height: 2),
+                Text(
+                  t.reports.summary.goalsAverage,
+                  style: const TextStyle(
+                    fontSize: 15,
+                    fontWeight: FontWeight.w700,
+                  ),
+                ),
+                const SizedBox(height: AppSpacing.xs),
+                Text(
+                  t.reports.summary.goalsHint,
+                  style: TextStyle(
+                    fontSize: 12,
+                    color: scheme.onSurfaceVariant,
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
 class _ItemCard extends StatelessWidget {
   const _ItemCard({
     required this.item,
@@ -466,6 +661,7 @@ class _ItemCard extends StatelessWidget {
     required this.history,
     required this.daysInRange,
     this.goal,
+    this.goalShare,
   });
 
   final SummaryItem item;
@@ -479,6 +675,9 @@ class _ItemCard extends StatelessWidget {
   /// The item's daily goal: on how many days it was reached.
   final ReportGoal? goal;
 
+  /// How far the goal was reached over the period, from 0 to 1.
+  final double? goalShare;
+
   /// Bars show the quantity when the item counts one, else the duration.
   bool get _barsShowQuantity => item.tracksQuantity;
 
@@ -487,16 +686,21 @@ class _ItemCard extends StatelessWidget {
     final t = context.t;
     final scheme = Theme.of(context).colorScheme;
     final locale = Localizations.localeOf(context).toLanguageTag();
-    final unit = MeasureFormat.unitSymbol(item.quantityUnit);
+    final unit = t.itemUnit(item.code, item.quantityUnit);
 
-    final quantityAverage = item.totalQuantity / item.daysCount;
+    // rounded as written, so that "1 chapter" is singular
+    final quantityAverage = double.parse(
+      (item.totalQuantity / item.daysCount).toStringAsFixed(1),
+    );
     final averageQuantity = NumberFormat.decimalPatternDigits(
       locale: locale,
       decimalDigits: 1,
     ).format(quantityAverage).replaceFirst(RegExp(r'[.,]0$'), '');
     final average = [
       if (item.tracksQuantity)
-        unit == null ? averageQuantity : '$averageQuantity $unit',
+        unit == null
+            ? averageQuantity
+            : unit.count(quantityAverage, number: averageQuantity),
       if (item.tracksDuration)
         (item.totalMinutes / item.daysCount).round().toDurationLabel(),
     ].join(' · ');
@@ -519,7 +723,7 @@ class _ItemCard extends StatelessWidget {
               const SizedBox(width: 10),
               Expanded(
                 child: Text(
-                  item.label,
+                  t.itemLabel(item.code, item.label),
                   style: const TextStyle(
                     fontSize: 15,
                     fontWeight: FontWeight.w700,
@@ -543,7 +747,7 @@ class _ItemCard extends StatelessWidget {
                 MeasureFormat.value(
                   quantity: item.tracksQuantity ? item.totalQuantity : null,
                   minutes: item.tracksDuration ? item.totalMinutes : null,
-                  unit: item.quantityUnit,
+                  unit: unit,
                 ),
                 style: const TextStyle(
                   fontSize: 24,
@@ -581,6 +785,18 @@ class _ItemCard extends StatelessWidget {
                     ),
                   ),
                 ),
+                if (goalShare case final share?)
+                  Text(
+                    context.formatPercent(share),
+                    style: TextStyle(
+                      fontSize: 13,
+                      fontWeight: FontWeight.w800,
+                      color: personal
+                          ? AppTones.of(context).personal
+                          : scheme.primary,
+                      fontFeatures: const [FontFeature.tabularFigures()],
+                    ),
+                  ),
               ],
             ),
           ],
@@ -594,8 +810,10 @@ class _ItemCard extends StatelessWidget {
             const SizedBox(height: AppSpacing.sm),
             Text(
               period == SummaryPeriod.year
-                  ? t.reports.summary.barsCaptionMonthly(max: _format(bars.max))
-                  : t.reports.summary.barsCaption(max: _format(bars.max)),
+                  ? t.reports.summary.barsCaptionMonthly(
+                      max: _format(bars.max, unit),
+                    )
+                  : t.reports.summary.barsCaption(max: _format(bars.max, unit)),
               style: TextStyle(fontSize: 12, color: scheme.onSurfaceVariant),
             ),
           ],
@@ -604,8 +822,8 @@ class _ItemCard extends StatelessWidget {
     );
   }
 
-  String _format(int value) => _barsShowQuantity
-      ? MeasureFormat.value(quantity: value, unit: item.quantityUnit)
+  String _format(int value, ItemUnit? unit) => _barsShowQuantity
+      ? MeasureFormat.value(quantity: value, unit: unit)
       : value.toDurationLabel();
 
   /// One bar per day (week, month) or per month (year).
@@ -664,11 +882,15 @@ class _Bars extends StatelessWidget {
     required this.values,
     required this.labels,
     required this.color,
+    this.scale,
   });
 
   final List<int> values;
   final List<String> labels;
   final Color color;
+
+  /// The value of a full bar; the highest value when null.
+  final int? scale;
 
   /// Height factor of bar [i] when the whole animation is at [progress]:
   /// each bar starts a little after the previous one.
@@ -681,7 +903,8 @@ class _Bars extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final scheme = Theme.of(context).colorScheme;
-    final max = values.fold(0, (max, value) => value > max ? value : max);
+    final max =
+        scale ?? values.fold<int>(0, (max, value) => value > max ? value : max);
     final gap = values.length > 15 ? 2.0 : 6.0;
 
     return ExcludeSemantics(

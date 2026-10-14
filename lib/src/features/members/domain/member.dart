@@ -1,5 +1,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
+import '../../events/domain/event.dart';
+
 part 'member.freezed.dart';
 part 'member.g.dart';
 
@@ -13,6 +15,9 @@ abstract class MemberCard with _$MemberCard {
     @Default('') String lastName,
     @Default('') String church,
     @Default('') String assembly,
+
+    /// Their profile photo (a square image of the media storage), or null.
+    EventImage? avatar,
   }) = _MemberCard;
 
   const MemberCard._();

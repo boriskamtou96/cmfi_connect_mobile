@@ -5,6 +5,7 @@ import 'package:flutter/services.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../../../core/network/app_exception.dart';
+import '../../../core/utils/countries.dart';
 import '../../../core/utils/date_extensions.dart';
 import '../../authorities/application/authorities_controller.dart';
 import '../../authorities/domain/authority.dart';
@@ -128,7 +129,10 @@ Future<List<PlannedPoint>> retreatPlan(
           number: i + 1,
           text: text,
           hint: hint,
-          value: _nonEmpty(profile?.country),
+          // a code ("CM") since the list of countries, free text before
+          value:
+              Country.tryParse(profile?.country)?.name(language) ??
+              _nonEmpty(profile?.country),
         ),
         final HymnHint hint => PlannedPoint(
           number: i + 1,

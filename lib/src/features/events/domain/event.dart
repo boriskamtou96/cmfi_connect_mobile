@@ -264,6 +264,7 @@ abstract class Registrant with _$Registrant {
     @Default(false) bool needsLodging,
     @Default('') String departureCity,
     required DateTime createdAt,
+    EventImage? avatar,
   }) = _Registrant;
 
   const Registrant._();
@@ -277,5 +278,6 @@ abstract class Registrant with _$Registrant {
     lastName: lastName,
     church: church,
     assembly: assembly,
+    avatar: avatar,
   );
 }

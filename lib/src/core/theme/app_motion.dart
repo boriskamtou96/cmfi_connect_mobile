@@ -11,6 +11,9 @@ abstract final class AppMotion {
   /// Entrances, progress bars and route transitions.
   static const slow = Duration(milliseconds: 380);
 
+  /// A one-shot celebration (a streak milestone): a burst of light, once.
+  static const celebration = Duration(milliseconds: 1100);
+
   /// Delay between two items of a staggered entrance.
   static const stagger = Duration(milliseconds: 50);
 

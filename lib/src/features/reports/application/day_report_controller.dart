@@ -7,9 +7,11 @@ import '../../../core/network/app_exception.dart';
 import '../../../core/utils/date_extensions.dart';
 import '../domain/activity_type.dart';
 import '../domain/daily_report.dart';
+import '../domain/report_goal.dart';
 import '../infrastructure/reports_api.dart';
 import '../infrastructure/reports_local_store.dart';
 import 'pending_reports.dart';
+import 'report_goals.dart';
 import 'report_reminder.dart';
 import 'reports_providers.dart';
 
@@ -147,7 +149,15 @@ class DayReportController extends _$DayReportController {
     try {
       final saved = await ref
           .read(reportsApiProvider)
-          .saveDay(date, note: draft.note, entries: draft.entries);
+          .saveDay(
+            date,
+            note: draft.note,
+            entries: draft.entries,
+            goalPercent: dayGoalPercent(
+              ref.read(reportGoalsProvider),
+              draft.entries,
+            ),
+          );
       await ref.read(reportsLocalStoreProvider).saveDay(saved);
       await pending.forget(date);
       if (!ref.mounted) {

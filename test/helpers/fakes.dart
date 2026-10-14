@@ -2,15 +2,22 @@ import 'dart:async';
 import 'dart:typed_data';
 
 import 'package:cmfi_connect/src/core/network/app_exception.dart';
+import 'package:cmfi_connect/src/core/services/app_shortcuts.dart';
 import 'package:cmfi_connect/src/core/services/calendar_service.dart';
 import 'package:cmfi_connect/src/core/services/chime.dart';
+import 'package:cmfi_connect/src/core/services/deep_links.dart';
+import 'package:cmfi_connect/src/core/services/home_widgets.dart';
 import 'package:cmfi_connect/src/core/services/image_picking.dart';
 import 'package:cmfi_connect/src/core/services/link_launcher.dart';
 import 'package:cmfi_connect/src/core/services/local_notifications.dart';
 import 'package:cmfi_connect/src/core/services/media_images.dart';
 import 'package:cmfi_connect/src/core/services/network_status.dart';
+import 'package:cmfi_connect/src/core/services/phone_verification.dart';
+import 'package:cmfi_connect/src/core/services/premium_store.dart';
+import 'package:cmfi_connect/src/core/services/push_messaging.dart';
 import 'package:cmfi_connect/src/core/services/screen_awake.dart';
 import 'package:cmfi_connect/src/core/services/share_service.dart';
+import 'package:cmfi_connect/src/core/services/store_review.dart';
 import 'package:cmfi_connect/src/core/session/account.dart';
 import 'package:cmfi_connect/src/core/storage/account_storage.dart';
 import 'package:cmfi_connect/src/core/storage/token_storage.dart';
@@ -20,6 +27,8 @@ import 'package:cmfi_connect/src/features/auth/infrastructure/auth_api.dart';
 import 'package:cmfi_connect/src/features/auth/infrastructure/login_response.dart';
 import 'package:cmfi_connect/src/features/authorities/domain/authority.dart';
 import 'package:cmfi_connect/src/features/authorities/infrastructure/authorities_api.dart';
+import 'package:cmfi_connect/src/features/disciples/domain/disciple.dart';
+import 'package:cmfi_connect/src/features/disciples/infrastructure/disciples_api.dart';
 import 'package:cmfi_connect/src/features/events/domain/event.dart';
 import 'package:cmfi_connect/src/features/events/domain/event_draft.dart';
 import 'package:cmfi_connect/src/features/events/infrastructure/events_api.dart';
@@ -28,6 +37,10 @@ import 'package:cmfi_connect/src/features/hymns/infrastructure/hymn_book_storage
 import 'package:cmfi_connect/src/features/hymns/infrastructure/hymns_api.dart';
 import 'package:cmfi_connect/src/features/members/domain/member.dart';
 import 'package:cmfi_connect/src/features/members/infrastructure/members_api.dart';
+import 'package:cmfi_connect/src/features/ministry/domain/nation.dart';
+import 'package:cmfi_connect/src/features/ministry/infrastructure/ministry_api.dart';
+import 'package:cmfi_connect/src/features/notifications/domain/announcement.dart';
+import 'package:cmfi_connect/src/features/notifications/infrastructure/notifications_api.dart';
 import 'package:cmfi_connect/src/features/prayer/domain/prayer.dart';
 import 'package:cmfi_connect/src/features/prayer/infrastructure/prayer_api.dart';
 import 'package:cmfi_connect/src/features/profile/domain/profile.dart';
@@ -87,6 +100,10 @@ class FakeAuthApi implements AuthApi {
   /// Phone number of the last [login].
   String? loggedInWith;
 
+  /// The (token, password) of each [resetPassword].
+  final resets = <(String, String)>[];
+  AppException? resetError;
+
   @override
   Future<void> register({
     required String firstName,
@@ -120,6 +137,17 @@ class FakeAuthApi implements AuthApi {
       ),
       accessToken: 'test-token',
     );
+  }
+
+  @override
+  Future<void> resetPassword({
+    required String firebaseToken,
+    required String password,
+  }) async {
+    if (resetError case final error?) {
+      throw error;
+    }
+    resets.add((firebaseToken, password));
   }
 }
 
@@ -157,6 +185,36 @@ class FakeProfileApi implements ProfileApi {
   Future<Profile> create(Profile profile) async {
     creates.add(profile);
     return this.profile = profile;
+  }
+
+  /// The photos sent, and an error to answer instead.
+  final avatars = <Uint8List>[];
+  AppException? avatarError;
+  var removedAvatars = 0;
+  var _nextAvatar = 500;
+
+  @override
+  Future<EventImage> setAvatar(Uint8List bytes) async {
+    if (avatarError case final error?) {
+      throw error;
+    }
+    avatars.add(bytes);
+    final id = _nextAvatar++;
+    final avatar = EventImage(
+      id: id,
+      url: '/v1/media/avatar-$id.jpg',
+      width: 512,
+      height: 512,
+      color: '#7A5A3C',
+    );
+    profile = profile?.copyWith(avatar: avatar);
+    return avatar;
+  }
+
+  @override
+  Future<void> removeAvatar() async {
+    removedAvatars++;
+    profile = profile?.copyWith(avatar: null);
   }
 }
 
@@ -216,6 +274,16 @@ class FakeAuthoritiesApi implements AuthoritiesApi {
 
   @override
   Future<List<Authority>> list() async => [...authorities];
+
+  /// The sharing turned on or off, by authority.
+  final sharing = <int, bool>{};
+
+  @override
+  Future<Authority> setSharing(int id, {required bool shares}) async {
+    sharing[id] = shares;
+    final at = authorities.indexWhere((authority) => authority.id == id);
+    return authorities[at] = authorities[at].copyWith(sharesRegularity: shares);
+  }
 
   @override
   Future<Authority> create({
@@ -377,13 +445,18 @@ class FakeReportsApi implements ReportsApi {
     );
   }
 
+  /// The share of the goals sent with each saved day (null: no goals).
+  final goalPercents = <DateTime, int?>{};
+
   @override
   Future<DailyReport> saveDay(
     DateTime date, {
     required String note,
     required List<ReportEntry> entries,
+    int? goalPercent,
   }) async {
     _online();
+    goalPercents[date] = goalPercent;
     final report = DailyReport(
       date: date,
       note: note.trim().isEmpty ? null : note.trim(),
@@ -653,6 +726,13 @@ class FakeLocalNotifications implements LocalNotifications {
 
   @override
   Future<void> cancelAll() async => groups.clear();
+
+  /// The Android channels made for the pushes of the server.
+  final pushChannels = <String>[];
+
+  @override
+  Future<void> createPushChannel(String channelId, String name) async =>
+      pushChannels.add(channelId);
 }
 
 /// Records what would have been shared.
@@ -1360,9 +1440,14 @@ class FakeLinkLauncher implements LinkLauncher {
 class FakeImagePicking implements ImagePicking {
   final next = <PickedImage>[];
 
+  /// Whether each pickOne was a photo taken with the camera.
+  final cameraCalls = <bool>[];
+
   @override
-  Future<PickedImage?> pickOne() async =>
-      next.isEmpty ? null : next.removeAt(0);
+  Future<PickedImage?> pickOne({bool camera = false}) async {
+    cameraCalls.add(camera);
+    return next.isEmpty ? null : next.removeAt(0);
+  }
 
   @override
   Future<List<PickedImage>> pickMany({int limit = 20}) async {
@@ -1421,6 +1506,18 @@ class FakePrayerApi implements PrayerApi {
   final markedPrayed = <List<int>>[];
   final counts = <(int, int)>[];
   final invitations = <({int id, List<String> usernames, bool family})>[];
+
+  /// The members blocked by the user, and the reports sent.
+  final blockedList = <MemberCard>[];
+  final reports =
+      <
+        ({
+          String username,
+          int? importunityId,
+          ReportReason reason,
+          String comment,
+        })
+      >[];
   var _nextId = 100;
 
   void _online() {
@@ -1665,6 +1762,63 @@ class FakePrayerApi implements PrayerApi {
     _online();
     return spiritualFamily;
   }
+
+  MemberCard _member(String username) {
+    for (final topic in importunityList) {
+      for (final member in [topic.owner, ?topic.invitedBy, ...topic.members]) {
+        if (member.username == username) {
+          return member;
+        }
+      }
+    }
+    if (sampleMembers[username] case final member?) {
+      return member;
+    }
+    throw const ApiException(status: 404, code: 'NOT_FOUND', message: '');
+  }
+
+  /// Like the server: their pending invitations to the user are removed.
+  @override
+  Future<void> block(String username) async {
+    _online();
+    final member = _member(username);
+    if (!blockedList.any((other) => other.username == username)) {
+      blockedList.add(member);
+    }
+    importunityList.removeWhere(
+      (topic) => topic.isInvitation && topic.inviter.username == username,
+    );
+  }
+
+  @override
+  Future<void> unblock(String username) async {
+    _online();
+    blockedList.removeWhere((member) => member.username == username);
+  }
+
+  @override
+  Future<List<MemberCard>> blocked() async {
+    _online();
+    return [...blockedList];
+  }
+
+  @override
+  Future<int> report({
+    required String username,
+    required ReportReason reason,
+    int? importunityId,
+    String comment = '',
+  }) async {
+    _online();
+    _member(username);
+    reports.add((
+      username: username,
+      importunityId: importunityId,
+      reason: reason,
+      comment: comment.trim(),
+    ));
+    return reports.length;
+  }
 }
 
 /// The sound between two points: counted, not played.
@@ -1676,4 +1830,357 @@ class FakeChime implements Chime {
 
   @override
   Future<void> dispose() async {}
+}
+
+/// Pushes that never leave: [token] is the address of the phone, [granted]
+/// what the user answers, and the test adds taps and received pushes.
+class FakePushMessaging implements PushMessaging {
+  FakePushMessaging({this.address = 'push-token', this.granted = true});
+
+  /// What Firebase gives as this phone's address.
+  final String? address;
+  bool granted;
+  Map<String, String>? launchedWith;
+  var permissionAsked = false;
+  final tapsController = StreamController<Map<String, String>>.broadcast();
+  final receivedController = StreamController<PushMessage>.broadcast();
+
+  @override
+  Future<bool> requestPermission() async {
+    permissionAsked = true;
+    return granted;
+  }
+
+  @override
+  Future<String?> token() async => address;
+
+  @override
+  Stream<String> get tokenRefreshes => const Stream.empty();
+
+  @override
+  Future<Map<String, String>?> takeLaunchData() async {
+    final data = launchedWith;
+    launchedWith = null;
+    return data;
+  }
+
+  @override
+  Stream<Map<String, String>> get taps => tapsController.stream;
+
+  @override
+  Stream<PushMessage> get received => receivedController.stream;
+
+  @override
+  String get platform => 'android';
+}
+
+Announcement sampleAnnouncement({
+  int id = 1,
+  String title = 'Veillée de prière',
+  String body = 'Vendredi à 21 h, à l\'assemblée de Biyem-Assi.',
+  bool read = false,
+  List<AnnouncementFile> attachments = const [],
+}) => Announcement(
+  id: id,
+  title: title,
+  body: body,
+  attachments: attachments,
+  createdAt: DateTime.utc(2026, 10, 12, 18),
+  readAt: read ? DateTime.utc(2026, 10, 12, 19) : null,
+);
+
+/// The member's notifications on the server; records the phones and reads.
+class FakeNotificationsApi implements NotificationsApi {
+  FakeNotificationsApi({List<Announcement>? items})
+    : items = items ?? [sampleAnnouncement()];
+
+  final List<Announcement> items;
+  final registered = <({String token, String platform, String language})>[];
+  final unregistered = <String>[];
+  final read = <int>[];
+
+  @override
+  Future<AnnouncementPage> list({int page = 1, int size = 20}) async => (
+    items: items.skip((page - 1) * size).take(size).toList(),
+    unread: items.where((item) => !item.isRead).length,
+    total: items.length,
+  );
+
+  @override
+  Future<Announcement> get(int id) async =>
+      items.where((item) => item.id == id).firstOrNull ??
+      (throw const ApiException(
+        status: 404,
+        code: 'NOT_FOUND',
+        message: 'not found',
+      ));
+
+  @override
+  Future<Announcement> markRead(int id) async {
+    read.add(id);
+    final index = items.indexWhere((item) => item.id == id);
+    items[index] = items[index].copyWith(readAt: DateTime.utc(2026, 10, 13));
+    return items[index];
+  }
+
+  @override
+  Future<void> registerDevice({
+    required String token,
+    required String platform,
+    required String language,
+  }) async =>
+      registered.add((token: token, platform: platform, language: language));
+
+  @override
+  Future<void> unregisterDevice(String token) async => unregistered.add(token);
+}
+
+/// The store of the Premium subscription: two plans, nothing really paid.
+class FakePremiumStore implements PremiumStore {
+  FakePremiumStore({this.active = false, this.restorable = false});
+
+  bool active;
+
+  /// Restoring finds a purchase made elsewhere.
+  bool restorable;
+  final loggedIn = <String>[];
+  var loggedOut = false;
+  final bought = <PremiumPeriod>[];
+  final _changes = StreamController<bool>.broadcast();
+
+  static const monthly = PremiumPlan(
+    period: PremiumPeriod.monthly,
+    price: '2,99 €',
+    amount: 2.99,
+  );
+  static const semiannual = PremiumPlan(
+    period: PremiumPeriod.semiannual,
+    price: '14,99 €',
+    amount: 14.99,
+    pricePerMonth: '2,50 €',
+  );
+  static const annual = PremiumPlan(
+    period: PremiumPeriod.annual,
+    price: '24,99 €',
+    amount: 24.99,
+    pricePerMonth: '2,08 €',
+    trialDays: 7,
+  );
+
+  @override
+  Future<void> logIn(String userId) async => loggedIn.add(userId);
+
+  @override
+  Future<void> logOut() async => loggedOut = true;
+
+  @override
+  Future<bool> isActive() async => active;
+
+  @override
+  Stream<bool> get changes => _changes.stream;
+
+  @override
+  Future<List<PremiumPlan>> plans() async => const [
+    monthly,
+    semiannual,
+    annual,
+  ];
+
+  @override
+  Future<bool> buy(PremiumPlan plan) async {
+    bought.add(plan.period);
+    active = true;
+    return true;
+  }
+
+  @override
+  Future<bool> restore() async {
+    active = active || restorable;
+    return active;
+  }
+}
+
+/// The store's rating sheet: counts the requests, for the version [version].
+class FakeStoreReview implements StoreReview {
+  FakeStoreReview({this.version = '1.0.21'});
+
+  String version;
+  var requests = 0;
+
+  @override
+  Future<String> appVersion() async => version;
+
+  @override
+  Future<void> requestReview() async => requests++;
+}
+
+/// The shortcuts of the app icon: keeps what was set; the test touches one.
+class FakeAppShortcuts implements AppShortcuts {
+  /// The shortcuts shown now (empty once cleared), with their titles.
+  Map<AppShortcut, String> shown = const {};
+  var cleared = false;
+  AppShortcut? launchedWith;
+  final tapsController = StreamController<AppShortcut>.broadcast();
+
+  @override
+  Future<void> show(Map<AppShortcut, String> titles) async {
+    shown = titles;
+    cleared = false;
+  }
+
+  @override
+  Future<void> clear() async {
+    shown = const {};
+    cleared = true;
+  }
+
+  @override
+  Future<AppShortcut?> takeLaunchShortcut() async {
+    final shortcut = launchedWith;
+    launchedWith = null;
+    return shortcut;
+  }
+
+  @override
+  Stream<AppShortcut> get taps => tapsController.stream;
+}
+
+/// The members who chose the user as disciple maker, and the dates asked.
+class FakeDisciplesApi implements DisciplesApi {
+  FakeDisciplesApi([this.disciples = const []]);
+
+  List<Disciple> disciples;
+  final asked = <DateTime>[];
+
+  @override
+  Future<List<Disciple>> list({required DateTime today}) async {
+    asked.add(today);
+    return [...disciples];
+  }
+}
+
+/// The links that open the app: [launchedWith] the one the app was opened
+/// with (given first, like app_links), [add] the next ones.
+class FakeIncomingLinks implements IncomingLinks {
+  FakeIncomingLinks({Uri? launchedWith}) {
+    if (launchedWith != null) {
+      _controller.add(launchedWith);
+    }
+  }
+
+  // kept until the app listens, like the link the app was opened with
+  final _controller = StreamController<Uri>();
+
+  void add(String link) => _controller.add(Uri.parse(link));
+
+  @override
+  Stream<Uri> get links => _controller.stream;
+}
+
+/// The home-screen widget: keeps what it was given; the test touches it.
+class FakeHomeWidgets implements HomeWidgets {
+  final shown = <TodayWidgetData>[];
+  Uri? launchedWith;
+  final clicksController = StreamController<Uri?>.broadcast();
+
+  TodayWidgetData? get last => shown.lastOrNull;
+
+  @override
+  Future<void> show(TodayWidgetData data) async => shown.add(data);
+
+  /// What the "Verset du jour" widget was given, the latest last.
+  final verses = <VerseWidgetData>[];
+
+  @override
+  Future<void> showVerses(VerseWidgetData data) async => verses.add(data);
+
+  @override
+  Future<Uri?> takeLaunchUri() async {
+    final uri = launchedWith;
+    launchedWith = null;
+    return uri;
+  }
+
+  @override
+  Stream<Uri?> get clicks => clicksController.stream;
+}
+
+/// The nations of the ministry on the server; [offline] has no network.
+class FakeMinistryApi implements MinistryApi {
+  FakeMinistryApi({List<Nation>? list, this.offline = false})
+    : list = list ?? sampleNations;
+
+  List<Nation> list;
+  bool offline;
+
+  static const sampleNations = [
+    Nation(
+      id: 1,
+      position: 1,
+      name: 'Le Cameroun',
+      countryCode: 'CM',
+      latitude: 4.59,
+      longitude: 12.47,
+      arrivalYear: 1975,
+    ),
+    Nation(
+      id: 2,
+      position: 2,
+      name: 'Le Bénin',
+      countryCode: 'BJ',
+      latitude: 10.32,
+      longitude: 2.35,
+    ),
+    Nation(
+      id: 3,
+      position: 3,
+      name: 'L’Écosse',
+      latitude: 56.82,
+      longitude: -4.18,
+    ),
+  ];
+
+  @override
+  Future<List<Nation>> nations() async {
+    if (offline) {
+      throw const NetworkException();
+    }
+    return list;
+  }
+}
+
+/// Firebase by SMS: the code is [code], the token `firebase:+237…`.
+class FakePhoneVerification implements PhoneVerification {
+  FakePhoneVerification({this.code = '123456', this.sendError});
+
+  final String code;
+  final PhoneVerificationException? sendError;
+
+  /// The numbers an SMS was sent to.
+  final sent = <String>[];
+  var forgotten = false;
+
+  @override
+  Future<void> sendCode(
+    String phoneNumber, {
+    required void Function(String idToken) onAutoVerified,
+  }) async {
+    if (sendError case final error?) {
+      throw error;
+    }
+    sent.add(phoneNumber);
+  }
+
+  @override
+  Future<String> confirm(String code) async {
+    if (code != this.code) {
+      throw const PhoneVerificationException(
+        PhoneVerificationError.invalidCode,
+      );
+    }
+    return 'firebase:${sent.last}';
+  }
+
+  @override
+  Future<void> forget() async => forgotten = true;
 }

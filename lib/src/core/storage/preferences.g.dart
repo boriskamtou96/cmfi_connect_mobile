@@ -233,3 +233,111 @@ abstract class _$SavedThemeMode extends $Notifier<ThemeMode> {
     element.handleCreate(ref, build);
   }
 }
+
+/// The region of the phone's settings ("CM", "FR"), null when it has none.
+
+@ProviderFor(deviceRegion)
+final deviceRegionProvider = DeviceRegionProvider._();
+
+/// The region of the phone's settings ("CM", "FR"), null when it has none.
+
+final class DeviceRegionProvider
+    extends $FunctionalProvider<String?, String?, String?>
+    with $Provider<String?> {
+  /// The region of the phone's settings ("CM", "FR"), null when it has none.
+  DeviceRegionProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'deviceRegionProvider',
+        isAutoDispose: false,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$deviceRegionHash();
+
+  @$internal
+  @override
+  $ProviderElement<String?> $createElement($ProviderPointer pointer) =>
+      $ProviderElement(pointer);
+
+  @override
+  String? create(Ref ref) {
+    return deviceRegion(ref);
+  }
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(String? value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<String?>(value),
+    );
+  }
+}
+
+String _$deviceRegionHash() => r'85dfdad5696fc7dde4710accae7d2cce5881392f';
+
+/// The country of the phone number fields: the last one chosen to sign in or
+/// sign up, else the phone's region, else Cameroon.
+
+@ProviderFor(PhoneCountry)
+final phoneCountryProvider = PhoneCountryProvider._();
+
+/// The country of the phone number fields: the last one chosen to sign in or
+/// sign up, else the phone's region, else Cameroon.
+final class PhoneCountryProvider
+    extends $NotifierProvider<PhoneCountry, Country> {
+  /// The country of the phone number fields: the last one chosen to sign in or
+  /// sign up, else the phone's region, else Cameroon.
+  PhoneCountryProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'phoneCountryProvider',
+        isAutoDispose: false,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$phoneCountryHash();
+
+  @$internal
+  @override
+  PhoneCountry create() => PhoneCountry();
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(Country value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<Country>(value),
+    );
+  }
+}
+
+String _$phoneCountryHash() => r'0705d61a00ea86093f75de44f55432a36cdad204';
+
+/// The country of the phone number fields: the last one chosen to sign in or
+/// sign up, else the phone's region, else Cameroon.
+
+abstract class _$PhoneCountry extends $Notifier<Country> {
+  Country build();
+  @$mustCallSuper
+  @override
+  void runBuild() {
+    final ref = this.ref as $Ref<Country, Country>;
+    final element =
+        ref.element
+            as $ClassProviderElement<
+              AnyNotifier<Country, Country>,
+              Country,
+              Object?,
+              Object?
+            >;
+    element.handleCreate(ref, build);
+  }
+}

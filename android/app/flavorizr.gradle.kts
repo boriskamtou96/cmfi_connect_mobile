@@ -8,12 +8,12 @@ android.apply {
     productFlavors {
         create("dev") {
             dimension = "flavor-type"
-            applicationId = "com.cmfi.connect.dev"
+            applicationId = "com.cmficonnect.app.dev"
             resValue(type = "string", name = "app_name", value = "CMFI Connect Dev")
         }
         create("prod") {
             dimension = "flavor-type"
-            applicationId = "com.cmfi.connect"
+            applicationId = "com.cmficonnect.app"
             resValue(type = "string", name = "app_name", value = "CMFI Connect")
         }
     }

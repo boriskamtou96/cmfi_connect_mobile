@@ -1,12 +1,16 @@
+import 'dart:typed_data';
+
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../features/admin/presentation/admin_screen.dart';
+import '../features/auth/presentation/forgot_password_screen.dart';
 import '../features/auth/presentation/login_screen.dart';
 import '../features/auth/presentation/register_screen.dart';
 import '../features/authorities/presentation/authorities_screen.dart';
 import '../features/authorities/presentation/authority_form_screen.dart';
+import '../features/disciples/presentation/disciples_screen.dart';
 import '../features/events/presentation/admin/admin_events_screen.dart';
 import '../features/events/presentation/admin/event_form_screen.dart';
 import '../features/events/presentation/admin/event_program_screen.dart';
@@ -18,11 +22,17 @@ import '../features/hymns/presentation/hymn_projection_screen.dart';
 import '../features/hymns/presentation/hymn_reader_screen.dart';
 import '../features/hymns/presentation/hymns_screen.dart';
 import '../features/members/presentation/delete_account_screen.dart';
+import '../features/ministry/presentation/ministry_screen.dart';
+import '../features/ministry/presentation/nations_screen.dart';
+import '../features/ministry/presentation/purpose_screen.dart';
 import '../features/more/presentation/more_screen.dart';
+import '../features/notifications/presentation/notification_screen.dart';
+import '../features/notifications/presentation/notifications_screen.dart';
 import '../features/onboarding/presentation/onboarding_screen.dart';
 import '../features/onboarding/presentation/splash_screen.dart';
 import '../features/onboarding/presentation/welcome_screen.dart';
 import '../features/prayer/domain/prayer.dart';
+import '../features/prayer/presentation/blocked_members_screen.dart';
 import '../features/prayer/presentation/importunity_screen.dart';
 import '../features/prayer/presentation/prayer_list_screen.dart';
 import '../features/prayer/presentation/prayer_screen.dart';
@@ -30,10 +40,14 @@ import '../features/prayer/presentation/prayer_topic_screen.dart';
 import '../features/prayer/presentation/prayer_topics_screen.dart';
 import '../features/prayer/presentation/retreat_screen.dart';
 import '../features/prayer/presentation/retreat_session_screen.dart';
+import '../features/premium/presentation/premium_screen.dart';
 import '../features/profile/presentation/church_form_screen.dart';
+import '../features/profile/presentation/photo_crop_screen.dart';
 import '../features/reports/presentation/export_screen.dart';
 import '../features/reports/presentation/items_screen.dart';
 import '../features/reports/presentation/new_item_screen.dart';
+import '../features/reports/presentation/report_send_screen.dart';
+import '../features/reports/presentation/report_sending_screen.dart';
 import '../features/reports/presentation/reports_screen.dart';
 import '../features/shell/presentation/app_shell_screen.dart';
 import 'auth_guard.dart';
@@ -75,6 +89,7 @@ class AppRouter extends RootStackRouter {
     ),
     AutoRoute(path: '/login', page: LoginRoute.page),
     AutoRoute(path: '/register', page: RegisterRoute.page),
+    AutoRoute(path: '/forgot-password', page: ForgotPasswordRoute.page),
     CustomRoute(
       path: '/church',
       page: ChurchFormRoute.page,
@@ -145,6 +160,16 @@ class AppRouter extends RootStackRouter {
       guards: [authGuard],
     ),
     AutoRoute(
+      path: '/reports/sending',
+      page: ReportSendingRoute.page,
+      guards: [authGuard],
+    ),
+    AutoRoute(
+      path: '/reports/send/:day',
+      page: ReportSendRoute.page,
+      guards: [authGuard],
+    ),
+    AutoRoute(
       path: '/authorities',
       page: AuthoritiesRoute.page,
       guards: [authGuard],
@@ -157,6 +182,44 @@ class AppRouter extends RootStackRouter {
     AutoRoute(
       path: '/account/delete',
       page: DeleteAccountRoute.page,
+      guards: [authGuard],
+    ),
+    AutoRoute(
+      path: '/disciples',
+      page: DisciplesRoute.page,
+      guards: [authGuard],
+    ),
+    AutoRoute(
+      path: '/account/photo',
+      page: PhotoCropRoute.page,
+      guards: [authGuard],
+      fullscreenDialog: true,
+    ),
+    AutoRoute(
+      path: '/account/blocked',
+      page: BlockedMembersRoute.page,
+      guards: [authGuard],
+    ),
+    AutoRoute(path: '/premium', page: PremiumRoute.page, guards: [authGuard]),
+    AutoRoute(path: '/ministry', page: MinistryRoute.page, guards: [authGuard]),
+    AutoRoute(
+      path: '/ministry/nations',
+      page: NationsRoute.page,
+      guards: [authGuard],
+    ),
+    AutoRoute(
+      path: '/ministry/purpose',
+      page: PurposeRoute.page,
+      guards: [authGuard],
+    ),
+    AutoRoute(
+      path: '/notifications',
+      page: NotificationsRoute.page,
+      guards: [authGuard],
+    ),
+    AutoRoute(
+      path: '/notifications/:notificationId',
+      page: NotificationRoute.page,
       guards: [authGuard],
     ),
     AutoRoute(path: '/events', page: EventsRoute.page, guards: [authGuard]),

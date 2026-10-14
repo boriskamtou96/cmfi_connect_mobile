@@ -6,9 +6,9 @@ String measureSubtitle(
   Translations t, {
   required bool quantity,
   required bool duration,
-  String? unit,
+  ItemUnit? unit,
 }) {
-  final label = MeasureFormat.unitLabel(unit);
+  final label = unit?.label;
   return switch ((quantity, duration)) {
     (true, true) =>
       label == null
@@ -27,9 +27,9 @@ String measureDescription(
   Translations t, {
   required bool quantity,
   required bool duration,
-  String? unit,
+  ItemUnit? unit,
 }) {
-  final label = MeasureFormat.unitSymbol(unit);
+  final label = unit?.symbol;
   return switch ((quantity, duration)) {
     (true, true) =>
       label == null

@@ -17,7 +17,10 @@ mixin _$Authority {
 
  int get id; String get firstName; String? get lastName;/// For a member found by pseudo: only once they accepted.
  String? get phoneNumber; String? get email; bool get isDiscipleMaker;/// A member of the app, found by pseudo (null: typed by hand).
- String? get username; String? get church; String? get assembly;@JsonKey(unknownEnumValue: AuthorityStatus.accepted) AuthorityStatus get status;
+ String? get username; String? get church; String? get assembly;@JsonKey(unknownEnumValue: AuthorityStatus.accepted) AuthorityStatus get status;/// The profile photo of a member found by pseudo, or null.
+ EventImage? get avatar;/// A disciple maker found by pseudo sees the user's regularity (days
+/// filled in, streak, % of goals; never the reports), unless turned off.
+ bool get sharesRegularity;
 /// Create a copy of Authority
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -30,16 +33,16 @@ $AuthorityCopyWith<Authority> get copyWith => _$AuthorityCopyWithImpl<Authority>
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is Authority&&(identical(other.id, id) || other.id == id)&&(identical(other.firstName, firstName) || other.firstName == firstName)&&(identical(other.lastName, lastName) || other.lastName == lastName)&&(identical(other.phoneNumber, phoneNumber) || other.phoneNumber == phoneNumber)&&(identical(other.email, email) || other.email == email)&&(identical(other.isDiscipleMaker, isDiscipleMaker) || other.isDiscipleMaker == isDiscipleMaker)&&(identical(other.username, username) || other.username == username)&&(identical(other.church, church) || other.church == church)&&(identical(other.assembly, assembly) || other.assembly == assembly)&&(identical(other.status, status) || other.status == status));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is Authority&&(identical(other.id, id) || other.id == id)&&(identical(other.firstName, firstName) || other.firstName == firstName)&&(identical(other.lastName, lastName) || other.lastName == lastName)&&(identical(other.phoneNumber, phoneNumber) || other.phoneNumber == phoneNumber)&&(identical(other.email, email) || other.email == email)&&(identical(other.isDiscipleMaker, isDiscipleMaker) || other.isDiscipleMaker == isDiscipleMaker)&&(identical(other.username, username) || other.username == username)&&(identical(other.church, church) || other.church == church)&&(identical(other.assembly, assembly) || other.assembly == assembly)&&(identical(other.status, status) || other.status == status)&&(identical(other.avatar, avatar) || other.avatar == avatar)&&(identical(other.sharesRegularity, sharesRegularity) || other.sharesRegularity == sharesRegularity));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,id,firstName,lastName,phoneNumber,email,isDiscipleMaker,username,church,assembly,status);
+int get hashCode => Object.hash(runtimeType,id,firstName,lastName,phoneNumber,email,isDiscipleMaker,username,church,assembly,status,avatar,sharesRegularity);
 
 @override
 String toString() {
-  return 'Authority(id: $id, firstName: $firstName, lastName: $lastName, phoneNumber: $phoneNumber, email: $email, isDiscipleMaker: $isDiscipleMaker, username: $username, church: $church, assembly: $assembly, status: $status)';
+  return 'Authority(id: $id, firstName: $firstName, lastName: $lastName, phoneNumber: $phoneNumber, email: $email, isDiscipleMaker: $isDiscipleMaker, username: $username, church: $church, assembly: $assembly, status: $status, avatar: $avatar, sharesRegularity: $sharesRegularity)';
 }
 
 
@@ -50,11 +53,11 @@ abstract mixin class $AuthorityCopyWith<$Res>  {
   factory $AuthorityCopyWith(Authority value, $Res Function(Authority) _then) = _$AuthorityCopyWithImpl;
 @useResult
 $Res call({
- int id, String firstName, String? lastName, String? phoneNumber, String? email, bool isDiscipleMaker, String? username, String? church, String? assembly,@JsonKey(unknownEnumValue: AuthorityStatus.accepted) AuthorityStatus status
+ int id, String firstName, String? lastName, String? phoneNumber, String? email, bool isDiscipleMaker, String? username, String? church, String? assembly,@JsonKey(unknownEnumValue: AuthorityStatus.accepted) AuthorityStatus status, EventImage? avatar, bool sharesRegularity
 });
 
 
-
+$EventImageCopyWith<$Res>? get avatar;
 
 }
 /// @nodoc
@@ -67,7 +70,7 @@ class _$AuthorityCopyWithImpl<$Res>
 
 /// Create a copy of Authority
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? firstName = null,Object? lastName = freezed,Object? phoneNumber = freezed,Object? email = freezed,Object? isDiscipleMaker = null,Object? username = freezed,Object? church = freezed,Object? assembly = freezed,Object? status = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? firstName = null,Object? lastName = freezed,Object? phoneNumber = freezed,Object? email = freezed,Object? isDiscipleMaker = null,Object? username = freezed,Object? church = freezed,Object? assembly = freezed,Object? status = null,Object? avatar = freezed,Object? sharesRegularity = null,}) {
   return _then(_self.copyWith(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as int,firstName: null == firstName ? _self.firstName : firstName // ignore: cast_nullable_to_non_nullable
@@ -79,10 +82,24 @@ as bool,username: freezed == username ? _self.username : username // ignore: cas
 as String?,church: freezed == church ? _self.church : church // ignore: cast_nullable_to_non_nullable
 as String?,assembly: freezed == assembly ? _self.assembly : assembly // ignore: cast_nullable_to_non_nullable
 as String?,status: null == status ? _self.status : status // ignore: cast_nullable_to_non_nullable
-as AuthorityStatus,
+as AuthorityStatus,avatar: freezed == avatar ? _self.avatar : avatar // ignore: cast_nullable_to_non_nullable
+as EventImage?,sharesRegularity: null == sharesRegularity ? _self.sharesRegularity : sharesRegularity // ignore: cast_nullable_to_non_nullable
+as bool,
   ));
 }
+/// Create a copy of Authority
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$EventImageCopyWith<$Res>? get avatar {
+    if (_self.avatar == null) {
+    return null;
+  }
 
+  return $EventImageCopyWith<$Res>(_self.avatar!, (value) {
+    return _then(_self.copyWith(avatar: value));
+  });
+}
 }
 
 
@@ -164,10 +181,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( int id,  String firstName,  String? lastName,  String? phoneNumber,  String? email,  bool isDiscipleMaker,  String? username,  String? church,  String? assembly, @JsonKey(unknownEnumValue: AuthorityStatus.accepted)  AuthorityStatus status)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( int id,  String firstName,  String? lastName,  String? phoneNumber,  String? email,  bool isDiscipleMaker,  String? username,  String? church,  String? assembly, @JsonKey(unknownEnumValue: AuthorityStatus.accepted)  AuthorityStatus status,  EventImage? avatar,  bool sharesRegularity)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _Authority() when $default != null:
-return $default(_that.id,_that.firstName,_that.lastName,_that.phoneNumber,_that.email,_that.isDiscipleMaker,_that.username,_that.church,_that.assembly,_that.status);case _:
+return $default(_that.id,_that.firstName,_that.lastName,_that.phoneNumber,_that.email,_that.isDiscipleMaker,_that.username,_that.church,_that.assembly,_that.status,_that.avatar,_that.sharesRegularity);case _:
   return orElse();
 
 }
@@ -185,10 +202,10 @@ return $default(_that.id,_that.firstName,_that.lastName,_that.phoneNumber,_that.
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( int id,  String firstName,  String? lastName,  String? phoneNumber,  String? email,  bool isDiscipleMaker,  String? username,  String? church,  String? assembly, @JsonKey(unknownEnumValue: AuthorityStatus.accepted)  AuthorityStatus status)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( int id,  String firstName,  String? lastName,  String? phoneNumber,  String? email,  bool isDiscipleMaker,  String? username,  String? church,  String? assembly, @JsonKey(unknownEnumValue: AuthorityStatus.accepted)  AuthorityStatus status,  EventImage? avatar,  bool sharesRegularity)  $default,) {final _that = this;
 switch (_that) {
 case _Authority():
-return $default(_that.id,_that.firstName,_that.lastName,_that.phoneNumber,_that.email,_that.isDiscipleMaker,_that.username,_that.church,_that.assembly,_that.status);case _:
+return $default(_that.id,_that.firstName,_that.lastName,_that.phoneNumber,_that.email,_that.isDiscipleMaker,_that.username,_that.church,_that.assembly,_that.status,_that.avatar,_that.sharesRegularity);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -205,10 +222,10 @@ return $default(_that.id,_that.firstName,_that.lastName,_that.phoneNumber,_that.
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( int id,  String firstName,  String? lastName,  String? phoneNumber,  String? email,  bool isDiscipleMaker,  String? username,  String? church,  String? assembly, @JsonKey(unknownEnumValue: AuthorityStatus.accepted)  AuthorityStatus status)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( int id,  String firstName,  String? lastName,  String? phoneNumber,  String? email,  bool isDiscipleMaker,  String? username,  String? church,  String? assembly, @JsonKey(unknownEnumValue: AuthorityStatus.accepted)  AuthorityStatus status,  EventImage? avatar,  bool sharesRegularity)?  $default,) {final _that = this;
 switch (_that) {
 case _Authority() when $default != null:
-return $default(_that.id,_that.firstName,_that.lastName,_that.phoneNumber,_that.email,_that.isDiscipleMaker,_that.username,_that.church,_that.assembly,_that.status);case _:
+return $default(_that.id,_that.firstName,_that.lastName,_that.phoneNumber,_that.email,_that.isDiscipleMaker,_that.username,_that.church,_that.assembly,_that.status,_that.avatar,_that.sharesRegularity);case _:
   return null;
 
 }
@@ -220,7 +237,7 @@ return $default(_that.id,_that.firstName,_that.lastName,_that.phoneNumber,_that.
 @JsonSerializable()
 
 class _Authority extends Authority {
-  const _Authority({required this.id, required this.firstName, this.lastName, this.phoneNumber, this.email, this.isDiscipleMaker = false, this.username, this.church, this.assembly, @JsonKey(unknownEnumValue: AuthorityStatus.accepted) this.status = AuthorityStatus.accepted}): super._();
+  const _Authority({required this.id, required this.firstName, this.lastName, this.phoneNumber, this.email, this.isDiscipleMaker = false, this.username, this.church, this.assembly, @JsonKey(unknownEnumValue: AuthorityStatus.accepted) this.status = AuthorityStatus.accepted, this.avatar, this.sharesRegularity = true}): super._();
   factory _Authority.fromJson(Map<String, dynamic> json) => _$AuthorityFromJson(json);
 
 @override final  int id;
@@ -235,6 +252,11 @@ class _Authority extends Authority {
 @override final  String? church;
 @override final  String? assembly;
 @override@JsonKey(unknownEnumValue: AuthorityStatus.accepted) final  AuthorityStatus status;
+/// The profile photo of a member found by pseudo, or null.
+@override final  EventImage? avatar;
+/// A disciple maker found by pseudo sees the user's regularity (days
+/// filled in, streak, % of goals; never the reports), unless turned off.
+@override@JsonKey() final  bool sharesRegularity;
 
 /// Create a copy of Authority
 /// with the given fields replaced by the non-null parameter values.
@@ -249,16 +271,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Authority&&(identical(other.id, id) || other.id == id)&&(identical(other.firstName, firstName) || other.firstName == firstName)&&(identical(other.lastName, lastName) || other.lastName == lastName)&&(identical(other.phoneNumber, phoneNumber) || other.phoneNumber == phoneNumber)&&(identical(other.email, email) || other.email == email)&&(identical(other.isDiscipleMaker, isDiscipleMaker) || other.isDiscipleMaker == isDiscipleMaker)&&(identical(other.username, username) || other.username == username)&&(identical(other.church, church) || other.church == church)&&(identical(other.assembly, assembly) || other.assembly == assembly)&&(identical(other.status, status) || other.status == status));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Authority&&(identical(other.id, id) || other.id == id)&&(identical(other.firstName, firstName) || other.firstName == firstName)&&(identical(other.lastName, lastName) || other.lastName == lastName)&&(identical(other.phoneNumber, phoneNumber) || other.phoneNumber == phoneNumber)&&(identical(other.email, email) || other.email == email)&&(identical(other.isDiscipleMaker, isDiscipleMaker) || other.isDiscipleMaker == isDiscipleMaker)&&(identical(other.username, username) || other.username == username)&&(identical(other.church, church) || other.church == church)&&(identical(other.assembly, assembly) || other.assembly == assembly)&&(identical(other.status, status) || other.status == status)&&(identical(other.avatar, avatar) || other.avatar == avatar)&&(identical(other.sharesRegularity, sharesRegularity) || other.sharesRegularity == sharesRegularity));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,id,firstName,lastName,phoneNumber,email,isDiscipleMaker,username,church,assembly,status);
+int get hashCode => Object.hash(runtimeType,id,firstName,lastName,phoneNumber,email,isDiscipleMaker,username,church,assembly,status,avatar,sharesRegularity);
 
 @override
 String toString() {
-  return 'Authority(id: $id, firstName: $firstName, lastName: $lastName, phoneNumber: $phoneNumber, email: $email, isDiscipleMaker: $isDiscipleMaker, username: $username, church: $church, assembly: $assembly, status: $status)';
+  return 'Authority(id: $id, firstName: $firstName, lastName: $lastName, phoneNumber: $phoneNumber, email: $email, isDiscipleMaker: $isDiscipleMaker, username: $username, church: $church, assembly: $assembly, status: $status, avatar: $avatar, sharesRegularity: $sharesRegularity)';
 }
 
 
@@ -269,11 +291,11 @@ abstract mixin class _$AuthorityCopyWith<$Res> implements $AuthorityCopyWith<$Re
   factory _$AuthorityCopyWith(_Authority value, $Res Function(_Authority) _then) = __$AuthorityCopyWithImpl;
 @override @useResult
 $Res call({
- int id, String firstName, String? lastName, String? phoneNumber, String? email, bool isDiscipleMaker, String? username, String? church, String? assembly,@JsonKey(unknownEnumValue: AuthorityStatus.accepted) AuthorityStatus status
+ int id, String firstName, String? lastName, String? phoneNumber, String? email, bool isDiscipleMaker, String? username, String? church, String? assembly,@JsonKey(unknownEnumValue: AuthorityStatus.accepted) AuthorityStatus status, EventImage? avatar, bool sharesRegularity
 });
 
 
-
+@override $EventImageCopyWith<$Res>? get avatar;
 
 }
 /// @nodoc
@@ -286,7 +308,7 @@ class __$AuthorityCopyWithImpl<$Res>
 
 /// Create a copy of Authority
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? firstName = null,Object? lastName = freezed,Object? phoneNumber = freezed,Object? email = freezed,Object? isDiscipleMaker = null,Object? username = freezed,Object? church = freezed,Object? assembly = freezed,Object? status = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? firstName = null,Object? lastName = freezed,Object? phoneNumber = freezed,Object? email = freezed,Object? isDiscipleMaker = null,Object? username = freezed,Object? church = freezed,Object? assembly = freezed,Object? status = null,Object? avatar = freezed,Object? sharesRegularity = null,}) {
   return _then(_Authority(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as int,firstName: null == firstName ? _self.firstName : firstName // ignore: cast_nullable_to_non_nullable
@@ -298,11 +320,25 @@ as bool,username: freezed == username ? _self.username : username // ignore: cas
 as String?,church: freezed == church ? _self.church : church // ignore: cast_nullable_to_non_nullable
 as String?,assembly: freezed == assembly ? _self.assembly : assembly // ignore: cast_nullable_to_non_nullable
 as String?,status: null == status ? _self.status : status // ignore: cast_nullable_to_non_nullable
-as AuthorityStatus,
+as AuthorityStatus,avatar: freezed == avatar ? _self.avatar : avatar // ignore: cast_nullable_to_non_nullable
+as EventImage?,sharesRegularity: null == sharesRegularity ? _self.sharesRegularity : sharesRegularity // ignore: cast_nullable_to_non_nullable
+as bool,
   ));
 }
 
+/// Create a copy of Authority
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$EventImageCopyWith<$Res>? get avatar {
+    if (_self.avatar == null) {
+    return null;
+  }
 
+  return $EventImageCopyWith<$Res>(_self.avatar!, (value) {
+    return _then(_self.copyWith(avatar: value));
+  });
+}
 }
 
 

@@ -15,6 +15,7 @@ import '../../../core/widgets/cmfi_logo.dart';
 import '../../../core/widgets/section_card.dart';
 import '../../../core/widgets/tab_page.dart';
 import '../../../routing/app_router.dart';
+import '../../members/presentation/widgets/member_avatar.dart';
 import '../application/importunities.dart';
 import '../application/prayer_people.dart';
 import '../application/prayer_topics.dart';
@@ -23,6 +24,7 @@ import '../domain/prayer.dart';
 import '../domain/retreat.dart';
 import 'importunity_screen.dart';
 import 'retreat_reminders_sheet.dart';
+import 'widgets/invitation_menu.dart';
 import 'widgets/prayer_look.dart';
 
 /// The Prière tab: the retreat of the moment, the invitations and importunity
@@ -364,7 +366,7 @@ class _InvitationCard extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final t = context.t;
     final tone = AppModule.prayer.tone(context);
-    final inviter = topic.invitedBy ?? topic.owner;
+    final inviter = topic.inviter;
 
     Future<void> answer({required bool join}) async {
       final toast = ref.read(toasterProvider).of(context);
@@ -383,54 +385,83 @@ class _InvitationCard extends ConsumerWidget {
 
     return PrayerCard(
       color: tone.soft,
-      padding: const EdgeInsets.all(16),
+      // the menu's 48 dp button stands in the top padding
+      padding: const EdgeInsetsDirectional.fromSTEB(16, 4, 4, 16),
       onTap: () =>
           context.router.push(ImportunityRoute(importunityId: topic.id)),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
-            t.prayer.importunity.invitedBy(
-              name: '${inviter.firstName} ${inviter.lastName}'.trim(),
-            ),
-            style: TextStyle(
-              fontSize: 13,
-              fontWeight: FontWeight.w700,
-              color: tone.onSoft,
-            ),
-          ),
-          const SizedBox(height: 4),
-          Text(
-            topic.title,
-            style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w800),
-          ),
-          if (topic.goal case final goal?) ...[
-            const SizedBox(height: 4),
-            Text(
-              t.prayer.importunity.progress(
-                total: context.formatNumber(topic.total),
-                goal: context.formatNumber(goal),
-              ),
-              style: TextStyle(fontSize: 14, color: tone.onSoft),
-            ),
-          ],
-          const SizedBox(height: 12),
           Row(
             children: [
-              Expanded(
-                child: FilledButton(
-                  onPressed: () => answer(join: true),
-                  style: FilledButton.styleFrom(backgroundColor: tone.color),
-                  child: Text(t.prayer.importunity.join),
-                ),
+              MemberAvatar(
+                initials: inviter.initials,
+                photo: inviter.avatar,
+                size: 28,
+                background: Theme.of(context).colorScheme.surface,
+                foreground: tone.onSoft,
               ),
               const SizedBox(width: AppSpacing.sm),
-              TextButton(
-                onPressed: () => answer(join: false),
-                style: TextButton.styleFrom(foregroundColor: tone.onSoft),
-                child: Text(t.prayer.importunity.decline),
+              Expanded(
+                child: Text(
+                  t.prayer.importunity.invitedBy(
+                    name: '${inviter.firstName} ${inviter.lastName}'.trim(),
+                  ),
+                  style: TextStyle(
+                    fontSize: 13,
+                    fontWeight: FontWeight.w700,
+                    color: tone.onSoft,
+                  ),
+                ),
               ),
+              // report it, or block whoever sent it
+              InvitationMenu(topic: topic, color: tone.onSoft),
             ],
+          ),
+          Padding(
+            padding: const EdgeInsetsDirectional.only(end: 12),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  topic.title,
+                  style: const TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.w800,
+                  ),
+                ),
+                if (topic.goal case final goal?) ...[
+                  const SizedBox(height: 4),
+                  Text(
+                    t.prayer.importunity.progress(
+                      total: context.formatNumber(topic.total),
+                      goal: context.formatNumber(goal),
+                    ),
+                    style: TextStyle(fontSize: 14, color: tone.onSoft),
+                  ),
+                ],
+                const SizedBox(height: 12),
+                Row(
+                  children: [
+                    Expanded(
+                      child: FilledButton(
+                        onPressed: () => answer(join: true),
+                        style: FilledButton.styleFrom(
+                          backgroundColor: tone.color,
+                        ),
+                        child: Text(t.prayer.importunity.join),
+                      ),
+                    ),
+                    const SizedBox(width: AppSpacing.sm),
+                    TextButton(
+                      onPressed: () => answer(join: false),
+                      style: TextButton.styleFrom(foregroundColor: tone.onSoft),
+                      child: Text(t.prayer.importunity.decline),
+                    ),
+                  ],
+                ),
+              ],
+            ),
           ),
         ],
       ),

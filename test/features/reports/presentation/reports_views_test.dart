@@ -5,14 +5,22 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:intl/date_symbol_data_local.dart';
 
+import '../../../helpers/fakes.dart';
 import '../../../helpers/pump_app.dart';
 
 void main() {
   setUpAll(initializeDateFormatting);
   setUp(() => LocaleSettings.setLocale(AppLocale.fr));
 
-  Future<TestApp> openReports(WidgetTester tester) async {
-    final app = await pumpApp(tester, token: 'saved-token');
+  Future<TestApp> openReports(
+    WidgetTester tester, {
+    bool premium = false,
+  }) async {
+    final app = await pumpApp(
+      tester,
+      token: 'saved-token',
+      premium: FakePremiumStore(active: premium),
+    );
     // a day already saved: 2 chapters today
     app.reportsApi.days[today()] = DailyReport(
       date: today(),
@@ -44,7 +52,8 @@ void main() {
   testWidgets('summary shows the regularity and the filled items', (
     tester,
   ) async {
-    await openReports(tester);
+    // the year comes with Premium
+    await openReports(tester, premium: true);
 
     await tester.tap(find.text('Bilan'));
     await tester.pumpAndSettle();

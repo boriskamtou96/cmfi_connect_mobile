@@ -1,6 +1,6 @@
 # CMFI Connect : règles du projet Flutter
 
-App mobile de la communauté CMFI : comptes rendus quotidiens d'abord, puis cantiques, prière, évènements… Elle consomme l'API Go `cmfi-connect` (`/Users/hardpro/GolandProjects/cmfi-connect`).
+App mobile de la communauté CMFI : comptes rendus quotidiens d'abord, puis cantiques, prière, évènements… Elle consomme l'API Go `cmfi-connect` (`../cmfi-connect-backend`).
 Flutter 3.38 / Dart 3.10.
 
 ## Façon de travailler
@@ -10,17 +10,21 @@ Flutter 3.38 / Dart 3.10.
 ## Commandes
 
 ```bash
-flutter run --flavor dev                     # API locale (émulateur Android : 10.0.2.2, simulateur iOS : localhost)
-flutter run --flavor dev --dart-define=API_BASE_URL=http://<IP du Mac>:8080/v1   # vrai téléphone
-flutter run --flavor prod --release
+flutter run --flavor dev --dart-define-from-file=.env                     # API locale (émulateur Android : 10.0.2.2, simulateur iOS : localhost)
+flutter run --flavor dev --dart-define-from-file=.env --dart-define=API_BASE_URL=http://<IP du Mac>:8080/v1   # vrai téléphone
+flutter run --flavor prod --release --dart-define-from-file=.env
 dart run build_runner watch --force-jit      # génération de code (le mode AOT échoue sur ce projet)
 flutter analyze && flutter test              # obligatoires avant de considérer une tâche finie
 ```
 
-- Relancer la génération après toute modification de `@riverpod`, `@freezed`, `@RoutePage` ou d'un fichier `.i18n.json`.
+- Relancer la génération après toute modification de `@riverpod`, `@freezed`, `@RoutePage` ou d'un fichier `.i18n.json`. Les textes passent aussi par build_runner : ne pas lancer `dart run slang` à côté (ses fichiers `strings*.g.dart` font échouer build_runner avec « Asset already exists » ; dans ce cas, supprimer `lib/src/core/i18n/strings*.g.dart` et relancer).
+- `.env` (lu par `--dart-define-from-file`, déjà dans `.vscode/launch.json` et les configurations Android Studio) donne les clés publiques de RevenueCat : `REVENUE_CAT_TEST_API_KEY` (dev, Test Store), `REVENUE_CAT_APPLE_API_KEY`, `REVENUE_CAT_GOOGLE_API_KEY`. Sans clé, Premium n'est jamais actif.
+- Identifiants : `com.cmficonnect.app` (prod) et `com.cmficonnect.app.dev` (dev), sur Android (`flavorizr.gradle.kts`) comme sur iOS ; le widget iOS est `<identifiant>.TodayWidget`.
 - Logo, icônes et splash : `CmfiLogoPainter` (`core/widgets/cmfi_logo.dart`) est la seule source. C'est l'emblème redessiné du logo de la communauté, sans ses lettres : le « C » autour du globe, la croix sur la Bible ouverte, la colombe (détails retirés sous 40 px ; `CmfiLogo.onDark` le pose sur un disque blanc). Le même dessin existe en SVG dans l'export PDF (`report_files.dart`), le site admin (`Logo.tsx`), le site vitrine (`Logo.astro`, favicons) et, en silhouette, dans l'icône des notifications (`ic_notification.xml`) : les garder identiques. Après une modification du logo :
   `flutter test tool/brand_assets_test.dart` (régénère `assets/brand/*.png`), puis
   `dart run flutter_launcher_icons -f flutter_launcher_icons-dev.yaml`, idem pour `-prod.yaml`, puis `dart run flutter_native_splash:create`.
+- Captures des stores : `flutter test tool/store_screenshots_test.dart` lance l'app avec un compte de démo (`_pumpDemo` : 3 mois de comptes rendus, objectifs, autorités, évènements avec affiches dessinées, recueils et nations des assets), prend 8 écrans réels et les pose dans des cadres (un ciel continu d'une image à l'autre, un chemin doré, Zoé, des bulles qui sortent du téléphone). Sortie : `store/screenshots/ios/fr` (1290 × 2796), `store/screenshots/android/fr` (1080 × 2160) et `store/screenshots/feature_graphic.png` (1024 × 500). À relancer après un changement visible des écrans. Les textes des fiches stores sont dans `store/fiche-stores.md`.
+- Crashlytics : `startCrashReporting()` (`core/services/crash_reporting.dart`) après Firebase dans `bootstrap.dart`, rien en debug ; `crashReportingProvider.identify` donne le numéro du compte (jamais de nom), vidé à la déconnexion. Android : le plugin Gradle `com.google.firebase.crashlytics` est obligatoire (sans lui, l'app s'arrête au lancement : « build ID is missing ») ; l'envoi du mapping R8 est coupé (pas de `google-services.json`). iOS : pas d'envoi des dSYM pour l'instant (les erreurs Dart restent lisibles).
 - Ne jamais modifier à la main `*.g.dart`, `*.freezed.dart`, `*.gr.dart`.
 
 ## Architecture
@@ -39,7 +43,7 @@ lib/
 ```
 
 Features actuelles : `onboarding` (splash, présentation, bienvenue), `auth` (connexion, inscription), `profile` (église, profil),
-`shell` (les 5 onglets), `home`, `reports` (compte rendu, éléments), `authorities` (autorités spirituelles), `hymns` (cantiques), `events` (évènements de la communauté), `prayer` (retraites, sujets, listes, importunité), `more`, `members` (pseudo, compte), `admin`.
+`shell` (les 5 onglets), `home`, `reports` (compte rendu, éléments), `authorities` (autorités spirituelles), `hymns` (cantiques), `events` (évènements de la communauté), `prayer` (retraites, sujets, listes, importunité), `notifications` (annonces des admins), `premium` (abonnement), `ministry` (notre ministère : sous-menus, globe des nations, notre but), `more`, `members` (pseudo, compte), `admin`.
 
 Règles de dépendance :
 - `core` n'importe jamais une feature ni `routing`.
@@ -75,6 +79,7 @@ Règles de dépendance :
 - auto_route : écran `XxxScreen` annoté `@RoutePage()`, route générée `XxxRoute`, déclarée dans `src/routing/app_router.dart`.
 - Démarrage : `SplashScreen` lit la session et le drapeau « présentation vue », puis `replaceAll` vers `OnboardingRoute`, `WelcomeRoute` ou `AppShellRoute`, et retire le splash natif.
 - Navigation explicite après une action réussie : connexion → `replaceAll([AppShellRoute()])`, inscription → `ChurchFormRoute` → `AppShellRoute`. Le controller renvoie un `bool` (succès), l'écran navigue.
+- Mot de passe oublié (lien sous le mot de passe de la connexion) : `ForgotPasswordScreen` (`/forgot-password`), en trois étapes. Le numéro, puis le code reçu par SMS : `phoneVerificationProvider` (`core/services/phone_verification.dart`, Firebase Authentication par téléphone, paquet firebase_auth) donne un jeton Firebase. Enfin le nouveau mot de passe : `POST /v1/users/password/reset` (le serveur vérifie le jeton avec la clé Firebase du backend), puis la connexion. La session Firebase ne sert qu'à ça (`forget()` ensuite). Renvoi du SMS après 30 s (`resendDelay`). À activer dans la console Firebase (dev et prod) : la connexion « Téléphone », les empreintes SHA-1/SHA-256 de l'app Android, la clé APNs ; des numéros de test (code fixe) évitent des SMS payants en dev. iOS : le schéma d'URL `$(FIREBASE_URL_SCHEME)` (Info.plist, réglé par configuration dans le projet Xcode) sert au retour du contrôle reCAPTCHA. Dans les tests : `FakePhoneVerification(code:, sendError:)`, `FakeAuthApi.resets`.
 - Déconnexion et 401 : on change seulement `sessionProvider` ; `App` écoute la session et renvoie vers `WelcomeRoute`. Ne pas naviguer à la main dans ces cas.
 - Les routes qui demandent un compte ont `guards: [authGuard]` (filet de sécurité : sans session, retour à l'accueil).
 - Les onglets (`AppShellScreen`) sont un `AutoTabsRouter` ; depuis un onglet, `context.navigateTo(const ReportsRoute())` change d'onglet.
@@ -90,7 +95,7 @@ Règles de dépendance :
 - Droite à gauche (arabe) : jamais `left`/`right` pour un écart ou une position qui suit le sens de lecture. Utiliser `EdgeInsetsDirectional.fromSTEB`/`only(start:)`, `AlignmentDirectional.centerStart`, `PositionedDirectional(end:)`, `BorderDirectional(start:)`. Les icônes Phosphor se retournent toutes seules (`matchTextDirection`). Restent physiques : les décors (anneaux, dégradés) et le PDF (paquet `pdf`, `pw.EdgeInsets`).
 - Contenus saisis (titre, thème, verset, actualité, présentation d'un évènement) : `textDirection: contentDirection(texte)` (`core/utils/text_direction.dart`), pour qu'un texte français garde son sens dans l'app en arabe. Les paroles des cantiques (recueils français et anglais) sont toujours de gauche à droite (`HymnView`).
 - Polices : Onest et Lora n'ont ni l'arabe, ni le devanagari, ni le chinois ; le téléphone prend ses polices système pour ces lettres. L'export PDF n'embarque qu'Onest : en arabe, chinois et hindi, les libellés du PDF ne s'affichent pas encore (il faudra embarquer des polices Noto).
-- Les éléments standards du compte rendu (« Lecture biblique »…) viennent du serveur, en français : ils ne sont pas encore traduits.
+- Les éléments standards du compte rendu (« Lecture biblique »…) viennent du serveur, en français ; l'app les traduit, reconnus par leur code (`StandardItem`, `domain/standard_item.dart` : LB, PS, RDQAD, PG, LLC, JC, JP, Dîmes, OFF ; le serveur refuse ces codes pour un élément personnel). Nom et unité passent toujours par `t.itemLabel(code, label)` et `t.itemUnit(code, unit)` (`application/report_item_texts.dart`, clés `reports.standardItems` et `reports.units`, au pluriel de chaque langue), sur les écrans comme dans les exports ; `standard: activity.isStandard` quand on a un `ActivityType`. Les éléments personnels restent tels que saisis. Les codes (et donc « Dîmes ») ne se traduisent pas.
 
 ## UI et design
 
@@ -112,7 +117,7 @@ Règles de dépendance :
   - `OpenPage` (container transform) : un bouton qui ouvre un formulaire de création grandit en page, et la page s'y referme (Ajouter une autorité, Créer un élément). Pas pour une page atteinte depuis une liste (cantique, autorités, export…) : elle garde la transition de la plateforme et le retour par balayage iOS, qu'un container transform supprime ;
   - `showAppDialog` au lieu de `showDialog` : fondu avec léger zoom.
   - Les onglets du bas gardent leur fondu avec zoom maison : le routeur d'onglets masque l'ancien onglet d'un coup, le fondu enchaîné du paquet laisserait un écran vide ~100 ms. `FadeThroughRoute` reste aussi maison : même rendu que le paquet, plus le décalage iOS de la page dessous.
-- Dates affichées : `context.formatDate(date, 'EEEE d MMMM').capitalized` (langue de l'app). Unités des éléments : `MeasureFormat` (« Nombre de fois » → « fois », « Pourcentage » → « % »).
+- Dates affichées : `context.formatDate(date, 'EEEE d MMMM').capitalized` (langue de l'app). Unités des éléments : `MeasureFormat.value(unit: t.itemUnit(...))`, un `ItemUnit` (« 1 chapitre », « 4 chapters » ; une unité saisie : « Nombre de fois » → « fois », « Pourcentage » → « % »).
 - Zones tactiles d'au moins 48 dp, `tooltip` ou `Semantics` sur les boutons-icônes, et un rendu correct en thème sombre.
 - Pas de hauteur fixe sur un bloc qui contient du texte (`minHeight` plutôt) : les grandes tailles de police ne doivent rien couper.
 
@@ -137,9 +142,100 @@ Règles de dépendance :
 - Hors ligne : `ReportsLocalStore` (shared_preferences) garde les éléments, les 31 derniers jours ouverts et les journées enregistrées sans réseau. Sans réseau, `DayReportController` montre la copie du téléphone (ou un formulaire vide) et `save()` répond `SaveOutcome.keptOffline` : la journée attend dans `PendingReports`, qui l'envoie au retour du réseau (`networkStatusProvider`, connectivity_plus), au retour dans l'app et après un enregistrement réussi. Une `ApiException` (refus définitif) retire la journée de la file. `reportHistory` y ajoute les journées en attente et réutilise la dernière réponse du serveur sans réseau (`lastHistoryProvider`). À la déconnexion, `App` vide tout ça et annule les rappels.
 - Objectifs par jour et par élément : `ReportGoals` (clé `report_goals`, sur le téléphone), réglés dans Mes éléments avec la feuille de saisie (`showEntrySheet(caption:, clearLabel:)`). Progression dans Aujourd'hui (`EntryRow(goal:)`), jours atteints dans le Bilan et l'export.
 - Série : `currentStreak` (`domain/report_streak.dart`) ; aujourd'hui pas encore rempli ne la casse pas. Affichée sur l'accueil à partir de 2 jours.
+- Paliers de la série (7, 30, 100, 365 jours, `streakMilestones`) : quand un enregistrement fait franchir un palier (`crossedMilestone`, la série d'avant lue sur l'accueil, celle d'après relue), `SaveDayBar` affiche `showStreakCelebration` : Zoé `celebrate` sur la carte bleu nuit et or (`StreakCard`, dessinée en 300 × 300 puis mise à l'échelle), un éclat de lumière unique (`AppMotion.celebration`, rien avec « réduire les animations »), « 7 jours d'affilée ! », un mot par palier (`streak.lines`), et « Partager » : la carte en PNG carré de 1080 px (`pngOf`, `core/utils/widget_image.dart`) via `shareServiceProvider.shareFile`. Chaque palier une fois par compte (`StreakMilestones`, clé `streak_milestones`, vidée à la déconnexion). Sans réseau, pas de fête.
+- Note des stores : `ratingPromptProvider` (`core/services/store_review.dart`, paquet in_app_review) après la fête des 7 jours, une fois la fenêtre fermée ; au plus une fois par version de l'app et jamais deux fois en 120 jours (clés `rating_asked_version`, `rating_asked_on`, gardées à la déconnexion : elles suivent le téléphone). Jamais en debug (`NoStoreReview`). La version vient du canal `cmficonnect/app` (`MainActivity.kt`, `AppDelegate.swift`).
 - Rappel du soir : `ReportReminder` (clés `reminder_enabled`, `reminder_time` en minutes, `reminder_offered`). Proposé une fois après la première journée enregistrée, réglable dans Plus. Les 14 prochains soirs sont planifiés d'un coup (`localNotificationsProvider`, flutter_local_notifications, mode inexact : pas de permission d'alarme exacte) et replanifiés au lancement, au changement de jour et après chaque enregistrement : un jour rempli ne sonne pas. Un tap ouvre Aujourd'hui (`SignedInTasks`, qui enveloppe l'app connectée). Icône Android : `res/drawable/ic_notification.xml` (gardée par `res/raw/keep.xml`).
+- Envoi à mes autorités (Plus › Compte rendu) : `ReportSendingScreen` (`/reports/sending`) règle le rythme (chaque semaine, toutes les 2 semaines, chaque mois le 1er), le jour, l'heure et les autorités (acceptées) destinataires ; `ReportSending` (clé `report_sending`) planifie les 6 prochains rappels (`NotificationGroup.reportSending`, replanifiés au lancement). Le rappel (charge utile `report_send:<jour>`) ouvre `ReportSendScreen` (`/reports/send/:day`) : le compte rendu de la période (`sendingPeriod` : les 7 ou 14 jours finissant ce jour-là, ou le mois écoulé), un bouton WhatsApp (`wa.me`, texte « Bonjour … » + `reportAsText`) et e-mail (`mailto:`) par autorité, et « Partager le PDF ». Rien ne part tout seul : l'utilisateur envoie. Les envois sont gardés dans `SentReports` (clé `report_sending_history`, les 12 derniers). La déconnexion oublie les deux. Étape 2 prévue (backend) : réception dans l'app pour les autorités membres et e-mail automatique.
 - Export (Plus › Exporter, ou l'icône de partage de l'onglet sur Historique et Bilan) : `ReportExport.build` puis `reportAsPdf` (A4, police Onest, paquet `pdf`), `reportAsCsv` (une ligne par jour, `;` en français, BOM UTF-8 pour Excel) ou `reportAsText` (pour WhatsApp). Le Bilan a aussi « Partager ce bilan ». Le partage passe par `shareServiceProvider` (share_plus), avec `origin` pour l'iPad.
-- Dans les tests : `FakeLocalNotifications`, `FakeShareService`, `FakeNetworkStatus` ; `FakeReportsApi.offline` / `FakeActivitiesApi.offline` simulent la perte de réseau. `pumpApp` marque le rappel comme déjà proposé (`reminderOffered: false` pour le tester).
+- Dans les tests : `FakeLocalNotifications`, `FakeShareService`, `FakeNetworkStatus` ; `FakeReportsApi.offline` / `FakeActivitiesApi.offline` simulent la perte de réseau. `pumpApp` marque le rappel comme déjà proposé (`reminderOffered: false` pour le tester). Une série : `pumpApp(reportDays: …)` ; la note : `FakeStoreReview` (`version`, `requests`, `app.storeReview`). Le PNG partagé est dessiné par le moteur : toucher « Partager » dans `tester.runAsync` et attendre `app.share.files`.
+
+## Raccourcis de l'icône
+
+- `appShortcutsProvider` (`core/services/app_shortcuts.dart`, paquet quick_actions) : « Remplir mon compte rendu » (Aujourd'hui), « Cantiques » (l'onglet), « Retraite du moment » (`RetreatRoute` de `nextRetreat(...)`, ou l'onglet Prière quand les 4 sont faites). Posés par `SignedInTasks` dans la langue de l'app (de nouveau quand elle change), retirés à la déconnexion (`App`). Le raccourci du lancement (`takeLaunchShortcut`) et ceux touchés app ouverte (`taps`) passent par le même `openShortcut`.
+- Icônes : Android `res/drawable/ic_shortcut_today|hymns|retreat.xml` (gardées par `res/raw/keep.xml`) ; iOS aucune (le paquet ne prend que des images du catalogue, pas les SF Symbols).
+- Dans les tests : `FakeAppShortcuts` (`shown`, `cleared`, `launchedWith`, `tapsController`).
+
+## Photo de profil
+
+- `PUT /v1/users/me/avatar` (multipart `file`, carré PNG/JPEG, 128 à 2048 px, 2 Mo au plus) : le serveur le réenregistre en JPEG sans métadonnées et supprime l'ancien ; `DELETE /v1/users/me/avatar` ; un admin retire une photo avec `DELETE /v1/admin/members/:id/avatar` (back office). La photo (`avatar`, une `EventImage` ou null) arrive dans le profil, les `MemberCard` (importunités, autorités, invitations, membres bloqués), le staff et les inscrits.
+- `ProfilePhotoButton` (`profile/presentation/widgets/profile_photo.dart`, dans Plus et le formulaire de profil) : feuille Prendre une photo / Galerie / Retirer, puis `PhotoCropScreen` (`/account/photo`, cercle, déplacement et zoom, rend un PNG de 512 px via `visiblePart` et `squarePng`), envoi, `currentProfileProvider` relu.
+- Afficher un membre avec `MemberAvatar` (`members/presentation/widgets/member_avatar.dart`) : la photo, sinon les initiales (`InitialsAvatar`), aussi si elle ne se charge pas.
+- Tests : décoder une image demande du temps réel ; `pumpApp(photoDecoder: ...)` donne une image décodée d'avance (`photoDecoderProvider`), et le tap sur « Utiliser cette photo » se fait dans `tester.runAsync`.
+
+## Mes disciples (tableau de bord du faiseur de disciples)
+
+- `GET /v1/disciples?today=` (`features/disciples/`) : les membres qui ont choisi l'utilisateur comme faiseur de disciples (lien accepté). Pour chacun : `regularity` (série, jours remplis sur 30, dernier jour, moyenne du % d'objectifs) ou null quand il ne partage pas. Jamais le contenu des comptes rendus. Plus › Accompagnement montre « Mes disciples » dès qu'il y en a un.
+- Le partage est automatique quand on choisit un membre comme faiseur de disciples (texte dans le formulaire) ; l'interrupteur « Partager ma régularité » sur sa fiche (`PUT /v1/authorities/:id/sharing`) l'éteint.
+- Les objectifs restent sur le téléphone : chaque journée envoyée porte seulement `goal_percent` (`dayGoalPercent`, null sans objectifs), y compris les journées gardées hors ligne.
+
+## Widget « Verset du jour »
+
+- Gratuit, connecté ou non : `verseWidgetProvider` (14 jours de versets dans la langue de l'app) est écouté par `App` et passé à `HomeWidgets.showVerses` (clés `verse_days` en JSON, `verse_source`, `verse_title`, `verse_rtl`).
+- iOS : `VerseWidget.swift` dans l'extension TodayWidget (le `@main` est le `WidgetBundle` `CMFIWidgets`), une entrée par jour à minuit. Android : `VerseWidgetProvider.kt`, `layout/verse_widget.xml`, couleurs claires et sombres (`values(-night)/verse_widget_colors.xml`), mise à jour programmée à minuit. Un toucher ouvre l'accueil (`cmficonnect://verse`).
+
+## Liens vers l'app (deep links)
+
+- Format unique : `https://cmfi-connect.com/open?to=<chemin>` (Universal Links iOS, App Links Android ; sans l'app, la page `/open` du site propose les stores) ou `cmficonnect://open?to=<chemin>`. Chemins : `events/<id>`, `hymns/<livre>/<n>`, `prayer/topics/<id>`, `prayer/importunities/<id>`, `prayer/retreat` (la retraite du moment, ou l'onglet Prière quand les 4 sont faites).
+- `core/services/deep_links.dart` : `AppLink` (sealed, `parse(Uri)`, `uri`, `under(texte)` pour un partage), `incomingLinksProvider` (paquet app_links : `uriLinkStream` donne aussi le lien du lancement, ne pas appeler `getInitialLink` en plus), `pendingDeepLinkProvider` démarré par `App` : un lien reçu déconnecté attend la connexion. `SignedInTasks.openLink` l'ouvre puis le vide. Nommer `AppLink`, pas `DeepLink` (déjà pris par auto_route).
+- Les liens du widget (`cmficonnect://today`, `premium`) ne sont pas des `AppLink` : `parse` rend null, home_widget les traite.
+- Natif : intent-filters sur `MainActivity` (https `cmfi-connect.com` `/open` avec `autoVerify`, et `cmficonnect://open`), `applinks:cmfi-connect.com` dans `Runner.entitlements`, schéma `cmficonnect` dans `Info.plist`. Le site sert `/.well-known/apple-app-site-association` (les deux App IDs) et `/.well-known/assetlinks.json` (clé debug pour `.dev` ; la clé Play App Signing à mettre dans `playSigningSha256` du site).
+- Les partages d'un évènement, d'un cantique et d'un sujet de prière ajoutent le lien en dernière ligne.
+- Tests : `FakeIncomingLinks(launchedWith:)` et `app.incomingLinks.add(...)`.
+
+## Indicatif et pays
+
+- `PhoneField(country:, onCountryChanged:)` : drapeau + indicatif devant le numéro ; la feuille `showCountrySheet` liste les 244 pays (recherche par nom, code ou indicatif). Le numéro est vérifié pour le pays (`isValidPhone`, paquet phone_numbers_parser ; `lenient: true` à la connexion, seule la longueur compte) et envoyé en international (`toInternationalPhone(texte, country:)`). Un numéro tapé avec son « +33 » fait basculer le pays.
+- Pays par défaut : `phoneCountryProvider` (le dernier choisi à la connexion ou à l'inscription, clé `phone_country`), sinon la région du téléphone (`deviceRegionProvider`, remplacé par `CM` dans `pumpApp`), sinon le Cameroun.
+- `Country` (`core/utils/countries.dart`) : code ISO, indicatif, drapeau, nom dans les 7 langues. Les noms viennent de `core/i18n/country_names.dart`, généré par `node tool/country_names.mjs` (données Unicode CLDR de Node) : ne pas le modifier à la main.
+- Le pays du profil est un code (`CM`), choisi avec `CountryField` ; `Country.tryParse` reconnaît encore un ancien texte libre (« Cameroun »). Les retraites affichent son nom dans la langue de l'app.
+
+## Objectifs : pourcentage
+
+- `dayGoals(goals, entries)` : la moyenne des éléments du jour qui ont un objectif (un élément vide compte 0). Anneau `GoalRing` (`core/widgets/goal_ring.dart`, doré à 100 %) sur Aujourd'hui (« Objectifs de la journée », « Atteints : 1 sur 2 ») et sur la carte de l'accueil (`goalsOfDayProvider`).
+- `periodGoals(...)` : dans le Bilan, la moyenne des progressions quotidiennes par élément et au total ; chaque jour compte, même vide, sauf aujourd'hui tant qu'il n'est pas rempli. `goalsEvolutionProvider` : les 12 dernières semaines (Premium).
+
+## Notifications des admins
+
+- Firebase : `core/config/firebase_options.dart` (les 4 apps des projets `cmfi-connect-dev` et `cmfi-connect`, créées avec `firebase apps:create`), démarré dans `bootstrap.dart` ; l'app marche sans. `pushMessagingProvider` (`core/services/push_messaging.dart`, firebase_messaging) ; `NoPushMessaging` sans Firebase.
+- `PushRegistration` (`features/notifications`) : à la connexion (`SignedInTasks`), demande l'autorisation puis envoie le jeton (`PUT /v1/devices`), et de nouveau quand il change ; « Se déconnecter » le retire (`DELETE /v1/devices/:token`) avant de fermer la session. Canal Android `announcements` (le serveur l'utilise).
+- `Inbox` (gardé en vie) : `GET /v1/notifications` (liste + nombre de non lues), rafraîchi à l'arrivée d'un push et au retour dans l'app. Cloche avec pastille sur l'accueil, ligne dans Plus › Communauté. La fiche (`NotificationRoute`) montre texte, images et PDF, et marque lue (`PUT /v1/notifications/:id/read`).
+- Un push touché (`data: {type: announcement, id}`) ouvre la fiche ; arrivé app ouverte, il s'affiche en popup.
+- Invitation à un sujet d'importunité : le serveur envoie un push à chaque nouvel invité, dans la langue de son téléphone (« Paul t'invite à prier », le sujet en texte ; `data: {type: importunity_invite, id}`). Touché, il ouvre le sujet (`ImportunityRoute`) où l'on accepte ou refuse ; reçu app ouverte, la liste des sujets se recharge. Il n'entre pas dans la boîte Notifications (réservée aux annonces des responsables).
+- iOS : `Runner.entitlements` (aps-environment), mode d'arrière-plan `remote-notification`, iOS 15 minimum (Firebase). L'image d'un push ne s'affiche pas encore sur iOS (il faudrait une Notification Service Extension) ; Android l'affiche.
+- Dans les tests : `FakePushMessaging` (`tapsController`, `receivedController`), `FakeNotificationsApi` (`registered`, `unregistered`, `read`).
+
+## Premium (RevenueCat)
+
+- `premiumStoreProvider` (`core/services/premium_store.dart`, purchases_flutter, entitlement `premium`, offering courante avec les paquets mensuel et annuel) et `premiumProvider` (vrai/faux). L'achat suit le compte : `logIn(<id du compte>)` dans `SignedInTasks`, `logOut()` à la déconnexion.
+- Écran maison `PremiumScreen` (`/premium`), « Nuit étoilée » : fond bleu nuit étoilé (`_StarsPainter`, fixe), Zoé dans un halo doré, les avantages, puis les offres de l'offering courante (paquets Monthly, Six Month et Annual de RevenueCat) l'une sous l'autre en cartes « verre », la plus longue d'abord, le prix en grand et la période dessous, avec un badge « −X % » calculé par rapport aux mois payés un par un, et en bas, fixes, l'essai gratuit (« 7 jours d'essai gratuit, puis … »), le bouton doré et « Restaurer · Conditions · Confidentialité » (`AppConfig.siteUrl`). Les mentions du store (renouvellement) sont en fin de page. Pas d'ombre sous une carte translucide : elle se verrait à travers.
+- L'équipe a Premium sans payer : un compte `admin` ou `superadmin` (`premiumIsOfferedProvider`, le rôle du compte gardé à la connexion et rafraîchi à chaque lancement) ; l'écran Premium le dit (« Premium t'est offert… »).
+- Réservé à Premium : le widget de l'écran d'accueil, l'Année du Bilan (pastille avec cadenas) et l'« Évolution de tes objectifs ». Le reste (compte rendu, objectifs du jour, cantiques, prière, évènements) reste gratuit.
+- v1 : offert à tous (`premiumForEveryoneProvider`), à passer à false pour ouvrir les achats. Tant qu'il est vrai, `premiumProvider` vaut toujours vrai et Plus n'a pas la ligne « CMFI Connect Premium » : rien ne mène à l'écran d'achat. Tout le code Premium reste en place.
+- Dans les tests : `FakePremiumStore(active:, restorable:)`, `bought`, `loggedIn`. `pumpApp` met `premiumForEveryone` à false (les tests voient l'écran d'achat) ; `premiumForEveryone: true` pour la v1.
+
+## Widget de l'écran d'accueil
+
+- `todayWidgetProvider` (reports) → `homeWidgetsProvider` (`core/services/home_widgets.dart`, paquet home_widget) depuis `SignedInTasks` : fait ou à remplir, % des objectifs du jour, Premium, et les textes dans la langue de l'app. La déconnexion le vide. Toucher ouvre Aujourd'hui (`cmficonnect://today`) ou Premium (`cmficonnect://premium`) ; le deep linking de Flutter est coupé (`FlutterDeepLinkingEnabled`, `flutter_deeplinking_enabled`) pour que ces liens ne passent pas par le routeur.
+- iOS : extension `ios/TodayWidget` (SwiftUI, petite et moyenne taille), App Group `group.com.cmficonnect.app(.dev)` (`APP_GROUP_ID` dans les réglages des cibles), timeline jusqu'à minuit. Android : `TodayWidgetProvider.kt`, `res/layout/today_widget*.xml`, mis à jour à minuit (`scheduleWidgetUpdates`, qui a besoin du récepteur `HomeWidgetScheduledUpdateReceiver` du manifeste ; sans permission d'alarme exacte, la mise à jour peut arriver quelques minutes après minuit). Le lendemain, les deux affichent « à remplir » d'eux-mêmes.
+- Les images de Zoé du widget viennent de `assets/brand/mascot_*.png` (copiées dans `res/drawable-nodpi` et `TodayWidget/Assets.xcassets`).
+- Dans les tests : `FakeHomeWidgets` (`shown`, `clicksController`).
+
+## Verset du jour
+
+- Une carte sur l'accueil (`VerseOfTheDayCard`, `features/verses`) : le même verset pour tous le même jour (clé `MM-jj`, 29 février compris), dans la langue de l'app, avec sa référence et la Bible d'où il vient ; « Partager » en image (carte bleu nuit, `pngOf`) ou en texte. Données : `assets/verses/verses_<langue>.json`, 366 versets choisis dans des Bibles libres (Segond 1910, World English Bible, Reina-Valera 1909, Luther 1912, Union chinoise, Van Dyck ; hindi : Indian Revised Version, CC BY-SA 4.0, attribution affichée). La numérotation française (Psaumes) suit Segond. Le fichier est décodé sur place (`rootBundle.load`), pas avec `loadString` qui passe par un isolate au-delà de 50 Ko.
+
+## Notre ministère
+
+- `MinistryScreen` (`/ministry`, Plus › Communauté et une carte de l'accueil) : une page de sous-menus. En tête bleu nuit, le nombre de nations et un petit globe (il ouvre « Les nations ») ; puis « Les nations » (`NationsScreen`, `/ministry/nations`), « Notre but » (`PurposeScreen`, `/ministry/purpose`), « Nos missionnaires » et « Nos héros » (« Bientôt », sans page pour l'instant).
+- `NationsScreen` : un globe (`NationGlobe`, dessiné en `CustomPainter`, sans paquet) avec les terres en points, chaque nation en lumière dorée reliée à Yaoundé (la n° 1) par un arc ; on le tourne au doigt, une nation se touche. « Voyage » passe d'une nation à la suivante toutes les 3 s (`journeyStep`, un minuteur lancé et arrêté par l'utilisateur : rien d'infini sans action), flèches précédente / suivante. La carte de la nation montre drapeau, nom, n° et année d'arrivée, et « Prier » (3 sujets). Puis la liste des nations avec une recherche.
+- `PurposeScreen` (Notre but) : les 3 buts du ministère (la toute-créature gospel crusade, la formation des disciples, précipiter le réveil global), un écran chacun à faire glisser, sur un ciel bleu nuit. Chaque écran dessine son illustration quand il apparaît (une fois, rien ne bouge ensuite ; immédiat si les animations sont réduites) : le globe et ses ondes avec les 8 moyens de communication à toucher, les maisons-églises qui se multiplient avec la frise jusqu'à 2065 et les chiffres à toucher, le ciel qui se déchire et la lampe allumée (« Prier maintenant » ouvre la retraite du moment). Les nombres comptent jusqu'à leur valeur (`NumberFormat.compactLong` dans la langue). Textes : `ministry.goals.*`, `ministry.media`.
+- Les nations : `GET /v1/ministry/nations` (`Nations`, gardé en vie). La copie du téléphone s'affiche d'abord (la dernière vue, sinon `assets/ministry/nations.json`, les 154 de la liste), puis celle du serveur. Les admins les gèrent sur le site admin (page Ministère). Un pays s'affiche avec son nom traduit (`Country`), une région (Écosse…) avec le nom de la liste.
+- La géométrie : `domain/globe_math.dart` (projection orthographique, arcs). Les terres : `assets/ministry/land_dots.bin`, 4 233 points tirés de Natural Earth 1:110m (domaine public) ; voir `application/land.dart`.
+- Dans les tests : `FakeMinistryApi(list:, offline:)` ; « Les nations » s'ouvre depuis le hub. Pendant un voyage, `pump(journeyStep)` (pas de `pumpAndSettle`) ; après « Pause », un `pump()` avant d'avancer le temps.
+
+## Mascotte
+
+- Zoé, la colombe du logo : `DoveMascot(pose:, size:)` (`core/widgets/dove_mascot.dart`), poses `joy`, `cheer`, `celebrate`, `rest` ; décorative sauf `semanticLabel`. Utilisée sur les états vides (notifications, membres bloqués), l'écran Premium, le widget et la fête des paliers de la série. `flutter test tool/brand_assets_test.dart --plain-name 'generate mascot images'` régénère `assets/brand/mascot_*.png`.
 
 ## Pseudo, rôles et autorités liées
 
@@ -151,10 +247,10 @@ Règles de dépendance :
 
 ## Évènements
 
-- Un seul module pour les évènements de toute la communauté et leurs actualités (`/v1/events`). Pas d'onglet : Plus › Communauté › Évènements et la carte « Prochain évènement » de l'accueil (`nextEventProvider`). Les évènements par assemblée locale viendront plus tard (fonction premium).
+- Un seul module pour les évènements de toute la communauté et leurs actualités (`/v1/events`). Pas d'onglet : Plus › Communauté › Évènements et, sur l'accueil (section « Actuellement à la CMCI »), un carrousel des 5 prochains évènements publiés en grandes affiches 4:5 (`_EventsCarousel`, la carte suivante dépasse, points de position, dernière carte « Tous les évènements ») ; avec un seul évènement, la carte « Prochain évènement » (`nextEventProvider`). Les évènements par assemblée locale viendront plus tard (fonction premium).
 - `CommunityEvent` (`domain/event.dart`) : les listes ne remplissent que le haut (titre, dates, lieu, affiche, `registration`) ; `GET /v1/events/:id` donne tout (programme, actualités, photos, `myRegistration`, autres éditions). `EventDetail(id)` montre l'évènement, `replace(event)` affiche ce que le serveur renvoie après une inscription ou une action d'admin (listes et rappels suivent).
 - Heures : affichées à l'heure du lieu (`event.timeZone`, `Africa/Douala` par défaut) avec `date.inZone(zone)` (`core/utils/zoned_time.dart`) ; « heure de Yaoundé » s'ajoute quand le téléphone est sur un autre fuseau. Une heure saisie par un admin devient un instant avec `instantAt(zone, wall)`, envoyé en UTC (`UtcInstantConverter`).
-- Images du serveur (`/v1/media/…`) : `MediaPicture` (`core/widgets/media_picture.dart`, couleur moyenne puis fondu) via `mediaImagesProvider` (cached_network_image, gardées sur le téléphone). Affiche entière : `PosterBackdrop` (l'affiche sur une copie floutée, rien n'est coupé) ; plein écran avec zoom : `showImageViewer`. Une affiche se fait en portrait 4:5 (1080 × 1350).
+- Images du serveur (`/v1/media/…` en dev ; en production, l'adresse complète du CDN `https://media.cmfi-connect.com/…`, que `MediaImages.resolve` garde telle quelle) : `MediaPicture` (`core/widgets/media_picture.dart`, couleur moyenne puis fondu) via `mediaImagesProvider` (cached_network_image, gardées sur le téléphone). Affiche entière : `PosterBackdrop` (l'affiche sur une copie floutée, rien n'est coupé) ; plein écran avec zoom : `showImageViewer`. Une affiche se fait en portrait 4:5 (1080 × 1350).
 - Inscription courte (`showRegistrationSheet`) : combien de personnes, hébergement et ville de départ seulement si l'évènement les demande. Rappels la veille à 19 h et 1 h avant (`EventReminders`, groupe `NotificationGroup.events`, séparé du rappel du soir) ; un tap ouvre l'évènement. Hors ligne : `EventsLocalStore` garde les listes et les 10 derniers évènements ouverts.
 - Admins (rôle `admin`/`superadmin`) : Plus › Administration › Évènements, et le menu « ⋮ » de la fiche (modifier, programme, inscrits + CSV, actualité, photos, préparer l'édition suivante, supprimer). `EventAdmin` fait les appels ; une image se choisit avec `imagePickingProvider` (2048 px, JPEG) puis s'envoie avec `EventAdmin.upload`.
 - Calendrier, cartes et téléphone : `calendarServiceProvider` (add_2_calendar), `linkLauncherProvider` (url_launcher). Dans les tests : `FakeEventsApi` (`sampleEvents()`), `FakeMediaImages`, `FakeCalendarService`, `FakeLinkLauncher`, `FakeImagePicking` ; `app.notifications.plannedEvents`. Dans une page qui défile sous une barre fixe, `scrollUntilVisible` puis `ensureVisible` avant de toucher.
@@ -162,6 +258,7 @@ Règles de dépendance :
 
 ## Prière
 
+- Sur l'accueil, `_PrayerCard` montre la retraite du moment (matin, midi, soirée, nuit) et l'ouvre ; une fois les 4 faites, elle mène à l'onglet.
 - Onglet Prière (`features/prayer`) : la retraite du moment, les invitations et sujets d'importunité, les sujets de la communauté et les listes de l'utilisateur. Couleur du module : `AppModule.prayer` ; chaque retraite a ses couleurs (`RetreatMomentLook` : aube, midi, crépuscule, nuit).
 - Retraites de 15 minutes (le dépliant « Retraites de prière de 15' » de la communauté) : 4 retraites × 15 points, une minute chacun. Les textes sont dans `assets/prayer/retreats_<langue>.json` (le français fait référence ; les autres langues suivent, à faire relire), avec les listes de pays et de peuples priés à tour de rôle. Ce que l'app ajoute à un point est décrit dans `domain/retreat.dart` (`retreatHints`) : l'assemblée du profil, les autorités, les 5 suivants d'une liste (`nextPeople` : jamais priés d'abord, puis les plus anciens), le pays du jour (`nationOfDay`), le pays du profil, les cantiques. `retreatPlanProvider(moment, langue)` remplit les points.
 - `RetreatSessionScreen` : minuté (60 s par point, son doux `Chime` via audioplayers, qui respecte le mode silencieux, vibration, écran allumé) ou « à mon rythme ». À la fin : `RetreatLog.markDone` (gardée sur le téléphone et envoyée plus tard sans réseau), les personnes priées passent en fin de liste (`PrayerPeople.markPrayed`), et `RetreatReport.add(15)` ajoute 15 minutes à « Prière seule » (élément `PS`) du compte rendu du jour, sauf si cette retraite était déjà faite aujourd'hui. « Annuler » défait les deux.
@@ -169,8 +266,9 @@ Règles de dépendance :
 - Sujets de la communauté : publiés par les admins depuis le site admin (le PDF est lu dans le navigateur pour proposer les points). `PrayerTopics` (copie gardée hors ligne), un membre coche les points priés du jour ; l'app ne montre que le nombre de personnes qui prient, jamais qui.
 - Listes (pas encore cru, croyants, rétrogrades, co-ouvriers) : sur le serveur, visibles par l'utilisateur seul (`PrayerPeople`, gardé en vie, copie hors ligne) ; « a cru / exaucé » = `answeredOn`.
 - Sujets d'importunité : `Importunities` (gardé en vie). Un toucher compte une proclamation à l'instant sur le téléphone (`pendingCounts`) ; `sendCounts` envoie le tout 2 s après le dernier toucher, en quittant l'écran, au retour dans l'app et au retour du réseau. L'écran prend ses nombres dans la liste (qui ajoute ce qui n'est pas envoyé) et les noms dans `importunityDetailProvider` : compter ne rappelle pas le serveur. Chacun voit le total et son propre nombre, jamais celui des autres. Invitations par pseudo ou à « ma famille spirituelle » (le FD lié et accepté, et ses autres disciples : seul leur nombre est montré).
+- Signaler et bloquer (règle 1.2 d'Apple) : sur une invitation (`ImportunityScreen` et sa carte dans l'onglet), le menu « ⋮ » `InvitationMenu` (`presentation/widgets/invitation_menu.dart`) propose « Signaler » (feuille : Indésirable, Contenu choquant ou offensant, Autre, et un commentaire facultatif de 500 caractères ; `POST /v1/reports`) et « Bloquer <prénom> » (confirmation, `POST /v1/members/:username/block` : le serveur retire ses invitations en attente et ignore les suivantes ; la liste se recharge et l'écran se ferme). L'auteur visé est `Importunity.inviter`. Plus › Compte › « Membres bloqués » (`BlockedMembersScreen`, `/account/blocked`, `GET /v1/members/blocked`) : « Débloquer » (`DELETE …/block`). Les appels sont dans `PrayerApi` (`block`, `unblock`, `blocked`, `report`), `Importunities.blockInviter` / `reportInvitation` et `BlockedMembers`.
 - Déconnexion : `App` vide `PrayerLocalStore` et invalide les providers gardés en vie de la prière.
-- Dans les tests : `FakePrayerApi` (`offline`, `spiritualFamily`, et ce qui a été envoyé : `retreatList`, `prayedCalls`, `markedPrayed`, `counts`, `invitations`), `FakeChime`. Pendant une retraite minutée, pas de `pumpAndSettle` : il ferait tourner l'horloge ; `pump(durée)` à la place. Les textes des retraites sont lus sans le cache du bundle (`cache: false`), qui mélangerait les tests.
+- Dans les tests : `FakePrayerApi` (`offline`, `spiritualFamily`, et ce qui a été envoyé : `retreatList`, `prayedCalls`, `markedPrayed`, `counts`, `invitations`, `blockedList`, `reports`), `FakeChime`. Pendant une retraite minutée, pas de `pumpAndSettle` : il ferait tourner l'horloge ; `pump(durée)` à la place. Les textes des retraites sont lus sans le cache du bundle (`cache: false`), qui mélangerait les tests.
 
 ## Tests
 
@@ -182,7 +280,7 @@ Règles de dépendance :
 
 ## Dépendances et versions
 
-- Utiliser les paquets déjà présents avant d'en proposer un nouveau, et demander avant d'en ajouter. Ajoutés avec accord : `path_provider` et `wakelock_plus` (cantiques) ; `flutter_local_notifications`, `timezone`, `flutter_timezone`, `share_plus`, `pdf` et `connectivity_plus` (compte rendu) ; `toastification`, `flutter_animate` et `animations` (popups, animations) ; `phosphor_flutter` (icônes) ; `image_picker`, `cached_network_image`, `add_2_calendar` et `url_launcher` (évènements) ; `audioplayers` (le son entre deux points d'une retraite).
+- Utiliser les paquets déjà présents avant d'en proposer un nouveau, et demander avant d'en ajouter. Ajoutés avec accord : `path_provider` et `wakelock_plus` (cantiques) ; `flutter_local_notifications`, `timezone`, `flutter_timezone`, `share_plus`, `pdf` et `connectivity_plus` (compte rendu) ; `toastification`, `flutter_animate` et `animations` (popups, animations) ; `phosphor_flutter` (icônes) ; `image_picker`, `cached_network_image`, `add_2_calendar` et `url_launcher` (évènements) ; `audioplayers` (le son entre deux points d'une retraite) ; `phone_numbers_parser` (indicatif) ; `firebase_core` et `firebase_messaging` (notifications) ; `firebase_auth` (mot de passe oublié, SMS) ; `firebase_crashlytics` (plantages) ; `purchases_flutter` (Premium) ; `home_widget` (widget) ; `in_app_review` (note des stores) ; `quick_actions` (raccourcis de l'icône) ; `app_links` (liens vers l'app).
 - Rester compatible avec Flutter 3.38 : `auto_route` est bloqué sous 11.2, qui exige une version plus récente de Flutter.
 
 ## Git

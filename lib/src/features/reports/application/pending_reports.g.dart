@@ -47,7 +47,7 @@ final class PendingReportsProvider
   }
 }
 
-String _$pendingReportsHash() => r'f496cedd8b1dddd8c6d0ff5695b260a09b1ce4ab';
+String _$pendingReportsHash() => r'9172a50a7590d8047f4c32179405aa0ec1aa42d1';
 
 /// The days saved without network, by date. They are sent again when the
 /// network comes back, when the app comes to the front, and after a save.

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- App icon shortcut "Cantiques" (core/services/app_shortcuts.dart):
+     a music note, in CMFI blue on a sky-blue disc. -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="48dp"
+    android:height="48dp"
+    android:viewportWidth="48"
+    android:viewportHeight="48">
+  <path
+      android:fillColor="#FFE2EEFA"
+      android:pathData="M24,2 A22,22 0 1,1 23.99,2 Z" />
+  <group
+      android:translateX="12"
+      android:translateY="12">
+    <path
+        android:fillColor="#FF0A5EA8"
+        android:pathData="M5.5,17 A3.5,3.5 0 1,0 12.5,17 A3.5,3.5 0 1,0 5.5,17 Z M10.5,3 H12.5 V17 H10.5 Z M12.5,3 H18 V7 H12.5 Z" />
+  </group>
+</vector>

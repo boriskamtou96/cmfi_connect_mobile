@@ -46,6 +46,7 @@ class TranslationsAr extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _Translations$onboarding$ar onboarding = _Translations$onboarding$ar._(_root);
 	@override late final _Translations$welcome$ar welcome = _Translations$welcome$ar._(_root);
 	@override late final _Translations$auth$ar auth = _Translations$auth$ar._(_root);
+	@override late final _Translations$countries$ar countries = _Translations$countries$ar._(_root);
 	@override late final _Translations$nav$ar nav = _Translations$nav$ar._(_root);
 	@override late final _Translations$home$ar home = _Translations$home$ar._(_root);
 	@override late final _Translations$reports$ar reports = _Translations$reports$ar._(_root);
@@ -60,7 +61,18 @@ class TranslationsAr extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _Translations$hymns$ar hymns = _Translations$hymns$ar._(_root);
 	@override late final _Translations$comingSoon$ar comingSoon = _Translations$comingSoon$ar._(_root);
 	@override late final _Translations$events$ar events = _Translations$events$ar._(_root);
+	@override late final _Translations$notifications$ar notifications = _Translations$notifications$ar._(_root);
+	@override late final _Translations$premium$ar premium = _Translations$premium$ar._(_root);
+	@override late final _Translations$homeWidget$ar homeWidget = _Translations$homeWidget$ar._(_root);
+	@override late final _Translations$ministry$ar ministry = _Translations$ministry$ar._(_root);
 	@override late final _Translations$prayer$ar prayer = _Translations$prayer$ar._(_root);
+	@override late final _Translations$sending$ar sending = _Translations$sending$ar._(_root);
+	@override late final _Translations$streak$ar streak = _Translations$streak$ar._(_root);
+	@override late final _Translations$shortcuts$ar shortcuts = _Translations$shortcuts$ar._(_root);
+	@override late final _Translations$blocking$ar blocking = _Translations$blocking$ar._(_root);
+	@override late final _Translations$verses$ar verses = _Translations$verses$ar._(_root);
+	@override late final _Translations$profilePhoto$ar profilePhoto = _Translations$profilePhoto$ar._(_root);
+	@override late final _Translations$disciples$ar disciples = _Translations$disciples$ar._(_root);
 }
 
 // Path: app
@@ -117,6 +129,7 @@ class _Translations$errors$ar extends Translations$errors$fr {
 	@override String get usernameNotFound => 'لا أحد يحمل اسم المستخدم هذا. تحقّق من كتابته.';
 	@override String get ownerCannotLeave => 'أنت من أنشأ هذا الطلب: احذفه بدلًا من الانسحاب منه.';
 	@override String get tooManyPeople => 'قوائمك ممتلئة (500 شخص كحدّ أقصى).';
+	@override String get avatarInvalid => 'لا يمكن استخدام هذه الصورة. اختر صورة أخرى.';
 }
 
 // Path: validation
@@ -171,7 +184,6 @@ class _Translations$auth$ar extends Translations$auth$fr {
 
 	// Translations
 	@override String get phone => 'الهاتف';
-	@override String get phoneHint => '6 90 00 00 01';
 	@override String dialCode({required Object code}) => 'رمز الدولة: ${code}';
 	@override String get password => 'كلمة المرور';
 	@override String get showPassword => 'إظهار كلمة المرور';
@@ -179,6 +191,21 @@ class _Translations$auth$ar extends Translations$auth$fr {
 	@override late final _Translations$auth$login$ar login = _Translations$auth$login$ar._(_root);
 	@override late final _Translations$auth$register$ar register = _Translations$auth$register$ar._(_root);
 	@override late final _Translations$auth$church$ar church = _Translations$auth$church$ar._(_root);
+	@override late final _Translations$auth$forgot$ar forgot = _Translations$auth$forgot$ar._(_root);
+}
+
+// Path: countries
+class _Translations$countries$ar extends Translations$countries$fr {
+	_Translations$countries$ar._(TranslationsAr root) : this._root = root, super.internal(root);
+
+	final TranslationsAr _root; // ignore: unused_field
+
+	// Translations
+	@override String get dialCodeTitle => 'رمز الدولة';
+	@override String get title => 'بلدك';
+	@override String get search => 'ابحث عن دولة أو رمز';
+	@override String get none => 'لا توجد دولة مطابقة';
+	@override String get change => 'تغيير الدولة';
 }
 
 // Path: nav
@@ -208,6 +235,7 @@ class _Translations$home$ar extends Translations$home$fr {
 	@override String get todayTitle => 'تقرير اليوم';
 	@override String progress({required Object filled, required Object total}) => '${filled} من ${total}';
 	@override String get progressLabel => 'عناصر معبّأة';
+	@override String get goals => 'الأهداف';
 	@override String get continueReport => 'متابعة';
 	@override String get startReport => 'ابدأ';
 	@override String get weekTitle => 'أسبوعك';
@@ -219,9 +247,7 @@ class _Translations$home$ar extends Translations$home$fr {
 		many: '${filled} يومًا من ${total}',
 		other: '${filled} يوم من ${total}',
 	);
-	@override String get community => 'في مجتمعك';
-	@override String get prayerTitle => 'طلبات الصلاة';
-	@override String get prayerText => 'قريبًا، ستتمكّن من حمل طلبات صلاة جماعتك كل يوم.';
+	@override String get community => 'حاليًا في CMFI';
 	@override String get eventsTitle => 'الفعاليات';
 	@override String get hymnsTitle => 'الترانيم';
 	@override String hymnsResume({required Object number}) => 'العودة إلى رقم ${number}';
@@ -286,6 +312,10 @@ class _Translations$reports$ar extends Translations$reports$fr {
 	@override String get export => 'تصدير تقريري';
 	@override String goal({required Object value}) => 'الهدف: ${value}';
 	@override String get goalReached => 'تحقّق الهدف';
+	@override String get dayGoals => 'أهداف اليوم';
+	@override String goalsReached({required Object reached, required Object total}) => 'المحقَّقة: ${reached} من ${total}';
+	@override late final _Translations$reports$standardItems$ar standardItems = _Translations$reports$standardItems$ar._(_root);
+	@override late final _Translations$reports$units$ar units = _Translations$reports$units$ar._(_root);
 }
 
 // Path: reminder
@@ -426,7 +456,6 @@ class _Translations$more$ar extends Translations$more$fr {
 	@override String get editProfile => 'تعديل ملفي الشخصي';
 	@override String get community => 'المجتمع';
 	@override String get events => 'الفعاليات';
-	@override String get announcements => 'الإعلانات';
 	@override String get reports => 'التقرير';
 	@override String get myItems => 'عناصري';
 	@override String get app => 'التطبيق';
@@ -437,6 +466,7 @@ class _Translations$more$ar extends Translations$more$fr {
 	@override String get themeLight => 'فاتح';
 	@override String get themeDark => 'داكن';
 	@override String get logout => 'تسجيل الخروج';
+	@override String get account => 'الحساب';
 	@override String get languageTitle => 'لغة التطبيق';
 	@override String get completeProfile => 'أضف اسمك';
 	@override String get accompaniment => 'المرافقة الروحية';
@@ -454,6 +484,7 @@ class _Translations$more$ar extends Translations$more$fr {
 	@override String get admin => 'الإدارة';
 	@override String get staff => 'الفريق والأدوار';
 	@override String get manageEvents => 'الفعاليات';
+	@override String get disciples => 'تلاميذي';
 }
 
 // Path: authorities
@@ -502,6 +533,7 @@ class _Translations$authorities$ar extends Translations$authorities$fr {
 		many: '${n} طلبًا بانتظارك',
 		other: '${n} طلب بانتظارك',
 	);
+	@override late final _Translations$authorities$sharing$ar sharing = _Translations$authorities$sharing$ar._(_root);
 }
 
 // Path: members
@@ -686,6 +718,201 @@ class _Translations$events$ar extends Translations$events$fr {
 	@override late final _Translations$events$register$ar register = _Translations$events$register$ar._(_root);
 	@override late final _Translations$events$reminder$ar reminder = _Translations$events$reminder$ar._(_root);
 	@override late final _Translations$events$admin$ar admin = _Translations$events$admin$ar._(_root);
+	@override String upcomingCount({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n,
+		zero: 'لا توجد فعاليات قادمة',
+		one: 'فعالية قادمة واحدة',
+		two: 'فعاليتان قادمتان',
+		few: '${n} فعاليات قادمة',
+		many: '${n} فعالية قادمة',
+		other: '${n} فعالية قادمة',
+	);
+	@override String slide({required Object current, required Object total}) => 'الفعالية ${current} من ${total}';
+}
+
+// Path: notifications
+class _Translations$notifications$ar extends Translations$notifications$fr {
+	_Translations$notifications$ar._(TranslationsAr root) : this._root = root, super.internal(root);
+
+	final TranslationsAr _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'الإشعارات';
+	@override String get channel => 'إعلانات الجماعة';
+	@override String get empty => 'لا توجد إشعارات بعد';
+	@override String get emptyHint => 'ستصل إعلانات الجماعة إلى هنا.';
+	@override String unreadLabel({required Object title}) => 'غير مقروء: ${title}';
+	@override String documents({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n,
+		zero: 'لا يوجد مستند PDF',
+		one: 'مستند PDF واحد',
+		two: 'مستندا PDF',
+		few: '${n} مستندات PDF',
+		many: '${n} مستندًا PDF',
+		other: '${n} مستند PDF',
+	);
+	@override String unread({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n,
+		zero: 'لا شيء غير مقروء',
+		one: 'إشعار واحد غير مقروء',
+		two: 'إشعاران غير مقروءين',
+		few: '${n} إشعارات غير مقروءة',
+		many: '${n} إشعارًا غير مقروء',
+		other: '${n} إشعار غير مقروء',
+	);
+	@override String image({required Object n}) => 'الصورة ${n}';
+	@override String get document => 'مستند PDF';
+	@override String documentSize({required Object kb}) => '${kb} ك.ب';
+	@override String received({required Object title}) => 'إشعار جديد: ${title}';
+}
+
+// Path: premium
+class _Translations$premium$ar extends Translations$premium$fr {
+	_Translations$premium$ar._(TranslationsAr root) : this._root = root, super.internal(root);
+
+	final TranslationsAr _root; // ignore: unused_field
+
+	// Translations
+	@override String get name => 'CMFI Connect Premium';
+	@override String get pill => 'Premium';
+	@override String get subtitle => 'تقدّم أكثر في مسيرتك مع الله، وادعم العمل.';
+	@override String get widgetTitle => 'أداة الشاشة الرئيسية';
+	@override String get widgetText => 'تقرير يومك وأهدافك، دون فتح التطبيق.';
+	@override String get statsTitle => 'أهدافك على مدار السنة';
+	@override String get statsText => 'حصيلة السنة وتطوّر أهدافك، أسبوعًا بعد أسبوع.';
+	@override String get supportTitle => 'أنت تدعم العمل';
+	@override String get supportText => 'اشتراكك يُبقي التطبيق حيًّا للجماعة كلها.';
+	@override String get annual => 'سنوي';
+	@override String get monthly => 'شهري';
+	@override String perYear({required Object price}) => '${price} / سنة';
+	@override String perMonth({required Object price}) => '${price} / شهر';
+	@override String annualPerMonth({required Object price}) => 'أي ${price} شهريًا';
+	@override String get best => 'الأوفر';
+	@override String trialDays({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n,
+		zero: 'تجربة مجانية',
+		one: 'يوم واحد تجربة مجانية',
+		two: 'يومان تجربة مجانية',
+		few: '${n} أيام تجربة مجانية',
+		many: '${n} يومًا تجربة مجانية',
+		other: '${n} يوم تجربة مجانية',
+	);
+	@override String trialMonths({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n,
+		zero: 'تجربة مجانية',
+		one: 'شهر واحد تجربة مجانية',
+		two: 'شهران تجربة مجانية',
+		few: '${n} أشهر تجربة مجانية',
+		many: '${n} شهرًا تجربة مجانية',
+		other: '${n} شهر تجربة مجانية',
+	);
+	@override String get subscribe => 'اشترك';
+	@override String get startTrial => 'ابدأ التجربة المجانية';
+	@override String get restore => 'استعادة المشتريات';
+	@override String get restored => 'عاد Premium إلى هذا الهاتف';
+	@override String get nothingToRestore => 'لا يوجد شراء Premium لهذا الحساب';
+	@override String get thanks => 'شكرًا! تم تفعيل Premium.';
+	@override String get failed => 'لم تكتمل عملية الشراء. أعد المحاولة بعد قليل.';
+	@override String get unavailable => 'العروض غير متاحة حاليًا.';
+	@override String renews({required Object store}) => 'يتجدد الاشتراك تلقائيًا. يمكنك إلغاؤه متى شئت من إعدادات حسابك في ${store}.';
+	@override String get terms => 'شروط الاستخدام';
+	@override String get privacy => 'الخصوصية';
+	@override String get activeTitle => 'لديك Premium';
+	@override String get activeText => 'شكرًا لدعمك CMFI Connect! الأداة وسنة حصيلتك مفتوحتان.';
+	@override String get staffText => 'Premium مقدَّم لك مجانًا لأنك من فريق CMFI Connect.';
+	@override String get moreSubtitle => 'الأداة، الأهداف على مدار السنة';
+	@override String get moreActive => 'مفعّل';
+	@override String get unlock => 'افتح مع Premium';
+	@override String trialThen({required Object trial, required Object price}) => '${trial}، ثم ${price}';
+	@override String savePercent({required Object percent}) => '−${percent}';
+	@override String get choose => 'اختر عرضك';
+	@override String get cancelAnytime => 'بلا التزام، يمكن الإلغاء في أي وقت';
+	@override String get restoreShort => 'استعادة';
+	@override String get termsShort => 'الشروط';
+	@override String get semiannual => 'نصف سنوي';
+	@override String perSemester({required Object price}) => '${price} / 6 أشهر';
+}
+
+// Path: homeWidget
+class _Translations$homeWidget$ar extends Translations$homeWidget$fr {
+	_Translations$homeWidget$ar._(TranslationsAr root) : this._root = root, super.internal(root);
+
+	final TranslationsAr _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'اليوم';
+	@override String get done => 'تم';
+	@override String get todo => 'للتعبئة';
+	@override String get open => 'عبّئ';
+	@override String get locked => 'فعّل الأداة مع Premium';
+	@override String get signedOut => 'سجّل الدخول في التطبيق';
+}
+
+// Path: ministry
+class _Translations$ministry$ar extends Translations$ministry$fr {
+	_Translations$ministry$ar._(TranslationsAr root) : this._root = root, super.internal(root);
+
+	final TranslationsAr _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'خدمتنا';
+	@override String get tagline => 'إلى أقصى الأرض';
+	@override String count({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n,
+		zero: 'لا توجد أمم',
+		one: 'أمة واحدة',
+		two: 'أمّتان',
+		few: '${n} أمم',
+		many: '${n} أمة',
+		other: '${n} أمة',
+	);
+	@override String get fromYaounde => 'من ياوندي، ينتقل الإنجيل من أمة إلى أمة.';
+	@override String get dragHint => 'أدر الكرة الأرضية بإصبعك، والمس أمة.';
+	@override String globeLabel({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n,
+		zero: 'الكرة الأرضية: لا توجد أمم بعد.',
+		one: 'الكرة الأرضية: أمة واحدة حيث العمل حاضر. القائمة أدناه تذكرها.',
+		two: 'الكرة الأرضية: أمّتان حيث العمل حاضر. القائمة أدناه تذكرهما.',
+		few: 'الكرة الأرضية: ${n} أمم حيث العمل حاضر. القائمة أدناه تذكرها كلها.',
+		many: 'الكرة الأرضية: ${n} أمة حيث العمل حاضر. القائمة أدناه تذكرها كلها.',
+		other: 'الكرة الأرضية: ${n} أمة حيث العمل حاضر. القائمة أدناه تذكرها كلها.',
+	);
+	@override String get voyage => 'رحلة';
+	@override String get pause => 'إيقاف مؤقت';
+	@override String get previous => 'الأمة السابقة';
+	@override String get next => 'الأمة التالية';
+	@override String number({required Object n}) => 'الأمة رقم ${n}';
+	@override String since({required Object year}) => 'منذ ${year}';
+	@override String get pray => 'صلِّ';
+	@override String prayTitle({required Object country}) => 'صلِّ من أجل ${country}';
+	@override String prayThanks({required Object country}) => 'اشكر الله على عمله في ${country}.';
+	@override String prayAssemblies({required Object country}) => 'صلِّ من أجل جماعات ${country} ومسؤوليها.';
+	@override String prayUnreached({required Object country}) => 'صلِّ لكي يلتقي بيسوع الذين لم يؤمنوا بعد في ${country}.';
+	@override String get purpose => 'هدفنا';
+	@override String get nations => 'الأمم';
+	@override String get search => 'ابحث عن أمة';
+	@override String get none => 'لا توجد أمة مطابقة';
+	@override String homeText({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n,
+		zero: 'لا توجد أمم بعد',
+		one: 'حاضرة في أمة واحدة',
+		two: 'حاضرة في أمّتين',
+		few: 'حاضرة في ${n} أمم',
+		many: 'حاضرة في ${n} أمة',
+		other: 'حاضرة في ${n} أمة',
+	);
+	@override String get nationsSubtitle => 'الكرة الأرضية والرحلة من أمة إلى أمة';
+	@override String get purposeSubtitle => 'أهدافنا الثلاثة';
+	@override String get missionaries => 'مرسلونا';
+	@override String get missionariesSubtitle => 'الذين يرسلهم الرب إلى الأمم';
+	@override String get heroes => 'أبطالنا';
+	@override String get heroesSubtitle => 'الذين يلهمنا إيمانهم';
+	@override String goalOf({required Object n, required Object total}) => 'هدفنا · ${n}/${total}';
+	@override String get previousGoal => 'الهدف السابق';
+	@override String get nextGoal => 'الهدف التالي';
+	@override Map<String, String> get media => {
+		'books': 'الكتب',
+		'tracts': 'النبذات',
+		'magazines': 'المجلات',
+		'cds': 'الأقراص المدمجة',
+		'dvds': 'أقراص الفيديو',
+		'radio': 'الإذاعة',
+		'tv': 'التلفزيون',
+		'internet': 'الإنترنت',
+	};
+	@override late final _Translations$ministry$goals$ar goals = _Translations$ministry$goals$ar._(_root);
 }
 
 // Path: prayer
@@ -716,6 +943,204 @@ class _Translations$prayer$ar extends Translations$prayer$fr {
 	@override late final _Translations$prayer$topics$ar topics = _Translations$prayer$topics$ar._(_root);
 	@override late final _Translations$prayer$lists$ar lists = _Translations$prayer$lists$ar._(_root);
 	@override late final _Translations$prayer$importunity$ar importunity = _Translations$prayer$importunity$ar._(_root);
+}
+
+// Path: sending
+class _Translations$sending$ar extends Translations$sending$fr {
+	_Translations$sending$ar._(TranslationsAr root) : this._root = root, super.internal(root);
+
+	final TranslationsAr _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'الإرسال إلى مرشديّ';
+	@override String get moreOff => 'متوقف';
+	@override String get intro => 'في الوقت الذي تختاره، يُعِدّ CMFI Connect تقريرك عن الفترة. ما عليك إلا إرساله إلى مرشديك الروحيين.';
+	@override String get enabled => 'جهّزه لي بانتظام';
+	@override String get rhythm => 'الوتيرة';
+	@override String get weekly => 'كل أسبوع';
+	@override String get biweekly => 'كل أسبوعين';
+	@override String get monthly => 'كل شهر';
+	@override String get day => 'اليوم';
+	@override String get monthlyDay => 'في أول كل شهر، عن الشهر الماضي';
+	@override String get time => 'الساعة';
+	@override String get recipients => 'المستلمون';
+	@override String get noAuthorities => 'أضف مرشديك الروحيين أولًا.';
+	@override String get addAuthorities => 'إضافة مرشديّ';
+	@override String get viaWhatsApp => 'عبر واتساب';
+	@override String get viaEmail => 'عبر البريد الإلكتروني';
+	@override String get viaBoth => 'عبر واتساب أو البريد';
+	@override String get viaShare => 'عبر المشاركة';
+	@override String next({required Object date}) => 'التالي: ${date}';
+	@override String get prepareNow => 'جهّزه الآن';
+	@override String get history => 'آخر الإرسالات';
+	@override String get notificationTitle => 'تقريرك جاهز';
+	@override String get notificationBody => 'أرسله إلى مرشديك بلمسة واحدة.';
+	@override String get channel => 'إرسال التقرير';
+	@override String get readyTitle => 'تقريرك جاهز';
+	@override String get preview => 'معاينة الرسالة';
+	@override String greeting({required Object name}) => 'مرحبًا ${name}،';
+	@override String get whatsApp => 'واتساب';
+	@override String get email => 'البريد';
+	@override String get sharePdf => 'مشاركة ملف PDF';
+	@override String get shareText => 'مشاركة النص';
+	@override String get sent => 'أُرسل';
+	@override String get shared => 'مشاركة';
+	@override String get noRecipients => 'اختر المستلمين في الإعدادات، أو شارك ملف PDF.';
+	@override String get settings => 'الإعدادات';
+	@override String get permissionDenied => 'اسمح بالإشعارات لتصلك في الوقت المناسب.';
+}
+
+// Path: streak
+class _Translations$streak$ar extends Translations$streak$fr {
+	_Translations$streak$ar._(TranslationsAr root) : this._root = root, super.internal(root);
+
+	final TranslationsAr _root; // ignore: unused_field
+
+	// Translations
+	@override String title({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n,
+		zero: '${n} يوم على التوالي!',
+		one: 'يوم واحد على التوالي!',
+		two: 'يومان على التوالي!',
+		few: '${n} أيام على التوالي!',
+		many: '${n} يومًا على التوالي!',
+		other: '${n} يوم على التوالي!',
+	);
+	@override String cardDays({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n,
+		zero: 'يوم مع الله',
+		one: 'يوم مع الله',
+		two: 'يومان مع الله',
+		few: 'أيام مع الله',
+		many: 'يومًا مع الله',
+		other: 'يوم مع الله',
+	);
+	@override late final _Translations$streak$lines$ar lines = _Translations$streak$lines$ar._(_root);
+	@override String get share => 'مشاركة';
+	@override String get close => 'متابعة';
+}
+
+// Path: shortcuts
+class _Translations$shortcuts$ar extends Translations$shortcuts$fr {
+	_Translations$shortcuts$ar._(TranslationsAr root) : this._root = root, super.internal(root);
+
+	final TranslationsAr _root; // ignore: unused_field
+
+	// Translations
+	@override String get today => 'املأ تقريري';
+	@override String get hymns => 'الترانيم';
+	@override String get retreat => 'خلوة الآن';
+}
+
+// Path: blocking
+class _Translations$blocking$ar extends Translations$blocking$fr {
+	_Translations$blocking$ar._(TranslationsAr root) : this._root = root, super.internal(root);
+
+	final TranslationsAr _root; // ignore: unused_field
+
+	// Translations
+	@override String get report => 'إبلاغ';
+	@override String block({required Object name}) => 'حظر ${name}';
+	@override String blockTitle({required Object name}) => 'حظر ${name}؟';
+	@override String blockText({required Object name}) => 'لن تصلك دعوات من ${name} بعد الآن. وتُزال هذه الدعوة.';
+	@override String get blockAction => 'حظر';
+	@override String blocked({required Object name}) => 'لن يتمكن ${name} من دعوتك بعد الآن.';
+	@override String get reportTitle => 'الإبلاغ عن هذه الدعوة';
+	@override String get reportText => 'أخبرنا بما لا يناسب: سينظر مسؤولو الجماعة في الأمر.';
+	@override late final _Translations$blocking$reasons$ar reasons = _Translations$blocking$reasons$ar._(_root);
+	@override String get comment => 'تعليق';
+	@override String get commentHint => 'ما ينبغي أن يعرفه المسؤولون';
+	@override String get send => 'إرسال البلاغ';
+	@override String get reported => 'شكرًا، سينظر المسؤولون في الأمر.';
+	@override String get listTitle => 'الأعضاء المحظورون';
+	@override String get intro => 'لم تعد دعواتهم إلى الصلاة تصلك.';
+	@override String get empty => 'لم تحظر أحدًا.';
+	@override String get unblock => 'إلغاء الحظر';
+	@override String unblocked({required Object name}) => 'يمكن لـ${name} أن يدعوك من جديد.';
+}
+
+// Path: verses
+class _Translations$verses$ar extends Translations$verses$fr {
+	_Translations$verses$ar._(TranslationsAr root) : this._root = root, super.internal(root);
+
+	final TranslationsAr _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'آية اليوم';
+	@override String get share => 'مشاركة الآية';
+	@override String get shareImage => 'مشاركة الصورة';
+	@override String get shareText => 'مشاركة النص';
+}
+
+// Path: profilePhoto
+class _Translations$profilePhoto$ar extends Translations$profilePhoto$fr {
+	_Translations$profilePhoto$ar._(TranslationsAr root) : this._root = root, super.internal(root);
+
+	final TranslationsAr _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'صورة الملف الشخصي';
+	@override String get add => 'إضافة صورة للملف الشخصي';
+	@override String get change => 'تغيير صورة الملف الشخصي';
+	@override String get seenBy => 'يراها الأعضاء الآخرون حيثما يظهر اسمك.';
+	@override String get camera => 'التقاط صورة';
+	@override String get gallery => 'الاختيار من المعرض';
+	@override String get remove => 'إزالة الصورة';
+	@override String get cropTitle => 'اقتصاص صورتك';
+	@override String get cropHint => 'حرّك الصورة وكبّرها بأصابعك.';
+	@override String get use => 'استخدام هذه الصورة';
+	@override String get unreadable => 'تعذّر فتح هذه الصورة. اختر صورة أخرى.';
+	@override String get saved => 'تم حفظ صورة ملفك الشخصي.';
+	@override String get removed => 'تمت إزالة صورة ملفك الشخصي.';
+}
+
+// Path: disciples
+class _Translations$disciples$ar extends Translations$disciples$fr {
+	_Translations$disciples$ar._(TranslationsAr root) : this._root = root, super.internal(root);
+
+	final TranslationsAr _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'تلاميذي';
+	@override String get intro => 'الأعضاء الذين اختاروك صانعَ تلاميذ لهم. ترى انتظامهم، ولا ترى أبدًا محتوى تقاريرهم.';
+	@override String get empty => 'لا تلاميذ بعد';
+	@override String get emptyText => 'عندما يختارك عضو صانعَ تلاميذ له وتقبل طلبه، يظهر هنا.';
+	@override String count({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n,
+		zero: 'لا تلاميذ',
+		one: 'تلميذ واحد',
+		two: 'تلميذان',
+		few: '${n} تلاميذ',
+		many: '${n} تلميذًا',
+		other: '${n} تلميذ',
+	);
+	@override String filled({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n,
+		zero: 'لا يوم مملوء من 30',
+		one: 'يوم واحد مملوء من 30',
+		two: 'يومان مملوءان من 30',
+		few: '${n} أيام مملوءة من 30',
+		many: '${n} يومًا مملوءًا من 30',
+		other: '${n} يوم مملوء من 30',
+	);
+	@override String streak({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n,
+		zero: 'لا أيام متتالية',
+		one: 'يوم واحد متتالٍ',
+		two: 'يومان متتاليان',
+		few: '${n} أيام متتالية',
+		many: '${n} يومًا متتاليًا',
+		other: '${n} يوم متتالٍ',
+	);
+	@override String get noStreak => 'لا سلسلة جارية';
+	@override String get lastToday => 'مملوء اليوم';
+	@override String get lastYesterday => 'آخر مرة: أمس';
+	@override String lastDaysAgo({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n,
+		zero: 'آخر مرة: اليوم',
+		one: 'آخر مرة: منذ يوم',
+		two: 'آخر مرة: منذ يومين',
+		few: 'آخر مرة: منذ ${n} أيام',
+		many: 'آخر مرة: منذ ${n} يومًا',
+		other: 'آخر مرة: منذ ${n} يوم',
+	);
+	@override String get noReport => 'لا تقرير هذا العام';
+	@override String goals({required Object percent}) => 'الأهداف: ${percent} %';
+	@override String get notShared => 'لا يشارك انتظامه';
 }
 
 // Path: onboarding.reports
@@ -829,7 +1254,7 @@ class _Translations$auth$church$ar extends Translations$auth$church$fr {
 	@override String get editTitle => 'ملفي الشخصي';
 	@override String get editSubtitle => 'حدّث اسمك وكنيستك وجماعتك.';
 	@override String get country => 'البلد';
-	@override String get countryHint => 'الكاميرون';
+	@override String get countryHint => 'اختر بلدك';
 	@override String get city => 'المدينة';
 	@override String get cityHint => 'Yaoundé';
 	@override String get church => 'الكنيسة';
@@ -840,6 +1265,37 @@ class _Translations$auth$church$ar extends Translations$auth$church$fr {
 	@override String get submit => 'إنهاء';
 	@override String get skip => 'تخطَّ هذه الخطوة';
 	@override String get saved => 'تم حفظ الملف الشخصي';
+}
+
+// Path: auth.forgot
+class _Translations$auth$forgot$ar extends Translations$auth$forgot$fr {
+	_Translations$auth$forgot$ar._(TranslationsAr root) : this._root = root, super.internal(root);
+
+	final TranslationsAr _root; // ignore: unused_field
+
+	// Translations
+	@override String get link => 'نسيت كلمة المرور؟';
+	@override String get title => 'نسيت كلمة المرور';
+	@override String get phoneText => 'أدخل رقمك: سنرسل لك رمزًا عبر رسالة قصيرة لاختيار كلمة مرور جديدة.';
+	@override String get sendCode => 'استلام الرمز';
+	@override String get codeTitle => 'أدخل الرمز';
+	@override String codeText({required Object phone}) => 'أرسلنا رمزًا من 6 أرقام إلى ${phone}.';
+	@override String get code => 'الرمز المستلم عبر الرسالة';
+	@override String get codeInvalid => 'يتكون الرمز من 6 أرقام';
+	@override String get verify => 'تحقق';
+	@override String get resend => 'إعادة إرسال الرمز';
+	@override String resendIn({required Object seconds}) => 'إعادة الإرسال بعد ${seconds} ث';
+	@override String get changeNumber => 'تغيير الرقم';
+	@override String get passwordTitle => 'كلمة مرور جديدة';
+	@override String get passwordText => 'اختر كلمة مرور جديدة لحسابك.';
+	@override String get submit => 'حفظ وتسجيل الدخول';
+	@override String get done => 'تم تغيير كلمة المرور. مرحبًا بعودتك!';
+	@override String get remembered => 'تذكّرتها؟';
+	@override String get invalidCode => 'هذا الرمز غير صحيح.';
+	@override String get expired => 'انتهت صلاحية الرمز. اطلب رمزًا جديدًا.';
+	@override String get tooManyRequests => 'محاولات كثيرة. حاول مجددًا بعد قليل.';
+	@override String get unavailable => 'إعادة التعيين غير متاحة حاليًا.';
+	@override String get noAccount => 'لا يوجد حساب بهذا الرقم.';
 }
 
 // Path: reports.tabs
@@ -958,6 +1414,43 @@ class _Translations$reports$summary$ar extends Translations$reports$summary$fr {
 		other: 'تحقّق الهدف في ${n} يوم من ${total}',
 	);
 	@override String get share => 'مشاركة هذا الملخص';
+	@override String get goals => 'الأهداف';
+	@override String get goalsAverage => 'متوسط تحقيق أهدافك';
+	@override String get goalsHint => 'كل يوم يُحتسب، حتى الفارغ. يُحتسب اليوم بعد تعبئته.';
+	@override String get evolution => 'تطوّر أهدافك';
+	@override String get evolutionHint => 'أسبوعًا بعد أسبوع، خلال آخر 12 أسبوعًا.';
+	@override String get premiumYear => 'السنة وتطوّر أهدافك متاحان مع Premium.';
+}
+
+// Path: reports.standardItems
+class _Translations$reports$standardItems$ar extends Translations$reports$standardItems$fr {
+	_Translations$reports$standardItems$ar._(TranslationsAr root) : this._root = root, super.internal(root);
+
+	final TranslationsAr _root; // ignore: unused_field
+
+	// Translations
+	@override String get lb => 'قراءة الكتاب المقدس';
+	@override String get ps => 'الصلاة الفردية';
+	@override String get rdqad => 'التأمل';
+	@override String get pg => 'الصلاة الجماعية';
+	@override String get llc => 'قراءة الأدب المسيحي';
+	@override String get jc => 'الصوم الكامل';
+	@override String get jp => 'الصوم الجزئي';
+	@override String get dimes => 'العشور';
+	@override String get off => 'التقدمات';
+}
+
+// Path: reports.units
+class _Translations$reports$units$ar extends Translations$reports$units$fr {
+	_Translations$reports$units$ar._(TranslationsAr root) : this._root = root, super.internal(root);
+
+	final TranslationsAr _root; // ignore: unused_field
+
+	// Translations
+	@override late final _Translations$reports$units$chapters$ar chapters = _Translations$reports$units$chapters$ar._(_root);
+	@override late final _Translations$reports$units$times$ar times = _Translations$reports$units$times$ar._(_root);
+	@override late final _Translations$reports$units$pages$ar pages = _Translations$reports$units$pages$ar._(_root);
+	@override late final _Translations$reports$units$percent$ar percent = _Translations$reports$units$percent$ar._(_root);
 }
 
 // Path: export.doc
@@ -1039,6 +1532,20 @@ class _Translations$authorities$form$ar extends Translations$authorities$form$fr
 	@override String get alreadyAdded => 'هذا الشخص ضمن مرشديك بالفعل.';
 	@override String get makerExists => 'لديك صانع تلاميذ بالفعل.';
 	@override String get yourself => 'هذا اسم المستخدم الخاص بك.';
+	@override String get sharingHelp => 'سيرى صانع تلاميذك انتظامك (الأيام المملوءة، السلسلة، نسبة الأهداف)، ولن يرى أبدًا محتوى تقاريرك. يمكنك إيقاف ذلك من بطاقته.';
+}
+
+// Path: authorities.sharing
+class _Translations$authorities$sharing$ar extends Translations$authorities$sharing$fr {
+	_Translations$authorities$sharing$ar._(TranslationsAr root) : this._root = root, super.internal(root);
+
+	final TranslationsAr _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'مشاركة انتظامي';
+	@override String help({required Object name}) => 'يرى ${name} الأيام التي ملأتها وسلسلتك ونسبة أهدافك، ولا يرى أبدًا محتوى تقاريرك.';
+	@override String on({required Object name}) => 'انتظامك مُشارَك مع ${name}.';
+	@override String off({required Object name}) => 'لم يعد ${name} يرى انتظامك.';
 }
 
 // Path: members.deleteAccount
@@ -1051,7 +1558,7 @@ class _Translations$members$deleteAccount$ar extends Translations$members$delete
 	@override String get button => 'حذف حسابي';
 	@override String get title => 'حذف حسابي';
 	@override String get intro => 'هذا نهائي. سيتم مسح حسابك وكل ما يرتبط به:';
-	@override String get itemProfile => 'ملفك الشخصي واسم المستخدم وكلمة المرور';
+	@override String get itemProfile => 'ملفك الشخصي وصورتك واسم المستخدم وكلمة المرور';
 	@override String get itemReports => 'جميع تقاريرك وعناصرك وأهدافك';
 	@override String get itemAuthorities => 'مرشدوك الروحيون والطلبات التي تلقيتها';
 	@override String get itemEvents => 'تسجيلاتك في الفعاليات';
@@ -1314,6 +1821,18 @@ class _Translations$events$admin$ar extends Translations$events$admin$fr {
 	@override String get photoDelete => 'حذف هذه الصورة';
 	@override String get photoDeleted => 'تم حذف الصورة.';
 	@override String get confirmDelete => 'حذف';
+}
+
+// Path: ministry.goals
+class _Translations$ministry$goals$ar extends Translations$ministry$goals$fr {
+	_Translations$ministry$goals$ar._(TranslationsAr root) : this._root = root, super.internal(root);
+
+	final TranslationsAr _root; // ignore: unused_field
+
+	// Translations
+	@override late final _Translations$ministry$goals$crusade$ar crusade = _Translations$ministry$goals$crusade$ar._(_root);
+	@override late final _Translations$ministry$goals$disciples$ar disciples = _Translations$ministry$goals$disciples$ar._(_root);
+	@override late final _Translations$ministry$goals$revival$ar revival = _Translations$ministry$goals$revival$ar._(_root);
 }
 
 // Path: prayer.hero
@@ -1635,6 +2154,145 @@ class _Translations$prayer$importunity$ar extends Translations$prayer$importunit
 	@override late final _Translations$prayer$importunity$inviteSheet$ar inviteSheet = _Translations$prayer$importunity$inviteSheet$ar._(_root);
 }
 
+// Path: streak.lines
+class _Translations$streak$lines$ar extends Translations$streak$lines$fr {
+	_Translations$streak$lines$ar._(TranslationsAr root) : this._root = root, super.internal(root);
+
+	final TranslationsAr _root; // ignore: unused_field
+
+	// Translations
+	@override String get week => 'أسبوع كامل مع الرب، يومًا بعد يوم. أحسنت، تابع!';
+	@override String get month => 'شهر من الأمانة! ما تزرعه كل يوم يأتي بثمر.';
+	@override String get hundred => 'مئة يوم مع الله! مثابرتك شهادة جميلة.';
+	@override String get year => 'سنة كاملة مع الله! المجد له على أمانتك.';
+}
+
+// Path: blocking.reasons
+class _Translations$blocking$reasons$ar extends Translations$blocking$reasons$fr {
+	_Translations$blocking$reasons$ar._(TranslationsAr root) : this._root = root, super.internal(root);
+
+	final TranslationsAr _root; // ignore: unused_field
+
+	// Translations
+	@override String get spam => 'غير مرغوب فيه';
+	@override String get offensive => 'محتوى صادم أو مسيء';
+	@override String get other => 'سبب آخر';
+}
+
+// Path: reports.units.chapters
+class _Translations$reports$units$chapters$ar extends Translations$reports$units$chapters$fr {
+	_Translations$reports$units$chapters$ar._(TranslationsAr root) : this._root = root, super.internal(root);
+
+	final TranslationsAr _root; // ignore: unused_field
+
+	// Translations
+	@override String get name => 'عدد الفصول';
+	@override String get label => 'عدد الفصول';
+	@override String get symbol => 'فصول';
+	@override String count({required num n, required Object value}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n,
+		zero: '${value} فصل',
+		one: 'فصل واحد',
+		two: 'فصلان',
+		few: '${value} فصول',
+		many: '${value} فصلًا',
+		other: '${value} فصل',
+	);
+}
+
+// Path: reports.units.times
+class _Translations$reports$units$times$ar extends Translations$reports$units$times$fr {
+	_Translations$reports$units$times$ar._(TranslationsAr root) : this._root = root, super.internal(root);
+
+	final TranslationsAr _root; // ignore: unused_field
+
+	// Translations
+	@override String get name => 'عدد المرات';
+	@override String get label => 'عدد المرات';
+	@override String get symbol => 'مرات';
+	@override String count({required num n, required Object value}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n,
+		zero: '${value} مرة',
+		one: 'مرة واحدة',
+		two: 'مرتان',
+		few: '${value} مرات',
+		many: '${value} مرة',
+		other: '${value} مرة',
+	);
+}
+
+// Path: reports.units.pages
+class _Translations$reports$units$pages$ar extends Translations$reports$units$pages$fr {
+	_Translations$reports$units$pages$ar._(TranslationsAr root) : this._root = root, super.internal(root);
+
+	final TranslationsAr _root; // ignore: unused_field
+
+	// Translations
+	@override String get name => 'عدد الصفحات';
+	@override String get label => 'عدد الصفحات';
+	@override String get symbol => 'صفحات';
+	@override String count({required num n, required Object value}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n,
+		zero: '${value} صفحة',
+		one: 'صفحة واحدة',
+		two: 'صفحتان',
+		few: '${value} صفحات',
+		many: '${value} صفحةً',
+		other: '${value} صفحة',
+	);
+}
+
+// Path: reports.units.percent
+class _Translations$reports$units$percent$ar extends Translations$reports$units$percent$fr {
+	_Translations$reports$units$percent$ar._(TranslationsAr root) : this._root = root, super.internal(root);
+
+	final TranslationsAr _root; // ignore: unused_field
+
+	// Translations
+	@override String get name => 'النسبة المئوية';
+	@override String get label => 'النسبة المئوية';
+	@override String get symbol => '%';
+	@override String count({required Object value}) => '${value}%';
+}
+
+// Path: ministry.goals.crusade
+class _Translations$ministry$goals$crusade$ar extends Translations$ministry$goals$crusade$fr {
+	_Translations$ministry$goals$crusade$ar._(TranslationsAr root) : this._root = root, super.internal(root);
+
+	final TranslationsAr _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'حملة الإنجيل لكل خليقة';
+	@override String get text => 'أن نكرز بالإنجيل لكل من سيعيش في جيلنا، حتى يصل الإنجيل المكروز به بقوة الروح القدس إلى 10 مليارات شخص، مستخدمين كل وسائل الاتصال (كتبنا ونبذاتنا ومجلاتنا وأقراصنا المدمجة وأقراص الفيديو والإذاعة والتلفزيون والإنترنت) بأقصى سرعة ممكنة.';
+	@override String get reached => 'شخص يصلهم الإنجيل';
+}
+
+// Path: ministry.goals.disciples
+class _Translations$ministry$goals$disciples$ar extends Translations$ministry$goals$disciples$fr {
+	_Translations$ministry$goals$disciples$ar._(TranslationsAr root) : this._root = root, super.internal(root);
+
+	final TranslationsAr _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'تلمذة التلاميذ';
+	@override String get text => 'أن نقود مليار شخص في 250 أمة إلى معرفة يسوع المسيح ربًا ومخلّصًا، وأن يصيروا تلاميذ يطيعونه في كل شيء، ومنظَّمين للاجتماع في 25 مليون كنيسة بيتية بحلول عام 2065.';
+	@override String get people => 'تلميذ';
+	@override String get nations => 'أمة';
+	@override String get churches => 'كنيسة بيتية';
+	@override String by({required Object year}) => 'بحلول ${year}';
+}
+
+// Path: ministry.goals.revival
+class _Translations$ministry$goals$revival$ar extends Translations$ministry$goals$revival$fr {
+	_Translations$ministry$goals$revival$ar._(TranslationsAr root) : this._root = root, super.internal(root);
+
+	final TranslationsAr _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'التعجيل بالنهضة العالمية';
+	@override String get text => 'أن نعمل مع الله بالصوم والتشفع من أجل النهضة العالمية التي ستشق السماوات وتزلزل الأرض وتمجد المسيح في جيلنا، لنعجّل بالعودة الوشيكة لربنا يسوع المسيح من السماء للقاء عروسه المُهيَّأة.';
+	@override String get fasting => 'الصوم';
+	@override String get intercession => 'التشفع';
+	@override String get pray => 'صلِّ الآن';
+}
+
 // Path: prayer.retreat.hints
 class _Translations$prayer$retreat$hints$ar extends Translations$prayer$retreat$hints$fr {
 	_Translations$prayer$retreat$hints$ar._(TranslationsAr root) : this._root = root, super.internal(root);
@@ -1775,6 +2433,7 @@ extension on TranslationsAr {
 			'errors.usernameNotFound' => 'لا أحد يحمل اسم المستخدم هذا. تحقّق من كتابته.',
 			'errors.ownerCannotLeave' => 'أنت من أنشأ هذا الطلب: احذفه بدلًا من الانسحاب منه.',
 			'errors.tooManyPeople' => 'قوائمك ممتلئة (500 شخص كحدّ أقصى).',
+			'errors.avatarInvalid' => 'لا يمكن استخدام هذه الصورة. اختر صورة أخرى.',
 			'validation.required' => 'هذا الحقل مطلوب',
 			'validation.passwordTooShort' => '6 أحرف على الأقل',
 			'validation.invalidPhone' => 'رقم هاتف غير صالح',
@@ -1817,7 +2476,6 @@ extension on TranslationsAr {
 			'welcome.createAccount' => 'إنشاء حسابي',
 			'welcome.haveAccount' => 'لديّ حساب بالفعل',
 			'auth.phone' => 'الهاتف',
-			'auth.phoneHint' => '6 90 00 00 01',
 			'auth.dialCode' => ({required Object code}) => 'رمز الدولة: ${code}',
 			'auth.password' => 'كلمة المرور',
 			'auth.showPassword' => 'إظهار كلمة المرور',
@@ -1844,7 +2502,7 @@ extension on TranslationsAr {
 			'auth.church.editTitle' => 'ملفي الشخصي',
 			'auth.church.editSubtitle' => 'حدّث اسمك وكنيستك وجماعتك.',
 			'auth.church.country' => 'البلد',
-			'auth.church.countryHint' => 'الكاميرون',
+			'auth.church.countryHint' => 'اختر بلدك',
 			'auth.church.city' => 'المدينة',
 			'auth.church.cityHint' => 'Yaoundé',
 			'auth.church.church' => 'الكنيسة',
@@ -1855,6 +2513,33 @@ extension on TranslationsAr {
 			'auth.church.submit' => 'إنهاء',
 			'auth.church.skip' => 'تخطَّ هذه الخطوة',
 			'auth.church.saved' => 'تم حفظ الملف الشخصي',
+			'auth.forgot.link' => 'نسيت كلمة المرور؟',
+			'auth.forgot.title' => 'نسيت كلمة المرور',
+			'auth.forgot.phoneText' => 'أدخل رقمك: سنرسل لك رمزًا عبر رسالة قصيرة لاختيار كلمة مرور جديدة.',
+			'auth.forgot.sendCode' => 'استلام الرمز',
+			'auth.forgot.codeTitle' => 'أدخل الرمز',
+			'auth.forgot.codeText' => ({required Object phone}) => 'أرسلنا رمزًا من 6 أرقام إلى ${phone}.',
+			'auth.forgot.code' => 'الرمز المستلم عبر الرسالة',
+			'auth.forgot.codeInvalid' => 'يتكون الرمز من 6 أرقام',
+			'auth.forgot.verify' => 'تحقق',
+			'auth.forgot.resend' => 'إعادة إرسال الرمز',
+			'auth.forgot.resendIn' => ({required Object seconds}) => 'إعادة الإرسال بعد ${seconds} ث',
+			'auth.forgot.changeNumber' => 'تغيير الرقم',
+			'auth.forgot.passwordTitle' => 'كلمة مرور جديدة',
+			'auth.forgot.passwordText' => 'اختر كلمة مرور جديدة لحسابك.',
+			'auth.forgot.submit' => 'حفظ وتسجيل الدخول',
+			'auth.forgot.done' => 'تم تغيير كلمة المرور. مرحبًا بعودتك!',
+			'auth.forgot.remembered' => 'تذكّرتها؟',
+			'auth.forgot.invalidCode' => 'هذا الرمز غير صحيح.',
+			'auth.forgot.expired' => 'انتهت صلاحية الرمز. اطلب رمزًا جديدًا.',
+			'auth.forgot.tooManyRequests' => 'محاولات كثيرة. حاول مجددًا بعد قليل.',
+			'auth.forgot.unavailable' => 'إعادة التعيين غير متاحة حاليًا.',
+			'auth.forgot.noAccount' => 'لا يوجد حساب بهذا الرقم.',
+			'countries.dialCodeTitle' => 'رمز الدولة',
+			'countries.title' => 'بلدك',
+			'countries.search' => 'ابحث عن دولة أو رمز',
+			'countries.none' => 'لا توجد دولة مطابقة',
+			'countries.change' => 'تغيير الدولة',
 			'nav.home' => 'الرئيسية',
 			'nav.reports' => 'التقرير',
 			'nav.hymns' => 'الترانيم',
@@ -1866,13 +2551,12 @@ extension on TranslationsAr {
 			'home.todayTitle' => 'تقرير اليوم',
 			'home.progress' => ({required Object filled, required Object total}) => '${filled} من ${total}',
 			'home.progressLabel' => 'عناصر معبّأة',
+			'home.goals' => 'الأهداف',
 			'home.continueReport' => 'متابعة',
 			'home.startReport' => 'ابدأ',
 			'home.weekTitle' => 'أسبوعك',
 			'home.weekScore' => ({required num filled, required Object total}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(filled, zero: '${filled} يوم من ${total}', one: 'يوم واحد من ${total}', two: 'يومان من ${total}', few: '${filled} أيام من ${total}', many: '${filled} يومًا من ${total}', other: '${filled} يوم من ${total}', ), 
-			'home.community' => 'في مجتمعك',
-			'home.prayerTitle' => 'طلبات الصلاة',
-			'home.prayerText' => 'قريبًا، ستتمكّن من حمل طلبات صلاة جماعتك كل يوم.',
+			'home.community' => 'حاليًا في CMFI',
 			'home.eventsTitle' => 'الفعاليات',
 			'home.hymnsTitle' => 'الترانيم',
 			'home.hymnsResume' => ({required Object number}) => 'العودة إلى رقم ${number}',
@@ -1940,6 +2624,12 @@ extension on TranslationsAr {
 			'reports.summary.empty' => 'لا توجد تقارير في هذه الفترة.',
 			'reports.summary.goalDays' => ({required num n, required Object total}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n, zero: 'تحقّق الهدف في ${n} يوم من ${total}', one: 'تحقّق الهدف في يوم واحد من ${total}', two: 'تحقّق الهدف في يومين من ${total}', few: 'تحقّق الهدف في ${n} أيام من ${total}', many: 'تحقّق الهدف في ${n} يومًا من ${total}', other: 'تحقّق الهدف في ${n} يوم من ${total}', ), 
 			'reports.summary.share' => 'مشاركة هذا الملخص',
+			'reports.summary.goals' => 'الأهداف',
+			'reports.summary.goalsAverage' => 'متوسط تحقيق أهدافك',
+			'reports.summary.goalsHint' => 'كل يوم يُحتسب، حتى الفارغ. يُحتسب اليوم بعد تعبئته.',
+			'reports.summary.evolution' => 'تطوّر أهدافك',
+			'reports.summary.evolutionHint' => 'أسبوعًا بعد أسبوع، خلال آخر 12 أسبوعًا.',
+			'reports.summary.premiumYear' => 'السنة وتطوّر أهدافك متاحان مع Premium.',
 			'reports.noItems' => 'لا توجد عناصر لتعبئتها حاليًا.',
 			'reports.statusPending' => 'لم يُرسَل بعد',
 			'reports.savedOffline' => 'لا توجد شبكة: اليوم محفوظ على هاتفك وسيُرسَل في أقرب وقت ممكن.',
@@ -1947,6 +2637,33 @@ extension on TranslationsAr {
 			'reports.export' => 'تصدير تقريري',
 			'reports.goal' => ({required Object value}) => 'الهدف: ${value}',
 			'reports.goalReached' => 'تحقّق الهدف',
+			'reports.dayGoals' => 'أهداف اليوم',
+			'reports.goalsReached' => ({required Object reached, required Object total}) => 'المحقَّقة: ${reached} من ${total}',
+			'reports.standardItems.lb' => 'قراءة الكتاب المقدس',
+			'reports.standardItems.ps' => 'الصلاة الفردية',
+			'reports.standardItems.rdqad' => 'التأمل',
+			'reports.standardItems.pg' => 'الصلاة الجماعية',
+			'reports.standardItems.llc' => 'قراءة الأدب المسيحي',
+			'reports.standardItems.jc' => 'الصوم الكامل',
+			'reports.standardItems.jp' => 'الصوم الجزئي',
+			'reports.standardItems.dimes' => 'العشور',
+			'reports.standardItems.off' => 'التقدمات',
+			'reports.units.chapters.name' => 'عدد الفصول',
+			'reports.units.chapters.label' => 'عدد الفصول',
+			'reports.units.chapters.symbol' => 'فصول',
+			'reports.units.chapters.count' => ({required num n, required Object value}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n, zero: '${value} فصل', one: 'فصل واحد', two: 'فصلان', few: '${value} فصول', many: '${value} فصلًا', other: '${value} فصل', ), 
+			'reports.units.times.name' => 'عدد المرات',
+			'reports.units.times.label' => 'عدد المرات',
+			'reports.units.times.symbol' => 'مرات',
+			'reports.units.times.count' => ({required num n, required Object value}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n, zero: '${value} مرة', one: 'مرة واحدة', two: 'مرتان', few: '${value} مرات', many: '${value} مرة', other: '${value} مرة', ), 
+			'reports.units.pages.name' => 'عدد الصفحات',
+			'reports.units.pages.label' => 'عدد الصفحات',
+			'reports.units.pages.symbol' => 'صفحات',
+			'reports.units.pages.count' => ({required num n, required Object value}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n, zero: '${value} صفحة', one: 'صفحة واحدة', two: 'صفحتان', few: '${value} صفحات', many: '${value} صفحةً', other: '${value} صفحة', ), 
+			'reports.units.percent.name' => 'النسبة المئوية',
+			'reports.units.percent.label' => 'النسبة المئوية',
+			'reports.units.percent.symbol' => '%',
+			'reports.units.percent.count' => ({required Object value}) => '${value}%',
 			'reminder.title' => 'تقريرك لهذا اليوم',
 			'reminder.body' => 'خصّص دقيقة لتسجّل قراءتك وصلاتك… قبل نهاية اليوم.',
 			'reminder.channel' => 'تذكير التقرير',
@@ -2051,7 +2768,6 @@ extension on TranslationsAr {
 			'more.editProfile' => 'تعديل ملفي الشخصي',
 			'more.community' => 'المجتمع',
 			'more.events' => 'الفعاليات',
-			'more.announcements' => 'الإعلانات',
 			'more.reports' => 'التقرير',
 			'more.myItems' => 'عناصري',
 			'more.app' => 'التطبيق',
@@ -2062,6 +2778,7 @@ extension on TranslationsAr {
 			'more.themeLight' => 'فاتح',
 			'more.themeDark' => 'داكن',
 			'more.logout' => 'تسجيل الخروج',
+			'more.account' => 'الحساب',
 			'more.languageTitle' => 'لغة التطبيق',
 			'more.completeProfile' => 'أضف اسمك',
 			'more.accompaniment' => 'المرافقة الروحية',
@@ -2072,6 +2789,7 @@ extension on TranslationsAr {
 			'more.admin' => 'الإدارة',
 			'more.staff' => 'الفريق والأدوار',
 			'more.manageEvents' => 'الفعاليات',
+			'more.disciples' => 'تلاميذي',
 			'authorities.title' => 'مرشديّ الروحيون',
 			'authorities.intro' => 'الأشخاص الذين يرافقونك في مسيرتك مع الله: صانع التلاميذ الخاص بك وسائر مرشديك.',
 			'authorities.discipleMaker' => 'صانع التلاميذ',
@@ -2107,6 +2825,7 @@ extension on TranslationsAr {
 			'authorities.form.alreadyAdded' => 'هذا الشخص ضمن مرشديك بالفعل.',
 			'authorities.form.makerExists' => 'لديك صانع تلاميذ بالفعل.',
 			'authorities.form.yourself' => 'هذا اسم المستخدم الخاص بك.',
+			'authorities.form.sharingHelp' => 'سيرى صانع تلاميذك انتظامك (الأيام المملوءة، السلسلة، نسبة الأهداف)، ولن يرى أبدًا محتوى تقاريرك. يمكنك إيقاف ذلك من بطاقته.',
 			'authorities.statusPending' => 'قيد الانتظار',
 			'authorities.statusDeclined' => 'مرفوض',
 			'authorities.pendingHelp' => ({required Object name}) => 'ستظهر بيانات الاتصال بعد أن يقبل ${name}.',
@@ -2118,6 +2837,10 @@ extension on TranslationsAr {
 			'authorities.acceptedRequest' => ({required Object name}) => 'أنت ترافق ${name} الآن.',
 			'authorities.declinedRequest' => ({required Object name}) => 'تم رفض طلب ${name}.',
 			'authorities.requestsCount' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n, zero: '${n} طلب بانتظارك', one: 'طلب واحد بانتظارك', two: 'طلبان بانتظارك', few: '${n} طلبات بانتظارك', many: '${n} طلبًا بانتظارك', other: '${n} طلب بانتظارك', ), 
+			'authorities.sharing.title' => 'مشاركة انتظامي',
+			'authorities.sharing.help' => ({required Object name}) => 'يرى ${name} الأيام التي ملأتها وسلسلتك ونسبة أهدافك، ولا يرى أبدًا محتوى تقاريرك.',
+			'authorities.sharing.on' => ({required Object name}) => 'انتظامك مُشارَك مع ${name}.',
+			'authorities.sharing.off' => ({required Object name}) => 'لم يعد ${name} يرى انتظامك.',
 			'members.username' => 'اسم المستخدم',
 			'members.usernameHint' => 'firstname.lastname',
 			'members.usernameHelp' => 'بهذا الاسم سيجدك الأعضاء الآخرون.',
@@ -2131,7 +2854,7 @@ extension on TranslationsAr {
 			'members.deleteAccount.button' => 'حذف حسابي',
 			'members.deleteAccount.title' => 'حذف حسابي',
 			'members.deleteAccount.intro' => 'هذا نهائي. سيتم مسح حسابك وكل ما يرتبط به:',
-			'members.deleteAccount.itemProfile' => 'ملفك الشخصي واسم المستخدم وكلمة المرور',
+			'members.deleteAccount.itemProfile' => 'ملفك الشخصي وصورتك واسم المستخدم وكلمة المرور',
 			'members.deleteAccount.itemReports' => 'جميع تقاريرك وعناصرك وأهدافك',
 			'members.deleteAccount.itemAuthorities' => 'مرشدوك الروحيون والطلبات التي تلقيتها',
 			'members.deleteAccount.itemEvents' => 'تسجيلاتك في الفعاليات',
@@ -2193,6 +2916,8 @@ extension on TranslationsAr {
 			'hymns.reader.favoriteAdded' => 'تمت الإضافة إلى المفضلة',
 			'hymns.reader.favoriteRemoved' => 'تمت الإزالة من المفضلة',
 			'hymns.reader.more' => 'خيارات أخرى',
+			_ => null,
+		} ?? switch (path) {
 			'hymns.reader.copy' => 'نسخ الكلمات',
 			'hymns.reader.copied' => 'تم نسخ الكلمات',
 			'hymns.reader.project' => 'وضع العرض',
@@ -2258,8 +2983,6 @@ extension on TranslationsAr {
 			'events.contact' => 'للتواصل',
 			'events.call' => ({required Object name}) => 'اتصل بـ${name}',
 			'events.otherEditions' => 'الدورات الأخرى',
-			_ => null,
-		} ?? switch (path) {
 			'events.cancelledBanner' => 'تم إلغاء هذه الفعالية.',
 			'events.calendarFailed' => 'تعذّر فتح تقويم الهاتف.',
 			'events.linkFailed' => 'تعذّر فتح هذا الرابط.',
@@ -2395,6 +3118,120 @@ extension on TranslationsAr {
 			'events.admin.photoDelete' => 'حذف هذه الصورة',
 			'events.admin.photoDeleted' => 'تم حذف الصورة.',
 			'events.admin.confirmDelete' => 'حذف',
+			'events.upcomingCount' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n, zero: 'لا توجد فعاليات قادمة', one: 'فعالية قادمة واحدة', two: 'فعاليتان قادمتان', few: '${n} فعاليات قادمة', many: '${n} فعالية قادمة', other: '${n} فعالية قادمة', ), 
+			'events.slide' => ({required Object current, required Object total}) => 'الفعالية ${current} من ${total}',
+			'notifications.title' => 'الإشعارات',
+			'notifications.channel' => 'إعلانات الجماعة',
+			'notifications.empty' => 'لا توجد إشعارات بعد',
+			'notifications.emptyHint' => 'ستصل إعلانات الجماعة إلى هنا.',
+			'notifications.unreadLabel' => ({required Object title}) => 'غير مقروء: ${title}',
+			'notifications.documents' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n, zero: 'لا يوجد مستند PDF', one: 'مستند PDF واحد', two: 'مستندا PDF', few: '${n} مستندات PDF', many: '${n} مستندًا PDF', other: '${n} مستند PDF', ), 
+			'notifications.unread' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n, zero: 'لا شيء غير مقروء', one: 'إشعار واحد غير مقروء', two: 'إشعاران غير مقروءين', few: '${n} إشعارات غير مقروءة', many: '${n} إشعارًا غير مقروء', other: '${n} إشعار غير مقروء', ), 
+			'notifications.image' => ({required Object n}) => 'الصورة ${n}',
+			'notifications.document' => 'مستند PDF',
+			'notifications.documentSize' => ({required Object kb}) => '${kb} ك.ب',
+			'notifications.received' => ({required Object title}) => 'إشعار جديد: ${title}',
+			'premium.name' => 'CMFI Connect Premium',
+			'premium.pill' => 'Premium',
+			'premium.subtitle' => 'تقدّم أكثر في مسيرتك مع الله، وادعم العمل.',
+			'premium.widgetTitle' => 'أداة الشاشة الرئيسية',
+			'premium.widgetText' => 'تقرير يومك وأهدافك، دون فتح التطبيق.',
+			'premium.statsTitle' => 'أهدافك على مدار السنة',
+			'premium.statsText' => 'حصيلة السنة وتطوّر أهدافك، أسبوعًا بعد أسبوع.',
+			'premium.supportTitle' => 'أنت تدعم العمل',
+			'premium.supportText' => 'اشتراكك يُبقي التطبيق حيًّا للجماعة كلها.',
+			'premium.annual' => 'سنوي',
+			'premium.monthly' => 'شهري',
+			'premium.perYear' => ({required Object price}) => '${price} / سنة',
+			'premium.perMonth' => ({required Object price}) => '${price} / شهر',
+			'premium.annualPerMonth' => ({required Object price}) => 'أي ${price} شهريًا',
+			'premium.best' => 'الأوفر',
+			'premium.trialDays' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n, zero: 'تجربة مجانية', one: 'يوم واحد تجربة مجانية', two: 'يومان تجربة مجانية', few: '${n} أيام تجربة مجانية', many: '${n} يومًا تجربة مجانية', other: '${n} يوم تجربة مجانية', ), 
+			'premium.trialMonths' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n, zero: 'تجربة مجانية', one: 'شهر واحد تجربة مجانية', two: 'شهران تجربة مجانية', few: '${n} أشهر تجربة مجانية', many: '${n} شهرًا تجربة مجانية', other: '${n} شهر تجربة مجانية', ), 
+			'premium.subscribe' => 'اشترك',
+			'premium.startTrial' => 'ابدأ التجربة المجانية',
+			'premium.restore' => 'استعادة المشتريات',
+			'premium.restored' => 'عاد Premium إلى هذا الهاتف',
+			'premium.nothingToRestore' => 'لا يوجد شراء Premium لهذا الحساب',
+			'premium.thanks' => 'شكرًا! تم تفعيل Premium.',
+			'premium.failed' => 'لم تكتمل عملية الشراء. أعد المحاولة بعد قليل.',
+			'premium.unavailable' => 'العروض غير متاحة حاليًا.',
+			'premium.renews' => ({required Object store}) => 'يتجدد الاشتراك تلقائيًا. يمكنك إلغاؤه متى شئت من إعدادات حسابك في ${store}.',
+			'premium.terms' => 'شروط الاستخدام',
+			'premium.privacy' => 'الخصوصية',
+			'premium.activeTitle' => 'لديك Premium',
+			'premium.activeText' => 'شكرًا لدعمك CMFI Connect! الأداة وسنة حصيلتك مفتوحتان.',
+			'premium.staffText' => 'Premium مقدَّم لك مجانًا لأنك من فريق CMFI Connect.',
+			'premium.moreSubtitle' => 'الأداة، الأهداف على مدار السنة',
+			'premium.moreActive' => 'مفعّل',
+			'premium.unlock' => 'افتح مع Premium',
+			'premium.trialThen' => ({required Object trial, required Object price}) => '${trial}، ثم ${price}',
+			'premium.savePercent' => ({required Object percent}) => '−${percent}',
+			'premium.choose' => 'اختر عرضك',
+			'premium.cancelAnytime' => 'بلا التزام، يمكن الإلغاء في أي وقت',
+			'premium.restoreShort' => 'استعادة',
+			'premium.termsShort' => 'الشروط',
+			'premium.semiannual' => 'نصف سنوي',
+			'premium.perSemester' => ({required Object price}) => '${price} / 6 أشهر',
+			'homeWidget.title' => 'اليوم',
+			'homeWidget.done' => 'تم',
+			'homeWidget.todo' => 'للتعبئة',
+			'homeWidget.open' => 'عبّئ',
+			'homeWidget.locked' => 'فعّل الأداة مع Premium',
+			'homeWidget.signedOut' => 'سجّل الدخول في التطبيق',
+			'ministry.title' => 'خدمتنا',
+			'ministry.tagline' => 'إلى أقصى الأرض',
+			'ministry.count' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n, zero: 'لا توجد أمم', one: 'أمة واحدة', two: 'أمّتان', few: '${n} أمم', many: '${n} أمة', other: '${n} أمة', ), 
+			'ministry.fromYaounde' => 'من ياوندي، ينتقل الإنجيل من أمة إلى أمة.',
+			'ministry.dragHint' => 'أدر الكرة الأرضية بإصبعك، والمس أمة.',
+			'ministry.globeLabel' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n, zero: 'الكرة الأرضية: لا توجد أمم بعد.', one: 'الكرة الأرضية: أمة واحدة حيث العمل حاضر. القائمة أدناه تذكرها.', two: 'الكرة الأرضية: أمّتان حيث العمل حاضر. القائمة أدناه تذكرهما.', few: 'الكرة الأرضية: ${n} أمم حيث العمل حاضر. القائمة أدناه تذكرها كلها.', many: 'الكرة الأرضية: ${n} أمة حيث العمل حاضر. القائمة أدناه تذكرها كلها.', other: 'الكرة الأرضية: ${n} أمة حيث العمل حاضر. القائمة أدناه تذكرها كلها.', ), 
+			'ministry.voyage' => 'رحلة',
+			'ministry.pause' => 'إيقاف مؤقت',
+			'ministry.previous' => 'الأمة السابقة',
+			'ministry.next' => 'الأمة التالية',
+			'ministry.number' => ({required Object n}) => 'الأمة رقم ${n}',
+			'ministry.since' => ({required Object year}) => 'منذ ${year}',
+			'ministry.pray' => 'صلِّ',
+			'ministry.prayTitle' => ({required Object country}) => 'صلِّ من أجل ${country}',
+			'ministry.prayThanks' => ({required Object country}) => 'اشكر الله على عمله في ${country}.',
+			'ministry.prayAssemblies' => ({required Object country}) => 'صلِّ من أجل جماعات ${country} ومسؤوليها.',
+			'ministry.prayUnreached' => ({required Object country}) => 'صلِّ لكي يلتقي بيسوع الذين لم يؤمنوا بعد في ${country}.',
+			'ministry.purpose' => 'هدفنا',
+			'ministry.nations' => 'الأمم',
+			'ministry.search' => 'ابحث عن أمة',
+			'ministry.none' => 'لا توجد أمة مطابقة',
+			'ministry.homeText' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n, zero: 'لا توجد أمم بعد', one: 'حاضرة في أمة واحدة', two: 'حاضرة في أمّتين', few: 'حاضرة في ${n} أمم', many: 'حاضرة في ${n} أمة', other: 'حاضرة في ${n} أمة', ), 
+			'ministry.nationsSubtitle' => 'الكرة الأرضية والرحلة من أمة إلى أمة',
+			'ministry.purposeSubtitle' => 'أهدافنا الثلاثة',
+			'ministry.missionaries' => 'مرسلونا',
+			'ministry.missionariesSubtitle' => 'الذين يرسلهم الرب إلى الأمم',
+			'ministry.heroes' => 'أبطالنا',
+			'ministry.heroesSubtitle' => 'الذين يلهمنا إيمانهم',
+			'ministry.goalOf' => ({required Object n, required Object total}) => 'هدفنا · ${n}/${total}',
+			'ministry.previousGoal' => 'الهدف السابق',
+			'ministry.nextGoal' => 'الهدف التالي',
+			'ministry.media.books' => 'الكتب',
+			'ministry.media.tracts' => 'النبذات',
+			'ministry.media.magazines' => 'المجلات',
+			'ministry.media.cds' => 'الأقراص المدمجة',
+			'ministry.media.dvds' => 'أقراص الفيديو',
+			'ministry.media.radio' => 'الإذاعة',
+			'ministry.media.tv' => 'التلفزيون',
+			'ministry.media.internet' => 'الإنترنت',
+			'ministry.goals.crusade.title' => 'حملة الإنجيل لكل خليقة',
+			'ministry.goals.crusade.text' => 'أن نكرز بالإنجيل لكل من سيعيش في جيلنا، حتى يصل الإنجيل المكروز به بقوة الروح القدس إلى 10 مليارات شخص، مستخدمين كل وسائل الاتصال (كتبنا ونبذاتنا ومجلاتنا وأقراصنا المدمجة وأقراص الفيديو والإذاعة والتلفزيون والإنترنت) بأقصى سرعة ممكنة.',
+			'ministry.goals.crusade.reached' => 'شخص يصلهم الإنجيل',
+			'ministry.goals.disciples.title' => 'تلمذة التلاميذ',
+			'ministry.goals.disciples.text' => 'أن نقود مليار شخص في 250 أمة إلى معرفة يسوع المسيح ربًا ومخلّصًا، وأن يصيروا تلاميذ يطيعونه في كل شيء، ومنظَّمين للاجتماع في 25 مليون كنيسة بيتية بحلول عام 2065.',
+			'ministry.goals.disciples.people' => 'تلميذ',
+			'ministry.goals.disciples.nations' => 'أمة',
+			'ministry.goals.disciples.churches' => 'كنيسة بيتية',
+			'ministry.goals.disciples.by' => ({required Object year}) => 'بحلول ${year}',
+			'ministry.goals.revival.title' => 'التعجيل بالنهضة العالمية',
+			'ministry.goals.revival.text' => 'أن نعمل مع الله بالصوم والتشفع من أجل النهضة العالمية التي ستشق السماوات وتزلزل الأرض وتمجد المسيح في جيلنا، لنعجّل بالعودة الوشيكة لربنا يسوع المسيح من السماء للقاء عروسه المُهيَّأة.',
+			'ministry.goals.revival.fasting' => 'الصوم',
+			'ministry.goals.revival.intercession' => 'التشفع',
+			'ministry.goals.revival.pray' => 'صلِّ الآن',
 			'prayer.moments.morning' => 'الصباح',
 			'prayer.moments.noon' => 'الظهر',
 			'prayer.moments.evening' => 'المساء',
@@ -2589,6 +3426,106 @@ extension on TranslationsAr {
 			'prayer.importunity.inviteSheet.addUsername' => 'إضافة',
 			'prayer.importunity.inviteSheet.send' => 'إرسال الدعوات',
 			'prayer.importunity.inviteSheet.sent' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n, zero: 'كانوا مدعوّين بالفعل.', one: 'تم إرسال دعوة واحدة', two: 'تم إرسال دعوتين', few: 'تم إرسال ${n} دعوات', many: 'تم إرسال ${n} دعوة', other: 'تم إرسال ${n} دعوة', ), 
+			'sending.title' => 'الإرسال إلى مرشديّ',
+			'sending.moreOff' => 'متوقف',
+			'sending.intro' => 'في الوقت الذي تختاره، يُعِدّ CMFI Connect تقريرك عن الفترة. ما عليك إلا إرساله إلى مرشديك الروحيين.',
+			'sending.enabled' => 'جهّزه لي بانتظام',
+			_ => null,
+		} ?? switch (path) {
+			'sending.rhythm' => 'الوتيرة',
+			'sending.weekly' => 'كل أسبوع',
+			'sending.biweekly' => 'كل أسبوعين',
+			'sending.monthly' => 'كل شهر',
+			'sending.day' => 'اليوم',
+			'sending.monthlyDay' => 'في أول كل شهر، عن الشهر الماضي',
+			'sending.time' => 'الساعة',
+			'sending.recipients' => 'المستلمون',
+			'sending.noAuthorities' => 'أضف مرشديك الروحيين أولًا.',
+			'sending.addAuthorities' => 'إضافة مرشديّ',
+			'sending.viaWhatsApp' => 'عبر واتساب',
+			'sending.viaEmail' => 'عبر البريد الإلكتروني',
+			'sending.viaBoth' => 'عبر واتساب أو البريد',
+			'sending.viaShare' => 'عبر المشاركة',
+			'sending.next' => ({required Object date}) => 'التالي: ${date}',
+			'sending.prepareNow' => 'جهّزه الآن',
+			'sending.history' => 'آخر الإرسالات',
+			'sending.notificationTitle' => 'تقريرك جاهز',
+			'sending.notificationBody' => 'أرسله إلى مرشديك بلمسة واحدة.',
+			'sending.channel' => 'إرسال التقرير',
+			'sending.readyTitle' => 'تقريرك جاهز',
+			'sending.preview' => 'معاينة الرسالة',
+			'sending.greeting' => ({required Object name}) => 'مرحبًا ${name}،',
+			'sending.whatsApp' => 'واتساب',
+			'sending.email' => 'البريد',
+			'sending.sharePdf' => 'مشاركة ملف PDF',
+			'sending.shareText' => 'مشاركة النص',
+			'sending.sent' => 'أُرسل',
+			'sending.shared' => 'مشاركة',
+			'sending.noRecipients' => 'اختر المستلمين في الإعدادات، أو شارك ملف PDF.',
+			'sending.settings' => 'الإعدادات',
+			'sending.permissionDenied' => 'اسمح بالإشعارات لتصلك في الوقت المناسب.',
+			'streak.title' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n, zero: '${n} يوم على التوالي!', one: 'يوم واحد على التوالي!', two: 'يومان على التوالي!', few: '${n} أيام على التوالي!', many: '${n} يومًا على التوالي!', other: '${n} يوم على التوالي!', ), 
+			'streak.cardDays' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n, zero: 'يوم مع الله', one: 'يوم مع الله', two: 'يومان مع الله', few: 'أيام مع الله', many: 'يومًا مع الله', other: 'يوم مع الله', ), 
+			'streak.lines.week' => 'أسبوع كامل مع الرب، يومًا بعد يوم. أحسنت، تابع!',
+			'streak.lines.month' => 'شهر من الأمانة! ما تزرعه كل يوم يأتي بثمر.',
+			'streak.lines.hundred' => 'مئة يوم مع الله! مثابرتك شهادة جميلة.',
+			'streak.lines.year' => 'سنة كاملة مع الله! المجد له على أمانتك.',
+			'streak.share' => 'مشاركة',
+			'streak.close' => 'متابعة',
+			'shortcuts.today' => 'املأ تقريري',
+			'shortcuts.hymns' => 'الترانيم',
+			'shortcuts.retreat' => 'خلوة الآن',
+			'blocking.report' => 'إبلاغ',
+			'blocking.block' => ({required Object name}) => 'حظر ${name}',
+			'blocking.blockTitle' => ({required Object name}) => 'حظر ${name}؟',
+			'blocking.blockText' => ({required Object name}) => 'لن تصلك دعوات من ${name} بعد الآن. وتُزال هذه الدعوة.',
+			'blocking.blockAction' => 'حظر',
+			'blocking.blocked' => ({required Object name}) => 'لن يتمكن ${name} من دعوتك بعد الآن.',
+			'blocking.reportTitle' => 'الإبلاغ عن هذه الدعوة',
+			'blocking.reportText' => 'أخبرنا بما لا يناسب: سينظر مسؤولو الجماعة في الأمر.',
+			'blocking.reasons.spam' => 'غير مرغوب فيه',
+			'blocking.reasons.offensive' => 'محتوى صادم أو مسيء',
+			'blocking.reasons.other' => 'سبب آخر',
+			'blocking.comment' => 'تعليق',
+			'blocking.commentHint' => 'ما ينبغي أن يعرفه المسؤولون',
+			'blocking.send' => 'إرسال البلاغ',
+			'blocking.reported' => 'شكرًا، سينظر المسؤولون في الأمر.',
+			'blocking.listTitle' => 'الأعضاء المحظورون',
+			'blocking.intro' => 'لم تعد دعواتهم إلى الصلاة تصلك.',
+			'blocking.empty' => 'لم تحظر أحدًا.',
+			'blocking.unblock' => 'إلغاء الحظر',
+			'blocking.unblocked' => ({required Object name}) => 'يمكن لـ${name} أن يدعوك من جديد.',
+			'verses.title' => 'آية اليوم',
+			'verses.share' => 'مشاركة الآية',
+			'verses.shareImage' => 'مشاركة الصورة',
+			'verses.shareText' => 'مشاركة النص',
+			'profilePhoto.title' => 'صورة الملف الشخصي',
+			'profilePhoto.add' => 'إضافة صورة للملف الشخصي',
+			'profilePhoto.change' => 'تغيير صورة الملف الشخصي',
+			'profilePhoto.seenBy' => 'يراها الأعضاء الآخرون حيثما يظهر اسمك.',
+			'profilePhoto.camera' => 'التقاط صورة',
+			'profilePhoto.gallery' => 'الاختيار من المعرض',
+			'profilePhoto.remove' => 'إزالة الصورة',
+			'profilePhoto.cropTitle' => 'اقتصاص صورتك',
+			'profilePhoto.cropHint' => 'حرّك الصورة وكبّرها بأصابعك.',
+			'profilePhoto.use' => 'استخدام هذه الصورة',
+			'profilePhoto.unreadable' => 'تعذّر فتح هذه الصورة. اختر صورة أخرى.',
+			'profilePhoto.saved' => 'تم حفظ صورة ملفك الشخصي.',
+			'profilePhoto.removed' => 'تمت إزالة صورة ملفك الشخصي.',
+			'disciples.title' => 'تلاميذي',
+			'disciples.intro' => 'الأعضاء الذين اختاروك صانعَ تلاميذ لهم. ترى انتظامهم، ولا ترى أبدًا محتوى تقاريرهم.',
+			'disciples.empty' => 'لا تلاميذ بعد',
+			'disciples.emptyText' => 'عندما يختارك عضو صانعَ تلاميذ له وتقبل طلبه، يظهر هنا.',
+			'disciples.count' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n, zero: 'لا تلاميذ', one: 'تلميذ واحد', two: 'تلميذان', few: '${n} تلاميذ', many: '${n} تلميذًا', other: '${n} تلميذ', ), 
+			'disciples.filled' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n, zero: 'لا يوم مملوء من 30', one: 'يوم واحد مملوء من 30', two: 'يومان مملوءان من 30', few: '${n} أيام مملوءة من 30', many: '${n} يومًا مملوءًا من 30', other: '${n} يوم مملوء من 30', ), 
+			'disciples.streak' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n, zero: 'لا أيام متتالية', one: 'يوم واحد متتالٍ', two: 'يومان متتاليان', few: '${n} أيام متتالية', many: '${n} يومًا متتاليًا', other: '${n} يوم متتالٍ', ), 
+			'disciples.noStreak' => 'لا سلسلة جارية',
+			'disciples.lastToday' => 'مملوء اليوم',
+			'disciples.lastYesterday' => 'آخر مرة: أمس',
+			'disciples.lastDaysAgo' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n, zero: 'آخر مرة: اليوم', one: 'آخر مرة: منذ يوم', two: 'آخر مرة: منذ يومين', few: 'آخر مرة: منذ ${n} أيام', many: 'آخر مرة: منذ ${n} يومًا', other: 'آخر مرة: منذ ${n} يوم', ), 
+			'disciples.noReport' => 'لا تقرير هذا العام',
+			'disciples.goals' => ({required Object percent}) => 'الأهداف: ${percent} %',
+			'disciples.notShared' => 'لا يشارك انتظامه',
 			_ => null,
 		};
 	}

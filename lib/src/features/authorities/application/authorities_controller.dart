@@ -1,6 +1,5 @@
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-import '../../../core/utils/phone.dart';
 import '../domain/authority.dart';
 import '../infrastructure/authorities_api.dart';
 
@@ -13,7 +12,8 @@ class AuthoritiesController extends _$AuthoritiesController {
   Future<List<Authority>> build() async =>
       _sorted(await ref.watch(authoritiesApiProvider).list());
 
-  /// Adds someone; throws an AppException on failure.
+  /// Adds someone; throws an AppException on failure. [phoneNumber] is
+  /// international ("+237690000001").
   Future<Authority> add({
     required String firstName,
     required String lastName,
@@ -26,7 +26,7 @@ class AuthoritiesController extends _$AuthoritiesController {
         .create(
           firstName: firstName.trim(),
           lastName: lastName.trim(),
-          phoneNumber: toInternationalPhone(phoneNumber),
+          phoneNumber: phoneNumber,
           email: email.trim(),
           isDiscipleMaker: isDiscipleMaker,
         );
@@ -57,6 +57,20 @@ class AuthoritiesController extends _$AuthoritiesController {
       state = AsyncData([
         for (final other in state.value ?? const <Authority>[])
           if (other.id != authority.id) other,
+      ]);
+    }
+  }
+
+  /// Turns on or off what the disciple maker sees; throws an AppException
+  /// on failure (nothing changes).
+  Future<void> setSharing(Authority authority, {required bool shares}) async {
+    final updated = await ref
+        .read(authoritiesApiProvider)
+        .setSharing(authority.id, shares: shares);
+    if (ref.mounted) {
+      state = AsyncData([
+        for (final other in state.value ?? const <Authority>[])
+          other.id == updated.id ? updated : other,
       ]);
     }
   }

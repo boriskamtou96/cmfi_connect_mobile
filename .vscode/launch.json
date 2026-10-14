@@ -1,6 +1,7 @@
 {
   // Le projet a deux flavors (dev, prod) : chaque lancement doit préciser --flavor,
   // sinon iOS ne trouve pas de schéma et Android ne sait pas quel APK lancer.
+  // .env donne les clés publiques de RevenueCat (Premium).
   "version": "0.2.0",
   "configurations": [
     {
@@ -8,7 +9,7 @@
       "request": "launch",
       "type": "dart",
       "program": "lib/main.dart",
-      "args": ["--flavor", "dev"]
+      "args": ["--flavor", "dev", "--dart-define-from-file=.env"]
     },
     {
       "name": "dev (profile mode)",
@@ -16,14 +17,14 @@
       "type": "dart",
       "program": "lib/main.dart",
       "flutterMode": "profile",
-      "args": ["--flavor", "dev"]
+      "args": ["--flavor", "dev", "--dart-define-from-file=.env"]
     },
     {
       "name": "prod",
       "request": "launch",
       "type": "dart",
       "program": "lib/main.dart",
-      "args": ["--flavor", "prod"]
+      "args": ["--flavor", "prod", "--dart-define-from-file=.env"]
     },
     {
       "name": "prod (release mode)",
@@ -31,7 +32,7 @@
       "type": "dart",
       "program": "lib/main.dart",
       "flutterMode": "release",
-      "args": ["--flavor", "prod"]
+      "args": ["--flavor", "prod", "--dart-define-from-file=.env"]
     }
   ]
 }

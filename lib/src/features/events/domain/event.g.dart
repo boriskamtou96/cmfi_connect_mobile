@@ -318,6 +318,9 @@ _Registrant _$RegistrantFromJson(Map<String, dynamic> json) => _Registrant(
   needsLodging: json['needs_lodging'] as bool? ?? false,
   departureCity: json['departure_city'] as String? ?? '',
   createdAt: DateTime.parse(json['created_at'] as String),
+  avatar: json['avatar'] == null
+      ? null
+      : EventImage.fromJson(json['avatar'] as Map<String, dynamic>),
 );
 
 Map<String, dynamic> _$RegistrantToJson(_Registrant instance) =>
@@ -332,4 +335,5 @@ Map<String, dynamic> _$RegistrantToJson(_Registrant instance) =>
       'needs_lodging': instance.needsLodging,
       'departure_city': instance.departureCity,
       'created_at': instance.createdAt.toIso8601String(),
+      'avatar': ?instance.avatar?.toJson(),
     };

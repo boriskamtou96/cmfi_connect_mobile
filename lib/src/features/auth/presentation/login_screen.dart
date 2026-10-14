@@ -6,7 +6,9 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import '../../../core/i18n/strings.g.dart';
 import '../../../core/network/app_exception.dart';
 import '../../../core/network/app_exception_message.dart';
+import '../../../core/storage/preferences.dart';
 import '../../../core/theme/app_spacing.dart';
+import '../../../core/utils/phone.dart';
 import '../../../core/widgets/app_back_button.dart';
 import '../../../core/widgets/app_button.dart';
 import '../../../core/widgets/app_toast.dart';
@@ -28,6 +30,7 @@ class LoginScreen extends HookConsumerWidget {
     final formKey = useMemoized(GlobalKey<FormState>.new);
     final phoneController = useTextEditingController();
     final passwordController = useTextEditingController();
+    final country = ref.watch(phoneCountryProvider);
     final state = ref.watch(loginControllerProvider);
     // a refused request pops up at the top of the screen
     ref.listen(loginControllerProvider, (_, next) {
@@ -47,7 +50,10 @@ class LoginScreen extends HookConsumerWidget {
       final signedIn = await ref
           .read(loginControllerProvider.notifier)
           .submit(
-            phoneNumber: phoneController.text,
+            phoneNumber: toInternationalPhone(
+              phoneController.text,
+              country: country,
+            ),
             password: passwordController.text,
           );
       if (signedIn && context.mounted) {
@@ -102,11 +108,27 @@ class LoginScreen extends HookConsumerWidget {
                           ),
                         ),
                         const SizedBox(height: 26),
-                        PhoneField(controller: phoneController),
+                        PhoneField(
+                          controller: phoneController,
+                          country: country,
+                          onCountryChanged: ref
+                              .read(phoneCountryProvider.notifier)
+                              .save,
+                          lenient: true,
+                        ),
                         const SizedBox(height: AppSpacing.lg),
                         PasswordField(
                           controller: passwordController,
                           onSubmitted: submit,
+                        ),
+                        Align(
+                          alignment: AlignmentDirectional.centerEnd,
+                          child: TextButton(
+                            onPressed: () => context.router.push(
+                              ForgotPasswordRoute(phone: phoneController.text),
+                            ),
+                            child: Text(t.auth.forgot.link),
+                          ),
                         ),
                       ],
                     ),

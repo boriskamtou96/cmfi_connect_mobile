@@ -46,6 +46,7 @@ class TranslationsDe extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _Translations$onboarding$de onboarding = _Translations$onboarding$de._(_root);
 	@override late final _Translations$welcome$de welcome = _Translations$welcome$de._(_root);
 	@override late final _Translations$auth$de auth = _Translations$auth$de._(_root);
+	@override late final _Translations$countries$de countries = _Translations$countries$de._(_root);
 	@override late final _Translations$nav$de nav = _Translations$nav$de._(_root);
 	@override late final _Translations$home$de home = _Translations$home$de._(_root);
 	@override late final _Translations$reports$de reports = _Translations$reports$de._(_root);
@@ -60,7 +61,18 @@ class TranslationsDe extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _Translations$hymns$de hymns = _Translations$hymns$de._(_root);
 	@override late final _Translations$comingSoon$de comingSoon = _Translations$comingSoon$de._(_root);
 	@override late final _Translations$events$de events = _Translations$events$de._(_root);
+	@override late final _Translations$notifications$de notifications = _Translations$notifications$de._(_root);
+	@override late final _Translations$premium$de premium = _Translations$premium$de._(_root);
+	@override late final _Translations$homeWidget$de homeWidget = _Translations$homeWidget$de._(_root);
+	@override late final _Translations$ministry$de ministry = _Translations$ministry$de._(_root);
 	@override late final _Translations$prayer$de prayer = _Translations$prayer$de._(_root);
+	@override late final _Translations$sending$de sending = _Translations$sending$de._(_root);
+	@override late final _Translations$streak$de streak = _Translations$streak$de._(_root);
+	@override late final _Translations$shortcuts$de shortcuts = _Translations$shortcuts$de._(_root);
+	@override late final _Translations$blocking$de blocking = _Translations$blocking$de._(_root);
+	@override late final _Translations$verses$de verses = _Translations$verses$de._(_root);
+	@override late final _Translations$profilePhoto$de profilePhoto = _Translations$profilePhoto$de._(_root);
+	@override late final _Translations$disciples$de disciples = _Translations$disciples$de._(_root);
 }
 
 // Path: app
@@ -117,6 +129,7 @@ class _Translations$errors$de extends Translations$errors$fr {
 	@override String get usernameNotFound => 'Niemand hat diesen Benutzernamen. Prüfe die Schreibweise.';
 	@override String get ownerCannotLeave => 'Du hast dieses Anliegen erstellt: Lösche es, statt es zu verlassen.';
 	@override String get tooManyPeople => 'Deine Listen sind voll (höchstens 500 Personen).';
+	@override String get avatarInvalid => 'Dieses Foto kann nicht verwendet werden. Wähle ein anderes.';
 }
 
 // Path: validation
@@ -171,7 +184,6 @@ class _Translations$auth$de extends Translations$auth$fr {
 
 	// Translations
 	@override String get phone => 'Telefon';
-	@override String get phoneHint => '6 90 00 00 01';
 	@override String dialCode({required Object code}) => 'Ländervorwahl: ${code}';
 	@override String get password => 'Passwort';
 	@override String get showPassword => 'Passwort anzeigen';
@@ -179,6 +191,21 @@ class _Translations$auth$de extends Translations$auth$fr {
 	@override late final _Translations$auth$login$de login = _Translations$auth$login$de._(_root);
 	@override late final _Translations$auth$register$de register = _Translations$auth$register$de._(_root);
 	@override late final _Translations$auth$church$de church = _Translations$auth$church$de._(_root);
+	@override late final _Translations$auth$forgot$de forgot = _Translations$auth$forgot$de._(_root);
+}
+
+// Path: countries
+class _Translations$countries$de extends Translations$countries$fr {
+	_Translations$countries$de._(TranslationsDe root) : this._root = root, super.internal(root);
+
+	final TranslationsDe _root; // ignore: unused_field
+
+	// Translations
+	@override String get dialCodeTitle => 'Ländervorwahl';
+	@override String get title => 'Dein Land';
+	@override String get search => 'Land oder Vorwahl suchen';
+	@override String get none => 'Kein Land gefunden';
+	@override String get change => 'Land ändern';
 }
 
 // Path: nav
@@ -208,6 +235,7 @@ class _Translations$home$de extends Translations$home$fr {
 	@override String get todayTitle => 'Bericht von heute';
 	@override String progress({required Object filled, required Object total}) => '${filled} von ${total}';
 	@override String get progressLabel => 'Elemente ausgefüllt';
+	@override String get goals => 'Ziele';
 	@override String get continueReport => 'Weiter';
 	@override String get startReport => 'Beginnen';
 	@override String get weekTitle => 'Deine Woche';
@@ -215,9 +243,7 @@ class _Translations$home$de extends Translations$home$fr {
 		one: '${filled} von ${total} Tagen',
 		other: '${filled} von ${total} Tagen',
 	);
-	@override String get community => 'In deiner Gemeinschaft';
-	@override String get prayerTitle => 'Gebetsanliegen';
-	@override String get prayerText => 'Bald kannst du jeden Tag die Gebetsanliegen deiner Gemeinde im Gebet mittragen.';
+	@override String get community => 'Aktuell bei der CMFI';
 	@override String get eventsTitle => 'Veranstaltungen';
 	@override String get hymnsTitle => 'Lieder';
 	@override String hymnsResume({required Object number}) => 'Weiter bei Nr. ${number}';
@@ -270,6 +296,10 @@ class _Translations$reports$de extends Translations$reports$fr {
 	@override String get export => 'Meinen Bericht exportieren';
 	@override String goal({required Object value}) => 'Ziel: ${value}';
 	@override String get goalReached => 'Ziel erreicht';
+	@override String get dayGoals => 'Ziele des Tages';
+	@override String goalsReached({required Object reached, required Object total}) => 'Erreicht: ${reached} von ${total}';
+	@override late final _Translations$reports$standardItems$de standardItems = _Translations$reports$standardItems$de._(_root);
+	@override late final _Translations$reports$units$de units = _Translations$reports$units$de._(_root);
 }
 
 // Path: reminder
@@ -402,7 +432,6 @@ class _Translations$more$de extends Translations$more$fr {
 	@override String get editProfile => 'Profil bearbeiten';
 	@override String get community => 'Gemeinschaft';
 	@override String get events => 'Veranstaltungen';
-	@override String get announcements => 'Ankündigungen';
 	@override String get reports => 'Tagesbericht';
 	@override String get myItems => 'Meine Elemente';
 	@override String get app => 'App';
@@ -413,6 +442,7 @@ class _Translations$more$de extends Translations$more$fr {
 	@override String get themeLight => 'Hell';
 	@override String get themeDark => 'Dunkel';
 	@override String get logout => 'Abmelden';
+	@override String get account => 'Konto';
 	@override String get languageTitle => 'Sprache der App';
 	@override String get completeProfile => 'Füge deinen Namen hinzu';
 	@override String get accompaniment => 'Begleitung';
@@ -426,6 +456,7 @@ class _Translations$more$de extends Translations$more$fr {
 	@override String get admin => 'Verwaltung';
 	@override String get staff => 'Team und Rollen';
 	@override String get manageEvents => 'Veranstaltungen';
+	@override String get disciples => 'Meine Jünger';
 }
 
 // Path: authorities
@@ -467,6 +498,7 @@ class _Translations$authorities$de extends Translations$authorities$fr {
 		one: '${n} offene Anfrage',
 		other: '${n} offene Anfragen',
 	);
+	@override late final _Translations$authorities$sharing$de sharing = _Translations$authorities$sharing$de._(_root);
 }
 
 // Path: members
@@ -628,6 +660,169 @@ class _Translations$events$de extends Translations$events$fr {
 	@override late final _Translations$events$register$de register = _Translations$events$register$de._(_root);
 	@override late final _Translations$events$reminder$de reminder = _Translations$events$reminder$de._(_root);
 	@override late final _Translations$events$admin$de admin = _Translations$events$admin$de._(_root);
+	@override String upcomingCount({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('de'))(n,
+		one: '${n} bevorstehende Veranstaltung',
+		other: '${n} bevorstehende Veranstaltungen',
+	);
+	@override String slide({required Object current, required Object total}) => 'Veranstaltung ${current} von ${total}';
+}
+
+// Path: notifications
+class _Translations$notifications$de extends Translations$notifications$fr {
+	_Translations$notifications$de._(TranslationsDe root) : this._root = root, super.internal(root);
+
+	final TranslationsDe _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Mitteilungen';
+	@override String get channel => 'Ankündigungen der Gemeinschaft';
+	@override String get empty => 'Noch keine Mitteilungen';
+	@override String get emptyHint => 'Die Ankündigungen der Gemeinschaft erscheinen hier.';
+	@override String unreadLabel({required Object title}) => 'Ungelesen: ${title}';
+	@override String documents({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('de'))(n,
+		one: '${n} PDF-Dokument',
+		other: '${n} PDF-Dokumente',
+	);
+	@override String unread({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('de'))(n,
+		one: '${n} ungelesen',
+		other: '${n} ungelesen',
+	);
+	@override String image({required Object n}) => 'Bild ${n}';
+	@override String get document => 'PDF-Dokument';
+	@override String documentSize({required Object kb}) => '${kb} KB';
+	@override String received({required Object title}) => 'Neue Mitteilung: ${title}';
+}
+
+// Path: premium
+class _Translations$premium$de extends Translations$premium$fr {
+	_Translations$premium$de._(TranslationsDe root) : this._root = root, super.internal(root);
+
+	final TranslationsDe _root; // ignore: unused_field
+
+	// Translations
+	@override String get name => 'CMFI Connect Premium';
+	@override String get pill => 'Premium';
+	@override String get subtitle => 'Geh weiter auf deinem Weg mit Gott und unterstütze das Werk.';
+	@override String get widgetTitle => 'Das Widget für den Startbildschirm';
+	@override String get widgetText => 'Dein Tagesbericht und deine Ziele, ohne die App zu öffnen.';
+	@override String get statsTitle => 'Deine Ziele über das Jahr';
+	@override String get statsText => 'Die Jahresbilanz und die Entwicklung deiner Ziele, Woche für Woche.';
+	@override String get supportTitle => 'Du unterstützt das Werk';
+	@override String get supportText => 'Dein Abo hält die App für die ganze Gemeinschaft am Leben.';
+	@override String get annual => 'Jährlich';
+	@override String get monthly => 'Monatlich';
+	@override String perYear({required Object price}) => '${price} / Jahr';
+	@override String perMonth({required Object price}) => '${price} / Monat';
+	@override String annualPerMonth({required Object price}) => 'also ${price} pro Monat';
+	@override String get best => 'Am günstigsten';
+	@override String trialDays({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('de'))(n,
+		one: '${n} Tag gratis testen',
+		other: '${n} Tage gratis testen',
+	);
+	@override String trialMonths({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('de'))(n,
+		one: '${n} Monat gratis testen',
+		other: '${n} Monate gratis testen',
+	);
+	@override String get subscribe => 'Abonnieren';
+	@override String get startTrial => 'Gratis testen';
+	@override String get restore => 'Käufe wiederherstellen';
+	@override String get restored => 'Premium ist wieder auf diesem Telefon';
+	@override String get nothingToRestore => 'Kein Premium-Kauf für dieses Konto';
+	@override String get thanks => 'Danke! Premium ist aktiv.';
+	@override String get failed => 'Der Kauf hat nicht geklappt. Versuch es gleich noch einmal.';
+	@override String get unavailable => 'Die Angebote sind gerade nicht verfügbar.';
+	@override String renews({required Object store}) => 'Das Abo verlängert sich automatisch. Du kannst es jederzeit in den Einstellungen deines ${store}-Kontos kündigen.';
+	@override String get terms => 'Nutzungsbedingungen';
+	@override String get privacy => 'Datenschutz';
+	@override String get activeTitle => 'Du hast Premium';
+	@override String get activeText => 'Danke, dass du CMFI Connect unterstützt! Das Widget und das Jahr deiner Bilanz sind offen.';
+	@override String get staffText => 'Premium ist für dich kostenlos, weil du zum Team von CMFI Connect gehörst.';
+	@override String get moreSubtitle => 'Widget, Ziele über das Jahr';
+	@override String get moreActive => 'Aktiv';
+	@override String get unlock => 'Mit Premium freischalten';
+	@override String trialThen({required Object trial, required Object price}) => '${trial}, danach ${price}';
+	@override String savePercent({required Object percent}) => '−${percent}';
+	@override String get choose => 'Wähle dein Angebot';
+	@override String get cancelAnytime => 'Ohne Bindung, jederzeit kündbar';
+	@override String get restoreShort => 'Wiederherstellen';
+	@override String get termsShort => 'Bedingungen';
+	@override String get semiannual => 'Halbjährlich';
+	@override String perSemester({required Object price}) => '${price} / 6 Monate';
+}
+
+// Path: homeWidget
+class _Translations$homeWidget$de extends Translations$homeWidget$fr {
+	_Translations$homeWidget$de._(TranslationsDe root) : this._root = root, super.internal(root);
+
+	final TranslationsDe _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Heute';
+	@override String get done => 'Erledigt';
+	@override String get todo => 'Auszufüllen';
+	@override String get open => 'Ausfüllen';
+	@override String get locked => 'Aktiviere das Widget mit Premium';
+	@override String get signedOut => 'Melde dich in der App an';
+}
+
+// Path: ministry
+class _Translations$ministry$de extends Translations$ministry$fr {
+	_Translations$ministry$de._(TranslationsDe root) : this._root = root, super.internal(root);
+
+	final TranslationsDe _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Unser Dienst';
+	@override String get tagline => 'Bis an die Enden der Erde';
+	@override String count({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('de'))(n,
+		one: '${n} Nation',
+		other: '${n} Nationen',
+	);
+	@override String get fromYaounde => 'Von Yaoundé aus geht das Evangelium von Nation zu Nation.';
+	@override String get dragHint => 'Dreh den Globus mit dem Finger, tippe auf eine Nation.';
+	@override String globeLabel({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('de'))(n,
+		one: 'Globus: ${n} Nation, in der das Werk vertreten ist. Die Liste unten nennt sie.',
+		other: 'Globus: ${n} Nationen, in denen das Werk vertreten ist. Die Liste unten nennt sie alle.',
+	);
+	@override String get voyage => 'Reise';
+	@override String get pause => 'Pause';
+	@override String get previous => 'Vorherige Nation';
+	@override String get next => 'Nächste Nation';
+	@override String number({required Object n}) => 'Nation Nr. ${n}';
+	@override String since({required Object year}) => 'Seit ${year}';
+	@override String get pray => 'Beten';
+	@override String prayTitle({required Object country}) => 'Beten für ${country}';
+	@override String prayThanks({required Object country}) => 'Danke für Gottes Werk in ${country}.';
+	@override String prayAssemblies({required Object country}) => 'Bete für die Gemeinden in ${country} und ihre Leiter.';
+	@override String prayUnreached({required Object country}) => 'Bete, dass die, die in ${country} noch nicht glauben, Jesus begegnen.';
+	@override String get purpose => 'Unser Ziel';
+	@override String get nations => 'Die Nationen';
+	@override String get search => 'Nation suchen';
+	@override String get none => 'Keine Nation gefunden';
+	@override String homeText({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('de'))(n,
+		one: 'In ${n} Nation vertreten',
+		other: 'In ${n} Nationen vertreten',
+	);
+	@override String get nationsSubtitle => 'Der Globus und die Reise von Nation zu Nation';
+	@override String get purposeSubtitle => 'Unsere drei Ziele';
+	@override String get missionaries => 'Unsere Missionare';
+	@override String get missionariesSubtitle => 'Die, die der Herr zu den Nationen sendet';
+	@override String get heroes => 'Unsere Helden';
+	@override String get heroesSubtitle => 'Die, deren Glaube uns inspiriert';
+	@override String goalOf({required Object n, required Object total}) => 'UNSER ZIEL · ${n}/${total}';
+	@override String get previousGoal => 'Vorheriges Ziel';
+	@override String get nextGoal => 'Nächstes Ziel';
+	@override Map<String, String> get media => {
+		'books': 'Bücher',
+		'tracts': 'Traktate',
+		'magazines': 'Zeitschriften',
+		'cds': 'CDs',
+		'dvds': 'DVDs',
+		'radio': 'Radio',
+		'tv': 'Fernsehen',
+		'internet': 'Internet',
+	};
+	@override late final _Translations$ministry$goals$de goals = _Translations$ministry$goals$de._(_root);
 }
 
 // Path: prayer
@@ -658,6 +853,180 @@ class _Translations$prayer$de extends Translations$prayer$fr {
 	@override late final _Translations$prayer$topics$de topics = _Translations$prayer$topics$de._(_root);
 	@override late final _Translations$prayer$lists$de lists = _Translations$prayer$lists$de._(_root);
 	@override late final _Translations$prayer$importunity$de importunity = _Translations$prayer$importunity$de._(_root);
+}
+
+// Path: sending
+class _Translations$sending$de extends Translations$sending$fr {
+	_Translations$sending$de._(TranslationsDe root) : this._root = root, super.internal(root);
+
+	final TranslationsDe _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'An meine Leiter senden';
+	@override String get moreOff => 'Aus';
+	@override String get intro => 'Zur gewählten Zeit bereitet CMFI Connect deinen Bericht für den Zeitraum vor. Du musst ihn nur noch an deine geistlichen Leiter senden.';
+	@override String get enabled => 'Regelmäßig für mich vorbereiten';
+	@override String get rhythm => 'Rhythmus';
+	@override String get weekly => 'Jede Woche';
+	@override String get biweekly => 'Alle 2 Wochen';
+	@override String get monthly => 'Jeden Monat';
+	@override String get day => 'Tag';
+	@override String get monthlyDay => 'Am 1. jedes Monats, für den vergangenen Monat';
+	@override String get time => 'Uhrzeit';
+	@override String get recipients => 'Empfänger';
+	@override String get noAuthorities => 'Füge zuerst deine geistlichen Leiter hinzu.';
+	@override String get addAuthorities => 'Meine Leiter hinzufügen';
+	@override String get viaWhatsApp => 'Per WhatsApp';
+	@override String get viaEmail => 'Per E-Mail';
+	@override String get viaBoth => 'Per WhatsApp oder E-Mail';
+	@override String get viaShare => 'Über Teilen';
+	@override String next({required Object date}) => 'Nächster: ${date}';
+	@override String get prepareNow => 'Jetzt vorbereiten';
+	@override String get history => 'Zuletzt gesendet';
+	@override String get notificationTitle => 'Dein Bericht ist fertig';
+	@override String get notificationBody => 'Sende ihn mit einem Tippen an deine Leiter.';
+	@override String get channel => 'Berichtsversand';
+	@override String get readyTitle => 'Dein Bericht ist fertig';
+	@override String get preview => 'Vorschau der Nachricht';
+	@override String greeting({required Object name}) => 'Hallo ${name},';
+	@override String get whatsApp => 'WhatsApp';
+	@override String get email => 'E-Mail';
+	@override String get sharePdf => 'PDF teilen';
+	@override String get shareText => 'Text teilen';
+	@override String get sent => 'Gesendet';
+	@override String get shared => 'Geteilt';
+	@override String get noRecipients => 'Wähle deine Empfänger in den Einstellungen oder teile das PDF.';
+	@override String get settings => 'Einstellungen';
+	@override String get permissionDenied => 'Erlaube Benachrichtigungen, um rechtzeitig erinnert zu werden.';
+}
+
+// Path: streak
+class _Translations$streak$de extends Translations$streak$fr {
+	_Translations$streak$de._(TranslationsDe root) : this._root = root, super.internal(root);
+
+	final TranslationsDe _root; // ignore: unused_field
+
+	// Translations
+	@override String title({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('de'))(n,
+		one: '${n} Tag in Folge!',
+		other: '${n} Tage in Folge!',
+	);
+	@override String cardDays({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('de'))(n,
+		one: 'Tag mit Gott',
+		other: 'Tage mit Gott',
+	);
+	@override late final _Translations$streak$lines$de lines = _Translations$streak$lines$de._(_root);
+	@override String get share => 'Teilen';
+	@override String get close => 'Weiter';
+}
+
+// Path: shortcuts
+class _Translations$shortcuts$de extends Translations$shortcuts$fr {
+	_Translations$shortcuts$de._(TranslationsDe root) : this._root = root, super.internal(root);
+
+	final TranslationsDe _root; // ignore: unused_field
+
+	// Translations
+	@override String get today => 'Meinen Bericht ausfüllen';
+	@override String get hymns => 'Lieder';
+	@override String get retreat => 'Aktuelle Gebetszeit';
+}
+
+// Path: blocking
+class _Translations$blocking$de extends Translations$blocking$fr {
+	_Translations$blocking$de._(TranslationsDe root) : this._root = root, super.internal(root);
+
+	final TranslationsDe _root; // ignore: unused_field
+
+	// Translations
+	@override String get report => 'Melden';
+	@override String block({required Object name}) => '${name} blockieren';
+	@override String blockTitle({required Object name}) => '${name} blockieren?';
+	@override String blockText({required Object name}) => 'Du erhältst keine Einladungen mehr von ${name}. Diese Einladung wird entfernt.';
+	@override String get blockAction => 'Blockieren';
+	@override String blocked({required Object name}) => '${name} kann dich nicht mehr einladen.';
+	@override String get reportTitle => 'Diese Einladung melden';
+	@override String get reportText => 'Sag uns, was nicht stimmt: Die Verantwortlichen der Gemeinschaft sehen es sich an.';
+	@override late final _Translations$blocking$reasons$de reasons = _Translations$blocking$reasons$de._(_root);
+	@override String get comment => 'Kommentar';
+	@override String get commentHint => 'Was die Verantwortlichen wissen sollten';
+	@override String get send => 'Meldung senden';
+	@override String get reported => 'Danke, die Verantwortlichen sehen es sich an.';
+	@override String get listTitle => 'Blockierte Mitglieder';
+	@override String get intro => 'Ihre Gebetseinladungen erreichen dich nicht mehr.';
+	@override String get empty => 'Du hast niemanden blockiert.';
+	@override String get unblock => 'Freigeben';
+	@override String unblocked({required Object name}) => '${name} kann dich wieder einladen.';
+}
+
+// Path: verses
+class _Translations$verses$de extends Translations$verses$fr {
+	_Translations$verses$de._(TranslationsDe root) : this._root = root, super.internal(root);
+
+	final TranslationsDe _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Vers des Tages';
+	@override String get share => 'Vers teilen';
+	@override String get shareImage => 'Bild teilen';
+	@override String get shareText => 'Text teilen';
+}
+
+// Path: profilePhoto
+class _Translations$profilePhoto$de extends Translations$profilePhoto$fr {
+	_Translations$profilePhoto$de._(TranslationsDe root) : this._root = root, super.internal(root);
+
+	final TranslationsDe _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Profilbild';
+	@override String get add => 'Profilbild hinzufügen';
+	@override String get change => 'Profilbild ändern';
+	@override String get seenBy => 'Andere Mitglieder sehen es überall, wo dein Name erscheint.';
+	@override String get camera => 'Foto aufnehmen';
+	@override String get gallery => 'Aus der Galerie wählen';
+	@override String get remove => 'Foto entfernen';
+	@override String get cropTitle => 'Foto zuschneiden';
+	@override String get cropHint => 'Verschiebe und vergrößere das Foto mit deinen Fingern.';
+	@override String get use => 'Dieses Foto verwenden';
+	@override String get unreadable => 'Dieses Bild lässt sich nicht öffnen. Wähle ein anderes.';
+	@override String get saved => 'Dein Profilbild ist gespeichert.';
+	@override String get removed => 'Dein Profilbild ist entfernt.';
+}
+
+// Path: disciples
+class _Translations$disciples$de extends Translations$disciples$fr {
+	_Translations$disciples$de._(TranslationsDe root) : this._root = root, super.internal(root);
+
+	final TranslationsDe _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Meine Jünger';
+	@override String get intro => 'Die Mitglieder, die dich als Jüngermacher gewählt haben. Du siehst ihre Regelmäßigkeit, nie den Inhalt ihrer Berichte.';
+	@override String get empty => 'Noch keine Jünger';
+	@override String get emptyText => 'Wenn ein Mitglied dich als Jüngermacher wählt und du die Anfrage annimmst, erscheint es hier.';
+	@override String count({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('de'))(n,
+		one: '${n} Jünger',
+		other: '${n} Jünger',
+	);
+	@override String filled({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('de'))(n,
+		one: '${n} Tag von 30 ausgefüllt',
+		other: '${n} Tage von 30 ausgefüllt',
+	);
+	@override String streak({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('de'))(n,
+		one: '${n} Tag in Folge',
+		other: '${n} Tage in Folge',
+	);
+	@override String get noStreak => 'Keine laufende Serie';
+	@override String get lastToday => 'Heute ausgefüllt';
+	@override String get lastYesterday => 'Zuletzt: gestern';
+	@override String lastDaysAgo({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('de'))(n,
+		one: 'Zuletzt: vor ${n} Tag',
+		other: 'Zuletzt: vor ${n} Tagen',
+	);
+	@override String get noReport => 'Kein Bericht in diesem Jahr';
+	@override String goals({required Object percent}) => 'Ziele: ${percent} %';
+	@override String get notShared => 'Teilt seine Regelmäßigkeit nicht';
 }
 
 // Path: onboarding.reports
@@ -771,7 +1140,7 @@ class _Translations$auth$church$de extends Translations$auth$church$fr {
 	@override String get editTitle => 'Mein Profil';
 	@override String get editSubtitle => 'Aktualisiere deinen Namen, deine Kirche und deine Gemeinde.';
 	@override String get country => 'Land';
-	@override String get countryHint => 'Kamerun';
+	@override String get countryHint => 'Wähle dein Land';
 	@override String get city => 'Stadt';
 	@override String get cityHint => 'Yaoundé';
 	@override String get church => 'Kirche';
@@ -782,6 +1151,37 @@ class _Translations$auth$church$de extends Translations$auth$church$fr {
 	@override String get submit => 'Fertig';
 	@override String get skip => 'Diesen Schritt überspringen';
 	@override String get saved => 'Profil gespeichert';
+}
+
+// Path: auth.forgot
+class _Translations$auth$forgot$de extends Translations$auth$forgot$fr {
+	_Translations$auth$forgot$de._(TranslationsDe root) : this._root = root, super.internal(root);
+
+	final TranslationsDe _root; // ignore: unused_field
+
+	// Translations
+	@override String get link => 'Passwort vergessen?';
+	@override String get title => 'Passwort vergessen';
+	@override String get phoneText => 'Gib deine Nummer ein: Wir senden dir per SMS einen Code, um ein neues Passwort zu wählen.';
+	@override String get sendCode => 'Code erhalten';
+	@override String get codeTitle => 'Code eingeben';
+	@override String codeText({required Object phone}) => 'Wir haben einen 6-stelligen Code an ${phone} gesendet.';
+	@override String get code => 'Per SMS erhaltener Code';
+	@override String get codeInvalid => 'Der Code hat 6 Ziffern';
+	@override String get verify => 'Überprüfen';
+	@override String get resend => 'Code erneut senden';
+	@override String resendIn({required Object seconds}) => 'Erneut senden in ${seconds} s';
+	@override String get changeNumber => 'Nummer ändern';
+	@override String get passwordTitle => 'Neues Passwort';
+	@override String get passwordText => 'Wähle ein neues Passwort für dein Konto.';
+	@override String get submit => 'Speichern und anmelden';
+	@override String get done => 'Passwort geändert. Willkommen zurück!';
+	@override String get remembered => 'Doch wieder eingefallen?';
+	@override String get invalidCode => 'Dieser Code ist nicht richtig.';
+	@override String get expired => 'Der Code ist abgelaufen. Fordere einen neuen an.';
+	@override String get tooManyRequests => 'Zu viele Versuche. Versuche es später erneut.';
+	@override String get unavailable => 'Das Zurücksetzen ist gerade nicht möglich.';
+	@override String get noAccount => 'Kein Konto verwendet diese Nummer.';
 }
 
 // Path: reports.tabs
@@ -884,6 +1284,43 @@ class _Translations$reports$summary$de extends Translations$reports$summary$fr {
 		other: 'Ziel an ${n} von ${total} Tagen erreicht',
 	);
 	@override String get share => 'Diese Übersicht teilen';
+	@override String get goals => 'Ziele';
+	@override String get goalsAverage => 'Durchschnittliche Erfüllung deiner Ziele';
+	@override String get goalsHint => 'Jeder Tag zählt, auch ein leerer. Heute zählt, sobald er ausgefüllt ist.';
+	@override String get evolution => 'Entwicklung deiner Ziele';
+	@override String get evolutionHint => 'Woche für Woche, über die letzten 12.';
+	@override String get premiumYear => 'Das Jahr und die Entwicklung deiner Ziele gibt es mit Premium.';
+}
+
+// Path: reports.standardItems
+class _Translations$reports$standardItems$de extends Translations$reports$standardItems$fr {
+	_Translations$reports$standardItems$de._(TranslationsDe root) : this._root = root, super.internal(root);
+
+	final TranslationsDe _root; // ignore: unused_field
+
+	// Translations
+	@override String get lb => 'Bibellese';
+	@override String get ps => 'Persönliches Gebet';
+	@override String get rdqad => 'Meditation';
+	@override String get pg => 'Gebet in der Gruppe';
+	@override String get llc => 'Lektüre christlicher Literatur';
+	@override String get jc => 'Vollfasten';
+	@override String get jp => 'Teilfasten';
+	@override String get dimes => 'Zehnt';
+	@override String get off => 'Opfergaben';
+}
+
+// Path: reports.units
+class _Translations$reports$units$de extends Translations$reports$units$fr {
+	_Translations$reports$units$de._(TranslationsDe root) : this._root = root, super.internal(root);
+
+	final TranslationsDe _root; // ignore: unused_field
+
+	// Translations
+	@override late final _Translations$reports$units$chapters$de chapters = _Translations$reports$units$chapters$de._(_root);
+	@override late final _Translations$reports$units$times$de times = _Translations$reports$units$times$de._(_root);
+	@override late final _Translations$reports$units$pages$de pages = _Translations$reports$units$pages$de._(_root);
+	@override late final _Translations$reports$units$percent$de percent = _Translations$reports$units$percent$de._(_root);
 }
 
 // Path: export.doc
@@ -961,6 +1398,20 @@ class _Translations$authorities$form$de extends Translations$authorities$form$fr
 	@override String get alreadyAdded => 'Diese Person gehört bereits zu deinen Autoritäten.';
 	@override String get makerExists => 'Du hast bereits einen Jüngermacher.';
 	@override String get yourself => 'Das ist dein eigener Benutzername.';
+	@override String get sharingHelp => 'Dein Jüngermacher sieht deine Regelmäßigkeit (ausgefüllte Tage, Serie, % der Ziele), nie den Inhalt deiner Berichte. Du kannst das auf seiner Karte beenden.';
+}
+
+// Path: authorities.sharing
+class _Translations$authorities$sharing$de extends Translations$authorities$sharing$fr {
+	_Translations$authorities$sharing$de._(TranslationsDe root) : this._root = root, super.internal(root);
+
+	final TranslationsDe _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Meine Regelmäßigkeit teilen';
+	@override String help({required Object name}) => '${name} sieht deine ausgefüllten Tage, deine Serie und den Anteil deiner Ziele, nie den Inhalt deiner Berichte.';
+	@override String on({required Object name}) => 'Deine Regelmäßigkeit wird mit ${name} geteilt.';
+	@override String off({required Object name}) => '${name} sieht deine Regelmäßigkeit nicht mehr.';
 }
 
 // Path: members.deleteAccount
@@ -973,7 +1424,7 @@ class _Translations$members$deleteAccount$de extends Translations$members$delete
 	@override String get button => 'Mein Konto löschen';
 	@override String get title => 'Mein Konto löschen';
 	@override String get intro => 'Das ist endgültig. Dein Konto und alles, was dazugehört, wird gelöscht:';
-	@override String get itemProfile => 'dein Profil, dein Benutzername und dein Passwort';
+	@override String get itemProfile => 'dein Profil, dein Profilbild, dein Benutzername und dein Passwort';
 	@override String get itemReports => 'alle deine Tagesberichte, Elemente und Ziele';
 	@override String get itemAuthorities => 'deine geistlichen Autoritäten und die erhaltenen Anfragen';
 	@override String get itemEvents => 'deine Anmeldungen zu Veranstaltungen';
@@ -1232,6 +1683,18 @@ class _Translations$events$admin$de extends Translations$events$admin$fr {
 	@override String get photoDelete => 'Dieses Foto löschen';
 	@override String get photoDeleted => 'Foto gelöscht.';
 	@override String get confirmDelete => 'Löschen';
+}
+
+// Path: ministry.goals
+class _Translations$ministry$goals$de extends Translations$ministry$goals$fr {
+	_Translations$ministry$goals$de._(TranslationsDe root) : this._root = root, super.internal(root);
+
+	final TranslationsDe _root; // ignore: unused_field
+
+	// Translations
+	@override late final _Translations$ministry$goals$crusade$de crusade = _Translations$ministry$goals$crusade$de._(_root);
+	@override late final _Translations$ministry$goals$disciples$de disciples = _Translations$ministry$goals$disciples$de._(_root);
+	@override late final _Translations$ministry$goals$revival$de revival = _Translations$ministry$goals$revival$de._(_root);
 }
 
 // Path: prayer.hero
@@ -1513,6 +1976,133 @@ class _Translations$prayer$importunity$de extends Translations$prayer$importunit
 	@override late final _Translations$prayer$importunity$inviteSheet$de inviteSheet = _Translations$prayer$importunity$inviteSheet$de._(_root);
 }
 
+// Path: streak.lines
+class _Translations$streak$lines$de extends Translations$streak$lines$fr {
+	_Translations$streak$lines$de._(TranslationsDe root) : this._root = root, super.internal(root);
+
+	final TranslationsDe _root; // ignore: unused_field
+
+	// Translations
+	@override String get week => 'Eine ganze Woche mit dem Herrn, Tag für Tag. Bravo, mach weiter!';
+	@override String get month => 'Ein Monat voller Treue! Was du jeden Tag säst, trägt Frucht.';
+	@override String get hundred => 'Hundert Tage mit Gott! Deine Ausdauer ist ein schönes Zeugnis.';
+	@override String get year => 'Ein ganzes Jahr mit Gott! Ehre sei Ihm für deine Treue.';
+}
+
+// Path: blocking.reasons
+class _Translations$blocking$reasons$de extends Translations$blocking$reasons$fr {
+	_Translations$blocking$reasons$de._(TranslationsDe root) : this._root = root, super.internal(root);
+
+	final TranslationsDe _root; // ignore: unused_field
+
+	// Translations
+	@override String get spam => 'Unerwünscht';
+	@override String get offensive => 'Schockierender oder anstößiger Inhalt';
+	@override String get other => 'Sonstiges';
+}
+
+// Path: reports.units.chapters
+class _Translations$reports$units$chapters$de extends Translations$reports$units$chapters$fr {
+	_Translations$reports$units$chapters$de._(TranslationsDe root) : this._root = root, super.internal(root);
+
+	final TranslationsDe _root; // ignore: unused_field
+
+	// Translations
+	@override String get name => 'Anzahl der Kapitel';
+	@override String get label => 'Kapitel';
+	@override String get symbol => 'Kapitel';
+	@override String count({required num n, required Object value}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('de'))(n,
+		one: '${value} Kapitel',
+		other: '${value} Kapitel',
+	);
+}
+
+// Path: reports.units.times
+class _Translations$reports$units$times$de extends Translations$reports$units$times$fr {
+	_Translations$reports$units$times$de._(TranslationsDe root) : this._root = root, super.internal(root);
+
+	final TranslationsDe _root; // ignore: unused_field
+
+	// Translations
+	@override String get name => 'Anzahl';
+	@override String get label => 'Anzahl';
+	@override String get symbol => 'Mal';
+	@override String count({required num n, required Object value}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('de'))(n,
+		one: '${value}-mal',
+		other: '${value}-mal',
+	);
+}
+
+// Path: reports.units.pages
+class _Translations$reports$units$pages$de extends Translations$reports$units$pages$fr {
+	_Translations$reports$units$pages$de._(TranslationsDe root) : this._root = root, super.internal(root);
+
+	final TranslationsDe _root; // ignore: unused_field
+
+	// Translations
+	@override String get name => 'Anzahl der Seiten';
+	@override String get label => 'Seiten';
+	@override String get symbol => 'Seiten';
+	@override String count({required num n, required Object value}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('de'))(n,
+		one: '${value} Seite',
+		other: '${value} Seiten',
+	);
+}
+
+// Path: reports.units.percent
+class _Translations$reports$units$percent$de extends Translations$reports$units$percent$fr {
+	_Translations$reports$units$percent$de._(TranslationsDe root) : this._root = root, super.internal(root);
+
+	final TranslationsDe _root; // ignore: unused_field
+
+	// Translations
+	@override String get name => 'Prozentsatz';
+	@override String get label => 'Prozent';
+	@override String get symbol => '%';
+	@override String count({required Object value}) => '${value} %';
+}
+
+// Path: ministry.goals.crusade
+class _Translations$ministry$goals$crusade$de extends Translations$ministry$goals$crusade$fr {
+	_Translations$ministry$goals$crusade$de._(TranslationsDe root) : this._root = root, super.internal(root);
+
+	final TranslationsDe _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Der Evangeliumsfeldzug zu jeder Kreatur';
+	@override String get text => 'Das Evangelium jedem Menschen zu predigen, der in unserer Generation leben wird, sodass 10 Milliarden Menschen mit dem in der Kraft des Heiligen Geistes gepredigten Evangelium erreicht werden – mit allen Kommunikationsmitteln (unseren Büchern, Traktaten, Zeitschriften, CDs, DVDs, unserem Radio, unserem Fernsehen und dem Internet) und so dringend wie möglich.';
+	@override String get reached => 'Menschen, die das Evangelium hören';
+}
+
+// Path: ministry.goals.disciples
+class _Translations$ministry$goals$disciples$de extends Translations$ministry$goals$disciples$fr {
+	_Translations$ministry$goals$disciples$de._(TranslationsDe root) : this._root = root, super.internal(root);
+
+	final TranslationsDe _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Die Ausbildung von Jüngern';
+	@override String get text => '1 Milliarde Menschen in 250 Nationen dahin zu führen, Jesus Christus als Herrn und Retter zu kennen, sie zu Jüngern zu machen, die ihm in allem gehorchen, und sie bis zum Jahr 2065 in 25 Millionen Hauskirchen zu sammeln.';
+	@override String get people => 'Jünger';
+	@override String get nations => 'Nationen';
+	@override String get churches => 'Hauskirchen';
+	@override String by({required Object year}) => 'bis ${year}';
+}
+
+// Path: ministry.goals.revival
+class _Translations$ministry$goals$revival$de extends Translations$ministry$goals$revival$fr {
+	_Translations$ministry$goals$revival$de._(TranslationsDe root) : this._root = root, super.internal(root);
+
+	final TranslationsDe _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Die weltweite Erweckung beschleunigen';
+	@override String get text => 'Durch Fasten und Fürbitte mit Gott zusammenzuwirken für die weltweite Erweckung, die die Himmel zerreißen, die Erde erschüttern und Christus in unserer Generation verherrlichen wird, um die nahe Wiederkunft unseres Herrn Jesus Christus vom Himmel zu beschleunigen, zur Begegnung mit seiner bereiteten Braut.';
+	@override String get fasting => 'Fasten';
+	@override String get intercession => 'Fürbitte';
+	@override String get pray => 'Jetzt beten';
+}
+
 // Path: prayer.retreat.hints
 class _Translations$prayer$retreat$hints$de extends Translations$prayer$retreat$hints$fr {
 	_Translations$prayer$retreat$hints$de._(TranslationsDe root) : this._root = root, super.internal(root);
@@ -1646,6 +2236,7 @@ extension on TranslationsDe {
 			'errors.usernameNotFound' => 'Niemand hat diesen Benutzernamen. Prüfe die Schreibweise.',
 			'errors.ownerCannotLeave' => 'Du hast dieses Anliegen erstellt: Lösche es, statt es zu verlassen.',
 			'errors.tooManyPeople' => 'Deine Listen sind voll (höchstens 500 Personen).',
+			'errors.avatarInvalid' => 'Dieses Foto kann nicht verwendet werden. Wähle ein anderes.',
 			'validation.required' => 'Dieses Feld ist erforderlich',
 			'validation.passwordTooShort' => 'Mindestens 6 Zeichen',
 			'validation.invalidPhone' => 'Ungültige Telefonnummer',
@@ -1688,7 +2279,6 @@ extension on TranslationsDe {
 			'welcome.createAccount' => 'Konto erstellen',
 			'welcome.haveAccount' => 'Ich habe schon ein Konto',
 			'auth.phone' => 'Telefon',
-			'auth.phoneHint' => '6 90 00 00 01',
 			'auth.dialCode' => ({required Object code}) => 'Ländervorwahl: ${code}',
 			'auth.password' => 'Passwort',
 			'auth.showPassword' => 'Passwort anzeigen',
@@ -1715,7 +2305,7 @@ extension on TranslationsDe {
 			'auth.church.editTitle' => 'Mein Profil',
 			'auth.church.editSubtitle' => 'Aktualisiere deinen Namen, deine Kirche und deine Gemeinde.',
 			'auth.church.country' => 'Land',
-			'auth.church.countryHint' => 'Kamerun',
+			'auth.church.countryHint' => 'Wähle dein Land',
 			'auth.church.city' => 'Stadt',
 			'auth.church.cityHint' => 'Yaoundé',
 			'auth.church.church' => 'Kirche',
@@ -1726,6 +2316,33 @@ extension on TranslationsDe {
 			'auth.church.submit' => 'Fertig',
 			'auth.church.skip' => 'Diesen Schritt überspringen',
 			'auth.church.saved' => 'Profil gespeichert',
+			'auth.forgot.link' => 'Passwort vergessen?',
+			'auth.forgot.title' => 'Passwort vergessen',
+			'auth.forgot.phoneText' => 'Gib deine Nummer ein: Wir senden dir per SMS einen Code, um ein neues Passwort zu wählen.',
+			'auth.forgot.sendCode' => 'Code erhalten',
+			'auth.forgot.codeTitle' => 'Code eingeben',
+			'auth.forgot.codeText' => ({required Object phone}) => 'Wir haben einen 6-stelligen Code an ${phone} gesendet.',
+			'auth.forgot.code' => 'Per SMS erhaltener Code',
+			'auth.forgot.codeInvalid' => 'Der Code hat 6 Ziffern',
+			'auth.forgot.verify' => 'Überprüfen',
+			'auth.forgot.resend' => 'Code erneut senden',
+			'auth.forgot.resendIn' => ({required Object seconds}) => 'Erneut senden in ${seconds} s',
+			'auth.forgot.changeNumber' => 'Nummer ändern',
+			'auth.forgot.passwordTitle' => 'Neues Passwort',
+			'auth.forgot.passwordText' => 'Wähle ein neues Passwort für dein Konto.',
+			'auth.forgot.submit' => 'Speichern und anmelden',
+			'auth.forgot.done' => 'Passwort geändert. Willkommen zurück!',
+			'auth.forgot.remembered' => 'Doch wieder eingefallen?',
+			'auth.forgot.invalidCode' => 'Dieser Code ist nicht richtig.',
+			'auth.forgot.expired' => 'Der Code ist abgelaufen. Fordere einen neuen an.',
+			'auth.forgot.tooManyRequests' => 'Zu viele Versuche. Versuche es später erneut.',
+			'auth.forgot.unavailable' => 'Das Zurücksetzen ist gerade nicht möglich.',
+			'auth.forgot.noAccount' => 'Kein Konto verwendet diese Nummer.',
+			'countries.dialCodeTitle' => 'Ländervorwahl',
+			'countries.title' => 'Dein Land',
+			'countries.search' => 'Land oder Vorwahl suchen',
+			'countries.none' => 'Kein Land gefunden',
+			'countries.change' => 'Land ändern',
 			'nav.home' => 'Start',
 			'nav.reports' => 'Bericht',
 			'nav.hymns' => 'Lieder',
@@ -1737,13 +2354,12 @@ extension on TranslationsDe {
 			'home.todayTitle' => 'Bericht von heute',
 			'home.progress' => ({required Object filled, required Object total}) => '${filled} von ${total}',
 			'home.progressLabel' => 'Elemente ausgefüllt',
+			'home.goals' => 'Ziele',
 			'home.continueReport' => 'Weiter',
 			'home.startReport' => 'Beginnen',
 			'home.weekTitle' => 'Deine Woche',
 			'home.weekScore' => ({required num filled, required Object total}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('de'))(filled, one: '${filled} von ${total} Tagen', other: '${filled} von ${total} Tagen', ), 
-			'home.community' => 'In deiner Gemeinschaft',
-			'home.prayerTitle' => 'Gebetsanliegen',
-			'home.prayerText' => 'Bald kannst du jeden Tag die Gebetsanliegen deiner Gemeinde im Gebet mittragen.',
+			'home.community' => 'Aktuell bei der CMFI',
 			'home.eventsTitle' => 'Veranstaltungen',
 			'home.hymnsTitle' => 'Lieder',
 			'home.hymnsResume' => ({required Object number}) => 'Weiter bei Nr. ${number}',
@@ -1811,6 +2427,12 @@ extension on TranslationsDe {
 			'reports.summary.empty' => 'Kein Bericht in diesem Zeitraum.',
 			'reports.summary.goalDays' => ({required num n, required Object total}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('de'))(n, one: 'Ziel an ${n} von ${total} Tagen erreicht', other: 'Ziel an ${n} von ${total} Tagen erreicht', ), 
 			'reports.summary.share' => 'Diese Übersicht teilen',
+			'reports.summary.goals' => 'Ziele',
+			'reports.summary.goalsAverage' => 'Durchschnittliche Erfüllung deiner Ziele',
+			'reports.summary.goalsHint' => 'Jeder Tag zählt, auch ein leerer. Heute zählt, sobald er ausgefüllt ist.',
+			'reports.summary.evolution' => 'Entwicklung deiner Ziele',
+			'reports.summary.evolutionHint' => 'Woche für Woche, über die letzten 12.',
+			'reports.summary.premiumYear' => 'Das Jahr und die Entwicklung deiner Ziele gibt es mit Premium.',
 			'reports.noItems' => 'Im Moment gibt es nichts auszufüllen.',
 			'reports.statusPending' => 'Noch nicht gesendet',
 			'reports.savedOffline' => 'Kein Netz: Der Tag bleibt auf dem Handy gespeichert und wird gesendet, sobald es möglich ist.',
@@ -1818,6 +2440,33 @@ extension on TranslationsDe {
 			'reports.export' => 'Meinen Bericht exportieren',
 			'reports.goal' => ({required Object value}) => 'Ziel: ${value}',
 			'reports.goalReached' => 'Ziel erreicht',
+			'reports.dayGoals' => 'Ziele des Tages',
+			'reports.goalsReached' => ({required Object reached, required Object total}) => 'Erreicht: ${reached} von ${total}',
+			'reports.standardItems.lb' => 'Bibellese',
+			'reports.standardItems.ps' => 'Persönliches Gebet',
+			'reports.standardItems.rdqad' => 'Meditation',
+			'reports.standardItems.pg' => 'Gebet in der Gruppe',
+			'reports.standardItems.llc' => 'Lektüre christlicher Literatur',
+			'reports.standardItems.jc' => 'Vollfasten',
+			'reports.standardItems.jp' => 'Teilfasten',
+			'reports.standardItems.dimes' => 'Zehnt',
+			'reports.standardItems.off' => 'Opfergaben',
+			'reports.units.chapters.name' => 'Anzahl der Kapitel',
+			'reports.units.chapters.label' => 'Kapitel',
+			'reports.units.chapters.symbol' => 'Kapitel',
+			'reports.units.chapters.count' => ({required num n, required Object value}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('de'))(n, one: '${value} Kapitel', other: '${value} Kapitel', ), 
+			'reports.units.times.name' => 'Anzahl',
+			'reports.units.times.label' => 'Anzahl',
+			'reports.units.times.symbol' => 'Mal',
+			'reports.units.times.count' => ({required num n, required Object value}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('de'))(n, one: '${value}-mal', other: '${value}-mal', ), 
+			'reports.units.pages.name' => 'Anzahl der Seiten',
+			'reports.units.pages.label' => 'Seiten',
+			'reports.units.pages.symbol' => 'Seiten',
+			'reports.units.pages.count' => ({required num n, required Object value}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('de'))(n, one: '${value} Seite', other: '${value} Seiten', ), 
+			'reports.units.percent.name' => 'Prozentsatz',
+			'reports.units.percent.label' => 'Prozent',
+			'reports.units.percent.symbol' => '%',
+			'reports.units.percent.count' => ({required Object value}) => '${value} %',
 			'reminder.title' => 'Dein Tagesbericht',
 			'reminder.body' => 'Nimm dir eine Minute, um deine Bibellese, dein Gebet … festzuhalten, bevor der Tag endet.',
 			'reminder.channel' => 'Erinnerung an den Tagesbericht',
@@ -1922,7 +2571,6 @@ extension on TranslationsDe {
 			'more.editProfile' => 'Profil bearbeiten',
 			'more.community' => 'Gemeinschaft',
 			'more.events' => 'Veranstaltungen',
-			'more.announcements' => 'Ankündigungen',
 			'more.reports' => 'Tagesbericht',
 			'more.myItems' => 'Meine Elemente',
 			'more.app' => 'App',
@@ -1933,6 +2581,7 @@ extension on TranslationsDe {
 			'more.themeLight' => 'Hell',
 			'more.themeDark' => 'Dunkel',
 			'more.logout' => 'Abmelden',
+			'more.account' => 'Konto',
 			'more.languageTitle' => 'Sprache der App',
 			'more.completeProfile' => 'Füge deinen Namen hinzu',
 			'more.accompaniment' => 'Begleitung',
@@ -1943,6 +2592,7 @@ extension on TranslationsDe {
 			'more.admin' => 'Verwaltung',
 			'more.staff' => 'Team und Rollen',
 			'more.manageEvents' => 'Veranstaltungen',
+			'more.disciples' => 'Meine Jünger',
 			'authorities.title' => 'Meine geistlichen Autoritäten',
 			'authorities.intro' => 'Die Menschen, die dich auf deinem Weg mit Gott begleiten: dein Jüngermacher und deine anderen Verantwortlichen.',
 			'authorities.discipleMaker' => 'Jüngermacher',
@@ -1978,6 +2628,7 @@ extension on TranslationsDe {
 			'authorities.form.alreadyAdded' => 'Diese Person gehört bereits zu deinen Autoritäten.',
 			'authorities.form.makerExists' => 'Du hast bereits einen Jüngermacher.',
 			'authorities.form.yourself' => 'Das ist dein eigener Benutzername.',
+			'authorities.form.sharingHelp' => 'Dein Jüngermacher sieht deine Regelmäßigkeit (ausgefüllte Tage, Serie, % der Ziele), nie den Inhalt deiner Berichte. Du kannst das auf seiner Karte beenden.',
 			'authorities.statusPending' => 'Ausstehend',
 			'authorities.statusDeclined' => 'Abgelehnt',
 			'authorities.pendingHelp' => ({required Object name}) => 'Die Kontaktdaten erscheinen, sobald ${name} angenommen hat.',
@@ -1989,6 +2640,10 @@ extension on TranslationsDe {
 			'authorities.acceptedRequest' => ({required Object name}) => 'Du begleitest jetzt ${name}.',
 			'authorities.declinedRequest' => ({required Object name}) => 'Anfrage von ${name} abgelehnt.',
 			'authorities.requestsCount' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('de'))(n, one: '${n} offene Anfrage', other: '${n} offene Anfragen', ), 
+			'authorities.sharing.title' => 'Meine Regelmäßigkeit teilen',
+			'authorities.sharing.help' => ({required Object name}) => '${name} sieht deine ausgefüllten Tage, deine Serie und den Anteil deiner Ziele, nie den Inhalt deiner Berichte.',
+			'authorities.sharing.on' => ({required Object name}) => 'Deine Regelmäßigkeit wird mit ${name} geteilt.',
+			'authorities.sharing.off' => ({required Object name}) => '${name} sieht deine Regelmäßigkeit nicht mehr.',
 			'members.username' => 'Benutzername',
 			'members.usernameHint' => 'vorname.nachname',
 			'members.usernameHelp' => 'So finden dich die anderen Mitglieder.',
@@ -2002,7 +2657,7 @@ extension on TranslationsDe {
 			'members.deleteAccount.button' => 'Mein Konto löschen',
 			'members.deleteAccount.title' => 'Mein Konto löschen',
 			'members.deleteAccount.intro' => 'Das ist endgültig. Dein Konto und alles, was dazugehört, wird gelöscht:',
-			'members.deleteAccount.itemProfile' => 'dein Profil, dein Benutzername und dein Passwort',
+			'members.deleteAccount.itemProfile' => 'dein Profil, dein Profilbild, dein Benutzername und dein Passwort',
 			'members.deleteAccount.itemReports' => 'alle deine Tagesberichte, Elemente und Ziele',
 			'members.deleteAccount.itemAuthorities' => 'deine geistlichen Autoritäten und die erhaltenen Anfragen',
 			'members.deleteAccount.itemEvents' => 'deine Anmeldungen zu Veranstaltungen',
@@ -2064,6 +2719,8 @@ extension on TranslationsDe {
 			'hymns.reader.favoriteAdded' => 'Zu Favoriten hinzugefügt',
 			'hymns.reader.favoriteRemoved' => 'Aus Favoriten entfernt',
 			'hymns.reader.more' => 'Weitere Optionen',
+			_ => null,
+		} ?? switch (path) {
 			'hymns.reader.copy' => 'Liedtext kopieren',
 			'hymns.reader.copied' => 'Liedtext kopiert',
 			'hymns.reader.project' => 'Präsentationsmodus',
@@ -2129,8 +2786,6 @@ extension on TranslationsDe {
 			'events.contact' => 'Kontakt',
 			'events.call' => ({required Object name}) => '${name} anrufen',
 			'events.otherEditions' => 'Weitere Ausgaben',
-			_ => null,
-		} ?? switch (path) {
 			'events.cancelledBanner' => 'Diese Veranstaltung ist abgesagt.',
 			'events.calendarFailed' => 'Der Kalender des Handys konnte nicht geöffnet werden.',
 			'events.linkFailed' => 'Dieser Link konnte nicht geöffnet werden.',
@@ -2266,6 +2921,120 @@ extension on TranslationsDe {
 			'events.admin.photoDelete' => 'Dieses Foto löschen',
 			'events.admin.photoDeleted' => 'Foto gelöscht.',
 			'events.admin.confirmDelete' => 'Löschen',
+			'events.upcomingCount' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('de'))(n, one: '${n} bevorstehende Veranstaltung', other: '${n} bevorstehende Veranstaltungen', ), 
+			'events.slide' => ({required Object current, required Object total}) => 'Veranstaltung ${current} von ${total}',
+			'notifications.title' => 'Mitteilungen',
+			'notifications.channel' => 'Ankündigungen der Gemeinschaft',
+			'notifications.empty' => 'Noch keine Mitteilungen',
+			'notifications.emptyHint' => 'Die Ankündigungen der Gemeinschaft erscheinen hier.',
+			'notifications.unreadLabel' => ({required Object title}) => 'Ungelesen: ${title}',
+			'notifications.documents' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('de'))(n, one: '${n} PDF-Dokument', other: '${n} PDF-Dokumente', ), 
+			'notifications.unread' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('de'))(n, one: '${n} ungelesen', other: '${n} ungelesen', ), 
+			'notifications.image' => ({required Object n}) => 'Bild ${n}',
+			'notifications.document' => 'PDF-Dokument',
+			'notifications.documentSize' => ({required Object kb}) => '${kb} KB',
+			'notifications.received' => ({required Object title}) => 'Neue Mitteilung: ${title}',
+			'premium.name' => 'CMFI Connect Premium',
+			'premium.pill' => 'Premium',
+			'premium.subtitle' => 'Geh weiter auf deinem Weg mit Gott und unterstütze das Werk.',
+			'premium.widgetTitle' => 'Das Widget für den Startbildschirm',
+			'premium.widgetText' => 'Dein Tagesbericht und deine Ziele, ohne die App zu öffnen.',
+			'premium.statsTitle' => 'Deine Ziele über das Jahr',
+			'premium.statsText' => 'Die Jahresbilanz und die Entwicklung deiner Ziele, Woche für Woche.',
+			'premium.supportTitle' => 'Du unterstützt das Werk',
+			'premium.supportText' => 'Dein Abo hält die App für die ganze Gemeinschaft am Leben.',
+			'premium.annual' => 'Jährlich',
+			'premium.monthly' => 'Monatlich',
+			'premium.perYear' => ({required Object price}) => '${price} / Jahr',
+			'premium.perMonth' => ({required Object price}) => '${price} / Monat',
+			'premium.annualPerMonth' => ({required Object price}) => 'also ${price} pro Monat',
+			'premium.best' => 'Am günstigsten',
+			'premium.trialDays' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('de'))(n, one: '${n} Tag gratis testen', other: '${n} Tage gratis testen', ), 
+			'premium.trialMonths' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('de'))(n, one: '${n} Monat gratis testen', other: '${n} Monate gratis testen', ), 
+			'premium.subscribe' => 'Abonnieren',
+			'premium.startTrial' => 'Gratis testen',
+			'premium.restore' => 'Käufe wiederherstellen',
+			'premium.restored' => 'Premium ist wieder auf diesem Telefon',
+			'premium.nothingToRestore' => 'Kein Premium-Kauf für dieses Konto',
+			'premium.thanks' => 'Danke! Premium ist aktiv.',
+			'premium.failed' => 'Der Kauf hat nicht geklappt. Versuch es gleich noch einmal.',
+			'premium.unavailable' => 'Die Angebote sind gerade nicht verfügbar.',
+			'premium.renews' => ({required Object store}) => 'Das Abo verlängert sich automatisch. Du kannst es jederzeit in den Einstellungen deines ${store}-Kontos kündigen.',
+			'premium.terms' => 'Nutzungsbedingungen',
+			'premium.privacy' => 'Datenschutz',
+			'premium.activeTitle' => 'Du hast Premium',
+			'premium.activeText' => 'Danke, dass du CMFI Connect unterstützt! Das Widget und das Jahr deiner Bilanz sind offen.',
+			'premium.staffText' => 'Premium ist für dich kostenlos, weil du zum Team von CMFI Connect gehörst.',
+			'premium.moreSubtitle' => 'Widget, Ziele über das Jahr',
+			'premium.moreActive' => 'Aktiv',
+			'premium.unlock' => 'Mit Premium freischalten',
+			'premium.trialThen' => ({required Object trial, required Object price}) => '${trial}, danach ${price}',
+			'premium.savePercent' => ({required Object percent}) => '−${percent}',
+			'premium.choose' => 'Wähle dein Angebot',
+			'premium.cancelAnytime' => 'Ohne Bindung, jederzeit kündbar',
+			'premium.restoreShort' => 'Wiederherstellen',
+			'premium.termsShort' => 'Bedingungen',
+			'premium.semiannual' => 'Halbjährlich',
+			'premium.perSemester' => ({required Object price}) => '${price} / 6 Monate',
+			'homeWidget.title' => 'Heute',
+			'homeWidget.done' => 'Erledigt',
+			'homeWidget.todo' => 'Auszufüllen',
+			'homeWidget.open' => 'Ausfüllen',
+			'homeWidget.locked' => 'Aktiviere das Widget mit Premium',
+			'homeWidget.signedOut' => 'Melde dich in der App an',
+			'ministry.title' => 'Unser Dienst',
+			'ministry.tagline' => 'Bis an die Enden der Erde',
+			'ministry.count' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('de'))(n, one: '${n} Nation', other: '${n} Nationen', ), 
+			'ministry.fromYaounde' => 'Von Yaoundé aus geht das Evangelium von Nation zu Nation.',
+			'ministry.dragHint' => 'Dreh den Globus mit dem Finger, tippe auf eine Nation.',
+			'ministry.globeLabel' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('de'))(n, one: 'Globus: ${n} Nation, in der das Werk vertreten ist. Die Liste unten nennt sie.', other: 'Globus: ${n} Nationen, in denen das Werk vertreten ist. Die Liste unten nennt sie alle.', ), 
+			'ministry.voyage' => 'Reise',
+			'ministry.pause' => 'Pause',
+			'ministry.previous' => 'Vorherige Nation',
+			'ministry.next' => 'Nächste Nation',
+			'ministry.number' => ({required Object n}) => 'Nation Nr. ${n}',
+			'ministry.since' => ({required Object year}) => 'Seit ${year}',
+			'ministry.pray' => 'Beten',
+			'ministry.prayTitle' => ({required Object country}) => 'Beten für ${country}',
+			'ministry.prayThanks' => ({required Object country}) => 'Danke für Gottes Werk in ${country}.',
+			'ministry.prayAssemblies' => ({required Object country}) => 'Bete für die Gemeinden in ${country} und ihre Leiter.',
+			'ministry.prayUnreached' => ({required Object country}) => 'Bete, dass die, die in ${country} noch nicht glauben, Jesus begegnen.',
+			'ministry.purpose' => 'Unser Ziel',
+			'ministry.nations' => 'Die Nationen',
+			'ministry.search' => 'Nation suchen',
+			'ministry.none' => 'Keine Nation gefunden',
+			'ministry.homeText' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('de'))(n, one: 'In ${n} Nation vertreten', other: 'In ${n} Nationen vertreten', ), 
+			'ministry.nationsSubtitle' => 'Der Globus und die Reise von Nation zu Nation',
+			'ministry.purposeSubtitle' => 'Unsere drei Ziele',
+			'ministry.missionaries' => 'Unsere Missionare',
+			'ministry.missionariesSubtitle' => 'Die, die der Herr zu den Nationen sendet',
+			'ministry.heroes' => 'Unsere Helden',
+			'ministry.heroesSubtitle' => 'Die, deren Glaube uns inspiriert',
+			'ministry.goalOf' => ({required Object n, required Object total}) => 'UNSER ZIEL · ${n}/${total}',
+			'ministry.previousGoal' => 'Vorheriges Ziel',
+			'ministry.nextGoal' => 'Nächstes Ziel',
+			'ministry.media.books' => 'Bücher',
+			'ministry.media.tracts' => 'Traktate',
+			'ministry.media.magazines' => 'Zeitschriften',
+			'ministry.media.cds' => 'CDs',
+			'ministry.media.dvds' => 'DVDs',
+			'ministry.media.radio' => 'Radio',
+			'ministry.media.tv' => 'Fernsehen',
+			'ministry.media.internet' => 'Internet',
+			'ministry.goals.crusade.title' => 'Der Evangeliumsfeldzug zu jeder Kreatur',
+			'ministry.goals.crusade.text' => 'Das Evangelium jedem Menschen zu predigen, der in unserer Generation leben wird, sodass 10 Milliarden Menschen mit dem in der Kraft des Heiligen Geistes gepredigten Evangelium erreicht werden – mit allen Kommunikationsmitteln (unseren Büchern, Traktaten, Zeitschriften, CDs, DVDs, unserem Radio, unserem Fernsehen und dem Internet) und so dringend wie möglich.',
+			'ministry.goals.crusade.reached' => 'Menschen, die das Evangelium hören',
+			'ministry.goals.disciples.title' => 'Die Ausbildung von Jüngern',
+			'ministry.goals.disciples.text' => '1 Milliarde Menschen in 250 Nationen dahin zu führen, Jesus Christus als Herrn und Retter zu kennen, sie zu Jüngern zu machen, die ihm in allem gehorchen, und sie bis zum Jahr 2065 in 25 Millionen Hauskirchen zu sammeln.',
+			'ministry.goals.disciples.people' => 'Jünger',
+			'ministry.goals.disciples.nations' => 'Nationen',
+			'ministry.goals.disciples.churches' => 'Hauskirchen',
+			'ministry.goals.disciples.by' => ({required Object year}) => 'bis ${year}',
+			'ministry.goals.revival.title' => 'Die weltweite Erweckung beschleunigen',
+			'ministry.goals.revival.text' => 'Durch Fasten und Fürbitte mit Gott zusammenzuwirken für die weltweite Erweckung, die die Himmel zerreißen, die Erde erschüttern und Christus in unserer Generation verherrlichen wird, um die nahe Wiederkunft unseres Herrn Jesus Christus vom Himmel zu beschleunigen, zur Begegnung mit seiner bereiteten Braut.',
+			'ministry.goals.revival.fasting' => 'Fasten',
+			'ministry.goals.revival.intercession' => 'Fürbitte',
+			'ministry.goals.revival.pray' => 'Jetzt beten',
 			'prayer.moments.morning' => 'Morgen',
 			'prayer.moments.noon' => 'Mittag',
 			'prayer.moments.evening' => 'Abend',
@@ -2460,6 +3229,106 @@ extension on TranslationsDe {
 			'prayer.importunity.inviteSheet.addUsername' => 'Hinzufügen',
 			'prayer.importunity.inviteSheet.send' => 'Einladungen senden',
 			'prayer.importunity.inviteSheet.sent' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('de'))(n, zero: 'Sie waren schon eingeladen.', one: '${n} Einladung gesendet', other: '${n} Einladungen gesendet', ), 
+			'sending.title' => 'An meine Leiter senden',
+			'sending.moreOff' => 'Aus',
+			'sending.intro' => 'Zur gewählten Zeit bereitet CMFI Connect deinen Bericht für den Zeitraum vor. Du musst ihn nur noch an deine geistlichen Leiter senden.',
+			'sending.enabled' => 'Regelmäßig für mich vorbereiten',
+			_ => null,
+		} ?? switch (path) {
+			'sending.rhythm' => 'Rhythmus',
+			'sending.weekly' => 'Jede Woche',
+			'sending.biweekly' => 'Alle 2 Wochen',
+			'sending.monthly' => 'Jeden Monat',
+			'sending.day' => 'Tag',
+			'sending.monthlyDay' => 'Am 1. jedes Monats, für den vergangenen Monat',
+			'sending.time' => 'Uhrzeit',
+			'sending.recipients' => 'Empfänger',
+			'sending.noAuthorities' => 'Füge zuerst deine geistlichen Leiter hinzu.',
+			'sending.addAuthorities' => 'Meine Leiter hinzufügen',
+			'sending.viaWhatsApp' => 'Per WhatsApp',
+			'sending.viaEmail' => 'Per E-Mail',
+			'sending.viaBoth' => 'Per WhatsApp oder E-Mail',
+			'sending.viaShare' => 'Über Teilen',
+			'sending.next' => ({required Object date}) => 'Nächster: ${date}',
+			'sending.prepareNow' => 'Jetzt vorbereiten',
+			'sending.history' => 'Zuletzt gesendet',
+			'sending.notificationTitle' => 'Dein Bericht ist fertig',
+			'sending.notificationBody' => 'Sende ihn mit einem Tippen an deine Leiter.',
+			'sending.channel' => 'Berichtsversand',
+			'sending.readyTitle' => 'Dein Bericht ist fertig',
+			'sending.preview' => 'Vorschau der Nachricht',
+			'sending.greeting' => ({required Object name}) => 'Hallo ${name},',
+			'sending.whatsApp' => 'WhatsApp',
+			'sending.email' => 'E-Mail',
+			'sending.sharePdf' => 'PDF teilen',
+			'sending.shareText' => 'Text teilen',
+			'sending.sent' => 'Gesendet',
+			'sending.shared' => 'Geteilt',
+			'sending.noRecipients' => 'Wähle deine Empfänger in den Einstellungen oder teile das PDF.',
+			'sending.settings' => 'Einstellungen',
+			'sending.permissionDenied' => 'Erlaube Benachrichtigungen, um rechtzeitig erinnert zu werden.',
+			'streak.title' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('de'))(n, one: '${n} Tag in Folge!', other: '${n} Tage in Folge!', ), 
+			'streak.cardDays' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('de'))(n, one: 'Tag mit Gott', other: 'Tage mit Gott', ), 
+			'streak.lines.week' => 'Eine ganze Woche mit dem Herrn, Tag für Tag. Bravo, mach weiter!',
+			'streak.lines.month' => 'Ein Monat voller Treue! Was du jeden Tag säst, trägt Frucht.',
+			'streak.lines.hundred' => 'Hundert Tage mit Gott! Deine Ausdauer ist ein schönes Zeugnis.',
+			'streak.lines.year' => 'Ein ganzes Jahr mit Gott! Ehre sei Ihm für deine Treue.',
+			'streak.share' => 'Teilen',
+			'streak.close' => 'Weiter',
+			'shortcuts.today' => 'Meinen Bericht ausfüllen',
+			'shortcuts.hymns' => 'Lieder',
+			'shortcuts.retreat' => 'Aktuelle Gebetszeit',
+			'blocking.report' => 'Melden',
+			'blocking.block' => ({required Object name}) => '${name} blockieren',
+			'blocking.blockTitle' => ({required Object name}) => '${name} blockieren?',
+			'blocking.blockText' => ({required Object name}) => 'Du erhältst keine Einladungen mehr von ${name}. Diese Einladung wird entfernt.',
+			'blocking.blockAction' => 'Blockieren',
+			'blocking.blocked' => ({required Object name}) => '${name} kann dich nicht mehr einladen.',
+			'blocking.reportTitle' => 'Diese Einladung melden',
+			'blocking.reportText' => 'Sag uns, was nicht stimmt: Die Verantwortlichen der Gemeinschaft sehen es sich an.',
+			'blocking.reasons.spam' => 'Unerwünscht',
+			'blocking.reasons.offensive' => 'Schockierender oder anstößiger Inhalt',
+			'blocking.reasons.other' => 'Sonstiges',
+			'blocking.comment' => 'Kommentar',
+			'blocking.commentHint' => 'Was die Verantwortlichen wissen sollten',
+			'blocking.send' => 'Meldung senden',
+			'blocking.reported' => 'Danke, die Verantwortlichen sehen es sich an.',
+			'blocking.listTitle' => 'Blockierte Mitglieder',
+			'blocking.intro' => 'Ihre Gebetseinladungen erreichen dich nicht mehr.',
+			'blocking.empty' => 'Du hast niemanden blockiert.',
+			'blocking.unblock' => 'Freigeben',
+			'blocking.unblocked' => ({required Object name}) => '${name} kann dich wieder einladen.',
+			'verses.title' => 'Vers des Tages',
+			'verses.share' => 'Vers teilen',
+			'verses.shareImage' => 'Bild teilen',
+			'verses.shareText' => 'Text teilen',
+			'profilePhoto.title' => 'Profilbild',
+			'profilePhoto.add' => 'Profilbild hinzufügen',
+			'profilePhoto.change' => 'Profilbild ändern',
+			'profilePhoto.seenBy' => 'Andere Mitglieder sehen es überall, wo dein Name erscheint.',
+			'profilePhoto.camera' => 'Foto aufnehmen',
+			'profilePhoto.gallery' => 'Aus der Galerie wählen',
+			'profilePhoto.remove' => 'Foto entfernen',
+			'profilePhoto.cropTitle' => 'Foto zuschneiden',
+			'profilePhoto.cropHint' => 'Verschiebe und vergrößere das Foto mit deinen Fingern.',
+			'profilePhoto.use' => 'Dieses Foto verwenden',
+			'profilePhoto.unreadable' => 'Dieses Bild lässt sich nicht öffnen. Wähle ein anderes.',
+			'profilePhoto.saved' => 'Dein Profilbild ist gespeichert.',
+			'profilePhoto.removed' => 'Dein Profilbild ist entfernt.',
+			'disciples.title' => 'Meine Jünger',
+			'disciples.intro' => 'Die Mitglieder, die dich als Jüngermacher gewählt haben. Du siehst ihre Regelmäßigkeit, nie den Inhalt ihrer Berichte.',
+			'disciples.empty' => 'Noch keine Jünger',
+			'disciples.emptyText' => 'Wenn ein Mitglied dich als Jüngermacher wählt und du die Anfrage annimmst, erscheint es hier.',
+			'disciples.count' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('de'))(n, one: '${n} Jünger', other: '${n} Jünger', ), 
+			'disciples.filled' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('de'))(n, one: '${n} Tag von 30 ausgefüllt', other: '${n} Tage von 30 ausgefüllt', ), 
+			'disciples.streak' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('de'))(n, one: '${n} Tag in Folge', other: '${n} Tage in Folge', ), 
+			'disciples.noStreak' => 'Keine laufende Serie',
+			'disciples.lastToday' => 'Heute ausgefüllt',
+			'disciples.lastYesterday' => 'Zuletzt: gestern',
+			'disciples.lastDaysAgo' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('de'))(n, one: 'Zuletzt: vor ${n} Tag', other: 'Zuletzt: vor ${n} Tagen', ), 
+			'disciples.noReport' => 'Kein Bericht in diesem Jahr',
+			'disciples.goals' => ({required Object percent}) => 'Ziele: ${percent} %',
+			'disciples.notShared' => 'Teilt seine Regelmäßigkeit nicht',
 			_ => null,
 		};
 	}

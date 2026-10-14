@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- The "Verset du jour" widget, light (values-night: dark) -->
+<resources>
+    <color name="verse_widget_paper">#FFFBF4</color>
+    <color name="verse_widget_ink">#0F1A2A</color>
+    <color name="verse_widget_muted">#556375</color>
+    <color name="verse_widget_blue">#0A5EA8</color>
+    <color name="verse_widget_gold">#E2A93B</color>
+</resources>

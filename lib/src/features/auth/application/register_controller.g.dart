@@ -40,7 +40,7 @@ final class RegisterControllerProvider
 }
 
 String _$registerControllerHash() =>
-    r'9c0ffdaee265a6f9b61e0038cd9fb388ac60b8af';
+    r'0e1df902dddd32a0e83248564501c06d3682d013';
 
 /// Step 1 of the sign-up: creates the account, then signs in with it
 /// (the API gives no token on register).

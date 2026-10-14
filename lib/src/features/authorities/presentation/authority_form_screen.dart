@@ -7,18 +7,20 @@ import '../../../core/i18n/strings.g.dart';
 import '../../../core/network/app_exception.dart';
 import '../../../core/network/app_exception_message.dart';
 import '../../../core/services/share_service.dart';
+import '../../../core/storage/preferences.dart';
 import '../../../core/theme/app_icons.dart';
 import '../../../core/theme/app_motion.dart';
 import '../../../core/theme/app_spacing.dart';
+import '../../../core/utils/phone.dart';
 import '../../../core/widgets/app_button.dart';
 import '../../../core/widgets/app_toast.dart';
 import '../../../core/widgets/labeled_field.dart';
 import '../../../core/widgets/phone_field.dart';
-import '../../../core/widgets/section_card.dart';
 import '../../../core/widgets/sub_page.dart';
 import '../../members/application/my_account.dart';
 import '../../members/domain/member.dart';
 import '../../members/infrastructure/members_api.dart';
+import '../../members/presentation/widgets/member_avatar.dart';
 import '../application/add_authority_controller.dart';
 import '../application/authorities_controller.dart';
 
@@ -60,6 +62,8 @@ class AuthorityFormScreen extends HookConsumerWidget {
     final firstNameController = useTextEditingController();
     final lastNameController = useTextEditingController();
     final phoneController = useTextEditingController();
+    // the country of the user's own number first
+    final country = useState(ref.read(phoneCountryProvider));
     final emailController = useTextEditingController();
     final manual = useState(false);
     final search = useState<_Search?>(null);
@@ -139,7 +143,10 @@ class AuthorityFormScreen extends HookConsumerWidget {
         final added = await controller.submit(
           firstName: firstNameController.text,
           lastName: lastNameController.text,
-          phoneNumber: phoneController.text,
+          phoneNumber: toInternationalPhone(
+            phoneController.text,
+            country: country.value,
+          ),
           email: emailController.text,
           isDiscipleMaker: maker,
         );
@@ -304,7 +311,11 @@ class AuthorityFormScreen extends HookConsumerWidget {
             ],
           ),
           const SizedBox(height: AppSpacing.lg),
-          PhoneField(controller: phoneController),
+          PhoneField(
+            controller: phoneController,
+            country: country.value,
+            onCountryChanged: (picked) => country.value = picked,
+          ),
           const SizedBox(height: AppSpacing.lg),
           LabeledField(
             label: t.auth.register.email,
@@ -395,11 +406,15 @@ class AuthorityFormScreen extends HookConsumerWidget {
                     ),
                   ),
                   subtitle: Text(
-                    currentMaker == null
-                        ? t.authorities.form.isDiscipleMakerHelp
-                        : t.authorities.form.discipleMakerTaken(
+                    currentMaker != null
+                        ? t.authorities.form.discipleMakerTaken(
                             name: currentMaker.fullName,
-                          ),
+                          )
+                        // a member sees the regularity of the user
+                        : !manual.value && isDiscipleMaker.value
+                        ? '${t.authorities.form.isDiscipleMakerHelp} '
+                              '${t.authorities.form.sharingHelp}'
+                        : t.authorities.form.isDiscipleMakerHelp,
                     style: TextStyle(
                       fontSize: 13,
                       height: 1.4,
@@ -438,7 +453,11 @@ class _MemberResult extends StatelessWidget {
       ),
       child: Row(
         children: [
-          InitialsAvatar(initials: member.initials, size: 44),
+          MemberAvatar(
+            initials: member.initials,
+            photo: member.avatar,
+            size: 44,
+          ),
           const SizedBox(width: AppSpacing.md),
           Expanded(
             child: Column(

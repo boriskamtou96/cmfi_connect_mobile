@@ -2,6 +2,7 @@ import 'package:cmfi_connect/src/core/i18n/strings.g.dart';
 import 'package:cmfi_connect/src/core/session/account.dart';
 import 'package:cmfi_connect/src/features/profile/domain/profile.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:intl/date_symbol_data_local.dart';
 
@@ -118,13 +119,52 @@ void main() {
 
     await tester.tap(find.text('Boris Kamtou'));
     await tester.pumpAndSettle();
-    // first name, last name, pseudo, country, city, then the church
-    await tester.enterText(find.byType(TextField).at(5), 'PSU-Yaoundé');
+    // first name, last name, pseudo, city, then the church (the country
+    // is picked in a list)
+    await tester.enterText(find.byType(TextField).at(4), 'PSU-Yaoundé');
     await tester.tap(find.widgetWithText(FilledButton, 'Enregistrer'));
     await tester.pumpAndSettle();
 
     expect(app.profileApi.updates, isEmpty);
     expect(app.profileApi.creates.single.church, 'PSU-Yaoundé');
     expect(app.profileApi.creates.single.firstName, 'Boris');
+  });
+
+  testWidgets('the country has its own row, as tall as the other fields', (
+    tester,
+  ) async {
+    await pumpApp(
+      tester,
+      token: 't',
+      account: account,
+      profile: const Profile(
+        firstName: 'Boris',
+        lastName: 'Kamtou',
+        phoneNumber: '+237690000001',
+        country: 'CM',
+        city: 'Douala',
+      ),
+    );
+    await openMore(tester);
+    await tester.tap(find.text('Boris Kamtou'));
+    await tester.pumpAndSettle();
+
+    final country = find.text('Cameroun');
+    expect(country, findsOneWidget);
+    // its whole name: nothing cut
+    expect(
+      tester.renderObject<RenderParagraph>(country).didExceedMaxLines,
+      isFalse,
+    );
+    final countryBox = find.ancestor(
+      of: country,
+      matching: find.byType(InputDecorator),
+    );
+    final cityBox = find.ancestor(
+      of: find.text('Douala'),
+      matching: find.byType(InputDecorator),
+    );
+    expect(tester.getSize(countryBox).height, tester.getSize(cityBox).height);
+    expect(tester.getSize(countryBox).width, tester.getSize(cityBox).width);
   });
 }

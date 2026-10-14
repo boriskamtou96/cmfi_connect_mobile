@@ -23,6 +23,10 @@ _Authority _$AuthorityFromJson(Map<String, dynamic> json) => _Authority(
         unknownValue: AuthorityStatus.accepted,
       ) ??
       AuthorityStatus.accepted,
+  avatar: json['avatar'] == null
+      ? null
+      : EventImage.fromJson(json['avatar'] as Map<String, dynamic>),
+  sharesRegularity: json['shares_regularity'] as bool? ?? true,
 );
 
 Map<String, dynamic> _$AuthorityToJson(_Authority instance) =>
@@ -37,6 +41,8 @@ Map<String, dynamic> _$AuthorityToJson(_Authority instance) =>
       'church': ?instance.church,
       'assembly': ?instance.assembly,
       'status': _$AuthorityStatusEnumMap[instance.status]!,
+      'avatar': ?instance.avatar?.toJson(),
+      'shares_regularity': instance.sharesRegularity,
     };
 
 const _$AuthorityStatusEnumMap = {

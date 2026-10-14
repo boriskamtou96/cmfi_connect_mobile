@@ -1,3 +1,4 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -5,9 +6,11 @@ import 'package:intl/date_symbol_data_local.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'app.dart';
+import 'src/core/config/firebase_options.dart';
 import 'src/core/config/flavor.dart';
 import 'src/core/i18n/languages.dart';
 import 'src/core/i18n/strings.g.dart';
+import 'src/core/services/crash_reporting.dart';
 import 'src/core/storage/preferences.dart';
 
 /// Everything that must happen before the first frame lives here.
@@ -26,6 +29,16 @@ Future<void> bootstrap(Flavor flavor) async {
   }
   // day and month names (DateFormat) in every supported language
   await initializeDateFormatting();
+  // the notifications of the admins and the crash reports; the app works
+  // without them
+  if (firebaseOptionsFor(flavor) case final options?) {
+    try {
+      await Firebase.initializeApp(options: options);
+      await startCrashReporting();
+    } on Object catch (error) {
+      debugPrint('Firebase did not start: $error');
+    }
+  }
 
   runApp(
     ProviderScope(

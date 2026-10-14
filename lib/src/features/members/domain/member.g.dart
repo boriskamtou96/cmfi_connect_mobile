@@ -12,6 +12,9 @@ _MemberCard _$MemberCardFromJson(Map<String, dynamic> json) => _MemberCard(
   lastName: json['last_name'] as String? ?? '',
   church: json['church'] as String? ?? '',
   assembly: json['assembly'] as String? ?? '',
+  avatar: json['avatar'] == null
+      ? null
+      : EventImage.fromJson(json['avatar'] as Map<String, dynamic>),
 );
 
 Map<String, dynamic> _$MemberCardToJson(_MemberCard instance) =>
@@ -21,6 +24,7 @@ Map<String, dynamic> _$MemberCardToJson(_MemberCard instance) =>
       'last_name': instance.lastName,
       'church': instance.church,
       'assembly': instance.assembly,
+      'avatar': ?instance.avatar?.toJson(),
     };
 
 _UsernameCheck _$UsernameCheckFromJson(Map<String, dynamic> json) =>

@@ -46,6 +46,7 @@ class TranslationsZh extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _Translations$onboarding$zh onboarding = _Translations$onboarding$zh._(_root);
 	@override late final _Translations$welcome$zh welcome = _Translations$welcome$zh._(_root);
 	@override late final _Translations$auth$zh auth = _Translations$auth$zh._(_root);
+	@override late final _Translations$countries$zh countries = _Translations$countries$zh._(_root);
 	@override late final _Translations$nav$zh nav = _Translations$nav$zh._(_root);
 	@override late final _Translations$home$zh home = _Translations$home$zh._(_root);
 	@override late final _Translations$reports$zh reports = _Translations$reports$zh._(_root);
@@ -60,7 +61,18 @@ class TranslationsZh extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _Translations$hymns$zh hymns = _Translations$hymns$zh._(_root);
 	@override late final _Translations$comingSoon$zh comingSoon = _Translations$comingSoon$zh._(_root);
 	@override late final _Translations$events$zh events = _Translations$events$zh._(_root);
+	@override late final _Translations$notifications$zh notifications = _Translations$notifications$zh._(_root);
+	@override late final _Translations$premium$zh premium = _Translations$premium$zh._(_root);
+	@override late final _Translations$homeWidget$zh homeWidget = _Translations$homeWidget$zh._(_root);
+	@override late final _Translations$ministry$zh ministry = _Translations$ministry$zh._(_root);
 	@override late final _Translations$prayer$zh prayer = _Translations$prayer$zh._(_root);
+	@override late final _Translations$sending$zh sending = _Translations$sending$zh._(_root);
+	@override late final _Translations$streak$zh streak = _Translations$streak$zh._(_root);
+	@override late final _Translations$shortcuts$zh shortcuts = _Translations$shortcuts$zh._(_root);
+	@override late final _Translations$blocking$zh blocking = _Translations$blocking$zh._(_root);
+	@override late final _Translations$verses$zh verses = _Translations$verses$zh._(_root);
+	@override late final _Translations$profilePhoto$zh profilePhoto = _Translations$profilePhoto$zh._(_root);
+	@override late final _Translations$disciples$zh disciples = _Translations$disciples$zh._(_root);
 }
 
 // Path: app
@@ -117,6 +129,7 @@ class _Translations$errors$zh extends Translations$errors$fr {
 	@override String get usernameNotFound => '没有人使用这个用户名。请检查拼写。';
 	@override String get ownerCannotLeave => '这个事项是你创建的：请删除它，而不是退出。';
 	@override String get tooManyPeople => '你的名单已满（最多 500 人）。';
+	@override String get avatarInvalid => '这张照片无法使用，请选择另一张。';
 }
 
 // Path: validation
@@ -171,7 +184,6 @@ class _Translations$auth$zh extends Translations$auth$fr {
 
 	// Translations
 	@override String get phone => '手机号';
-	@override String get phoneHint => '6 90 00 00 01';
 	@override String dialCode({required Object code}) => '国际区号：${code}';
 	@override String get password => '密码';
 	@override String get showPassword => '显示密码';
@@ -179,6 +191,21 @@ class _Translations$auth$zh extends Translations$auth$fr {
 	@override late final _Translations$auth$login$zh login = _Translations$auth$login$zh._(_root);
 	@override late final _Translations$auth$register$zh register = _Translations$auth$register$zh._(_root);
 	@override late final _Translations$auth$church$zh church = _Translations$auth$church$zh._(_root);
+	@override late final _Translations$auth$forgot$zh forgot = _Translations$auth$forgot$zh._(_root);
+}
+
+// Path: countries
+class _Translations$countries$zh extends Translations$countries$fr {
+	_Translations$countries$zh._(TranslationsZh root) : this._root = root, super.internal(root);
+
+	final TranslationsZh _root; // ignore: unused_field
+
+	// Translations
+	@override String get dialCodeTitle => '国家/地区区号';
+	@override String get title => '你的国家/地区';
+	@override String get search => '搜索国家/地区或区号';
+	@override String get none => '没有匹配的国家/地区';
+	@override String get change => '更改国家/地区';
 }
 
 // Path: nav
@@ -208,15 +235,14 @@ class _Translations$home$zh extends Translations$home$fr {
 	@override String get todayTitle => '今日汇报';
 	@override String progress({required Object filled, required Object total}) => '${filled}/${total}';
 	@override String get progressLabel => '项已填写';
+	@override String get goals => '目标';
 	@override String get continueReport => '继续填写';
 	@override String get startReport => '开始填写';
 	@override String get weekTitle => '你的一周';
 	@override String weekScore({required num filled, required Object total}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(filled,
 		other: '${filled}/${total} 天',
 	);
-	@override String get community => '团契动态';
-	@override String get prayerTitle => '代祷事项';
-	@override String get prayerText => '很快，你就能每天为聚会点的代祷事项祷告。';
+	@override String get community => 'CMFI 近况';
 	@override String get eventsTitle => '活动';
 	@override String get hymnsTitle => '诗歌';
 	@override String hymnsResume({required Object number}) => '回到第 ${number} 首';
@@ -266,6 +292,10 @@ class _Translations$reports$zh extends Translations$reports$fr {
 	@override String get export => '导出我的汇报';
 	@override String goal({required Object value}) => '目标：${value}';
 	@override String get goalReached => '已达成目标';
+	@override String get dayGoals => '当天目标';
+	@override String goalsReached({required Object reached, required Object total}) => '已达成：${reached}/${total}';
+	@override late final _Translations$reports$standardItems$zh standardItems = _Translations$reports$standardItems$zh._(_root);
+	@override late final _Translations$reports$units$zh units = _Translations$reports$units$zh._(_root);
 }
 
 // Path: reminder
@@ -396,7 +426,6 @@ class _Translations$more$zh extends Translations$more$fr {
 	@override String get editProfile => '编辑我的资料';
 	@override String get community => '团契';
 	@override String get events => '活动';
-	@override String get announcements => '通知';
 	@override String get reports => '每日汇报';
 	@override String get myItems => '我的项目';
 	@override String get app => '应用';
@@ -407,6 +436,7 @@ class _Translations$more$zh extends Translations$more$fr {
 	@override String get themeLight => '浅色';
 	@override String get themeDark => '深色';
 	@override String get logout => '退出登录';
+	@override String get account => '账户';
 	@override String get languageTitle => '应用语言';
 	@override String get completeProfile => '添加你的姓名';
 	@override String get accompaniment => '属灵陪伴';
@@ -419,6 +449,7 @@ class _Translations$more$zh extends Translations$more$fr {
 	@override String get admin => '管理';
 	@override String get staff => '团队与角色';
 	@override String get manageEvents => '活动';
+	@override String get disciples => '我的门徒';
 }
 
 // Path: authorities
@@ -458,6 +489,7 @@ class _Translations$authorities$zh extends Translations$authorities$fr {
 	@override String requestsCount({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n,
 		other: '${n} 个请求待查看',
 	);
+	@override late final _Translations$authorities$sharing$zh sharing = _Translations$authorities$sharing$zh._(_root);
 }
 
 // Path: members
@@ -614,6 +646,161 @@ class _Translations$events$zh extends Translations$events$fr {
 	@override late final _Translations$events$register$zh register = _Translations$events$register$zh._(_root);
 	@override late final _Translations$events$reminder$zh reminder = _Translations$events$reminder$zh._(_root);
 	@override late final _Translations$events$admin$zh admin = _Translations$events$admin$zh._(_root);
+	@override String upcomingCount({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n,
+		other: '${n} 个即将举行的活动',
+	);
+	@override String slide({required Object current, required Object total}) => '第 ${current} 个活动，共 ${total} 个';
+}
+
+// Path: notifications
+class _Translations$notifications$zh extends Translations$notifications$fr {
+	_Translations$notifications$zh._(TranslationsZh root) : this._root = root, super.internal(root);
+
+	final TranslationsZh _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => '通知';
+	@override String get channel => '团契公告';
+	@override String get empty => '暂无通知';
+	@override String get emptyHint => '团契的公告会显示在这里。';
+	@override String unreadLabel({required Object title}) => '未读：${title}';
+	@override String documents({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n,
+		other: '${n} 个 PDF 文档',
+	);
+	@override String unread({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n,
+		other: '${n} 条未读',
+	);
+	@override String image({required Object n}) => '图片 ${n}';
+	@override String get document => 'PDF 文档';
+	@override String documentSize({required Object kb}) => '${kb} KB';
+	@override String received({required Object title}) => '新通知：${title}';
+}
+
+// Path: premium
+class _Translations$premium$zh extends Translations$premium$fr {
+	_Translations$premium$zh._(TranslationsZh root) : this._root = root, super.internal(root);
+
+	final TranslationsZh _root; // ignore: unused_field
+
+	// Translations
+	@override String get name => 'CMFI Connect Premium';
+	@override String get pill => 'Premium';
+	@override String get subtitle => '在与神同行的路上走得更远，并支持这份事工。';
+	@override String get widgetTitle => '主屏幕小组件';
+	@override String get widgetText => '无需打开应用，即可查看今天的报告和目标。';
+	@override String get statsTitle => '全年的目标';
+	@override String get statsText => '年度总结和目标的进展，一周接一周。';
+	@override String get supportTitle => '你在支持这份事工';
+	@override String get supportText => '你的订阅让整个团契都能继续使用这个应用。';
+	@override String get annual => '按年';
+	@override String get monthly => '按月';
+	@override String perYear({required Object price}) => '${price} / 年';
+	@override String perMonth({required Object price}) => '${price} / 月';
+	@override String annualPerMonth({required Object price}) => '相当于每月 ${price}';
+	@override String get best => '最划算';
+	@override String trialDays({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n,
+		other: '免费试用 ${n} 天',
+	);
+	@override String trialMonths({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n,
+		other: '免费试用 ${n} 个月',
+	);
+	@override String get subscribe => '订阅';
+	@override String get startTrial => '开始免费试用';
+	@override String get restore => '恢复购买';
+	@override String get restored => 'Premium 已在这部手机上恢复';
+	@override String get nothingToRestore => '此账户没有 Premium 购买记录';
+	@override String get thanks => '谢谢你！Premium 已开启。';
+	@override String get failed => '购买未完成，请稍后再试。';
+	@override String get unavailable => '暂时无法获取订阅方案。';
+	@override String renews({required Object store}) => '订阅会自动续订。你可以随时在 ${store} 账户设置中取消。';
+	@override String get terms => '使用条款';
+	@override String get privacy => '隐私';
+	@override String get activeTitle => '你已拥有 Premium';
+	@override String get activeText => '感谢你支持 CMFI Connect！小组件和年度总结已经开放。';
+	@override String get staffText => '你是 CMFI Connect 团队的成员，Premium 免费为你开放。';
+	@override String get moreSubtitle => '小组件、全年目标';
+	@override String get moreActive => '已开启';
+	@override String get unlock => '用 Premium 解锁';
+	@override String trialThen({required Object trial, required Object price}) => '${trial}，之后 ${price}';
+	@override String savePercent({required Object percent}) => '−${percent}';
+	@override String get choose => '选择你的方案';
+	@override String get cancelAnytime => '无需承诺，随时可取消';
+	@override String get restoreShort => '恢复购买';
+	@override String get termsShort => '条款';
+	@override String get semiannual => '半年';
+	@override String perSemester({required Object price}) => '${price} / 6 个月';
+}
+
+// Path: homeWidget
+class _Translations$homeWidget$zh extends Translations$homeWidget$fr {
+	_Translations$homeWidget$zh._(TranslationsZh root) : this._root = root, super.internal(root);
+
+	final TranslationsZh _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => '今天';
+	@override String get done => '已完成';
+	@override String get todo => '待填写';
+	@override String get open => '填写';
+	@override String get locked => '用 Premium 开启小组件';
+	@override String get signedOut => '请在应用中登录';
+}
+
+// Path: ministry
+class _Translations$ministry$zh extends Translations$ministry$fr {
+	_Translations$ministry$zh._(TranslationsZh root) : this._root = root, super.internal(root);
+
+	final TranslationsZh _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => '我们的事工';
+	@override String get tagline => '直到地极';
+	@override String count({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n,
+		other: '${n} 个国家',
+	);
+	@override String get fromYaounde => '福音从雅温得出发，传到一个又一个国家。';
+	@override String get dragHint => '用手指转动地球，点一个国家。';
+	@override String globeLabel({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n,
+		other: '地球：事工所在的 ${n} 个国家。下面的列表列出了全部。',
+	);
+	@override String get voyage => '环游';
+	@override String get pause => '暂停';
+	@override String get previous => '上一个国家';
+	@override String get next => '下一个国家';
+	@override String number({required Object n}) => '第 ${n} 个国家';
+	@override String since({required Object year}) => '自 ${year} 年起';
+	@override String get pray => '祷告';
+	@override String prayTitle({required Object country}) => '为${country}祷告';
+	@override String prayThanks({required Object country}) => '为神在${country}的工作献上感谢。';
+	@override String prayAssemblies({required Object country}) => '为${country}的教会和他们的带领人祷告。';
+	@override String prayUnreached({required Object country}) => '祷告让${country}还未信主的人遇见耶稣。';
+	@override String get purpose => '我们的目标';
+	@override String get nations => '国家';
+	@override String get search => '搜索国家';
+	@override String get none => '没有匹配的国家';
+	@override String homeText({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n,
+		other: '遍及 ${n} 个国家',
+	);
+	@override String get nationsSubtitle => '地球与逐国之旅';
+	@override String get purposeSubtitle => '我们的三个目标';
+	@override String get missionaries => '我们的宣教士';
+	@override String get missionariesSubtitle => '主差往万国的人';
+	@override String get heroes => '我们的英雄';
+	@override String get heroesSubtitle => '他们的信心激励着我们';
+	@override String goalOf({required Object n, required Object total}) => '我们的目标 · ${n}/${total}';
+	@override String get previousGoal => '上一个目标';
+	@override String get nextGoal => '下一个目标';
+	@override Map<String, String> get media => {
+		'books': '书籍',
+		'tracts': '单张',
+		'magazines': '杂志',
+		'cds': 'CD',
+		'dvds': 'DVD',
+		'radio': '广播',
+		'tv': '电视',
+		'internet': '互联网',
+	};
+	@override late final _Translations$ministry$goals$zh goals = _Translations$ministry$goals$zh._(_root);
 }
 
 // Path: prayer
@@ -644,6 +831,174 @@ class _Translations$prayer$zh extends Translations$prayer$fr {
 	@override late final _Translations$prayer$topics$zh topics = _Translations$prayer$topics$zh._(_root);
 	@override late final _Translations$prayer$lists$zh lists = _Translations$prayer$lists$zh._(_root);
 	@override late final _Translations$prayer$importunity$zh importunity = _Translations$prayer$importunity$zh._(_root);
+}
+
+// Path: sending
+class _Translations$sending$zh extends Translations$sending$fr {
+	_Translations$sending$zh._(TranslationsZh root) : this._root = root, super.internal(root);
+
+	final TranslationsZh _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => '发送给我的属灵长辈';
+	@override String get moreOff => '已关闭';
+	@override String get intro => '到了你选定的时间，CMFI Connect 会准备好这段时间的报告，你只需发送给你的属灵长辈。';
+	@override String get enabled => '定期为我准备';
+	@override String get rhythm => '频率';
+	@override String get weekly => '每周';
+	@override String get biweekly => '每两周';
+	@override String get monthly => '每月';
+	@override String get day => '日期';
+	@override String get monthlyDay => '每月 1 日，发送上个月的报告';
+	@override String get time => '时间';
+	@override String get recipients => '收件人';
+	@override String get noAuthorities => '请先添加你的属灵长辈。';
+	@override String get addAuthorities => '添加属灵长辈';
+	@override String get viaWhatsApp => '通过 WhatsApp';
+	@override String get viaEmail => '通过电子邮件';
+	@override String get viaBoth => '通过 WhatsApp 或电子邮件';
+	@override String get viaShare => '通过分享';
+	@override String next({required Object date}) => '下一次：${date}';
+	@override String get prepareNow => '立即准备';
+	@override String get history => '最近发送';
+	@override String get notificationTitle => '你的报告已准备好';
+	@override String get notificationBody => '一键发送给你的属灵长辈。';
+	@override String get channel => '报告发送';
+	@override String get readyTitle => '你的报告已准备好';
+	@override String get preview => '消息预览';
+	@override String greeting({required Object name}) => '${name}，你好：';
+	@override String get whatsApp => 'WhatsApp';
+	@override String get email => '电子邮件';
+	@override String get sharePdf => '分享 PDF';
+	@override String get shareText => '分享文字';
+	@override String get sent => '已发送';
+	@override String get shared => '已分享';
+	@override String get noRecipients => '请在设置中选择收件人，或分享 PDF。';
+	@override String get settings => '设置';
+	@override String get permissionDenied => '请允许通知，以便按时提醒你。';
+}
+
+// Path: streak
+class _Translations$streak$zh extends Translations$streak$fr {
+	_Translations$streak$zh._(TranslationsZh root) : this._root = root, super.internal(root);
+
+	final TranslationsZh _root; // ignore: unused_field
+
+	// Translations
+	@override String title({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n,
+		other: '连续 ${n} 天！',
+	);
+	@override String cardDays({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n,
+		other: '天，与神同在',
+	);
+	@override late final _Translations$streak$lines$zh lines = _Translations$streak$lines$zh._(_root);
+	@override String get share => '分享';
+	@override String get close => '继续';
+}
+
+// Path: shortcuts
+class _Translations$shortcuts$zh extends Translations$shortcuts$fr {
+	_Translations$shortcuts$zh._(TranslationsZh root) : this._root = root, super.internal(root);
+
+	final TranslationsZh _root; // ignore: unused_field
+
+	// Translations
+	@override String get today => '填写我的汇报';
+	@override String get hymns => '诗歌';
+	@override String get retreat => '此刻的祷告';
+}
+
+// Path: blocking
+class _Translations$blocking$zh extends Translations$blocking$fr {
+	_Translations$blocking$zh._(TranslationsZh root) : this._root = root, super.internal(root);
+
+	final TranslationsZh _root; // ignore: unused_field
+
+	// Translations
+	@override String get report => '举报';
+	@override String block({required Object name}) => '屏蔽${name}';
+	@override String blockTitle({required Object name}) => '屏蔽${name}？';
+	@override String blockText({required Object name}) => '你将不再收到${name}的邀请。这条邀请会被移除。';
+	@override String get blockAction => '屏蔽';
+	@override String blocked({required Object name}) => '${name}将无法再邀请你。';
+	@override String get reportTitle => '举报这条邀请';
+	@override String get reportText => '告诉我们哪里不对：团契的负责人会查看。';
+	@override late final _Translations$blocking$reasons$zh reasons = _Translations$blocking$reasons$zh._(_root);
+	@override String get comment => '备注';
+	@override String get commentHint => '负责人需要了解的情况';
+	@override String get send => '提交举报';
+	@override String get reported => '谢谢，负责人会查看。';
+	@override String get listTitle => '已屏蔽的成员';
+	@override String get intro => '他们的祷告邀请不会再发给你。';
+	@override String get empty => '你还没有屏蔽任何人。';
+	@override String get unblock => '取消屏蔽';
+	@override String unblocked({required Object name}) => '${name}可以再次邀请你。';
+}
+
+// Path: verses
+class _Translations$verses$zh extends Translations$verses$fr {
+	_Translations$verses$zh._(TranslationsZh root) : this._root = root, super.internal(root);
+
+	final TranslationsZh _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => '每日经文';
+	@override String get share => '分享经文';
+	@override String get shareImage => '分享图片';
+	@override String get shareText => '分享文字';
+}
+
+// Path: profilePhoto
+class _Translations$profilePhoto$zh extends Translations$profilePhoto$fr {
+	_Translations$profilePhoto$zh._(TranslationsZh root) : this._root = root, super.internal(root);
+
+	final TranslationsZh _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => '头像';
+	@override String get add => '添加头像';
+	@override String get change => '更换头像';
+	@override String get seenBy => '其他成员在你的名字出现的地方都能看到它。';
+	@override String get camera => '拍照';
+	@override String get gallery => '从相册选择';
+	@override String get remove => '移除照片';
+	@override String get cropTitle => '裁剪你的照片';
+	@override String get cropHint => '用手指移动和放大照片。';
+	@override String get use => '使用这张照片';
+	@override String get unreadable => '无法打开此图片，请选择另一张。';
+	@override String get saved => '你的头像已保存。';
+	@override String get removed => '你的头像已移除。';
+}
+
+// Path: disciples
+class _Translations$disciples$zh extends Translations$disciples$fr {
+	_Translations$disciples$zh._(TranslationsZh root) : this._root = root, super.internal(root);
+
+	final TranslationsZh _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => '我的门徒';
+	@override String get intro => '选择你作为门徒培育者的成员。你能看到他们的规律性，但永远看不到他们报告的内容。';
+	@override String get empty => '还没有门徒';
+	@override String get emptyText => '当有成员选择你作为门徒培育者、并且你接受了请求，他就会出现在这里。';
+	@override String count({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n,
+		other: '${n} 位门徒',
+	);
+	@override String filled({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n,
+		other: '30 天中填写了 ${n} 天',
+	);
+	@override String streak({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n,
+		other: '连续 ${n} 天',
+	);
+	@override String get noStreak => '当前没有连续记录';
+	@override String get lastToday => '今天已填写';
+	@override String get lastYesterday => '最近一次：昨天';
+	@override String lastDaysAgo({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n,
+		other: '最近一次：${n} 天前',
+	);
+	@override String get noReport => '今年没有报告';
+	@override String goals({required Object percent}) => '目标：${percent} %';
+	@override String get notShared => '未分享其规律性';
 }
 
 // Path: onboarding.reports
@@ -757,7 +1112,7 @@ class _Translations$auth$church$zh extends Translations$auth$church$fr {
 	@override String get editTitle => '我的资料';
 	@override String get editSubtitle => '更新你的姓名、教会和聚会点。';
 	@override String get country => '国家';
-	@override String get countryHint => '喀麦隆';
+	@override String get countryHint => '选择你的国家/地区';
 	@override String get city => '城市';
 	@override String get cityHint => '雅温得';
 	@override String get church => '教会';
@@ -768,6 +1123,37 @@ class _Translations$auth$church$zh extends Translations$auth$church$fr {
 	@override String get submit => '完成';
 	@override String get skip => '跳过此步';
 	@override String get saved => '资料已保存';
+}
+
+// Path: auth.forgot
+class _Translations$auth$forgot$zh extends Translations$auth$forgot$fr {
+	_Translations$auth$forgot$zh._(TranslationsZh root) : this._root = root, super.internal(root);
+
+	final TranslationsZh _root; // ignore: unused_field
+
+	// Translations
+	@override String get link => '忘记密码？';
+	@override String get title => '忘记密码';
+	@override String get phoneText => '输入你的号码：我们会通过短信发送验证码，用来设置新密码。';
+	@override String get sendCode => '获取验证码';
+	@override String get codeTitle => '输入验证码';
+	@override String codeText({required Object phone}) => '我们已向 ${phone} 发送了 6 位验证码。';
+	@override String get code => '短信验证码';
+	@override String get codeInvalid => '验证码为 6 位数字';
+	@override String get verify => '验证';
+	@override String get resend => '重新发送验证码';
+	@override String resendIn({required Object seconds}) => '${seconds} 秒后可重新发送';
+	@override String get changeNumber => '更换号码';
+	@override String get passwordTitle => '新密码';
+	@override String get passwordText => '为你的账号设置一个新密码。';
+	@override String get submit => '保存并登录';
+	@override String get done => '密码已更改，欢迎回来！';
+	@override String get remembered => '想起来了？';
+	@override String get invalidCode => '验证码不正确。';
+	@override String get expired => '验证码已过期，请重新获取。';
+	@override String get tooManyRequests => '尝试次数过多，请稍后再试。';
+	@override String get unavailable => '暂时无法重置密码。';
+	@override String get noAccount => '没有账号使用这个号码。';
 }
 
 // Path: reports.tabs
@@ -866,6 +1252,43 @@ class _Translations$reports$summary$zh extends Translations$reports$summary$fr {
 		other: '${total} 天中有 ${n} 天达成目标',
 	);
 	@override String get share => '分享这份总结';
+	@override String get goals => '目标';
+	@override String get goalsAverage => '目标平均完成度';
+	@override String get goalsHint => '每一天都计算在内，空白的也算。今天填写后才计入。';
+	@override String get evolution => '目标的进展';
+	@override String get evolutionHint => '最近 12 周，一周接一周。';
+	@override String get premiumYear => '年度视图和目标进展随 Premium 提供。';
+}
+
+// Path: reports.standardItems
+class _Translations$reports$standardItems$zh extends Translations$reports$standardItems$fr {
+	_Translations$reports$standardItems$zh._(TranslationsZh root) : this._root = root, super.internal(root);
+
+	final TranslationsZh _root; // ignore: unused_field
+
+	// Translations
+	@override String get lb => '读经';
+	@override String get ps => '个人祷告';
+	@override String get rdqad => '默想';
+	@override String get pg => '小组祷告';
+	@override String get llc => '阅读属灵书籍';
+	@override String get jc => '完全禁食';
+	@override String get jp => '部分禁食';
+	@override String get dimes => '十一奉献';
+	@override String get off => '奉献';
+}
+
+// Path: reports.units
+class _Translations$reports$units$zh extends Translations$reports$units$fr {
+	_Translations$reports$units$zh._(TranslationsZh root) : this._root = root, super.internal(root);
+
+	final TranslationsZh _root; // ignore: unused_field
+
+	// Translations
+	@override late final _Translations$reports$units$chapters$zh chapters = _Translations$reports$units$chapters$zh._(_root);
+	@override late final _Translations$reports$units$times$zh times = _Translations$reports$units$times$zh._(_root);
+	@override late final _Translations$reports$units$pages$zh pages = _Translations$reports$units$pages$zh._(_root);
+	@override late final _Translations$reports$units$percent$zh percent = _Translations$reports$units$percent$zh._(_root);
 }
 
 // Path: export.doc
@@ -942,6 +1365,20 @@ class _Translations$authorities$form$zh extends Translations$authorities$form$fr
 	@override String get alreadyAdded => '此人已经是你的带领者。';
 	@override String get makerExists => '你已经有门训者了。';
 	@override String get yourself => '这是你自己的用户名。';
+	@override String get sharingHelp => '你的门徒培育者将能看到你的规律性（填写天数、连续天数、目标百分比），但永远看不到你报告的内容。你可以在他的卡片上停止分享。';
+}
+
+// Path: authorities.sharing
+class _Translations$authorities$sharing$zh extends Translations$authorities$sharing$fr {
+	_Translations$authorities$sharing$zh._(TranslationsZh root) : this._root = root, super.internal(root);
+
+	final TranslationsZh _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => '分享我的规律性';
+	@override String help({required Object name}) => '${name} 能看到你填写的天数、连续天数和目标完成百分比，但永远看不到你报告的内容。';
+	@override String on({required Object name}) => '你的规律性已与 ${name} 分享。';
+	@override String off({required Object name}) => '${name} 不再能看到你的规律性。';
 }
 
 // Path: members.deleteAccount
@@ -954,7 +1391,7 @@ class _Translations$members$deleteAccount$zh extends Translations$members$delete
 	@override String get button => '删除我的账户';
 	@override String get title => '删除我的账户';
 	@override String get intro => '此操作无法撤销。你的账户及其相关的一切都将被删除：';
-	@override String get itemProfile => '你的个人资料、用户名和密码';
+	@override String get itemProfile => '你的个人资料、头像、用户名和密码';
 	@override String get itemReports => '你所有的汇报、项目和目标';
 	@override String get itemAuthorities => '你的属灵带领者以及收到的请求';
 	@override String get itemEvents => '你的活动报名';
@@ -1212,6 +1649,18 @@ class _Translations$events$admin$zh extends Translations$events$admin$fr {
 	@override String get photoDelete => '删除此照片';
 	@override String get photoDeleted => '照片已删除。';
 	@override String get confirmDelete => '删除';
+}
+
+// Path: ministry.goals
+class _Translations$ministry$goals$zh extends Translations$ministry$goals$fr {
+	_Translations$ministry$goals$zh._(TranslationsZh root) : this._root = root, super.internal(root);
+
+	final TranslationsZh _root; // ignore: unused_field
+
+	// Translations
+	@override late final _Translations$ministry$goals$crusade$zh crusade = _Translations$ministry$goals$crusade$zh._(_root);
+	@override late final _Translations$ministry$goals$disciples$zh disciples = _Translations$ministry$goals$disciples$zh._(_root);
+	@override late final _Translations$ministry$goals$revival$zh revival = _Translations$ministry$goals$revival$zh._(_root);
 }
 
 // Path: prayer.hero
@@ -1482,6 +1931,130 @@ class _Translations$prayer$importunity$zh extends Translations$prayer$importunit
 	@override late final _Translations$prayer$importunity$inviteSheet$zh inviteSheet = _Translations$prayer$importunity$inviteSheet$zh._(_root);
 }
 
+// Path: streak.lines
+class _Translations$streak$lines$zh extends Translations$streak$lines$fr {
+	_Translations$streak$lines$zh._(TranslationsZh root) : this._root = root, super.internal(root);
+
+	final TranslationsZh _root; // ignore: unused_field
+
+	// Translations
+	@override String get week => '整整一周，天天与主同在。真棒，继续加油！';
+	@override String get month => '一个月的忠心！你每天所撒的种必结出果子。';
+	@override String get hundred => '与神同在一百天！你的坚持是美好的见证。';
+	@override String get year => '与神同在整整一年！为你的忠心将荣耀归给祂。';
+}
+
+// Path: blocking.reasons
+class _Translations$blocking$reasons$zh extends Translations$blocking$reasons$fr {
+	_Translations$blocking$reasons$zh._(TranslationsZh root) : this._root = root, super.internal(root);
+
+	final TranslationsZh _root; // ignore: unused_field
+
+	// Translations
+	@override String get spam => '垃圾信息';
+	@override String get offensive => '令人震惊或冒犯的内容';
+	@override String get other => '其他';
+}
+
+// Path: reports.units.chapters
+class _Translations$reports$units$chapters$zh extends Translations$reports$units$chapters$fr {
+	_Translations$reports$units$chapters$zh._(TranslationsZh root) : this._root = root, super.internal(root);
+
+	final TranslationsZh _root; // ignore: unused_field
+
+	// Translations
+	@override String get name => '章数';
+	@override String get label => '章数';
+	@override String get symbol => '章';
+	@override String count({required num n, required Object value}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n,
+		other: '${value} 章',
+	);
+}
+
+// Path: reports.units.times
+class _Translations$reports$units$times$zh extends Translations$reports$units$times$fr {
+	_Translations$reports$units$times$zh._(TranslationsZh root) : this._root = root, super.internal(root);
+
+	final TranslationsZh _root; // ignore: unused_field
+
+	// Translations
+	@override String get name => '次数';
+	@override String get label => '次数';
+	@override String get symbol => '次';
+	@override String count({required num n, required Object value}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n,
+		other: '${value} 次',
+	);
+}
+
+// Path: reports.units.pages
+class _Translations$reports$units$pages$zh extends Translations$reports$units$pages$fr {
+	_Translations$reports$units$pages$zh._(TranslationsZh root) : this._root = root, super.internal(root);
+
+	final TranslationsZh _root; // ignore: unused_field
+
+	// Translations
+	@override String get name => '页数';
+	@override String get label => '页数';
+	@override String get symbol => '页';
+	@override String count({required num n, required Object value}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n,
+		other: '${value} 页',
+	);
+}
+
+// Path: reports.units.percent
+class _Translations$reports$units$percent$zh extends Translations$reports$units$percent$fr {
+	_Translations$reports$units$percent$zh._(TranslationsZh root) : this._root = root, super.internal(root);
+
+	final TranslationsZh _root; // ignore: unused_field
+
+	// Translations
+	@override String get name => '百分比';
+	@override String get label => '百分比';
+	@override String get symbol => '%';
+	@override String count({required Object value}) => '${value}%';
+}
+
+// Path: ministry.goals.crusade
+class _Translations$ministry$goals$crusade$zh extends Translations$ministry$goals$crusade$fr {
+	_Translations$ministry$goals$crusade$zh._(TranslationsZh root) : this._root = root, super.internal(root);
+
+	final TranslationsZh _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => '向凡受造的传福音运动';
+	@override String get text => '把福音传给我们这一代将要活着的每一个人，使福音借着圣灵的大能传扬，临到100亿人；运用一切传播途径（我们的书籍、单张、杂志、CD、DVD、广播、电视和互联网），以最迫切的方式进行。';
+	@override String get reached => '人听闻福音';
+}
+
+// Path: ministry.goals.disciples
+class _Translations$ministry$goals$disciples$zh extends Translations$ministry$goals$disciples$fr {
+	_Translations$ministry$goals$disciples$zh._(TranslationsZh root) : this._root = root, super.internal(root);
+
+	final TranslationsZh _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => '门徒培训';
+	@override String get text => '到2065年，带领250个国家的10亿人认识耶稣基督为主和救主，使他们成为门徒，在凡事上顺服祂，并组织他们在2500万个家庭教会中聚会。';
+	@override String get people => '门徒';
+	@override String get nations => '个国家';
+	@override String get churches => '家庭教会';
+	@override String by({required Object year}) => '${year}年前';
+}
+
+// Path: ministry.goals.revival
+class _Translations$ministry$goals$revival$zh extends Translations$ministry$goals$revival$fr {
+	_Translations$ministry$goals$revival$zh._(TranslationsZh root) : this._root = root, super.internal(root);
+
+	final TranslationsZh _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => '催促全球复兴';
+	@override String get text => '借着禁食和代祷与神同工，为那将要裂开天、震动地、在我们这一代荣耀基督的全球大复兴祷告，以催促我们的主耶稣基督从天降临，迎接祂已预备好的新妇。';
+	@override String get fasting => '禁食';
+	@override String get intercession => '代祷';
+	@override String get pray => '现在祷告';
+}
+
 // Path: prayer.retreat.hints
 class _Translations$prayer$retreat$hints$zh extends Translations$prayer$retreat$hints$fr {
 	_Translations$prayer$retreat$hints$zh._(TranslationsZh root) : this._root = root, super.internal(root);
@@ -1613,6 +2186,7 @@ extension on TranslationsZh {
 			'errors.usernameNotFound' => '没有人使用这个用户名。请检查拼写。',
 			'errors.ownerCannotLeave' => '这个事项是你创建的：请删除它，而不是退出。',
 			'errors.tooManyPeople' => '你的名单已满（最多 500 人）。',
+			'errors.avatarInvalid' => '这张照片无法使用，请选择另一张。',
 			'validation.required' => '此项为必填',
 			'validation.passwordTooShort' => '至少 6 个字符',
 			'validation.invalidPhone' => '手机号无效',
@@ -1655,7 +2229,6 @@ extension on TranslationsZh {
 			'welcome.createAccount' => '创建账号',
 			'welcome.haveAccount' => '我已有账号',
 			'auth.phone' => '手机号',
-			'auth.phoneHint' => '6 90 00 00 01',
 			'auth.dialCode' => ({required Object code}) => '国际区号：${code}',
 			'auth.password' => '密码',
 			'auth.showPassword' => '显示密码',
@@ -1682,7 +2255,7 @@ extension on TranslationsZh {
 			'auth.church.editTitle' => '我的资料',
 			'auth.church.editSubtitle' => '更新你的姓名、教会和聚会点。',
 			'auth.church.country' => '国家',
-			'auth.church.countryHint' => '喀麦隆',
+			'auth.church.countryHint' => '选择你的国家/地区',
 			'auth.church.city' => '城市',
 			'auth.church.cityHint' => '雅温得',
 			'auth.church.church' => '教会',
@@ -1693,6 +2266,33 @@ extension on TranslationsZh {
 			'auth.church.submit' => '完成',
 			'auth.church.skip' => '跳过此步',
 			'auth.church.saved' => '资料已保存',
+			'auth.forgot.link' => '忘记密码？',
+			'auth.forgot.title' => '忘记密码',
+			'auth.forgot.phoneText' => '输入你的号码：我们会通过短信发送验证码，用来设置新密码。',
+			'auth.forgot.sendCode' => '获取验证码',
+			'auth.forgot.codeTitle' => '输入验证码',
+			'auth.forgot.codeText' => ({required Object phone}) => '我们已向 ${phone} 发送了 6 位验证码。',
+			'auth.forgot.code' => '短信验证码',
+			'auth.forgot.codeInvalid' => '验证码为 6 位数字',
+			'auth.forgot.verify' => '验证',
+			'auth.forgot.resend' => '重新发送验证码',
+			'auth.forgot.resendIn' => ({required Object seconds}) => '${seconds} 秒后可重新发送',
+			'auth.forgot.changeNumber' => '更换号码',
+			'auth.forgot.passwordTitle' => '新密码',
+			'auth.forgot.passwordText' => '为你的账号设置一个新密码。',
+			'auth.forgot.submit' => '保存并登录',
+			'auth.forgot.done' => '密码已更改，欢迎回来！',
+			'auth.forgot.remembered' => '想起来了？',
+			'auth.forgot.invalidCode' => '验证码不正确。',
+			'auth.forgot.expired' => '验证码已过期，请重新获取。',
+			'auth.forgot.tooManyRequests' => '尝试次数过多，请稍后再试。',
+			'auth.forgot.unavailable' => '暂时无法重置密码。',
+			'auth.forgot.noAccount' => '没有账号使用这个号码。',
+			'countries.dialCodeTitle' => '国家/地区区号',
+			'countries.title' => '你的国家/地区',
+			'countries.search' => '搜索国家/地区或区号',
+			'countries.none' => '没有匹配的国家/地区',
+			'countries.change' => '更改国家/地区',
 			'nav.home' => '首页',
 			'nav.reports' => '汇报',
 			'nav.hymns' => '诗歌',
@@ -1704,13 +2304,12 @@ extension on TranslationsZh {
 			'home.todayTitle' => '今日汇报',
 			'home.progress' => ({required Object filled, required Object total}) => '${filled}/${total}',
 			'home.progressLabel' => '项已填写',
+			'home.goals' => '目标',
 			'home.continueReport' => '继续填写',
 			'home.startReport' => '开始填写',
 			'home.weekTitle' => '你的一周',
 			'home.weekScore' => ({required num filled, required Object total}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(filled, other: '${filled}/${total} 天', ), 
-			'home.community' => '团契动态',
-			'home.prayerTitle' => '代祷事项',
-			'home.prayerText' => '很快，你就能每天为聚会点的代祷事项祷告。',
+			'home.community' => 'CMFI 近况',
 			'home.eventsTitle' => '活动',
 			'home.hymnsTitle' => '诗歌',
 			'home.hymnsResume' => ({required Object number}) => '回到第 ${number} 首',
@@ -1778,6 +2377,12 @@ extension on TranslationsZh {
 			'reports.summary.empty' => '这段时间没有汇报。',
 			'reports.summary.goalDays' => ({required num n, required Object total}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n, other: '${total} 天中有 ${n} 天达成目标', ), 
 			'reports.summary.share' => '分享这份总结',
+			'reports.summary.goals' => '目标',
+			'reports.summary.goalsAverage' => '目标平均完成度',
+			'reports.summary.goalsHint' => '每一天都计算在内，空白的也算。今天填写后才计入。',
+			'reports.summary.evolution' => '目标的进展',
+			'reports.summary.evolutionHint' => '最近 12 周，一周接一周。',
+			'reports.summary.premiumYear' => '年度视图和目标进展随 Premium 提供。',
 			'reports.noItems' => '暂时没有需要填写的项目。',
 			'reports.statusPending' => '尚未发送',
 			'reports.savedOffline' => '没有网络：当天汇报已保存在手机上，联网后会尽快发送。',
@@ -1785,6 +2390,33 @@ extension on TranslationsZh {
 			'reports.export' => '导出我的汇报',
 			'reports.goal' => ({required Object value}) => '目标：${value}',
 			'reports.goalReached' => '已达成目标',
+			'reports.dayGoals' => '当天目标',
+			'reports.goalsReached' => ({required Object reached, required Object total}) => '已达成：${reached}/${total}',
+			'reports.standardItems.lb' => '读经',
+			'reports.standardItems.ps' => '个人祷告',
+			'reports.standardItems.rdqad' => '默想',
+			'reports.standardItems.pg' => '小组祷告',
+			'reports.standardItems.llc' => '阅读属灵书籍',
+			'reports.standardItems.jc' => '完全禁食',
+			'reports.standardItems.jp' => '部分禁食',
+			'reports.standardItems.dimes' => '十一奉献',
+			'reports.standardItems.off' => '奉献',
+			'reports.units.chapters.name' => '章数',
+			'reports.units.chapters.label' => '章数',
+			'reports.units.chapters.symbol' => '章',
+			'reports.units.chapters.count' => ({required num n, required Object value}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n, other: '${value} 章', ), 
+			'reports.units.times.name' => '次数',
+			'reports.units.times.label' => '次数',
+			'reports.units.times.symbol' => '次',
+			'reports.units.times.count' => ({required num n, required Object value}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n, other: '${value} 次', ), 
+			'reports.units.pages.name' => '页数',
+			'reports.units.pages.label' => '页数',
+			'reports.units.pages.symbol' => '页',
+			'reports.units.pages.count' => ({required num n, required Object value}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n, other: '${value} 页', ), 
+			'reports.units.percent.name' => '百分比',
+			'reports.units.percent.label' => '百分比',
+			'reports.units.percent.symbol' => '%',
+			'reports.units.percent.count' => ({required Object value}) => '${value}%',
 			'reminder.title' => '你的今日汇报',
 			'reminder.body' => '在今天结束前，花一分钟记下你的读经、祷告……',
 			'reminder.channel' => '汇报提醒',
@@ -1889,7 +2521,6 @@ extension on TranslationsZh {
 			'more.editProfile' => '编辑我的资料',
 			'more.community' => '团契',
 			'more.events' => '活动',
-			'more.announcements' => '通知',
 			'more.reports' => '每日汇报',
 			'more.myItems' => '我的项目',
 			'more.app' => '应用',
@@ -1900,6 +2531,7 @@ extension on TranslationsZh {
 			'more.themeLight' => '浅色',
 			'more.themeDark' => '深色',
 			'more.logout' => '退出登录',
+			'more.account' => '账户',
 			'more.languageTitle' => '应用语言',
 			'more.completeProfile' => '添加你的姓名',
 			'more.accompaniment' => '属灵陪伴',
@@ -1910,6 +2542,7 @@ extension on TranslationsZh {
 			'more.admin' => '管理',
 			'more.staff' => '团队与角色',
 			'more.manageEvents' => '活动',
+			'more.disciples' => '我的门徒',
 			'authorities.title' => '我的属灵带领者',
 			'authorities.intro' => '在与神同行的路上陪伴你的人：你的门训者和其他带领者。',
 			'authorities.discipleMaker' => '门训者',
@@ -1945,6 +2578,7 @@ extension on TranslationsZh {
 			'authorities.form.alreadyAdded' => '此人已经是你的带领者。',
 			'authorities.form.makerExists' => '你已经有门训者了。',
 			'authorities.form.yourself' => '这是你自己的用户名。',
+			'authorities.form.sharingHelp' => '你的门徒培育者将能看到你的规律性（填写天数、连续天数、目标百分比），但永远看不到你报告的内容。你可以在他的卡片上停止分享。',
 			'authorities.statusPending' => '等待中',
 			'authorities.statusDeclined' => '已拒绝',
 			'authorities.pendingHelp' => ({required Object name}) => '${name} 接受后，你就能看到其联系方式。',
@@ -1956,6 +2590,10 @@ extension on TranslationsZh {
 			'authorities.acceptedRequest' => ({required Object name}) => '你现在开始陪伴 ${name}。',
 			'authorities.declinedRequest' => ({required Object name}) => '已拒绝 ${name} 的请求。',
 			'authorities.requestsCount' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n, other: '${n} 个请求待查看', ), 
+			'authorities.sharing.title' => '分享我的规律性',
+			'authorities.sharing.help' => ({required Object name}) => '${name} 能看到你填写的天数、连续天数和目标完成百分比，但永远看不到你报告的内容。',
+			'authorities.sharing.on' => ({required Object name}) => '你的规律性已与 ${name} 分享。',
+			'authorities.sharing.off' => ({required Object name}) => '${name} 不再能看到你的规律性。',
 			'members.username' => '用户名',
 			'members.usernameHint' => 'zhang.san',
 			'members.usernameHelp' => '其他成员会通过它找到你。',
@@ -1969,7 +2607,7 @@ extension on TranslationsZh {
 			'members.deleteAccount.button' => '删除我的账户',
 			'members.deleteAccount.title' => '删除我的账户',
 			'members.deleteAccount.intro' => '此操作无法撤销。你的账户及其相关的一切都将被删除：',
-			'members.deleteAccount.itemProfile' => '你的个人资料、用户名和密码',
+			'members.deleteAccount.itemProfile' => '你的个人资料、头像、用户名和密码',
 			'members.deleteAccount.itemReports' => '你所有的汇报、项目和目标',
 			'members.deleteAccount.itemAuthorities' => '你的属灵带领者以及收到的请求',
 			'members.deleteAccount.itemEvents' => '你的活动报名',
@@ -2031,6 +2669,8 @@ extension on TranslationsZh {
 			'hymns.reader.favoriteAdded' => '已加入收藏',
 			'hymns.reader.favoriteRemoved' => '已取消收藏',
 			'hymns.reader.more' => '更多选项',
+			_ => null,
+		} ?? switch (path) {
 			'hymns.reader.copy' => '复制歌词',
 			'hymns.reader.copied' => '歌词已复制',
 			'hymns.reader.project' => '投影模式',
@@ -2096,8 +2736,6 @@ extension on TranslationsZh {
 			'events.contact' => '联系人',
 			'events.call' => ({required Object name}) => '致电 ${name}',
 			'events.otherEditions' => '其他届次',
-			_ => null,
-		} ?? switch (path) {
 			'events.cancelledBanner' => '此活动已取消。',
 			'events.calendarFailed' => '无法打开手机日历。',
 			'events.linkFailed' => '无法打开此链接。',
@@ -2233,6 +2871,120 @@ extension on TranslationsZh {
 			'events.admin.photoDelete' => '删除此照片',
 			'events.admin.photoDeleted' => '照片已删除。',
 			'events.admin.confirmDelete' => '删除',
+			'events.upcomingCount' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n, other: '${n} 个即将举行的活动', ), 
+			'events.slide' => ({required Object current, required Object total}) => '第 ${current} 个活动，共 ${total} 个',
+			'notifications.title' => '通知',
+			'notifications.channel' => '团契公告',
+			'notifications.empty' => '暂无通知',
+			'notifications.emptyHint' => '团契的公告会显示在这里。',
+			'notifications.unreadLabel' => ({required Object title}) => '未读：${title}',
+			'notifications.documents' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n, other: '${n} 个 PDF 文档', ), 
+			'notifications.unread' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n, other: '${n} 条未读', ), 
+			'notifications.image' => ({required Object n}) => '图片 ${n}',
+			'notifications.document' => 'PDF 文档',
+			'notifications.documentSize' => ({required Object kb}) => '${kb} KB',
+			'notifications.received' => ({required Object title}) => '新通知：${title}',
+			'premium.name' => 'CMFI Connect Premium',
+			'premium.pill' => 'Premium',
+			'premium.subtitle' => '在与神同行的路上走得更远，并支持这份事工。',
+			'premium.widgetTitle' => '主屏幕小组件',
+			'premium.widgetText' => '无需打开应用，即可查看今天的报告和目标。',
+			'premium.statsTitle' => '全年的目标',
+			'premium.statsText' => '年度总结和目标的进展，一周接一周。',
+			'premium.supportTitle' => '你在支持这份事工',
+			'premium.supportText' => '你的订阅让整个团契都能继续使用这个应用。',
+			'premium.annual' => '按年',
+			'premium.monthly' => '按月',
+			'premium.perYear' => ({required Object price}) => '${price} / 年',
+			'premium.perMonth' => ({required Object price}) => '${price} / 月',
+			'premium.annualPerMonth' => ({required Object price}) => '相当于每月 ${price}',
+			'premium.best' => '最划算',
+			'premium.trialDays' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n, other: '免费试用 ${n} 天', ), 
+			'premium.trialMonths' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n, other: '免费试用 ${n} 个月', ), 
+			'premium.subscribe' => '订阅',
+			'premium.startTrial' => '开始免费试用',
+			'premium.restore' => '恢复购买',
+			'premium.restored' => 'Premium 已在这部手机上恢复',
+			'premium.nothingToRestore' => '此账户没有 Premium 购买记录',
+			'premium.thanks' => '谢谢你！Premium 已开启。',
+			'premium.failed' => '购买未完成，请稍后再试。',
+			'premium.unavailable' => '暂时无法获取订阅方案。',
+			'premium.renews' => ({required Object store}) => '订阅会自动续订。你可以随时在 ${store} 账户设置中取消。',
+			'premium.terms' => '使用条款',
+			'premium.privacy' => '隐私',
+			'premium.activeTitle' => '你已拥有 Premium',
+			'premium.activeText' => '感谢你支持 CMFI Connect！小组件和年度总结已经开放。',
+			'premium.staffText' => '你是 CMFI Connect 团队的成员，Premium 免费为你开放。',
+			'premium.moreSubtitle' => '小组件、全年目标',
+			'premium.moreActive' => '已开启',
+			'premium.unlock' => '用 Premium 解锁',
+			'premium.trialThen' => ({required Object trial, required Object price}) => '${trial}，之后 ${price}',
+			'premium.savePercent' => ({required Object percent}) => '−${percent}',
+			'premium.choose' => '选择你的方案',
+			'premium.cancelAnytime' => '无需承诺，随时可取消',
+			'premium.restoreShort' => '恢复购买',
+			'premium.termsShort' => '条款',
+			'premium.semiannual' => '半年',
+			'premium.perSemester' => ({required Object price}) => '${price} / 6 个月',
+			'homeWidget.title' => '今天',
+			'homeWidget.done' => '已完成',
+			'homeWidget.todo' => '待填写',
+			'homeWidget.open' => '填写',
+			'homeWidget.locked' => '用 Premium 开启小组件',
+			'homeWidget.signedOut' => '请在应用中登录',
+			'ministry.title' => '我们的事工',
+			'ministry.tagline' => '直到地极',
+			'ministry.count' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n, other: '${n} 个国家', ), 
+			'ministry.fromYaounde' => '福音从雅温得出发，传到一个又一个国家。',
+			'ministry.dragHint' => '用手指转动地球，点一个国家。',
+			'ministry.globeLabel' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n, other: '地球：事工所在的 ${n} 个国家。下面的列表列出了全部。', ), 
+			'ministry.voyage' => '环游',
+			'ministry.pause' => '暂停',
+			'ministry.previous' => '上一个国家',
+			'ministry.next' => '下一个国家',
+			'ministry.number' => ({required Object n}) => '第 ${n} 个国家',
+			'ministry.since' => ({required Object year}) => '自 ${year} 年起',
+			'ministry.pray' => '祷告',
+			'ministry.prayTitle' => ({required Object country}) => '为${country}祷告',
+			'ministry.prayThanks' => ({required Object country}) => '为神在${country}的工作献上感谢。',
+			'ministry.prayAssemblies' => ({required Object country}) => '为${country}的教会和他们的带领人祷告。',
+			'ministry.prayUnreached' => ({required Object country}) => '祷告让${country}还未信主的人遇见耶稣。',
+			'ministry.purpose' => '我们的目标',
+			'ministry.nations' => '国家',
+			'ministry.search' => '搜索国家',
+			'ministry.none' => '没有匹配的国家',
+			'ministry.homeText' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n, other: '遍及 ${n} 个国家', ), 
+			'ministry.nationsSubtitle' => '地球与逐国之旅',
+			'ministry.purposeSubtitle' => '我们的三个目标',
+			'ministry.missionaries' => '我们的宣教士',
+			'ministry.missionariesSubtitle' => '主差往万国的人',
+			'ministry.heroes' => '我们的英雄',
+			'ministry.heroesSubtitle' => '他们的信心激励着我们',
+			'ministry.goalOf' => ({required Object n, required Object total}) => '我们的目标 · ${n}/${total}',
+			'ministry.previousGoal' => '上一个目标',
+			'ministry.nextGoal' => '下一个目标',
+			'ministry.media.books' => '书籍',
+			'ministry.media.tracts' => '单张',
+			'ministry.media.magazines' => '杂志',
+			'ministry.media.cds' => 'CD',
+			'ministry.media.dvds' => 'DVD',
+			'ministry.media.radio' => '广播',
+			'ministry.media.tv' => '电视',
+			'ministry.media.internet' => '互联网',
+			'ministry.goals.crusade.title' => '向凡受造的传福音运动',
+			'ministry.goals.crusade.text' => '把福音传给我们这一代将要活着的每一个人，使福音借着圣灵的大能传扬，临到100亿人；运用一切传播途径（我们的书籍、单张、杂志、CD、DVD、广播、电视和互联网），以最迫切的方式进行。',
+			'ministry.goals.crusade.reached' => '人听闻福音',
+			'ministry.goals.disciples.title' => '门徒培训',
+			'ministry.goals.disciples.text' => '到2065年，带领250个国家的10亿人认识耶稣基督为主和救主，使他们成为门徒，在凡事上顺服祂，并组织他们在2500万个家庭教会中聚会。',
+			'ministry.goals.disciples.people' => '门徒',
+			'ministry.goals.disciples.nations' => '个国家',
+			'ministry.goals.disciples.churches' => '家庭教会',
+			'ministry.goals.disciples.by' => ({required Object year}) => '${year}年前',
+			'ministry.goals.revival.title' => '催促全球复兴',
+			'ministry.goals.revival.text' => '借着禁食和代祷与神同工，为那将要裂开天、震动地、在我们这一代荣耀基督的全球大复兴祷告，以催促我们的主耶稣基督从天降临，迎接祂已预备好的新妇。',
+			'ministry.goals.revival.fasting' => '禁食',
+			'ministry.goals.revival.intercession' => '代祷',
+			'ministry.goals.revival.pray' => '现在祷告',
 			'prayer.moments.morning' => '早晨',
 			'prayer.moments.noon' => '中午',
 			'prayer.moments.evening' => '傍晚',
@@ -2427,6 +3179,106 @@ extension on TranslationsZh {
 			'prayer.importunity.inviteSheet.addUsername' => '添加',
 			'prayer.importunity.inviteSheet.send' => '发送邀请',
 			'prayer.importunity.inviteSheet.sent' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n, zero: '他们之前已被邀请过了。', other: '已发送 ${n} 个邀请', ), 
+			'sending.title' => '发送给我的属灵长辈',
+			'sending.moreOff' => '已关闭',
+			'sending.intro' => '到了你选定的时间，CMFI Connect 会准备好这段时间的报告，你只需发送给你的属灵长辈。',
+			'sending.enabled' => '定期为我准备',
+			_ => null,
+		} ?? switch (path) {
+			'sending.rhythm' => '频率',
+			'sending.weekly' => '每周',
+			'sending.biweekly' => '每两周',
+			'sending.monthly' => '每月',
+			'sending.day' => '日期',
+			'sending.monthlyDay' => '每月 1 日，发送上个月的报告',
+			'sending.time' => '时间',
+			'sending.recipients' => '收件人',
+			'sending.noAuthorities' => '请先添加你的属灵长辈。',
+			'sending.addAuthorities' => '添加属灵长辈',
+			'sending.viaWhatsApp' => '通过 WhatsApp',
+			'sending.viaEmail' => '通过电子邮件',
+			'sending.viaBoth' => '通过 WhatsApp 或电子邮件',
+			'sending.viaShare' => '通过分享',
+			'sending.next' => ({required Object date}) => '下一次：${date}',
+			'sending.prepareNow' => '立即准备',
+			'sending.history' => '最近发送',
+			'sending.notificationTitle' => '你的报告已准备好',
+			'sending.notificationBody' => '一键发送给你的属灵长辈。',
+			'sending.channel' => '报告发送',
+			'sending.readyTitle' => '你的报告已准备好',
+			'sending.preview' => '消息预览',
+			'sending.greeting' => ({required Object name}) => '${name}，你好：',
+			'sending.whatsApp' => 'WhatsApp',
+			'sending.email' => '电子邮件',
+			'sending.sharePdf' => '分享 PDF',
+			'sending.shareText' => '分享文字',
+			'sending.sent' => '已发送',
+			'sending.shared' => '已分享',
+			'sending.noRecipients' => '请在设置中选择收件人，或分享 PDF。',
+			'sending.settings' => '设置',
+			'sending.permissionDenied' => '请允许通知，以便按时提醒你。',
+			'streak.title' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n, other: '连续 ${n} 天！', ), 
+			'streak.cardDays' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n, other: '天，与神同在', ), 
+			'streak.lines.week' => '整整一周，天天与主同在。真棒，继续加油！',
+			'streak.lines.month' => '一个月的忠心！你每天所撒的种必结出果子。',
+			'streak.lines.hundred' => '与神同在一百天！你的坚持是美好的见证。',
+			'streak.lines.year' => '与神同在整整一年！为你的忠心将荣耀归给祂。',
+			'streak.share' => '分享',
+			'streak.close' => '继续',
+			'shortcuts.today' => '填写我的汇报',
+			'shortcuts.hymns' => '诗歌',
+			'shortcuts.retreat' => '此刻的祷告',
+			'blocking.report' => '举报',
+			'blocking.block' => ({required Object name}) => '屏蔽${name}',
+			'blocking.blockTitle' => ({required Object name}) => '屏蔽${name}？',
+			'blocking.blockText' => ({required Object name}) => '你将不再收到${name}的邀请。这条邀请会被移除。',
+			'blocking.blockAction' => '屏蔽',
+			'blocking.blocked' => ({required Object name}) => '${name}将无法再邀请你。',
+			'blocking.reportTitle' => '举报这条邀请',
+			'blocking.reportText' => '告诉我们哪里不对：团契的负责人会查看。',
+			'blocking.reasons.spam' => '垃圾信息',
+			'blocking.reasons.offensive' => '令人震惊或冒犯的内容',
+			'blocking.reasons.other' => '其他',
+			'blocking.comment' => '备注',
+			'blocking.commentHint' => '负责人需要了解的情况',
+			'blocking.send' => '提交举报',
+			'blocking.reported' => '谢谢，负责人会查看。',
+			'blocking.listTitle' => '已屏蔽的成员',
+			'blocking.intro' => '他们的祷告邀请不会再发给你。',
+			'blocking.empty' => '你还没有屏蔽任何人。',
+			'blocking.unblock' => '取消屏蔽',
+			'blocking.unblocked' => ({required Object name}) => '${name}可以再次邀请你。',
+			'verses.title' => '每日经文',
+			'verses.share' => '分享经文',
+			'verses.shareImage' => '分享图片',
+			'verses.shareText' => '分享文字',
+			'profilePhoto.title' => '头像',
+			'profilePhoto.add' => '添加头像',
+			'profilePhoto.change' => '更换头像',
+			'profilePhoto.seenBy' => '其他成员在你的名字出现的地方都能看到它。',
+			'profilePhoto.camera' => '拍照',
+			'profilePhoto.gallery' => '从相册选择',
+			'profilePhoto.remove' => '移除照片',
+			'profilePhoto.cropTitle' => '裁剪你的照片',
+			'profilePhoto.cropHint' => '用手指移动和放大照片。',
+			'profilePhoto.use' => '使用这张照片',
+			'profilePhoto.unreadable' => '无法打开此图片，请选择另一张。',
+			'profilePhoto.saved' => '你的头像已保存。',
+			'profilePhoto.removed' => '你的头像已移除。',
+			'disciples.title' => '我的门徒',
+			'disciples.intro' => '选择你作为门徒培育者的成员。你能看到他们的规律性，但永远看不到他们报告的内容。',
+			'disciples.empty' => '还没有门徒',
+			'disciples.emptyText' => '当有成员选择你作为门徒培育者、并且你接受了请求，他就会出现在这里。',
+			'disciples.count' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n, other: '${n} 位门徒', ), 
+			'disciples.filled' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n, other: '30 天中填写了 ${n} 天', ), 
+			'disciples.streak' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n, other: '连续 ${n} 天', ), 
+			'disciples.noStreak' => '当前没有连续记录',
+			'disciples.lastToday' => '今天已填写',
+			'disciples.lastYesterday' => '最近一次：昨天',
+			'disciples.lastDaysAgo' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n, other: '最近一次：${n} 天前', ), 
+			'disciples.noReport' => '今年没有报告',
+			'disciples.goals' => ({required Object percent}) => '目标：${percent} %',
+			'disciples.notShared' => '未分享其规律性',
 			_ => null,
 		};
 	}

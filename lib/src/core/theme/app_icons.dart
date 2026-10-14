@@ -23,6 +23,11 @@ abstract final class AppIcons {
   // Modules and settings
   static const events = PhosphorIconsRegular.calendarDots;
   static const announcements = PhosphorIconsRegular.megaphone;
+  static const notifications = PhosphorIconsRegular.bell;
+  static const ministry = PhosphorIconsRegular.globeHemisphereWest;
+  static const journeyPlay = PhosphorIconsFill.play;
+  static const journeyPause = PhosphorIconsFill.pause;
+  static const region = PhosphorIconsRegular.mapPin;
   static const authorities = PhosphorIconsRegular.usersThree;
   static const admin = PhosphorIconsRegular.shieldCheck;
   static const hymnBook = PhosphorIconsRegular.bookOpenText;
@@ -37,7 +42,20 @@ abstract final class AppIcons {
   static const prayerTile = PhosphorIconsDuotone.handsPraying;
   static const eventsTile = PhosphorIconsDuotone.calendarDots;
   static const announcementsTile = PhosphorIconsDuotone.megaphone;
+  static const notificationsTile = PhosphorIconsDuotone.bell;
+  static const ministryTile = PhosphorIconsDuotone.globeHemisphereWest;
+  static const proclaimTile = PhosphorIconsDuotone.megaphone;
+  static const trainTile = PhosphorIconsDuotone.bookOpenText;
+  static const intercedeTile = PhosphorIconsDuotone.handsPraying;
+  static const purposeTile = PhosphorIconsDuotone.compass;
+  static const missionariesTile = PhosphorIconsDuotone.airplaneTilt;
+  static const heroesTile = PhosphorIconsDuotone.medal;
+  static const premiumTile = PhosphorIconsDuotone.crownSimple;
+  static const homeWidgetTile = PhosphorIconsDuotone.squaresFour;
+  static const progressTile = PhosphorIconsDuotone.chartLineUp;
+  static const supportTile = PhosphorIconsDuotone.heart;
   static const authoritiesTile = PhosphorIconsDuotone.usersThree;
+  static const disciplesTile = PhosphorIconsDuotone.plant;
   static const adminTile = PhosphorIconsDuotone.shieldCheck;
   static const hymnBookTile = PhosphorIconsDuotone.bookOpenText;
   static const itemsTile = PhosphorIconsDuotone.slidersHorizontal;
@@ -57,6 +75,25 @@ abstract final class AppIcons {
   static const remove = PhosphorIconsRegular.minus;
   static const search = PhosphorIconsRegular.magnifyingGlass;
   static const share = PhosphorIconsRegular.export;
+  static const verse = PhosphorIconsFill.bookOpenText;
+
+  // Notre but: the means of the crusade, fasting and intercession
+  static const mediaBooks = PhosphorIconsDuotone.bookOpenText;
+  static const mediaTracts = PhosphorIconsDuotone.scroll;
+  static const mediaMagazines = PhosphorIconsDuotone.newspaper;
+  static const mediaCds = PhosphorIconsDuotone.disc;
+  static const mediaDvds = PhosphorIconsDuotone.filmStrip;
+  static const mediaRadio = PhosphorIconsDuotone.radio;
+  static const mediaTv = PhosphorIconsDuotone.television;
+  static const mediaInternet = PhosphorIconsDuotone.globeHemisphereWest;
+  static const fasting = PhosphorIconsDuotone.forkKnife;
+  static const intercession = PhosphorIconsDuotone.handsPraying;
+  static const prayNow = PhosphorIconsFill.handsPraying;
+  static const whatsApp = PhosphorIconsRegular.whatsappLogo;
+  static const email = PhosphorIconsRegular.envelopeSimple;
+  static const sendReport = PhosphorIconsRegular.paperPlaneTilt;
+  static const sendReportTile = PhosphorIconsDuotone.paperPlaneTilt;
+  static const settings = PhosphorIconsRegular.gearSix;
   static const copy = PhosphorIconsRegular.copy;
   static const projection = PhosphorIconsRegular.presentation;
   static const textSize = PhosphorIconsRegular.textAa;
@@ -64,6 +101,8 @@ abstract final class AppIcons {
   static const erase = PhosphorIconsRegular.backspace;
   static const userAdd = PhosphorIconsRegular.userPlus;
   static const userRemove = PhosphorIconsRegular.userMinus;
+  static const report = PhosphorIconsRegular.flagBanner;
+  static const block = PhosphorIconsRegular.prohibit;
   static const visible = PhosphorIconsRegular.eye;
   static const hidden = PhosphorIconsRegular.eyeSlash;
 
@@ -104,6 +143,7 @@ abstract final class AppIcons {
   static const pinned = PhosphorIconsFill.pushPin;
   static const pin = PhosphorIconsRegular.pushPin;
   static const image = PhosphorIconsRegular.image;
+  static const camera = PhosphorIconsRegular.camera;
   static const imageBroken = PhosphorIconsRegular.imageBroken;
   static const photos = PhosphorIconsRegular.images;
   static const hymn = PhosphorIconsRegular.musicNote;
@@ -125,6 +165,7 @@ abstract final class AppIcons {
   static const soundOff = PhosphorIconsRegular.speakerSlash;
   static const done = PhosphorIconsFill.checkFat;
   static const private = PhosphorIconsRegular.lockSimple;
+  static const premiumLock = PhosphorIconsFill.lockSimple;
   static const answeredTile = PhosphorIconsDuotone.sparkle;
   static const importunityGoal = PhosphorIconsRegular.target;
   static const churchTile = PhosphorIconsDuotone.church;

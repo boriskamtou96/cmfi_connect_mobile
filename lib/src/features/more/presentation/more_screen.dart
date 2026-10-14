@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../core/i18n/strings.g.dart';
+import '../../../core/services/premium_store.dart';
 import '../../../core/session/session.dart';
 import '../../../core/storage/preferences.dart';
 import '../../../core/theme/app_colors.dart';
@@ -15,10 +16,17 @@ import '../../../core/widgets/section_card.dart';
 import '../../../core/widgets/tab_page.dart';
 import '../../../routing/app_router.dart';
 import '../../authorities/application/authorities_controller.dart';
+import '../../disciples/application/disciples.dart';
 import '../../members/application/my_account.dart';
+import '../../ministry/application/nations.dart';
+import '../../notifications/application/inbox.dart';
+import '../../notifications/application/push_registration.dart';
 import '../../profile/application/current_profile.dart';
+import '../../profile/presentation/widgets/profile_photo.dart';
 import '../../reports/application/pending_reports.dart';
 import '../../reports/application/report_reminder.dart';
+import '../../reports/application/report_sending.dart';
+import '../../reports/domain/report_sending.dart';
 import '../../reports/presentation/widgets/reminder_sheets.dart';
 import 'widgets/theme_sheet.dart';
 
@@ -35,8 +43,16 @@ class MoreScreen extends ConsumerWidget {
     final authorities = ref.watch(authoritiesControllerProvider).value;
     final themeMode = ref.watch(savedThemeModeProvider);
     final reminder = ref.watch(reportReminderProvider);
+    final sending = ref.watch(reportSendingProvider);
     final account = ref.watch(myAccountProvider).value;
     final requests = ref.watch(authorityRequestsProvider).value?.length ?? 0;
+    // the members who chose the user as disciple maker
+    final disciples = ref.watch(disciplesProvider).value ?? const [];
+    final unread = ref.watch(inboxProvider).value?.unread ?? 0;
+    final premium = ref.watch(premiumProvider).value ?? false;
+    // v1: Premium is offered to everyone, nothing leads to the paywall
+    final premiumForEveryone = ref.watch(premiumForEveryoneProvider);
+    final nationCount = ref.watch(nationsProvider).value?.length ?? 154;
     final discipleMaker = authorities
         ?.where((authority) => authority.isDiscipleMaker)
         .firstOrNull;
@@ -75,10 +91,7 @@ class MoreScreen extends ConsumerWidget {
                     horizontal: AppSpacing.lg,
                     vertical: AppSpacing.sm,
                   ),
-                  leading: InitialsAvatar(
-                    initials: profile?.initials ?? '',
-                    size: 52,
-                  ),
+                  leading: const ProfilePhotoButton(size: 52),
                   title: Text(
                     missingName
                         ? t.more.completeProfile
@@ -149,6 +162,26 @@ class MoreScreen extends ConsumerWidget {
                     trailing: const Icon(AppIcons.chevronRight),
                     onTap: () => context.router.push(const AuthoritiesRoute()),
                   ),
+                  if (disciples.isNotEmpty)
+                    ListTile(
+                      leading: moduleIcon(
+                        AppIcons.disciplesTile,
+                        AppModule.reports,
+                      ),
+                      title: Text(
+                        t.more.disciples,
+                        style: const TextStyle(fontWeight: FontWeight.w600),
+                      ),
+                      subtitle: Text(
+                        t.disciples.count(n: disciples.length),
+                        style: TextStyle(
+                          fontSize: 13,
+                          color: scheme.onSurfaceVariant,
+                        ),
+                      ),
+                      trailing: const Icon(AppIcons.chevronRight),
+                      onTap: () => context.router.push(const DisciplesRoute()),
+                    ),
                 ],
               ),
             ),
@@ -170,12 +203,40 @@ class MoreScreen extends ConsumerWidget {
                     onTap: () => context.router.push(const EventsRoute()),
                   ),
                   ListTile(
-                    leading: moduleIcon(AppIcons.announcementsTile, events),
+                    leading: moduleIcon(AppIcons.ministryTile, events),
                     title: Text(
-                      t.more.announcements,
+                      t.ministry.title,
                       style: const TextStyle(fontWeight: FontWeight.w600),
                     ),
-                    trailing: StatusPill(t.common.soon),
+                    subtitle: Text(
+                      t.ministry.homeText(n: nationCount),
+                      style: TextStyle(
+                        fontSize: 13,
+                        color: scheme.onSurfaceVariant,
+                      ),
+                    ),
+                    trailing: const Icon(AppIcons.chevronRight),
+                    onTap: () => context.router.push(const MinistryRoute()),
+                  ),
+                  ListTile(
+                    leading: moduleIcon(AppIcons.notificationsTile, events),
+                    title: Text(
+                      t.notifications.title,
+                      style: const TextStyle(fontWeight: FontWeight.w600),
+                    ),
+                    subtitle: unread > 0
+                        ? Text(
+                            t.notifications.unread(n: unread),
+                            style: TextStyle(
+                              fontSize: 13,
+                              fontWeight: FontWeight.w700,
+                              color: scheme.primary,
+                            ),
+                          )
+                        : null,
+                    trailing: const Icon(AppIcons.chevronRight),
+                    onTap: () =>
+                        context.router.push(const NotificationsRoute()),
                   ),
                 ],
               ),
@@ -205,6 +266,32 @@ class MoreScreen extends ConsumerWidget {
                     ),
                     trailing: const Icon(AppIcons.chevronRight),
                     onTap: () => context.router.push(const ExportReportRoute()),
+                  ),
+                  ListTile(
+                    leading: moduleIcon(
+                      AppIcons.sendReportTile,
+                      AppModule.reports,
+                    ),
+                    title: Text(
+                      t.sending.title,
+                      style: const TextStyle(fontWeight: FontWeight.w600),
+                    ),
+                    subtitle: Text(
+                      sending.enabled
+                          ? '${switch (sending.rhythm) {
+                              SendingRhythm.weekly => t.sending.weekly,
+                              SendingRhythm.biweekly => t.sending.biweekly,
+                              SendingRhythm.monthly => t.sending.monthly,
+                            }} · ${sending.time.format(context)}'
+                          : t.sending.moreOff,
+                      style: TextStyle(
+                        fontSize: 13,
+                        color: scheme.onSurfaceVariant,
+                      ),
+                    ),
+                    trailing: const Icon(AppIcons.chevronRight),
+                    onTap: () =>
+                        context.router.push(const ReportSendingRoute()),
                   ),
                 ],
               ),
@@ -252,6 +339,29 @@ class MoreScreen extends ConsumerWidget {
               label: t.more.app,
               card: SectionCard(
                 children: [
+                  if (!premiumForEveryone)
+                    ListTile(
+                      leading: moduleIcon(
+                        AppIcons.premiumTile,
+                        AppModule.reports,
+                      ),
+                      title: Text(
+                        t.premium.name,
+                        style: const TextStyle(fontWeight: FontWeight.w600),
+                      ),
+                      subtitle: Text(
+                        premium ? t.premium.moreActive : t.premium.moreSubtitle,
+                        style: TextStyle(
+                          fontSize: 13,
+                          fontWeight: premium ? FontWeight.w700 : null,
+                          color: premium
+                              ? scheme.primary
+                              : scheme.onSurfaceVariant,
+                        ),
+                      ),
+                      trailing: const Icon(AppIcons.chevronRight),
+                      onTap: () => context.router.push(const PremiumRoute()),
+                    ),
                   ListTile(
                     title: Text(
                       t.reminder.settings,
@@ -321,9 +431,29 @@ class MoreScreen extends ConsumerWidget {
               ),
             ),
           ),
-          const SizedBox(height: AppSpacing.lg),
+          const SizedBox(height: 18),
           FadeSlideIn(
             index: 5,
+            child: _Section(
+              label: t.more.account,
+              card: SectionCard(
+                children: [
+                  ListTile(
+                    title: Text(
+                      t.blocking.listTitle,
+                      style: const TextStyle(fontWeight: FontWeight.w600),
+                    ),
+                    trailing: const Icon(AppIcons.chevronRight),
+                    onTap: () =>
+                        context.router.push(const BlockedMembersRoute()),
+                  ),
+                ],
+              ),
+            ),
+          ),
+          const SizedBox(height: AppSpacing.lg),
+          FadeSlideIn(
+            index: 6,
             child: TextButton(
               style: TextButton.styleFrom(
                 foregroundColor: scheme.error,
@@ -381,6 +511,9 @@ class MoreScreen extends ConsumerWidget {
         return;
       }
     }
+    // while the session lasts: the server forgets this phone
+    await ref.read(pushRegistrationProvider.notifier).stop();
+    await ref.read(premiumStoreProvider).logOut();
     await ref.read(sessionProvider.notifier).signOut();
   }
 

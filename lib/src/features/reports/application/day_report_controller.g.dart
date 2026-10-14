@@ -60,7 +60,7 @@ final class DayReportControllerProvider
 }
 
 String _$dayReportControllerHash() =>
-    r'586ed71be8130dc8961ee822524ea5d1ec0be28f';
+    r'c7fd9cc238daaf08f23e60dfef5b2a134beec951';
 
 /// One day of report. A day with unsaved changes stays in memory (switching
 /// day or tab doesn't lose it) until it is saved. Without network, the day

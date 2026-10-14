@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../core/i18n/strings.g.dart';
@@ -15,16 +16,31 @@ import '../../../core/widgets/animated_progress_bar.dart';
 import '../../../core/widgets/cmfi_logo.dart';
 import '../../../core/widgets/dashed_outline.dart';
 import '../../../core/widgets/fade_slide_in.dart';
+import '../../../core/widgets/goal_ring.dart';
 import '../../../core/widgets/media_picture.dart';
 import '../../../core/widgets/rolling_text.dart';
 import '../../../core/widgets/section_card.dart';
 import '../../../routing/app_router.dart';
 import '../../events/application/events_providers.dart';
+import '../../events/domain/event.dart';
+import '../../events/infrastructure/events_api.dart';
+import '../../events/presentation/widgets/event_cards.dart';
+import '../../events/presentation/widgets/event_format.dart';
+import '../../events/presentation/widgets/event_picture.dart';
 import '../../hymns/application/hymn_collections.dart';
 import '../../hymns/application/hymn_library.dart';
+import '../../members/presentation/widgets/member_avatar.dart';
+import '../../ministry/application/nations.dart';
+import '../../notifications/application/inbox.dart';
+import '../../prayer/application/retreats.dart';
+import '../../prayer/domain/retreat.dart';
+import '../../prayer/presentation/prayer_screen.dart';
+import '../../prayer/presentation/widgets/prayer_look.dart';
 import '../../profile/application/current_profile.dart';
 import '../../reports/application/day_report_controller.dart';
+import '../../reports/application/report_goals.dart';
 import '../../reports/application/reports_providers.dart';
+import '../../verses/presentation/verse_card.dart';
 
 /// Dashboard: today's report, the week, and what's coming in the community.
 @RoutePage()
@@ -107,13 +123,16 @@ class HomeScreen extends ConsumerWidget {
                           ],
                         ),
                       ),
+                      const _Bell(),
+                      const SizedBox(width: AppSpacing.xs),
                       Tooltip(
                         message: t.home.profile,
                         child: InkResponse(
                           onTap: () => context.navigateTo(const MoreRoute()),
                           radius: 28,
-                          child: InitialsAvatar(
+                          child: MemberAvatar(
                             initials: profile?.initials ?? '',
+                            photo: profile?.avatar,
                           ),
                         ),
                       ),
@@ -134,6 +153,8 @@ class HomeScreen extends ConsumerWidget {
                 ),
               ),
               const SizedBox(height: 14),
+              const FadeSlideIn(index: 3, child: VerseOfTheDayCard()),
+              const SizedBox(height: 14),
               const FadeSlideIn(index: 3, child: _HymnsCard()),
               const SizedBox(height: 20),
               FadeSlideIn(
@@ -149,22 +170,321 @@ class HomeScreen extends ConsumerWidget {
                 ),
               ),
               const SizedBox(height: AppSpacing.md),
-              const FadeSlideIn(index: 5, child: _EventCard()),
+              const FadeSlideIn(index: 5, child: _EventsCarousel()),
               const SizedBox(height: 10),
               FadeSlideIn(
                 index: 6,
                 child: _TeaserCard(
-                  module: AppModule.prayer,
-                  icon: const PhosphorIcon(AppIcons.prayerTile, size: 20),
-                  title: t.home.prayerTitle,
-                  text: t.home.prayerText,
-                  filled: true,
-                  onTap: () => context.navigateTo(const PrayerRoute()),
+                  module: AppModule.events,
+                  icon: const PhosphorIcon(AppIcons.ministryTile, size: 20),
+                  title: t.ministry.title,
+                  text: t.ministry.homeText(
+                    n: ref.watch(nationsProvider).value?.length ?? 154,
+                  ),
+                  soon: false,
+                  onTap: () => context.router.push(const MinistryRoute()),
                 ),
               ),
+              const SizedBox(height: 10),
+              const FadeSlideIn(index: 7, child: _PrayerCard()),
             ],
           ),
         ),
+      ),
+    );
+  }
+}
+
+/// The retreat of the moment (morning, noon, evening, night) and what it
+/// prays for; a tap opens it. Once the four of the day are made, the
+/// Prayer tab.
+class _PrayerCard extends ConsumerWidget {
+  const _PrayerCard();
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final t = context.t;
+    final now = DateTime.now();
+    final moment = nextRetreat(ref.watch(retreatsTodayProvider), now);
+
+    return _TeaserCard(
+      module: AppModule.prayer,
+      icon: PhosphorIcon(moment?.icon ?? AppIcons.prayerTile, size: 20),
+      title: switch (moment) {
+        null => t.nav.prayer,
+        _ when moment == momentAt(now) => t.prayer.hero.now(
+          retreat: moment.retreat(t),
+        ),
+        _ => moment.retreat(t),
+      },
+      text: moment == null
+          ? t.prayer.hero.allDone
+          : t.prayer.hero.preview[moment.name]!,
+      filled: true,
+      soon: false,
+      onTap: () => moment == null
+          ? context.navigateTo(const PrayerRoute())
+          : context.router.push(RetreatRoute(moment: moment)),
+    );
+  }
+}
+
+/// The next events of the community (up to [_max]) as large posters, one
+/// after the other with a swipe; the last card opens them all. With one event
+/// or none, [_EventCard].
+class _EventsCarousel extends HookConsumerWidget {
+  const _EventsCarousel();
+
+  static const _max = 5;
+  static const _fraction = 0.78;
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final upcoming =
+        ref.watch(eventListProvider(EventPeriod.upcoming)).value ?? const [];
+    final events = [
+      for (final event in upcoming)
+        if (event.status == EventStatus.published) event,
+    ];
+    final controller = usePageController(viewportFraction: _fraction);
+    final page = useState(0);
+
+    if (events.length < 2) {
+      return const _EventCard();
+    }
+    final shown = events.take(_max).toList();
+    final now = DateTime.now();
+    final scaler = MediaQuery.textScalerOf(context);
+
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        final width = constraints.maxWidth * _fraction - AppSpacing.md;
+        // the poster, then two lines of title and one of dates, whatever
+        // the title: the cards keep the same height
+        final height =
+            width * 5 / 4 +
+            AppSpacing.md * 2 +
+            scaler.scale(_EventSlide.titleLine) * 2 +
+            AppSpacing.xs +
+            scaler.scale(_EventSlide.factLine);
+
+        return Column(
+          children: [
+            SizedBox(
+              height: height,
+              child: PageView.builder(
+                controller: controller,
+                padEnds: false,
+                itemCount: shown.length + 1,
+                onPageChanged: (index) => page.value = index,
+                itemBuilder: (context, index) => Padding(
+                  padding: const EdgeInsetsDirectional.only(end: AppSpacing.md),
+                  child: index < shown.length
+                      ? Semantics(
+                          label: context.t.events.slide(
+                            current: index + 1,
+                            total: shown.length,
+                          ),
+                          child: _EventSlide(event: shown[index], now: now),
+                        )
+                      : _AllEventsSlide(count: events.length),
+                ),
+              ),
+            ),
+            const SizedBox(height: AppSpacing.md),
+            _PageDots(count: shown.length + 1, current: page.value),
+          ],
+        );
+      },
+    );
+  }
+}
+
+/// An event of the carousel: its whole poster with its pills, the title and
+/// the dates.
+class _EventSlide extends StatelessWidget {
+  const _EventSlide({required this.event, required this.now});
+
+  final CommunityEvent event;
+  final DateTime now;
+
+  static const titleLine = 20.0;
+  static const factLine = 18.0;
+
+  @override
+  Widget build(BuildContext context) {
+    final scheme = Theme.of(context).colorScheme;
+
+    return Material(
+      color: scheme.surface,
+      clipBehavior: Clip.antiAlias,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(AppRadius.xl),
+        side: BorderSide(color: scheme.outlineVariant),
+      ),
+      child: InkWell(
+        onTap: () => context.router.push(EventRoute(eventId: event.id)),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            AspectRatio(
+              aspectRatio: 4 / 5,
+              // the blurred copy behind the poster stays inside it
+              child: ClipRect(
+                child: Stack(
+                  fit: StackFit.expand,
+                  children: [
+                    Hero(
+                      tag: posterTag(event.id),
+                      child: PosterBackdrop(event.poster),
+                    ),
+                    PositionedDirectional(
+                      start: AppSpacing.sm,
+                      end: AppSpacing.sm,
+                      top: AppSpacing.sm,
+                      child: Align(
+                        alignment: AlignmentDirectional.topStart,
+                        child: EventPills(event: event, now: now),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(
+                AppSpacing.md,
+                AppSpacing.md,
+                AppSpacing.md,
+                0,
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    event.title,
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
+                    strutStyle: const StrutStyle(
+                      fontSize: 16,
+                      height: titleLine / 16,
+                      forceStrutHeight: true,
+                    ),
+                    style: const TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w700,
+                    ),
+                  ),
+                  const SizedBox(height: AppSpacing.xs),
+                  Text(
+                    [
+                      context.eventDates(
+                        event.startsAt,
+                        event.endsAt,
+                        event.timeZone,
+                      ),
+                      event.city,
+                    ].where((part) => part.isNotEmpty).join(' · '),
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    strutStyle: const StrutStyle(
+                      fontSize: 13,
+                      height: factLine / 13,
+                      forceStrutHeight: true,
+                    ),
+                    style: TextStyle(
+                      fontSize: 13,
+                      color: scheme.onSurfaceVariant,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+/// The last card of the carousel: all the events.
+class _AllEventsSlide extends StatelessWidget {
+  const _AllEventsSlide({required this.count});
+
+  final int count;
+
+  @override
+  Widget build(BuildContext context) {
+    final t = context.t.events;
+    final tone = AppModule.events.tone(context);
+
+    return Material(
+      color: tone.soft,
+      borderRadius: BorderRadius.circular(AppRadius.xl),
+      child: InkWell(
+        borderRadius: BorderRadius.circular(AppRadius.xl),
+        onTap: () => context.router.push(const EventsRoute()),
+        child: Padding(
+          padding: const EdgeInsets.all(AppSpacing.lg),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              PhosphorIcon(AppIcons.eventsTile, size: 40, color: tone.onSoft),
+              const SizedBox(height: AppSpacing.md),
+              Text(
+                t.seeAll,
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontSize: 17,
+                  fontWeight: FontWeight.w800,
+                  color: tone.onSoft,
+                ),
+              ),
+              const SizedBox(height: AppSpacing.xs),
+              Text(
+                t.upcomingCount(n: count),
+                textAlign: TextAlign.center,
+                style: TextStyle(fontSize: 14, color: tone.onSoft),
+              ),
+              const SizedBox(height: AppSpacing.md),
+              Icon(AppIcons.arrowRight, color: tone.onSoft),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+/// Where the carousel is: one dot per card, the current one longer.
+class _PageDots extends StatelessWidget {
+  const _PageDots({required this.count, required this.current});
+
+  final int count;
+  final int current;
+
+  @override
+  Widget build(BuildContext context) {
+    final tone = AppModule.events.tone(context);
+    final duration = AppMotion.of(context, AppMotion.fast);
+
+    return ExcludeSemantics(
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          for (var i = 0; i < count; i++)
+            AnimatedContainer(
+              duration: duration,
+              curve: AppMotion.standard,
+              margin: const EdgeInsets.symmetric(horizontal: 3),
+              width: i == current ? 18 : 6,
+              height: 6,
+              decoration: BoxDecoration(
+                color: i == current ? tone.color : tone.soft,
+                borderRadius: BorderRadius.circular(3),
+              ),
+            ),
+        ],
       ),
     );
   }
@@ -422,6 +742,7 @@ class _TodayCard extends ConsumerWidget {
     final filled =
         draft?.entries.where((entry) => entry.isFilled).toList() ?? const [];
     final total = draft?.entries.length ?? 0;
+    final goalsOfDay = ref.watch(goalsOfDayProvider(today()));
     const onCard = Color(0xFFDCE9F7);
 
     return Container(
@@ -445,39 +766,78 @@ class _TodayCard extends ConsumerWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  t.home.todayTitle,
-                  style: const TextStyle(
-                    fontSize: 14,
-                    fontWeight: FontWeight.w600,
-                    color: AppColors.onPrimaryMuted,
-                  ),
-                ),
-                const SizedBox(height: 14),
-                Wrap(
-                  crossAxisAlignment: WrapCrossAlignment.end,
-                  spacing: AppSpacing.sm,
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
-                    RollingText(
-                      draft == null
-                          ? '—'
-                          : t.home.progress(
-                              filled: filled.length,
-                              total: total,
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            t.home.todayTitle,
+                            style: const TextStyle(
+                              fontSize: 14,
+                              fontWeight: FontWeight.w600,
+                              color: AppColors.onPrimaryMuted,
                             ),
-                      value: filled.length,
-                      style: const TextStyle(
-                        fontSize: 34,
-                        fontWeight: FontWeight.w800,
-                        height: 1,
-                        letterSpacing: -0.6,
-                        color: Colors.white,
+                          ),
+                          const SizedBox(height: 14),
+                          Wrap(
+                            crossAxisAlignment: WrapCrossAlignment.end,
+                            spacing: AppSpacing.sm,
+                            children: [
+                              RollingText(
+                                draft == null
+                                    ? '—'
+                                    : t.home.progress(
+                                        filled: filled.length,
+                                        total: total,
+                                      ),
+                                value: filled.length,
+                                style: const TextStyle(
+                                  fontSize: 34,
+                                  fontWeight: FontWeight.w800,
+                                  height: 1,
+                                  letterSpacing: -0.6,
+                                  color: Colors.white,
+                                ),
+                              ),
+                              Text(
+                                t.home.progressLabel,
+                                style: const TextStyle(
+                                  fontSize: 15,
+                                  color: onCard,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ],
                       ),
                     ),
-                    Text(
-                      t.home.progressLabel,
-                      style: const TextStyle(fontSize: 15, color: onCard),
-                    ),
+                    if (goalsOfDay != null) ...[
+                      const SizedBox(width: AppSpacing.md),
+                      Column(
+                        children: [
+                          GoalRing(
+                            value: goalsOfDay.progress,
+                            label: t.reports.dayGoals,
+                            size: 60,
+                            color: Colors.white,
+                            trackColor: Colors.white.withValues(alpha: 0.22),
+                            textColor: Colors.white,
+                          ),
+                          const SizedBox(height: AppSpacing.xs),
+                          Text(
+                            t.home.goals,
+                            style: const TextStyle(
+                              fontSize: 12,
+                              fontWeight: FontWeight.w600,
+                              color: onCard,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
                   ],
                 ),
                 const SizedBox(height: 14),
@@ -531,6 +891,27 @@ class _TodayCard extends ConsumerWidget {
             ),
           ),
         ],
+      ),
+    );
+  }
+}
+
+/// The notifications of the admins, with the number not read yet.
+class _Bell extends ConsumerWidget {
+  const _Bell();
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final t = context.t.notifications;
+    final unread = ref.watch(inboxProvider).value?.unread ?? 0;
+
+    return IconButton(
+      tooltip: unread > 0 ? '${t.title} · ${t.unread(n: unread)}' : t.title,
+      onPressed: () => context.router.push(const NotificationsRoute()),
+      icon: Badge(
+        isLabelVisible: unread > 0,
+        label: Text(unread > 9 ? '9+' : '$unread'),
+        child: const Icon(AppIcons.notifications),
       ),
     );
   }

@@ -831,6 +831,8 @@ class _Translations$prayer$zh extends Translations$prayer$fr {
 	};
 	@override late final _Translations$prayer$hero$zh hero = _Translations$prayer$hero$zh._(_root);
 	@override late final _Translations$prayer$today$zh today = _Translations$prayer$today$zh._(_root);
+	@override late final _Translations$prayer$routine$zh routine = _Translations$prayer$routine$zh._(_root);
+	@override String get together => '一起祷告';
 	@override late final _Translations$prayer$reminders$zh reminders = _Translations$prayer$reminders$zh._(_root);
 	@override late final _Translations$prayer$retreat$zh retreat = _Translations$prayer$retreat$zh._(_root);
 	@override late final _Translations$prayer$session$zh session = _Translations$prayer$session$zh._(_root);
@@ -1827,6 +1829,31 @@ class _Translations$prayer$today$zh extends Translations$prayer$today$fr {
 	);
 }
 
+// Path: prayer.routine
+class _Translations$prayer$routine$zh extends Translations$prayer$routine$fr {
+	_Translations$prayer$routine$zh._(TranslationsZh root) : this._root = root, super.internal(root);
+
+	final TranslationsZh _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => '你今天的祷告安排';
+	@override String count({required Object done}) => '${done} / 4';
+	@override String days({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n,
+		other: '7 天中有 ${n} 天',
+	);
+	@override String week({required Object time}) => '本周 ${time}';
+	@override String get done => '已完成 · 15 分钟';
+	@override String get now => '现在 · 15 分钟';
+	@override String get next => '下一个 · 15 分钟';
+	@override String reminder({required Object time}) => '${time} 提醒';
+	@override Map<String, String> get later => {
+		'morning': '早上 · 15 分钟',
+		'noon': '中午 · 15 分钟',
+		'evening': '傍晚 · 15 分钟',
+		'night': '夜里 · 15 分钟',
+	};
+}
+
 // Path: prayer.reminders
 class _Translations$prayer$reminders$zh extends Translations$prayer$reminders$fr {
 	_Translations$prayer$reminders$zh._(TranslationsZh root) : this._root = root, super.internal(root);
@@ -2008,6 +2035,7 @@ class _Translations$prayer$lists$zh extends Translations$prayer$lists$fr {
 	);
 	@override String lastAnswered({required Object name, required Object what}) => '${name}：${what}';
 	@override late final _Translations$prayer$lists$sheet$zh sheet = _Translations$prayer$lists$sheet$zh._(_root);
+	@override String get addShort => '添加';
 }
 
 // Path: prayer.importunity
@@ -2058,6 +2086,8 @@ class _Translations$prayer$importunity$zh extends Translations$prayer$importunit
 	@override String get leaveText => '你的宣告次数仍会计入总数。';
 	@override late final _Translations$prayer$importunity$form$zh form = _Translations$prayer$importunity$form$zh._(_root);
 	@override late final _Translations$prayer$importunity$inviteSheet$zh inviteSheet = _Translations$prayer$importunity$inviteSheet$zh._(_root);
+	@override String get eyebrow => '恒切祷告事项';
+	@override String get proclaim => '宣告';
 }
 
 // Path: streak.lines
@@ -3152,6 +3182,19 @@ extension on TranslationsZh {
 			'prayer.hero.doneNow' => ({required Object retreat, required Object next}) => '${retreat}已完成。下一次：${next}',
 			'prayer.today.toPray' => '待祷告',
 			'prayer.today.week' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n, zero: '本周还没有完成祷告', other: '本周完成了 ${n} 次祷告', ), 
+			'prayer.routine.title' => '你今天的祷告安排',
+			'prayer.routine.count' => ({required Object done}) => '${done} / 4',
+			'prayer.routine.days' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n, other: '7 天中有 ${n} 天', ), 
+			'prayer.routine.week' => ({required Object time}) => '本周 ${time}',
+			'prayer.routine.done' => '已完成 · 15 分钟',
+			'prayer.routine.now' => '现在 · 15 分钟',
+			'prayer.routine.next' => '下一个 · 15 分钟',
+			'prayer.routine.reminder' => ({required Object time}) => '${time} 提醒',
+			'prayer.routine.later.morning' => '早上 · 15 分钟',
+			'prayer.routine.later.noon' => '中午 · 15 分钟',
+			'prayer.routine.later.evening' => '傍晚 · 15 分钟',
+			'prayer.routine.later.night' => '夜里 · 15 分钟',
+			'prayer.together' => '一起祷告',
 			'prayer.reminders.title' => '祷告提醒',
 			'prayer.reminders.intro' => '在每次祷告的时间提醒你，仅在尚未完成时提醒。',
 			'prayer.reminders.off' => '已关闭',
@@ -3275,6 +3318,7 @@ extension on TranslationsZh {
 			'prayer.lists.sheet.remove' => '从名单中移除',
 			'prayer.lists.sheet.removeTitle' => ({required Object name}) => '移除 ${name}？',
 			'prayer.lists.sheet.removeText' => '你的每日祷告中将不再为这个人祷告。',
+			'prayer.lists.addShort' => '添加',
 			'prayer.importunity.title' => '恒切祷告事项',
 			'prayer.importunity.newTopic' => '新事项',
 			'prayer.importunity.intro' => '一个向主恒切祈求、不灰心，直到蒙应允的事项。设定宣告的次数，并邀请弟兄姊妹与你一起祷告。',
@@ -3311,6 +3355,8 @@ extension on TranslationsZh {
 			'prayer.importunity.form.subject' => '事项',
 			'prayer.importunity.form.subjectPlaceholder' => '主啊，求你拯救李明',
 			'prayer.importunity.form.description' => '详情',
+			_ => null,
+		} ?? switch (path) {
 			'prayer.importunity.form.descriptionPlaceholder' => '为谁、为什么……',
 			'prayer.importunity.form.goal' => '目标',
 			'prayer.importunity.form.goalHint' => '大家一起要达到的宣告次数。留空则只计数、不设目标。',
@@ -3325,9 +3371,9 @@ extension on TranslationsZh {
 			'prayer.importunity.inviteSheet.usernameLabel' => '用户名',
 			'prayer.importunity.inviteSheet.addUsername' => '添加',
 			'prayer.importunity.inviteSheet.send' => '发送邀请',
-			_ => null,
-		} ?? switch (path) {
 			'prayer.importunity.inviteSheet.sent' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n, zero: '他们之前已被邀请过了。', other: '已发送 ${n} 个邀请', ), 
+			'prayer.importunity.eyebrow' => '恒切祷告事项',
+			'prayer.importunity.proclaim' => '宣告',
 			'sending.title' => '发送给我的属灵长辈',
 			'sending.moreOff' => '已关闭',
 			'sending.intro' => '到了你选定的时间，CMFI Connect 会准备好这段时间的报告，你只需发送给你的属灵长辈。',

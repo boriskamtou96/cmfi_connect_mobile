@@ -1089,6 +1089,26 @@
         "other": "{n} retiros esta semana"
       }
     },
+    "routine": {
+      "title": "Tu rutina del día",
+      "count": "{done} de 4",
+      "days(plural, param=n)": {
+        "one": "{n} día de 7",
+        "other": "{n} días de 7"
+      },
+      "week": "{time} esta semana",
+      "done": "Hecha · 15 min",
+      "now": "Ahora · 15 min",
+      "next": "A continuación · 15 min",
+      "reminder": "Recordatorio a las {time}",
+      "later(map)": {
+        "morning": "Por la mañana · 15 min",
+        "noon": "Al mediodía · 15 min",
+        "evening": "Por la tarde · 15 min",
+        "night": "Por la noche · 15 min"
+      }
+    },
+    "together": "Orar juntos",
     "reminders": {
       "title": "Recordatorios de los retiros",
       "intro": "Un recordatorio a la hora de cada retiro, solo si aún no lo has hecho.",
@@ -1261,7 +1281,8 @@
         "remove": "Quitar de la lista",
         "removeTitle": "¿Quitar a {name}?",
         "removeText": "Ya no orarás por esta persona en tus retiros."
-      }
+      },
+      "addShort": "Añadir"
     },
     "importunity": {
       "title": "Motivos de importunidad",
@@ -1337,7 +1358,9 @@
           "one": "{n} invitación enviada",
           "other": "{n} invitaciones enviadas"
         }
-      }
+      },
+      "eyebrow": "Tema de importunidad",
+      "proclaim": "Proclamar"
     }
   },
   "sending": {

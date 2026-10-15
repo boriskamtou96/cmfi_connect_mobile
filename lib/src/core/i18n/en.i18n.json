@@ -1090,6 +1090,26 @@
         "other": "{n} retreats this week"
       }
     },
+    "routine": {
+      "title": "Your daily routine",
+      "count": "{done} of 4",
+      "days(plural, param=n)": {
+        "one": "{n} day out of 7",
+        "other": "{n} days out of 7"
+      },
+      "week": "{time} this week",
+      "done": "Done · 15 min",
+      "now": "Now · 15 min",
+      "next": "Up next · 15 min",
+      "reminder": "Reminder at {time}",
+      "later(map)": {
+        "morning": "In the morning · 15 min",
+        "noon": "At noon · 15 min",
+        "evening": "In the evening · 15 min",
+        "night": "At night · 15 min"
+      }
+    },
+    "together": "Praying together",
     "reminders": {
       "title": "Retreat reminders",
       "intro": "A reminder at the time of each retreat, only if it isn't done yet.",
@@ -1262,7 +1282,8 @@
         "remove": "Remove from the list",
         "removeTitle": "Remove {name}?",
         "removeText": "You won't pray for this person in your retreats any more."
-      }
+      },
+      "addShort": "Add"
     },
     "importunity": {
       "title": "Importunity topics",
@@ -1338,7 +1359,9 @@
           "one": "{n} invitation sent",
           "other": "{n} invitations sent"
         }
-      }
+      },
+      "eyebrow": "Importunity topic",
+      "proclaim": "Proclaim"
     }
   },
   "sending": {

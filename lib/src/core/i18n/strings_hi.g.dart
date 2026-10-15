@@ -853,6 +853,8 @@ class _Translations$prayer$hi extends Translations$prayer$fr {
 	};
 	@override late final _Translations$prayer$hero$hi hero = _Translations$prayer$hero$hi._(_root);
 	@override late final _Translations$prayer$today$hi today = _Translations$prayer$today$hi._(_root);
+	@override late final _Translations$prayer$routine$hi routine = _Translations$prayer$routine$hi._(_root);
+	@override String get together => 'साथ मिलकर प्रार्थना';
 	@override late final _Translations$prayer$reminders$hi reminders = _Translations$prayer$reminders$hi._(_root);
 	@override late final _Translations$prayer$retreat$hi retreat = _Translations$prayer$retreat$hi._(_root);
 	@override late final _Translations$prayer$session$hi session = _Translations$prayer$session$hi._(_root);
@@ -1868,6 +1870,32 @@ class _Translations$prayer$today$hi extends Translations$prayer$today$fr {
 	);
 }
 
+// Path: prayer.routine
+class _Translations$prayer$routine$hi extends Translations$prayer$routine$fr {
+	_Translations$prayer$routine$hi._(TranslationsHi root) : this._root = root, super.internal(root);
+
+	final TranslationsHi _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'आज की तुम्हारी दिनचर्या';
+	@override String count({required Object done}) => '4 में से ${done}';
+	@override String days({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n,
+		one: '7 में से ${n} दिन',
+		other: '7 में से ${n} दिन',
+	);
+	@override String week({required Object time}) => 'इस सप्ताह ${time}';
+	@override String get done => 'हो गई · 15 मिनट';
+	@override String get now => 'अभी · 15 मिनट';
+	@override String get next => 'अगली · 15 मिनट';
+	@override String reminder({required Object time}) => '${time} पर याद दिलाना';
+	@override Map<String, String> get later => {
+		'morning': 'सुबह · 15 मिनट',
+		'noon': 'दोपहर · 15 मिनट',
+		'evening': 'शाम · 15 मिनट',
+		'night': 'रात · 15 मिनट',
+	};
+}
+
 // Path: prayer.reminders
 class _Translations$prayer$reminders$hi extends Translations$prayer$reminders$fr {
 	_Translations$prayer$reminders$hi._(TranslationsHi root) : this._root = root, super.internal(root);
@@ -2055,6 +2083,7 @@ class _Translations$prayer$lists$hi extends Translations$prayer$lists$fr {
 	);
 	@override String lastAnswered({required Object name, required Object what}) => '${name}: ${what}';
 	@override late final _Translations$prayer$lists$sheet$hi sheet = _Translations$prayer$lists$sheet$hi._(_root);
+	@override String get addShort => 'जोड़ो';
 }
 
 // Path: prayer.importunity
@@ -2109,6 +2138,8 @@ class _Translations$prayer$importunity$hi extends Translations$prayer$importunit
 	@override String get leaveText => 'तुम्हारी घोषणाएँ कुल संख्या में बनी रहेंगी।';
 	@override late final _Translations$prayer$importunity$form$hi form = _Translations$prayer$importunity$form$hi._(_root);
 	@override late final _Translations$prayer$importunity$inviteSheet$hi inviteSheet = _Translations$prayer$importunity$inviteSheet$hi._(_root);
+	@override String get eyebrow => 'लगातार प्रार्थना का विषय';
+	@override String get proclaim => 'घोषणा करो';
 }
 
 // Path: streak.lines
@@ -3208,6 +3239,19 @@ extension on TranslationsHi {
 			'prayer.hero.doneNow' => ({required Object retreat, required Object next}) => '${retreat} पूरा हुआ। अगला: ${next}',
 			'prayer.today.toPray' => 'प्रार्थना बाकी',
 			'prayer.today.week' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n, zero: 'इस हफ़्ते कोई प्रार्थना-समय नहीं', one: 'इस हफ़्ते ${n} प्रार्थना-समय', other: 'इस हफ़्ते ${n} प्रार्थना-समय', ), 
+			'prayer.routine.title' => 'आज की तुम्हारी दिनचर्या',
+			'prayer.routine.count' => ({required Object done}) => '4 में से ${done}',
+			'prayer.routine.days' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n, one: '7 में से ${n} दिन', other: '7 में से ${n} दिन', ), 
+			'prayer.routine.week' => ({required Object time}) => 'इस सप्ताह ${time}',
+			'prayer.routine.done' => 'हो गई · 15 मिनट',
+			'prayer.routine.now' => 'अभी · 15 मिनट',
+			'prayer.routine.next' => 'अगली · 15 मिनट',
+			'prayer.routine.reminder' => ({required Object time}) => '${time} पर याद दिलाना',
+			'prayer.routine.later.morning' => 'सुबह · 15 मिनट',
+			'prayer.routine.later.noon' => 'दोपहर · 15 मिनट',
+			'prayer.routine.later.evening' => 'शाम · 15 मिनट',
+			'prayer.routine.later.night' => 'रात · 15 मिनट',
+			'prayer.together' => 'साथ मिलकर प्रार्थना',
 			'prayer.reminders.title' => 'प्रार्थना-समय के रिमाइंडर',
 			'prayer.reminders.intro' => 'हर प्रार्थना-समय पर एक रिमाइंडर, सिर्फ़ तब जब वह अभी पूरा न हुआ हो।',
 			'prayer.reminders.off' => 'बंद',
@@ -3331,6 +3375,7 @@ extension on TranslationsHi {
 			'prayer.lists.sheet.remove' => 'सूची से हटाओ',
 			'prayer.lists.sheet.removeTitle' => ({required Object name}) => '${name} को हटाना है?',
 			'prayer.lists.sheet.removeText' => 'अब तुम्हारे प्रार्थना-समय में इस व्यक्ति के लिए प्रार्थना नहीं होगी।',
+			'prayer.lists.addShort' => 'जोड़ो',
 			'prayer.importunity.title' => 'लगातार प्रार्थना के विषय',
 			'prayer.importunity.newTopic' => 'नया विषय',
 			'prayer.importunity.intro' => 'एक विषय जिसे बिना थके प्रभु के सामने रखा जाता है, जब तक उत्तर न मिल जाए। घोषणाओं की एक संख्या तय करो और अपने भाई-बहनों को अपने साथ प्रार्थना करने का न्योता दो।',
@@ -3367,6 +3412,8 @@ extension on TranslationsHi {
 			'prayer.importunity.form.subject' => 'विषय',
 			'prayer.importunity.form.subjectPlaceholder' => 'हे प्रभु, राहुल का उद्धार कर',
 			'prayer.importunity.form.description' => 'विवरण',
+			_ => null,
+		} ?? switch (path) {
 			'prayer.importunity.form.descriptionPlaceholder' => 'किसके लिए, क्यों…',
 			'prayer.importunity.form.goal' => 'लक्ष्य',
 			'prayer.importunity.form.goalHint' => 'घोषणाओं की वह संख्या जिस तक सबको मिलकर पहुँचना है। बिना लक्ष्य के गिनने के लिए ख़ाली छोड़ दो।',
@@ -3381,9 +3428,9 @@ extension on TranslationsHi {
 			'prayer.importunity.inviteSheet.usernameLabel' => 'यूज़रनेम',
 			'prayer.importunity.inviteSheet.addUsername' => 'जोड़ो',
 			'prayer.importunity.inviteSheet.send' => 'न्योते भेजो',
-			_ => null,
-		} ?? switch (path) {
 			'prayer.importunity.inviteSheet.sent' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n, zero: 'उन्हें पहले ही न्योता दिया जा चुका था।', one: '${n} न्योता भेजा गया', other: '${n} न्योते भेजे गए', ), 
+			'prayer.importunity.eyebrow' => 'लगातार प्रार्थना का विषय',
+			'prayer.importunity.proclaim' => 'घोषणा करो',
 			'sending.title' => 'मेरे आत्मिक अगुवों को भेजना',
 			'sending.moreOff' => 'बंद',
 			'sending.intro' => 'चुने हुए समय पर CMFI Connect उस अवधि की तुम्हारी रिपोर्ट तैयार करता है। तुम्हें बस उसे अपने आत्मिक अगुवों को भेजना है।',

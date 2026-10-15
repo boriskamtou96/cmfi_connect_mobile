@@ -943,6 +943,8 @@ class _Translations$prayer$ar extends Translations$prayer$fr {
 	};
 	@override late final _Translations$prayer$hero$ar hero = _Translations$prayer$hero$ar._(_root);
 	@override late final _Translations$prayer$today$ar today = _Translations$prayer$today$ar._(_root);
+	@override late final _Translations$prayer$routine$ar routine = _Translations$prayer$routine$ar._(_root);
+	@override String get together => 'نصلّي معًا';
 	@override late final _Translations$prayer$reminders$ar reminders = _Translations$prayer$reminders$ar._(_root);
 	@override late final _Translations$prayer$retreat$ar retreat = _Translations$prayer$retreat$ar._(_root);
 	@override late final _Translations$prayer$session$ar session = _Translations$prayer$session$ar._(_root);
@@ -2038,6 +2040,36 @@ class _Translations$prayer$today$ar extends Translations$prayer$today$fr {
 	);
 }
 
+// Path: prayer.routine
+class _Translations$prayer$routine$ar extends Translations$prayer$routine$fr {
+	_Translations$prayer$routine$ar._(TranslationsAr root) : this._root = root, super.internal(root);
+
+	final TranslationsAr _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'روتينك اليومي';
+	@override String count({required Object done}) => '${done} من 4';
+	@override String days({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n,
+		zero: '${n} يوم من 7',
+		one: 'يوم واحد من 7',
+		two: 'يومان من 7',
+		few: '${n} أيام من 7',
+		many: '${n} يومًا من 7',
+		other: '${n} يوم من 7',
+	);
+	@override String week({required Object time}) => '${time} هذا الأسبوع';
+	@override String get done => 'تمّت · 15 دقيقة';
+	@override String get now => 'الآن · 15 دقيقة';
+	@override String get next => 'التالية · 15 دقيقة';
+	@override String reminder({required Object time}) => 'تذكير في ${time}';
+	@override Map<String, String> get later => {
+		'morning': 'في الصباح · 15 دقيقة',
+		'noon': 'عند الظهر · 15 دقيقة',
+		'evening': 'في المساء · 15 دقيقة',
+		'night': 'في الليل · 15 دقيقة',
+	};
+}
+
 // Path: prayer.reminders
 class _Translations$prayer$reminders$ar extends Translations$prayer$reminders$fr {
 	_Translations$prayer$reminders$ar._(TranslationsAr root) : this._root = root, super.internal(root);
@@ -2246,6 +2278,7 @@ class _Translations$prayer$lists$ar extends Translations$prayer$lists$fr {
 	);
 	@override String lastAnswered({required Object name, required Object what}) => '${name}: ${what}';
 	@override late final _Translations$prayer$lists$sheet$ar sheet = _Translations$prayer$lists$sheet$ar._(_root);
+	@override String get addShort => 'إضافة';
 }
 
 // Path: prayer.importunity
@@ -2316,6 +2349,8 @@ class _Translations$prayer$importunity$ar extends Translations$prayer$importunit
 	@override String get leaveText => 'تبقى إعلاناتك ضمن المجموع.';
 	@override late final _Translations$prayer$importunity$form$ar form = _Translations$prayer$importunity$form$ar._(_root);
 	@override late final _Translations$prayer$importunity$inviteSheet$ar inviteSheet = _Translations$prayer$importunity$inviteSheet$ar._(_root);
+	@override String get eyebrow => 'موضوع لجاجة';
+	@override String get proclaim => 'أُعلن';
 }
 
 // Path: streak.lines
@@ -3434,6 +3469,19 @@ extension on TranslationsAr {
 			'prayer.hero.doneNow' => ({required Object retreat, required Object next}) => 'تمّت ${retreat}. التالية: ${next}',
 			'prayer.today.toPray' => 'بانتظارك',
 			'prayer.today.week' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n, zero: 'لا خلوات هذا الأسبوع', one: 'خلوة واحدة هذا الأسبوع', two: 'خلوتان هذا الأسبوع', few: '${n} خلوات هذا الأسبوع', many: '${n} خلوة هذا الأسبوع', other: '${n} خلوة هذا الأسبوع', ), 
+			'prayer.routine.title' => 'روتينك اليومي',
+			'prayer.routine.count' => ({required Object done}) => '${done} من 4',
+			'prayer.routine.days' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n, zero: '${n} يوم من 7', one: 'يوم واحد من 7', two: 'يومان من 7', few: '${n} أيام من 7', many: '${n} يومًا من 7', other: '${n} يوم من 7', ), 
+			'prayer.routine.week' => ({required Object time}) => '${time} هذا الأسبوع',
+			'prayer.routine.done' => 'تمّت · 15 دقيقة',
+			'prayer.routine.now' => 'الآن · 15 دقيقة',
+			'prayer.routine.next' => 'التالية · 15 دقيقة',
+			'prayer.routine.reminder' => ({required Object time}) => 'تذكير في ${time}',
+			'prayer.routine.later.morning' => 'في الصباح · 15 دقيقة',
+			'prayer.routine.later.noon' => 'عند الظهر · 15 دقيقة',
+			'prayer.routine.later.evening' => 'في المساء · 15 دقيقة',
+			'prayer.routine.later.night' => 'في الليل · 15 دقيقة',
+			'prayer.together' => 'نصلّي معًا',
 			'prayer.reminders.title' => 'تذكيرات الخلوات',
 			'prayer.reminders.intro' => 'تذكير في موعد كل خلوة، فقط إذا لم تُتمَّها بعد.',
 			'prayer.reminders.off' => 'معطّل',
@@ -3557,6 +3605,7 @@ extension on TranslationsAr {
 			'prayer.lists.sheet.remove' => 'إزالة من القائمة',
 			'prayer.lists.sheet.removeTitle' => ({required Object name}) => 'إزالة ${name}؟',
 			'prayer.lists.sheet.removeText' => 'لن تصلّي بعد الآن من أجل هذا الشخص في خلواتك.',
+			'prayer.lists.addShort' => 'إضافة',
 			'prayer.importunity.title' => 'طلبات اللجاجة',
 			'prayer.importunity.newTopic' => 'طلب جديد',
 			'prayer.importunity.intro' => 'طلب نرفعه إلى الرب بلا كلل حتى تأتي الاستجابة. حدّد عددًا من الإعلانات، وادعُ إخوتك وأخواتك ليصلّوا معك.',
@@ -3593,6 +3642,8 @@ extension on TranslationsAr {
 			'prayer.importunity.form.subject' => 'الطلب',
 			'prayer.importunity.form.subjectPlaceholder' => 'يا رب، خلِّص بولس',
 			'prayer.importunity.form.description' => 'التفاصيل',
+			_ => null,
+		} ?? switch (path) {
 			'prayer.importunity.form.descriptionPlaceholder' => 'لأجل مَن، ولماذا…',
 			'prayer.importunity.form.goal' => 'الهدف',
 			'prayer.importunity.form.goalHint' => 'عدد الإعلانات الذي تريدون بلوغه معًا. اتركه فارغًا للعدّ دون هدف.',
@@ -3607,9 +3658,9 @@ extension on TranslationsAr {
 			'prayer.importunity.inviteSheet.usernameLabel' => 'اسم المستخدم',
 			'prayer.importunity.inviteSheet.addUsername' => 'إضافة',
 			'prayer.importunity.inviteSheet.send' => 'إرسال الدعوات',
-			_ => null,
-		} ?? switch (path) {
 			'prayer.importunity.inviteSheet.sent' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n, zero: 'كانوا مدعوّين بالفعل.', one: 'تم إرسال دعوة واحدة', two: 'تم إرسال دعوتين', few: 'تم إرسال ${n} دعوات', many: 'تم إرسال ${n} دعوة', other: 'تم إرسال ${n} دعوة', ), 
+			'prayer.importunity.eyebrow' => 'موضوع لجاجة',
+			'prayer.importunity.proclaim' => 'أُعلن',
 			'sending.title' => 'الإرسال إلى مرشديّ',
 			'sending.moreOff' => 'متوقف',
 			'sending.intro' => 'في الوقت الذي تختاره، يُعِدّ CMFI Connect تقريرك عن الفترة. ما عليك إلا إرساله إلى مرشديك الروحيين.',

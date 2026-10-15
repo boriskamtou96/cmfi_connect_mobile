@@ -1089,6 +1089,26 @@
         "other": "{n} retraites cette semaine"
       }
     },
+    "routine": {
+      "title": "Ta routine du jour",
+      "count": "{done} sur 4",
+      "days(plural, param=n)": {
+        "one": "{n} jour sur 7",
+        "other": "{n} jours sur 7"
+      },
+      "week": "{time} cette semaine",
+      "done": "Faite · 15 min",
+      "now": "Maintenant · 15 min",
+      "next": "À suivre · 15 min",
+      "reminder": "Rappel à {time}",
+      "later(map)": {
+        "morning": "Le matin · 15 min",
+        "noon": "À midi · 15 min",
+        "evening": "En soirée · 15 min",
+        "night": "La nuit · 15 min"
+      }
+    },
+    "together": "Prier ensemble",
     "reminders": {
       "title": "Rappels des retraites",
       "intro": "Un rappel à l'heure de chaque retraite, seulement si elle n'est pas encore faite.",
@@ -1261,7 +1281,8 @@
         "remove": "Retirer de la liste",
         "removeTitle": "Retirer {name} ?",
         "removeText": "Tu ne prieras plus pour cette personne dans tes retraites."
-      }
+      },
+      "addShort": "Ajouter"
     },
     "importunity": {
       "title": "Sujets d'importunité",
@@ -1337,7 +1358,9 @@
           "one": "{n} invitation envoyée",
           "other": "{n} invitations envoyées"
         }
-      }
+      },
+      "eyebrow": "Sujet d'importunité",
+      "proclaim": "Proclamer"
     }
   },
   "sending": {

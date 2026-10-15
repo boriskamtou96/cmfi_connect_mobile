@@ -1057,6 +1057,25 @@
         "other": "本周完成了 {n} 次祷告"
       }
     },
+    "routine": {
+      "title": "你今天的祷告安排",
+      "count": "{done} / 4",
+      "days(plural, param=n)": {
+        "other": "7 天中有 {n} 天"
+      },
+      "week": "本周 {time}",
+      "done": "已完成 · 15 分钟",
+      "now": "现在 · 15 分钟",
+      "next": "下一个 · 15 分钟",
+      "reminder": "{time} 提醒",
+      "later(map)": {
+        "morning": "早上 · 15 分钟",
+        "noon": "中午 · 15 分钟",
+        "evening": "傍晚 · 15 分钟",
+        "night": "夜里 · 15 分钟"
+      }
+    },
+    "together": "一起祷告",
     "reminders": {
       "title": "祷告提醒",
       "intro": "在每次祷告的时间提醒你，仅在尚未完成时提醒。",
@@ -1223,7 +1242,8 @@
         "remove": "从名单中移除",
         "removeTitle": "移除 {name}？",
         "removeText": "你的每日祷告中将不再为这个人祷告。"
-      }
+      },
+      "addShort": "添加"
     },
     "importunity": {
       "title": "恒切祷告事项",
@@ -1293,7 +1313,9 @@
           "zero": "他们之前已被邀请过了。",
           "other": "已发送 {n} 个邀请"
         }
-      }
+      },
+      "eyebrow": "恒切祷告事项",
+      "proclaim": "宣告"
     }
   },
   "sending": {

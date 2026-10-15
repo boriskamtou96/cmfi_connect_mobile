@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
 
@@ -32,6 +33,19 @@ PrayerPerson person(
 /// Opens the Prière tab.
 Future<void> openPrayer(WidgetTester tester) async {
   await tester.tap(find.text('Prière').last);
+  await tester.pumpAndSettle();
+}
+
+/// Scrolls the tab until [finder] is in the middle of the screen (not under
+/// the tab bar).
+Future<void> scrollToMiddle(WidgetTester tester, Finder finder) async {
+  await tester.scrollUntilVisible(
+    finder,
+    300,
+    scrollable: find.byType(Scrollable).first,
+  );
+  await tester.pumpAndSettle();
+  unawaited(Scrollable.ensureVisible(tester.element(finder), alignment: 0.4));
   await tester.pumpAndSettle();
 }
 
@@ -155,9 +169,9 @@ void main() {
       final app = await pumpApp(tester, token: 't', prayerApi: api);
       await openPrayer(tester);
 
-      expect(find.text('15 minutes\navec le Seigneur'), findsOneWidget);
+      expect(find.text('Ta routine du jour'), findsOneWidget);
       // the midday retreat, at its own pace
-      await tester.tap(find.text('Midi'));
+      await tester.tap(find.text('Retraite de midi'));
       await tester.pumpAndSettle();
       expect(find.text('Retraites de 15 minutes'), findsOneWidget);
       // the names the retreat will pray for
@@ -203,11 +217,32 @@ void main() {
       );
     });
 
+    testWidgets('the routine: the retreat made, the days prayed, the week', (
+      tester,
+    ) async {
+      final now = momentAt(DateTime.now());
+      final api = FakePrayerApi()
+        ..retreatList.add(RetreatRecord(day: today(), moment: now));
+      await pumpApp(tester, token: 't', prayerApi: api);
+      await openPrayer(tester);
+
+      expect(find.text('1 jour sur 7'), findsOneWidget);
+      expect(find.text('15 min cette semaine'), findsOneWidget);
+      expect(find.text('1 sur 4'), findsOneWidget);
+      expect(find.text('Faite · 15 min'), findsOneWidget);
+      // the one after it opens with "Commencer" (none once the night is made)
+      expect(
+        find.text('Commencer'),
+        now == RetreatMoment.night ? findsNothing : findsOneWidget,
+      );
+    });
+
     testWidgets('guided: a minute per point, a soft sound to the next', (
       tester,
     ) async {
       final app = await pumpApp(tester, token: 't');
       await openPrayer(tester);
+      await scrollToMiddle(tester, find.text('Commencer'));
       await tester.tap(find.text('Commencer'));
       // not pumpAndSettle: the clock of the retreat would run
       await tester.pump();
@@ -237,7 +272,7 @@ void main() {
       await tester.tap(find.text('Arrêter'));
       await tester.pumpAndSettle();
       expect(app.prayerApi.retreatList, isEmpty);
-      expect(find.text('15 minutes\navec le Seigneur'), findsOneWidget);
+      expect(find.text('Ta routine du jour'), findsOneWidget);
     });
 
     testWidgets('a topic of the community: each point checked once prayed', (
@@ -327,6 +362,7 @@ void main() {
       final api = FakePrayerApi(importunities: [topic]);
       await pumpApp(tester, token: 't', prayerApi: api);
       await openPrayer(tester);
+      await scrollToMiddle(tester, find.text('Seigneur, sauve Paul'));
       await tester.tap(find.text('Seigneur, sauve Paul'));
       await tester.pumpAndSettle();
       expect(find.text('40 sur 100'), findsOneWidget);
@@ -345,10 +381,31 @@ void main() {
       expect(find.text('43 sur 100'), findsOneWidget);
     });
 
+    testWidgets('"Proclamer" counts from the tab, without opening it', (
+      tester,
+    ) async {
+      final api = FakePrayerApi(importunities: [topic]);
+      await pumpApp(tester, token: 't', prayerApi: api);
+      await openPrayer(tester);
+      await scrollToMiddle(tester, find.text('Proclamer'));
+
+      await tester.tap(find.text('Proclamer'));
+      await tester.pump();
+      await tester.tap(find.text('Proclamer'));
+      await tester.pump();
+      expect(find.text('42 sur 100 · 3 prient'), findsOneWidget);
+      expect(api.counts, isEmpty);
+
+      await tester.pump(const Duration(seconds: 3));
+      await tester.pumpAndSettle();
+      expect(api.counts, [(7, 2)]);
+    });
+
     testWidgets('without network the taps wait, then leave', (tester) async {
       final api = FakePrayerApi(importunities: [topic]);
       final app = await pumpApp(tester, token: 't', prayerApi: api);
       await openPrayer(tester);
+      await scrollToMiddle(tester, find.text('Seigneur, sauve Paul'));
       await tester.tap(find.text('Seigneur, sauve Paul'));
       await tester.pumpAndSettle();
 
@@ -377,8 +434,7 @@ void main() {
       await openPrayer(tester);
       // the action of the section title
       final create = find.widgetWithText(TextButton, 'Nouveau sujet');
-      await tester.ensureVisible(create);
-      await tester.pumpAndSettle();
+      await scrollToMiddle(tester, create);
       await tester.tap(create);
       await tester.pumpAndSettle();
 
@@ -432,6 +488,7 @@ void main() {
         ImportunityMemberStatus.joined,
       );
       expect(find.text('Je prie avec vous'), findsNothing);
+      await scrollToMiddle(tester, find.text('Seigneur, sauve Paul'));
       expect(find.text('Seigneur, sauve Paul'), findsOneWidget);
     });
   });

@@ -1089,6 +1089,26 @@
         "other": "{n} Gebetszeiten diese Woche"
       }
     },
+    "routine": {
+      "title": "Deine tägliche Routine",
+      "count": "{done} von 4",
+      "days(plural, param=n)": {
+        "one": "{n} Tag von 7",
+        "other": "{n} Tage von 7"
+      },
+      "week": "{time} diese Woche",
+      "done": "Erledigt · 15 Min.",
+      "now": "Jetzt · 15 Min.",
+      "next": "Als Nächstes · 15 Min.",
+      "reminder": "Erinnerung um {time}",
+      "later(map)": {
+        "morning": "Am Morgen · 15 Min.",
+        "noon": "Am Mittag · 15 Min.",
+        "evening": "Am Abend · 15 Min.",
+        "night": "In der Nacht · 15 Min."
+      }
+    },
+    "together": "Gemeinsam beten",
     "reminders": {
       "title": "Erinnerungen an die Gebetszeiten",
       "intro": "Eine Erinnerung zu jeder Gebetszeit – nur wenn sie noch nicht erledigt ist.",
@@ -1261,7 +1281,8 @@
         "remove": "Von der Liste entfernen",
         "removeTitle": "{name} entfernen?",
         "removeText": "Du betest in deinen Gebetszeiten nicht mehr für diese Person."
-      }
+      },
+      "addShort": "Hinzufügen"
     },
     "importunity": {
       "title": "Beharrliche Anliegen",
@@ -1337,7 +1358,9 @@
           "one": "{n} Einladung gesendet",
           "other": "{n} Einladungen gesendet"
         }
-      }
+      },
+      "eyebrow": "Anliegen der Beharrlichkeit",
+      "proclaim": "Proklamieren"
     }
   },
   "sending": {

@@ -1693,6 +1693,11 @@ class Translations$prayer$fr {
 	};
 	late final Translations$prayer$hero$fr hero = Translations$prayer$hero$fr.internal(_root);
 	late final Translations$prayer$today$fr today = Translations$prayer$today$fr.internal(_root);
+	late final Translations$prayer$routine$fr routine = Translations$prayer$routine$fr.internal(_root);
+
+	/// fr: 'Prier ensemble'
+	String get together => 'Prier ensemble';
+
 	late final Translations$prayer$reminders$fr reminders = Translations$prayer$reminders$fr.internal(_root);
 	late final Translations$prayer$retreat$fr retreat = Translations$prayer$retreat$fr.internal(_root);
 	late final Translations$prayer$session$fr session = Translations$prayer$session$fr.internal(_root);
@@ -3853,6 +3858,49 @@ class Translations$prayer$today$fr {
 	);
 }
 
+// Path: prayer.routine
+class Translations$prayer$routine$fr {
+	Translations$prayer$routine$fr.internal(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// fr: 'Ta routine du jour'
+	String get title => 'Ta routine du jour';
+
+	/// fr: '{done} sur 4'
+	String count({required Object done}) => '${done} sur 4';
+
+	/// fr: '(one) {{n} jour sur 7} (other) {{n} jours sur 7}'
+	String days({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('fr'))(n,
+		one: '${n} jour sur 7',
+		other: '${n} jours sur 7',
+	);
+
+	/// fr: '{time} cette semaine'
+	String week({required Object time}) => '${time} cette semaine';
+
+	/// fr: 'Faite · 15 min'
+	String get done => 'Faite · 15 min';
+
+	/// fr: 'Maintenant · 15 min'
+	String get now => 'Maintenant · 15 min';
+
+	/// fr: 'À suivre · 15 min'
+	String get next => 'À suivre · 15 min';
+
+	/// fr: 'Rappel à {time}'
+	String reminder({required Object time}) => 'Rappel à ${time}';
+
+	Map<String, String> get later => {
+		'morning': 'Le matin · 15 min',
+		'noon': 'À midi · 15 min',
+		'evening': 'En soirée · 15 min',
+		'night': 'La nuit · 15 min',
+	};
+}
+
 // Path: prayer.reminders
 class Translations$prayer$reminders$fr {
 	Translations$prayer$reminders$fr.internal(this._root);
@@ -4192,6 +4240,9 @@ class Translations$prayer$lists$fr {
 	String lastAnswered({required Object name, required Object what}) => '${name} : ${what}';
 
 	late final Translations$prayer$lists$sheet$fr sheet = Translations$prayer$lists$sheet$fr.internal(_root);
+
+	/// fr: 'Ajouter'
+	String get addShort => 'Ajouter';
 }
 
 // Path: prayer.importunity
@@ -4309,6 +4360,12 @@ class Translations$prayer$importunity$fr {
 
 	late final Translations$prayer$importunity$form$fr form = Translations$prayer$importunity$form$fr.internal(_root);
 	late final Translations$prayer$importunity$inviteSheet$fr inviteSheet = Translations$prayer$importunity$inviteSheet$fr.internal(_root);
+
+	/// fr: 'Sujet d'importunité'
+	String get eyebrow => 'Sujet d\'importunité';
+
+	/// fr: 'Proclamer'
+	String get proclaim => 'Proclamer';
 }
 
 // Path: streak.lines
@@ -5578,6 +5635,19 @@ extension on Translations {
 			'prayer.hero.doneNow' => ({required Object retreat, required Object next}) => '${retreat} faite. Prochaine : ${next}',
 			'prayer.today.toPray' => 'À prier',
 			'prayer.today.week' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('fr'))(n, zero: 'Aucune retraite cette semaine', one: '${n} retraite cette semaine', other: '${n} retraites cette semaine', ), 
+			'prayer.routine.title' => 'Ta routine du jour',
+			'prayer.routine.count' => ({required Object done}) => '${done} sur 4',
+			'prayer.routine.days' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('fr'))(n, one: '${n} jour sur 7', other: '${n} jours sur 7', ), 
+			'prayer.routine.week' => ({required Object time}) => '${time} cette semaine',
+			'prayer.routine.done' => 'Faite · 15 min',
+			'prayer.routine.now' => 'Maintenant · 15 min',
+			'prayer.routine.next' => 'À suivre · 15 min',
+			'prayer.routine.reminder' => ({required Object time}) => 'Rappel à ${time}',
+			'prayer.routine.later.morning' => 'Le matin · 15 min',
+			'prayer.routine.later.noon' => 'À midi · 15 min',
+			'prayer.routine.later.evening' => 'En soirée · 15 min',
+			'prayer.routine.later.night' => 'La nuit · 15 min',
+			'prayer.together' => 'Prier ensemble',
 			'prayer.reminders.title' => 'Rappels des retraites',
 			'prayer.reminders.intro' => 'Un rappel à l\'heure de chaque retraite, seulement si elle n\'est pas encore faite.',
 			'prayer.reminders.off' => 'Désactivé',
@@ -5701,6 +5771,7 @@ extension on Translations {
 			'prayer.lists.sheet.remove' => 'Retirer de la liste',
 			'prayer.lists.sheet.removeTitle' => ({required Object name}) => 'Retirer ${name} ?',
 			'prayer.lists.sheet.removeText' => 'Tu ne prieras plus pour cette personne dans tes retraites.',
+			'prayer.lists.addShort' => 'Ajouter',
 			'prayer.importunity.title' => 'Sujets d\'importunité',
 			'prayer.importunity.newTopic' => 'Nouveau sujet',
 			'prayer.importunity.intro' => 'Un sujet que l\'on présente au Seigneur sans se lasser, jusqu\'à la réponse. Fixe un nombre de proclamations et invite tes frères et sœurs à prier avec toi.',
@@ -5737,6 +5808,8 @@ extension on Translations {
 			'prayer.importunity.form.subject' => 'Sujet',
 			'prayer.importunity.form.subjectPlaceholder' => 'Seigneur, sauve Paul',
 			'prayer.importunity.form.description' => 'Détails',
+			_ => null,
+		} ?? switch (path) {
 			'prayer.importunity.form.descriptionPlaceholder' => 'Pour qui, pourquoi…',
 			'prayer.importunity.form.goal' => 'Objectif',
 			'prayer.importunity.form.goalHint' => 'Le nombre de proclamations à atteindre ensemble. Laisse vide pour compter sans objectif.',
@@ -5751,9 +5824,9 @@ extension on Translations {
 			'prayer.importunity.inviteSheet.usernameLabel' => 'Pseudo',
 			'prayer.importunity.inviteSheet.addUsername' => 'Ajouter',
 			'prayer.importunity.inviteSheet.send' => 'Envoyer les invitations',
-			_ => null,
-		} ?? switch (path) {
 			'prayer.importunity.inviteSheet.sent' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('fr'))(n, zero: 'Ils étaient déjà invités.', one: '${n} invitation envoyée', other: '${n} invitations envoyées', ), 
+			'prayer.importunity.eyebrow' => 'Sujet d\'importunité',
+			'prayer.importunity.proclaim' => 'Proclamer',
 			'sending.title' => 'Envoi à mes autorités',
 			'sending.moreOff' => 'Désactivé',
 			'sending.intro' => 'Au moment choisi, CMFI Connect prépare ton compte rendu de la période. Tu n\'as plus qu\'à l\'envoyer à tes autorités spirituelles.',

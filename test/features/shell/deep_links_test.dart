@@ -172,10 +172,7 @@ void main() {
   group('sharing', () {
     testWidgets('an event, with its link under it', (tester) async {
       final app = await pumpApp(tester, token: 't');
-      await tester.scrollUntilVisible(find.text('PROCHAIN ÉVÈNEMENT'), 200);
-      // brought to the top: the bottom of the list runs under the tab bar
-      await tester.ensureVisible(find.text('Conférence annuelle 2026'));
-      await tester.pumpAndSettle();
+      await scrollTo(tester, find.text('Conférence annuelle 2026'));
       await tester.tap(find.text('Conférence annuelle 2026'));
       await tester.pumpAndSettle();
 

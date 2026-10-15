@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../../../core/network/app_exception.dart';
+import '../../../core/services/app_log.dart';
 import '../../members/domain/member.dart';
 import '../domain/prayer.dart';
 import '../infrastructure/prayer_api.dart';
@@ -178,7 +179,19 @@ class Importunities extends _$Importunities {
         }
       } on NetworkException {
         return;
-      } on AppException {
+      } on UnauthorizedException {
+        // the session ended: kept until the next sign-in
+        return;
+      } on UnknownException catch (error, stack) {
+        AppLog.error(error, stack, reason: 'proclamations not sent: kept');
+        return;
+      } on ApiException catch (error, stack) {
+        // the topic is gone or closed: these proclamations can't be counted
+        AppLog.error(
+          error,
+          stack,
+          reason: '$left proclamations refused (${error.code}): dropped',
+        );
         final now = store.pendingCounts()..remove(entry.key);
         await store.savePendingCounts(now);
       }

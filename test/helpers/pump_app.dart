@@ -340,3 +340,28 @@ Future<void> openMore(WidgetTester tester) async {
   await tester.tap(find.byTooltip('Mon profil'));
   await tester.pumpAndSettle();
 }
+
+/// Drags the first list of the screen until [finder] is laid out and above
+/// the tab bar. More robust than `scrollUntilVisible` on the home screen,
+/// whose cards move with the length of the verse of the day.
+Future<void> scrollTo(WidgetTester tester, Finder finder) async {
+  bool inView() {
+    final screen = tester.view.physicalSize / tester.view.devicePixelRatio;
+    for (final element in finder.evaluate()) {
+      final box = element.renderObject;
+      if (box is RenderBox && box.hasSize && box.attached) {
+        final top = box.localToGlobal(Offset.zero).dy;
+        if (top > 0 && top + box.size.height < screen.height - 100) {
+          return true;
+        }
+      }
+    }
+    return false;
+  }
+
+  final list = find.byType(Scrollable).first;
+  for (var i = 0; i < 30 && !inView(); i++) {
+    await tester.drag(list, const Offset(0, -200));
+    await tester.pumpAndSettle();
+  }
+}

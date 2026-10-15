@@ -30,11 +30,22 @@ Dio dio(Ref ref) {
         requestBody: true,
         compact: true,
         maxWidth: 100,
-        // a whole Bible (7 MB) is not worth printing
-        filter: (options, _) => options.uri.host == Uri.parse(apiBaseUrl).host,
+        // a whole Bible (7 MB) is not worth printing, and the passwords of
+        // the sign-in forms never are
+        filter: (options, _) =>
+            options.uri.host == Uri.parse(apiBaseUrl).host &&
+            !_withPassword.any(options.uri.path.endsWith),
       ),
   ]);
 
   ref.onDispose(dio.close);
   return dio;
 }
+
+/// The requests whose body holds a password.
+const _withPassword = [
+  '/users/login',
+  '/users/register',
+  '/users/password/reset',
+  '/users/me',
+];

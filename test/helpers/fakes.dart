@@ -5,6 +5,7 @@ import 'package:cmfi_connect/src/core/network/app_exception.dart';
 import 'package:cmfi_connect/src/core/services/app_shortcuts.dart';
 import 'package:cmfi_connect/src/core/services/calendar_service.dart';
 import 'package:cmfi_connect/src/core/services/chime.dart';
+import 'package:cmfi_connect/src/core/services/crash_reporting.dart';
 import 'package:cmfi_connect/src/core/services/deep_links.dart';
 import 'package:cmfi_connect/src/core/services/home_widgets.dart';
 import 'package:cmfi_connect/src/core/services/image_picking.dart';
@@ -1542,9 +1543,15 @@ class FakePrayerApi implements PrayerApi {
       >[];
   var _nextId = 100;
 
+  /// Every call fails with it (a session that ended, a server error…).
+  AppException? failure;
+
   void _online() {
     if (offline) {
       throw const NetworkException();
+    }
+    if (failure case final failure?) {
+      throw failure;
     }
   }
 
@@ -2246,4 +2253,20 @@ class FakePhoneVerification implements PhoneVerification {
 
   @override
   Future<void> forget() async => forgotten = true;
+}
+
+/// The log of the app, kept to be read by the tests.
+class FakeCrashReporting implements CrashReporting {
+  final errors = <({Object error, String reason})>[];
+  final steps = <String>[];
+
+  @override
+  Future<void> identify(String? userId) async {}
+
+  @override
+  void record(Object error, StackTrace? stack, {required String reason}) =>
+      errors.add((error: error, reason: reason));
+
+  @override
+  void log(String message) => steps.add(message);
 }

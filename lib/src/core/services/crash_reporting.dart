@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/foundation.dart';
@@ -12,6 +14,13 @@ abstract interface class CrashReporting {
   /// The account a crash happened in: its number only, never a name. null
   /// once signed out.
   Future<void> identify(String? userId);
+
+  /// An error the app caught and lived with (not a crash): sent with
+  /// [reason] and the trail of [log] lines.
+  void record(Object error, StackTrace? stack, {required String reason});
+
+  /// A step of the trail sent with the next error or crash.
+  void log(String message);
 }
 
 class NoCrashReporting implements CrashReporting {
@@ -19,6 +28,12 @@ class NoCrashReporting implements CrashReporting {
 
   @override
   Future<void> identify(String? userId) async {}
+
+  @override
+  void record(Object error, StackTrace? stack, {required String reason}) {}
+
+  @override
+  void log(String message) {}
 }
 
 class FirebaseCrashReporting implements CrashReporting {
@@ -30,6 +45,26 @@ class FirebaseCrashReporting implements CrashReporting {
       await FirebaseCrashlytics.instance.setUserIdentifier(userId ?? '');
     } on Object {
       // reporting crashes must never make one
+    }
+  }
+
+  @override
+  void record(Object error, StackTrace? stack, {required String reason}) {
+    try {
+      unawaited(
+        FirebaseCrashlytics.instance.recordError(error, stack, reason: reason),
+      );
+    } on Object {
+      // reporting errors must never make one
+    }
+  }
+
+  @override
+  void log(String message) {
+    try {
+      unawaited(FirebaseCrashlytics.instance.log(message));
+    } on Object {
+      // same
     }
   }
 }

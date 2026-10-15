@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
+import '../services/app_log.dart';
 import '../session/session.dart';
 import '../storage/token_storage.dart';
 
@@ -45,6 +46,7 @@ class AuthInterceptor extends Interceptor {
         hadToken &&
         code != 'INVALID_CREDENTIALS') {
       // the router guard sends the user back to the login screen
+      AppLog.info('session expired (401): signed out');
       await _ref.read(sessionProvider.notifier).signOut();
     }
     handler.next(err);

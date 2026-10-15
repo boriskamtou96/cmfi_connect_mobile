@@ -359,11 +359,7 @@ void main() {
     );
 
     // under the verse of the day
-    await tester.scrollUntilVisible(
-      find.textContaining('Reprendre le n° 2'),
-      200,
-      scrollable: find.byType(Scrollable).first,
-    );
+    await scrollTo(tester, find.textContaining('Reprendre le n° 2'));
     expect(find.textContaining('Reprendre le n° 2'), findsOneWidget);
     await tester.tap(find.textContaining('Reprendre le n° 2'));
     await tester.pumpAndSettle();

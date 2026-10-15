@@ -19,7 +19,7 @@ void main() {
 
   /// From the home card to the event page.
   Future<void> openEvent(WidgetTester tester) async {
-    await tester.scrollUntilVisible(find.text('PROCHAIN ÉVÈNEMENT'), 200);
+    await scrollTo(tester, find.text('PROCHAIN ÉVÈNEMENT'));
     // brought to the top: the bottom of the list runs under the tab bar
     await tester.ensureVisible(find.text('Conférence annuelle 2026'));
     await tester.pumpAndSettle();
@@ -27,7 +27,8 @@ void main() {
     await tester.pumpAndSettle();
   }
 
-  Future<void> scrollTo(WidgetTester tester, Finder finder) async {
+  /// Scrolls the page of an event to [finder].
+  Future<void> scrollPage(WidgetTester tester, Finder finder) async {
     await tester.scrollUntilVisible(
       finder,
       200,
@@ -40,7 +41,7 @@ void main() {
     tester,
   ) async {
     await pumpApp(tester, token: 't');
-    await tester.scrollUntilVisible(find.text('PROCHAIN ÉVÈNEMENT'), 200);
+    await scrollTo(tester, find.text('PROCHAIN ÉVÈNEMENT'));
 
     expect(find.text('Conférence annuelle 2026'), findsOneWidget);
     expect(find.text('J-42'), findsOneWidget);
@@ -54,13 +55,13 @@ void main() {
 
     expect(find.text("Marcher dans l'Esprit"), findsWidgets);
     expect(find.text('Dans 42 jours'), findsOneWidget);
-    await scrollTo(tester, find.text('128 inscrits'));
+    await scrollPage(tester, find.text('128 inscrits'));
     // "1 160", with the French thousands separator
     expect(
       find.textContaining(RegExp(r'^340 personnes · 1\s160 places restantes$')),
       findsOneWidget,
     );
-    await scrollTo(tester, find.text("Culte d'ouverture"));
+    await scrollPage(tester, find.text("Culte d'ouverture"));
     expect(find.text('Accueil et inscriptions'), findsOneWidget);
     expect(find.text('Cantique 1'), findsOneWidget);
 
@@ -82,7 +83,7 @@ void main() {
   testWidgets('a hymn of the program opens in the hymn book', (tester) async {
     await pumpApp(tester, token: 't');
     await openEvent(tester);
-    await scrollTo(tester, find.text('Cantique 1'));
+    await scrollPage(tester, find.text('Cantique 1'));
 
     await tester.tap(find.text('Cantique 1'));
     await tester.pumpAndSettle();
@@ -110,7 +111,7 @@ void main() {
     ]);
     expect(find.text('Tu es inscrit'), findsOneWidget);
     expect(find.text('2 personnes · hébergement · Douala'), findsOneWidget);
-    await scrollTo(tester, find.text('129 inscrits'));
+    await scrollPage(tester, find.text('129 inscrits'));
     expect(app.eventsApi.events[2]?.myRegistration?.people, 2);
     // the evening before and an hour before
     expect(app.notifications.plannedEvents, hasLength(2));
@@ -160,10 +161,10 @@ void main() {
     final app = await pumpApp(tester, token: 't');
     await openEvent(tester);
 
-    await scrollTo(tester, find.text('Itinéraire'));
+    await scrollPage(tester, find.text('Itinéraire'));
     await tester.tap(find.text('Itinéraire'));
     await tester.pumpAndSettle();
-    await scrollTo(tester, find.text('Ajouter au calendrier'));
+    await scrollPage(tester, find.text('Ajouter au calendrier'));
     await tester.tap(find.text('Ajouter au calendrier'));
     await tester.pumpAndSettle();
 
@@ -175,7 +176,7 @@ void main() {
     tester,
   ) async {
     await pumpApp(tester, token: 't');
-    await tester.scrollUntilVisible(find.text('PROCHAIN ÉVÈNEMENT'), 200);
+    await scrollTo(tester, find.text('PROCHAIN ÉVÈNEMENT'));
     await tester.scrollUntilVisible(find.text('Tous les évènements'), 200);
     // above the tab bar
     await tester.drag(find.byType(Scrollable).first, const Offset(0, -200));
@@ -184,7 +185,7 @@ void main() {
     await tester.pumpAndSettle();
 
     expect(find.text('À LA UNE'), findsOneWidget);
-    await scrollTo(tester, find.text('Conférence annuelle 2025'));
+    await scrollPage(tester, find.text('Conférence annuelle 2025'));
     expect(find.text('ÉDITIONS PASSÉES'), findsOneWidget);
   });
 
@@ -242,7 +243,7 @@ void main() {
     await tester.pumpAndSettle();
     await openEvent(tester);
 
-    await scrollTo(tester, find.text('Accueil et inscriptions'));
+    await scrollPage(tester, find.text('Accueil et inscriptions'));
   });
 
   testWidgets('no upcoming event: the home card opens the list', (

@@ -4,6 +4,8 @@ import 'package:flutter/foundation.dart';
 import 'package:quick_actions/quick_actions.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
+import 'app_log.dart';
+
 part 'app_shortcuts.g.dart';
 
 /// The shortcuts of the app icon (long press), set while signed in.
@@ -73,7 +75,7 @@ class NativeAppShortcuts implements AppShortcuts {
     try {
       await _quickActions.initialize(_touched);
     } on Object catch (error) {
-      debugPrint('App shortcuts unavailable: $error');
+      AppLog.info('app shortcuts unavailable: $error');
     }
   }();
 
@@ -104,7 +106,7 @@ class NativeAppShortcuts implements AppShortcuts {
           ),
       ]);
     } on Object catch (error) {
-      debugPrint('App shortcuts not set: $error');
+      AppLog.info('app shortcuts not set: $error');
     }
   }
 
@@ -114,7 +116,7 @@ class NativeAppShortcuts implements AppShortcuts {
     try {
       await _quickActions.clearShortcutItems();
     } on Object catch (error) {
-      debugPrint('App shortcuts not cleared: $error');
+      AppLog.info('app shortcuts not cleared: $error');
     }
   }
 

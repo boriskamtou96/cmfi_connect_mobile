@@ -7,6 +7,7 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../config/flavor.dart';
 import '../utils/date_extensions.dart';
+import 'app_log.dart';
 
 part 'home_widgets.g.dart';
 
@@ -174,7 +175,7 @@ class NativeHomeWidgets implements HomeWidgets {
       }
     } on Object catch (error) {
       // no widget on this phone (or no app group yet): nothing to show
-      debugPrint('Home widget not updated: $error');
+      AppLog.info('home widget not updated: $error');
     }
   }
 
@@ -197,7 +198,7 @@ class NativeHomeWidgets implements HomeWidgets {
         ], qualifiedAndroidName: verseAndroidName);
       }
     } on Object catch (error) {
-      debugPrint('Verse widget not updated: $error');
+      AppLog.info('verse widget not updated: $error');
     }
   }
 

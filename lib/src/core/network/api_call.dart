@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 
+import '../services/app_log.dart';
 import 'app_exception.dart';
 
 /// Runs a Dio request and turns any DioException into an [AppException].
@@ -7,8 +8,32 @@ import 'app_exception.dart';
 Future<T> apiCall<T>(Future<T> Function() request) async {
   try {
     return await request();
-  } on DioException catch (e) {
-    throw AppException.fromDio(e);
+  } on DioException catch (e, stack) {
+    final error = AppException.fromDio(e);
+    _log(e, error, stack);
+    throw error;
+  }
+}
+
+/// A server error or an unexpected answer goes to the log, with what leads
+/// to its lines on the server (X-Request-ID); no network is only a step.
+/// Never the query string nor the body: they may hold personal data.
+void _log(DioException e, AppException error, StackTrace stack) {
+  final request = e.requestOptions;
+  final status = e.response?.statusCode;
+  final id = e.response?.headers.value('x-request-id');
+  final where =
+      '${request.method} ${request.uri.path} → ${status ?? e.type.name}'
+      '${id == null ? '' : ' (request $id)'}';
+  switch (error) {
+    case NetworkException():
+      AppLog.info('no network: $where');
+    case ApiException(:final status) when status >= 500:
+      AppLog.error(error, stack, reason: 'server error: $where');
+    case UnknownException():
+      AppLog.error(e, stack, reason: 'unexpected answer: $where');
+    case ApiException() || UnauthorizedException():
+      AppLog.info('refused: $where');
   }
 }
 

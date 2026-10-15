@@ -3,6 +3,8 @@ import 'dart:async';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../../../core/i18n/strings.g.dart';
+import '../../../core/network/app_exception.dart';
+import '../../../core/services/app_log.dart';
 import '../../../core/services/local_notifications.dart';
 import '../../../core/services/push_messaging.dart';
 import '../infrastructure/notifications_api.dart';
@@ -55,8 +57,11 @@ class PushRegistration extends _$PushRegistration {
             platform: ref.read(pushMessagingProvider).platform,
             language: LocaleSettings.currentLocale.languageCode,
           );
-    } on Object {
+    } on Object catch (error, stack) {
       // no network: sent again at the next start
+      if (error is! NetworkException) {
+        AppLog.error(error, stack, reason: 'push: phone not registered');
+      }
     }
   }
 
@@ -71,8 +76,9 @@ class PushRegistration extends _$PushRegistration {
     }
     try {
       await ref.read(notificationsApiProvider).unregisterDevice(token);
-    } on Object {
+    } on Object catch (error) {
       // the next account signed in on this phone takes the address anyway
+      AppLog.info('push: phone not unregistered ($error)');
     }
   }
 }

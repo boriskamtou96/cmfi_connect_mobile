@@ -6,6 +6,7 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../core/i18n/strings.g.dart';
+import '../../../core/services/app_log.dart';
 import '../../../core/services/app_shortcuts.dart';
 import '../../../core/services/crash_reporting.dart';
 import '../../../core/services/deep_links.dart';
@@ -284,8 +285,9 @@ class SignedInTasks extends HookConsumerWidget {
         unawaited(ref.read(crashReportingProvider).identify('${account.id}'));
         try {
           await ref.read(premiumStoreProvider).logIn('${account.id}');
-        } on Object {
+        } on Object catch (error) {
           // the store is unreachable: Premium stays as it was
+          AppLog.info('premium: store unreachable ($error)');
         }
       }
 

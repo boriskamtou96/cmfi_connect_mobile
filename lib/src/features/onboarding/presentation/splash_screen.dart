@@ -6,6 +6,7 @@ import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../core/i18n/strings.g.dart';
+import '../../../core/services/app_log.dart';
 import '../../../core/session/session.dart';
 import '../../../core/storage/preferences.dart';
 import '../../../core/theme/app_colors.dart';
@@ -26,8 +27,9 @@ class SplashScreen extends HookConsumerWidget {
         SessionStatus status;
         try {
           status = await ref.read(sessionProvider.future);
-        } on Object {
+        } on Object catch (error, stack) {
           // unreadable secure storage: ask to sign in again
+          AppLog.error(error, stack, reason: 'session unreadable: sign in');
           status = SessionStatus.unauthenticated;
         }
         if (!context.mounted) {

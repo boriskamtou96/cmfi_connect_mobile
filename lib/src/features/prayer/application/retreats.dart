@@ -5,6 +5,7 @@ import 'package:flutter/services.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../../../core/network/app_exception.dart';
+import '../../../core/services/app_log.dart';
 import '../../../core/utils/countries.dart';
 import '../../../core/utils/date_extensions.dart';
 import '../../authorities/application/authorities_controller.dart';
@@ -237,8 +238,19 @@ class RetreatLog extends _$RetreatLog {
         await ref.read(prayerApiProvider).saveRetreat(record);
       } on NetworkException {
         left.add(record);
-      } on AppException {
+      } on UnauthorizedException {
+        // the session ended: kept until the next sign-in
+        left.add(record);
+      } on UnknownException catch (error, stack) {
+        left.add(record);
+        AppLog.error(error, stack, reason: 'retreat not sent: kept');
+      } on ApiException catch (error, stack) {
         // refused for good: dropped
+        AppLog.error(
+          error,
+          stack,
+          reason: 'retreat refused (${error.code}): dropped',
+        );
       }
     }
     await store.savePendingRetreats(left);

@@ -296,6 +296,14 @@ Règles de dépendance :
 - Déconnexion : `App` vide `PrayerLocalStore` et invalide les providers gardés en vie de la prière.
 - Dans les tests : `FakePrayerApi` (`offline`, `spiritualFamily`, et ce qui a été envoyé : `retreatList`, `prayedCalls`, `markedPrayed`, `counts`, `invitations`, `blockedList`, `reports`), `FakeChime`. Pendant une retraite minutée, pas de `pumpAndSettle` : il ferait tourner l'horloge ; `pump(durée)` à la place. Les textes des retraites sont lus sans le cache du bundle (`cache: false`), qui mélangerait les tests.
 
+## Logs
+
+- `AppLog` (`core/services/app_log.dart`) : `AppLog.info(étape)` et `AppLog.error(erreur, pile, reason: …)`. En debug, la console (`[cmfi] …`) ; dans l'app publiée, Crashlytics (`AppLog.reporter`, posé par `bootstrap.dart` une fois Firebase démarré) : les erreurs non fatales avec leur raison, et le fil des étapes envoyé avec l'erreur ou le plantage suivant. Jamais de `print`/`debugPrint` ailleurs.
+- Ce qui est écrit : `apiCall` note chaque erreur du serveur (5xx) et chaque réponse inattendue avec la méthode, le chemin (jamais la requête après `?` ni le corps) et l'`X-Request-ID` renvoyé par le serveur (il mène à ses lignes de log) ; un refus (4xx) ou l'absence de réseau ne sont qu'une étape. Aussi : la session terminée par un 401, un compte rendu, une retraite ou des proclamations refusés (perdus) ou gardés, l'enregistrement du téléphone pour les notifications, la session illisible au démarrage, le magasin Premium injoignable.
+- Jamais : un nom, un numéro, un mot de passe, un jeton, le texte d'un compte rendu ou d'une liste. Le journal réseau de debug (`PrettyDioLogger`) n'affiche pas les requêtes qui portent un mot de passe (connexion, inscription, mot de passe oublié, `/users/me`).
+- Hors ligne : une retraite, des proclamations ou un compte rendu ne sont abandonnés que si le serveur les refuse (`ApiException`) ; une session terminée (`UnauthorizedException`) ou une réponse inattendue les garde pour la prochaine fois.
+- Tests : `FakeCrashReporting` (`errors`, `steps`) mis dans `AppLog.reporter`, remis à `NoCrashReporting` après.
+
 ## Tests
 
 - Classes API : `http_mock_adapter`, avec les vrais formats JSON du backend.

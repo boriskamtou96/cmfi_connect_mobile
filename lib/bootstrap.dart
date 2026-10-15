@@ -10,6 +10,7 @@ import 'src/core/config/firebase_options.dart';
 import 'src/core/config/flavor.dart';
 import 'src/core/i18n/languages.dart';
 import 'src/core/i18n/strings.g.dart';
+import 'src/core/services/app_log.dart';
 import 'src/core/services/crash_reporting.dart';
 import 'src/core/storage/preferences.dart';
 
@@ -35,8 +36,10 @@ Future<void> bootstrap(Flavor flavor) async {
     try {
       await Firebase.initializeApp(options: options);
       await startCrashReporting();
+      // the errors the app lives with go to Crashlytics too
+      AppLog.reporter = const FirebaseCrashReporting();
     } on Object catch (error) {
-      debugPrint('Firebase did not start: $error');
+      AppLog.info('Firebase did not start: $error');
     }
   }
 

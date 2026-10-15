@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../../../core/network/app_exception.dart';
+import '../../../core/services/app_log.dart';
 import '../../../core/services/network_status.dart';
 import '../../../core/utils/date_extensions.dart';
 import '../domain/daily_report.dart';
@@ -77,8 +78,23 @@ class PendingReports extends _$PendingReports {
           break;
         } on UnauthorizedException {
           break;
-        } on ApiException {
+        } on UnknownException catch (error, stack) {
+          // kept: sent again next time
+          AppLog.error(
+            error,
+            stack,
+            reason: 'report of ${day.date.toApiDate()} not sent: kept',
+          );
+          break;
+        } on ApiException catch (error, stack) {
           // refused for good (an item removed meanwhile…): retrying won't help
+          AppLog.error(
+            error,
+            stack,
+            reason:
+                'report of ${day.date.toApiDate()} refused (${error.code}): '
+                'dropped',
+          );
         }
         await store.removePending(day.date);
         sent = true;

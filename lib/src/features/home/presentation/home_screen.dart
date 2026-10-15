@@ -828,7 +828,8 @@ class _TodayCard extends ConsumerWidget {
                             value: goalsOfDay.progress,
                             label: t.reports.dayGoals,
                             size: 60,
-                            color: Colors.white,
+                            // gold, like the bar of the items
+                            color: AppColors.gold,
                             trackColor: Colors.white.withValues(alpha: 0.22),
                             textColor: Colors.white,
                           ),

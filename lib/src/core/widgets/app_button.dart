@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'adaptive.dart';
+
 /// The app's main button. While [isLoading] it shows a spinner and ignores taps,
 /// so a request can't be sent twice.
 class AppButton extends StatelessWidget {
@@ -19,12 +21,10 @@ class AppButton extends StatelessWidget {
     return FilledButton(
       onPressed: isLoading ? null : onPressed,
       child: isLoading
-          ? SizedBox.square(
-              dimension: 20,
-              child: CircularProgressIndicator(
-                strokeWidth: 2.4,
-                color: Theme.of(context).colorScheme.onPrimary,
-              ),
+          ? AppSpinner(
+              size: 20,
+              strokeWidth: 2.4,
+              color: Theme.of(context).colorScheme.onPrimary,
             )
           : Text(label),
     );

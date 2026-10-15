@@ -9,6 +9,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../core/i18n/strings.g.dart';
 import '../../../core/theme/app_spacing.dart';
+import '../../../core/widgets/adaptive.dart';
 import '../application/photo_decoding.dart';
 import '../domain/photo_crop.dart';
 
@@ -130,7 +131,7 @@ class PhotoCropScreen extends HookConsumerWidget {
                           ),
                         )
                       : laidOut == null
-                      ? const CircularProgressIndicator(color: Colors.white)
+                      ? const AppSpinner(color: Colors.white)
                       : SizedBox.square(
                           dimension: viewport,
                           child: Stack(
@@ -182,12 +183,10 @@ class PhotoCropScreen extends HookConsumerWidget {
                     FilledButton(
                       onPressed: laidOut == null || saving.value ? null : keep,
                       child: saving.value
-                          ? const SizedBox.square(
-                              dimension: 20,
-                              child: CircularProgressIndicator(
-                                strokeWidth: 2.5,
-                                color: Colors.white,
-                              ),
+                          ? const AppSpinner(
+                              size: 20,
+                              strokeWidth: 2.5,
+                              color: Colors.white,
                             )
                           : Text(t.use),
                     ),

@@ -10,6 +10,8 @@ import '../../../../core/theme/app_icons.dart';
 import '../../../../core/theme/app_spacing.dart';
 import '../../../../core/utils/date_format.dart';
 import '../../../../core/utils/zoned_time.dart';
+import '../../../../core/widgets/adaptive.dart';
+import '../../../../core/widgets/adaptive_pickers.dart';
 import '../../../../core/widgets/app_button.dart';
 import '../../../../core/widgets/app_toast.dart';
 import '../../../../core/widgets/dashed_outline.dart';
@@ -355,7 +357,7 @@ class _EventForm extends HookConsumerWidget {
             const SizedBox(height: AppSpacing.xl),
             SectionLabel(t.registration),
             const SizedBox(height: AppSpacing.sm),
-            SwitchListTile(
+            SwitchListTile.adaptive(
               contentPadding: EdgeInsets.zero,
               value: registrationOpen.value,
               onChanged: (value) => registrationOpen.value = value,
@@ -375,13 +377,13 @@ class _EventForm extends HookConsumerWidget {
               hint: t.capacityHint,
               keyboard: TextInputType.number,
             ),
-            SwitchListTile(
+            SwitchListTile.adaptive(
               contentPadding: EdgeInsets.zero,
               value: asksLodging.value,
               onChanged: (value) => asksLodging.value = value,
               title: Text(t.asksLodging),
             ),
-            SwitchListTile(
+            SwitchListTile.adaptive(
               contentPadding: EdgeInsets.zero,
               value: asksDeparture.value,
               onChanged: (value) => asksDeparture.value = value,
@@ -417,7 +419,7 @@ class _EventForm extends HookConsumerWidget {
                         t.statusCancelledHint,
                       ),
                   ])
-                    RadioListTile<EventStatus>(
+                    RadioListTile<EventStatus>.adaptive(
                       contentPadding: EdgeInsets.zero,
                       value: value,
                       title: Text(
@@ -481,7 +483,7 @@ class _PosterPicker extends StatelessWidget {
               if (uploading)
                 ColoredBox(
                   color: scheme.surface.withValues(alpha: 0.7),
-                  child: const Center(child: CircularProgressIndicator()),
+                  child: const Center(child: AppSpinner()),
                 ),
             ],
           ),
@@ -543,8 +545,8 @@ class _DateTimeField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Future<void> pickDate() async {
-      final picked = await showDatePicker(
-        context: context,
+      final picked = await showAppDatePicker(
+        context,
         initialDate: value,
         firstDate: DateTime(2020),
         lastDate: DateTime(2100),
@@ -563,13 +565,10 @@ class _DateTimeField extends StatelessWidget {
     }
 
     Future<void> pickTime() async {
-      final picked = await showTimePicker(
-        context: context,
+      final picked = await showAppTimePicker(
+        context,
         initialTime: TimeOfDay.fromDateTime(value),
-        builder: (context, child) => MediaQuery(
-          data: MediaQuery.of(context).copyWith(alwaysUse24HourFormat: true),
-          child: child!,
-        ),
+        use24h: true,
       );
       if (picked != null) {
         onChanged(
@@ -637,8 +636,8 @@ class _DateField extends StatelessWidget {
           Expanded(
             child: OutlinedButton.icon(
               onPressed: () async {
-                final picked = await showDatePicker(
-                  context: context,
+                final picked = await showAppDatePicker(
+                  context,
                   initialDate: value ?? last,
                   firstDate: DateTime(2020),
                   lastDate: DateTime(2100),

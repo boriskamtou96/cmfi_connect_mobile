@@ -130,6 +130,15 @@ class Translations$common$fr {
 
 	/// fr: 'Chargement…'
 	String get loading => 'Chargement…';
+
+	/// fr: 'OK'
+	String get done => 'OK';
+
+	/// fr: 'Du'
+	String get rangeStart => 'Du';
+
+	/// fr: 'Au'
+	String get rangeEnd => 'Au';
 }
 
 // Path: errors
@@ -4518,6 +4527,9 @@ extension on Translations {
 			'common.optional' => '(facultatif)',
 			'common.and' => 'et',
 			'common.loading' => 'Chargement…',
+			'common.done' => 'OK',
+			'common.rangeStart' => 'Du',
+			'common.rangeEnd' => 'Au',
 			'errors.network' => 'Pas de connexion à internet. Vérifie ton réseau et réessaie.',
 			'errors.unauthorized' => 'Ta session a expiré. Reconnecte-toi.',
 			'errors.invalidCredentials' => 'Numéro de téléphone ou mot de passe incorrect.',
@@ -5015,11 +5027,11 @@ extension on Translations {
 			'hymns.reader.themeDark' => 'Sombre',
 			'hymns.reader.repeatChorus' => 'Répéter le refrain après chaque couplet',
 			'hymns.reader.keepScreenOn' => 'Garder l\'écran allumé',
+			_ => null,
+		} ?? switch (path) {
 			'hymns.reader.addFavorite' => 'Ajouter aux favoris',
 			'hymns.reader.removeFavorite' => 'Retirer des favoris',
 			'hymns.reader.favoriteAdded' => 'Ajouté aux favoris',
-			_ => null,
-		} ?? switch (path) {
 			'hymns.reader.favoriteRemoved' => 'Retiré des favoris',
 			'hymns.reader.more' => 'Plus d\'options',
 			'hymns.reader.copy' => 'Copier les paroles',
@@ -5529,11 +5541,11 @@ extension on Translations {
 			'prayer.importunity.inviteSheet.usernameLabel' => 'Pseudo',
 			'prayer.importunity.inviteSheet.addUsername' => 'Ajouter',
 			'prayer.importunity.inviteSheet.send' => 'Envoyer les invitations',
+			_ => null,
+		} ?? switch (path) {
 			'prayer.importunity.inviteSheet.sent' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('fr'))(n, zero: 'Ils étaient déjà invités.', one: '${n} invitation envoyée', other: '${n} invitations envoyées', ), 
 			'sending.title' => 'Envoi à mes autorités',
 			'sending.moreOff' => 'Désactivé',
-			_ => null,
-		} ?? switch (path) {
 			'sending.intro' => 'Au moment choisi, CMFI Connect prépare ton compte rendu de la période. Tu n\'as plus qu\'à l\'envoyer à tes autorités spirituelles.',
 			'sending.enabled' => 'Me le préparer régulièrement',
 			'sending.rhythm' => 'Rythme',

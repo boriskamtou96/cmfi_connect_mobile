@@ -17,8 +17,9 @@ import '../../../core/theme/app_motion.dart';
 import '../../../core/theme/app_spacing.dart';
 import '../../../core/theme/app_tones.dart';
 import '../../../core/utils/text_direction.dart';
+import '../../../core/widgets/adaptive.dart';
+import '../../../core/widgets/adaptive_dialogs.dart';
 import '../../../core/widgets/app_toast.dart';
-import '../../../core/widgets/motion.dart';
 import '../../../routing/app_router.dart';
 import '../application/retreats.dart';
 import '../domain/prayer.dart';
@@ -113,24 +114,14 @@ class RetreatSessionScreen extends HookConsumerWidget {
 
     Future<void> quit() async {
       final navigator = Navigator.of(context);
-      final confirmed = await showAppDialog<bool>(
-        context: context,
-        builder: (context) => AlertDialog(
-          title: Text(t.prayer.session.quitTitle),
-          content: Text(t.prayer.session.quitText),
-          actions: [
-            TextButton(
-              onPressed: () => Navigator.of(context).pop(false),
-              child: Text(t.prayer.session.keepPraying),
-            ),
-            FilledButton(
-              onPressed: () => Navigator.of(context).pop(true),
-              child: Text(t.prayer.session.quit),
-            ),
-          ],
-        ),
+      final confirmed = await showConfirmDialog(
+        context,
+        title: t.prayer.session.quitTitle,
+        text: t.prayer.session.quitText,
+        cancelLabel: t.prayer.session.keepPraying,
+        confirmLabel: t.prayer.session.quit,
       );
-      if (confirmed ?? false) {
+      if (confirmed) {
         navigator.pop();
       }
     }
@@ -311,9 +302,7 @@ class RetreatSessionScreen extends HookConsumerWidget {
                                     style: const TextStyle(color: Colors.white),
                                   )
                                 else
-                                  const CircularProgressIndicator(
-                                    color: Colors.white,
-                                  ),
+                                  const AppSpinner(color: Colors.white),
                                 const SizedBox(height: AppSpacing.lg),
                               ],
                             ),

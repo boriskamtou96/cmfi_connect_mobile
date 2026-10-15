@@ -8,6 +8,7 @@ import '../../../core/network/app_exception.dart';
 import '../../../core/network/app_exception_message.dart';
 import '../../../core/theme/app_icons.dart';
 import '../../../core/theme/app_spacing.dart';
+import '../../../core/widgets/adaptive.dart';
 import '../../../core/widgets/app_toast.dart';
 import '../../../core/widgets/inline_error.dart';
 import '../../../core/widgets/password_field.dart';
@@ -100,13 +101,7 @@ class DeleteAccountScreen extends HookConsumerWidget {
           ),
           onPressed: password.text.isEmpty || deleting.value ? null : delete,
           child: deleting.value
-              ? SizedBox.square(
-                  dimension: 20,
-                  child: CircularProgressIndicator(
-                    strokeWidth: 2.4,
-                    color: scheme.onError,
-                  ),
-                )
+              ? AppSpinner(size: 20, strokeWidth: 2.4, color: scheme.onError)
               : Text(t.confirm),
         ),
       ),

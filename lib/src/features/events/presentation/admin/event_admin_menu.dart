@@ -8,9 +8,10 @@ import '../../../../core/network/app_exception_message.dart';
 import '../../../../core/services/image_picking.dart';
 import '../../../../core/theme/app_icons.dart';
 import '../../../../core/theme/app_spacing.dart';
+import '../../../../core/widgets/adaptive_dialogs.dart';
+import '../../../../core/widgets/adaptive_menus.dart';
 import '../../../../core/widgets/app_button.dart';
 import '../../../../core/widgets/app_toast.dart';
-import '../../../../core/widgets/motion.dart';
 import '../../../../routing/app_router.dart';
 import '../../application/event_admin.dart';
 import '../../domain/event.dart';
@@ -35,36 +36,18 @@ class EventAdminMenu extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final t = context.t.events.admin;
-    final scheme = Theme.of(context).colorScheme;
 
-    PopupMenuItem<_Action> item(_Action action, IconData icon, String label) =>
-        PopupMenuItem(
+    AdaptiveAction<_Action> item(_Action action, IconData icon, String label) =>
+        AdaptiveAction(
           value: action,
-          child: Row(
-            children: [
-              Icon(
-                icon,
-                size: 20,
-                color: action == _Action.delete
-                    ? scheme.error
-                    : scheme.onSurfaceVariant,
-              ),
-              const SizedBox(width: AppSpacing.md),
-              Flexible(
-                child: Text(
-                  label,
-                  style: action == _Action.delete
-                      ? TextStyle(color: scheme.error)
-                      : null,
-                ),
-              ),
-            ],
-          ),
+          icon: icon,
+          label: label,
+          destructive: action == _Action.delete,
         );
 
-    return PopupMenuButton<_Action>(
+    return AdaptiveMenuButton<_Action>(
       tooltip: t.menu,
-      icon: const Icon(AppIcons.moreOptions),
+      title: event.title,
       style: overPoster
           ? IconButton.styleFrom(
               backgroundColor: Colors.black.withValues(alpha: 0.32),
@@ -84,7 +67,7 @@ class EventAdminMenu extends ConsumerWidget {
         _Action.nextEdition => _prepareNextEdition(context, ref, event),
         _Action.delete => _delete(context, ref, event),
       },
-      itemBuilder: (context) => [
+      actions: [
         item(_Action.edit, AppIcons.edit, t.edit),
         item(_Action.program, AppIcons.dateRange, t.program),
         item(_Action.registrants, AppIcons.people, t.registrants),
@@ -105,31 +88,14 @@ Future<bool> _confirm(
   required String action,
   bool destructive = true,
 }) async {
-  final scheme = Theme.of(context).colorScheme;
-  final confirmed = await showAppDialog<bool>(
-    context: context,
-    builder: (context) => AlertDialog(
-      title: Text(title),
-      content: Text(text),
-      actions: [
-        TextButton(
-          onPressed: () => Navigator.of(context).pop(false),
-          child: Text(context.t.common.cancel),
-        ),
-        FilledButton(
-          style: destructive
-              ? FilledButton.styleFrom(
-                  backgroundColor: scheme.error,
-                  foregroundColor: scheme.onError,
-                )
-              : null,
-          onPressed: () => Navigator.of(context).pop(true),
-          child: Text(action),
-        ),
-      ],
-    ),
+  final confirmed = await showConfirmDialog(
+    context,
+    title: title,
+    text: text,
+    confirmLabel: action,
+    destructive: destructive,
   );
-  return confirmed == true && context.mounted;
+  return confirmed && context.mounted;
 }
 
 Future<void> _addPhotos(
@@ -402,7 +368,7 @@ class _PostSheet extends HookConsumerWidget {
               icon: const Icon(AppIcons.image),
               label: Text(t.postImage),
             ),
-          SwitchListTile(
+          SwitchListTile.adaptive(
             contentPadding: EdgeInsets.zero,
             value: pinned.value,
             onChanged: (value) => pinned.value = value,

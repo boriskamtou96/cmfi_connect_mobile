@@ -9,6 +9,7 @@ import '../../../../core/i18n/strings.g.dart';
 import '../../../../core/theme/app_icons.dart';
 import '../../../../core/theme/app_motion.dart';
 import '../../../../core/theme/app_spacing.dart';
+import '../../../../core/widgets/adaptive.dart';
 import '../../../../core/widgets/labeled_field.dart';
 import '../../domain/member.dart';
 import '../../infrastructure/members_api.dart';
@@ -170,10 +171,7 @@ class UsernameField extends HookConsumerWidget {
               suffixIcon: checking.value
                   ? const Padding(
                       padding: EdgeInsets.all(14),
-                      child: SizedBox.square(
-                        dimension: 18,
-                        child: CircularProgressIndicator(strokeWidth: 2),
-                      ),
+                      child: AppSpinner(size: 18, strokeWidth: 2),
                     )
                   : null,
             ),

@@ -79,7 +79,7 @@ class NewItemScreen extends HookConsumerWidget {
       required String subtitle,
       required ValueNotifier<bool> value,
     }) => MergeSemantics(
-      child: SwitchListTile(
+      child: SwitchListTile.adaptive(
         contentPadding: EdgeInsets.zero,
         title: Text(
           title,

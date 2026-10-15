@@ -2,6 +2,7 @@ import 'package:cmfi_connect/src/core/i18n/strings.g.dart';
 import 'package:cmfi_connect/src/features/prayer/domain/prayer.dart';
 import 'package:cmfi_connect/src/features/prayer/presentation/importunity_screen.dart';
 import 'package:cmfi_connect/src/features/prayer/presentation/widgets/invitation_menu.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:intl/date_symbol_data_local.dart';
@@ -68,6 +69,37 @@ void main() {
     expect(find.text('Seigneur, sauve Paul'), findsNothing);
     expect(find.text('Marc Tientcheu t\'invite à prier'), findsNothing);
   });
+
+  testWidgets(
+    'on iPhone: the ⋮ opens an iOS action sheet, an iOS alert asks, then '
+    'the invitation is gone',
+    (tester) async {
+      final api = FakePrayerApi(importunities: [invitation]);
+      final app = await pumpApp(tester, token: 't', prayerApi: api);
+      await openPrayer(tester);
+      await tester.tap(find.text('Seigneur, sauve Paul'));
+      await tester.pumpAndSettle();
+      expect(find.byType(ImportunityScreen), findsOneWidget);
+
+      await openMenu(tester);
+      expect(find.byType(CupertinoActionSheet), findsOneWidget);
+      expect(find.text('Signaler'), findsOneWidget);
+      await tester.tap(find.text('Bloquer Marc'));
+      await tester.pumpAndSettle();
+
+      expect(find.byType(CupertinoAlertDialog), findsOneWidget);
+      expect(find.byType(AlertDialog), findsNothing);
+      expect(find.text('Bloquer Marc ?'), findsOneWidget);
+      await tester.tap(find.text('Bloquer'));
+      await tester.pumpAndSettle();
+
+      expect(api.blockedList.single.username, 'marc.tientcheu');
+      expect(app.toasts.messages, ['Marc ne pourra plus t\'inviter.']);
+      expect(find.byType(ImportunityScreen), findsNothing);
+      expect(find.text('Seigneur, sauve Paul'), findsNothing);
+    },
+    variant: TargetPlatformVariant.only(TargetPlatform.iOS),
+  );
 
   testWidgets('blocking can be cancelled, and fails with a translated '
       'message', (tester) async {

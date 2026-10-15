@@ -17,6 +17,7 @@ import '../../../core/theme/app_motion.dart';
 import '../../../core/theme/app_spacing.dart';
 import '../../../core/theme/app_theme.dart';
 import '../../../core/utils/date_format.dart';
+import '../../../core/widgets/adaptive.dart';
 import '../../../core/widgets/app_toast.dart';
 import '../../../core/widgets/dove_mascot.dart';
 import '../../../core/widgets/fade_slide_in.dart';
@@ -155,7 +156,7 @@ class PremiumScreen extends HookConsumerWidget {
                                     _ => const Padding(
                                       padding: EdgeInsets.all(AppSpacing.xl),
                                       child: Center(
-                                        child: CircularProgressIndicator(
+                                        child: AppSpinner(
                                           color: AppColors.gold,
                                         ),
                                       ),
@@ -839,12 +840,10 @@ class _Footer extends ConsumerWidget {
                 ),
               ),
               child: busy
-                  ? const SizedBox.square(
-                      dimension: 22,
-                      child: CircularProgressIndicator(
-                        strokeWidth: 2.4,
-                        color: AppColors.ink,
-                      ),
+                  ? const AppSpinner(
+                      size: 22,
+                      strokeWidth: 2.4,
+                      color: AppColors.ink,
                     )
                   : Text(
                       active

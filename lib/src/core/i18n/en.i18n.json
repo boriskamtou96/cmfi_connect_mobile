@@ -13,7 +13,10 @@
     "soon": "Soon",
     "optional": "(optional)",
     "and": "and",
-    "loading": "Loading…"
+    "loading": "Loading…",
+    "done": "Done",
+    "rangeStart": "From",
+    "rangeEnd": "To"
   },
   "errors": {
     "network": "No internet connection. Check your network and try again.",

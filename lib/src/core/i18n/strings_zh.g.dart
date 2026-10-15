@@ -104,6 +104,9 @@ class _Translations$common$zh extends Translations$common$fr {
 	@override String get optional => '（选填）';
 	@override String get and => '和';
 	@override String get loading => '加载中…';
+	@override String get done => '完成';
+	@override String get rangeStart => '开始';
+	@override String get rangeEnd => '结束';
 }
 
 // Path: errors
@@ -2222,6 +2225,9 @@ extension on TranslationsZh {
 			'common.optional' => '（选填）',
 			'common.and' => '和',
 			'common.loading' => '加载中…',
+			'common.done' => '完成',
+			'common.rangeStart' => '开始',
+			'common.rangeEnd' => '结束',
 			'errors.network' => '没有网络连接。请检查网络后重试。',
 			'errors.unauthorized' => '登录已过期，请重新登录。',
 			'errors.invalidCredentials' => '手机号或密码错误。',
@@ -2719,11 +2725,11 @@ extension on TranslationsZh {
 			'hymns.reader.themeDark' => '深色',
 			'hymns.reader.repeatChorus' => '每节之后重复副歌',
 			'hymns.reader.keepScreenOn' => '保持屏幕常亮',
+			_ => null,
+		} ?? switch (path) {
 			'hymns.reader.addFavorite' => '加入收藏',
 			'hymns.reader.removeFavorite' => '取消收藏',
 			'hymns.reader.favoriteAdded' => '已加入收藏',
-			_ => null,
-		} ?? switch (path) {
 			'hymns.reader.favoriteRemoved' => '已取消收藏',
 			'hymns.reader.more' => '更多选项',
 			'hymns.reader.copy' => '复制歌词',
@@ -3233,11 +3239,11 @@ extension on TranslationsZh {
 			'prayer.importunity.inviteSheet.usernameLabel' => '用户名',
 			'prayer.importunity.inviteSheet.addUsername' => '添加',
 			'prayer.importunity.inviteSheet.send' => '发送邀请',
+			_ => null,
+		} ?? switch (path) {
 			'prayer.importunity.inviteSheet.sent' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n, zero: '他们之前已被邀请过了。', other: '已发送 ${n} 个邀请', ), 
 			'sending.title' => '发送给我的属灵长辈',
 			'sending.moreOff' => '已关闭',
-			_ => null,
-		} ?? switch (path) {
 			'sending.intro' => '到了你选定的时间，CMFI Connect 会准备好这段时间的报告，你只需发送给你的属灵长辈。',
 			'sending.enabled' => '定期为我准备',
 			'sending.rhythm' => '频率',

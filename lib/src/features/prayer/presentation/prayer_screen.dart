@@ -62,7 +62,7 @@ class PrayerScreen extends ConsumerWidget {
           icon: Icon(AppIcons.reminder, color: scheme.onSurfaceVariant),
         ),
       ],
-      child: RefreshIndicator(
+      child: RefreshIndicator.adaptive(
         onRefresh: refresh,
         child: ListView(
           padding: const EdgeInsetsDirectional.fromSTEB(16, 4, 16, 32),

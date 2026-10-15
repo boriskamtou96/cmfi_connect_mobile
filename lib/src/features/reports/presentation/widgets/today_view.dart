@@ -11,6 +11,7 @@ import '../../../../core/theme/app_spacing.dart';
 import '../../../../core/theme/app_tones.dart';
 import '../../../../core/utils/date_extensions.dart';
 import '../../../../core/utils/date_format.dart';
+import '../../../../core/widgets/adaptive.dart';
 import '../../../../core/widgets/animated_progress_bar.dart';
 import '../../../../core/widgets/app_toast.dart';
 import '../../../../core/widgets/error_view.dart';
@@ -86,7 +87,7 @@ class TodayView extends ConsumerWidget {
 
     // One list for every state: the week strip stays the same element, so the
     // selected day animates when another day is picked.
-    return RefreshIndicator(
+    return RefreshIndicator.adaptive(
       onRefresh: () async {
         ref
           ..invalidate(provider)
@@ -514,13 +515,11 @@ class SaveDayBar extends HookConsumerWidget {
             ),
           ),
           child: saving
-              ? SizedBox.square(
+              ? AppSpinner(
                   key: const ValueKey('saving'),
-                  dimension: 20,
-                  child: CircularProgressIndicator(
-                    strokeWidth: 2.4,
-                    color: scheme.onPrimary,
-                  ),
+                  size: 20,
+                  strokeWidth: 2.4,
+                  color: scheme.onPrimary,
                 )
               : showCheck
               ? Icon(

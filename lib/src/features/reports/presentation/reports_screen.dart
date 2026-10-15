@@ -7,6 +7,7 @@ import '../../../core/theme/app_icons.dart';
 import '../../../core/theme/app_motion.dart';
 import '../../../core/theme/app_spacing.dart';
 import '../../../core/utils/date_extensions.dart';
+import '../../../core/widgets/adaptive_pickers.dart';
 import '../../../core/widgets/motion.dart';
 import '../../../core/widgets/segmented_tabs.dart';
 import '../../../core/widgets/tab_page.dart';
@@ -37,8 +38,8 @@ class ReportsScreen extends ConsumerWidget {
     }
 
     Future<void> pickDay() async {
-      final picked = await showDatePicker(
-        context: context,
+      final picked = await showAppDatePicker(
+        context,
         initialDate: day,
         firstDate: DateTime(2020),
         lastDate: today(),

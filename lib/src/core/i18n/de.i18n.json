@@ -13,7 +13,10 @@
     "soon": "Bald",
     "optional": "(optional)",
     "and": "und",
-    "loading": "Wird geladen…"
+    "loading": "Wird geladen…",
+    "done": "Fertig",
+    "rangeStart": "Von",
+    "rangeEnd": "Bis"
   },
   "errors": {
     "network": "Keine Internetverbindung. Prüfe dein Netzwerk und versuche es erneut.",

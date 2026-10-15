@@ -13,7 +13,10 @@
     "soon": "即将推出",
     "optional": "（选填）",
     "and": "和",
-    "loading": "加载中…"
+    "loading": "加载中…",
+    "done": "完成",
+    "rangeStart": "开始",
+    "rangeEnd": "结束"
   },
   "errors": {
     "network": "没有网络连接。请检查网络后重试。",

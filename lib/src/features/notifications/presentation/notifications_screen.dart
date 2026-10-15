@@ -34,7 +34,7 @@ class NotificationsScreen extends ConsumerWidget {
     return SubPage(
       title: t.title,
       child: switch (inbox) {
-        AsyncValue(value: final state?) => RefreshIndicator(
+        AsyncValue(value: final state?) => RefreshIndicator.adaptive(
           onRefresh: notifier.refresh,
           child: state.items.isEmpty
               ? ListView(

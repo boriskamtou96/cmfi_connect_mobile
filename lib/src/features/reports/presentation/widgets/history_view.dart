@@ -49,7 +49,7 @@ class HistoryView extends HookConsumerWidget {
         report.date: report,
     };
 
-    return RefreshIndicator(
+    return RefreshIndicator.adaptive(
       onRefresh: () =>
           ref.refresh(provider.future).then((_) {}, onError: (_) {}),
       child: ListView(

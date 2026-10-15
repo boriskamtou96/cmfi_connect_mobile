@@ -5,6 +5,7 @@ import 'package:cmfi_connect/src/core/utils/date_extensions.dart';
 import 'package:cmfi_connect/src/features/reports/application/reports_providers.dart';
 import 'package:cmfi_connect/src/features/reports/domain/daily_report.dart';
 import 'package:cmfi_connect/src/features/reports/presentation/widgets/entry_sheet.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:intl/date_symbol_data_local.dart';
@@ -274,6 +275,39 @@ void main() {
       expect(app.notifications.planned, isEmpty);
       expect(app.preferences.getBool('reminder_enabled'), isFalse);
     });
+
+    testWidgets(
+      'on iPhone the time turns on the iOS wheel, in 24 hours',
+      (tester) async {
+        final app = await pumpApp(
+          tester,
+          token: 't',
+          initialPreferences: {'reminder_enabled': true, 'reminder_time': 1290},
+        );
+        await tester.tap(find.text('Plus'));
+        await tester.pumpAndSettle();
+        await scrollToEnd(tester);
+        await tester.tap(find.text('Rappel du soir'));
+        await tester.pumpAndSettle();
+        // the time row of the sheet (Plus shows it too, behind)
+        await tester.tap(find.text('21:30').last);
+        await tester.pumpAndSettle();
+
+        final wheel = find.byType(CupertinoDatePicker);
+        expect(wheel, findsOneWidget);
+        expect(tester.widget<CupertinoDatePicker>(wheel).use24hFormat, isTrue);
+        tester
+            .widget<CupertinoDatePicker>(wheel)
+            .onDateTimeChanged(DateTime(2000, 1, 1, 20, 45));
+        await tester.tap(find.text('OK'));
+        await tester.pumpAndSettle();
+
+        expect(app.preferences.getInt('reminder_time'), 20 * 60 + 45);
+        expect(app.notifications.planned.last.at.hour, 20);
+        expect(app.notifications.planned.last.at.minute, 45);
+      },
+      variant: TargetPlatformVariant.only(TargetPlatform.iOS),
+    );
 
     testWidgets("a tapped reminder opens the day's report", (tester) async {
       final app = await pumpApp(tester, token: 't');

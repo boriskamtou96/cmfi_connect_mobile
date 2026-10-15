@@ -11,9 +11,9 @@ import '../../../../core/theme/app_colors.dart';
 import '../../../../core/theme/app_icons.dart';
 import '../../../../core/theme/app_spacing.dart';
 import '../../../../core/theme/app_tones.dart';
+import '../../../../core/widgets/adaptive_dialogs.dart';
 import '../../../../core/widgets/app_button.dart';
 import '../../../../core/widgets/app_toast.dart';
-import '../../../../core/widgets/motion.dart';
 import '../../../../core/widgets/rolling_text.dart';
 import '../../application/events_providers.dart';
 import '../../domain/event.dart';
@@ -200,28 +200,15 @@ class _RegistrationSheet extends HookConsumerWidget {
     }
 
     Future<void> cancel() async {
-      final confirmed = await showAppDialog<bool>(
-        context: context,
-        builder: (context) => AlertDialog(
-          title: Text(t.register.cancelTitle),
-          content: Text(t.register.cancelText),
-          actions: [
-            TextButton(
-              onPressed: () => Navigator.of(context).pop(false),
-              child: Text(t.register.keep),
-            ),
-            FilledButton(
-              style: FilledButton.styleFrom(
-                backgroundColor: scheme.error,
-                foregroundColor: scheme.onError,
-              ),
-              onPressed: () => Navigator.of(context).pop(true),
-              child: Text(t.register.cancel),
-            ),
-          ],
-        ),
+      final confirmed = await showConfirmDialog(
+        context,
+        title: t.register.cancelTitle,
+        text: t.register.cancelText,
+        cancelLabel: t.register.keep,
+        confirmLabel: t.register.cancel,
+        destructive: true,
       );
-      if (confirmed != true || !context.mounted) {
+      if (!confirmed || !context.mounted) {
         return;
       }
       final toast = ref.read(toasterProvider).of(context);
@@ -312,7 +299,7 @@ class _RegistrationSheet extends HookConsumerWidget {
           ),
           if (event.asksLodging) ...[
             const SizedBox(height: AppSpacing.md),
-            SwitchListTile(
+            SwitchListTile.adaptive(
               contentPadding: EdgeInsets.zero,
               value: lodging.value,
               onChanged: (value) => lodging.value = value,

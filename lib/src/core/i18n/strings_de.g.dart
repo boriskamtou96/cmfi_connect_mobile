@@ -104,6 +104,9 @@ class _Translations$common$de extends Translations$common$fr {
 	@override String get optional => '(optional)';
 	@override String get and => 'und';
 	@override String get loading => 'Wird geladen…';
+	@override String get done => 'Fertig';
+	@override String get rangeStart => 'Von';
+	@override String get rangeEnd => 'Bis';
 }
 
 // Path: errors
@@ -2276,6 +2279,9 @@ extension on TranslationsDe {
 			'common.optional' => '(optional)',
 			'common.and' => 'und',
 			'common.loading' => 'Wird geladen…',
+			'common.done' => 'Fertig',
+			'common.rangeStart' => 'Von',
+			'common.rangeEnd' => 'Bis',
 			'errors.network' => 'Keine Internetverbindung. Prüfe dein Netzwerk und versuche es erneut.',
 			'errors.unauthorized' => 'Deine Sitzung ist abgelaufen. Melde dich erneut an.',
 			'errors.invalidCredentials' => 'Telefonnummer oder Passwort ist falsch.',
@@ -2773,11 +2779,11 @@ extension on TranslationsDe {
 			'hymns.reader.themeDark' => 'Dunkel',
 			'hymns.reader.repeatChorus' => 'Refrain nach jeder Strophe wiederholen',
 			'hymns.reader.keepScreenOn' => 'Bildschirm eingeschaltet lassen',
+			_ => null,
+		} ?? switch (path) {
 			'hymns.reader.addFavorite' => 'Zu Favoriten hinzufügen',
 			'hymns.reader.removeFavorite' => 'Aus Favoriten entfernen',
 			'hymns.reader.favoriteAdded' => 'Zu Favoriten hinzugefügt',
-			_ => null,
-		} ?? switch (path) {
 			'hymns.reader.favoriteRemoved' => 'Aus Favoriten entfernt',
 			'hymns.reader.more' => 'Weitere Optionen',
 			'hymns.reader.copy' => 'Liedtext kopieren',
@@ -3287,11 +3293,11 @@ extension on TranslationsDe {
 			'prayer.importunity.inviteSheet.usernameLabel' => 'Benutzername',
 			'prayer.importunity.inviteSheet.addUsername' => 'Hinzufügen',
 			'prayer.importunity.inviteSheet.send' => 'Einladungen senden',
+			_ => null,
+		} ?? switch (path) {
 			'prayer.importunity.inviteSheet.sent' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('de'))(n, zero: 'Sie waren schon eingeladen.', one: '${n} Einladung gesendet', other: '${n} Einladungen gesendet', ), 
 			'sending.title' => 'An meine Leiter senden',
 			'sending.moreOff' => 'Aus',
-			_ => null,
-		} ?? switch (path) {
 			'sending.intro' => 'Zur gewählten Zeit bereitet CMFI Connect deinen Bericht für den Zeitraum vor. Du musst ihn nur noch an deine geistlichen Leiter senden.',
 			'sending.enabled' => 'Regelmäßig für mich vorbereiten',
 			'sending.rhythm' => 'Rhythmus',

@@ -5,13 +5,35 @@ import '../../../../core/theme/app_colors.dart';
 import '../../../../core/theme/app_icons.dart';
 import '../../../../core/theme/app_spacing.dart';
 import '../../../../core/theme/app_tones.dart';
+import '../../../../core/widgets/adaptive.dart';
+import '../../../../core/widgets/adaptive_menus.dart';
 import '../../domain/hymn.dart';
 
 /// Languages of the books, written in the language itself.
 const _languageNames = {'fr': 'Français', 'en': 'English'};
 
 /// Lets the user choose a hymn book. Returns its code, or null when dismissed.
+/// On iPhone, an action sheet of the titles, the current one checked.
 Future<String?> showBookPicker(
+  BuildContext context, {
+  required List<HymnBook> books,
+  required String? selected,
+}) => context.isCupertino
+    ? showActionSheet<String>(
+        context,
+        title: context.t.hymns.chooseBook,
+        actions: [
+          for (final book in books)
+            AdaptiveAction(
+              value: book.code,
+              label: book.title,
+              selected: book.code == selected,
+            ),
+        ],
+      )
+    : _showBookSheet(context, books: books, selected: selected);
+
+Future<String?> _showBookSheet(
   BuildContext context, {
   required List<HymnBook> books,
   required String? selected,

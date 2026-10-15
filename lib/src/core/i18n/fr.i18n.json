@@ -13,7 +13,10 @@
     "soon": "Bientôt",
     "optional": "(facultatif)",
     "and": "et",
-    "loading": "Chargement…"
+    "loading": "Chargement…",
+    "done": "OK",
+    "rangeStart": "Du",
+    "rangeEnd": "Au"
   },
   "errors": {
     "network": "Pas de connexion à internet. Vérifie ton réseau et réessaie.",

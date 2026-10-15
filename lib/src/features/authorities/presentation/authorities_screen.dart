@@ -8,6 +8,7 @@ import '../../../core/network/app_exception_message.dart';
 import '../../../core/theme/app_icons.dart';
 import '../../../core/theme/app_spacing.dart';
 import '../../../core/theme/app_tones.dart';
+import '../../../core/widgets/adaptive_dialogs.dart';
 import '../../../core/widgets/app_toast.dart';
 import '../../../core/widgets/error_view.dart';
 import '../../../core/widgets/fade_slide_in.dart';
@@ -55,24 +56,14 @@ class AuthoritiesScreen extends ConsumerWidget {
     }
 
     Future<void> remove(Authority authority) async {
-      final confirmed = await showAppDialog<bool>(
-        context: context,
-        builder: (context) => AlertDialog(
-          title: Text(t.authorities.removeTitle(name: authority.fullName)),
-          content: Text(t.authorities.removeText(name: authority.fullName)),
-          actions: [
-            TextButton(
-              onPressed: () => Navigator.of(context).pop(false),
-              child: Text(t.common.cancel),
-            ),
-            FilledButton(
-              onPressed: () => Navigator.of(context).pop(true),
-              child: Text(t.authorities.remove),
-            ),
-          ],
-        ),
+      final confirmed = await showConfirmDialog(
+        context,
+        title: t.authorities.removeTitle(name: authority.fullName),
+        text: t.authorities.removeText(name: authority.fullName),
+        confirmLabel: t.authorities.remove,
+        destructive: true,
       );
-      if (confirmed != true || !context.mounted) {
+      if (!confirmed || !context.mounted) {
         return;
       }
       final toast = ref.read(toasterProvider).of(context);
@@ -89,7 +80,7 @@ class AuthoritiesScreen extends ConsumerWidget {
     return SubPage(
       title: t.authorities.title,
       child: switch (authorities) {
-        AsyncValue(value: final list?) => RefreshIndicator(
+        AsyncValue(value: final list?) => RefreshIndicator.adaptive(
           onRefresh: () {
             ref.invalidate(authorityRequestsProvider);
             return ref
@@ -509,7 +500,7 @@ class _SharingSwitch extends HookConsumerWidget {
     }
 
     return MergeSemantics(
-      child: SwitchListTile(
+      child: SwitchListTile.adaptive(
         contentPadding: const EdgeInsetsDirectional.fromSTEB(
           14,
           AppSpacing.xs,

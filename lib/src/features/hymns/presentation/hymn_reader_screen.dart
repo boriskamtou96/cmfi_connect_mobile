@@ -15,6 +15,7 @@ import '../../../core/theme/app_icons.dart';
 import '../../../core/theme/app_motion.dart';
 import '../../../core/theme/app_spacing.dart';
 import '../../../core/theme/app_theme.dart';
+import '../../../core/widgets/adaptive_menus.dart';
 import '../../../core/widgets/app_back_button.dart';
 import '../../../core/widgets/app_toast.dart';
 import '../../../core/widgets/skeleton.dart';
@@ -249,7 +250,7 @@ class HymnReaderScreen extends HookConsumerWidget {
                         ),
                         Builder(
                           builder: (menuContext) =>
-                              PopupMenuButton<_MenuAction>(
+                              AdaptiveMenuButton<_MenuAction>(
                                 tooltip: t.hymns.reader.more,
                                 icon: Icon(
                                   AppIcons.moreOptions,
@@ -265,30 +266,21 @@ class HymnReaderScreen extends HookConsumerWidget {
                                   _MenuAction.copy => copy(),
                                   _MenuAction.share => share(menuContext),
                                 },
-                                itemBuilder: (context) => [
-                                  PopupMenuItem(
+                                actions: [
+                                  AdaptiveAction(
                                     value: _MenuAction.project,
-                                    child: ListTile(
-                                      contentPadding: EdgeInsets.zero,
-                                      leading: const Icon(AppIcons.projection),
-                                      title: Text(t.hymns.reader.project),
-                                    ),
+                                    icon: AppIcons.projection,
+                                    label: t.hymns.reader.project,
                                   ),
-                                  PopupMenuItem(
+                                  AdaptiveAction(
                                     value: _MenuAction.share,
-                                    child: ListTile(
-                                      contentPadding: EdgeInsets.zero,
-                                      leading: const Icon(AppIcons.share),
-                                      title: Text(t.hymns.reader.share),
-                                    ),
+                                    icon: AppIcons.share,
+                                    label: t.hymns.reader.share,
                                   ),
-                                  PopupMenuItem(
+                                  AdaptiveAction(
                                     value: _MenuAction.copy,
-                                    child: ListTile(
-                                      contentPadding: EdgeInsets.zero,
-                                      leading: const Icon(AppIcons.copy),
-                                      title: Text(t.hymns.reader.copy),
-                                    ),
+                                    icon: AppIcons.copy,
+                                    label: t.hymns.reader.copy,
                                   ),
                                 ],
                               ),

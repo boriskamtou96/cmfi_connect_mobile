@@ -122,7 +122,7 @@ class SummaryView extends HookConsumerWidget {
       ),
     );
 
-    return RefreshIndicator(
+    return RefreshIndicator.adaptive(
       onRefresh: () async {
         ref.invalidate(historyProvider);
         await ref.refresh(summaryProvider.future).then((_) {}, onError: (_) {});

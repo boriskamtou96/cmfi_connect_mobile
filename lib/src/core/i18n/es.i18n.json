@@ -13,7 +13,10 @@
     "soon": "Pronto",
     "optional": "(opcional)",
     "and": "y",
-    "loading": "Cargando…"
+    "loading": "Cargando…",
+    "done": "OK",
+    "rangeStart": "Desde",
+    "rangeEnd": "Hasta"
   },
   "errors": {
     "network": "Sin conexión a internet. Revisa tu red y vuelve a intentarlo.",

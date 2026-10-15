@@ -6,10 +6,11 @@ import '../../../../core/i18n/strings.g.dart';
 import '../../../../core/network/app_exception_message.dart';
 import '../../../../core/theme/app_icons.dart';
 import '../../../../core/theme/app_spacing.dart';
+import '../../../../core/widgets/adaptive_dialogs.dart';
+import '../../../../core/widgets/adaptive_menus.dart';
 import '../../../../core/widgets/app_button.dart';
 import '../../../../core/widgets/app_toast.dart';
 import '../../../../core/widgets/labeled_field.dart';
-import '../../../../core/widgets/motion.dart';
 import '../../application/importunities.dart';
 import '../../domain/prayer.dart';
 
@@ -35,7 +36,7 @@ class InvitationMenu extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final t = context.t.blocking;
     final name = inviterName(topic);
-    return PopupMenuButton<_Choice>(
+    return AdaptiveMenuButton<_Choice>(
       icon: Icon(
         AppIcons.moreOptions,
         color: color ?? Theme.of(context).colorScheme.onSurfaceVariant,
@@ -44,17 +45,17 @@ class InvitationMenu extends ConsumerWidget {
         _Choice.report => showReportSheet(context, topic),
         _Choice.block => _block(context, ref),
       },
-      itemBuilder: (context) => [
-        PopupMenuItem(
+      actions: [
+        AdaptiveAction(
           value: _Choice.report,
-          child: _MenuRow(icon: AppIcons.report, label: t.report),
+          icon: AppIcons.report,
+          label: t.report,
         ),
-        PopupMenuItem(
+        AdaptiveAction(
           value: _Choice.block,
-          child: _MenuRow(
-            icon: AppIcons.block,
-            label: t.block(name: name),
-          ),
+          icon: AppIcons.block,
+          label: t.block(name: name),
+          destructive: true,
         ),
       ],
     );
@@ -63,31 +64,14 @@ class InvitationMenu extends ConsumerWidget {
   /// Asks first, then blocks: the invitation leaves the list.
   Future<void> _block(BuildContext context, WidgetRef ref) async {
     final t = context.t;
-    final scheme = Theme.of(context).colorScheme;
     final name = inviterName(topic);
-    final confirmed =
-        await showAppDialog<bool>(
-          context: context,
-          builder: (context) => AlertDialog(
-            title: Text(t.blocking.blockTitle(name: name)),
-            content: Text(t.blocking.blockText(name: name)),
-            actions: [
-              TextButton(
-                onPressed: () => Navigator.of(context).pop(false),
-                child: Text(t.common.cancel),
-              ),
-              FilledButton(
-                style: FilledButton.styleFrom(
-                  backgroundColor: scheme.error,
-                  foregroundColor: scheme.onError,
-                ),
-                onPressed: () => Navigator.of(context).pop(true),
-                child: Text(t.blocking.blockAction),
-              ),
-            ],
-          ),
-        ) ??
-        false;
+    final confirmed = await showConfirmDialog(
+      context,
+      title: t.blocking.blockTitle(name: name),
+      text: t.blocking.blockText(name: name),
+      confirmLabel: t.blocking.blockAction,
+      destructive: true,
+    );
     if (!confirmed || !context.mounted) {
       return;
     }
@@ -112,24 +96,6 @@ String inviterName(Importunity topic) {
   return inviter.firstName.isNotEmpty
       ? inviter.firstName
       : '@${inviter.username}';
-}
-
-class _MenuRow extends StatelessWidget {
-  const _MenuRow({required this.icon, required this.label});
-
-  final IconData icon;
-  final String label;
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      children: [
-        Icon(icon, size: 20),
-        const SizedBox(width: AppSpacing.md),
-        Flexible(child: Text(label)),
-      ],
-    );
-  }
 }
 
 /// Reports an invitation to the leaders: why (unwanted, shocking or
@@ -215,7 +181,7 @@ class _ReportSheet extends HookConsumerWidget {
               child: Column(
                 children: [
                   for (final option in ReportReason.values)
-                    RadioListTile<ReportReason>(
+                    RadioListTile<ReportReason>.adaptive(
                       value: option,
                       contentPadding: EdgeInsets.zero,
                       title: Text(switch (option) {

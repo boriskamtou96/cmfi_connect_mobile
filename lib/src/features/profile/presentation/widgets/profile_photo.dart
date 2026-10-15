@@ -9,7 +9,8 @@ import '../../../../core/i18n/strings.g.dart';
 import '../../../../core/network/app_exception_message.dart';
 import '../../../../core/services/image_picking.dart';
 import '../../../../core/theme/app_icons.dart';
-import '../../../../core/theme/app_spacing.dart';
+import '../../../../core/widgets/adaptive.dart';
+import '../../../../core/widgets/adaptive_menus.dart';
 import '../../../../core/widgets/app_toast.dart';
 import '../../../../routing/app_router.dart';
 import '../../../members/presentation/widgets/member_avatar.dart';
@@ -58,7 +59,7 @@ class ProfilePhotoButton extends HookConsumerWidget {
                       shape: BoxShape.circle,
                       color: scheme.surface.withValues(alpha: 0.6),
                     ),
-                    child: const Center(child: CircularProgressIndicator()),
+                    child: const Center(child: AppSpinner()),
                   ),
                 ),
               PositionedDirectional(
@@ -103,10 +104,29 @@ Future<void> changeProfilePhoto(
   final container = ProviderScope.containerOf(context, listen: false);
   final hasPhoto = container.read(currentProfileProvider).value?.avatar != null;
 
-  final choice = await showModalBottomSheet<_PhotoChoice>(
-    context: context,
-    useSafeArea: true,
-    builder: (context) => _PhotoSheet(hasPhoto: hasPhoto),
+  final choice = await showActionSheet<_PhotoChoice>(
+    context,
+    title: t.profilePhoto.title,
+    message: t.profilePhoto.seenBy,
+    actions: [
+      AdaptiveAction(
+        value: _PhotoChoice.camera,
+        icon: AppIcons.camera,
+        label: t.profilePhoto.camera,
+      ),
+      AdaptiveAction(
+        value: _PhotoChoice.gallery,
+        icon: AppIcons.image,
+        label: t.profilePhoto.gallery,
+      ),
+      if (hasPhoto)
+        AdaptiveAction(
+          value: _PhotoChoice.remove,
+          icon: AppIcons.delete,
+          label: t.profilePhoto.remove,
+          destructive: true,
+        ),
+    ],
   );
   if (choice == null) {
     return;
@@ -146,68 +166,4 @@ Future<void> changeProfilePhoto(
     return;
   }
   await send(() => api.setAvatar(square), t.profilePhoto.saved);
-}
-
-class _PhotoSheet extends StatelessWidget {
-  const _PhotoSheet({required this.hasPhoto});
-
-  final bool hasPhoto;
-
-  @override
-  Widget build(BuildContext context) {
-    final t = context.t.profilePhoto;
-    final scheme = Theme.of(context).colorScheme;
-
-    Widget option(_PhotoChoice choice, IconData icon, String label) {
-      final color = choice == _PhotoChoice.remove ? scheme.error : null;
-      return ListTile(
-        leading: Icon(icon, color: color),
-        title: Text(
-          label,
-          style: TextStyle(fontWeight: FontWeight.w600, color: color),
-        ),
-        onTap: () => Navigator.of(context).pop(choice),
-      );
-    }
-
-    return SafeArea(
-      child: Padding(
-        padding: const EdgeInsets.only(bottom: AppSpacing.md),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            Padding(
-              padding: const EdgeInsetsDirectional.fromSTEB(
-                AppSpacing.xl,
-                0,
-                AppSpacing.xl,
-                AppSpacing.xs,
-              ),
-              child: Text(
-                t.title,
-                style: Theme.of(context).textTheme.titleLarge,
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsetsDirectional.fromSTEB(
-                AppSpacing.xl,
-                0,
-                AppSpacing.xl,
-                AppSpacing.sm,
-              ),
-              child: Text(
-                t.seenBy,
-                style: TextStyle(fontSize: 13, color: scheme.onSurfaceVariant),
-              ),
-            ),
-            option(_PhotoChoice.camera, AppIcons.camera, t.camera),
-            option(_PhotoChoice.gallery, AppIcons.image, t.gallery),
-            if (hasPhoto)
-              option(_PhotoChoice.remove, AppIcons.delete, t.remove),
-          ],
-        ),
-      ),
-    );
-  }
 }

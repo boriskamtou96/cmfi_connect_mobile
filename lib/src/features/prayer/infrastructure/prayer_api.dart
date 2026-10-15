@@ -1,3 +1,5 @@
+import 'dart:typed_data';
+
 import 'package:dio/dio.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
@@ -42,18 +44,13 @@ class PrayerApi {
         return PrayerTopic.fromJson(response.content);
       });
 
-  /// The points (1, 2…) prayed for on [day]: all of them, unchecked ones are
-  /// removed.
-  Future<PrayerTopic> setPrayed(
-    int id, {
-    required DateTime day,
-    required List<int> positions,
-  }) => apiCall(() async {
-    final response = await _dio.put<Map<String, dynamic>>(
-      '/prayer/topics/$id/prayed',
-      data: {'day': day.toApiDate(), 'positions': positions},
+  /// The PDF of a topic ([url] absolute, see MediaImages.resolve).
+  Future<Uint8List> document(String url) => apiCall(() async {
+    final response = await _dio.get<List<int>>(
+      url,
+      options: Options(responseType: ResponseType.bytes),
     );
-    return PrayerTopic.fromJson(response.content);
+    return Uint8List.fromList(response.data!);
   });
 
   // ----- the user's lists -----

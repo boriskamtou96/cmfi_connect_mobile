@@ -1189,35 +1189,14 @@
         "fasting": "उपवास",
         "other": "विषय"
       },
-      "points(plural, param=n)": {
-        "one": "{n} विषय",
-        "other": "{n} विषय"
-      },
       "until": "{date} तक",
-      "since": "{date} से",
-      "people(plural, param=n)": {
-        "zero": "अभी कोई नहीं",
-        "one": "{n} व्यक्ति प्रार्थना में शामिल",
-        "other": "{n} लोग प्रार्थना में शामिल"
-      },
-      "withPdf": "PDF के साथ",
-      "isNew": "नया",
-      "screenTitle": "प्रार्थना विषय",
-      "period": "{from} से {to} तक",
-      "peopleBanner(plural, param=n)": {
-        "zero": "इन विषयों के लिए प्रार्थना करने वाले पहले व्यक्ति बनो।",
-        "one": "{n} भाई या बहन इन विषयों के लिए प्रार्थना कर रहे हैं",
-        "other": "{n} भाई-बहन इन विषयों के लिए प्रार्थना कर रहे हैं"
-      },
-      "prayedToday": "{count} · आज {prayed} के लिए प्रार्थना हुई",
-      "document": "मूल दस्तावेज़",
-      "prayAll": "मैंने इन सभी विषयों के लिए प्रार्थना की",
-      "allPrayed": "आज सबके लिए प्रार्थना हो गई",
       "archive": "पिछले विषय",
       "archiveEmpty": "कोई पिछला विषय नहीं।",
       "current": "इस समय",
-      "shareText": "{title}\n\n{points}\n\nआओ, CMFI Connect ऐप में साथ मिलकर प्रार्थना करें।",
-      "documentSize": "{kb} KB"
+      "documentSize": "{kb} KB",
+      "download": "PDF डाउनलोड करो",
+      "noDocument": "PDF नहीं है",
+      "openDocument": "PDF खोलो"
     },
     "lists": {
       "title": "मेरी प्रार्थना सूचियाँ",

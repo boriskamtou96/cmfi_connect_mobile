@@ -24,48 +24,12 @@ class PrayerTopics extends _$PrayerTopics {
       if (cached == null) {
         rethrow;
       }
-      // kept on another day: today nothing is prayed yet
+      // kept on another day: those ended since are left out
       return [
         for (final topic in cached)
           if (topic.endsOn == null || !topic.endsOn!.isBefore(today())) topic,
       ];
     }
-  }
-
-  /// The points prayed for today: shown at once, sent to the server. Throws
-  /// an AppException on failure (the topic is shown as before).
-  Future<void> setPrayed(PrayerTopic topic, List<int> positions) async {
-    final before = state.value;
-    final sorted = positions.toSet().toList()..sort();
-    _show(topic.copyWith(prayedToday: sorted));
-    final link = ref.keepAlive();
-    try {
-      _show(
-        await ref
-            .read(prayerApiProvider)
-            .setPrayed(topic.id, day: today(), positions: sorted),
-      );
-      await ref
-          .read(prayerLocalStoreProvider)
-          .saveTopics(state.value ?? const []);
-    } catch (_) {
-      if (ref.mounted && before != null) {
-        state = AsyncData(before);
-      }
-      rethrow;
-    } finally {
-      link.close();
-    }
-  }
-
-  void _show(PrayerTopic topic) {
-    if (!ref.mounted) {
-      return;
-    }
-    state = AsyncData([
-      for (final other in state.value ?? const <PrayerTopic>[])
-        other.id == topic.id ? topic : other,
-    ]);
   }
 }
 

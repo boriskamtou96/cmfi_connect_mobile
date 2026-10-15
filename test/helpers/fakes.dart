@@ -1525,7 +1525,6 @@ class FakePrayerApi implements PrayerApi {
 
   final retreatList = <RetreatRecord>[];
   final deletedRetreats = <(DateTime, RetreatMoment)>[];
-  final prayedCalls = <(int, List<int>)>[];
   final markedPrayed = <List<int>>[];
   final counts = <(int, int)>[];
   final invitations = <({int id, List<String> usernames, bool family})>[];
@@ -1564,21 +1563,15 @@ class FakePrayerApi implements PrayerApi {
     return topicList.firstWhere((topic) => topic.id == id);
   }
 
+  /// The PDFs downloaded (their full address).
+  final documents = <String>[];
+
   @override
-  Future<PrayerTopic> setPrayed(
-    int id, {
-    required DateTime day,
-    required List<int> positions,
-  }) async {
+  Future<Uint8List> document(String url) async {
     _online();
-    prayedCalls.add((id, positions));
-    final at = topicList.indexWhere((topic) => topic.id == id);
-    final first = topicList[at].prayedToday.isEmpty && positions.isNotEmpty;
-    topicList[at] = topicList[at].copyWith(
-      prayedToday: positions,
-      people: topicList[at].people + (first ? 1 : 0),
-    );
-    return topicList[at];
+    documents.add(url);
+    // "%PDF"
+    return Uint8List.fromList(const [0x25, 0x50, 0x44, 0x46]);
   }
 
   @override

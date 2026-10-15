@@ -32,6 +32,7 @@ import 'importunity_screen.dart';
 import 'retreat_reminders_sheet.dart';
 import 'widgets/invitation_menu.dart';
 import 'widgets/prayer_look.dart';
+import 'widgets/topic_row.dart';
 
 /// The Prière tab, like a routine (after Hallow): the days prayed, the four
 /// retreats of the day one under the other, the importunity topics to
@@ -297,112 +298,6 @@ class _ImportunityIntro extends StatelessWidget {
               icon: const Icon(AppIcons.add, size: 18),
               label: Text(t.prayer.importunity.newTopic),
               style: FilledButton.styleFrom(backgroundColor: tone.color),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-/// A topic of the community in a list.
-class PrayerTopicCard extends StatelessWidget {
-  const PrayerTopicCard({required this.topic, super.key});
-
-  final PrayerTopic topic;
-
-  @override
-  Widget build(BuildContext context) {
-    final t = context.t;
-    final scheme = Theme.of(context).colorScheme;
-    final tone = topic.category.module.tone(context);
-    final prayer = AppModule.prayer.tone(context);
-    final isNew = DateTime.now().difference(topic.startsOn).inDays < 3;
-    final when = topic.endsOn == null
-        ? t.prayer.topics.since(
-            date: context.formatDate(topic.startsOn, 'd MMM'),
-          )
-        : t.prayer.topics.until(
-            date: context.formatDate(topic.endsOn!, 'd MMM'),
-          );
-
-    return PrayerCard(
-      onTap: () => context.router.push(PrayerTopicRoute(topicId: topic.id)),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          ToneTile(icon: topic.category.tile, tone: tone),
-          const SizedBox(width: 12),
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Expanded(
-                      child: Text(
-                        topic.title,
-                        style: const TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.w700,
-                          height: 1.25,
-                        ),
-                      ),
-                    ),
-                    if (topic.allPrayed)
-                      Icon(
-                        AppIcons.checkCircleFilled,
-                        color: prayer.color,
-                        size: 22,
-                      )
-                    else if (isNew)
-                      StatusPill(
-                        t.prayer.topics.isNew,
-                        background: prayer.soft,
-                        foreground: prayer.onSoft,
-                      ),
-                  ],
-                ),
-                const SizedBox(height: 3),
-                Text(
-                  '${t.prayer.topics.points(n: topic.points.length)} · $when',
-                  style: TextStyle(
-                    fontSize: 14,
-                    color: scheme.onSurfaceVariant,
-                  ),
-                ),
-                const SizedBox(height: 6),
-                Row(
-                  children: [
-                    Expanded(
-                      child: Text(
-                        t.prayer.topics.people(n: topic.people),
-                        style: TextStyle(
-                          fontSize: 13,
-                          fontWeight: FontWeight.w600,
-                          color: scheme.onSurfaceVariant,
-                        ),
-                      ),
-                    ),
-                    if (topic.document != null) ...[
-                      Icon(
-                        AppIcons.pdf,
-                        size: 16,
-                        color: scheme.onSurfaceVariant,
-                      ),
-                      const SizedBox(width: 3),
-                      Text(
-                        t.prayer.topics.withPdf,
-                        style: TextStyle(
-                          fontSize: 12,
-                          color: scheme.onSurfaceVariant,
-                        ),
-                      ),
-                    ],
-                  ],
-                ),
-              ],
             ),
           ),
         ],
@@ -936,175 +831,34 @@ class _ImportunityCard extends HookConsumerWidget {
   }
 }
 
+/// The topics of the community of the moment: their name and their PDF.
 class _CommunityTopics extends ConsumerWidget {
   const _CommunityTopics();
 
-  static const _width = 236.0;
+  /// The rest is in "Tout voir".
+  static const _max = 3;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final t = context.t;
     final scheme = Theme.of(context).colorScheme;
     final topics = ref.watch(prayerTopicsProvider);
-    final scaler = MediaQuery.textScalerOf(context);
-    // the picture, two lines of title and one of facts, whatever the topic
-    final height =
-        96 +
-        10 +
-        scaler.scale(15.5) * 1.25 * 2 +
-        10 +
-        scaler.scale(13) * 1.4 +
-        14;
 
     return switch (topics) {
       AsyncData(:final value) when value.isEmpty => Text(
         t.prayer.topics.empty,
         style: TextStyle(fontSize: 14, color: scheme.onSurfaceVariant),
       ),
-      AsyncData(:final value) => SizedBox(
-        height: height,
-        child: ListView.separated(
-          scrollDirection: Axis.horizontal,
-          clipBehavior: Clip.none,
-          itemCount: value.length,
-          separatorBuilder: (_, _) => const SizedBox(width: AppSpacing.md),
-          itemBuilder: (context, index) => SizedBox(
-            width: _width,
-            child: _TopicTile(topic: value[index]),
-          ),
-        ),
+      AsyncData(:final value) => PrayerTopicsCard(
+        topics: value.take(_max).toList(),
       ),
       AsyncError(:final error) => Text(
         userMessageFor(error, t),
         style: TextStyle(fontSize: 14, color: scheme.onSurfaceVariant),
       ),
-      // the tiles of the topics
-      _ => Shimmer(
-        child: SizedBox(
-          height: height,
-          child: const Row(
-            children: [
-              SizedBox(
-                width: _width,
-                child: SkeletonBox(height: double.infinity),
-              ),
-              SizedBox(width: AppSpacing.md),
-              Expanded(child: SkeletonBox(height: double.infinity)),
-            ],
-          ),
-        ),
-      ),
+      // the rows of the topics
+      _ => const Shimmer(child: SkeletonCards(count: 1, height: 152)),
     };
-  }
-}
-
-/// A topic of the community on the shelf: its picture (the colour of its
-/// kind), its title, how many points and how many pray.
-class _TopicTile extends StatelessWidget {
-  const _TopicTile({required this.topic});
-
-  final PrayerTopic topic;
-
-  @override
-  Widget build(BuildContext context) {
-    final t = context.t;
-    final scheme = Theme.of(context).colorScheme;
-    final tone = topic.category.module.tone(context);
-    final prayer = AppModule.prayer.tone(context);
-    final isNew = DateTime.now().difference(topic.startsOn).inDays < 3;
-
-    return Material(
-      color: scheme.surface,
-      borderRadius: BorderRadius.circular(AppRadius.lg + 2),
-      clipBehavior: Clip.antiAlias,
-      child: InkWell(
-        onTap: () => context.router.push(PrayerTopicRoute(topicId: topic.id)),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Container(
-              height: 96,
-              width: double.infinity,
-              decoration: BoxDecoration(
-                gradient: LinearGradient(
-                  begin: Alignment.topLeft,
-                  end: Alignment.bottomRight,
-                  colors: [
-                    tone.color,
-                    Color.lerp(tone.color, Colors.black, 0.35)!,
-                  ],
-                ),
-              ),
-              child: Stack(
-                children: [
-                  PositionedDirectional(
-                    end: -10,
-                    bottom: -18,
-                    child: PhosphorIcon(
-                      topic.category.tile,
-                      size: 110,
-                      color: Colors.white.withValues(alpha: 0.25),
-                    ),
-                  ),
-                  PositionedDirectional(
-                    start: 12,
-                    top: 12,
-                    child: StatusPill(
-                      topic.category.label(t),
-                      background: Colors.white.withValues(alpha: 0.2),
-                      foreground: Colors.white,
-                    ),
-                  ),
-                  if (topic.allPrayed)
-                    const PositionedDirectional(
-                      end: 10,
-                      top: 10,
-                      child: Icon(
-                        AppIcons.checkCircleFilled,
-                        color: Colors.white,
-                        size: 24,
-                      ),
-                    )
-                  else if (isNew)
-                    PositionedDirectional(
-                      end: 10,
-                      top: 12,
-                      child: StatusPill(
-                        t.prayer.topics.isNew,
-                        background: prayer.soft,
-                        foreground: prayer.onSoft,
-                      ),
-                    ),
-                ],
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsetsDirectional.fromSTEB(14, 10, 14, 0),
-              child: Text(
-                topic.title,
-                maxLines: 2,
-                overflow: TextOverflow.ellipsis,
-                style: const TextStyle(
-                  fontSize: 15.5,
-                  height: 1.25,
-                  fontWeight: FontWeight.w700,
-                ),
-              ),
-            ),
-            const Spacer(),
-            Padding(
-              padding: const EdgeInsetsDirectional.fromSTEB(14, 0, 14, 12),
-              child: Text(
-                '${t.prayer.topics.points(n: topic.points.length)} · ${t.prayer.topics.people(n: topic.people)}',
-                maxLines: 1,
-                overflow: TextOverflow.ellipsis,
-                style: TextStyle(fontSize: 13, color: scheme.onSurfaceVariant),
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
   }
 }
 

@@ -1189,35 +1189,14 @@
         "fasting": "Jeûne",
         "other": "Sujet"
       },
-      "points(plural, param=n)": {
-        "one": "{n} sujet",
-        "other": "{n} sujets"
-      },
       "until": "jusqu'au {date}",
-      "since": "depuis le {date}",
-      "people(plural, param=n)": {
-        "zero": "Personne encore",
-        "one": "{n} prie",
-        "other": "{n} prient"
-      },
-      "withPdf": "Avec le PDF",
-      "isNew": "Nouveau",
-      "screenTitle": "Sujet de prière",
-      "period": "Du {from} au {to}",
-      "peopleBanner(plural, param=n)": {
-        "zero": "Sois le premier à prier pour ces sujets.",
-        "one": "{n} frère ou sœur prie pour ces sujets",
-        "other": "{n} frères et sœurs prient pour ces sujets"
-      },
-      "prayedToday": "{count} · {prayed} priés aujourd'hui",
-      "document": "Document d'origine",
-      "prayAll": "J'ai prié pour tous ces sujets",
-      "allPrayed": "Tous priés aujourd'hui",
       "archive": "Sujets passés",
       "archiveEmpty": "Aucun sujet passé.",
       "current": "En ce moment",
-      "shareText": "{title}\n\n{points}\n\nPrions ensemble dans l'app CMFI Connect.",
-      "documentSize": "{kb} Ko"
+      "documentSize": "{kb} Ko",
+      "download": "Télécharger le PDF",
+      "noDocument": "Pas de PDF",
+      "openDocument": "Ouvrir le PDF"
     },
     "lists": {
       "title": "Mes listes de prière",

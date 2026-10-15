@@ -10,9 +10,10 @@ import '../../../core/widgets/skeleton.dart';
 import '../../../core/widgets/sub_page.dart';
 import '../application/prayer_topics.dart';
 import '../domain/prayer.dart';
-import 'prayer_screen.dart';
+import 'widgets/topic_row.dart';
 
-/// All the topics of the community: those of the moment, then the past ones.
+/// All the topics of the community, their name and their PDF: those of the
+/// moment, then the past ones.
 @RoutePage()
 class PrayerTopicsScreen extends ConsumerWidget {
   const PrayerTopicsScreen({super.key});
@@ -38,20 +39,13 @@ class PrayerTopicsScreen extends ConsumerWidget {
             empty,
             style: TextStyle(color: scheme.onSurfaceVariant),
           ),
-          AsyncData(:final value) => Column(
-            children: [
-              for (final topic in value) ...[
-                PrayerTopicCard(topic: topic),
-                const SizedBox(height: 10),
-              ],
-            ],
-          ),
+          AsyncData(:final value) => PrayerTopicsCard(topics: value),
           AsyncError(:final error) => Text(
             userMessageFor(error, t),
             style: TextStyle(color: scheme.onSurfaceVariant),
           ),
-          // the cards of the topics
-          _ => const Shimmer(child: SkeletonCards(count: 2, height: 96)),
+          // the rows of the topics
+          _ => const Shimmer(child: SkeletonCards(count: 1, height: 152)),
         },
       ],
     );

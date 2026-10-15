@@ -1189,35 +1189,14 @@
         "fasting": "Ayuno",
         "other": "Motivo"
       },
-      "points(plural, param=n)": {
-        "one": "{n} motivo",
-        "other": "{n} motivos"
-      },
       "until": "hasta el {date}",
-      "since": "desde el {date}",
-      "people(plural, param=n)": {
-        "zero": "Nadie todavía",
-        "one": "{n} ora",
-        "other": "{n} oran"
-      },
-      "withPdf": "Con el PDF",
-      "isNew": "Nuevo",
-      "screenTitle": "Motivo de oración",
-      "period": "Del {from} al {to}",
-      "peopleBanner(plural, param=n)": {
-        "zero": "Sé el primero en orar por estos motivos.",
-        "one": "{n} hermano o hermana ora por estos motivos",
-        "other": "{n} hermanos y hermanas oran por estos motivos"
-      },
-      "prayedToday": "{count} · hoy oraste por {prayed}",
-      "document": "Documento original",
-      "prayAll": "Oré por todos estos motivos",
-      "allPrayed": "Hoy oraste por todos",
       "archive": "Motivos anteriores",
       "archiveEmpty": "No hay motivos anteriores.",
       "current": "En este momento",
-      "shareText": "{title}\n\n{points}\n\nOremos juntos en la app CMFI Connect.",
-      "documentSize": "{kb} KB"
+      "documentSize": "{kb} KB",
+      "download": "Descargar el PDF",
+      "noDocument": "Sin PDF",
+      "openDocument": "Abrir el PDF"
     },
     "lists": {
       "title": "Mis listas de oración",

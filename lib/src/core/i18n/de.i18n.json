@@ -1189,35 +1189,14 @@
         "fasting": "Fasten",
         "other": "Anliegen"
       },
-      "points(plural, param=n)": {
-        "one": "{n} Anliegen",
-        "other": "{n} Anliegen"
-      },
       "until": "bis {date}",
-      "since": "seit dem {date}",
-      "people(plural, param=n)": {
-        "zero": "Noch niemand",
-        "one": "{n} betet",
-        "other": "{n} beten"
-      },
-      "withPdf": "Mit PDF",
-      "isNew": "Neu",
-      "screenTitle": "Gebetsanliegen",
-      "period": "Vom {from} bis {to}",
-      "peopleBanner(plural, param=n)": {
-        "zero": "Noch betet niemand für diese Anliegen: Mach den Anfang!",
-        "one": "{n} Bruder oder Schwester betet für diese Anliegen",
-        "other": "{n} Brüder und Schwestern beten für diese Anliegen"
-      },
-      "prayedToday": "{count} · heute für {prayed} gebetet",
-      "document": "Originaldokument",
-      "prayAll": "Ich habe für alle diese Anliegen gebetet",
-      "allPrayed": "Heute für alle gebetet",
       "archive": "Frühere Anliegen",
       "archiveEmpty": "Keine früheren Anliegen.",
       "current": "Aktuell",
-      "shareText": "{title}\n\n{points}\n\nLasst uns gemeinsam in der App CMFI Connect beten.",
-      "documentSize": "{kb} KB"
+      "documentSize": "{kb} KB",
+      "download": "PDF herunterladen",
+      "noDocument": "Kein PDF",
+      "openDocument": "PDF öffnen"
     },
     "lists": {
       "title": "Meine Gebetslisten",

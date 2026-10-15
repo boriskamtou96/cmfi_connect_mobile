@@ -4095,55 +4095,8 @@ class Translations$prayer$topics$fr {
 		'other': 'Sujet',
 	};
 
-	/// fr: '(one) {{n} sujet} (other) {{n} sujets}'
-	String points({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('fr'))(n,
-		one: '${n} sujet',
-		other: '${n} sujets',
-	);
-
 	/// fr: 'jusqu'au {date}'
 	String until({required Object date}) => 'jusqu\'au ${date}';
-
-	/// fr: 'depuis le {date}'
-	String since({required Object date}) => 'depuis le ${date}';
-
-	/// fr: '(zero) {Personne encore} (one) {{n} prie} (other) {{n} prient}'
-	String people({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('fr'))(n,
-		zero: 'Personne encore',
-		one: '${n} prie',
-		other: '${n} prient',
-	);
-
-	/// fr: 'Avec le PDF'
-	String get withPdf => 'Avec le PDF';
-
-	/// fr: 'Nouveau'
-	String get isNew => 'Nouveau';
-
-	/// fr: 'Sujet de prière'
-	String get screenTitle => 'Sujet de prière';
-
-	/// fr: 'Du {from} au {to}'
-	String period({required Object from, required Object to}) => 'Du ${from} au ${to}';
-
-	/// fr: '(zero) {Sois le premier à prier pour ces sujets.} (one) {{n} frère ou sœur prie pour ces sujets} (other) {{n} frères et sœurs prient pour ces sujets}'
-	String peopleBanner({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('fr'))(n,
-		zero: 'Sois le premier à prier pour ces sujets.',
-		one: '${n} frère ou sœur prie pour ces sujets',
-		other: '${n} frères et sœurs prient pour ces sujets',
-	);
-
-	/// fr: '{count} · {prayed} priés aujourd'hui'
-	String prayedToday({required Object count, required Object prayed}) => '${count} · ${prayed} priés aujourd\'hui';
-
-	/// fr: 'Document d'origine'
-	String get document => 'Document d\'origine';
-
-	/// fr: 'J'ai prié pour tous ces sujets'
-	String get prayAll => 'J\'ai prié pour tous ces sujets';
-
-	/// fr: 'Tous priés aujourd'hui'
-	String get allPrayed => 'Tous priés aujourd\'hui';
 
 	/// fr: 'Sujets passés'
 	String get archive => 'Sujets passés';
@@ -4154,11 +4107,17 @@ class Translations$prayer$topics$fr {
 	/// fr: 'En ce moment'
 	String get current => 'En ce moment';
 
-	/// fr: '{title} {points} Prions ensemble dans l'app CMFI Connect.'
-	String shareText({required Object title, required Object points}) => '${title}\n\n${points}\n\nPrions ensemble dans l\'app CMFI Connect.';
-
 	/// fr: '{kb} Ko'
 	String documentSize({required Object kb}) => '${kb} Ko';
+
+	/// fr: 'Télécharger le PDF'
+	String get download => 'Télécharger le PDF';
+
+	/// fr: 'Pas de PDF'
+	String get noDocument => 'Pas de PDF';
+
+	/// fr: 'Ouvrir le PDF'
+	String get openDocument => 'Ouvrir le PDF';
 }
 
 // Path: prayer.lists
@@ -5710,24 +5669,14 @@ extension on Translations {
 			'prayer.topics.categories.event' => 'Évènement',
 			'prayer.topics.categories.fasting' => 'Jeûne',
 			'prayer.topics.categories.other' => 'Sujet',
-			'prayer.topics.points' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('fr'))(n, one: '${n} sujet', other: '${n} sujets', ), 
 			'prayer.topics.until' => ({required Object date}) => 'jusqu\'au ${date}',
-			'prayer.topics.since' => ({required Object date}) => 'depuis le ${date}',
-			'prayer.topics.people' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('fr'))(n, zero: 'Personne encore', one: '${n} prie', other: '${n} prient', ), 
-			'prayer.topics.withPdf' => 'Avec le PDF',
-			'prayer.topics.isNew' => 'Nouveau',
-			'prayer.topics.screenTitle' => 'Sujet de prière',
-			'prayer.topics.period' => ({required Object from, required Object to}) => 'Du ${from} au ${to}',
-			'prayer.topics.peopleBanner' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('fr'))(n, zero: 'Sois le premier à prier pour ces sujets.', one: '${n} frère ou sœur prie pour ces sujets', other: '${n} frères et sœurs prient pour ces sujets', ), 
-			'prayer.topics.prayedToday' => ({required Object count, required Object prayed}) => '${count} · ${prayed} priés aujourd\'hui',
-			'prayer.topics.document' => 'Document d\'origine',
-			'prayer.topics.prayAll' => 'J\'ai prié pour tous ces sujets',
-			'prayer.topics.allPrayed' => 'Tous priés aujourd\'hui',
 			'prayer.topics.archive' => 'Sujets passés',
 			'prayer.topics.archiveEmpty' => 'Aucun sujet passé.',
 			'prayer.topics.current' => 'En ce moment',
-			'prayer.topics.shareText' => ({required Object title, required Object points}) => '${title}\n\n${points}\n\nPrions ensemble dans l\'app CMFI Connect.',
 			'prayer.topics.documentSize' => ({required Object kb}) => '${kb} Ko',
+			'prayer.topics.download' => 'Télécharger le PDF',
+			'prayer.topics.noDocument' => 'Pas de PDF',
+			'prayer.topics.openDocument' => 'Ouvrir le PDF',
 			'prayer.lists.title' => 'Mes listes de prière',
 			'prayer.lists.private' => 'Pour toi seul',
 			'prayer.lists.names.unbelievers' => 'Pas encore cru',
@@ -5808,8 +5757,6 @@ extension on Translations {
 			'prayer.importunity.form.subject' => 'Sujet',
 			'prayer.importunity.form.subjectPlaceholder' => 'Seigneur, sauve Paul',
 			'prayer.importunity.form.description' => 'Détails',
-			_ => null,
-		} ?? switch (path) {
 			'prayer.importunity.form.descriptionPlaceholder' => 'Pour qui, pourquoi…',
 			'prayer.importunity.form.goal' => 'Objectif',
 			'prayer.importunity.form.goalHint' => 'Le nombre de proclamations à atteindre ensemble. Laisse vide pour compter sans objectif.',
@@ -5820,6 +5767,8 @@ extension on Translations {
 			'prayer.importunity.inviteSheet.family' => 'Ma famille spirituelle',
 			'prayer.importunity.inviteSheet.familyText' => ({required num n, required Object name}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('fr'))(n, one: '${name} et ses disciples : ${n} personne', other: '${name} et ses disciples : ${n} personnes', ), 
 			'prayer.importunity.inviteSheet.familyMissing' => 'Lie ton faiseur de disciples (FD) dans Mes autorités spirituelles pour inviter ta famille spirituelle.',
+			_ => null,
+		} ?? switch (path) {
 			'prayer.importunity.inviteSheet.byUsername' => 'Par pseudo',
 			'prayer.importunity.inviteSheet.usernameLabel' => 'Pseudo',
 			'prayer.importunity.inviteSheet.addUsername' => 'Ajouter',

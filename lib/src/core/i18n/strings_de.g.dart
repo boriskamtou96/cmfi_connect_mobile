@@ -2001,35 +2001,14 @@ class _Translations$prayer$topics$de extends Translations$prayer$topics$fr {
 		'fasting': 'Fasten',
 		'other': 'Anliegen',
 	};
-	@override String points({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('de'))(n,
-		one: '${n} Anliegen',
-		other: '${n} Anliegen',
-	);
 	@override String until({required Object date}) => 'bis ${date}';
-	@override String since({required Object date}) => 'seit dem ${date}';
-	@override String people({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('de'))(n,
-		zero: 'Noch niemand',
-		one: '${n} betet',
-		other: '${n} beten',
-	);
-	@override String get withPdf => 'Mit PDF';
-	@override String get isNew => 'Neu';
-	@override String get screenTitle => 'Gebetsanliegen';
-	@override String period({required Object from, required Object to}) => 'Vom ${from} bis ${to}';
-	@override String peopleBanner({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('de'))(n,
-		zero: 'Noch betet niemand für diese Anliegen: Mach den Anfang!',
-		one: '${n} Bruder oder Schwester betet für diese Anliegen',
-		other: '${n} Brüder und Schwestern beten für diese Anliegen',
-	);
-	@override String prayedToday({required Object count, required Object prayed}) => '${count} · heute für ${prayed} gebetet';
-	@override String get document => 'Originaldokument';
-	@override String get prayAll => 'Ich habe für alle diese Anliegen gebetet';
-	@override String get allPrayed => 'Heute für alle gebetet';
 	@override String get archive => 'Frühere Anliegen';
 	@override String get archiveEmpty => 'Keine früheren Anliegen.';
 	@override String get current => 'Aktuell';
-	@override String shareText({required Object title, required Object points}) => '${title}\n\n${points}\n\nLasst uns gemeinsam in der App CMFI Connect beten.';
 	@override String documentSize({required Object kb}) => '${kb} KB';
+	@override String get download => 'PDF herunterladen';
+	@override String get noDocument => 'Kein PDF';
+	@override String get openDocument => 'PDF öffnen';
 }
 
 // Path: prayer.lists
@@ -3315,24 +3294,14 @@ extension on TranslationsDe {
 			'prayer.topics.categories.event' => 'Veranstaltung',
 			'prayer.topics.categories.fasting' => 'Fasten',
 			'prayer.topics.categories.other' => 'Anliegen',
-			'prayer.topics.points' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('de'))(n, one: '${n} Anliegen', other: '${n} Anliegen', ), 
 			'prayer.topics.until' => ({required Object date}) => 'bis ${date}',
-			'prayer.topics.since' => ({required Object date}) => 'seit dem ${date}',
-			'prayer.topics.people' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('de'))(n, zero: 'Noch niemand', one: '${n} betet', other: '${n} beten', ), 
-			'prayer.topics.withPdf' => 'Mit PDF',
-			'prayer.topics.isNew' => 'Neu',
-			'prayer.topics.screenTitle' => 'Gebetsanliegen',
-			'prayer.topics.period' => ({required Object from, required Object to}) => 'Vom ${from} bis ${to}',
-			'prayer.topics.peopleBanner' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('de'))(n, zero: 'Noch betet niemand für diese Anliegen: Mach den Anfang!', one: '${n} Bruder oder Schwester betet für diese Anliegen', other: '${n} Brüder und Schwestern beten für diese Anliegen', ), 
-			'prayer.topics.prayedToday' => ({required Object count, required Object prayed}) => '${count} · heute für ${prayed} gebetet',
-			'prayer.topics.document' => 'Originaldokument',
-			'prayer.topics.prayAll' => 'Ich habe für alle diese Anliegen gebetet',
-			'prayer.topics.allPrayed' => 'Heute für alle gebetet',
 			'prayer.topics.archive' => 'Frühere Anliegen',
 			'prayer.topics.archiveEmpty' => 'Keine früheren Anliegen.',
 			'prayer.topics.current' => 'Aktuell',
-			'prayer.topics.shareText' => ({required Object title, required Object points}) => '${title}\n\n${points}\n\nLasst uns gemeinsam in der App CMFI Connect beten.',
 			'prayer.topics.documentSize' => ({required Object kb}) => '${kb} KB',
+			'prayer.topics.download' => 'PDF herunterladen',
+			'prayer.topics.noDocument' => 'Kein PDF',
+			'prayer.topics.openDocument' => 'PDF öffnen',
 			'prayer.lists.title' => 'Meine Gebetslisten',
 			'prayer.lists.private' => 'Nur für dich',
 			'prayer.lists.names.unbelievers' => 'Noch nicht gläubig',
@@ -3413,8 +3382,6 @@ extension on TranslationsDe {
 			'prayer.importunity.form.subject' => 'Anliegen',
 			'prayer.importunity.form.subjectPlaceholder' => 'Herr, rette Paul',
 			'prayer.importunity.form.description' => 'Details',
-			_ => null,
-		} ?? switch (path) {
 			'prayer.importunity.form.descriptionPlaceholder' => 'Für wen, warum …',
 			'prayer.importunity.form.goal' => 'Ziel',
 			'prayer.importunity.form.goalHint' => 'Die Anzahl an Proklamationen, die ihr gemeinsam erreichen wollt. Lass das Feld leer, um ohne Ziel zu zählen.',
@@ -3425,6 +3392,8 @@ extension on TranslationsDe {
 			'prayer.importunity.inviteSheet.family' => 'Meine geistliche Familie',
 			'prayer.importunity.inviteSheet.familyText' => ({required num n, required Object name}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('de'))(n, one: '${name} und die Jünger: ${n} Person', other: '${name} und die Jünger: ${n} Personen', ), 
 			'prayer.importunity.inviteSheet.familyMissing' => 'Verknüpfe deinen Jüngermacher unter „Meine geistlichen Autoritäten“, um deine geistliche Familie einzuladen.',
+			_ => null,
+		} ?? switch (path) {
 			'prayer.importunity.inviteSheet.byUsername' => 'Per Benutzername',
 			'prayer.importunity.inviteSheet.usernameLabel' => 'Benutzername',
 			'prayer.importunity.inviteSheet.addUsername' => 'Hinzufügen',

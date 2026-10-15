@@ -1957,32 +1957,14 @@ class _Translations$prayer$topics$zh extends Translations$prayer$topics$fr {
 		'fasting': '禁食',
 		'other': '代祷',
 	};
-	@override String points({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n,
-		other: '${n} 个事项',
-	);
 	@override String until({required Object date}) => '至 ${date}';
-	@override String since({required Object date}) => '自 ${date} 起';
-	@override String people({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n,
-		zero: '还没有人',
-		other: '${n} 人在祷告',
-	);
-	@override String get withPdf => '附 PDF';
-	@override String get isNew => '新';
-	@override String get screenTitle => '代祷事项';
-	@override String period({required Object from, required Object to}) => '${from} 至 ${to}';
-	@override String peopleBanner({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n,
-		zero: '成为第一个为这些事项祷告的人。',
-		other: '${n} 位弟兄姊妹正在为这些事项祷告',
-	);
-	@override String prayedToday({required Object count, required Object prayed}) => '${count} · 今天已祷告 ${prayed} 项';
-	@override String get document => '原始文件';
-	@override String get prayAll => '我已为所有这些事项祷告';
-	@override String get allPrayed => '今天已全部祷告';
 	@override String get archive => '往期事项';
 	@override String get archiveEmpty => '没有往期事项。';
 	@override String get current => '当前';
-	@override String shareText({required Object title, required Object points}) => '${title}\n\n${points}\n\n一起在 CMFI Connect 应用中祷告吧。';
 	@override String documentSize({required Object kb}) => '${kb} KB';
+	@override String get download => '下载 PDF';
+	@override String get noDocument => '没有 PDF';
+	@override String get openDocument => '打开 PDF';
 }
 
 // Path: prayer.lists
@@ -3257,24 +3239,14 @@ extension on TranslationsZh {
 			'prayer.topics.categories.event' => '活动',
 			'prayer.topics.categories.fasting' => '禁食',
 			'prayer.topics.categories.other' => '代祷',
-			'prayer.topics.points' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n, other: '${n} 个事项', ), 
 			'prayer.topics.until' => ({required Object date}) => '至 ${date}',
-			'prayer.topics.since' => ({required Object date}) => '自 ${date} 起',
-			'prayer.topics.people' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n, zero: '还没有人', other: '${n} 人在祷告', ), 
-			'prayer.topics.withPdf' => '附 PDF',
-			'prayer.topics.isNew' => '新',
-			'prayer.topics.screenTitle' => '代祷事项',
-			'prayer.topics.period' => ({required Object from, required Object to}) => '${from} 至 ${to}',
-			'prayer.topics.peopleBanner' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n, zero: '成为第一个为这些事项祷告的人。', other: '${n} 位弟兄姊妹正在为这些事项祷告', ), 
-			'prayer.topics.prayedToday' => ({required Object count, required Object prayed}) => '${count} · 今天已祷告 ${prayed} 项',
-			'prayer.topics.document' => '原始文件',
-			'prayer.topics.prayAll' => '我已为所有这些事项祷告',
-			'prayer.topics.allPrayed' => '今天已全部祷告',
 			'prayer.topics.archive' => '往期事项',
 			'prayer.topics.archiveEmpty' => '没有往期事项。',
 			'prayer.topics.current' => '当前',
-			'prayer.topics.shareText' => ({required Object title, required Object points}) => '${title}\n\n${points}\n\n一起在 CMFI Connect 应用中祷告吧。',
 			'prayer.topics.documentSize' => ({required Object kb}) => '${kb} KB',
+			'prayer.topics.download' => '下载 PDF',
+			'prayer.topics.noDocument' => '没有 PDF',
+			'prayer.topics.openDocument' => '打开 PDF',
 			'prayer.lists.title' => '我的祷告名单',
 			'prayer.lists.private' => '仅你可见',
 			'prayer.lists.names.unbelievers' => '尚未信主',
@@ -3355,8 +3327,6 @@ extension on TranslationsZh {
 			'prayer.importunity.form.subject' => '事项',
 			'prayer.importunity.form.subjectPlaceholder' => '主啊，求你拯救李明',
 			'prayer.importunity.form.description' => '详情',
-			_ => null,
-		} ?? switch (path) {
 			'prayer.importunity.form.descriptionPlaceholder' => '为谁、为什么……',
 			'prayer.importunity.form.goal' => '目标',
 			'prayer.importunity.form.goalHint' => '大家一起要达到的宣告次数。留空则只计数、不设目标。',
@@ -3367,6 +3337,8 @@ extension on TranslationsZh {
 			'prayer.importunity.inviteSheet.family' => '我的属灵家人',
 			'prayer.importunity.inviteSheet.familyText' => ({required num n, required Object name}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n, other: '${name}及其门徒：${n} 人', ), 
 			'prayer.importunity.inviteSheet.familyMissing' => '在「我的属灵带领者」中关联你的门训者，就能邀请你的属灵家人。',
+			_ => null,
+		} ?? switch (path) {
 			'prayer.importunity.inviteSheet.byUsername' => '按用户名',
 			'prayer.importunity.inviteSheet.usernameLabel' => '用户名',
 			'prayer.importunity.inviteSheet.addUsername' => '添加',

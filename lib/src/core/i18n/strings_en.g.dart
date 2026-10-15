@@ -2002,35 +2002,14 @@ class _Translations$prayer$topics$en extends Translations$prayer$topics$fr {
 		'fasting': 'Fasting',
 		'other': 'Topic',
 	};
-	@override String points({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n,
-		one: '${n} point',
-		other: '${n} points',
-	);
 	@override String until({required Object date}) => 'until ${date}';
-	@override String since({required Object date}) => 'since ${date}';
-	@override String people({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n,
-		zero: 'Nobody yet',
-		one: '${n} prays',
-		other: '${n} pray',
-	);
-	@override String get withPdf => 'With the PDF';
-	@override String get isNew => 'New';
-	@override String get screenTitle => 'Prayer topic';
-	@override String period({required Object from, required Object to}) => 'From ${from} to ${to}';
-	@override String peopleBanner({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n,
-		zero: 'Be the first to pray for these points.',
-		one: '${n} brother or sister prays for these points',
-		other: '${n} brothers and sisters pray for these points',
-	);
-	@override String prayedToday({required Object count, required Object prayed}) => '${count} · ${prayed} prayed today';
-	@override String get document => 'Original document';
 	@override String documentSize({required Object kb}) => '${kb} KB';
-	@override String get prayAll => 'I prayed for all these points';
-	@override String get allPrayed => 'All prayed today';
 	@override String get archive => 'Past topics';
 	@override String get archiveEmpty => 'No past topic.';
 	@override String get current => 'At the moment';
-	@override String shareText({required Object title, required Object points}) => '${title}\n\n${points}\n\nLet\'s pray together in the CMFI Connect app.';
+	@override String get download => 'Download the PDF';
+	@override String get noDocument => 'No PDF';
+	@override String get openDocument => 'Open the PDF';
 }
 
 // Path: prayer.lists
@@ -3316,24 +3295,14 @@ extension on TranslationsEn {
 			'prayer.topics.categories.event' => 'Event',
 			'prayer.topics.categories.fasting' => 'Fasting',
 			'prayer.topics.categories.other' => 'Topic',
-			'prayer.topics.points' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n, one: '${n} point', other: '${n} points', ), 
 			'prayer.topics.until' => ({required Object date}) => 'until ${date}',
-			'prayer.topics.since' => ({required Object date}) => 'since ${date}',
-			'prayer.topics.people' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n, zero: 'Nobody yet', one: '${n} prays', other: '${n} pray', ), 
-			'prayer.topics.withPdf' => 'With the PDF',
-			'prayer.topics.isNew' => 'New',
-			'prayer.topics.screenTitle' => 'Prayer topic',
-			'prayer.topics.period' => ({required Object from, required Object to}) => 'From ${from} to ${to}',
-			'prayer.topics.peopleBanner' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n, zero: 'Be the first to pray for these points.', one: '${n} brother or sister prays for these points', other: '${n} brothers and sisters pray for these points', ), 
-			'prayer.topics.prayedToday' => ({required Object count, required Object prayed}) => '${count} · ${prayed} prayed today',
-			'prayer.topics.document' => 'Original document',
 			'prayer.topics.documentSize' => ({required Object kb}) => '${kb} KB',
-			'prayer.topics.prayAll' => 'I prayed for all these points',
-			'prayer.topics.allPrayed' => 'All prayed today',
 			'prayer.topics.archive' => 'Past topics',
 			'prayer.topics.archiveEmpty' => 'No past topic.',
 			'prayer.topics.current' => 'At the moment',
-			'prayer.topics.shareText' => ({required Object title, required Object points}) => '${title}\n\n${points}\n\nLet\'s pray together in the CMFI Connect app.',
+			'prayer.topics.download' => 'Download the PDF',
+			'prayer.topics.noDocument' => 'No PDF',
+			'prayer.topics.openDocument' => 'Open the PDF',
 			'prayer.lists.title' => 'My prayer lists',
 			'prayer.lists.private' => 'Only for you',
 			'prayer.lists.names.unbelievers' => 'Not yet believed',
@@ -3414,8 +3383,6 @@ extension on TranslationsEn {
 			'prayer.importunity.form.subject' => 'Topic',
 			'prayer.importunity.form.subjectPlaceholder' => 'Lord, save Paul',
 			'prayer.importunity.form.description' => 'Details',
-			_ => null,
-		} ?? switch (path) {
 			'prayer.importunity.form.descriptionPlaceholder' => 'For whom, why…',
 			'prayer.importunity.form.goal' => 'Goal',
 			'prayer.importunity.form.goalHint' => 'The number of proclamations to reach together. Leave empty to count without a goal.',
@@ -3426,6 +3393,8 @@ extension on TranslationsEn {
 			'prayer.importunity.inviteSheet.family' => 'My spiritual family',
 			'prayer.importunity.inviteSheet.familyText' => ({required num n, required Object name}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n, one: '${name} and their disciples: ${n} person', other: '${name} and their disciples: ${n} people', ), 
 			'prayer.importunity.inviteSheet.familyMissing' => 'Link your disciple maker in My spiritual authorities to invite your spiritual family.',
+			_ => null,
+		} ?? switch (path) {
 			'prayer.importunity.inviteSheet.byUsername' => 'By username',
 			'prayer.importunity.inviteSheet.usernameLabel' => 'Username',
 			'prayer.importunity.inviteSheet.addUsername' => 'Add',

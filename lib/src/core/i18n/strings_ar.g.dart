@@ -2178,45 +2178,14 @@ class _Translations$prayer$topics$ar extends Translations$prayer$topics$fr {
 		'fasting': 'صوم',
 		'other': 'طلب',
 	};
-	@override String points({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n,
-		zero: '${n} طلب',
-		one: 'طلب واحد',
-		two: 'طلبان',
-		few: '${n} طلبات',
-		many: '${n} طلبًا',
-		other: '${n} طلب',
-	);
 	@override String until({required Object date}) => 'حتى ${date}';
-	@override String since({required Object date}) => 'منذ ${date}';
-	@override String people({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n,
-		zero: 'لا أحد بعد',
-		one: 'شخص واحد يصلّي',
-		two: 'شخصان يصلّيان',
-		few: '${n} أشخاص يصلّون',
-		many: '${n} شخصًا يصلّون',
-		other: '${n} شخص يصلّون',
-	);
-	@override String get withPdf => 'مع ملف PDF';
-	@override String get isNew => 'جديد';
-	@override String get screenTitle => 'طلب صلاة';
-	@override String period({required Object from, required Object to}) => 'من ${from} إلى ${to}';
-	@override String peopleBanner({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n,
-		zero: 'كن أول من يصلّي من أجل هذه الطلبات.',
-		one: 'أخ أو أخت يصلّي من أجل هذه الطلبات',
-		two: 'اثنان من الإخوة والأخوات يصلّيان من أجل هذه الطلبات',
-		few: '${n} إخوة وأخوات يصلّون من أجل هذه الطلبات',
-		many: '${n} أخًا وأختًا يصلّون من أجل هذه الطلبات',
-		other: '${n} أخ وأخت يصلّون من أجل هذه الطلبات',
-	);
-	@override String prayedToday({required Object count, required Object prayed}) => '${count} · صلّيت من أجل ${prayed} اليوم';
-	@override String get document => 'المستند الأصلي';
-	@override String get prayAll => 'صلّيت من أجل كل هذه الطلبات';
-	@override String get allPrayed => 'صلّيت من أجلها كلها اليوم';
 	@override String get archive => 'الطلبات السابقة';
 	@override String get archiveEmpty => 'لا توجد طلبات سابقة.';
 	@override String get current => 'حاليًا';
-	@override String shareText({required Object title, required Object points}) => '${title}\n\n${points}\n\nلنصلِّ معًا في تطبيق CMFI Connect.';
 	@override String documentSize({required Object kb}) => '${kb} ك.ب';
+	@override String get download => 'تنزيل ملف PDF';
+	@override String get noDocument => 'لا يوجد ملف PDF';
+	@override String get openDocument => 'فتح ملف PDF';
 }
 
 // Path: prayer.lists
@@ -3544,24 +3513,14 @@ extension on TranslationsAr {
 			'prayer.topics.categories.event' => 'فعالية',
 			'prayer.topics.categories.fasting' => 'صوم',
 			'prayer.topics.categories.other' => 'طلب',
-			'prayer.topics.points' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n, zero: '${n} طلب', one: 'طلب واحد', two: 'طلبان', few: '${n} طلبات', many: '${n} طلبًا', other: '${n} طلب', ), 
 			'prayer.topics.until' => ({required Object date}) => 'حتى ${date}',
-			'prayer.topics.since' => ({required Object date}) => 'منذ ${date}',
-			'prayer.topics.people' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n, zero: 'لا أحد بعد', one: 'شخص واحد يصلّي', two: 'شخصان يصلّيان', few: '${n} أشخاص يصلّون', many: '${n} شخصًا يصلّون', other: '${n} شخص يصلّون', ), 
-			'prayer.topics.withPdf' => 'مع ملف PDF',
-			'prayer.topics.isNew' => 'جديد',
-			'prayer.topics.screenTitle' => 'طلب صلاة',
-			'prayer.topics.period' => ({required Object from, required Object to}) => 'من ${from} إلى ${to}',
-			'prayer.topics.peopleBanner' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n, zero: 'كن أول من يصلّي من أجل هذه الطلبات.', one: 'أخ أو أخت يصلّي من أجل هذه الطلبات', two: 'اثنان من الإخوة والأخوات يصلّيان من أجل هذه الطلبات', few: '${n} إخوة وأخوات يصلّون من أجل هذه الطلبات', many: '${n} أخًا وأختًا يصلّون من أجل هذه الطلبات', other: '${n} أخ وأخت يصلّون من أجل هذه الطلبات', ), 
-			'prayer.topics.prayedToday' => ({required Object count, required Object prayed}) => '${count} · صلّيت من أجل ${prayed} اليوم',
-			'prayer.topics.document' => 'المستند الأصلي',
-			'prayer.topics.prayAll' => 'صلّيت من أجل كل هذه الطلبات',
-			'prayer.topics.allPrayed' => 'صلّيت من أجلها كلها اليوم',
 			'prayer.topics.archive' => 'الطلبات السابقة',
 			'prayer.topics.archiveEmpty' => 'لا توجد طلبات سابقة.',
 			'prayer.topics.current' => 'حاليًا',
-			'prayer.topics.shareText' => ({required Object title, required Object points}) => '${title}\n\n${points}\n\nلنصلِّ معًا في تطبيق CMFI Connect.',
 			'prayer.topics.documentSize' => ({required Object kb}) => '${kb} ك.ب',
+			'prayer.topics.download' => 'تنزيل ملف PDF',
+			'prayer.topics.noDocument' => 'لا يوجد ملف PDF',
+			'prayer.topics.openDocument' => 'فتح ملف PDF',
 			'prayer.lists.title' => 'قوائم صلاتي',
 			'prayer.lists.private' => 'لك وحدك',
 			'prayer.lists.names.unbelievers' => 'لم يؤمنوا بعد',
@@ -3642,8 +3601,6 @@ extension on TranslationsAr {
 			'prayer.importunity.form.subject' => 'الطلب',
 			'prayer.importunity.form.subjectPlaceholder' => 'يا رب، خلِّص بولس',
 			'prayer.importunity.form.description' => 'التفاصيل',
-			_ => null,
-		} ?? switch (path) {
 			'prayer.importunity.form.descriptionPlaceholder' => 'لأجل مَن، ولماذا…',
 			'prayer.importunity.form.goal' => 'الهدف',
 			'prayer.importunity.form.goalHint' => 'عدد الإعلانات الذي تريدون بلوغه معًا. اتركه فارغًا للعدّ دون هدف.',
@@ -3654,6 +3611,8 @@ extension on TranslationsAr {
 			'prayer.importunity.inviteSheet.family' => 'عائلتي الروحية',
 			'prayer.importunity.inviteSheet.familyText' => ({required num n, required Object name}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n, zero: '${name} وتلاميذه: لا أحد', one: '${name} وتلاميذه: شخص واحد', two: '${name} وتلاميذه: شخصان', few: '${name} وتلاميذه: ${n} أشخاص', many: '${name} وتلاميذه: ${n} شخصًا', other: '${name} وتلاميذه: ${n} شخص', ), 
 			'prayer.importunity.inviteSheet.familyMissing' => 'اربط صانع التلاميذ الخاص بك في «مرشديّ الروحيون» لتدعو عائلتك الروحية.',
+			_ => null,
+		} ?? switch (path) {
 			'prayer.importunity.inviteSheet.byUsername' => 'باسم المستخدم',
 			'prayer.importunity.inviteSheet.usernameLabel' => 'اسم المستخدم',
 			'prayer.importunity.inviteSheet.addUsername' => 'إضافة',

@@ -25,10 +25,12 @@ import '../../home/domain/week_story.dart';
 import '../../notifications/application/inbox.dart';
 import '../../notifications/application/push_registration.dart';
 import '../../prayer/application/importunities.dart';
+import '../../prayer/application/prayer_topics.dart';
 import '../../prayer/application/retreat_reminders.dart';
 import '../../prayer/application/retreats.dart';
 import '../../prayer/domain/prayer.dart';
 import '../../prayer/presentation/prayer_screen.dart';
+import '../../prayer/presentation/widgets/topic_row.dart';
 import '../../reports/application/pending_reports.dart';
 import '../../reports/application/report_reminder.dart';
 import '../../reports/application/report_sending.dart';
@@ -221,6 +223,25 @@ class SignedInTasks extends HookConsumerWidget {
         }
       }
 
+      // a topic of the community (a link shared before the topics were only
+      // their PDF): the list of the topics, then its PDF
+      Future<void> openTopic(int id) async {
+        if (!context.mounted) {
+          return;
+        }
+        unawaited(context.router.push(const PrayerTopicsRoute()));
+        final topics = await ref
+            .read(prayerTopicsProvider.future)
+            .then<List<PrayerTopic>>(
+              (topics) => topics,
+              onError: (Object _) => const [],
+            );
+        final topic = topics.where((topic) => topic.id == id).firstOrNull;
+        if (topic?.document case final document?) {
+          await openPrayerDocument(ref, document);
+        }
+      }
+
       // a link: an event, a hymn, a prayer topic, the retreat of the moment
       void openLink(AppLink? link) {
         if (link == null || !context.mounted) {
@@ -237,7 +258,7 @@ class SignedInTasks extends HookConsumerWidget {
               ),
             );
           case PrayerTopicLink(:final topicId):
-            unawaited(context.router.push(PrayerTopicRoute(topicId: topicId)));
+            unawaited(openTopic(topicId));
           case ImportunityLink(:final importunityId):
             // shared with the member: the topic is in the list now
             ref.invalidate(importunitiesProvider);

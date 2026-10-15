@@ -275,39 +275,30 @@ void main() {
       expect(find.text('Ta routine du jour'), findsOneWidget);
     });
 
-    testWidgets('a topic of the community: each point checked once prayed', (
+    testWidgets('a topic of the community: its PDF opens, and downloads', (
       tester,
     ) async {
       final api = FakePrayerApi(topics: [sampleTopic()]);
-      await pumpApp(tester, token: 't', prayerApi: api);
+      final app = await pumpApp(tester, token: 't', prayerApi: api);
       await openPrayer(tester);
 
       final topic = find.text('Conférence annuelle 2026 : prions ensemble');
-      await tester.scrollUntilVisible(topic, 200);
-      // above the tab bar
-      await tester.ensureVisible(topic);
-      await tester.pumpAndSettle();
+      await scrollToMiddle(tester, topic);
+      // its name and its PDF, nothing else
+      expect(find.text('180 Ko · jusqu\'au 22 nov.'), findsOneWidget);
       await tester.tap(topic);
       await tester.pumpAndSettle();
       expect(
-        find.text('12 frères et sœurs prient pour ces sujets'),
-        findsOneWidget,
-      );
-      expect(find.text('Document d\'origine'), findsOneWidget);
-
-      await tester.tap(find.text('Pour les participants.'));
-      await tester.pumpAndSettle();
-      expect(api.prayedCalls.single.$1, 1);
-      expect(api.prayedCalls.single.$2, [2]);
-      expect(
-        find.text('13 frères et sœurs prient pour ces sujets'),
-        findsOneWidget,
+        app.links.opened.single.toString(),
+        endsWith('/v1/media/sujets.pdf'),
       );
 
-      await tester.tap(find.text("J'ai prié pour tous ces sujets"));
+      await tester.tap(find.byTooltip('Télécharger le PDF'));
       await tester.pumpAndSettle();
-      expect(api.prayedCalls.last.$2, [1, 2, 3]);
-      expect(find.text('Tous priés aujourd\'hui'), findsOneWidget);
+      expect(api.documents.single, endsWith('/v1/media/sujets.pdf'));
+      final file = app.share.files.single;
+      expect(file.name, 'sujets.pdf');
+      expect(file.mimeType, 'application/pdf');
     });
 
     testWidgets('my lists: someone added, then believed in the Lord', (

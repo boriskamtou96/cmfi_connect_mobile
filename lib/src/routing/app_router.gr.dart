@@ -1108,58 +1108,6 @@ class PrayerRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [PrayerTopicScreen]
-class PrayerTopicRoute extends PageRouteInfo<PrayerTopicRouteArgs> {
-  PrayerTopicRoute({
-    required int topicId,
-    Key? key,
-    List<PageRouteInfo>? children,
-  }) : super(
-         PrayerTopicRoute.name,
-         args: PrayerTopicRouteArgs(topicId: topicId, key: key),
-         rawPathParams: {'topicId': topicId},
-         initialChildren: children,
-       );
-
-  static const String name = 'PrayerTopicRoute';
-
-  static PageInfo page = PageInfo(
-    name,
-    builder: (data) {
-      final pathParams = data.inheritedPathParams;
-      final args = data.argsAs<PrayerTopicRouteArgs>(
-        orElse: () =>
-            PrayerTopicRouteArgs(topicId: pathParams.getInt('topicId')),
-      );
-      return PrayerTopicScreen(topicId: args.topicId, key: args.key);
-    },
-  );
-}
-
-class PrayerTopicRouteArgs {
-  const PrayerTopicRouteArgs({required this.topicId, this.key});
-
-  final int topicId;
-
-  final Key? key;
-
-  @override
-  String toString() {
-    return 'PrayerTopicRouteArgs{topicId: $topicId, key: $key}';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) return true;
-    if (other is! PrayerTopicRouteArgs) return false;
-    return topicId == other.topicId && key == other.key;
-  }
-
-  @override
-  int get hashCode => topicId.hashCode ^ key.hashCode;
-}
-
-/// generated route for
 /// [PrayerTopicsScreen]
 class PrayerTopicsRoute extends PageRouteInfo<void> {
   const PrayerTopicsRoute({List<PageRouteInfo>? children})

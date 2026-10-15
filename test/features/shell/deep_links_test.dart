@@ -4,7 +4,7 @@ import 'package:cmfi_connect/src/features/events/presentation/event_screen.dart'
 import 'package:cmfi_connect/src/features/hymns/presentation/hymn_reader_screen.dart';
 import 'package:cmfi_connect/src/features/prayer/domain/prayer.dart';
 import 'package:cmfi_connect/src/features/prayer/presentation/importunity_screen.dart';
-import 'package:cmfi_connect/src/features/prayer/presentation/prayer_topic_screen.dart';
+import 'package:cmfi_connect/src/features/prayer/presentation/prayer_topics_screen.dart';
 import 'package:cmfi_connect/src/features/prayer/presentation/retreat_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -119,7 +119,12 @@ void main() {
 
       app.incomingLinks.add('cmficonnect://open?to=prayer/topics/5');
       await tester.pumpAndSettle();
-      expect(find.byType(PrayerTopicScreen), findsOneWidget);
+      // the topics of the community, and its PDF
+      expect(find.byType(PrayerTopicsScreen), findsOneWidget);
+      expect(
+        app.links.opened.last.toString(),
+        endsWith('/v1/media/sujets.pdf'),
+      );
 
       app.incomingLinks.add('$site/open?to=prayer/importunities/7');
       await tester.pumpAndSettle();
@@ -178,24 +183,6 @@ void main() {
       await tester.pumpAndSettle();
 
       expect(app.share.texts.single, endsWith('\n$site/open?to=events/2'));
-    });
-
-    testWidgets('a prayer topic, with its link under it', (tester) async {
-      final app = await pumpApp(
-        tester,
-        token: 't',
-        prayerApi: FakePrayerApi(topics: [sampleTopic(id: 5)]),
-      );
-      app.incomingLinks.add('$site/open?to=prayer/topics/5');
-      await tester.pumpAndSettle();
-
-      await tester.tap(find.byTooltip('Partager'));
-      await tester.pumpAndSettle();
-
-      expect(
-        app.share.texts.single,
-        endsWith('\n$site/open?to=prayer/topics/5'),
-      );
     });
 
     testWidgets('a hymn, with its link under it', (tester) async {

@@ -41,7 +41,6 @@ import '../features/prayer/presentation/blocked_members_screen.dart';
 import '../features/prayer/presentation/importunity_screen.dart';
 import '../features/prayer/presentation/prayer_list_screen.dart';
 import '../features/prayer/presentation/prayer_screen.dart';
-import '../features/prayer/presentation/prayer_topic_screen.dart';
 import '../features/prayer/presentation/prayer_topics_screen.dart';
 import '../features/prayer/presentation/retreat_screen.dart';
 import '../features/prayer/presentation/retreat_session_screen.dart';
@@ -147,11 +146,6 @@ class AppRouter extends RootStackRouter {
     AutoRoute(
       path: '/prayer/topics',
       page: PrayerTopicsRoute.page,
-      guards: [authGuard],
-    ),
-    AutoRoute(
-      path: '/prayer/topics/:topicId',
-      page: PrayerTopicRoute.page,
       guards: [authGuard],
     ),
     AutoRoute(

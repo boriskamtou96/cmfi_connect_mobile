@@ -1155,32 +1155,14 @@
         "fasting": "禁食",
         "other": "代祷"
       },
-      "points(plural, param=n)": {
-        "other": "{n} 个事项"
-      },
       "until": "至 {date}",
-      "since": "自 {date} 起",
-      "people(plural, param=n)": {
-        "zero": "还没有人",
-        "other": "{n} 人在祷告"
-      },
-      "withPdf": "附 PDF",
-      "isNew": "新",
-      "screenTitle": "代祷事项",
-      "period": "{from} 至 {to}",
-      "peopleBanner(plural, param=n)": {
-        "zero": "成为第一个为这些事项祷告的人。",
-        "other": "{n} 位弟兄姊妹正在为这些事项祷告"
-      },
-      "prayedToday": "{count} · 今天已祷告 {prayed} 项",
-      "document": "原始文件",
-      "prayAll": "我已为所有这些事项祷告",
-      "allPrayed": "今天已全部祷告",
       "archive": "往期事项",
       "archiveEmpty": "没有往期事项。",
       "current": "当前",
-      "shareText": "{title}\n\n{points}\n\n一起在 CMFI Connect 应用中祷告吧。",
-      "documentSize": "{kb} KB"
+      "documentSize": "{kb} KB",
+      "download": "下载 PDF",
+      "noDocument": "没有 PDF",
+      "openDocument": "打开 PDF"
     },
     "lists": {
       "title": "我的祷告名单",

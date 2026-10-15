@@ -39,7 +39,7 @@ final class PrayerTopicsProvider
   PrayerTopics create() => PrayerTopics();
 }
 
-String _$prayerTopicsHash() => r'b5ed0ee6010e320f2d31cebf75cde1de130d3b48';
+String _$prayerTopicsHash() => r'56dbea529afbcb77be0ed732e5a470e2330301d8';
 
 /// The topics of the community for today: from the server, or the copy kept
 /// on the phone.

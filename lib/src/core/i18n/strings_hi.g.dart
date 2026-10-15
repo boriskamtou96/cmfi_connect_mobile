@@ -2000,35 +2000,14 @@ class _Translations$prayer$topics$hi extends Translations$prayer$topics$fr {
 		'fasting': 'उपवास',
 		'other': 'विषय',
 	};
-	@override String points({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n,
-		one: '${n} विषय',
-		other: '${n} विषय',
-	);
 	@override String until({required Object date}) => '${date} तक';
-	@override String since({required Object date}) => '${date} से';
-	@override String people({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n,
-		zero: 'अभी कोई नहीं',
-		one: '${n} व्यक्ति प्रार्थना में शामिल',
-		other: '${n} लोग प्रार्थना में शामिल',
-	);
-	@override String get withPdf => 'PDF के साथ';
-	@override String get isNew => 'नया';
-	@override String get screenTitle => 'प्रार्थना विषय';
-	@override String period({required Object from, required Object to}) => '${from} से ${to} तक';
-	@override String peopleBanner({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n,
-		zero: 'इन विषयों के लिए प्रार्थना करने वाले पहले व्यक्ति बनो।',
-		one: '${n} भाई या बहन इन विषयों के लिए प्रार्थना कर रहे हैं',
-		other: '${n} भाई-बहन इन विषयों के लिए प्रार्थना कर रहे हैं',
-	);
-	@override String prayedToday({required Object count, required Object prayed}) => '${count} · आज ${prayed} के लिए प्रार्थना हुई';
-	@override String get document => 'मूल दस्तावेज़';
-	@override String get prayAll => 'मैंने इन सभी विषयों के लिए प्रार्थना की';
-	@override String get allPrayed => 'आज सबके लिए प्रार्थना हो गई';
 	@override String get archive => 'पिछले विषय';
 	@override String get archiveEmpty => 'कोई पिछला विषय नहीं।';
 	@override String get current => 'इस समय';
-	@override String shareText({required Object title, required Object points}) => '${title}\n\n${points}\n\nआओ, CMFI Connect ऐप में साथ मिलकर प्रार्थना करें।';
 	@override String documentSize({required Object kb}) => '${kb} KB';
+	@override String get download => 'PDF डाउनलोड करो';
+	@override String get noDocument => 'PDF नहीं है';
+	@override String get openDocument => 'PDF खोलो';
 }
 
 // Path: prayer.lists
@@ -3314,24 +3293,14 @@ extension on TranslationsHi {
 			'prayer.topics.categories.event' => 'कार्यक्रम',
 			'prayer.topics.categories.fasting' => 'उपवास',
 			'prayer.topics.categories.other' => 'विषय',
-			'prayer.topics.points' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n, one: '${n} विषय', other: '${n} विषय', ), 
 			'prayer.topics.until' => ({required Object date}) => '${date} तक',
-			'prayer.topics.since' => ({required Object date}) => '${date} से',
-			'prayer.topics.people' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n, zero: 'अभी कोई नहीं', one: '${n} व्यक्ति प्रार्थना में शामिल', other: '${n} लोग प्रार्थना में शामिल', ), 
-			'prayer.topics.withPdf' => 'PDF के साथ',
-			'prayer.topics.isNew' => 'नया',
-			'prayer.topics.screenTitle' => 'प्रार्थना विषय',
-			'prayer.topics.period' => ({required Object from, required Object to}) => '${from} से ${to} तक',
-			'prayer.topics.peopleBanner' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n, zero: 'इन विषयों के लिए प्रार्थना करने वाले पहले व्यक्ति बनो।', one: '${n} भाई या बहन इन विषयों के लिए प्रार्थना कर रहे हैं', other: '${n} भाई-बहन इन विषयों के लिए प्रार्थना कर रहे हैं', ), 
-			'prayer.topics.prayedToday' => ({required Object count, required Object prayed}) => '${count} · आज ${prayed} के लिए प्रार्थना हुई',
-			'prayer.topics.document' => 'मूल दस्तावेज़',
-			'prayer.topics.prayAll' => 'मैंने इन सभी विषयों के लिए प्रार्थना की',
-			'prayer.topics.allPrayed' => 'आज सबके लिए प्रार्थना हो गई',
 			'prayer.topics.archive' => 'पिछले विषय',
 			'prayer.topics.archiveEmpty' => 'कोई पिछला विषय नहीं।',
 			'prayer.topics.current' => 'इस समय',
-			'prayer.topics.shareText' => ({required Object title, required Object points}) => '${title}\n\n${points}\n\nआओ, CMFI Connect ऐप में साथ मिलकर प्रार्थना करें।',
 			'prayer.topics.documentSize' => ({required Object kb}) => '${kb} KB',
+			'prayer.topics.download' => 'PDF डाउनलोड करो',
+			'prayer.topics.noDocument' => 'PDF नहीं है',
+			'prayer.topics.openDocument' => 'PDF खोलो',
 			'prayer.lists.title' => 'मेरी प्रार्थना सूचियाँ',
 			'prayer.lists.private' => 'सिर्फ़ तुम्हारे लिए',
 			'prayer.lists.names.unbelievers' => 'अब तक विश्वास नहीं किया',
@@ -3412,8 +3381,6 @@ extension on TranslationsHi {
 			'prayer.importunity.form.subject' => 'विषय',
 			'prayer.importunity.form.subjectPlaceholder' => 'हे प्रभु, राहुल का उद्धार कर',
 			'prayer.importunity.form.description' => 'विवरण',
-			_ => null,
-		} ?? switch (path) {
 			'prayer.importunity.form.descriptionPlaceholder' => 'किसके लिए, क्यों…',
 			'prayer.importunity.form.goal' => 'लक्ष्य',
 			'prayer.importunity.form.goalHint' => 'घोषणाओं की वह संख्या जिस तक सबको मिलकर पहुँचना है। बिना लक्ष्य के गिनने के लिए ख़ाली छोड़ दो।',
@@ -3424,6 +3391,8 @@ extension on TranslationsHi {
 			'prayer.importunity.inviteSheet.family' => 'मेरा आत्मिक परिवार',
 			'prayer.importunity.inviteSheet.familyText' => ({required num n, required Object name}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n, one: '${name} और उनके चेले: ${n} व्यक्ति', other: '${name} और उनके चेले: ${n} लोग', ), 
 			'prayer.importunity.inviteSheet.familyMissing' => 'अपने आत्मिक परिवार को न्योता देने के लिए ‘मेरे आत्मिक अगुवे’ में अपने चेला बनाने वाले को जोड़ो।',
+			_ => null,
+		} ?? switch (path) {
 			'prayer.importunity.inviteSheet.byUsername' => 'यूज़रनेम से',
 			'prayer.importunity.inviteSheet.usernameLabel' => 'यूज़रनेम',
 			'prayer.importunity.inviteSheet.addUsername' => 'जोड़ो',

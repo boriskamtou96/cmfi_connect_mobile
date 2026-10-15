@@ -1190,35 +1190,14 @@
         "fasting": "Fasting",
         "other": "Topic"
       },
-      "points(plural, param=n)": {
-        "one": "{n} point",
-        "other": "{n} points"
-      },
       "until": "until {date}",
-      "since": "since {date}",
-      "people(plural, param=n)": {
-        "zero": "Nobody yet",
-        "one": "{n} prays",
-        "other": "{n} pray"
-      },
-      "withPdf": "With the PDF",
-      "isNew": "New",
-      "screenTitle": "Prayer topic",
-      "period": "From {from} to {to}",
-      "peopleBanner(plural, param=n)": {
-        "zero": "Be the first to pray for these points.",
-        "one": "{n} brother or sister prays for these points",
-        "other": "{n} brothers and sisters pray for these points"
-      },
-      "prayedToday": "{count} · {prayed} prayed today",
-      "document": "Original document",
       "documentSize": "{kb} KB",
-      "prayAll": "I prayed for all these points",
-      "allPrayed": "All prayed today",
       "archive": "Past topics",
       "archiveEmpty": "No past topic.",
       "current": "At the moment",
-      "shareText": "{title}\n\n{points}\n\nLet's pray together in the CMFI Connect app."
+      "download": "Download the PDF",
+      "noDocument": "No PDF",
+      "openDocument": "Open the PDF"
     },
     "lists": {
       "title": "My prayer lists",

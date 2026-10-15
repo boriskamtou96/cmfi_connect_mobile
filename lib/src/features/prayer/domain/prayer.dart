@@ -52,9 +52,6 @@ abstract class PrayerTopic with _$PrayerTopic {
 
   factory PrayerTopic.fromJson(Map<String, dynamic> json) =>
       _$PrayerTopicFromJson(json);
-
-  bool get allPrayed =>
-      points.isNotEmpty && prayedToday.length >= points.length;
 }
 
 // ----- the user's own lists -----

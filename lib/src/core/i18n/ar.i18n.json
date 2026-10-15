@@ -1326,45 +1326,14 @@
         "fasting": "صوم",
         "other": "طلب"
       },
-      "points(plural, param=n)": {
-        "zero": "{n} طلب",
-        "one": "طلب واحد",
-        "two": "طلبان",
-        "few": "{n} طلبات",
-        "many": "{n} طلبًا",
-        "other": "{n} طلب"
-      },
       "until": "حتى {date}",
-      "since": "منذ {date}",
-      "people(plural, param=n)": {
-        "zero": "لا أحد بعد",
-        "one": "شخص واحد يصلّي",
-        "two": "شخصان يصلّيان",
-        "few": "{n} أشخاص يصلّون",
-        "many": "{n} شخصًا يصلّون",
-        "other": "{n} شخص يصلّون"
-      },
-      "withPdf": "مع ملف PDF",
-      "isNew": "جديد",
-      "screenTitle": "طلب صلاة",
-      "period": "من {from} إلى {to}",
-      "peopleBanner(plural, param=n)": {
-        "zero": "كن أول من يصلّي من أجل هذه الطلبات.",
-        "one": "أخ أو أخت يصلّي من أجل هذه الطلبات",
-        "two": "اثنان من الإخوة والأخوات يصلّيان من أجل هذه الطلبات",
-        "few": "{n} إخوة وأخوات يصلّون من أجل هذه الطلبات",
-        "many": "{n} أخًا وأختًا يصلّون من أجل هذه الطلبات",
-        "other": "{n} أخ وأخت يصلّون من أجل هذه الطلبات"
-      },
-      "prayedToday": "{count} · صلّيت من أجل {prayed} اليوم",
-      "document": "المستند الأصلي",
-      "prayAll": "صلّيت من أجل كل هذه الطلبات",
-      "allPrayed": "صلّيت من أجلها كلها اليوم",
       "archive": "الطلبات السابقة",
       "archiveEmpty": "لا توجد طلبات سابقة.",
       "current": "حاليًا",
-      "shareText": "{title}\n\n{points}\n\nلنصلِّ معًا في تطبيق CMFI Connect.",
-      "documentSize": "{kb} ك.ب"
+      "documentSize": "{kb} ك.ب",
+      "download": "تنزيل ملف PDF",
+      "noDocument": "لا يوجد ملف PDF",
+      "openDocument": "فتح ملف PDF"
     },
     "lists": {
       "title": "قوائم صلاتي",

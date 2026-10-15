@@ -133,6 +133,7 @@ Règles de dépendance :
     curl -s -H "Authorization: Bearer $TOKEN" http://localhost:8080/v1/hymns/books/$code | jq -c .content > assets/hymns/$code.json
   done
   ```
+- L'onglet Cantiques se présente comme un album (`HymnsScreen`) : les recueils en pochettes côte à côte (`BookCover`, `widgets/book_cover.dart` : une couleur par place dans la bibliothèque, le nom en Lora, « VOLUME n » ou la langue), glisser change de recueil ; le haut prend la couleur du recueil. Sous la pochette, le nom (toucher ouvre la liste des recueils) et le pavé de numéros en bouton rond ; puis Tous / Favoris / Récents en pastilles. Chaque cantique (`HymnTile`) a son étoile (favori sans l'ouvrir) et un menu ⋮ (projeter, partager, copier) ; le dernier ouvert du recueil ressort dans la couleur des cantiques. La recherche s'ouvre à la place du titre (loupe), Retour la referme.
 - Favoris, récents, recueil choisi et réglages de lecture (taille, police Auto/Moderne/Classique, fond Auto/Clair/Sépia/Sombre, refrain répété, écran allumé) restent sur le téléphone (shared_preferences), pas encore sur le compte.
 - La police de lecture « Classique » est Lora (OFL, `assets/fonts`). En Auto, elle prend le relais à partir de 130 % : un grand texte se lit mieux avec empattements.
 - L'écran reste allumé via `screenAwakeProvider` (wakelock_plus). Dans les tests, il est remplacé par `FakeScreenAwake`.

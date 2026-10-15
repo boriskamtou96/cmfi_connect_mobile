@@ -33,7 +33,7 @@ void main() {
     await openHymns(tester);
 
     expect(
-      find.text('Rendons ministère au Seigneur, volume 1'),
+      find.text('Rendons ministère au Seigneur, volume\u00A01'),
       findsOneWidget,
     );
     expect(find.text('A Toi la gloire'), findsOneWidget);
@@ -45,6 +45,9 @@ void main() {
   ) async {
     await openHymns(tester);
 
+    // the search opens in place of the title
+    await tester.tap(find.byTooltip('Rechercher'));
+    await tester.pumpAndSettle();
     await tester.enterText(find.byType(TextField), 'eternel');
     await tester.pumpAndSettle();
     expect(find.text('Saint, Saint, Saint'), findsOneWidget);
@@ -58,6 +61,68 @@ void main() {
     await tester.enterText(find.byType(TextField), 'introuvable');
     await tester.pumpAndSettle();
     expect(find.textContaining('Aucun cantique ne correspond'), findsOneWidget);
+
+    // back: the book again, the search emptied
+    await tester.tap(find.byTooltip('Retour'));
+    await tester.pumpAndSettle();
+    expect(find.byType(TextField), findsNothing);
+    expect(find.text('A Toi la gloire'), findsOneWidget);
+  });
+
+  testWidgets('swiping the covers changes the book', (tester) async {
+    final app = await openHymns(tester);
+
+    await tester.fling(
+      find.text('Rendons ministère au Seigneur').first,
+      const Offset(-300, 0),
+      1000,
+    );
+    await tester.pumpAndSettle();
+
+    expect(find.text('Christ the Victor'), findsWidgets);
+    expect(find.text("There's a Man on the Throne of God"), findsOneWidget);
+    expect(app.preferences.getString('hymn_book'), 'christ-the-victor');
+  });
+
+  testWidgets('the star of a hymn of the list adds it to the favorites', (
+    tester,
+  ) async {
+    final app = await openHymns(tester);
+
+    await tester.tap(find.byTooltip('Ajouter aux favoris').at(1));
+    await tester.pumpAndSettle();
+    expect(app.toasts.messages, ['Ajouté aux favoris']);
+
+    await tester.tap(find.text('Favoris'));
+    await tester.pumpAndSettle();
+    expect(find.text('Saint, Saint, Saint'), findsOneWidget);
+    expect(find.text('A Toi la gloire'), findsNothing);
+  });
+
+  testWidgets('the menu of a hymn copies its words without opening it', (
+    tester,
+  ) async {
+    String? copied;
+    final messenger = tester.binding.defaultBinaryMessenger;
+    messenger.setMockMethodCallHandler(SystemChannels.platform, (call) async {
+      if (call.method == 'Clipboard.setData') {
+        copied = (call.arguments as Map)['text'] as String;
+      }
+      return null;
+    });
+    addTearDown(
+      () => messenger.setMockMethodCallHandler(SystemChannels.platform, null),
+    );
+    final app = await openHymns(tester);
+
+    await tester.tap(find.byTooltip("Plus d'options").first);
+    await tester.pumpAndSettle();
+    await tester.tap(find.text('Copier les paroles'));
+    await tester.pumpAndSettle();
+
+    expect(copied, startsWith('1. A Toi la gloire\n\n1. À toi la gloire'));
+    expect(app.toasts.messages, ['Paroles copiées']);
+    expect(find.text('N° 1'), findsNothing);
   });
 
   testWidgets('read a hymn: verses, chorus, bigger text, screen kept on', (
@@ -211,9 +276,10 @@ void main() {
   testWidgets('another book can be chosen, and is remembered', (tester) async {
     final app = await openHymns(tester);
 
-    await tester.tap(find.text('Rendons ministère au Seigneur, volume 1'));
+    await tester.tap(find.text('Rendons ministère au Seigneur, volume\u00A01'));
     await tester.pumpAndSettle();
-    await tester.tap(find.text('Christ the Victor'));
+    // the cover of the book is behind the list
+    await tester.tap(find.text('Christ the Victor').last);
     await tester.pumpAndSettle();
 
     expect(find.text("There's a Man on the Throne of God"), findsOneWidget);

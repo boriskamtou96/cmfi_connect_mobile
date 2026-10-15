@@ -10,6 +10,9 @@ import '../features/auth/presentation/login_screen.dart';
 import '../features/auth/presentation/register_screen.dart';
 import '../features/authorities/presentation/authorities_screen.dart';
 import '../features/authorities/presentation/authority_form_screen.dart';
+import '../features/bible/presentation/bible_marks_screen.dart';
+import '../features/bible/presentation/bible_screen.dart';
+import '../features/bible/presentation/bible_search_screen.dart';
 import '../features/disciples/presentation/disciple_reports_screen.dart';
 import '../features/disciples/presentation/disciples_screen.dart';
 import '../features/events/presentation/admin/admin_events_screen.dart';
@@ -108,8 +111,20 @@ class AppRouter extends RootStackRouter {
         AutoRoute(path: 'reports', page: ReportsRoute.page),
         AutoRoute(path: 'hymns', page: HymnsRoute.page),
         AutoRoute(path: 'prayer', page: PrayerRoute.page),
-        AutoRoute(path: 'more', page: MoreRoute.page),
+        AutoRoute(path: 'bible', page: BibleRoute.page),
       ],
+    ),
+    // Plus: opened from the photo at the top of the home screen
+    AutoRoute(path: '/more', page: MoreRoute.page, guards: [authGuard]),
+    AutoRoute(
+      path: '/bible/search',
+      page: BibleSearchRoute.page,
+      guards: [authGuard],
+    ),
+    AutoRoute(
+      path: '/bible/marks',
+      page: BibleMarksRoute.page,
+      guards: [authGuard],
     ),
     AutoRoute(path: '/items', page: ItemsRoute.page, guards: [authGuard]),
     AutoRoute(

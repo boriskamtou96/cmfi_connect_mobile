@@ -25,11 +25,6 @@ void main() {
     church: 'PSU-Yaoundé',
   );
 
-  Future<void> openMore(WidgetTester tester) async {
-    await tester.tap(find.text('Plus'));
-    await tester.pumpAndSettle();
-  }
-
   testWidgets('login keeps the account, logout forgets it', (tester) async {
     final app = await pumpApp(tester);
 

@@ -3,6 +3,7 @@ import 'dart:io';
 
 import 'package:cmfi_connect/src/core/i18n/languages.dart';
 import 'package:cmfi_connect/src/core/i18n/strings.g.dart';
+import 'package:cmfi_connect/src/core/widgets/app_back_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:intl/date_symbol_data_local.dart';
@@ -102,11 +103,17 @@ void main() {
     for (final tab in [
       AppLocale.ar.buildSync().nav.reports,
       AppLocale.ar.buildSync().nav.hymns,
-      AppLocale.ar.buildSync().nav.more,
+      AppLocale.ar.buildSync().nav.prayer,
+      AppLocale.ar.buildSync().nav.bible,
     ]) {
       await tester.tap(find.text(tab).last);
       await tester.pumpAndSettle();
     }
+    // and Plus, from the photo of the home screen
+    await tester.tap(find.text(AppLocale.ar.buildSync().nav.home).last);
+    await tester.pumpAndSettle();
+    await tester.tap(find.byTooltip(AppLocale.ar.buildSync().home.profile));
+    await tester.pumpAndSettle();
     expect(tester.takeException(), isNull);
   });
 
@@ -116,7 +123,11 @@ void main() {
     ) async {
       await LocaleSettings.setLocale(locale);
       await pumpApp(tester, token: 't');
-      await tester.tap(find.text(locale.buildSync().nav.more).last);
+      await tester.tap(find.byTooltip(locale.buildSync().home.profile));
+      await tester.pumpAndSettle();
+      await tester.tap(find.byType(AppBackButton));
+      await tester.pumpAndSettle();
+      await tester.tap(find.text(locale.buildSync().nav.bible).last);
       await tester.pumpAndSettle();
       expect(tester.takeException(), isNull);
     });

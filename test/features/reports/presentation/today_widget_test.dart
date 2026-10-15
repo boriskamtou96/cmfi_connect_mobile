@@ -64,7 +64,7 @@ void main() {
   testWidgets('signing out empties the widget', (tester) async {
     final app = await pumpApp(tester, token: 't');
 
-    await tester.tap(find.text('Plus'));
+    await openMore(tester);
     await tester.pumpAndSettle();
     await scrollToEnd(tester);
     await tester.tap(find.text('Se déconnecter'));

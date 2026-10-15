@@ -296,7 +296,7 @@ void main() {
         bytes: Uint8List.fromList([1, 2, 3]),
         name: 'affiche.jpg',
       ));
-      await tester.tap(find.text('Plus'));
+      await openMore(tester);
       await tester.pumpAndSettle();
       await scrollToEnd(tester);
       await tester.tap(find.text('Évènements').last);

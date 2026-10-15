@@ -177,7 +177,7 @@
     "reports": "Compte rendu",
     "hymns": "Cantiques",
     "prayer": "Prière",
-    "more": "Plus"
+    "bible": "Bible"
   },
   "home": {
     "greeting": "Bonjour {name}",
@@ -1430,6 +1430,79 @@
     "share": "Partager le verset",
     "shareImage": "Partager l'image",
     "shareText": "Partager le texte"
+  },
+  "bible": {
+    "title": "Bible",
+    "books": "Livres",
+    "oldTestament": "Ancien Testament",
+    "newTestament": "Nouveau Testament",
+    "chapters(plural, param=n)": {
+      "one": "{n} chapitre",
+      "other": "{n} chapitres"
+    },
+    "chapter": "Chapitre {n}",
+    "version": "Version",
+    "versions": "Version de la Bible",
+    "search": "Rechercher dans la Bible",
+    "searchHint": "Un mot, ou « Jean 3:16 »",
+    "searchTip": "Cherche un mot (« amour ») ou va directement à un passage (« Psaume 23 », « Jean 3:16 »).",
+    "searchNone": "Aucun verset ne contient ces mots.",
+    "searchCount(plural, param=n)": {
+      "one": "{n} verset",
+      "other": "{n} versets"
+    },
+    "searchLimit": "Les {n} premiers versets",
+    "searchNeedsDownload": "Pour chercher des mots dans toute la Bible, télécharge-la. Tu peux déjà taper un passage : « Jean 3:16 ».",
+    "open": "Ouvrir {reference}",
+    "previous": "Chapitre précédent",
+    "next": "Chapitre suivant",
+    "markRead": "J'ai lu ce chapitre",
+    "markedRead": "Lu aujourd'hui",
+    "markReadHint": "Ajoute 1 chapitre à « Lecture biblique » dans ton compte rendu.",
+    "addedToReport(plural, param=n)": {
+      "one": "Compte rendu : {n} chapitre lu aujourd'hui",
+      "other": "Compte rendu : {n} chapitres lus aujourd'hui"
+    },
+    "removedFromReport": "Retiré de ton compte rendu",
+    "noReadingItem": "Ton compte rendu n'a pas d'élément « Lecture biblique ».",
+    "download": "Télécharger cette Bible",
+    "downloadHelp": "Environ {size} Mo, pour lire et chercher sans réseau.",
+    "downloading": "Téléchargement… {percent} %",
+    "downloaded": "Sur ton téléphone",
+    "downloadDone": "{version} est sur ton téléphone",
+    "removeDownload": "Retirer du téléphone",
+    "removeDownloadTitle": "Retirer {version} du téléphone ?",
+    "removeDownloadText": "Les chapitres que tu as déjà lus restent disponibles sans réseau.",
+    "offline": "Ce chapitre n'est pas encore sur ton téléphone. Reconnecte-toi, ou télécharge cette Bible pour la lire sans réseau.",
+    "notInVersion": "Ce passage n'est pas dans cette version.",
+    "marks": "Mes versets",
+    "favorites": "Favoris",
+    "highlights": "Surlignés",
+    "noFavorites": "Touche un verset, puis le marque-page, pour le retrouver ici.",
+    "noHighlights": "Touche un verset, puis une couleur, pour le surligner.",
+    "tapHint": "Touche un verset pour le surligner, le garder, le copier ou le partager.",
+    "highlight": "Surligner en {color}",
+    "colors": {
+      "yellow": "jaune",
+      "green": "vert",
+      "blue": "bleu",
+      "pink": "rose"
+    },
+    "removeHighlight": "Retirer la couleur",
+    "addFavorite": "Ajouter à Mes versets",
+    "removeFavorite": "Retirer de Mes versets",
+    "favoriteAdded": "Ajouté à Mes versets",
+    "favoriteRemoved": "Retiré de Mes versets",
+    "copy": "Copier",
+    "copied": "Copié",
+    "share": "Partager",
+    "closeSelection": "Fermer la sélection",
+    "display": "Affichage",
+    "jesusInRed": "Paroles de Jésus en rouge",
+    "jesusInRedHelp": "Dans les versions qui les indiquent",
+    "remove": "Retirer",
+    "readInBible": "Lire dans la Bible",
+    "more": "Plus d'options"
   },
   "profilePhoto": {
     "title": "Photo de profil",

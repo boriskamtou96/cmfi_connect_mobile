@@ -10,7 +10,8 @@ import '../../../core/theme/app_tones.dart';
 import '../../../routing/app_router.dart';
 import 'signed_in_tasks.dart';
 
-/// The signed-in app: five tabs. Each module lights its tab in its own color.
+/// The signed-in app: five tabs (Plus opens from the photo of the home
+/// screen). Each module lights its tab in its own color.
 @RoutePage()
 class AppShellScreen extends StatelessWidget {
   const AppShellScreen({super.key});
@@ -20,7 +21,7 @@ class AppShellScreen extends StatelessWidget {
     AppModule.reports,
     AppModule.hymns,
     AppModule.prayer,
-    null,
+    AppModule.bible,
   ];
 
   static final _zoomIn = Tween<double>(begin: 0.98, end: 1);
@@ -35,7 +36,7 @@ class AppShellScreen extends StatelessWidget {
         ReportsRoute(),
         HymnsRoute(),
         PrayerRoute(),
-        MoreRoute(),
+        BibleRoute(),
       ],
       duration: AppMotion.medium,
       curve: AppMotion.emphasized,
@@ -118,9 +119,9 @@ class AppShellScreen extends StatelessWidget {
                       label: t.nav.prayer,
                     ),
                     NavigationDestination(
-                      icon: const Icon(AppIcons.more),
-                      selectedIcon: const Icon(AppIcons.moreActive),
-                      label: t.nav.more,
+                      icon: const Icon(AppIcons.bible),
+                      selectedIcon: const Icon(AppIcons.bibleActive),
+                      label: t.nav.bible,
                     ),
                   ],
                 ),

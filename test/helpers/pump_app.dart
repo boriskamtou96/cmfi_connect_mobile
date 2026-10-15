@@ -26,6 +26,8 @@ import 'package:cmfi_connect/src/core/widgets/app_toast.dart';
 import 'package:cmfi_connect/src/features/admin/infrastructure/admin_api.dart';
 import 'package:cmfi_connect/src/features/auth/infrastructure/auth_api.dart';
 import 'package:cmfi_connect/src/features/authorities/infrastructure/authorities_api.dart';
+import 'package:cmfi_connect/src/features/bible/infrastructure/bible_api.dart';
+import 'package:cmfi_connect/src/features/bible/infrastructure/bible_storage.dart';
 import 'package:cmfi_connect/src/features/disciples/infrastructure/disciples_api.dart';
 import 'package:cmfi_connect/src/features/events/infrastructure/events_api.dart';
 import 'package:cmfi_connect/src/features/hymns/infrastructure/hymn_book_storage.dart';
@@ -41,11 +43,12 @@ import 'package:cmfi_connect/src/features/reports/domain/activity_type.dart';
 import 'package:cmfi_connect/src/features/reports/domain/daily_report.dart';
 import 'package:cmfi_connect/src/features/reports/infrastructure/activities_api.dart';
 import 'package:cmfi_connect/src/features/reports/infrastructure/reports_api.dart';
-import 'package:flutter/widgets.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import 'bible_fakes.dart';
 import 'fakes.dart';
 
 /// The whole app, with every API and storage faked.
@@ -84,6 +87,8 @@ class TestApp {
     required this.shortcuts,
     required this.incomingLinks,
     required this.disciplesApi,
+    required this.bibleApi,
+    required this.bibleStorage,
   });
 
   final ProviderContainer container;
@@ -123,6 +128,8 @@ class TestApp {
   /// The links that open the app (cmfi-connect.com/open?to=…).
   final FakeIncomingLinks incomingLinks;
   final FakeDisciplesApi disciplesApi;
+  final FakeBibleApi bibleApi;
+  final FakeBibleStorage bibleStorage;
 }
 
 Future<TestApp> pumpApp(
@@ -152,6 +159,7 @@ Future<TestApp> pumpApp(
   FakeAppShortcuts? shortcuts,
   FakeIncomingLinks? incomingLinks,
   FakeDisciplesApi? disciplesApi,
+  FakeBibleApi? bibleApi,
   // the pictures picked for a profile photo, decoded beforehand
   PhotoDecoder? photoDecoder,
   // v1 offers Premium to everyone (premiumForEveryoneProvider); the tests
@@ -203,6 +211,8 @@ Future<TestApp> pumpApp(
   final appShortcuts = shortcuts ?? FakeAppShortcuts();
   final appLinks = incomingLinks ?? FakeIncomingLinks();
   final disciples = disciplesApi ?? FakeDisciplesApi();
+  final bible = bibleApi ?? FakeBibleApi();
+  final bibleStorage = FakeBibleStorage();
 
   final container = ProviderContainer(
     overrides: [
@@ -241,6 +251,8 @@ Future<TestApp> pumpApp(
       appShortcutsProvider.overrideWithValue(appShortcuts),
       incomingLinksProvider.overrideWithValue(appLinks),
       disciplesApiProvider.overrideWithValue(disciples),
+      bibleApiProvider.overrideWithValue(bible),
+      bibleStorageProvider.overrideWithValue(bibleStorage),
       if (photoDecoder != null)
         photoDecoderProvider.overrideWithValue(photoDecoder),
       homeWidgetsProvider.overrideWithValue(widgets),
@@ -302,6 +314,8 @@ Future<TestApp> pumpApp(
     shortcuts: appShortcuts,
     incomingLinks: appLinks,
     disciplesApi: disciples,
+    bibleApi: bible,
+    bibleStorage: bibleStorage,
   );
 }
 
@@ -309,5 +323,20 @@ Future<TestApp> pumpApp(
 /// half in view would be tapped through the tab bar.
 Future<void> scrollToEnd(WidgetTester tester) async {
   await tester.drag(find.byType(Scrollable).last, const Offset(0, -3000));
+  await tester.pumpAndSettle();
+}
+
+/// Plus, from the photo at the top of the home screen (back to Accueil
+/// first).
+Future<void> openMore(WidgetTester tester) async {
+  final home = find.descendant(
+    of: find.byType(NavigationBar),
+    matching: find.text('Accueil'),
+  );
+  if (home.evaluate().isNotEmpty) {
+    await tester.tap(home);
+    await tester.pumpAndSettle();
+  }
+  await tester.tap(find.byTooltip('Mon profil'));
   await tester.pumpAndSettle();
 }

@@ -37,6 +37,7 @@ class AppTones extends ThemeExtension<AppTones> {
     required this.hymns,
     required this.prayer,
     required this.events,
+    required this.bible,
     required this.personal,
     required this.personalSoft,
     required this.missing,
@@ -65,6 +66,12 @@ class AppTones extends ThemeExtension<AppTones> {
       color: Color(0xFFA85F1E),
       soft: Color(0xFFF8ECDD),
       onSoft: Color(0xFF8A4A12),
+    ),
+    // burgundy, like the cover of a Bible
+    bible: ModuleTone(
+      color: Color(0xFF9A2E3D),
+      soft: Color(0xFFF8E6E8),
+      onSoft: Color(0xFF8A2534),
     ),
     personal: Color(0xFF8A5A0F),
     personalSoft: Color(0xFFFBF1DC),
@@ -95,6 +102,11 @@ class AppTones extends ThemeExtension<AppTones> {
       soft: Color(0xFF3A2918),
       onSoft: Color(0xFFF2C69C),
     ),
+    bible: ModuleTone(
+      color: Color(0xFF9A2E3D),
+      soft: Color(0xFF3B1D22),
+      onSoft: Color(0xFFF2AEB7),
+    ),
     personal: Color(0xFFE8C27E),
     personalSoft: Color(0xFF3A2C12),
     missing: Color(0xFFE3A27C),
@@ -106,6 +118,7 @@ class AppTones extends ThemeExtension<AppTones> {
   final ModuleTone hymns;
   final ModuleTone prayer;
   final ModuleTone events;
+  final ModuleTone bible;
 
   /// Personal items (vs standard ones): text / icons, and their background.
   final Color personal;
@@ -126,6 +139,7 @@ class AppTones extends ThemeExtension<AppTones> {
     AppModule.hymns => hymns,
     AppModule.prayer => prayer,
     AppModule.events => events,
+    AppModule.bible => bible,
   };
 
   @override
@@ -142,6 +156,7 @@ class AppTones extends ThemeExtension<AppTones> {
       hymns: ModuleTone.lerp(hymns, other.hymns, t),
       prayer: ModuleTone.lerp(prayer, other.prayer, t),
       events: ModuleTone.lerp(events, other.events, t),
+      bible: ModuleTone.lerp(bible, other.bible, t),
       personal: mix(personal, other.personal),
       personalSoft: mix(personalSoft, other.personalSoft),
       missing: mix(missing, other.missing),

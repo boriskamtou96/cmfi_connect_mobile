@@ -17,6 +17,8 @@ import '../../../core/session/session.dart';
 import '../../../core/utils/date_extensions.dart';
 import '../../../core/widgets/app_toast.dart';
 import '../../../routing/app_router.dart';
+import '../../bible/application/bible_position.dart';
+import '../../bible/domain/bible.dart';
 import '../../events/application/event_reminders.dart';
 import '../../home/application/week_story.dart';
 import '../../home/domain/week_story.dart';
@@ -33,6 +35,8 @@ import '../../reports/application/report_sending.dart';
 import '../../reports/application/reports_providers.dart';
 import '../../reports/application/today_widget.dart';
 import '../../reports/domain/report_sending.dart';
+import '../../verses/application/verse_of_the_day.dart';
+import '../../verses/domain/verse.dart';
 
 /// What runs while the user is signed in: the days, retreats and
 /// proclamations kept offline are sent, the reminders are planned again, and
@@ -40,7 +44,8 @@ import '../../reports/domain/report_sending.dart';
 /// The phone receives the notifications of the admins: a touched push opens
 /// it, one arriving while the app is open pops up. The shortcuts of the app
 /// icon are set (in the app language) and open what they say. A link
-/// (cmfi-connect.com/open?to=…) opens its event, hymn or prayer topic.
+/// (cmfi-connect.com/open?to=…) opens its event, hymn, prayer topic or
+/// Bible verse.
 class SignedInTasks extends HookConsumerWidget {
   const SignedInTasks({required this.child, super.key});
 
@@ -86,6 +91,15 @@ class SignedInTasks extends HookConsumerWidget {
       final homeWidgets = ref.read(homeWidgetsProvider);
       final toast = ref.read(toasterProvider);
 
+      // a tab, above which nothing stays (Plus, a hymn read)
+      void showTab(PageRouteInfo tab) {
+        if (!context.mounted) {
+          return;
+        }
+        context.router.root.popUntilRouteWithName(AppShellRoute.name);
+        context.navigateTo(tab);
+      }
+
       void openToday() {
         if (!context.mounted) {
           return;
@@ -94,7 +108,15 @@ class SignedInTasks extends HookConsumerWidget {
             .read(selectedReportsViewProvider.notifier)
             .select(ReportsView.today);
         ref.read(selectedReportDayProvider.notifier).select(today());
-        context.navigateTo(const ReportsRoute());
+        showTab(const ReportsRoute());
+      }
+
+      // the Bible tab, on [place] (its verse lit)
+      Future<void> openBible(BibleRef? place) async {
+        if (place != null) {
+          await ref.read(bibleFocusProvider.notifier).show(place);
+        }
+        showTab(const BibleRoute());
       }
 
       void openEvent(int id) {
@@ -150,12 +172,20 @@ class SignedInTasks extends HookConsumerWidget {
 
       // the widgets: today's report (or the Premium page when it is locked),
       // or the verse of the day, on the home screen
-      void openFromWidget(Uri? uri) {
+      Future<void> openFromWidget(Uri? uri) async {
         switch (uri?.host) {
           case 'today':
             openToday();
-          case 'verse' when context.mounted:
-            context.navigateTo(const HomeRoute());
+          case 'verse':
+            // today's verse, in the Bible
+            final verse = await ref
+                .read(verseOfTheDayProvider.future)
+                .then<Verse?>((verse) => verse, onError: (Object _) => null);
+            if (BibleRef.parse(verse?.osis) case final place?) {
+              await openBible(place);
+            } else {
+              showTab(const HomeRoute());
+            }
           case 'premium' when context.mounted:
             context.router.push(const PremiumRoute());
         }
@@ -170,9 +200,7 @@ class SignedInTasks extends HookConsumerWidget {
           case AppShortcut.today:
             openToday();
           case AppShortcut.hymns:
-            if (context.mounted) {
-              context.navigateTo(const HymnsRoute());
-            }
+            showTab(const HymnsRoute());
           case AppShortcut.retreat:
             // the retreats made today, as the server knows them
             await ref
@@ -186,7 +214,7 @@ class SignedInTasks extends HookConsumerWidget {
               DateTime.now(),
             );
             if (moment == null) {
-              context.navigateTo(const PrayerRoute());
+              showTab(const PrayerRoute());
             } else {
               unawaited(context.router.push(RetreatRoute(moment: moment)));
             }
@@ -220,6 +248,8 @@ class SignedInTasks extends HookConsumerWidget {
             );
           case RetreatLink():
             unawaited(openShortcut(AppShortcut.retreat));
+          case BibleLink(:final reference):
+            unawaited(openBible(BibleRef.parse(reference)));
         }
       }
 
@@ -276,7 +306,9 @@ class SignedInTasks extends HookConsumerWidget {
 
       final taps = notifications.taps.listen(open);
       final pushTaps = push.taps.listen(openAnnouncement);
-      final widgetTaps = homeWidgets.clicks.listen(openFromWidget);
+      final widgetTaps = homeWidgets.clicks.listen(
+        (uri) => unawaited(openFromWidget(uri)),
+      );
       final received = push.received.listen((message) {
         unawaited(ref.read(inboxProvider.notifier).refresh());
         if (message.data['type'] == 'importunity_invite') {

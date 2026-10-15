@@ -177,7 +177,7 @@
     "reports": "Bericht",
     "hymns": "Lieder",
     "prayer": "Gebet",
-    "more": "Mehr"
+    "bible": "Bibel"
   },
   "home": {
     "greeting": "Hallo {name}",
@@ -1430,6 +1430,79 @@
     "share": "Vers teilen",
     "shareImage": "Bild teilen",
     "shareText": "Text teilen"
+  },
+  "bible": {
+    "title": "Bibel",
+    "books": "Bücher",
+    "oldTestament": "Altes Testament",
+    "newTestament": "Neues Testament",
+    "chapters(plural, param=n)": {
+      "one": "{n} Kapitel",
+      "other": "{n} Kapitel"
+    },
+    "chapter": "Kapitel {n}",
+    "version": "Übersetzung",
+    "versions": "Bibelübersetzung",
+    "search": "In der Bibel suchen",
+    "searchHint": "Ein Wort oder „Johannes 3,16“",
+    "searchTip": "Suche ein Wort („Liebe“) oder springe direkt zu einer Stelle („Psalm 23“, „Johannes 3,16“).",
+    "searchNone": "Kein Vers enthält diese Wörter.",
+    "searchCount(plural, param=n)": {
+      "one": "{n} Vers",
+      "other": "{n} Verse"
+    },
+    "searchLimit": "Die ersten {n} Verse",
+    "searchNeedsDownload": "Um Wörter in der ganzen Bibel zu suchen, lade sie herunter. Eine Stelle kannst du schon eingeben: „Johannes 3,16“.",
+    "open": "{reference} öffnen",
+    "previous": "Vorheriges Kapitel",
+    "next": "Nächstes Kapitel",
+    "markRead": "Ich habe dieses Kapitel gelesen",
+    "markedRead": "Heute gelesen",
+    "markReadHint": "Fügt deinem Bericht 1 Kapitel bei „Bibellesen“ hinzu.",
+    "addedToReport(plural, param=n)": {
+      "one": "Bericht: heute {n} Kapitel gelesen",
+      "other": "Bericht: heute {n} Kapitel gelesen"
+    },
+    "removedFromReport": "Aus deinem Bericht entfernt",
+    "noReadingItem": "Dein Bericht hat keinen Punkt „Bibellesen“.",
+    "download": "Diese Bibel herunterladen",
+    "downloadHelp": "Etwa {size} MB, um ohne Netz zu lesen und zu suchen.",
+    "downloading": "Wird geladen… {percent} %",
+    "downloaded": "Auf deinem Handy",
+    "downloadDone": "{version} ist auf deinem Handy",
+    "removeDownload": "Vom Handy entfernen",
+    "removeDownloadTitle": "{version} vom Handy entfernen?",
+    "removeDownloadText": "Die Kapitel, die du schon gelesen hast, bleiben ohne Netz verfügbar.",
+    "offline": "Dieses Kapitel ist noch nicht auf deinem Handy. Geh wieder online oder lade diese Bibel herunter, um sie ohne Netz zu lesen.",
+    "notInVersion": "Diese Stelle gibt es in dieser Übersetzung nicht.",
+    "marks": "Meine Verse",
+    "favorites": "Gemerkt",
+    "highlights": "Markiert",
+    "noFavorites": "Tippe auf einen Vers und dann auf das Lesezeichen, um ihn hier wiederzufinden.",
+    "noHighlights": "Tippe auf einen Vers und dann auf eine Farbe, um ihn zu markieren.",
+    "tapHint": "Tippe auf einen Vers, um ihn zu markieren, zu merken, zu kopieren oder zu teilen.",
+    "highlight": "{color} markieren",
+    "colors": {
+      "yellow": "Gelb",
+      "green": "Grün",
+      "blue": "Blau",
+      "pink": "Rosa"
+    },
+    "removeHighlight": "Farbe entfernen",
+    "addFavorite": "Zu Meine Verse hinzufügen",
+    "removeFavorite": "Aus Meine Verse entfernen",
+    "favoriteAdded": "Zu Meine Verse hinzugefügt",
+    "favoriteRemoved": "Aus Meine Verse entfernt",
+    "copy": "Kopieren",
+    "copied": "Kopiert",
+    "share": "Teilen",
+    "closeSelection": "Auswahl schließen",
+    "display": "Anzeige",
+    "jesusInRed": "Worte Jesu in Rot",
+    "jesusInRedHelp": "In den Übersetzungen, die sie kennzeichnen",
+    "remove": "Entfernen",
+    "readInBible": "In der Bibel lesen",
+    "more": "Weitere Optionen"
   },
   "profilePhoto": {
     "title": "Profilbild",

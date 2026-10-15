@@ -16,7 +16,7 @@ T _$identity<T>(T value) => value;
 mixin _$HymnReaderSettings {
 
 /// 1 = normal size. From [minScale] to [maxScale].
- double get textScale; HymnTypeface get typeface; HymnReaderTheme get theme;/// Show the chorus again after each verse.
+ double get textScale; HymnTypeface get typeface; ReaderTheme get theme;/// Show the chorus again after each verse.
  bool get repeatChorus;/// Keep the screen on while a hymn is open.
  bool get keepScreenOn;
 /// Create a copy of HymnReaderSettings
@@ -51,7 +51,7 @@ abstract mixin class $HymnReaderSettingsCopyWith<$Res>  {
   factory $HymnReaderSettingsCopyWith(HymnReaderSettings value, $Res Function(HymnReaderSettings) _then) = _$HymnReaderSettingsCopyWithImpl;
 @useResult
 $Res call({
- double textScale, HymnTypeface typeface, HymnReaderTheme theme, bool repeatChorus, bool keepScreenOn
+ double textScale, HymnTypeface typeface, ReaderTheme theme, bool repeatChorus, bool keepScreenOn
 });
 
 
@@ -73,7 +73,7 @@ class _$HymnReaderSettingsCopyWithImpl<$Res>
 textScale: null == textScale ? _self.textScale : textScale // ignore: cast_nullable_to_non_nullable
 as double,typeface: null == typeface ? _self.typeface : typeface // ignore: cast_nullable_to_non_nullable
 as HymnTypeface,theme: null == theme ? _self.theme : theme // ignore: cast_nullable_to_non_nullable
-as HymnReaderTheme,repeatChorus: null == repeatChorus ? _self.repeatChorus : repeatChorus // ignore: cast_nullable_to_non_nullable
+as ReaderTheme,repeatChorus: null == repeatChorus ? _self.repeatChorus : repeatChorus // ignore: cast_nullable_to_non_nullable
 as bool,keepScreenOn: null == keepScreenOn ? _self.keepScreenOn : keepScreenOn // ignore: cast_nullable_to_non_nullable
 as bool,
   ));
@@ -160,7 +160,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( double textScale,  HymnTypeface typeface,  HymnReaderTheme theme,  bool repeatChorus,  bool keepScreenOn)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( double textScale,  HymnTypeface typeface,  ReaderTheme theme,  bool repeatChorus,  bool keepScreenOn)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _HymnReaderSettings() when $default != null:
 return $default(_that.textScale,_that.typeface,_that.theme,_that.repeatChorus,_that.keepScreenOn);case _:
@@ -181,7 +181,7 @@ return $default(_that.textScale,_that.typeface,_that.theme,_that.repeatChorus,_t
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( double textScale,  HymnTypeface typeface,  HymnReaderTheme theme,  bool repeatChorus,  bool keepScreenOn)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( double textScale,  HymnTypeface typeface,  ReaderTheme theme,  bool repeatChorus,  bool keepScreenOn)  $default,) {final _that = this;
 switch (_that) {
 case _HymnReaderSettings():
 return $default(_that.textScale,_that.typeface,_that.theme,_that.repeatChorus,_that.keepScreenOn);case _:
@@ -201,7 +201,7 @@ return $default(_that.textScale,_that.typeface,_that.theme,_that.repeatChorus,_t
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( double textScale,  HymnTypeface typeface,  HymnReaderTheme theme,  bool repeatChorus,  bool keepScreenOn)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( double textScale,  HymnTypeface typeface,  ReaderTheme theme,  bool repeatChorus,  bool keepScreenOn)?  $default,) {final _that = this;
 switch (_that) {
 case _HymnReaderSettings() when $default != null:
 return $default(_that.textScale,_that.typeface,_that.theme,_that.repeatChorus,_that.keepScreenOn);case _:
@@ -216,13 +216,13 @@ return $default(_that.textScale,_that.typeface,_that.theme,_that.repeatChorus,_t
 @JsonSerializable()
 
 class _HymnReaderSettings extends HymnReaderSettings {
-  const _HymnReaderSettings({this.textScale = 1.0, this.typeface = HymnTypeface.auto, this.theme = HymnReaderTheme.auto, this.repeatChorus = false, this.keepScreenOn = true}): super._();
+  const _HymnReaderSettings({this.textScale = 1.0, this.typeface = HymnTypeface.auto, this.theme = ReaderTheme.auto, this.repeatChorus = false, this.keepScreenOn = true}): super._();
   factory _HymnReaderSettings.fromJson(Map<String, dynamic> json) => _$HymnReaderSettingsFromJson(json);
 
 /// 1 = normal size. From [minScale] to [maxScale].
 @override@JsonKey() final  double textScale;
 @override@JsonKey() final  HymnTypeface typeface;
-@override@JsonKey() final  HymnReaderTheme theme;
+@override@JsonKey() final  ReaderTheme theme;
 /// Show the chorus again after each verse.
 @override@JsonKey() final  bool repeatChorus;
 /// Keep the screen on while a hymn is open.
@@ -261,7 +261,7 @@ abstract mixin class _$HymnReaderSettingsCopyWith<$Res> implements $HymnReaderSe
   factory _$HymnReaderSettingsCopyWith(_HymnReaderSettings value, $Res Function(_HymnReaderSettings) _then) = __$HymnReaderSettingsCopyWithImpl;
 @override @useResult
 $Res call({
- double textScale, HymnTypeface typeface, HymnReaderTheme theme, bool repeatChorus, bool keepScreenOn
+ double textScale, HymnTypeface typeface, ReaderTheme theme, bool repeatChorus, bool keepScreenOn
 });
 
 
@@ -283,7 +283,7 @@ class __$HymnReaderSettingsCopyWithImpl<$Res>
 textScale: null == textScale ? _self.textScale : textScale // ignore: cast_nullable_to_non_nullable
 as double,typeface: null == typeface ? _self.typeface : typeface // ignore: cast_nullable_to_non_nullable
 as HymnTypeface,theme: null == theme ? _self.theme : theme // ignore: cast_nullable_to_non_nullable
-as HymnReaderTheme,repeatChorus: null == repeatChorus ? _self.repeatChorus : repeatChorus // ignore: cast_nullable_to_non_nullable
+as ReaderTheme,repeatChorus: null == repeatChorus ? _self.repeatChorus : repeatChorus // ignore: cast_nullable_to_non_nullable
 as bool,keepScreenOn: null == keepScreenOn ? _self.keepScreenOn : keepScreenOn // ignore: cast_nullable_to_non_nullable
 as bool,
   ));

@@ -71,6 +71,7 @@ class TranslationsAr extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _Translations$shortcuts$ar shortcuts = _Translations$shortcuts$ar._(_root);
 	@override late final _Translations$blocking$ar blocking = _Translations$blocking$ar._(_root);
 	@override late final _Translations$verses$ar verses = _Translations$verses$ar._(_root);
+	@override late final _Translations$bible$ar bible = _Translations$bible$ar._(_root);
 	@override late final _Translations$profilePhoto$ar profilePhoto = _Translations$profilePhoto$ar._(_root);
 	@override late final _Translations$disciples$ar disciples = _Translations$disciples$ar._(_root);
 	@override late final _Translations$weekStory$ar weekStory = _Translations$weekStory$ar._(_root);
@@ -225,7 +226,7 @@ class _Translations$nav$ar extends Translations$nav$fr {
 	@override String get reports => 'التقرير';
 	@override String get hymns => 'الترانيم';
 	@override String get prayer => 'الصلاة';
-	@override String get more => 'المزيد';
+	@override String get bible => 'الكتاب المقدس';
 }
 
 // Path: home
@@ -1074,6 +1075,93 @@ class _Translations$verses$ar extends Translations$verses$fr {
 	@override String get share => 'مشاركة الآية';
 	@override String get shareImage => 'مشاركة الصورة';
 	@override String get shareText => 'مشاركة النص';
+}
+
+// Path: bible
+class _Translations$bible$ar extends Translations$bible$fr {
+	_Translations$bible$ar._(TranslationsAr root) : this._root = root, super.internal(root);
+
+	final TranslationsAr _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'الكتاب المقدس';
+	@override String get books => 'الأسفار';
+	@override String get oldTestament => 'العهد القديم';
+	@override String get newTestament => 'العهد الجديد';
+	@override String chapters({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n,
+		zero: '${n} أصحاح',
+		one: 'أصحاح واحد',
+		two: 'أصحاحان',
+		few: '${n} أصحاحات',
+		many: '${n} أصحاحًا',
+		other: '${n} أصحاح',
+	);
+	@override String chapter({required Object n}) => 'الأصحاح ${n}';
+	@override String get version => 'الترجمة';
+	@override String get versions => 'ترجمة الكتاب المقدس';
+	@override String get search => 'البحث في الكتاب المقدس';
+	@override String get searchHint => 'كلمة، أو «يوحنا 3:16»';
+	@override String get searchTip => 'ابحث عن كلمة («محبة») أو انتقل مباشرة إلى مقطع («مزمور 23»، «يوحنا 3:16»).';
+	@override String get searchNone => 'لا توجد آية تحتوي على هذه الكلمات.';
+	@override String searchCount({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n,
+		zero: '${n} آية',
+		one: 'آية واحدة',
+		two: 'آيتان',
+		few: '${n} آيات',
+		many: '${n} آية',
+		other: '${n} آية',
+	);
+	@override String searchLimit({required Object n}) => 'أول ${n} آية';
+	@override String get searchNeedsDownload => 'للبحث عن كلمات في الكتاب المقدس كله، قم بتنزيله. يمكنك الآن كتابة مقطع: «يوحنا 3:16».';
+	@override String open({required Object reference}) => 'فتح ${reference}';
+	@override String get previous => 'الأصحاح السابق';
+	@override String get next => 'الأصحاح التالي';
+	@override String get markRead => 'قرأت هذا الأصحاح';
+	@override String get markedRead => 'قُرئ اليوم';
+	@override String get markReadHint => 'يضيف أصحاحًا واحدًا إلى «قراءة الكتاب المقدس» في تقريرك.';
+	@override String addedToReport({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n,
+		zero: 'التقرير: ${n} أصحاح اليوم',
+		one: 'التقرير: أصحاح واحد اليوم',
+		two: 'التقرير: أصحاحان اليوم',
+		few: 'التقرير: ${n} أصحاحات اليوم',
+		many: 'التقرير: ${n} أصحاحًا اليوم',
+		other: 'التقرير: ${n} أصحاح اليوم',
+	);
+	@override String get removedFromReport => 'أُزيل من تقريرك';
+	@override String get noReadingItem => 'لا يحتوي تقريرك على عنصر «قراءة الكتاب المقدس».';
+	@override String get download => 'تنزيل هذا الكتاب المقدس';
+	@override String downloadHelp({required Object size}) => 'حوالي ${size} ميغابايت، للقراءة والبحث دون اتصال.';
+	@override String downloading({required Object percent}) => 'جارٍ التنزيل… ${percent}٪';
+	@override String get downloaded => 'على هاتفك';
+	@override String downloadDone({required Object version}) => '${version} على هاتفك';
+	@override String get removeDownload => 'إزالة من الهاتف';
+	@override String removeDownloadTitle({required Object version}) => 'إزالة ${version} من الهاتف؟';
+	@override String get removeDownloadText => 'الأصحاحات التي قرأتها تبقى متاحة دون اتصال.';
+	@override String get offline => 'هذا الأصحاح ليس على هاتفك بعد. أعد الاتصال، أو نزّل هذا الكتاب المقدس لقراءته دون اتصال.';
+	@override String get notInVersion => 'هذا المقطع غير موجود في هذه الترجمة.';
+	@override String get marks => 'آياتي';
+	@override String get favorites => 'المحفوظة';
+	@override String get highlights => 'المظللة';
+	@override String get noFavorites => 'المس آية ثم العلامة لتجدها هنا.';
+	@override String get noHighlights => 'المس آية ثم لونًا لتظليلها.';
+	@override String get tapHint => 'المس آية لتظليلها أو حفظها أو نسخها أو مشاركتها.';
+	@override String highlight({required Object color}) => 'تظليل باللون ${color}';
+	@override late final _Translations$bible$colors$ar colors = _Translations$bible$colors$ar._(_root);
+	@override String get removeHighlight => 'إزالة اللون';
+	@override String get addFavorite => 'حفظ في آياتي';
+	@override String get removeFavorite => 'إزالة من آياتي';
+	@override String get favoriteAdded => 'حُفظت في آياتي';
+	@override String get favoriteRemoved => 'أُزيلت من آياتي';
+	@override String get copy => 'نسخ';
+	@override String get copied => 'تم النسخ';
+	@override String get share => 'مشاركة';
+	@override String get closeSelection => 'إغلاق التحديد';
+	@override String get display => 'العرض';
+	@override String get jesusInRed => 'كلمات يسوع بالأحمر';
+	@override String get jesusInRedHelp => 'في الترجمات التي تميّزها';
+	@override String get remove => 'إزالة';
+	@override String get readInBible => 'اقرأ في الكتاب المقدس';
+	@override String get more => 'خيارات أخرى';
 }
 
 // Path: profilePhoto
@@ -2255,6 +2343,19 @@ class _Translations$blocking$reasons$ar extends Translations$blocking$reasons$fr
 	@override String get other => 'سبب آخر';
 }
 
+// Path: bible.colors
+class _Translations$bible$colors$ar extends Translations$bible$colors$fr {
+	_Translations$bible$colors$ar._(TranslationsAr root) : this._root = root, super.internal(root);
+
+	final TranslationsAr _root; // ignore: unused_field
+
+	// Translations
+	@override String get yellow => 'الأصفر';
+	@override String get green => 'الأخضر';
+	@override String get blue => 'الأزرق';
+	@override String get pink => 'الوردي';
+}
+
 // Path: reports.units.chapters
 class _Translations$reports$units$chapters$ar extends Translations$reports$units$chapters$fr {
 	_Translations$reports$units$chapters$ar._(TranslationsAr root) : this._root = root, super.internal(root);
@@ -2625,7 +2726,7 @@ extension on TranslationsAr {
 			'nav.reports' => 'التقرير',
 			'nav.hymns' => 'الترانيم',
 			'nav.prayer' => 'الصلاة',
-			'nav.more' => 'المزيد',
+			'nav.bible' => 'الكتاب المقدس',
 			'home.greeting' => ({required Object name}) => 'مرحبًا ${name}',
 			'home.greetingNoName' => 'مرحبًا',
 			'home.profile' => 'ملفي الشخصي',
@@ -3580,6 +3681,66 @@ extension on TranslationsAr {
 			'verses.share' => 'مشاركة الآية',
 			'verses.shareImage' => 'مشاركة الصورة',
 			'verses.shareText' => 'مشاركة النص',
+			'bible.title' => 'الكتاب المقدس',
+			'bible.books' => 'الأسفار',
+			'bible.oldTestament' => 'العهد القديم',
+			'bible.newTestament' => 'العهد الجديد',
+			'bible.chapters' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n, zero: '${n} أصحاح', one: 'أصحاح واحد', two: 'أصحاحان', few: '${n} أصحاحات', many: '${n} أصحاحًا', other: '${n} أصحاح', ), 
+			'bible.chapter' => ({required Object n}) => 'الأصحاح ${n}',
+			'bible.version' => 'الترجمة',
+			'bible.versions' => 'ترجمة الكتاب المقدس',
+			'bible.search' => 'البحث في الكتاب المقدس',
+			'bible.searchHint' => 'كلمة، أو «يوحنا 3:16»',
+			'bible.searchTip' => 'ابحث عن كلمة («محبة») أو انتقل مباشرة إلى مقطع («مزمور 23»، «يوحنا 3:16»).',
+			'bible.searchNone' => 'لا توجد آية تحتوي على هذه الكلمات.',
+			'bible.searchCount' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n, zero: '${n} آية', one: 'آية واحدة', two: 'آيتان', few: '${n} آيات', many: '${n} آية', other: '${n} آية', ), 
+			'bible.searchLimit' => ({required Object n}) => 'أول ${n} آية',
+			'bible.searchNeedsDownload' => 'للبحث عن كلمات في الكتاب المقدس كله، قم بتنزيله. يمكنك الآن كتابة مقطع: «يوحنا 3:16».',
+			'bible.open' => ({required Object reference}) => 'فتح ${reference}',
+			'bible.previous' => 'الأصحاح السابق',
+			'bible.next' => 'الأصحاح التالي',
+			'bible.markRead' => 'قرأت هذا الأصحاح',
+			'bible.markedRead' => 'قُرئ اليوم',
+			'bible.markReadHint' => 'يضيف أصحاحًا واحدًا إلى «قراءة الكتاب المقدس» في تقريرك.',
+			'bible.addedToReport' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n, zero: 'التقرير: ${n} أصحاح اليوم', one: 'التقرير: أصحاح واحد اليوم', two: 'التقرير: أصحاحان اليوم', few: 'التقرير: ${n} أصحاحات اليوم', many: 'التقرير: ${n} أصحاحًا اليوم', other: 'التقرير: ${n} أصحاح اليوم', ), 
+			'bible.removedFromReport' => 'أُزيل من تقريرك',
+			'bible.noReadingItem' => 'لا يحتوي تقريرك على عنصر «قراءة الكتاب المقدس».',
+			'bible.download' => 'تنزيل هذا الكتاب المقدس',
+			'bible.downloadHelp' => ({required Object size}) => 'حوالي ${size} ميغابايت، للقراءة والبحث دون اتصال.',
+			'bible.downloading' => ({required Object percent}) => 'جارٍ التنزيل… ${percent}٪',
+			'bible.downloaded' => 'على هاتفك',
+			'bible.downloadDone' => ({required Object version}) => '${version} على هاتفك',
+			'bible.removeDownload' => 'إزالة من الهاتف',
+			'bible.removeDownloadTitle' => ({required Object version}) => 'إزالة ${version} من الهاتف؟',
+			'bible.removeDownloadText' => 'الأصحاحات التي قرأتها تبقى متاحة دون اتصال.',
+			'bible.offline' => 'هذا الأصحاح ليس على هاتفك بعد. أعد الاتصال، أو نزّل هذا الكتاب المقدس لقراءته دون اتصال.',
+			'bible.notInVersion' => 'هذا المقطع غير موجود في هذه الترجمة.',
+			'bible.marks' => 'آياتي',
+			'bible.favorites' => 'المحفوظة',
+			'bible.highlights' => 'المظللة',
+			'bible.noFavorites' => 'المس آية ثم العلامة لتجدها هنا.',
+			'bible.noHighlights' => 'المس آية ثم لونًا لتظليلها.',
+			'bible.tapHint' => 'المس آية لتظليلها أو حفظها أو نسخها أو مشاركتها.',
+			'bible.highlight' => ({required Object color}) => 'تظليل باللون ${color}',
+			'bible.colors.yellow' => 'الأصفر',
+			'bible.colors.green' => 'الأخضر',
+			'bible.colors.blue' => 'الأزرق',
+			'bible.colors.pink' => 'الوردي',
+			'bible.removeHighlight' => 'إزالة اللون',
+			'bible.addFavorite' => 'حفظ في آياتي',
+			'bible.removeFavorite' => 'إزالة من آياتي',
+			'bible.favoriteAdded' => 'حُفظت في آياتي',
+			'bible.favoriteRemoved' => 'أُزيلت من آياتي',
+			'bible.copy' => 'نسخ',
+			'bible.copied' => 'تم النسخ',
+			'bible.share' => 'مشاركة',
+			'bible.closeSelection' => 'إغلاق التحديد',
+			'bible.display' => 'العرض',
+			'bible.jesusInRed' => 'كلمات يسوع بالأحمر',
+			'bible.jesusInRedHelp' => 'في الترجمات التي تميّزها',
+			'bible.remove' => 'إزالة',
+			'bible.readInBible' => 'اقرأ في الكتاب المقدس',
+			'bible.more' => 'خيارات أخرى',
 			'profilePhoto.title' => 'صورة الملف الشخصي',
 			'profilePhoto.add' => 'إضافة صورة للملف الشخصي',
 			'profilePhoto.change' => 'تغيير صورة الملف الشخصي',

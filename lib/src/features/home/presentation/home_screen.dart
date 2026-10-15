@@ -21,6 +21,8 @@ import '../../../core/widgets/media_picture.dart';
 import '../../../core/widgets/rolling_text.dart';
 import '../../../core/widgets/section_card.dart';
 import '../../../routing/app_router.dart';
+import '../../bible/application/bible_position.dart';
+import '../../bible/domain/bible.dart';
 import '../../events/application/events_providers.dart';
 import '../../events/domain/event.dart';
 import '../../events/infrastructure/events_api.dart';
@@ -60,6 +62,14 @@ class HomeScreen extends ConsumerWidget {
         ref.read(selectedReportDayProvider.notifier).select(now);
       }
       context.navigateTo(const ReportsRoute());
+    }
+
+    // the verse of the day, in its chapter
+    Future<void> readVerse(BibleRef place) async {
+      await ref.read(bibleFocusProvider.notifier).show(place);
+      if (context.mounted) {
+        await context.navigateTo(const BibleRoute());
+      }
     }
 
     Future<void> refresh() async {
@@ -129,7 +139,7 @@ class HomeScreen extends ConsumerWidget {
                       Tooltip(
                         message: t.home.profile,
                         child: InkResponse(
-                          onTap: () => context.navigateTo(const MoreRoute()),
+                          onTap: () => context.router.push(const MoreRoute()),
                           radius: 28,
                           child: MemberAvatar(
                             initials: profile?.initials ?? '',
@@ -159,7 +169,16 @@ class HomeScreen extends ConsumerWidget {
                 ),
               ),
               const SizedBox(height: 14),
-              const FadeSlideIn(index: 3, child: VerseOfTheDayCard()),
+              FadeSlideIn(
+                index: 3,
+                child: VerseOfTheDayCard(
+                  onRead: (osis) {
+                    if (BibleRef.parse(osis) case final place?) {
+                      readVerse(place);
+                    }
+                  },
+                ),
+              ),
               const SizedBox(height: 14),
               const FadeSlideIn(index: 3, child: _HymnsCard()),
               const SizedBox(height: 20),

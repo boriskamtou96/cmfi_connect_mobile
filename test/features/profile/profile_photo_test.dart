@@ -68,11 +68,6 @@ Future<void> settleForReal(WidgetTester tester) async {
   await tester.pumpAndSettle();
 }
 
-Future<void> openMore(WidgetTester tester) async {
-  await tester.tap(find.text('Plus'));
-  await tester.pumpAndSettle();
-}
-
 void main() {
   setUpAll(initializeDateFormatting);
   setUp(() => LocaleSettings.setLocale(AppLocale.fr));
@@ -156,7 +151,8 @@ void main() {
         contains('Ta photo de profil est enregistrée.'),
       );
 
-      await tester.tap(find.text('Accueil'));
+      // back to the home screen, under Plus
+      await tester.tap(find.byTooltip('Retour'));
       await tester.pumpAndSettle();
       expect(
         find.descendant(

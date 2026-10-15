@@ -15,7 +15,7 @@ import '../../../core/widgets/adaptive_dialogs.dart';
 import '../../../core/widgets/adaptive_menus.dart';
 import '../../../core/widgets/fade_slide_in.dart';
 import '../../../core/widgets/section_card.dart';
-import '../../../core/widgets/tab_page.dart';
+import '../../../core/widgets/sub_page.dart';
 import '../../../routing/app_router.dart';
 import '../../authorities/application/authorities_controller.dart';
 import '../../disciples/application/disciples.dart';
@@ -32,7 +32,8 @@ import '../../reports/domain/report_sending.dart';
 import '../../reports/presentation/widgets/reminder_sheets.dart';
 import 'widgets/theme_sheet.dart';
 
-/// "Plus" tab: profile, the modules without a tab, settings, sign out.
+/// "Plus", opened from the photo at the top of the home screen: profile, the
+/// modules without a tab, settings, sign out.
 @RoutePage()
 class MoreScreen extends ConsumerWidget {
   const MoreScreen({super.key});
@@ -75,7 +76,7 @@ class MoreScreen extends ConsumerWidget {
       );
     }
 
-    return TabPage(
+    return SubPage(
       title: t.more.title,
       child: ListView(
         padding: const EdgeInsetsDirectional.fromSTEB(

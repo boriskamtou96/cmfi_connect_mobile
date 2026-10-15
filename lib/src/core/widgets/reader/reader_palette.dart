@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 
-import '../../../../core/theme/app_colors.dart';
-import '../../application/hymn_reader_settings.dart';
+import '../../theme/app_colors.dart';
 
-/// Colors of the reading screen, for each background the user can pick.
+/// The background of a reading screen (hymns, Bible): auto follows the app.
+enum ReaderTheme { auto, light, sepia, dark }
+
+/// Colors of a reading screen (hymns, Bible), for each background the user can
+/// pick.
 class ReaderPalette {
   const ReaderPalette({
     required this.background,
@@ -14,14 +17,24 @@ class ReaderPalette {
     required this.brightness,
   });
 
-  /// [HymnReaderTheme.auto] follows the app (light or dark).
-  factory ReaderPalette.of(HymnReaderTheme theme, Brightness appBrightness) =>
+  /// [ReaderTheme.auto] follows the app (light or dark).
+  factory ReaderPalette.of(ReaderTheme theme, Brightness appBrightness) =>
       switch (theme) {
-        HymnReaderTheme.light => light,
-        HymnReaderTheme.sepia => sepia,
-        HymnReaderTheme.dark => dark,
-        HymnReaderTheme.auto => appBrightness == Brightness.dark ? dark : light,
+        ReaderTheme.light => light,
+        ReaderTheme.sepia => sepia,
+        ReaderTheme.dark => dark,
+        ReaderTheme.auto => appBrightness == Brightness.dark ? dark : light,
       };
+
+  /// The same background with another accent (the Bible's blue).
+  ReaderPalette withAccent(Color light, Color dark) => ReaderPalette(
+    background: background,
+    text: text,
+    muted: muted,
+    accent: brightness == Brightness.dark ? dark : light,
+    chorusBar: chorusBar,
+    brightness: brightness,
+  );
 
   static const light = ReaderPalette(
     background: Colors.white,

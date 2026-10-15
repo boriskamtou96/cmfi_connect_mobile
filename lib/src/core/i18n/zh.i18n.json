@@ -177,7 +177,7 @@
     "reports": "汇报",
     "hymns": "诗歌",
     "prayer": "祷告",
-    "more": "更多"
+    "bible": "圣经"
   },
   "home": {
     "greeting": "你好，{name}",
@@ -1384,6 +1384,76 @@
     "share": "分享经文",
     "shareImage": "分享图片",
     "shareText": "分享文字"
+  },
+  "bible": {
+    "title": "圣经",
+    "books": "书卷",
+    "oldTestament": "旧约",
+    "newTestament": "新约",
+    "chapters(plural, param=n)": {
+      "other": "{n} 章"
+    },
+    "chapter": "第 {n} 章",
+    "version": "译本",
+    "versions": "圣经译本",
+    "search": "搜索圣经",
+    "searchHint": "一个词，或“约翰福音 3:16”",
+    "searchTip": "搜索一个词（“爱”），或直接前往经文（“诗篇 23”、“约翰福音 3:16”）。",
+    "searchNone": "没有经文包含这些词。",
+    "searchCount(plural, param=n)": {
+      "other": "{n} 节经文"
+    },
+    "searchLimit": "前 {n} 节经文",
+    "searchNeedsDownload": "下载这本圣经后，即可在全书中搜索词语。现在已经可以输入经文：“约翰福音 3:16”。",
+    "open": "打开 {reference}",
+    "previous": "上一章",
+    "next": "下一章",
+    "markRead": "我读完了这一章",
+    "markedRead": "今天已读",
+    "markReadHint": "在你的汇报中为“读经”加 1 章。",
+    "addedToReport(plural, param=n)": {
+      "other": "汇报：今天已读 {n} 章"
+    },
+    "removedFromReport": "已从汇报中移除",
+    "noReadingItem": "你的汇报中没有“读经”这一项。",
+    "download": "下载这本圣经",
+    "downloadHelp": "约 {size} MB，无网络时也能阅读和搜索。",
+    "downloading": "正在下载… {percent}%",
+    "downloaded": "已在手机上",
+    "downloadDone": "{version} 已在你的手机上",
+    "removeDownload": "从手机移除",
+    "removeDownloadTitle": "从手机移除 {version}？",
+    "removeDownloadText": "你已读过的章节仍可离线阅读。",
+    "offline": "这一章还不在你的手机上。请重新联网，或下载这本圣经以便离线阅读。",
+    "notInVersion": "这个译本中没有这段经文。",
+    "marks": "我的经文",
+    "favorites": "收藏",
+    "highlights": "标记",
+    "noFavorites": "点一节经文，再点书签，就能在这里找到它。",
+    "noHighlights": "点一节经文，再选一种颜色来标记它。",
+    "tapHint": "点一节经文，即可标记、收藏、复制或分享。",
+    "highlight": "用{color}标记",
+    "colors": {
+      "yellow": "黄色",
+      "green": "绿色",
+      "blue": "蓝色",
+      "pink": "粉色"
+    },
+    "removeHighlight": "移除颜色",
+    "addFavorite": "收藏到我的经文",
+    "removeFavorite": "从我的经文中移除",
+    "favoriteAdded": "已收藏到我的经文",
+    "favoriteRemoved": "已从我的经文中移除",
+    "copy": "复制",
+    "copied": "已复制",
+    "share": "分享",
+    "closeSelection": "关闭选择",
+    "display": "显示",
+    "jesusInRed": "耶稣的话用红色显示",
+    "jesusInRedHelp": "适用于标注了耶稣话语的译本",
+    "remove": "移除",
+    "readInBible": "在圣经中阅读",
+    "more": "更多选项"
   },
   "profilePhoto": {
     "title": "头像",

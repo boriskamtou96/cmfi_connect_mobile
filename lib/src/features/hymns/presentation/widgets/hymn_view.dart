@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart' show SelectedContent;
 
 import '../../../../core/i18n/strings.g.dart';
 import '../../../../core/theme/app_spacing.dart';
 import '../../../../core/theme/app_theme.dart';
+import '../../../../core/widgets/reader/joined_selection.dart';
+import '../../../../core/widgets/reader/reader_palette.dart';
 import '../../application/hymn_reader_settings.dart';
 import '../../domain/hymn.dart';
 import '../../domain/hymn_text.dart';
-import 'reader_palette.dart';
 
 /// Size of the lyrics at scale 1.
 const hymnBaseFontSize = 19.0;
@@ -67,7 +67,7 @@ class HymnView extends StatelessWidget {
               ),
             ),
           // a blank line between the title and each part, once copied
-          _JoinedSelection(
+          JoinedSelection(
             separator: '\n\n',
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -151,7 +151,7 @@ class _PartView extends StatelessWidget {
     );
     // one paragraph per line, a little apart: a long line that wraps stays tight,
     // so it can't be taken for the next line of the song
-    final lines = _JoinedSelection(
+    final lines = JoinedSelection(
       separator: '\n',
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -230,48 +230,5 @@ class _PartView extends StatelessWidget {
         ],
       ),
     );
-  }
-}
-
-/// Puts [separator] between the selected texts of its children: Flutter glues them
-/// together, so copied lines would run into each other.
-class _JoinedSelection extends StatefulWidget {
-  const _JoinedSelection({required this.separator, required this.child});
-
-  final String separator;
-  final Widget child;
-
-  @override
-  State<_JoinedSelection> createState() => _JoinedSelectionState();
-}
-
-class _JoinedSelectionState extends State<_JoinedSelection> {
-  late final _delegate = _JoinedDelegate(widget.separator);
-
-  @override
-  void dispose() {
-    _delegate.dispose();
-    super.dispose();
-  }
-
-  @override
-  Widget build(BuildContext context) =>
-      SelectionContainer(delegate: _delegate, child: widget.child);
-}
-
-class _JoinedDelegate extends StaticSelectionContainerDelegate {
-  _JoinedDelegate(this.separator);
-
-  final String separator;
-
-  @override
-  SelectedContent? getSelectedContent() {
-    final texts = [
-      for (final selectable in selectables)
-        ?selectable.getSelectedContent()?.plainText,
-    ].where((text) => text.isNotEmpty);
-    return texts.isEmpty
-        ? null
-        : SelectedContent(plainText: texts.join(separator));
   }
 }

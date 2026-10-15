@@ -2,11 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../../core/i18n/strings.g.dart';
-import '../../../../core/theme/app_motion.dart';
 import '../../../../core/theme/app_spacing.dart';
 import '../../../../core/theme/app_theme.dart';
+import '../../../../core/widgets/reader/reader_choices.dart';
 import '../../application/hymn_reader_settings.dart';
-import 'reader_palette.dart';
 
 /// "Aa": text size, font, background and reading options. Changes show live behind the sheet.
 Future<void> showReaderSettings(BuildContext context) =>
@@ -107,7 +106,7 @@ class _ReaderSettingsSheet extends ConsumerWidget {
                 if (typeface != HymnTypeface.auto)
                   const SizedBox(width: AppSpacing.sm),
                 Expanded(
-                  child: _Choice(
+                  child: ReaderChoice(
                     selected: settings.typeface == typeface,
                     onTap: () => controller.update(
                       (s) => s.copyWith(typeface: typeface),
@@ -179,12 +178,12 @@ class _ReaderSettingsSheet extends ConsumerWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               for (final (theme, name) in [
-                (HymnReaderTheme.auto, t.hymns.reader.themeAuto),
-                (HymnReaderTheme.light, t.hymns.reader.themeLight),
-                (HymnReaderTheme.sepia, t.hymns.reader.themeSepia),
-                (HymnReaderTheme.dark, t.hymns.reader.themeDark),
+                (ReaderTheme.auto, t.hymns.reader.themeAuto),
+                (ReaderTheme.light, t.hymns.reader.themeLight),
+                (ReaderTheme.sepia, t.hymns.reader.themeSepia),
+                (ReaderTheme.dark, t.hymns.reader.themeDark),
               ])
-                _Swatch(
+                ReaderThemeSwatch(
                   theme: theme,
                   name: name,
                   selected: settings.theme == theme,
@@ -215,136 +214,6 @@ class _ReaderSettingsSheet extends ConsumerWidget {
                 controller.update((s) => s.copyWith(keepScreenOn: value)),
           ),
         ],
-      ),
-    );
-  }
-}
-
-class _Choice extends StatelessWidget {
-  const _Choice({
-    required this.selected,
-    required this.onTap,
-    required this.child,
-  });
-
-  final bool selected;
-  final VoidCallback onTap;
-  final Widget child;
-
-  @override
-  Widget build(BuildContext context) {
-    final scheme = Theme.of(context).colorScheme;
-    return Semantics(
-      selected: selected,
-      button: true,
-      child: AnimatedContainer(
-        duration: AppMotion.of(context, AppMotion.fast),
-        decoration: BoxDecoration(
-          color: selected ? scheme.primaryContainer : scheme.surface,
-          borderRadius: BorderRadius.circular(AppRadius.md),
-          border: Border.all(
-            color: selected ? scheme.primary : scheme.outline,
-            width: selected ? 2 : 1.5,
-          ),
-        ),
-        child: Material(
-          type: MaterialType.transparency,
-          child: InkWell(
-            borderRadius: BorderRadius.circular(AppRadius.md),
-            onTap: onTap,
-            child: Padding(
-              padding: const EdgeInsets.symmetric(vertical: 10),
-              child: Center(child: child),
-            ),
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-class _Swatch extends StatelessWidget {
-  const _Swatch({
-    required this.theme,
-    required this.name,
-    required this.selected,
-    required this.onTap,
-  });
-
-  final HymnReaderTheme theme;
-  final String name;
-  final bool selected;
-  final VoidCallback onTap;
-
-  @override
-  Widget build(BuildContext context) {
-    final scheme = Theme.of(context).colorScheme;
-    final palette = ReaderPalette.of(theme, Brightness.light);
-    return Semantics(
-      selected: selected,
-      button: true,
-      label: name,
-      excludeSemantics: true,
-      child: InkResponse(
-        onTap: onTap,
-        radius: 32,
-        child: Column(
-          children: [
-            AnimatedContainer(
-              duration: AppMotion.of(context, AppMotion.fast),
-              width: 52,
-              height: 52,
-              padding: const EdgeInsets.all(3),
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                border: Border.all(
-                  color: selected ? scheme.primary : Colors.transparent,
-                  width: 2.5,
-                ),
-              ),
-              child: DecoratedBox(
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  border: Border.all(color: scheme.outlineVariant),
-                  color: theme == HymnReaderTheme.auto
-                      ? null
-                      : palette.background,
-                  // auto: half light, half dark
-                  gradient: theme == HymnReaderTheme.auto
-                      ? const LinearGradient(
-                          colors: [
-                            Colors.white,
-                            Colors.white,
-                            Color(0xFF14130F),
-                            Color(0xFF14130F),
-                          ],
-                          stops: [0, 0.5, 0.5, 1],
-                          begin: Alignment.topLeft,
-                          end: Alignment.bottomRight,
-                        )
-                      : null,
-                ),
-                child: Center(
-                  child: theme == HymnReaderTheme.auto
-                      ? null
-                      : Text(
-                          'Aa',
-                          style: TextStyle(
-                            fontFamily: 'Lora',
-                            fontSize: 15,
-                            color: palette.text,
-                          ),
-                        ),
-                ),
-              ),
-            ),
-            const SizedBox(height: 4),
-            Text(
-              name,
-              style: TextStyle(fontSize: 12.5, color: scheme.onSurfaceVariant),
-            ),
-          ],
-        ),
       ),
     );
   }

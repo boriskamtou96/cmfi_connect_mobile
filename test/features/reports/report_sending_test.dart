@@ -110,7 +110,7 @@ void main() {
       token: 't',
       authoritiesApi: FakeAuthoritiesApi([paul]),
     );
-    await tester.tap(find.text('Plus'));
+    await openMore(tester);
     await tester.pumpAndSettle();
     await reach(tester, 'Envoi à mes autorités');
     expect(
@@ -203,7 +203,7 @@ void main() {
         'report_sending': '{"enabled":true,"authorities":[7]}',
       },
     );
-    await tester.tap(find.text('Plus'));
+    await openMore(tester);
     await tester.pumpAndSettle();
     await scrollToEnd(tester);
     await tester.tap(find.text('Se déconnecter'));

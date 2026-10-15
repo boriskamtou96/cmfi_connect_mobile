@@ -4,11 +4,12 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../../../core/storage/preferences.dart';
+import '../../../core/widgets/reader/reader_palette.dart';
+
+export '../../../core/widgets/reader/reader_palette.dart' show ReaderTheme;
 
 part 'hymn_reader_settings.freezed.dart';
 part 'hymn_reader_settings.g.dart';
-
-enum HymnReaderTheme { auto, light, sepia, dark }
 
 /// auto: the modern font for normal sizes, the serif one when the text gets big.
 enum HymnTypeface { auto, sans, serif }
@@ -20,7 +21,7 @@ abstract class HymnReaderSettings with _$HymnReaderSettings {
     /// 1 = normal size. From [minScale] to [maxScale].
     @Default(1.0) double textScale,
     @Default(HymnTypeface.auto) HymnTypeface typeface,
-    @Default(HymnReaderTheme.auto) HymnReaderTheme theme,
+    @Default(ReaderTheme.auto) ReaderTheme theme,
 
     /// Show the chorus again after each verse.
     @Default(false) bool repeatChorus,

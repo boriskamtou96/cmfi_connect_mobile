@@ -1,5 +1,4 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:flutter/gestures.dart' show Drag;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
@@ -18,6 +17,9 @@ import '../../../core/theme/app_theme.dart';
 import '../../../core/widgets/adaptive_menus.dart';
 import '../../../core/widgets/app_back_button.dart';
 import '../../../core/widgets/app_toast.dart';
+import '../../../core/widgets/reader/page_swipe.dart';
+import '../../../core/widgets/reader/pinch_to_scale.dart';
+import '../../../core/widgets/reader/reader_palette.dart';
 import '../../../core/widgets/skeleton.dart';
 import '../../../routing/app_router.dart';
 import '../application/hymn_collections.dart';
@@ -26,8 +28,6 @@ import '../application/hymn_reader_settings.dart';
 import '../domain/hymn.dart';
 import '../domain/hymn_text.dart';
 import 'widgets/hymn_view.dart';
-import 'widgets/pinch_to_scale.dart';
-import 'widgets/reader_palette.dart';
 import 'widgets/reader_settings_sheet.dart';
 
 /// Reads a hymn. Swipe to the previous or next one, pinch or A−/A+ to resize the text,
@@ -307,7 +307,7 @@ class HymnReaderScreen extends HookConsumerWidget {
                         key: ValueKey(
                           '${book.code}-${book.hymns[index].number}',
                         ),
-                        child: _PageSwipe(
+                        child: PageSwipe(
                           controller: pageController,
                           enabled: !pinching.value,
                           child: HymnView(
@@ -331,43 +331,6 @@ class HymnReaderScreen extends HookConsumerWidget {
 }
 
 enum _MenuAction { project, share, copy }
-
-/// Swipes to the previous or next hymn. On Android the text selection takes every
-/// horizontal drag that starts on the words, so the drag is caught here first and
-/// handed to the pages.
-class _PageSwipe extends StatefulWidget {
-  const _PageSwipe({
-    required this.controller,
-    required this.enabled,
-    required this.child,
-  });
-
-  final PageController controller;
-  final bool enabled;
-  final Widget child;
-
-  @override
-  State<_PageSwipe> createState() => _PageSwipeState();
-}
-
-class _PageSwipeState extends State<_PageSwipe> {
-  Drag? _drag;
-
-  @override
-  Widget build(BuildContext context) {
-    if (!widget.enabled) {
-      return widget.child;
-    }
-    return GestureDetector(
-      onHorizontalDragStart: (details) =>
-          _drag = widget.controller.position.drag(details, () => _drag = null),
-      onHorizontalDragUpdate: (details) => _drag?.update(details),
-      onHorizontalDragEnd: (details) => _drag?.end(details),
-      onHorizontalDragCancel: () => _drag?.cancel(),
-      child: widget.child,
-    );
-  }
-}
 
 /// "A−" / "A+": the text size buttons of the reading bar.
 class _TextButton extends StatelessWidget {

@@ -17,8 +17,11 @@ import '../application/verse_of_the_day.dart';
 import '../domain/verse.dart';
 
 /// Today's verse on the home screen; the share button makes a card of it.
+/// A tap reads it in the Bible ([onRead], with its key: "JHN.3.16").
 class VerseOfTheDayCard extends ConsumerWidget {
-  const VerseOfTheDayCard({super.key});
+  const VerseOfTheDayCard({this.onRead, super.key});
+
+  final ValueChanged<String>? onRead;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -28,6 +31,8 @@ class VerseOfTheDayCard extends ConsumerWidget {
     }
     final t = context.t.verses;
     final scheme = Theme.of(context).colorScheme;
+    final osis = verse.osis;
+    final read = onRead == null || osis == null ? null : () => onRead!(osis);
 
     return Material(
       color: scheme.surface,
@@ -55,6 +60,12 @@ class VerseOfTheDayCard extends ConsumerWidget {
                     ),
                   ),
                 ),
+                if (read != null)
+                  IconButton(
+                    tooltip: context.t.bible.readInBible,
+                    icon: const Icon(AppIcons.bible, size: 20),
+                    onPressed: read,
+                  ),
                 IconButton(
                   tooltip: t.share,
                   icon: const Icon(AppIcons.share, size: 20),
@@ -62,37 +73,45 @@ class VerseOfTheDayCard extends ConsumerWidget {
                 ),
               ],
             ),
-            Padding(
-              padding: const EdgeInsetsDirectional.only(end: 12),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    verse.text,
-                    style: const TextStyle(
-                      fontFamily: 'Lora',
-                      fontStyle: FontStyle.italic,
-                      fontSize: 17,
-                      height: 1.45,
-                    ),
+            Semantics(
+              button: read != null,
+              hint: read == null ? null : context.t.bible.readInBible,
+              child: InkWell(
+                onTap: read,
+                borderRadius: BorderRadius.circular(AppRadius.md),
+                child: Padding(
+                  padding: const EdgeInsetsDirectional.only(end: 12),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        verse.text,
+                        style: const TextStyle(
+                          fontFamily: 'Lora',
+                          fontStyle: FontStyle.italic,
+                          fontSize: 17,
+                          height: 1.45,
+                        ),
+                      ),
+                      const SizedBox(height: AppSpacing.sm),
+                      Text(
+                        verse.reference,
+                        style: const TextStyle(
+                          fontSize: 14,
+                          fontWeight: FontWeight.w700,
+                        ),
+                      ),
+                      const SizedBox(height: 2),
+                      Text(
+                        verse.source,
+                        style: TextStyle(
+                          fontSize: 11,
+                          color: scheme.onSurfaceVariant,
+                        ),
+                      ),
+                    ],
                   ),
-                  const SizedBox(height: AppSpacing.sm),
-                  Text(
-                    verse.reference,
-                    style: const TextStyle(
-                      fontSize: 14,
-                      fontWeight: FontWeight.w700,
-                    ),
-                  ),
-                  const SizedBox(height: 2),
-                  Text(
-                    verse.source,
-                    style: TextStyle(
-                      fontSize: 11,
-                      color: scheme.onSurfaceVariant,
-                    ),
-                  ),
-                ],
+                ),
               ),
             ),
           ],

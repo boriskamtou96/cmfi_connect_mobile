@@ -43,7 +43,7 @@ lib/
 ```
 
 Features actuelles : `onboarding` (splash, présentation, bienvenue), `auth` (connexion, inscription), `profile` (église, profil),
-`shell` (les 5 onglets), `home`, `reports` (compte rendu, éléments), `authorities` (autorités spirituelles), `hymns` (cantiques), `events` (évènements de la communauté), `prayer` (retraites, sujets, listes, importunité), `notifications` (annonces des admins), `premium` (abonnement), `ministry` (notre ministère : sous-menus, globe des nations, notre but), `more`, `members` (pseudo, compte), `admin`.
+`shell` (les 5 onglets : Accueil, Compte rendu, Cantiques, Prière, Bible), `home`, `reports` (compte rendu, éléments), `authorities` (autorités spirituelles), `hymns` (cantiques), `bible` (la Bible, API publique), `events` (évènements de la communauté), `prayer` (retraites, sujets, listes, importunité), `notifications` (annonces des admins), `premium` (abonnement), `ministry` (notre ministère : sous-menus, globe des nations, notre but), `more`, `members` (pseudo, compte), `admin`.
 
 Règles de dépendance :
 - `core` n'importe jamais une feature ni `routing`.
@@ -65,7 +65,7 @@ Règles de dépendance :
 
 ## Réseau
 
-- Un seul client : `dioProvider`. Ne jamais créer de `Dio`.
+- Un seul client : `dioProvider`. Ne jamais créer de `Dio`. Il sert aussi aux API publiques (la Bible) : `AuthInterceptor` n'ajoute le jeton qu'aux requêtes vers l'hôte de notre API (`apiBaseUrl`), et le journal des requêtes ne montre que les nôtres.
 - Une classe API par feature (`infrastructure/<feature>_api.dart`). Chaque appel est enveloppé dans `apiCall(...)` et renvoie un modèle typé, jamais `dynamic` ni `Map`.
 - Le backend enveloppe les succès dans `{"status", "content"}` : lire `response.content`. Les erreurs arrivent sous la forme `{"status", "code", "message"}`.
 - Les erreurs remontent en `AppException` (`NetworkException`, `UnauthorizedException`, `ApiException(code)`, `UnknownException`). L'UI affiche `userMessageFor(error, t)`, jamais le `message` du serveur (en anglais).
@@ -82,7 +82,7 @@ Règles de dépendance :
 - Mot de passe oublié (lien sous le mot de passe de la connexion) : `ForgotPasswordScreen` (`/forgot-password`), en trois étapes. Le numéro, puis le code reçu par SMS : `phoneVerificationProvider` (`core/services/phone_verification.dart`, Firebase Authentication par téléphone, paquet firebase_auth) donne un jeton Firebase. Enfin le nouveau mot de passe : `POST /v1/users/password/reset` (le serveur vérifie le jeton avec la clé Firebase du backend), puis la connexion. La session Firebase ne sert qu'à ça (`forget()` ensuite). Renvoi du SMS après 30 s (`resendDelay`). À activer dans la console Firebase (dev et prod) : la connexion « Téléphone », les empreintes SHA-1/SHA-256 de l'app Android, la clé APNs ; des numéros de test (code fixe) évitent des SMS payants en dev. iOS : le schéma d'URL `$(FIREBASE_URL_SCHEME)` (Info.plist, réglé par configuration dans le projet Xcode) sert au retour du contrôle reCAPTCHA. Dans les tests : `FakePhoneVerification(code:, sendError:)`, `FakeAuthApi.resets`.
 - Déconnexion et 401 : on change seulement `sessionProvider` ; `App` écoute la session et renvoie vers `WelcomeRoute`. Ne pas naviguer à la main dans ces cas.
 - Les routes qui demandent un compte ont `guards: [authGuard]` (filet de sécurité : sans session, retour à l'accueil).
-- Les onglets (`AppShellScreen`) sont un `AutoTabsRouter` ; depuis un onglet, `context.navigateTo(const ReportsRoute())` change d'onglet.
+- Les onglets (`AppShellScreen`) sont un `AutoTabsRouter` ; depuis un onglet, `context.navigateTo(const ReportsRoute())` change d'onglet. Plus n'est pas un onglet : `MoreRoute` (`/more`, une `SubPage`) s'ouvre par `context.router.push` depuis la photo en haut de l'accueil. Une notification, un raccourci ou un lien qui mène à un onglet passe par `SignedInTasks.showTab` : il ferme d'abord les pages ouvertes au-dessus des onglets (Plus, un cantique).
 - Le token reste dans `TokenStorage` (secure storage), jamais dans shared_preferences ni dans les logs. shared_preferences ne sert qu'aux petits réglages (`core/storage/preferences.dart`).
 
 ## Textes et langues (slang)
@@ -146,6 +146,17 @@ Règles de dépendance :
 - Le mode projection affiche une strophe à la fois, à la plus grande taille qui tient. Le refrain y revient toujours après chaque couplet.
 - Les paroles se sélectionnent (appui long, puis les poignées) pour copier ou partager un passage : une `SelectionArea` par page du lecteur. `HymnView` regroupe le texte (`_JoinedSelection`) pour qu'il se copie avec un retour à la ligne entre les vers et une ligne vide entre les strophes, sans les numéros ni « Refrain » (Flutter colle sinon les textes bout à bout). Sur Android, la sélection prend tout glissement horizontal commencé sur les mots : `_PageSwipe` (lecteur) le capte avant elle et le passe aux pages, pour garder le balayage d'un cantique à l'autre.
 
+## Bible
+
+- Onglet Bible (`features/bible`, couleur `AppModule.bible`, bordeaux). Texte de la Free Use Bible API (`https://bible.helloao.org/api`, sans clé, même JSON pour toutes les versions) : `BibleApi` (`books`, `chapter`, `complete`), par `dioProvider` (sans notre jeton).
+- Versions (`domain/bible_version.dart`, `bibleVersions`) : celle de la langue de l'app vient d'abord et sert par défaut (la même Bible que le verset du jour) : fr Louis Segond 1910 (`fra_lsg`), Darby, Ostervald ; en World English Bible (`ENGWEBP`), BSB, KJV ; de Luther 1912, Elberfelder 1905 ; es Reina-Valera 1909 ; ar Van Dyck (`rtl`) ; zh 和合本 (simplifié et traditionnel) ; hi Indian Revised Version (CC BY-SA 4.0 : `attribution` affichée sous le chapitre et à côté du téléchargement). Les autres sont du domaine public. `megabytes` : la place une fois téléchargée.
+- Hors ligne (`application/bible_library.dart`, `BibleStorage` dans le dossier de support `bible/<version>/`) : un chapitre lu est gardé (`JHN.3.json`), la liste des livres aussi ; « Télécharger cette Bible » (`BibleDownload`, menu ⋮ ou liste des versions) garde `complete.json` (5 à 13 Mo) : tout se lit et se cherche sans réseau. `bibleTextProvider` lit le fichier entier dans un isolate (`compute`) au-delà de 200 000 caractères et prépare l'index de recherche (`BibleText.searchIndex`).
+- Le lecteur (`BibleScreen`) : en haut « Jean 3 ▾ | LSG » (liste des livres puis grille des chapitres, `showBibleBooks` ; liste des versions, `showBibleVersions`), loupe, « Aa » (`BibleSettings`, clé `bible_reader` : taille, police Lora ou Onest, fond `ReaderTheme`, paroles de Jésus en rouge, écran allumé), ⋮ (Mes versets, Télécharger). Un `PageView` de tous les chapitres de la Bible : glisser change de chapitre ; pincer change la taille. La position est gardée (`BiblePosition`, clé `bible_position`, Jean 1 la première fois).
+- `ChapterView` : un bloc par verset (numéro, texte, surlignage en fond, marque-page) ; les morceaux de l'API sont recollés avec une espace (sauf en chinois) et un poème garde ses lignes (`_tidy`). Toucher des versets les sélectionne : la barre `VerseActions` surligne (4 couleurs), garde, copie, partage (texte, « Jean 3:16-17 (LSG) », puis le lien). Les marques (`BibleMarks`, clé `bible_marks`) sont rangées par clé USFM (« JHN.3.16 ») : elles suivent d'une version à l'autre ; « Mes versets » (`/bible/marks`) les liste (Favoris, Surlignés).
+- « J'ai lu ce chapitre » (sous le dernier verset) ajoute 1 à l'élément `LB` (Lecture biblique, en chapitres) du compte rendu du jour (`BibleReading`, comme `RetreatReport`) ; touché de nouveau, il le retire. Les chapitres comptés aujourd'hui sont gardés (clé `bible_read_today`).
+- Recherche (`/bible/search`) : un passage écrit comme on l'écrit (« Jean 3:16 », « 1 Jean 1.9 », « Psaume 23 », début du nom, sans accents : `parseBibleReference`) s'ouvre toujours ; des mots ne se cherchent que dans une Bible téléchargée (tous les mots, accents et casse ignorés, 200 versets au plus).
+- Ouvrir un verset depuis ailleurs (recherche, Mes versets, verset du jour, lien) : `BibleFocus.show(ref)` puis l'onglet ; le chapitre s'ouvre et le verset s'éclaire un moment.
+
 ## Compte rendu : hors ligne, objectifs, rappel, export
 
 - Hors ligne : `ReportsLocalStore` (shared_preferences) garde les éléments, les 31 derniers jours ouverts et les journées enregistrées sans réseau. Sans réseau, `DayReportController` montre la copie du téléphone (ou un formulaire vide) et `save()` répond `SaveOutcome.keptOffline` : la journée attend dans `PendingReports`, qui l'envoie au retour du réseau (`networkStatusProvider`, connectivity_plus), au retour dans l'app et après un enregistrement réussi. Une `ApiException` (refus définitif) retire la journée de la file. `reportHistory` y ajoute les journées en attente et réutilise la dernière réponse du serveur sans réseau (`lastHistoryProvider`). À la déconnexion, `App` vide tout ça et annule les rappels.
@@ -186,15 +197,15 @@ Règles de dépendance :
 ## Widget « Verset du jour »
 
 - Gratuit, connecté ou non : `verseWidgetProvider` (14 jours de versets dans la langue de l'app) est écouté par `App` et passé à `HomeWidgets.showVerses` (clés `verse_days` en JSON, `verse_source`, `verse_title`, `verse_rtl`).
-- iOS : `VerseWidget.swift` dans l'extension TodayWidget (le `@main` est le `WidgetBundle` `CMFIWidgets`), une entrée par jour à minuit. Android : `VerseWidgetProvider.kt`, `layout/verse_widget.xml`, couleurs claires et sombres (`values(-night)/verse_widget_colors.xml`), mise à jour programmée à minuit. Un toucher ouvre l'accueil (`cmficonnect://verse`).
+- iOS : `VerseWidget.swift` dans l'extension TodayWidget (le `@main` est le `WidgetBundle` `CMFIWidgets`), une entrée par jour à minuit. Android : `VerseWidgetProvider.kt`, `layout/verse_widget.xml`, couleurs claires et sombres (`values(-night)/verse_widget_colors.xml`), mise à jour programmée à minuit. Un toucher (`cmficonnect://verse`) ouvre le verset du jour dans l'onglet Bible (l'accueil si le verset n'a pas de clé).
 
 ## Liens vers l'app (deep links)
 
-- Format unique : `https://cmfi-connect.com/open?to=<chemin>` (Universal Links iOS, App Links Android ; sans l'app, la page `/open` du site propose les stores) ou `cmficonnect://open?to=<chemin>`. Chemins : `events/<id>`, `hymns/<livre>/<n>`, `prayer/topics/<id>`, `prayer/importunities/<id>`, `prayer/retreat` (la retraite du moment, ou l'onglet Prière quand les 4 sont faites).
+- Format unique : `https://cmfi-connect.com/open?to=<chemin>` (Universal Links iOS, App Links Android ; sans l'app, la page `/open` du site propose les stores) ou `cmficonnect://open?to=<chemin>`. Chemins : `events/<id>`, `hymns/<livre>/<n>`, `prayer/topics/<id>`, `prayer/importunities/<id>`, `prayer/retreat` (la retraite du moment, ou l'onglet Prière quand les 4 sont faites), `bible/<livre>.<chapitre>[.<verset>]` (`bible/JHN.3.16`, codes USFM : la Bible s'ouvre sur ce chapitre, le verset éclairé).
 - `core/services/deep_links.dart` : `AppLink` (sealed, `parse(Uri)`, `uri`, `under(texte)` pour un partage), `incomingLinksProvider` (paquet app_links : `uriLinkStream` donne aussi le lien du lancement, ne pas appeler `getInitialLink` en plus), `pendingDeepLinkProvider` démarré par `App` : un lien reçu déconnecté attend la connexion. `SignedInTasks.openLink` l'ouvre puis le vide. Nommer `AppLink`, pas `DeepLink` (déjà pris par auto_route).
 - Les liens du widget (`cmficonnect://today`, `premium`) ne sont pas des `AppLink` : `parse` rend null, home_widget les traite.
 - Natif : intent-filters sur `MainActivity` (https `cmfi-connect.com` `/open` avec `autoVerify`, et `cmficonnect://open`), `applinks:cmfi-connect.com` dans `Runner.entitlements`, schéma `cmficonnect` dans `Info.plist`. Le site sert `/.well-known/apple-app-site-association` (les deux App IDs) et `/.well-known/assetlinks.json` (clé debug pour `.dev` ; la clé Play App Signing à mettre dans `playSigningSha256` du site).
-- Les partages d'un évènement, d'un cantique et d'un sujet de prière ajoutent le lien en dernière ligne.
+- Les partages d'un évènement, d'un cantique, d'un sujet de prière et de versets de la Bible ajoutent le lien en dernière ligne.
 - Tests : `FakeIncomingLinks(launchedWith:)` et `app.incomingLinks.add(...)`.
 
 ## Indicatif et pays
@@ -237,7 +248,7 @@ Règles de dépendance :
 
 ## Verset du jour
 
-- Une carte sur l'accueil (`VerseOfTheDayCard`, `features/verses`) : le même verset pour tous le même jour (clé `MM-jj`, 29 février compris), dans la langue de l'app, avec sa référence et la Bible d'où il vient ; « Partager » en image (carte bleu nuit, `pngOf`) ou en texte. Données : `assets/verses/verses_<langue>.json`, 366 versets choisis dans des Bibles libres (Segond 1910, World English Bible, Reina-Valera 1909, Luther 1912, Union chinoise, Van Dyck ; hindi : Indian Revised Version, CC BY-SA 4.0, attribution affichée). La numérotation française (Psaumes) suit Segond. Le fichier est décodé sur place (`rootBundle.load`), pas avec `loadString` qui passe par un isolate au-delà de 50 Ko.
+- Une carte sur l'accueil (`VerseOfTheDayCard`, `features/verses`) : le même verset pour tous le même jour (clé `MM-jj`, 29 février compris), dans la langue de l'app, avec sa référence et la Bible d'où il vient ; « Partager » en image (carte bleu nuit, `pngOf`) ou en texte. Données : `assets/verses/verses_<langue>.json`, 366 versets choisis dans des Bibles libres (Segond 1910, World English Bible, Reina-Valera 1909, Luther 1912, Union chinoise, Van Dyck ; hindi : Indian Revised Version, CC BY-SA 4.0, attribution affichée). La numérotation française (Psaumes) suit Segond. Chaque jour a aussi sa clé `osis` (« 2CO.5.17 », la même dans toutes les langues) : l'icône Bible de la carte, et le widget, ouvrent le verset dans l'onglet Bible. Le fichier est décodé sur place (`rootBundle.load`), pas avec `loadString` qui passe par un isolate au-delà de 50 Ko.
 
 ## Notre ministère
 
@@ -257,7 +268,7 @@ Règles de dépendance :
 - Chaque membre a un pseudo unique (`Account.username`) : 3 à 30 caractères, a-z, 0-9, « . » et « _ » (`UsernameRules`, mêmes règles que `internal/usernames` côté serveur). À l'inscription, `UsernameField` propose des pseudos libres tirés du nom (`GET /v1/usernames/availability`), se remplit avec le premier tant que l'utilisateur n'en tape pas un, et vérifie la disponibilité 400 ms après la frappe. Modifiable dans « Modifier mon profil » (`PUT /v1/users/me/username`).
 - `myAccountProvider` (`GET /v1/users/me`) donne le pseudo et le rôle à jour : `user`, `admin` ou `superadmin` (`Account.isAdmin`, `isSuperadmin`). Les admins voient Plus › Administration › Équipe et rôles ; seul un superadmin donne un rôle (`AdminApi.setRole`). Le premier superadmin se nomme côté serveur : `make promote PHONE=+237…`.
 - Une autorité s'ajoute par pseudo (`GET /v1/users/by-username/:username` : nom, église, assemblée, jamais téléphone ni e-mail) : elle est « En attente » jusqu'à ce que la personne accepte dans Mes autorités › Demandes reçues ; ses coordonnées arrivent alors. Pseudo introuvable : invitation à partager. Sinon, saisie à la main comme avant.
-- Suppression du compte (exigée par l'App Store et Google Play) : Plus › « Supprimer mon compte », sous « Se déconnecter » (`DeleteAccountScreen`, route `/account/delete`). Le membre redonne son mot de passe ; `MyAccount.deleteAccount` appelle `DELETE /v1/users/me` puis déconnecte, et `App` revient à l'accueil en vidant les données du téléphone. Mauvais mot de passe : 401 `INVALID_CREDENTIALS`, message sous le champ (l'écran défile jusqu'à lui). Le dernier superadmin est refusé : 409 `LAST_SUPERADMIN`. Le site (page « Supprimer un compte ») et la FAQ décrivent ce chemin : les garder d'accord si l'entrée bouge.
+- Suppression du compte (exigée par l'App Store et Google Play) : Plus (la photo en haut de l'accueil) › « Supprimer mon compte », sous « Se déconnecter » (`DeleteAccountScreen`, route `/account/delete`). Le membre redonne son mot de passe ; `MyAccount.deleteAccount` appelle `DELETE /v1/users/me` puis déconnecte, et `App` revient à l'accueil en vidant les données du téléphone. Mauvais mot de passe : 401 `INVALID_CREDENTIALS`, message sous le champ (l'écran défile jusqu'à lui). Le dernier superadmin est refusé : 409 `LAST_SUPERADMIN`. Le site (page « Supprimer un compte ») et la FAQ décrivent ce chemin : les garder d'accord si l'entrée bouge.
 - Dans les tests : `FakeMembersApi` (compte `sampleAccount`, membres `sampleMembers` ; `password` et `lastSuperadmin` pour la suppression, `deletions` la trace), `FakeAdminApi`. Le champ pseudo attend : `pump()` puis `pump(500 ms)` avant de lire sa réponse. Pour taper « Se déconnecter » ou « Supprimer mon compte », `scrollToEnd(tester)`.
 
 ## Évènements
@@ -289,7 +300,8 @@ Règles de dépendance :
 
 - Classes API : `http_mock_adapter`, avec les vrais formats JSON du backend.
 - Notifiers et écrans : `ProviderContainer` / `UncontrolledProviderScope` avec les faux de `test/helpers/fakes.dart`. Jamais de vrai réseau ni de vrai secure storage.
-- Parcours complets : `pumpApp(tester, token: …, onboardingSeen: …)` de `test/helpers/pump_app.dart` (toutes les API simulées, écran de 390×844).
+- Parcours complets : `pumpApp(tester, token: …, onboardingSeen: …)` de `test/helpers/pump_app.dart` (toutes les API simulées, écran de 390×844). `openMore(tester)` ouvre Plus (retour à l'accueil, puis la photo). La Bible : `FakeBibleApi` (`offline`, `chaptersAsked`, `downloads`) et `FakeBibleStorage` (`files`) de `test/helpers/bible_fakes.dart`, avec quelques livres (`sampleBibleBooks` ; Jean 3 et Psaume 23 ont leur vrai texte).
+- Une recherche avec délai (`useDebounced`) : `enterText`, `pump()`, puis `pump(400 ms)` ; `pumpAndSettle` seul n'avance pas une minuterie lancée pendant l'image.
 - Après `enterText`, faire `await tester.pump()` avant de toucher un bouton qui dépend du texte saisi.
 - Nommer un test par le comportement attendu (« wrong password shows a translated message »).
 

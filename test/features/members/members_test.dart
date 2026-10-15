@@ -11,11 +11,6 @@ void main() {
   setUpAll(initializeDateFormatting);
   setUp(() => LocaleSettings.setLocale(AppLocale.fr));
 
-  Future<void> openMore(WidgetTester tester) async {
-    await tester.tap(find.text('Plus'));
-    await tester.pumpAndSettle();
-  }
-
   /// A frame for the new text, then the 400 ms the pseudo field waits.
   Future<void> waitForCheck(WidgetTester tester) async {
     await tester.pump();

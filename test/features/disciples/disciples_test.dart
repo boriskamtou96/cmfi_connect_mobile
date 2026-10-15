@@ -5,9 +5,11 @@ import 'package:cmfi_connect/src/core/i18n/strings.g.dart';
 import 'package:cmfi_connect/src/core/storage/preferences.dart';
 import 'package:cmfi_connect/src/core/utils/date_extensions.dart';
 import 'package:cmfi_connect/src/features/authorities/domain/authority.dart';
+import 'package:cmfi_connect/src/features/bible/application/bible_position.dart';
+import 'package:cmfi_connect/src/features/bible/domain/bible.dart';
+import 'package:cmfi_connect/src/features/bible/presentation/bible_screen.dart';
 import 'package:cmfi_connect/src/features/disciples/domain/disciple.dart';
 import 'package:cmfi_connect/src/features/disciples/presentation/disciples_screen.dart';
-import 'package:cmfi_connect/src/features/home/presentation/home_screen.dart';
 import 'package:cmfi_connect/src/features/members/domain/member.dart';
 import 'package:cmfi_connect/src/features/reports/presentation/widgets/entry_sheet.dart';
 import 'package:flutter/material.dart';
@@ -16,11 +18,6 @@ import 'package:intl/date_symbol_data_local.dart';
 
 import '../../helpers/fakes.dart';
 import '../../helpers/pump_app.dart';
-
-Future<void> openMore(WidgetTester tester) async {
-  await tester.tap(find.text('Plus'));
-  await tester.pumpAndSettle();
-}
 
 DateTime daysAgo(int n) {
   final now = today();
@@ -482,14 +479,21 @@ void main() {
       await LocaleSettings.setLocale(AppLocale.fr);
     });
 
-    testWidgets('a touch on it opens the home screen', (tester) async {
+    testWidgets('a touch on it opens the verse in the Bible', (tester) async {
       final app = await pumpApp(tester, token: 't');
       await openMore(tester);
 
       app.homeWidgets.clicksController.add(Uri.parse('cmficonnect://verse'));
       await tester.pumpAndSettle();
 
-      expect(find.byType(HomeScreen), findsOneWidget);
+      // Plus closed, the Bible on the chapter of the day's verse
+      expect(find.byType(BibleScreen), findsOneWidget);
+      final days = calendar('fr')['days'] as Map<String, dynamic>;
+      final osis = (days[key(today())] as Map<String, dynamic>)['osis'];
+      expect(
+        app.container.read(biblePositionProvider),
+        BibleRef.parse(osis as String)!.chapterRef,
+      );
     });
   });
 }

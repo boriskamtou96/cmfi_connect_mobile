@@ -73,6 +73,7 @@ class Translations with BaseTranslations<AppLocale, Translations> {
 	late final Translations$shortcuts$fr shortcuts = Translations$shortcuts$fr.internal(_root);
 	late final Translations$blocking$fr blocking = Translations$blocking$fr.internal(_root);
 	late final Translations$verses$fr verses = Translations$verses$fr.internal(_root);
+	late final Translations$bible$fr bible = Translations$bible$fr.internal(_root);
 	late final Translations$profilePhoto$fr profilePhoto = Translations$profilePhoto$fr.internal(_root);
 	late final Translations$disciples$fr disciples = Translations$disciples$fr.internal(_root);
 	late final Translations$weekStory$fr weekStory = Translations$weekStory$fr.internal(_root);
@@ -354,8 +355,8 @@ class Translations$nav$fr {
 	/// fr: 'Prière'
 	String get prayer => 'Prière';
 
-	/// fr: 'Plus'
-	String get more => 'Plus';
+	/// fr: 'Bible'
+	String get bible => 'Bible';
 }
 
 // Path: home
@@ -1946,6 +1947,194 @@ class Translations$verses$fr {
 
 	/// fr: 'Partager le texte'
 	String get shareText => 'Partager le texte';
+}
+
+// Path: bible
+class Translations$bible$fr {
+	Translations$bible$fr.internal(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// fr: 'Bible'
+	String get title => 'Bible';
+
+	/// fr: 'Livres'
+	String get books => 'Livres';
+
+	/// fr: 'Ancien Testament'
+	String get oldTestament => 'Ancien Testament';
+
+	/// fr: 'Nouveau Testament'
+	String get newTestament => 'Nouveau Testament';
+
+	/// fr: '(one) {{n} chapitre} (other) {{n} chapitres}'
+	String chapters({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('fr'))(n,
+		one: '${n} chapitre',
+		other: '${n} chapitres',
+	);
+
+	/// fr: 'Chapitre {n}'
+	String chapter({required Object n}) => 'Chapitre ${n}';
+
+	/// fr: 'Version'
+	String get version => 'Version';
+
+	/// fr: 'Version de la Bible'
+	String get versions => 'Version de la Bible';
+
+	/// fr: 'Rechercher dans la Bible'
+	String get search => 'Rechercher dans la Bible';
+
+	/// fr: 'Un mot, ou « Jean 3:16 »'
+	String get searchHint => 'Un mot, ou « Jean 3:16 »';
+
+	/// fr: 'Cherche un mot (« amour ») ou va directement à un passage (« Psaume 23 », « Jean 3:16 »).'
+	String get searchTip => 'Cherche un mot (« amour ») ou va directement à un passage (« Psaume 23 », « Jean 3:16 »).';
+
+	/// fr: 'Aucun verset ne contient ces mots.'
+	String get searchNone => 'Aucun verset ne contient ces mots.';
+
+	/// fr: '(one) {{n} verset} (other) {{n} versets}'
+	String searchCount({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('fr'))(n,
+		one: '${n} verset',
+		other: '${n} versets',
+	);
+
+	/// fr: 'Les {n} premiers versets'
+	String searchLimit({required Object n}) => 'Les ${n} premiers versets';
+
+	/// fr: 'Pour chercher des mots dans toute la Bible, télécharge-la. Tu peux déjà taper un passage : « Jean 3:16 ».'
+	String get searchNeedsDownload => 'Pour chercher des mots dans toute la Bible, télécharge-la. Tu peux déjà taper un passage : « Jean 3:16 ».';
+
+	/// fr: 'Ouvrir {reference}'
+	String open({required Object reference}) => 'Ouvrir ${reference}';
+
+	/// fr: 'Chapitre précédent'
+	String get previous => 'Chapitre précédent';
+
+	/// fr: 'Chapitre suivant'
+	String get next => 'Chapitre suivant';
+
+	/// fr: 'J'ai lu ce chapitre'
+	String get markRead => 'J\'ai lu ce chapitre';
+
+	/// fr: 'Lu aujourd'hui'
+	String get markedRead => 'Lu aujourd\'hui';
+
+	/// fr: 'Ajoute 1 chapitre à « Lecture biblique » dans ton compte rendu.'
+	String get markReadHint => 'Ajoute 1 chapitre à « Lecture biblique » dans ton compte rendu.';
+
+	/// fr: '(one) {Compte rendu : {n} chapitre lu aujourd'hui} (other) {Compte rendu : {n} chapitres lus aujourd'hui}'
+	String addedToReport({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('fr'))(n,
+		one: 'Compte rendu : ${n} chapitre lu aujourd\'hui',
+		other: 'Compte rendu : ${n} chapitres lus aujourd\'hui',
+	);
+
+	/// fr: 'Retiré de ton compte rendu'
+	String get removedFromReport => 'Retiré de ton compte rendu';
+
+	/// fr: 'Ton compte rendu n'a pas d'élément « Lecture biblique ».'
+	String get noReadingItem => 'Ton compte rendu n\'a pas d\'élément « Lecture biblique ».';
+
+	/// fr: 'Télécharger cette Bible'
+	String get download => 'Télécharger cette Bible';
+
+	/// fr: 'Environ {size} Mo, pour lire et chercher sans réseau.'
+	String downloadHelp({required Object size}) => 'Environ ${size} Mo, pour lire et chercher sans réseau.';
+
+	/// fr: 'Téléchargement… {percent} %'
+	String downloading({required Object percent}) => 'Téléchargement… ${percent} %';
+
+	/// fr: 'Sur ton téléphone'
+	String get downloaded => 'Sur ton téléphone';
+
+	/// fr: '{version} est sur ton téléphone'
+	String downloadDone({required Object version}) => '${version} est sur ton téléphone';
+
+	/// fr: 'Retirer du téléphone'
+	String get removeDownload => 'Retirer du téléphone';
+
+	/// fr: 'Retirer {version} du téléphone ?'
+	String removeDownloadTitle({required Object version}) => 'Retirer ${version} du téléphone ?';
+
+	/// fr: 'Les chapitres que tu as déjà lus restent disponibles sans réseau.'
+	String get removeDownloadText => 'Les chapitres que tu as déjà lus restent disponibles sans réseau.';
+
+	/// fr: 'Ce chapitre n'est pas encore sur ton téléphone. Reconnecte-toi, ou télécharge cette Bible pour la lire sans réseau.'
+	String get offline => 'Ce chapitre n\'est pas encore sur ton téléphone. Reconnecte-toi, ou télécharge cette Bible pour la lire sans réseau.';
+
+	/// fr: 'Ce passage n'est pas dans cette version.'
+	String get notInVersion => 'Ce passage n\'est pas dans cette version.';
+
+	/// fr: 'Mes versets'
+	String get marks => 'Mes versets';
+
+	/// fr: 'Favoris'
+	String get favorites => 'Favoris';
+
+	/// fr: 'Surlignés'
+	String get highlights => 'Surlignés';
+
+	/// fr: 'Touche un verset, puis le marque-page, pour le retrouver ici.'
+	String get noFavorites => 'Touche un verset, puis le marque-page, pour le retrouver ici.';
+
+	/// fr: 'Touche un verset, puis une couleur, pour le surligner.'
+	String get noHighlights => 'Touche un verset, puis une couleur, pour le surligner.';
+
+	/// fr: 'Touche un verset pour le surligner, le garder, le copier ou le partager.'
+	String get tapHint => 'Touche un verset pour le surligner, le garder, le copier ou le partager.';
+
+	/// fr: 'Surligner en {color}'
+	String highlight({required Object color}) => 'Surligner en ${color}';
+
+	late final Translations$bible$colors$fr colors = Translations$bible$colors$fr.internal(_root);
+
+	/// fr: 'Retirer la couleur'
+	String get removeHighlight => 'Retirer la couleur';
+
+	/// fr: 'Ajouter à Mes versets'
+	String get addFavorite => 'Ajouter à Mes versets';
+
+	/// fr: 'Retirer de Mes versets'
+	String get removeFavorite => 'Retirer de Mes versets';
+
+	/// fr: 'Ajouté à Mes versets'
+	String get favoriteAdded => 'Ajouté à Mes versets';
+
+	/// fr: 'Retiré de Mes versets'
+	String get favoriteRemoved => 'Retiré de Mes versets';
+
+	/// fr: 'Copier'
+	String get copy => 'Copier';
+
+	/// fr: 'Copié'
+	String get copied => 'Copié';
+
+	/// fr: 'Partager'
+	String get share => 'Partager';
+
+	/// fr: 'Fermer la sélection'
+	String get closeSelection => 'Fermer la sélection';
+
+	/// fr: 'Affichage'
+	String get display => 'Affichage';
+
+	/// fr: 'Paroles de Jésus en rouge'
+	String get jesusInRed => 'Paroles de Jésus en rouge';
+
+	/// fr: 'Dans les versions qui les indiquent'
+	String get jesusInRedHelp => 'Dans les versions qui les indiquent';
+
+	/// fr: 'Retirer'
+	String get remove => 'Retirer';
+
+	/// fr: 'Lire dans la Bible'
+	String get readInBible => 'Lire dans la Bible';
+
+	/// fr: 'Plus d'options'
+	String get more => 'Plus d\'options';
 }
 
 // Path: profilePhoto
@@ -4161,6 +4350,27 @@ class Translations$blocking$reasons$fr {
 	String get other => 'Autre';
 }
 
+// Path: bible.colors
+class Translations$bible$colors$fr {
+	Translations$bible$colors$fr.internal(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// fr: 'jaune'
+	String get yellow => 'jaune';
+
+	/// fr: 'vert'
+	String get green => 'vert';
+
+	/// fr: 'bleu'
+	String get blue => 'bleu';
+
+	/// fr: 'rose'
+	String get pink => 'rose';
+}
+
 // Path: reports.units.chapters
 class Translations$reports$units$chapters$fr {
 	Translations$reports$units$chapters$fr.internal(this._root);
@@ -4660,7 +4870,7 @@ extension on Translations {
 			'nav.reports' => 'Compte rendu',
 			'nav.hymns' => 'Cantiques',
 			'nav.prayer' => 'Prière',
-			'nav.more' => 'Plus',
+			'nav.bible' => 'Bible',
 			'home.greeting' => ({required Object name}) => 'Bonjour ${name}',
 			'home.greetingNoName' => 'Bonjour',
 			'home.profile' => 'Mon profil',
@@ -5615,6 +5825,66 @@ extension on Translations {
 			'verses.share' => 'Partager le verset',
 			'verses.shareImage' => 'Partager l\'image',
 			'verses.shareText' => 'Partager le texte',
+			'bible.title' => 'Bible',
+			'bible.books' => 'Livres',
+			'bible.oldTestament' => 'Ancien Testament',
+			'bible.newTestament' => 'Nouveau Testament',
+			'bible.chapters' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('fr'))(n, one: '${n} chapitre', other: '${n} chapitres', ), 
+			'bible.chapter' => ({required Object n}) => 'Chapitre ${n}',
+			'bible.version' => 'Version',
+			'bible.versions' => 'Version de la Bible',
+			'bible.search' => 'Rechercher dans la Bible',
+			'bible.searchHint' => 'Un mot, ou « Jean 3:16 »',
+			'bible.searchTip' => 'Cherche un mot (« amour ») ou va directement à un passage (« Psaume 23 », « Jean 3:16 »).',
+			'bible.searchNone' => 'Aucun verset ne contient ces mots.',
+			'bible.searchCount' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('fr'))(n, one: '${n} verset', other: '${n} versets', ), 
+			'bible.searchLimit' => ({required Object n}) => 'Les ${n} premiers versets',
+			'bible.searchNeedsDownload' => 'Pour chercher des mots dans toute la Bible, télécharge-la. Tu peux déjà taper un passage : « Jean 3:16 ».',
+			'bible.open' => ({required Object reference}) => 'Ouvrir ${reference}',
+			'bible.previous' => 'Chapitre précédent',
+			'bible.next' => 'Chapitre suivant',
+			'bible.markRead' => 'J\'ai lu ce chapitre',
+			'bible.markedRead' => 'Lu aujourd\'hui',
+			'bible.markReadHint' => 'Ajoute 1 chapitre à « Lecture biblique » dans ton compte rendu.',
+			'bible.addedToReport' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('fr'))(n, one: 'Compte rendu : ${n} chapitre lu aujourd\'hui', other: 'Compte rendu : ${n} chapitres lus aujourd\'hui', ), 
+			'bible.removedFromReport' => 'Retiré de ton compte rendu',
+			'bible.noReadingItem' => 'Ton compte rendu n\'a pas d\'élément « Lecture biblique ».',
+			'bible.download' => 'Télécharger cette Bible',
+			'bible.downloadHelp' => ({required Object size}) => 'Environ ${size} Mo, pour lire et chercher sans réseau.',
+			'bible.downloading' => ({required Object percent}) => 'Téléchargement… ${percent} %',
+			'bible.downloaded' => 'Sur ton téléphone',
+			'bible.downloadDone' => ({required Object version}) => '${version} est sur ton téléphone',
+			'bible.removeDownload' => 'Retirer du téléphone',
+			'bible.removeDownloadTitle' => ({required Object version}) => 'Retirer ${version} du téléphone ?',
+			'bible.removeDownloadText' => 'Les chapitres que tu as déjà lus restent disponibles sans réseau.',
+			'bible.offline' => 'Ce chapitre n\'est pas encore sur ton téléphone. Reconnecte-toi, ou télécharge cette Bible pour la lire sans réseau.',
+			'bible.notInVersion' => 'Ce passage n\'est pas dans cette version.',
+			'bible.marks' => 'Mes versets',
+			'bible.favorites' => 'Favoris',
+			'bible.highlights' => 'Surlignés',
+			'bible.noFavorites' => 'Touche un verset, puis le marque-page, pour le retrouver ici.',
+			'bible.noHighlights' => 'Touche un verset, puis une couleur, pour le surligner.',
+			'bible.tapHint' => 'Touche un verset pour le surligner, le garder, le copier ou le partager.',
+			'bible.highlight' => ({required Object color}) => 'Surligner en ${color}',
+			'bible.colors.yellow' => 'jaune',
+			'bible.colors.green' => 'vert',
+			'bible.colors.blue' => 'bleu',
+			'bible.colors.pink' => 'rose',
+			'bible.removeHighlight' => 'Retirer la couleur',
+			'bible.addFavorite' => 'Ajouter à Mes versets',
+			'bible.removeFavorite' => 'Retirer de Mes versets',
+			'bible.favoriteAdded' => 'Ajouté à Mes versets',
+			'bible.favoriteRemoved' => 'Retiré de Mes versets',
+			'bible.copy' => 'Copier',
+			'bible.copied' => 'Copié',
+			'bible.share' => 'Partager',
+			'bible.closeSelection' => 'Fermer la sélection',
+			'bible.display' => 'Affichage',
+			'bible.jesusInRed' => 'Paroles de Jésus en rouge',
+			'bible.jesusInRedHelp' => 'Dans les versions qui les indiquent',
+			'bible.remove' => 'Retirer',
+			'bible.readInBible' => 'Lire dans la Bible',
+			'bible.more' => 'Plus d\'options',
 			'profilePhoto.title' => 'Photo de profil',
 			'profilePhoto.add' => 'Ajouter une photo de profil',
 			'profilePhoto.change' => 'Changer la photo de profil',

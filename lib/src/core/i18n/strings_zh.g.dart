@@ -71,6 +71,7 @@ class TranslationsZh extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _Translations$shortcuts$zh shortcuts = _Translations$shortcuts$zh._(_root);
 	@override late final _Translations$blocking$zh blocking = _Translations$blocking$zh._(_root);
 	@override late final _Translations$verses$zh verses = _Translations$verses$zh._(_root);
+	@override late final _Translations$bible$zh bible = _Translations$bible$zh._(_root);
 	@override late final _Translations$profilePhoto$zh profilePhoto = _Translations$profilePhoto$zh._(_root);
 	@override late final _Translations$disciples$zh disciples = _Translations$disciples$zh._(_root);
 	@override late final _Translations$weekStory$zh weekStory = _Translations$weekStory$zh._(_root);
@@ -225,7 +226,7 @@ class _Translations$nav$zh extends Translations$nav$fr {
 	@override String get reports => '汇报';
 	@override String get hymns => '诗歌';
 	@override String get prayer => '祷告';
-	@override String get more => '更多';
+	@override String get bible => '圣经';
 }
 
 // Path: home
@@ -952,6 +953,78 @@ class _Translations$verses$zh extends Translations$verses$fr {
 	@override String get share => '分享经文';
 	@override String get shareImage => '分享图片';
 	@override String get shareText => '分享文字';
+}
+
+// Path: bible
+class _Translations$bible$zh extends Translations$bible$fr {
+	_Translations$bible$zh._(TranslationsZh root) : this._root = root, super.internal(root);
+
+	final TranslationsZh _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => '圣经';
+	@override String get books => '书卷';
+	@override String get oldTestament => '旧约';
+	@override String get newTestament => '新约';
+	@override String chapters({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n,
+		other: '${n} 章',
+	);
+	@override String chapter({required Object n}) => '第 ${n} 章';
+	@override String get version => '译本';
+	@override String get versions => '圣经译本';
+	@override String get search => '搜索圣经';
+	@override String get searchHint => '一个词，或“约翰福音 3:16”';
+	@override String get searchTip => '搜索一个词（“爱”），或直接前往经文（“诗篇 23”、“约翰福音 3:16”）。';
+	@override String get searchNone => '没有经文包含这些词。';
+	@override String searchCount({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n,
+		other: '${n} 节经文',
+	);
+	@override String searchLimit({required Object n}) => '前 ${n} 节经文';
+	@override String get searchNeedsDownload => '下载这本圣经后，即可在全书中搜索词语。现在已经可以输入经文：“约翰福音 3:16”。';
+	@override String open({required Object reference}) => '打开 ${reference}';
+	@override String get previous => '上一章';
+	@override String get next => '下一章';
+	@override String get markRead => '我读完了这一章';
+	@override String get markedRead => '今天已读';
+	@override String get markReadHint => '在你的汇报中为“读经”加 1 章。';
+	@override String addedToReport({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n,
+		other: '汇报：今天已读 ${n} 章',
+	);
+	@override String get removedFromReport => '已从汇报中移除';
+	@override String get noReadingItem => '你的汇报中没有“读经”这一项。';
+	@override String get download => '下载这本圣经';
+	@override String downloadHelp({required Object size}) => '约 ${size} MB，无网络时也能阅读和搜索。';
+	@override String downloading({required Object percent}) => '正在下载… ${percent}%';
+	@override String get downloaded => '已在手机上';
+	@override String downloadDone({required Object version}) => '${version} 已在你的手机上';
+	@override String get removeDownload => '从手机移除';
+	@override String removeDownloadTitle({required Object version}) => '从手机移除 ${version}？';
+	@override String get removeDownloadText => '你已读过的章节仍可离线阅读。';
+	@override String get offline => '这一章还不在你的手机上。请重新联网，或下载这本圣经以便离线阅读。';
+	@override String get notInVersion => '这个译本中没有这段经文。';
+	@override String get marks => '我的经文';
+	@override String get favorites => '收藏';
+	@override String get highlights => '标记';
+	@override String get noFavorites => '点一节经文，再点书签，就能在这里找到它。';
+	@override String get noHighlights => '点一节经文，再选一种颜色来标记它。';
+	@override String get tapHint => '点一节经文，即可标记、收藏、复制或分享。';
+	@override String highlight({required Object color}) => '用${color}标记';
+	@override late final _Translations$bible$colors$zh colors = _Translations$bible$colors$zh._(_root);
+	@override String get removeHighlight => '移除颜色';
+	@override String get addFavorite => '收藏到我的经文';
+	@override String get removeFavorite => '从我的经文中移除';
+	@override String get favoriteAdded => '已收藏到我的经文';
+	@override String get favoriteRemoved => '已从我的经文中移除';
+	@override String get copy => '复制';
+	@override String get copied => '已复制';
+	@override String get share => '分享';
+	@override String get closeSelection => '关闭选择';
+	@override String get display => '显示';
+	@override String get jesusInRed => '耶稣的话用红色显示';
+	@override String get jesusInRedHelp => '适用于标注了耶稣话语的译本';
+	@override String get remove => '移除';
+	@override String get readInBible => '在圣经中阅读';
+	@override String get more => '更多选项';
 }
 
 // Path: profilePhoto
@@ -2012,6 +2085,19 @@ class _Translations$blocking$reasons$zh extends Translations$blocking$reasons$fr
 	@override String get other => '其他';
 }
 
+// Path: bible.colors
+class _Translations$bible$colors$zh extends Translations$bible$colors$fr {
+	_Translations$bible$colors$zh._(TranslationsZh root) : this._root = root, super.internal(root);
+
+	final TranslationsZh _root; // ignore: unused_field
+
+	// Translations
+	@override String get yellow => '黄色';
+	@override String get green => '绿色';
+	@override String get blue => '蓝色';
+	@override String get pink => '粉色';
+}
+
 // Path: reports.units.chapters
 class _Translations$reports$units$chapters$zh extends Translations$reports$units$chapters$fr {
 	_Translations$reports$units$chapters$zh._(TranslationsZh root) : this._root = root, super.internal(root);
@@ -2358,7 +2444,7 @@ extension on TranslationsZh {
 			'nav.reports' => '汇报',
 			'nav.hymns' => '诗歌',
 			'nav.prayer' => '祷告',
-			'nav.more' => '更多',
+			'nav.bible' => '圣经',
 			'home.greeting' => ({required Object name}) => '你好，${name}',
 			'home.greetingNoName' => '你好',
 			'home.profile' => '我的资料',
@@ -3313,6 +3399,66 @@ extension on TranslationsZh {
 			'verses.share' => '分享经文',
 			'verses.shareImage' => '分享图片',
 			'verses.shareText' => '分享文字',
+			'bible.title' => '圣经',
+			'bible.books' => '书卷',
+			'bible.oldTestament' => '旧约',
+			'bible.newTestament' => '新约',
+			'bible.chapters' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n, other: '${n} 章', ), 
+			'bible.chapter' => ({required Object n}) => '第 ${n} 章',
+			'bible.version' => '译本',
+			'bible.versions' => '圣经译本',
+			'bible.search' => '搜索圣经',
+			'bible.searchHint' => '一个词，或“约翰福音 3:16”',
+			'bible.searchTip' => '搜索一个词（“爱”），或直接前往经文（“诗篇 23”、“约翰福音 3:16”）。',
+			'bible.searchNone' => '没有经文包含这些词。',
+			'bible.searchCount' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n, other: '${n} 节经文', ), 
+			'bible.searchLimit' => ({required Object n}) => '前 ${n} 节经文',
+			'bible.searchNeedsDownload' => '下载这本圣经后，即可在全书中搜索词语。现在已经可以输入经文：“约翰福音 3:16”。',
+			'bible.open' => ({required Object reference}) => '打开 ${reference}',
+			'bible.previous' => '上一章',
+			'bible.next' => '下一章',
+			'bible.markRead' => '我读完了这一章',
+			'bible.markedRead' => '今天已读',
+			'bible.markReadHint' => '在你的汇报中为“读经”加 1 章。',
+			'bible.addedToReport' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n, other: '汇报：今天已读 ${n} 章', ), 
+			'bible.removedFromReport' => '已从汇报中移除',
+			'bible.noReadingItem' => '你的汇报中没有“读经”这一项。',
+			'bible.download' => '下载这本圣经',
+			'bible.downloadHelp' => ({required Object size}) => '约 ${size} MB，无网络时也能阅读和搜索。',
+			'bible.downloading' => ({required Object percent}) => '正在下载… ${percent}%',
+			'bible.downloaded' => '已在手机上',
+			'bible.downloadDone' => ({required Object version}) => '${version} 已在你的手机上',
+			'bible.removeDownload' => '从手机移除',
+			'bible.removeDownloadTitle' => ({required Object version}) => '从手机移除 ${version}？',
+			'bible.removeDownloadText' => '你已读过的章节仍可离线阅读。',
+			'bible.offline' => '这一章还不在你的手机上。请重新联网，或下载这本圣经以便离线阅读。',
+			'bible.notInVersion' => '这个译本中没有这段经文。',
+			'bible.marks' => '我的经文',
+			'bible.favorites' => '收藏',
+			'bible.highlights' => '标记',
+			'bible.noFavorites' => '点一节经文，再点书签，就能在这里找到它。',
+			'bible.noHighlights' => '点一节经文，再选一种颜色来标记它。',
+			'bible.tapHint' => '点一节经文，即可标记、收藏、复制或分享。',
+			'bible.highlight' => ({required Object color}) => '用${color}标记',
+			'bible.colors.yellow' => '黄色',
+			'bible.colors.green' => '绿色',
+			'bible.colors.blue' => '蓝色',
+			'bible.colors.pink' => '粉色',
+			'bible.removeHighlight' => '移除颜色',
+			'bible.addFavorite' => '收藏到我的经文',
+			'bible.removeFavorite' => '从我的经文中移除',
+			'bible.favoriteAdded' => '已收藏到我的经文',
+			'bible.favoriteRemoved' => '已从我的经文中移除',
+			'bible.copy' => '复制',
+			'bible.copied' => '已复制',
+			'bible.share' => '分享',
+			'bible.closeSelection' => '关闭选择',
+			'bible.display' => '显示',
+			'bible.jesusInRed' => '耶稣的话用红色显示',
+			'bible.jesusInRedHelp' => '适用于标注了耶稣话语的译本',
+			'bible.remove' => '移除',
+			'bible.readInBible' => '在圣经中阅读',
+			'bible.more' => '更多选项',
 			'profilePhoto.title' => '头像',
 			'profilePhoto.add' => '添加头像',
 			'profilePhoto.change' => '更换头像',

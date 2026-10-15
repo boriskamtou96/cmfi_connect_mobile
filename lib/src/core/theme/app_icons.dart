@@ -17,8 +17,8 @@ abstract final class AppIcons {
   static const hymnsActive = PhosphorIconsFill.musicNotes;
   static const prayer = PhosphorIconsRegular.handsPraying;
   static const prayerActive = PhosphorIconsFill.handsPraying;
-  static const more = PhosphorIconsRegular.squaresFour;
-  static const moreActive = PhosphorIconsFill.squaresFour;
+  static const bible = PhosphorIconsRegular.bookBookmark;
+  static const bibleActive = PhosphorIconsFill.bookBookmark;
 
   // Modules and settings
   static const events = PhosphorIconsRegular.calendarDots;
@@ -65,6 +65,7 @@ abstract final class AppIcons {
   static const back = PhosphorIconsRegular.caretLeft;
   static const chevronLeft = PhosphorIconsRegular.caretLeft;
   static const chevronRight = PhosphorIconsRegular.caretRight;
+  static const chevronDown = PhosphorIconsRegular.caretDown;
   static const expand = PhosphorIconsRegular.caretUpDown;
   static const close = PhosphorIconsRegular.x;
   static const moreOptions = PhosphorIconsRegular.dotsThreeVertical;
@@ -173,4 +174,15 @@ abstract final class AppIcons {
   static const sickTile = PhosphorIconsDuotone.handHeart;
   static const fastingTile = PhosphorIconsDuotone.hourglassMedium;
   static const listsTile = PhosphorIconsDuotone.userList;
+
+  // Bible: the reader, the marks, the offline copy
+  static const bibleTile = PhosphorIconsDuotone.bookBookmark;
+  static const highlight = PhosphorIconsRegular.highlighter;
+  static const bookmark = PhosphorIconsRegular.bookmarkSimple;
+  static const bookmarkFilled = PhosphorIconsFill.bookmarkSimple;
+  static const bookmarksTile = PhosphorIconsDuotone.bookmarksSimple;
+  static const downloadOffline = PhosphorIconsRegular.cloudArrowDown;
+  static const downloaded = PhosphorIconsRegular.cloudCheck;
+  static const chapters = PhosphorIconsRegular.listNumbers;
+  static const bibleVersion = PhosphorIconsRegular.translate;
 }

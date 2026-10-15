@@ -105,7 +105,7 @@ void main() {
     expect(find.byIcon(AppIcons.premiumLock), findsNothing);
 
     // no Premium row in Plus
-    await tester.tap(find.text('Plus'));
+    await openMore(tester);
     await tester.pumpAndSettle();
     await scrollToEnd(tester);
     expect(find.text('CMFI Connect Premium'), findsNothing);
@@ -127,7 +127,7 @@ void main() {
     await tester.pumpAndSettle();
     expect(find.text('CMFI Connect Premium'), findsNothing);
 
-    await tester.tap(find.text('Plus'));
+    await openMore(tester);
     await tester.pumpAndSettle();
     await reach(tester, find.text('CMFI Connect Premium'));
     expect(find.text('Actif'), findsOneWidget);
@@ -151,7 +151,7 @@ void main() {
 
     expect(app.premium.loggedIn, ['1']);
 
-    await tester.tap(find.text('Plus'));
+    await openMore(tester);
     await tester.pumpAndSettle();
     await reach(tester, find.text('CMFI Connect Premium'));
     expect(find.text('Widget, objectifs sur l\'année'), findsOneWidget);
@@ -164,7 +164,7 @@ void main() {
 
   testWidgets('restoring without purchase says so', (tester) async {
     final app = await pumpApp(tester, token: 't');
-    await tester.tap(find.text('Plus'));
+    await openMore(tester);
     await tester.pumpAndSettle();
     await reach(tester, find.text('CMFI Connect Premium'));
     await tester.tap(find.text('CMFI Connect Premium'));

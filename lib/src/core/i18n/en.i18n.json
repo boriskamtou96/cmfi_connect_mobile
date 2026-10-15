@@ -177,7 +177,7 @@
     "reports": "Report",
     "hymns": "Hymns",
     "prayer": "Prayer",
-    "more": "More"
+    "bible": "Bible"
   },
   "home": {
     "greeting": "Hello {name}",
@@ -1431,6 +1431,79 @@
     "share": "Share the verse",
     "shareImage": "Share the image",
     "shareText": "Share the text"
+  },
+  "bible": {
+    "title": "Bible",
+    "books": "Books",
+    "oldTestament": "Old Testament",
+    "newTestament": "New Testament",
+    "chapters(plural, param=n)": {
+      "one": "{n} chapter",
+      "other": "{n} chapters"
+    },
+    "chapter": "Chapter {n}",
+    "version": "Version",
+    "versions": "Bible version",
+    "search": "Search the Bible",
+    "searchHint": "A word, or \"John 3:16\"",
+    "searchTip": "Search for a word (\"love\") or go straight to a passage (\"Psalm 23\", \"John 3:16\").",
+    "searchNone": "No verse contains these words.",
+    "searchCount(plural, param=n)": {
+      "one": "{n} verse",
+      "other": "{n} verses"
+    },
+    "searchLimit": "The first {n} verses",
+    "searchNeedsDownload": "To search for words in the whole Bible, download it. You can already type a passage: \"John 3:16\".",
+    "open": "Open {reference}",
+    "previous": "Previous chapter",
+    "next": "Next chapter",
+    "markRead": "I read this chapter",
+    "markedRead": "Read today",
+    "markReadHint": "Adds 1 chapter to \"Bible reading\" in your report.",
+    "addedToReport(plural, param=n)": {
+      "one": "Report: {n} chapter read today",
+      "other": "Report: {n} chapters read today"
+    },
+    "removedFromReport": "Removed from your report",
+    "noReadingItem": "Your report has no \"Bible reading\" item.",
+    "download": "Download this Bible",
+    "downloadHelp": "About {size} MB, to read and search without network.",
+    "downloading": "Downloading… {percent}%",
+    "downloaded": "On your phone",
+    "downloadDone": "{version} is on your phone",
+    "removeDownload": "Remove from phone",
+    "removeDownloadTitle": "Remove {version} from your phone?",
+    "removeDownloadText": "The chapters you have already read stay available offline.",
+    "offline": "This chapter is not on your phone yet. Get back online, or download this Bible to read it without network.",
+    "notInVersion": "This passage is not in this version.",
+    "marks": "My verses",
+    "favorites": "Saved",
+    "highlights": "Highlighted",
+    "noFavorites": "Tap a verse, then the bookmark, to find it here.",
+    "noHighlights": "Tap a verse, then a color, to highlight it.",
+    "tapHint": "Tap a verse to highlight, save, copy or share it.",
+    "highlight": "Highlight in {color}",
+    "colors": {
+      "yellow": "yellow",
+      "green": "green",
+      "blue": "blue",
+      "pink": "pink"
+    },
+    "removeHighlight": "Remove the color",
+    "addFavorite": "Save to My verses",
+    "removeFavorite": "Remove from My verses",
+    "favoriteAdded": "Saved to My verses",
+    "favoriteRemoved": "Removed from My verses",
+    "copy": "Copy",
+    "copied": "Copied",
+    "share": "Share",
+    "closeSelection": "Close the selection",
+    "display": "Display",
+    "jesusInRed": "Words of Jesus in red",
+    "jesusInRedHelp": "In the versions that mark them",
+    "remove": "Remove",
+    "readInBible": "Read in the Bible",
+    "more": "More options"
   },
   "profilePhoto": {
     "title": "Profile photo",

@@ -15,7 +15,8 @@ sealed class AppLink {
   const AppLink();
 
   /// What follows `to=`: "events/42", "hymns/chants-edification-1/3",
-  /// "prayer/topics/5", "prayer/importunities/7", "prayer/retreat".
+  /// "prayer/topics/5", "prayer/importunities/7", "prayer/retreat",
+  /// "bible/JHN.3.16".
   String get path;
 
   /// The link to share, which opens this screen.
@@ -28,6 +29,7 @@ sealed class AppLink {
   static final _hymn = RegExp(r'^hymns/([\w.-]+)/(\d+)$');
   static final _topic = RegExp(r'^prayer/topics/(\d+)$');
   static final _importunity = RegExp(r'^prayer/importunities/(\d+)$');
+  static final _bible = RegExp(r'^bible/([1-3A-Z]{3}\.\d+(?:\.\d+)?)$');
 
   /// The screen of [uri], or null for a link that isn't one of ours (the
   /// links of the home screen widget, `cmficonnect://today`, are read by
@@ -62,6 +64,9 @@ sealed class AppLink {
     }
     if (to == 'prayer/retreat') {
       return const RetreatLink();
+    }
+    if (_bible.firstMatch(to) case final m?) {
+      return BibleLink(m[1]!);
     }
     return null;
   }
@@ -110,6 +115,17 @@ class RetreatLink extends AppLink {
 
   @override
   String get path => 'prayer/retreat';
+}
+
+/// A chapter or a verse of the Bible, the same in every version.
+class BibleLink extends AppLink {
+  const BibleLink(this.reference);
+
+  /// "JHN.3.16" or "JHN.3".
+  final String reference;
+
+  @override
+  String get path => 'bible/$reference';
 }
 
 /// The links that open the app, the one it was launched with first. Behind

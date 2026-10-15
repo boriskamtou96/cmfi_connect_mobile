@@ -71,6 +71,7 @@ class TranslationsEs extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _Translations$shortcuts$es shortcuts = _Translations$shortcuts$es._(_root);
 	@override late final _Translations$blocking$es blocking = _Translations$blocking$es._(_root);
 	@override late final _Translations$verses$es verses = _Translations$verses$es._(_root);
+	@override late final _Translations$bible$es bible = _Translations$bible$es._(_root);
 	@override late final _Translations$profilePhoto$es profilePhoto = _Translations$profilePhoto$es._(_root);
 	@override late final _Translations$disciples$es disciples = _Translations$disciples$es._(_root);
 	@override late final _Translations$weekStory$es weekStory = _Translations$weekStory$es._(_root);
@@ -225,7 +226,7 @@ class _Translations$nav$es extends Translations$nav$fr {
 	@override String get reports => 'Informe';
 	@override String get hymns => 'Himnos';
 	@override String get prayer => 'Oración';
-	@override String get more => 'Más';
+	@override String get bible => 'Biblia';
 }
 
 // Path: home
@@ -976,6 +977,81 @@ class _Translations$verses$es extends Translations$verses$fr {
 	@override String get share => 'Compartir el versículo';
 	@override String get shareImage => 'Compartir la imagen';
 	@override String get shareText => 'Compartir el texto';
+}
+
+// Path: bible
+class _Translations$bible$es extends Translations$bible$fr {
+	_Translations$bible$es._(TranslationsEs root) : this._root = root, super.internal(root);
+
+	final TranslationsEs _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Biblia';
+	@override String get books => 'Libros';
+	@override String get oldTestament => 'Antiguo Testamento';
+	@override String get newTestament => 'Nuevo Testamento';
+	@override String chapters({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('es'))(n,
+		one: '${n} capítulo',
+		other: '${n} capítulos',
+	);
+	@override String chapter({required Object n}) => 'Capítulo ${n}';
+	@override String get version => 'Versión';
+	@override String get versions => 'Versión de la Biblia';
+	@override String get search => 'Buscar en la Biblia';
+	@override String get searchHint => 'Una palabra, o «Juan 3:16»';
+	@override String get searchTip => 'Busca una palabra («amor») o ve directamente a un pasaje («Salmos 23», «Juan 3:16»).';
+	@override String get searchNone => 'Ningún versículo contiene estas palabras.';
+	@override String searchCount({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('es'))(n,
+		one: '${n} versículo',
+		other: '${n} versículos',
+	);
+	@override String searchLimit({required Object n}) => 'Los primeros ${n} versículos';
+	@override String get searchNeedsDownload => 'Para buscar palabras en toda la Biblia, descárgala. Ya puedes escribir un pasaje: «Juan 3:16».';
+	@override String open({required Object reference}) => 'Abrir ${reference}';
+	@override String get previous => 'Capítulo anterior';
+	@override String get next => 'Capítulo siguiente';
+	@override String get markRead => 'He leído este capítulo';
+	@override String get markedRead => 'Leído hoy';
+	@override String get markReadHint => 'Añade 1 capítulo a «Lectura bíblica» en tu informe.';
+	@override String addedToReport({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('es'))(n,
+		one: 'Informe: ${n} capítulo leído hoy',
+		other: 'Informe: ${n} capítulos leídos hoy',
+	);
+	@override String get removedFromReport => 'Quitado de tu informe';
+	@override String get noReadingItem => 'Tu informe no tiene el elemento «Lectura bíblica».';
+	@override String get download => 'Descargar esta Biblia';
+	@override String downloadHelp({required Object size}) => 'Unos ${size} MB, para leer y buscar sin conexión.';
+	@override String downloading({required Object percent}) => 'Descargando… ${percent} %';
+	@override String get downloaded => 'En tu teléfono';
+	@override String downloadDone({required Object version}) => '${version} está en tu teléfono';
+	@override String get removeDownload => 'Quitar del teléfono';
+	@override String removeDownloadTitle({required Object version}) => '¿Quitar ${version} del teléfono?';
+	@override String get removeDownloadText => 'Los capítulos que ya leíste siguen disponibles sin conexión.';
+	@override String get offline => 'Este capítulo aún no está en tu teléfono. Vuelve a conectarte, o descarga esta Biblia para leerla sin conexión.';
+	@override String get notInVersion => 'Este pasaje no está en esta versión.';
+	@override String get marks => 'Mis versículos';
+	@override String get favorites => 'Guardados';
+	@override String get highlights => 'Resaltados';
+	@override String get noFavorites => 'Toca un versículo y luego el marcador para encontrarlo aquí.';
+	@override String get noHighlights => 'Toca un versículo y luego un color para resaltarlo.';
+	@override String get tapHint => 'Toca un versículo para resaltarlo, guardarlo, copiarlo o compartirlo.';
+	@override String highlight({required Object color}) => 'Resaltar en ${color}';
+	@override late final _Translations$bible$colors$es colors = _Translations$bible$colors$es._(_root);
+	@override String get removeHighlight => 'Quitar el color';
+	@override String get addFavorite => 'Guardar en Mis versículos';
+	@override String get removeFavorite => 'Quitar de Mis versículos';
+	@override String get favoriteAdded => 'Guardado en Mis versículos';
+	@override String get favoriteRemoved => 'Quitado de Mis versículos';
+	@override String get copy => 'Copiar';
+	@override String get copied => 'Copiado';
+	@override String get share => 'Compartir';
+	@override String get closeSelection => 'Cerrar la selección';
+	@override String get display => 'Visualización';
+	@override String get jesusInRed => 'Palabras de Jesús en rojo';
+	@override String get jesusInRedHelp => 'En las versiones que las indican';
+	@override String get remove => 'Quitar';
+	@override String get readInBible => 'Leer en la Biblia';
+	@override String get more => 'Más opciones';
 }
 
 // Path: profilePhoto
@@ -2061,6 +2137,19 @@ class _Translations$blocking$reasons$es extends Translations$blocking$reasons$fr
 	@override String get other => 'Otro';
 }
 
+// Path: bible.colors
+class _Translations$bible$colors$es extends Translations$bible$colors$fr {
+	_Translations$bible$colors$es._(TranslationsEs root) : this._root = root, super.internal(root);
+
+	final TranslationsEs _root; // ignore: unused_field
+
+	// Translations
+	@override String get yellow => 'amarillo';
+	@override String get green => 'verde';
+	@override String get blue => 'azul';
+	@override String get pink => 'rosa';
+}
+
 // Path: reports.units.chapters
 class _Translations$reports$units$chapters$es extends Translations$reports$units$chapters$fr {
 	_Translations$reports$units$chapters$es._(TranslationsEs root) : this._root = root, super.internal(root);
@@ -2412,7 +2501,7 @@ extension on TranslationsEs {
 			'nav.reports' => 'Informe',
 			'nav.hymns' => 'Himnos',
 			'nav.prayer' => 'Oración',
-			'nav.more' => 'Más',
+			'nav.bible' => 'Biblia',
 			'home.greeting' => ({required Object name}) => 'Hola, ${name}',
 			'home.greetingNoName' => 'Hola',
 			'home.profile' => 'Mi perfil',
@@ -3367,6 +3456,66 @@ extension on TranslationsEs {
 			'verses.share' => 'Compartir el versículo',
 			'verses.shareImage' => 'Compartir la imagen',
 			'verses.shareText' => 'Compartir el texto',
+			'bible.title' => 'Biblia',
+			'bible.books' => 'Libros',
+			'bible.oldTestament' => 'Antiguo Testamento',
+			'bible.newTestament' => 'Nuevo Testamento',
+			'bible.chapters' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('es'))(n, one: '${n} capítulo', other: '${n} capítulos', ), 
+			'bible.chapter' => ({required Object n}) => 'Capítulo ${n}',
+			'bible.version' => 'Versión',
+			'bible.versions' => 'Versión de la Biblia',
+			'bible.search' => 'Buscar en la Biblia',
+			'bible.searchHint' => 'Una palabra, o «Juan 3:16»',
+			'bible.searchTip' => 'Busca una palabra («amor») o ve directamente a un pasaje («Salmos 23», «Juan 3:16»).',
+			'bible.searchNone' => 'Ningún versículo contiene estas palabras.',
+			'bible.searchCount' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('es'))(n, one: '${n} versículo', other: '${n} versículos', ), 
+			'bible.searchLimit' => ({required Object n}) => 'Los primeros ${n} versículos',
+			'bible.searchNeedsDownload' => 'Para buscar palabras en toda la Biblia, descárgala. Ya puedes escribir un pasaje: «Juan 3:16».',
+			'bible.open' => ({required Object reference}) => 'Abrir ${reference}',
+			'bible.previous' => 'Capítulo anterior',
+			'bible.next' => 'Capítulo siguiente',
+			'bible.markRead' => 'He leído este capítulo',
+			'bible.markedRead' => 'Leído hoy',
+			'bible.markReadHint' => 'Añade 1 capítulo a «Lectura bíblica» en tu informe.',
+			'bible.addedToReport' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('es'))(n, one: 'Informe: ${n} capítulo leído hoy', other: 'Informe: ${n} capítulos leídos hoy', ), 
+			'bible.removedFromReport' => 'Quitado de tu informe',
+			'bible.noReadingItem' => 'Tu informe no tiene el elemento «Lectura bíblica».',
+			'bible.download' => 'Descargar esta Biblia',
+			'bible.downloadHelp' => ({required Object size}) => 'Unos ${size} MB, para leer y buscar sin conexión.',
+			'bible.downloading' => ({required Object percent}) => 'Descargando… ${percent} %',
+			'bible.downloaded' => 'En tu teléfono',
+			'bible.downloadDone' => ({required Object version}) => '${version} está en tu teléfono',
+			'bible.removeDownload' => 'Quitar del teléfono',
+			'bible.removeDownloadTitle' => ({required Object version}) => '¿Quitar ${version} del teléfono?',
+			'bible.removeDownloadText' => 'Los capítulos que ya leíste siguen disponibles sin conexión.',
+			'bible.offline' => 'Este capítulo aún no está en tu teléfono. Vuelve a conectarte, o descarga esta Biblia para leerla sin conexión.',
+			'bible.notInVersion' => 'Este pasaje no está en esta versión.',
+			'bible.marks' => 'Mis versículos',
+			'bible.favorites' => 'Guardados',
+			'bible.highlights' => 'Resaltados',
+			'bible.noFavorites' => 'Toca un versículo y luego el marcador para encontrarlo aquí.',
+			'bible.noHighlights' => 'Toca un versículo y luego un color para resaltarlo.',
+			'bible.tapHint' => 'Toca un versículo para resaltarlo, guardarlo, copiarlo o compartirlo.',
+			'bible.highlight' => ({required Object color}) => 'Resaltar en ${color}',
+			'bible.colors.yellow' => 'amarillo',
+			'bible.colors.green' => 'verde',
+			'bible.colors.blue' => 'azul',
+			'bible.colors.pink' => 'rosa',
+			'bible.removeHighlight' => 'Quitar el color',
+			'bible.addFavorite' => 'Guardar en Mis versículos',
+			'bible.removeFavorite' => 'Quitar de Mis versículos',
+			'bible.favoriteAdded' => 'Guardado en Mis versículos',
+			'bible.favoriteRemoved' => 'Quitado de Mis versículos',
+			'bible.copy' => 'Copiar',
+			'bible.copied' => 'Copiado',
+			'bible.share' => 'Compartir',
+			'bible.closeSelection' => 'Cerrar la selección',
+			'bible.display' => 'Visualización',
+			'bible.jesusInRed' => 'Palabras de Jesús en rojo',
+			'bible.jesusInRedHelp' => 'En las versiones que las indican',
+			'bible.remove' => 'Quitar',
+			'bible.readInBible' => 'Leer en la Biblia',
+			'bible.more' => 'Más opciones',
 			'profilePhoto.title' => 'Foto de perfil',
 			'profilePhoto.add' => 'Añadir una foto de perfil',
 			'profilePhoto.change' => 'Cambiar la foto de perfil',

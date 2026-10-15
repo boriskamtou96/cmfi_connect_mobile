@@ -171,7 +171,7 @@ void main() {
     final api = FakePrayerApi()
       ..blockedList.add(sampleMembers['clarisse.nguele']!);
     final app = await pumpApp(tester, token: 't', prayerApi: api);
-    await tester.tap(find.text('Plus'));
+    await openMore(tester);
     await tester.pumpAndSettle();
     await scrollToEnd(tester);
     await tester.tap(find.text('Membres bloqués'));

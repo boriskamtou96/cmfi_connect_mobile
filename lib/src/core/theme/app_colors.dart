@@ -29,4 +29,4 @@ abstract final class AppColors {
 
 /// The app's modules. Each has its identity color, same lightness so none
 /// dominates: `module.tone(context)` (app_tones.dart).
-enum AppModule { reports, hymns, prayer, events }
+enum AppModule { reports, hymns, prayer, events, bible }

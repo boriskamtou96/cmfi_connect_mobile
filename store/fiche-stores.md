@@ -296,7 +296,7 @@ Réponses générales :
 - L'app collecte-t-elle ou partage-t-elle des données ? **Oui** (collecte).
 - Partage avec des tiers : **Non**. Google (Firebase), RevenueCat et l'hébergeur agissent comme prestataires pour notre compte, ce que Google ne compte pas comme un partage ; l'envoi aux autorités par WhatsApp ou e-mail, comme le partage de ses comptes rendus avec les autorités membres qu'il a choisies, sont des actions de l'utilisateur.
 - Données chiffrées en transit : **Oui** (HTTPS obligatoire en production ; voir la liste de contrôle pour iOS).
-- Suppression : **Oui**, dans l'app (Plus › Supprimer mon compte) et par la page https://cmfi-connect.com/delete-account (à confirmer). Une donnée seule peut aussi être effacée dans l'app (élément, personne d'une liste, autorité, inscription).
+- Suppression : **Oui**, dans l'app (Plus, ouvert par la photo de profil en haut de l'Accueil › Supprimer mon compte) et par la page https://cmfi-connect.com/delete-account (à confirmer). Une donnée seule peut aussi être effacée dans l'app (élément, personne d'une liste, autorité, inscription).
 - Engagement du programme Familles : non concerné (public 13+).
 
 | Catégorie Play | Type | Collecté | Obligatoire ? | Finalités |

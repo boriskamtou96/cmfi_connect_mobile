@@ -71,6 +71,7 @@ class TranslationsHi extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _Translations$shortcuts$hi shortcuts = _Translations$shortcuts$hi._(_root);
 	@override late final _Translations$blocking$hi blocking = _Translations$blocking$hi._(_root);
 	@override late final _Translations$verses$hi verses = _Translations$verses$hi._(_root);
+	@override late final _Translations$bible$hi bible = _Translations$bible$hi._(_root);
 	@override late final _Translations$profilePhoto$hi profilePhoto = _Translations$profilePhoto$hi._(_root);
 	@override late final _Translations$disciples$hi disciples = _Translations$disciples$hi._(_root);
 	@override late final _Translations$weekStory$hi weekStory = _Translations$weekStory$hi._(_root);
@@ -225,7 +226,7 @@ class _Translations$nav$hi extends Translations$nav$fr {
 	@override String get reports => 'रिपोर्ट';
 	@override String get hymns => 'भजन';
 	@override String get prayer => 'प्रार्थना';
-	@override String get more => 'और';
+	@override String get bible => 'बाइबल';
 }
 
 // Path: home
@@ -976,6 +977,81 @@ class _Translations$verses$hi extends Translations$verses$fr {
 	@override String get share => 'वचन शेयर करो';
 	@override String get shareImage => 'चित्र शेयर करो';
 	@override String get shareText => 'टेक्स्ट शेयर करो';
+}
+
+// Path: bible
+class _Translations$bible$hi extends Translations$bible$fr {
+	_Translations$bible$hi._(TranslationsHi root) : this._root = root, super.internal(root);
+
+	final TranslationsHi _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'बाइबल';
+	@override String get books => 'पुस्तकें';
+	@override String get oldTestament => 'पुराना नियम';
+	@override String get newTestament => 'नया नियम';
+	@override String chapters({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n,
+		one: '${n} अध्याय',
+		other: '${n} अध्याय',
+	);
+	@override String chapter({required Object n}) => 'अध्याय ${n}';
+	@override String get version => 'अनुवाद';
+	@override String get versions => 'बाइबल का अनुवाद';
+	@override String get search => 'बाइबल में खोजें';
+	@override String get searchHint => 'कोई शब्द, या “यूहन्ना 3:16”';
+	@override String get searchTip => 'कोई शब्द खोजें (“प्रेम”) या सीधे किसी अंश पर जाएँ (“भजन संहिता 23”, “यूहन्ना 3:16”)।';
+	@override String get searchNone => 'किसी भी पद में ये शब्द नहीं हैं।';
+	@override String searchCount({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n,
+		one: '${n} पद',
+		other: '${n} पद',
+	);
+	@override String searchLimit({required Object n}) => 'पहले ${n} पद';
+	@override String get searchNeedsDownload => 'पूरी बाइबल में शब्द खोजने के लिए इसे डाउनलोड करें। आप अभी कोई अंश लिख सकते हैं: “यूहन्ना 3:16”।';
+	@override String open({required Object reference}) => '${reference} खोलें';
+	@override String get previous => 'पिछला अध्याय';
+	@override String get next => 'अगला अध्याय';
+	@override String get markRead => 'मैंने यह अध्याय पढ़ लिया';
+	@override String get markedRead => 'आज पढ़ा गया';
+	@override String get markReadHint => 'आपकी रिपोर्ट में “बाइबल पठन” में 1 अध्याय जोड़ता है।';
+	@override String addedToReport({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n,
+		one: 'रिपोर्ट: आज ${n} अध्याय पढ़ा',
+		other: 'रिपोर्ट: आज ${n} अध्याय पढ़े',
+	);
+	@override String get removedFromReport => 'आपकी रिपोर्ट से हटाया गया';
+	@override String get noReadingItem => 'आपकी रिपोर्ट में “बाइबल पठन” नहीं है।';
+	@override String get download => 'यह बाइबल डाउनलोड करें';
+	@override String downloadHelp({required Object size}) => 'लगभग ${size} MB, बिना नेटवर्क के पढ़ने और खोजने के लिए।';
+	@override String downloading({required Object percent}) => 'डाउनलोड हो रहा है… ${percent}%';
+	@override String get downloaded => 'आपके फ़ोन पर';
+	@override String downloadDone({required Object version}) => '${version} आपके फ़ोन पर है';
+	@override String get removeDownload => 'फ़ोन से हटाएँ';
+	@override String removeDownloadTitle({required Object version}) => '${version} को फ़ोन से हटाएँ?';
+	@override String get removeDownloadText => 'जो अध्याय आप पढ़ चुके हैं, वे बिना नेटवर्क के उपलब्ध रहेंगे।';
+	@override String get offline => 'यह अध्याय अभी आपके फ़ोन पर नहीं है। फिर से ऑनलाइन आएँ, या बिना नेटवर्क के पढ़ने के लिए यह बाइबल डाउनलोड करें।';
+	@override String get notInVersion => 'यह अंश इस अनुवाद में नहीं है।';
+	@override String get marks => 'मेरे पद';
+	@override String get favorites => 'सहेजे गए';
+	@override String get highlights => 'हाइलाइट किए गए';
+	@override String get noFavorites => 'किसी पद को छुएँ, फिर बुकमार्क को, ताकि वह यहाँ मिले।';
+	@override String get noHighlights => 'किसी पद को छुएँ, फिर कोई रंग चुनें, उसे हाइलाइट करने के लिए।';
+	@override String get tapHint => 'किसी पद को हाइलाइट करने, सहेजने, कॉपी करने या साझा करने के लिए उसे छुएँ।';
+	@override String highlight({required Object color}) => '${color} रंग से हाइलाइट करें';
+	@override late final _Translations$bible$colors$hi colors = _Translations$bible$colors$hi._(_root);
+	@override String get removeHighlight => 'रंग हटाएँ';
+	@override String get addFavorite => 'मेरे पद में सहेजें';
+	@override String get removeFavorite => 'मेरे पद से हटाएँ';
+	@override String get favoriteAdded => 'मेरे पद में सहेजा गया';
+	@override String get favoriteRemoved => 'मेरे पद से हटाया गया';
+	@override String get copy => 'कॉपी करें';
+	@override String get copied => 'कॉपी हो गया';
+	@override String get share => 'साझा करें';
+	@override String get closeSelection => 'चयन बंद करें';
+	@override String get display => 'प्रदर्शन';
+	@override String get jesusInRed => 'यीशु के वचन लाल रंग में';
+	@override String get jesusInRedHelp => 'उन अनुवादों में जो उन्हें चिह्नित करते हैं';
+	@override String get remove => 'हटाएँ';
+	@override String get readInBible => 'बाइबल में पढ़ें';
+	@override String get more => 'और विकल्प';
 }
 
 // Path: profilePhoto
@@ -2060,6 +2136,19 @@ class _Translations$blocking$reasons$hi extends Translations$blocking$reasons$fr
 	@override String get other => 'अन्य';
 }
 
+// Path: bible.colors
+class _Translations$bible$colors$hi extends Translations$bible$colors$fr {
+	_Translations$bible$colors$hi._(TranslationsHi root) : this._root = root, super.internal(root);
+
+	final TranslationsHi _root; // ignore: unused_field
+
+	// Translations
+	@override String get yellow => 'पीले';
+	@override String get green => 'हरे';
+	@override String get blue => 'नीले';
+	@override String get pink => 'गुलाबी';
+}
+
 // Path: reports.units.chapters
 class _Translations$reports$units$chapters$hi extends Translations$reports$units$chapters$fr {
 	_Translations$reports$units$chapters$hi._(TranslationsHi root) : this._root = root, super.internal(root);
@@ -2411,7 +2500,7 @@ extension on TranslationsHi {
 			'nav.reports' => 'रिपोर्ट',
 			'nav.hymns' => 'भजन',
 			'nav.prayer' => 'प्रार्थना',
-			'nav.more' => 'और',
+			'nav.bible' => 'बाइबल',
 			'home.greeting' => ({required Object name}) => 'नमस्ते ${name}',
 			'home.greetingNoName' => 'नमस्ते',
 			'home.profile' => 'मेरी प्रोफ़ाइल',
@@ -3366,6 +3455,66 @@ extension on TranslationsHi {
 			'verses.share' => 'वचन शेयर करो',
 			'verses.shareImage' => 'चित्र शेयर करो',
 			'verses.shareText' => 'टेक्स्ट शेयर करो',
+			'bible.title' => 'बाइबल',
+			'bible.books' => 'पुस्तकें',
+			'bible.oldTestament' => 'पुराना नियम',
+			'bible.newTestament' => 'नया नियम',
+			'bible.chapters' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n, one: '${n} अध्याय', other: '${n} अध्याय', ), 
+			'bible.chapter' => ({required Object n}) => 'अध्याय ${n}',
+			'bible.version' => 'अनुवाद',
+			'bible.versions' => 'बाइबल का अनुवाद',
+			'bible.search' => 'बाइबल में खोजें',
+			'bible.searchHint' => 'कोई शब्द, या “यूहन्ना 3:16”',
+			'bible.searchTip' => 'कोई शब्द खोजें (“प्रेम”) या सीधे किसी अंश पर जाएँ (“भजन संहिता 23”, “यूहन्ना 3:16”)।',
+			'bible.searchNone' => 'किसी भी पद में ये शब्द नहीं हैं।',
+			'bible.searchCount' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n, one: '${n} पद', other: '${n} पद', ), 
+			'bible.searchLimit' => ({required Object n}) => 'पहले ${n} पद',
+			'bible.searchNeedsDownload' => 'पूरी बाइबल में शब्द खोजने के लिए इसे डाउनलोड करें। आप अभी कोई अंश लिख सकते हैं: “यूहन्ना 3:16”।',
+			'bible.open' => ({required Object reference}) => '${reference} खोलें',
+			'bible.previous' => 'पिछला अध्याय',
+			'bible.next' => 'अगला अध्याय',
+			'bible.markRead' => 'मैंने यह अध्याय पढ़ लिया',
+			'bible.markedRead' => 'आज पढ़ा गया',
+			'bible.markReadHint' => 'आपकी रिपोर्ट में “बाइबल पठन” में 1 अध्याय जोड़ता है।',
+			'bible.addedToReport' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n, one: 'रिपोर्ट: आज ${n} अध्याय पढ़ा', other: 'रिपोर्ट: आज ${n} अध्याय पढ़े', ), 
+			'bible.removedFromReport' => 'आपकी रिपोर्ट से हटाया गया',
+			'bible.noReadingItem' => 'आपकी रिपोर्ट में “बाइबल पठन” नहीं है।',
+			'bible.download' => 'यह बाइबल डाउनलोड करें',
+			'bible.downloadHelp' => ({required Object size}) => 'लगभग ${size} MB, बिना नेटवर्क के पढ़ने और खोजने के लिए।',
+			'bible.downloading' => ({required Object percent}) => 'डाउनलोड हो रहा है… ${percent}%',
+			'bible.downloaded' => 'आपके फ़ोन पर',
+			'bible.downloadDone' => ({required Object version}) => '${version} आपके फ़ोन पर है',
+			'bible.removeDownload' => 'फ़ोन से हटाएँ',
+			'bible.removeDownloadTitle' => ({required Object version}) => '${version} को फ़ोन से हटाएँ?',
+			'bible.removeDownloadText' => 'जो अध्याय आप पढ़ चुके हैं, वे बिना नेटवर्क के उपलब्ध रहेंगे।',
+			'bible.offline' => 'यह अध्याय अभी आपके फ़ोन पर नहीं है। फिर से ऑनलाइन आएँ, या बिना नेटवर्क के पढ़ने के लिए यह बाइबल डाउनलोड करें।',
+			'bible.notInVersion' => 'यह अंश इस अनुवाद में नहीं है।',
+			'bible.marks' => 'मेरे पद',
+			'bible.favorites' => 'सहेजे गए',
+			'bible.highlights' => 'हाइलाइट किए गए',
+			'bible.noFavorites' => 'किसी पद को छुएँ, फिर बुकमार्क को, ताकि वह यहाँ मिले।',
+			'bible.noHighlights' => 'किसी पद को छुएँ, फिर कोई रंग चुनें, उसे हाइलाइट करने के लिए।',
+			'bible.tapHint' => 'किसी पद को हाइलाइट करने, सहेजने, कॉपी करने या साझा करने के लिए उसे छुएँ।',
+			'bible.highlight' => ({required Object color}) => '${color} रंग से हाइलाइट करें',
+			'bible.colors.yellow' => 'पीले',
+			'bible.colors.green' => 'हरे',
+			'bible.colors.blue' => 'नीले',
+			'bible.colors.pink' => 'गुलाबी',
+			'bible.removeHighlight' => 'रंग हटाएँ',
+			'bible.addFavorite' => 'मेरे पद में सहेजें',
+			'bible.removeFavorite' => 'मेरे पद से हटाएँ',
+			'bible.favoriteAdded' => 'मेरे पद में सहेजा गया',
+			'bible.favoriteRemoved' => 'मेरे पद से हटाया गया',
+			'bible.copy' => 'कॉपी करें',
+			'bible.copied' => 'कॉपी हो गया',
+			'bible.share' => 'साझा करें',
+			'bible.closeSelection' => 'चयन बंद करें',
+			'bible.display' => 'प्रदर्शन',
+			'bible.jesusInRed' => 'यीशु के वचन लाल रंग में',
+			'bible.jesusInRedHelp' => 'उन अनुवादों में जो उन्हें चिह्नित करते हैं',
+			'bible.remove' => 'हटाएँ',
+			'bible.readInBible' => 'बाइबल में पढ़ें',
+			'bible.more' => 'और विकल्प',
 			'profilePhoto.title' => 'प्रोफ़ाइल फ़ोटो',
 			'profilePhoto.add' => 'प्रोफ़ाइल फ़ोटो जोड़ें',
 			'profilePhoto.change' => 'प्रोफ़ाइल फ़ोटो बदलें',

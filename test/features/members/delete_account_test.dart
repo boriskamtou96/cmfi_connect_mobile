@@ -10,7 +10,7 @@ const welcomeTitle = 'Bienvenue sur CMFI Connect';
 
 /// Plus › Supprimer mon compte, then the password.
 Future<void> openAndConfirm(WidgetTester tester, String password) async {
-  await tester.tap(find.text('Plus'));
+  await openMore(tester);
   await tester.pumpAndSettle();
   await scrollToEnd(tester);
   await tester.tap(find.text('Supprimer mon compte'));

@@ -13,8 +13,8 @@ _HymnReaderSettings _$HymnReaderSettingsFromJson(Map<String, dynamic> json) =>
           $enumDecodeNullable(_$HymnTypefaceEnumMap, json['typeface']) ??
           HymnTypeface.auto,
       theme:
-          $enumDecodeNullable(_$HymnReaderThemeEnumMap, json['theme']) ??
-          HymnReaderTheme.auto,
+          $enumDecodeNullable(_$ReaderThemeEnumMap, json['theme']) ??
+          ReaderTheme.auto,
       repeatChorus: json['repeat_chorus'] as bool? ?? false,
       keepScreenOn: json['keep_screen_on'] as bool? ?? true,
     );
@@ -23,7 +23,7 @@ Map<String, dynamic> _$HymnReaderSettingsToJson(_HymnReaderSettings instance) =>
     <String, dynamic>{
       'text_scale': instance.textScale,
       'typeface': _$HymnTypefaceEnumMap[instance.typeface]!,
-      'theme': _$HymnReaderThemeEnumMap[instance.theme]!,
+      'theme': _$ReaderThemeEnumMap[instance.theme]!,
       'repeat_chorus': instance.repeatChorus,
       'keep_screen_on': instance.keepScreenOn,
     };
@@ -34,11 +34,11 @@ const _$HymnTypefaceEnumMap = {
   HymnTypeface.serif: 'serif',
 };
 
-const _$HymnReaderThemeEnumMap = {
-  HymnReaderTheme.auto: 'auto',
-  HymnReaderTheme.light: 'light',
-  HymnReaderTheme.sepia: 'sepia',
-  HymnReaderTheme.dark: 'dark',
+const _$ReaderThemeEnumMap = {
+  ReaderTheme.auto: 'auto',
+  ReaderTheme.light: 'light',
+  ReaderTheme.sepia: 'sepia',
+  ReaderTheme.dark: 'dark',
 };
 
 // **************************************************************************

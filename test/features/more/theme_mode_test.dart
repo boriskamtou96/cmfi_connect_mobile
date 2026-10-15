@@ -11,7 +11,7 @@ void main() {
   setUp(() => LocaleSettings.setLocale(AppLocale.fr));
 
   Brightness brightness(WidgetTester tester) =>
-      Theme.of(tester.element(find.text('Plus').last)).brightness;
+      Theme.of(tester.element(find.byType(Scaffold).last)).brightness;
 
   testWidgets('the app follows the phone until a mode is chosen', (
     tester,
@@ -22,7 +22,7 @@ void main() {
 
     expect(brightness(tester), Brightness.dark);
 
-    await tester.tap(find.text('Plus'));
+    await openMore(tester);
     await tester.pumpAndSettle();
     // the last row: the settings above it are then fully in view
     await scrollToEnd(tester);
@@ -50,7 +50,7 @@ void main() {
     );
     expect(brightness(tester), Brightness.dark);
 
-    await tester.tap(find.text('Plus'));
+    await openMore(tester);
     await tester.pumpAndSettle();
     await scrollToEnd(tester);
     expect(find.text('Sombre'), findsOneWidget);

@@ -91,6 +91,54 @@ class AuthorityFormRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
+/// [BibleMarksScreen]
+class BibleMarksRoute extends PageRouteInfo<void> {
+  const BibleMarksRoute({List<PageRouteInfo>? children})
+    : super(BibleMarksRoute.name, initialChildren: children);
+
+  static const String name = 'BibleMarksRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const BibleMarksScreen();
+    },
+  );
+}
+
+/// generated route for
+/// [BibleScreen]
+class BibleRoute extends PageRouteInfo<void> {
+  const BibleRoute({List<PageRouteInfo>? children})
+    : super(BibleRoute.name, initialChildren: children);
+
+  static const String name = 'BibleRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const BibleScreen();
+    },
+  );
+}
+
+/// generated route for
+/// [BibleSearchScreen]
+class BibleSearchRoute extends PageRouteInfo<void> {
+  const BibleSearchRoute({List<PageRouteInfo>? children})
+    : super(BibleSearchRoute.name, initialChildren: children);
+
+  static const String name = 'BibleSearchRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const BibleSearchScreen();
+    },
+  );
+}
+
+/// generated route for
 /// [BlockedMembersScreen]
 class BlockedMembersRoute extends PageRouteInfo<void> {
   const BlockedMembersRoute({List<PageRouteInfo>? children})

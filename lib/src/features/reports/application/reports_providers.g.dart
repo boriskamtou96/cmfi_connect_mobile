@@ -55,7 +55,7 @@ final class ActivitiesProvider
   }
 }
 
-String _$activitiesHash() => r'97aa38abae33052f76e2da8ae3c73618561476d5';
+String _$activitiesHash() => r'3c92543eeb05641c54f91a7b362f32c96666093d';
 
 /// The last history the server gave for each period, shown again while the
 /// network is gone. In memory only.

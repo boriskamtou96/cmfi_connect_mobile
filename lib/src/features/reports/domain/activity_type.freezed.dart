@@ -15,7 +15,8 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$ActivityType {
 
- int get id; String get code; String get label; bool get tracksQuantity; String? get quantityUnit; bool get tracksDuration; int get position; bool get isStandard;
+ int get id; String get code; String get label; bool get tracksQuantity; String? get quantityUnit; bool get tracksDuration; int get position; bool get isStandard;/// The member's daily goal on the item, kept on the account (null: none).
+ ReportGoal? get goal;
 /// Create a copy of ActivityType
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -28,16 +29,16 @@ $ActivityTypeCopyWith<ActivityType> get copyWith => _$ActivityTypeCopyWithImpl<A
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is ActivityType&&(identical(other.id, id) || other.id == id)&&(identical(other.code, code) || other.code == code)&&(identical(other.label, label) || other.label == label)&&(identical(other.tracksQuantity, tracksQuantity) || other.tracksQuantity == tracksQuantity)&&(identical(other.quantityUnit, quantityUnit) || other.quantityUnit == quantityUnit)&&(identical(other.tracksDuration, tracksDuration) || other.tracksDuration == tracksDuration)&&(identical(other.position, position) || other.position == position)&&(identical(other.isStandard, isStandard) || other.isStandard == isStandard));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is ActivityType&&(identical(other.id, id) || other.id == id)&&(identical(other.code, code) || other.code == code)&&(identical(other.label, label) || other.label == label)&&(identical(other.tracksQuantity, tracksQuantity) || other.tracksQuantity == tracksQuantity)&&(identical(other.quantityUnit, quantityUnit) || other.quantityUnit == quantityUnit)&&(identical(other.tracksDuration, tracksDuration) || other.tracksDuration == tracksDuration)&&(identical(other.position, position) || other.position == position)&&(identical(other.isStandard, isStandard) || other.isStandard == isStandard)&&(identical(other.goal, goal) || other.goal == goal));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,id,code,label,tracksQuantity,quantityUnit,tracksDuration,position,isStandard);
+int get hashCode => Object.hash(runtimeType,id,code,label,tracksQuantity,quantityUnit,tracksDuration,position,isStandard,goal);
 
 @override
 String toString() {
-  return 'ActivityType(id: $id, code: $code, label: $label, tracksQuantity: $tracksQuantity, quantityUnit: $quantityUnit, tracksDuration: $tracksDuration, position: $position, isStandard: $isStandard)';
+  return 'ActivityType(id: $id, code: $code, label: $label, tracksQuantity: $tracksQuantity, quantityUnit: $quantityUnit, tracksDuration: $tracksDuration, position: $position, isStandard: $isStandard, goal: $goal)';
 }
 
 
@@ -48,11 +49,11 @@ abstract mixin class $ActivityTypeCopyWith<$Res>  {
   factory $ActivityTypeCopyWith(ActivityType value, $Res Function(ActivityType) _then) = _$ActivityTypeCopyWithImpl;
 @useResult
 $Res call({
- int id, String code, String label, bool tracksQuantity, String? quantityUnit, bool tracksDuration, int position, bool isStandard
+ int id, String code, String label, bool tracksQuantity, String? quantityUnit, bool tracksDuration, int position, bool isStandard, ReportGoal? goal
 });
 
 
-
+$ReportGoalCopyWith<$Res>? get goal;
 
 }
 /// @nodoc
@@ -65,7 +66,7 @@ class _$ActivityTypeCopyWithImpl<$Res>
 
 /// Create a copy of ActivityType
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? code = null,Object? label = null,Object? tracksQuantity = null,Object? quantityUnit = freezed,Object? tracksDuration = null,Object? position = null,Object? isStandard = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? code = null,Object? label = null,Object? tracksQuantity = null,Object? quantityUnit = freezed,Object? tracksDuration = null,Object? position = null,Object? isStandard = null,Object? goal = freezed,}) {
   return _then(_self.copyWith(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as int,code: null == code ? _self.code : code // ignore: cast_nullable_to_non_nullable
@@ -75,10 +76,23 @@ as bool,quantityUnit: freezed == quantityUnit ? _self.quantityUnit : quantityUni
 as String?,tracksDuration: null == tracksDuration ? _self.tracksDuration : tracksDuration // ignore: cast_nullable_to_non_nullable
 as bool,position: null == position ? _self.position : position // ignore: cast_nullable_to_non_nullable
 as int,isStandard: null == isStandard ? _self.isStandard : isStandard // ignore: cast_nullable_to_non_nullable
-as bool,
+as bool,goal: freezed == goal ? _self.goal : goal // ignore: cast_nullable_to_non_nullable
+as ReportGoal?,
   ));
 }
+/// Create a copy of ActivityType
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$ReportGoalCopyWith<$Res>? get goal {
+    if (_self.goal == null) {
+    return null;
+  }
 
+  return $ReportGoalCopyWith<$Res>(_self.goal!, (value) {
+    return _then(_self.copyWith(goal: value));
+  });
+}
 }
 
 
@@ -160,10 +174,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( int id,  String code,  String label,  bool tracksQuantity,  String? quantityUnit,  bool tracksDuration,  int position,  bool isStandard)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( int id,  String code,  String label,  bool tracksQuantity,  String? quantityUnit,  bool tracksDuration,  int position,  bool isStandard,  ReportGoal? goal)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _ActivityType() when $default != null:
-return $default(_that.id,_that.code,_that.label,_that.tracksQuantity,_that.quantityUnit,_that.tracksDuration,_that.position,_that.isStandard);case _:
+return $default(_that.id,_that.code,_that.label,_that.tracksQuantity,_that.quantityUnit,_that.tracksDuration,_that.position,_that.isStandard,_that.goal);case _:
   return orElse();
 
 }
@@ -181,10 +195,10 @@ return $default(_that.id,_that.code,_that.label,_that.tracksQuantity,_that.quant
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( int id,  String code,  String label,  bool tracksQuantity,  String? quantityUnit,  bool tracksDuration,  int position,  bool isStandard)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( int id,  String code,  String label,  bool tracksQuantity,  String? quantityUnit,  bool tracksDuration,  int position,  bool isStandard,  ReportGoal? goal)  $default,) {final _that = this;
 switch (_that) {
 case _ActivityType():
-return $default(_that.id,_that.code,_that.label,_that.tracksQuantity,_that.quantityUnit,_that.tracksDuration,_that.position,_that.isStandard);case _:
+return $default(_that.id,_that.code,_that.label,_that.tracksQuantity,_that.quantityUnit,_that.tracksDuration,_that.position,_that.isStandard,_that.goal);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -201,10 +215,10 @@ return $default(_that.id,_that.code,_that.label,_that.tracksQuantity,_that.quant
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( int id,  String code,  String label,  bool tracksQuantity,  String? quantityUnit,  bool tracksDuration,  int position,  bool isStandard)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( int id,  String code,  String label,  bool tracksQuantity,  String? quantityUnit,  bool tracksDuration,  int position,  bool isStandard,  ReportGoal? goal)?  $default,) {final _that = this;
 switch (_that) {
 case _ActivityType() when $default != null:
-return $default(_that.id,_that.code,_that.label,_that.tracksQuantity,_that.quantityUnit,_that.tracksDuration,_that.position,_that.isStandard);case _:
+return $default(_that.id,_that.code,_that.label,_that.tracksQuantity,_that.quantityUnit,_that.tracksDuration,_that.position,_that.isStandard,_that.goal);case _:
   return null;
 
 }
@@ -216,7 +230,7 @@ return $default(_that.id,_that.code,_that.label,_that.tracksQuantity,_that.quant
 @JsonSerializable()
 
 class _ActivityType implements ActivityType {
-  const _ActivityType({required this.id, required this.code, required this.label, this.tracksQuantity = false, this.quantityUnit, this.tracksDuration = false, this.position = 0, this.isStandard = false});
+  const _ActivityType({required this.id, required this.code, required this.label, this.tracksQuantity = false, this.quantityUnit, this.tracksDuration = false, this.position = 0, this.isStandard = false, this.goal});
   factory _ActivityType.fromJson(Map<String, dynamic> json) => _$ActivityTypeFromJson(json);
 
 @override final  int id;
@@ -227,6 +241,8 @@ class _ActivityType implements ActivityType {
 @override@JsonKey() final  bool tracksDuration;
 @override@JsonKey() final  int position;
 @override@JsonKey() final  bool isStandard;
+/// The member's daily goal on the item, kept on the account (null: none).
+@override final  ReportGoal? goal;
 
 /// Create a copy of ActivityType
 /// with the given fields replaced by the non-null parameter values.
@@ -241,16 +257,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _ActivityType&&(identical(other.id, id) || other.id == id)&&(identical(other.code, code) || other.code == code)&&(identical(other.label, label) || other.label == label)&&(identical(other.tracksQuantity, tracksQuantity) || other.tracksQuantity == tracksQuantity)&&(identical(other.quantityUnit, quantityUnit) || other.quantityUnit == quantityUnit)&&(identical(other.tracksDuration, tracksDuration) || other.tracksDuration == tracksDuration)&&(identical(other.position, position) || other.position == position)&&(identical(other.isStandard, isStandard) || other.isStandard == isStandard));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _ActivityType&&(identical(other.id, id) || other.id == id)&&(identical(other.code, code) || other.code == code)&&(identical(other.label, label) || other.label == label)&&(identical(other.tracksQuantity, tracksQuantity) || other.tracksQuantity == tracksQuantity)&&(identical(other.quantityUnit, quantityUnit) || other.quantityUnit == quantityUnit)&&(identical(other.tracksDuration, tracksDuration) || other.tracksDuration == tracksDuration)&&(identical(other.position, position) || other.position == position)&&(identical(other.isStandard, isStandard) || other.isStandard == isStandard)&&(identical(other.goal, goal) || other.goal == goal));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,id,code,label,tracksQuantity,quantityUnit,tracksDuration,position,isStandard);
+int get hashCode => Object.hash(runtimeType,id,code,label,tracksQuantity,quantityUnit,tracksDuration,position,isStandard,goal);
 
 @override
 String toString() {
-  return 'ActivityType(id: $id, code: $code, label: $label, tracksQuantity: $tracksQuantity, quantityUnit: $quantityUnit, tracksDuration: $tracksDuration, position: $position, isStandard: $isStandard)';
+  return 'ActivityType(id: $id, code: $code, label: $label, tracksQuantity: $tracksQuantity, quantityUnit: $quantityUnit, tracksDuration: $tracksDuration, position: $position, isStandard: $isStandard, goal: $goal)';
 }
 
 
@@ -261,11 +277,11 @@ abstract mixin class _$ActivityTypeCopyWith<$Res> implements $ActivityTypeCopyWi
   factory _$ActivityTypeCopyWith(_ActivityType value, $Res Function(_ActivityType) _then) = __$ActivityTypeCopyWithImpl;
 @override @useResult
 $Res call({
- int id, String code, String label, bool tracksQuantity, String? quantityUnit, bool tracksDuration, int position, bool isStandard
+ int id, String code, String label, bool tracksQuantity, String? quantityUnit, bool tracksDuration, int position, bool isStandard, ReportGoal? goal
 });
 
 
-
+@override $ReportGoalCopyWith<$Res>? get goal;
 
 }
 /// @nodoc
@@ -278,7 +294,7 @@ class __$ActivityTypeCopyWithImpl<$Res>
 
 /// Create a copy of ActivityType
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? code = null,Object? label = null,Object? tracksQuantity = null,Object? quantityUnit = freezed,Object? tracksDuration = null,Object? position = null,Object? isStandard = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? code = null,Object? label = null,Object? tracksQuantity = null,Object? quantityUnit = freezed,Object? tracksDuration = null,Object? position = null,Object? isStandard = null,Object? goal = freezed,}) {
   return _then(_ActivityType(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as int,code: null == code ? _self.code : code // ignore: cast_nullable_to_non_nullable
@@ -288,11 +304,24 @@ as bool,quantityUnit: freezed == quantityUnit ? _self.quantityUnit : quantityUni
 as String?,tracksDuration: null == tracksDuration ? _self.tracksDuration : tracksDuration // ignore: cast_nullable_to_non_nullable
 as bool,position: null == position ? _self.position : position // ignore: cast_nullable_to_non_nullable
 as int,isStandard: null == isStandard ? _self.isStandard : isStandard // ignore: cast_nullable_to_non_nullable
-as bool,
+as bool,goal: freezed == goal ? _self.goal : goal // ignore: cast_nullable_to_non_nullable
+as ReportGoal?,
   ));
 }
 
+/// Create a copy of ActivityType
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$ReportGoalCopyWith<$Res>? get goal {
+    if (_self.goal == null) {
+    return null;
+  }
 
+  return $ReportGoalCopyWith<$Res>(_self.goal!, (value) {
+    return _then(_self.copyWith(goal: value));
+  });
+}
 }
 
 // dart format on

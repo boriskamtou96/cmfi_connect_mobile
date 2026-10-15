@@ -1,19 +1,31 @@
+import 'dart:async';
 import 'dart:convert';
 
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
+import '../../../core/network/app_exception.dart';
 import '../../../core/storage/preferences.dart';
 import '../../../core/utils/date_extensions.dart';
+import '../domain/activity_type.dart';
 import '../domain/report_goal.dart';
+import '../infrastructure/activities_api.dart';
 import 'day_report_controller.dart';
 import 'reports_providers.dart';
 
 part 'report_goals.g.dart';
 
-/// The daily goals, by item id. Kept on the phone.
+/// The daily goals, by item id. Kept on the account (sent with
+/// `PUT /activities/:id/goal`, read back with the items) and on the phone, so
+/// they show at once and can be changed without network: the changes not sent
+/// yet wait in [_pendingKey] and go when the items load again.
 @Riverpod(keepAlive: true)
 class ReportGoals extends _$ReportGoals {
   static const key = 'report_goals';
+  static const _pendingKey = 'report_goals_pending';
+
+  /// Before the goals went to the account, they were on the phone only: those
+  /// are sent once.
+  static const _uploadedKey = 'report_goals_uploaded';
 
   @override
   Map<int, ReportGoal> build() {
@@ -31,7 +43,10 @@ class ReportGoals extends _$ReportGoals {
   /// Signing out (or deleting the account): the next account on this phone
   /// starts without them.
   Future<void> clear() async {
-    await ref.read(sharedPreferencesProvider).remove(key);
+    final preferences = ref.read(sharedPreferencesProvider);
+    await preferences.remove(key);
+    await preferences.remove(_pendingKey);
+    await preferences.remove(_uploadedKey);
     state = const {};
   }
 
@@ -41,16 +56,76 @@ class ReportGoals extends _$ReportGoals {
     if (goal != null && !goal.isEmpty) {
       goals[activityTypeId] = goal;
     }
+    await _save(goals, {..._pending(), activityTypeId});
+    unawaited(sendPending());
+  }
+
+  /// The items as the server gave them, with the account's goals: they win,
+  /// except a change of this phone not sent yet. The items not listed
+  /// (archived) keep what the phone had.
+  Future<void> fromServer(List<ActivityType> activities) async {
+    final preferences = ref.read(sharedPreferencesProvider);
+    final uploaded = preferences.getBool(_uploadedKey) ?? false;
+    final pending = _pending();
+    final goals = {...state};
+    for (final activity in activities) {
+      if (pending.contains(activity.id)) {
+        continue;
+      }
+      if (activity.goal case final goal? when !goal.isEmpty) {
+        goals[activity.id] = goal;
+      } else if (!uploaded && goals.containsKey(activity.id)) {
+        pending.add(activity.id);
+      } else {
+        goals.remove(activity.id);
+      }
+    }
+    await preferences.setBool(_uploadedKey, true);
+    await _save(goals, pending);
+    await sendPending();
+  }
+
+  /// Sends the goals changed on the phone; stops at the first network error
+  /// (they will go next time). An item gone from the account is forgotten.
+  Future<void> sendPending() async {
+    final api = ref.read(activitiesApiProvider);
+    for (final id in _pending()) {
+      try {
+        await api.setGoal(id, state[id]);
+      } on NetworkException {
+        return;
+      } on ApiException catch (error) {
+        if (error.status != 404) {
+          return;
+        }
+      }
+      if (!ref.mounted) {
+        return;
+      }
+      await _save(state, _pending()..remove(id));
+    }
+  }
+
+  Set<int> _pending() => {
+    for (final id
+        in ref.read(sharedPreferencesProvider).getStringList(_pendingKey) ??
+            const <String>[])
+      ?int.tryParse(id),
+  };
+
+  Future<void> _save(Map<int, ReportGoal> goals, Set<int> pending) async {
     state = goals;
-    await ref
-        .read(sharedPreferencesProvider)
-        .setString(
-          key,
-          jsonEncode({
-            for (final MapEntry(:key, :value) in goals.entries)
-              '$key': value.toJson(),
-          }),
-        );
+    final preferences = ref.read(sharedPreferencesProvider);
+    await preferences.setString(
+      key,
+      jsonEncode({
+        for (final MapEntry(:key, :value) in goals.entries)
+          '$key': value.toJson(),
+      }),
+    );
+    await preferences.setStringList(_pendingKey, [
+      for (final id in pending) '$id',
+    ]);
   }
 }
 

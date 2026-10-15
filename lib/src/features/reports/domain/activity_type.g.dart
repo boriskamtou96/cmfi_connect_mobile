@@ -16,6 +16,9 @@ _ActivityType _$ActivityTypeFromJson(Map<String, dynamic> json) =>
       tracksDuration: json['tracks_duration'] as bool? ?? false,
       position: (json['position'] as num?)?.toInt() ?? 0,
       isStandard: json['is_standard'] as bool? ?? false,
+      goal: json['goal'] == null
+          ? null
+          : ReportGoal.fromJson(json['goal'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$ActivityTypeToJson(_ActivityType instance) =>
@@ -28,4 +31,5 @@ Map<String, dynamic> _$ActivityTypeToJson(_ActivityType instance) =>
       'tracks_duration': instance.tracksDuration,
       'position': instance.position,
       'is_standard': instance.isStandard,
+      'goal': ?instance.goal?.toJson(),
     };

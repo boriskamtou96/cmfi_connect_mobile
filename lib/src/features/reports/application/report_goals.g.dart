@@ -8,15 +8,24 @@ part of 'report_goals.dart';
 
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint, type=warning
-/// The daily goals, by item id. Kept on the phone.
+/// The daily goals, by item id. Kept on the account (sent with
+/// `PUT /activities/:id/goal`, read back with the items) and on the phone, so
+/// they show at once and can be changed without network: the changes not sent
+/// yet wait in [_pendingKey] and go when the items load again.
 
 @ProviderFor(ReportGoals)
 final reportGoalsProvider = ReportGoalsProvider._();
 
-/// The daily goals, by item id. Kept on the phone.
+/// The daily goals, by item id. Kept on the account (sent with
+/// `PUT /activities/:id/goal`, read back with the items) and on the phone, so
+/// they show at once and can be changed without network: the changes not sent
+/// yet wait in [_pendingKey] and go when the items load again.
 final class ReportGoalsProvider
     extends $NotifierProvider<ReportGoals, Map<int, ReportGoal>> {
-  /// The daily goals, by item id. Kept on the phone.
+  /// The daily goals, by item id. Kept on the account (sent with
+  /// `PUT /activities/:id/goal`, read back with the items) and on the phone, so
+  /// they show at once and can be changed without network: the changes not sent
+  /// yet wait in [_pendingKey] and go when the items load again.
   ReportGoalsProvider._()
     : super(
         from: null,
@@ -44,9 +53,12 @@ final class ReportGoalsProvider
   }
 }
 
-String _$reportGoalsHash() => r'b7100028f7bed97cd16d50e197f82579b61d6d69';
+String _$reportGoalsHash() => r'627e585d86ac06569ecb901007340cbc6d98fb2d';
 
-/// The daily goals, by item id. Kept on the phone.
+/// The daily goals, by item id. Kept on the account (sent with
+/// `PUT /activities/:id/goal`, read back with the items) and on the phone, so
+/// they show at once and can be changed without network: the changes not sent
+/// yet wait in [_pendingKey] and go when the items load again.
 
 abstract class _$ReportGoals extends $Notifier<Map<int, ReportGoal>> {
   Map<int, ReportGoal> build();

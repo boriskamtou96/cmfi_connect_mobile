@@ -47,6 +47,7 @@ import 'package:cmfi_connect/src/features/profile/domain/profile.dart';
 import 'package:cmfi_connect/src/features/profile/infrastructure/profile_api.dart';
 import 'package:cmfi_connect/src/features/reports/domain/activity_type.dart';
 import 'package:cmfi_connect/src/features/reports/domain/daily_report.dart';
+import 'package:cmfi_connect/src/features/reports/domain/report_goal.dart';
 import 'package:cmfi_connect/src/features/reports/domain/report_summary.dart';
 import 'package:cmfi_connect/src/features/reports/infrastructure/activities_api.dart';
 import 'package:cmfi_connect/src/features/reports/infrastructure/reports_api.dart';
@@ -391,6 +392,28 @@ class FakeActivitiesApi implements ActivitiesApi {
   @override
   Future<void> archive(int id) async =>
       activities.removeWhere((activity) => activity.id == id);
+
+  /// The goals sent, in order.
+  final goalsSent = <(int, ReportGoal?)>[];
+
+  @override
+  Future<void> setGoal(int id, ReportGoal? goal) async {
+    if (offline) {
+      throw const NetworkException();
+    }
+    final index = activities.indexWhere((activity) => activity.id == id);
+    if (index < 0) {
+      throw const ApiException(
+        status: 404,
+        code: 'NOT_FOUND',
+        message: 'not found',
+      );
+    }
+    goalsSent.add((id, goal));
+    activities[index] = activities[index].copyWith(
+      goal: goal == null || goal.isEmpty ? null : goal,
+    );
+  }
 }
 
 /// Stores the saved days in memory, like the API would.

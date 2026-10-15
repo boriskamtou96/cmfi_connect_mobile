@@ -4,6 +4,7 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 import '../../../core/network/api_call.dart';
 import '../../../core/network/dio_provider.dart';
 import '../domain/activity_type.dart';
+import '../domain/report_goal.dart';
 
 part 'activities_api.g.dart';
 
@@ -44,11 +45,21 @@ class ActivitiesApi {
     return ActivityType.fromJson(response.content);
   });
 
+  /// Keeps the daily goal of an item on the account; null or empty removes
+  /// it. An archived or unknown item answers 404.
+  Future<void> setGoal(int id, ReportGoal? goal) => apiCall(() async {
+    await _dio.put<void>(
+      '/activities/$id/goal',
+      data: {'quantity': goal?.quantity, 'minutes': goal?.minutes},
+    );
+  });
+
   /// Archives a personal item (204). Its past values stay in the history.
   Future<void> archive(int id) => apiCall(() async {
     await _dio.delete<void>('/activities/$id');
   });
 }
 
-@riverpod
+// kept: the goals (a kept provider) send through it
+@Riverpod(keepAlive: true)
 ActivitiesApi activitiesApi(Ref ref) => ActivitiesApi(ref.watch(dioProvider));

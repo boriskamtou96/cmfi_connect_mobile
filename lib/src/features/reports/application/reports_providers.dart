@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../../../core/network/app_exception.dart';
@@ -10,6 +12,7 @@ import '../infrastructure/activities_api.dart';
 import '../infrastructure/reports_api.dart';
 import '../infrastructure/reports_local_store.dart';
 import 'pending_reports.dart';
+import 'report_goals.dart';
 
 part 'reports_providers.g.dart';
 
@@ -21,6 +24,8 @@ Future<List<ActivityType>> activities(Ref ref) async {
   try {
     final activities = await ref.watch(activitiesApiProvider).list();
     await store.saveActivities(activities);
+    // the goals kept on the account
+    unawaited(ref.read(reportGoalsProvider.notifier).fromServer(activities));
     return activities;
   } on NetworkException {
     final cached = store.activities();

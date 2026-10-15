@@ -21,7 +21,7 @@ final class ActivitiesApiProvider
         argument: null,
         retry: null,
         name: r'activitiesApiProvider',
-        isAutoDispose: true,
+        isAutoDispose: false,
         dependencies: null,
         $allTransitiveDependencies: null,
       );
@@ -48,4 +48,4 @@ final class ActivitiesApiProvider
   }
 }
 
-String _$activitiesApiHash() => r'8a2617968a4d5671c7138aea0d83276f545f951d';
+String _$activitiesApiHash() => r'f98b79b758b304d491c531f197f844403e99e742';

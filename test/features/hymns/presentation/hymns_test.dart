@@ -1,6 +1,7 @@
 import 'package:cmfi_connect/src/core/i18n/strings.g.dart';
 import 'package:cmfi_connect/src/features/hymns/application/hymn_reader_settings.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:intl/date_symbol_data_local.dart';
 
@@ -87,16 +88,69 @@ void main() {
     expect(app.screenAwake.on, isFalse);
   });
 
-  testWidgets('swipe to the next hymn', (tester) async {
+  // on Android, the text selection would otherwise take the drag
+  testWidgets(
+    'swipe to the next hymn, even starting on the words',
+    (tester) async {
+      await openHymns(tester);
+      await tester.tap(find.text('A Toi la gloire'));
+      await tester.pumpAndSettle();
+
+      await tester.fling(
+        find.text('Ô Ressuscité'),
+        const Offset(-300, 0),
+        1000,
+      );
+      await tester.pumpAndSettle();
+
+      expect(find.text('N° 2'), findsOneWidget);
+      expect(find.text('EMPEYTAZ.'), findsOneWidget);
+    },
+    variant: TargetPlatformVariant.mobile(),
+  );
+
+  testWidgets('a long press selects the words, copied line by line', (
+    tester,
+  ) async {
+    String? copied;
+    final messenger = tester.binding.defaultBinaryMessenger;
+    messenger.setMockMethodCallHandler(SystemChannels.platform, (call) async {
+      if (call.method == 'Clipboard.setData') {
+        copied = (call.arguments as Map)['text'] as String;
+      }
+      return null;
+    });
+    addTearDown(
+      () => messenger.setMockMethodCallHandler(SystemChannels.platform, null),
+    );
     await openHymns(tester);
     await tester.tap(find.text('A Toi la gloire'));
     await tester.pumpAndSettle();
 
-    await tester.fling(find.byType(PageView), const Offset(-300, 0), 1000);
+    await tester.longPress(find.text('Ô Ressuscité'));
+    await tester.pumpAndSettle();
+    expect(find.text('Partager'), findsOneWidget);
+    // as if the handles were dragged over the whole hymn
+    tester
+        .state<SelectableRegionState>(
+          find.ancestor(
+            of: find.text('Ô Ressuscité'),
+            matching: find.byType(SelectableRegion),
+          ),
+        )
+        .selectAll(SelectionChangedCause.toolbar);
+    await tester.pumpAndSettle();
+    await tester.tap(find.text('Copier'));
     await tester.pumpAndSettle();
 
-    expect(find.text('N° 2'), findsOneWidget);
-    expect(find.text('EMPEYTAZ.'), findsOneWidget);
+    // without the book, the verse numbers and "Refrain"
+    expect(
+      copied,
+      'A Toi la gloire\n\n'
+      'À toi la gloire\nÔ Ressuscité\n\n'
+      "À toi la victoire\nPour l'éternité\n\n"
+      "Vois-le paraître\nC'est lui, c'est Jésus",
+    );
   });
 
   testWidgets('the chorus can come back after each verse', (tester) async {

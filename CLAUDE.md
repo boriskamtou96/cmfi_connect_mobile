@@ -137,6 +137,7 @@ Règles de dépendance :
 - La police de lecture « Classique » est Lora (OFL, `assets/fonts`). En Auto, elle prend le relais à partir de 130 % : un grand texte se lit mieux avec empattements.
 - L'écran reste allumé via `screenAwakeProvider` (wakelock_plus). Dans les tests, il est remplacé par `FakeScreenAwake`.
 - Le mode projection affiche une strophe à la fois, à la plus grande taille qui tient. Le refrain y revient toujours après chaque couplet.
+- Les paroles se sélectionnent (appui long, puis les poignées) pour copier ou partager un passage : une `SelectionArea` par page du lecteur. `HymnView` regroupe le texte (`_JoinedSelection`) pour qu'il se copie avec un retour à la ligne entre les vers et une ligne vide entre les strophes, sans les numéros ni « Refrain » (Flutter colle sinon les textes bout à bout). Sur Android, la sélection prend tout glissement horizontal commencé sur les mots : `_PageSwipe` (lecteur) le capte avant elle et le passe aux pages, pour garder le balayage d'un cantique à l'autre.
 
 ## Compte rendu : hors ligne, objectifs, rappel, export
 

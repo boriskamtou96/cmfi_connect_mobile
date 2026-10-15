@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:flutter/gestures.dart' show Drag;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
@@ -309,14 +310,21 @@ class HymnReaderScreen extends HookConsumerWidget {
                           : null,
                       itemCount: book.hymns.length,
                       onPageChanged: (index) => current.value = index,
-                      itemBuilder: (context, index) => HymnView(
+                      // long press on the words to select and copy them
+                      itemBuilder: (context, index) => SelectionArea(
                         key: ValueKey(
                           '${book.code}-${book.hymns[index].number}',
                         ),
-                        hymn: book.hymns[index],
-                        bookTitle: book.title,
-                        settings: settings,
-                        palette: palette,
+                        child: _PageSwipe(
+                          controller: pageController,
+                          enabled: !pinching.value,
+                          child: HymnView(
+                            hymn: book.hymns[index],
+                            bookTitle: book.title,
+                            settings: settings,
+                            palette: palette,
+                          ),
+                        ),
                       ),
                     ),
                   ),
@@ -331,6 +339,43 @@ class HymnReaderScreen extends HookConsumerWidget {
 }
 
 enum _MenuAction { project, share, copy }
+
+/// Swipes to the previous or next hymn. On Android the text selection takes every
+/// horizontal drag that starts on the words, so the drag is caught here first and
+/// handed to the pages.
+class _PageSwipe extends StatefulWidget {
+  const _PageSwipe({
+    required this.controller,
+    required this.enabled,
+    required this.child,
+  });
+
+  final PageController controller;
+  final bool enabled;
+  final Widget child;
+
+  @override
+  State<_PageSwipe> createState() => _PageSwipeState();
+}
+
+class _PageSwipeState extends State<_PageSwipe> {
+  Drag? _drag;
+
+  @override
+  Widget build(BuildContext context) {
+    if (!widget.enabled) {
+      return widget.child;
+    }
+    return GestureDetector(
+      onHorizontalDragStart: (details) =>
+          _drag = widget.controller.position.drag(details, () => _drag = null),
+      onHorizontalDragUpdate: (details) => _drag?.update(details),
+      onHorizontalDragEnd: (details) => _drag?.end(details),
+      onHorizontalDragCancel: () => _drag?.cancel(),
+      child: widget.child,
+    );
+  }
+}
 
 /// "A−" / "A+": the text size buttons of the reading bar.
 class _TextButton extends StatelessWidget {

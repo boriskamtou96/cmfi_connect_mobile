@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart' show SelectedContent;
 
 import '../../../../core/i18n/strings.g.dart';
 import '../../../../core/theme/app_spacing.dart';
@@ -14,7 +15,9 @@ const hymnBaseFontSize = 19.0;
 String hymnFontFamily(HymnReaderSettings settings) =>
     settings.usesSerif ? 'Lora' : AppTheme.fontFamily;
 
-/// A whole hymn as read: number, title, author, then verses and choruses.
+/// A whole hymn as read: number, title, author, then verses and choruses. Under a
+/// [SelectionArea], the words copy as they are sung: a line break between the lines,
+/// a blank line between the parts, without the numbers and labels.
 class HymnView extends StatelessWidget {
   const HymnView({
     required this.hymn,
@@ -52,55 +55,66 @@ class HymnView extends StatelessWidget {
           if (bookTitle != null)
             Padding(
               padding: const EdgeInsets.only(bottom: 6),
-              child: Text(
-                bookTitle!,
-                style: TextStyle(
-                  fontFamily: AppTheme.fontFamily,
-                  fontSize: 13,
-                  color: palette.muted,
+              child: SelectionContainer.disabled(
+                child: Text(
+                  bookTitle!,
+                  style: TextStyle(
+                    fontFamily: AppTheme.fontFamily,
+                    fontSize: 13,
+                    color: palette.muted,
+                  ),
                 ),
               ),
             ),
-          Semantics(
-            header: true,
-            child: Text(
-              hymn.title,
-              style: TextStyle(
-                fontFamily: family,
-                fontSize: size * 1.3,
-                fontWeight: serif ? FontWeight.w600 : FontWeight.w800,
-                height: 1.2,
-                letterSpacing: serif ? 0 : -0.3,
-                color: palette.text,
-              ),
+          // a blank line between the title and each part, once copied
+          _JoinedSelection(
+            separator: '\n\n',
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Semantics(
+                  header: true,
+                  child: Text(
+                    hymn.title,
+                    style: TextStyle(
+                      fontFamily: family,
+                      fontSize: size * 1.3,
+                      fontWeight: serif ? FontWeight.w600 : FontWeight.w800,
+                      height: 1.2,
+                      letterSpacing: serif ? 0 : -0.3,
+                      color: palette.text,
+                    ),
+                  ),
+                ),
+                if (hymn.author case final author?) ...[
+                  const SizedBox(height: 6),
+                  Text(
+                    author,
+                    style: TextStyle(
+                      fontFamily: AppTheme.fontFamily,
+                      fontSize: 13,
+                      color: palette.muted,
+                    ),
+                  ),
+                ],
+                SizedBox(height: size * 1.2),
+                for (final sung in sungParts(
+                  hymn,
+                  repeatChorus: settings.repeatChorus,
+                ))
+                  Padding(
+                    padding: EdgeInsets.only(bottom: size * 1.1),
+                    child: _PartView(
+                      sung: sung,
+                      size: size,
+                      family: family,
+                      serif: serif,
+                      palette: palette,
+                    ),
+                  ),
+              ],
             ),
           ),
-          if (hymn.author case final author?) ...[
-            const SizedBox(height: 6),
-            Text(
-              author,
-              style: TextStyle(
-                fontFamily: AppTheme.fontFamily,
-                fontSize: 13,
-                color: palette.muted,
-              ),
-            ),
-          ],
-          SizedBox(height: size * 1.2),
-          for (final sung in sungParts(
-            hymn,
-            repeatChorus: settings.repeatChorus,
-          ))
-            Padding(
-              padding: EdgeInsets.only(bottom: size * 1.1),
-              child: _PartView(
-                sung: sung,
-                size: size,
-                family: family,
-                serif: serif,
-                palette: palette,
-              ),
-            ),
         ],
       ),
     );
@@ -137,15 +151,18 @@ class _PartView extends StatelessWidget {
     );
     // one paragraph per line, a little apart: a long line that wraps stays tight,
     // so it can't be taken for the next line of the song
-    final lines = Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        for (var i = 0; i < part.lines.length; i++)
-          Padding(
-            padding: EdgeInsets.only(top: i == 0 ? 0 : size * 0.32),
-            child: Text(part.lines[i], style: style),
-          ),
-      ],
+    final lines = _JoinedSelection(
+      separator: '\n',
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          for (var i = 0; i < part.lines.length; i++)
+            Padding(
+              padding: EdgeInsets.only(top: i == 0 ? 0 : size * 0.32),
+              child: Text(part.lines[i], style: style),
+            ),
+        ],
+      ),
     );
 
     if (!isChorus) {
@@ -161,13 +178,15 @@ class _PartView extends StatelessWidget {
                   ? null
                   : Padding(
                       padding: EdgeInsets.only(top: size * 0.2),
-                      child: Text(
-                        part.label!,
-                        style: TextStyle(
-                          fontFamily: AppTheme.fontFamily,
-                          fontSize: size * 0.72,
-                          fontWeight: FontWeight.w800,
-                          color: palette.accent,
+                      child: SelectionContainer.disabled(
+                        child: Text(
+                          part.label!,
+                          style: TextStyle(
+                            fontFamily: AppTheme.fontFamily,
+                            fontSize: size * 0.72,
+                            fontWeight: FontWeight.w800,
+                            color: palette.accent,
+                          ),
                         ),
                       ),
                     ),
@@ -194,14 +213,16 @@ class _PartView extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
-            label.toUpperCase(),
-            style: TextStyle(
-              fontFamily: AppTheme.fontFamily,
-              fontSize: 11.5,
-              fontWeight: FontWeight.w700,
-              letterSpacing: 1.1,
-              color: sung.repeated ? palette.muted : palette.accent,
+          SelectionContainer.disabled(
+            child: Text(
+              label.toUpperCase(),
+              style: TextStyle(
+                fontFamily: AppTheme.fontFamily,
+                fontSize: 11.5,
+                fontWeight: FontWeight.w700,
+                letterSpacing: 1.1,
+                color: sung.repeated ? palette.muted : palette.accent,
+              ),
             ),
           ),
           const SizedBox(height: 4),
@@ -209,5 +230,48 @@ class _PartView extends StatelessWidget {
         ],
       ),
     );
+  }
+}
+
+/// Puts [separator] between the selected texts of its children: Flutter glues them
+/// together, so copied lines would run into each other.
+class _JoinedSelection extends StatefulWidget {
+  const _JoinedSelection({required this.separator, required this.child});
+
+  final String separator;
+  final Widget child;
+
+  @override
+  State<_JoinedSelection> createState() => _JoinedSelectionState();
+}
+
+class _JoinedSelectionState extends State<_JoinedSelection> {
+  late final _delegate = _JoinedDelegate(widget.separator);
+
+  @override
+  void dispose() {
+    _delegate.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) =>
+      SelectionContainer(delegate: _delegate, child: widget.child);
+}
+
+class _JoinedDelegate extends StaticSelectionContainerDelegate {
+  _JoinedDelegate(this.separator);
+
+  final String separator;
+
+  @override
+  SelectedContent? getSelectedContent() {
+    final texts = [
+      for (final selectable in selectables)
+        ?selectable.getSelectedContent()?.plainText,
+    ].where((text) => text.isNotEmpty);
+    return texts.isEmpty
+        ? null
+        : SelectedContent(plainText: texts.join(separator));
   }
 }

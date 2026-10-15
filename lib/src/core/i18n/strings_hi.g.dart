@@ -73,6 +73,7 @@ class TranslationsHi extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _Translations$verses$hi verses = _Translations$verses$hi._(_root);
 	@override late final _Translations$profilePhoto$hi profilePhoto = _Translations$profilePhoto$hi._(_root);
 	@override late final _Translations$disciples$hi disciples = _Translations$disciples$hi._(_root);
+	@override late final _Translations$weekStory$hi weekStory = _Translations$weekStory$hi._(_root);
 }
 
 // Path: app
@@ -1018,6 +1019,70 @@ class _Translations$disciples$hi extends Translations$disciples$fr {
 	@override String get noReports => 'इस अवधि में कोई रिपोर्ट नहीं।';
 	@override String get searchHint => 'नाम या यूज़रनेम';
 	@override String noMatch({required Object search}) => '“${search}” से कोई शिष्य मेल नहीं खाता।';
+}
+
+// Path: weekStory
+class _Translations$weekStory$hi extends Translations$weekStory$fr {
+	_Translations$weekStory$hi._(TranslationsHi root) : this._root = root, super.internal(root);
+
+	final TranslationsHi _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'परमेश्वर के साथ तुम्हारा हफ़्ता';
+	@override String range({required Object from, required Object to}) => '${from} से ${to} तक';
+	@override String get intro => 'इस हफ़्ते प्रभु के साथ जो जिया, उसे फिर से देखो।';
+	@override String get tapHint => 'आगे जाने के लिए दाईं ओर, वापस आने के लिए बाईं ओर छुओ।';
+	@override String get faithfulLead => 'तुम वफ़ादार रहे';
+	@override String get emptyLead => 'एक नया हफ़्ता तुम्हारा इंतज़ार कर रहा है';
+	@override String days({required num n, required Object total}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n,
+		one: '${total} में से\n${n} दिन',
+		other: '${total} में से\n${n} दिन',
+	);
+	@override String streak({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n,
+		one: 'लगातार ${n} दिन',
+		other: 'लगातार ${n} दिन',
+	);
+	@override String streakRecord({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n,
+		one: 'लगातार ${n} दिन: तुम्हारा रिकॉर्ड!',
+		other: 'लगातार ${n} दिन: तुम्हारा रिकॉर्ड!',
+	);
+	@override String get emptyText => 'हर दिन अपनी रिपोर्ट भरो: तुम्हारा अगला हफ़्ता यहाँ लिखा जाएगा।';
+	@override String get prayerLead => 'तुमने प्रार्थना की';
+	@override String retreats({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n,
+		one: '${n} प्रार्थना-समय',
+		other: '${n} प्रार्थना-समय',
+	);
+	@override String retreatsTime({required Object time}) => '15 मिनट के · प्रभु के साथ ${time}';
+	@override String faithfulMoment({required num n, required Object moment}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n,
+		one: 'तुम्हारा सबसे वफ़ादार समय: ${moment} (${n} बार)',
+		other: 'तुम्हारा सबसे वफ़ादार समय: ${moment} (${n} बार)',
+	);
+	@override String get noRetreat => 'इस हफ़्ते कोई प्रार्थना-समय नहीं';
+	@override String get noRetreatText => 'दोपहर का प्रार्थना-समय तुम्हारा इंतज़ार कर रहा है: प्रभु के साथ 15 मिनट।';
+	@override String get goalsLead => 'तुम्हारे लक्ष्य';
+	@override String get goalsReached => 'औसतन पूरे हुए';
+	@override String bestDay({required Object day, required Object percent}) => 'तुम्हारा सबसे अच्छा दिन: ${day} · ${percent}';
+	@override String get summaryTitle => 'परमेश्वर के साथ मेरा हफ़्ता';
+	@override String get statDays => 'दिन भरे गए';
+	@override String statStreak({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n,
+		one: 'दिन लगातार',
+		other: 'दिन लगातार',
+	);
+	@override String statRetreats({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n,
+		one: 'प्रार्थना-समय',
+		other: 'प्रार्थना-समय',
+	);
+	@override String get statGoals => 'लक्ष्य';
+	@override String get share => 'अपना हफ़्ता साझा करो';
+	@override String get homeText => 'इस हफ़्ते की तुम्हारी वफ़ादारी, प्रार्थना और लक्ष्य।';
+	@override String get open => 'मेरा हफ़्ता देखो';
+	@override String get notificationTitle => 'परमेश्वर के साथ तुम्हारा हफ़्ता तैयार है';
+	@override String get notificationBody => 'इस हफ़्ते की अपनी वफ़ादारी फिर से देखो और साझा करो।';
+	@override String get channel => 'परमेश्वर के साथ तुम्हारा हफ़्ता';
+	@override String get thisWeek => 'यह हफ़्ता';
+	@override String get pastWeeks => 'पिछले हफ़्ते';
+	@override String weekOf({required Object date}) => '${date} का हफ़्ता';
+	@override String page({required Object total, required Object current}) => '${total} में से ${current}';
 }
 
 // Path: onboarding.reports
@@ -3321,6 +3386,40 @@ extension on TranslationsHi {
 			'disciples.noReports' => 'इस अवधि में कोई रिपोर्ट नहीं।',
 			'disciples.searchHint' => 'नाम या यूज़रनेम',
 			'disciples.noMatch' => ({required Object search}) => '“${search}” से कोई शिष्य मेल नहीं खाता।',
+			'weekStory.title' => 'परमेश्वर के साथ तुम्हारा हफ़्ता',
+			'weekStory.range' => ({required Object from, required Object to}) => '${from} से ${to} तक',
+			'weekStory.intro' => 'इस हफ़्ते प्रभु के साथ जो जिया, उसे फिर से देखो।',
+			'weekStory.tapHint' => 'आगे जाने के लिए दाईं ओर, वापस आने के लिए बाईं ओर छुओ।',
+			'weekStory.faithfulLead' => 'तुम वफ़ादार रहे',
+			'weekStory.emptyLead' => 'एक नया हफ़्ता तुम्हारा इंतज़ार कर रहा है',
+			'weekStory.days' => ({required num n, required Object total}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n, one: '${total} में से\n${n} दिन', other: '${total} में से\n${n} दिन', ), 
+			'weekStory.streak' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n, one: 'लगातार ${n} दिन', other: 'लगातार ${n} दिन', ), 
+			'weekStory.streakRecord' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n, one: 'लगातार ${n} दिन: तुम्हारा रिकॉर्ड!', other: 'लगातार ${n} दिन: तुम्हारा रिकॉर्ड!', ), 
+			'weekStory.emptyText' => 'हर दिन अपनी रिपोर्ट भरो: तुम्हारा अगला हफ़्ता यहाँ लिखा जाएगा।',
+			'weekStory.prayerLead' => 'तुमने प्रार्थना की',
+			'weekStory.retreats' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n, one: '${n} प्रार्थना-समय', other: '${n} प्रार्थना-समय', ), 
+			'weekStory.retreatsTime' => ({required Object time}) => '15 मिनट के · प्रभु के साथ ${time}',
+			'weekStory.faithfulMoment' => ({required num n, required Object moment}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n, one: 'तुम्हारा सबसे वफ़ादार समय: ${moment} (${n} बार)', other: 'तुम्हारा सबसे वफ़ादार समय: ${moment} (${n} बार)', ), 
+			'weekStory.noRetreat' => 'इस हफ़्ते कोई प्रार्थना-समय नहीं',
+			'weekStory.noRetreatText' => 'दोपहर का प्रार्थना-समय तुम्हारा इंतज़ार कर रहा है: प्रभु के साथ 15 मिनट।',
+			'weekStory.goalsLead' => 'तुम्हारे लक्ष्य',
+			'weekStory.goalsReached' => 'औसतन पूरे हुए',
+			'weekStory.bestDay' => ({required Object day, required Object percent}) => 'तुम्हारा सबसे अच्छा दिन: ${day} · ${percent}',
+			'weekStory.summaryTitle' => 'परमेश्वर के साथ मेरा हफ़्ता',
+			'weekStory.statDays' => 'दिन भरे गए',
+			'weekStory.statStreak' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n, one: 'दिन लगातार', other: 'दिन लगातार', ), 
+			'weekStory.statRetreats' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n, one: 'प्रार्थना-समय', other: 'प्रार्थना-समय', ), 
+			'weekStory.statGoals' => 'लक्ष्य',
+			'weekStory.share' => 'अपना हफ़्ता साझा करो',
+			'weekStory.homeText' => 'इस हफ़्ते की तुम्हारी वफ़ादारी, प्रार्थना और लक्ष्य।',
+			'weekStory.open' => 'मेरा हफ़्ता देखो',
+			'weekStory.notificationTitle' => 'परमेश्वर के साथ तुम्हारा हफ़्ता तैयार है',
+			'weekStory.notificationBody' => 'इस हफ़्ते की अपनी वफ़ादारी फिर से देखो और साझा करो।',
+			'weekStory.channel' => 'परमेश्वर के साथ तुम्हारा हफ़्ता',
+			'weekStory.thisWeek' => 'यह हफ़्ता',
+			'weekStory.pastWeeks' => 'पिछले हफ़्ते',
+			'weekStory.weekOf' => ({required Object date}) => '${date} का हफ़्ता',
+			'weekStory.page' => ({required Object total, required Object current}) => '${total} में से ${current}',
 			_ => null,
 		};
 	}

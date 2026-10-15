@@ -1380,6 +1380,58 @@ class SplashRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
+/// [WeekStoryScreen]
+class WeekStoryRoute extends PageRouteInfo<WeekStoryRouteArgs> {
+  WeekStoryRoute({
+    required String monday,
+    Key? key,
+    List<PageRouteInfo>? children,
+  }) : super(
+         WeekStoryRoute.name,
+         args: WeekStoryRouteArgs(monday: monday, key: key),
+         rawPathParams: {'monday': monday},
+         initialChildren: children,
+       );
+
+  static const String name = 'WeekStoryRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      final pathParams = data.inheritedPathParams;
+      final args = data.argsAs<WeekStoryRouteArgs>(
+        orElse: () =>
+            WeekStoryRouteArgs(monday: pathParams.getString('monday')),
+      );
+      return WeekStoryScreen(monday: args.monday, key: args.key);
+    },
+  );
+}
+
+class WeekStoryRouteArgs {
+  const WeekStoryRouteArgs({required this.monday, this.key});
+
+  final String monday;
+
+  final Key? key;
+
+  @override
+  String toString() {
+    return 'WeekStoryRouteArgs{monday: $monday, key: $key}';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (other is! WeekStoryRouteArgs) return false;
+    return monday == other.monday && key == other.key;
+  }
+
+  @override
+  int get hashCode => monday.hashCode ^ key.hashCode;
+}
+
+/// generated route for
 /// [WelcomeScreen]
 class WelcomeRoute extends PageRouteInfo<void> {
   const WelcomeRoute({List<PageRouteInfo>? children})

@@ -1460,5 +1460,62 @@
     "noReports": "Ningún informe en este periodo.",
     "searchHint": "Nombre o usuario",
     "noMatch": "Ningún discípulo coincide con «{search}»."
+  },
+  "weekStory": {
+    "title": "Tu semana con Dios",
+    "range": "Del {from} al {to}",
+    "intro": "Repasa lo que viviste con el Señor esta semana.",
+    "tapHint": "Toca a la derecha para avanzar, a la izquierda para volver.",
+    "faithfulLead": "Fuiste fiel",
+    "emptyLead": "Una nueva semana te espera",
+    "days(plural, param=n)": {
+      "one": "{n} día\nde {total}",
+      "other": "{n} días\nde {total}"
+    },
+    "streak(plural, param=n)": {
+      "one": "{n} día seguido",
+      "other": "{n} días seguidos"
+    },
+    "streakRecord(plural, param=n)": {
+      "one": "{n} día seguido: ¡tu récord!",
+      "other": "{n} días seguidos: ¡tu récord!"
+    },
+    "emptyText": "Llena tu informe cada día: tu próxima semana se escribirá aquí.",
+    "prayerLead": "Oraste",
+    "retreats(plural, param=n)": {
+      "one": "{n} retiro",
+      "other": "{n} retiros"
+    },
+    "retreatsTime": "de 15 minutos · {time} con el Señor",
+    "faithfulMoment(plural, param=n)": {
+      "one": "Tu momento más fiel: {moment} ({n} vez)",
+      "other": "Tu momento más fiel: {moment} ({n} veces)"
+    },
+    "noRetreat": "Ningún retiro esta semana",
+    "noRetreatText": "El retiro del mediodía te espera: 15 minutos con el Señor.",
+    "goalsLead": "Tus objetivos",
+    "goalsReached": "alcanzados en promedio",
+    "bestDay": "Tu mejor día: {day} · {percent}",
+    "summaryTitle": "Mi semana con Dios",
+    "statDays": "días llenados",
+    "statStreak(plural, param=n)": {
+      "one": "día seguido",
+      "other": "días seguidos"
+    },
+    "statRetreats(plural, param=n)": {
+      "one": "retiro",
+      "other": "retiros"
+    },
+    "statGoals": "de objetivos",
+    "share": "Compartir mi semana",
+    "homeText": "Tu fidelidad, tu oración y tus objetivos de la semana.",
+    "open": "Ver mi semana",
+    "notificationTitle": "Tu semana con Dios está lista",
+    "notificationBody": "Repasa tu fidelidad de la semana y compártela.",
+    "channel": "Tu semana con Dios",
+    "thisWeek": "Esta semana",
+    "pastWeeks": "Semanas pasadas",
+    "weekOf": "Semana del {date}",
+    "page": "{current} de {total}"
   }
 }

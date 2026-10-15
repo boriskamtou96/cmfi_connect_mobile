@@ -73,6 +73,7 @@ class TranslationsZh extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _Translations$verses$zh verses = _Translations$verses$zh._(_root);
 	@override late final _Translations$profilePhoto$zh profilePhoto = _Translations$profilePhoto$zh._(_root);
 	@override late final _Translations$disciples$zh disciples = _Translations$disciples$zh._(_root);
+	@override late final _Translations$weekStory$zh weekStory = _Translations$weekStory$zh._(_root);
 }
 
 // Path: app
@@ -994,6 +995,63 @@ class _Translations$disciples$zh extends Translations$disciples$fr {
 	@override String get noReports => '这段时间没有报告。';
 	@override String get searchHint => '姓名或用户名';
 	@override String noMatch({required Object search}) => '没有与“${search}”匹配的门徒。';
+}
+
+// Path: weekStory
+class _Translations$weekStory$zh extends Translations$weekStory$fr {
+	_Translations$weekStory$zh._(TranslationsZh root) : this._root = root, super.internal(root);
+
+	final TranslationsZh _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => '你与神同在的一周';
+	@override String range({required Object from, required Object to}) => '${from}至${to}';
+	@override String get intro => '回顾这一周你与主同在的点滴。';
+	@override String get tapHint => '点击右侧继续，点击左侧返回。';
+	@override String get faithfulLead => '你很忠心';
+	@override String get emptyLead => '新的一周在等着你';
+	@override String days({required num n, required Object total}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n,
+		other: '${total} 天中\n有 ${n} 天',
+	);
+	@override String streak({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n,
+		other: '连续 ${n} 天',
+	);
+	@override String streakRecord({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n,
+		other: '连续 ${n} 天：你的纪录！',
+	);
+	@override String get emptyText => '每天填写你的报告：你的下一周将写在这里。';
+	@override String get prayerLead => '你祷告了';
+	@override String retreats({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n,
+		other: '${n} 次退修',
+	);
+	@override String retreatsTime({required Object time}) => '每次 15 分钟 · 与主同在 ${time}';
+	@override String faithfulMoment({required num n, required Object moment}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n,
+		other: '你最忠心的时段：${moment}（${n} 次）',
+	);
+	@override String get noRetreat => '本周没有退修';
+	@override String get noRetreatText => '午间退修在等着你：与主同在 15 分钟。';
+	@override String get goalsLead => '你的目标';
+	@override String get goalsReached => '平均达成';
+	@override String bestDay({required Object day, required Object percent}) => '你最好的一天：${day} · ${percent}';
+	@override String get summaryTitle => '我与神同在的一周';
+	@override String get statDays => '天已填写';
+	@override String statStreak({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n,
+		other: '天连续',
+	);
+	@override String statRetreats({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n,
+		other: '次退修',
+	);
+	@override String get statGoals => '目标';
+	@override String get share => '分享我的一周';
+	@override String get homeText => '你这一周的忠心、祷告和目标。';
+	@override String get open => '查看我的一周';
+	@override String get notificationTitle => '你与神同在的一周已准备好';
+	@override String get notificationBody => '回顾你这一周的忠心并分享出去。';
+	@override String get channel => '你与神同在的一周';
+	@override String get thisWeek => '本周';
+	@override String get pastWeeks => '过去几周';
+	@override String weekOf({required Object date}) => '${date} 那一周';
+	@override String page({required Object current, required Object total}) => '第 ${current} 页，共 ${total} 页';
 }
 
 // Path: onboarding.reports
@@ -3275,6 +3333,40 @@ extension on TranslationsZh {
 			'disciples.noReports' => '这段时间没有报告。',
 			'disciples.searchHint' => '姓名或用户名',
 			'disciples.noMatch' => ({required Object search}) => '没有与“${search}”匹配的门徒。',
+			'weekStory.title' => '你与神同在的一周',
+			'weekStory.range' => ({required Object from, required Object to}) => '${from}至${to}',
+			'weekStory.intro' => '回顾这一周你与主同在的点滴。',
+			'weekStory.tapHint' => '点击右侧继续，点击左侧返回。',
+			'weekStory.faithfulLead' => '你很忠心',
+			'weekStory.emptyLead' => '新的一周在等着你',
+			'weekStory.days' => ({required num n, required Object total}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n, other: '${total} 天中\n有 ${n} 天', ), 
+			'weekStory.streak' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n, other: '连续 ${n} 天', ), 
+			'weekStory.streakRecord' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n, other: '连续 ${n} 天：你的纪录！', ), 
+			'weekStory.emptyText' => '每天填写你的报告：你的下一周将写在这里。',
+			'weekStory.prayerLead' => '你祷告了',
+			'weekStory.retreats' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n, other: '${n} 次退修', ), 
+			'weekStory.retreatsTime' => ({required Object time}) => '每次 15 分钟 · 与主同在 ${time}',
+			'weekStory.faithfulMoment' => ({required num n, required Object moment}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n, other: '你最忠心的时段：${moment}（${n} 次）', ), 
+			'weekStory.noRetreat' => '本周没有退修',
+			'weekStory.noRetreatText' => '午间退修在等着你：与主同在 15 分钟。',
+			'weekStory.goalsLead' => '你的目标',
+			'weekStory.goalsReached' => '平均达成',
+			'weekStory.bestDay' => ({required Object day, required Object percent}) => '你最好的一天：${day} · ${percent}',
+			'weekStory.summaryTitle' => '我与神同在的一周',
+			'weekStory.statDays' => '天已填写',
+			'weekStory.statStreak' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n, other: '天连续', ), 
+			'weekStory.statRetreats' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n, other: '次退修', ), 
+			'weekStory.statGoals' => '目标',
+			'weekStory.share' => '分享我的一周',
+			'weekStory.homeText' => '你这一周的忠心、祷告和目标。',
+			'weekStory.open' => '查看我的一周',
+			'weekStory.notificationTitle' => '你与神同在的一周已准备好',
+			'weekStory.notificationBody' => '回顾你这一周的忠心并分享出去。',
+			'weekStory.channel' => '你与神同在的一周',
+			'weekStory.thisWeek' => '本周',
+			'weekStory.pastWeeks' => '过去几周',
+			'weekStory.weekOf' => ({required Object date}) => '${date} 那一周',
+			'weekStory.page' => ({required Object current, required Object total}) => '第 ${current} 页，共 ${total} 页',
 			_ => null,
 		};
 	}

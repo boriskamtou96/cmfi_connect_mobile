@@ -73,6 +73,7 @@ class TranslationsEs extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _Translations$verses$es verses = _Translations$verses$es._(_root);
 	@override late final _Translations$profilePhoto$es profilePhoto = _Translations$profilePhoto$es._(_root);
 	@override late final _Translations$disciples$es disciples = _Translations$disciples$es._(_root);
+	@override late final _Translations$weekStory$es weekStory = _Translations$weekStory$es._(_root);
 }
 
 // Path: app
@@ -1019,6 +1020,70 @@ class _Translations$disciples$es extends Translations$disciples$fr {
 	@override String get noReports => 'Ningún informe en este periodo.';
 	@override String get searchHint => 'Nombre o usuario';
 	@override String noMatch({required Object search}) => 'Ningún discípulo coincide con «${search}».';
+}
+
+// Path: weekStory
+class _Translations$weekStory$es extends Translations$weekStory$fr {
+	_Translations$weekStory$es._(TranslationsEs root) : this._root = root, super.internal(root);
+
+	final TranslationsEs _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Tu semana con Dios';
+	@override String range({required Object from, required Object to}) => 'Del ${from} al ${to}';
+	@override String get intro => 'Repasa lo que viviste con el Señor esta semana.';
+	@override String get tapHint => 'Toca a la derecha para avanzar, a la izquierda para volver.';
+	@override String get faithfulLead => 'Fuiste fiel';
+	@override String get emptyLead => 'Una nueva semana te espera';
+	@override String days({required num n, required Object total}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('es'))(n,
+		one: '${n} día\nde ${total}',
+		other: '${n} días\nde ${total}',
+	);
+	@override String streak({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('es'))(n,
+		one: '${n} día seguido',
+		other: '${n} días seguidos',
+	);
+	@override String streakRecord({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('es'))(n,
+		one: '${n} día seguido: ¡tu récord!',
+		other: '${n} días seguidos: ¡tu récord!',
+	);
+	@override String get emptyText => 'Llena tu informe cada día: tu próxima semana se escribirá aquí.';
+	@override String get prayerLead => 'Oraste';
+	@override String retreats({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('es'))(n,
+		one: '${n} retiro',
+		other: '${n} retiros',
+	);
+	@override String retreatsTime({required Object time}) => 'de 15 minutos · ${time} con el Señor';
+	@override String faithfulMoment({required num n, required Object moment}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('es'))(n,
+		one: 'Tu momento más fiel: ${moment} (${n} vez)',
+		other: 'Tu momento más fiel: ${moment} (${n} veces)',
+	);
+	@override String get noRetreat => 'Ningún retiro esta semana';
+	@override String get noRetreatText => 'El retiro del mediodía te espera: 15 minutos con el Señor.';
+	@override String get goalsLead => 'Tus objetivos';
+	@override String get goalsReached => 'alcanzados en promedio';
+	@override String bestDay({required Object day, required Object percent}) => 'Tu mejor día: ${day} · ${percent}';
+	@override String get summaryTitle => 'Mi semana con Dios';
+	@override String get statDays => 'días llenados';
+	@override String statStreak({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('es'))(n,
+		one: 'día seguido',
+		other: 'días seguidos',
+	);
+	@override String statRetreats({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('es'))(n,
+		one: 'retiro',
+		other: 'retiros',
+	);
+	@override String get statGoals => 'de objetivos';
+	@override String get share => 'Compartir mi semana';
+	@override String get homeText => 'Tu fidelidad, tu oración y tus objetivos de la semana.';
+	@override String get open => 'Ver mi semana';
+	@override String get notificationTitle => 'Tu semana con Dios está lista';
+	@override String get notificationBody => 'Repasa tu fidelidad de la semana y compártela.';
+	@override String get channel => 'Tu semana con Dios';
+	@override String get thisWeek => 'Esta semana';
+	@override String get pastWeeks => 'Semanas pasadas';
+	@override String weekOf({required Object date}) => 'Semana del ${date}';
+	@override String page({required Object current, required Object total}) => '${current} de ${total}';
 }
 
 // Path: onboarding.reports
@@ -3322,6 +3387,40 @@ extension on TranslationsEs {
 			'disciples.noReports' => 'Ningún informe en este periodo.',
 			'disciples.searchHint' => 'Nombre o usuario',
 			'disciples.noMatch' => ({required Object search}) => 'Ningún discípulo coincide con «${search}».',
+			'weekStory.title' => 'Tu semana con Dios',
+			'weekStory.range' => ({required Object from, required Object to}) => 'Del ${from} al ${to}',
+			'weekStory.intro' => 'Repasa lo que viviste con el Señor esta semana.',
+			'weekStory.tapHint' => 'Toca a la derecha para avanzar, a la izquierda para volver.',
+			'weekStory.faithfulLead' => 'Fuiste fiel',
+			'weekStory.emptyLead' => 'Una nueva semana te espera',
+			'weekStory.days' => ({required num n, required Object total}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('es'))(n, one: '${n} día\nde ${total}', other: '${n} días\nde ${total}', ), 
+			'weekStory.streak' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('es'))(n, one: '${n} día seguido', other: '${n} días seguidos', ), 
+			'weekStory.streakRecord' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('es'))(n, one: '${n} día seguido: ¡tu récord!', other: '${n} días seguidos: ¡tu récord!', ), 
+			'weekStory.emptyText' => 'Llena tu informe cada día: tu próxima semana se escribirá aquí.',
+			'weekStory.prayerLead' => 'Oraste',
+			'weekStory.retreats' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('es'))(n, one: '${n} retiro', other: '${n} retiros', ), 
+			'weekStory.retreatsTime' => ({required Object time}) => 'de 15 minutos · ${time} con el Señor',
+			'weekStory.faithfulMoment' => ({required num n, required Object moment}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('es'))(n, one: 'Tu momento más fiel: ${moment} (${n} vez)', other: 'Tu momento más fiel: ${moment} (${n} veces)', ), 
+			'weekStory.noRetreat' => 'Ningún retiro esta semana',
+			'weekStory.noRetreatText' => 'El retiro del mediodía te espera: 15 minutos con el Señor.',
+			'weekStory.goalsLead' => 'Tus objetivos',
+			'weekStory.goalsReached' => 'alcanzados en promedio',
+			'weekStory.bestDay' => ({required Object day, required Object percent}) => 'Tu mejor día: ${day} · ${percent}',
+			'weekStory.summaryTitle' => 'Mi semana con Dios',
+			'weekStory.statDays' => 'días llenados',
+			'weekStory.statStreak' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('es'))(n, one: 'día seguido', other: 'días seguidos', ), 
+			'weekStory.statRetreats' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('es'))(n, one: 'retiro', other: 'retiros', ), 
+			'weekStory.statGoals' => 'de objetivos',
+			'weekStory.share' => 'Compartir mi semana',
+			'weekStory.homeText' => 'Tu fidelidad, tu oración y tus objetivos de la semana.',
+			'weekStory.open' => 'Ver mi semana',
+			'weekStory.notificationTitle' => 'Tu semana con Dios está lista',
+			'weekStory.notificationBody' => 'Repasa tu fidelidad de la semana y compártela.',
+			'weekStory.channel' => 'Tu semana con Dios',
+			'weekStory.thisWeek' => 'Esta semana',
+			'weekStory.pastWeeks' => 'Semanas pasadas',
+			'weekStory.weekOf' => ({required Object date}) => 'Semana del ${date}',
+			'weekStory.page' => ({required Object current, required Object total}) => '${current} de ${total}',
 			_ => null,
 		};
 	}

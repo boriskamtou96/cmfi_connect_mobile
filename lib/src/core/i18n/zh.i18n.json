@@ -1413,5 +1413,55 @@
     "noReports": "这段时间没有报告。",
     "searchHint": "姓名或用户名",
     "noMatch": "没有与“{search}”匹配的门徒。"
+  },
+  "weekStory": {
+    "title": "你与神同在的一周",
+    "range": "{from}至{to}",
+    "intro": "回顾这一周你与主同在的点滴。",
+    "tapHint": "点击右侧继续，点击左侧返回。",
+    "faithfulLead": "你很忠心",
+    "emptyLead": "新的一周在等着你",
+    "days(plural, param=n)": {
+      "other": "{total} 天中\n有 {n} 天"
+    },
+    "streak(plural, param=n)": {
+      "other": "连续 {n} 天"
+    },
+    "streakRecord(plural, param=n)": {
+      "other": "连续 {n} 天：你的纪录！"
+    },
+    "emptyText": "每天填写你的报告：你的下一周将写在这里。",
+    "prayerLead": "你祷告了",
+    "retreats(plural, param=n)": {
+      "other": "{n} 次退修"
+    },
+    "retreatsTime": "每次 15 分钟 · 与主同在 {time}",
+    "faithfulMoment(plural, param=n)": {
+      "other": "你最忠心的时段：{moment}（{n} 次）"
+    },
+    "noRetreat": "本周没有退修",
+    "noRetreatText": "午间退修在等着你：与主同在 15 分钟。",
+    "goalsLead": "你的目标",
+    "goalsReached": "平均达成",
+    "bestDay": "你最好的一天：{day} · {percent}",
+    "summaryTitle": "我与神同在的一周",
+    "statDays": "天已填写",
+    "statStreak(plural, param=n)": {
+      "other": "天连续"
+    },
+    "statRetreats(plural, param=n)": {
+      "other": "次退修"
+    },
+    "statGoals": "目标",
+    "share": "分享我的一周",
+    "homeText": "你这一周的忠心、祷告和目标。",
+    "open": "查看我的一周",
+    "notificationTitle": "你与神同在的一周已准备好",
+    "notificationBody": "回顾你这一周的忠心并分享出去。",
+    "channel": "你与神同在的一周",
+    "thisWeek": "本周",
+    "pastWeeks": "过去几周",
+    "weekOf": "{date} 那一周",
+    "page": "第 {current} 页，共 {total} 页"
   }
 }

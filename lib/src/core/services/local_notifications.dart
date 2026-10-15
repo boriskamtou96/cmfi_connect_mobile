@@ -160,7 +160,10 @@ enum NotificationGroup {
   prayer(firstId: 2000, channelId: 'prayer'),
 
   /// The report ready to be sent to the authorities.
-  reportSending(firstId: 3000, channelId: 'report_sending');
+  reportSending(firstId: 3000, channelId: 'report_sending'),
+
+  /// "Ta semaine avec Dieu", every Sunday evening.
+  weekStory(firstId: 4000, channelId: 'week_story');
 
   const NotificationGroup({required this.firstId, required this.channelId});
 

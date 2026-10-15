@@ -1460,5 +1460,62 @@
     "noReports": "Kein Bericht in diesem Zeitraum.",
     "searchHint": "Name oder Benutzername",
     "noMatch": "Kein Jünger passt zu „{search}“."
+  },
+  "weekStory": {
+    "title": "Deine Woche mit Gott",
+    "range": "{from} bis {to}",
+    "intro": "Schau zurück auf das, was du diese Woche mit dem Herrn erlebt hast.",
+    "tapHint": "Tippe rechts, um weiterzugehen, links, um zurückzugehen.",
+    "faithfulLead": "Du warst treu",
+    "emptyLead": "Eine neue Woche wartet auf dich",
+    "days(plural, param=n)": {
+      "one": "{n} Tag\nvon {total}",
+      "other": "{n} Tage\nvon {total}"
+    },
+    "streak(plural, param=n)": {
+      "one": "{n} Tag in Folge",
+      "other": "{n} Tage in Folge"
+    },
+    "streakRecord(plural, param=n)": {
+      "one": "{n} Tag in Folge: dein Rekord!",
+      "other": "{n} Tage in Folge: dein Rekord!"
+    },
+    "emptyText": "Fülle deinen Bericht jeden Tag aus: Deine nächste Woche wird hier geschrieben.",
+    "prayerLead": "Du hast gebetet",
+    "retreats(plural, param=n)": {
+      "one": "{n} Gebetszeit",
+      "other": "{n} Gebetszeiten"
+    },
+    "retreatsTime": "von 15 Minuten · {time} mit dem Herrn",
+    "faithfulMoment(plural, param=n)": {
+      "one": "Deine treueste Zeit: {moment} ({n}-mal)",
+      "other": "Deine treueste Zeit: {moment} ({n}-mal)"
+    },
+    "noRetreat": "Keine Gebetszeit diese Woche",
+    "noRetreatText": "Die Gebetszeit am Mittag wartet auf dich: 15 Minuten mit dem Herrn.",
+    "goalsLead": "Deine Ziele",
+    "goalsReached": "im Durchschnitt erreicht",
+    "bestDay": "Dein bester Tag: {day} · {percent}",
+    "summaryTitle": "Meine Woche mit Gott",
+    "statDays": "ausgefüllte Tage",
+    "statStreak(plural, param=n)": {
+      "one": "Tag in Folge",
+      "other": "Tage in Folge"
+    },
+    "statRetreats(plural, param=n)": {
+      "one": "Gebetszeit",
+      "other": "Gebetszeiten"
+    },
+    "statGoals": "der Ziele",
+    "share": "Meine Woche teilen",
+    "homeText": "Deine Treue, dein Gebet und deine Ziele dieser Woche.",
+    "open": "Meine Woche ansehen",
+    "notificationTitle": "Deine Woche mit Gott ist bereit",
+    "notificationBody": "Schau auf deine Treue dieser Woche zurück und teile sie.",
+    "channel": "Deine Woche mit Gott",
+    "thisWeek": "Diese Woche",
+    "pastWeeks": "Vergangene Wochen",
+    "weekOf": "Woche vom {date}",
+    "page": "{current} von {total}"
   }
 }

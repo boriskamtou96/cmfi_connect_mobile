@@ -270,6 +270,26 @@ Set<RetreatMoment> retreatsToday(Ref ref) {
   };
 }
 
+/// The retreats of the week starting on [monday] ("Ta semaine avec Dieu"):
+/// from the server, or what the phone keeps of the last days without network.
+@riverpod
+Future<List<RetreatRecord>> retreatsOfWeek(Ref ref, DateTime monday) async {
+  final sunday = DateTime(monday.year, monday.month, monday.day + 6);
+  bool inWeek(RetreatRecord record) =>
+      !record.day.dateOnly.isBefore(monday) &&
+      !record.day.dateOnly.isAfter(sunday);
+  try {
+    final records = await ref
+        .watch(prayerApiProvider)
+        .retreats(from: monday, to: sunday);
+    final pending = ref.read(prayerLocalStoreProvider).pendingRetreats();
+    return RetreatLog._merge(records, pending).where(inWeek).toList();
+  } on NetworkException {
+    final log = await ref.watch(retreatLogProvider.future);
+    return log.where(inWeek).toList();
+  }
+}
+
 /// What a retreat added to the day's report.
 typedef ReportAddition = ({int added, int total});
 

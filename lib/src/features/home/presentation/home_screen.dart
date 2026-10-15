@@ -41,6 +41,7 @@ import '../../reports/application/day_report_controller.dart';
 import '../../reports/application/report_goals.dart';
 import '../../reports/application/reports_providers.dart';
 import '../../verses/presentation/verse_card.dart';
+import '../domain/week_story.dart';
 
 /// Dashboard: today's report, the week, and what's coming in the community.
 @RoutePage()
@@ -140,6 +141,11 @@ class HomeScreen extends ConsumerWidget {
                   ),
                 ),
               ),
+              // Sunday evening and Monday: the week told, first
+              if (storyWeekAt(DateTime.now()) case final week?) ...[
+                const SizedBox(height: 14),
+                FadeSlideIn(index: 1, child: _WeekStoryCard(monday: week)),
+              ],
               const SizedBox(height: 14),
               FadeSlideIn(
                 index: 1,
@@ -1172,6 +1178,112 @@ class _DayDot extends StatelessWidget {
       color: scheme.outline,
       strokeWidth: 2,
       child: const SizedBox.square(dimension: size),
+    );
+  }
+}
+
+/// "Ta semaine avec Dieu est prête": from Sunday 18:00 to Monday evening.
+class _WeekStoryCard extends StatelessWidget {
+  const _WeekStoryCard({required this.monday});
+
+  final DateTime monday;
+
+  @override
+  Widget build(BuildContext context) {
+    final t = context.t;
+    final sunday = DateTime(monday.year, monday.month, monday.day + 6);
+    void open() =>
+        context.router.push(WeekStoryRoute(monday: monday.toApiDate()));
+    return Container(
+      clipBehavior: Clip.antiAlias,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(AppRadius.xl + 4),
+        gradient: const LinearGradient(
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+          colors: [Color(0xFF2F6BFF), Color(0xFF6A2FB8)],
+        ),
+      ),
+      child: Material(
+        type: MaterialType.transparency,
+        child: InkWell(
+          onTap: open,
+          child: Stack(
+            children: [
+              PositionedDirectional(
+                end: -40,
+                top: -50,
+                child: BrandRing(
+                  size: 160,
+                  color: Colors.white.withValues(alpha: 0.14),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(18),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      children: [
+                        const CmfiLogo(size: 26, disc: true),
+                        const SizedBox(width: 8),
+                        Expanded(
+                          child: Text(
+                            t.weekStory.range(
+                              from: context.formatDate(monday, 'd MMM'),
+                              to: context.formatDate(sunday, 'd MMM'),
+                            ),
+                            style: const TextStyle(
+                              fontSize: 13,
+                              fontWeight: FontWeight.w700,
+                              color: Color(0xFFD6DCFF),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 10),
+                    Text(
+                      t.weekStory.title,
+                      style: const TextStyle(
+                        fontSize: 24,
+                        fontWeight: FontWeight.w800,
+                        letterSpacing: -0.4,
+                        color: Colors.white,
+                      ),
+                    ),
+                    const SizedBox(height: 4),
+                    Text(
+                      t.weekStory.homeText,
+                      style: const TextStyle(
+                        fontSize: 14.5,
+                        height: 1.35,
+                        color: Color(0xE6FFFFFF),
+                      ),
+                    ),
+                    const SizedBox(height: 14),
+                    FilledButton.icon(
+                      onPressed: open,
+                      icon: const Icon(AppIcons.play, size: 18),
+                      label: Text(t.weekStory.open),
+                      style: FilledButton.styleFrom(
+                        backgroundColor: Colors.white,
+                        foregroundColor: const Color(0xFF3A2A9A),
+                        shape: const StadiumBorder(),
+                        textStyle: const TextStyle(
+                          fontFamily: AppTheme.fontFamily,
+                          fontSize: 15,
+                          fontWeight: FontWeight.w800,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
     );
   }
 }

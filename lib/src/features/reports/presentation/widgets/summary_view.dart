@@ -194,6 +194,11 @@ class SummaryView extends HookConsumerWidget {
         ),
       ),
       const SizedBox(height: 14),
+      // the week, told as "Ta semaine avec Dieu"; the past ones too
+      if (period == SummaryPeriod.week) ...[
+        const FadeSlideIn(index: 1, child: _WeekStories()),
+        const SizedBox(height: 14),
+      ],
       if (goalsOfPeriod != null) ...[
         FadeSlideIn(
           key: ValueKey(('goals', period)),
@@ -301,6 +306,121 @@ class SummaryView extends HookConsumerWidget {
     return context.t.reports.summary.range(
       from: context.formatDate(from, sameMonth ? 'd' : 'd MMMM'),
       to: context.formatDate(to, 'd MMMM'),
+    );
+  }
+}
+
+/// "Ta semaine avec Dieu": this week, and the four before.
+class _WeekStories extends StatelessWidget {
+  const _WeekStories();
+
+  @override
+  Widget build(BuildContext context) {
+    final t = context.t;
+    final scheme = Theme.of(context).colorScheme;
+    final monday = today().startOfWeek;
+    void open(DateTime week) =>
+        context.router.push(WeekStoryRoute(monday: week.toApiDate()));
+    return Container(
+      clipBehavior: Clip.antiAlias,
+      decoration: BoxDecoration(
+        color: scheme.surface,
+        borderRadius: BorderRadius.circular(AppRadius.xl),
+        border: Border.all(color: scheme.outlineVariant),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          Material(
+            type: MaterialType.transparency,
+            child: InkWell(
+              onTap: () => open(monday),
+              child: Ink(
+                padding: const EdgeInsets.fromLTRB(16, 14, 12, 14),
+                decoration: const BoxDecoration(
+                  gradient: LinearGradient(
+                    colors: [Color(0xFF2F6BFF), Color(0xFF6A2FB8)],
+                  ),
+                ),
+                child: Row(
+                  children: [
+                    const CmfiLogo(size: 30, disc: true),
+                    const SizedBox(width: 12),
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            t.weekStory.title,
+                            style: const TextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeight.w800,
+                              color: Colors.white,
+                            ),
+                          ),
+                          Text(
+                            t.weekStory.thisWeek,
+                            style: const TextStyle(
+                              fontSize: 13,
+                              color: Color(0xE6FFFFFF),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    const Icon(AppIcons.play, color: Colors.white, size: 22),
+                  ],
+                ),
+              ),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.fromLTRB(16, 12, 16, 14),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  t.weekStory.pastWeeks,
+                  style: TextStyle(
+                    fontSize: 13,
+                    fontWeight: FontWeight.w700,
+                    color: scheme.onSurfaceVariant,
+                  ),
+                ),
+                const SizedBox(height: 8),
+                Wrap(
+                  spacing: 8,
+                  runSpacing: 8,
+                  children: [
+                    for (var i = 1; i <= 4; i++)
+                      ActionChip(
+                        label: Text(
+                          t.weekStory.weekOf(
+                            date: context.formatDate(
+                              DateTime(
+                                monday.year,
+                                monday.month,
+                                monday.day - 7 * i,
+                              ),
+                              'd MMM',
+                            ),
+                          ),
+                        ),
+                        onPressed: () => open(
+                          DateTime(
+                            monday.year,
+                            monday.month,
+                            monday.day - 7 * i,
+                          ),
+                        ),
+                      ),
+                  ],
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
     );
   }
 }

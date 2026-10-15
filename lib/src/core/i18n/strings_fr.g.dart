@@ -75,6 +75,7 @@ class Translations with BaseTranslations<AppLocale, Translations> {
 	late final Translations$verses$fr verses = Translations$verses$fr.internal(_root);
 	late final Translations$profilePhoto$fr profilePhoto = Translations$profilePhoto$fr.internal(_root);
 	late final Translations$disciples$fr disciples = Translations$disciples$fr.internal(_root);
+	late final Translations$weekStory$fr weekStory = Translations$weekStory$fr.internal(_root);
 }
 
 // Path: app
@@ -2035,6 +2036,138 @@ class Translations$disciples$fr {
 
 	/// fr: 'Aucun disciple ne correspond à « {search} ».'
 	String noMatch({required Object search}) => 'Aucun disciple ne correspond à « ${search} ».';
+}
+
+// Path: weekStory
+class Translations$weekStory$fr {
+	Translations$weekStory$fr.internal(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// fr: 'Ta semaine avec Dieu'
+	String get title => 'Ta semaine avec Dieu';
+
+	/// fr: 'Du {from} au {to}'
+	String range({required Object from, required Object to}) => 'Du ${from} au ${to}';
+
+	/// fr: 'Revois ce que tu as vécu avec le Seigneur cette semaine.'
+	String get intro => 'Revois ce que tu as vécu avec le Seigneur cette semaine.';
+
+	/// fr: 'Touche à droite pour avancer, à gauche pour revenir.'
+	String get tapHint => 'Touche à droite pour avancer, à gauche pour revenir.';
+
+	/// fr: 'Tu as été fidèle'
+	String get faithfulLead => 'Tu as été fidèle';
+
+	/// fr: 'Une nouvelle semaine t'attend'
+	String get emptyLead => 'Une nouvelle semaine t\'attend';
+
+	/// fr: '(one) {{n} jour sur {total}} (other) {{n} jours sur {total}}'
+	String days({required num n, required Object total}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('fr'))(n,
+		one: '${n} jour\nsur ${total}',
+		other: '${n} jours\nsur ${total}',
+	);
+
+	/// fr: '(one) {{n} jour d'affilée} (other) {{n} jours d'affilée}'
+	String streak({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('fr'))(n,
+		one: '${n} jour d\'affilée',
+		other: '${n} jours d\'affilée',
+	);
+
+	/// fr: '(one) {{n} jour d'affilée : ton record !} (other) {{n} jours d'affilée : ton record !}'
+	String streakRecord({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('fr'))(n,
+		one: '${n} jour d\'affilée : ton record !',
+		other: '${n} jours d\'affilée : ton record !',
+	);
+
+	/// fr: 'Remplis ton compte rendu chaque jour : ta prochaine semaine s'écrira ici.'
+	String get emptyText => 'Remplis ton compte rendu chaque jour : ta prochaine semaine s\'écrira ici.';
+
+	/// fr: 'Tu as prié'
+	String get prayerLead => 'Tu as prié';
+
+	/// fr: '(one) {{n} retraite} (other) {{n} retraites}'
+	String retreats({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('fr'))(n,
+		one: '${n} retraite',
+		other: '${n} retraites',
+	);
+
+	/// fr: 'de 15 minutes · {time} avec le Seigneur'
+	String retreatsTime({required Object time}) => 'de 15 minutes · ${time} avec le Seigneur';
+
+	/// fr: '(one) {Ton moment le plus fidèle : {moment} ({n} fois)} (other) {Ton moment le plus fidèle : {moment} ({n} fois)}'
+	String faithfulMoment({required num n, required Object moment}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('fr'))(n,
+		one: 'Ton moment le plus fidèle : ${moment} (${n} fois)',
+		other: 'Ton moment le plus fidèle : ${moment} (${n} fois)',
+	);
+
+	/// fr: 'Pas de retraite cette semaine'
+	String get noRetreat => 'Pas de retraite cette semaine';
+
+	/// fr: 'La retraite de midi t'attend : 15 minutes avec le Seigneur.'
+	String get noRetreatText => 'La retraite de midi t\'attend : 15 minutes avec le Seigneur.';
+
+	/// fr: 'Tes objectifs'
+	String get goalsLead => 'Tes objectifs';
+
+	/// fr: 'atteints en moyenne'
+	String get goalsReached => 'atteints en moyenne';
+
+	/// fr: 'Ton meilleur jour : {day} · {percent}'
+	String bestDay({required Object day, required Object percent}) => 'Ton meilleur jour : ${day} · ${percent}';
+
+	/// fr: 'Ma semaine avec Dieu'
+	String get summaryTitle => 'Ma semaine avec Dieu';
+
+	/// fr: 'jours remplis'
+	String get statDays => 'jours remplis';
+
+	/// fr: '(one) {jour d'affilée} (other) {jours d'affilée}'
+	String statStreak({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('fr'))(n,
+		one: 'jour d\'affilée',
+		other: 'jours d\'affilée',
+	);
+
+	/// fr: '(one) {retraite} (other) {retraites}'
+	String statRetreats({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('fr'))(n,
+		one: 'retraite',
+		other: 'retraites',
+	);
+
+	/// fr: 'd'objectifs'
+	String get statGoals => 'd\'objectifs';
+
+	/// fr: 'Partager ma semaine'
+	String get share => 'Partager ma semaine';
+
+	/// fr: 'Ta fidélité, ta prière et tes objectifs de la semaine.'
+	String get homeText => 'Ta fidélité, ta prière et tes objectifs de la semaine.';
+
+	/// fr: 'Voir ma semaine'
+	String get open => 'Voir ma semaine';
+
+	/// fr: 'Ta semaine avec Dieu est prête'
+	String get notificationTitle => 'Ta semaine avec Dieu est prête';
+
+	/// fr: 'Revois ta fidélité de la semaine et partage-la.'
+	String get notificationBody => 'Revois ta fidélité de la semaine et partage-la.';
+
+	/// fr: 'Ta semaine avec Dieu'
+	String get channel => 'Ta semaine avec Dieu';
+
+	/// fr: 'Cette semaine'
+	String get thisWeek => 'Cette semaine';
+
+	/// fr: 'Semaines passées'
+	String get pastWeeks => 'Semaines passées';
+
+	/// fr: 'Semaine du {date}'
+	String weekOf({required Object date}) => 'Semaine du ${date}';
+
+	/// fr: '{current} sur {total}'
+	String page({required Object current, required Object total}) => '${current} sur ${total}';
 }
 
 // Path: onboarding.reports
@@ -5496,6 +5629,40 @@ extension on Translations {
 			'disciples.noReports' => 'Pas de compte rendu sur cette période.',
 			'disciples.searchHint' => 'Nom ou pseudo',
 			'disciples.noMatch' => ({required Object search}) => 'Aucun disciple ne correspond à « ${search} ».',
+			'weekStory.title' => 'Ta semaine avec Dieu',
+			'weekStory.range' => ({required Object from, required Object to}) => 'Du ${from} au ${to}',
+			'weekStory.intro' => 'Revois ce que tu as vécu avec le Seigneur cette semaine.',
+			'weekStory.tapHint' => 'Touche à droite pour avancer, à gauche pour revenir.',
+			'weekStory.faithfulLead' => 'Tu as été fidèle',
+			'weekStory.emptyLead' => 'Une nouvelle semaine t\'attend',
+			'weekStory.days' => ({required num n, required Object total}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('fr'))(n, one: '${n} jour\nsur ${total}', other: '${n} jours\nsur ${total}', ), 
+			'weekStory.streak' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('fr'))(n, one: '${n} jour d\'affilée', other: '${n} jours d\'affilée', ), 
+			'weekStory.streakRecord' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('fr'))(n, one: '${n} jour d\'affilée : ton record !', other: '${n} jours d\'affilée : ton record !', ), 
+			'weekStory.emptyText' => 'Remplis ton compte rendu chaque jour : ta prochaine semaine s\'écrira ici.',
+			'weekStory.prayerLead' => 'Tu as prié',
+			'weekStory.retreats' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('fr'))(n, one: '${n} retraite', other: '${n} retraites', ), 
+			'weekStory.retreatsTime' => ({required Object time}) => 'de 15 minutes · ${time} avec le Seigneur',
+			'weekStory.faithfulMoment' => ({required num n, required Object moment}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('fr'))(n, one: 'Ton moment le plus fidèle : ${moment} (${n} fois)', other: 'Ton moment le plus fidèle : ${moment} (${n} fois)', ), 
+			'weekStory.noRetreat' => 'Pas de retraite cette semaine',
+			'weekStory.noRetreatText' => 'La retraite de midi t\'attend : 15 minutes avec le Seigneur.',
+			'weekStory.goalsLead' => 'Tes objectifs',
+			'weekStory.goalsReached' => 'atteints en moyenne',
+			'weekStory.bestDay' => ({required Object day, required Object percent}) => 'Ton meilleur jour : ${day} · ${percent}',
+			'weekStory.summaryTitle' => 'Ma semaine avec Dieu',
+			'weekStory.statDays' => 'jours remplis',
+			'weekStory.statStreak' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('fr'))(n, one: 'jour d\'affilée', other: 'jours d\'affilée', ), 
+			'weekStory.statRetreats' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('fr'))(n, one: 'retraite', other: 'retraites', ), 
+			'weekStory.statGoals' => 'd\'objectifs',
+			'weekStory.share' => 'Partager ma semaine',
+			'weekStory.homeText' => 'Ta fidélité, ta prière et tes objectifs de la semaine.',
+			'weekStory.open' => 'Voir ma semaine',
+			'weekStory.notificationTitle' => 'Ta semaine avec Dieu est prête',
+			'weekStory.notificationBody' => 'Revois ta fidélité de la semaine et partage-la.',
+			'weekStory.channel' => 'Ta semaine avec Dieu',
+			'weekStory.thisWeek' => 'Cette semaine',
+			'weekStory.pastWeeks' => 'Semaines passées',
+			'weekStory.weekOf' => ({required Object date}) => 'Semaine du ${date}',
+			'weekStory.page' => ({required Object current, required Object total}) => '${current} sur ${total}',
 			_ => null,
 		};
 	}

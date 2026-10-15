@@ -18,6 +18,8 @@ import '../../../core/utils/date_extensions.dart';
 import '../../../core/widgets/app_toast.dart';
 import '../../../routing/app_router.dart';
 import '../../events/application/event_reminders.dart';
+import '../../home/application/week_story.dart';
+import '../../home/domain/week_story.dart';
 import '../../notifications/application/inbox.dart';
 import '../../notifications/application/push_registration.dart';
 import '../../prayer/application/importunities.dart';
@@ -111,8 +113,11 @@ class SignedInTasks extends HookConsumerWidget {
         final eventId = eventIdOf(payload);
         final retreat = retreatOf(payload);
         final sendDay = sendingDayOf(payload);
+        final week = weekStoryOf(payload);
         if (payload == ReportReminder.payload) {
           openToday();
+        } else if (week != null && context.mounted) {
+          context.router.push(WeekStoryRoute(monday: week.toApiDate()));
         } else if (sendDay != null && context.mounted) {
           context.router.push(ReportSendRoute(day: sendDay.toApiDate()));
         } else if (eventId != null) {
@@ -238,6 +243,7 @@ class SignedInTasks extends HookConsumerWidget {
         unawaited(reminder.reschedule());
         unawaited(ref.read(retreatRemindersProvider.notifier).reschedule());
         unawaited(ref.read(reportSendingProvider.notifier).reschedule());
+        unawaited(planWeekStories(notifications, now: DateTime.now()));
       }
 
       // what was prayed without network

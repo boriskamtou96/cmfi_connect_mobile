@@ -1460,5 +1460,62 @@
     "noReports": "Pas de compte rendu sur cette période.",
     "searchHint": "Nom ou pseudo",
     "noMatch": "Aucun disciple ne correspond à « {search} »."
+  },
+  "weekStory": {
+    "title": "Ta semaine avec Dieu",
+    "range": "Du {from} au {to}",
+    "intro": "Revois ce que tu as vécu avec le Seigneur cette semaine.",
+    "tapHint": "Touche à droite pour avancer, à gauche pour revenir.",
+    "faithfulLead": "Tu as été fidèle",
+    "emptyLead": "Une nouvelle semaine t'attend",
+    "days(plural, param=n)": {
+      "one": "{n} jour\nsur {total}",
+      "other": "{n} jours\nsur {total}"
+    },
+    "streak(plural, param=n)": {
+      "one": "{n} jour d'affilée",
+      "other": "{n} jours d'affilée"
+    },
+    "streakRecord(plural, param=n)": {
+      "one": "{n} jour d'affilée : ton record !",
+      "other": "{n} jours d'affilée : ton record !"
+    },
+    "emptyText": "Remplis ton compte rendu chaque jour : ta prochaine semaine s'écrira ici.",
+    "prayerLead": "Tu as prié",
+    "retreats(plural, param=n)": {
+      "one": "{n} retraite",
+      "other": "{n} retraites"
+    },
+    "retreatsTime": "de 15 minutes · {time} avec le Seigneur",
+    "faithfulMoment(plural, param=n)": {
+      "one": "Ton moment le plus fidèle : {moment} ({n} fois)",
+      "other": "Ton moment le plus fidèle : {moment} ({n} fois)"
+    },
+    "noRetreat": "Pas de retraite cette semaine",
+    "noRetreatText": "La retraite de midi t'attend : 15 minutes avec le Seigneur.",
+    "goalsLead": "Tes objectifs",
+    "goalsReached": "atteints en moyenne",
+    "bestDay": "Ton meilleur jour : {day} · {percent}",
+    "summaryTitle": "Ma semaine avec Dieu",
+    "statDays": "jours remplis",
+    "statStreak(plural, param=n)": {
+      "one": "jour d'affilée",
+      "other": "jours d'affilée"
+    },
+    "statRetreats(plural, param=n)": {
+      "one": "retraite",
+      "other": "retraites"
+    },
+    "statGoals": "d'objectifs",
+    "share": "Partager ma semaine",
+    "homeText": "Ta fidélité, ta prière et tes objectifs de la semaine.",
+    "open": "Voir ma semaine",
+    "notificationTitle": "Ta semaine avec Dieu est prête",
+    "notificationBody": "Revois ta fidélité de la semaine et partage-la.",
+    "channel": "Ta semaine avec Dieu",
+    "thisWeek": "Cette semaine",
+    "pastWeeks": "Semaines passées",
+    "weekOf": "Semaine du {date}",
+    "page": "{current} sur {total}"
   }
 }

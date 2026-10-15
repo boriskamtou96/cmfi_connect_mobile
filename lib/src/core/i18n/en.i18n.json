@@ -1461,5 +1461,62 @@
     "noReports": "No report over this period.",
     "searchHint": "Name or username",
     "noMatch": "No disciple matches “{search}”."
+  },
+  "weekStory": {
+    "title": "Your week with God",
+    "range": "{from} to {to}",
+    "intro": "Look back on what you lived with the Lord this week.",
+    "tapHint": "Tap on the right to go on, on the left to go back.",
+    "faithfulLead": "You were faithful",
+    "emptyLead": "A new week is waiting for you",
+    "days(plural, param=n)": {
+      "one": "{n} day\nout of {total}",
+      "other": "{n} days\nout of {total}"
+    },
+    "streak(plural, param=n)": {
+      "one": "{n} day in a row",
+      "other": "{n} days in a row"
+    },
+    "streakRecord(plural, param=n)": {
+      "one": "{n} day in a row: your record!",
+      "other": "{n} days in a row: your record!"
+    },
+    "emptyText": "Fill in your report every day: your next week will be written here.",
+    "prayerLead": "You prayed",
+    "retreats(plural, param=n)": {
+      "one": "{n} retreat",
+      "other": "{n} retreats"
+    },
+    "retreatsTime": "of 15 minutes · {time} with the Lord",
+    "faithfulMoment(plural, param=n)": {
+      "one": "Your most faithful time: {moment} ({n} time)",
+      "other": "Your most faithful time: {moment} ({n} times)"
+    },
+    "noRetreat": "No retreat this week",
+    "noRetreatText": "The noon retreat is waiting for you: 15 minutes with the Lord.",
+    "goalsLead": "Your goals",
+    "goalsReached": "reached on average",
+    "bestDay": "Your best day: {day} · {percent}",
+    "summaryTitle": "My week with God",
+    "statDays": "days filled in",
+    "statStreak(plural, param=n)": {
+      "one": "day in a row",
+      "other": "days in a row"
+    },
+    "statRetreats(plural, param=n)": {
+      "one": "retreat",
+      "other": "retreats"
+    },
+    "statGoals": "of goals",
+    "share": "Share my week",
+    "homeText": "Your faithfulness, your prayer and your goals this week.",
+    "open": "See my week",
+    "notificationTitle": "Your week with God is ready",
+    "notificationBody": "Look back on your faithfulness this week and share it.",
+    "channel": "Your week with God",
+    "thisWeek": "This week",
+    "pastWeeks": "Past weeks",
+    "weekOf": "Week of {date}",
+    "page": "{current} of {total}"
   }
 }

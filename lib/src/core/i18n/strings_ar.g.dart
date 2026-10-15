@@ -73,6 +73,7 @@ class TranslationsAr extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _Translations$verses$ar verses = _Translations$verses$ar._(_root);
 	@override late final _Translations$profilePhoto$ar profilePhoto = _Translations$profilePhoto$ar._(_root);
 	@override late final _Translations$disciples$ar disciples = _Translations$disciples$ar._(_root);
+	@override late final _Translations$weekStory$ar weekStory = _Translations$weekStory$ar._(_root);
 }
 
 // Path: app
@@ -1121,6 +1122,98 @@ class _Translations$disciples$ar extends Translations$disciples$fr {
 	@override String get noReports => 'لا تقرير في هذه الفترة.';
 	@override String get searchHint => 'الاسم أو اسم المستخدم';
 	@override String noMatch({required Object search}) => 'لا يوجد تلميذ يطابق «${search}».';
+}
+
+// Path: weekStory
+class _Translations$weekStory$ar extends Translations$weekStory$fr {
+	_Translations$weekStory$ar._(TranslationsAr root) : this._root = root, super.internal(root);
+
+	final TranslationsAr _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'أسبوعك مع الله';
+	@override String range({required Object from, required Object to}) => 'من ${from} إلى ${to}';
+	@override String get intro => 'استعد ما عشته مع الرب هذا الأسبوع.';
+	@override String get tapHint => 'المس اليمين للمتابعة واليسار للرجوع.';
+	@override String get faithfulLead => 'كنت أمينًا';
+	@override String get emptyLead => 'أسبوع جديد ينتظرك';
+	@override String days({required num n, required Object total}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n,
+		zero: '${n} يوم\nمن ${total}',
+		one: 'يوم واحد\nمن ${total}',
+		two: 'يومان\nمن ${total}',
+		few: '${n} أيام\nمن ${total}',
+		many: '${n} يومًا\nمن ${total}',
+		other: '${n} يوم\nمن ${total}',
+	);
+	@override String streak({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n,
+		zero: '${n} يوم على التوالي',
+		one: 'يوم واحد على التوالي',
+		two: 'يومان على التوالي',
+		few: '${n} أيام على التوالي',
+		many: '${n} يومًا على التوالي',
+		other: '${n} يوم على التوالي',
+	);
+	@override String streakRecord({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n,
+		zero: '${n} يوم على التوالي: رقمك القياسي!',
+		one: 'يوم واحد على التوالي: رقمك القياسي!',
+		two: 'يومان على التوالي: رقمك القياسي!',
+		few: '${n} أيام على التوالي: رقمك القياسي!',
+		many: '${n} يومًا على التوالي: رقمك القياسي!',
+		other: '${n} يوم على التوالي: رقمك القياسي!',
+	);
+	@override String get emptyText => 'املأ تقريرك كل يوم: سيُكتب أسبوعك القادم هنا.';
+	@override String get prayerLead => 'صلّيت';
+	@override String retreats({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n,
+		zero: '${n} خلوة',
+		one: 'خلوة واحدة',
+		two: 'خلوتان',
+		few: '${n} خلوات',
+		many: '${n} خلوة',
+		other: '${n} خلوة',
+	);
+	@override String retreatsTime({required Object time}) => 'من 15 دقيقة · ${time} مع الرب';
+	@override String faithfulMoment({required num n, required Object moment}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n,
+		zero: 'وقتك الأكثر أمانة: ${moment} (${n} مرة)',
+		one: 'وقتك الأكثر أمانة: ${moment} (مرة واحدة)',
+		two: 'وقتك الأكثر أمانة: ${moment} (مرتان)',
+		few: 'وقتك الأكثر أمانة: ${moment} (${n} مرات)',
+		many: 'وقتك الأكثر أمانة: ${moment} (${n} مرة)',
+		other: 'وقتك الأكثر أمانة: ${moment} (${n} مرة)',
+	);
+	@override String get noRetreat => 'لا خلوة هذا الأسبوع';
+	@override String get noRetreatText => 'خلوة الظهر تنتظرك: 15 دقيقة مع الرب.';
+	@override String get goalsLead => 'أهدافك';
+	@override String get goalsReached => 'تحقّقت في المتوسط';
+	@override String bestDay({required Object day, required Object percent}) => 'أفضل يوم لك: ${day} · ${percent}';
+	@override String get summaryTitle => 'أسبوعي مع الله';
+	@override String get statDays => 'أيام مملوءة';
+	@override String statStreak({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n,
+		zero: 'يوم على التوالي',
+		one: 'يوم على التوالي',
+		two: 'يومان على التوالي',
+		few: 'أيام على التوالي',
+		many: 'يومًا على التوالي',
+		other: 'يوم على التوالي',
+	);
+	@override String statRetreats({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n,
+		zero: 'خلوة',
+		one: 'خلوة',
+		two: 'خلوتان',
+		few: 'خلوات',
+		many: 'خلوة',
+		other: 'خلوة',
+	);
+	@override String get statGoals => 'من الأهداف';
+	@override String get share => 'مشاركة أسبوعي';
+	@override String get homeText => 'أمانتك وصلاتك وأهدافك هذا الأسبوع.';
+	@override String get open => 'عرض أسبوعي';
+	@override String get notificationTitle => 'أسبوعك مع الله جاهز';
+	@override String get notificationBody => 'استعد أمانتك هذا الأسبوع وشاركها.';
+	@override String get channel => 'أسبوعك مع الله';
+	@override String get thisWeek => 'هذا الأسبوع';
+	@override String get pastWeeks => 'الأسابيع الماضية';
+	@override String weekOf({required Object date}) => 'أسبوع ${date}';
+	@override String page({required Object current, required Object total}) => '${current} من ${total}';
 }
 
 // Path: onboarding.reports
@@ -3507,6 +3600,40 @@ extension on TranslationsAr {
 			'disciples.noReports' => 'لا تقرير في هذه الفترة.',
 			'disciples.searchHint' => 'الاسم أو اسم المستخدم',
 			'disciples.noMatch' => ({required Object search}) => 'لا يوجد تلميذ يطابق «${search}».',
+			'weekStory.title' => 'أسبوعك مع الله',
+			'weekStory.range' => ({required Object from, required Object to}) => 'من ${from} إلى ${to}',
+			'weekStory.intro' => 'استعد ما عشته مع الرب هذا الأسبوع.',
+			'weekStory.tapHint' => 'المس اليمين للمتابعة واليسار للرجوع.',
+			'weekStory.faithfulLead' => 'كنت أمينًا',
+			'weekStory.emptyLead' => 'أسبوع جديد ينتظرك',
+			'weekStory.days' => ({required num n, required Object total}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n, zero: '${n} يوم\nمن ${total}', one: 'يوم واحد\nمن ${total}', two: 'يومان\nمن ${total}', few: '${n} أيام\nمن ${total}', many: '${n} يومًا\nمن ${total}', other: '${n} يوم\nمن ${total}', ), 
+			'weekStory.streak' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n, zero: '${n} يوم على التوالي', one: 'يوم واحد على التوالي', two: 'يومان على التوالي', few: '${n} أيام على التوالي', many: '${n} يومًا على التوالي', other: '${n} يوم على التوالي', ), 
+			'weekStory.streakRecord' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n, zero: '${n} يوم على التوالي: رقمك القياسي!', one: 'يوم واحد على التوالي: رقمك القياسي!', two: 'يومان على التوالي: رقمك القياسي!', few: '${n} أيام على التوالي: رقمك القياسي!', many: '${n} يومًا على التوالي: رقمك القياسي!', other: '${n} يوم على التوالي: رقمك القياسي!', ), 
+			'weekStory.emptyText' => 'املأ تقريرك كل يوم: سيُكتب أسبوعك القادم هنا.',
+			'weekStory.prayerLead' => 'صلّيت',
+			'weekStory.retreats' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n, zero: '${n} خلوة', one: 'خلوة واحدة', two: 'خلوتان', few: '${n} خلوات', many: '${n} خلوة', other: '${n} خلوة', ), 
+			'weekStory.retreatsTime' => ({required Object time}) => 'من 15 دقيقة · ${time} مع الرب',
+			'weekStory.faithfulMoment' => ({required num n, required Object moment}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n, zero: 'وقتك الأكثر أمانة: ${moment} (${n} مرة)', one: 'وقتك الأكثر أمانة: ${moment} (مرة واحدة)', two: 'وقتك الأكثر أمانة: ${moment} (مرتان)', few: 'وقتك الأكثر أمانة: ${moment} (${n} مرات)', many: 'وقتك الأكثر أمانة: ${moment} (${n} مرة)', other: 'وقتك الأكثر أمانة: ${moment} (${n} مرة)', ), 
+			'weekStory.noRetreat' => 'لا خلوة هذا الأسبوع',
+			'weekStory.noRetreatText' => 'خلوة الظهر تنتظرك: 15 دقيقة مع الرب.',
+			'weekStory.goalsLead' => 'أهدافك',
+			'weekStory.goalsReached' => 'تحقّقت في المتوسط',
+			'weekStory.bestDay' => ({required Object day, required Object percent}) => 'أفضل يوم لك: ${day} · ${percent}',
+			'weekStory.summaryTitle' => 'أسبوعي مع الله',
+			'weekStory.statDays' => 'أيام مملوءة',
+			'weekStory.statStreak' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n, zero: 'يوم على التوالي', one: 'يوم على التوالي', two: 'يومان على التوالي', few: 'أيام على التوالي', many: 'يومًا على التوالي', other: 'يوم على التوالي', ), 
+			'weekStory.statRetreats' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n, zero: 'خلوة', one: 'خلوة', two: 'خلوتان', few: 'خلوات', many: 'خلوة', other: 'خلوة', ), 
+			'weekStory.statGoals' => 'من الأهداف',
+			'weekStory.share' => 'مشاركة أسبوعي',
+			'weekStory.homeText' => 'أمانتك وصلاتك وأهدافك هذا الأسبوع.',
+			'weekStory.open' => 'عرض أسبوعي',
+			'weekStory.notificationTitle' => 'أسبوعك مع الله جاهز',
+			'weekStory.notificationBody' => 'استعد أمانتك هذا الأسبوع وشاركها.',
+			'weekStory.channel' => 'أسبوعك مع الله',
+			'weekStory.thisWeek' => 'هذا الأسبوع',
+			'weekStory.pastWeeks' => 'الأسابيع الماضية',
+			'weekStory.weekOf' => ({required Object date}) => 'أسبوع ${date}',
+			'weekStory.page' => ({required Object current, required Object total}) => '${current} من ${total}',
 			_ => null,
 		};
 	}

@@ -294,6 +294,97 @@ final class RetreatsTodayProvider
 
 String _$retreatsTodayHash() => r'996d8cfea0e737aebcd1a9b267871e37dcc3dabc';
 
+/// The retreats of the week starting on [monday] ("Ta semaine avec Dieu"):
+/// from the server, or what the phone keeps of the last days without network.
+
+@ProviderFor(retreatsOfWeek)
+final retreatsOfWeekProvider = RetreatsOfWeekFamily._();
+
+/// The retreats of the week starting on [monday] ("Ta semaine avec Dieu"):
+/// from the server, or what the phone keeps of the last days without network.
+
+final class RetreatsOfWeekProvider
+    extends
+        $FunctionalProvider<
+          AsyncValue<List<RetreatRecord>>,
+          List<RetreatRecord>,
+          FutureOr<List<RetreatRecord>>
+        >
+    with
+        $FutureModifier<List<RetreatRecord>>,
+        $FutureProvider<List<RetreatRecord>> {
+  /// The retreats of the week starting on [monday] ("Ta semaine avec Dieu"):
+  /// from the server, or what the phone keeps of the last days without network.
+  RetreatsOfWeekProvider._({
+    required RetreatsOfWeekFamily super.from,
+    required DateTime super.argument,
+  }) : super(
+         retry: null,
+         name: r'retreatsOfWeekProvider',
+         isAutoDispose: true,
+         dependencies: null,
+         $allTransitiveDependencies: null,
+       );
+
+  @override
+  String debugGetCreateSourceHash() => _$retreatsOfWeekHash();
+
+  @override
+  String toString() {
+    return r'retreatsOfWeekProvider'
+        ''
+        '($argument)';
+  }
+
+  @$internal
+  @override
+  $FutureProviderElement<List<RetreatRecord>> $createElement(
+    $ProviderPointer pointer,
+  ) => $FutureProviderElement(pointer);
+
+  @override
+  FutureOr<List<RetreatRecord>> create(Ref ref) {
+    final argument = this.argument as DateTime;
+    return retreatsOfWeek(ref, argument);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return other is RetreatsOfWeekProvider && other.argument == argument;
+  }
+
+  @override
+  int get hashCode {
+    return argument.hashCode;
+  }
+}
+
+String _$retreatsOfWeekHash() => r'fb4aa1a10821aecf52b298785600b501412b7aad';
+
+/// The retreats of the week starting on [monday] ("Ta semaine avec Dieu"):
+/// from the server, or what the phone keeps of the last days without network.
+
+final class RetreatsOfWeekFamily extends $Family
+    with $FunctionalFamilyOverride<FutureOr<List<RetreatRecord>>, DateTime> {
+  RetreatsOfWeekFamily._()
+    : super(
+        retry: null,
+        name: r'retreatsOfWeekProvider',
+        dependencies: null,
+        $allTransitiveDependencies: null,
+        isAutoDispose: true,
+      );
+
+  /// The retreats of the week starting on [monday] ("Ta semaine avec Dieu"):
+  /// from the server, or what the phone keeps of the last days without network.
+
+  RetreatsOfWeekProvider call(DateTime monday) =>
+      RetreatsOfWeekProvider._(argument: monday, from: this);
+
+  @override
+  String toString() => r'retreatsOfWeekProvider';
+}
+
 /// Adds the minutes of a retreat to "Prière seule" in today's report (and
 /// takes them back for "Annuler"). null when the report has no such item.
 

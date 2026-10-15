@@ -13,6 +13,7 @@ import '../../../core/theme/app_icons.dart';
 import '../../../core/theme/app_motion.dart';
 import '../../../core/theme/app_spacing.dart';
 import '../../../core/theme/app_tones.dart';
+import '../../../core/widgets/adaptive_menus.dart';
 import '../../../core/widgets/app_toast.dart';
 import '../../../core/widgets/error_view.dart';
 import '../../../core/widgets/motion.dart';
@@ -101,7 +102,7 @@ class HymnsScreen extends HookConsumerWidget {
                     onClose: closeSearch,
                     onOpen: open,
                   )
-                : RefreshIndicator(
+                : RefreshIndicator.adaptive(
                     onRefresh: refresh,
                     child: CustomScrollView(
                       slivers: [
@@ -648,27 +649,21 @@ class _HymnRow extends ConsumerWidget {
       onTap: () => onOpen(book.code, hymn.number),
       onToggleFavorite: toggleFavorite,
       menu: Builder(
-        builder: (anchor) => PopupMenuButton<_RowAction>(
+        builder: (anchor) => AdaptiveMenuButton<_RowAction>(
           tooltip: t.hymns.reader.more,
+          title: hymn.title,
           icon: Icon(
             AppIcons.moreOptions,
             color: Theme.of(context).colorScheme.onSurfaceVariant,
           ),
           onSelected: (action) => act(action, anchor),
-          itemBuilder: (context) => [
+          actions: [
             for (final (action, icon, label) in [
               (_RowAction.project, AppIcons.projection, t.hymns.reader.project),
               (_RowAction.share, AppIcons.share, t.hymns.reader.share),
               (_RowAction.copy, AppIcons.copy, t.hymns.reader.copy),
             ])
-              PopupMenuItem(
-                value: action,
-                child: ListTile(
-                  contentPadding: EdgeInsets.zero,
-                  leading: Icon(icon),
-                  title: Text(label),
-                ),
-              ),
+              AdaptiveAction(value: action, icon: icon, label: label),
           ],
         ),
       ),

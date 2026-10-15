@@ -57,7 +57,7 @@ class EventsScreen extends ConsumerWidget {
           ),
       ],
       child: switch (upcoming) {
-        AsyncValue(value: final events?) => RefreshIndicator(
+        AsyncValue(value: final events?) => RefreshIndicator.adaptive(
           onRefresh: refresh,
           child: ListView(
             padding: const EdgeInsetsDirectional.fromSTEB(

@@ -103,7 +103,7 @@ class DisciplesScreen extends HookConsumerWidget {
                 ),
               ),
               AsyncData(value: (:final items, :final total)) =>
-                RefreshIndicator(
+                RefreshIndicator.adaptive(
                   onRefresh: refresh,
                   child: ListView.separated(
                     padding: const EdgeInsetsDirectional.fromSTEB(

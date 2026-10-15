@@ -8,6 +8,7 @@ import '../../../core/network/app_exception.dart';
 import '../../../core/network/app_exception_message.dart';
 import '../../../core/theme/app_icons.dart';
 import '../../../core/theme/app_spacing.dart';
+import '../../../core/widgets/adaptive_menus.dart';
 import '../../../core/widgets/app_toast.dart';
 import '../../../core/widgets/error_view.dart';
 import '../../../core/widgets/fade_slide_in.dart';
@@ -62,7 +63,7 @@ class AdminScreen extends ConsumerWidget {
     return SubPage(
       title: t.admin.title,
       child: switch (staff) {
-        AsyncValue(value: final members?) => RefreshIndicator(
+        AsyncValue(value: final members?) => RefreshIndicator.adaptive(
           onRefresh: () =>
               ref.refresh(staffProvider.future).then((_) {}, onError: (_) {}),
           child: ListView(
@@ -118,18 +119,21 @@ class AdminScreen extends ConsumerWidget {
                         subtitle: Text('@${member.username}'),
                         trailing:
                             isSuperadmin && member.username != me?.username
-                            ? PopupMenuButton<MemberRole>(
+                            ? AdaptiveMenuButton<MemberRole>(
                                 tooltip: t.admin.roleFor(
                                   username: member.username,
                                 ),
-                                initialValue: member.role,
+                                title: t.admin.roleFor(
+                                  username: member.username,
+                                ),
                                 onSelected: (role) =>
                                     setRole(member.username, role),
-                                itemBuilder: (context) => [
+                                actions: [
                                   for (final role in MemberRole.values)
-                                    PopupMenuItem(
+                                    AdaptiveAction(
                                       value: role,
-                                      child: Text(roleLabel(t, role)),
+                                      label: roleLabel(t, role),
+                                      selected: role == member.role,
                                     ),
                                 ],
                                 child: StatusPill(roleLabel(t, member.role)),
@@ -225,7 +229,7 @@ class _GiveRoleSheet extends HookWidget {
               child: Column(
                 children: [
                   for (final value in MemberRole.values)
-                    RadioListTile<MemberRole>(
+                    RadioListTile<MemberRole>.adaptive(
                       contentPadding: EdgeInsets.zero,
                       value: value,
                       title: Text(roleLabel(t, value)),

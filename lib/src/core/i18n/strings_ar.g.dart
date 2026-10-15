@@ -104,6 +104,9 @@ class _Translations$common$ar extends Translations$common$fr {
 	@override String get optional => '(اختياري)';
 	@override String get and => 'و';
 	@override String get loading => 'جارٍ التحميل…';
+	@override String get done => 'تم';
+	@override String get rangeStart => 'من';
+	@override String get rangeEnd => 'إلى';
 }
 
 // Path: errors
@@ -2489,6 +2492,9 @@ extension on TranslationsAr {
 			'common.optional' => '(اختياري)',
 			'common.and' => 'و',
 			'common.loading' => 'جارٍ التحميل…',
+			'common.done' => 'تم',
+			'common.rangeStart' => 'من',
+			'common.rangeEnd' => 'إلى',
 			'errors.network' => 'لا يوجد اتصال بالإنترنت. تحقّق من شبكتك وحاول مجددًا.',
 			'errors.unauthorized' => 'انتهت صلاحية جلستك. سجّل الدخول مجددًا.',
 			'errors.invalidCredentials' => 'رقم الهاتف أو كلمة المرور غير صحيحة.',
@@ -2986,11 +2992,11 @@ extension on TranslationsAr {
 			'hymns.reader.themeDark' => 'داكن',
 			'hymns.reader.repeatChorus' => 'تكرار القرار بعد كل مقطع',
 			'hymns.reader.keepScreenOn' => 'إبقاء الشاشة مضاءة',
+			_ => null,
+		} ?? switch (path) {
 			'hymns.reader.addFavorite' => 'إضافة إلى المفضلة',
 			'hymns.reader.removeFavorite' => 'إزالة من المفضلة',
 			'hymns.reader.favoriteAdded' => 'تمت الإضافة إلى المفضلة',
-			_ => null,
-		} ?? switch (path) {
 			'hymns.reader.favoriteRemoved' => 'تمت الإزالة من المفضلة',
 			'hymns.reader.more' => 'خيارات أخرى',
 			'hymns.reader.copy' => 'نسخ الكلمات',
@@ -3500,11 +3506,11 @@ extension on TranslationsAr {
 			'prayer.importunity.inviteSheet.usernameLabel' => 'اسم المستخدم',
 			'prayer.importunity.inviteSheet.addUsername' => 'إضافة',
 			'prayer.importunity.inviteSheet.send' => 'إرسال الدعوات',
+			_ => null,
+		} ?? switch (path) {
 			'prayer.importunity.inviteSheet.sent' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n, zero: 'كانوا مدعوّين بالفعل.', one: 'تم إرسال دعوة واحدة', two: 'تم إرسال دعوتين', few: 'تم إرسال ${n} دعوات', many: 'تم إرسال ${n} دعوة', other: 'تم إرسال ${n} دعوة', ), 
 			'sending.title' => 'الإرسال إلى مرشديّ',
 			'sending.moreOff' => 'متوقف',
-			_ => null,
-		} ?? switch (path) {
 			'sending.intro' => 'في الوقت الذي تختاره، يُعِدّ CMFI Connect تقريرك عن الفترة. ما عليك إلا إرساله إلى مرشديك الروحيين.',
 			'sending.enabled' => 'جهّزه لي بانتظام',
 			'sending.rhythm' => 'الوتيرة',

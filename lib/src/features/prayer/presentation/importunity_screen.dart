@@ -14,9 +14,10 @@ import '../../../core/theme/app_spacing.dart';
 import '../../../core/theme/app_tones.dart';
 import '../../../core/utils/date_format.dart';
 import '../../../core/utils/text_direction.dart';
+import '../../../core/widgets/adaptive_dialogs.dart';
+import '../../../core/widgets/adaptive_menus.dart';
 import '../../../core/widgets/app_toast.dart';
 import '../../../core/widgets/labeled_field.dart';
-import '../../../core/widgets/motion.dart';
 import '../../../core/widgets/section_card.dart';
 import '../../../core/widgets/skeleton.dart';
 import '../../../core/widgets/sub_page.dart';
@@ -445,29 +446,14 @@ class _Menu extends ConsumerWidget {
       );
     }
 
-    Future<bool> confirm(String title, String text, String action) async =>
-        await showAppDialog<bool>(
-          context: context,
-          builder: (context) => AlertDialog(
-            title: Text(title),
-            content: Text(text),
-            actions: [
-              TextButton(
-                onPressed: () => Navigator.of(context).pop(false),
-                child: Text(context.t.common.cancel),
-              ),
-              FilledButton(
-                style: FilledButton.styleFrom(
-                  backgroundColor: scheme.error,
-                  foregroundColor: scheme.onError,
-                ),
-                onPressed: () => Navigator.of(context).pop(true),
-                child: Text(action),
-              ),
-            ],
-          ),
-        ) ??
-        false;
+    Future<bool> confirm(String title, String text, String action) =>
+        showConfirmDialog(
+          context,
+          title: title,
+          text: text,
+          confirmLabel: action,
+          destructive: true,
+        );
 
     Future<void> run(
       Future<void> Function() action, {
@@ -487,7 +473,7 @@ class _Menu extends ConsumerWidget {
     }
 
     final notifier = ref.read(importunitiesProvider.notifier);
-    return PopupMenuButton<String>(
+    return AdaptiveMenuButton<String>(
       icon: Icon(AppIcons.moreOptions, color: scheme.onSurfaceVariant),
       onSelected: (choice) async {
         switch (choice) {
@@ -515,54 +501,35 @@ class _Menu extends ConsumerWidget {
             }
         }
       },
-      itemBuilder: (context) => [
+      actions: [
         if (topic.isOwner) ...[
-          PopupMenuItem(value: 'edit', child: Text(t.edit)),
-          PopupMenuItem(
+          AdaptiveAction(value: 'edit', label: t.edit),
+          AdaptiveAction(
             value: 'close',
-            child: Text(topic.isOpen ? t.close : t.reopen),
+            label: topic.isOpen ? t.close : t.reopen,
           ),
-          PopupMenuItem(value: 'delete', child: Text(t.delete)),
+          AdaptiveAction(value: 'delete', label: t.delete, destructive: true),
         ] else
-          PopupMenuItem(value: 'leave', child: Text(t.leave)),
+          AdaptiveAction(value: 'leave', label: t.leave, destructive: true),
       ],
     );
   }
 }
 
 Future<int?> _askAmount(BuildContext context) async {
-  final controller = TextEditingController();
   final t = context.t.prayer.importunity;
-  final amount = await showAppDialog<int>(
-    context: context,
-    builder: (context) => AlertDialog(
-      title: Text(t.addManyTitle),
-      content: TextField(
-        controller: controller,
-        autofocus: true,
-        keyboardType: TextInputType.number,
-        inputFormatters: [
-          FilteringTextInputFormatter.digitsOnly,
-          LengthLimitingTextInputFormatter(5),
-        ],
-        decoration: InputDecoration(labelText: t.addManyLabel),
-        onSubmitted: (value) => Navigator.of(context).pop(int.tryParse(value)),
-      ),
-      actions: [
-        TextButton(
-          onPressed: () => Navigator.of(context).pop(),
-          child: Text(context.t.common.cancel),
-        ),
-        FilledButton(
-          onPressed: () =>
-              Navigator.of(context).pop(int.tryParse(controller.text)),
-          child: Text(t.add),
-        ),
-      ],
-    ),
+  final typed = await showInputDialog(
+    context,
+    title: t.addManyTitle,
+    label: t.addManyLabel,
+    confirmLabel: t.add,
+    keyboardType: TextInputType.number,
+    inputFormatters: [
+      FilteringTextInputFormatter.digitsOnly,
+      LengthLimitingTextInputFormatter(5),
+    ],
   );
-  controller.dispose();
-  return amount;
+  return typed == null ? null : int.tryParse(typed);
 }
 
 /// Creates an importunity topic ([topic] null) or changes it.
@@ -805,7 +772,7 @@ class _InviteSheet extends HookConsumerWidget {
                   color: withFamily.value ? tone.color : scheme.outlineVariant,
                 ),
               ),
-              child: CheckboxListTile(
+              child: CheckboxListTile.adaptive(
                 value: withFamily.value,
                 onChanged: (value) => withFamily.value = value ?? false,
                 secondary: ToneTile(

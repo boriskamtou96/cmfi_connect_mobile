@@ -10,6 +10,7 @@ import '../../../core/theme/app_icons.dart';
 import '../../../core/theme/app_motion.dart';
 import '../../../core/theme/app_spacing.dart';
 import '../../../core/utils/date_extensions.dart';
+import '../../../core/widgets/adaptive_pickers.dart';
 import '../../../core/widgets/app_button.dart';
 import '../../../core/widgets/app_toast.dart';
 import '../../../core/widgets/error_view.dart';
@@ -79,8 +80,8 @@ class ExportReportScreen extends HookConsumerWidget {
     final activities = ref.watch(activitiesProvider);
 
     Future<void> pickDates() async {
-      final picked = await showDateRangePicker(
-        context: context,
+      final picked = await showAppDateRangePicker(
+        context,
         firstDate: DateTime(2020),
         lastDate: now,
         initialDateRange: switch (range) {

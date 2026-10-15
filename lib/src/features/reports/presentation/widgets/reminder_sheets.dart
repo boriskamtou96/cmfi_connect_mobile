@@ -5,6 +5,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import '../../../../core/i18n/strings.g.dart';
 import '../../../../core/theme/app_icons.dart';
 import '../../../../core/theme/app_spacing.dart';
+import '../../../../core/widgets/adaptive_pickers.dart';
 import '../../../../core/widgets/app_toast.dart';
 import '../../application/report_reminder.dart';
 
@@ -56,8 +57,8 @@ Future<void> _enable(
 }
 
 Future<TimeOfDay?> _pickTime(BuildContext context, TimeOfDay initial) =>
-    showTimePicker(
-      context: context,
+    showAppTimePicker(
+      context,
       initialTime: initial,
       helpText: context.t.reminder.time,
     );
@@ -166,7 +167,7 @@ class _ReminderSettingsSheet extends ConsumerWidget {
               style: Theme.of(context).textTheme.titleLarge,
             ),
             const SizedBox(height: AppSpacing.md),
-            SwitchListTile(
+            SwitchListTile.adaptive(
               contentPadding: EdgeInsets.zero,
               value: settings.enabled,
               onChanged: (on) =>

@@ -52,7 +52,7 @@ class AdminEventsScreen extends ConsumerWidget {
         ),
       ),
       child: switch (events) {
-        AsyncValue(value: final list?) => RefreshIndicator(
+        AsyncValue(value: final list?) => RefreshIndicator.adaptive(
           onRefresh: () => ref
               .refresh(adminEventsProvider.future)
               .then((_) {}, onError: (_) {}),

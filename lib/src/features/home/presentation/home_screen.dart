@@ -76,7 +76,7 @@ class HomeScreen extends ConsumerWidget {
     return Scaffold(
       body: SafeArea(
         bottom: false,
-        child: RefreshIndicator(
+        child: RefreshIndicator.adaptive(
           onRefresh: refresh,
           child: ListView(
             padding: const EdgeInsetsDirectional.fromSTEB(

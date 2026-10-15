@@ -104,6 +104,9 @@ class _Translations$common$hi extends Translations$common$fr {
 	@override String get optional => '(वैकल्पिक)';
 	@override String get and => 'और';
 	@override String get loading => 'लोड हो रहा है…';
+	@override String get done => 'हो गया';
+	@override String get rangeStart => 'कब से';
+	@override String get rangeEnd => 'कब तक';
 }
 
 // Path: errors
@@ -2275,6 +2278,9 @@ extension on TranslationsHi {
 			'common.optional' => '(वैकल्पिक)',
 			'common.and' => 'और',
 			'common.loading' => 'लोड हो रहा है…',
+			'common.done' => 'हो गया',
+			'common.rangeStart' => 'कब से',
+			'common.rangeEnd' => 'कब तक',
 			'errors.network' => 'इंटरनेट कनेक्शन नहीं है। अपना नेटवर्क जाँचो और फिर से कोशिश करो।',
 			'errors.unauthorized' => 'तुम्हारा सेशन ख़त्म हो गया है। फिर से लॉग इन करो।',
 			'errors.invalidCredentials' => 'फ़ोन नंबर या पासवर्ड ग़लत है।',
@@ -2772,11 +2778,11 @@ extension on TranslationsHi {
 			'hymns.reader.themeDark' => 'डार्क',
 			'hymns.reader.repeatChorus' => 'हर पद के बाद कोरस दोहराओ',
 			'hymns.reader.keepScreenOn' => 'स्क्रीन चालू रखो',
+			_ => null,
+		} ?? switch (path) {
 			'hymns.reader.addFavorite' => 'पसंदीदा में जोड़ो',
 			'hymns.reader.removeFavorite' => 'पसंदीदा से हटाओ',
 			'hymns.reader.favoriteAdded' => 'पसंदीदा में जोड़ा गया',
-			_ => null,
-		} ?? switch (path) {
 			'hymns.reader.favoriteRemoved' => 'पसंदीदा से हटाया गया',
 			'hymns.reader.more' => 'और विकल्प',
 			'hymns.reader.copy' => 'बोल कॉपी करो',
@@ -3286,11 +3292,11 @@ extension on TranslationsHi {
 			'prayer.importunity.inviteSheet.usernameLabel' => 'यूज़रनेम',
 			'prayer.importunity.inviteSheet.addUsername' => 'जोड़ो',
 			'prayer.importunity.inviteSheet.send' => 'न्योते भेजो',
+			_ => null,
+		} ?? switch (path) {
 			'prayer.importunity.inviteSheet.sent' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n, zero: 'उन्हें पहले ही न्योता दिया जा चुका था।', one: '${n} न्योता भेजा गया', other: '${n} न्योते भेजे गए', ), 
 			'sending.title' => 'मेरे आत्मिक अगुवों को भेजना',
 			'sending.moreOff' => 'बंद',
-			_ => null,
-		} ?? switch (path) {
 			'sending.intro' => 'चुने हुए समय पर CMFI Connect उस अवधि की तुम्हारी रिपोर्ट तैयार करता है। तुम्हें बस उसे अपने आत्मिक अगुवों को भेजना है।',
 			'sending.enabled' => 'इसे नियमित रूप से तैयार करो',
 			'sending.rhythm' => 'अंतराल',

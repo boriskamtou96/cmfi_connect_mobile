@@ -8,6 +8,7 @@ import '../../../core/theme/app_icons.dart';
 import '../../../core/theme/app_spacing.dart';
 import '../../../core/theme/app_tones.dart';
 import '../../../core/utils/date_extensions.dart';
+import '../../../core/widgets/adaptive_pickers.dart';
 import '../../../core/widgets/app_toast.dart';
 import '../../../core/widgets/fade_slide_in.dart';
 import '../../../core/widgets/section_card.dart';
@@ -70,8 +71,8 @@ class ReportSendingScreen extends ConsumerWidget {
     }
 
     Future<void> pickTime() async {
-      final picked = await showTimePicker(
-        context: context,
+      final picked = await showAppTimePicker(
+        context,
         initialTime: settings.time,
       );
       if (picked != null) {
@@ -112,7 +113,7 @@ class ReportSendingScreen extends ConsumerWidget {
             index: 1,
             child: SectionCard(
               children: [
-                SwitchListTile(
+                SwitchListTile.adaptive(
                   value: settings.enabled,
                   onChanged: toggle,
                   title: Text(
@@ -149,7 +150,7 @@ class ReportSendingScreen extends ConsumerWidget {
                   child: Column(
                     children: [
                       for (final rhythm in SendingRhythm.values)
-                        RadioListTile<SendingRhythm>(
+                        RadioListTile<SendingRhythm>.adaptive(
                           value: rhythm,
                           title: Text(switch (rhythm) {
                             SendingRhythm.weekly => s.weekly,
@@ -240,7 +241,7 @@ class ReportSendingScreen extends ConsumerWidget {
                   )
                 else
                   for (final authority in authorities)
-                    CheckboxListTile(
+                    CheckboxListTile.adaptive(
                       value: settings.authorityIds.contains(authority.id),
                       onChanged: (checked) => notifier.save(
                         settings.copyWith(

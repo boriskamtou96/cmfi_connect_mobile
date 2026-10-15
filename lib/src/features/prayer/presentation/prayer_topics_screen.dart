@@ -58,7 +58,7 @@ class PrayerTopicsScreen extends ConsumerWidget {
 
     return SubPage(
       title: t.prayer.topics.title,
-      child: RefreshIndicator(
+      child: RefreshIndicator.adaptive(
         onRefresh: () async {
           ref
             ..invalidate(prayerTopicsProvider)

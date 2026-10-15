@@ -9,6 +9,7 @@ import '../../../../core/theme/app_icons.dart';
 import '../../../../core/theme/app_spacing.dart';
 import '../../../../core/utils/date_format.dart';
 import '../../../../core/utils/zoned_time.dart';
+import '../../../../core/widgets/adaptive_pickers.dart';
 import '../../../../core/widgets/app_button.dart';
 import '../../../../core/widgets/app_toast.dart';
 import '../../../../core/widgets/error_view.dart';
@@ -276,13 +277,10 @@ class _SessionSheet extends HookWidget {
     );
 
     Future<void> pick(ValueNotifier<TimeOfDay> time) async {
-      final picked = await showTimePicker(
-        context: context,
+      final picked = await showAppTimePicker(
+        context,
         initialTime: time.value,
-        builder: (context, child) => MediaQuery(
-          data: MediaQuery.of(context).copyWith(alwaysUse24HourFormat: true),
-          child: child!,
-        ),
+        use24h: true,
       );
       if (picked != null) {
         time.value = picked;

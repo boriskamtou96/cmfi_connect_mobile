@@ -9,6 +9,8 @@ import '../../../core/theme/app_icons.dart';
 import '../../../core/theme/app_spacing.dart';
 import '../../../core/theme/app_theme.dart';
 import '../../../core/theme/app_tones.dart';
+import '../../../core/widgets/adaptive.dart';
+import '../../../core/widgets/adaptive_dialogs.dart';
 import '../../../core/widgets/app_toast.dart';
 import '../../../core/widgets/code_chip.dart';
 import '../../../core/widgets/error_view.dart';
@@ -78,24 +80,13 @@ class ItemsScreen extends HookConsumerWidget {
     }
 
     Future<void> archive(ActivityType item) async {
-      final confirmed = await showAppDialog<bool>(
-        context: context,
-        builder: (context) => AlertDialog(
-          title: Text(t.items.archiveTitle(code: item.code)),
-          content: Text(t.items.archiveText),
-          actions: [
-            TextButton(
-              onPressed: () => Navigator.of(context).pop(false),
-              child: Text(t.common.cancel),
-            ),
-            FilledButton(
-              onPressed: () => Navigator.of(context).pop(true),
-              child: Text(t.items.archive),
-            ),
-          ],
-        ),
+      final confirmed = await showConfirmDialog(
+        context,
+        title: t.items.archiveTitle(code: item.code),
+        text: t.items.archiveText,
+        confirmLabel: t.items.archive,
       );
-      if (confirmed != true || !context.mounted) {
+      if (!confirmed || !context.mounted) {
         return;
       }
 
@@ -208,7 +199,7 @@ class ItemsScreen extends HookConsumerWidget {
     return SubPage(
       title: t.items.title,
       child: switch (activities) {
-        AsyncValue(value: final items?) => RefreshIndicator(
+        AsyncValue(value: final items?) => RefreshIndicator.adaptive(
           onRefresh: () => ref
               .refresh(activitiesProvider.future)
               .then((_) {}, onError: (_) {}),
@@ -272,12 +263,7 @@ class ItemsScreen extends HookConsumerWidget {
                                 ),
                               ),
                               child: archiving.value == item.id
-                                  ? const SizedBox.square(
-                                      dimension: 16,
-                                      child: CircularProgressIndicator(
-                                        strokeWidth: 2,
-                                      ),
-                                    )
+                                  ? const AppSpinner(size: 16, strokeWidth: 2)
                                   : Text(t.items.archive),
                             ),
                           ),

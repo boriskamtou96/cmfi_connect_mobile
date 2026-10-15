@@ -10,8 +10,10 @@ import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_icons.dart';
 import '../../../core/theme/app_spacing.dart';
 import '../../../core/theme/app_tones.dart';
+import '../../../core/widgets/adaptive.dart';
+import '../../../core/widgets/adaptive_dialogs.dart';
+import '../../../core/widgets/adaptive_menus.dart';
 import '../../../core/widgets/fade_slide_in.dart';
-import '../../../core/widgets/motion.dart';
 import '../../../core/widgets/section_card.dart';
 import '../../../core/widgets/tab_page.dart';
 import '../../../routing/app_router.dart';
@@ -487,27 +489,14 @@ class MoreScreen extends ConsumerWidget {
     final t = context.t;
     final pending = ref.read(pendingReportsProvider).length;
     if (pending > 0) {
-      final confirmed = await showAppDialog<bool>(
-        context: context,
-        builder: (context) => AlertDialog(
-          title: Text(t.more.logoutPendingTitle),
-          content: Text(t.more.logoutPendingText(n: pending)),
-          actions: [
-            TextButton(
-              onPressed: () => Navigator.of(context).pop(false),
-              child: Text(t.common.cancel),
-            ),
-            TextButton(
-              style: TextButton.styleFrom(
-                foregroundColor: Theme.of(context).colorScheme.error,
-              ),
-              onPressed: () => Navigator.of(context).pop(true),
-              child: Text(t.more.logoutAnyway),
-            ),
-          ],
-        ),
+      final confirmed = await showConfirmDialog(
+        context,
+        title: t.more.logoutPendingTitle,
+        text: t.more.logoutPendingText(n: pending),
+        confirmLabel: t.more.logoutAnyway,
+        destructive: true,
       );
-      if (confirmed != true) {
+      if (!confirmed) {
         return;
       }
     }
@@ -519,54 +508,73 @@ class MoreScreen extends ConsumerWidget {
 
   Future<void> _pickLanguage(BuildContext context, WidgetRef ref) async {
     final current = TranslationProvider.of(context).locale;
-    final picked = await showModalBottomSheet<AppLocale>(
-      context: context,
-      isScrollControlled: true,
-      useSafeArea: true,
-      builder: (context) => SafeArea(
-        child: SingleChildScrollView(
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(
-                  AppSpacing.xl,
-                  0,
-                  AppSpacing.xl,
-                  AppSpacing.sm,
+    final choice = context.isCupertino
+        ? showActionSheet<AppLocale>(
+            context,
+            title: context.t.more.languageTitle,
+            actions: [
+              for (final locale in AppLocale.values)
+                AdaptiveAction(
+                  value: locale,
+                  // each language is written in itself
+                  label: locale.buildSync().app.languageName,
+                  selected: locale == current,
                 ),
-                child: Text(
-                  context.t.more.languageTitle,
-                  style: Theme.of(context).textTheme.titleLarge,
-                ),
-              ),
-              RadioGroup<AppLocale>(
-                groupValue: current,
-                onChanged: (locale) => Navigator.of(context).pop(locale),
-                child: Column(
-                  children: [
-                    for (final locale in AppLocale.values)
-                      RadioListTile<AppLocale>(
-                        value: locale,
-                        // each language is written in itself
-                        title: Text(locale.buildSync().app.languageName),
-                      ),
-                  ],
-                ),
-              ),
-              const SizedBox(height: AppSpacing.sm),
             ],
-          ),
-        ),
-      ),
-    );
+          )
+        : _languageSheet(context, current);
+    final picked = await choice;
     if (picked == null || picked == current) {
       return;
     }
     await LocaleSettings.setLocale(picked);
     await ref.read(savedLanguageProvider.notifier).save(picked.languageCode);
   }
+
+  /// The languages as radio buttons, on Android.
+  Future<AppLocale?> _languageSheet(BuildContext context, AppLocale current) =>
+      showModalBottomSheet<AppLocale>(
+        context: context,
+        isScrollControlled: true,
+        useSafeArea: true,
+        builder: (context) => SafeArea(
+          child: SingleChildScrollView(
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                Padding(
+                  padding: const EdgeInsetsDirectional.fromSTEB(
+                    AppSpacing.xl,
+                    0,
+                    AppSpacing.xl,
+                    AppSpacing.sm,
+                  ),
+                  child: Text(
+                    context.t.more.languageTitle,
+                    style: Theme.of(context).textTheme.titleLarge,
+                  ),
+                ),
+                RadioGroup<AppLocale>(
+                  groupValue: current,
+                  onChanged: (locale) => Navigator.of(context).pop(locale),
+                  child: Column(
+                    children: [
+                      for (final locale in AppLocale.values)
+                        RadioListTile<AppLocale>.adaptive(
+                          value: locale,
+                          // each language is written in itself
+                          title: Text(locale.buildSync().app.languageName),
+                        ),
+                    ],
+                  ),
+                ),
+                const SizedBox(height: AppSpacing.sm),
+              ],
+            ),
+          ),
+        ),
+      );
 }
 
 /// "COMMUNAUTÉ" and its card: one block, so they come in together.

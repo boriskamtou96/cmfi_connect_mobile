@@ -62,7 +62,7 @@ class _ReaderSettingsSheet extends ConsumerWidget {
                 ),
               ),
               Expanded(
-                child: Slider(
+                child: Slider.adaptive(
                   value: settings.textScale,
                   min: HymnReaderSettings.minScale,
                   max: HymnReaderSettings.maxScale,
@@ -194,7 +194,7 @@ class _ReaderSettingsSheet extends ConsumerWidget {
             ],
           ),
           const SizedBox(height: AppSpacing.md),
-          SwitchListTile(
+          SwitchListTile.adaptive(
             contentPadding: EdgeInsets.zero,
             title: Text(
               t.hymns.reader.repeatChorus,
@@ -204,7 +204,7 @@ class _ReaderSettingsSheet extends ConsumerWidget {
             onChanged: (value) =>
                 controller.update((s) => s.copyWith(repeatChorus: value)),
           ),
-          SwitchListTile(
+          SwitchListTile.adaptive(
             contentPadding: EdgeInsets.zero,
             title: Text(
               t.hymns.reader.keepScreenOn,

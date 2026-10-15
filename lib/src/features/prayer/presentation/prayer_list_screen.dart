@@ -11,9 +11,9 @@ import '../../../core/theme/app_spacing.dart';
 import '../../../core/theme/app_tones.dart';
 import '../../../core/utils/date_extensions.dart';
 import '../../../core/utils/date_format.dart';
+import '../../../core/widgets/adaptive_dialogs.dart';
 import '../../../core/widgets/app_toast.dart';
 import '../../../core/widgets/labeled_field.dart';
-import '../../../core/widgets/motion.dart';
 import '../../../core/widgets/section_card.dart';
 import '../../../core/widgets/skeleton.dart';
 import '../../../core/widgets/sub_page.dart';
@@ -334,28 +334,14 @@ class _PersonSheet extends HookConsumerWidget {
     });
 
     Future<void> remove(PrayerPerson existing) async {
-      final confirmed = await showAppDialog<bool>(
-        context: context,
-        builder: (context) => AlertDialog(
-          title: Text(t.prayer.lists.sheet.removeTitle(name: existing.name)),
-          content: Text(t.prayer.lists.sheet.removeText),
-          actions: [
-            TextButton(
-              onPressed: () => Navigator.of(context).pop(false),
-              child: Text(t.common.cancel),
-            ),
-            FilledButton(
-              style: FilledButton.styleFrom(
-                backgroundColor: scheme.error,
-                foregroundColor: scheme.onError,
-              ),
-              onPressed: () => Navigator.of(context).pop(true),
-              child: Text(t.prayer.lists.sheet.remove),
-            ),
-          ],
-        ),
+      final confirmed = await showConfirmDialog(
+        context,
+        title: t.prayer.lists.sheet.removeTitle(name: existing.name),
+        text: t.prayer.lists.sheet.removeText,
+        confirmLabel: t.prayer.lists.sheet.remove,
+        destructive: true,
       );
-      if ((confirmed ?? false) && context.mounted) {
+      if (confirmed && context.mounted) {
         await run(() => people.remove(existing));
       }
     }

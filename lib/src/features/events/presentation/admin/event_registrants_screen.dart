@@ -84,7 +84,7 @@ class EventRegistrantsScreen extends ConsumerWidget {
           ),
       ],
       child: switch (registrations) {
-        AsyncValue(value: final data?) => RefreshIndicator(
+        AsyncValue(value: final data?) => RefreshIndicator.adaptive(
           onRefresh: () => ref
               .refresh(eventRegistrationsProvider(eventId).future)
               .then((_) {}, onError: (_) {}),

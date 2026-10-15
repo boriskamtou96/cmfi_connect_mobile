@@ -104,6 +104,9 @@ class _Translations$common$en extends Translations$common$fr {
 	@override String get optional => '(optional)';
 	@override String get and => 'and';
 	@override String get loading => 'Loading…';
+	@override String get done => 'Done';
+	@override String get rangeStart => 'From';
+	@override String get rangeEnd => 'To';
 }
 
 // Path: errors
@@ -2277,6 +2280,9 @@ extension on TranslationsEn {
 			'common.optional' => '(optional)',
 			'common.and' => 'and',
 			'common.loading' => 'Loading…',
+			'common.done' => 'Done',
+			'common.rangeStart' => 'From',
+			'common.rangeEnd' => 'To',
 			'errors.network' => 'No internet connection. Check your network and try again.',
 			'errors.unauthorized' => 'Your session has expired. Please sign in again.',
 			'errors.invalidCredentials' => 'Wrong phone number or password.',
@@ -2774,11 +2780,11 @@ extension on TranslationsEn {
 			'hymns.reader.themeDark' => 'Dark',
 			'hymns.reader.repeatChorus' => 'Repeat the chorus after each verse',
 			'hymns.reader.keepScreenOn' => 'Keep the screen on',
+			_ => null,
+		} ?? switch (path) {
 			'hymns.reader.addFavorite' => 'Add to favorites',
 			'hymns.reader.removeFavorite' => 'Remove from favorites',
 			'hymns.reader.favoriteAdded' => 'Added to favorites',
-			_ => null,
-		} ?? switch (path) {
 			'hymns.reader.favoriteRemoved' => 'Removed from favorites',
 			'hymns.reader.more' => 'More options',
 			'hymns.reader.copy' => 'Copy the words',
@@ -3288,11 +3294,11 @@ extension on TranslationsEn {
 			'prayer.importunity.inviteSheet.usernameLabel' => 'Username',
 			'prayer.importunity.inviteSheet.addUsername' => 'Add',
 			'prayer.importunity.inviteSheet.send' => 'Send the invitations',
+			_ => null,
+		} ?? switch (path) {
 			'prayer.importunity.inviteSheet.sent' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n, zero: 'They were already invited.', one: '${n} invitation sent', other: '${n} invitations sent', ), 
 			'sending.title' => 'Send to my authorities',
 			'sending.moreOff' => 'Off',
-			_ => null,
-		} ?? switch (path) {
 			'sending.intro' => 'At the chosen time, CMFI Connect prepares your report for the period. You just have to send it to your spiritual authorities.',
 			'sending.enabled' => 'Prepare it for me regularly',
 			'sending.rhythm' => 'Rhythm',

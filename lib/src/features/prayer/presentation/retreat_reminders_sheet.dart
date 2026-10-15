@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../core/i18n/strings.g.dart';
+import '../../../core/widgets/adaptive_pickers.dart';
 import '../../../core/widgets/app_toast.dart';
 import '../application/retreat_reminders.dart';
 import '../domain/prayer.dart';
@@ -36,8 +37,8 @@ class _RetreatRemindersSheet extends ConsumerWidget {
     }
 
     Future<void> pickTime(RetreatMoment moment) async {
-      final picked = await showTimePicker(
-        context: context,
+      final picked = await showAppTimePicker(
+        context,
         initialTime: times[moment] ?? defaultRetreatTimes[moment]!,
       );
       if (picked != null && context.mounted) {
@@ -77,7 +78,7 @@ class _RetreatRemindersSheet extends ConsumerWidget {
                 times[moment]?.format(context) ?? t.prayer.reminders.off,
               ),
               onTap: () => pickTime(moment),
-              trailing: Switch(
+              trailing: Switch.adaptive(
                 value: times[moment] != null,
                 onChanged: (on) => on
                     ? turnOn(moment, defaultRetreatTimes[moment]!)

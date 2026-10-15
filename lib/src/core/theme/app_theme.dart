@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'app_colors.dart';
@@ -249,6 +250,10 @@ abstract final class AppTheme {
       ),
       switchTheme: SwitchThemeData(
         trackOutlineColor: WidgetStateProperty.all(Colors.transparent),
+      ),
+      // the iOS switches (Switch.adaptive) in the app's blue, not Apple's green
+      cupertinoOverrideTheme: const NoDefaultCupertinoThemeData(
+        applyThemeToAll: true,
       ),
     );
   }

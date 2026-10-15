@@ -430,7 +430,7 @@ class AuthorityFormScreen extends HookConsumerWidget {
               ),
               decoration: cardDecoration,
               child: MergeSemantics(
-                child: SwitchListTile(
+                child: SwitchListTile.adaptive(
                   contentPadding: EdgeInsets.zero,
                   title: Text(
                     t.authorities.form.isDiscipleMaker,

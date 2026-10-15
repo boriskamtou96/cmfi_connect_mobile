@@ -9,15 +9,18 @@ part of 'dio_provider.dart';
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint, type=warning
 /// The single HTTP client of the app. Feature APIs receive it, they never create their own.
+/// A request to another host (absolute URL) goes without the user's token.
 
 @ProviderFor(dio)
 final dioProvider = DioProvider._();
 
 /// The single HTTP client of the app. Feature APIs receive it, they never create their own.
+/// A request to another host (absolute URL) goes without the user's token.
 
 final class DioProvider extends $FunctionalProvider<Dio, Dio, Dio>
     with $Provider<Dio> {
   /// The single HTTP client of the app. Feature APIs receive it, they never create their own.
+  /// A request to another host (absolute URL) goes without the user's token.
   DioProvider._()
     : super(
         from: null,
@@ -51,4 +54,4 @@ final class DioProvider extends $FunctionalProvider<Dio, Dio, Dio>
   }
 }
 
-String _$dioHash() => r'276d91374bae8e31b38ef242d9aa28a8665248e9';
+String _$dioHash() => r'f6601ef3b4a660b58c59db874594700b0fc9df53';

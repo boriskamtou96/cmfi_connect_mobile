@@ -13,6 +13,7 @@ import '../../../core/widgets/error_view.dart';
 import '../../../core/widgets/fade_slide_in.dart';
 import '../../../core/widgets/motion.dart';
 import '../../../core/widgets/section_card.dart';
+import '../../../core/widgets/skeleton.dart';
 import '../../../core/widgets/sub_page.dart';
 import '../../members/presentation/widgets/member_avatar.dart';
 import '../application/authorities_controller.dart';
@@ -162,7 +163,7 @@ class AuthoritiesScreen extends ConsumerWidget {
                               authority: maker,
                               onRemove: () => remove(maker),
                             ),
-                            // a member: sees the user's regularity
+                            // a member: receives the user's reports
                             if (maker.username != null &&
                                 maker.status != AuthorityStatus.declined)
                               _SharingSwitch(maker: maker),
@@ -194,11 +195,16 @@ class AuthoritiesScreen extends ConsumerWidget {
                           children: [
                             for (final authority in list.where(
                               (authority) => !authority.isDiscipleMaker,
-                            ))
+                            )) ...[
                               _AuthorityRow(
                                 authority: authority,
                                 onRemove: () => remove(authority),
                               ),
+                              // a member: receives the user's reports
+                              if (authority.username != null &&
+                                  authority.status != AuthorityStatus.declined)
+                                _SharingSwitch(maker: authority),
+                            ],
                           ],
                         ),
                       ],
@@ -215,7 +221,7 @@ class AuthoritiesScreen extends ConsumerWidget {
           error: error,
           onRetry: () => ref.invalidate(authoritiesControllerProvider),
         ),
-        _ => const Center(child: CircularProgressIndicator()),
+        _ => const LoadingList(count: 3, leading: 44),
       },
     );
   }
@@ -465,8 +471,9 @@ class _AddButton extends StatelessWidget {
   }
 }
 
-/// Whether the disciple maker sees the user's regularity: the days filled in,
-/// the streak and the % of the goals, never the reports. On by default.
+/// Whether an authority (the disciple maker or another one, a member of the
+/// app) receives the user's reports: the items filled in, the regularity and
+/// the percentages, never the note. On by default.
 class _SharingSwitch extends HookConsumerWidget {
   const _SharingSwitch({required this.maker});
 

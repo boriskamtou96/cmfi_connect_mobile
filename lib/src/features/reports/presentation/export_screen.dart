@@ -15,6 +15,7 @@ import '../../../core/widgets/app_toast.dart';
 import '../../../core/widgets/error_view.dart';
 import '../../../core/widgets/fade_slide_in.dart';
 import '../../../core/widgets/section_card.dart';
+import '../../../core/widgets/skeleton.dart';
 import '../../../core/widgets/sub_page.dart';
 import '../../profile/application/current_profile.dart';
 import '../application/report_files.dart';
@@ -261,9 +262,9 @@ class ExportReportScreen extends HookConsumerWidget {
                           reportHistoryProvider(from: range.from, to: range.to),
                         ),
                     ),
-                    _ => const Padding(
-                      padding: EdgeInsets.all(AppSpacing.xl),
-                      child: Center(child: CircularProgressIndicator()),
+                    // the preview of the period
+                    _ => const Shimmer(
+                      child: SkeletonBox(height: 68, radius: AppRadius.lg),
                     ),
                   },
                 ],

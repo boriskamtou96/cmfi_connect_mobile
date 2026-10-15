@@ -14,6 +14,7 @@ import '../../../../core/widgets/app_toast.dart';
 import '../../../../core/widgets/error_view.dart';
 import '../../../../core/widgets/labeled_field.dart';
 import '../../../../core/widgets/section_card.dart';
+import '../../../../core/widgets/skeleton.dart';
 import '../../../../core/widgets/sub_page.dart';
 import '../../application/event_admin.dart';
 import '../../application/events_providers.dart';
@@ -50,7 +51,8 @@ class EventProgramScreen extends ConsumerWidget {
       ),
       _ => SubPage(
         title: t.program,
-        child: const Center(child: CircularProgressIndicator()),
+        // the moments of a day
+        child: const LoadingList(count: 5, leading: 0),
       ),
     };
   }

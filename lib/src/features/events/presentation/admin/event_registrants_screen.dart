@@ -19,6 +19,7 @@ import '../../../../core/widgets/error_view.dart';
 import '../../../../core/widgets/fade_slide_in.dart';
 import '../../../../core/widgets/rolling_text.dart';
 import '../../../../core/widgets/section_card.dart';
+import '../../../../core/widgets/skeleton.dart';
 import '../../../../core/widgets/sub_page.dart';
 import '../../../members/presentation/widgets/member_avatar.dart';
 import '../../application/event_admin.dart';
@@ -171,7 +172,40 @@ class EventRegistrantsScreen extends ConsumerWidget {
           error: error,
           onRetry: () => ref.invalidate(eventRegistrationsProvider(eventId)),
         ),
-        _ => const Center(child: CircularProgressIndicator()),
+        // the totals, then the members registered
+        _ => const SingleChildScrollView(
+          physics: NeverScrollableScrollPhysics(),
+          padding: EdgeInsetsDirectional.fromSTEB(
+            AppSpacing.lg,
+            AppSpacing.sm,
+            AppSpacing.lg,
+            AppSpacing.xl,
+          ),
+          child: Shimmer(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                Row(
+                  children: [
+                    Expanded(
+                      child: SkeletonBox(height: 70, radius: AppRadius.lg),
+                    ),
+                    SizedBox(width: AppSpacing.sm),
+                    Expanded(
+                      child: SkeletonBox(height: 70, radius: AppRadius.lg),
+                    ),
+                    SizedBox(width: AppSpacing.sm),
+                    Expanded(
+                      child: SkeletonBox(height: 70, radius: AppRadius.lg),
+                    ),
+                  ],
+                ),
+                SizedBox(height: AppSpacing.xl),
+                SkeletonList(count: 5, lines: 3),
+              ],
+            ),
+          ),
+        ),
       },
     );
   }

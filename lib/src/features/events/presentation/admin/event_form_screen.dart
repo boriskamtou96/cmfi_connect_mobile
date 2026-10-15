@@ -17,6 +17,7 @@ import '../../../../core/widgets/error_view.dart';
 import '../../../../core/widgets/inline_error.dart';
 import '../../../../core/widgets/labeled_field.dart';
 import '../../../../core/widgets/section_card.dart';
+import '../../../../core/widgets/skeleton.dart';
 import '../../../../core/widgets/sub_page.dart';
 import '../../../../routing/app_router.dart';
 import '../../application/event_admin.dart';
@@ -50,12 +51,41 @@ class EventFormScreen extends ConsumerWidget {
           onRetry: () => ref.invalidate(eventDetailProvider(id)),
         ),
       ),
-      _ => SubPage(
-        title: t.edit,
-        child: const Center(child: CircularProgressIndicator()),
-      ),
+      _ => SubPage(title: t.edit, child: const _LoadingForm()),
     };
   }
+}
+
+/// The form while the event loads: the poster, then the first fields.
+class _LoadingForm extends StatelessWidget {
+  const _LoadingForm();
+
+  @override
+  Widget build(BuildContext context) => SingleChildScrollView(
+    physics: const NeverScrollableScrollPhysics(),
+    padding: const EdgeInsetsDirectional.fromSTEB(
+      AppSpacing.lg,
+      AppSpacing.sm,
+      AppSpacing.lg,
+      AppSpacing.xl,
+    ),
+    child: Shimmer(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const SkeletonBox(width: 144, height: 180, radius: AppRadius.md),
+          const SizedBox(height: AppSpacing.xl),
+          // a label, then its field
+          for (final width in const [0.3, 0.25, 0.2]) ...[
+            SkeletonLine(widthFactor: width, height: 14),
+            const SizedBox(height: 6),
+            const SkeletonBox(height: 52, radius: AppRadius.lg),
+            const SizedBox(height: AppSpacing.lg),
+          ],
+        ],
+      ),
+    ),
+  );
 }
 
 class _EventForm extends HookConsumerWidget {

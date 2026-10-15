@@ -13,6 +13,7 @@ import '../../../core/widgets/error_view.dart';
 import '../../../core/widgets/fade_slide_in.dart';
 import '../../../core/widgets/media_picture.dart';
 import '../../../core/widgets/section_card.dart';
+import '../../../core/widgets/skeleton.dart';
 import '../../../core/widgets/sub_page.dart';
 import '../../../routing/app_router.dart';
 import '../application/inbox.dart';
@@ -69,10 +70,13 @@ class NotificationsScreen extends ConsumerWidget {
                           ],
                         ),
                       ),
+                      // the next page
                       if (state.loadingMore)
                         const Padding(
-                          padding: EdgeInsets.all(AppSpacing.lg),
-                          child: Center(child: CircularProgressIndicator()),
+                          padding: EdgeInsets.only(top: AppSpacing.md),
+                          child: Shimmer(
+                            child: SkeletonList(count: 2, leading: 8, lines: 3),
+                          ),
                         ),
                     ],
                   ),
@@ -82,7 +86,8 @@ class NotificationsScreen extends ConsumerWidget {
           error: error,
           onRetry: () => ref.invalidate(inboxProvider),
         ),
-        _ => const Center(child: CircularProgressIndicator()),
+        // the notifications: the dot of the unread ones, title and text
+        _ => const LoadingList(leading: 8, lines: 3),
       },
     );
   }

@@ -10,6 +10,7 @@ import '../../../core/theme/app_tones.dart';
 import '../../../core/widgets/error_view.dart';
 import '../../../core/widgets/fade_slide_in.dart';
 import '../../../core/widgets/section_card.dart';
+import '../../../core/widgets/skeleton.dart';
 import '../../../core/widgets/sub_page.dart';
 import '../../../routing/app_router.dart';
 import '../../members/application/my_account.dart';
@@ -136,7 +137,17 @@ class EventsScreen extends ConsumerWidget {
           error: error,
           onRetry: () => ref.invalidate(eventListProvider),
         ),
-        _ => const Center(child: CircularProgressIndicator()),
+        // the next event large: its poster (4:5), then its text
+        _ => LoadingDetail(
+          picture:
+              (MediaQuery.sizeOf(context).width - 2 * AppSpacing.lg) * 5 / 4,
+          padding: const EdgeInsetsDirectional.fromSTEB(
+            AppSpacing.lg,
+            AppSpacing.sm,
+            AppSpacing.lg,
+            AppSpacing.xxl,
+          ),
+        ),
       },
     );
   }

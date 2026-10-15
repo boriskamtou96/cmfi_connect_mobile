@@ -19,6 +19,7 @@ import '../../../core/utils/date_format.dart';
 import '../../../core/utils/text_direction.dart';
 import '../../../core/widgets/app_toast.dart';
 import '../../../core/widgets/section_card.dart';
+import '../../../core/widgets/skeleton.dart';
 import '../../../core/widgets/sub_page.dart';
 import '../application/prayer_topics.dart';
 import '../domain/prayer.dart';
@@ -49,13 +50,15 @@ class PrayerTopicScreen extends ConsumerWidget {
       final error = current.error ?? past.error;
       return SubPage(
         title: t.prayer.topics.screenTitle,
-        child: Center(
-          child: current.isLoading || past.isLoading
-              ? const CircularProgressIndicator()
-              : Text(
+        child: current.isLoading || past.isLoading
+            ? const LoadingDetail(
+                padding: EdgeInsetsDirectional.fromSTEB(16, 8, 16, 24),
+              )
+            : Center(
+                child: Text(
                   error == null ? t.errors.notFound : userMessageFor(error, t),
                 ),
-        ),
+              ),
       );
     }
     return _TopicView(topic: topic, ended: ended);

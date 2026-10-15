@@ -16,6 +16,7 @@ import '../../../core/widgets/app_toast.dart';
 import '../../../core/widgets/error_view.dart';
 import '../../../core/widgets/fade_slide_in.dart';
 import '../../../core/widgets/media_picture.dart';
+import '../../../core/widgets/skeleton.dart';
 import '../../../core/widgets/sub_page.dart';
 import '../application/inbox.dart';
 import '../domain/announcement.dart';
@@ -49,7 +50,14 @@ class NotificationScreen extends HookConsumerWidget {
           error: error,
           onRetry: () => ref.invalidate(announcementProvider(notificationId)),
         ),
-        _ => const Center(child: CircularProgressIndicator()),
+        _ => const LoadingDetail(
+          padding: EdgeInsetsDirectional.fromSTEB(
+            AppSpacing.lg,
+            AppSpacing.sm,
+            AppSpacing.lg,
+            AppSpacing.xxl,
+          ),
+        ),
       },
     );
   }

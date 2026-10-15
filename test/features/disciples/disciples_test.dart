@@ -61,8 +61,7 @@ void main() {
       expect(find.text('Mes disciples'), findsNothing);
     });
 
-    testWidgets('their regularity, never their reports; one who doesn\'t '
-        'share it says so', (tester) async {
+    testWidgets('who they are; one who doesn\'t share says so', (tester) async {
       final app = await pumpApp(
         tester,
         token: 't',
@@ -77,46 +76,12 @@ void main() {
       expect(find.byType(DisciplesScreen), findsOneWidget);
       expect(app.disciplesApi.asked.last, today());
       expect(find.text('Paul Ndi'), findsOneWidget);
-      expect(find.text('18 jours remplis sur 30'), findsOneWidget);
-      expect(find.text("12 jours d'affilée"), findsOneWidget);
-      expect(find.text('Dernier : hier'), findsOneWidget);
-      expect(find.text('Objectifs : 78 %'), findsOneWidget);
+      // only who they are: their days are on their page
+      expect(find.textContaining('jours remplis'), findsNothing);
+      expect(find.textContaining("d'affilée"), findsNothing);
 
       expect(find.text('Marie'), findsOneWidget);
-      expect(find.text('Ne partage pas sa régularité'), findsOneWidget);
-    });
-
-    testWidgets('filled in today, no goals, no streak', (tester) async {
-      await pumpApp(
-        tester,
-        token: 't',
-        disciplesApi: FakeDisciplesApi([
-          Disciple(
-            authorityId: 13,
-            member: const MemberCard(username: 'jean.ako', firstName: 'Jean'),
-            regularity: DiscipleRegularity(
-              streak: 1,
-              days: [today()],
-              filledLast30: 1,
-              lastDay: today(),
-            ),
-          ),
-          const Disciple(
-            authorityId: 14,
-            member: MemberCard(username: 'luc.mba', firstName: 'Luc'),
-            regularity: DiscipleRegularity(),
-          ),
-        ]),
-      );
-      await openMore(tester);
-      await tester.tap(find.text('Mes disciples'));
-      await tester.pumpAndSettle();
-
-      expect(find.text('Rempli aujourd\'hui'), findsOneWidget);
-      expect(find.text("1 jour d'affilée"), findsOneWidget);
-      expect(find.textContaining('Objectifs'), findsNothing);
-      expect(find.text('Pas de série en cours'), findsOneWidget);
-      expect(find.text('Aucun compte rendu cette année'), findsOneWidget);
+      expect(find.text('Ne partage pas ses comptes rendus'), findsOneWidget);
     });
   });
 
@@ -140,13 +105,13 @@ void main() {
     await tester.tap(find.text('Mes autorités spirituelles'));
     await tester.pumpAndSettle();
 
-    expect(find.text('Partager ma régularité'), findsOneWidget);
+    expect(find.text('Partager mes comptes rendus'), findsOneWidget);
     expect(
       tester.widget<SwitchListTile>(find.byType(SwitchListTile)).value,
       isTrue,
     );
 
-    await tester.tap(find.text('Partager ma régularité'));
+    await tester.tap(find.text('Partager mes comptes rendus'));
     await tester.pumpAndSettle();
 
     expect(app.authoritiesApi.sharing, {3: false});
@@ -154,7 +119,10 @@ void main() {
       tester.widget<SwitchListTile>(find.byType(SwitchListTile)).value,
       isFalse,
     );
-    expect(app.toasts.messages, contains('Marc ne voit plus ta régularité.'));
+    expect(
+      app.toasts.messages,
+      contains('Marc ne voit plus tes comptes rendus.'),
+    );
   });
 
   testWidgets('a disciple maker typed by hand: nothing to share', (
@@ -171,7 +139,247 @@ void main() {
     await tester.tap(find.text('Mes autorités spirituelles'));
     await tester.pumpAndSettle();
 
-    expect(find.text('Partager ma régularité'), findsNothing);
+    expect(find.text('Partager mes comptes rendus'), findsNothing);
+  });
+
+  group('many disciples', () {
+    List<Disciple> many(int n) => [
+      for (var i = 1; i <= n; i++)
+        Disciple(
+          authorityId: 100 + i,
+          member: MemberCard(
+            username: 'membre.$i',
+            firstName: 'Membre',
+            lastName: 'N$i',
+          ),
+          sharesRegularity: false,
+        ),
+    ];
+
+    Future<TestApp> openMany(WidgetTester tester, int n) async {
+      final app = await pumpApp(
+        tester,
+        token: 't',
+        disciplesApi: FakeDisciplesApi(many(n)),
+      );
+      await openMore(tester);
+      await tester.tap(find.text('Mes disciples'));
+      await tester.pumpAndSettle();
+      return app;
+    }
+
+    testWidgets('20 at a time: the next ones come at the end of the list', (
+      tester,
+    ) async {
+      final app = await openMany(tester, 45);
+
+      expect(find.text('45 disciples'), findsNothing);
+      expect(app.disciplesApi.pages.last, (search: '', page: 1));
+
+      await tester.scrollUntilVisible(
+        find.text('Membre N25'),
+        400,
+        scrollable: find.byType(Scrollable).last,
+      );
+      expect(app.disciplesApi.pages.last, (search: '', page: 2));
+
+      await tester.scrollUntilVisible(
+        find.text('Membre N45'),
+        400,
+        scrollable: find.byType(Scrollable).last,
+      );
+      expect(app.disciplesApi.pages.last, (search: '', page: 3));
+      // all there: nothing more asked
+      await tester.drag(find.byType(Scrollable).last, const Offset(0, -2000));
+      await tester.pumpAndSettle();
+      expect(app.disciplesApi.pages.where((asked) => asked.page == 4), isEmpty);
+    });
+
+    testWidgets('a search asks the server, after a short pause', (
+      tester,
+    ) async {
+      final app = await openMany(tester, 45);
+
+      await tester.enterText(find.byType(TextField), 'n4');
+      await tester.pump(const Duration(milliseconds: 100));
+      expect(app.disciplesApi.pages.last.search, '');
+      // the pause ends: the server is asked
+      await tester.pump(const Duration(milliseconds: 300));
+      await tester.pumpAndSettle();
+
+      expect(app.disciplesApi.pages.last, (search: 'n4', page: 1));
+      // N4 and N40 to N45
+      expect(find.text('Membre N4'), findsOneWidget);
+      expect(find.text('Membre N1'), findsNothing);
+      await tester.scrollUntilVisible(
+        find.text('Membre N45'),
+        400,
+        scrollable: find.byType(Scrollable).last,
+      );
+      expect(find.text('Membre N45'), findsOneWidget);
+
+      await tester.enterText(find.byType(TextField), 'personne');
+      await tester.pump();
+      await tester.pump(const Duration(milliseconds: 400));
+      await tester.pumpAndSettle();
+      expect(
+        find.text('Aucun disciple ne correspond à « personne ».'),
+        findsOneWidget,
+      );
+    });
+  });
+
+  group('the reports of a disciple', () {
+    final paul = Disciple(
+      authorityId: 11,
+      member: const MemberCard(username: 'paul.ndi', firstName: 'Paul'),
+      regularity: DiscipleRegularity(
+        streak: 2,
+        days: [today(), daysAgo(1)],
+        filledLast30: 2,
+        lastDay: today(),
+        goalPercent: 75,
+        itemsPercent: 67,
+      ),
+    );
+    const claire = Disciple(
+      authorityId: 12,
+      member: MemberCard(username: 'claire.ebo', firstName: 'Claire'),
+      isDiscipleMaker: false,
+      regularity: DiscipleRegularity(),
+    );
+    final reports = DiscipleReports(
+      authorityId: 11,
+      member: const MemberCard(username: 'paul.ndi', firstName: 'Paul'),
+      totalItems: 12,
+      days: [
+        DiscipleDay(
+          date: today(),
+          goalPercent: 75,
+          filled: 8,
+          total: 12,
+          itemsPercent: 67,
+          entries: const [
+            DiscipleEntry(
+              activityTypeId: 1,
+              code: 'LB',
+              label: 'Lecture biblique',
+              quantityUnit: 'Chapitres',
+              quantity: 3,
+            ),
+            DiscipleEntry(
+              activityTypeId: 40,
+              code: 'EVG',
+              label: 'Évangélisation au marché',
+              durationMinutes: 45,
+            ),
+          ],
+        ),
+        DiscipleDay(date: daysAgo(40), filled: 1, total: 12, itemsPercent: 8),
+      ],
+    );
+
+    Future<TestApp> openDisciples(WidgetTester tester) async {
+      final api = FakeDisciplesApi([paul, claire])..reportsOf[11] = reports;
+      final app = await pumpApp(tester, token: 't', disciplesApi: api);
+      await openMore(tester);
+      await tester.tap(find.text('Mes disciples'));
+      await tester.pumpAndSettle();
+      return app;
+    }
+
+    testWidgets('disciple maker or authority', (tester) async {
+      await openDisciples(tester);
+
+      expect(find.text('Tu es son faiseur de disciples'), findsOneWidget);
+      expect(find.text("Tu es l'une de ses autorités"), findsOneWidget);
+    });
+
+    testWidgets('a touch opens their days: the items with their values and '
+        'both percentages, then the 30 days before', (tester) async {
+      final app = await openDisciples(tester);
+
+      await tester.tap(find.text('Paul'));
+      await tester.pumpAndSettle();
+
+      expect(app.disciplesApi.ranges.single.id, 11);
+      expect(app.disciplesApi.ranges.single.from, daysAgo(29));
+      expect(find.text('Objectifs 75 %'), findsOneWidget);
+      expect(find.text('8 sur 12 éléments · 67 %'), findsOneWidget);
+      expect(find.text('Lecture biblique'), findsOneWidget);
+      expect(find.text('3 chapitres'), findsOneWidget);
+      expect(find.text('Évangélisation au marché'), findsOneWidget);
+      expect(find.text('45 min'), findsOneWidget);
+      // older than 30 days: not yet
+      expect(find.text('1 sur 12 éléments · 8 %'), findsNothing);
+
+      await tester.scrollUntilVisible(
+        find.text('Voir les 30 jours précédents'),
+        200,
+        scrollable: find.byType(Scrollable).first,
+      );
+      await tester.tap(find.text('Voir les 30 jours précédents'));
+      await tester.pumpAndSettle();
+
+      expect(app.disciplesApi.ranges.last.from, daysAgo(59));
+      await tester.scrollUntilVisible(
+        find.text('1 sur 12 éléments · 8 %'),
+        200,
+        scrollable: find.byType(Scrollable).first,
+      );
+      expect(find.text('1 sur 12 éléments · 8 %'), findsOneWidget);
+    });
+
+    testWidgets('they stopped sharing meanwhile: said', (tester) async {
+      await openDisciples(tester);
+
+      // Claire's reports were never given to the fake: 403
+      await tester.tap(find.text('Claire'));
+      await tester.pumpAndSettle();
+
+      expect(find.text('Ne partage pas ses comptes rendus'), findsOneWidget);
+    });
+
+    testWidgets('one who doesn\'t share them: nothing to open', (tester) async {
+      final api = FakeDisciplesApi([
+        const Disciple(
+          authorityId: 13,
+          member: MemberCard(username: 'luc.mba', firstName: 'Luc'),
+          sharesRegularity: false,
+        ),
+      ]);
+      final app = await pumpApp(tester, token: 't', disciplesApi: api);
+      await openMore(tester);
+      await tester.tap(find.text('Mes disciples'));
+      await tester.pumpAndSettle();
+
+      await tester.tap(find.text('Luc'));
+      await tester.pumpAndSettle();
+
+      expect(app.disciplesApi.ranges, isEmpty);
+    });
+  });
+
+  testWidgets('every member authority gets the reports, not only the '
+      'disciple maker', (tester) async {
+    await pumpApp(
+      tester,
+      token: 't',
+      authoritiesApi: FakeAuthoritiesApi([
+        const Authority(
+          id: 3,
+          firstName: 'Marc',
+          username: 'marc.tientcheu',
+          isDiscipleMaker: true,
+        ),
+        const Authority(id: 4, firstName: 'Clarisse', username: 'clarisse.n'),
+      ]),
+    );
+    await openMore(tester);
+    await tester.tap(find.text('Mes autorités spirituelles'));
+    await tester.pumpAndSettle();
+
+    expect(find.text('Partager mes comptes rendus'), findsNWidgets(2));
   });
 
   testWidgets('a saved day sends how far its goals go, never the items', (

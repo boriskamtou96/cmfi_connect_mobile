@@ -18,6 +18,7 @@ import '../../../core/widgets/app_toast.dart';
 import '../../../core/widgets/labeled_field.dart';
 import '../../../core/widgets/motion.dart';
 import '../../../core/widgets/section_card.dart';
+import '../../../core/widgets/skeleton.dart';
 import '../../../core/widgets/sub_page.dart';
 import '../../../routing/app_router.dart';
 import '../../members/domain/member.dart';
@@ -68,11 +69,25 @@ class ImportunityScreen extends HookConsumerWidget {
     if (topic == null) {
       return SubPage(
         title: t.prayer.importunity.title,
-        child: Center(
-          child: detail.hasError
-              ? Text(userMessageFor(detail.error!, t))
-              : const CircularProgressIndicator(),
-        ),
+        child: detail.hasError
+            ? Center(child: Text(userMessageFor(detail.error!, t)))
+            : const SingleChildScrollView(
+                physics: NeverScrollableScrollPhysics(),
+                padding: EdgeInsetsDirectional.fromSTEB(16, 8, 16, 32),
+                // the title, then the counter
+                child: Shimmer(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      SkeletonLine(widthFactor: 0.7, height: 26),
+                      SizedBox(height: AppSpacing.md),
+                      SkeletonLine(widthFactor: 0.9),
+                      SizedBox(height: AppSpacing.xl),
+                      Center(child: SkeletonBox(height: 220, circle: true)),
+                    ],
+                  ),
+                ),
+              ),
       );
     }
 
@@ -774,7 +789,8 @@ class _InviteSheet extends HookConsumerWidget {
           SectionLabel(t.family),
           const SizedBox(height: AppSpacing.sm),
           if (family.isLoading)
-            const Center(child: CircularProgressIndicator())
+            // the tile of the family
+            const Shimmer(child: SkeletonList(count: 1, round: false))
           else if (maker == null || familyValue!.members == 0)
             Text(
               t.familyMissing,

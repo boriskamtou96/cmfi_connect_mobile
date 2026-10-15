@@ -14,6 +14,7 @@ import '../../../core/widgets/error_view.dart';
 import '../../../core/widgets/motion.dart';
 import '../../../core/widgets/section_card.dart';
 import '../../../core/widgets/segmented_tabs.dart';
+import '../../../core/widgets/skeleton.dart';
 import '../../../core/widgets/tab_page.dart';
 import '../../../routing/app_router.dart';
 import '../application/hymn_collections.dart';
@@ -199,7 +200,14 @@ class HymnsScreen extends HookConsumerWidget {
           error: error,
           onRetry: () => ref.invalidate(hymnLibraryProvider),
         ),
-        _ => const Center(child: CircularProgressIndicator()),
+        // the hymns: their number on a tile, then the title
+        _ => const LoadingList(
+          count: 8,
+          leading: 46,
+          round: false,
+          card: false,
+          padding: EdgeInsets.only(top: AppSpacing.sm),
+        ),
       },
     );
   }

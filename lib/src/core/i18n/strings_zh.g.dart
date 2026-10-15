@@ -102,6 +102,7 @@ class _Translations$common$zh extends Translations$common$fr {
 	@override String get soon => '即将推出';
 	@override String get optional => '（选填）';
 	@override String get and => '和';
+	@override String get loading => '加载中…';
 }
 
 // Path: errors
@@ -130,6 +131,7 @@ class _Translations$errors$zh extends Translations$errors$fr {
 	@override String get ownerCannotLeave => '这个事项是你创建的：请删除它，而不是退出。';
 	@override String get tooManyPeople => '你的名单已满（最多 500 人）。';
 	@override String get avatarInvalid => '这张照片无法使用，请选择另一张。';
+	@override String get reportsNotShared => '该成员不再分享其报告。';
 }
 
 // Path: validation
@@ -978,27 +980,20 @@ class _Translations$disciples$zh extends Translations$disciples$fr {
 
 	// Translations
 	@override String get title => '我的门徒';
-	@override String get intro => '选择你作为门徒培育者的成员。你能看到他们的规律性，但永远看不到他们报告的内容。';
 	@override String get empty => '还没有门徒';
-	@override String get emptyText => '当有成员选择你作为门徒培育者、并且你接受了请求，他就会出现在这里。';
+	@override String get emptyText => '当有成员选择你作为门训者或属灵权柄、并且你接受了请求，他就会出现在这里。';
 	@override String count({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n,
 		other: '${n} 位门徒',
 	);
-	@override String filled({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n,
-		other: '30 天中填写了 ${n} 天',
-	);
-	@override String streak({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n,
-		other: '连续 ${n} 天',
-	);
-	@override String get noStreak => '当前没有连续记录';
-	@override String get lastToday => '今天已填写';
-	@override String get lastYesterday => '最近一次：昨天';
-	@override String lastDaysAgo({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n,
-		other: '最近一次：${n} 天前',
-	);
-	@override String get noReport => '今年没有报告';
-	@override String goals({required Object percent}) => '目标：${percent} %';
-	@override String get notShared => '未分享其规律性';
+	@override String get notShared => '未分享其报告';
+	@override String get roleMaker => '你是他的门训者';
+	@override String get roleAuthority => '你是他的属灵权柄之一';
+	@override String dayGoals({required Object percent}) => '目标 ${percent} %';
+	@override String dayItems({required Object total, required Object filled, required Object percent}) => '${total} 项中填写了 ${filled} 项 · ${percent} %';
+	@override String get older => '查看之前的 30 天';
+	@override String get noReports => '这段时间没有报告。';
+	@override String get searchHint => '姓名或用户名';
+	@override String noMatch({required Object search}) => '没有与“${search}”匹配的门徒。';
 }
 
 // Path: onboarding.reports
@@ -1365,7 +1360,7 @@ class _Translations$authorities$form$zh extends Translations$authorities$form$fr
 	@override String get alreadyAdded => '此人已经是你的带领者。';
 	@override String get makerExists => '你已经有门训者了。';
 	@override String get yourself => '这是你自己的用户名。';
-	@override String get sharingHelp => '你的门徒培育者将能看到你的规律性（填写天数、连续天数、目标百分比），但永远看不到你报告的内容。你可以在他的卡片上停止分享。';
+	@override String sharingHelp({required Object name}) => '${name} 将能看到你的报告：已填写的项目、你的规律性和百分比，但永远看不到你的备注。你可以在他的卡片上停止分享。';
 }
 
 // Path: authorities.sharing
@@ -1375,10 +1370,10 @@ class _Translations$authorities$sharing$zh extends Translations$authorities$shar
 	final TranslationsZh _root; // ignore: unused_field
 
 	// Translations
-	@override String get title => '分享我的规律性';
-	@override String help({required Object name}) => '${name} 能看到你填写的天数、连续天数和目标完成百分比，但永远看不到你报告的内容。';
-	@override String on({required Object name}) => '你的规律性已与 ${name} 分享。';
-	@override String off({required Object name}) => '${name} 不再能看到你的规律性。';
+	@override String get title => '分享我的报告';
+	@override String help({required Object name}) => '${name} 能看到你的报告：已填写的项目、你的规律性和百分比，但永远看不到你的备注。';
+	@override String on({required Object name}) => '你的报告已与 ${name} 分享。';
+	@override String off({required Object name}) => '${name} 不再能看到你的报告。';
 }
 
 // Path: members.deleteAccount
@@ -2168,6 +2163,7 @@ extension on TranslationsZh {
 			'common.soon' => '即将推出',
 			'common.optional' => '（选填）',
 			'common.and' => '和',
+			'common.loading' => '加载中…',
 			'errors.network' => '没有网络连接。请检查网络后重试。',
 			'errors.unauthorized' => '登录已过期，请重新登录。',
 			'errors.invalidCredentials' => '手机号或密码错误。',
@@ -2187,6 +2183,7 @@ extension on TranslationsZh {
 			'errors.ownerCannotLeave' => '这个事项是你创建的：请删除它，而不是退出。',
 			'errors.tooManyPeople' => '你的名单已满（最多 500 人）。',
 			'errors.avatarInvalid' => '这张照片无法使用，请选择另一张。',
+			'errors.reportsNotShared' => '该成员不再分享其报告。',
 			'validation.required' => '此项为必填',
 			'validation.passwordTooShort' => '至少 6 个字符',
 			'validation.invalidPhone' => '手机号无效',
@@ -2578,7 +2575,7 @@ extension on TranslationsZh {
 			'authorities.form.alreadyAdded' => '此人已经是你的带领者。',
 			'authorities.form.makerExists' => '你已经有门训者了。',
 			'authorities.form.yourself' => '这是你自己的用户名。',
-			'authorities.form.sharingHelp' => '你的门徒培育者将能看到你的规律性（填写天数、连续天数、目标百分比），但永远看不到你报告的内容。你可以在他的卡片上停止分享。',
+			'authorities.form.sharingHelp' => ({required Object name}) => '${name} 将能看到你的报告：已填写的项目、你的规律性和百分比，但永远看不到你的备注。你可以在他的卡片上停止分享。',
 			'authorities.statusPending' => '等待中',
 			'authorities.statusDeclined' => '已拒绝',
 			'authorities.pendingHelp' => ({required Object name}) => '${name} 接受后，你就能看到其联系方式。',
@@ -2590,10 +2587,10 @@ extension on TranslationsZh {
 			'authorities.acceptedRequest' => ({required Object name}) => '你现在开始陪伴 ${name}。',
 			'authorities.declinedRequest' => ({required Object name}) => '已拒绝 ${name} 的请求。',
 			'authorities.requestsCount' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n, other: '${n} 个请求待查看', ), 
-			'authorities.sharing.title' => '分享我的规律性',
-			'authorities.sharing.help' => ({required Object name}) => '${name} 能看到你填写的天数、连续天数和目标完成百分比，但永远看不到你报告的内容。',
-			'authorities.sharing.on' => ({required Object name}) => '你的规律性已与 ${name} 分享。',
-			'authorities.sharing.off' => ({required Object name}) => '${name} 不再能看到你的规律性。',
+			'authorities.sharing.title' => '分享我的报告',
+			'authorities.sharing.help' => ({required Object name}) => '${name} 能看到你的报告：已填写的项目、你的规律性和百分比，但永远看不到你的备注。',
+			'authorities.sharing.on' => ({required Object name}) => '你的报告已与 ${name} 分享。',
+			'authorities.sharing.off' => ({required Object name}) => '${name} 不再能看到你的报告。',
 			'members.username' => '用户名',
 			'members.usernameHint' => 'zhang.san',
 			'members.usernameHelp' => '其他成员会通过它找到你。',
@@ -2667,10 +2664,10 @@ extension on TranslationsZh {
 			'hymns.reader.addFavorite' => '加入收藏',
 			'hymns.reader.removeFavorite' => '取消收藏',
 			'hymns.reader.favoriteAdded' => '已加入收藏',
-			'hymns.reader.favoriteRemoved' => '已取消收藏',
-			'hymns.reader.more' => '更多选项',
 			_ => null,
 		} ?? switch (path) {
+			'hymns.reader.favoriteRemoved' => '已取消收藏',
+			'hymns.reader.more' => '更多选项',
 			'hymns.reader.copy' => '复制歌词',
 			'hymns.reader.copied' => '歌词已复制',
 			'hymns.reader.project' => '投影模式',
@@ -3181,10 +3178,10 @@ extension on TranslationsZh {
 			'prayer.importunity.inviteSheet.sent' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n, zero: '他们之前已被邀请过了。', other: '已发送 ${n} 个邀请', ), 
 			'sending.title' => '发送给我的属灵长辈',
 			'sending.moreOff' => '已关闭',
-			'sending.intro' => '到了你选定的时间，CMFI Connect 会准备好这段时间的报告，你只需发送给你的属灵长辈。',
-			'sending.enabled' => '定期为我准备',
 			_ => null,
 		} ?? switch (path) {
+			'sending.intro' => '到了你选定的时间，CMFI Connect 会准备好这段时间的报告，你只需发送给你的属灵长辈。',
+			'sending.enabled' => '定期为我准备',
 			'sending.rhythm' => '频率',
 			'sending.weekly' => '每周',
 			'sending.biweekly' => '每两周',
@@ -3266,19 +3263,18 @@ extension on TranslationsZh {
 			'profilePhoto.saved' => '你的头像已保存。',
 			'profilePhoto.removed' => '你的头像已移除。',
 			'disciples.title' => '我的门徒',
-			'disciples.intro' => '选择你作为门徒培育者的成员。你能看到他们的规律性，但永远看不到他们报告的内容。',
 			'disciples.empty' => '还没有门徒',
-			'disciples.emptyText' => '当有成员选择你作为门徒培育者、并且你接受了请求，他就会出现在这里。',
+			'disciples.emptyText' => '当有成员选择你作为门训者或属灵权柄、并且你接受了请求，他就会出现在这里。',
 			'disciples.count' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n, other: '${n} 位门徒', ), 
-			'disciples.filled' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n, other: '30 天中填写了 ${n} 天', ), 
-			'disciples.streak' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n, other: '连续 ${n} 天', ), 
-			'disciples.noStreak' => '当前没有连续记录',
-			'disciples.lastToday' => '今天已填写',
-			'disciples.lastYesterday' => '最近一次：昨天',
-			'disciples.lastDaysAgo' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n, other: '最近一次：${n} 天前', ), 
-			'disciples.noReport' => '今年没有报告',
-			'disciples.goals' => ({required Object percent}) => '目标：${percent} %',
-			'disciples.notShared' => '未分享其规律性',
+			'disciples.notShared' => '未分享其报告',
+			'disciples.roleMaker' => '你是他的门训者',
+			'disciples.roleAuthority' => '你是他的属灵权柄之一',
+			'disciples.dayGoals' => ({required Object percent}) => '目标 ${percent} %',
+			'disciples.dayItems' => ({required Object total, required Object filled, required Object percent}) => '${total} 项中填写了 ${filled} 项 · ${percent} %',
+			'disciples.older' => '查看之前的 30 天',
+			'disciples.noReports' => '这段时间没有报告。',
+			'disciples.searchHint' => '姓名或用户名',
+			'disciples.noMatch' => ({required Object search}) => '没有与“${search}”匹配的门徒。',
 			_ => null,
 		};
 	}

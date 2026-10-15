@@ -9,6 +9,7 @@ import '../../../core/widgets/app_toast.dart';
 import '../../../core/widgets/dove_mascot.dart';
 import '../../../core/widgets/error_view.dart';
 import '../../../core/widgets/section_card.dart';
+import '../../../core/widgets/skeleton.dart';
 import '../../../core/widgets/sub_page.dart';
 import '../../members/domain/member.dart';
 import '../../members/presentation/widgets/member_avatar.dart';
@@ -125,7 +126,7 @@ class BlockedMembersScreen extends ConsumerWidget {
           error: error,
           onRetry: () => ref.invalidate(blockedMembersProvider),
         ),
-        _ => const Center(child: CircularProgressIndicator()),
+        _ => const LoadingList(count: 3),
       },
     );
   }

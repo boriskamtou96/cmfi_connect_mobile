@@ -15,6 +15,7 @@ import '../../../core/widgets/error_view.dart';
 import '../../../core/widgets/fade_slide_in.dart';
 import '../../../core/widgets/motion.dart';
 import '../../../core/widgets/section_card.dart';
+import '../../../core/widgets/skeleton.dart';
 import '../../../core/widgets/sub_page.dart';
 import '../application/report_goals.dart';
 import '../application/report_item_texts.dart';
@@ -336,7 +337,8 @@ class ItemsScreen extends HookConsumerWidget {
           error: error,
           onRetry: () => ref.invalidate(activitiesProvider),
         ),
-        _ => const Center(child: CircularProgressIndicator()),
+        // the items: their code, name, measure and goal
+        _ => const LoadingList(count: 8, leading: 36, round: false, lines: 3),
       },
     );
   }

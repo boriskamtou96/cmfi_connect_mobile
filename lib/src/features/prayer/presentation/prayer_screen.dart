@@ -13,6 +13,7 @@ import '../../../core/utils/date_format.dart';
 import '../../../core/widgets/app_toast.dart';
 import '../../../core/widgets/cmfi_logo.dart';
 import '../../../core/widgets/section_card.dart';
+import '../../../core/widgets/skeleton.dart';
 import '../../../core/widgets/tab_page.dart';
 import '../../../routing/app_router.dart';
 import '../../members/presentation/widgets/member_avatar.dart';
@@ -619,10 +620,8 @@ class _CommunityTopics extends ConsumerWidget {
         userMessageFor(error, t),
         style: TextStyle(fontSize: 14, color: scheme.onSurfaceVariant),
       ),
-      _ => const Padding(
-        padding: EdgeInsets.all(AppSpacing.lg),
-        child: Center(child: CircularProgressIndicator()),
-      ),
+      // the cards of the topics
+      _ => const Shimmer(child: SkeletonCards(count: 2, height: 96)),
     };
   }
 }

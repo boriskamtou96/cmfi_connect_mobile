@@ -15,6 +15,7 @@ import '../../../core/widgets/app_toast.dart';
 import '../../../core/widgets/labeled_field.dart';
 import '../../../core/widgets/motion.dart';
 import '../../../core/widgets/section_card.dart';
+import '../../../core/widgets/skeleton.dart';
 import '../../../core/widgets/sub_page.dart';
 import '../application/prayer_people.dart';
 import '../domain/prayer.dart';
@@ -88,7 +89,8 @@ class PrayerListScreen extends ConsumerWidget {
           if (people.hasError && people.value == null)
             Text(userMessageFor(people.error!, t))
           else if (people.isLoading && people.value == null)
-            const Center(child: CircularProgressIndicator())
+            // the people of the list
+            const Shimmer(child: SkeletonList(count: 4))
           else ...[
             SectionLabel(t.prayer.lists.count(n: waiting.length)),
             const SizedBox(height: AppSpacing.sm),

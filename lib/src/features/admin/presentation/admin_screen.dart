@@ -12,6 +12,7 @@ import '../../../core/widgets/app_toast.dart';
 import '../../../core/widgets/error_view.dart';
 import '../../../core/widgets/fade_slide_in.dart';
 import '../../../core/widgets/section_card.dart';
+import '../../../core/widgets/skeleton.dart';
 import '../../../core/widgets/sub_page.dart';
 import '../../members/application/my_account.dart';
 import '../../members/domain/member.dart';
@@ -161,7 +162,7 @@ class AdminScreen extends ConsumerWidget {
           error: error,
           onRetry: () => ref.invalidate(staffProvider),
         ),
-        _ => const Center(child: CircularProgressIndicator()),
+        _ => const LoadingList(count: 4, leading: 42),
       },
     );
   }

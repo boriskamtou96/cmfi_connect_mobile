@@ -12,7 +12,8 @@
     "back": "Back",
     "soon": "Soon",
     "optional": "(optional)",
-    "and": "and"
+    "and": "and",
+    "loading": "Loading…"
   },
   "errors": {
     "network": "No internet connection. Check your network and try again.",
@@ -33,7 +34,8 @@
     "usernameNotFound": "Nobody has this username. Check the spelling.",
     "ownerCannotLeave": "You created this topic: delete it instead of leaving it.",
     "tooManyPeople": "Your lists are full (500 people at most).",
-    "avatarInvalid": "This photo can't be used. Choose another one."
+    "avatarInvalid": "This photo can't be used. Choose another one.",
+    "reportsNotShared": "This member no longer shares their reports."
   },
   "validation": {
     "required": "This field is required",
@@ -545,7 +547,7 @@
       "alreadyAdded": "This person is already one of your authorities.",
       "makerExists": "You already have a disciple maker.",
       "yourself": "This is your own username.",
-      "sharingHelp": "Your disciple maker will see your regularity (days filled in, streak, % of goals), never what your reports say. You can stop it on their card."
+      "sharingHelp": "{name} will see your reports: the items filled in, your regularity and your percentages, never your note. You can stop it on their card."
     },
     "statusPending": "Pending",
     "statusDeclined": "Declined",
@@ -562,10 +564,10 @@
       "other": "{n} requests to see"
     },
     "sharing": {
-      "title": "Share my regularity",
-      "help": "{name} sees the days you filled in, your streak and the % of your goals, never what your reports say.",
-      "on": "Your regularity is shared with {name}.",
-      "off": "{name} no longer sees your regularity."
+      "title": "Share my reports",
+      "help": "{name} sees your reports: the items filled in, your regularity and your percentages, never your note.",
+      "on": "Your reports are shared with {name}.",
+      "off": "{name} no longer sees your reports."
     }
   },
   "members": {
@@ -1444,30 +1446,20 @@
   },
   "disciples": {
     "title": "My disciples",
-    "intro": "The members who chose you as their disciple maker. You see how regular they are, never what their reports say.",
     "empty": "No disciple yet",
-    "emptyText": "When a member chooses you as their disciple maker and you accept the request, they appear here.",
+    "emptyText": "When a member chooses you as their disciple maker or as an authority and you accept the request, they appear here.",
     "count(plural, param=n)": {
       "one": "{n} disciple",
       "other": "{n} disciples"
     },
-    "filled(plural, param=n)": {
-      "one": "{n} day filled in out of 30",
-      "other": "{n} days filled in out of 30"
-    },
-    "streak(plural, param=n)": {
-      "one": "{n} day in a row",
-      "other": "{n} days in a row"
-    },
-    "noStreak": "No streak going",
-    "lastToday": "Filled in today",
-    "lastYesterday": "Last: yesterday",
-    "lastDaysAgo(plural, param=n)": {
-      "one": "Last: {n} day ago",
-      "other": "Last: {n} days ago"
-    },
-    "noReport": "No report this year",
-    "goals": "Goals: {percent} %",
-    "notShared": "Doesn't share their regularity"
+    "notShared": "Doesn't share their reports",
+    "roleMaker": "You're their disciple maker",
+    "roleAuthority": "You're one of their authorities",
+    "dayGoals": "Goals {percent} %",
+    "dayItems": "{filled} of {total} items · {percent} %",
+    "older": "See the previous 30 days",
+    "noReports": "No report over this period.",
+    "searchHint": "Name or username",
+    "noMatch": "No disciple matches “{search}”."
   }
 }

@@ -126,6 +126,9 @@ class Translations$common$fr {
 
 	/// fr: 'et'
 	String get and => 'et';
+
+	/// fr: 'Chargement…'
+	String get loading => 'Chargement…';
 }
 
 // Path: errors
@@ -192,6 +195,9 @@ class Translations$errors$fr {
 
 	/// fr: 'Cette photo ne peut pas être utilisée. Choisis-en une autre.'
 	String get avatarInvalid => 'Cette photo ne peut pas être utilisée. Choisis-en une autre.';
+
+	/// fr: 'Ce membre ne partage plus ses comptes rendus.'
+	String get reportsNotShared => 'Ce membre ne partage plus ses comptes rendus.';
 }
 
 // Path: validation
@@ -1991,14 +1997,11 @@ class Translations$disciples$fr {
 	/// fr: 'Mes disciples'
 	String get title => 'Mes disciples';
 
-	/// fr: 'Les membres qui t'ont choisi comme faiseur de disciples. Tu vois leur régularité, jamais le contenu de leurs comptes rendus.'
-	String get intro => 'Les membres qui t\'ont choisi comme faiseur de disciples. Tu vois leur régularité, jamais le contenu de leurs comptes rendus.';
-
 	/// fr: 'Pas encore de disciple'
 	String get empty => 'Pas encore de disciple';
 
-	/// fr: 'Quand un membre te choisit comme faiseur de disciples et que tu acceptes sa demande, il apparaît ici.'
-	String get emptyText => 'Quand un membre te choisit comme faiseur de disciples et que tu acceptes sa demande, il apparaît ici.';
+	/// fr: 'Quand un membre te choisit comme faiseur de disciples ou comme autorité et que tu acceptes sa demande, il apparaît ici.'
+	String get emptyText => 'Quand un membre te choisit comme faiseur de disciples ou comme autorité et que tu acceptes sa demande, il apparaît ici.';
 
 	/// fr: '(one) {{n} disciple} (other) {{n} disciples}'
 	String count({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('fr'))(n,
@@ -2006,41 +2009,32 @@ class Translations$disciples$fr {
 		other: '${n} disciples',
 	);
 
-	/// fr: '(one) {{n} jour rempli sur 30} (other) {{n} jours remplis sur 30}'
-	String filled({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('fr'))(n,
-		one: '${n} jour rempli sur 30',
-		other: '${n} jours remplis sur 30',
-	);
+	/// fr: 'Ne partage pas ses comptes rendus'
+	String get notShared => 'Ne partage pas ses comptes rendus';
 
-	/// fr: '(one) {{n} jour d'affilée} (other) {{n} jours d'affilée}'
-	String streak({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('fr'))(n,
-		one: '${n} jour d\'affilée',
-		other: '${n} jours d\'affilée',
-	);
+	/// fr: 'Tu es son faiseur de disciples'
+	String get roleMaker => 'Tu es son faiseur de disciples';
 
-	/// fr: 'Pas de série en cours'
-	String get noStreak => 'Pas de série en cours';
+	/// fr: 'Tu es l'une de ses autorités'
+	String get roleAuthority => 'Tu es l\'une de ses autorités';
 
-	/// fr: 'Rempli aujourd'hui'
-	String get lastToday => 'Rempli aujourd\'hui';
+	/// fr: 'Objectifs {percent} %'
+	String dayGoals({required Object percent}) => 'Objectifs ${percent} %';
 
-	/// fr: 'Dernier : hier'
-	String get lastYesterday => 'Dernier : hier';
+	/// fr: '{filled} sur {total} éléments · {percent} %'
+	String dayItems({required Object filled, required Object total, required Object percent}) => '${filled} sur ${total} éléments · ${percent} %';
 
-	/// fr: '(one) {Dernier : il y a {n} jour} (other) {Dernier : il y a {n} jours}'
-	String lastDaysAgo({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('fr'))(n,
-		one: 'Dernier : il y a ${n} jour',
-		other: 'Dernier : il y a ${n} jours',
-	);
+	/// fr: 'Voir les 30 jours précédents'
+	String get older => 'Voir les 30 jours précédents';
 
-	/// fr: 'Aucun compte rendu cette année'
-	String get noReport => 'Aucun compte rendu cette année';
+	/// fr: 'Pas de compte rendu sur cette période.'
+	String get noReports => 'Pas de compte rendu sur cette période.';
 
-	/// fr: 'Objectifs : {percent} %'
-	String goals({required Object percent}) => 'Objectifs : ${percent} %';
+	/// fr: 'Nom ou pseudo'
+	String get searchHint => 'Nom ou pseudo';
 
-	/// fr: 'Ne partage pas sa régularité'
-	String get notShared => 'Ne partage pas sa régularité';
+	/// fr: 'Aucun disciple ne correspond à « {search} ».'
+	String noMatch({required Object search}) => 'Aucun disciple ne correspond à « ${search} ».';
 }
 
 // Path: onboarding.reports
@@ -2793,8 +2787,8 @@ class Translations$authorities$form$fr {
 	/// fr: 'C'est ton propre pseudo.'
 	String get yourself => 'C\'est ton propre pseudo.';
 
-	/// fr: 'Ton faiseur de disciples verra ta régularité (jours remplis, série, % d'objectifs), jamais le contenu de tes comptes rendus. Tu peux l'arrêter sur sa fiche.'
-	String get sharingHelp => 'Ton faiseur de disciples verra ta régularité (jours remplis, série, % d\'objectifs), jamais le contenu de tes comptes rendus. Tu peux l\'arrêter sur sa fiche.';
+	/// fr: '{name} verra tes comptes rendus : les éléments remplis, ta régularité et tes pourcentages, jamais ta note. Tu peux l'arrêter sur sa fiche.'
+	String sharingHelp({required Object name}) => '${name} verra tes comptes rendus : les éléments remplis, ta régularité et tes pourcentages, jamais ta note. Tu peux l\'arrêter sur sa fiche.';
 }
 
 // Path: authorities.sharing
@@ -2805,17 +2799,17 @@ class Translations$authorities$sharing$fr {
 
 	// Translations
 
-	/// fr: 'Partager ma régularité'
-	String get title => 'Partager ma régularité';
+	/// fr: 'Partager mes comptes rendus'
+	String get title => 'Partager mes comptes rendus';
 
-	/// fr: '{name} voit tes jours remplis, ta série et le % de tes objectifs, jamais le contenu de tes comptes rendus.'
-	String help({required Object name}) => '${name} voit tes jours remplis, ta série et le % de tes objectifs, jamais le contenu de tes comptes rendus.';
+	/// fr: '{name} voit tes comptes rendus : les éléments remplis, ta régularité et tes pourcentages, jamais ta note.'
+	String help({required Object name}) => '${name} voit tes comptes rendus : les éléments remplis, ta régularité et tes pourcentages, jamais ta note.';
 
-	/// fr: 'Ta régularité est partagée avec {name}.'
-	String on({required Object name}) => 'Ta régularité est partagée avec ${name}.';
+	/// fr: 'Tes comptes rendus sont partagés avec {name}.'
+	String on({required Object name}) => 'Tes comptes rendus sont partagés avec ${name}.';
 
-	/// fr: '{name} ne voit plus ta régularité.'
-	String off({required Object name}) => '${name} ne voit plus ta régularité.';
+	/// fr: '{name} ne voit plus tes comptes rendus.'
+	String off({required Object name}) => '${name} ne voit plus tes comptes rendus.';
 }
 
 // Path: members.deleteAccount
@@ -4390,6 +4384,7 @@ extension on Translations {
 			'common.soon' => 'Bientôt',
 			'common.optional' => '(facultatif)',
 			'common.and' => 'et',
+			'common.loading' => 'Chargement…',
 			'errors.network' => 'Pas de connexion à internet. Vérifie ton réseau et réessaie.',
 			'errors.unauthorized' => 'Ta session a expiré. Reconnecte-toi.',
 			'errors.invalidCredentials' => 'Numéro de téléphone ou mot de passe incorrect.',
@@ -4409,6 +4404,7 @@ extension on Translations {
 			'errors.ownerCannotLeave' => 'Tu as créé ce sujet : supprime-le plutôt que de le quitter.',
 			'errors.tooManyPeople' => 'Tes listes sont pleines (500 personnes au plus).',
 			'errors.avatarInvalid' => 'Cette photo ne peut pas être utilisée. Choisis-en une autre.',
+			'errors.reportsNotShared' => 'Ce membre ne partage plus ses comptes rendus.',
 			'validation.required' => 'Ce champ est obligatoire',
 			'validation.passwordTooShort' => 'Au moins 6 caractères',
 			'validation.invalidPhone' => 'Numéro de téléphone invalide',
@@ -4800,7 +4796,7 @@ extension on Translations {
 			'authorities.form.alreadyAdded' => 'Cette personne fait déjà partie de tes autorités.',
 			'authorities.form.makerExists' => 'Tu as déjà un faiseur de disciples.',
 			'authorities.form.yourself' => 'C\'est ton propre pseudo.',
-			'authorities.form.sharingHelp' => 'Ton faiseur de disciples verra ta régularité (jours remplis, série, % d\'objectifs), jamais le contenu de tes comptes rendus. Tu peux l\'arrêter sur sa fiche.',
+			'authorities.form.sharingHelp' => ({required Object name}) => '${name} verra tes comptes rendus : les éléments remplis, ta régularité et tes pourcentages, jamais ta note. Tu peux l\'arrêter sur sa fiche.',
 			'authorities.statusPending' => 'En attente',
 			'authorities.statusDeclined' => 'Refusée',
 			'authorities.pendingHelp' => ({required Object name}) => 'Ses coordonnées s\'afficheront quand ${name} aura accepté.',
@@ -4812,10 +4808,10 @@ extension on Translations {
 			'authorities.acceptedRequest' => ({required Object name}) => 'Tu accompagnes maintenant ${name}.',
 			'authorities.declinedRequest' => ({required Object name}) => 'Demande de ${name} refusée.',
 			'authorities.requestsCount' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('fr'))(n, one: '${n} demande à voir', other: '${n} demandes à voir', ), 
-			'authorities.sharing.title' => 'Partager ma régularité',
-			'authorities.sharing.help' => ({required Object name}) => '${name} voit tes jours remplis, ta série et le % de tes objectifs, jamais le contenu de tes comptes rendus.',
-			'authorities.sharing.on' => ({required Object name}) => 'Ta régularité est partagée avec ${name}.',
-			'authorities.sharing.off' => ({required Object name}) => '${name} ne voit plus ta régularité.',
+			'authorities.sharing.title' => 'Partager mes comptes rendus',
+			'authorities.sharing.help' => ({required Object name}) => '${name} voit tes comptes rendus : les éléments remplis, ta régularité et tes pourcentages, jamais ta note.',
+			'authorities.sharing.on' => ({required Object name}) => 'Tes comptes rendus sont partagés avec ${name}.',
+			'authorities.sharing.off' => ({required Object name}) => '${name} ne voit plus tes comptes rendus.',
 			'members.username' => 'Pseudo',
 			'members.usernameHint' => 'prenom.nom',
 			'members.usernameHelp' => 'C\'est ainsi que les autres membres te trouveront.',
@@ -4889,10 +4885,10 @@ extension on Translations {
 			'hymns.reader.addFavorite' => 'Ajouter aux favoris',
 			'hymns.reader.removeFavorite' => 'Retirer des favoris',
 			'hymns.reader.favoriteAdded' => 'Ajouté aux favoris',
-			'hymns.reader.favoriteRemoved' => 'Retiré des favoris',
-			'hymns.reader.more' => 'Plus d\'options',
 			_ => null,
 		} ?? switch (path) {
+			'hymns.reader.favoriteRemoved' => 'Retiré des favoris',
+			'hymns.reader.more' => 'Plus d\'options',
 			'hymns.reader.copy' => 'Copier les paroles',
 			'hymns.reader.copied' => 'Paroles copiées',
 			'hymns.reader.project' => 'Mode projection',
@@ -5403,10 +5399,10 @@ extension on Translations {
 			'prayer.importunity.inviteSheet.sent' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('fr'))(n, zero: 'Ils étaient déjà invités.', one: '${n} invitation envoyée', other: '${n} invitations envoyées', ), 
 			'sending.title' => 'Envoi à mes autorités',
 			'sending.moreOff' => 'Désactivé',
-			'sending.intro' => 'Au moment choisi, CMFI Connect prépare ton compte rendu de la période. Tu n\'as plus qu\'à l\'envoyer à tes autorités spirituelles.',
-			'sending.enabled' => 'Me le préparer régulièrement',
 			_ => null,
 		} ?? switch (path) {
+			'sending.intro' => 'Au moment choisi, CMFI Connect prépare ton compte rendu de la période. Tu n\'as plus qu\'à l\'envoyer à tes autorités spirituelles.',
+			'sending.enabled' => 'Me le préparer régulièrement',
 			'sending.rhythm' => 'Rythme',
 			'sending.weekly' => 'Chaque semaine',
 			'sending.biweekly' => 'Toutes les 2 semaines',
@@ -5488,19 +5484,18 @@ extension on Translations {
 			'profilePhoto.saved' => 'Ta photo de profil est enregistrée.',
 			'profilePhoto.removed' => 'Ta photo de profil est retirée.',
 			'disciples.title' => 'Mes disciples',
-			'disciples.intro' => 'Les membres qui t\'ont choisi comme faiseur de disciples. Tu vois leur régularité, jamais le contenu de leurs comptes rendus.',
 			'disciples.empty' => 'Pas encore de disciple',
-			'disciples.emptyText' => 'Quand un membre te choisit comme faiseur de disciples et que tu acceptes sa demande, il apparaît ici.',
+			'disciples.emptyText' => 'Quand un membre te choisit comme faiseur de disciples ou comme autorité et que tu acceptes sa demande, il apparaît ici.',
 			'disciples.count' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('fr'))(n, one: '${n} disciple', other: '${n} disciples', ), 
-			'disciples.filled' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('fr'))(n, one: '${n} jour rempli sur 30', other: '${n} jours remplis sur 30', ), 
-			'disciples.streak' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('fr'))(n, one: '${n} jour d\'affilée', other: '${n} jours d\'affilée', ), 
-			'disciples.noStreak' => 'Pas de série en cours',
-			'disciples.lastToday' => 'Rempli aujourd\'hui',
-			'disciples.lastYesterday' => 'Dernier : hier',
-			'disciples.lastDaysAgo' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('fr'))(n, one: 'Dernier : il y a ${n} jour', other: 'Dernier : il y a ${n} jours', ), 
-			'disciples.noReport' => 'Aucun compte rendu cette année',
-			'disciples.goals' => ({required Object percent}) => 'Objectifs : ${percent} %',
-			'disciples.notShared' => 'Ne partage pas sa régularité',
+			'disciples.notShared' => 'Ne partage pas ses comptes rendus',
+			'disciples.roleMaker' => 'Tu es son faiseur de disciples',
+			'disciples.roleAuthority' => 'Tu es l\'une de ses autorités',
+			'disciples.dayGoals' => ({required Object percent}) => 'Objectifs ${percent} %',
+			'disciples.dayItems' => ({required Object filled, required Object total, required Object percent}) => '${filled} sur ${total} éléments · ${percent} %',
+			'disciples.older' => 'Voir les 30 jours précédents',
+			'disciples.noReports' => 'Pas de compte rendu sur cette période.',
+			'disciples.searchHint' => 'Nom ou pseudo',
+			'disciples.noMatch' => ({required Object search}) => 'Aucun disciple ne correspond à « ${search} ».',
 			_ => null,
 		};
 	}

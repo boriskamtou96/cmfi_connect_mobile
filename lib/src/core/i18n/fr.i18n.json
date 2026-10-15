@@ -12,7 +12,8 @@
     "back": "Retour",
     "soon": "Bientôt",
     "optional": "(facultatif)",
-    "and": "et"
+    "and": "et",
+    "loading": "Chargement…"
   },
   "errors": {
     "network": "Pas de connexion à internet. Vérifie ton réseau et réessaie.",
@@ -33,7 +34,8 @@
     "usernameNotFound": "Personne n'a ce pseudo. Vérifie l'orthographe.",
     "ownerCannotLeave": "Tu as créé ce sujet : supprime-le plutôt que de le quitter.",
     "tooManyPeople": "Tes listes sont pleines (500 personnes au plus).",
-    "avatarInvalid": "Cette photo ne peut pas être utilisée. Choisis-en une autre."
+    "avatarInvalid": "Cette photo ne peut pas être utilisée. Choisis-en une autre.",
+    "reportsNotShared": "Ce membre ne partage plus ses comptes rendus."
   },
   "validation": {
     "required": "Ce champ est obligatoire",
@@ -545,7 +547,7 @@
       "alreadyAdded": "Cette personne fait déjà partie de tes autorités.",
       "makerExists": "Tu as déjà un faiseur de disciples.",
       "yourself": "C'est ton propre pseudo.",
-      "sharingHelp": "Ton faiseur de disciples verra ta régularité (jours remplis, série, % d'objectifs), jamais le contenu de tes comptes rendus. Tu peux l'arrêter sur sa fiche."
+      "sharingHelp": "{name} verra tes comptes rendus : les éléments remplis, ta régularité et tes pourcentages, jamais ta note. Tu peux l'arrêter sur sa fiche."
     },
     "statusPending": "En attente",
     "statusDeclined": "Refusée",
@@ -562,10 +564,10 @@
       "other": "{n} demandes à voir"
     },
     "sharing": {
-      "title": "Partager ma régularité",
-      "help": "{name} voit tes jours remplis, ta série et le % de tes objectifs, jamais le contenu de tes comptes rendus.",
-      "on": "Ta régularité est partagée avec {name}.",
-      "off": "{name} ne voit plus ta régularité."
+      "title": "Partager mes comptes rendus",
+      "help": "{name} voit tes comptes rendus : les éléments remplis, ta régularité et tes pourcentages, jamais ta note.",
+      "on": "Tes comptes rendus sont partagés avec {name}.",
+      "off": "{name} ne voit plus tes comptes rendus."
     }
   },
   "members": {
@@ -1443,30 +1445,20 @@
   },
   "disciples": {
     "title": "Mes disciples",
-    "intro": "Les membres qui t'ont choisi comme faiseur de disciples. Tu vois leur régularité, jamais le contenu de leurs comptes rendus.",
     "empty": "Pas encore de disciple",
-    "emptyText": "Quand un membre te choisit comme faiseur de disciples et que tu acceptes sa demande, il apparaît ici.",
+    "emptyText": "Quand un membre te choisit comme faiseur de disciples ou comme autorité et que tu acceptes sa demande, il apparaît ici.",
     "count(plural, param=n)": {
       "one": "{n} disciple",
       "other": "{n} disciples"
     },
-    "filled(plural, param=n)": {
-      "one": "{n} jour rempli sur 30",
-      "other": "{n} jours remplis sur 30"
-    },
-    "streak(plural, param=n)": {
-      "one": "{n} jour d'affilée",
-      "other": "{n} jours d'affilée"
-    },
-    "noStreak": "Pas de série en cours",
-    "lastToday": "Rempli aujourd'hui",
-    "lastYesterday": "Dernier : hier",
-    "lastDaysAgo(plural, param=n)": {
-      "one": "Dernier : il y a {n} jour",
-      "other": "Dernier : il y a {n} jours"
-    },
-    "noReport": "Aucun compte rendu cette année",
-    "goals": "Objectifs : {percent} %",
-    "notShared": "Ne partage pas sa régularité"
+    "notShared": "Ne partage pas ses comptes rendus",
+    "roleMaker": "Tu es son faiseur de disciples",
+    "roleAuthority": "Tu es l'une de ses autorités",
+    "dayGoals": "Objectifs {percent} %",
+    "dayItems": "{filled} sur {total} éléments · {percent} %",
+    "older": "Voir les 30 jours précédents",
+    "noReports": "Pas de compte rendu sur cette période.",
+    "searchHint": "Nom ou pseudo",
+    "noMatch": "Aucun disciple ne correspond à « {search} »."
   }
 }

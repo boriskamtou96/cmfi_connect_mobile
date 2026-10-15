@@ -10,6 +10,7 @@ import '../../../core/theme/app_icons.dart';
 import '../../../core/theme/app_spacing.dart';
 import '../../../core/theme/app_tones.dart';
 import '../../../core/widgets/section_card.dart';
+import '../../../core/widgets/skeleton.dart';
 import '../../../core/widgets/sub_page.dart';
 import '../../../routing/app_router.dart';
 import '../application/retreat_reminders.dart';
@@ -139,10 +140,8 @@ class RetreatScreen extends HookConsumerWidget {
               ],
             ),
             AsyncError(:final error) => Text(userMessageFor(error, t)),
-            _ => const Padding(
-              padding: EdgeInsets.all(AppSpacing.xl),
-              child: Center(child: CircularProgressIndicator()),
-            ),
+            // the numbered points
+            _ => const Shimmer(child: SkeletonList(count: 5, leading: 26)),
           },
         ],
       ),

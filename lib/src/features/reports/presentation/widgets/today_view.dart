@@ -20,6 +20,7 @@ import '../../../../core/widgets/labeled_field.dart';
 import '../../../../core/widgets/motion.dart';
 import '../../../../core/widgets/rolling_text.dart';
 import '../../../../core/widgets/section_card.dart';
+import '../../../../core/widgets/skeleton.dart';
 import '../../application/day_report_controller.dart';
 import '../../application/report_goals.dart';
 import '../../application/report_item_texts.dart';
@@ -159,10 +160,27 @@ class TodayView extends ConsumerWidget {
             AsyncError(:final error) => [
               ErrorView(error: error, onRetry: () => ref.invalidate(provider)),
             ],
+            // the progress of the day, then its items
             _ => [
-              const Padding(
-                padding: EdgeInsets.all(AppSpacing.xxl),
-                child: Center(child: CircularProgressIndicator()),
+              const Shimmer(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    Padding(
+                      padding: EdgeInsets.symmetric(horizontal: AppSpacing.xs),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.stretch,
+                        children: [
+                          SkeletonLine(widthFactor: 0.45, height: 15),
+                          SizedBox(height: AppSpacing.sm),
+                          SkeletonBox(height: 6, radius: 999),
+                        ],
+                      ),
+                    ),
+                    SizedBox(height: 14),
+                    SkeletonList(count: 6, leading: 36, round: false),
+                  ],
+                ),
               ),
             ],
           },

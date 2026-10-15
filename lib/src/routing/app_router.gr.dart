@@ -172,6 +172,76 @@ class DeleteAccountRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
+/// [DiscipleReportsScreen]
+class DiscipleReportsRoute extends PageRouteInfo<DiscipleReportsRouteArgs> {
+  DiscipleReportsRoute({
+    required int authorityId,
+    String name = '',
+    Key? key,
+    List<PageRouteInfo>? children,
+  }) : super(
+         DiscipleReportsRoute.name,
+         args: DiscipleReportsRouteArgs(
+           authorityId: authorityId,
+           name: name,
+           key: key,
+         ),
+         rawPathParams: {'authorityId': authorityId},
+         initialChildren: children,
+       );
+
+  static const String name = 'DiscipleReportsRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      final pathParams = data.inheritedPathParams;
+      final args = data.argsAs<DiscipleReportsRouteArgs>(
+        orElse: () => DiscipleReportsRouteArgs(
+          authorityId: pathParams.getInt('authorityId'),
+        ),
+      );
+      return DiscipleReportsScreen(
+        authorityId: args.authorityId,
+        name: args.name,
+        key: args.key,
+      );
+    },
+  );
+}
+
+class DiscipleReportsRouteArgs {
+  const DiscipleReportsRouteArgs({
+    required this.authorityId,
+    this.name = '',
+    this.key,
+  });
+
+  final int authorityId;
+
+  final String name;
+
+  final Key? key;
+
+  @override
+  String toString() {
+    return 'DiscipleReportsRouteArgs{authorityId: $authorityId, name: $name, key: $key}';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (other is! DiscipleReportsRouteArgs) return false;
+    return authorityId == other.authorityId &&
+        name == other.name &&
+        key == other.key;
+  }
+
+  @override
+  int get hashCode => authorityId.hashCode ^ name.hashCode ^ key.hashCode;
+}
+
+/// generated route for
 /// [DisciplesScreen]
 class DisciplesRoute extends PageRouteInfo<void> {
   const DisciplesRoute({List<PageRouteInfo>? children})

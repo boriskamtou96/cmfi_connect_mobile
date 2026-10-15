@@ -12,7 +12,8 @@
     "back": "Volver",
     "soon": "Pronto",
     "optional": "(opcional)",
-    "and": "y"
+    "and": "y",
+    "loading": "Cargando…"
   },
   "errors": {
     "network": "Sin conexión a internet. Revisa tu red y vuelve a intentarlo.",
@@ -33,7 +34,8 @@
     "usernameNotFound": "Nadie tiene este nombre de usuario. Revisa la ortografía.",
     "ownerCannotLeave": "Tú creaste este motivo: elimínalo en lugar de dejarlo.",
     "tooManyPeople": "Tus listas están llenas (500 personas como máximo).",
-    "avatarInvalid": "Esta foto no se puede usar. Elige otra."
+    "avatarInvalid": "Esta foto no se puede usar. Elige otra.",
+    "reportsNotShared": "Este miembro ya no comparte sus informes."
   },
   "validation": {
     "required": "Este campo es obligatorio",
@@ -545,7 +547,7 @@
       "alreadyAdded": "Esta persona ya forma parte de tus autoridades.",
       "makerExists": "Ya tienes un discipulador.",
       "yourself": "Es tu propio nombre de usuario.",
-      "sharingHelp": "Tu hacedor de discípulos verá tu regularidad (días rellenados, racha, % de objetivos), nunca el contenido de tus informes. Puedes detenerlo en su ficha."
+      "sharingHelp": "{name} verá tus informes: los elementos rellenados, tu regularidad y tus porcentajes, nunca tu nota. Puedes detenerlo en su ficha."
     },
     "statusPending": "Pendiente",
     "statusDeclined": "Rechazada",
@@ -562,10 +564,10 @@
       "other": "{n} solicitudes por revisar"
     },
     "sharing": {
-      "title": "Compartir mi regularidad",
-      "help": "{name} ve los días que rellenaste, tu racha y el % de tus objetivos, nunca el contenido de tus informes.",
-      "on": "Tu regularidad se comparte con {name}.",
-      "off": "{name} ya no ve tu regularidad."
+      "title": "Compartir mis informes",
+      "help": "{name} ve tus informes: los elementos rellenados, tu regularidad y tus porcentajes, nunca tu nota.",
+      "on": "Tus informes se comparten con {name}.",
+      "off": "{name} ya no ve tus informes."
     }
   },
   "members": {
@@ -1443,30 +1445,20 @@
   },
   "disciples": {
     "title": "Mis discípulos",
-    "intro": "Los miembros que te eligieron como hacedor de discípulos. Ves su regularidad, nunca el contenido de sus informes.",
     "empty": "Aún no hay discípulos",
-    "emptyText": "Cuando un miembro te elige como hacedor de discípulos y aceptas su solicitud, aparece aquí.",
+    "emptyText": "Cuando un miembro te elige como hacedor de discípulos o como autoridad y aceptas su solicitud, aparece aquí.",
     "count(plural, param=n)": {
       "one": "{n} discípulo",
       "other": "{n} discípulos"
     },
-    "filled(plural, param=n)": {
-      "one": "{n} día rellenado de 30",
-      "other": "{n} días rellenados de 30"
-    },
-    "streak(plural, param=n)": {
-      "one": "{n} día seguido",
-      "other": "{n} días seguidos"
-    },
-    "noStreak": "Sin racha en curso",
-    "lastToday": "Rellenado hoy",
-    "lastYesterday": "Último: ayer",
-    "lastDaysAgo(plural, param=n)": {
-      "one": "Último: hace {n} día",
-      "other": "Último: hace {n} días"
-    },
-    "noReport": "Ningún informe este año",
-    "goals": "Objetivos: {percent} %",
-    "notShared": "No comparte su regularidad"
+    "notShared": "No comparte sus informes",
+    "roleMaker": "Eres su hacedor de discípulos",
+    "roleAuthority": "Eres una de sus autoridades",
+    "dayGoals": "Objetivos {percent} %",
+    "dayItems": "{filled} de {total} elementos · {percent} %",
+    "older": "Ver los 30 días anteriores",
+    "noReports": "Ningún informe en este periodo.",
+    "searchHint": "Nombre o usuario",
+    "noMatch": "Ningún discípulo coincide con «{search}»."
   }
 }

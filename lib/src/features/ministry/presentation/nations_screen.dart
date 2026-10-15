@@ -17,6 +17,7 @@ import '../../../core/widgets/app_back_button.dart';
 import '../../../core/widgets/cmfi_logo.dart';
 import '../../../core/widgets/error_view.dart';
 import '../../../core/widgets/section_card.dart';
+import '../../../core/widgets/skeleton.dart';
 import '../application/land.dart';
 import '../application/nations.dart';
 import '../domain/nation.dart';
@@ -110,7 +111,38 @@ class NationsScreen extends HookConsumerWidget {
               onRetry: () => ref.invalidate(nationsProvider),
             ),
           ),
-          _ => const Center(child: CircularProgressIndicator()),
+          // the title, the globe, then the nations
+          _ => const SafeArea(
+            child: SingleChildScrollView(
+              physics: NeverScrollableScrollPhysics(),
+              padding: EdgeInsets.only(
+                top: kToolbarHeight,
+                bottom: AppSpacing.xl,
+              ),
+              child: Shimmer(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    Padding(
+                      padding: EdgeInsets.symmetric(horizontal: AppSpacing.lg),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.stretch,
+                        children: [
+                          SkeletonLine(widthFactor: 0.55, height: 24),
+                          SizedBox(height: AppSpacing.sm),
+                          SkeletonLine(widthFactor: 0.4),
+                          SizedBox(height: AppSpacing.xl),
+                          Center(child: SkeletonBox(height: 300, circle: true)),
+                        ],
+                      ),
+                    ),
+                    SizedBox(height: AppSpacing.xl),
+                    SkeletonList(count: 6, leading: 24, lines: 1, card: false),
+                  ],
+                ),
+              ),
+            ),
+          ),
         },
       ),
     );

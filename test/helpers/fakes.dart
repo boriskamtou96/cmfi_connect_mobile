@@ -2052,10 +2052,57 @@ class FakeDisciplesApi implements DisciplesApi {
   List<Disciple> disciples;
   final asked = <DateTime>[];
 
+  /// The pages asked, with their search.
+  final pages = <({String search, int page})>[];
+
   @override
-  Future<List<Disciple>> list({required DateTime today}) async {
+  Future<DisciplesPage> list({
+    required DateTime today,
+    String search = '',
+    int page = 1,
+    int size = disciplesPageSize,
+  }) async {
     asked.add(today);
-    return [...disciples];
+    pages.add((search: search, page: page));
+    final query = search.trim().toLowerCase().replaceFirst('@', '');
+    final found = [
+      for (final disciple in disciples)
+        if ('${disciple.member.fullName} ${disciple.member.username}'
+            .toLowerCase()
+            .contains(query))
+          disciple,
+    ];
+    return (
+      items: found.skip((page - 1) * size).take(size).toList(),
+      total: found.length,
+    );
+  }
+
+  /// The reports of each disciple, by authority id; the ranges asked.
+  final reportsOf = <int, DiscipleReports>{};
+  final ranges = <({int id, DateTime from, DateTime to})>[];
+
+  @override
+  Future<DiscipleReports> reports(
+    int authorityId, {
+    required DateTime from,
+    required DateTime to,
+  }) async {
+    ranges.add((id: authorityId, from: from, to: to));
+    final reports = reportsOf[authorityId];
+    if (reports == null) {
+      throw const ApiException(
+        status: 403,
+        code: 'REPORTS_NOT_SHARED',
+        message: '',
+      );
+    }
+    return reports.copyWith(
+      days: [
+        for (final day in reports.days)
+          if (!day.date.isBefore(from) && !day.date.isAfter(to)) day,
+      ],
+    );
   }
 }
 

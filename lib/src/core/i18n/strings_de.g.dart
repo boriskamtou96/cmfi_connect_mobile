@@ -102,6 +102,7 @@ class _Translations$common$de extends Translations$common$fr {
 	@override String get soon => 'Bald';
 	@override String get optional => '(optional)';
 	@override String get and => 'und';
+	@override String get loading => 'Wird geladen…';
 }
 
 // Path: errors
@@ -130,6 +131,7 @@ class _Translations$errors$de extends Translations$errors$fr {
 	@override String get ownerCannotLeave => 'Du hast dieses Anliegen erstellt: Lösche es, statt es zu verlassen.';
 	@override String get tooManyPeople => 'Deine Listen sind voll (höchstens 500 Personen).';
 	@override String get avatarInvalid => 'Dieses Foto kann nicht verwendet werden. Wähle ein anderes.';
+	@override String get reportsNotShared => 'Dieses Mitglied teilt seine Berichte nicht mehr.';
 }
 
 // Path: validation
@@ -1002,31 +1004,21 @@ class _Translations$disciples$de extends Translations$disciples$fr {
 
 	// Translations
 	@override String get title => 'Meine Jünger';
-	@override String get intro => 'Die Mitglieder, die dich als Jüngermacher gewählt haben. Du siehst ihre Regelmäßigkeit, nie den Inhalt ihrer Berichte.';
 	@override String get empty => 'Noch keine Jünger';
-	@override String get emptyText => 'Wenn ein Mitglied dich als Jüngermacher wählt und du die Anfrage annimmst, erscheint es hier.';
+	@override String get emptyText => 'Wenn ein Mitglied dich als Jüngermacher oder als Autorität wählt und du die Anfrage annimmst, erscheint es hier.';
 	@override String count({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('de'))(n,
 		one: '${n} Jünger',
 		other: '${n} Jünger',
 	);
-	@override String filled({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('de'))(n,
-		one: '${n} Tag von 30 ausgefüllt',
-		other: '${n} Tage von 30 ausgefüllt',
-	);
-	@override String streak({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('de'))(n,
-		one: '${n} Tag in Folge',
-		other: '${n} Tage in Folge',
-	);
-	@override String get noStreak => 'Keine laufende Serie';
-	@override String get lastToday => 'Heute ausgefüllt';
-	@override String get lastYesterday => 'Zuletzt: gestern';
-	@override String lastDaysAgo({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('de'))(n,
-		one: 'Zuletzt: vor ${n} Tag',
-		other: 'Zuletzt: vor ${n} Tagen',
-	);
-	@override String get noReport => 'Kein Bericht in diesem Jahr';
-	@override String goals({required Object percent}) => 'Ziele: ${percent} %';
-	@override String get notShared => 'Teilt seine Regelmäßigkeit nicht';
+	@override String get notShared => 'Teilt seine Berichte nicht';
+	@override String get roleMaker => 'Du bist sein Jüngermacher';
+	@override String get roleAuthority => 'Du bist eine seiner Autoritäten';
+	@override String dayGoals({required Object percent}) => 'Ziele ${percent} %';
+	@override String dayItems({required Object filled, required Object total, required Object percent}) => '${filled} von ${total} Punkten · ${percent} %';
+	@override String get older => 'Die 30 Tage davor ansehen';
+	@override String get noReports => 'Kein Bericht in diesem Zeitraum.';
+	@override String get searchHint => 'Name oder Benutzername';
+	@override String noMatch({required Object search}) => 'Kein Jünger passt zu „${search}“.';
 }
 
 // Path: onboarding.reports
@@ -1398,7 +1390,7 @@ class _Translations$authorities$form$de extends Translations$authorities$form$fr
 	@override String get alreadyAdded => 'Diese Person gehört bereits zu deinen Autoritäten.';
 	@override String get makerExists => 'Du hast bereits einen Jüngermacher.';
 	@override String get yourself => 'Das ist dein eigener Benutzername.';
-	@override String get sharingHelp => 'Dein Jüngermacher sieht deine Regelmäßigkeit (ausgefüllte Tage, Serie, % der Ziele), nie den Inhalt deiner Berichte. Du kannst das auf seiner Karte beenden.';
+	@override String sharingHelp({required Object name}) => '${name} wird deine Berichte sehen: die ausgefüllten Punkte, deine Regelmäßigkeit und deine Prozentsätze, nie deine Notiz. Du kannst das auf der Karte beenden.';
 }
 
 // Path: authorities.sharing
@@ -1408,10 +1400,10 @@ class _Translations$authorities$sharing$de extends Translations$authorities$shar
 	final TranslationsDe _root; // ignore: unused_field
 
 	// Translations
-	@override String get title => 'Meine Regelmäßigkeit teilen';
-	@override String help({required Object name}) => '${name} sieht deine ausgefüllten Tage, deine Serie und den Anteil deiner Ziele, nie den Inhalt deiner Berichte.';
-	@override String on({required Object name}) => 'Deine Regelmäßigkeit wird mit ${name} geteilt.';
-	@override String off({required Object name}) => '${name} sieht deine Regelmäßigkeit nicht mehr.';
+	@override String get title => 'Meine Berichte teilen';
+	@override String help({required Object name}) => '${name} sieht deine Berichte: die ausgefüllten Punkte, deine Regelmäßigkeit und deine Prozentsätze, nie deine Notiz.';
+	@override String on({required Object name}) => 'Deine Berichte werden mit ${name} geteilt.';
+	@override String off({required Object name}) => '${name} sieht deine Berichte nicht mehr.';
 }
 
 // Path: members.deleteAccount
@@ -2218,6 +2210,7 @@ extension on TranslationsDe {
 			'common.soon' => 'Bald',
 			'common.optional' => '(optional)',
 			'common.and' => 'und',
+			'common.loading' => 'Wird geladen…',
 			'errors.network' => 'Keine Internetverbindung. Prüfe dein Netzwerk und versuche es erneut.',
 			'errors.unauthorized' => 'Deine Sitzung ist abgelaufen. Melde dich erneut an.',
 			'errors.invalidCredentials' => 'Telefonnummer oder Passwort ist falsch.',
@@ -2237,6 +2230,7 @@ extension on TranslationsDe {
 			'errors.ownerCannotLeave' => 'Du hast dieses Anliegen erstellt: Lösche es, statt es zu verlassen.',
 			'errors.tooManyPeople' => 'Deine Listen sind voll (höchstens 500 Personen).',
 			'errors.avatarInvalid' => 'Dieses Foto kann nicht verwendet werden. Wähle ein anderes.',
+			'errors.reportsNotShared' => 'Dieses Mitglied teilt seine Berichte nicht mehr.',
 			'validation.required' => 'Dieses Feld ist erforderlich',
 			'validation.passwordTooShort' => 'Mindestens 6 Zeichen',
 			'validation.invalidPhone' => 'Ungültige Telefonnummer',
@@ -2628,7 +2622,7 @@ extension on TranslationsDe {
 			'authorities.form.alreadyAdded' => 'Diese Person gehört bereits zu deinen Autoritäten.',
 			'authorities.form.makerExists' => 'Du hast bereits einen Jüngermacher.',
 			'authorities.form.yourself' => 'Das ist dein eigener Benutzername.',
-			'authorities.form.sharingHelp' => 'Dein Jüngermacher sieht deine Regelmäßigkeit (ausgefüllte Tage, Serie, % der Ziele), nie den Inhalt deiner Berichte. Du kannst das auf seiner Karte beenden.',
+			'authorities.form.sharingHelp' => ({required Object name}) => '${name} wird deine Berichte sehen: die ausgefüllten Punkte, deine Regelmäßigkeit und deine Prozentsätze, nie deine Notiz. Du kannst das auf der Karte beenden.',
 			'authorities.statusPending' => 'Ausstehend',
 			'authorities.statusDeclined' => 'Abgelehnt',
 			'authorities.pendingHelp' => ({required Object name}) => 'Die Kontaktdaten erscheinen, sobald ${name} angenommen hat.',
@@ -2640,10 +2634,10 @@ extension on TranslationsDe {
 			'authorities.acceptedRequest' => ({required Object name}) => 'Du begleitest jetzt ${name}.',
 			'authorities.declinedRequest' => ({required Object name}) => 'Anfrage von ${name} abgelehnt.',
 			'authorities.requestsCount' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('de'))(n, one: '${n} offene Anfrage', other: '${n} offene Anfragen', ), 
-			'authorities.sharing.title' => 'Meine Regelmäßigkeit teilen',
-			'authorities.sharing.help' => ({required Object name}) => '${name} sieht deine ausgefüllten Tage, deine Serie und den Anteil deiner Ziele, nie den Inhalt deiner Berichte.',
-			'authorities.sharing.on' => ({required Object name}) => 'Deine Regelmäßigkeit wird mit ${name} geteilt.',
-			'authorities.sharing.off' => ({required Object name}) => '${name} sieht deine Regelmäßigkeit nicht mehr.',
+			'authorities.sharing.title' => 'Meine Berichte teilen',
+			'authorities.sharing.help' => ({required Object name}) => '${name} sieht deine Berichte: die ausgefüllten Punkte, deine Regelmäßigkeit und deine Prozentsätze, nie deine Notiz.',
+			'authorities.sharing.on' => ({required Object name}) => 'Deine Berichte werden mit ${name} geteilt.',
+			'authorities.sharing.off' => ({required Object name}) => '${name} sieht deine Berichte nicht mehr.',
 			'members.username' => 'Benutzername',
 			'members.usernameHint' => 'vorname.nachname',
 			'members.usernameHelp' => 'So finden dich die anderen Mitglieder.',
@@ -2717,10 +2711,10 @@ extension on TranslationsDe {
 			'hymns.reader.addFavorite' => 'Zu Favoriten hinzufügen',
 			'hymns.reader.removeFavorite' => 'Aus Favoriten entfernen',
 			'hymns.reader.favoriteAdded' => 'Zu Favoriten hinzugefügt',
-			'hymns.reader.favoriteRemoved' => 'Aus Favoriten entfernt',
-			'hymns.reader.more' => 'Weitere Optionen',
 			_ => null,
 		} ?? switch (path) {
+			'hymns.reader.favoriteRemoved' => 'Aus Favoriten entfernt',
+			'hymns.reader.more' => 'Weitere Optionen',
 			'hymns.reader.copy' => 'Liedtext kopieren',
 			'hymns.reader.copied' => 'Liedtext kopiert',
 			'hymns.reader.project' => 'Präsentationsmodus',
@@ -3231,10 +3225,10 @@ extension on TranslationsDe {
 			'prayer.importunity.inviteSheet.sent' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('de'))(n, zero: 'Sie waren schon eingeladen.', one: '${n} Einladung gesendet', other: '${n} Einladungen gesendet', ), 
 			'sending.title' => 'An meine Leiter senden',
 			'sending.moreOff' => 'Aus',
-			'sending.intro' => 'Zur gewählten Zeit bereitet CMFI Connect deinen Bericht für den Zeitraum vor. Du musst ihn nur noch an deine geistlichen Leiter senden.',
-			'sending.enabled' => 'Regelmäßig für mich vorbereiten',
 			_ => null,
 		} ?? switch (path) {
+			'sending.intro' => 'Zur gewählten Zeit bereitet CMFI Connect deinen Bericht für den Zeitraum vor. Du musst ihn nur noch an deine geistlichen Leiter senden.',
+			'sending.enabled' => 'Regelmäßig für mich vorbereiten',
 			'sending.rhythm' => 'Rhythmus',
 			'sending.weekly' => 'Jede Woche',
 			'sending.biweekly' => 'Alle 2 Wochen',
@@ -3316,19 +3310,18 @@ extension on TranslationsDe {
 			'profilePhoto.saved' => 'Dein Profilbild ist gespeichert.',
 			'profilePhoto.removed' => 'Dein Profilbild ist entfernt.',
 			'disciples.title' => 'Meine Jünger',
-			'disciples.intro' => 'Die Mitglieder, die dich als Jüngermacher gewählt haben. Du siehst ihre Regelmäßigkeit, nie den Inhalt ihrer Berichte.',
 			'disciples.empty' => 'Noch keine Jünger',
-			'disciples.emptyText' => 'Wenn ein Mitglied dich als Jüngermacher wählt und du die Anfrage annimmst, erscheint es hier.',
+			'disciples.emptyText' => 'Wenn ein Mitglied dich als Jüngermacher oder als Autorität wählt und du die Anfrage annimmst, erscheint es hier.',
 			'disciples.count' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('de'))(n, one: '${n} Jünger', other: '${n} Jünger', ), 
-			'disciples.filled' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('de'))(n, one: '${n} Tag von 30 ausgefüllt', other: '${n} Tage von 30 ausgefüllt', ), 
-			'disciples.streak' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('de'))(n, one: '${n} Tag in Folge', other: '${n} Tage in Folge', ), 
-			'disciples.noStreak' => 'Keine laufende Serie',
-			'disciples.lastToday' => 'Heute ausgefüllt',
-			'disciples.lastYesterday' => 'Zuletzt: gestern',
-			'disciples.lastDaysAgo' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('de'))(n, one: 'Zuletzt: vor ${n} Tag', other: 'Zuletzt: vor ${n} Tagen', ), 
-			'disciples.noReport' => 'Kein Bericht in diesem Jahr',
-			'disciples.goals' => ({required Object percent}) => 'Ziele: ${percent} %',
-			'disciples.notShared' => 'Teilt seine Regelmäßigkeit nicht',
+			'disciples.notShared' => 'Teilt seine Berichte nicht',
+			'disciples.roleMaker' => 'Du bist sein Jüngermacher',
+			'disciples.roleAuthority' => 'Du bist eine seiner Autoritäten',
+			'disciples.dayGoals' => ({required Object percent}) => 'Ziele ${percent} %',
+			'disciples.dayItems' => ({required Object filled, required Object total, required Object percent}) => '${filled} von ${total} Punkten · ${percent} %',
+			'disciples.older' => 'Die 30 Tage davor ansehen',
+			'disciples.noReports' => 'Kein Bericht in diesem Zeitraum.',
+			'disciples.searchHint' => 'Name oder Benutzername',
+			'disciples.noMatch' => ({required Object search}) => 'Kein Jünger passt zu „${search}“.',
 			_ => null,
 		};
 	}

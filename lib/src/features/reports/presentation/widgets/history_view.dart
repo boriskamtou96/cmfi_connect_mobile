@@ -15,6 +15,7 @@ import '../../../../core/widgets/error_view.dart';
 import '../../../../core/widgets/fade_slide_in.dart';
 import '../../../../core/widgets/rolling_text.dart';
 import '../../../../core/widgets/section_card.dart';
+import '../../../../core/widgets/skeleton.dart';
 import '../../application/day_report_controller.dart';
 import '../../application/reports_providers.dart';
 import '../../domain/activity_type.dart';
@@ -75,9 +76,9 @@ class HistoryView extends HookConsumerWidget {
               error: error,
               onRetry: () => ref.invalidate(provider),
             ),
-            AsyncValue(hasValue: false) => const Padding(
-              padding: EdgeInsets.all(AppSpacing.xl),
-              child: Center(child: CircularProgressIndicator()),
+            // the cards of the days
+            AsyncValue(hasValue: false) => const Shimmer(
+              child: SkeletonCards(count: 4, height: 84),
             ),
             _ => Column(
               children: [

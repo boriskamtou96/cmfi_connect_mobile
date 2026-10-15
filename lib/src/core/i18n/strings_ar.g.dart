@@ -102,6 +102,7 @@ class _Translations$common$ar extends Translations$common$fr {
 	@override String get soon => 'قريبًا';
 	@override String get optional => '(اختياري)';
 	@override String get and => 'و';
+	@override String get loading => 'جارٍ التحميل…';
 }
 
 // Path: errors
@@ -130,6 +131,7 @@ class _Translations$errors$ar extends Translations$errors$fr {
 	@override String get ownerCannotLeave => 'أنت من أنشأ هذا الطلب: احذفه بدلًا من الانسحاب منه.';
 	@override String get tooManyPeople => 'قوائمك ممتلئة (500 شخص كحدّ أقصى).';
 	@override String get avatarInvalid => 'لا يمكن استخدام هذه الصورة. اختر صورة أخرى.';
+	@override String get reportsNotShared => 'لم يعد هذا العضو يشارك تقاريره.';
 }
 
 // Path: validation
@@ -1100,9 +1102,8 @@ class _Translations$disciples$ar extends Translations$disciples$fr {
 
 	// Translations
 	@override String get title => 'تلاميذي';
-	@override String get intro => 'الأعضاء الذين اختاروك صانعَ تلاميذ لهم. ترى انتظامهم، ولا ترى أبدًا محتوى تقاريرهم.';
 	@override String get empty => 'لا تلاميذ بعد';
-	@override String get emptyText => 'عندما يختارك عضو صانعَ تلاميذ له وتقبل طلبه، يظهر هنا.';
+	@override String get emptyText => 'عندما يختارك عضو صانعَ تلاميذ له أو سلطةً روحية وتقبل طلبه، يظهر هنا.';
 	@override String count({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n,
 		zero: 'لا تلاميذ',
 		one: 'تلميذ واحد',
@@ -1111,36 +1112,15 @@ class _Translations$disciples$ar extends Translations$disciples$fr {
 		many: '${n} تلميذًا',
 		other: '${n} تلميذ',
 	);
-	@override String filled({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n,
-		zero: 'لا يوم مملوء من 30',
-		one: 'يوم واحد مملوء من 30',
-		two: 'يومان مملوءان من 30',
-		few: '${n} أيام مملوءة من 30',
-		many: '${n} يومًا مملوءًا من 30',
-		other: '${n} يوم مملوء من 30',
-	);
-	@override String streak({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n,
-		zero: 'لا أيام متتالية',
-		one: 'يوم واحد متتالٍ',
-		two: 'يومان متتاليان',
-		few: '${n} أيام متتالية',
-		many: '${n} يومًا متتاليًا',
-		other: '${n} يوم متتالٍ',
-	);
-	@override String get noStreak => 'لا سلسلة جارية';
-	@override String get lastToday => 'مملوء اليوم';
-	@override String get lastYesterday => 'آخر مرة: أمس';
-	@override String lastDaysAgo({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n,
-		zero: 'آخر مرة: اليوم',
-		one: 'آخر مرة: منذ يوم',
-		two: 'آخر مرة: منذ يومين',
-		few: 'آخر مرة: منذ ${n} أيام',
-		many: 'آخر مرة: منذ ${n} يومًا',
-		other: 'آخر مرة: منذ ${n} يوم',
-	);
-	@override String get noReport => 'لا تقرير هذا العام';
-	@override String goals({required Object percent}) => 'الأهداف: ${percent} %';
-	@override String get notShared => 'لا يشارك انتظامه';
+	@override String get notShared => 'لا يشارك تقاريره';
+	@override String get roleMaker => 'أنت صانع تلاميذه';
+	@override String get roleAuthority => 'أنت إحدى سلطاته الروحية';
+	@override String dayGoals({required Object percent}) => 'الأهداف ${percent} %';
+	@override String dayItems({required Object filled, required Object total, required Object percent}) => '${filled} من ${total} عناصر · ${percent} %';
+	@override String get older => 'عرض الأيام الثلاثين السابقة';
+	@override String get noReports => 'لا تقرير في هذه الفترة.';
+	@override String get searchHint => 'الاسم أو اسم المستخدم';
+	@override String noMatch({required Object search}) => 'لا يوجد تلميذ يطابق «${search}».';
 }
 
 // Path: onboarding.reports
@@ -1532,7 +1512,7 @@ class _Translations$authorities$form$ar extends Translations$authorities$form$fr
 	@override String get alreadyAdded => 'هذا الشخص ضمن مرشديك بالفعل.';
 	@override String get makerExists => 'لديك صانع تلاميذ بالفعل.';
 	@override String get yourself => 'هذا اسم المستخدم الخاص بك.';
-	@override String get sharingHelp => 'سيرى صانع تلاميذك انتظامك (الأيام المملوءة، السلسلة، نسبة الأهداف)، ولن يرى أبدًا محتوى تقاريرك. يمكنك إيقاف ذلك من بطاقته.';
+	@override String sharingHelp({required Object name}) => 'سيرى ${name} تقاريرك: العناصر المملوءة وانتظامك ونسبك، ولن يرى أبدًا ملاحظتك. يمكنك إيقاف ذلك من بطاقته.';
 }
 
 // Path: authorities.sharing
@@ -1542,10 +1522,10 @@ class _Translations$authorities$sharing$ar extends Translations$authorities$shar
 	final TranslationsAr _root; // ignore: unused_field
 
 	// Translations
-	@override String get title => 'مشاركة انتظامي';
-	@override String help({required Object name}) => 'يرى ${name} الأيام التي ملأتها وسلسلتك ونسبة أهدافك، ولا يرى أبدًا محتوى تقاريرك.';
-	@override String on({required Object name}) => 'انتظامك مُشارَك مع ${name}.';
-	@override String off({required Object name}) => 'لم يعد ${name} يرى انتظامك.';
+	@override String get title => 'مشاركة تقاريري';
+	@override String help({required Object name}) => 'يرى ${name} تقاريرك: العناصر المملوءة وانتظامك ونسبك، ولا يرى أبدًا ملاحظتك.';
+	@override String on({required Object name}) => 'تقاريرك مُشارَكة مع ${name}.';
+	@override String off({required Object name}) => 'لم يعد ${name} يرى تقاريرك.';
 }
 
 // Path: members.deleteAccount
@@ -2415,6 +2395,7 @@ extension on TranslationsAr {
 			'common.soon' => 'قريبًا',
 			'common.optional' => '(اختياري)',
 			'common.and' => 'و',
+			'common.loading' => 'جارٍ التحميل…',
 			'errors.network' => 'لا يوجد اتصال بالإنترنت. تحقّق من شبكتك وحاول مجددًا.',
 			'errors.unauthorized' => 'انتهت صلاحية جلستك. سجّل الدخول مجددًا.',
 			'errors.invalidCredentials' => 'رقم الهاتف أو كلمة المرور غير صحيحة.',
@@ -2434,6 +2415,7 @@ extension on TranslationsAr {
 			'errors.ownerCannotLeave' => 'أنت من أنشأ هذا الطلب: احذفه بدلًا من الانسحاب منه.',
 			'errors.tooManyPeople' => 'قوائمك ممتلئة (500 شخص كحدّ أقصى).',
 			'errors.avatarInvalid' => 'لا يمكن استخدام هذه الصورة. اختر صورة أخرى.',
+			'errors.reportsNotShared' => 'لم يعد هذا العضو يشارك تقاريره.',
 			'validation.required' => 'هذا الحقل مطلوب',
 			'validation.passwordTooShort' => '6 أحرف على الأقل',
 			'validation.invalidPhone' => 'رقم هاتف غير صالح',
@@ -2825,7 +2807,7 @@ extension on TranslationsAr {
 			'authorities.form.alreadyAdded' => 'هذا الشخص ضمن مرشديك بالفعل.',
 			'authorities.form.makerExists' => 'لديك صانع تلاميذ بالفعل.',
 			'authorities.form.yourself' => 'هذا اسم المستخدم الخاص بك.',
-			'authorities.form.sharingHelp' => 'سيرى صانع تلاميذك انتظامك (الأيام المملوءة، السلسلة، نسبة الأهداف)، ولن يرى أبدًا محتوى تقاريرك. يمكنك إيقاف ذلك من بطاقته.',
+			'authorities.form.sharingHelp' => ({required Object name}) => 'سيرى ${name} تقاريرك: العناصر المملوءة وانتظامك ونسبك، ولن يرى أبدًا ملاحظتك. يمكنك إيقاف ذلك من بطاقته.',
 			'authorities.statusPending' => 'قيد الانتظار',
 			'authorities.statusDeclined' => 'مرفوض',
 			'authorities.pendingHelp' => ({required Object name}) => 'ستظهر بيانات الاتصال بعد أن يقبل ${name}.',
@@ -2837,10 +2819,10 @@ extension on TranslationsAr {
 			'authorities.acceptedRequest' => ({required Object name}) => 'أنت ترافق ${name} الآن.',
 			'authorities.declinedRequest' => ({required Object name}) => 'تم رفض طلب ${name}.',
 			'authorities.requestsCount' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n, zero: '${n} طلب بانتظارك', one: 'طلب واحد بانتظارك', two: 'طلبان بانتظارك', few: '${n} طلبات بانتظارك', many: '${n} طلبًا بانتظارك', other: '${n} طلب بانتظارك', ), 
-			'authorities.sharing.title' => 'مشاركة انتظامي',
-			'authorities.sharing.help' => ({required Object name}) => 'يرى ${name} الأيام التي ملأتها وسلسلتك ونسبة أهدافك، ولا يرى أبدًا محتوى تقاريرك.',
-			'authorities.sharing.on' => ({required Object name}) => 'انتظامك مُشارَك مع ${name}.',
-			'authorities.sharing.off' => ({required Object name}) => 'لم يعد ${name} يرى انتظامك.',
+			'authorities.sharing.title' => 'مشاركة تقاريري',
+			'authorities.sharing.help' => ({required Object name}) => 'يرى ${name} تقاريرك: العناصر المملوءة وانتظامك ونسبك، ولا يرى أبدًا ملاحظتك.',
+			'authorities.sharing.on' => ({required Object name}) => 'تقاريرك مُشارَكة مع ${name}.',
+			'authorities.sharing.off' => ({required Object name}) => 'لم يعد ${name} يرى تقاريرك.',
 			'members.username' => 'اسم المستخدم',
 			'members.usernameHint' => 'firstname.lastname',
 			'members.usernameHelp' => 'بهذا الاسم سيجدك الأعضاء الآخرون.',
@@ -2914,10 +2896,10 @@ extension on TranslationsAr {
 			'hymns.reader.addFavorite' => 'إضافة إلى المفضلة',
 			'hymns.reader.removeFavorite' => 'إزالة من المفضلة',
 			'hymns.reader.favoriteAdded' => 'تمت الإضافة إلى المفضلة',
-			'hymns.reader.favoriteRemoved' => 'تمت الإزالة من المفضلة',
-			'hymns.reader.more' => 'خيارات أخرى',
 			_ => null,
 		} ?? switch (path) {
+			'hymns.reader.favoriteRemoved' => 'تمت الإزالة من المفضلة',
+			'hymns.reader.more' => 'خيارات أخرى',
 			'hymns.reader.copy' => 'نسخ الكلمات',
 			'hymns.reader.copied' => 'تم نسخ الكلمات',
 			'hymns.reader.project' => 'وضع العرض',
@@ -3428,10 +3410,10 @@ extension on TranslationsAr {
 			'prayer.importunity.inviteSheet.sent' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n, zero: 'كانوا مدعوّين بالفعل.', one: 'تم إرسال دعوة واحدة', two: 'تم إرسال دعوتين', few: 'تم إرسال ${n} دعوات', many: 'تم إرسال ${n} دعوة', other: 'تم إرسال ${n} دعوة', ), 
 			'sending.title' => 'الإرسال إلى مرشديّ',
 			'sending.moreOff' => 'متوقف',
-			'sending.intro' => 'في الوقت الذي تختاره، يُعِدّ CMFI Connect تقريرك عن الفترة. ما عليك إلا إرساله إلى مرشديك الروحيين.',
-			'sending.enabled' => 'جهّزه لي بانتظام',
 			_ => null,
 		} ?? switch (path) {
+			'sending.intro' => 'في الوقت الذي تختاره، يُعِدّ CMFI Connect تقريرك عن الفترة. ما عليك إلا إرساله إلى مرشديك الروحيين.',
+			'sending.enabled' => 'جهّزه لي بانتظام',
 			'sending.rhythm' => 'الوتيرة',
 			'sending.weekly' => 'كل أسبوع',
 			'sending.biweekly' => 'كل أسبوعين',
@@ -3513,19 +3495,18 @@ extension on TranslationsAr {
 			'profilePhoto.saved' => 'تم حفظ صورة ملفك الشخصي.',
 			'profilePhoto.removed' => 'تمت إزالة صورة ملفك الشخصي.',
 			'disciples.title' => 'تلاميذي',
-			'disciples.intro' => 'الأعضاء الذين اختاروك صانعَ تلاميذ لهم. ترى انتظامهم، ولا ترى أبدًا محتوى تقاريرهم.',
 			'disciples.empty' => 'لا تلاميذ بعد',
-			'disciples.emptyText' => 'عندما يختارك عضو صانعَ تلاميذ له وتقبل طلبه، يظهر هنا.',
+			'disciples.emptyText' => 'عندما يختارك عضو صانعَ تلاميذ له أو سلطةً روحية وتقبل طلبه، يظهر هنا.',
 			'disciples.count' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n, zero: 'لا تلاميذ', one: 'تلميذ واحد', two: 'تلميذان', few: '${n} تلاميذ', many: '${n} تلميذًا', other: '${n} تلميذ', ), 
-			'disciples.filled' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n, zero: 'لا يوم مملوء من 30', one: 'يوم واحد مملوء من 30', two: 'يومان مملوءان من 30', few: '${n} أيام مملوءة من 30', many: '${n} يومًا مملوءًا من 30', other: '${n} يوم مملوء من 30', ), 
-			'disciples.streak' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n, zero: 'لا أيام متتالية', one: 'يوم واحد متتالٍ', two: 'يومان متتاليان', few: '${n} أيام متتالية', many: '${n} يومًا متتاليًا', other: '${n} يوم متتالٍ', ), 
-			'disciples.noStreak' => 'لا سلسلة جارية',
-			'disciples.lastToday' => 'مملوء اليوم',
-			'disciples.lastYesterday' => 'آخر مرة: أمس',
-			'disciples.lastDaysAgo' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n, zero: 'آخر مرة: اليوم', one: 'آخر مرة: منذ يوم', two: 'آخر مرة: منذ يومين', few: 'آخر مرة: منذ ${n} أيام', many: 'آخر مرة: منذ ${n} يومًا', other: 'آخر مرة: منذ ${n} يوم', ), 
-			'disciples.noReport' => 'لا تقرير هذا العام',
-			'disciples.goals' => ({required Object percent}) => 'الأهداف: ${percent} %',
-			'disciples.notShared' => 'لا يشارك انتظامه',
+			'disciples.notShared' => 'لا يشارك تقاريره',
+			'disciples.roleMaker' => 'أنت صانع تلاميذه',
+			'disciples.roleAuthority' => 'أنت إحدى سلطاته الروحية',
+			'disciples.dayGoals' => ({required Object percent}) => 'الأهداف ${percent} %',
+			'disciples.dayItems' => ({required Object filled, required Object total, required Object percent}) => '${filled} من ${total} عناصر · ${percent} %',
+			'disciples.older' => 'عرض الأيام الثلاثين السابقة',
+			'disciples.noReports' => 'لا تقرير في هذه الفترة.',
+			'disciples.searchHint' => 'الاسم أو اسم المستخدم',
+			'disciples.noMatch' => ({required Object search}) => 'لا يوجد تلميذ يطابق «${search}».',
 			_ => null,
 		};
 	}

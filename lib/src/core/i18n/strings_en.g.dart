@@ -102,6 +102,7 @@ class _Translations$common$en extends Translations$common$fr {
 	@override String get soon => 'Soon';
 	@override String get optional => '(optional)';
 	@override String get and => 'and';
+	@override String get loading => 'Loading…';
 }
 
 // Path: errors
@@ -130,6 +131,7 @@ class _Translations$errors$en extends Translations$errors$fr {
 	@override String get ownerCannotLeave => 'You created this topic: delete it instead of leaving it.';
 	@override String get tooManyPeople => 'Your lists are full (500 people at most).';
 	@override String get avatarInvalid => 'This photo can\'t be used. Choose another one.';
+	@override String get reportsNotShared => 'This member no longer shares their reports.';
 }
 
 // Path: validation
@@ -1003,31 +1005,21 @@ class _Translations$disciples$en extends Translations$disciples$fr {
 
 	// Translations
 	@override String get title => 'My disciples';
-	@override String get intro => 'The members who chose you as their disciple maker. You see how regular they are, never what their reports say.';
 	@override String get empty => 'No disciple yet';
-	@override String get emptyText => 'When a member chooses you as their disciple maker and you accept the request, they appear here.';
+	@override String get emptyText => 'When a member chooses you as their disciple maker or as an authority and you accept the request, they appear here.';
 	@override String count({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n,
 		one: '${n} disciple',
 		other: '${n} disciples',
 	);
-	@override String filled({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n,
-		one: '${n} day filled in out of 30',
-		other: '${n} days filled in out of 30',
-	);
-	@override String streak({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n,
-		one: '${n} day in a row',
-		other: '${n} days in a row',
-	);
-	@override String get noStreak => 'No streak going';
-	@override String get lastToday => 'Filled in today';
-	@override String get lastYesterday => 'Last: yesterday';
-	@override String lastDaysAgo({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n,
-		one: 'Last: ${n} day ago',
-		other: 'Last: ${n} days ago',
-	);
-	@override String get noReport => 'No report this year';
-	@override String goals({required Object percent}) => 'Goals: ${percent} %';
-	@override String get notShared => 'Doesn\'t share their regularity';
+	@override String get notShared => 'Doesn\'t share their reports';
+	@override String get roleMaker => 'You\'re their disciple maker';
+	@override String get roleAuthority => 'You\'re one of their authorities';
+	@override String dayGoals({required Object percent}) => 'Goals ${percent} %';
+	@override String dayItems({required Object filled, required Object total, required Object percent}) => '${filled} of ${total} items · ${percent} %';
+	@override String get older => 'See the previous 30 days';
+	@override String get noReports => 'No report over this period.';
+	@override String get searchHint => 'Name or username';
+	@override String noMatch({required Object search}) => 'No disciple matches “${search}”.';
 }
 
 // Path: onboarding.reports
@@ -1399,7 +1391,7 @@ class _Translations$authorities$form$en extends Translations$authorities$form$fr
 	@override String get alreadyAdded => 'This person is already one of your authorities.';
 	@override String get makerExists => 'You already have a disciple maker.';
 	@override String get yourself => 'This is your own username.';
-	@override String get sharingHelp => 'Your disciple maker will see your regularity (days filled in, streak, % of goals), never what your reports say. You can stop it on their card.';
+	@override String sharingHelp({required Object name}) => '${name} will see your reports: the items filled in, your regularity and your percentages, never your note. You can stop it on their card.';
 }
 
 // Path: authorities.sharing
@@ -1409,10 +1401,10 @@ class _Translations$authorities$sharing$en extends Translations$authorities$shar
 	final TranslationsEn _root; // ignore: unused_field
 
 	// Translations
-	@override String get title => 'Share my regularity';
-	@override String help({required Object name}) => '${name} sees the days you filled in, your streak and the % of your goals, never what your reports say.';
-	@override String on({required Object name}) => 'Your regularity is shared with ${name}.';
-	@override String off({required Object name}) => '${name} no longer sees your regularity.';
+	@override String get title => 'Share my reports';
+	@override String help({required Object name}) => '${name} sees your reports: the items filled in, your regularity and your percentages, never your note.';
+	@override String on({required Object name}) => 'Your reports are shared with ${name}.';
+	@override String off({required Object name}) => '${name} no longer sees your reports.';
 }
 
 // Path: members.deleteAccount
@@ -2219,6 +2211,7 @@ extension on TranslationsEn {
 			'common.soon' => 'Soon',
 			'common.optional' => '(optional)',
 			'common.and' => 'and',
+			'common.loading' => 'Loading…',
 			'errors.network' => 'No internet connection. Check your network and try again.',
 			'errors.unauthorized' => 'Your session has expired. Please sign in again.',
 			'errors.invalidCredentials' => 'Wrong phone number or password.',
@@ -2238,6 +2231,7 @@ extension on TranslationsEn {
 			'errors.ownerCannotLeave' => 'You created this topic: delete it instead of leaving it.',
 			'errors.tooManyPeople' => 'Your lists are full (500 people at most).',
 			'errors.avatarInvalid' => 'This photo can\'t be used. Choose another one.',
+			'errors.reportsNotShared' => 'This member no longer shares their reports.',
 			'validation.required' => 'This field is required',
 			'validation.passwordTooShort' => 'At least 6 characters',
 			'validation.invalidPhone' => 'Invalid phone number',
@@ -2629,7 +2623,7 @@ extension on TranslationsEn {
 			'authorities.form.alreadyAdded' => 'This person is already one of your authorities.',
 			'authorities.form.makerExists' => 'You already have a disciple maker.',
 			'authorities.form.yourself' => 'This is your own username.',
-			'authorities.form.sharingHelp' => 'Your disciple maker will see your regularity (days filled in, streak, % of goals), never what your reports say. You can stop it on their card.',
+			'authorities.form.sharingHelp' => ({required Object name}) => '${name} will see your reports: the items filled in, your regularity and your percentages, never your note. You can stop it on their card.',
 			'authorities.statusPending' => 'Pending',
 			'authorities.statusDeclined' => 'Declined',
 			'authorities.pendingHelp' => ({required Object name}) => 'Their contact details will show once ${name} accepts.',
@@ -2641,10 +2635,10 @@ extension on TranslationsEn {
 			'authorities.acceptedRequest' => ({required Object name}) => 'You now accompany ${name}.',
 			'authorities.declinedRequest' => ({required Object name}) => 'Request from ${name} declined.',
 			'authorities.requestsCount' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n, one: '${n} request to see', other: '${n} requests to see', ), 
-			'authorities.sharing.title' => 'Share my regularity',
-			'authorities.sharing.help' => ({required Object name}) => '${name} sees the days you filled in, your streak and the % of your goals, never what your reports say.',
-			'authorities.sharing.on' => ({required Object name}) => 'Your regularity is shared with ${name}.',
-			'authorities.sharing.off' => ({required Object name}) => '${name} no longer sees your regularity.',
+			'authorities.sharing.title' => 'Share my reports',
+			'authorities.sharing.help' => ({required Object name}) => '${name} sees your reports: the items filled in, your regularity and your percentages, never your note.',
+			'authorities.sharing.on' => ({required Object name}) => 'Your reports are shared with ${name}.',
+			'authorities.sharing.off' => ({required Object name}) => '${name} no longer sees your reports.',
 			'members.username' => 'Username',
 			'members.usernameHint' => 'firstname.lastname',
 			'members.usernameHelp' => 'This is how other members will find you.',
@@ -2718,10 +2712,10 @@ extension on TranslationsEn {
 			'hymns.reader.addFavorite' => 'Add to favorites',
 			'hymns.reader.removeFavorite' => 'Remove from favorites',
 			'hymns.reader.favoriteAdded' => 'Added to favorites',
-			'hymns.reader.favoriteRemoved' => 'Removed from favorites',
-			'hymns.reader.more' => 'More options',
 			_ => null,
 		} ?? switch (path) {
+			'hymns.reader.favoriteRemoved' => 'Removed from favorites',
+			'hymns.reader.more' => 'More options',
 			'hymns.reader.copy' => 'Copy the words',
 			'hymns.reader.copied' => 'Words copied',
 			'hymns.reader.project' => 'Projection mode',
@@ -3232,10 +3226,10 @@ extension on TranslationsEn {
 			'prayer.importunity.inviteSheet.sent' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n, zero: 'They were already invited.', one: '${n} invitation sent', other: '${n} invitations sent', ), 
 			'sending.title' => 'Send to my authorities',
 			'sending.moreOff' => 'Off',
-			'sending.intro' => 'At the chosen time, CMFI Connect prepares your report for the period. You just have to send it to your spiritual authorities.',
-			'sending.enabled' => 'Prepare it for me regularly',
 			_ => null,
 		} ?? switch (path) {
+			'sending.intro' => 'At the chosen time, CMFI Connect prepares your report for the period. You just have to send it to your spiritual authorities.',
+			'sending.enabled' => 'Prepare it for me regularly',
 			'sending.rhythm' => 'Rhythm',
 			'sending.weekly' => 'Every week',
 			'sending.biweekly' => 'Every 2 weeks',
@@ -3317,19 +3311,18 @@ extension on TranslationsEn {
 			'profilePhoto.saved' => 'Your profile photo is saved.',
 			'profilePhoto.removed' => 'Your profile photo is removed.',
 			'disciples.title' => 'My disciples',
-			'disciples.intro' => 'The members who chose you as their disciple maker. You see how regular they are, never what their reports say.',
 			'disciples.empty' => 'No disciple yet',
-			'disciples.emptyText' => 'When a member chooses you as their disciple maker and you accept the request, they appear here.',
+			'disciples.emptyText' => 'When a member chooses you as their disciple maker or as an authority and you accept the request, they appear here.',
 			'disciples.count' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n, one: '${n} disciple', other: '${n} disciples', ), 
-			'disciples.filled' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n, one: '${n} day filled in out of 30', other: '${n} days filled in out of 30', ), 
-			'disciples.streak' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n, one: '${n} day in a row', other: '${n} days in a row', ), 
-			'disciples.noStreak' => 'No streak going',
-			'disciples.lastToday' => 'Filled in today',
-			'disciples.lastYesterday' => 'Last: yesterday',
-			'disciples.lastDaysAgo' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n, one: 'Last: ${n} day ago', other: 'Last: ${n} days ago', ), 
-			'disciples.noReport' => 'No report this year',
-			'disciples.goals' => ({required Object percent}) => 'Goals: ${percent} %',
-			'disciples.notShared' => 'Doesn\'t share their regularity',
+			'disciples.notShared' => 'Doesn\'t share their reports',
+			'disciples.roleMaker' => 'You\'re their disciple maker',
+			'disciples.roleAuthority' => 'You\'re one of their authorities',
+			'disciples.dayGoals' => ({required Object percent}) => 'Goals ${percent} %',
+			'disciples.dayItems' => ({required Object filled, required Object total, required Object percent}) => '${filled} of ${total} items · ${percent} %',
+			'disciples.older' => 'See the previous 30 days',
+			'disciples.noReports' => 'No report over this period.',
+			'disciples.searchHint' => 'Name or username',
+			'disciples.noMatch' => ({required Object search}) => 'No disciple matches “${search}”.',
 			_ => null,
 		};
 	}

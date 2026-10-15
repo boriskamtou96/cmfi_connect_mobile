@@ -102,6 +102,7 @@ class _Translations$common$hi extends Translations$common$fr {
 	@override String get soon => 'जल्द ही';
 	@override String get optional => '(वैकल्पिक)';
 	@override String get and => 'और';
+	@override String get loading => 'लोड हो रहा है…';
 }
 
 // Path: errors
@@ -130,6 +131,7 @@ class _Translations$errors$hi extends Translations$errors$fr {
 	@override String get ownerCannotLeave => 'यह विषय तुमने बनाया है: इसे छोड़ने के बजाय हटा दो।';
 	@override String get tooManyPeople => 'तुम्हारी सूचियाँ भर गई हैं (अधिकतम 500 लोग)।';
 	@override String get avatarInvalid => 'यह फ़ोटो इस्तेमाल नहीं हो सकती। कोई दूसरी चुनें।';
+	@override String get reportsNotShared => 'यह सदस्य अब अपनी रिपोर्ट साझा नहीं करता।';
 }
 
 // Path: validation
@@ -1002,27 +1004,20 @@ class _Translations$disciples$hi extends Translations$disciples$fr {
 
 	// Translations
 	@override String get title => 'मेरे शिष्य';
-	@override String get intro => 'वे सदस्य जिन्होंने तुम्हें अपना शिष्य बनाने वाला चुना है। तुम उनकी नियमितता देखते हो, उनकी रिपोर्ट की सामग्री कभी नहीं।';
 	@override String get empty => 'अभी कोई शिष्य नहीं';
-	@override String get emptyText => 'जब कोई सदस्य तुम्हें अपना शिष्य बनाने वाला चुनता है और तुम उसका अनुरोध स्वीकार करते हो, तो वह यहाँ दिखता है।';
+	@override String get emptyText => 'जब कोई सदस्य तुम्हें अपना चेला बनाने वाला या आत्मिक अधिकारी चुनता है और तुम उसका अनुरोध स्वीकार करते हो, तो वह यहाँ दिखता है।';
 	@override String count({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n,
 		other: '${n} शिष्य',
 	);
-	@override String filled({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n,
-		other: '30 में से ${n} दिन भरे',
-	);
-	@override String streak({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n,
-		other: 'लगातार ${n} दिन',
-	);
-	@override String get noStreak => 'कोई चालू सिलसिला नहीं';
-	@override String get lastToday => 'आज भरा';
-	@override String get lastYesterday => 'पिछली बार: कल';
-	@override String lastDaysAgo({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n,
-		other: 'पिछली बार: ${n} दिन पहले',
-	);
-	@override String get noReport => 'इस साल कोई रिपोर्ट नहीं';
-	@override String goals({required Object percent}) => 'लक्ष्य: ${percent} %';
-	@override String get notShared => 'अपनी नियमितता साझा नहीं करता';
+	@override String get notShared => 'अपनी रिपोर्ट साझा नहीं करता';
+	@override String get roleMaker => 'तुम उसके चेला बनाने वाले हो';
+	@override String get roleAuthority => 'तुम उसके आत्मिक अधिकारियों में से एक हो';
+	@override String dayGoals({required Object percent}) => 'लक्ष्य ${percent} %';
+	@override String dayItems({required Object total, required Object filled, required Object percent}) => '${total} में से ${filled} आइटम · ${percent} %';
+	@override String get older => 'पिछले 30 दिन देखो';
+	@override String get noReports => 'इस अवधि में कोई रिपोर्ट नहीं।';
+	@override String get searchHint => 'नाम या यूज़रनेम';
+	@override String noMatch({required Object search}) => '“${search}” से कोई शिष्य मेल नहीं खाता।';
 }
 
 // Path: onboarding.reports
@@ -1394,7 +1389,7 @@ class _Translations$authorities$form$hi extends Translations$authorities$form$fr
 	@override String get alreadyAdded => 'यह व्यक्ति पहले से तुम्हारे अगुवों में शामिल है।';
 	@override String get makerExists => 'तुम्हारे पास पहले से एक चेला बनाने वाला है।';
 	@override String get yourself => 'यह तुम्हारा अपना यूज़रनेम है।';
-	@override String get sharingHelp => 'तुम्हारा शिष्य बनाने वाला तुम्हारी नियमितता (भरे दिन, सिलसिला, लक्ष्यों का %) देखेगा, तुम्हारी रिपोर्ट की सामग्री कभी नहीं। तुम इसे उसके कार्ड पर बंद कर सकते हो।';
+	@override String sharingHelp({required Object name}) => '${name} तुम्हारी रिपोर्ट देखेगा: भरे गए आइटम, तुम्हारी नियमितता और प्रतिशत, तुम्हारा नोट कभी नहीं। तुम इसे उसके कार्ड पर बंद कर सकते हो।';
 }
 
 // Path: authorities.sharing
@@ -1404,10 +1399,10 @@ class _Translations$authorities$sharing$hi extends Translations$authorities$shar
 	final TranslationsHi _root; // ignore: unused_field
 
 	// Translations
-	@override String get title => 'मेरी नियमितता साझा करो';
-	@override String help({required Object name}) => '${name} तुम्हारे भरे हुए दिन, तुम्हारा सिलसिला और तुम्हारे लक्ष्यों का % देखता है, तुम्हारी रिपोर्ट की सामग्री कभी नहीं।';
-	@override String on({required Object name}) => 'तुम्हारी नियमितता ${name} के साथ साझा है।';
-	@override String off({required Object name}) => '${name} अब तुम्हारी नियमितता नहीं देखता।';
+	@override String get title => 'मेरी रिपोर्ट साझा करो';
+	@override String help({required Object name}) => '${name} तुम्हारी रिपोर्ट देखता है: भरे गए आइटम, तुम्हारी नियमितता और प्रतिशत, तुम्हारा नोट कभी नहीं।';
+	@override String on({required Object name}) => 'तुम्हारी रिपोर्ट ${name} के साथ साझा है।';
+	@override String off({required Object name}) => '${name} अब तुम्हारी रिपोर्ट नहीं देखता।';
 }
 
 // Path: members.deleteAccount
@@ -2214,6 +2209,7 @@ extension on TranslationsHi {
 			'common.soon' => 'जल्द ही',
 			'common.optional' => '(वैकल्पिक)',
 			'common.and' => 'और',
+			'common.loading' => 'लोड हो रहा है…',
 			'errors.network' => 'इंटरनेट कनेक्शन नहीं है। अपना नेटवर्क जाँचो और फिर से कोशिश करो।',
 			'errors.unauthorized' => 'तुम्हारा सेशन ख़त्म हो गया है। फिर से लॉग इन करो।',
 			'errors.invalidCredentials' => 'फ़ोन नंबर या पासवर्ड ग़लत है।',
@@ -2233,6 +2229,7 @@ extension on TranslationsHi {
 			'errors.ownerCannotLeave' => 'यह विषय तुमने बनाया है: इसे छोड़ने के बजाय हटा दो।',
 			'errors.tooManyPeople' => 'तुम्हारी सूचियाँ भर गई हैं (अधिकतम 500 लोग)।',
 			'errors.avatarInvalid' => 'यह फ़ोटो इस्तेमाल नहीं हो सकती। कोई दूसरी चुनें।',
+			'errors.reportsNotShared' => 'यह सदस्य अब अपनी रिपोर्ट साझा नहीं करता।',
 			'validation.required' => 'यह फ़ील्ड ज़रूरी है',
 			'validation.passwordTooShort' => 'कम से कम 6 कैरेक्टर',
 			'validation.invalidPhone' => 'फ़ोन नंबर सही नहीं है',
@@ -2624,7 +2621,7 @@ extension on TranslationsHi {
 			'authorities.form.alreadyAdded' => 'यह व्यक्ति पहले से तुम्हारे अगुवों में शामिल है।',
 			'authorities.form.makerExists' => 'तुम्हारे पास पहले से एक चेला बनाने वाला है।',
 			'authorities.form.yourself' => 'यह तुम्हारा अपना यूज़रनेम है।',
-			'authorities.form.sharingHelp' => 'तुम्हारा शिष्य बनाने वाला तुम्हारी नियमितता (भरे दिन, सिलसिला, लक्ष्यों का %) देखेगा, तुम्हारी रिपोर्ट की सामग्री कभी नहीं। तुम इसे उसके कार्ड पर बंद कर सकते हो।',
+			'authorities.form.sharingHelp' => ({required Object name}) => '${name} तुम्हारी रिपोर्ट देखेगा: भरे गए आइटम, तुम्हारी नियमितता और प्रतिशत, तुम्हारा नोट कभी नहीं। तुम इसे उसके कार्ड पर बंद कर सकते हो।',
 			'authorities.statusPending' => 'इंतज़ार में',
 			'authorities.statusDeclined' => 'अस्वीकार',
 			'authorities.pendingHelp' => ({required Object name}) => '${name} के स्वीकार करने पर उनकी संपर्क जानकारी दिखेगी।',
@@ -2636,10 +2633,10 @@ extension on TranslationsHi {
 			'authorities.acceptedRequest' => ({required Object name}) => 'अब ${name} तुम्हारे मार्गदर्शन में हैं।',
 			'authorities.declinedRequest' => ({required Object name}) => '${name} का अनुरोध अस्वीकार किया गया।',
 			'authorities.requestsCount' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n, one: '${n} अनुरोध देखना बाकी है', other: '${n} अनुरोध देखने बाकी हैं', ), 
-			'authorities.sharing.title' => 'मेरी नियमितता साझा करो',
-			'authorities.sharing.help' => ({required Object name}) => '${name} तुम्हारे भरे हुए दिन, तुम्हारा सिलसिला और तुम्हारे लक्ष्यों का % देखता है, तुम्हारी रिपोर्ट की सामग्री कभी नहीं।',
-			'authorities.sharing.on' => ({required Object name}) => 'तुम्हारी नियमितता ${name} के साथ साझा है।',
-			'authorities.sharing.off' => ({required Object name}) => '${name} अब तुम्हारी नियमितता नहीं देखता।',
+			'authorities.sharing.title' => 'मेरी रिपोर्ट साझा करो',
+			'authorities.sharing.help' => ({required Object name}) => '${name} तुम्हारी रिपोर्ट देखता है: भरे गए आइटम, तुम्हारी नियमितता और प्रतिशत, तुम्हारा नोट कभी नहीं।',
+			'authorities.sharing.on' => ({required Object name}) => 'तुम्हारी रिपोर्ट ${name} के साथ साझा है।',
+			'authorities.sharing.off' => ({required Object name}) => '${name} अब तुम्हारी रिपोर्ट नहीं देखता।',
 			'members.username' => 'यूज़रनेम',
 			'members.usernameHint' => 'naam.surname',
 			'members.usernameHelp' => 'दूसरे सदस्य तुम्हें इसी नाम से ढूँढेंगे।',
@@ -2713,10 +2710,10 @@ extension on TranslationsHi {
 			'hymns.reader.addFavorite' => 'पसंदीदा में जोड़ो',
 			'hymns.reader.removeFavorite' => 'पसंदीदा से हटाओ',
 			'hymns.reader.favoriteAdded' => 'पसंदीदा में जोड़ा गया',
-			'hymns.reader.favoriteRemoved' => 'पसंदीदा से हटाया गया',
-			'hymns.reader.more' => 'और विकल्प',
 			_ => null,
 		} ?? switch (path) {
+			'hymns.reader.favoriteRemoved' => 'पसंदीदा से हटाया गया',
+			'hymns.reader.more' => 'और विकल्प',
 			'hymns.reader.copy' => 'बोल कॉपी करो',
 			'hymns.reader.copied' => 'बोल कॉपी हो गए',
 			'hymns.reader.project' => 'प्रोजेक्शन मोड',
@@ -3227,10 +3224,10 @@ extension on TranslationsHi {
 			'prayer.importunity.inviteSheet.sent' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n, zero: 'उन्हें पहले ही न्योता दिया जा चुका था।', one: '${n} न्योता भेजा गया', other: '${n} न्योते भेजे गए', ), 
 			'sending.title' => 'मेरे आत्मिक अगुवों को भेजना',
 			'sending.moreOff' => 'बंद',
-			'sending.intro' => 'चुने हुए समय पर CMFI Connect उस अवधि की तुम्हारी रिपोर्ट तैयार करता है। तुम्हें बस उसे अपने आत्मिक अगुवों को भेजना है।',
-			'sending.enabled' => 'इसे नियमित रूप से तैयार करो',
 			_ => null,
 		} ?? switch (path) {
+			'sending.intro' => 'चुने हुए समय पर CMFI Connect उस अवधि की तुम्हारी रिपोर्ट तैयार करता है। तुम्हें बस उसे अपने आत्मिक अगुवों को भेजना है।',
+			'sending.enabled' => 'इसे नियमित रूप से तैयार करो',
 			'sending.rhythm' => 'अंतराल',
 			'sending.weekly' => 'हर हफ़्ते',
 			'sending.biweekly' => 'हर 2 हफ़्ते',
@@ -3312,19 +3309,18 @@ extension on TranslationsHi {
 			'profilePhoto.saved' => 'आपकी प्रोफ़ाइल फ़ोटो सहेज ली गई है।',
 			'profilePhoto.removed' => 'आपकी प्रोफ़ाइल फ़ोटो हटा दी गई है।',
 			'disciples.title' => 'मेरे शिष्य',
-			'disciples.intro' => 'वे सदस्य जिन्होंने तुम्हें अपना शिष्य बनाने वाला चुना है। तुम उनकी नियमितता देखते हो, उनकी रिपोर्ट की सामग्री कभी नहीं।',
 			'disciples.empty' => 'अभी कोई शिष्य नहीं',
-			'disciples.emptyText' => 'जब कोई सदस्य तुम्हें अपना शिष्य बनाने वाला चुनता है और तुम उसका अनुरोध स्वीकार करते हो, तो वह यहाँ दिखता है।',
+			'disciples.emptyText' => 'जब कोई सदस्य तुम्हें अपना चेला बनाने वाला या आत्मिक अधिकारी चुनता है और तुम उसका अनुरोध स्वीकार करते हो, तो वह यहाँ दिखता है।',
 			'disciples.count' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n, other: '${n} शिष्य', ), 
-			'disciples.filled' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n, other: '30 में से ${n} दिन भरे', ), 
-			'disciples.streak' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n, other: 'लगातार ${n} दिन', ), 
-			'disciples.noStreak' => 'कोई चालू सिलसिला नहीं',
-			'disciples.lastToday' => 'आज भरा',
-			'disciples.lastYesterday' => 'पिछली बार: कल',
-			'disciples.lastDaysAgo' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n, other: 'पिछली बार: ${n} दिन पहले', ), 
-			'disciples.noReport' => 'इस साल कोई रिपोर्ट नहीं',
-			'disciples.goals' => ({required Object percent}) => 'लक्ष्य: ${percent} %',
-			'disciples.notShared' => 'अपनी नियमितता साझा नहीं करता',
+			'disciples.notShared' => 'अपनी रिपोर्ट साझा नहीं करता',
+			'disciples.roleMaker' => 'तुम उसके चेला बनाने वाले हो',
+			'disciples.roleAuthority' => 'तुम उसके आत्मिक अधिकारियों में से एक हो',
+			'disciples.dayGoals' => ({required Object percent}) => 'लक्ष्य ${percent} %',
+			'disciples.dayItems' => ({required Object total, required Object filled, required Object percent}) => '${total} में से ${filled} आइटम · ${percent} %',
+			'disciples.older' => 'पिछले 30 दिन देखो',
+			'disciples.noReports' => 'इस अवधि में कोई रिपोर्ट नहीं।',
+			'disciples.searchHint' => 'नाम या यूज़रनेम',
+			'disciples.noMatch' => ({required Object search}) => '“${search}” से कोई शिष्य मेल नहीं खाता।',
 			_ => null,
 		};
 	}

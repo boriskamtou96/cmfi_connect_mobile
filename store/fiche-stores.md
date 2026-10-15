@@ -268,7 +268,7 @@ Jamais collectés : position GPS, carnet d'adresses, calendrier (l'app ouvre seu
 | Coordonnées | Adresse e-mail | Oui | Facultative. |
 | Coordonnées | Numéro de téléphone | Oui | Identifiant de connexion ; vérifié par SMS pour le mot de passe oublié. |
 | Coordonnées | Adresse postale, autres coordonnées | Non | |
-| Données sensibles | Croyances religieuses | Oui | Église, assemblée, comptes rendus, prière. |
+| Données sensibles | Croyances religieuses | Oui | Église, assemblée, comptes rendus, prière. Les comptes rendus (éléments et pourcentages, sans la note) sont visibles des autorités spirituelles membres que l'utilisateur choisit lui-même ; il peut l'arrêter. |
 | Localisation | Position approximative | Oui (par prudence) | Ville et pays du profil, tapés par l'utilisateur. L'app ne lit jamais la position du téléphone ; ne pas cocher « Position précise ». |
 | Contacts | Contacts | Oui | Autorités saisies à la main (nom, téléphone, e-mail d'une autre personne) et liens entre membres. Le carnet d'adresses n'est pas lu. |
 | Contenu utilisateur | Photos ou vidéos | Oui | La photo de profil (facultative, visible des autres membres), et les affiches et photos publiées par les administrateurs. |
@@ -294,7 +294,7 @@ Jamais collectés : position GPS, carnet d'adresses, calendrier (l'app ouvre seu
 Réponses générales :
 
 - L'app collecte-t-elle ou partage-t-elle des données ? **Oui** (collecte).
-- Partage avec des tiers : **Non**. Google (Firebase), RevenueCat et l'hébergeur agissent comme prestataires pour notre compte, ce que Google ne compte pas comme un partage ; l'envoi aux autorités par WhatsApp ou e-mail est une action de l'utilisateur.
+- Partage avec des tiers : **Non**. Google (Firebase), RevenueCat et l'hébergeur agissent comme prestataires pour notre compte, ce que Google ne compte pas comme un partage ; l'envoi aux autorités par WhatsApp ou e-mail, comme le partage de ses comptes rendus avec les autorités membres qu'il a choisies, sont des actions de l'utilisateur.
 - Données chiffrées en transit : **Oui** (HTTPS obligatoire en production ; voir la liste de contrôle pour iOS).
 - Suppression : **Oui**, dans l'app (Plus › Supprimer mon compte) et par la page https://cmfi-connect.com/delete-account (à confirmer). Une donnée seule peut aussi être effacée dans l'app (élément, personne d'une liste, autorité, inscription).
 - Engagement du programme Familles : non concerné (public 13+).

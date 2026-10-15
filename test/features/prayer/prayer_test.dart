@@ -247,11 +247,12 @@ void main() {
       await pumpApp(tester, token: 't', prayerApi: api);
       await openPrayer(tester);
 
-      await tester.scrollUntilVisible(
-        find.text('Conférence annuelle 2026 : prions ensemble'),
-        200,
-      );
-      await tester.tap(find.text('Conférence annuelle 2026 : prions ensemble'));
+      final topic = find.text('Conférence annuelle 2026 : prions ensemble');
+      await tester.scrollUntilVisible(topic, 200);
+      // above the tab bar
+      await tester.ensureVisible(topic);
+      await tester.pumpAndSettle();
+      await tester.tap(topic);
       await tester.pumpAndSettle();
       expect(
         find.text('12 frères et sœurs prient pour ces sujets'),
@@ -281,6 +282,9 @@ void main() {
       await pumpApp(tester, token: 't', prayerApi: api);
       await openPrayer(tester);
       await tester.scrollUntilVisible(find.text('Pas encore cru'), 200);
+      // above the tab bar
+      await tester.ensureVisible(find.text('Pas encore cru'));
+      await tester.pumpAndSettle();
       await tester.tap(find.text('Pas encore cru'));
       await tester.pumpAndSettle();
 

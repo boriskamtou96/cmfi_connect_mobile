@@ -18,6 +18,7 @@ import '../../../core/widgets/app_toast.dart';
 import '../../../core/widgets/error_view.dart';
 import '../../../core/widgets/fade_slide_in.dart';
 import '../../../core/widgets/section_card.dart';
+import '../../../core/widgets/skeleton.dart';
 import '../../../core/widgets/sub_page.dart';
 import '../../../routing/app_router.dart';
 import '../../authorities/application/authorities_controller.dart';
@@ -77,7 +78,31 @@ class ReportSendScreen extends HookConsumerWidget {
       return SubPage(
         title: s.readyTitle,
         child: error == null
-            ? const Center(child: CircularProgressIndicator())
+            // the period, the authorities, then the text of the report
+            ? SingleChildScrollView(
+                physics: const NeverScrollableScrollPhysics(),
+                padding: const EdgeInsets.fromLTRB(
+                  AppSpacing.lg,
+                  AppSpacing.sm,
+                  AppSpacing.lg,
+                  AppSpacing.xl,
+                ),
+                child: Shimmer(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      const SkeletonLine(widthFactor: 0.5),
+                      const SizedBox(height: AppSpacing.lg),
+                      const SkeletonList(count: 2),
+                      const SizedBox(height: AppSpacing.xl),
+                      for (final width in const [0.9, 1.0, 0.8, 0.95, 0.6]) ...[
+                        SkeletonLine(widthFactor: width),
+                        const SizedBox(height: 10),
+                      ],
+                    ],
+                  ),
+                ),
+              )
             : ErrorView(
                 error: error,
                 onRetry: () => ref

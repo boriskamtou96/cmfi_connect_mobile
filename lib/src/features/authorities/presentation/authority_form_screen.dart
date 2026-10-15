@@ -16,6 +16,7 @@ import '../../../core/widgets/app_button.dart';
 import '../../../core/widgets/app_toast.dart';
 import '../../../core/widgets/labeled_field.dart';
 import '../../../core/widgets/phone_field.dart';
+import '../../../core/widgets/skeleton.dart';
 import '../../../core/widgets/sub_page.dart';
 import '../../members/application/my_account.dart';
 import '../../members/domain/member.dart';
@@ -230,13 +231,46 @@ class AuthorityFormScreen extends HookConsumerWidget {
             alignment: Alignment.topCenter,
             child: switch (search.value) {
               null => const SizedBox(width: double.infinity),
+              // the member being looked for
               _Searching() => const Padding(
-                padding: EdgeInsets.all(AppSpacing.lg),
-                child: Center(child: CircularProgressIndicator()),
+                padding: EdgeInsets.only(top: AppSpacing.lg),
+                child: Shimmer(child: SkeletonRow(leading: 44)),
               ),
               _Found(:final member) => Padding(
                 padding: const EdgeInsets.only(top: AppSpacing.lg),
-                child: _MemberResult(member: member),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    _MemberResult(member: member),
+                    const SizedBox(height: AppSpacing.md),
+                    // what a member authority receives, said before choosing
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Icon(
+                          AppIcons.info,
+                          size: 18,
+                          color: scheme.onSurfaceVariant,
+                        ),
+                        const SizedBox(width: AppSpacing.sm),
+                        Expanded(
+                          child: Text(
+                            t.authorities.form.sharingHelp(
+                              name: member.firstName.isEmpty
+                                  ? '@${member.username}'
+                                  : member.firstName,
+                            ),
+                            style: TextStyle(
+                              fontSize: 13,
+                              height: 1.4,
+                              color: scheme.onSurfaceVariant,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
               ),
               _NotFound(:final username) => Padding(
                 padding: const EdgeInsets.only(top: AppSpacing.lg),
@@ -410,10 +444,6 @@ class AuthorityFormScreen extends HookConsumerWidget {
                         ? t.authorities.form.discipleMakerTaken(
                             name: currentMaker.fullName,
                           )
-                        // a member sees the regularity of the user
-                        : !manual.value && isDiscipleMaker.value
-                        ? '${t.authorities.form.isDiscipleMakerHelp} '
-                              '${t.authorities.form.sharingHelp}'
                         : t.authorities.form.isDiscipleMakerHelp,
                     style: TextStyle(
                       fontSize: 13,

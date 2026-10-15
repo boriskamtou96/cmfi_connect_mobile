@@ -12,7 +12,8 @@
     "back": "Zurück",
     "soon": "Bald",
     "optional": "(optional)",
-    "and": "und"
+    "and": "und",
+    "loading": "Wird geladen…"
   },
   "errors": {
     "network": "Keine Internetverbindung. Prüfe dein Netzwerk und versuche es erneut.",
@@ -33,7 +34,8 @@
     "usernameNotFound": "Niemand hat diesen Benutzernamen. Prüfe die Schreibweise.",
     "ownerCannotLeave": "Du hast dieses Anliegen erstellt: Lösche es, statt es zu verlassen.",
     "tooManyPeople": "Deine Listen sind voll (höchstens 500 Personen).",
-    "avatarInvalid": "Dieses Foto kann nicht verwendet werden. Wähle ein anderes."
+    "avatarInvalid": "Dieses Foto kann nicht verwendet werden. Wähle ein anderes.",
+    "reportsNotShared": "Dieses Mitglied teilt seine Berichte nicht mehr."
   },
   "validation": {
     "required": "Dieses Feld ist erforderlich",
@@ -545,7 +547,7 @@
       "alreadyAdded": "Diese Person gehört bereits zu deinen Autoritäten.",
       "makerExists": "Du hast bereits einen Jüngermacher.",
       "yourself": "Das ist dein eigener Benutzername.",
-      "sharingHelp": "Dein Jüngermacher sieht deine Regelmäßigkeit (ausgefüllte Tage, Serie, % der Ziele), nie den Inhalt deiner Berichte. Du kannst das auf seiner Karte beenden."
+      "sharingHelp": "{name} wird deine Berichte sehen: die ausgefüllten Punkte, deine Regelmäßigkeit und deine Prozentsätze, nie deine Notiz. Du kannst das auf der Karte beenden."
     },
     "statusPending": "Ausstehend",
     "statusDeclined": "Abgelehnt",
@@ -562,10 +564,10 @@
       "other": "{n} offene Anfragen"
     },
     "sharing": {
-      "title": "Meine Regelmäßigkeit teilen",
-      "help": "{name} sieht deine ausgefüllten Tage, deine Serie und den Anteil deiner Ziele, nie den Inhalt deiner Berichte.",
-      "on": "Deine Regelmäßigkeit wird mit {name} geteilt.",
-      "off": "{name} sieht deine Regelmäßigkeit nicht mehr."
+      "title": "Meine Berichte teilen",
+      "help": "{name} sieht deine Berichte: die ausgefüllten Punkte, deine Regelmäßigkeit und deine Prozentsätze, nie deine Notiz.",
+      "on": "Deine Berichte werden mit {name} geteilt.",
+      "off": "{name} sieht deine Berichte nicht mehr."
     }
   },
   "members": {
@@ -1443,30 +1445,20 @@
   },
   "disciples": {
     "title": "Meine Jünger",
-    "intro": "Die Mitglieder, die dich als Jüngermacher gewählt haben. Du siehst ihre Regelmäßigkeit, nie den Inhalt ihrer Berichte.",
     "empty": "Noch keine Jünger",
-    "emptyText": "Wenn ein Mitglied dich als Jüngermacher wählt und du die Anfrage annimmst, erscheint es hier.",
+    "emptyText": "Wenn ein Mitglied dich als Jüngermacher oder als Autorität wählt und du die Anfrage annimmst, erscheint es hier.",
     "count(plural, param=n)": {
       "one": "{n} Jünger",
       "other": "{n} Jünger"
     },
-    "filled(plural, param=n)": {
-      "one": "{n} Tag von 30 ausgefüllt",
-      "other": "{n} Tage von 30 ausgefüllt"
-    },
-    "streak(plural, param=n)": {
-      "one": "{n} Tag in Folge",
-      "other": "{n} Tage in Folge"
-    },
-    "noStreak": "Keine laufende Serie",
-    "lastToday": "Heute ausgefüllt",
-    "lastYesterday": "Zuletzt: gestern",
-    "lastDaysAgo(plural, param=n)": {
-      "one": "Zuletzt: vor {n} Tag",
-      "other": "Zuletzt: vor {n} Tagen"
-    },
-    "noReport": "Kein Bericht in diesem Jahr",
-    "goals": "Ziele: {percent} %",
-    "notShared": "Teilt seine Regelmäßigkeit nicht"
+    "notShared": "Teilt seine Berichte nicht",
+    "roleMaker": "Du bist sein Jüngermacher",
+    "roleAuthority": "Du bist eine seiner Autoritäten",
+    "dayGoals": "Ziele {percent} %",
+    "dayItems": "{filled} von {total} Punkten · {percent} %",
+    "older": "Die 30 Tage davor ansehen",
+    "noReports": "Kein Bericht in diesem Zeitraum.",
+    "searchHint": "Name oder Benutzername",
+    "noMatch": "Kein Jünger passt zu „{search}“."
   }
 }

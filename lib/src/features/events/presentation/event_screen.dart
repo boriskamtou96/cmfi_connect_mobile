@@ -22,6 +22,7 @@ import '../../../core/widgets/error_view.dart';
 import '../../../core/widgets/motion.dart';
 import '../../../core/widgets/section_card.dart';
 import '../../../core/widgets/segmented_tabs.dart';
+import '../../../core/widgets/skeleton.dart';
 import '../../members/application/my_account.dart';
 import '../application/events_providers.dart';
 import '../domain/event.dart';
@@ -64,7 +65,13 @@ class EventScreen extends ConsumerWidget {
       _ when summary != null => _EventPage(event: summary, loading: true),
       _ => Scaffold(
         appBar: AppBar(leading: const AppBackButton()),
-        body: const Center(child: CircularProgressIndicator()),
+        // the poster (4:5, at most half the screen), then the text
+        body: LoadingDetail(
+          picture: math.min(
+            (MediaQuery.sizeOf(context).width - 2 * AppSpacing.lg) * 5 / 4,
+            MediaQuery.sizeOf(context).height / 2,
+          ),
+        ),
       ),
     };
   }
@@ -322,9 +329,39 @@ class _EventPage extends HookConsumerWidget {
                 ),
                 const SizedBox(height: AppSpacing.lg),
                 if (loading)
-                  const Padding(
-                    padding: EdgeInsets.all(AppSpacing.xl),
-                    child: Center(child: CircularProgressIndicator()),
+                  // the program: an hour, then the moment
+                  Shimmer(
+                    child: Column(
+                      children: [
+                        for (final width in const [0.7, 0.5, 0.8])
+                          Padding(
+                            padding: const EdgeInsets.only(
+                              bottom: AppSpacing.xl,
+                            ),
+                            child: Row(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                const SkeletonBox(width: 40, height: 14),
+                                const SizedBox(width: 56),
+                                Expanded(
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      SkeletonLine(
+                                        widthFactor: width,
+                                        height: 16,
+                                      ),
+                                      const SizedBox(height: AppSpacing.sm),
+                                      SkeletonLine(widthFactor: width * 0.6),
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                      ],
+                    ),
                   )
                 else
                   SharedAxisSwitcher(

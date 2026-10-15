@@ -22,6 +22,7 @@ import '../../../../core/widgets/fade_slide_in.dart';
 import '../../../../core/widgets/goal_ring.dart';
 import '../../../../core/widgets/rolling_text.dart';
 import '../../../../core/widgets/section_card.dart';
+import '../../../../core/widgets/skeleton.dart';
 import '../../../../routing/app_router.dart';
 import '../../../profile/application/current_profile.dart';
 import '../../application/report_files.dart';
@@ -152,12 +153,8 @@ class SummaryView extends HookConsumerWidget {
                 onRetry: () => ref.invalidate(summaryProvider),
               ),
             ],
-            _ => [
-              const Padding(
-                padding: EdgeInsets.all(AppSpacing.xxl),
-                child: Center(child: CircularProgressIndicator()),
-              ),
-            ],
+            // the regularity, then a card per item
+            _ => [const Shimmer(child: SkeletonCards(height: 150))],
           },
         ],
       ),
@@ -581,9 +578,33 @@ class _EvolutionCard extends ConsumerWidget {
               scale: 100,
             )
           else
-            const Padding(
-              padding: EdgeInsets.all(AppSpacing.md),
-              child: Center(child: CircularProgressIndicator()),
+            // the 12 weeks, as bars
+            Shimmer(
+              child: SizedBox(
+                height: 56,
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: [
+                    for (final (i, height) in const [
+                      18.0,
+                      30.0,
+                      24.0,
+                      40.0,
+                      34.0,
+                      46.0,
+                      28.0,
+                      38.0,
+                      50.0,
+                      32.0,
+                      44.0,
+                      36.0,
+                    ].indexed) ...[
+                      if (i > 0) const SizedBox(width: 6),
+                      Expanded(child: SkeletonBox(height: height, radius: 4)),
+                    ],
+                  ],
+                ),
+              ),
             ),
         ],
       ),

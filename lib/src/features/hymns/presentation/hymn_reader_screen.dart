@@ -16,6 +16,7 @@ import '../../../core/theme/app_spacing.dart';
 import '../../../core/theme/app_theme.dart';
 import '../../../core/widgets/app_back_button.dart';
 import '../../../core/widgets/app_toast.dart';
+import '../../../core/widgets/skeleton.dart';
 import '../../../routing/app_router.dart';
 import '../application/hymn_collections.dart';
 import '../application/hymn_library.dart';
@@ -103,11 +104,10 @@ class HymnReaderScreen extends HookConsumerWidget {
     if (book == null || hymn == null) {
       return Scaffold(
         appBar: AppBar(leading: const AppBackButton()),
-        body: Center(
-          child: ref.watch(hymnLibraryProvider).isLoading
-              ? const CircularProgressIndicator()
-              : Text(t.hymns.reader.notFound),
-        ),
+        // the title, then the stanzas
+        body: ref.watch(hymnLibraryProvider).isLoading
+            ? const LoadingDetail()
+            : Center(child: Text(t.hymns.reader.notFound)),
       );
     }
 

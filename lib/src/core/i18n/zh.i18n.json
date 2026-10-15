@@ -12,7 +12,8 @@
     "back": "返回",
     "soon": "即将推出",
     "optional": "（选填）",
-    "and": "和"
+    "and": "和",
+    "loading": "加载中…"
   },
   "errors": {
     "network": "没有网络连接。请检查网络后重试。",
@@ -33,7 +34,8 @@
     "usernameNotFound": "没有人使用这个用户名。请检查拼写。",
     "ownerCannotLeave": "这个事项是你创建的：请删除它，而不是退出。",
     "tooManyPeople": "你的名单已满（最多 500 人）。",
-    "avatarInvalid": "这张照片无法使用，请选择另一张。"
+    "avatarInvalid": "这张照片无法使用，请选择另一张。",
+    "reportsNotShared": "该成员不再分享其报告。"
   },
   "validation": {
     "required": "此项为必填",
@@ -529,7 +531,7 @@
       "alreadyAdded": "此人已经是你的带领者。",
       "makerExists": "你已经有门训者了。",
       "yourself": "这是你自己的用户名。",
-      "sharingHelp": "你的门徒培育者将能看到你的规律性（填写天数、连续天数、目标百分比），但永远看不到你报告的内容。你可以在他的卡片上停止分享。"
+      "sharingHelp": "{name} 将能看到你的报告：已填写的项目、你的规律性和百分比，但永远看不到你的备注。你可以在他的卡片上停止分享。"
     },
     "statusPending": "等待中",
     "statusDeclined": "已拒绝",
@@ -545,10 +547,10 @@
       "other": "{n} 个请求待查看"
     },
     "sharing": {
-      "title": "分享我的规律性",
-      "help": "{name} 能看到你填写的天数、连续天数和目标完成百分比，但永远看不到你报告的内容。",
-      "on": "你的规律性已与 {name} 分享。",
-      "off": "{name} 不再能看到你的规律性。"
+      "title": "分享我的报告",
+      "help": "{name} 能看到你的报告：已填写的项目、你的规律性和百分比，但永远看不到你的备注。",
+      "on": "你的报告已与 {name} 分享。",
+      "off": "{name} 不再能看到你的报告。"
     }
   },
   "members": {
@@ -1397,26 +1399,19 @@
   },
   "disciples": {
     "title": "我的门徒",
-    "intro": "选择你作为门徒培育者的成员。你能看到他们的规律性，但永远看不到他们报告的内容。",
     "empty": "还没有门徒",
-    "emptyText": "当有成员选择你作为门徒培育者、并且你接受了请求，他就会出现在这里。",
+    "emptyText": "当有成员选择你作为门训者或属灵权柄、并且你接受了请求，他就会出现在这里。",
     "count(plural, param=n)": {
       "other": "{n} 位门徒"
     },
-    "filled(plural, param=n)": {
-      "other": "30 天中填写了 {n} 天"
-    },
-    "streak(plural, param=n)": {
-      "other": "连续 {n} 天"
-    },
-    "noStreak": "当前没有连续记录",
-    "lastToday": "今天已填写",
-    "lastYesterday": "最近一次：昨天",
-    "lastDaysAgo(plural, param=n)": {
-      "other": "最近一次：{n} 天前"
-    },
-    "noReport": "今年没有报告",
-    "goals": "目标：{percent} %",
-    "notShared": "未分享其规律性"
+    "notShared": "未分享其报告",
+    "roleMaker": "你是他的门训者",
+    "roleAuthority": "你是他的属灵权柄之一",
+    "dayGoals": "目标 {percent} %",
+    "dayItems": "{total} 项中填写了 {filled} 项 · {percent} %",
+    "older": "查看之前的 30 天",
+    "noReports": "这段时间没有报告。",
+    "searchHint": "姓名或用户名",
+    "noMatch": "没有与“{search}”匹配的门徒。"
   }
 }

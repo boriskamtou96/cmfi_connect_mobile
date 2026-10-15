@@ -46,8 +46,8 @@ class MoreScreen extends ConsumerWidget {
     final sending = ref.watch(reportSendingProvider);
     final account = ref.watch(myAccountProvider).value;
     final requests = ref.watch(authorityRequestsProvider).value?.length ?? 0;
-    // the members who chose the user as disciple maker
-    final disciples = ref.watch(disciplesProvider).value ?? const [];
+    // the members who chose the user as disciple maker or authority
+    final disciples = ref.watch(disciplesListProvider()).value?.total ?? 0;
     final unread = ref.watch(inboxProvider).value?.unread ?? 0;
     final premium = ref.watch(premiumProvider).value ?? false;
     // v1: Premium is offered to everyone, nothing leads to the paywall
@@ -162,7 +162,7 @@ class MoreScreen extends ConsumerWidget {
                     trailing: const Icon(AppIcons.chevronRight),
                     onTap: () => context.router.push(const AuthoritiesRoute()),
                   ),
-                  if (disciples.isNotEmpty)
+                  if (disciples > 0)
                     ListTile(
                       leading: moduleIcon(
                         AppIcons.disciplesTile,
@@ -173,7 +173,7 @@ class MoreScreen extends ConsumerWidget {
                         style: const TextStyle(fontWeight: FontWeight.w600),
                       ),
                       subtitle: Text(
-                        t.disciples.count(n: disciples.length),
+                        t.disciples.count(n: disciples),
                         style: TextStyle(
                           fontSize: 13,
                           color: scheme.onSurfaceVariant,

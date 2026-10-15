@@ -102,6 +102,7 @@ class _Translations$common$es extends Translations$common$fr {
 	@override String get soon => 'Pronto';
 	@override String get optional => '(opcional)';
 	@override String get and => 'y';
+	@override String get loading => 'Cargando…';
 }
 
 // Path: errors
@@ -130,6 +131,7 @@ class _Translations$errors$es extends Translations$errors$fr {
 	@override String get ownerCannotLeave => 'Tú creaste este motivo: elimínalo en lugar de dejarlo.';
 	@override String get tooManyPeople => 'Tus listas están llenas (500 personas como máximo).';
 	@override String get avatarInvalid => 'Esta foto no se puede usar. Elige otra.';
+	@override String get reportsNotShared => 'Este miembro ya no comparte sus informes.';
 }
 
 // Path: validation
@@ -1002,31 +1004,21 @@ class _Translations$disciples$es extends Translations$disciples$fr {
 
 	// Translations
 	@override String get title => 'Mis discípulos';
-	@override String get intro => 'Los miembros que te eligieron como hacedor de discípulos. Ves su regularidad, nunca el contenido de sus informes.';
 	@override String get empty => 'Aún no hay discípulos';
-	@override String get emptyText => 'Cuando un miembro te elige como hacedor de discípulos y aceptas su solicitud, aparece aquí.';
+	@override String get emptyText => 'Cuando un miembro te elige como hacedor de discípulos o como autoridad y aceptas su solicitud, aparece aquí.';
 	@override String count({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('es'))(n,
 		one: '${n} discípulo',
 		other: '${n} discípulos',
 	);
-	@override String filled({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('es'))(n,
-		one: '${n} día rellenado de 30',
-		other: '${n} días rellenados de 30',
-	);
-	@override String streak({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('es'))(n,
-		one: '${n} día seguido',
-		other: '${n} días seguidos',
-	);
-	@override String get noStreak => 'Sin racha en curso';
-	@override String get lastToday => 'Rellenado hoy';
-	@override String get lastYesterday => 'Último: ayer';
-	@override String lastDaysAgo({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('es'))(n,
-		one: 'Último: hace ${n} día',
-		other: 'Último: hace ${n} días',
-	);
-	@override String get noReport => 'Ningún informe este año';
-	@override String goals({required Object percent}) => 'Objetivos: ${percent} %';
-	@override String get notShared => 'No comparte su regularidad';
+	@override String get notShared => 'No comparte sus informes';
+	@override String get roleMaker => 'Eres su hacedor de discípulos';
+	@override String get roleAuthority => 'Eres una de sus autoridades';
+	@override String dayGoals({required Object percent}) => 'Objetivos ${percent} %';
+	@override String dayItems({required Object filled, required Object total, required Object percent}) => '${filled} de ${total} elementos · ${percent} %';
+	@override String get older => 'Ver los 30 días anteriores';
+	@override String get noReports => 'Ningún informe en este periodo.';
+	@override String get searchHint => 'Nombre o usuario';
+	@override String noMatch({required Object search}) => 'Ningún discípulo coincide con «${search}».';
 }
 
 // Path: onboarding.reports
@@ -1398,7 +1390,7 @@ class _Translations$authorities$form$es extends Translations$authorities$form$fr
 	@override String get alreadyAdded => 'Esta persona ya forma parte de tus autoridades.';
 	@override String get makerExists => 'Ya tienes un discipulador.';
 	@override String get yourself => 'Es tu propio nombre de usuario.';
-	@override String get sharingHelp => 'Tu hacedor de discípulos verá tu regularidad (días rellenados, racha, % de objetivos), nunca el contenido de tus informes. Puedes detenerlo en su ficha.';
+	@override String sharingHelp({required Object name}) => '${name} verá tus informes: los elementos rellenados, tu regularidad y tus porcentajes, nunca tu nota. Puedes detenerlo en su ficha.';
 }
 
 // Path: authorities.sharing
@@ -1408,10 +1400,10 @@ class _Translations$authorities$sharing$es extends Translations$authorities$shar
 	final TranslationsEs _root; // ignore: unused_field
 
 	// Translations
-	@override String get title => 'Compartir mi regularidad';
-	@override String help({required Object name}) => '${name} ve los días que rellenaste, tu racha y el % de tus objetivos, nunca el contenido de tus informes.';
-	@override String on({required Object name}) => 'Tu regularidad se comparte con ${name}.';
-	@override String off({required Object name}) => '${name} ya no ve tu regularidad.';
+	@override String get title => 'Compartir mis informes';
+	@override String help({required Object name}) => '${name} ve tus informes: los elementos rellenados, tu regularidad y tus porcentajes, nunca tu nota.';
+	@override String on({required Object name}) => 'Tus informes se comparten con ${name}.';
+	@override String off({required Object name}) => '${name} ya no ve tus informes.';
 }
 
 // Path: members.deleteAccount
@@ -2218,6 +2210,7 @@ extension on TranslationsEs {
 			'common.soon' => 'Pronto',
 			'common.optional' => '(opcional)',
 			'common.and' => 'y',
+			'common.loading' => 'Cargando…',
 			'errors.network' => 'Sin conexión a internet. Revisa tu red y vuelve a intentarlo.',
 			'errors.unauthorized' => 'Tu sesión ha expirado. Vuelve a iniciar sesión.',
 			'errors.invalidCredentials' => 'Número de teléfono o contraseña incorrectos.',
@@ -2237,6 +2230,7 @@ extension on TranslationsEs {
 			'errors.ownerCannotLeave' => 'Tú creaste este motivo: elimínalo en lugar de dejarlo.',
 			'errors.tooManyPeople' => 'Tus listas están llenas (500 personas como máximo).',
 			'errors.avatarInvalid' => 'Esta foto no se puede usar. Elige otra.',
+			'errors.reportsNotShared' => 'Este miembro ya no comparte sus informes.',
 			'validation.required' => 'Este campo es obligatorio',
 			'validation.passwordTooShort' => 'Al menos 6 caracteres',
 			'validation.invalidPhone' => 'Número de teléfono no válido',
@@ -2628,7 +2622,7 @@ extension on TranslationsEs {
 			'authorities.form.alreadyAdded' => 'Esta persona ya forma parte de tus autoridades.',
 			'authorities.form.makerExists' => 'Ya tienes un discipulador.',
 			'authorities.form.yourself' => 'Es tu propio nombre de usuario.',
-			'authorities.form.sharingHelp' => 'Tu hacedor de discípulos verá tu regularidad (días rellenados, racha, % de objetivos), nunca el contenido de tus informes. Puedes detenerlo en su ficha.',
+			'authorities.form.sharingHelp' => ({required Object name}) => '${name} verá tus informes: los elementos rellenados, tu regularidad y tus porcentajes, nunca tu nota. Puedes detenerlo en su ficha.',
 			'authorities.statusPending' => 'Pendiente',
 			'authorities.statusDeclined' => 'Rechazada',
 			'authorities.pendingHelp' => ({required Object name}) => 'Sus datos de contacto aparecerán cuando ${name} acepte.',
@@ -2640,10 +2634,10 @@ extension on TranslationsEs {
 			'authorities.acceptedRequest' => ({required Object name}) => 'Ahora acompañas a ${name}.',
 			'authorities.declinedRequest' => ({required Object name}) => 'Solicitud de ${name} rechazada.',
 			'authorities.requestsCount' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('es'))(n, one: '${n} solicitud por revisar', other: '${n} solicitudes por revisar', ), 
-			'authorities.sharing.title' => 'Compartir mi regularidad',
-			'authorities.sharing.help' => ({required Object name}) => '${name} ve los días que rellenaste, tu racha y el % de tus objetivos, nunca el contenido de tus informes.',
-			'authorities.sharing.on' => ({required Object name}) => 'Tu regularidad se comparte con ${name}.',
-			'authorities.sharing.off' => ({required Object name}) => '${name} ya no ve tu regularidad.',
+			'authorities.sharing.title' => 'Compartir mis informes',
+			'authorities.sharing.help' => ({required Object name}) => '${name} ve tus informes: los elementos rellenados, tu regularidad y tus porcentajes, nunca tu nota.',
+			'authorities.sharing.on' => ({required Object name}) => 'Tus informes se comparten con ${name}.',
+			'authorities.sharing.off' => ({required Object name}) => '${name} ya no ve tus informes.',
 			'members.username' => 'Nombre de usuario',
 			'members.usernameHint' => 'nombre.apellido',
 			'members.usernameHelp' => 'Así te encontrarán los demás miembros.',
@@ -2717,10 +2711,10 @@ extension on TranslationsEs {
 			'hymns.reader.addFavorite' => 'Añadir a favoritos',
 			'hymns.reader.removeFavorite' => 'Quitar de favoritos',
 			'hymns.reader.favoriteAdded' => 'Añadido a favoritos',
-			'hymns.reader.favoriteRemoved' => 'Quitado de favoritos',
-			'hymns.reader.more' => 'Más opciones',
 			_ => null,
 		} ?? switch (path) {
+			'hymns.reader.favoriteRemoved' => 'Quitado de favoritos',
+			'hymns.reader.more' => 'Más opciones',
 			'hymns.reader.copy' => 'Copiar la letra',
 			'hymns.reader.copied' => 'Letra copiada',
 			'hymns.reader.project' => 'Modo proyección',
@@ -3231,10 +3225,10 @@ extension on TranslationsEs {
 			'prayer.importunity.inviteSheet.sent' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('es'))(n, zero: 'Ya estaban invitados.', one: '${n} invitación enviada', other: '${n} invitaciones enviadas', ), 
 			'sending.title' => 'Envío a mis autoridades',
 			'sending.moreOff' => 'Desactivado',
-			'sending.intro' => 'En el momento elegido, CMFI Connect prepara tu informe del período. Solo tienes que enviarlo a tus autoridades espirituales.',
-			'sending.enabled' => 'Prepararlo regularmente',
 			_ => null,
 		} ?? switch (path) {
+			'sending.intro' => 'En el momento elegido, CMFI Connect prepara tu informe del período. Solo tienes que enviarlo a tus autoridades espirituales.',
+			'sending.enabled' => 'Prepararlo regularmente',
 			'sending.rhythm' => 'Ritmo',
 			'sending.weekly' => 'Cada semana',
 			'sending.biweekly' => 'Cada 2 semanas',
@@ -3316,19 +3310,18 @@ extension on TranslationsEs {
 			'profilePhoto.saved' => 'Tu foto de perfil está guardada.',
 			'profilePhoto.removed' => 'Tu foto de perfil se ha quitado.',
 			'disciples.title' => 'Mis discípulos',
-			'disciples.intro' => 'Los miembros que te eligieron como hacedor de discípulos. Ves su regularidad, nunca el contenido de sus informes.',
 			'disciples.empty' => 'Aún no hay discípulos',
-			'disciples.emptyText' => 'Cuando un miembro te elige como hacedor de discípulos y aceptas su solicitud, aparece aquí.',
+			'disciples.emptyText' => 'Cuando un miembro te elige como hacedor de discípulos o como autoridad y aceptas su solicitud, aparece aquí.',
 			'disciples.count' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('es'))(n, one: '${n} discípulo', other: '${n} discípulos', ), 
-			'disciples.filled' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('es'))(n, one: '${n} día rellenado de 30', other: '${n} días rellenados de 30', ), 
-			'disciples.streak' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('es'))(n, one: '${n} día seguido', other: '${n} días seguidos', ), 
-			'disciples.noStreak' => 'Sin racha en curso',
-			'disciples.lastToday' => 'Rellenado hoy',
-			'disciples.lastYesterday' => 'Último: ayer',
-			'disciples.lastDaysAgo' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('es'))(n, one: 'Último: hace ${n} día', other: 'Último: hace ${n} días', ), 
-			'disciples.noReport' => 'Ningún informe este año',
-			'disciples.goals' => ({required Object percent}) => 'Objetivos: ${percent} %',
-			'disciples.notShared' => 'No comparte su regularidad',
+			'disciples.notShared' => 'No comparte sus informes',
+			'disciples.roleMaker' => 'Eres su hacedor de discípulos',
+			'disciples.roleAuthority' => 'Eres una de sus autoridades',
+			'disciples.dayGoals' => ({required Object percent}) => 'Objetivos ${percent} %',
+			'disciples.dayItems' => ({required Object filled, required Object total, required Object percent}) => '${filled} de ${total} elementos · ${percent} %',
+			'disciples.older' => 'Ver los 30 días anteriores',
+			'disciples.noReports' => 'Ningún informe en este periodo.',
+			'disciples.searchHint' => 'Nombre o usuario',
+			'disciples.noMatch' => ({required Object search}) => 'Ningún discípulo coincide con «${search}».',
 			_ => null,
 		};
 	}

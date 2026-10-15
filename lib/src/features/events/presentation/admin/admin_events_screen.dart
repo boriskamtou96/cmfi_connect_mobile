@@ -9,6 +9,7 @@ import '../../../../core/widgets/error_view.dart';
 import '../../../../core/widgets/fade_slide_in.dart';
 import '../../../../core/widgets/motion.dart';
 import '../../../../core/widgets/section_card.dart';
+import '../../../../core/widgets/skeleton.dart';
 import '../../../../core/widgets/sub_page.dart';
 import '../../../../routing/app_router.dart';
 import '../../application/event_admin.dart';
@@ -88,7 +89,8 @@ class AdminEventsScreen extends ConsumerWidget {
           error: error,
           onRetry: () => ref.invalidate(adminEventsProvider),
         ),
-        _ => const Center(child: CircularProgressIndicator()),
+        // the events with their posters
+        _ => const LoadingList(count: 5, leading: 64, round: false, lines: 3),
       },
     );
   }

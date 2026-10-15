@@ -6,6 +6,7 @@ import '../../../core/i18n/strings.g.dart';
 import '../../../core/network/app_exception_message.dart';
 import '../../../core/theme/app_spacing.dart';
 import '../../../core/widgets/section_card.dart';
+import '../../../core/widgets/skeleton.dart';
 import '../../../core/widgets/sub_page.dart';
 import '../application/prayer_topics.dart';
 import '../domain/prayer.dart';
@@ -49,10 +50,8 @@ class PrayerTopicsScreen extends ConsumerWidget {
             userMessageFor(error, t),
             style: TextStyle(color: scheme.onSurfaceVariant),
           ),
-          _ => const Padding(
-            padding: EdgeInsets.all(AppSpacing.lg),
-            child: Center(child: CircularProgressIndicator()),
-          ),
+          // the cards of the topics
+          _ => const Shimmer(child: SkeletonCards(count: 2, height: 96)),
         },
       ],
     );

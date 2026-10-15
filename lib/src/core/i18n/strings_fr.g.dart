@@ -376,9 +376,6 @@ class Translations$home$fr {
 	/// fr: 'Mon profil'
 	String get profile => 'Mon profil';
 
-	/// fr: 'Compte rendu du jour'
-	String get todayTitle => 'Compte rendu du jour';
-
 	/// fr: '{filled} sur {total}'
 	String progress({required Object filled, required Object total}) => '${filled} sur ${total}';
 
@@ -388,20 +385,8 @@ class Translations$home$fr {
 	/// fr: 'objectifs'
 	String get goals => 'objectifs';
 
-	/// fr: 'Continuer'
-	String get continueReport => 'Continuer';
-
-	/// fr: 'Commencer'
-	String get startReport => 'Commencer';
-
 	/// fr: 'Ta semaine'
 	String get weekTitle => 'Ta semaine';
-
-	/// fr: '(one) {{filled} jour sur {total}} (other) {{filled} jours sur {total}}'
-	String weekScore({required num filled, required Object total}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('fr'))(filled,
-		one: '${filled} jour sur ${total}',
-		other: '${filled} jours sur ${total}',
-	);
 
 	/// fr: 'Actuellement à la CMCI'
 	String get community => 'Actuellement à la CMCI';
@@ -412,23 +397,47 @@ class Translations$home$fr {
 	/// fr: 'Cantiques'
 	String get hymnsTitle => 'Cantiques';
 
-	/// fr: 'Reprendre le n° {number}'
-	String hymnsResume({required Object number}) => 'Reprendre le n° ${number}';
-
 	/// fr: 'Ouvrir le recueil'
 	String get hymnsOpen => 'Ouvrir le recueil';
 
-	/// fr: '(one) {{n} jour d'affilée} (other) {{n} jours d'affilée}'
-	String streak({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('fr'))(n,
-		one: '${n} jour d\'affilée',
-		other: '${n} jours d\'affilée',
+	/// fr: 'Continuer mon compte rendu'
+	String get continueMyReport => 'Continuer mon compte rendu';
+
+	/// fr: 'Commencer mon compte rendu'
+	String get startMyReport => 'Commencer mon compte rendu';
+
+	/// fr: 'éléments'
+	String get items => 'éléments';
+
+	/// fr: 'Objectifs'
+	String get goalsTitle => 'Objectifs';
+
+	/// fr: 'Retraites'
+	String get retreatsTitle => 'Retraites';
+
+	/// fr: '{n} sur 4'
+	String retreatsValue({required Object n}) => '${n} sur 4';
+
+	/// fr: 'Série'
+	String get streakTitle => 'Série';
+
+	/// fr: 'À reprendre'
+	String get resume => 'À reprendre';
+
+	/// fr: 'Cantique n° {number}'
+	String hymnNumber({required Object number}) => 'Cantique n° ${number}';
+
+	/// fr: 'Tout voir'
+	String get seeAll => 'Tout voir';
+
+	/// fr: 'Les 4 retraites du jour sont faites'
+	String get retreatsDone => 'Les 4 retraites du jour sont faites';
+
+	/// fr: '(one) {{n} jour} (other) {{n} jours}'
+	String days({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('fr'))(n,
+		one: '${n} jour',
+		other: '${n} jours',
 	);
-
-	/// fr: 'Remplis aujourd'hui pour continuer'
-	String get streakKeep => 'Remplis aujourd\'hui pour continuer';
-
-	/// fr: 'Bravo, continue demain !'
-	String get streakToday => 'Bravo, continue demain !';
 }
 
 // Path: reports
@@ -4890,22 +4899,26 @@ extension on Translations {
 			'home.greeting' => ({required Object name}) => 'Bonjour ${name}',
 			'home.greetingNoName' => 'Bonjour',
 			'home.profile' => 'Mon profil',
-			'home.todayTitle' => 'Compte rendu du jour',
 			'home.progress' => ({required Object filled, required Object total}) => '${filled} sur ${total}',
 			'home.progressLabel' => 'éléments renseignés',
 			'home.goals' => 'objectifs',
-			'home.continueReport' => 'Continuer',
-			'home.startReport' => 'Commencer',
 			'home.weekTitle' => 'Ta semaine',
-			'home.weekScore' => ({required num filled, required Object total}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('fr'))(filled, one: '${filled} jour sur ${total}', other: '${filled} jours sur ${total}', ), 
 			'home.community' => 'Actuellement à la CMCI',
 			'home.eventsTitle' => 'Évènements',
 			'home.hymnsTitle' => 'Cantiques',
-			'home.hymnsResume' => ({required Object number}) => 'Reprendre le n° ${number}',
 			'home.hymnsOpen' => 'Ouvrir le recueil',
-			'home.streak' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('fr'))(n, one: '${n} jour d\'affilée', other: '${n} jours d\'affilée', ), 
-			'home.streakKeep' => 'Remplis aujourd\'hui pour continuer',
-			'home.streakToday' => 'Bravo, continue demain !',
+			'home.continueMyReport' => 'Continuer mon compte rendu',
+			'home.startMyReport' => 'Commencer mon compte rendu',
+			'home.items' => 'éléments',
+			'home.goalsTitle' => 'Objectifs',
+			'home.retreatsTitle' => 'Retraites',
+			'home.retreatsValue' => ({required Object n}) => '${n} sur 4',
+			'home.streakTitle' => 'Série',
+			'home.resume' => 'À reprendre',
+			'home.hymnNumber' => ({required Object number}) => 'Cantique n° ${number}',
+			'home.seeAll' => 'Tout voir',
+			'home.retreatsDone' => 'Les 4 retraites du jour sont faites',
+			'home.days' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('fr'))(n, one: '${n} jour', other: '${n} jours', ), 
 			'reports.title' => 'Compte rendu',
 			'reports.myItems' => 'Mes éléments',
 			'reports.tabs.today' => 'Aujourd\'hui',
@@ -5249,12 +5262,12 @@ extension on Translations {
 			'hymns.reader.background' => 'Fond',
 			'hymns.reader.themeAuto' => 'Auto',
 			'hymns.reader.themeLight' => 'Clair',
+			_ => null,
+		} ?? switch (path) {
 			'hymns.reader.themeSepia' => 'Sépia',
 			'hymns.reader.themeDark' => 'Sombre',
 			'hymns.reader.repeatChorus' => 'Répéter le refrain après chaque couplet',
 			'hymns.reader.keepScreenOn' => 'Garder l\'écran allumé',
-			_ => null,
-		} ?? switch (path) {
 			'hymns.reader.addFavorite' => 'Ajouter aux favoris',
 			'hymns.reader.removeFavorite' => 'Retirer des favoris',
 			'hymns.reader.favoriteAdded' => 'Ajouté aux favoris',
@@ -5763,12 +5776,12 @@ extension on Translations {
 			'prayer.importunity.form.goalPlaceholder' => '10 000',
 			'prayer.importunity.form.create' => 'Créer',
 			'prayer.importunity.form.save' => 'Enregistrer',
+			_ => null,
+		} ?? switch (path) {
 			'prayer.importunity.inviteSheet.title' => 'Inviter à prier',
 			'prayer.importunity.inviteSheet.family' => 'Ma famille spirituelle',
 			'prayer.importunity.inviteSheet.familyText' => ({required num n, required Object name}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('fr'))(n, one: '${name} et ses disciples : ${n} personne', other: '${name} et ses disciples : ${n} personnes', ), 
 			'prayer.importunity.inviteSheet.familyMissing' => 'Lie ton faiseur de disciples (FD) dans Mes autorités spirituelles pour inviter ta famille spirituelle.',
-			_ => null,
-		} ?? switch (path) {
 			'prayer.importunity.inviteSheet.byUsername' => 'Par pseudo',
 			'prayer.importunity.inviteSheet.usernameLabel' => 'Pseudo',
 			'prayer.importunity.inviteSheet.addUsername' => 'Ajouter',

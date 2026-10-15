@@ -239,28 +239,29 @@ class _Translations$home$de extends Translations$home$fr {
 	@override String greeting({required Object name}) => 'Hallo ${name}';
 	@override String get greetingNoName => 'Hallo';
 	@override String get profile => 'Mein Profil';
-	@override String get todayTitle => 'Bericht von heute';
 	@override String progress({required Object filled, required Object total}) => '${filled} von ${total}';
 	@override String get progressLabel => 'Elemente ausgefüllt';
 	@override String get goals => 'Ziele';
-	@override String get continueReport => 'Weiter';
-	@override String get startReport => 'Beginnen';
 	@override String get weekTitle => 'Deine Woche';
-	@override String weekScore({required num filled, required Object total}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('de'))(filled,
-		one: '${filled} von ${total} Tagen',
-		other: '${filled} von ${total} Tagen',
-	);
 	@override String get community => 'Aktuell bei der CMFI';
 	@override String get eventsTitle => 'Veranstaltungen';
 	@override String get hymnsTitle => 'Lieder';
-	@override String hymnsResume({required Object number}) => 'Weiter bei Nr. ${number}';
 	@override String get hymnsOpen => 'Liederbuch öffnen';
-	@override String streak({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('de'))(n,
-		one: '${n} Tag in Folge',
-		other: '${n} Tage in Folge',
+	@override String get continueMyReport => 'Bericht fortsetzen';
+	@override String get startMyReport => 'Bericht beginnen';
+	@override String get items => 'Punkte';
+	@override String get goalsTitle => 'Ziele';
+	@override String get retreatsTitle => 'Gebetszeiten';
+	@override String retreatsValue({required Object n}) => '${n} von 4';
+	@override String get streakTitle => 'Serie';
+	@override String get resume => 'Weitermachen';
+	@override String hymnNumber({required Object number}) => 'Lied Nr. ${number}';
+	@override String get seeAll => 'Alle ansehen';
+	@override String get retreatsDone => 'Die 4 Gebetszeiten des Tages sind gemacht';
+	@override String days({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('de'))(n,
+		one: '${n} Tag',
+		other: '${n} Tage',
 	);
-	@override String get streakKeep => 'Fülle heute aus, um dranzubleiben';
-	@override String get streakToday => 'Super, mach morgen weiter!';
 }
 
 // Path: reports
@@ -2515,22 +2516,26 @@ extension on TranslationsDe {
 			'home.greeting' => ({required Object name}) => 'Hallo ${name}',
 			'home.greetingNoName' => 'Hallo',
 			'home.profile' => 'Mein Profil',
-			'home.todayTitle' => 'Bericht von heute',
 			'home.progress' => ({required Object filled, required Object total}) => '${filled} von ${total}',
 			'home.progressLabel' => 'Elemente ausgefüllt',
 			'home.goals' => 'Ziele',
-			'home.continueReport' => 'Weiter',
-			'home.startReport' => 'Beginnen',
 			'home.weekTitle' => 'Deine Woche',
-			'home.weekScore' => ({required num filled, required Object total}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('de'))(filled, one: '${filled} von ${total} Tagen', other: '${filled} von ${total} Tagen', ), 
 			'home.community' => 'Aktuell bei der CMFI',
 			'home.eventsTitle' => 'Veranstaltungen',
 			'home.hymnsTitle' => 'Lieder',
-			'home.hymnsResume' => ({required Object number}) => 'Weiter bei Nr. ${number}',
 			'home.hymnsOpen' => 'Liederbuch öffnen',
-			'home.streak' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('de'))(n, one: '${n} Tag in Folge', other: '${n} Tage in Folge', ), 
-			'home.streakKeep' => 'Fülle heute aus, um dranzubleiben',
-			'home.streakToday' => 'Super, mach morgen weiter!',
+			'home.continueMyReport' => 'Bericht fortsetzen',
+			'home.startMyReport' => 'Bericht beginnen',
+			'home.items' => 'Punkte',
+			'home.goalsTitle' => 'Ziele',
+			'home.retreatsTitle' => 'Gebetszeiten',
+			'home.retreatsValue' => ({required Object n}) => '${n} von 4',
+			'home.streakTitle' => 'Serie',
+			'home.resume' => 'Weitermachen',
+			'home.hymnNumber' => ({required Object number}) => 'Lied Nr. ${number}',
+			'home.seeAll' => 'Alle ansehen',
+			'home.retreatsDone' => 'Die 4 Gebetszeiten des Tages sind gemacht',
+			'home.days' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('de'))(n, one: '${n} Tag', other: '${n} Tage', ), 
 			'reports.title' => 'Tagesbericht',
 			'reports.myItems' => 'Meine Elemente',
 			'reports.tabs.today' => 'Heute',
@@ -2874,12 +2879,12 @@ extension on TranslationsDe {
 			'hymns.reader.background' => 'Hintergrund',
 			'hymns.reader.themeAuto' => 'Auto',
 			'hymns.reader.themeLight' => 'Hell',
+			_ => null,
+		} ?? switch (path) {
 			'hymns.reader.themeSepia' => 'Sepia',
 			'hymns.reader.themeDark' => 'Dunkel',
 			'hymns.reader.repeatChorus' => 'Refrain nach jeder Strophe wiederholen',
 			'hymns.reader.keepScreenOn' => 'Bildschirm eingeschaltet lassen',
-			_ => null,
-		} ?? switch (path) {
 			'hymns.reader.addFavorite' => 'Zu Favoriten hinzufügen',
 			'hymns.reader.removeFavorite' => 'Aus Favoriten entfernen',
 			'hymns.reader.favoriteAdded' => 'Zu Favoriten hinzugefügt',
@@ -3388,12 +3393,12 @@ extension on TranslationsDe {
 			'prayer.importunity.form.goalPlaceholder' => '10.000',
 			'prayer.importunity.form.create' => 'Erstellen',
 			'prayer.importunity.form.save' => 'Speichern',
+			_ => null,
+		} ?? switch (path) {
 			'prayer.importunity.inviteSheet.title' => 'Zum Beten einladen',
 			'prayer.importunity.inviteSheet.family' => 'Meine geistliche Familie',
 			'prayer.importunity.inviteSheet.familyText' => ({required num n, required Object name}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('de'))(n, one: '${name} und die Jünger: ${n} Person', other: '${name} und die Jünger: ${n} Personen', ), 
 			'prayer.importunity.inviteSheet.familyMissing' => 'Verknüpfe deinen Jüngermacher unter „Meine geistlichen Autoritäten“, um deine geistliche Familie einzuladen.',
-			_ => null,
-		} ?? switch (path) {
 			'prayer.importunity.inviteSheet.byUsername' => 'Per Benutzername',
 			'prayer.importunity.inviteSheet.usernameLabel' => 'Benutzername',
 			'prayer.importunity.inviteSheet.addUsername' => 'Hinzufügen',

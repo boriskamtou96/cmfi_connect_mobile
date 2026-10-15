@@ -16,8 +16,10 @@ import '../../../core/widgets/cmfi_logo.dart';
 import '../application/verse_of_the_day.dart';
 import '../domain/verse.dart';
 
-/// Today's verse on the home screen; the share button makes a card of it.
-/// A tap reads it in the Bible ([onRead], with its key: "JHN.3.16").
+/// Today's verse on the home screen, without a card: a gold rule, the words
+/// in Lora, the reference and the Bible it comes from; the book opens it in
+/// the Bible ([onRead], with its key: "JHN.3.16"), the arrow makes a card of
+/// it to share.
 class VerseOfTheDayCard extends ConsumerWidget {
   const VerseOfTheDayCard({this.onRead, super.key});
 
@@ -31,83 +33,93 @@ class VerseOfTheDayCard extends ConsumerWidget {
     }
     final t = context.t.verses;
     final scheme = Theme.of(context).colorScheme;
+    final dark = Theme.of(context).brightness == Brightness.dark;
     final osis = verse.osis;
     final read = onRead == null || osis == null ? null : () => onRead!(osis);
 
-    return Material(
-      color: scheme.surface,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(AppRadius.xl),
-        side: BorderSide(color: scheme.outlineVariant),
-      ),
-      child: Padding(
-        padding: const EdgeInsetsDirectional.fromSTEB(18, 14, 6, 16),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+    return Padding(
+      padding: const EdgeInsetsDirectional.only(start: 4),
+      child: IntrinsicHeight(
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            Row(
-              children: [
-                const Icon(AppIcons.verse, size: 18, color: AppColors.gold),
-                const SizedBox(width: AppSpacing.sm),
-                Expanded(
-                  child: Text(
-                    t.title.toUpperCase(),
-                    style: TextStyle(
-                      fontSize: 12,
-                      fontWeight: FontWeight.w800,
-                      letterSpacing: 1.2,
-                      color: scheme.primary,
-                    ),
-                  ),
-                ),
-                if (read != null)
-                  IconButton(
-                    tooltip: context.t.bible.readInBible,
-                    icon: const Icon(AppIcons.bible, size: 20),
-                    onPressed: read,
-                  ),
-                IconButton(
-                  tooltip: t.share,
-                  icon: const Icon(AppIcons.share, size: 20),
-                  onPressed: () => showVerseShareSheet(context, verse),
-                ),
-              ],
+            Container(
+              width: 3,
+              decoration: BoxDecoration(
+                color: AppColors.gold,
+                borderRadius: BorderRadius.circular(2),
+              ),
             ),
-            Semantics(
-              button: read != null,
-              hint: read == null ? null : context.t.bible.readInBible,
-              child: InkWell(
-                onTap: read,
-                borderRadius: BorderRadius.circular(AppRadius.md),
-                child: Padding(
-                  padding: const EdgeInsetsDirectional.only(end: 12),
+            const SizedBox(width: AppSpacing.lg),
+            Expanded(
+              child: Semantics(
+                button: read != null,
+                hint: read == null ? null : context.t.bible.readInBible,
+                child: InkWell(
+                  onTap: read,
+                  borderRadius: BorderRadius.circular(AppRadius.md),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
+                      Text(
+                        t.title,
+                        style: TextStyle(
+                          fontSize: 13,
+                          fontWeight: FontWeight.w700,
+                          color: dark
+                              ? AppColors.goldLight
+                              : const Color(0xFFB57F12),
+                        ),
+                      ),
+                      const SizedBox(height: AppSpacing.sm),
                       Text(
                         verse.text,
                         style: const TextStyle(
                           fontFamily: 'Lora',
                           fontStyle: FontStyle.italic,
-                          fontSize: 17,
-                          height: 1.45,
+                          fontSize: 19,
+                          height: 1.5,
                         ),
                       ),
-                      const SizedBox(height: AppSpacing.sm),
-                      Text(
-                        verse.reference,
-                        style: const TextStyle(
-                          fontSize: 14,
-                          fontWeight: FontWeight.w700,
-                        ),
-                      ),
-                      const SizedBox(height: 2),
-                      Text(
-                        verse.source,
-                        style: TextStyle(
-                          fontSize: 11,
-                          color: scheme.onSurfaceVariant,
-                        ),
+                      const SizedBox(height: 10),
+                      Row(
+                        children: [
+                          Expanded(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  verse.reference,
+                                  style: const TextStyle(
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.w700,
+                                  ),
+                                ),
+                                Text(
+                                  verse.source,
+                                  style: TextStyle(
+                                    fontSize: 11,
+                                    color: scheme.onSurfaceVariant,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          if (read != null)
+                            IconButton(
+                              tooltip: context.t.bible.readInBible,
+                              color: scheme.onSurfaceVariant,
+                              icon: const Icon(AppIcons.bible, size: 20),
+                              onPressed: read,
+                            ),
+                          IconButton(
+                            tooltip: t.share,
+                            color: scheme.onSurfaceVariant,
+                            icon: const Icon(AppIcons.share, size: 20),
+                            onPressed: () =>
+                                showVerseShareSheet(context, verse),
+                          ),
+                        ],
                       ),
                     ],
                   ),

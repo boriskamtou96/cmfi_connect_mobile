@@ -239,26 +239,28 @@ class _Translations$home$zh extends Translations$home$fr {
 	@override String greeting({required Object name}) => '你好，${name}';
 	@override String get greetingNoName => '你好';
 	@override String get profile => '我的资料';
-	@override String get todayTitle => '今日汇报';
 	@override String progress({required Object filled, required Object total}) => '${filled}/${total}';
 	@override String get progressLabel => '项已填写';
 	@override String get goals => '目标';
-	@override String get continueReport => '继续填写';
-	@override String get startReport => '开始填写';
 	@override String get weekTitle => '你的一周';
-	@override String weekScore({required num filled, required Object total}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(filled,
-		other: '${filled}/${total} 天',
-	);
 	@override String get community => 'CMFI 近况';
 	@override String get eventsTitle => '活动';
 	@override String get hymnsTitle => '诗歌';
-	@override String hymnsResume({required Object number}) => '回到第 ${number} 首';
 	@override String get hymnsOpen => '打开诗歌本';
-	@override String streak({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n,
-		other: '连续 ${n} 天',
+	@override String get continueMyReport => '继续填写汇报';
+	@override String get startMyReport => '开始填写汇报';
+	@override String get items => '项';
+	@override String get goalsTitle => '目标';
+	@override String get retreatsTitle => '灵修';
+	@override String retreatsValue({required Object n}) => '4 次中 ${n} 次';
+	@override String get streakTitle => '连续';
+	@override String get resume => '继续';
+	@override String hymnNumber({required Object number}) => '第 ${number} 首诗歌';
+	@override String get seeAll => '查看全部';
+	@override String get retreatsDone => '今天的 4 次灵修都已完成';
+	@override String days({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n,
+		other: '${n} 天',
 	);
-	@override String get streakKeep => '今天也来填写，保持连续';
-	@override String get streakToday => '太棒了，明天继续！';
 }
 
 // Path: reports
@@ -2460,22 +2462,26 @@ extension on TranslationsZh {
 			'home.greeting' => ({required Object name}) => '你好，${name}',
 			'home.greetingNoName' => '你好',
 			'home.profile' => '我的资料',
-			'home.todayTitle' => '今日汇报',
 			'home.progress' => ({required Object filled, required Object total}) => '${filled}/${total}',
 			'home.progressLabel' => '项已填写',
 			'home.goals' => '目标',
-			'home.continueReport' => '继续填写',
-			'home.startReport' => '开始填写',
 			'home.weekTitle' => '你的一周',
-			'home.weekScore' => ({required num filled, required Object total}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(filled, other: '${filled}/${total} 天', ), 
 			'home.community' => 'CMFI 近况',
 			'home.eventsTitle' => '活动',
 			'home.hymnsTitle' => '诗歌',
-			'home.hymnsResume' => ({required Object number}) => '回到第 ${number} 首',
 			'home.hymnsOpen' => '打开诗歌本',
-			'home.streak' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n, other: '连续 ${n} 天', ), 
-			'home.streakKeep' => '今天也来填写，保持连续',
-			'home.streakToday' => '太棒了，明天继续！',
+			'home.continueMyReport' => '继续填写汇报',
+			'home.startMyReport' => '开始填写汇报',
+			'home.items' => '项',
+			'home.goalsTitle' => '目标',
+			'home.retreatsTitle' => '灵修',
+			'home.retreatsValue' => ({required Object n}) => '4 次中 ${n} 次',
+			'home.streakTitle' => '连续',
+			'home.resume' => '继续',
+			'home.hymnNumber' => ({required Object number}) => '第 ${number} 首诗歌',
+			'home.seeAll' => '查看全部',
+			'home.retreatsDone' => '今天的 4 次灵修都已完成',
+			'home.days' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n, other: '${n} 天', ), 
 			'reports.title' => '每日汇报',
 			'reports.myItems' => '我的项目',
 			'reports.tabs.today' => '今天',
@@ -2819,12 +2825,12 @@ extension on TranslationsZh {
 			'hymns.reader.background' => '背景',
 			'hymns.reader.themeAuto' => '自动',
 			'hymns.reader.themeLight' => '浅色',
+			_ => null,
+		} ?? switch (path) {
 			'hymns.reader.themeSepia' => '羊皮纸',
 			'hymns.reader.themeDark' => '深色',
 			'hymns.reader.repeatChorus' => '每节之后重复副歌',
 			'hymns.reader.keepScreenOn' => '保持屏幕常亮',
-			_ => null,
-		} ?? switch (path) {
 			'hymns.reader.addFavorite' => '加入收藏',
 			'hymns.reader.removeFavorite' => '取消收藏',
 			'hymns.reader.favoriteAdded' => '已加入收藏',
@@ -3333,12 +3339,12 @@ extension on TranslationsZh {
 			'prayer.importunity.form.goalPlaceholder' => '10000',
 			'prayer.importunity.form.create' => '创建',
 			'prayer.importunity.form.save' => '保存',
+			_ => null,
+		} ?? switch (path) {
 			'prayer.importunity.inviteSheet.title' => '邀请一起祷告',
 			'prayer.importunity.inviteSheet.family' => '我的属灵家人',
 			'prayer.importunity.inviteSheet.familyText' => ({required num n, required Object name}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n, other: '${name}及其门徒：${n} 人', ), 
 			'prayer.importunity.inviteSheet.familyMissing' => '在「我的属灵带领者」中关联你的门训者，就能邀请你的属灵家人。',
-			_ => null,
-		} ?? switch (path) {
 			'prayer.importunity.inviteSheet.byUsername' => '按用户名',
 			'prayer.importunity.inviteSheet.usernameLabel' => '用户名',
 			'prayer.importunity.inviteSheet.addUsername' => '添加',

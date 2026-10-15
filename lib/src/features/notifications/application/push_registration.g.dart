@@ -50,7 +50,7 @@ final class PushRegistrationProvider
   }
 }
 
-String _$pushRegistrationHash() => r'25afb5e93490fb3b81de19c5740b5333f5063ffb';
+String _$pushRegistrationHash() => r'0aaa363568dc4b84d6d4fe017aeace9681b46c00';
 
 /// Gives the server the address of this phone, so the notifications of the
 /// admins reach it as a push: at sign-in, and when Firebase changes it.

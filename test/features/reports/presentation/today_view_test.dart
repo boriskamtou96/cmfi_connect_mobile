@@ -153,8 +153,8 @@ void main() {
 
     await tester.tap(find.text('Accueil'));
     await tester.pumpAndSettle();
-    // the home card reads the same draft
-    expect(find.text('1 sur 3'), findsOneWidget);
+    // the summary of the home screen reads the same draft
+    expect(find.text('1/3'), findsOneWidget);
 
     await openReports(tester);
     expect(find.text('Non enregistré'), findsOneWidget);

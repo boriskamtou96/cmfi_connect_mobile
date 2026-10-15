@@ -71,7 +71,7 @@ void main() {
       await pumpApp(tester, token: 'saved-token');
 
       expect(find.text('Bonjour Boris'), findsOneWidget);
-      expect(find.text('Compte rendu du jour'), findsOneWidget);
+      expect(find.text('Commencer mon compte rendu'), findsOneWidget);
     });
   });
 

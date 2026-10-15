@@ -359,9 +359,9 @@ void main() {
     );
 
     // under the verse of the day
-    await scrollTo(tester, find.textContaining('Reprendre le n° 2'));
-    expect(find.textContaining('Reprendre le n° 2'), findsOneWidget);
-    await tester.tap(find.textContaining('Reprendre le n° 2'));
+    await scrollTo(tester, find.text('Cantique n° 2'));
+    expect(find.text('Cantique n° 2'), findsOneWidget);
+    await tester.tap(find.text('Cantique n° 2'));
     await tester.pumpAndSettle();
     expect(find.text('N° 2'), findsOneWidget);
   });

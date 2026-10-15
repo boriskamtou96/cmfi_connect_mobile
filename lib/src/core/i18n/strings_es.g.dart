@@ -239,28 +239,29 @@ class _Translations$home$es extends Translations$home$fr {
 	@override String greeting({required Object name}) => 'Hola, ${name}';
 	@override String get greetingNoName => 'Hola';
 	@override String get profile => 'Mi perfil';
-	@override String get todayTitle => 'Informe del día';
 	@override String progress({required Object filled, required Object total}) => '${filled} de ${total}';
 	@override String get progressLabel => 'elementos completados';
 	@override String get goals => 'objetivos';
-	@override String get continueReport => 'Continuar';
-	@override String get startReport => 'Empezar';
 	@override String get weekTitle => 'Tu semana';
-	@override String weekScore({required num filled, required Object total}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('es'))(filled,
-		one: '${filled} día de ${total}',
-		other: '${filled} días de ${total}',
-	);
 	@override String get community => 'Actualmente en la CMCI';
 	@override String get eventsTitle => 'Eventos';
 	@override String get hymnsTitle => 'Himnos';
-	@override String hymnsResume({required Object number}) => 'Volver al n.º ${number}';
 	@override String get hymnsOpen => 'Abrir el himnario';
-	@override String streak({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('es'))(n,
-		one: '${n} día seguido',
-		other: '${n} días seguidos',
+	@override String get continueMyReport => 'Continuar mi informe';
+	@override String get startMyReport => 'Empezar mi informe';
+	@override String get items => 'elementos';
+	@override String get goalsTitle => 'Objetivos';
+	@override String get retreatsTitle => 'Retiros';
+	@override String retreatsValue({required Object n}) => '${n} de 4';
+	@override String get streakTitle => 'Racha';
+	@override String get resume => 'Retomar';
+	@override String hymnNumber({required Object number}) => 'Himno n.º ${number}';
+	@override String get seeAll => 'Ver todo';
+	@override String get retreatsDone => 'Los 4 retiros del día están hechos';
+	@override String days({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('es'))(n,
+		one: '${n} día',
+		other: '${n} días',
 	);
-	@override String get streakKeep => 'Completa hoy para no romper la racha';
-	@override String get streakToday => '¡Bien hecho, sigue mañana!';
 }
 
 // Path: reports
@@ -2515,22 +2516,26 @@ extension on TranslationsEs {
 			'home.greeting' => ({required Object name}) => 'Hola, ${name}',
 			'home.greetingNoName' => 'Hola',
 			'home.profile' => 'Mi perfil',
-			'home.todayTitle' => 'Informe del día',
 			'home.progress' => ({required Object filled, required Object total}) => '${filled} de ${total}',
 			'home.progressLabel' => 'elementos completados',
 			'home.goals' => 'objetivos',
-			'home.continueReport' => 'Continuar',
-			'home.startReport' => 'Empezar',
 			'home.weekTitle' => 'Tu semana',
-			'home.weekScore' => ({required num filled, required Object total}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('es'))(filled, one: '${filled} día de ${total}', other: '${filled} días de ${total}', ), 
 			'home.community' => 'Actualmente en la CMCI',
 			'home.eventsTitle' => 'Eventos',
 			'home.hymnsTitle' => 'Himnos',
-			'home.hymnsResume' => ({required Object number}) => 'Volver al n.º ${number}',
 			'home.hymnsOpen' => 'Abrir el himnario',
-			'home.streak' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('es'))(n, one: '${n} día seguido', other: '${n} días seguidos', ), 
-			'home.streakKeep' => 'Completa hoy para no romper la racha',
-			'home.streakToday' => '¡Bien hecho, sigue mañana!',
+			'home.continueMyReport' => 'Continuar mi informe',
+			'home.startMyReport' => 'Empezar mi informe',
+			'home.items' => 'elementos',
+			'home.goalsTitle' => 'Objetivos',
+			'home.retreatsTitle' => 'Retiros',
+			'home.retreatsValue' => ({required Object n}) => '${n} de 4',
+			'home.streakTitle' => 'Racha',
+			'home.resume' => 'Retomar',
+			'home.hymnNumber' => ({required Object number}) => 'Himno n.º ${number}',
+			'home.seeAll' => 'Ver todo',
+			'home.retreatsDone' => 'Los 4 retiros del día están hechos',
+			'home.days' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('es'))(n, one: '${n} día', other: '${n} días', ), 
 			'reports.title' => 'Informe diario',
 			'reports.myItems' => 'Mis elementos',
 			'reports.tabs.today' => 'Hoy',
@@ -2874,12 +2879,12 @@ extension on TranslationsEs {
 			'hymns.reader.background' => 'Fondo',
 			'hymns.reader.themeAuto' => 'Auto',
 			'hymns.reader.themeLight' => 'Claro',
+			_ => null,
+		} ?? switch (path) {
 			'hymns.reader.themeSepia' => 'Sepia',
 			'hymns.reader.themeDark' => 'Oscuro',
 			'hymns.reader.repeatChorus' => 'Repetir el coro después de cada estrofa',
 			'hymns.reader.keepScreenOn' => 'Mantener la pantalla encendida',
-			_ => null,
-		} ?? switch (path) {
 			'hymns.reader.addFavorite' => 'Añadir a favoritos',
 			'hymns.reader.removeFavorite' => 'Quitar de favoritos',
 			'hymns.reader.favoriteAdded' => 'Añadido a favoritos',
@@ -3388,12 +3393,12 @@ extension on TranslationsEs {
 			'prayer.importunity.form.goalPlaceholder' => '10.000',
 			'prayer.importunity.form.create' => 'Crear',
 			'prayer.importunity.form.save' => 'Guardar',
+			_ => null,
+		} ?? switch (path) {
 			'prayer.importunity.inviteSheet.title' => 'Invitar a orar',
 			'prayer.importunity.inviteSheet.family' => 'Mi familia espiritual',
 			'prayer.importunity.inviteSheet.familyText' => ({required num n, required Object name}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('es'))(n, one: '${name} y sus discípulos: ${n} persona', other: '${name} y sus discípulos: ${n} personas', ), 
 			'prayer.importunity.inviteSheet.familyMissing' => 'Vincula a tu discipulador en «Mis autoridades espirituales» para invitar a tu familia espiritual.',
-			_ => null,
-		} ?? switch (path) {
 			'prayer.importunity.inviteSheet.byUsername' => 'Por nombre de usuario',
 			'prayer.importunity.inviteSheet.usernameLabel' => 'Nombre de usuario',
 			'prayer.importunity.inviteSheet.addUsername' => 'Añadir',

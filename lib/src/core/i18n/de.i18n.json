@@ -183,28 +183,29 @@
     "greeting": "Hallo {name}",
     "greetingNoName": "Hallo",
     "profile": "Mein Profil",
-    "todayTitle": "Bericht von heute",
     "progress": "{filled} von {total}",
     "progressLabel": "Elemente ausgefüllt",
     "goals": "Ziele",
-    "continueReport": "Weiter",
-    "startReport": "Beginnen",
     "weekTitle": "Deine Woche",
-    "weekScore(plural, param=filled)": {
-      "one": "{filled} von {total} Tagen",
-      "other": "{filled} von {total} Tagen"
-    },
     "community": "Aktuell bei der CMFI",
     "eventsTitle": "Veranstaltungen",
     "hymnsTitle": "Lieder",
-    "hymnsResume": "Weiter bei Nr. {number}",
     "hymnsOpen": "Liederbuch öffnen",
-    "streak(plural, param=n)": {
-      "one": "{n} Tag in Folge",
-      "other": "{n} Tage in Folge"
-    },
-    "streakKeep": "Fülle heute aus, um dranzubleiben",
-    "streakToday": "Super, mach morgen weiter!"
+    "continueMyReport": "Bericht fortsetzen",
+    "startMyReport": "Bericht beginnen",
+    "items": "Punkte",
+    "goalsTitle": "Ziele",
+    "retreatsTitle": "Gebetszeiten",
+    "retreatsValue": "{n} von 4",
+    "streakTitle": "Serie",
+    "resume": "Weitermachen",
+    "hymnNumber": "Lied Nr. {number}",
+    "seeAll": "Alle ansehen",
+    "retreatsDone": "Die 4 Gebetszeiten des Tages sind gemacht",
+    "days(plural, param=n)": {
+      "one": "{n} Tag",
+      "other": "{n} Tage"
+    }
   },
   "reports": {
     "title": "Tagesbericht",

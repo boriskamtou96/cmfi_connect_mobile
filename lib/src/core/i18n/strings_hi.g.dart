@@ -239,28 +239,29 @@ class _Translations$home$hi extends Translations$home$fr {
 	@override String greeting({required Object name}) => 'नमस्ते ${name}';
 	@override String get greetingNoName => 'नमस्ते';
 	@override String get profile => 'मेरी प्रोफ़ाइल';
-	@override String get todayTitle => 'आज की रिपोर्ट';
 	@override String progress({required Object total, required Object filled}) => '${total} में से ${filled}';
 	@override String get progressLabel => 'आइटम भरे गए';
 	@override String get goals => 'लक्ष्य';
-	@override String get continueReport => 'जारी रखो';
-	@override String get startReport => 'शुरू करो';
 	@override String get weekTitle => 'तुम्हारा हफ़्ता';
-	@override String weekScore({required num filled, required Object total}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(filled,
-		one: '${total} में से ${filled} दिन',
-		other: '${total} में से ${filled} दिन',
-	);
 	@override String get community => 'अभी CMFI में';
 	@override String get eventsTitle => 'कार्यक्रम';
 	@override String get hymnsTitle => 'भजन';
-	@override String hymnsResume({required Object number}) => 'नं. ${number} पर लौटो';
 	@override String get hymnsOpen => 'भजन संग्रह खोलो';
-	@override String streak({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n,
-		one: 'लगातार ${n} दिन',
-		other: 'लगातार ${n} दिन',
+	@override String get continueMyReport => 'अपनी रिपोर्ट जारी रखो';
+	@override String get startMyReport => 'अपनी रिपोर्ट शुरू करो';
+	@override String get items => 'चीज़ें';
+	@override String get goalsTitle => 'लक्ष्य';
+	@override String get retreatsTitle => 'प्रार्थना-समय';
+	@override String retreatsValue({required Object n}) => '4 में से ${n}';
+	@override String get streakTitle => 'लगातार';
+	@override String get resume => 'जहाँ छोड़ा था वहीं से';
+	@override String hymnNumber({required Object number}) => 'भजन संख्या ${number}';
+	@override String get seeAll => 'सब देखो';
+	@override String get retreatsDone => 'आज के चारों प्रार्थना-समय हो गए';
+	@override String days({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n,
+		one: '${n} दिन',
+		other: '${n} दिन',
 	);
-	@override String get streakKeep => 'सिलसिला बनाए रखने के लिए आज भरो';
-	@override String get streakToday => 'शाबाश, कल भी जारी रखना!';
 }
 
 // Path: reports
@@ -2514,22 +2515,26 @@ extension on TranslationsHi {
 			'home.greeting' => ({required Object name}) => 'नमस्ते ${name}',
 			'home.greetingNoName' => 'नमस्ते',
 			'home.profile' => 'मेरी प्रोफ़ाइल',
-			'home.todayTitle' => 'आज की रिपोर्ट',
 			'home.progress' => ({required Object total, required Object filled}) => '${total} में से ${filled}',
 			'home.progressLabel' => 'आइटम भरे गए',
 			'home.goals' => 'लक्ष्य',
-			'home.continueReport' => 'जारी रखो',
-			'home.startReport' => 'शुरू करो',
 			'home.weekTitle' => 'तुम्हारा हफ़्ता',
-			'home.weekScore' => ({required num filled, required Object total}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(filled, one: '${total} में से ${filled} दिन', other: '${total} में से ${filled} दिन', ), 
 			'home.community' => 'अभी CMFI में',
 			'home.eventsTitle' => 'कार्यक्रम',
 			'home.hymnsTitle' => 'भजन',
-			'home.hymnsResume' => ({required Object number}) => 'नं. ${number} पर लौटो',
 			'home.hymnsOpen' => 'भजन संग्रह खोलो',
-			'home.streak' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n, one: 'लगातार ${n} दिन', other: 'लगातार ${n} दिन', ), 
-			'home.streakKeep' => 'सिलसिला बनाए रखने के लिए आज भरो',
-			'home.streakToday' => 'शाबाश, कल भी जारी रखना!',
+			'home.continueMyReport' => 'अपनी रिपोर्ट जारी रखो',
+			'home.startMyReport' => 'अपनी रिपोर्ट शुरू करो',
+			'home.items' => 'चीज़ें',
+			'home.goalsTitle' => 'लक्ष्य',
+			'home.retreatsTitle' => 'प्रार्थना-समय',
+			'home.retreatsValue' => ({required Object n}) => '4 में से ${n}',
+			'home.streakTitle' => 'लगातार',
+			'home.resume' => 'जहाँ छोड़ा था वहीं से',
+			'home.hymnNumber' => ({required Object number}) => 'भजन संख्या ${number}',
+			'home.seeAll' => 'सब देखो',
+			'home.retreatsDone' => 'आज के चारों प्रार्थना-समय हो गए',
+			'home.days' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n, one: '${n} दिन', other: '${n} दिन', ), 
 			'reports.title' => 'दैनिक रिपोर्ट',
 			'reports.myItems' => 'मेरे आइटम',
 			'reports.tabs.today' => 'आज',
@@ -2873,12 +2878,12 @@ extension on TranslationsHi {
 			'hymns.reader.background' => 'बैकग्राउंड',
 			'hymns.reader.themeAuto' => 'ऑटो',
 			'hymns.reader.themeLight' => 'लाइट',
+			_ => null,
+		} ?? switch (path) {
 			'hymns.reader.themeSepia' => 'सेपिया',
 			'hymns.reader.themeDark' => 'डार्क',
 			'hymns.reader.repeatChorus' => 'हर पद के बाद कोरस दोहराओ',
 			'hymns.reader.keepScreenOn' => 'स्क्रीन चालू रखो',
-			_ => null,
-		} ?? switch (path) {
 			'hymns.reader.addFavorite' => 'पसंदीदा में जोड़ो',
 			'hymns.reader.removeFavorite' => 'पसंदीदा से हटाओ',
 			'hymns.reader.favoriteAdded' => 'पसंदीदा में जोड़ा गया',
@@ -3387,12 +3392,12 @@ extension on TranslationsHi {
 			'prayer.importunity.form.goalPlaceholder' => '10,000',
 			'prayer.importunity.form.create' => 'बनाओ',
 			'prayer.importunity.form.save' => 'सेव करो',
+			_ => null,
+		} ?? switch (path) {
 			'prayer.importunity.inviteSheet.title' => 'प्रार्थना का न्योता दो',
 			'prayer.importunity.inviteSheet.family' => 'मेरा आत्मिक परिवार',
 			'prayer.importunity.inviteSheet.familyText' => ({required num n, required Object name}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n, one: '${name} और उनके चेले: ${n} व्यक्ति', other: '${name} और उनके चेले: ${n} लोग', ), 
 			'prayer.importunity.inviteSheet.familyMissing' => 'अपने आत्मिक परिवार को न्योता देने के लिए ‘मेरे आत्मिक अगुवे’ में अपने चेला बनाने वाले को जोड़ो।',
-			_ => null,
-		} ?? switch (path) {
 			'prayer.importunity.inviteSheet.byUsername' => 'यूज़रनेम से',
 			'prayer.importunity.inviteSheet.usernameLabel' => 'यूज़रनेम',
 			'prayer.importunity.inviteSheet.addUsername' => 'जोड़ो',

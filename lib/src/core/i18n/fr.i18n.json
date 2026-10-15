@@ -183,28 +183,29 @@
     "greeting": "Bonjour {name}",
     "greetingNoName": "Bonjour",
     "profile": "Mon profil",
-    "todayTitle": "Compte rendu du jour",
     "progress": "{filled} sur {total}",
     "progressLabel": "éléments renseignés",
     "goals": "objectifs",
-    "continueReport": "Continuer",
-    "startReport": "Commencer",
     "weekTitle": "Ta semaine",
-    "weekScore(plural, param=filled)": {
-      "one": "{filled} jour sur {total}",
-      "other": "{filled} jours sur {total}"
-    },
     "community": "Actuellement à la CMCI",
     "eventsTitle": "Évènements",
     "hymnsTitle": "Cantiques",
-    "hymnsResume": "Reprendre le n° {number}",
     "hymnsOpen": "Ouvrir le recueil",
-    "streak(plural, param=n)": {
-      "one": "{n} jour d'affilée",
-      "other": "{n} jours d'affilée"
-    },
-    "streakKeep": "Remplis aujourd'hui pour continuer",
-    "streakToday": "Bravo, continue demain !"
+    "continueMyReport": "Continuer mon compte rendu",
+    "startMyReport": "Commencer mon compte rendu",
+    "items": "éléments",
+    "goalsTitle": "Objectifs",
+    "retreatsTitle": "Retraites",
+    "retreatsValue": "{n} sur 4",
+    "streakTitle": "Série",
+    "resume": "À reprendre",
+    "hymnNumber": "Cantique n° {number}",
+    "seeAll": "Tout voir",
+    "retreatsDone": "Les 4 retraites du jour sont faites",
+    "days(plural, param=n)": {
+      "one": "{n} jour",
+      "other": "{n} jours"
+    }
   },
   "reports": {
     "title": "Compte rendu",

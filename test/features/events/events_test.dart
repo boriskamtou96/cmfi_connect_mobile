@@ -17,12 +17,9 @@ void main() {
   setUpAll(initializeDateFormatting);
   setUp(() => LocaleSettings.setLocale(AppLocale.fr));
 
-  /// From the home card to the event page.
+  /// From its row on the home screen to the event page.
   Future<void> openEvent(WidgetTester tester) async {
-    await scrollTo(tester, find.text('PROCHAIN ÉVÈNEMENT'));
-    // brought to the top: the bottom of the list runs under the tab bar
-    await tester.ensureVisible(find.text('Conférence annuelle 2026'));
-    await tester.pumpAndSettle();
+    await scrollTo(tester, find.text('Conférence annuelle 2026'));
     await tester.tap(find.text('Conférence annuelle 2026'));
     await tester.pumpAndSettle();
   }
@@ -41,7 +38,7 @@ void main() {
     tester,
   ) async {
     await pumpApp(tester, token: 't');
-    await scrollTo(tester, find.text('PROCHAIN ÉVÈNEMENT'));
+    await scrollTo(tester, find.text('Conférence annuelle 2026'));
 
     expect(find.text('Conférence annuelle 2026'), findsOneWidget);
     expect(find.text('J-42'), findsOneWidget);
@@ -176,12 +173,9 @@ void main() {
     tester,
   ) async {
     await pumpApp(tester, token: 't');
-    await scrollTo(tester, find.text('PROCHAIN ÉVÈNEMENT'));
-    await tester.scrollUntilVisible(find.text('Tous les évènements'), 200);
-    // above the tab bar
-    await tester.drag(find.byType(Scrollable).first, const Offset(0, -200));
-    await tester.pumpAndSettle();
-    await tester.tap(find.text('Tous les évènements'));
+    // the "Tout voir" of the community
+    await scrollTo(tester, find.text('Tout voir'));
+    await tester.tap(find.text('Tout voir'));
     await tester.pumpAndSettle();
 
     expect(find.text('À LA UNE'), findsOneWidget);
@@ -189,7 +183,7 @@ void main() {
     expect(find.text('ÉDITIONS PASSÉES'), findsOneWidget);
   });
 
-  testWidgets('several events: a carousel of posters on the home screen', (
+  testWidgets('several events: the next two in rows on the home screen', (
     tester,
   ) async {
     final next = sampleEvents().next;
@@ -204,24 +198,13 @@ void main() {
         ],
       ),
     );
-    final carousel = find.byType(PageView);
-    await tester.scrollUntilVisible(
-      carousel,
-      200,
-      scrollable: find.byType(Scrollable).first,
-    );
-    await tester.drag(find.byType(Scrollable).first, const Offset(0, -250));
-    await tester.pumpAndSettle();
+    await scrollTo(tester, find.text('Retraite des jeunes'));
 
     expect(find.text('Conférence annuelle 2026'), findsOneWidget);
-    expect(find.bySemanticsLabel(RegExp('Évènement 1 sur 3')), findsOneWidget);
-    // one card at a time, the next one peeking
-    for (var i = 0; i < 3; i++) {
-      await tester.drag(carousel, const Offset(-300, 0));
-      await tester.pumpAndSettle();
-    }
-    expect(find.text('3 évènements à venir'), findsOneWidget);
-    await tester.tap(find.text('Tous les évènements'));
+    expect(find.text('Retraite des jeunes'), findsOneWidget);
+    // the third one is in "Tout voir"
+    expect(find.text('Campagne d\'évangélisation'), findsNothing);
+    await tester.tap(find.text('Tout voir'));
     await tester.pumpAndSettle();
     expect(find.text('À LA UNE'), findsOneWidget);
   });

@@ -239,28 +239,29 @@ class _Translations$home$en extends Translations$home$fr {
 	@override String greeting({required Object name}) => 'Hello ${name}';
 	@override String get greetingNoName => 'Hello';
 	@override String get profile => 'My profile';
-	@override String get todayTitle => 'Today\'s report';
 	@override String progress({required Object filled, required Object total}) => '${filled} of ${total}';
 	@override String get progressLabel => 'items filled in';
 	@override String get goals => 'goals';
-	@override String get continueReport => 'Continue';
-	@override String get startReport => 'Start';
 	@override String get weekTitle => 'Your week';
-	@override String weekScore({required num filled, required Object total}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(filled,
-		one: '${filled} day out of ${total}',
-		other: '${filled} days out of ${total}',
-	);
 	@override String get community => 'Currently at CMFI';
 	@override String get eventsTitle => 'Events';
 	@override String get hymnsTitle => 'Hymns';
-	@override String hymnsResume({required Object number}) => 'Go back to No. ${number}';
 	@override String get hymnsOpen => 'Open the hymn book';
-	@override String streak({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n,
-		one: '${n} day in a row',
-		other: '${n} days in a row',
+	@override String get continueMyReport => 'Continue my report';
+	@override String get startMyReport => 'Start my report';
+	@override String get items => 'items';
+	@override String get goalsTitle => 'Goals';
+	@override String get retreatsTitle => 'Retreats';
+	@override String retreatsValue({required Object n}) => '${n} of 4';
+	@override String get streakTitle => 'Streak';
+	@override String get resume => 'Pick up where you left off';
+	@override String hymnNumber({required Object number}) => 'Hymn no. ${number}';
+	@override String get seeAll => 'See all';
+	@override String get retreatsDone => 'The 4 retreats of the day are done';
+	@override String days({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n,
+		one: '${n} day',
+		other: '${n} days',
 	);
-	@override String get streakKeep => 'Fill in today to keep it going';
-	@override String get streakToday => 'Well done, keep it up tomorrow!';
 }
 
 // Path: reports
@@ -2516,22 +2517,26 @@ extension on TranslationsEn {
 			'home.greeting' => ({required Object name}) => 'Hello ${name}',
 			'home.greetingNoName' => 'Hello',
 			'home.profile' => 'My profile',
-			'home.todayTitle' => 'Today\'s report',
 			'home.progress' => ({required Object filled, required Object total}) => '${filled} of ${total}',
 			'home.progressLabel' => 'items filled in',
 			'home.goals' => 'goals',
-			'home.continueReport' => 'Continue',
-			'home.startReport' => 'Start',
 			'home.weekTitle' => 'Your week',
-			'home.weekScore' => ({required num filled, required Object total}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(filled, one: '${filled} day out of ${total}', other: '${filled} days out of ${total}', ), 
 			'home.community' => 'Currently at CMFI',
 			'home.eventsTitle' => 'Events',
 			'home.hymnsTitle' => 'Hymns',
-			'home.hymnsResume' => ({required Object number}) => 'Go back to No. ${number}',
 			'home.hymnsOpen' => 'Open the hymn book',
-			'home.streak' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n, one: '${n} day in a row', other: '${n} days in a row', ), 
-			'home.streakKeep' => 'Fill in today to keep it going',
-			'home.streakToday' => 'Well done, keep it up tomorrow!',
+			'home.continueMyReport' => 'Continue my report',
+			'home.startMyReport' => 'Start my report',
+			'home.items' => 'items',
+			'home.goalsTitle' => 'Goals',
+			'home.retreatsTitle' => 'Retreats',
+			'home.retreatsValue' => ({required Object n}) => '${n} of 4',
+			'home.streakTitle' => 'Streak',
+			'home.resume' => 'Pick up where you left off',
+			'home.hymnNumber' => ({required Object number}) => 'Hymn no. ${number}',
+			'home.seeAll' => 'See all',
+			'home.retreatsDone' => 'The 4 retreats of the day are done',
+			'home.days' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n, one: '${n} day', other: '${n} days', ), 
 			'reports.title' => 'Daily report',
 			'reports.myItems' => 'My items',
 			'reports.tabs.today' => 'Today',
@@ -2875,12 +2880,12 @@ extension on TranslationsEn {
 			'hymns.reader.background' => 'Background',
 			'hymns.reader.themeAuto' => 'Auto',
 			'hymns.reader.themeLight' => 'Light',
+			_ => null,
+		} ?? switch (path) {
 			'hymns.reader.themeSepia' => 'Sepia',
 			'hymns.reader.themeDark' => 'Dark',
 			'hymns.reader.repeatChorus' => 'Repeat the chorus after each verse',
 			'hymns.reader.keepScreenOn' => 'Keep the screen on',
-			_ => null,
-		} ?? switch (path) {
 			'hymns.reader.addFavorite' => 'Add to favorites',
 			'hymns.reader.removeFavorite' => 'Remove from favorites',
 			'hymns.reader.favoriteAdded' => 'Added to favorites',
@@ -3389,12 +3394,12 @@ extension on TranslationsEn {
 			'prayer.importunity.form.goalPlaceholder' => '10,000',
 			'prayer.importunity.form.create' => 'Create',
 			'prayer.importunity.form.save' => 'Save',
+			_ => null,
+		} ?? switch (path) {
 			'prayer.importunity.inviteSheet.title' => 'Invite to pray',
 			'prayer.importunity.inviteSheet.family' => 'My spiritual family',
 			'prayer.importunity.inviteSheet.familyText' => ({required num n, required Object name}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n, one: '${name} and their disciples: ${n} person', other: '${name} and their disciples: ${n} people', ), 
 			'prayer.importunity.inviteSheet.familyMissing' => 'Link your disciple maker in My spiritual authorities to invite your spiritual family.',
-			_ => null,
-		} ?? switch (path) {
 			'prayer.importunity.inviteSheet.byUsername' => 'By username',
 			'prayer.importunity.inviteSheet.usernameLabel' => 'Username',
 			'prayer.importunity.inviteSheet.addUsername' => 'Add',

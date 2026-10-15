@@ -3,7 +3,6 @@ import 'dart:io';
 
 import 'package:cmfi_connect/src/core/i18n/strings.g.dart';
 import 'package:cmfi_connect/src/features/verses/domain/verse.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:intl/date_symbol_data_local.dart';
 
@@ -51,11 +50,7 @@ void main() {
                 as Map<String, dynamic>)['days'][key]
             as Map<String, dynamic>;
 
-    await tester.scrollUntilVisible(
-      find.text('VERSET DU JOUR'),
-      200,
-      scrollable: find.byType(Scrollable).first,
-    );
+    await scrollTo(tester, find.byTooltip('Partager le verset'));
     expect(find.text(today['text'] as String), findsOneWidget);
     expect(find.text(today['ref'] as String), findsOneWidget);
 

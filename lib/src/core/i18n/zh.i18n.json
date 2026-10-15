@@ -183,26 +183,28 @@
     "greeting": "你好，{name}",
     "greetingNoName": "你好",
     "profile": "我的资料",
-    "todayTitle": "今日汇报",
     "progress": "{filled}/{total}",
     "progressLabel": "项已填写",
     "goals": "目标",
-    "continueReport": "继续填写",
-    "startReport": "开始填写",
     "weekTitle": "你的一周",
-    "weekScore(plural, param=filled)": {
-      "other": "{filled}/{total} 天"
-    },
     "community": "CMFI 近况",
     "eventsTitle": "活动",
     "hymnsTitle": "诗歌",
-    "hymnsResume": "回到第 {number} 首",
     "hymnsOpen": "打开诗歌本",
-    "streak(plural, param=n)": {
-      "other": "连续 {n} 天"
-    },
-    "streakKeep": "今天也来填写，保持连续",
-    "streakToday": "太棒了，明天继续！"
+    "continueMyReport": "继续填写汇报",
+    "startMyReport": "开始填写汇报",
+    "items": "项",
+    "goalsTitle": "目标",
+    "retreatsTitle": "灵修",
+    "retreatsValue": "4 次中 {n} 次",
+    "streakTitle": "连续",
+    "resume": "继续",
+    "hymnNumber": "第 {number} 首诗歌",
+    "seeAll": "查看全部",
+    "retreatsDone": "今天的 4 次灵修都已完成",
+    "days(plural, param=n)": {
+      "other": "{n} 天"
+    }
   },
   "reports": {
     "title": "每日汇报",

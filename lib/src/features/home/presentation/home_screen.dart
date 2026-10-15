@@ -1,34 +1,25 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:flutter/services.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../core/i18n/strings.g.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_icons.dart';
-import '../../../core/theme/app_motion.dart';
 import '../../../core/theme/app_spacing.dart';
 import '../../../core/theme/app_theme.dart';
 import '../../../core/theme/app_tones.dart';
 import '../../../core/utils/date_extensions.dart';
 import '../../../core/utils/date_format.dart';
-import '../../../core/widgets/animated_progress_bar.dart';
 import '../../../core/widgets/cmfi_logo.dart';
-import '../../../core/widgets/dashed_outline.dart';
 import '../../../core/widgets/fade_slide_in.dart';
-import '../../../core/widgets/goal_ring.dart';
 import '../../../core/widgets/media_picture.dart';
-import '../../../core/widgets/rolling_text.dart';
-import '../../../core/widgets/section_card.dart';
 import '../../../routing/app_router.dart';
 import '../../bible/application/bible_position.dart';
 import '../../bible/domain/bible.dart';
 import '../../events/application/events_providers.dart';
 import '../../events/domain/event.dart';
 import '../../events/infrastructure/events_api.dart';
-import '../../events/presentation/widgets/event_cards.dart';
-import '../../events/presentation/widgets/event_format.dart';
-import '../../events/presentation/widgets/event_picture.dart';
 import '../../hymns/application/hymn_collections.dart';
 import '../../hymns/application/hymn_library.dart';
 import '../../members/presentation/widgets/member_avatar.dart';
@@ -45,7 +36,11 @@ import '../../reports/application/reports_providers.dart';
 import '../../verses/presentation/verse_card.dart';
 import '../domain/week_story.dart';
 
-/// Dashboard: today's report, the week, and what's coming in the community.
+/// The home screen, "Nuit et or" (validated on 2026-10-16): the summary of
+/// the day first, in the night blue of CMFI (the report, the goals, the
+/// retreats, the streak and the week, then "Continuer mon compte rendu");
+/// under it, calm: what to pick up (the retreat of the moment, the hymn sung
+/// last), the verse of the day, and the community in rows.
 @RoutePage()
 class HomeScreen extends ConsumerWidget {
   const HomeScreen({super.key});
@@ -54,7 +49,7 @@ class HomeScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final t = context.t;
     final now = today();
-    final profile = ref.watch(currentProfileProvider).value;
+    final top = MediaQuery.paddingOf(context).top;
 
     void openReports(ReportsView view) {
       ref.read(selectedReportsViewProvider.notifier).select(view);
@@ -83,755 +78,310 @@ class HomeScreen extends ConsumerWidget {
           .then((_) {}, onError: (_) {});
     }
 
-    return Scaffold(
-      body: SafeArea(
-        bottom: false,
-        child: RefreshIndicator.adaptive(
-          onRefresh: refresh,
-          child: ListView(
-            padding: const EdgeInsetsDirectional.fromSTEB(
-              AppSpacing.lg,
-              18,
-              AppSpacing.lg,
-              AppSpacing.xl,
-            ),
-            children: [
-              FadeSlideIn(
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: AppSpacing.xs,
-                  ),
-                  child: Row(
-                    children: [
-                      Expanded(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              context
-                                  .formatDate(now, 'EEEE d MMMM')
-                                  .capitalized,
-                              style: TextStyle(
-                                fontSize: 13,
-                                fontWeight: FontWeight.w600,
-                                color: Theme.of(
-                                  context,
-                                ).colorScheme.onSurfaceVariant,
-                              ),
-                            ),
-                            const SizedBox(height: 2),
-                            Semantics(
-                              header: true,
-                              child: Text(
-                                profile == null
-                                    ? t.home.greetingNoName
-                                    : t.home.greeting(name: profile.firstName),
-                                style: Theme.of(
-                                  context,
-                                ).textTheme.headlineSmall,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      const _Bell(),
-                      const SizedBox(width: AppSpacing.xs),
-                      Tooltip(
-                        message: t.home.profile,
-                        child: InkResponse(
-                          onTap: () => context.router.push(const MoreRoute()),
-                          radius: 28,
-                          child: MemberAvatar(
-                            initials: profile?.initials ?? '',
-                            photo: profile?.avatar,
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-              // Sunday evening and Monday: the week told, first
-              if (storyWeekAt(DateTime.now()) case final week?) ...[
-                const SizedBox(height: 14),
-                FadeSlideIn(index: 1, child: _WeekStoryCard(monday: week)),
-              ],
-              const SizedBox(height: 14),
-              FadeSlideIn(
-                index: 1,
-                child: _TodayCard(onOpen: () => openReports(ReportsView.today)),
-              ),
-              const SizedBox(height: 14),
-              FadeSlideIn(
-                index: 2,
-                child: _WeekCard(
-                  onOpen: () => openReports(ReportsView.history),
-                ),
-              ),
-              const SizedBox(height: 14),
-              FadeSlideIn(
-                index: 3,
-                child: VerseOfTheDayCard(
-                  onRead: (osis) {
-                    if (BibleRef.parse(osis) case final place?) {
-                      readVerse(place);
-                    }
-                  },
-                ),
-              ),
-              const SizedBox(height: 14),
-              const FadeSlideIn(index: 3, child: _HymnsCard()),
-              const SizedBox(height: 20),
-              FadeSlideIn(
-                index: 4,
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: AppSpacing.xs,
-                  ),
-                  child: Text(
-                    t.home.community,
-                    style: Theme.of(context).textTheme.titleMedium,
-                  ),
-                ),
-              ),
-              const SizedBox(height: AppSpacing.md),
-              const FadeSlideIn(index: 5, child: _EventsCarousel()),
-              const SizedBox(height: 10),
-              FadeSlideIn(
-                index: 6,
-                child: _TeaserCard(
-                  module: AppModule.events,
-                  icon: const PhosphorIcon(AppIcons.ministryTile, size: 20),
-                  title: t.ministry.title,
-                  text: t.ministry.homeText(
-                    n: ref.watch(nationsProvider).value?.length ?? 154,
-                  ),
-                  soon: false,
-                  onTap: () => context.router.push(const MinistryRoute()),
-                ),
-              ),
-              const SizedBox(height: 10),
-              const FadeSlideIn(index: 7, child: _PrayerCard()),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-/// The retreat of the moment (morning, noon, evening, night) and what it
-/// prays for; a tap opens it. Once the four of the day are made, the
-/// Prayer tab.
-class _PrayerCard extends ConsumerWidget {
-  const _PrayerCard();
-
-  @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final t = context.t;
-    final now = DateTime.now();
-    final moment = nextRetreat(ref.watch(retreatsTodayProvider), now);
-
-    return _TeaserCard(
-      module: AppModule.prayer,
-      icon: PhosphorIcon(moment?.icon ?? AppIcons.prayerTile, size: 20),
-      title: switch (moment) {
-        null => t.nav.prayer,
-        _ when moment == momentAt(now) => t.prayer.hero.now(
-          retreat: moment.retreat(t),
-        ),
-        _ => moment.retreat(t),
-      },
-      text: moment == null
-          ? t.prayer.hero.allDone
-          : t.prayer.hero.preview[moment.name]!,
-      filled: true,
-      soon: false,
-      onTap: () => moment == null
-          ? context.navigateTo(const PrayerRoute())
-          : context.router.push(RetreatRoute(moment: moment)),
-    );
-  }
-}
-
-/// The next events of the community (up to [_max]) as large posters, one
-/// after the other with a swipe; the last card opens them all. With one event
-/// or none, [_EventCard].
-class _EventsCarousel extends HookConsumerWidget {
-  const _EventsCarousel();
-
-  static const _max = 5;
-  static const _fraction = 0.78;
-
-  @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final upcoming =
-        ref.watch(eventListProvider(EventPeriod.upcoming)).value ?? const [];
-    final events = [
-      for (final event in upcoming)
-        if (event.status == EventStatus.published) event,
-    ];
-    final controller = usePageController(viewportFraction: _fraction);
-    final page = useState(0);
-
-    if (events.length < 2) {
-      return const _EventCard();
-    }
-    final shown = events.take(_max).toList();
-    final now = DateTime.now();
-    final scaler = MediaQuery.textScalerOf(context);
-
-    return LayoutBuilder(
-      builder: (context, constraints) {
-        final width = constraints.maxWidth * _fraction - AppSpacing.md;
-        // the poster, then two lines of title and one of dates, whatever
-        // the title: the cards keep the same height
-        final height =
-            width * 5 / 4 +
-            AppSpacing.md * 2 +
-            scaler.scale(_EventSlide.titleLine) * 2 +
-            AppSpacing.xs +
-            scaler.scale(_EventSlide.factLine);
-
-        return Column(
+    return AnnotatedRegion<SystemUiOverlayStyle>(
+      // the summary is night blue, under the status bar
+      value: SystemUiOverlayStyle.light,
+      child: Scaffold(
+        body: Stack(
           children: [
-            SizedBox(
-              height: height,
-              child: PageView.builder(
-                controller: controller,
-                padEnds: false,
-                itemCount: shown.length + 1,
-                onPageChanged: (index) => page.value = index,
-                itemBuilder: (context, index) => Padding(
-                  padding: const EdgeInsetsDirectional.only(end: AppSpacing.md),
-                  child: index < shown.length
-                      ? Semantics(
-                          label: context.t.events.slide(
-                            current: index + 1,
-                            total: shown.length,
-                          ),
-                          child: _EventSlide(event: shown[index], now: now),
-                        )
-                      : _AllEventsSlide(count: events.length),
-                ),
-              ),
-            ),
-            const SizedBox(height: AppSpacing.md),
-            _PageDots(count: shown.length + 1, current: page.value),
-          ],
-        );
-      },
-    );
-  }
-}
-
-/// An event of the carousel: its whole poster with its pills, the title and
-/// the dates.
-class _EventSlide extends StatelessWidget {
-  const _EventSlide({required this.event, required this.now});
-
-  final CommunityEvent event;
-  final DateTime now;
-
-  static const titleLine = 20.0;
-  static const factLine = 18.0;
-
-  @override
-  Widget build(BuildContext context) {
-    final scheme = Theme.of(context).colorScheme;
-
-    return Material(
-      color: scheme.surface,
-      clipBehavior: Clip.antiAlias,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(AppRadius.xl),
-        side: BorderSide(color: scheme.outlineVariant),
-      ),
-      child: InkWell(
-        onTap: () => context.router.push(EventRoute(eventId: event.id)),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            AspectRatio(
-              aspectRatio: 4 / 5,
-              // the blurred copy behind the poster stays inside it
-              child: ClipRect(
-                child: Stack(
-                  fit: StackFit.expand,
-                  children: [
-                    Hero(
-                      tag: posterTag(event.id),
-                      child: PosterBackdrop(event.poster),
-                    ),
-                    PositionedDirectional(
-                      start: AppSpacing.sm,
-                      end: AppSpacing.sm,
-                      top: AppSpacing.sm,
-                      child: Align(
-                        alignment: AlignmentDirectional.topStart,
-                        child: EventPills(event: event, now: now),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.fromLTRB(
-                AppSpacing.md,
-                AppSpacing.md,
-                AppSpacing.md,
-                0,
-              ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+            RefreshIndicator.adaptive(
+              onRefresh: refresh,
+              edgeOffset: top,
+              child: ListView(
+                padding: const EdgeInsets.only(bottom: 36),
                 children: [
-                  Text(
-                    event.title,
-                    maxLines: 2,
-                    overflow: TextOverflow.ellipsis,
-                    strutStyle: const StrutStyle(
-                      fontSize: 16,
-                      height: titleLine / 16,
-                      forceStrutHeight: true,
-                    ),
-                    style: const TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.w700,
+                  FadeSlideIn(
+                    child: _Summary(
+                      onOpen: () => openReports(ReportsView.today),
+                      onWeek: () => openReports(ReportsView.history),
                     ),
                   ),
-                  const SizedBox(height: AppSpacing.xs),
-                  Text(
-                    [
-                      context.eventDates(
-                        event.startsAt,
-                        event.endsAt,
-                        event.timeZone,
-                      ),
-                      event.city,
-                    ].where((part) => part.isNotEmpty).join(' · '),
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
-                    strutStyle: const StrutStyle(
-                      fontSize: 13,
-                      height: factLine / 13,
-                      forceStrutHeight: true,
-                    ),
-                    style: TextStyle(
-                      fontSize: 13,
-                      color: scheme.onSurfaceVariant,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-/// The last card of the carousel: all the events.
-class _AllEventsSlide extends StatelessWidget {
-  const _AllEventsSlide({required this.count});
-
-  final int count;
-
-  @override
-  Widget build(BuildContext context) {
-    final t = context.t.events;
-    final tone = AppModule.events.tone(context);
-
-    return Material(
-      color: tone.soft,
-      borderRadius: BorderRadius.circular(AppRadius.xl),
-      child: InkWell(
-        borderRadius: BorderRadius.circular(AppRadius.xl),
-        onTap: () => context.router.push(const EventsRoute()),
-        child: Padding(
-          padding: const EdgeInsets.all(AppSpacing.lg),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              PhosphorIcon(AppIcons.eventsTile, size: 40, color: tone.onSoft),
-              const SizedBox(height: AppSpacing.md),
-              Text(
-                t.seeAll,
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  fontSize: 17,
-                  fontWeight: FontWeight.w800,
-                  color: tone.onSoft,
-                ),
-              ),
-              const SizedBox(height: AppSpacing.xs),
-              Text(
-                t.upcomingCount(n: count),
-                textAlign: TextAlign.center,
-                style: TextStyle(fontSize: 14, color: tone.onSoft),
-              ),
-              const SizedBox(height: AppSpacing.md),
-              Icon(AppIcons.arrowRight, color: tone.onSoft),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-/// Where the carousel is: one dot per card, the current one longer.
-class _PageDots extends StatelessWidget {
-  const _PageDots({required this.count, required this.current});
-
-  final int count;
-  final int current;
-
-  @override
-  Widget build(BuildContext context) {
-    final tone = AppModule.events.tone(context);
-    final duration = AppMotion.of(context, AppMotion.fast);
-
-    return ExcludeSemantics(
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          for (var i = 0; i < count; i++)
-            AnimatedContainer(
-              duration: duration,
-              curve: AppMotion.standard,
-              margin: const EdgeInsets.symmetric(horizontal: 3),
-              width: i == current ? 18 : 6,
-              height: 6,
-              decoration: BoxDecoration(
-                color: i == current ? tone.color : tone.soft,
-                borderRadius: BorderRadius.circular(3),
-              ),
-            ),
-        ],
-      ),
-    );
-  }
-}
-
-/// The next event of the community: its poster, when, where and how long
-/// until it starts. Without one yet, a card that opens the events.
-class _EventCard extends ConsumerWidget {
-  const _EventCard();
-
-  @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final t = context.t;
-    final scheme = Theme.of(context).colorScheme;
-    final tone = AppModule.events.tone(context);
-    final event = ref.watch(nextEventProvider).value;
-
-    if (event == null) {
-      return _TeaserCard(
-        module: AppModule.events,
-        icon: const PhosphorIcon(AppIcons.eventsTile, size: 20),
-        title: t.home.eventsTitle,
-        text: t.events.homeText,
-        soon: false,
-        onTap: () => context.router.push(const EventsRoute()),
-      );
-    }
-
-    final now = DateTime.now();
-    final days = event.daysUntil(now);
-    final countdown = event.isOn(now)
-        ? t.events.onNow
-        : switch (days) {
-            <= 0 => t.events.today,
-            1 => t.events.tomorrow,
-            _ => t.events.daysLeft(n: days),
-          };
-    final poster = event.poster;
-
-    return Material(
-      color: scheme.surface,
-      clipBehavior: Clip.antiAlias,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(AppRadius.xl),
-        side: BorderSide(color: scheme.outlineVariant),
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          InkWell(
-            onTap: () => context.router.push(EventRoute(eventId: event.id)),
-            child: Padding(
-              padding: const EdgeInsets.all(AppSpacing.md),
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  ClipRRect(
-                    borderRadius: BorderRadius.circular(AppRadius.md),
-                    child: SizedBox(
-                      width: 84,
-                      height: 105,
-                      child: poster == null
-                          ? ColoredBox(
-                              color: tone.soft,
-                              child: PhosphorIcon(
-                                AppIcons.eventsTile,
-                                color: tone.onSoft,
-                              ),
-                            )
-                          : MediaPicture(url: poster.url, argb: poster.argb),
-                    ),
-                  ),
-                  const SizedBox(width: 14),
-                  Expanded(
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 20),
                     child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [
-                        Text(
-                          t.events.next.toUpperCase(),
-                          style: TextStyle(
-                            fontSize: 12,
-                            fontWeight: FontWeight.w700,
-                            letterSpacing: 0.8,
-                            color: tone.onSoft,
+                        // Sunday evening and Monday: the week told, first
+                        if (storyWeekAt(DateTime.now()) case final week?) ...[
+                          const SizedBox(height: 24),
+                          FadeSlideIn(
+                            index: 1,
+                            child: _WeekStoryCard(monday: week),
+                          ),
+                        ],
+                        const SizedBox(height: 28),
+                        FadeSlideIn(index: 1, child: _Title(t.home.resume)),
+                        const FadeSlideIn(index: 1, child: _Resume()),
+                        const SizedBox(height: 30),
+                        FadeSlideIn(
+                          index: 2,
+                          child: VerseOfTheDayCard(
+                            onRead: (osis) {
+                              if (BibleRef.parse(osis) case final place?) {
+                                readVerse(place);
+                              }
+                            },
                           ),
                         ),
-                        const SizedBox(height: AppSpacing.xs),
-                        Text(
-                          event.title,
-                          style: const TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.w700,
+                        const SizedBox(height: 30),
+                        FadeSlideIn(
+                          index: 3,
+                          child: _Title(
+                            t.home.community,
+                            action: t.home.seeAll,
+                            onAction: () =>
+                                context.router.push(const EventsRoute()),
                           ),
                         ),
-                        const SizedBox(height: 2),
-                        Text(
-                          [
-                            context.formatDayRange(
-                              event.startsAt,
-                              event.endsAt,
-                              timeZone: event.timeZone,
-                            ),
-                            event.city,
-                          ].where((part) => part.isNotEmpty).join(' · '),
-                          style: TextStyle(
-                            fontSize: 14,
-                            color: scheme.onSurfaceVariant,
-                          ),
-                        ),
-                        const SizedBox(height: AppSpacing.sm),
-                        Wrap(
-                          spacing: 6,
-                          runSpacing: 6,
-                          children: [
-                            StatusPill(
-                              countdown,
-                              background: tone.soft,
-                              foreground: tone.onSoft,
-                            ),
-                            if (event.registration.registered)
-                              StatusPill(
-                                t.events.registered,
-                                background: AppTones.of(context).personalSoft,
-                                foreground: AppTones.of(context).personal,
-                              ),
-                          ],
-                        ),
+                        const FadeSlideIn(index: 3, child: _Community()),
                       ],
                     ),
                   ),
                 ],
               ),
             ),
-          ),
-          Divider(height: 1, color: scheme.outlineVariant),
-          InkWell(
-            onTap: () => context.router.push(const EventsRoute()),
-            child: ConstrainedBox(
-              constraints: const BoxConstraints(minHeight: 48),
-              child: Padding(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: AppSpacing.lg,
-                  vertical: AppSpacing.md,
-                ),
-                child: Row(
-                  children: [
-                    Expanded(
-                      child: Text(
-                        t.events.seeAll,
-                        style: TextStyle(
-                          fontSize: 14,
-                          fontWeight: FontWeight.w600,
-                          color: tone.onSoft,
-                        ),
-                      ),
-                    ),
-                    Icon(AppIcons.arrowRight, size: 18, color: tone.onSoft),
-                  ],
-                ),
-              ),
+            // the status bar stays on night blue when the page scrolls
+            Positioned(
+              left: 0,
+              right: 0,
+              top: 0,
+              height: top,
+              child: const ColoredBox(color: _Night.top),
             ),
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-/// Hymns: back to the last one opened, or to the hymn book.
-class _HymnsCard extends ConsumerWidget {
-  const _HymnsCard();
-
-  @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final t = context.t;
-    final scheme = Theme.of(context).colorScheme;
-    final module = AppModule.hymns.tone(context);
-    final last = ref.watch(recentHymnsProvider).firstOrNull;
-    // the books are only loaded when there is a hymn to go back to
-    final hymn = last == null
-        ? null
-        : ref.watch(hymnBookProvider(last.bookCode))?.hymn(last.number);
-
-    return Material(
-      color: scheme.surface,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(AppRadius.xl),
-        side: BorderSide(color: scheme.outlineVariant),
-      ),
-      child: InkWell(
-        borderRadius: BorderRadius.circular(AppRadius.xl),
-        onTap: () => last != null && hymn != null
-            ? context.router.push(
-                HymnReaderRoute(bookCode: last.bookCode, number: last.number),
-              )
-            : context.navigateTo(const HymnsRoute()),
-        child: Padding(
-          padding: const EdgeInsets.all(AppSpacing.lg),
-          child: Row(
-            children: [
-              Container(
-                width: 44,
-                height: 44,
-                decoration: BoxDecoration(
-                  color: module.soft,
-                  borderRadius: BorderRadius.circular(12),
-                ),
-                child: PhosphorIcon(AppIcons.hymnsTile, color: module.onSoft),
-              ),
-              const SizedBox(width: 14),
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      t.home.hymnsTitle,
-                      style: const TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.w700,
-                      ),
-                    ),
-                    const SizedBox(height: 2),
-                    Text(
-                      last != null && hymn != null
-                          ? '${t.home.hymnsResume(number: hymn.number)} · ${hymn.title}'
-                          : t.home.hymnsOpen,
-                      maxLines: 1,
-                      overflow: TextOverflow.ellipsis,
-                      style: TextStyle(
-                        fontSize: 14,
-                        color: scheme.onSurfaceVariant,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              Icon(AppIcons.chevronRight, color: scheme.onSurfaceVariant),
-            ],
-          ),
+          ],
         ),
       ),
     );
   }
 }
 
-class _TodayCard extends ConsumerWidget {
-  const _TodayCard({required this.onOpen});
+/// The night blue of the summary.
+abstract final class _Night {
+  static const top = Color(0xFF0B3B70);
+  static const colors = [top, Color(0xFF072D5A), Color(0xFF061F40)];
+  static const lavender = Color(0xFFD9BCEB);
+  static const muted = Color(0xA6FFFFFF);
+}
+
+/// The card style of the page: round, a soft shadow (a hairline in the
+/// dark).
+BoxDecoration _card(BuildContext context) {
+  final dark = Theme.of(context).brightness == Brightness.dark;
+  return BoxDecoration(
+    color: Theme.of(context).colorScheme.surface,
+    borderRadius: BorderRadius.circular(AppRadius.xxl - 4),
+    border: dark
+        ? Border.all(color: Colors.white.withValues(alpha: 0.06))
+        : null,
+    boxShadow: dark
+        ? null
+        : [
+            BoxShadow(
+              color: AppColors.ink.withValues(alpha: 0.04),
+              blurRadius: 2,
+              offset: const Offset(0, 1),
+            ),
+            BoxShadow(
+              color: AppColors.ink.withValues(alpha: 0.06),
+              blurRadius: 24,
+              offset: const Offset(0, 8),
+            ),
+          ],
+  );
+}
+
+class _Title extends StatelessWidget {
+  const _Title(this.text, {this.action, this.onAction});
+
+  final String text;
+  final String? action;
+  final VoidCallback? onAction;
+
+  @override
+  Widget build(BuildContext context) => Padding(
+    padding: const EdgeInsetsDirectional.fromSTEB(4, 0, 0, 12),
+    child: Row(
+      children: [
+        Expanded(
+          child: Semantics(
+            header: true,
+            child: Text(
+              text,
+              style: const TextStyle(
+                fontSize: 18,
+                fontWeight: FontWeight.w800,
+                letterSpacing: -0.2,
+              ),
+            ),
+          ),
+        ),
+        if (action != null)
+          TextButton(onPressed: onAction, child: Text(action!)),
+      ],
+    ),
+  );
+}
+
+/// The summary of the day, in night blue: the date and the greeting, the
+/// ring of the report, the goals, the retreats and the streak, the week,
+/// then "Continuer mon compte rendu".
+class _Summary extends ConsumerWidget {
+  const _Summary({required this.onOpen, required this.onWeek});
 
   final VoidCallback onOpen;
+  final VoidCallback onWeek;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final t = context.t;
-    final draft = ref.watch(dayReportControllerProvider(today())).value;
-    final filled =
-        draft?.entries.where((entry) => entry.isFilled).toList() ?? const [];
+    final now = today();
+    final top = MediaQuery.paddingOf(context).top;
+    final profile = ref.watch(currentProfileProvider).value;
+    final draft = ref.watch(dayReportControllerProvider(now)).value;
+    final filled = draft?.filledCount ?? 0;
     final total = draft?.entries.length ?? 0;
-    final goalsOfDay = ref.watch(goalsOfDayProvider(today()));
-    const onCard = Color(0xFFDCE9F7);
+    final goals = ref.watch(goalsOfDayProvider(now));
+    final retreats = ref.watch(retreatsTodayProvider).length;
+    final streak = ref.watch(reportStreakProvider).value ?? 0;
+    final reported =
+        ref.watch(reportedDaysOfWeekProvider(now)).value ?? const <DateTime>{};
+    final monday = now.startOfWeek;
+    final week = [
+      for (var i = 0; i < 7; i++)
+        DateTime(monday.year, monday.month, monday.day + i),
+    ];
+    final letters = [
+      for (final day in week) context.formatDate(day, 'EEEEE').toUpperCase(),
+    ];
 
     return Container(
-      clipBehavior: Clip.antiAlias,
-      decoration: BoxDecoration(
-        color: AppColors.primary,
-        borderRadius: BorderRadius.circular(AppRadius.xl + 4),
+      padding: EdgeInsets.fromLTRB(20, top + 18, 20, 24),
+      decoration: const BoxDecoration(
+        gradient: LinearGradient(
+          begin: Alignment.topCenter,
+          end: Alignment.bottomCenter,
+          colors: _Night.colors,
+        ),
+        borderRadius: BorderRadius.vertical(bottom: Radius.circular(32)),
       ),
       child: Stack(
+        clipBehavior: Clip.none,
         children: [
-          Positioned(
-            right: -60,
-            top: -60,
+          PositionedDirectional(
+            end: -120,
+            top: -40,
             child: BrandRing(
-              size: 190,
-              color: Colors.white.withValues(alpha: 0.12),
+              size: 300,
+              color: Colors.white.withValues(alpha: 0.05),
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.all(20),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Row(
-                  crossAxisAlignment: CrossAxisAlignment.end,
-                  children: [
-                    Expanded(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            t.home.todayTitle,
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
+                children: [
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          context.formatDate(now, 'EEEE d MMMM').capitalized,
+                          style: const TextStyle(
+                            fontSize: 13,
+                            fontWeight: FontWeight.w600,
+                            color: _Night.muted,
+                          ),
+                        ),
+                        const SizedBox(height: 2),
+                        Semantics(
+                          header: true,
+                          child: Text(
+                            profile == null
+                                ? t.home.greetingNoName
+                                : t.home.greeting(name: profile.firstName),
                             style: const TextStyle(
-                              fontSize: 14,
-                              fontWeight: FontWeight.w600,
-                              color: AppColors.onPrimaryMuted,
+                              fontSize: 28,
+                              fontWeight: FontWeight.w800,
+                              letterSpacing: -0.6,
+                              color: Colors.white,
                             ),
                           ),
-                          const SizedBox(height: 14),
-                          Wrap(
-                            crossAxisAlignment: WrapCrossAlignment.end,
-                            spacing: AppSpacing.sm,
+                        ),
+                      ],
+                    ),
+                  ),
+                  const IconTheme(
+                    data: IconThemeData(color: Colors.white),
+                    child: _Bell(),
+                  ),
+                  const SizedBox(width: AppSpacing.xs),
+                  Tooltip(
+                    message: t.home.profile,
+                    child: InkResponse(
+                      onTap: () => context.router.push(const MoreRoute()),
+                      radius: 28,
+                      // light on the night blue, in both modes
+                      child: MemberAvatar(
+                        initials: profile?.initials ?? '',
+                        photo: profile?.avatar,
+                        size: 42,
+                        background: Colors.white,
+                        foreground: AppColors.primary,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              const SizedBox(height: 26),
+              Row(
+                children: [
+                  Semantics(
+                    label:
+                        '${t.home.progress(filled: filled, total: total)} '
+                        '${t.home.progressLabel}',
+                    excludeSemantics: true,
+                    child: SizedBox.square(
+                      dimension: 118,
+                      child: Stack(
+                        alignment: Alignment.center,
+                        children: [
+                          SizedBox.expand(
+                            child: TweenAnimationBuilder<double>(
+                              tween: Tween(
+                                end: total == 0 ? 0 : filled / total,
+                              ),
+                              duration: const Duration(milliseconds: 700),
+                              curve: Curves.easeOutCubic,
+                              builder: (context, value, _) => CustomPaint(
+                                painter: ProgressRingPainter(
+                                  progress: value,
+                                  color: AppColors.goldLight,
+                                  track: Colors.white.withValues(alpha: 0.12),
+                                  stroke: 9,
+                                ),
+                              ),
+                            ),
+                          ),
+                          Column(
+                            mainAxisSize: MainAxisSize.min,
                             children: [
-                              RollingText(
-                                draft == null
-                                    ? '—'
-                                    : t.home.progress(
-                                        filled: filled.length,
-                                        total: total,
-                                      ),
-                                value: filled.length,
+                              Text(
+                                draft == null ? '—' : '$filled/$total',
                                 style: const TextStyle(
-                                  fontSize: 34,
+                                  fontSize: 30,
                                   fontWeight: FontWeight.w800,
+                                  letterSpacing: -0.8,
                                   height: 1,
-                                  letterSpacing: -0.6,
                                   color: Colors.white,
                                 ),
                               ),
+                              const SizedBox(height: 4),
                               Text(
-                                t.home.progressLabel,
+                                t.home.items,
                                 style: const TextStyle(
-                                  fontSize: 15,
-                                  color: onCard,
+                                  fontSize: 12,
+                                  fontWeight: FontWeight.w600,
+                                  color: _Night.muted,
                                 ),
                               ),
                             ],
@@ -839,84 +389,521 @@ class _TodayCard extends ConsumerWidget {
                         ],
                       ),
                     ),
-                    if (goalsOfDay != null) ...[
-                      const SizedBox(width: AppSpacing.md),
-                      Column(
-                        children: [
-                          GoalRing(
-                            value: goalsOfDay.progress,
-                            label: t.reports.dayGoals,
-                            size: 60,
-                            // gold, like the bar of the items
-                            color: AppColors.gold,
-                            trackColor: Colors.white.withValues(alpha: 0.22),
-                            textColor: Colors.white,
-                          ),
-                          const SizedBox(height: AppSpacing.xs),
-                          Text(
-                            t.home.goals,
-                            style: const TextStyle(
-                              fontSize: 12,
-                              fontWeight: FontWeight.w600,
-                              color: onCard,
+                  ),
+                  const SizedBox(width: 24),
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        _Stat(
+                          label: t.home.goalsTitle,
+                          value: goals == null
+                              ? '—'
+                              : '${(goals.progress * 100).round()}\u00a0%',
+                          color: AppColors.goldLight,
+                        ),
+                        const _Hairline(),
+                        _Stat(
+                          label: t.home.retreatsTitle,
+                          value: t.home.retreatsValue(n: retreats),
+                          color: _Night.lavender,
+                        ),
+                        const _Hairline(),
+                        _Stat(
+                          label: t.home.streakTitle,
+                          value: t.home.days(n: streak),
+                          color: Colors.white,
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+              const SizedBox(height: 24),
+              Semantics(
+                button: true,
+                label: t.home.weekTitle,
+                child: InkWell(
+                  onTap: onWeek,
+                  borderRadius: BorderRadius.circular(AppRadius.md),
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 4),
+                    child: Row(
+                      children: [
+                        for (final (i, day) in week.indexed)
+                          Expanded(
+                            child: _Day(
+                              letter: letters[i],
+                              today: day == now,
+                              done:
+                                  reported.contains(day) ||
+                                  (day == now && filled > 0),
+                              future: day.isAfter(now),
                             ),
                           ),
-                        ],
-                      ),
-                    ],
-                  ],
-                ),
-                const SizedBox(height: 14),
-                AnimatedProgressBar(
-                  value: total == 0 ? 0 : filled.length / total,
-                  minHeight: 8,
-                  color: AppColors.gold,
-                  backgroundColor: Colors.white.withValues(alpha: 0.22),
-                ),
-                const SizedBox(height: 14),
-                Row(
-                  children: [
-                    Expanded(
-                      child: Wrap(
-                        spacing: 6,
-                        runSpacing: 6,
-                        children: [
-                          for (final entry in filled.take(3))
-                            _WhiteChip(entry.code),
-                          if (filled.length > 3)
-                            _WhiteChip('+${filled.length - 3}'),
-                        ],
-                      ),
+                      ],
                     ),
-                    const SizedBox(width: AppSpacing.md),
-                    FilledButton(
-                      onPressed: onOpen,
-                      style: FilledButton.styleFrom(
-                        backgroundColor: Colors.white,
-                        foregroundColor: AppColors.primary,
-                        minimumSize: const Size(0, 44),
-                        padding: const EdgeInsets.symmetric(horizontal: 18),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(12),
-                        ),
-                        textStyle: const TextStyle(
-                          fontFamily: AppTheme.fontFamily,
-                          fontSize: 15,
-                          fontWeight: FontWeight.w700,
-                        ),
-                      ),
-                      child: Text(
-                        filled.isEmpty
-                            ? t.home.startReport
-                            : t.home.continueReport,
-                      ),
-                    ),
-                  ],
+                  ),
                 ),
-              ],
-            ),
+              ),
+              const SizedBox(height: 20),
+              SizedBox(
+                width: double.infinity,
+                child: FilledButton(
+                  onPressed: onOpen,
+                  style: FilledButton.styleFrom(
+                    backgroundColor: Colors.white,
+                    foregroundColor: AppColors.primaryDeep,
+                    minimumSize: const Size.fromHeight(50),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(16),
+                    ),
+                    textStyle: const TextStyle(
+                      fontFamily: AppTheme.fontFamily,
+                      fontSize: 15.5,
+                      fontWeight: FontWeight.w800,
+                    ),
+                  ),
+                  child: Text(
+                    filled == 0
+                        ? t.home.startMyReport
+                        : t.home.continueMyReport,
+                  ),
+                ),
+              ),
+            ],
           ),
         ],
+      ),
+    );
+  }
+}
+
+class _Hairline extends StatelessWidget {
+  const _Hairline();
+
+  @override
+  Widget build(BuildContext context) => Padding(
+    padding: const EdgeInsets.symmetric(vertical: 8),
+    child: Divider(height: 1, color: Colors.white.withValues(alpha: 0.10)),
+  );
+}
+
+/// A number of the summary, its label above with a coloured dot.
+class _Stat extends StatelessWidget {
+  const _Stat({required this.label, required this.value, required this.color});
+
+  final String label;
+  final String value;
+  final Color color;
+
+  @override
+  Widget build(BuildContext context) => Semantics(
+    label: '$label : $value',
+    excludeSemantics: true,
+    child: Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Row(
+          children: [
+            Container(
+              width: 7,
+              height: 7,
+              decoration: BoxDecoration(shape: BoxShape.circle, color: color),
+            ),
+            const SizedBox(width: 6),
+            Flexible(
+              child: Text(
+                label,
+                style: const TextStyle(
+                  fontSize: 12.5,
+                  fontWeight: FontWeight.w600,
+                  color: _Night.muted,
+                ),
+              ),
+            ),
+          ],
+        ),
+        const SizedBox(height: 4),
+        Text(
+          value,
+          style: const TextStyle(
+            fontSize: 19,
+            fontWeight: FontWeight.w800,
+            letterSpacing: -0.3,
+            color: Colors.white,
+          ),
+        ),
+      ],
+    ),
+  );
+}
+
+/// A day of the week: gold with a check once the report is in.
+class _Day extends StatelessWidget {
+  const _Day({
+    required this.letter,
+    required this.today,
+    required this.done,
+    required this.future,
+  });
+
+  final String letter;
+  final bool today;
+  final bool done;
+  final bool future;
+
+  @override
+  Widget build(BuildContext context) => Column(
+    children: [
+      Text(
+        letter,
+        style: TextStyle(
+          fontSize: 12,
+          fontWeight: today ? FontWeight.w800 : FontWeight.w600,
+          color: Colors.white.withValues(alpha: today ? 1 : 0.6),
+        ),
+      ),
+      const SizedBox(height: 6),
+      Container(
+        width: 28,
+        height: 28,
+        decoration: BoxDecoration(
+          shape: BoxShape.circle,
+          color: done
+              ? AppColors.goldLight
+              : Colors.white.withValues(alpha: future ? 0.06 : 0.12),
+          border: today && !done
+              ? Border.all(color: AppColors.goldLight, width: 2)
+              : null,
+        ),
+        child: done
+            ? const Icon(AppIcons.check, size: 14, color: AppColors.primaryDeep)
+            : null,
+      ),
+    ],
+  );
+}
+
+/// What to pick up: the retreat of the moment (or the four made), the hymn
+/// sung last.
+class _Resume extends ConsumerWidget {
+  const _Resume();
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final t = context.t;
+    final scheme = Theme.of(context).colorScheme;
+    final now = DateTime.now();
+    final moment = nextRetreat(ref.watch(retreatsTodayProvider), now);
+    final last = ref.watch(recentHymnsProvider).firstOrNull;
+    // the books are only loaded when there is a hymn to go back to
+    final hymn = last == null
+        ? null
+        : ref.watch(hymnBookProvider(last.bookCode))?.hymn(last.number);
+    final hymns = AppModule.hymns.tone(context);
+    final prayer = AppModule.prayer.tone(context);
+
+    return Container(
+      decoration: _card(context),
+      clipBehavior: Clip.antiAlias,
+      child: Material(
+        type: MaterialType.transparency,
+        child: Column(
+          children: [
+            if (moment == null)
+              _Row(
+                leading: _Tile(
+                  color: prayer.soft,
+                  child: PhosphorIcon(
+                    AppIcons.prayerTile,
+                    size: 22,
+                    color: prayer.onSoft,
+                  ),
+                ),
+                title: t.nav.prayer,
+                text: t.home.retreatsDone,
+                onTap: () => context.navigateTo(const PrayerRoute()),
+              )
+            else
+              _Row(
+                leading: Container(
+                  width: 44,
+                  height: 44,
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    gradient: LinearGradient(
+                      begin: Alignment.topLeft,
+                      end: Alignment.bottomRight,
+                      colors: moment.colors,
+                    ),
+                  ),
+                  child: Icon(moment.icon, color: Colors.white, size: 20),
+                ),
+                title: moment.retreat(t),
+                text: moment == momentAt(now)
+                    ? t.prayer.routine.now
+                    : t.prayer.routine.next,
+                onTap: () => context.router.push(RetreatRoute(moment: moment)),
+                trailing: IconButton.filled(
+                  tooltip: t.prayer.hero.start,
+                  onPressed: () =>
+                      context.router.push(RetreatSessionRoute(moment: moment)),
+                  style: IconButton.styleFrom(
+                    backgroundColor: scheme.onSurface,
+                    foregroundColor: scheme.surface,
+                    fixedSize: const Size.square(38),
+                    minimumSize: const Size.square(38),
+                  ),
+                  icon: const Icon(AppIcons.play, size: 16),
+                ),
+              ),
+            Divider(
+              height: 1,
+              indent: 74,
+              endIndent: 16,
+              color: scheme.outlineVariant,
+            ),
+            _Row(
+              leading: _Tile(
+                color: hymns.soft,
+                child: PhosphorIcon(
+                  AppIcons.hymnsTile,
+                  size: 22,
+                  color: hymns.onSoft,
+                ),
+              ),
+              title: hymn == null
+                  ? t.home.hymnsTitle
+                  : t.home.hymnNumber(number: hymn.number),
+              text: hymn?.title ?? t.home.hymnsOpen,
+              onTap: () => last != null && hymn != null
+                  ? context.router.push(
+                      HymnReaderRoute(
+                        bookCode: last.bookCode,
+                        number: last.number,
+                      ),
+                    )
+                  : context.navigateTo(const HymnsRoute()),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class _Tile extends StatelessWidget {
+  const _Tile({required this.color, required this.child});
+
+  final Color color;
+  final Widget child;
+
+  @override
+  Widget build(BuildContext context) => Container(
+    width: 44,
+    height: 44,
+    decoration: BoxDecoration(
+      color: color,
+      borderRadius: BorderRadius.circular(12),
+    ),
+    child: Center(child: child),
+  );
+}
+
+/// A row of the cards of the page: a picture, two lines, an action.
+class _Row extends StatelessWidget {
+  const _Row({
+    required this.leading,
+    required this.title,
+    required this.text,
+    required this.onTap,
+    this.trailing,
+    this.badge,
+  });
+
+  final Widget leading;
+  final String title;
+  final String text;
+  final VoidCallback onTap;
+  final Widget? trailing;
+
+  /// At the end instead of the chevron ("J-12").
+  final Widget? badge;
+
+  @override
+  Widget build(BuildContext context) {
+    final scheme = Theme.of(context).colorScheme;
+    return InkWell(
+      onTap: onTap,
+      child: Padding(
+        padding: const EdgeInsetsDirectional.fromSTEB(16, 12, 12, 12),
+        child: Row(
+          children: [
+            leading,
+            const SizedBox(width: 14),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    title,
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    style: const TextStyle(
+                      fontSize: 15.5,
+                      fontWeight: FontWeight.w700,
+                    ),
+                  ),
+                  const SizedBox(height: 2),
+                  Text(
+                    text,
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    style: TextStyle(
+                      fontSize: 13.5,
+                      color: scheme.onSurfaceVariant,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            const SizedBox(width: 8),
+            trailing ??
+                badge ??
+                Icon(
+                  AppIcons.chevronRight,
+                  size: 18,
+                  color: scheme.onSurfaceVariant,
+                ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+/// The community in rows: the next two events (a small poster, when, the
+/// days left), then the ministry.
+class _Community extends ConsumerWidget {
+  const _Community();
+
+  /// The rest is in "Tout voir".
+  static const _max = 2;
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final t = context.t;
+    final scheme = Theme.of(context).colorScheme;
+    final tone = AppModule.events.tone(context);
+    final upcoming = [
+      for (final event
+          in ref.watch(eventListProvider(EventPeriod.upcoming)).value ??
+              const <CommunityEvent>[])
+        if (event.status == EventStatus.published) event,
+    ];
+    final nations = ref.watch(nationsProvider).value?.length ?? 154;
+    final now = DateTime.now();
+
+    String countdown(CommunityEvent event) {
+      if (event.isOn(now)) {
+        return t.events.onNow;
+      }
+      return switch (event.daysUntil(now)) {
+        <= 0 => t.events.today,
+        1 => t.events.tomorrow,
+        final days => t.events.daysLeft(n: days),
+      };
+    }
+
+    final divider = Divider(
+      height: 1,
+      indent: 74,
+      endIndent: 16,
+      color: scheme.outlineVariant,
+    );
+
+    return Container(
+      decoration: _card(context),
+      clipBehavior: Clip.antiAlias,
+      child: Material(
+        type: MaterialType.transparency,
+        child: Column(
+          children: [
+            if (upcoming.isEmpty)
+              _Row(
+                leading: _Tile(
+                  color: tone.soft,
+                  child: PhosphorIcon(
+                    AppIcons.eventsTile,
+                    size: 22,
+                    color: tone.onSoft,
+                  ),
+                ),
+                title: t.home.eventsTitle,
+                text: t.events.homeText,
+                onTap: () => context.router.push(const EventsRoute()),
+              ),
+            for (final event in upcoming.take(_max)) ...[
+              _Row(
+                leading: ClipRRect(
+                  borderRadius: BorderRadius.circular(10),
+                  child: SizedBox(
+                    width: 44,
+                    height: 55,
+                    child: event.poster == null
+                        ? _Tile(
+                            color: tone.soft,
+                            child: PhosphorIcon(
+                              AppIcons.eventsTile,
+                              size: 22,
+                              color: tone.onSoft,
+                            ),
+                          )
+                        : MediaPicture(
+                            url: event.poster!.url,
+                            argb: event.poster!.argb,
+                          ),
+                  ),
+                ),
+                title: event.title,
+                text: [
+                  context.formatDayRange(
+                    event.startsAt,
+                    event.endsAt,
+                    timeZone: event.timeZone,
+                  ),
+                  event.city,
+                  if (event.registration.registered) t.events.registered,
+                ].where((part) => part.isNotEmpty).join(' · '),
+                onTap: () => context.router.push(EventRoute(eventId: event.id)),
+                badge: Text(
+                  countdown(event),
+                  style: TextStyle(
+                    fontSize: 13,
+                    fontWeight: FontWeight.w800,
+                    color: tone.onSoft,
+                  ),
+                ),
+              ),
+              divider,
+            ],
+            if (upcoming.isEmpty) divider,
+            _Row(
+              leading: _Tile(
+                color: tone.soft,
+                child: PhosphorIcon(
+                  AppIcons.ministryTile,
+                  size: 22,
+                  color: tone.onSoft,
+                ),
+              ),
+              title: t.ministry.title,
+              text: t.ministry.homeText(n: nations),
+              onTap: () => context.router.push(const MinistryRoute()),
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -939,265 +926,6 @@ class _Bell extends ConsumerWidget {
         label: Text(unread > 9 ? '9+' : '$unread'),
         child: const Icon(AppIcons.notifications),
       ),
-    );
-  }
-}
-
-class _WhiteChip extends StatelessWidget {
-  const _WhiteChip(this.text);
-
-  final String text;
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 9, vertical: 5),
-      decoration: BoxDecoration(
-        color: Colors.white.withValues(alpha: 0.16),
-        borderRadius: BorderRadius.circular(8),
-      ),
-      child: Text(
-        text,
-        style: const TextStyle(
-          fontSize: 12,
-          fontWeight: FontWeight.w700,
-          color: Colors.white,
-        ),
-      ),
-    );
-  }
-}
-
-class _WeekCard extends ConsumerWidget {
-  const _WeekCard({required this.onOpen});
-
-  final VoidCallback onOpen;
-
-  @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final t = context.t;
-    final scheme = Theme.of(context).colorScheme;
-    final now = today();
-    final reported =
-        ref.watch(reportedDaysOfWeekProvider(now)).value ?? const <DateTime>{};
-    final todayFilled =
-        ref.watch(dayReportControllerProvider(now)).value?.filledCount ?? 0;
-    final monday = now.startOfWeek;
-    final week = [
-      for (var i = 0; i < 7; i++)
-        DateTime(monday.year, monday.month, monday.day + i),
-    ];
-    final filledDays = reported.where((day) => !day.isAfter(now)).length;
-    final streak = ref.watch(reportStreakProvider).value ?? 0;
-
-    return Material(
-      color: scheme.surface,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(AppRadius.xl),
-        side: BorderSide(color: scheme.outlineVariant),
-      ),
-      child: InkWell(
-        borderRadius: BorderRadius.circular(AppRadius.xl),
-        onTap: onOpen,
-        child: Padding(
-          padding: const EdgeInsets.all(AppSpacing.lg),
-          child: Column(
-            children: [
-              Row(
-                crossAxisAlignment: CrossAxisAlignment.baseline,
-                textBaseline: TextBaseline.alphabetic,
-                children: [
-                  Expanded(
-                    child: Text(
-                      t.home.weekTitle,
-                      style: Theme.of(context).textTheme.titleMedium,
-                    ),
-                  ),
-                  RollingText(
-                    t.home.weekScore(filled: filledDays, total: now.weekday),
-                    value: filledDays,
-                    alignment: AlignmentDirectional.centerEnd,
-                    style: TextStyle(
-                      fontSize: 13,
-                      color: scheme.onSurfaceVariant,
-                    ),
-                  ),
-                ],
-              ),
-              const SizedBox(height: AppSpacing.md),
-              Row(
-                children: [
-                  for (final (index, day) in week.indexed)
-                    Expanded(
-                      child: Column(
-                        children: [
-                          Text(
-                            context.formatDate(day, 'EEEEE').toUpperCase(),
-                            style: TextStyle(
-                              fontSize: 12,
-                              fontWeight: day.isSameDay(now)
-                                  ? FontWeight.w700
-                                  : FontWeight.w400,
-                              color: day.isAfter(now)
-                                  ? AppTones.of(context).disabled
-                                  : scheme.onSurfaceVariant,
-                            ),
-                          ),
-                          const SizedBox(height: 6),
-                          _DayDot(
-                            index: index,
-                            done: reported.contains(day),
-                            isToday: day.isSameDay(now),
-                            isFuture: day.isAfter(now),
-                            todayCount: todayFilled,
-                          ),
-                        ],
-                      ),
-                    ),
-                ],
-              ),
-              // a series of 2 days or more is worth showing
-              AnimatedSize(
-                duration: AppMotion.of(context, AppMotion.medium),
-                curve: AppMotion.standard,
-                child: streak >= 2
-                    ? _Streak(days: streak, todayDone: reported.contains(now))
-                    : const SizedBox(width: double.infinity),
-              ),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-/// "🔥 12 jours d'affilée · Remplis aujourd'hui pour continuer"
-class _Streak extends StatelessWidget {
-  const _Streak({required this.days, required this.todayDone});
-
-  final int days;
-  final bool todayDone;
-
-  @override
-  Widget build(BuildContext context) {
-    final t = context.t;
-    final scheme = Theme.of(context).colorScheme;
-
-    return Padding(
-      padding: const EdgeInsets.only(top: 14),
-      child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 9),
-        decoration: BoxDecoration(
-          color: AppTones.of(context).personalSoft,
-          borderRadius: BorderRadius.circular(AppRadius.md),
-        ),
-        child: Row(
-          children: [
-            const Icon(AppIcons.streak, size: 20, color: AppColors.gold),
-            const SizedBox(width: AppSpacing.sm),
-            RollingText(
-              t.home.streak(n: days),
-              value: days,
-              style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w800),
-            ),
-            const SizedBox(width: AppSpacing.sm),
-            Expanded(
-              child: Text(
-                todayDone ? t.home.streakToday : t.home.streakKeep,
-                textAlign: TextAlign.end,
-                maxLines: 2,
-                style: TextStyle(fontSize: 12, color: scheme.onSurfaceVariant),
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-class _DayDot extends StatelessWidget {
-  const _DayDot({
-    required this.index,
-    required this.done,
-    required this.isToday,
-    required this.isFuture,
-    required this.todayCount,
-  });
-
-  /// Day of the week (0: Monday): the check marks pop in one after the other.
-  final int index;
-  final bool done;
-  final bool isToday;
-  final bool isFuture;
-  final int todayCount;
-
-  @override
-  Widget build(BuildContext context) {
-    final scheme = Theme.of(context).colorScheme;
-    const size = 30.0;
-
-    if (done) {
-      // a new element each time a day gets done: it pops in once
-      final wait = AppMotion.stagger * index;
-      final total = wait + AppMotion.slow;
-      return TweenAnimationBuilder<double>(
-        tween: Tween(begin: 0, end: 1),
-        duration: AppMotion.of(context, total),
-        curve: Interval(
-          wait.inMicroseconds / total.inMicroseconds,
-          1,
-          curve: AppMotion.pop,
-        ),
-        builder: (context, scale, child) =>
-            Transform.scale(scale: scale, child: child),
-        child: Container(
-          width: size,
-          height: size,
-          decoration: BoxDecoration(
-            color: scheme.primary,
-            shape: BoxShape.circle,
-          ),
-          child: Icon(AppIcons.check, size: 18, color: scheme.onPrimary),
-        ),
-      );
-    }
-    if (isToday) {
-      return Container(
-        width: size,
-        height: size,
-        alignment: Alignment.center,
-        decoration: BoxDecoration(
-          shape: BoxShape.circle,
-          border: Border.all(color: AppColors.gold, width: 2.5),
-        ),
-        child: todayCount == 0
-            ? null
-            : Text(
-                '$todayCount',
-                style: TextStyle(
-                  fontSize: 12,
-                  fontWeight: FontWeight.w800,
-                  color: AppTones.of(context).personal,
-                ),
-              ),
-      );
-    }
-    if (isFuture) {
-      return Container(
-        width: size,
-        height: size,
-        decoration: BoxDecoration(
-          color: scheme.surfaceContainerHighest,
-          shape: BoxShape.circle,
-        ),
-      );
-    }
-    return DashedOutline(
-      color: scheme.outline,
-      strokeWidth: 2,
-      child: const SizedBox.square(dimension: size),
     );
   }
 }
@@ -1295,107 +1023,6 @@ class _WeekStoryCard extends StatelessWidget {
                           fontSize: 15,
                           fontWeight: FontWeight.w800,
                         ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-class _TeaserCard extends StatelessWidget {
-  const _TeaserCard({
-    required this.module,
-    required this.icon,
-    required this.title,
-    required this.text,
-    this.filled = false,
-    this.soon = true,
-    this.onTap,
-  });
-
-  final AppModule module;
-  final Widget icon;
-  final String title;
-  final String text;
-
-  /// Shows the "Bientôt" pill.
-  final bool soon;
-
-  /// Card in the module's soft color, instead of white.
-  final bool filled;
-  final VoidCallback? onTap;
-
-  @override
-  Widget build(BuildContext context) {
-    final scheme = Theme.of(context).colorScheme;
-    final tone = module.tone(context);
-
-    return Material(
-      color: filled ? tone.soft : scheme.surface,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(AppRadius.xl),
-        side: filled
-            ? BorderSide.none
-            : BorderSide(color: scheme.outlineVariant),
-      ),
-      child: InkWell(
-        borderRadius: BorderRadius.circular(AppRadius.xl),
-        onTap: onTap,
-        child: Padding(
-          padding: const EdgeInsets.all(AppSpacing.lg),
-          child: Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Container(
-                width: 40,
-                height: 40,
-                alignment: Alignment.center,
-                decoration: BoxDecoration(
-                  color: filled ? scheme.surface : tone.soft,
-                  borderRadius: BorderRadius.circular(12),
-                ),
-                child: IconTheme(
-                  data: IconThemeData(color: tone.onSoft, size: 20),
-                  child: icon,
-                ),
-              ),
-              const SizedBox(width: 14),
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Row(
-                      children: [
-                        Expanded(
-                          child: Text(
-                            title,
-                            style: const TextStyle(
-                              fontSize: 16,
-                              fontWeight: FontWeight.w700,
-                            ),
-                          ),
-                        ),
-                        if (soon)
-                          StatusPill(
-                            context.t.common.soon,
-                            background: filled ? scheme.surface : null,
-                            foreground: tone.onSoft,
-                          ),
-                      ],
-                    ),
-                    const SizedBox(height: AppSpacing.xs),
-                    Text(
-                      text,
-                      style: TextStyle(
-                        fontSize: 14,
-                        height: 1.4,
-                        color: scheme.onSurfaceVariant,
                       ),
                     ),
                   ],

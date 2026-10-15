@@ -218,7 +218,7 @@ final class RetreatLogProvider
   RetreatLog create() => RetreatLog();
 }
 
-String _$retreatLogHash() => r'61c39d373fb6ee3ca2c903c2732ce1d9fed4a9e0';
+String _$retreatLogHash() => r'9f3ed37f7a79a8ddcc0404820defbcc7821f5cf1';
 
 /// The retreats of the last week: from the server, with those made without
 /// network (sent as soon as it comes back).

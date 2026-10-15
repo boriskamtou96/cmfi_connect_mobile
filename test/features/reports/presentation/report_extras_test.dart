@@ -177,7 +177,7 @@ void main() {
       await tester.pumpAndSettle();
 
       // today is not filled in yet
-      expect(find.text('objectifs'), findsOneWidget);
+      expect(find.text('Objectifs'), findsOneWidget);
       expect(find.text('0\u00a0%'), findsOneWidget);
 
       await openReports(tester);
@@ -198,8 +198,9 @@ void main() {
       app.container.invalidate(reportHistoryProvider);
       await tester.pumpAndSettle();
 
-      expect(find.text("3 jours d'affilée"), findsOneWidget);
-      expect(find.text("Remplis aujourd'hui pour continuer"), findsOneWidget);
+      // the streak of the summary
+      expect(find.text('Série'), findsOneWidget);
+      expect(find.text('3 jours'), findsOneWidget);
     });
   });
 

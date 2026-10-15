@@ -183,28 +183,29 @@
     "greeting": "नमस्ते {name}",
     "greetingNoName": "नमस्ते",
     "profile": "मेरी प्रोफ़ाइल",
-    "todayTitle": "आज की रिपोर्ट",
     "progress": "{total} में से {filled}",
     "progressLabel": "आइटम भरे गए",
     "goals": "लक्ष्य",
-    "continueReport": "जारी रखो",
-    "startReport": "शुरू करो",
     "weekTitle": "तुम्हारा हफ़्ता",
-    "weekScore(plural, param=filled)": {
-      "one": "{total} में से {filled} दिन",
-      "other": "{total} में से {filled} दिन"
-    },
     "community": "अभी CMFI में",
     "eventsTitle": "कार्यक्रम",
     "hymnsTitle": "भजन",
-    "hymnsResume": "नं. {number} पर लौटो",
     "hymnsOpen": "भजन संग्रह खोलो",
-    "streak(plural, param=n)": {
-      "one": "लगातार {n} दिन",
-      "other": "लगातार {n} दिन"
-    },
-    "streakKeep": "सिलसिला बनाए रखने के लिए आज भरो",
-    "streakToday": "शाबाश, कल भी जारी रखना!"
+    "continueMyReport": "अपनी रिपोर्ट जारी रखो",
+    "startMyReport": "अपनी रिपोर्ट शुरू करो",
+    "items": "चीज़ें",
+    "goalsTitle": "लक्ष्य",
+    "retreatsTitle": "प्रार्थना-समय",
+    "retreatsValue": "4 में से {n}",
+    "streakTitle": "लगातार",
+    "resume": "जहाँ छोड़ा था वहीं से",
+    "hymnNumber": "भजन संख्या {number}",
+    "seeAll": "सब देखो",
+    "retreatsDone": "आज के चारों प्रार्थना-समय हो गए",
+    "days(plural, param=n)": {
+      "one": "{n} दिन",
+      "other": "{n} दिन"
+    }
   },
   "reports": {
     "title": "दैनिक रिपोर्ट",

@@ -239,36 +239,33 @@ class _Translations$home$ar extends Translations$home$fr {
 	@override String greeting({required Object name}) => 'مرحبًا ${name}';
 	@override String get greetingNoName => 'مرحبًا';
 	@override String get profile => 'ملفي الشخصي';
-	@override String get todayTitle => 'تقرير اليوم';
 	@override String progress({required Object filled, required Object total}) => '${filled} من ${total}';
 	@override String get progressLabel => 'عناصر معبّأة';
 	@override String get goals => 'الأهداف';
-	@override String get continueReport => 'متابعة';
-	@override String get startReport => 'ابدأ';
 	@override String get weekTitle => 'أسبوعك';
-	@override String weekScore({required num filled, required Object total}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(filled,
-		zero: '${filled} يوم من ${total}',
-		one: 'يوم واحد من ${total}',
-		two: 'يومان من ${total}',
-		few: '${filled} أيام من ${total}',
-		many: '${filled} يومًا من ${total}',
-		other: '${filled} يوم من ${total}',
-	);
 	@override String get community => 'حاليًا في CMFI';
 	@override String get eventsTitle => 'الفعاليات';
 	@override String get hymnsTitle => 'الترانيم';
-	@override String hymnsResume({required Object number}) => 'العودة إلى رقم ${number}';
 	@override String get hymnsOpen => 'فتح كتاب الترانيم';
-	@override String streak({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n,
-		zero: '${n} يوم على التوالي',
-		one: 'يوم واحد على التوالي',
-		two: 'يومان على التوالي',
-		few: '${n} أيام على التوالي',
-		many: '${n} يومًا على التوالي',
-		other: '${n} يوم على التوالي',
+	@override String get continueMyReport => 'متابعة تقريري';
+	@override String get startMyReport => 'بدء تقريري';
+	@override String get items => 'عناصر';
+	@override String get goalsTitle => 'الأهداف';
+	@override String get retreatsTitle => 'الخلوات';
+	@override String retreatsValue({required Object n}) => '${n} من 4';
+	@override String get streakTitle => 'المواظبة';
+	@override String get resume => 'تابع من حيث توقفت';
+	@override String hymnNumber({required Object number}) => 'الترنيمة رقم ${number}';
+	@override String get seeAll => 'عرض الكل';
+	@override String get retreatsDone => 'تمّت خلوات اليوم الأربع';
+	@override String days({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n,
+		zero: '${n} يوم',
+		one: 'يوم واحد',
+		two: 'يومان',
+		few: '${n} أيام',
+		many: '${n} يومًا',
+		other: '${n} يوم',
 	);
-	@override String get streakKeep => 'املأ تقرير اليوم لتواصل';
-	@override String get streakToday => 'أحسنت، تابع غدًا!';
 }
 
 // Path: reports
@@ -2734,22 +2731,26 @@ extension on TranslationsAr {
 			'home.greeting' => ({required Object name}) => 'مرحبًا ${name}',
 			'home.greetingNoName' => 'مرحبًا',
 			'home.profile' => 'ملفي الشخصي',
-			'home.todayTitle' => 'تقرير اليوم',
 			'home.progress' => ({required Object filled, required Object total}) => '${filled} من ${total}',
 			'home.progressLabel' => 'عناصر معبّأة',
 			'home.goals' => 'الأهداف',
-			'home.continueReport' => 'متابعة',
-			'home.startReport' => 'ابدأ',
 			'home.weekTitle' => 'أسبوعك',
-			'home.weekScore' => ({required num filled, required Object total}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(filled, zero: '${filled} يوم من ${total}', one: 'يوم واحد من ${total}', two: 'يومان من ${total}', few: '${filled} أيام من ${total}', many: '${filled} يومًا من ${total}', other: '${filled} يوم من ${total}', ), 
 			'home.community' => 'حاليًا في CMFI',
 			'home.eventsTitle' => 'الفعاليات',
 			'home.hymnsTitle' => 'الترانيم',
-			'home.hymnsResume' => ({required Object number}) => 'العودة إلى رقم ${number}',
 			'home.hymnsOpen' => 'فتح كتاب الترانيم',
-			'home.streak' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n, zero: '${n} يوم على التوالي', one: 'يوم واحد على التوالي', two: 'يومان على التوالي', few: '${n} أيام على التوالي', many: '${n} يومًا على التوالي', other: '${n} يوم على التوالي', ), 
-			'home.streakKeep' => 'املأ تقرير اليوم لتواصل',
-			'home.streakToday' => 'أحسنت، تابع غدًا!',
+			'home.continueMyReport' => 'متابعة تقريري',
+			'home.startMyReport' => 'بدء تقريري',
+			'home.items' => 'عناصر',
+			'home.goalsTitle' => 'الأهداف',
+			'home.retreatsTitle' => 'الخلوات',
+			'home.retreatsValue' => ({required Object n}) => '${n} من 4',
+			'home.streakTitle' => 'المواظبة',
+			'home.resume' => 'تابع من حيث توقفت',
+			'home.hymnNumber' => ({required Object number}) => 'الترنيمة رقم ${number}',
+			'home.seeAll' => 'عرض الكل',
+			'home.retreatsDone' => 'تمّت خلوات اليوم الأربع',
+			'home.days' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n, zero: '${n} يوم', one: 'يوم واحد', two: 'يومان', few: '${n} أيام', many: '${n} يومًا', other: '${n} يوم', ), 
 			'reports.title' => 'التقرير',
 			'reports.myItems' => 'عناصري',
 			'reports.tabs.today' => 'اليوم',
@@ -3093,12 +3094,12 @@ extension on TranslationsAr {
 			'hymns.reader.background' => 'الخلفية',
 			'hymns.reader.themeAuto' => 'تلقائي',
 			'hymns.reader.themeLight' => 'فاتح',
+			_ => null,
+		} ?? switch (path) {
 			'hymns.reader.themeSepia' => 'سيبيا',
 			'hymns.reader.themeDark' => 'داكن',
 			'hymns.reader.repeatChorus' => 'تكرار القرار بعد كل مقطع',
 			'hymns.reader.keepScreenOn' => 'إبقاء الشاشة مضاءة',
-			_ => null,
-		} ?? switch (path) {
 			'hymns.reader.addFavorite' => 'إضافة إلى المفضلة',
 			'hymns.reader.removeFavorite' => 'إزالة من المفضلة',
 			'hymns.reader.favoriteAdded' => 'تمت الإضافة إلى المفضلة',
@@ -3607,12 +3608,12 @@ extension on TranslationsAr {
 			'prayer.importunity.form.goalPlaceholder' => '10000',
 			'prayer.importunity.form.create' => 'إنشاء',
 			'prayer.importunity.form.save' => 'حفظ',
+			_ => null,
+		} ?? switch (path) {
 			'prayer.importunity.inviteSheet.title' => 'الدعوة إلى الصلاة',
 			'prayer.importunity.inviteSheet.family' => 'عائلتي الروحية',
 			'prayer.importunity.inviteSheet.familyText' => ({required num n, required Object name}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n, zero: '${name} وتلاميذه: لا أحد', one: '${name} وتلاميذه: شخص واحد', two: '${name} وتلاميذه: شخصان', few: '${name} وتلاميذه: ${n} أشخاص', many: '${name} وتلاميذه: ${n} شخصًا', other: '${name} وتلاميذه: ${n} شخص', ), 
 			'prayer.importunity.inviteSheet.familyMissing' => 'اربط صانع التلاميذ الخاص بك في «مرشديّ الروحيون» لتدعو عائلتك الروحية.',
-			_ => null,
-		} ?? switch (path) {
 			'prayer.importunity.inviteSheet.byUsername' => 'باسم المستخدم',
 			'prayer.importunity.inviteSheet.usernameLabel' => 'اسم المستخدم',
 			'prayer.importunity.inviteSheet.addUsername' => 'إضافة',

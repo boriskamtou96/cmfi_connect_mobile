@@ -370,7 +370,7 @@ void main() {
         '${today().day.toString().padLeft(2, '0')}';
     final osis = (days[key] as Map<String, dynamic>)['osis'] as String;
 
-    await tester.scrollUntilVisible(find.byTooltip('Lire dans la Bible'), 200);
+    await scrollTo(tester, find.byTooltip('Lire dans la Bible'));
     await tester.tap(find.byTooltip('Lire dans la Bible'));
     await tester.pumpAndSettle();
 

@@ -31,6 +31,7 @@ import '../../reports/application/report_reminder.dart';
 import '../../reports/application/report_sending.dart';
 import '../../reports/domain/report_sending.dart';
 import '../../reports/presentation/widgets/reminder_sheets.dart';
+import '../../seek_first/application/seek_first.dart';
 import 'widgets/theme_sheet.dart';
 
 /// "Plus", opened from the photo at the top of the home screen: profile, the
@@ -56,6 +57,7 @@ class MoreScreen extends ConsumerWidget {
     final premium = ref.watch(premiumProvider).value ?? false;
     // v1: Premium is offered to everyone, nothing leads to the paywall
     final premiumForEveryone = ref.watch(premiumForEveryoneProvider);
+    final seekFirst = ref.watch(seekFirstProvider).value;
     final nationCount = ref.watch(nationsProvider).value?.length ?? 154;
     final discipleMaker = authorities
         ?.where((authority) => authority.isDiscipleMaker)
@@ -365,6 +367,30 @@ class MoreScreen extends ConsumerWidget {
                       ),
                       trailing: const Icon(AppIcons.chevronRight),
                       onTap: () => context.router.push(const PremiumRoute()),
+                    ),
+                  if (seekFirst?.supported ?? false)
+                    ListTile(
+                      leading: moduleIcon(
+                        AppIcons.seekFirstTile,
+                        AppModule.reports,
+                      ),
+                      title: Text(
+                        t.seekFirst.title,
+                        style: const TextStyle(fontWeight: FontWeight.w600),
+                      ),
+                      subtitle: Text(
+                        seekFirst!.enabled
+                            ? t.seekFirst.moreOn(
+                                time: seekFirst.start.format(context),
+                              )
+                            : t.seekFirst.moreOff,
+                        style: TextStyle(
+                          fontSize: 13,
+                          color: scheme.onSurfaceVariant,
+                        ),
+                      ),
+                      trailing: const Icon(AppIcons.chevronRight),
+                      onTap: () => context.router.push(const SeekFirstRoute()),
                     ),
                   ListTile(
                     title: Text(

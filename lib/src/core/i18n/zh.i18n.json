@@ -1633,5 +1633,49 @@
     "pastWeeks": "过去几周",
     "weekOf": "{date} 那一周",
     "page": "第 {current} 页，共 {total} 页"
+  },
+  "seekFirst": {
+    "title": "先求神",
+    "verse": "你们要先求他的国和他的义，这些东西都要加给你们了。",
+    "verseRef": "马太福音 6:33",
+    "intro": "每天，你选择的应用会一直关闭，直到你保存当天的汇报。用神开始你的一天，其余的随后而来。",
+    "enable": "开启",
+    "apps": "要关闭的应用",
+    "appsNone": "尚未选择应用",
+    "appCount(plural, param=n)": {
+      "other": "{n} 个应用"
+    },
+    "categoryCount(plural, param=n)": {
+      "other": "{n} 个类别"
+    },
+    "siteCount(plural, param=n)": {
+      "other": "{n} 个网站"
+    },
+    "start": "关闭时间",
+    "pauses": "5 分钟暂停",
+    "pausesText": "每天 3 次，用于紧急情况",
+    "pausesLeft(plural, param=n)": {
+      "zero": "今天没有剩余的暂停",
+      "other": "今天还剩 {n} 次暂停"
+    },
+    "todayOpen": "今天你的应用已打开：你先求了神。",
+    "todayLocked": "在完成今天的汇报之前，你的应用保持关闭。",
+    "todayBefore": "如果你的汇报还没有保存，你的应用将在 {time} 关闭。",
+    "fillReport": "填写我的汇报",
+    "denied": "没有“屏幕使用时间”的权限，CMFI Connect 无法关闭应用。你可以在“设置 › 屏幕使用时间”中允许。",
+    "noApps": "请至少选择一个要关闭的应用。",
+    "unsupported": "即将在此手机上推出。",
+    "moreOn": "从 {time} 起，直到你的汇报",
+    "moreOff": "在完成汇报前关闭应用",
+    "privacy": "CMFI Connect 永远看不到你选择了哪些应用：它们只保存在你的 iPhone 上。",
+    "shield": {
+      "title": "先求神",
+      "subtitle": "在完成今天的汇报之前，{app} 保持关闭。",
+      "thisApp": "此应用",
+      "fill": "填写我的汇报",
+      "pause": "暂停 5 分钟（{n}/3）",
+      "notificationTitle": "先求神",
+      "notificationBody": "轻点此处填写你的汇报。"
+    }
   }
 }

@@ -1689,5 +1689,53 @@
     "pastWeeks": "Semanas pasadas",
     "weekOf": "Semana del {date}",
     "page": "{current} de {total}"
+  },
+  "seekFirst": {
+    "title": "Busca primero a Dios",
+    "verse": "Mas buscad primeramente el reino de Dios y su justicia, y todas estas cosas os serán añadidas.",
+    "verseRef": "Mateo 6:33",
+    "intro": "Cada día, las apps que elijas quedan cerradas hasta que guardes tu informe. Empieza tu día con Dios; lo demás viene después.",
+    "enable": "Activar",
+    "apps": "Apps que se cierran",
+    "appsNone": "Ninguna app elegida",
+    "appCount(plural, param=n)": {
+      "one": "{n} app",
+      "other": "{n} apps"
+    },
+    "categoryCount(plural, param=n)": {
+      "one": "{n} categoría",
+      "other": "{n} categorías"
+    },
+    "siteCount(plural, param=n)": {
+      "one": "{n} sitio",
+      "other": "{n} sitios"
+    },
+    "start": "Cerradas desde",
+    "pauses": "Pausas de 5 minutos",
+    "pausesText": "3 al día, para una urgencia",
+    "pausesLeft(plural, param=n)": {
+      "zero": "Ninguna pausa más hoy",
+      "one": "Queda {n} pausa hoy",
+      "other": "Quedan {n} pausas hoy"
+    },
+    "todayOpen": "Hoy tus apps están abiertas: buscaste primero a Dios.",
+    "todayLocked": "Tus apps siguen cerradas hasta tu informe de hoy.",
+    "todayBefore": "Tus apps se cerrarán a las {time} si tu informe aún no está guardado.",
+    "fillReport": "Llenar mi informe",
+    "denied": "Sin acceso a Tiempo en pantalla, CMFI Connect no puede cerrar apps. Puedes permitirlo en Ajustes › Tiempo en pantalla.",
+    "noApps": "Elige al menos una app que quede cerrada.",
+    "unsupported": "Pronto disponible en este teléfono.",
+    "moreOn": "Desde las {time}, hasta tu informe",
+    "moreOff": "Cerrar apps hasta que tu informe esté hecho",
+    "privacy": "CMFI Connect nunca ve las apps que eliges: tu iPhone las guarda para sí.",
+    "shield": {
+      "title": "Busca primero a Dios",
+      "subtitle": "{app} sigue cerrada hasta tu informe de hoy.",
+      "thisApp": "Esta app",
+      "fill": "Llenar mi informe",
+      "pause": "Pausa de 5 min ({n}/3)",
+      "notificationTitle": "Busca primero a Dios",
+      "notificationBody": "Toca aquí para llenar tu informe."
+    }
   }
 }

@@ -75,6 +75,7 @@ class TranslationsHi extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _Translations$profilePhoto$hi profilePhoto = _Translations$profilePhoto$hi._(_root);
 	@override late final _Translations$disciples$hi disciples = _Translations$disciples$hi._(_root);
 	@override late final _Translations$weekStory$hi weekStory = _Translations$weekStory$hi._(_root);
+	@override late final _Translations$seekFirst$hi seekFirst = _Translations$seekFirst$hi._(_root);
 }
 
 // Path: app
@@ -1209,6 +1210,53 @@ class _Translations$weekStory$hi extends Translations$weekStory$fr {
 	@override String page({required Object total, required Object current}) => '${total} में से ${current}';
 }
 
+// Path: seekFirst
+class _Translations$seekFirst$hi extends Translations$seekFirst$fr {
+	_Translations$seekFirst$hi._(TranslationsHi root) : this._root = root, super.internal(root);
+
+	final TranslationsHi _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'पहले परमेश्वर को खोजो';
+	@override String get verse => 'इसलिए पहले तुम परमेश्वर के राज्य और उसकी धार्मिकता की खोज करो तो ये सब वस्तुएँ तुम्हें मिल जाएँगी।';
+	@override String get verseRef => 'मत्ती 6:33';
+	@override String get intro => 'हर दिन, तुम्हारे चुने हुए ऐप तब तक बंद रहते हैं जब तक तुम्हारी रिपोर्ट सहेजी नहीं जाती। अपना दिन परमेश्वर के साथ शुरू करो, बाकी अपने आप होगा।';
+	@override String get enable => 'चालू करें';
+	@override String get apps => 'बंद रखने वाले ऐप';
+	@override String get appsNone => 'कोई ऐप नहीं चुना';
+	@override String appCount({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n,
+		one: '${n} ऐप',
+		other: '${n} ऐप',
+	);
+	@override String categoryCount({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n,
+		one: '${n} श्रेणी',
+		other: '${n} श्रेणियाँ',
+	);
+	@override String siteCount({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n,
+		one: '${n} साइट',
+		other: '${n} साइटें',
+	);
+	@override String get start => 'से बंद';
+	@override String get pauses => '5 मिनट के विराम';
+	@override String get pausesText => 'दिन में 3, आपात स्थिति के लिए';
+	@override String pausesLeft({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n,
+		zero: 'आज कोई विराम नहीं बचा',
+		one: 'आज ${n} विराम बचा है',
+		other: 'आज ${n} विराम बचे हैं',
+	);
+	@override String get todayOpen => 'आज तुम्हारे ऐप खुले हैं: तुमने पहले परमेश्वर को खोजा।';
+	@override String get todayLocked => 'आज की रिपोर्ट तक तुम्हारे ऐप बंद रहेंगे।';
+	@override String todayBefore({required Object time}) => 'अगर तुम्हारी रिपोर्ट अभी सहेजी नहीं गई तो तुम्हारे ऐप ${time} पर बंद हो जाएँगे।';
+	@override String get fillReport => 'मेरी रिपोर्ट भरें';
+	@override String get denied => 'स्क्रीन टाइम की अनुमति के बिना CMFI Connect ऐप बंद नहीं कर सकता। तुम इसे सेटिंग्स › स्क्रीन टाइम में दे सकते हो।';
+	@override String get noApps => 'बंद रखने के लिए कम से कम एक ऐप चुनें।';
+	@override String get unsupported => 'जल्द ही इस फ़ोन पर उपलब्ध।';
+	@override String moreOn({required Object time}) => '${time} से, तुम्हारी रिपोर्ट तक';
+	@override String get moreOff => 'रिपोर्ट पूरी होने तक ऐप बंद रखें';
+	@override String get privacy => 'CMFI Connect कभी नहीं देखता कि तुमने कौन से ऐप चुने: तुम्हारा iPhone उन्हें अपने पास रखता है।';
+	@override late final _Translations$seekFirst$shield$hi shield = _Translations$seekFirst$shield$hi._(_root);
+}
+
 // Path: onboarding.reports
 class _Translations$onboarding$reports$hi extends Translations$onboarding$reports$fr {
 	_Translations$onboarding$reports$hi._(TranslationsHi root) : this._root = root, super.internal(root);
@@ -2211,6 +2259,22 @@ class _Translations$bible$colors$hi extends Translations$bible$colors$fr {
 	@override String get green => 'हरे';
 	@override String get blue => 'नीले';
 	@override String get pink => 'गुलाबी';
+}
+
+// Path: seekFirst.shield
+class _Translations$seekFirst$shield$hi extends Translations$seekFirst$shield$fr {
+	_Translations$seekFirst$shield$hi._(TranslationsHi root) : this._root = root, super.internal(root);
+
+	final TranslationsHi _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'पहले परमेश्वर को खोजो';
+	@override String subtitle({required Object app}) => 'आज की रिपोर्ट तक ${app} बंद रहेगा।';
+	@override String get thisApp => 'यह ऐप';
+	@override String get fill => 'मेरी रिपोर्ट भरें';
+	@override String pause({required Object n}) => '5 मिनट का विराम (${n}/3)';
+	@override String get notificationTitle => 'पहले परमेश्वर को खोजो';
+	@override String get notificationBody => 'अपनी रिपोर्ट भरने के लिए यहाँ टैप करें।';
 }
 
 // Path: reports.units.chapters
@@ -3782,6 +3846,37 @@ extension on TranslationsHi {
 			'weekStory.pastWeeks' => 'पिछले हफ़्ते',
 			'weekStory.weekOf' => ({required Object date}) => '${date} का हफ़्ता',
 			'weekStory.page' => ({required Object total, required Object current}) => '${total} में से ${current}',
+			'seekFirst.title' => 'पहले परमेश्वर को खोजो',
+			'seekFirst.verse' => 'इसलिए पहले तुम परमेश्वर के राज्य और उसकी धार्मिकता की खोज करो तो ये सब वस्तुएँ तुम्हें मिल जाएँगी।',
+			'seekFirst.verseRef' => 'मत्ती 6:33',
+			'seekFirst.intro' => 'हर दिन, तुम्हारे चुने हुए ऐप तब तक बंद रहते हैं जब तक तुम्हारी रिपोर्ट सहेजी नहीं जाती। अपना दिन परमेश्वर के साथ शुरू करो, बाकी अपने आप होगा।',
+			'seekFirst.enable' => 'चालू करें',
+			'seekFirst.apps' => 'बंद रखने वाले ऐप',
+			'seekFirst.appsNone' => 'कोई ऐप नहीं चुना',
+			'seekFirst.appCount' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n, one: '${n} ऐप', other: '${n} ऐप', ), 
+			'seekFirst.categoryCount' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n, one: '${n} श्रेणी', other: '${n} श्रेणियाँ', ), 
+			'seekFirst.siteCount' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n, one: '${n} साइट', other: '${n} साइटें', ), 
+			'seekFirst.start' => 'से बंद',
+			'seekFirst.pauses' => '5 मिनट के विराम',
+			'seekFirst.pausesText' => 'दिन में 3, आपात स्थिति के लिए',
+			'seekFirst.pausesLeft' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n, zero: 'आज कोई विराम नहीं बचा', one: 'आज ${n} विराम बचा है', other: 'आज ${n} विराम बचे हैं', ), 
+			'seekFirst.todayOpen' => 'आज तुम्हारे ऐप खुले हैं: तुमने पहले परमेश्वर को खोजा।',
+			'seekFirst.todayLocked' => 'आज की रिपोर्ट तक तुम्हारे ऐप बंद रहेंगे।',
+			'seekFirst.todayBefore' => ({required Object time}) => 'अगर तुम्हारी रिपोर्ट अभी सहेजी नहीं गई तो तुम्हारे ऐप ${time} पर बंद हो जाएँगे।',
+			'seekFirst.fillReport' => 'मेरी रिपोर्ट भरें',
+			'seekFirst.denied' => 'स्क्रीन टाइम की अनुमति के बिना CMFI Connect ऐप बंद नहीं कर सकता। तुम इसे सेटिंग्स › स्क्रीन टाइम में दे सकते हो।',
+			'seekFirst.noApps' => 'बंद रखने के लिए कम से कम एक ऐप चुनें।',
+			'seekFirst.unsupported' => 'जल्द ही इस फ़ोन पर उपलब्ध।',
+			'seekFirst.moreOn' => ({required Object time}) => '${time} से, तुम्हारी रिपोर्ट तक',
+			'seekFirst.moreOff' => 'रिपोर्ट पूरी होने तक ऐप बंद रखें',
+			'seekFirst.privacy' => 'CMFI Connect कभी नहीं देखता कि तुमने कौन से ऐप चुने: तुम्हारा iPhone उन्हें अपने पास रखता है।',
+			'seekFirst.shield.title' => 'पहले परमेश्वर को खोजो',
+			'seekFirst.shield.subtitle' => ({required Object app}) => 'आज की रिपोर्ट तक ${app} बंद रहेगा।',
+			'seekFirst.shield.thisApp' => 'यह ऐप',
+			'seekFirst.shield.fill' => 'मेरी रिपोर्ट भरें',
+			'seekFirst.shield.pause' => ({required Object n}) => '5 मिनट का विराम (${n}/3)',
+			'seekFirst.shield.notificationTitle' => 'पहले परमेश्वर को खोजो',
+			'seekFirst.shield.notificationBody' => 'अपनी रिपोर्ट भरने के लिए यहाँ टैप करें।',
 			_ => null,
 		};
 	}

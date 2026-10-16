@@ -1,6 +1,7 @@
 import 'package:cmfi_connect/app.dart';
 import 'package:cmfi_connect/src/core/config/flavor.dart';
 import 'package:cmfi_connect/src/core/i18n/strings.g.dart';
+import 'package:cmfi_connect/src/core/services/app_shield.dart';
 import 'package:cmfi_connect/src/core/services/app_shortcuts.dart';
 import 'package:cmfi_connect/src/core/services/calendar_service.dart';
 import 'package:cmfi_connect/src/core/services/chime.dart';
@@ -89,6 +90,7 @@ class TestApp {
     required this.disciplesApi,
     required this.bibleApi,
     required this.bibleStorage,
+    required this.appShield,
   });
 
   final ProviderContainer container;
@@ -130,6 +132,7 @@ class TestApp {
   final FakeDisciplesApi disciplesApi;
   final FakeBibleApi bibleApi;
   final FakeBibleStorage bibleStorage;
+  final FakeAppShield appShield;
 }
 
 Future<TestApp> pumpApp(
@@ -154,6 +157,7 @@ Future<TestApp> pumpApp(
   FakeNotificationsApi? notificationsApi,
   FakePremiumStore? premium,
   FakeMinistryApi? ministryApi,
+  FakeAppShield? appShield,
   FakePhoneVerification? phoneVerification,
   FakeStoreReview? storeReview,
   FakeAppShortcuts? shortcuts,
@@ -207,6 +211,7 @@ Future<TestApp> pumpApp(
   final premiumStore = premium ?? FakePremiumStore();
   final widgets = FakeHomeWidgets();
   final ministry = ministryApi ?? FakeMinistryApi();
+  final shield = appShield ?? FakeAppShield();
   final review = storeReview ?? FakeStoreReview();
   final appShortcuts = shortcuts ?? FakeAppShortcuts();
   final appLinks = incomingLinks ?? FakeIncomingLinks();
@@ -257,6 +262,7 @@ Future<TestApp> pumpApp(
         photoDecoderProvider.overrideWithValue(photoDecoder),
       homeWidgetsProvider.overrideWithValue(widgets),
       ministryApiProvider.overrideWithValue(ministry),
+      appShieldProvider.overrideWith((ref) async => shield),
       crashReportingProvider.overrideWithValue(const NoCrashReporting()),
       phoneVerificationProvider.overrideWithValue(
         phoneVerification ?? FakePhoneVerification(),
@@ -316,6 +322,7 @@ Future<TestApp> pumpApp(
     disciplesApi: disciples,
     bibleApi: bible,
     bibleStorage: bibleStorage,
+    appShield: shield,
   );
 }
 

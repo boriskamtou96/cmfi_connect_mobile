@@ -1689,5 +1689,53 @@
     "pastWeeks": "Vergangene Wochen",
     "weekOf": "Woche vom {date}",
     "page": "{current} von {total}"
+  },
+  "seekFirst": {
+    "title": "Suche zuerst Gott",
+    "verse": "Trachtet am ersten nach dem Reich Gottes und nach seiner Gerechtigkeit, so wird euch solches alles zufallen.",
+    "verseRef": "Matthäus 6,33",
+    "intro": "Jeden Tag bleiben die Apps, die du wählst, geschlossen, bis dein Bericht gespeichert ist. Beginne deinen Tag mit Gott, der Rest folgt.",
+    "enable": "Einschalten",
+    "apps": "Geschlossene Apps",
+    "appsNone": "Keine App gewählt",
+    "appCount(plural, param=n)": {
+      "one": "{n} App",
+      "other": "{n} Apps"
+    },
+    "categoryCount(plural, param=n)": {
+      "one": "{n} Kategorie",
+      "other": "{n} Kategorien"
+    },
+    "siteCount(plural, param=n)": {
+      "one": "{n} Website",
+      "other": "{n} Websites"
+    },
+    "start": "Geschlossen ab",
+    "pauses": "5-Minuten-Pausen",
+    "pausesText": "3 pro Tag, für einen Notfall",
+    "pausesLeft(plural, param=n)": {
+      "zero": "Heute keine Pause mehr",
+      "one": "Heute noch {n} Pause",
+      "other": "Heute noch {n} Pausen"
+    },
+    "todayOpen": "Heute sind deine Apps offen: Du hast zuerst Gott gesucht.",
+    "todayLocked": "Deine Apps bleiben bis zu deinem heutigen Bericht geschlossen.",
+    "todayBefore": "Deine Apps schließen sich um {time}, wenn dein Bericht noch nicht gespeichert ist.",
+    "fillReport": "Meinen Bericht ausfüllen",
+    "denied": "Ohne Zugriff auf Bildschirmzeit kann CMFI Connect keine Apps schließen. Du kannst ihn unter Einstellungen › Bildschirmzeit erlauben.",
+    "noApps": "Wähle mindestens eine App, die geschlossen bleiben soll.",
+    "unsupported": "Bald auf diesem Telefon verfügbar.",
+    "moreOn": "Ab {time}, bis zu deinem Bericht",
+    "moreOff": "Apps schließen, bis dein Bericht fertig ist",
+    "privacy": "CMFI Connect sieht nie, welche Apps du wählst: Dein iPhone behält sie für sich.",
+    "shield": {
+      "title": "Suche zuerst Gott",
+      "subtitle": "{app} bleibt bis zu deinem heutigen Bericht geschlossen.",
+      "thisApp": "Diese App",
+      "fill": "Meinen Bericht ausfüllen",
+      "pause": "5 Min. Pause ({n}/3)",
+      "notificationTitle": "Suche zuerst Gott",
+      "notificationBody": "Tippe hier, um deinen Bericht auszufüllen."
+    }
   }
 }

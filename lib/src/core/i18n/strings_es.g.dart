@@ -75,6 +75,7 @@ class TranslationsEs extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _Translations$profilePhoto$es profilePhoto = _Translations$profilePhoto$es._(_root);
 	@override late final _Translations$disciples$es disciples = _Translations$disciples$es._(_root);
 	@override late final _Translations$weekStory$es weekStory = _Translations$weekStory$es._(_root);
+	@override late final _Translations$seekFirst$es seekFirst = _Translations$seekFirst$es._(_root);
 }
 
 // Path: app
@@ -1210,6 +1211,53 @@ class _Translations$weekStory$es extends Translations$weekStory$fr {
 	@override String page({required Object current, required Object total}) => '${current} de ${total}';
 }
 
+// Path: seekFirst
+class _Translations$seekFirst$es extends Translations$seekFirst$fr {
+	_Translations$seekFirst$es._(TranslationsEs root) : this._root = root, super.internal(root);
+
+	final TranslationsEs _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Busca primero a Dios';
+	@override String get verse => 'Mas buscad primeramente el reino de Dios y su justicia, y todas estas cosas os serán añadidas.';
+	@override String get verseRef => 'Mateo 6:33';
+	@override String get intro => 'Cada día, las apps que elijas quedan cerradas hasta que guardes tu informe. Empieza tu día con Dios; lo demás viene después.';
+	@override String get enable => 'Activar';
+	@override String get apps => 'Apps que se cierran';
+	@override String get appsNone => 'Ninguna app elegida';
+	@override String appCount({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('es'))(n,
+		one: '${n} app',
+		other: '${n} apps',
+	);
+	@override String categoryCount({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('es'))(n,
+		one: '${n} categoría',
+		other: '${n} categorías',
+	);
+	@override String siteCount({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('es'))(n,
+		one: '${n} sitio',
+		other: '${n} sitios',
+	);
+	@override String get start => 'Cerradas desde';
+	@override String get pauses => 'Pausas de 5 minutos';
+	@override String get pausesText => '3 al día, para una urgencia';
+	@override String pausesLeft({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('es'))(n,
+		zero: 'Ninguna pausa más hoy',
+		one: 'Queda ${n} pausa hoy',
+		other: 'Quedan ${n} pausas hoy',
+	);
+	@override String get todayOpen => 'Hoy tus apps están abiertas: buscaste primero a Dios.';
+	@override String get todayLocked => 'Tus apps siguen cerradas hasta tu informe de hoy.';
+	@override String todayBefore({required Object time}) => 'Tus apps se cerrarán a las ${time} si tu informe aún no está guardado.';
+	@override String get fillReport => 'Llenar mi informe';
+	@override String get denied => 'Sin acceso a Tiempo en pantalla, CMFI Connect no puede cerrar apps. Puedes permitirlo en Ajustes › Tiempo en pantalla.';
+	@override String get noApps => 'Elige al menos una app que quede cerrada.';
+	@override String get unsupported => 'Pronto disponible en este teléfono.';
+	@override String moreOn({required Object time}) => 'Desde las ${time}, hasta tu informe';
+	@override String get moreOff => 'Cerrar apps hasta que tu informe esté hecho';
+	@override String get privacy => 'CMFI Connect nunca ve las apps que eliges: tu iPhone las guarda para sí.';
+	@override late final _Translations$seekFirst$shield$es shield = _Translations$seekFirst$shield$es._(_root);
+}
+
 // Path: onboarding.reports
 class _Translations$onboarding$reports$es extends Translations$onboarding$reports$fr {
 	_Translations$onboarding$reports$es._(TranslationsEs root) : this._root = root, super.internal(root);
@@ -2212,6 +2260,22 @@ class _Translations$bible$colors$es extends Translations$bible$colors$fr {
 	@override String get green => 'verde';
 	@override String get blue => 'azul';
 	@override String get pink => 'rosa';
+}
+
+// Path: seekFirst.shield
+class _Translations$seekFirst$shield$es extends Translations$seekFirst$shield$fr {
+	_Translations$seekFirst$shield$es._(TranslationsEs root) : this._root = root, super.internal(root);
+
+	final TranslationsEs _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Busca primero a Dios';
+	@override String subtitle({required Object app}) => '${app} sigue cerrada hasta tu informe de hoy.';
+	@override String get thisApp => 'Esta app';
+	@override String get fill => 'Llenar mi informe';
+	@override String pause({required Object n}) => 'Pausa de 5 min (${n}/3)';
+	@override String get notificationTitle => 'Busca primero a Dios';
+	@override String get notificationBody => 'Toca aquí para llenar tu informe.';
 }
 
 // Path: reports.units.chapters
@@ -3783,6 +3847,37 @@ extension on TranslationsEs {
 			'weekStory.pastWeeks' => 'Semanas pasadas',
 			'weekStory.weekOf' => ({required Object date}) => 'Semana del ${date}',
 			'weekStory.page' => ({required Object current, required Object total}) => '${current} de ${total}',
+			'seekFirst.title' => 'Busca primero a Dios',
+			'seekFirst.verse' => 'Mas buscad primeramente el reino de Dios y su justicia, y todas estas cosas os serán añadidas.',
+			'seekFirst.verseRef' => 'Mateo 6:33',
+			'seekFirst.intro' => 'Cada día, las apps que elijas quedan cerradas hasta que guardes tu informe. Empieza tu día con Dios; lo demás viene después.',
+			'seekFirst.enable' => 'Activar',
+			'seekFirst.apps' => 'Apps que se cierran',
+			'seekFirst.appsNone' => 'Ninguna app elegida',
+			'seekFirst.appCount' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('es'))(n, one: '${n} app', other: '${n} apps', ), 
+			'seekFirst.categoryCount' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('es'))(n, one: '${n} categoría', other: '${n} categorías', ), 
+			'seekFirst.siteCount' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('es'))(n, one: '${n} sitio', other: '${n} sitios', ), 
+			'seekFirst.start' => 'Cerradas desde',
+			'seekFirst.pauses' => 'Pausas de 5 minutos',
+			'seekFirst.pausesText' => '3 al día, para una urgencia',
+			'seekFirst.pausesLeft' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('es'))(n, zero: 'Ninguna pausa más hoy', one: 'Queda ${n} pausa hoy', other: 'Quedan ${n} pausas hoy', ), 
+			'seekFirst.todayOpen' => 'Hoy tus apps están abiertas: buscaste primero a Dios.',
+			'seekFirst.todayLocked' => 'Tus apps siguen cerradas hasta tu informe de hoy.',
+			'seekFirst.todayBefore' => ({required Object time}) => 'Tus apps se cerrarán a las ${time} si tu informe aún no está guardado.',
+			'seekFirst.fillReport' => 'Llenar mi informe',
+			'seekFirst.denied' => 'Sin acceso a Tiempo en pantalla, CMFI Connect no puede cerrar apps. Puedes permitirlo en Ajustes › Tiempo en pantalla.',
+			'seekFirst.noApps' => 'Elige al menos una app que quede cerrada.',
+			'seekFirst.unsupported' => 'Pronto disponible en este teléfono.',
+			'seekFirst.moreOn' => ({required Object time}) => 'Desde las ${time}, hasta tu informe',
+			'seekFirst.moreOff' => 'Cerrar apps hasta que tu informe esté hecho',
+			'seekFirst.privacy' => 'CMFI Connect nunca ve las apps que eliges: tu iPhone las guarda para sí.',
+			'seekFirst.shield.title' => 'Busca primero a Dios',
+			'seekFirst.shield.subtitle' => ({required Object app}) => '${app} sigue cerrada hasta tu informe de hoy.',
+			'seekFirst.shield.thisApp' => 'Esta app',
+			'seekFirst.shield.fill' => 'Llenar mi informe',
+			'seekFirst.shield.pause' => ({required Object n}) => 'Pausa de 5 min (${n}/3)',
+			'seekFirst.shield.notificationTitle' => 'Busca primero a Dios',
+			'seekFirst.shield.notificationBody' => 'Toca aquí para llenar tu informe.',
 			_ => null,
 		};
 	}

@@ -56,6 +56,7 @@ import '../features/reports/presentation/new_item_screen.dart';
 import '../features/reports/presentation/report_send_screen.dart';
 import '../features/reports/presentation/report_sending_screen.dart';
 import '../features/reports/presentation/reports_screen.dart';
+import '../features/seek_first/presentation/seek_first_screen.dart';
 import '../features/shell/presentation/app_shell_screen.dart';
 import 'auth_guard.dart';
 import 'fade_through_route.dart';
@@ -134,6 +135,11 @@ class AppRouter extends RootStackRouter {
       guards: [authGuard],
     ),
     AutoRoute(path: '/items', page: ItemsRoute.page, guards: [authGuard]),
+    AutoRoute(
+      path: '/seek-first',
+      page: SeekFirstRoute.page,
+      guards: [authGuard],
+    ),
     AutoRoute(
       path: '/prayer/retreat',
       page: RetreatRoute.page,

@@ -1690,5 +1690,53 @@
     "pastWeeks": "Past weeks",
     "weekOf": "Week of {date}",
     "page": "{current} of {total}"
+  },
+  "seekFirst": {
+    "title": "Seek God first",
+    "verse": "But seek first God’s Kingdom and his righteousness; and all these things will be given to you as well.",
+    "verseRef": "Matthew 6:33",
+    "intro": "Each day, the apps you choose stay closed until your daily report is saved. Start your day with God; the rest follows.",
+    "enable": "Turn on",
+    "apps": "Apps to keep closed",
+    "appsNone": "No app chosen",
+    "appCount(plural, param=n)": {
+      "one": "{n} app",
+      "other": "{n} apps"
+    },
+    "categoryCount(plural, param=n)": {
+      "one": "{n} category",
+      "other": "{n} categories"
+    },
+    "siteCount(plural, param=n)": {
+      "one": "{n} site",
+      "other": "{n} sites"
+    },
+    "start": "Closed from",
+    "pauses": "5-minute breaks",
+    "pausesText": "3 a day, for an emergency",
+    "pausesLeft(plural, param=n)": {
+      "zero": "No break left today",
+      "one": "{n} break left today",
+      "other": "{n} breaks left today"
+    },
+    "todayOpen": "Today your apps are open: you sought God first.",
+    "todayLocked": "Your apps stay closed until today's report.",
+    "todayBefore": "Your apps will close at {time} if your report isn't saved yet.",
+    "fillReport": "Fill in my report",
+    "denied": "Without Screen Time access, CMFI Connect can't close apps. You can allow it in Settings › Screen Time.",
+    "noApps": "Choose at least one app to keep closed.",
+    "unsupported": "Coming soon to this phone.",
+    "moreOn": "From {time}, until your report",
+    "moreOff": "Close apps until your report is done",
+    "privacy": "CMFI Connect never sees the apps you choose: your iPhone keeps them to itself.",
+    "shield": {
+      "title": "Seek God first",
+      "subtitle": "{app} stays closed until today's report.",
+      "thisApp": "This app",
+      "fill": "Fill in my report",
+      "pause": "5-min break ({n}/3)",
+      "notificationTitle": "Seek God first",
+      "notificationBody": "Tap here to fill in your report."
+    }
   }
 }

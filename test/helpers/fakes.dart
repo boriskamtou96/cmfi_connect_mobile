@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:typed_data';
 
 import 'package:cmfi_connect/src/core/network/app_exception.dart';
+import 'package:cmfi_connect/src/core/services/app_shield.dart';
 import 'package:cmfi_connect/src/core/services/app_shortcuts.dart';
 import 'package:cmfi_connect/src/core/services/calendar_service.dart';
 import 'package:cmfi_connect/src/core/services/chime.dart';
@@ -2318,4 +2319,62 @@ class FakeCrashReporting implements CrashReporting {
 
   @override
   void log(String message) => steps.add(message);
+}
+
+/// Screen Time, without the phone: [granted] answers the access asked,
+/// [chosen] the system's list; what the app asked is kept.
+class FakeAppShield implements AppShield {
+  FakeAppShield({
+    this.supported = true,
+    this.granted = true,
+    this.chosen = const ShieldSelection(apps: 3, categories: 1),
+  });
+
+  @override
+  final bool supported;
+  bool granted;
+  var allowed = false;
+  ShieldSelection? chosen;
+  var current = const ShieldSelection();
+  var pauses = 3;
+
+  /// The last settings given, and the days opened.
+  Map<String, Object>? configured;
+  final unlocked = <DateTime>[];
+
+  @override
+  Future<bool> authorized() async => allowed;
+
+  @override
+  Future<bool> authorize() async => allowed = granted;
+
+  @override
+  Future<ShieldSelection> selection() async => current;
+
+  @override
+  Future<ShieldSelection?> choose() async {
+    if (chosen case final chosen?) {
+      current = chosen;
+    }
+    return chosen;
+  }
+
+  @override
+  Future<void> configure({
+    required bool enabled,
+    required int startMinutes,
+    required int pausesPerDay,
+    required Map<String, String> texts,
+  }) async => configured = {
+    'enabled': enabled,
+    'startMinutes': startMinutes,
+    'pausesPerDay': pausesPerDay,
+    'texts': texts,
+  };
+
+  @override
+  Future<void> unlock(DateTime day) async => unlocked.add(day);
+
+  @override
+  Future<int> pausesLeft() async => pauses;
 }

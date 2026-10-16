@@ -168,6 +168,9 @@ abstract final class AppIcons {
   static const done = PhosphorIconsFill.checkFat;
   static const private = PhosphorIconsRegular.lockSimple;
   static const premiumLock = PhosphorIconsFill.lockSimple;
+  // Cherche d'abord Dieu: the sun rising, the day given to God first
+  static const seekFirst = PhosphorIconsFill.sunHorizon;
+  static const seekFirstTile = PhosphorIconsDuotone.sunHorizon;
   static const answeredTile = PhosphorIconsDuotone.sparkle;
   static const importunityGoal = PhosphorIconsRegular.target;
   static const churchTile = PhosphorIconsDuotone.church;

@@ -10,6 +10,10 @@ import UIKit
     // the report reminder also shows while the app is open
     UNUserNotificationCenter.current().delegate = self as? UNUserNotificationCenterDelegate
     GeneratedPluginRegistrant.register(with: self)
+    // Cherche d'abord Dieu: the apps closed until the day's report (AppShield.swift)
+    if let registrar = registrar(forPlugin: "AppShield") {
+      AppShield.register(with: registrar.messenger())
+    }
     // the version of the app: the store rating is asked once per version
     // (core/services/store_review.dart)
     if let registrar = registrar(forPlugin: "AppVersion") {

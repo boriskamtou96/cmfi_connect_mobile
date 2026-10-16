@@ -13,25 +13,47 @@
 		1F9A70E6254B2050EC92AE6F /* prodProfile.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 3BF3195AFF06027E153EDDFE /* prodProfile.xcconfig */; };
 		2249CA584831AC886287D149 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A715982AFAFC7CB250DCA038 /* Assets.xcassets */; };
 		2785A6BE2BDC9DE65BCE4594 /* TodayWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74051D67518958F5DB9C8F71 /* TodayWidget.swift */; };
-		44454774B695511792584114 /* VerseWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = F49695252A63CFB89B23DBC1 /* VerseWidget.swift */; };
+		2BCD8D9A157CC227F40AAA63 /* SeekFirstShared.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5500CEFCEC46F7F24D82FE9D /* SeekFirstShared.swift */; };
+		2C6698220C50A9A90551532F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D80CE784B61C022AD8A6367F /* Foundation.framework */; };
+		2E6B80D4CD4198A9246CB876 /* ShieldMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44053B8E1365AB3435A0D2DD /* ShieldMonitor.swift */; };
+		2F176B19E0AAA74EAE0B70DD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C2FDC2F1EE6F293AFE2EE625 /* Assets.xcassets */; };
 		32CE68ECA5FFF40CC62396AA /* devDebug.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 45CEEE66C16302C4A475591D /* devDebug.xcconfig */; };
 		331C808B294A63AB00263BE5 /* RunnerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 331C807B294A618700263BE5 /* RunnerTests.swift */; };
 		3B3967161E833CAA004F5970 /* AppFrameworkInfo.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3B3967151E833CAA004F5970 /* AppFrameworkInfo.plist */; };
+		44454774B695511792584114 /* VerseWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = F49695252A63CFB89B23DBC1 /* VerseWidget.swift */; };
+		4A221C8D0722F6FE6702C908 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D80CE784B61C022AD8A6367F /* Foundation.framework */; };
 		5E8E0581DAEFE9E0742F1B43 /* prodRelease.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 44554DE6C2BC572F83925D57 /* prodRelease.xcconfig */; };
 		6232111292697DD704F34856 /* Pods_RunnerTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63434F2D331FDADD47E2D5A7 /* Pods_RunnerTests.framework */; };
+		73034CBFE573D22F4A6C632D /* AppShield.swift in Sources */ = {isa = PBXBuildFile; fileRef = D91FEEC7A67AC988D150CE4E /* AppShield.swift */; };
 		74858FAF1ED2DC5600515810 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74858FAE1ED2DC5600515810 /* AppDelegate.swift */; };
+		7615ACDCAD28A9981B320E94 /* ShieldConfig.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 8FF96085943A86E967075E58 /* ShieldConfig.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		80F39D4899B3A6705D84E577 /* ShieldConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADD162E75A0DF66D72A26D13 /* ShieldConfig.swift */; };
+		89BDFAC0D4E6351AC35BCD6C /* ShieldActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1761D4834863526A11121746 /* ShieldActions.swift */; };
 		9410CBBA671F3936258F390D /* prodLaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AD3A918E8D77FC2F61E31653 /* prodLaunchScreen.storyboard */; };
 		97C146FC1CF9000F007C117D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 97C146FA1CF9000F007C117D /* Main.storyboard */; };
 		97C146FE1CF9000F007C117D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 97C146FD1CF9000F007C117D /* Assets.xcassets */; };
 		97C147011CF9000F007C117D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 97C146FF1CF9000F007C117D /* LaunchScreen.storyboard */; };
 		9C6779D5D4E3880C50D52FE3 /* devRelease.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = B51EF3AA6695EFF7D6CE884C /* devRelease.xcconfig */; };
 		A1DAE8FF51B30DFB56C38E05 /* prodDebug.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 1046AB9F4E61EC5D778C8472 /* prodDebug.xcconfig */; };
+		AB8710C9DD3982581C222F3E /* SeekFirstShared.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5500CEFCEC46F7F24D82FE9D /* SeekFirstShared.swift */; };
+		C336756668F264EBD2427335 /* ShieldMonitor.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 08C1EF6DDC98BCF639D18360 /* ShieldMonitor.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		C4139B237F67C13BBFFB4E24 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D80CE784B61C022AD8A6367F /* Foundation.framework */; };
+		C43A9C4F12CCC68B3A71259E /* SeekFirstShared.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5500CEFCEC46F7F24D82FE9D /* SeekFirstShared.swift */; };
+		C853EB78860A56CADA7DC96F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D80CE784B61C022AD8A6367F /* Foundation.framework */; };
 		D4C7FDFBCC6AD77505E0E06A /* Pods_Runner.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C3F8A31959F99185BCA75EF /* Pods_Runner.framework */; };
 		EF739E959EADB05F3FF37734 /* devLaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B38AB5FCBA30B5E82777E97F /* devLaunchScreen.storyboard */; };
+		F00519D4E714663D0896060C /* ShieldActions.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 0BE755E25289C38334D942D3 /* ShieldActions.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		F6C9DCDF49B0C188A8512971 /* SeekFirstShared.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5500CEFCEC46F7F24D82FE9D /* SeekFirstShared.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		0BAD336F29FCD014B01067EA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 97C146E61CF9000F007C117D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 7D96AC52A7DACA443B0BCAF4;
+			remoteInfo = ShieldMonitor;
+		};
 		331C8085294A63A400263BE5 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 97C146E61CF9000F007C117D /* Project object */;
@@ -39,12 +61,26 @@
 			remoteGlobalIDString = 97C146ED1CF9000F007C117D;
 			remoteInfo = Runner;
 		};
+		3CDE5EAB0595988ED924EDC8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 97C146E61CF9000F007C117D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 83AB421BD1050A3404B01774;
+			remoteInfo = ShieldActions;
+		};
 		46CE502AAA3DBE3B4CEB9481 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 97C146E61CF9000F007C117D /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = CBAB43F08046641E8779AF5F;
 			remoteInfo = TodayWidget;
+		};
+		5D18EE51EA0F70CD28C065DF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 97C146E61CF9000F007C117D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8374A2AE7369959FA176F7F9;
+			remoteInfo = ShieldConfig;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -56,6 +92,9 @@
 			dstSubfolderSpec = 13;
 			files = (
 				142380C087E8259FE6BC3BE1 /* TodayWidget.appex in Embed Foundation Extensions */,
+				C336756668F264EBD2427335 /* ShieldMonitor.appex in Embed Foundation Extensions */,
+				7615ACDCAD28A9981B320E94 /* ShieldConfig.appex in Embed Foundation Extensions */,
+				F00519D4E714663D0896060C /* ShieldActions.appex in Embed Foundation Extensions */,
 			);
 			name = "Embed Foundation Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -74,25 +113,33 @@
 
 /* Begin PBXFileReference section */
 		01F99CDA92136608BB70EC1B /* TodayWidget.entitlements */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.entitlements; path = TodayWidget.entitlements; sourceTree = "<group>"; };
+		08C1EF6DDC98BCF639D18360 /* ShieldMonitor.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = ShieldMonitor.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		0BE755E25289C38334D942D3 /* ShieldActions.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = ShieldActions.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		1046AB9F4E61EC5D778C8472 /* prodDebug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Flutter/prodDebug.xcconfig; sourceTree = "<group>"; };
 		1498D2321E8E86230040F4C2 /* GeneratedPluginRegistrant.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GeneratedPluginRegistrant.h; sourceTree = "<group>"; };
 		1498D2331E8E89220040F4C2 /* GeneratedPluginRegistrant.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GeneratedPluginRegistrant.m; sourceTree = "<group>"; };
-		1742CDFBFA944A0A5B01AE66 /* TodayWidget.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; name = TodayWidget.appex; path = TodayWidget.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		1742CDFBFA944A0A5B01AE66 /* TodayWidget.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = TodayWidget.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		1761D4834863526A11121746 /* ShieldActions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ShieldActions.swift; sourceTree = "<group>"; };
 		17D80C2C907465DD43DED5C3 /* Pods-Runner.release-prod.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Runner.release-prod.xcconfig"; path = "Target Support Files/Pods-Runner/Pods-Runner.release-prod.xcconfig"; sourceTree = "<group>"; };
+		1CD2AAB03548951037A3C4E2 /* ShieldActions.entitlements */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.entitlements; path = ShieldActions.entitlements; sourceTree = "<group>"; };
 		1D92777B705B8388AC5F4524 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1E1AC2E6AF5A54D034864DE8 /* ShieldMonitor.entitlements */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.entitlements; path = ShieldMonitor.entitlements; sourceTree = "<group>"; };
 		20A6BB4AD304E3560B80864C /* Pods-Runner.release-dev.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Runner.release-dev.xcconfig"; path = "Target Support Files/Pods-Runner/Pods-Runner.release-dev.xcconfig"; sourceTree = "<group>"; };
 		234FCC4A82109F76419FFB95 /* Pods-RunnerTests.profile-prod.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RunnerTests.profile-prod.xcconfig"; path = "Target Support Files/Pods-RunnerTests/Pods-RunnerTests.profile-prod.xcconfig"; sourceTree = "<group>"; };
 		331C807B294A618700263BE5 /* RunnerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunnerTests.swift; sourceTree = "<group>"; };
 		331C8081294A63A400263BE5 /* RunnerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RunnerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B3967151E833CAA004F5970 /* AppFrameworkInfo.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = AppFrameworkInfo.plist; path = Flutter/AppFrameworkInfo.plist; sourceTree = "<group>"; };
 		3BF3195AFF06027E153EDDFE /* prodProfile.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Flutter/prodProfile.xcconfig; sourceTree = "<group>"; };
+		40B4D2B0B2591A4C6F21A64F /* ShieldConfig.entitlements */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.entitlements; path = ShieldConfig.entitlements; sourceTree = "<group>"; };
+		44053B8E1365AB3435A0D2DD /* ShieldMonitor.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ShieldMonitor.swift; sourceTree = "<group>"; };
 		44554DE6C2BC572F83925D57 /* prodRelease.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Flutter/prodRelease.xcconfig; sourceTree = "<group>"; };
 		45CEEE66C16302C4A475591D /* devDebug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Flutter/devDebug.xcconfig; sourceTree = "<group>"; };
+		45F17BD0EE6081667BFDD5B9 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4D94009160CDAFB49F80D113 /* Pods-RunnerTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RunnerTests.debug.xcconfig"; path = "Target Support Files/Pods-RunnerTests/Pods-RunnerTests.debug.xcconfig"; sourceTree = "<group>"; };
+		5500CEFCEC46F7F24D82FE9D /* SeekFirstShared.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SeekFirstShared.swift; sourceTree = "<group>"; };
 		63434F2D331FDADD47E2D5A7 /* Pods_RunnerTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RunnerTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		690503C0ADEF514791D464FD /* Pods-RunnerTests.profile-dev.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RunnerTests.profile-dev.xcconfig"; path = "Target Support Files/Pods-RunnerTests/Pods-RunnerTests.profile-dev.xcconfig"; sourceTree = "<group>"; };
 		74051D67518958F5DB9C8F71 /* TodayWidget.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TodayWidget.swift; sourceTree = "<group>"; };
-		F49695252A63CFB89B23DBC1 /* VerseWidget.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = VerseWidget.swift; sourceTree = "<group>"; };
 		74858FAD1ED2DC5600515810 /* Runner-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Runner-Bridging-Header.h"; sourceTree = "<group>"; };
 		74858FAE1ED2DC5600515810 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		774E1A3D12756F575FEA972A /* Runner.entitlements */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.entitlements; path = Runner.entitlements; sourceTree = "<group>"; };
@@ -102,6 +149,7 @@
 		873139534EEC6F518AD05BEA /* Pods-RunnerTests.debug-dev.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RunnerTests.debug-dev.xcconfig"; path = "Target Support Files/Pods-RunnerTests/Pods-RunnerTests.debug-dev.xcconfig"; sourceTree = "<group>"; };
 		89AECC4B22632262BD6930DA /* devProfile.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Flutter/devProfile.xcconfig; sourceTree = "<group>"; };
 		8C3F8A31959F99185BCA75EF /* Pods_Runner.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Runner.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8FF96085943A86E967075E58 /* ShieldConfig.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = ShieldConfig.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		9740EEB21CF90195004384FC /* Debug.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = Debug.xcconfig; path = Flutter/Debug.xcconfig; sourceTree = "<group>"; };
 		9740EEB31CF90195004384FC /* Generated.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = Generated.xcconfig; path = Flutter/Generated.xcconfig; sourceTree = "<group>"; };
 		97C146EE1CF9000F007C117D /* Runner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Runner.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -112,27 +160,49 @@
 		A512F59D3435B974E2764D3B /* Pods-Runner.debug-prod.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Runner.debug-prod.xcconfig"; path = "Target Support Files/Pods-Runner/Pods-Runner.debug-prod.xcconfig"; sourceTree = "<group>"; };
 		A715982AFAFC7CB250DCA038 /* Assets.xcassets */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AD3A918E8D77FC2F61E31653 /* prodLaunchScreen.storyboard */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.storyboard; path = Runner/prodLaunchScreen.storyboard; sourceTree = "<group>"; };
+		ADD162E75A0DF66D72A26D13 /* ShieldConfig.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ShieldConfig.swift; sourceTree = "<group>"; };
 		B38AB5FCBA30B5E82777E97F /* devLaunchScreen.storyboard */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.storyboard; path = Runner/devLaunchScreen.storyboard; sourceTree = "<group>"; };
 		B3F198908C33E71E85C0B6BB /* Pods-RunnerTests.release-dev.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RunnerTests.release-dev.xcconfig"; path = "Target Support Files/Pods-RunnerTests/Pods-RunnerTests.release-dev.xcconfig"; sourceTree = "<group>"; };
 		B3F510C39F3BB4D9B07BED5E /* TodayWidget.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = TodayWidget.xcconfig; sourceTree = "<group>"; };
 		B51EF3AA6695EFF7D6CE884C /* devRelease.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Flutter/devRelease.xcconfig; sourceTree = "<group>"; };
 		B6928CB0121F06C3D07199BD /* Pods-RunnerTests.debug-prod.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RunnerTests.debug-prod.xcconfig"; path = "Target Support Files/Pods-RunnerTests/Pods-RunnerTests.debug-prod.xcconfig"; sourceTree = "<group>"; };
 		BEF7751A7C1F24204F289B24 /* Pods-RunnerTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RunnerTests.release.xcconfig"; path = "Target Support Files/Pods-RunnerTests/Pods-RunnerTests.release.xcconfig"; sourceTree = "<group>"; };
+		C2FDC2F1EE6F293AFE2EE625 /* Assets.xcassets */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D3A27811DF483B1CFC304E25 /* Pods-Runner.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Runner.release.xcconfig"; path = "Target Support Files/Pods-Runner/Pods-Runner.release.xcconfig"; sourceTree = "<group>"; };
 		D3D332B1197D2EBAF67D1C48 /* Pods-RunnerTests.profile.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RunnerTests.profile.xcconfig"; path = "Target Support Files/Pods-RunnerTests/Pods-RunnerTests.profile.xcconfig"; sourceTree = "<group>"; };
 		D80CE784B61C022AD8A6367F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS18.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		D91FEEC7A67AC988D150CE4E /* AppShield.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AppShield.swift; sourceTree = "<group>"; };
 		DB8DFF2E4E316FEC0CB20DA1 /* Pods-Runner.profile.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Runner.profile.xcconfig"; path = "Target Support Files/Pods-Runner/Pods-Runner.profile.xcconfig"; sourceTree = "<group>"; };
 		E78E978203BEB48132E85004 /* Pods-Runner.debug-dev.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Runner.debug-dev.xcconfig"; path = "Target Support Files/Pods-Runner/Pods-Runner.debug-dev.xcconfig"; sourceTree = "<group>"; };
+		F49695252A63CFB89B23DBC1 /* VerseWidget.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = VerseWidget.swift; sourceTree = "<group>"; };
 		F791799B469B74A19F8324AF /* Pods-Runner.profile-prod.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Runner.profile-prod.xcconfig"; path = "Target Support Files/Pods-Runner/Pods-Runner.profile-prod.xcconfig"; sourceTree = "<group>"; };
+		F803AC838CA23CA655FC8AAE /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FAB0E586C01069FA6801C0AE /* Pods-Runner.profile-dev.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Runner.profile-dev.xcconfig"; path = "Target Support Files/Pods-Runner/Pods-Runner.profile-dev.xcconfig"; sourceTree = "<group>"; };
+		FE3C18A7B83BC16E2E94A01E /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		0807DFF8D7DE257FAFAF6034 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2C6698220C50A9A90551532F /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		11F1DAC00CEF7643DDB9412A /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				6232111292697DD704F34856 /* Pods_RunnerTests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3EEFE42A12344CA7F1D52C7C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4A221C8D0722F6FE6702C908 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -149,6 +219,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				D4C7FDFBCC6AD77505E0E06A /* Pods_Runner.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EBE6D0140D97D8A687B97556 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C853EB78860A56CADA7DC96F /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -198,6 +276,28 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		5320C331D675234F2B19E0AC /* ShieldMonitor */ = {
+			isa = PBXGroup;
+			children = (
+				44053B8E1365AB3435A0D2DD /* ShieldMonitor.swift */,
+				F803AC838CA23CA655FC8AAE /* Info.plist */,
+				1E1AC2E6AF5A54D034864DE8 /* ShieldMonitor.entitlements */,
+			);
+			name = ShieldMonitor;
+			path = ShieldMonitor;
+			sourceTree = "<group>";
+		};
+		6B77F78FB2F3ACD29B19E11D /* ShieldActions */ = {
+			isa = PBXGroup;
+			children = (
+				1761D4834863526A11121746 /* ShieldActions.swift */,
+				45F17BD0EE6081667BFDD5B9 /* Info.plist */,
+				1CD2AAB03548951037A3C4E2 /* ShieldActions.entitlements */,
+			);
+			name = ShieldActions;
+			path = ShieldActions;
+			sourceTree = "<group>";
+		};
 		9740EEB11CF90186004384FC /* Flutter */ = {
 			isa = PBXGroup;
 			children = (
@@ -227,6 +327,10 @@
 				4F8703D8E87FC813964EE8CD /* Pods */,
 				4F37FDE455C2E9F6ABC9ECBB /* Frameworks */,
 				EFE2AC9AF4AD5E3CD13D8DD3 /* TodayWidget */,
+				ED1765CBA1C58340702A0FB5 /* SeekFirst */,
+				5320C331D675234F2B19E0AC /* ShieldMonitor */,
+				FE08762E54349653C8E6723E /* ShieldConfig */,
+				6B77F78FB2F3ACD29B19E11D /* ShieldActions */,
 			);
 			sourceTree = "<group>";
 		};
@@ -236,6 +340,9 @@
 				97C146EE1CF9000F007C117D /* Runner.app */,
 				331C8081294A63A400263BE5 /* RunnerTests.xctest */,
 				1742CDFBFA944A0A5B01AE66 /* TodayWidget.appex */,
+				08C1EF6DDC98BCF639D18360 /* ShieldMonitor.appex */,
+				8FF96085943A86E967075E58 /* ShieldConfig.appex */,
+				0BE755E25289C38334D942D3 /* ShieldActions.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -252,6 +359,7 @@
 				74858FAE1ED2DC5600515810 /* AppDelegate.swift */,
 				74858FAD1ED2DC5600515810 /* Runner-Bridging-Header.h */,
 				774E1A3D12756F575FEA972A /* Runner.entitlements */,
+				D91FEEC7A67AC988D150CE4E /* AppShield.swift */,
 			);
 			path = Runner;
 			sourceTree = "<group>";
@@ -264,6 +372,15 @@
 			name = iOS;
 			sourceTree = "<group>";
 		};
+		ED1765CBA1C58340702A0FB5 /* SeekFirst */ = {
+			isa = PBXGroup;
+			children = (
+				5500CEFCEC46F7F24D82FE9D /* SeekFirstShared.swift */,
+			);
+			name = SeekFirst;
+			path = SeekFirst;
+			sourceTree = "<group>";
+		};
 		EFE2AC9AF4AD5E3CD13D8DD3 /* TodayWidget */ = {
 			isa = PBXGroup;
 			children = (
@@ -274,8 +391,19 @@
 				1D92777B705B8388AC5F4524 /* Info.plist */,
 				01F99CDA92136608BB70EC1B /* TodayWidget.entitlements */,
 			);
-			name = TodayWidget;
 			path = TodayWidget;
+			sourceTree = "<group>";
+		};
+		FE08762E54349653C8E6723E /* ShieldConfig */ = {
+			isa = PBXGroup;
+			children = (
+				ADD162E75A0DF66D72A26D13 /* ShieldConfig.swift */,
+				FE3C18A7B83BC16E2E94A01E /* Info.plist */,
+				40B4D2B0B2591A4C6F21A64F /* ShieldConfig.entitlements */,
+				C2FDC2F1EE6F293AFE2EE625 /* Assets.xcassets */,
+			);
+			name = ShieldConfig;
+			path = ShieldConfig;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -300,6 +428,57 @@
 			productReference = 331C8081294A63A400263BE5 /* RunnerTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
+		7D96AC52A7DACA443B0BCAF4 /* ShieldMonitor */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 50D602C901EEC7D0FE7D5C13 /* Build configuration list for PBXNativeTarget "ShieldMonitor" */;
+			buildPhases = (
+				1DAA047420C60A8ACDF4336E /* Sources */,
+				3EEFE42A12344CA7F1D52C7C /* Frameworks */,
+				D4027F7DDC363576DF64EC5E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ShieldMonitor;
+			productName = ShieldMonitor;
+			productReference = 08C1EF6DDC98BCF639D18360 /* ShieldMonitor.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
+		8374A2AE7369959FA176F7F9 /* ShieldConfig */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A1CF1F49F9354560CD433993 /* Build configuration list for PBXNativeTarget "ShieldConfig" */;
+			buildPhases = (
+				7C999F5F860479EA2CA0B173 /* Sources */,
+				0807DFF8D7DE257FAFAF6034 /* Frameworks */,
+				004FC34A9816D813B2244718 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ShieldConfig;
+			productName = ShieldConfig;
+			productReference = 8FF96085943A86E967075E58 /* ShieldConfig.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
+		83AB421BD1050A3404B01774 /* ShieldActions */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F98019EF9E407837C7649EFA /* Build configuration list for PBXNativeTarget "ShieldActions" */;
+			buildPhases = (
+				91D7478148B7421F4DC87B65 /* Sources */,
+				EBE6D0140D97D8A687B97556 /* Frameworks */,
+				CCCF5BE72D71872F7C953FFC /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ShieldActions;
+			productName = ShieldActions;
+			productReference = 0BE755E25289C38334D942D3 /* ShieldActions.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 		97C146ED1CF9000F007C117D /* Runner */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 97C147051CF9000F007C117D /* Build configuration list for PBXNativeTarget "Runner" */;
@@ -319,6 +498,9 @@
 			);
 			dependencies = (
 				F6309855AA6BED5E50B39648 /* PBXTargetDependency */,
+				DE14380108CBE9D0FED81F4A /* PBXTargetDependency */,
+				B464722E404A75846CF93580 /* PBXTargetDependency */,
+				4D0DAEAA22A9C60765C1C116 /* PBXTargetDependency */,
 			);
 			name = Runner;
 			productName = Runner;
@@ -378,11 +560,22 @@
 				97C146ED1CF9000F007C117D /* Runner */,
 				331C8080294A63A400263BE5 /* RunnerTests */,
 				CBAB43F08046641E8779AF5F /* TodayWidget */,
+				7D96AC52A7DACA443B0BCAF4 /* ShieldMonitor */,
+				8374A2AE7369959FA176F7F9 /* ShieldConfig */,
+				83AB421BD1050A3404B01774 /* ShieldActions */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		004FC34A9816D813B2244718 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2F176B19E0AAA74EAE0B70DD /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		331C807F294A63A400263BE5 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -406,6 +599,20 @@
 				5E8E0581DAEFE9E0742F1B43 /* prodRelease.xcconfig in Resources */,
 				EF739E959EADB05F3FF37734 /* devLaunchScreen.storyboard in Resources */,
 				9410CBBA671F3936258F390D /* prodLaunchScreen.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CCCF5BE72D71872F7C953FFC /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D4027F7DDC363576DF64EC5E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -541,11 +748,38 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		1DAA047420C60A8ACDF4336E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2E6B80D4CD4198A9246CB876 /* ShieldMonitor.swift in Sources */,
+				AB8710C9DD3982581C222F3E /* SeekFirstShared.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		331C807D294A63A400263BE5 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				331C808B294A63AB00263BE5 /* RunnerTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7C999F5F860479EA2CA0B173 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				80F39D4899B3A6705D84E577 /* ShieldConfig.swift in Sources */,
+				C43A9C4F12CCC68B3A71259E /* SeekFirstShared.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		91D7478148B7421F4DC87B65 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				89BDFAC0D4E6351AC35BCD6C /* ShieldActions.swift in Sources */,
+				2BCD8D9A157CC227F40AAA63 /* SeekFirstShared.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -555,6 +789,8 @@
 			files = (
 				74858FAF1ED2DC5600515810 /* AppDelegate.swift in Sources */,
 				1498D2341E8E89220040F4C2 /* GeneratedPluginRegistrant.m in Sources */,
+				73034CBFE573D22F4A6C632D /* AppShield.swift in Sources */,
+				F6C9DCDF49B0C188A8512971 /* SeekFirstShared.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -565,6 +801,24 @@
 			isa = PBXTargetDependency;
 			target = 97C146ED1CF9000F007C117D /* Runner */;
 			targetProxy = 331C8085294A63A400263BE5 /* PBXContainerItemProxy */;
+		};
+		4D0DAEAA22A9C60765C1C116 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = ShieldActions;
+			target = 83AB421BD1050A3404B01774 /* ShieldActions */;
+			targetProxy = 3CDE5EAB0595988ED924EDC8 /* PBXContainerItemProxy */;
+		};
+		B464722E404A75846CF93580 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = ShieldConfig;
+			target = 8374A2AE7369959FA176F7F9 /* ShieldConfig */;
+			targetProxy = 5D18EE51EA0F70CD28C065DF /* PBXContainerItemProxy */;
+		};
+		DE14380108CBE9D0FED81F4A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = ShieldMonitor;
+			target = 7D96AC52A7DACA443B0BCAF4 /* ShieldMonitor */;
+			targetProxy = 0BAD336F29FCD014B01067EA /* PBXContainerItemProxy */;
 		};
 		F6309855AA6BED5E50B39648 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -666,17 +920,79 @@
 			};
 			name = "Release-prod";
 		};
+		12F3AC7E2026A813568C63B3 /* Debug-dev */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = B3F510C39F3BB4D9B07BED5E /* TodayWidget.xcconfig */;
+			buildSettings = {
+				APP_GROUP_ID = group.com.cmficonnect.app.dev;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "";
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = "";
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_ENTITLEMENTS = ShieldActions/ShieldActions.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = "";
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = ShieldActions/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				OTHER_LDFLAGS = "";
+				OTHER_SWIFT_FLAGS = "$(inherited)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.cmficonnect.app.dev.ShieldActions;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = "Debug-dev";
+		};
 		18D2B20EA1EE3B9D544768F7 /* Profile-dev */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 89AECC4B22632262BD6930DA /* devProfile.xcconfig */;
 			buildSettings = {
 				APP_GROUP_ID = group.com.cmficonnect.app.dev;
-				FIREBASE_URL_SCHEME = app-1-920730632543-ios-c229a0efa4fd34e0dff6ea;
 				CODE_SIGN_ENTITLEMENTS = Runner/Runner.entitlements;
 				DEVELOPMENT_TEAM = "";
+				FIREBASE_URL_SCHEME = "app-1-920730632543-ios-c229a0efa4fd34e0dff6ea";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = "Profile-dev";
+		};
+		1ED39C4C652B7324061B67FB /* Release-prod */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = B3F510C39F3BB4D9B07BED5E /* TodayWidget.xcconfig */;
+			buildSettings = {
+				APP_GROUP_ID = group.com.cmficonnect.app;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "";
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = "";
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_ENTITLEMENTS = ShieldMonitor/ShieldMonitor.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = ShieldMonitor/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				OTHER_LDFLAGS = "";
+				OTHER_SWIFT_FLAGS = "$(inherited)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.cmficonnect.app.ShieldMonitor;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = "Release-prod";
 		};
 		21E022FE15CF79B69C52622A /* Profile-prod */ = {
 			isa = XCBuildConfiguration;
@@ -748,6 +1064,37 @@
 			};
 			name = "Profile-prod";
 		};
+		220C893241BD48BCA6818149 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = B3F510C39F3BB4D9B07BED5E /* TodayWidget.xcconfig */;
+			buildSettings = {
+				APP_GROUP_ID = group.com.cmficonnect.app;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "";
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = "";
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_ENTITLEMENTS = ShieldMonitor/ShieldMonitor.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 8S3QJGW6FL;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = ShieldMonitor/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				OTHER_LDFLAGS = "";
+				OTHER_SWIFT_FLAGS = "$(inherited)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.cmficonnect.app.ShieldMonitor;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
 		249021D3217E4FDB00AE95B9 /* Profile */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -805,13 +1152,13 @@
 			baseConfigurationReference = 7AFA3C8E1D35360C0083082E /* Release.xcconfig */;
 			buildSettings = {
 				APP_GROUP_ID = group.com.cmficonnect.app;
-				FIREBASE_URL_SCHEME = app-1-894070393803-ios-1828f664b9d079b37c844e;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Runner/Runner.entitlements;
 				CURRENT_PROJECT_VERSION = "$(FLUTTER_BUILD_NUMBER)";
 				DEVELOPMENT_TEAM = 8S3QJGW6FL;
 				ENABLE_BITCODE = NO;
+				FIREBASE_URL_SCHEME = "app-1-894070393803-ios-1828f664b9d079b37c844e";
 				INFOPLIST_FILE = Runner/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -897,6 +1244,101 @@
 			};
 			name = "Release-dev";
 		};
+		270AF856057B00701D57FC31 /* Profile-dev */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = B3F510C39F3BB4D9B07BED5E /* TodayWidget.xcconfig */;
+			buildSettings = {
+				APP_GROUP_ID = group.com.cmficonnect.app.dev;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "";
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = "";
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_ENTITLEMENTS = ShieldConfig/ShieldConfig.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = "";
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = ShieldConfig/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				OTHER_LDFLAGS = "";
+				OTHER_SWIFT_FLAGS = "$(inherited)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.cmficonnect.app.dev.ShieldConfig;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = "Profile-dev";
+		};
+		295A1400667F54B64928AA3D /* Debug-dev */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = B3F510C39F3BB4D9B07BED5E /* TodayWidget.xcconfig */;
+			buildSettings = {
+				APP_GROUP_ID = group.com.cmficonnect.app.dev;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "";
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = "";
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_ENTITLEMENTS = ShieldMonitor/ShieldMonitor.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = "";
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = ShieldMonitor/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				OTHER_LDFLAGS = "";
+				OTHER_SWIFT_FLAGS = "$(inherited)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.cmficonnect.app.dev.ShieldMonitor;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = "Debug-dev";
+		};
+		2D614C683B4D76639E030F19 /* Release-dev */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = B3F510C39F3BB4D9B07BED5E /* TodayWidget.xcconfig */;
+			buildSettings = {
+				APP_GROUP_ID = group.com.cmficonnect.app.dev;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "";
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = "";
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_ENTITLEMENTS = ShieldActions/ShieldActions.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = "";
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = ShieldActions/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				OTHER_LDFLAGS = "";
+				OTHER_SWIFT_FLAGS = "$(inherited)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.cmficonnect.app.dev.ShieldActions;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = "Release-dev";
+		};
 		331C8088294A63A400263BE5 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 4D94009160CDAFB49F80D113 /* Pods-RunnerTests.debug.xcconfig */;
@@ -947,14 +1389,45 @@
 			};
 			name = Profile;
 		};
+		3B185B2A8F7AB67C49FB9D11 /* Profile-prod */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = B3F510C39F3BB4D9B07BED5E /* TodayWidget.xcconfig */;
+			buildSettings = {
+				APP_GROUP_ID = group.com.cmficonnect.app;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "";
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = "";
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_ENTITLEMENTS = ShieldConfig/ShieldConfig.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = ShieldConfig/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				OTHER_LDFLAGS = "";
+				OTHER_SWIFT_FLAGS = "$(inherited)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.cmficonnect.app.ShieldConfig;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = "Profile-prod";
+		};
 		3DC82EAEEA7CB9AFA4608B39 /* Release-dev */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = B51EF3AA6695EFF7D6CE884C /* devRelease.xcconfig */;
 			buildSettings = {
 				APP_GROUP_ID = group.com.cmficonnect.app.dev;
-				FIREBASE_URL_SCHEME = app-1-920730632543-ios-c229a0efa4fd34e0dff6ea;
 				CODE_SIGN_ENTITLEMENTS = Runner/Runner.entitlements;
 				DEVELOPMENT_TEAM = "";
+				FIREBASE_URL_SCHEME = "app-1-920730632543-ios-c229a0efa4fd34e0dff6ea";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = "Release-dev";
@@ -1029,13 +1502,75 @@
 			};
 			name = "Profile-dev";
 		};
+		45CF1F52F0D41890E053A577 /* Debug-prod */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = B3F510C39F3BB4D9B07BED5E /* TodayWidget.xcconfig */;
+			buildSettings = {
+				APP_GROUP_ID = group.com.cmficonnect.app;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "";
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = "";
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_ENTITLEMENTS = ShieldActions/ShieldActions.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = ShieldActions/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				OTHER_LDFLAGS = "";
+				OTHER_SWIFT_FLAGS = "$(inherited)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.cmficonnect.app.ShieldActions;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = "Debug-prod";
+		};
+		49570C0CC8071A1073755B33 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = B3F510C39F3BB4D9B07BED5E /* TodayWidget.xcconfig */;
+			buildSettings = {
+				APP_GROUP_ID = group.com.cmficonnect.app;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "";
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = "";
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_ENTITLEMENTS = ShieldConfig/ShieldConfig.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 8S3QJGW6FL;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = ShieldConfig/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				OTHER_LDFLAGS = "";
+				OTHER_SWIFT_FLAGS = "$(inherited)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.cmficonnect.app.ShieldConfig;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
 		5303BA66A32DFEA111DA9843 /* Debug-prod */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 1046AB9F4E61EC5D778C8472 /* prodDebug.xcconfig */;
 			buildSettings = {
 				APP_GROUP_ID = group.com.cmficonnect.app;
-				FIREBASE_URL_SCHEME = app-1-894070393803-ios-1828f664b9d079b37c844e;
 				CODE_SIGN_ENTITLEMENTS = Runner/Runner.entitlements;
+				DEVELOPMENT_TEAM = 8S3QJGW6FL;
+				FIREBASE_URL_SCHEME = "app-1-894070393803-ios-1828f664b9d079b37c844e";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = "Debug-prod";
@@ -1045,25 +1580,120 @@
 			baseConfigurationReference = 45CEEE66C16302C4A475591D /* devDebug.xcconfig */;
 			buildSettings = {
 				APP_GROUP_ID = group.com.cmficonnect.app.dev;
-				FIREBASE_URL_SCHEME = app-1-920730632543-ios-c229a0efa4fd34e0dff6ea;
 				CODE_SIGN_ENTITLEMENTS = Runner/Runner.entitlements;
 				DEVELOPMENT_TEAM = "";
+				FIREBASE_URL_SCHEME = "app-1-920730632543-ios-c229a0efa4fd34e0dff6ea";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = "Debug-dev";
+		};
+		5C0B39EE35DD795FB2510616 /* Profile-dev */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = B3F510C39F3BB4D9B07BED5E /* TodayWidget.xcconfig */;
+			buildSettings = {
+				APP_GROUP_ID = group.com.cmficonnect.app.dev;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "";
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = "";
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_ENTITLEMENTS = ShieldMonitor/ShieldMonitor.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = "";
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = ShieldMonitor/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				OTHER_LDFLAGS = "";
+				OTHER_SWIFT_FLAGS = "$(inherited)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.cmficonnect.app.dev.ShieldMonitor;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = "Profile-dev";
+		};
+		6979DB5A14951DD6C9EE0C60 /* Release-dev */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = B3F510C39F3BB4D9B07BED5E /* TodayWidget.xcconfig */;
+			buildSettings = {
+				APP_GROUP_ID = group.com.cmficonnect.app.dev;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "";
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = "";
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_ENTITLEMENTS = ShieldMonitor/ShieldMonitor.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = "";
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = ShieldMonitor/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				OTHER_LDFLAGS = "";
+				OTHER_SWIFT_FLAGS = "$(inherited)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.cmficonnect.app.dev.ShieldMonitor;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = "Release-dev";
+		};
+		71D5DB248651B15B4A1255D6 /* Release-prod */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = B3F510C39F3BB4D9B07BED5E /* TodayWidget.xcconfig */;
+			buildSettings = {
+				APP_GROUP_ID = group.com.cmficonnect.app;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "";
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = "";
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_ENTITLEMENTS = ShieldActions/ShieldActions.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = ShieldActions/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				OTHER_LDFLAGS = "";
+				OTHER_SWIFT_FLAGS = "$(inherited)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.cmficonnect.app.ShieldActions;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = "Release-prod";
 		};
 		7220DE22417220553A0DC9A2 /* Debug-dev */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = B3F510C39F3BB4D9B07BED5E /* TodayWidget.xcconfig */;
 			buildSettings = {
 				APP_GROUP_ID = group.com.cmficonnect.app.dev;
-				FIREBASE_URL_SCHEME = app-1-920730632543-ios-c229a0efa4fd34e0dff6ea;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "";
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = "";
 				CLANG_ENABLE_OBJC_WEAK = NO;
 				CODE_SIGN_ENTITLEMENTS = TodayWidget/TodayWidget.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = "";
+				FIREBASE_URL_SCHEME = "app-1-920730632543-ios-c229a0efa4fd34e0dff6ea";
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = TodayWidget/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
@@ -1083,6 +1713,101 @@
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = "Debug-dev";
+		};
+		801DA798CA86F5DBBF2C35D2 /* Profile */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = B3F510C39F3BB4D9B07BED5E /* TodayWidget.xcconfig */;
+			buildSettings = {
+				APP_GROUP_ID = group.com.cmficonnect.app;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "";
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = "";
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_ENTITLEMENTS = ShieldConfig/ShieldConfig.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 8S3QJGW6FL;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = ShieldConfig/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				OTHER_LDFLAGS = "";
+				OTHER_SWIFT_FLAGS = "$(inherited)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.cmficonnect.app.ShieldConfig;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Profile;
+		};
+		8ED97C5419EEDF3113C6A9B4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = B3F510C39F3BB4D9B07BED5E /* TodayWidget.xcconfig */;
+			buildSettings = {
+				APP_GROUP_ID = group.com.cmficonnect.app;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "";
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = "";
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_ENTITLEMENTS = ShieldActions/ShieldActions.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 8S3QJGW6FL;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = ShieldActions/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				OTHER_LDFLAGS = "";
+				OTHER_SWIFT_FLAGS = "$(inherited)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.cmficonnect.app.ShieldActions;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		915CAECFE375EB534A4C32E3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = B3F510C39F3BB4D9B07BED5E /* TodayWidget.xcconfig */;
+			buildSettings = {
+				APP_GROUP_ID = group.com.cmficonnect.app;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "";
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = "";
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_ENTITLEMENTS = ShieldActions/ShieldActions.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 8S3QJGW6FL;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = ShieldActions/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				OTHER_LDFLAGS = "";
+				OTHER_SWIFT_FLAGS = "$(inherited)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.cmficonnect.app.ShieldActions;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
 		};
 		93E1A4E9307AD4BB00861722 /* Debug-dev */ = {
 			isa = XCBuildConfiguration;
@@ -1137,13 +1862,13 @@
 			baseConfigurationReference = B3F510C39F3BB4D9B07BED5E /* TodayWidget.xcconfig */;
 			buildSettings = {
 				APP_GROUP_ID = group.com.cmficonnect.app;
-				FIREBASE_URL_SCHEME = app-1-894070393803-ios-1828f664b9d079b37c844e;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "";
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = "";
 				CLANG_ENABLE_OBJC_WEAK = NO;
 				CODE_SIGN_ENTITLEMENTS = TodayWidget/TodayWidget.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 8S3QJGW6FL;
+				FIREBASE_URL_SCHEME = "app-1-894070393803-ios-1828f664b9d079b37c844e";
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = TodayWidget/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
@@ -1280,13 +2005,13 @@
 			baseConfigurationReference = 9740EEB21CF90195004384FC /* Debug.xcconfig */;
 			buildSettings = {
 				APP_GROUP_ID = group.com.cmficonnect.app;
-				FIREBASE_URL_SCHEME = app-1-894070393803-ios-1828f664b9d079b37c844e;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Runner/Runner.entitlements;
 				CURRENT_PROJECT_VERSION = "$(FLUTTER_BUILD_NUMBER)";
 				DEVELOPMENT_TEAM = 8S3QJGW6FL;
 				ENABLE_BITCODE = NO;
+				FIREBASE_URL_SCHEME = "app-1-894070393803-ios-1828f664b9d079b37c844e";
 				INFOPLIST_FILE = Runner/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1306,13 +2031,13 @@
 			baseConfigurationReference = 7AFA3C8E1D35360C0083082E /* Release.xcconfig */;
 			buildSettings = {
 				APP_GROUP_ID = group.com.cmficonnect.app;
-				FIREBASE_URL_SCHEME = app-1-894070393803-ios-1828f664b9d079b37c844e;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Runner/Runner.entitlements;
 				CURRENT_PROJECT_VERSION = "$(FLUTTER_BUILD_NUMBER)";
 				DEVELOPMENT_TEAM = 8S3QJGW6FL;
 				ENABLE_BITCODE = NO;
+				FIREBASE_URL_SCHEME = "app-1-894070393803-ios-1828f664b9d079b37c844e";
 				INFOPLIST_FILE = Runner/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1331,13 +2056,13 @@
 			baseConfigurationReference = B3F510C39F3BB4D9B07BED5E /* TodayWidget.xcconfig */;
 			buildSettings = {
 				APP_GROUP_ID = group.com.cmficonnect.app;
-				FIREBASE_URL_SCHEME = app-1-894070393803-ios-1828f664b9d079b37c844e;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "";
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = "";
 				CLANG_ENABLE_OBJC_WEAK = NO;
 				CODE_SIGN_ENTITLEMENTS = TodayWidget/TodayWidget.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 8S3QJGW6FL;
+				FIREBASE_URL_SCHEME = "app-1-894070393803-ios-1828f664b9d079b37c844e";
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = TodayWidget/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
@@ -1359,17 +2084,80 @@
 			};
 			name = Profile;
 		};
+		A4CFB7790C9C97420F97325F /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = B3F510C39F3BB4D9B07BED5E /* TodayWidget.xcconfig */;
+			buildSettings = {
+				APP_GROUP_ID = group.com.cmficonnect.app;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "";
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = "";
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_ENTITLEMENTS = ShieldMonitor/ShieldMonitor.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 8S3QJGW6FL;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = ShieldMonitor/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				OTHER_LDFLAGS = "";
+				OTHER_SWIFT_FLAGS = "$(inherited)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.cmficonnect.app.ShieldMonitor;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		AFE1C93152E76D2B75321C36 /* Debug-dev */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = B3F510C39F3BB4D9B07BED5E /* TodayWidget.xcconfig */;
+			buildSettings = {
+				APP_GROUP_ID = group.com.cmficonnect.app.dev;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "";
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = "";
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_ENTITLEMENTS = ShieldConfig/ShieldConfig.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = "";
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = ShieldConfig/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				OTHER_LDFLAGS = "";
+				OTHER_SWIFT_FLAGS = "$(inherited)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.cmficonnect.app.dev.ShieldConfig;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = "Debug-dev";
+		};
 		B38378836905B2A27051118F /* Release-prod */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = B3F510C39F3BB4D9B07BED5E /* TodayWidget.xcconfig */;
 			buildSettings = {
 				APP_GROUP_ID = group.com.cmficonnect.app;
-				FIREBASE_URL_SCHEME = app-1-894070393803-ios-1828f664b9d079b37c844e;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "";
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = "";
 				CLANG_ENABLE_OBJC_WEAK = NO;
 				CODE_SIGN_ENTITLEMENTS = TodayWidget/TodayWidget.entitlements;
 				CODE_SIGN_STYLE = Automatic;
+				FIREBASE_URL_SCHEME = "app-1-894070393803-ios-1828f664b9d079b37c844e";
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = TodayWidget/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
@@ -1391,18 +2179,50 @@
 			};
 			name = "Release-prod";
 		};
+		B589138F33F56294B1624F96 /* Profile */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = B3F510C39F3BB4D9B07BED5E /* TodayWidget.xcconfig */;
+			buildSettings = {
+				APP_GROUP_ID = group.com.cmficonnect.app;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "";
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = "";
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_ENTITLEMENTS = ShieldActions/ShieldActions.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 8S3QJGW6FL;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = ShieldActions/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				OTHER_LDFLAGS = "";
+				OTHER_SWIFT_FLAGS = "$(inherited)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.cmficonnect.app.ShieldActions;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Profile;
+		};
 		B8AE4D784A603C19E58D4061 /* Release-dev */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = B3F510C39F3BB4D9B07BED5E /* TodayWidget.xcconfig */;
 			buildSettings = {
 				APP_GROUP_ID = group.com.cmficonnect.app.dev;
-				FIREBASE_URL_SCHEME = app-1-920730632543-ios-c229a0efa4fd34e0dff6ea;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "";
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = "";
 				CLANG_ENABLE_OBJC_WEAK = NO;
 				CODE_SIGN_ENTITLEMENTS = TodayWidget/TodayWidget.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = "";
+				FIREBASE_URL_SCHEME = "app-1-920730632543-ios-c229a0efa4fd34e0dff6ea";
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = TodayWidget/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
@@ -1424,17 +2244,47 @@
 			};
 			name = "Release-dev";
 		};
+		C9B8AFA0159777C6DC9C90CC /* Debug-prod */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = B3F510C39F3BB4D9B07BED5E /* TodayWidget.xcconfig */;
+			buildSettings = {
+				APP_GROUP_ID = group.com.cmficonnect.app;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "";
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = "";
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_ENTITLEMENTS = ShieldConfig/ShieldConfig.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = ShieldConfig/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				OTHER_LDFLAGS = "";
+				OTHER_SWIFT_FLAGS = "$(inherited)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.cmficonnect.app.ShieldConfig;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = "Debug-prod";
+		};
 		CCE9744C6A8D5BCCD9BA23D6 /* Profile-prod */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = B3F510C39F3BB4D9B07BED5E /* TodayWidget.xcconfig */;
 			buildSettings = {
 				APP_GROUP_ID = group.com.cmficonnect.app;
-				FIREBASE_URL_SCHEME = app-1-894070393803-ios-1828f664b9d079b37c844e;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "";
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = "";
 				CLANG_ENABLE_OBJC_WEAK = NO;
 				CODE_SIGN_ENTITLEMENTS = TodayWidget/TodayWidget.entitlements;
 				CODE_SIGN_STYLE = Automatic;
+				FIREBASE_URL_SCHEME = "app-1-894070393803-ios-1828f664b9d079b37c844e";
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = TodayWidget/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
@@ -1456,18 +2306,49 @@
 			};
 			name = "Profile-prod";
 		};
+		CDD651A4F14BC6D61544D812 /* Profile-prod */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = B3F510C39F3BB4D9B07BED5E /* TodayWidget.xcconfig */;
+			buildSettings = {
+				APP_GROUP_ID = group.com.cmficonnect.app;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "";
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = "";
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_ENTITLEMENTS = ShieldMonitor/ShieldMonitor.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = ShieldMonitor/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				OTHER_LDFLAGS = "";
+				OTHER_SWIFT_FLAGS = "$(inherited)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.cmficonnect.app.ShieldMonitor;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = "Profile-prod";
+		};
 		D2CA52FF54034DCE1D0C8130 /* Profile-dev */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = B3F510C39F3BB4D9B07BED5E /* TodayWidget.xcconfig */;
 			buildSettings = {
 				APP_GROUP_ID = group.com.cmficonnect.app.dev;
-				FIREBASE_URL_SCHEME = app-1-920730632543-ios-c229a0efa4fd34e0dff6ea;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "";
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = "";
 				CLANG_ENABLE_OBJC_WEAK = NO;
 				CODE_SIGN_ENTITLEMENTS = TodayWidget/TodayWidget.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = "";
+				FIREBASE_URL_SCHEME = "app-1-920730632543-ios-c229a0efa4fd34e0dff6ea";
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = TodayWidget/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
@@ -1479,6 +2360,163 @@
 				OTHER_LDFLAGS = "";
 				OTHER_SWIFT_FLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.cmficonnect.app.dev.TodayWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = "Profile-dev";
+		};
+		D4EA2959B5CF819B79513EA3 /* Debug-prod */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = B3F510C39F3BB4D9B07BED5E /* TodayWidget.xcconfig */;
+			buildSettings = {
+				APP_GROUP_ID = group.com.cmficonnect.app;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "";
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = "";
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_ENTITLEMENTS = ShieldMonitor/ShieldMonitor.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = ShieldMonitor/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				OTHER_LDFLAGS = "";
+				OTHER_SWIFT_FLAGS = "$(inherited)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.cmficonnect.app.ShieldMonitor;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = "Debug-prod";
+		};
+		D521B3292B679B9D6D55BCD7 /* Release-dev */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = B3F510C39F3BB4D9B07BED5E /* TodayWidget.xcconfig */;
+			buildSettings = {
+				APP_GROUP_ID = group.com.cmficonnect.app.dev;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "";
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = "";
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_ENTITLEMENTS = ShieldConfig/ShieldConfig.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = "";
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = ShieldConfig/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				OTHER_LDFLAGS = "";
+				OTHER_SWIFT_FLAGS = "$(inherited)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.cmficonnect.app.dev.ShieldConfig;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = "Release-dev";
+		};
+		D76E168D4E29054517E94559 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = B3F510C39F3BB4D9B07BED5E /* TodayWidget.xcconfig */;
+			buildSettings = {
+				APP_GROUP_ID = group.com.cmficonnect.app;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "";
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = "";
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_ENTITLEMENTS = ShieldConfig/ShieldConfig.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 8S3QJGW6FL;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = ShieldConfig/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				OTHER_LDFLAGS = "";
+				OTHER_SWIFT_FLAGS = "$(inherited)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.cmficonnect.app.ShieldConfig;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		D958786355C86AB7FD1BFAC1 /* Release-prod */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = B3F510C39F3BB4D9B07BED5E /* TodayWidget.xcconfig */;
+			buildSettings = {
+				APP_GROUP_ID = group.com.cmficonnect.app;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "";
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = "";
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_ENTITLEMENTS = ShieldConfig/ShieldConfig.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = ShieldConfig/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				OTHER_LDFLAGS = "";
+				OTHER_SWIFT_FLAGS = "$(inherited)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.cmficonnect.app.ShieldConfig;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = "Release-prod";
+		};
+		DBF0B117F7A1ED508F3B6B02 /* Profile-dev */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = B3F510C39F3BB4D9B07BED5E /* TodayWidget.xcconfig */;
+			buildSettings = {
+				APP_GROUP_ID = group.com.cmficonnect.app.dev;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "";
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = "";
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_ENTITLEMENTS = ShieldActions/ShieldActions.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = "";
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = ShieldActions/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				OTHER_LDFLAGS = "";
+				OTHER_SWIFT_FLAGS = "$(inherited)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.cmficonnect.app.dev.ShieldActions;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
@@ -1569,8 +2607,9 @@
 			baseConfigurationReference = 44554DE6C2BC572F83925D57 /* prodRelease.xcconfig */;
 			buildSettings = {
 				APP_GROUP_ID = group.com.cmficonnect.app;
-				FIREBASE_URL_SCHEME = app-1-894070393803-ios-1828f664b9d079b37c844e;
 				CODE_SIGN_ENTITLEMENTS = Runner/Runner.entitlements;
+				DEVELOPMENT_TEAM = 8S3QJGW6FL;
+				FIREBASE_URL_SCHEME = "app-1-894070393803-ios-1828f664b9d079b37c844e";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = "Release-prod";
@@ -1580,13 +2619,13 @@
 			baseConfigurationReference = B3F510C39F3BB4D9B07BED5E /* TodayWidget.xcconfig */;
 			buildSettings = {
 				APP_GROUP_ID = group.com.cmficonnect.app;
-				FIREBASE_URL_SCHEME = app-1-894070393803-ios-1828f664b9d079b37c844e;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "";
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = "";
 				CLANG_ENABLE_OBJC_WEAK = NO;
 				CODE_SIGN_ENTITLEMENTS = TodayWidget/TodayWidget.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 8S3QJGW6FL;
+				FIREBASE_URL_SCHEME = "app-1-894070393803-ios-1828f664b9d079b37c844e";
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = TodayWidget/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
@@ -1613,9 +2652,41 @@
 			baseConfigurationReference = 3BF3195AFF06027E153EDDFE /* prodProfile.xcconfig */;
 			buildSettings = {
 				APP_GROUP_ID = group.com.cmficonnect.app;
-				FIREBASE_URL_SCHEME = app-1-894070393803-ios-1828f664b9d079b37c844e;
 				CODE_SIGN_ENTITLEMENTS = Runner/Runner.entitlements;
+				DEVELOPMENT_TEAM = 8S3QJGW6FL;
+				FIREBASE_URL_SCHEME = "app-1-894070393803-ios-1828f664b9d079b37c844e";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = "Profile-prod";
+		};
+		F4344AE639F56224B1D440A5 /* Profile-prod */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = B3F510C39F3BB4D9B07BED5E /* TodayWidget.xcconfig */;
+			buildSettings = {
+				APP_GROUP_ID = group.com.cmficonnect.app;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "";
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = "";
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_ENTITLEMENTS = ShieldActions/ShieldActions.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = ShieldActions/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				OTHER_LDFLAGS = "";
+				OTHER_SWIFT_FLAGS = "$(inherited)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.cmficonnect.app.ShieldActions;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+				VALIDATE_PRODUCT = YES;
 			};
 			name = "Profile-prod";
 		};
@@ -1624,12 +2695,12 @@
 			baseConfigurationReference = B3F510C39F3BB4D9B07BED5E /* TodayWidget.xcconfig */;
 			buildSettings = {
 				APP_GROUP_ID = group.com.cmficonnect.app;
-				FIREBASE_URL_SCHEME = app-1-894070393803-ios-1828f664b9d079b37c844e;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "";
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = "";
 				CLANG_ENABLE_OBJC_WEAK = NO;
 				CODE_SIGN_ENTITLEMENTS = TodayWidget/TodayWidget.entitlements;
 				CODE_SIGN_STYLE = Automatic;
+				FIREBASE_URL_SCHEME = "app-1-894070393803-ios-1828f664b9d079b37c844e";
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = TodayWidget/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
@@ -1649,6 +2720,38 @@
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = "Debug-prod";
+		};
+		FF5B08F4015CC2F9A4A1C121 /* Profile */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = B3F510C39F3BB4D9B07BED5E /* TodayWidget.xcconfig */;
+			buildSettings = {
+				APP_GROUP_ID = group.com.cmficonnect.app;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "";
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = "";
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_ENTITLEMENTS = ShieldMonitor/ShieldMonitor.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 8S3QJGW6FL;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = ShieldMonitor/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				OTHER_LDFLAGS = "";
+				OTHER_SWIFT_FLAGS = "$(inherited)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.cmficonnect.app.ShieldMonitor;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Profile;
 		};
 		FFA7BEAE1EF8E422CE254B7F /* Debug-dev */ = {
 			isa = XCBuildConfiguration;
@@ -1744,6 +2847,22 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
+		50D602C901EEC7D0FE7D5C13 /* Build configuration list for PBXNativeTarget "ShieldMonitor" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A4CFB7790C9C97420F97325F /* Release */,
+				220C893241BD48BCA6818149 /* Debug */,
+				FF5B08F4015CC2F9A4A1C121 /* Profile */,
+				295A1400667F54B64928AA3D /* Debug-dev */,
+				5C0B39EE35DD795FB2510616 /* Profile-dev */,
+				6979DB5A14951DD6C9EE0C60 /* Release-dev */,
+				D4EA2959B5CF819B79513EA3 /* Debug-prod */,
+				CDD651A4F14BC6D61544D812 /* Profile-prod */,
+				1ED39C4C652B7324061B67FB /* Release-prod */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		97C146E91CF9000F007C117D /* Build configuration list for PBXProject "Runner" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -1776,6 +2895,22 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
+		A1CF1F49F9354560CD433993 /* Build configuration list for PBXNativeTarget "ShieldConfig" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D76E168D4E29054517E94559 /* Release */,
+				49570C0CC8071A1073755B33 /* Debug */,
+				801DA798CA86F5DBBF2C35D2 /* Profile */,
+				AFE1C93152E76D2B75321C36 /* Debug-dev */,
+				270AF856057B00701D57FC31 /* Profile-dev */,
+				D521B3292B679B9D6D55BCD7 /* Release-dev */,
+				C9B8AFA0159777C6DC9C90CC /* Debug-prod */,
+				3B185B2A8F7AB67C49FB9D11 /* Profile-prod */,
+				D958786355C86AB7FD1BFAC1 /* Release-prod */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		E56368D1BB8BCBE9580AACD7 /* Build configuration list for PBXNativeTarget "TodayWidget" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -1788,6 +2923,22 @@
 				F879543B3E947572D2B493F3 /* Debug-prod */,
 				CCE9744C6A8D5BCCD9BA23D6 /* Profile-prod */,
 				B38378836905B2A27051118F /* Release-prod */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F98019EF9E407837C7649EFA /* Build configuration list for PBXNativeTarget "ShieldActions" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				915CAECFE375EB534A4C32E3 /* Release */,
+				8ED97C5419EEDF3113C6A9B4 /* Debug */,
+				B589138F33F56294B1624F96 /* Profile */,
+				12F3AC7E2026A813568C63B3 /* Debug-dev */,
+				DBF0B117F7A1ED508F3B6B02 /* Profile-dev */,
+				2D614C683B4D76639E030F19 /* Release-dev */,
+				45CF1F52F0D41890E053A577 /* Debug-prod */,
+				F4344AE639F56224B1D440A5 /* Profile-prod */,
+				71D5DB248651B15B4A1255D6 /* Release-prod */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

@@ -75,6 +75,7 @@ class TranslationsZh extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _Translations$profilePhoto$zh profilePhoto = _Translations$profilePhoto$zh._(_root);
 	@override late final _Translations$disciples$zh disciples = _Translations$disciples$zh._(_root);
 	@override late final _Translations$weekStory$zh weekStory = _Translations$weekStory$zh._(_root);
+	@override late final _Translations$seekFirst$zh seekFirst = _Translations$seekFirst$zh._(_root);
 }
 
 // Path: app
@@ -1174,6 +1175,49 @@ class _Translations$weekStory$zh extends Translations$weekStory$fr {
 	@override String page({required Object current, required Object total}) => '第 ${current} 页，共 ${total} 页';
 }
 
+// Path: seekFirst
+class _Translations$seekFirst$zh extends Translations$seekFirst$fr {
+	_Translations$seekFirst$zh._(TranslationsZh root) : this._root = root, super.internal(root);
+
+	final TranslationsZh _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => '先求神';
+	@override String get verse => '你们要先求他的国和他的义，这些东西都要加给你们了。';
+	@override String get verseRef => '马太福音 6:33';
+	@override String get intro => '每天，你选择的应用会一直关闭，直到你保存当天的汇报。用神开始你的一天，其余的随后而来。';
+	@override String get enable => '开启';
+	@override String get apps => '要关闭的应用';
+	@override String get appsNone => '尚未选择应用';
+	@override String appCount({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n,
+		other: '${n} 个应用',
+	);
+	@override String categoryCount({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n,
+		other: '${n} 个类别',
+	);
+	@override String siteCount({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n,
+		other: '${n} 个网站',
+	);
+	@override String get start => '关闭时间';
+	@override String get pauses => '5 分钟暂停';
+	@override String get pausesText => '每天 3 次，用于紧急情况';
+	@override String pausesLeft({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n,
+		zero: '今天没有剩余的暂停',
+		other: '今天还剩 ${n} 次暂停',
+	);
+	@override String get todayOpen => '今天你的应用已打开：你先求了神。';
+	@override String get todayLocked => '在完成今天的汇报之前，你的应用保持关闭。';
+	@override String todayBefore({required Object time}) => '如果你的汇报还没有保存，你的应用将在 ${time} 关闭。';
+	@override String get fillReport => '填写我的汇报';
+	@override String get denied => '没有“屏幕使用时间”的权限，CMFI Connect 无法关闭应用。你可以在“设置 › 屏幕使用时间”中允许。';
+	@override String get noApps => '请至少选择一个要关闭的应用。';
+	@override String get unsupported => '即将在此手机上推出。';
+	@override String moreOn({required Object time}) => '从 ${time} 起，直到你的汇报';
+	@override String get moreOff => '在完成汇报前关闭应用';
+	@override String get privacy => 'CMFI Connect 永远看不到你选择了哪些应用：它们只保存在你的 iPhone 上。';
+	@override late final _Translations$seekFirst$shield$zh shield = _Translations$seekFirst$shield$zh._(_root);
+}
+
 // Path: onboarding.reports
 class _Translations$onboarding$reports$zh extends Translations$onboarding$reports$fr {
 	_Translations$onboarding$reports$zh._(TranslationsZh root) : this._root = root, super.internal(root);
@@ -2161,6 +2205,22 @@ class _Translations$bible$colors$zh extends Translations$bible$colors$fr {
 	@override String get green => '绿色';
 	@override String get blue => '蓝色';
 	@override String get pink => '粉色';
+}
+
+// Path: seekFirst.shield
+class _Translations$seekFirst$shield$zh extends Translations$seekFirst$shield$fr {
+	_Translations$seekFirst$shield$zh._(TranslationsZh root) : this._root = root, super.internal(root);
+
+	final TranslationsZh _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => '先求神';
+	@override String subtitle({required Object app}) => '在完成今天的汇报之前，${app} 保持关闭。';
+	@override String get thisApp => '此应用';
+	@override String get fill => '填写我的汇报';
+	@override String pause({required Object n}) => '暂停 5 分钟（${n}/3）';
+	@override String get notificationTitle => '先求神';
+	@override String get notificationBody => '轻点此处填写你的汇报。';
 }
 
 // Path: reports.units.chapters
@@ -3727,6 +3787,37 @@ extension on TranslationsZh {
 			'weekStory.pastWeeks' => '过去几周',
 			'weekStory.weekOf' => ({required Object date}) => '${date} 那一周',
 			'weekStory.page' => ({required Object current, required Object total}) => '第 ${current} 页，共 ${total} 页',
+			'seekFirst.title' => '先求神',
+			'seekFirst.verse' => '你们要先求他的国和他的义，这些东西都要加给你们了。',
+			'seekFirst.verseRef' => '马太福音 6:33',
+			'seekFirst.intro' => '每天，你选择的应用会一直关闭，直到你保存当天的汇报。用神开始你的一天，其余的随后而来。',
+			'seekFirst.enable' => '开启',
+			'seekFirst.apps' => '要关闭的应用',
+			'seekFirst.appsNone' => '尚未选择应用',
+			'seekFirst.appCount' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n, other: '${n} 个应用', ), 
+			'seekFirst.categoryCount' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n, other: '${n} 个类别', ), 
+			'seekFirst.siteCount' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n, other: '${n} 个网站', ), 
+			'seekFirst.start' => '关闭时间',
+			'seekFirst.pauses' => '5 分钟暂停',
+			'seekFirst.pausesText' => '每天 3 次，用于紧急情况',
+			'seekFirst.pausesLeft' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n, zero: '今天没有剩余的暂停', other: '今天还剩 ${n} 次暂停', ), 
+			'seekFirst.todayOpen' => '今天你的应用已打开：你先求了神。',
+			'seekFirst.todayLocked' => '在完成今天的汇报之前，你的应用保持关闭。',
+			'seekFirst.todayBefore' => ({required Object time}) => '如果你的汇报还没有保存，你的应用将在 ${time} 关闭。',
+			'seekFirst.fillReport' => '填写我的汇报',
+			'seekFirst.denied' => '没有“屏幕使用时间”的权限，CMFI Connect 无法关闭应用。你可以在“设置 › 屏幕使用时间”中允许。',
+			'seekFirst.noApps' => '请至少选择一个要关闭的应用。',
+			'seekFirst.unsupported' => '即将在此手机上推出。',
+			'seekFirst.moreOn' => ({required Object time}) => '从 ${time} 起，直到你的汇报',
+			'seekFirst.moreOff' => '在完成汇报前关闭应用',
+			'seekFirst.privacy' => 'CMFI Connect 永远看不到你选择了哪些应用：它们只保存在你的 iPhone 上。',
+			'seekFirst.shield.title' => '先求神',
+			'seekFirst.shield.subtitle' => ({required Object app}) => '在完成今天的汇报之前，${app} 保持关闭。',
+			'seekFirst.shield.thisApp' => '此应用',
+			'seekFirst.shield.fill' => '填写我的汇报',
+			'seekFirst.shield.pause' => ({required Object n}) => '暂停 5 分钟（${n}/3）',
+			'seekFirst.shield.notificationTitle' => '先求神',
+			'seekFirst.shield.notificationBody' => '轻点此处填写你的汇报。',
 			_ => null,
 		};
 	}

@@ -1689,5 +1689,53 @@
     "pastWeeks": "Semaines passées",
     "weekOf": "Semaine du {date}",
     "page": "{current} sur {total}"
+  },
+  "seekFirst": {
+    "title": "Cherche d'abord Dieu",
+    "verse": "Cherchez premièrement le royaume et la justice de Dieu ; et toutes ces choses vous seront données par-dessus.",
+    "verseRef": "Matthieu 6:33",
+    "intro": "Chaque jour, les apps que tu choisis restent fermées tant que ton compte rendu n'est pas enregistré. Commence ta journée avec Dieu, le reste suit.",
+    "enable": "Activer",
+    "apps": "Apps à garder fermées",
+    "appsNone": "Aucune app choisie",
+    "appCount(plural, param=n)": {
+      "one": "{n} app",
+      "other": "{n} apps"
+    },
+    "categoryCount(plural, param=n)": {
+      "one": "{n} catégorie",
+      "other": "{n} catégories"
+    },
+    "siteCount(plural, param=n)": {
+      "one": "{n} site",
+      "other": "{n} sites"
+    },
+    "start": "Fermées à partir de",
+    "pauses": "Pauses de 5 minutes",
+    "pausesText": "3 par jour, pour une urgence",
+    "pausesLeft(plural, param=n)": {
+      "zero": "Plus de pause aujourd'hui",
+      "one": "Encore {n} pause aujourd'hui",
+      "other": "Encore {n} pauses aujourd'hui"
+    },
+    "todayOpen": "Aujourd'hui, tes apps sont ouvertes : tu as cherché Dieu d'abord.",
+    "todayLocked": "Tes apps restent fermées jusqu'à ton compte rendu d'aujourd'hui.",
+    "todayBefore": "Tes apps se fermeront à {time} si ton compte rendu n'est pas encore enregistré.",
+    "fillReport": "Remplir mon compte rendu",
+    "denied": "Sans l'accès à Temps d'écran, CMFI Connect ne peut pas fermer d'apps. Tu peux l'autoriser dans Réglages › Temps d'écran.",
+    "noApps": "Choisis au moins une app à garder fermée.",
+    "unsupported": "Bientôt disponible sur ce téléphone.",
+    "moreOn": "Dès {time}, jusqu'à ton compte rendu",
+    "moreOff": "Fermer des apps tant que ton compte rendu n'est pas fait",
+    "privacy": "CMFI Connect ne voit jamais les apps que tu choisis : ton iPhone les garde pour lui.",
+    "shield": {
+      "title": "Cherche d'abord Dieu",
+      "subtitle": "{app} reste fermée jusqu'à ton compte rendu d'aujourd'hui.",
+      "thisApp": "Cette app",
+      "fill": "Remplir mon compte rendu",
+      "pause": "Pause de 5 min ({n}/3)",
+      "notificationTitle": "Cherche d'abord Dieu",
+      "notificationBody": "Touche ici pour remplir ton compte rendu."
+    }
   }
 }

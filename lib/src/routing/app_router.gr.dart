@@ -1562,6 +1562,22 @@ class RetreatSessionRouteArgs {
 }
 
 /// generated route for
+/// [SeekFirstScreen]
+class SeekFirstRoute extends PageRouteInfo<void> {
+  const SeekFirstRoute({List<PageRouteInfo>? children})
+    : super(SeekFirstRoute.name, initialChildren: children);
+
+  static const String name = 'SeekFirstRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const SeekFirstScreen();
+    },
+  );
+}
+
+/// generated route for
 /// [SplashScreen]
 class SplashRoute extends PageRouteInfo<void> {
   const SplashRoute({List<PageRouteInfo>? children})

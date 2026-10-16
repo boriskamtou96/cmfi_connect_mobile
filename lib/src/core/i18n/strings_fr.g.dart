@@ -77,6 +77,7 @@ class Translations with BaseTranslations<AppLocale, Translations> {
 	late final Translations$profilePhoto$fr profilePhoto = Translations$profilePhoto$fr.internal(_root);
 	late final Translations$disciples$fr disciples = Translations$disciples$fr.internal(_root);
 	late final Translations$weekStory$fr weekStory = Translations$weekStory$fr.internal(_root);
+	late final Translations$seekFirst$fr seekFirst = Translations$seekFirst$fr.internal(_root);
 }
 
 // Path: app
@@ -2494,6 +2495,102 @@ class Translations$weekStory$fr {
 	String page({required Object current, required Object total}) => '${current} sur ${total}';
 }
 
+// Path: seekFirst
+class Translations$seekFirst$fr {
+	Translations$seekFirst$fr.internal(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// fr: 'Cherche d'abord Dieu'
+	String get title => 'Cherche d\'abord Dieu';
+
+	/// fr: 'Cherchez premièrement le royaume et la justice de Dieu ; et toutes ces choses vous seront données par-dessus.'
+	String get verse => 'Cherchez premièrement le royaume et la justice de Dieu ; et toutes ces choses vous seront données par-dessus.';
+
+	/// fr: 'Matthieu 6:33'
+	String get verseRef => 'Matthieu 6:33';
+
+	/// fr: 'Chaque jour, les apps que tu choisis restent fermées tant que ton compte rendu n'est pas enregistré. Commence ta journée avec Dieu, le reste suit.'
+	String get intro => 'Chaque jour, les apps que tu choisis restent fermées tant que ton compte rendu n\'est pas enregistré. Commence ta journée avec Dieu, le reste suit.';
+
+	/// fr: 'Activer'
+	String get enable => 'Activer';
+
+	/// fr: 'Apps à garder fermées'
+	String get apps => 'Apps à garder fermées';
+
+	/// fr: 'Aucune app choisie'
+	String get appsNone => 'Aucune app choisie';
+
+	/// fr: '(one) {{n} app} (other) {{n} apps}'
+	String appCount({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('fr'))(n,
+		one: '${n} app',
+		other: '${n} apps',
+	);
+
+	/// fr: '(one) {{n} catégorie} (other) {{n} catégories}'
+	String categoryCount({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('fr'))(n,
+		one: '${n} catégorie',
+		other: '${n} catégories',
+	);
+
+	/// fr: '(one) {{n} site} (other) {{n} sites}'
+	String siteCount({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('fr'))(n,
+		one: '${n} site',
+		other: '${n} sites',
+	);
+
+	/// fr: 'Fermées à partir de'
+	String get start => 'Fermées à partir de';
+
+	/// fr: 'Pauses de 5 minutes'
+	String get pauses => 'Pauses de 5 minutes';
+
+	/// fr: '3 par jour, pour une urgence'
+	String get pausesText => '3 par jour, pour une urgence';
+
+	/// fr: '(zero) {Plus de pause aujourd'hui} (one) {Encore {n} pause aujourd'hui} (other) {Encore {n} pauses aujourd'hui}'
+	String pausesLeft({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('fr'))(n,
+		zero: 'Plus de pause aujourd\'hui',
+		one: 'Encore ${n} pause aujourd\'hui',
+		other: 'Encore ${n} pauses aujourd\'hui',
+	);
+
+	/// fr: 'Aujourd'hui, tes apps sont ouvertes : tu as cherché Dieu d'abord.'
+	String get todayOpen => 'Aujourd\'hui, tes apps sont ouvertes : tu as cherché Dieu d\'abord.';
+
+	/// fr: 'Tes apps restent fermées jusqu'à ton compte rendu d'aujourd'hui.'
+	String get todayLocked => 'Tes apps restent fermées jusqu\'à ton compte rendu d\'aujourd\'hui.';
+
+	/// fr: 'Tes apps se fermeront à {time} si ton compte rendu n'est pas encore enregistré.'
+	String todayBefore({required Object time}) => 'Tes apps se fermeront à ${time} si ton compte rendu n\'est pas encore enregistré.';
+
+	/// fr: 'Remplir mon compte rendu'
+	String get fillReport => 'Remplir mon compte rendu';
+
+	/// fr: 'Sans l'accès à Temps d'écran, CMFI Connect ne peut pas fermer d'apps. Tu peux l'autoriser dans Réglages › Temps d'écran.'
+	String get denied => 'Sans l\'accès à Temps d\'écran, CMFI Connect ne peut pas fermer d\'apps. Tu peux l\'autoriser dans Réglages › Temps d\'écran.';
+
+	/// fr: 'Choisis au moins une app à garder fermée.'
+	String get noApps => 'Choisis au moins une app à garder fermée.';
+
+	/// fr: 'Bientôt disponible sur ce téléphone.'
+	String get unsupported => 'Bientôt disponible sur ce téléphone.';
+
+	/// fr: 'Dès {time}, jusqu'à ton compte rendu'
+	String moreOn({required Object time}) => 'Dès ${time}, jusqu\'à ton compte rendu';
+
+	/// fr: 'Fermer des apps tant que ton compte rendu n'est pas fait'
+	String get moreOff => 'Fermer des apps tant que ton compte rendu n\'est pas fait';
+
+	/// fr: 'CMFI Connect ne voit jamais les apps que tu choisis : ton iPhone les garde pour lui.'
+	String get privacy => 'CMFI Connect ne voit jamais les apps que tu choisis : ton iPhone les garde pour lui.';
+
+	late final Translations$seekFirst$shield$fr shield = Translations$seekFirst$shield$fr.internal(_root);
+}
+
 // Path: onboarding.reports
 class Translations$onboarding$reports$fr {
 	Translations$onboarding$reports$fr.internal(this._root);
@@ -4519,6 +4616,36 @@ class Translations$bible$colors$fr {
 	String get pink => 'rose';
 }
 
+// Path: seekFirst.shield
+class Translations$seekFirst$shield$fr {
+	Translations$seekFirst$shield$fr.internal(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// fr: 'Cherche d'abord Dieu'
+	String get title => 'Cherche d\'abord Dieu';
+
+	/// fr: '{app} reste fermée jusqu'à ton compte rendu d'aujourd'hui.'
+	String subtitle({required Object app}) => '${app} reste fermée jusqu\'à ton compte rendu d\'aujourd\'hui.';
+
+	/// fr: 'Cette app'
+	String get thisApp => 'Cette app';
+
+	/// fr: 'Remplir mon compte rendu'
+	String get fill => 'Remplir mon compte rendu';
+
+	/// fr: 'Pause de 5 min ({n}/3)'
+	String pause({required Object n}) => 'Pause de 5 min (${n}/3)';
+
+	/// fr: 'Cherche d'abord Dieu'
+	String get notificationTitle => 'Cherche d\'abord Dieu';
+
+	/// fr: 'Touche ici pour remplir ton compte rendu.'
+	String get notificationBody => 'Touche ici pour remplir ton compte rendu.';
+}
+
 // Path: reports.units.chapters
 class Translations$reports$units$chapters$fr {
 	Translations$reports$units$chapters$fr.internal(this._root);
@@ -6246,6 +6373,37 @@ extension on Translations {
 			'weekStory.pastWeeks' => 'Semaines passées',
 			'weekStory.weekOf' => ({required Object date}) => 'Semaine du ${date}',
 			'weekStory.page' => ({required Object current, required Object total}) => '${current} sur ${total}',
+			'seekFirst.title' => 'Cherche d\'abord Dieu',
+			'seekFirst.verse' => 'Cherchez premièrement le royaume et la justice de Dieu ; et toutes ces choses vous seront données par-dessus.',
+			'seekFirst.verseRef' => 'Matthieu 6:33',
+			'seekFirst.intro' => 'Chaque jour, les apps que tu choisis restent fermées tant que ton compte rendu n\'est pas enregistré. Commence ta journée avec Dieu, le reste suit.',
+			'seekFirst.enable' => 'Activer',
+			'seekFirst.apps' => 'Apps à garder fermées',
+			'seekFirst.appsNone' => 'Aucune app choisie',
+			'seekFirst.appCount' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('fr'))(n, one: '${n} app', other: '${n} apps', ), 
+			'seekFirst.categoryCount' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('fr'))(n, one: '${n} catégorie', other: '${n} catégories', ), 
+			'seekFirst.siteCount' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('fr'))(n, one: '${n} site', other: '${n} sites', ), 
+			'seekFirst.start' => 'Fermées à partir de',
+			'seekFirst.pauses' => 'Pauses de 5 minutes',
+			'seekFirst.pausesText' => '3 par jour, pour une urgence',
+			'seekFirst.pausesLeft' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('fr'))(n, zero: 'Plus de pause aujourd\'hui', one: 'Encore ${n} pause aujourd\'hui', other: 'Encore ${n} pauses aujourd\'hui', ), 
+			'seekFirst.todayOpen' => 'Aujourd\'hui, tes apps sont ouvertes : tu as cherché Dieu d\'abord.',
+			'seekFirst.todayLocked' => 'Tes apps restent fermées jusqu\'à ton compte rendu d\'aujourd\'hui.',
+			'seekFirst.todayBefore' => ({required Object time}) => 'Tes apps se fermeront à ${time} si ton compte rendu n\'est pas encore enregistré.',
+			'seekFirst.fillReport' => 'Remplir mon compte rendu',
+			'seekFirst.denied' => 'Sans l\'accès à Temps d\'écran, CMFI Connect ne peut pas fermer d\'apps. Tu peux l\'autoriser dans Réglages › Temps d\'écran.',
+			'seekFirst.noApps' => 'Choisis au moins une app à garder fermée.',
+			'seekFirst.unsupported' => 'Bientôt disponible sur ce téléphone.',
+			'seekFirst.moreOn' => ({required Object time}) => 'Dès ${time}, jusqu\'à ton compte rendu',
+			'seekFirst.moreOff' => 'Fermer des apps tant que ton compte rendu n\'est pas fait',
+			'seekFirst.privacy' => 'CMFI Connect ne voit jamais les apps que tu choisis : ton iPhone les garde pour lui.',
+			'seekFirst.shield.title' => 'Cherche d\'abord Dieu',
+			'seekFirst.shield.subtitle' => ({required Object app}) => '${app} reste fermée jusqu\'à ton compte rendu d\'aujourd\'hui.',
+			'seekFirst.shield.thisApp' => 'Cette app',
+			'seekFirst.shield.fill' => 'Remplir mon compte rendu',
+			'seekFirst.shield.pause' => ({required Object n}) => 'Pause de 5 min (${n}/3)',
+			'seekFirst.shield.notificationTitle' => 'Cherche d\'abord Dieu',
+			'seekFirst.shield.notificationBody' => 'Touche ici pour remplir ton compte rendu.',
 			_ => null,
 		};
 	}

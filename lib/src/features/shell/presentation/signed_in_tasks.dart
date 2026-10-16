@@ -38,6 +38,7 @@ import '../../reports/application/report_sending.dart';
 import '../../reports/application/reports_providers.dart';
 import '../../reports/application/today_widget.dart';
 import '../../reports/domain/report_sending.dart';
+import '../../seek_first/application/seek_first.dart';
 import '../../verses/application/verse_of_the_day.dart';
 import '../../verses/domain/verse.dart';
 
@@ -70,8 +71,21 @@ class SignedInTasks extends HookConsumerWidget {
           AppShortcut.retreat: t.shortcuts.retreat,
         }),
       );
+      // Cherche d'abord Dieu: the phone gets the settings again, and what a
+      // closed app says in this language
+      unawaited(ref.read(seekFirstProvider.notifier).sync());
       return null;
     }, [language]);
+
+    // Cherche d'abord Dieu: signing out opens every app, the settings go
+    useEffect(() {
+      final subscription = ref.listenManual(sessionProvider, (_, next) {
+        if (next.value == SessionStatus.unauthenticated) {
+          unawaited(ref.read(seekFirstProvider.notifier).forget());
+        }
+      });
+      return subscription.close;
+    }, const []);
 
     // the home-screen widget follows the day as it is filled in
     useEffect(() {
@@ -81,6 +95,10 @@ class SignedInTasks extends HookConsumerWidget {
             ref.read(sessionProvider).value == SessionStatus.authenticated;
         if (data != null && signedIn) {
           unawaited(ref.read(homeWidgetsProvider).show(data));
+          // the day is saved (or waits to be sent): the closed apps open
+          if ((data.done, data.day) case (true, final day?)) {
+            unawaited(ref.read(seekFirstProvider.notifier).reportSaved(day));
+          }
         }
       }, fireImmediately: true);
       return subscription.close;

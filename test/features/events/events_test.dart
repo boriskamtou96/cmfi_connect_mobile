@@ -282,7 +282,10 @@ void main() {
       ));
       await openMore(tester);
       await tester.pumpAndSettle();
-      await scrollToEnd(tester);
+      // the row of the Administration section (Communauté has one too)
+      await scrollTo(tester, find.text('ADMINISTRATION'));
+      await tester.ensureVisible(find.text('Évènements').last);
+      await tester.pumpAndSettle();
       await tester.tap(find.text('Évènements').last);
       await tester.pumpAndSettle();
 

@@ -75,6 +75,7 @@ class TranslationsAr extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _Translations$profilePhoto$ar profilePhoto = _Translations$profilePhoto$ar._(_root);
 	@override late final _Translations$disciples$ar disciples = _Translations$disciples$ar._(_root);
 	@override late final _Translations$weekStory$ar weekStory = _Translations$weekStory$ar._(_root);
+	@override late final _Translations$seekFirst$ar seekFirst = _Translations$seekFirst$ar._(_root);
 }
 
 // Path: app
@@ -1356,6 +1357,68 @@ class _Translations$weekStory$ar extends Translations$weekStory$fr {
 	@override String page({required Object current, required Object total}) => '${current} من ${total}';
 }
 
+// Path: seekFirst
+class _Translations$seekFirst$ar extends Translations$seekFirst$fr {
+	_Translations$seekFirst$ar._(TranslationsAr root) : this._root = root, super.internal(root);
+
+	final TranslationsAr _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'اطلب الله أولًا';
+	@override String get verse => 'لكن اطلبوا أولًا ملكوت الله وبرّه، وهذه كلها تُزاد لكم.';
+	@override String get verseRef => 'متى 6:33';
+	@override String get intro => 'كل يوم، تبقى التطبيقات التي تختارها مغلقة حتى تحفظ تقريرك. ابدأ يومك مع الله، والباقي يتبع.';
+	@override String get enable => 'تفعيل';
+	@override String get apps => 'التطبيقات المغلقة';
+	@override String get appsNone => 'لم تختر أي تطبيق';
+	@override String appCount({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n,
+		zero: '${n} تطبيق',
+		one: 'تطبيق واحد',
+		two: 'تطبيقان',
+		few: '${n} تطبيقات',
+		many: '${n} تطبيقًا',
+		other: '${n} تطبيق',
+	);
+	@override String categoryCount({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n,
+		zero: '${n} فئة',
+		one: 'فئة واحدة',
+		two: 'فئتان',
+		few: '${n} فئات',
+		many: '${n} فئة',
+		other: '${n} فئة',
+	);
+	@override String siteCount({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n,
+		zero: '${n} موقع',
+		one: 'موقع واحد',
+		two: 'موقعان',
+		few: '${n} مواقع',
+		many: '${n} موقعًا',
+		other: '${n} موقع',
+	);
+	@override String get start => 'مغلقة ابتداءً من';
+	@override String get pauses => 'استراحات من 5 دقائق';
+	@override String get pausesText => '3 في اليوم، للطوارئ';
+	@override String pausesLeft({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n,
+		zero: 'لا استراحة متبقية اليوم',
+		one: 'بقيت استراحة واحدة اليوم',
+		two: 'بقيت استراحتان اليوم',
+		few: 'بقيت ${n} استراحات اليوم',
+		many: 'بقيت ${n} استراحة اليوم',
+		other: 'بقيت ${n} استراحة اليوم',
+	);
+	@override String get todayOpen => 'تطبيقاتك مفتوحة اليوم: لقد طلبت الله أولًا.';
+	@override String get todayLocked => 'تبقى تطبيقاتك مغلقة حتى تقرير اليوم.';
+	@override String todayBefore({required Object time}) => 'ستُغلق تطبيقاتك عند ${time} إن لم يُحفظ تقريرك بعد.';
+	@override String get fillReport => 'املأ تقريري';
+	@override String get denied => 'بدون الوصول إلى مدة استخدام الجهاز، لا يستطيع CMFI Connect إغلاق التطبيقات. يمكنك السماح بذلك من الإعدادات › مدة استخدام الجهاز.';
+	@override String get noApps => 'اختر تطبيقًا واحدًا على الأقل ليبقى مغلقًا.';
+	@override String get unsupported => 'قريبًا على هذا الهاتف.';
+	@override String moreOn({required Object time}) => 'من ${time} حتى تقريرك';
+	@override String get moreOff => 'أغلق التطبيقات حتى تنجز تقريرك';
+	@override String get privacy => 'لا يرى CMFI Connect أبدًا التطبيقات التي تختارها: هاتفك يحتفظ بها لنفسه.';
+	@override late final _Translations$seekFirst$shield$ar shield = _Translations$seekFirst$shield$ar._(_root);
+}
+
 // Path: onboarding.reports
 class _Translations$onboarding$reports$ar extends Translations$onboarding$reports$fr {
 	_Translations$onboarding$reports$ar._(TranslationsAr root) : this._root = root, super.internal(root);
@@ -2416,6 +2479,22 @@ class _Translations$bible$colors$ar extends Translations$bible$colors$fr {
 	@override String get green => 'الأخضر';
 	@override String get blue => 'الأزرق';
 	@override String get pink => 'الوردي';
+}
+
+// Path: seekFirst.shield
+class _Translations$seekFirst$shield$ar extends Translations$seekFirst$shield$fr {
+	_Translations$seekFirst$shield$ar._(TranslationsAr root) : this._root = root, super.internal(root);
+
+	final TranslationsAr _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'اطلب الله أولًا';
+	@override String subtitle({required Object app}) => 'يبقى ${app} مغلقًا حتى تقرير اليوم.';
+	@override String get thisApp => 'هذا التطبيق';
+	@override String get fill => 'املأ تقريري';
+	@override String pause({required Object n}) => 'استراحة 5 دقائق (${n}/3)';
+	@override String get notificationTitle => 'اطلب الله أولًا';
+	@override String get notificationBody => 'المس هنا لتملأ تقريرك.';
 }
 
 // Path: reports.units.chapters
@@ -4006,6 +4085,37 @@ extension on TranslationsAr {
 			'weekStory.pastWeeks' => 'الأسابيع الماضية',
 			'weekStory.weekOf' => ({required Object date}) => 'أسبوع ${date}',
 			'weekStory.page' => ({required Object current, required Object total}) => '${current} من ${total}',
+			'seekFirst.title' => 'اطلب الله أولًا',
+			'seekFirst.verse' => 'لكن اطلبوا أولًا ملكوت الله وبرّه، وهذه كلها تُزاد لكم.',
+			'seekFirst.verseRef' => 'متى 6:33',
+			'seekFirst.intro' => 'كل يوم، تبقى التطبيقات التي تختارها مغلقة حتى تحفظ تقريرك. ابدأ يومك مع الله، والباقي يتبع.',
+			'seekFirst.enable' => 'تفعيل',
+			'seekFirst.apps' => 'التطبيقات المغلقة',
+			'seekFirst.appsNone' => 'لم تختر أي تطبيق',
+			'seekFirst.appCount' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n, zero: '${n} تطبيق', one: 'تطبيق واحد', two: 'تطبيقان', few: '${n} تطبيقات', many: '${n} تطبيقًا', other: '${n} تطبيق', ), 
+			'seekFirst.categoryCount' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n, zero: '${n} فئة', one: 'فئة واحدة', two: 'فئتان', few: '${n} فئات', many: '${n} فئة', other: '${n} فئة', ), 
+			'seekFirst.siteCount' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n, zero: '${n} موقع', one: 'موقع واحد', two: 'موقعان', few: '${n} مواقع', many: '${n} موقعًا', other: '${n} موقع', ), 
+			'seekFirst.start' => 'مغلقة ابتداءً من',
+			'seekFirst.pauses' => 'استراحات من 5 دقائق',
+			'seekFirst.pausesText' => '3 في اليوم، للطوارئ',
+			'seekFirst.pausesLeft' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n, zero: 'لا استراحة متبقية اليوم', one: 'بقيت استراحة واحدة اليوم', two: 'بقيت استراحتان اليوم', few: 'بقيت ${n} استراحات اليوم', many: 'بقيت ${n} استراحة اليوم', other: 'بقيت ${n} استراحة اليوم', ), 
+			'seekFirst.todayOpen' => 'تطبيقاتك مفتوحة اليوم: لقد طلبت الله أولًا.',
+			'seekFirst.todayLocked' => 'تبقى تطبيقاتك مغلقة حتى تقرير اليوم.',
+			'seekFirst.todayBefore' => ({required Object time}) => 'ستُغلق تطبيقاتك عند ${time} إن لم يُحفظ تقريرك بعد.',
+			'seekFirst.fillReport' => 'املأ تقريري',
+			'seekFirst.denied' => 'بدون الوصول إلى مدة استخدام الجهاز، لا يستطيع CMFI Connect إغلاق التطبيقات. يمكنك السماح بذلك من الإعدادات › مدة استخدام الجهاز.',
+			'seekFirst.noApps' => 'اختر تطبيقًا واحدًا على الأقل ليبقى مغلقًا.',
+			'seekFirst.unsupported' => 'قريبًا على هذا الهاتف.',
+			'seekFirst.moreOn' => ({required Object time}) => 'من ${time} حتى تقريرك',
+			'seekFirst.moreOff' => 'أغلق التطبيقات حتى تنجز تقريرك',
+			'seekFirst.privacy' => 'لا يرى CMFI Connect أبدًا التطبيقات التي تختارها: هاتفك يحتفظ بها لنفسه.',
+			'seekFirst.shield.title' => 'اطلب الله أولًا',
+			'seekFirst.shield.subtitle' => ({required Object app}) => 'يبقى ${app} مغلقًا حتى تقرير اليوم.',
+			'seekFirst.shield.thisApp' => 'هذا التطبيق',
+			'seekFirst.shield.fill' => 'املأ تقريري',
+			'seekFirst.shield.pause' => ({required Object n}) => 'استراحة 5 دقائق (${n}/3)',
+			'seekFirst.shield.notificationTitle' => 'اطلب الله أولًا',
+			'seekFirst.shield.notificationBody' => 'المس هنا لتملأ تقريرك.',
 			_ => null,
 		};
 	}

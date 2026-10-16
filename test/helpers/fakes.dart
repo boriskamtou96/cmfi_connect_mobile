@@ -676,6 +676,7 @@ class FakeHymnsApi implements HymnsApi {
           code: book.code,
           title: book.title,
           language: book.language,
+          hymnCount: book.hymns.length,
           version: book.version,
         ),
     ];

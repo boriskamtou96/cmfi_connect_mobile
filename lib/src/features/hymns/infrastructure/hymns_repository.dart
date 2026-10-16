@@ -46,6 +46,10 @@ class HymnsRepository {
     var changed = false;
     final books = <HymnBook>[];
     for (final summary in summaries) {
+      // a book the admins just made, without hymns yet: not shown
+      if (summary.hymnCount == 0) {
+        continue;
+      }
       final current = local
           .where((book) => book.code == summary.code)
           .firstOrNull;

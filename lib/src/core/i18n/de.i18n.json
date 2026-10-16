@@ -163,6 +163,26 @@
       "tooManyRequests": "Zu viele Versuche. Versuche es später erneut.",
       "unavailable": "Das Zurücksetzen ist gerade nicht möglich.",
       "noAccount": "Kein Konto verwendet diese Nummer."
+    },
+    "biometric": {
+      "faceId": "Face ID",
+      "touchId": "Touch ID",
+      "fingerprint": "deinem Fingerabdruck",
+      "face": "deinem Gesicht",
+      "signIn": "Mit {method} anmelden",
+      "askTitle": "Mit {method} anmelden?",
+      "askText": "Beim nächsten Mal musst du dein Passwort nicht eingeben: Es bleibt im sicheren Speicher deines Telefons.",
+      "enable": "Einschalten",
+      "later": "Später",
+      "reason": "Bei CMFI Connect anmelden",
+      "enableReason": "Schnelle Anmeldung bei CMFI Connect einschalten",
+      "changed": "Dein Passwort hat sich geändert: Melde dich mit deinem Passwort an und schalte {method} dann wieder ein.",
+      "settings": "Anmeldung mit {method}",
+      "settingsText": "Ohne dein Passwort einzugeben",
+      "passwordTitle": "Dein Passwort",
+      "passwordLabel": "Passwort",
+      "confirm": "Bestätigen",
+      "enabled": "Anmeldung mit {method} ist eingeschaltet"
     }
   },
   "countries": {
@@ -205,7 +225,10 @@
     "days(plural, param=n)": {
       "one": "{n} Tag",
       "other": "{n} Tage"
-    }
+    },
+    "hideNumbers": "Meine Zahlen ausblenden",
+    "showNumbers": "Meine Zahlen anzeigen",
+    "numbersHidden": "ausgeblendet"
   },
   "reports": {
     "title": "Tagesbericht",

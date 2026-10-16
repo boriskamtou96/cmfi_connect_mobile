@@ -97,6 +97,7 @@ dependencies:
   quick_actions: ^1.1.1
   app_links: ^7.0.0
   purchases_ui_flutter: ^10.16.0
+  local_auth: ^3.0.2
 
 dev_dependencies:
   flutter_test:

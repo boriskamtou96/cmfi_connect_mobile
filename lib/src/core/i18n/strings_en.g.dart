@@ -200,6 +200,7 @@ class _Translations$auth$en extends Translations$auth$fr {
 	@override late final _Translations$auth$register$en register = _Translations$auth$register$en._(_root);
 	@override late final _Translations$auth$church$en church = _Translations$auth$church$en._(_root);
 	@override late final _Translations$auth$forgot$en forgot = _Translations$auth$forgot$en._(_root);
+	@override late final _Translations$auth$biometric$en biometric = _Translations$auth$biometric$en._(_root);
 }
 
 // Path: countries
@@ -263,6 +264,9 @@ class _Translations$home$en extends Translations$home$fr {
 		one: '${n} day',
 		other: '${n} days',
 	);
+	@override String get hideNumbers => 'Hide my numbers';
+	@override String get showNumbers => 'Show my numbers';
+	@override String get numbersHidden => 'hidden';
 }
 
 // Path: reports
@@ -1412,6 +1416,33 @@ class _Translations$auth$forgot$en extends Translations$auth$forgot$fr {
 	@override String get tooManyRequests => 'Too many attempts. Try again in a while.';
 	@override String get unavailable => 'Resetting the password isn\'t available right now.';
 	@override String get noAccount => 'No account uses this number.';
+}
+
+// Path: auth.biometric
+class _Translations$auth$biometric$en extends Translations$auth$biometric$fr {
+	_Translations$auth$biometric$en._(TranslationsEn root) : this._root = root, super.internal(root);
+
+	final TranslationsEn _root; // ignore: unused_field
+
+	// Translations
+	@override String get faceId => 'Face ID';
+	@override String get touchId => 'Touch ID';
+	@override String get fingerprint => 'your fingerprint';
+	@override String get face => 'your face';
+	@override String signIn({required Object method}) => 'Sign in with ${method}';
+	@override String askTitle({required Object method}) => 'Sign in with ${method}?';
+	@override String get askText => 'Next time, no need to type your password: it stays in your phone\'s secure vault.';
+	@override String get enable => 'Turn on';
+	@override String get later => 'Later';
+	@override String get reason => 'Sign in to CMFI Connect';
+	@override String get enableReason => 'Turn on quick sign-in to CMFI Connect';
+	@override String changed({required Object method}) => 'Your password has changed: sign in with your password, then turn ${method} on again.';
+	@override String settings({required Object method}) => 'Sign in with ${method}';
+	@override String get settingsText => 'Without typing your password';
+	@override String get passwordTitle => 'Your password';
+	@override String get passwordLabel => 'Password';
+	@override String get confirm => 'Confirm';
+	@override String enabled({required Object method}) => 'Sign-in with ${method} is on';
 }
 
 // Path: reports.tabs
@@ -2685,6 +2716,24 @@ extension on TranslationsEn {
 			'auth.forgot.tooManyRequests' => 'Too many attempts. Try again in a while.',
 			'auth.forgot.unavailable' => 'Resetting the password isn\'t available right now.',
 			'auth.forgot.noAccount' => 'No account uses this number.',
+			'auth.biometric.faceId' => 'Face ID',
+			'auth.biometric.touchId' => 'Touch ID',
+			'auth.biometric.fingerprint' => 'your fingerprint',
+			'auth.biometric.face' => 'your face',
+			'auth.biometric.signIn' => ({required Object method}) => 'Sign in with ${method}',
+			'auth.biometric.askTitle' => ({required Object method}) => 'Sign in with ${method}?',
+			'auth.biometric.askText' => 'Next time, no need to type your password: it stays in your phone\'s secure vault.',
+			'auth.biometric.enable' => 'Turn on',
+			'auth.biometric.later' => 'Later',
+			'auth.biometric.reason' => 'Sign in to CMFI Connect',
+			'auth.biometric.enableReason' => 'Turn on quick sign-in to CMFI Connect',
+			'auth.biometric.changed' => ({required Object method}) => 'Your password has changed: sign in with your password, then turn ${method} on again.',
+			'auth.biometric.settings' => ({required Object method}) => 'Sign in with ${method}',
+			'auth.biometric.settingsText' => 'Without typing your password',
+			'auth.biometric.passwordTitle' => 'Your password',
+			'auth.biometric.passwordLabel' => 'Password',
+			'auth.biometric.confirm' => 'Confirm',
+			'auth.biometric.enabled' => ({required Object method}) => 'Sign-in with ${method} is on',
 			'countries.dialCodeTitle' => 'Country code',
 			'countries.title' => 'Your country',
 			'countries.search' => 'Search a country or a code',
@@ -2718,6 +2767,9 @@ extension on TranslationsEn {
 			'home.seeAll' => 'See all',
 			'home.retreatsDone' => 'The 4 retreats of the day are done',
 			'home.days' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n, one: '${n} day', other: '${n} days', ), 
+			'home.hideNumbers' => 'Hide my numbers',
+			'home.showNumbers' => 'Show my numbers',
+			'home.numbersHidden' => 'hidden',
 			'reports.title' => 'Daily report',
 			'reports.myItems' => 'My items',
 			'reports.tabs.today' => 'Today',
@@ -3040,6 +3092,8 @@ extension on TranslationsEn {
 			'hymns.chooseBook' => 'Choose the hymn book',
 			'hymns.count' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n, one: '${n} hymn', other: '${n} hymns', ), 
 			'hymns.number' => ({required Object number}) => 'No. ${number}',
+			_ => null,
+		} ?? switch (path) {
 			'hymns.emptyFavorites' => 'Tap the star of a hymn to find it here.',
 			'hymns.emptyRecent' => 'The hymns you open will show up here.',
 			'hymns.noResult' => ({required Object query}) => 'No hymn matches “${query}”.',
@@ -3061,8 +3115,6 @@ extension on TranslationsEn {
 			'hymns.reader.typefaceSerif' => 'Classic',
 			'hymns.reader.typefaceAutoHelp' => 'Classic when the text is large',
 			'hymns.reader.background' => 'Background',
-			_ => null,
-		} ?? switch (path) {
 			'hymns.reader.themeAuto' => 'Auto',
 			'hymns.reader.themeLight' => 'Light',
 			'hymns.reader.themeSepia' => 'Sepia',
@@ -3554,6 +3606,8 @@ extension on TranslationsEn {
 			'prayer.lists.uses.coworkers' => 'The evening retreat prays every day for 10 of your fellow workers (5 + 5), in turn.',
 			'prayer.lists.privateNote' => 'Only you can see it.',
 			'prayer.lists.count' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n, zero: 'Nobody', one: '${n} person', other: '${n} people', ), 
+			_ => null,
+		} ?? switch (path) {
 			'prayer.lists.empty' => 'Nobody yet. Add the people you pray for.',
 			'prayer.lists.add' => 'Add a person',
 			'prayer.lists.prayedToday' => 'Today',
@@ -3575,8 +3629,6 @@ extension on TranslationsEn {
 			'prayer.lists.answeredBanner' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n, one: '${n} prayer answered this month', other: '${n} prayers answered this month', ), 
 			'prayer.lists.lastAnswered' => ({required Object name, required Object what}) => '${name}: ${what}',
 			'prayer.lists.sheet.addTitle' => 'Add a person',
-			_ => null,
-		} ?? switch (path) {
 			'prayer.lists.sheet.editTitle' => 'Edit',
 			'prayer.lists.sheet.name' => 'Name',
 			'prayer.lists.sheet.namePlaceholder' => 'Paul M.',

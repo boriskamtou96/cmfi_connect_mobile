@@ -163,6 +163,26 @@
       "tooManyRequests": "Too many attempts. Try again in a while.",
       "unavailable": "Resetting the password isn't available right now.",
       "noAccount": "No account uses this number."
+    },
+    "biometric": {
+      "faceId": "Face ID",
+      "touchId": "Touch ID",
+      "fingerprint": "your fingerprint",
+      "face": "your face",
+      "signIn": "Sign in with {method}",
+      "askTitle": "Sign in with {method}?",
+      "askText": "Next time, no need to type your password: it stays in your phone's secure vault.",
+      "enable": "Turn on",
+      "later": "Later",
+      "reason": "Sign in to CMFI Connect",
+      "enableReason": "Turn on quick sign-in to CMFI Connect",
+      "changed": "Your password has changed: sign in with your password, then turn {method} on again.",
+      "settings": "Sign in with {method}",
+      "settingsText": "Without typing your password",
+      "passwordTitle": "Your password",
+      "passwordLabel": "Password",
+      "confirm": "Confirm",
+      "enabled": "Sign-in with {method} is on"
     }
   },
   "countries": {
@@ -205,7 +225,10 @@
     "days(plural, param=n)": {
       "one": "{n} day",
       "other": "{n} days"
-    }
+    },
+    "hideNumbers": "Hide my numbers",
+    "showNumbers": "Show my numbers",
+    "numbersHidden": "hidden"
   },
   "reports": {
     "title": "Daily report",

@@ -200,6 +200,7 @@ class _Translations$auth$hi extends Translations$auth$fr {
 	@override late final _Translations$auth$register$hi register = _Translations$auth$register$hi._(_root);
 	@override late final _Translations$auth$church$hi church = _Translations$auth$church$hi._(_root);
 	@override late final _Translations$auth$forgot$hi forgot = _Translations$auth$forgot$hi._(_root);
+	@override late final _Translations$auth$biometric$hi biometric = _Translations$auth$biometric$hi._(_root);
 }
 
 // Path: countries
@@ -263,6 +264,9 @@ class _Translations$home$hi extends Translations$home$fr {
 		one: '${n} दिन',
 		other: '${n} दिन',
 	);
+	@override String get hideNumbers => 'मेरे आँकड़े छिपाएँ';
+	@override String get showNumbers => 'मेरे आँकड़े दिखाएँ';
+	@override String get numbersHidden => 'छिपा हुआ';
 }
 
 // Path: reports
@@ -1410,6 +1414,33 @@ class _Translations$auth$forgot$hi extends Translations$auth$forgot$fr {
 	@override String get tooManyRequests => 'बहुत ज़्यादा कोशिशें। थोड़ी देर बाद फिर कोशिश करो।';
 	@override String get unavailable => 'अभी पासवर्ड रीसेट उपलब्ध नहीं है।';
 	@override String get noAccount => 'इस नंबर से कोई खाता नहीं है।';
+}
+
+// Path: auth.biometric
+class _Translations$auth$biometric$hi extends Translations$auth$biometric$fr {
+	_Translations$auth$biometric$hi._(TranslationsHi root) : this._root = root, super.internal(root);
+
+	final TranslationsHi _root; // ignore: unused_field
+
+	// Translations
+	@override String get faceId => 'Face ID';
+	@override String get touchId => 'Touch ID';
+	@override String get fingerprint => 'अपने फ़िंगरप्रिंट';
+	@override String get face => 'अपने चेहरे';
+	@override String signIn({required Object method}) => '${method} से लॉग इन करें';
+	@override String askTitle({required Object method}) => '${method} से लॉग इन करें?';
+	@override String get askText => 'अगली बार पासवर्ड टाइप करने की ज़रूरत नहीं: वह तुम्हारे फ़ोन की सुरक्षित तिजोरी में रहता है।';
+	@override String get enable => 'चालू करें';
+	@override String get later => 'बाद में';
+	@override String get reason => 'CMFI Connect में लॉग इन करें';
+	@override String get enableReason => 'CMFI Connect में तेज़ लॉग इन चालू करें';
+	@override String changed({required Object method}) => 'तुम्हारा पासवर्ड बदल गया है: पासवर्ड से लॉग इन करो, फिर ${method} दोबारा चालू करो।';
+	@override String settings({required Object method}) => '${method} से लॉग इन';
+	@override String get settingsText => 'पासवर्ड टाइप किए बिना';
+	@override String get passwordTitle => 'तुम्हारा पासवर्ड';
+	@override String get passwordLabel => 'पासवर्ड';
+	@override String get confirm => 'पुष्टि करें';
+	@override String enabled({required Object method}) => '${method} से लॉग इन चालू है';
 }
 
 // Path: reports.tabs
@@ -2683,6 +2714,24 @@ extension on TranslationsHi {
 			'auth.forgot.tooManyRequests' => 'बहुत ज़्यादा कोशिशें। थोड़ी देर बाद फिर कोशिश करो।',
 			'auth.forgot.unavailable' => 'अभी पासवर्ड रीसेट उपलब्ध नहीं है।',
 			'auth.forgot.noAccount' => 'इस नंबर से कोई खाता नहीं है।',
+			'auth.biometric.faceId' => 'Face ID',
+			'auth.biometric.touchId' => 'Touch ID',
+			'auth.biometric.fingerprint' => 'अपने फ़िंगरप्रिंट',
+			'auth.biometric.face' => 'अपने चेहरे',
+			'auth.biometric.signIn' => ({required Object method}) => '${method} से लॉग इन करें',
+			'auth.biometric.askTitle' => ({required Object method}) => '${method} से लॉग इन करें?',
+			'auth.biometric.askText' => 'अगली बार पासवर्ड टाइप करने की ज़रूरत नहीं: वह तुम्हारे फ़ोन की सुरक्षित तिजोरी में रहता है।',
+			'auth.biometric.enable' => 'चालू करें',
+			'auth.biometric.later' => 'बाद में',
+			'auth.biometric.reason' => 'CMFI Connect में लॉग इन करें',
+			'auth.biometric.enableReason' => 'CMFI Connect में तेज़ लॉग इन चालू करें',
+			'auth.biometric.changed' => ({required Object method}) => 'तुम्हारा पासवर्ड बदल गया है: पासवर्ड से लॉग इन करो, फिर ${method} दोबारा चालू करो।',
+			'auth.biometric.settings' => ({required Object method}) => '${method} से लॉग इन',
+			'auth.biometric.settingsText' => 'पासवर्ड टाइप किए बिना',
+			'auth.biometric.passwordTitle' => 'तुम्हारा पासवर्ड',
+			'auth.biometric.passwordLabel' => 'पासवर्ड',
+			'auth.biometric.confirm' => 'पुष्टि करें',
+			'auth.biometric.enabled' => ({required Object method}) => '${method} से लॉग इन चालू है',
 			'countries.dialCodeTitle' => 'देश कोड',
 			'countries.title' => 'तुम्हारा देश',
 			'countries.search' => 'देश या कोड खोजो',
@@ -2716,6 +2765,9 @@ extension on TranslationsHi {
 			'home.seeAll' => 'सब देखो',
 			'home.retreatsDone' => 'आज के चारों प्रार्थना-समय हो गए',
 			'home.days' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n, one: '${n} दिन', other: '${n} दिन', ), 
+			'home.hideNumbers' => 'मेरे आँकड़े छिपाएँ',
+			'home.showNumbers' => 'मेरे आँकड़े दिखाएँ',
+			'home.numbersHidden' => 'छिपा हुआ',
 			'reports.title' => 'दैनिक रिपोर्ट',
 			'reports.myItems' => 'मेरे आइटम',
 			'reports.tabs.today' => 'आज',
@@ -3038,6 +3090,8 @@ extension on TranslationsHi {
 			'hymns.chooseBook' => 'भजन संग्रह चुनो',
 			'hymns.count' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n, one: '${n} भजन', other: '${n} भजन', ), 
 			'hymns.number' => ({required Object number}) => 'नं. ${number}',
+			_ => null,
+		} ?? switch (path) {
 			'hymns.emptyFavorites' => 'किसी भजन का स्टार टैप करो, वह यहाँ दिखेगा।',
 			'hymns.emptyRecent' => 'हाल में खोले गए भजन यहाँ दिखेंगे।',
 			'hymns.noResult' => ({required Object query}) => '“${query}” से मेल खाता कोई भजन नहीं मिला।',
@@ -3059,8 +3113,6 @@ extension on TranslationsHi {
 			'hymns.reader.typefaceSerif' => 'क्लासिक',
 			'hymns.reader.typefaceAutoHelp' => 'टेक्स्ट बड़ा होने पर क्लासिक',
 			'hymns.reader.background' => 'बैकग्राउंड',
-			_ => null,
-		} ?? switch (path) {
 			'hymns.reader.themeAuto' => 'ऑटो',
 			'hymns.reader.themeLight' => 'लाइट',
 			'hymns.reader.themeSepia' => 'सेपिया',
@@ -3552,6 +3604,8 @@ extension on TranslationsHi {
 			'prayer.lists.uses.coworkers' => 'शाम के प्रार्थना-समय में हर दिन तुम्हारे 10 सहकर्मियों (5 + 5) के लिए बारी-बारी से प्रार्थना होती है।',
 			'prayer.lists.privateNote' => 'इसे सिर्फ़ तुम देख सकते हो।',
 			'prayer.lists.count' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n, zero: 'कोई नहीं', one: '${n} व्यक्ति', other: '${n} लोग', ), 
+			_ => null,
+		} ?? switch (path) {
 			'prayer.lists.empty' => 'अभी तक कोई नहीं। उन लोगों को जोड़ो जिनके लिए तुम प्रार्थना करते हो।',
 			'prayer.lists.add' => 'व्यक्ति जोड़ो',
 			'prayer.lists.prayedToday' => 'आज',
@@ -3573,8 +3627,6 @@ extension on TranslationsHi {
 			'prayer.lists.answeredBanner' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n, one: 'इस महीने ${n} प्रार्थना का उत्तर मिला', other: 'इस महीने ${n} प्रार्थनाओं का उत्तर मिला', ), 
 			'prayer.lists.lastAnswered' => ({required Object name, required Object what}) => '${name}: ${what}',
 			'prayer.lists.sheet.addTitle' => 'व्यक्ति जोड़ो',
-			_ => null,
-		} ?? switch (path) {
 			'prayer.lists.sheet.editTitle' => 'बदलो',
 			'prayer.lists.sheet.name' => 'नाम',
 			'prayer.lists.sheet.namePlaceholder' => 'राहुल एम.',

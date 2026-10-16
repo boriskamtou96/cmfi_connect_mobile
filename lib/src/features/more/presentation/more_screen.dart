@@ -3,7 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../core/i18n/strings.g.dart';
+import '../../../core/network/app_exception.dart';
+import '../../../core/network/app_exception_message.dart';
 import '../../../core/services/app_version.dart';
+import '../../../core/services/biometrics.dart';
 import '../../../core/services/premium_store.dart';
 import '../../../core/session/session.dart';
 import '../../../core/storage/preferences.dart';
@@ -14,10 +17,14 @@ import '../../../core/theme/app_tones.dart';
 import '../../../core/widgets/adaptive.dart';
 import '../../../core/widgets/adaptive_dialogs.dart';
 import '../../../core/widgets/adaptive_menus.dart';
+import '../../../core/widgets/app_toast.dart';
 import '../../../core/widgets/fade_slide_in.dart';
 import '../../../core/widgets/section_card.dart';
 import '../../../core/widgets/sub_page.dart';
 import '../../../routing/app_router.dart';
+import '../../auth/application/saved_login.dart';
+import '../../auth/infrastructure/auth_api.dart';
+import '../../auth/presentation/widgets/biometric_method.dart';
 import '../../authorities/application/authorities_controller.dart';
 import '../../disciples/application/disciples.dart';
 import '../../members/application/my_account.dart';
@@ -58,6 +65,8 @@ class MoreScreen extends ConsumerWidget {
     // v1: Premium is offered to everyone, nothing leads to the paywall
     final premiumForEveryone = ref.watch(premiumForEveryoneProvider);
     final seekFirst = ref.watch(seekFirstProvider).value;
+    final biometricKind = ref.watch(biometricKindProvider).value;
+    final savedLogin = ref.watch(savedLoginProvider).value;
     final nationCount = ref.watch(nationsProvider).value?.length ?? 154;
     final discipleMaker = authorities
         ?.where((authority) => authority.isDiscipleMaker)
@@ -392,6 +401,33 @@ class MoreScreen extends ConsumerWidget {
                       trailing: const Icon(AppIcons.chevronRight),
                       onTap: () => context.router.push(const SeekFirstRoute()),
                     ),
+                  if (biometricKind case final kind?)
+                    SwitchListTile.adaptive(
+                      secondary: moduleIcon(
+                        biometricIcon(kind),
+                        AppModule.reports,
+                      ),
+                      value: savedLogin?.biometric ?? false,
+                      onChanged: (on) => _toggleBiometrics(
+                        context,
+                        ref,
+                        on: on,
+                        method: biometricMethod(t, kind),
+                      ),
+                      title: Text(
+                        t.auth.biometric.settings(
+                          method: biometricMethod(t, kind),
+                        ),
+                        style: const TextStyle(fontWeight: FontWeight.w600),
+                      ),
+                      subtitle: Text(
+                        t.auth.biometric.settingsText,
+                        style: TextStyle(
+                          fontSize: 13,
+                          color: scheme.onSurfaceVariant,
+                        ),
+                      ),
+                    ),
                   ListTile(
                     title: Text(
                       t.reminder.settings,
@@ -512,6 +548,49 @@ class MoreScreen extends ConsumerWidget {
         ],
       ),
     );
+  }
+
+  /// Face ID / the fingerprint on: the password asked once, checked by the
+  /// server, then kept behind the biometric check. Off: forgotten.
+  Future<void> _toggleBiometrics(
+    BuildContext context,
+    WidgetRef ref, {
+    required bool on,
+    required String method,
+  }) async {
+    final t = context.t;
+    final saved = ref.read(savedLoginProvider.notifier);
+    if (!on) {
+      await saved.disable();
+      return;
+    }
+    final toast = ref.read(toasterProvider).of(context);
+    final account = await ref.read(myAccountProvider.future);
+    if (account == null || !context.mounted) {
+      return;
+    }
+    final password = await showInputDialog(
+      context,
+      title: t.auth.biometric.passwordTitle,
+      label: t.auth.biometric.passwordLabel,
+      confirmLabel: t.auth.biometric.confirm,
+      obscureText: true,
+    );
+    if (password == null || password.isEmpty) {
+      return;
+    }
+    try {
+      await ref
+          .read(authApiProvider)
+          .login(phoneNumber: account.phoneNumber, password: password);
+    } on AppException catch (error) {
+      toast.error(userMessageFor(error, t));
+      return;
+    }
+    await saved.remember(account.phoneNumber, password);
+    if (await saved.enable(password, reason: t.auth.biometric.enableReason)) {
+      toast.success(t.auth.biometric.enabled(method: method));
+    }
   }
 
   /// Days saved offline would be lost: asks first.

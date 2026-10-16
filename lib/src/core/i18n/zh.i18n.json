@@ -163,6 +163,26 @@
       "tooManyRequests": "尝试次数过多，请稍后再试。",
       "unavailable": "暂时无法重置密码。",
       "noAccount": "没有账号使用这个号码。"
+    },
+    "biometric": {
+      "faceId": "面容 ID",
+      "touchId": "触控 ID",
+      "fingerprint": "指纹",
+      "face": "面部",
+      "signIn": "使用{method}登录",
+      "askTitle": "使用{method}登录？",
+      "askText": "下次无需再输入密码：它保存在你手机的安全保险箱中。",
+      "enable": "开启",
+      "later": "以后再说",
+      "reason": "登录 CMFI Connect",
+      "enableReason": "开启 CMFI Connect 快速登录",
+      "changed": "你的密码已更改：请用密码登录，然后重新开启{method}。",
+      "settings": "使用{method}登录",
+      "settingsText": "无需输入密码",
+      "passwordTitle": "你的密码",
+      "passwordLabel": "密码",
+      "confirm": "确认",
+      "enabled": "已开启{method}登录"
     }
   },
   "countries": {
@@ -204,7 +224,10 @@
     "retreatsDone": "今天的 4 次灵修都已完成",
     "days(plural, param=n)": {
       "other": "{n} 天"
-    }
+    },
+    "hideNumbers": "隐藏我的数字",
+    "showNumbers": "显示我的数字",
+    "numbersHidden": "已隐藏"
   },
   "reports": {
     "title": "每日汇报",

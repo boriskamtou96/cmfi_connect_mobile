@@ -200,6 +200,7 @@ class _Translations$auth$ar extends Translations$auth$fr {
 	@override late final _Translations$auth$register$ar register = _Translations$auth$register$ar._(_root);
 	@override late final _Translations$auth$church$ar church = _Translations$auth$church$ar._(_root);
 	@override late final _Translations$auth$forgot$ar forgot = _Translations$auth$forgot$ar._(_root);
+	@override late final _Translations$auth$biometric$ar biometric = _Translations$auth$biometric$ar._(_root);
 }
 
 // Path: countries
@@ -267,6 +268,9 @@ class _Translations$home$ar extends Translations$home$fr {
 		many: '${n} يومًا',
 		other: '${n} يوم',
 	);
+	@override String get hideNumbers => 'إخفاء أرقامي';
+	@override String get showNumbers => 'إظهار أرقامي';
+	@override String get numbersHidden => 'مخفي';
 }
 
 // Path: reports
@@ -1572,6 +1576,33 @@ class _Translations$auth$forgot$ar extends Translations$auth$forgot$fr {
 	@override String get tooManyRequests => 'محاولات كثيرة. حاول مجددًا بعد قليل.';
 	@override String get unavailable => 'إعادة التعيين غير متاحة حاليًا.';
 	@override String get noAccount => 'لا يوجد حساب بهذا الرقم.';
+}
+
+// Path: auth.biometric
+class _Translations$auth$biometric$ar extends Translations$auth$biometric$fr {
+	_Translations$auth$biometric$ar._(TranslationsAr root) : this._root = root, super.internal(root);
+
+	final TranslationsAr _root; // ignore: unused_field
+
+	// Translations
+	@override String get faceId => 'Face ID';
+	@override String get touchId => 'Touch ID';
+	@override String get fingerprint => 'بصمتك';
+	@override String get face => 'وجهك';
+	@override String signIn({required Object method}) => 'تسجيل الدخول باستخدام ${method}';
+	@override String askTitle({required Object method}) => 'تسجيل الدخول باستخدام ${method}؟';
+	@override String get askText => 'في المرة القادمة لن تحتاج إلى كتابة كلمة المرور: تبقى في الخزنة الآمنة لهاتفك.';
+	@override String get enable => 'تفعيل';
+	@override String get later => 'لاحقًا';
+	@override String get reason => 'سجّل الدخول إلى CMFI Connect';
+	@override String get enableReason => 'فعّل الدخول السريع إلى CMFI Connect';
+	@override String changed({required Object method}) => 'تغيّرت كلمة مرورك: سجّل الدخول بكلمة المرور، ثم فعّل ${method} من جديد.';
+	@override String settings({required Object method}) => 'الدخول باستخدام ${method}';
+	@override String get settingsText => 'بدون كتابة كلمة المرور';
+	@override String get passwordTitle => 'كلمة مرورك';
+	@override String get passwordLabel => 'كلمة المرور';
+	@override String get confirm => 'تأكيد';
+	@override String enabled({required Object method}) => 'تم تفعيل الدخول باستخدام ${method}';
 }
 
 // Path: reports.tabs
@@ -2922,6 +2953,24 @@ extension on TranslationsAr {
 			'auth.forgot.tooManyRequests' => 'محاولات كثيرة. حاول مجددًا بعد قليل.',
 			'auth.forgot.unavailable' => 'إعادة التعيين غير متاحة حاليًا.',
 			'auth.forgot.noAccount' => 'لا يوجد حساب بهذا الرقم.',
+			'auth.biometric.faceId' => 'Face ID',
+			'auth.biometric.touchId' => 'Touch ID',
+			'auth.biometric.fingerprint' => 'بصمتك',
+			'auth.biometric.face' => 'وجهك',
+			'auth.biometric.signIn' => ({required Object method}) => 'تسجيل الدخول باستخدام ${method}',
+			'auth.biometric.askTitle' => ({required Object method}) => 'تسجيل الدخول باستخدام ${method}؟',
+			'auth.biometric.askText' => 'في المرة القادمة لن تحتاج إلى كتابة كلمة المرور: تبقى في الخزنة الآمنة لهاتفك.',
+			'auth.biometric.enable' => 'تفعيل',
+			'auth.biometric.later' => 'لاحقًا',
+			'auth.biometric.reason' => 'سجّل الدخول إلى CMFI Connect',
+			'auth.biometric.enableReason' => 'فعّل الدخول السريع إلى CMFI Connect',
+			'auth.biometric.changed' => ({required Object method}) => 'تغيّرت كلمة مرورك: سجّل الدخول بكلمة المرور، ثم فعّل ${method} من جديد.',
+			'auth.biometric.settings' => ({required Object method}) => 'الدخول باستخدام ${method}',
+			'auth.biometric.settingsText' => 'بدون كتابة كلمة المرور',
+			'auth.biometric.passwordTitle' => 'كلمة مرورك',
+			'auth.biometric.passwordLabel' => 'كلمة المرور',
+			'auth.biometric.confirm' => 'تأكيد',
+			'auth.biometric.enabled' => ({required Object method}) => 'تم تفعيل الدخول باستخدام ${method}',
 			'countries.dialCodeTitle' => 'رمز الدولة',
 			'countries.title' => 'بلدك',
 			'countries.search' => 'ابحث عن دولة أو رمز',
@@ -2955,6 +3004,9 @@ extension on TranslationsAr {
 			'home.seeAll' => 'عرض الكل',
 			'home.retreatsDone' => 'تمّت خلوات اليوم الأربع',
 			'home.days' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n, zero: '${n} يوم', one: 'يوم واحد', two: 'يومان', few: '${n} أيام', many: '${n} يومًا', other: '${n} يوم', ), 
+			'home.hideNumbers' => 'إخفاء أرقامي',
+			'home.showNumbers' => 'إظهار أرقامي',
+			'home.numbersHidden' => 'مخفي',
 			'reports.title' => 'التقرير',
 			'reports.myItems' => 'عناصري',
 			'reports.tabs.today' => 'اليوم',
@@ -3277,6 +3329,8 @@ extension on TranslationsAr {
 			'hymns.chooseBook' => 'اختر كتاب الترانيم',
 			'hymns.count' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n, zero: '${n} ترنيمة', one: 'ترنيمة واحدة', two: 'ترنيمتان', few: '${n} ترانيم', many: '${n} ترنيمة', other: '${n} ترنيمة', ), 
 			'hymns.number' => ({required Object number}) => 'رقم ${number}',
+			_ => null,
+		} ?? switch (path) {
 			'hymns.emptyFavorites' => 'المس النجمة بجانب أي ترنيمة لتجدها هنا.',
 			'hymns.emptyRecent' => 'ستظهر هنا الترانيم التي تفتحها.',
 			'hymns.noResult' => ({required Object query}) => 'لا توجد ترنيمة تطابق «${query}».',
@@ -3298,8 +3352,6 @@ extension on TranslationsAr {
 			'hymns.reader.typefaceSerif' => 'كلاسيكي',
 			'hymns.reader.typefaceAutoHelp' => 'كلاسيكي عندما يكون النص كبيرًا',
 			'hymns.reader.background' => 'الخلفية',
-			_ => null,
-		} ?? switch (path) {
 			'hymns.reader.themeAuto' => 'تلقائي',
 			'hymns.reader.themeLight' => 'فاتح',
 			'hymns.reader.themeSepia' => 'سيبيا',
@@ -3791,6 +3843,8 @@ extension on TranslationsAr {
 			'prayer.lists.uses.coworkers' => 'تصلّي خلوة المساء كل يوم من أجل 10 من العاملين معك في الخدمة (5 + 5)، بالتناوب.',
 			'prayer.lists.privateNote' => 'لا يراها أحد غيرك.',
 			'prayer.lists.count' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n, zero: 'لا أحد', one: 'شخص واحد', two: 'شخصان', few: '${n} أشخاص', many: '${n} شخصًا', other: '${n} شخص', ), 
+			_ => null,
+		} ?? switch (path) {
 			'prayer.lists.empty' => 'لا أحد حتى الآن. أضف الذين تصلّي من أجلهم.',
 			'prayer.lists.add' => 'إضافة شخص',
 			'prayer.lists.prayedToday' => 'اليوم',
@@ -3812,8 +3866,6 @@ extension on TranslationsAr {
 			'prayer.lists.answeredBanner' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n, zero: '${n} صلاة مستجابة هذا الشهر', one: 'صلاة واحدة مستجابة هذا الشهر', two: 'صلاتان مستجابتان هذا الشهر', few: '${n} صلوات مستجابة هذا الشهر', many: '${n} صلاة مستجابة هذا الشهر', other: '${n} صلاة مستجابة هذا الشهر', ), 
 			'prayer.lists.lastAnswered' => ({required Object name, required Object what}) => '${name}: ${what}',
 			'prayer.lists.sheet.addTitle' => 'إضافة شخص',
-			_ => null,
-		} ?? switch (path) {
 			'prayer.lists.sheet.editTitle' => 'تعديل',
 			'prayer.lists.sheet.name' => 'الاسم',
 			'prayer.lists.sheet.namePlaceholder' => 'بولس م.',

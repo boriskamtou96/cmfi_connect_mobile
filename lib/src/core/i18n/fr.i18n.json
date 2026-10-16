@@ -163,6 +163,26 @@
       "tooManyRequests": "Trop de tentatives. Réessaie dans un moment.",
       "unavailable": "La réinitialisation n'est pas disponible pour l'instant.",
       "noAccount": "Aucun compte n'utilise ce numéro."
+    },
+    "biometric": {
+      "faceId": "Face ID",
+      "touchId": "Touch ID",
+      "fingerprint": "ton empreinte",
+      "face": "ton visage",
+      "signIn": "Se connecter avec {method}",
+      "askTitle": "Te connecter avec {method} ?",
+      "askText": "La prochaine fois, plus besoin de taper ton mot de passe : il reste dans le coffre sécurisé de ton téléphone.",
+      "enable": "Activer",
+      "later": "Plus tard",
+      "reason": "Connecte-toi à CMFI Connect",
+      "enableReason": "Active la connexion rapide à CMFI Connect",
+      "changed": "Ton mot de passe a changé : connecte-toi avec ton mot de passe, puis réactive {method}.",
+      "settings": "Connexion avec {method}",
+      "settingsText": "Sans taper ton mot de passe",
+      "passwordTitle": "Ton mot de passe",
+      "passwordLabel": "Mot de passe",
+      "confirm": "Valider",
+      "enabled": "Connexion avec {method} activée"
     }
   },
   "countries": {
@@ -205,7 +225,10 @@
     "days(plural, param=n)": {
       "one": "{n} jour",
       "other": "{n} jours"
-    }
+    },
+    "hideNumbers": "Masquer mes chiffres",
+    "showNumbers": "Afficher mes chiffres",
+    "numbersHidden": "masqué"
   },
   "reports": {
     "title": "Compte rendu",

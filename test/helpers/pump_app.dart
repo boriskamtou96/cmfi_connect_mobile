@@ -3,6 +3,7 @@ import 'package:cmfi_connect/src/core/config/flavor.dart';
 import 'package:cmfi_connect/src/core/i18n/strings.g.dart';
 import 'package:cmfi_connect/src/core/services/app_shield.dart';
 import 'package:cmfi_connect/src/core/services/app_shortcuts.dart';
+import 'package:cmfi_connect/src/core/services/biometrics.dart';
 import 'package:cmfi_connect/src/core/services/calendar_service.dart';
 import 'package:cmfi_connect/src/core/services/chime.dart';
 import 'package:cmfi_connect/src/core/services/crash_reporting.dart';
@@ -22,6 +23,7 @@ import 'package:cmfi_connect/src/core/services/store_review.dart';
 import 'package:cmfi_connect/src/core/session/account.dart';
 import 'package:cmfi_connect/src/core/storage/account_storage.dart';
 import 'package:cmfi_connect/src/core/storage/preferences.dart';
+import 'package:cmfi_connect/src/core/storage/saved_login.dart';
 import 'package:cmfi_connect/src/core/storage/token_storage.dart';
 import 'package:cmfi_connect/src/core/widgets/app_toast.dart';
 import 'package:cmfi_connect/src/features/admin/infrastructure/admin_api.dart';
@@ -91,6 +93,8 @@ class TestApp {
     required this.bibleApi,
     required this.bibleStorage,
     required this.appShield,
+    required this.biometrics,
+    required this.savedLogin,
   });
 
   final ProviderContainer container;
@@ -133,6 +137,8 @@ class TestApp {
   final FakeBibleApi bibleApi;
   final FakeBibleStorage bibleStorage;
   final FakeAppShield appShield;
+  final FakeBiometrics biometrics;
+  final FakeSavedLoginStorage savedLogin;
 }
 
 Future<TestApp> pumpApp(
@@ -158,6 +164,8 @@ Future<TestApp> pumpApp(
   FakePremiumStore? premium,
   FakeMinistryApi? ministryApi,
   FakeAppShield? appShield,
+  FakeBiometrics? biometrics,
+  FakeSavedLoginStorage? savedLogin,
   FakePhoneVerification? phoneVerification,
   FakeStoreReview? storeReview,
   FakeAppShortcuts? shortcuts,
@@ -212,6 +220,8 @@ Future<TestApp> pumpApp(
   final widgets = FakeHomeWidgets();
   final ministry = ministryApi ?? FakeMinistryApi();
   final shield = appShield ?? FakeAppShield();
+  final faceId = biometrics ?? FakeBiometrics();
+  final keychain = savedLogin ?? FakeSavedLoginStorage();
   final review = storeReview ?? FakeStoreReview();
   final appShortcuts = shortcuts ?? FakeAppShortcuts();
   final appLinks = incomingLinks ?? FakeIncomingLinks();
@@ -263,6 +273,8 @@ Future<TestApp> pumpApp(
       homeWidgetsProvider.overrideWithValue(widgets),
       ministryApiProvider.overrideWithValue(ministry),
       appShieldProvider.overrideWith((ref) async => shield),
+      biometricsProvider.overrideWithValue(faceId),
+      savedLoginStorageProvider.overrideWithValue(keychain),
       crashReportingProvider.overrideWithValue(const NoCrashReporting()),
       phoneVerificationProvider.overrideWithValue(
         phoneVerification ?? FakePhoneVerification(),
@@ -323,6 +335,8 @@ Future<TestApp> pumpApp(
     bibleApi: bible,
     bibleStorage: bibleStorage,
     appShield: shield,
+    biometrics: faceId,
+    savedLogin: keychain,
   );
 }
 

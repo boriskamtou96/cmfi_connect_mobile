@@ -200,6 +200,7 @@ class _Translations$auth$zh extends Translations$auth$fr {
 	@override late final _Translations$auth$register$zh register = _Translations$auth$register$zh._(_root);
 	@override late final _Translations$auth$church$zh church = _Translations$auth$church$zh._(_root);
 	@override late final _Translations$auth$forgot$zh forgot = _Translations$auth$forgot$zh._(_root);
+	@override late final _Translations$auth$biometric$zh biometric = _Translations$auth$biometric$zh._(_root);
 }
 
 // Path: countries
@@ -262,6 +263,9 @@ class _Translations$home$zh extends Translations$home$fr {
 	@override String days({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n,
 		other: '${n} 天',
 	);
+	@override String get hideNumbers => '隐藏我的数字';
+	@override String get showNumbers => '显示我的数字';
+	@override String get numbersHidden => '已隐藏';
 }
 
 // Path: reports
@@ -1371,6 +1375,33 @@ class _Translations$auth$forgot$zh extends Translations$auth$forgot$fr {
 	@override String get tooManyRequests => '尝试次数过多，请稍后再试。';
 	@override String get unavailable => '暂时无法重置密码。';
 	@override String get noAccount => '没有账号使用这个号码。';
+}
+
+// Path: auth.biometric
+class _Translations$auth$biometric$zh extends Translations$auth$biometric$fr {
+	_Translations$auth$biometric$zh._(TranslationsZh root) : this._root = root, super.internal(root);
+
+	final TranslationsZh _root; // ignore: unused_field
+
+	// Translations
+	@override String get faceId => '面容 ID';
+	@override String get touchId => '触控 ID';
+	@override String get fingerprint => '指纹';
+	@override String get face => '面部';
+	@override String signIn({required Object method}) => '使用${method}登录';
+	@override String askTitle({required Object method}) => '使用${method}登录？';
+	@override String get askText => '下次无需再输入密码：它保存在你手机的安全保险箱中。';
+	@override String get enable => '开启';
+	@override String get later => '以后再说';
+	@override String get reason => '登录 CMFI Connect';
+	@override String get enableReason => '开启 CMFI Connect 快速登录';
+	@override String changed({required Object method}) => '你的密码已更改：请用密码登录，然后重新开启${method}。';
+	@override String settings({required Object method}) => '使用${method}登录';
+	@override String get settingsText => '无需输入密码';
+	@override String get passwordTitle => '你的密码';
+	@override String get passwordLabel => '密码';
+	@override String get confirm => '确认';
+	@override String enabled({required Object method}) => '已开启${method}登录';
 }
 
 // Path: reports.tabs
@@ -2624,6 +2655,24 @@ extension on TranslationsZh {
 			'auth.forgot.tooManyRequests' => '尝试次数过多，请稍后再试。',
 			'auth.forgot.unavailable' => '暂时无法重置密码。',
 			'auth.forgot.noAccount' => '没有账号使用这个号码。',
+			'auth.biometric.faceId' => '面容 ID',
+			'auth.biometric.touchId' => '触控 ID',
+			'auth.biometric.fingerprint' => '指纹',
+			'auth.biometric.face' => '面部',
+			'auth.biometric.signIn' => ({required Object method}) => '使用${method}登录',
+			'auth.biometric.askTitle' => ({required Object method}) => '使用${method}登录？',
+			'auth.biometric.askText' => '下次无需再输入密码：它保存在你手机的安全保险箱中。',
+			'auth.biometric.enable' => '开启',
+			'auth.biometric.later' => '以后再说',
+			'auth.biometric.reason' => '登录 CMFI Connect',
+			'auth.biometric.enableReason' => '开启 CMFI Connect 快速登录',
+			'auth.biometric.changed' => ({required Object method}) => '你的密码已更改：请用密码登录，然后重新开启${method}。',
+			'auth.biometric.settings' => ({required Object method}) => '使用${method}登录',
+			'auth.biometric.settingsText' => '无需输入密码',
+			'auth.biometric.passwordTitle' => '你的密码',
+			'auth.biometric.passwordLabel' => '密码',
+			'auth.biometric.confirm' => '确认',
+			'auth.biometric.enabled' => ({required Object method}) => '已开启${method}登录',
 			'countries.dialCodeTitle' => '国家/地区区号',
 			'countries.title' => '你的国家/地区',
 			'countries.search' => '搜索国家/地区或区号',
@@ -2657,6 +2706,9 @@ extension on TranslationsZh {
 			'home.seeAll' => '查看全部',
 			'home.retreatsDone' => '今天的 4 次灵修都已完成',
 			'home.days' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n, other: '${n} 天', ), 
+			'home.hideNumbers' => '隐藏我的数字',
+			'home.showNumbers' => '显示我的数字',
+			'home.numbersHidden' => '已隐藏',
 			'reports.title' => '每日汇报',
 			'reports.myItems' => '我的项目',
 			'reports.tabs.today' => '今天',
@@ -2979,6 +3031,8 @@ extension on TranslationsZh {
 			'hymns.chooseBook' => '选择诗歌本',
 			'hymns.count' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n, other: '${n} 首诗歌', ), 
 			'hymns.number' => ({required Object number}) => '第 ${number} 首',
+			_ => null,
+		} ?? switch (path) {
 			'hymns.emptyFavorites' => '点一下诗歌的星标，就能在这里找到它。',
 			'hymns.emptyRecent' => '你打开过的诗歌会显示在这里。',
 			'hymns.noResult' => ({required Object query}) => '没有与「${query}」相符的诗歌。',
@@ -3000,8 +3054,6 @@ extension on TranslationsZh {
 			'hymns.reader.typefaceSerif' => '经典',
 			'hymns.reader.typefaceAutoHelp' => '文字较大时使用经典字体',
 			'hymns.reader.background' => '背景',
-			_ => null,
-		} ?? switch (path) {
 			'hymns.reader.themeAuto' => '自动',
 			'hymns.reader.themeLight' => '浅色',
 			'hymns.reader.themeSepia' => '羊皮纸',
@@ -3493,6 +3545,8 @@ extension on TranslationsZh {
 			'prayer.lists.uses.coworkers' => '傍晚祷告每天轮流为你的 10 位同工（5 + 5）祷告。',
 			'prayer.lists.privateNote' => '只有你能看到。',
 			'prayer.lists.count' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n, zero: '暂无', other: '${n} 人', ), 
+			_ => null,
+		} ?? switch (path) {
 			'prayer.lists.empty' => '暂时还没有人。添加你为之祷告的人吧。',
 			'prayer.lists.add' => '添加一个人',
 			'prayer.lists.prayedToday' => '今天',
@@ -3514,8 +3568,6 @@ extension on TranslationsZh {
 			'prayer.lists.answeredBanner' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n, other: '本月有 ${n} 个祷告蒙应允', ), 
 			'prayer.lists.lastAnswered' => ({required Object name, required Object what}) => '${name}：${what}',
 			'prayer.lists.sheet.addTitle' => '添加一个人',
-			_ => null,
-		} ?? switch (path) {
 			'prayer.lists.sheet.editTitle' => '编辑',
 			'prayer.lists.sheet.name' => '姓名',
 			'prayer.lists.sheet.namePlaceholder' => '李明',

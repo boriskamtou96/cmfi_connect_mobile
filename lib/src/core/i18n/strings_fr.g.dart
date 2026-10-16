@@ -310,6 +310,7 @@ class Translations$auth$fr {
 	late final Translations$auth$register$fr register = Translations$auth$register$fr.internal(_root);
 	late final Translations$auth$church$fr church = Translations$auth$church$fr.internal(_root);
 	late final Translations$auth$forgot$fr forgot = Translations$auth$forgot$fr.internal(_root);
+	late final Translations$auth$biometric$fr biometric = Translations$auth$biometric$fr.internal(_root);
 }
 
 // Path: countries
@@ -439,6 +440,15 @@ class Translations$home$fr {
 		one: '${n} jour',
 		other: '${n} jours',
 	);
+
+	/// fr: 'Masquer mes chiffres'
+	String get hideNumbers => 'Masquer mes chiffres';
+
+	/// fr: 'Afficher mes chiffres'
+	String get showNumbers => 'Afficher mes chiffres';
+
+	/// fr: 'masqué'
+	String get numbersHidden => 'masqué';
 }
 
 // Path: reports
@@ -2912,6 +2922,69 @@ class Translations$auth$forgot$fr {
 	String get noAccount => 'Aucun compte n\'utilise ce numéro.';
 }
 
+// Path: auth.biometric
+class Translations$auth$biometric$fr {
+	Translations$auth$biometric$fr.internal(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// fr: 'Face ID'
+	String get faceId => 'Face ID';
+
+	/// fr: 'Touch ID'
+	String get touchId => 'Touch ID';
+
+	/// fr: 'ton empreinte'
+	String get fingerprint => 'ton empreinte';
+
+	/// fr: 'ton visage'
+	String get face => 'ton visage';
+
+	/// fr: 'Se connecter avec {method}'
+	String signIn({required Object method}) => 'Se connecter avec ${method}';
+
+	/// fr: 'Te connecter avec {method} ?'
+	String askTitle({required Object method}) => 'Te connecter avec ${method} ?';
+
+	/// fr: 'La prochaine fois, plus besoin de taper ton mot de passe : il reste dans le coffre sécurisé de ton téléphone.'
+	String get askText => 'La prochaine fois, plus besoin de taper ton mot de passe : il reste dans le coffre sécurisé de ton téléphone.';
+
+	/// fr: 'Activer'
+	String get enable => 'Activer';
+
+	/// fr: 'Plus tard'
+	String get later => 'Plus tard';
+
+	/// fr: 'Connecte-toi à CMFI Connect'
+	String get reason => 'Connecte-toi à CMFI Connect';
+
+	/// fr: 'Active la connexion rapide à CMFI Connect'
+	String get enableReason => 'Active la connexion rapide à CMFI Connect';
+
+	/// fr: 'Ton mot de passe a changé : connecte-toi avec ton mot de passe, puis réactive {method}.'
+	String changed({required Object method}) => 'Ton mot de passe a changé : connecte-toi avec ton mot de passe, puis réactive ${method}.';
+
+	/// fr: 'Connexion avec {method}'
+	String settings({required Object method}) => 'Connexion avec ${method}';
+
+	/// fr: 'Sans taper ton mot de passe'
+	String get settingsText => 'Sans taper ton mot de passe';
+
+	/// fr: 'Ton mot de passe'
+	String get passwordTitle => 'Ton mot de passe';
+
+	/// fr: 'Mot de passe'
+	String get passwordLabel => 'Mot de passe';
+
+	/// fr: 'Valider'
+	String get confirm => 'Valider';
+
+	/// fr: 'Connexion avec {method} activée'
+	String enabled({required Object method}) => 'Connexion avec ${method} activée';
+}
+
 // Path: reports.tabs
 class Translations$reports$tabs$fr {
 	Translations$reports$tabs$fr.internal(this._root);
@@ -5210,6 +5283,24 @@ extension on Translations {
 			'auth.forgot.tooManyRequests' => 'Trop de tentatives. Réessaie dans un moment.',
 			'auth.forgot.unavailable' => 'La réinitialisation n\'est pas disponible pour l\'instant.',
 			'auth.forgot.noAccount' => 'Aucun compte n\'utilise ce numéro.',
+			'auth.biometric.faceId' => 'Face ID',
+			'auth.biometric.touchId' => 'Touch ID',
+			'auth.biometric.fingerprint' => 'ton empreinte',
+			'auth.biometric.face' => 'ton visage',
+			'auth.biometric.signIn' => ({required Object method}) => 'Se connecter avec ${method}',
+			'auth.biometric.askTitle' => ({required Object method}) => 'Te connecter avec ${method} ?',
+			'auth.biometric.askText' => 'La prochaine fois, plus besoin de taper ton mot de passe : il reste dans le coffre sécurisé de ton téléphone.',
+			'auth.biometric.enable' => 'Activer',
+			'auth.biometric.later' => 'Plus tard',
+			'auth.biometric.reason' => 'Connecte-toi à CMFI Connect',
+			'auth.biometric.enableReason' => 'Active la connexion rapide à CMFI Connect',
+			'auth.biometric.changed' => ({required Object method}) => 'Ton mot de passe a changé : connecte-toi avec ton mot de passe, puis réactive ${method}.',
+			'auth.biometric.settings' => ({required Object method}) => 'Connexion avec ${method}',
+			'auth.biometric.settingsText' => 'Sans taper ton mot de passe',
+			'auth.biometric.passwordTitle' => 'Ton mot de passe',
+			'auth.biometric.passwordLabel' => 'Mot de passe',
+			'auth.biometric.confirm' => 'Valider',
+			'auth.biometric.enabled' => ({required Object method}) => 'Connexion avec ${method} activée',
 			'countries.dialCodeTitle' => 'Indicatif du pays',
 			'countries.title' => 'Ton pays',
 			'countries.search' => 'Rechercher un pays ou un indicatif',
@@ -5243,6 +5334,9 @@ extension on Translations {
 			'home.seeAll' => 'Tout voir',
 			'home.retreatsDone' => 'Les 4 retraites du jour sont faites',
 			'home.days' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('fr'))(n, one: '${n} jour', other: '${n} jours', ), 
+			'home.hideNumbers' => 'Masquer mes chiffres',
+			'home.showNumbers' => 'Afficher mes chiffres',
+			'home.numbersHidden' => 'masqué',
 			'reports.title' => 'Compte rendu',
 			'reports.myItems' => 'Mes éléments',
 			'reports.tabs.today' => 'Aujourd\'hui',
@@ -5565,6 +5659,8 @@ extension on Translations {
 			'hymns.chooseBook' => 'Choisir le recueil',
 			'hymns.count' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('fr'))(n, one: '${n} cantique', other: '${n} cantiques', ), 
 			'hymns.number' => ({required Object number}) => 'N° ${number}',
+			_ => null,
+		} ?? switch (path) {
 			'hymns.emptyFavorites' => 'Touche l\'étoile d\'un cantique pour le retrouver ici.',
 			'hymns.emptyRecent' => 'Les cantiques que tu ouvres apparaîtront ici.',
 			'hymns.noResult' => ({required Object query}) => 'Aucun cantique ne correspond à « ${query} ».',
@@ -5586,8 +5682,6 @@ extension on Translations {
 			'hymns.reader.typefaceSerif' => 'Classique',
 			'hymns.reader.typefaceAutoHelp' => 'Classique quand le texte est grand',
 			'hymns.reader.background' => 'Fond',
-			_ => null,
-		} ?? switch (path) {
 			'hymns.reader.themeAuto' => 'Auto',
 			'hymns.reader.themeLight' => 'Clair',
 			'hymns.reader.themeSepia' => 'Sépia',
@@ -6079,6 +6173,8 @@ extension on Translations {
 			'prayer.lists.uses.coworkers' => 'La retraite du soir prie chaque jour pour 10 de tes co-ouvriers (5 + 5), à tour de rôle.',
 			'prayer.lists.privateNote' => 'Elle n\'est visible que par toi.',
 			'prayer.lists.count' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('fr'))(n, zero: 'Personne', one: '${n} personne', other: '${n} personnes', ), 
+			_ => null,
+		} ?? switch (path) {
 			'prayer.lists.empty' => 'Personne pour l\'instant. Ajoute ceux pour qui tu pries.',
 			'prayer.lists.add' => 'Ajouter une personne',
 			'prayer.lists.prayedToday' => 'Aujourd\'hui',
@@ -6100,8 +6196,6 @@ extension on Translations {
 			'prayer.lists.answeredBanner' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('fr'))(n, one: '${n} prière exaucée ce mois-ci', other: '${n} prières exaucées ce mois-ci', ), 
 			'prayer.lists.lastAnswered' => ({required Object name, required Object what}) => '${name} : ${what}',
 			'prayer.lists.sheet.addTitle' => 'Ajouter une personne',
-			_ => null,
-		} ?? switch (path) {
 			'prayer.lists.sheet.editTitle' => 'Modifier',
 			'prayer.lists.sheet.name' => 'Nom',
 			'prayer.lists.sheet.namePlaceholder' => 'Paul M.',

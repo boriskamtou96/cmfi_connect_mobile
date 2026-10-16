@@ -200,6 +200,7 @@ class _Translations$auth$de extends Translations$auth$fr {
 	@override late final _Translations$auth$register$de register = _Translations$auth$register$de._(_root);
 	@override late final _Translations$auth$church$de church = _Translations$auth$church$de._(_root);
 	@override late final _Translations$auth$forgot$de forgot = _Translations$auth$forgot$de._(_root);
+	@override late final _Translations$auth$biometric$de biometric = _Translations$auth$biometric$de._(_root);
 }
 
 // Path: countries
@@ -263,6 +264,9 @@ class _Translations$home$de extends Translations$home$fr {
 		one: '${n} Tag',
 		other: '${n} Tage',
 	);
+	@override String get hideNumbers => 'Meine Zahlen ausblenden';
+	@override String get showNumbers => 'Meine Zahlen anzeigen';
+	@override String get numbersHidden => 'ausgeblendet';
 }
 
 // Path: reports
@@ -1411,6 +1415,33 @@ class _Translations$auth$forgot$de extends Translations$auth$forgot$fr {
 	@override String get tooManyRequests => 'Zu viele Versuche. Versuche es später erneut.';
 	@override String get unavailable => 'Das Zurücksetzen ist gerade nicht möglich.';
 	@override String get noAccount => 'Kein Konto verwendet diese Nummer.';
+}
+
+// Path: auth.biometric
+class _Translations$auth$biometric$de extends Translations$auth$biometric$fr {
+	_Translations$auth$biometric$de._(TranslationsDe root) : this._root = root, super.internal(root);
+
+	final TranslationsDe _root; // ignore: unused_field
+
+	// Translations
+	@override String get faceId => 'Face ID';
+	@override String get touchId => 'Touch ID';
+	@override String get fingerprint => 'deinem Fingerabdruck';
+	@override String get face => 'deinem Gesicht';
+	@override String signIn({required Object method}) => 'Mit ${method} anmelden';
+	@override String askTitle({required Object method}) => 'Mit ${method} anmelden?';
+	@override String get askText => 'Beim nächsten Mal musst du dein Passwort nicht eingeben: Es bleibt im sicheren Speicher deines Telefons.';
+	@override String get enable => 'Einschalten';
+	@override String get later => 'Später';
+	@override String get reason => 'Bei CMFI Connect anmelden';
+	@override String get enableReason => 'Schnelle Anmeldung bei CMFI Connect einschalten';
+	@override String changed({required Object method}) => 'Dein Passwort hat sich geändert: Melde dich mit deinem Passwort an und schalte ${method} dann wieder ein.';
+	@override String settings({required Object method}) => 'Anmeldung mit ${method}';
+	@override String get settingsText => 'Ohne dein Passwort einzugeben';
+	@override String get passwordTitle => 'Dein Passwort';
+	@override String get passwordLabel => 'Passwort';
+	@override String get confirm => 'Bestätigen';
+	@override String enabled({required Object method}) => 'Anmeldung mit ${method} ist eingeschaltet';
 }
 
 // Path: reports.tabs
@@ -2684,6 +2715,24 @@ extension on TranslationsDe {
 			'auth.forgot.tooManyRequests' => 'Zu viele Versuche. Versuche es später erneut.',
 			'auth.forgot.unavailable' => 'Das Zurücksetzen ist gerade nicht möglich.',
 			'auth.forgot.noAccount' => 'Kein Konto verwendet diese Nummer.',
+			'auth.biometric.faceId' => 'Face ID',
+			'auth.biometric.touchId' => 'Touch ID',
+			'auth.biometric.fingerprint' => 'deinem Fingerabdruck',
+			'auth.biometric.face' => 'deinem Gesicht',
+			'auth.biometric.signIn' => ({required Object method}) => 'Mit ${method} anmelden',
+			'auth.biometric.askTitle' => ({required Object method}) => 'Mit ${method} anmelden?',
+			'auth.biometric.askText' => 'Beim nächsten Mal musst du dein Passwort nicht eingeben: Es bleibt im sicheren Speicher deines Telefons.',
+			'auth.biometric.enable' => 'Einschalten',
+			'auth.biometric.later' => 'Später',
+			'auth.biometric.reason' => 'Bei CMFI Connect anmelden',
+			'auth.biometric.enableReason' => 'Schnelle Anmeldung bei CMFI Connect einschalten',
+			'auth.biometric.changed' => ({required Object method}) => 'Dein Passwort hat sich geändert: Melde dich mit deinem Passwort an und schalte ${method} dann wieder ein.',
+			'auth.biometric.settings' => ({required Object method}) => 'Anmeldung mit ${method}',
+			'auth.biometric.settingsText' => 'Ohne dein Passwort einzugeben',
+			'auth.biometric.passwordTitle' => 'Dein Passwort',
+			'auth.biometric.passwordLabel' => 'Passwort',
+			'auth.biometric.confirm' => 'Bestätigen',
+			'auth.biometric.enabled' => ({required Object method}) => 'Anmeldung mit ${method} ist eingeschaltet',
 			'countries.dialCodeTitle' => 'Ländervorwahl',
 			'countries.title' => 'Dein Land',
 			'countries.search' => 'Land oder Vorwahl suchen',
@@ -2717,6 +2766,9 @@ extension on TranslationsDe {
 			'home.seeAll' => 'Alle ansehen',
 			'home.retreatsDone' => 'Die 4 Gebetszeiten des Tages sind gemacht',
 			'home.days' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('de'))(n, one: '${n} Tag', other: '${n} Tage', ), 
+			'home.hideNumbers' => 'Meine Zahlen ausblenden',
+			'home.showNumbers' => 'Meine Zahlen anzeigen',
+			'home.numbersHidden' => 'ausgeblendet',
 			'reports.title' => 'Tagesbericht',
 			'reports.myItems' => 'Meine Elemente',
 			'reports.tabs.today' => 'Heute',
@@ -3039,6 +3091,8 @@ extension on TranslationsDe {
 			'hymns.chooseBook' => 'Liederbuch wählen',
 			'hymns.count' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('de'))(n, one: '${n} Lied', other: '${n} Lieder', ), 
 			'hymns.number' => ({required Object number}) => 'Nr. ${number}',
+			_ => null,
+		} ?? switch (path) {
 			'hymns.emptyFavorites' => 'Tippe auf den Stern eines Liedes, um es hier wiederzufinden.',
 			'hymns.emptyRecent' => 'Die Lieder, die du öffnest, erscheinen hier.',
 			'hymns.noResult' => ({required Object query}) => 'Kein Lied passt zu „${query}“.',
@@ -3060,8 +3114,6 @@ extension on TranslationsDe {
 			'hymns.reader.typefaceSerif' => 'Klassisch',
 			'hymns.reader.typefaceAutoHelp' => 'Klassisch bei großem Text',
 			'hymns.reader.background' => 'Hintergrund',
-			_ => null,
-		} ?? switch (path) {
 			'hymns.reader.themeAuto' => 'Auto',
 			'hymns.reader.themeLight' => 'Hell',
 			'hymns.reader.themeSepia' => 'Sepia',
@@ -3553,6 +3605,8 @@ extension on TranslationsDe {
 			'prayer.lists.uses.coworkers' => 'In der Gebetszeit am Abend betest du jeden Tag der Reihe nach für 10 deiner Mitarbeiter (5 + 5).',
 			'prayer.lists.privateNote' => 'Nur du kannst sie sehen.',
 			'prayer.lists.count' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('de'))(n, zero: 'Niemand', one: '${n} Person', other: '${n} Personen', ), 
+			_ => null,
+		} ?? switch (path) {
 			'prayer.lists.empty' => 'Noch niemand. Füge die Menschen hinzu, für die du betest.',
 			'prayer.lists.add' => 'Person hinzufügen',
 			'prayer.lists.prayedToday' => 'Heute',
@@ -3574,8 +3628,6 @@ extension on TranslationsDe {
 			'prayer.lists.answeredBanner' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('de'))(n, one: '${n} erhörtes Gebet diesen Monat', other: '${n} erhörte Gebete diesen Monat', ), 
 			'prayer.lists.lastAnswered' => ({required Object name, required Object what}) => '${name}: ${what}',
 			'prayer.lists.sheet.addTitle' => 'Person hinzufügen',
-			_ => null,
-		} ?? switch (path) {
 			'prayer.lists.sheet.editTitle' => 'Bearbeiten',
 			'prayer.lists.sheet.name' => 'Name',
 			'prayer.lists.sheet.namePlaceholder' => 'Paul M.',

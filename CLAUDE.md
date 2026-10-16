@@ -253,6 +253,20 @@ Règles de dépendance :
 - iOS (Temps d'écran : FamilyControls, ManagedSettings, DeviceActivity) : `ios/SeekFirst/SeekFirstShared.swift` (réglages dans l'App Group, `shouldClose`, `apply`, planning quotidien, pauses), compilé dans Runner et dans trois extensions iOS 16 ajoutées comme le widget (mêmes 9 configurations, `OTHER_LDFLAGS` vide, pas d'icône d'app) : `ShieldMonitor` (ferme à l'heure, rouvre à 23 h 59, referme à la fin d'une pause), `ShieldConfig` (l'écran bleu nuit et or, Zoé en icône, nom de l'app), `ShieldActions` (« Remplir mon compte rendu » envoie une notification avec la charge utile `report_today` et les clés de flutter_local_notifications ; « Pause de 5 min » rouvre 5 min : un planning d'au moins 15 min qui commence dans le passé). `Runner/AppShield.swift` : le canal et la liste d'apps du système (`FamilyActivityPicker`). Entitlement `com.apple.developer.family-controls` dans Runner et les extensions ; la publication sur l'App Store demande l'accord d'Apple (Family Controls Distribution). Temps d'écran ne marche pas dans le simulateur : essayer sur un iPhone.
 - Dans les tests : `FakeAppShield` (`supported`, `granted`, `chosen`, `configured`, `unlocked`, `pauses`), `pumpApp(appShield:)`.
 
+## Connexion : numéro gardé, Face ID / empreinte
+
+- Le numéro de la dernière connexion reste (`SavedLogin`, `features/auth/application/saved_login.dart` ; `SavedLoginStorage` dans le Keychain / Keystore, clé `login_phone`), même après la déconnexion : l'écran de connexion le remplit (et choisit son pays). Supprimer le compte l'oublie (`MyAccount.deleteAccount` → `forget`).
+- Face ID / Touch ID / l'empreinte Android (`Biometrics`, `core/services/biometrics.dart`, paquet local_auth, `biometricOnly`) : proposé une fois après une connexion réussie (« Te connecter avec … ? », `login_biometric_asked`), activable ou coupable dans Plus (le mot de passe est redemandé et vérifié par `AuthApi.login`). Le mot de passe est gardé dans le coffre (`login_password`) et lu seulement après la reconnaissance ; il suit un changement à chaque connexion par mot de passe. Refusé par le serveur depuis Face ID (mot de passe changé) : la connexion biométrique se coupe et le dit. Nom de la méthode : `biometricMethod` (Face ID, Touch ID sur iPhone ; « ton visage », « ton empreinte » sur Android). `NSFaceIDUsageDescription` dans Info.plist ; Android : `FlutterFragmentActivity` (déjà là).
+- Dans les tests : `FakeBiometrics(available:, accept:)` (`prompts`), `FakeSavedLoginStorage(savedPhone:, savedPassword:)`, `pumpApp(biometrics:, savedLogin:)` ; sans `available`, rien n'est proposé.
+
+## L'œil de l'accueil
+
+- Sur le bilan bleu nuit, l'œil (`HomeNumbersHidden`, clé `home_numbers_hidden`, gardé d'une ouverture à l'autre) remplace les chiffres par « •• » (éléments, objectifs, retraites, série), vide l'anneau et les jours de la semaine ; les lecteurs d'écran disent « masqué ».
+
+## Mise en production
+
+- La liste complète : `docs/MISE_EN_PROD.md`. Signature Android de publication : `android/key.properties` (modèle `key.properties.example`, jamais dans git), sinon la clé de debug. `PrivacyInfo.xcprivacy` dans Runner, TodayWidget et les trois extensions Shield (UserDefaults : `CA92.1`, `1C8F.1` pour l'App Group). `ITSAppUsesNonExemptEncryption` à false.
+
 ## Bas de Plus
 
 - Tout en bas de Plus (`_About`, sous « Supprimer mon compte ») : le nom de l'app, « Version 1.0.0 (1) » (`appVersionProvider`, `core/services/app_version.dart` : canal `cmficonnect/app`, méthodes `version` et `build`, répondues par `MainActivity.kt` et `AppDelegate.swift` ; vide dans les tests et sur le web) et « © <année> Communauté Missionnaire Chrétienne Internationale. Tous droits réservés. » (`more.copyright`, « Christian Missionary Fellowship International » hors fr/es). La version vient de `version:` dans pubspec.yaml.

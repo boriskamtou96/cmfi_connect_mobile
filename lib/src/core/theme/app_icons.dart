@@ -106,6 +106,8 @@ abstract final class AppIcons {
   static const report = PhosphorIconsRegular.flagBanner;
   static const block = PhosphorIconsRegular.prohibit;
   static const visible = PhosphorIconsRegular.eye;
+  static const faceId = PhosphorIconsRegular.scanSmiley;
+  static const fingerprint = PhosphorIconsRegular.fingerprint;
   static const hidden = PhosphorIconsRegular.eyeSlash;
 
   // Dates and files

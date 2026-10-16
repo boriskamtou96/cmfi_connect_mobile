@@ -163,6 +163,26 @@
       "tooManyRequests": "बहुत ज़्यादा कोशिशें। थोड़ी देर बाद फिर कोशिश करो।",
       "unavailable": "अभी पासवर्ड रीसेट उपलब्ध नहीं है।",
       "noAccount": "इस नंबर से कोई खाता नहीं है।"
+    },
+    "biometric": {
+      "faceId": "Face ID",
+      "touchId": "Touch ID",
+      "fingerprint": "अपने फ़िंगरप्रिंट",
+      "face": "अपने चेहरे",
+      "signIn": "{method} से लॉग इन करें",
+      "askTitle": "{method} से लॉग इन करें?",
+      "askText": "अगली बार पासवर्ड टाइप करने की ज़रूरत नहीं: वह तुम्हारे फ़ोन की सुरक्षित तिजोरी में रहता है।",
+      "enable": "चालू करें",
+      "later": "बाद में",
+      "reason": "CMFI Connect में लॉग इन करें",
+      "enableReason": "CMFI Connect में तेज़ लॉग इन चालू करें",
+      "changed": "तुम्हारा पासवर्ड बदल गया है: पासवर्ड से लॉग इन करो, फिर {method} दोबारा चालू करो।",
+      "settings": "{method} से लॉग इन",
+      "settingsText": "पासवर्ड टाइप किए बिना",
+      "passwordTitle": "तुम्हारा पासवर्ड",
+      "passwordLabel": "पासवर्ड",
+      "confirm": "पुष्टि करें",
+      "enabled": "{method} से लॉग इन चालू है"
     }
   },
   "countries": {
@@ -205,7 +225,10 @@
     "days(plural, param=n)": {
       "one": "{n} दिन",
       "other": "{n} दिन"
-    }
+    },
+    "hideNumbers": "मेरे आँकड़े छिपाएँ",
+    "showNumbers": "मेरे आँकड़े दिखाएँ",
+    "numbersHidden": "छिपा हुआ"
   },
   "reports": {
     "title": "दैनिक रिपोर्ट",

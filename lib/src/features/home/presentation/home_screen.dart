@@ -34,6 +34,7 @@ import '../../reports/application/day_report_controller.dart';
 import '../../reports/application/report_goals.dart';
 import '../../reports/application/reports_providers.dart';
 import '../../verses/presentation/verse_card.dart';
+import '../application/home_privacy.dart';
 import '../domain/week_story.dart';
 
 /// The home screen, "Nuit et or" (validated on 2026-10-16): the summary of
@@ -156,6 +157,9 @@ class HomeScreen extends ConsumerWidget {
 }
 
 /// The night blue of the summary.
+/// A number hidden by the eye.
+const _masked = '••';
+
 abstract final class _Night {
   static const top = Color(0xFF0B3B70);
   static const colors = [top, Color(0xFF072D5A), Color(0xFF061F40)];
@@ -253,6 +257,9 @@ class _Summary extends ConsumerWidget {
     final letters = [
       for (final day in week) context.formatDate(day, 'EEEEE').toUpperCase(),
     ];
+    // the eye: the numbers as •• (the ring empty, the days plain)
+    final hidden = ref.watch(homeNumbersHiddenProvider);
+    String shown(String value) => hidden ? _masked : value;
 
     return Container(
       padding: EdgeInsets.fromLTRB(20, top + 18, 20, 24),
@@ -310,6 +317,13 @@ class _Summary extends ConsumerWidget {
                       ],
                     ),
                   ),
+                  IconButton(
+                    tooltip: hidden ? t.home.showNumbers : t.home.hideNumbers,
+                    color: Colors.white,
+                    onPressed: () =>
+                        ref.read(homeNumbersHiddenProvider.notifier).toggle(),
+                    icon: Icon(hidden ? AppIcons.hidden : AppIcons.visible),
+                  ),
                   const IconTheme(
                     data: IconThemeData(color: Colors.white),
                     child: _Bell(),
@@ -336,9 +350,10 @@ class _Summary extends ConsumerWidget {
               Row(
                 children: [
                   Semantics(
-                    label:
-                        '${t.home.progress(filled: filled, total: total)} '
-                        '${t.home.progressLabel}',
+                    label: hidden
+                        ? '${t.home.items} : ${t.home.numbersHidden}'
+                        : '${t.home.progress(filled: filled, total: total)} '
+                              '${t.home.progressLabel}',
                     excludeSemantics: true,
                     child: SizedBox.square(
                       dimension: 118,
@@ -348,7 +363,7 @@ class _Summary extends ConsumerWidget {
                           SizedBox.expand(
                             child: TweenAnimationBuilder<double>(
                               tween: Tween(
-                                end: total == 0 ? 0 : filled / total,
+                                end: total == 0 || hidden ? 0 : filled / total,
                               ),
                               duration: const Duration(milliseconds: 700),
                               curve: Curves.easeOutCubic,
@@ -366,7 +381,7 @@ class _Summary extends ConsumerWidget {
                             mainAxisSize: MainAxisSize.min,
                             children: [
                               Text(
-                                draft == null ? '—' : '$filled/$total',
+                                draft == null ? '—' : shown('$filled/$total'),
                                 style: const TextStyle(
                                   fontSize: 30,
                                   fontWeight: FontWeight.w800,
@@ -399,19 +414,24 @@ class _Summary extends ConsumerWidget {
                           label: t.home.goalsTitle,
                           value: goals == null
                               ? '—'
-                              : '${(goals.progress * 100).round()}\u00a0%',
+                              : shown(
+                                  '${(goals.progress * 100).round()}\u00a0%',
+                                ),
+                          hidden: hidden,
                           color: AppColors.goldLight,
                         ),
                         const _Hairline(),
                         _Stat(
                           label: t.home.retreatsTitle,
-                          value: t.home.retreatsValue(n: retreats),
+                          value: shown(t.home.retreatsValue(n: retreats)),
+                          hidden: hidden,
                           color: _Night.lavender,
                         ),
                         const _Hairline(),
                         _Stat(
                           label: t.home.streakTitle,
-                          value: t.home.days(n: streak),
+                          value: shown(t.home.days(n: streak)),
+                          hidden: hidden,
                           color: Colors.white,
                         ),
                       ],
@@ -436,8 +456,9 @@ class _Summary extends ConsumerWidget {
                               letter: letters[i],
                               today: day == now,
                               done:
-                                  reported.contains(day) ||
-                                  (day == now && filled > 0),
+                                  !hidden &&
+                                  (reported.contains(day) ||
+                                      (day == now && filled > 0)),
                               future: day.isAfter(now),
                             ),
                           ),
@@ -491,15 +512,23 @@ class _Hairline extends StatelessWidget {
 
 /// A number of the summary, its label above with a coloured dot.
 class _Stat extends StatelessWidget {
-  const _Stat({required this.label, required this.value, required this.color});
+  const _Stat({
+    required this.label,
+    required this.value,
+    required this.color,
+    this.hidden = false,
+  });
 
   final String label;
   final String value;
   final Color color;
 
+  /// The eye is closed: read as "masqué".
+  final bool hidden;
+
   @override
   Widget build(BuildContext context) => Semantics(
-    label: '$label : $value',
+    label: '$label : ${hidden ? context.t.home.numbersHidden : value}',
     excludeSemantics: true,
     child: Column(
       crossAxisAlignment: CrossAxisAlignment.start,

@@ -84,6 +84,7 @@ Future<String?> showInputDialog(
   required String confirmLabel,
   TextInputType? keyboardType,
   List<TextInputFormatter>? inputFormatters,
+  bool obscureText = false,
 }) {
   Widget dialog(BuildContext context) => _InputDialog(
     title: title,
@@ -91,6 +92,7 @@ Future<String?> showInputDialog(
     confirmLabel: confirmLabel,
     keyboardType: keyboardType,
     inputFormatters: inputFormatters,
+    obscureText: obscureText,
   );
 
   return context.isCupertino
@@ -105,6 +107,7 @@ class _InputDialog extends HookWidget {
     required this.confirmLabel,
     this.keyboardType,
     this.inputFormatters,
+    this.obscureText = false,
   });
 
   final String title;
@@ -112,6 +115,9 @@ class _InputDialog extends HookWidget {
   final String confirmLabel;
   final TextInputType? keyboardType;
   final List<TextInputFormatter>? inputFormatters;
+
+  /// A password: the letters typed show as dots.
+  final bool obscureText;
 
   @override
   Widget build(BuildContext context) {
@@ -132,6 +138,7 @@ class _InputDialog extends HookWidget {
             placeholder: label,
             keyboardType: keyboardType,
             inputFormatters: inputFormatters,
+            obscureText: obscureText,
             onSubmitted: (_) => submit(),
           ),
         ),
@@ -152,6 +159,7 @@ class _InputDialog extends HookWidget {
         autofocus: true,
         keyboardType: keyboardType,
         inputFormatters: inputFormatters,
+        obscureText: obscureText,
         decoration: InputDecoration(labelText: label),
         onSubmitted: (_) => submit(),
       ),

@@ -163,6 +163,26 @@
       "tooManyRequests": "محاولات كثيرة. حاول مجددًا بعد قليل.",
       "unavailable": "إعادة التعيين غير متاحة حاليًا.",
       "noAccount": "لا يوجد حساب بهذا الرقم."
+    },
+    "biometric": {
+      "faceId": "Face ID",
+      "touchId": "Touch ID",
+      "fingerprint": "بصمتك",
+      "face": "وجهك",
+      "signIn": "تسجيل الدخول باستخدام {method}",
+      "askTitle": "تسجيل الدخول باستخدام {method}؟",
+      "askText": "في المرة القادمة لن تحتاج إلى كتابة كلمة المرور: تبقى في الخزنة الآمنة لهاتفك.",
+      "enable": "تفعيل",
+      "later": "لاحقًا",
+      "reason": "سجّل الدخول إلى CMFI Connect",
+      "enableReason": "فعّل الدخول السريع إلى CMFI Connect",
+      "changed": "تغيّرت كلمة مرورك: سجّل الدخول بكلمة المرور، ثم فعّل {method} من جديد.",
+      "settings": "الدخول باستخدام {method}",
+      "settingsText": "بدون كتابة كلمة المرور",
+      "passwordTitle": "كلمة مرورك",
+      "passwordLabel": "كلمة المرور",
+      "confirm": "تأكيد",
+      "enabled": "تم تفعيل الدخول باستخدام {method}"
     }
   },
   "countries": {
@@ -209,7 +229,10 @@
       "few": "{n} أيام",
       "many": "{n} يومًا",
       "other": "{n} يوم"
-    }
+    },
+    "hideNumbers": "إخفاء أرقامي",
+    "showNumbers": "إظهار أرقامي",
+    "numbersHidden": "مخفي"
   },
   "reports": {
     "title": "التقرير",

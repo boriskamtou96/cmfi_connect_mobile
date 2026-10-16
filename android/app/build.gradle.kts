@@ -1,4 +1,16 @@
 import com.google.firebase.crashlytics.buildtools.gradle.CrashlyticsExtension
+import java.io.FileInputStream
+import java.util.Properties
+
+// The upload key of Google Play (android/key.properties, never in git; see
+// docs/MISE_EN_PROD.md). Without it, release builds are signed with the
+// debug key, so `flutter run --release` still works on this Mac.
+val keystoreProperties = Properties().apply {
+    val file = rootProject.file("key.properties")
+    if (file.exists()) {
+        FileInputStream(file).use { load(it) }
+    }
+}
 
 plugins {
     id("com.android.application")
@@ -26,21 +38,29 @@ android {
     }
 
     defaultConfig {
-        // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
+        // the id on Google Play; the dev flavor adds ".dev" (flavorizr.gradle.kts)
         applicationId = "com.cmficonnect.app"
-        // You can update the following values to match your application needs.
-        // For more information, see: https://flutter.dev/to/review-gradle-config.
         minSdk = flutter.minSdkVersion
         targetSdk = flutter.targetSdkVersion
         versionCode = flutter.versionCode
         versionName = flutter.versionName
     }
 
+    signingConfigs {
+        if (keystoreProperties.containsKey("storeFile")) {
+            create("release") {
+                storeFile = file(keystoreProperties.getProperty("storeFile"))
+                storePassword = keystoreProperties.getProperty("storePassword")
+                keyAlias = keystoreProperties.getProperty("keyAlias")
+                keyPassword = keystoreProperties.getProperty("keyPassword")
+            }
+        }
+    }
+
     buildTypes {
         release {
-            // TODO: Add your own signing config for the release build.
-            // Signing with the debug keys for now, so `flutter run --release` works.
-            signingConfig = signingConfigs.getByName("debug")
+            signingConfig = signingConfigs.findByName("release")
+                ?: signingConfigs.getByName("debug")
             // no google-services.json (Firebase starts from Dart): the R8
             // mapping can't be sent, and the app's own code is Dart anyway
             configure<CrashlyticsExtension> { mappingFileUploadEnabled = false }

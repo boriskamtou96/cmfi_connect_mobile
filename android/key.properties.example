@@ -1,0 +1,8 @@
+# Copy to android/key.properties (never put in git) and fill in.
+# The upload key of Google Play: create it once with
+#   keytool -genkey -v -keystore ~/cmfi-connect-upload.jks -keyalg RSA -keysize 2048 -validity 10000 -alias upload
+# and keep the .jks file and its passwords safe (a backup elsewhere).
+storeFile=/Users/<toi>/cmfi-connect-upload.jks
+storePassword=<mot de passe du fichier>
+keyAlias=upload
+keyPassword=<mot de passe de la clé>

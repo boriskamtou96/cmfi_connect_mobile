@@ -4,6 +4,7 @@ import '../../../core/network/app_exception.dart';
 import '../../../core/session/account.dart';
 import '../../../core/session/session.dart';
 import '../../../core/storage/account_storage.dart';
+import '../../auth/application/saved_login.dart';
 import '../infrastructure/members_api.dart';
 
 part 'my_account.g.dart';
@@ -44,6 +45,8 @@ class MyAccount extends _$MyAccount {
   Future<void> deleteAccount(String password) async {
     final session = ref.read(sessionProvider.notifier);
     await ref.read(membersApiProvider).deleteAccount(password: password);
+    // the number and the password kept for Face ID go with the account
+    await ref.read(savedLoginProvider.notifier).forget();
     await session.signOut();
   }
 }

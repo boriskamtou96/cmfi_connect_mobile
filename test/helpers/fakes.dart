@@ -4,6 +4,7 @@ import 'dart:typed_data';
 import 'package:cmfi_connect/src/core/network/app_exception.dart';
 import 'package:cmfi_connect/src/core/services/app_shield.dart';
 import 'package:cmfi_connect/src/core/services/app_shortcuts.dart';
+import 'package:cmfi_connect/src/core/services/biometrics.dart';
 import 'package:cmfi_connect/src/core/services/calendar_service.dart';
 import 'package:cmfi_connect/src/core/services/chime.dart';
 import 'package:cmfi_connect/src/core/services/crash_reporting.dart';
@@ -22,6 +23,7 @@ import 'package:cmfi_connect/src/core/services/share_service.dart';
 import 'package:cmfi_connect/src/core/services/store_review.dart';
 import 'package:cmfi_connect/src/core/session/account.dart';
 import 'package:cmfi_connect/src/core/storage/account_storage.dart';
+import 'package:cmfi_connect/src/core/storage/saved_login.dart';
 import 'package:cmfi_connect/src/core/storage/token_storage.dart';
 import 'package:cmfi_connect/src/core/widgets/app_toast.dart';
 import 'package:cmfi_connect/src/features/admin/infrastructure/admin_api.dart';
@@ -2377,4 +2379,52 @@ class FakeAppShield implements AppShield {
 
   @override
   Future<int> pausesLeft() async => pauses;
+}
+
+/// Face ID / the fingerprint, without the phone: [kind] null has none;
+/// [accept] answers the prompts, [prompts] keeps their reasons.
+class FakeBiometrics implements Biometrics {
+  FakeBiometrics({this.available, this.accept = true});
+
+  BiometricKind? available;
+  bool accept;
+  final prompts = <String>[];
+
+  @override
+  Future<BiometricKind?> kind() async => available;
+
+  @override
+  Future<bool> authenticate(String reason) async {
+    prompts.add(reason);
+    return accept;
+  }
+}
+
+/// The Keychain of the sign-in, in memory.
+class FakeSavedLoginStorage implements SavedLoginStorage {
+  FakeSavedLoginStorage({this.savedPhone, this.savedPassword});
+
+  String? savedPhone;
+  String? savedPassword;
+
+  @override
+  Future<String?> phone() async => savedPhone;
+
+  @override
+  Future<void> savePhone(String phone) async => savedPhone = phone;
+
+  @override
+  Future<String?> password() async => savedPassword;
+
+  @override
+  Future<void> savePassword(String password) async => savedPassword = password;
+
+  @override
+  Future<void> deletePassword() async => savedPassword = null;
+
+  @override
+  Future<void> forget() async {
+    savedPhone = null;
+    savedPassword = null;
+  }
 }

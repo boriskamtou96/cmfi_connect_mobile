@@ -163,6 +163,26 @@
       "tooManyRequests": "Demasiados intentos. Inténtalo más tarde.",
       "unavailable": "El restablecimiento no está disponible por ahora.",
       "noAccount": "Ninguna cuenta usa este número."
+    },
+    "biometric": {
+      "faceId": "Face ID",
+      "touchId": "Touch ID",
+      "fingerprint": "tu huella",
+      "face": "tu rostro",
+      "signIn": "Entrar con {method}",
+      "askTitle": "¿Entrar con {method}?",
+      "askText": "La próxima vez no tendrás que escribir tu contraseña: queda en la caja fuerte segura de tu teléfono.",
+      "enable": "Activar",
+      "later": "Más tarde",
+      "reason": "Entra en CMFI Connect",
+      "enableReason": "Activa el acceso rápido a CMFI Connect",
+      "changed": "Tu contraseña cambió: entra con tu contraseña y vuelve a activar {method}.",
+      "settings": "Entrar con {method}",
+      "settingsText": "Sin escribir tu contraseña",
+      "passwordTitle": "Tu contraseña",
+      "passwordLabel": "Contraseña",
+      "confirm": "Confirmar",
+      "enabled": "Acceso con {method} activado"
     }
   },
   "countries": {
@@ -205,7 +225,10 @@
     "days(plural, param=n)": {
       "one": "{n} día",
       "other": "{n} días"
-    }
+    },
+    "hideNumbers": "Ocultar mis cifras",
+    "showNumbers": "Mostrar mis cifras",
+    "numbersHidden": "oculto"
   },
   "reports": {
     "title": "Informe diario",

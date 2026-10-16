@@ -38,6 +38,7 @@ import 'package:cmfi_connect/src/features/hymns/infrastructure/hymn_book_storage
 import 'package:cmfi_connect/src/features/hymns/infrastructure/hymns_api.dart';
 import 'package:cmfi_connect/src/features/members/domain/member.dart';
 import 'package:cmfi_connect/src/features/members/infrastructure/members_api.dart';
+import 'package:cmfi_connect/src/features/ministry/domain/ministry_person.dart';
 import 'package:cmfi_connect/src/features/ministry/domain/nation.dart';
 import 'package:cmfi_connect/src/features/ministry/infrastructure/ministry_api.dart';
 import 'package:cmfi_connect/src/features/notifications/domain/announcement.dart';
@@ -2178,11 +2179,38 @@ class FakeHomeWidgets implements HomeWidgets {
 
 /// The nations of the ministry on the server; [offline] has no network.
 class FakeMinistryApi implements MinistryApi {
-  FakeMinistryApi({List<Nation>? list, this.offline = false})
-    : list = list ?? sampleNations;
+  FakeMinistryApi({
+    List<Nation>? list,
+    Map<MinistryPersonKind, List<MinistryPerson>>? people,
+    this.offline = false,
+  }) : list = list ?? sampleNations,
+       peopleByKind = people ?? {MinistryPersonKind.missionary: samplePeople};
 
   List<Nation> list;
   bool offline;
+
+  /// The published portraits, by kind (none: no hero yet).
+  Map<MinistryPersonKind, List<MinistryPerson>> peopleByKind;
+
+  static const samplePeople = [
+    MinistryPerson(
+      id: 1,
+      kind: MinistryPersonKind.missionary,
+      name: 'Paul Ndjock',
+      countryCode: 'TD',
+      role: 'Implantation d’églises',
+      sinceYear: 2004,
+      story: 'Parti de Yaoundé avec sa famille.\n\nIl sert à N’Djamena.',
+      position: 1,
+    ),
+    MinistryPerson(
+      id: 2,
+      kind: MinistryPersonKind.missionary,
+      name: 'Esther Mbarga',
+      countryCode: 'BJ',
+      position: 2,
+    ),
+  ];
 
   static const sampleNations = [
     Nation(
@@ -2217,6 +2245,14 @@ class FakeMinistryApi implements MinistryApi {
       throw const NetworkException();
     }
     return list;
+  }
+
+  @override
+  Future<List<MinistryPerson>> people(MinistryPersonKind kind) async {
+    if (offline) {
+      throw const NetworkException();
+    }
+    return peopleByKind[kind] ?? const [];
   }
 }
 

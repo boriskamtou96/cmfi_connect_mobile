@@ -584,6 +584,22 @@ class ForgotPasswordRouteArgs {
 }
 
 /// generated route for
+/// [FounderScreen]
+class FounderRoute extends PageRouteInfo<void> {
+  const FounderRoute({List<PageRouteInfo>? children})
+    : super(FounderRoute.name, initialChildren: children);
+
+  static const String name = 'FounderRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const FounderScreen();
+    },
+  );
+}
+
+/// generated route for
 /// [HomeScreen]
 class HomeRoute extends PageRouteInfo<void> {
   const HomeRoute({List<PageRouteInfo>? children})
@@ -830,6 +846,22 @@ class ItemsRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
+/// [LeaderScreen]
+class LeaderRoute extends PageRouteInfo<void> {
+  const LeaderRoute({List<PageRouteInfo>? children})
+    : super(LeaderRoute.name, initialChildren: children);
+
+  static const String name = 'LeaderRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const LeaderScreen();
+    },
+  );
+}
+
+/// generated route for
 /// [LoginScreen]
 class LoginRoute extends PageRouteInfo<void> {
   const LoginRoute({List<PageRouteInfo>? children})
@@ -843,6 +875,127 @@ class LoginRoute extends PageRouteInfo<void> {
       return const LoginScreen();
     },
   );
+}
+
+/// generated route for
+/// [MinistryPeopleScreen]
+class MinistryPeopleRoute extends PageRouteInfo<MinistryPeopleRouteArgs> {
+  MinistryPeopleRoute({
+    required String kind,
+    Key? key,
+    List<PageRouteInfo>? children,
+  }) : super(
+         MinistryPeopleRoute.name,
+         args: MinistryPeopleRouteArgs(kind: kind, key: key),
+         rawPathParams: {'kind': kind},
+         initialChildren: children,
+       );
+
+  static const String name = 'MinistryPeopleRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      final pathParams = data.inheritedPathParams;
+      final args = data.argsAs<MinistryPeopleRouteArgs>(
+        orElse: () =>
+            MinistryPeopleRouteArgs(kind: pathParams.getString('kind')),
+      );
+      return MinistryPeopleScreen(kind: args.kind, key: args.key);
+    },
+  );
+}
+
+class MinistryPeopleRouteArgs {
+  const MinistryPeopleRouteArgs({required this.kind, this.key});
+
+  final String kind;
+
+  final Key? key;
+
+  @override
+  String toString() {
+    return 'MinistryPeopleRouteArgs{kind: $kind, key: $key}';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (other is! MinistryPeopleRouteArgs) return false;
+    return kind == other.kind && key == other.key;
+  }
+
+  @override
+  int get hashCode => kind.hashCode ^ key.hashCode;
+}
+
+/// generated route for
+/// [MinistryPersonScreen]
+class MinistryPersonRoute extends PageRouteInfo<MinistryPersonRouteArgs> {
+  MinistryPersonRoute({
+    required String kind,
+    required int personId,
+    Key? key,
+    List<PageRouteInfo>? children,
+  }) : super(
+         MinistryPersonRoute.name,
+         args: MinistryPersonRouteArgs(
+           kind: kind,
+           personId: personId,
+           key: key,
+         ),
+         rawPathParams: {'kind': kind, 'personId': personId},
+         initialChildren: children,
+       );
+
+  static const String name = 'MinistryPersonRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      final pathParams = data.inheritedPathParams;
+      final args = data.argsAs<MinistryPersonRouteArgs>(
+        orElse: () => MinistryPersonRouteArgs(
+          kind: pathParams.getString('kind'),
+          personId: pathParams.getInt('personId'),
+        ),
+      );
+      return MinistryPersonScreen(
+        kind: args.kind,
+        personId: args.personId,
+        key: args.key,
+      );
+    },
+  );
+}
+
+class MinistryPersonRouteArgs {
+  const MinistryPersonRouteArgs({
+    required this.kind,
+    required this.personId,
+    this.key,
+  });
+
+  final String kind;
+
+  final int personId;
+
+  final Key? key;
+
+  @override
+  String toString() {
+    return 'MinistryPersonRouteArgs{kind: $kind, personId: $personId, key: $key}';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (other is! MinistryPersonRouteArgs) return false;
+    return kind == other.kind && personId == other.personId && key == other.key;
+  }
+
+  @override
+  int get hashCode => kind.hashCode ^ personId.hashCode ^ key.hashCode;
 }
 
 /// generated route for

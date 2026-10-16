@@ -14,10 +14,13 @@ import '../../../core/widgets/section_card.dart';
 import '../../../routing/app_router.dart';
 import '../application/land.dart';
 import '../application/nations.dart';
+import '../domain/ministry_lives.dart';
+import '../domain/ministry_person.dart';
 import 'widgets/nation_globe.dart';
 
-/// Notre ministère: the globe in small, and its sub-menus (the nations, our
-/// purpose; our missionaries and our heroes to come).
+/// Notre ministère: the globe in small, our founder and our leader side by
+/// side, and the sub-menus (the nations, our purpose, our missionaries, our
+/// heroes).
 @RoutePage()
 class MinistryScreen extends ConsumerWidget {
   const MinistryScreen({super.key});
@@ -162,35 +165,165 @@ class MinistryScreen extends ConsumerWidget {
             Padding(
               padding: const EdgeInsets.all(AppSpacing.lg),
               child: FadeSlideIn(
-                child: SectionCard(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
-                    tile(
-                      icon: AppIcons.ministryTile,
-                      title: t.nations,
-                      subtitle: t.nationsSubtitle,
-                      onTap: () => context.router.push(const NationsRoute()),
+                    IntrinsicHeight(
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.stretch,
+                        children: [
+                          Expanded(
+                            child: _LeaderCard(
+                              label: t.founder,
+                              name: t.lives.founder.name,
+                              asset: MinistryLife.founder.asset,
+                              onTap: () =>
+                                  context.router.push(const FounderRoute()),
+                            ),
+                          ),
+                          const SizedBox(width: AppSpacing.md),
+                          Expanded(
+                            child: _LeaderCard(
+                              label: t.leader,
+                              name: t.lives.leader.name,
+                              asset: MinistryLife.leader.asset,
+                              onTap: () =>
+                                  context.router.push(const LeaderRoute()),
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
-                    tile(
-                      icon: AppIcons.purposeTile,
-                      title: t.purpose,
-                      subtitle: t.purposeSubtitle,
-                      onTap: () => context.router.push(const PurposeRoute()),
-                    ),
-                    tile(
-                      icon: AppIcons.missionariesTile,
-                      title: t.missionaries,
-                      subtitle: t.missionariesSubtitle,
-                    ),
-                    tile(
-                      icon: AppIcons.heroesTile,
-                      title: t.heroes,
-                      subtitle: t.heroesSubtitle,
+                    const SizedBox(height: AppSpacing.lg),
+                    SectionCard(
+                      children: [
+                        tile(
+                          icon: AppIcons.ministryTile,
+                          title: t.nations,
+                          subtitle: t.nationsSubtitle,
+                          onTap: () =>
+                              context.router.push(const NationsRoute()),
+                        ),
+                        tile(
+                          icon: AppIcons.purposeTile,
+                          title: t.purpose,
+                          subtitle: t.purposeSubtitle,
+                          onTap: () =>
+                              context.router.push(const PurposeRoute()),
+                        ),
+                        tile(
+                          icon: AppIcons.missionariesTile,
+                          title: t.missionaries,
+                          subtitle: t.missionariesSubtitle,
+                          onTap: () => context.router.push(
+                            MinistryPeopleRoute(
+                              kind: MinistryPersonKind.missionary.name,
+                            ),
+                          ),
+                        ),
+                        tile(
+                          icon: AppIcons.heroesTile,
+                          title: t.heroes,
+                          subtitle: t.heroesSubtitle,
+                          onTap: () => context.router.push(
+                            MinistryPeopleRoute(
+                              kind: MinistryPersonKind.hero.name,
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
                   ],
                 ),
               ),
             ),
           ],
+        ),
+      ),
+    );
+  }
+}
+
+/// Notre fondateur, Notre leader: a round portrait in a gold ring, what
+/// they are to us and their name.
+class _LeaderCard extends StatelessWidget {
+  const _LeaderCard({
+    required this.label,
+    required this.name,
+    required this.asset,
+    required this.onTap,
+  });
+
+  final String label;
+  final String name;
+  final String asset;
+  final VoidCallback onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    final scheme = Theme.of(context).colorScheme;
+
+    return Material(
+      color: scheme.surface,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(AppRadius.xl),
+        side: BorderSide(color: scheme.outlineVariant),
+      ),
+      clipBehavior: Clip.antiAlias,
+      child: InkWell(
+        onTap: onTap,
+        child: Padding(
+          padding: const EdgeInsets.fromLTRB(
+            AppSpacing.md,
+            AppSpacing.lg,
+            AppSpacing.md,
+            AppSpacing.lg,
+          ),
+          child: Column(
+            children: [
+              Container(
+                width: 76,
+                height: 76,
+                padding: const EdgeInsets.all(2.5),
+                decoration: const BoxDecoration(
+                  shape: BoxShape.circle,
+                  gradient: LinearGradient(
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
+                    colors: [AppColors.goldLight, AppColors.gold],
+                  ),
+                ),
+                child: ClipOval(
+                  child: Image.asset(
+                    asset,
+                    fit: BoxFit.cover,
+                    excludeFromSemantics: true,
+                  ),
+                ),
+              ),
+              const SizedBox(height: AppSpacing.md),
+              Text(
+                label.toUpperCase(),
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontSize: 11,
+                  fontWeight: FontWeight.w800,
+                  letterSpacing: 1.1,
+                  color: scheme.primary,
+                ),
+              ),
+              const SizedBox(height: 2),
+              Text(
+                name,
+                textAlign: TextAlign.center,
+                style: const TextStyle(
+                  fontSize: 15,
+                  height: 1.25,
+                  fontWeight: FontWeight.w800,
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );

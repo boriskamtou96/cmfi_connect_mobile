@@ -1020,6 +1020,17 @@
     "missionariesSubtitle": "Those the Lord sends to the nations",
     "heroes": "Our heroes",
     "heroesSubtitle": "Those whose faith inspires us",
+    "founder": "Our founder",
+    "founderSubtitle": "Prof. Zacharias Tanee Fomum",
+    "leader": "Our leader",
+    "leaderSubtitle": "Theodore Andoseh",
+    "missionariesEmpty": "Portraits of our missionaries are coming soon.",
+    "heroesEmpty": "Portraits of our heroes are coming soon.",
+    "personGone": "This portrait is no longer available.",
+    "photoOf": "Photo of {name}",
+    "keyDates": "Key dates",
+    "life": "His life",
+    "story": "Their story",
     "goalOf": "OUR GOAL · {n}/{total}",
     "previousGoal": "Previous goal",
     "nextGoal": "Next goal",
@@ -1053,6 +1064,58 @@
         "fasting": "Fasting",
         "intercession": "Intercession",
         "pray": "Pray now"
+      }
+    },
+    "lives": {
+      "founder": {
+        "name": "Prof. Zacharias Tanee Fomum",
+        "line": "1945 – 2009 · Founder of CMFI",
+        "facts": [
+          "CMFI founded",
+          "books written",
+          "nations visited"
+        ],
+        "dates": [
+          "Born on 20 June in Cameroon, into a Presbyterian family.",
+          "Gives his life to Jesus Christ on 13 June, through a tract.",
+          "Surrenders himself wholly to the Lord on 1 October, in Sierra Leone.",
+          "Filled with the Holy Spirit on 24 October, after seven days of prayer.",
+          "Founds CMFI in Yaoundé on 12 May.",
+          "Awarded a Doctor of Science by Durham University.",
+          "Goes to be with the Lord on 14 March."
+        ],
+        "story": [
+          "Zacharias Tanee Fomum was born on 20 June 1945 in Cameroon, into a Presbyterian family from Batibo, in the North-West. While still a schoolboy, he gave his life to Jesus Christ on 13 June 1956, through a tract entitled “Someone died for you”.",
+          "As a student at Fourah Bay College in Sierra Leone, he surrendered himself without reserve to the Lord and to His service on 1 October 1966. On 24 October 1970, at the end of seven days of prayer and fasting, he was filled with the Holy Spirit. From then on, prayer was the centre of his life.",
+          "With a doctorate in organic chemistry from Makerere University in Uganda, he taught at the University of Yaoundé, where he became a professor. He supervised about a hundred theses and dissertations, and in 2005 Durham University, in Great Britain, awarded him a Doctor of Science for his whole body of work.",
+          "On 12 May 1975, in Yaoundé, he founded Christian Missionary Fellowship International: a movement to win souls, make disciples, plant churches and send out missionaries. He made more than 700 missionary journeys in Cameroon and more than 500 to over 70 nations, on six continents.",
+          "He spent long hours alone with God every day, led many prayer crusades, sieges and walks, and fasted often. He wrote more than 150 books on prayer, fasting, holiness, discipleship and mission, read in many languages.",
+          "With his wife, Prisca Zei Fomum, a minister to children, he had seven children, all involved in the work of the Gospel. Together they lived simply, so as to give the largest part of their income to the Gospel.",
+          "He went to be with the Lord on 14 March 2009 and was buried in Yaoundé on 21 March. The work he founded goes on among the nations."
+        ]
+      },
+      "leader": {
+        "name": "Theodore Andoseh",
+        "line": "Leader of CMFI since 2009",
+        "facts": [
+          "churches planted",
+          "years in Nigeria",
+          "leading CMFI"
+        ],
+        "dates": [
+          "Gives his life to Jesus Christ under the preaching of Prof. Fomum.",
+          "Consecrated a bishop in Yaoundé.",
+          "Sent as a missionary to Nigeria with his wife, Adela.",
+          "Takes up the leadership of CMFI.",
+          "Brings the messages of the 3rd World Convention to members from 93 nations."
+        ],
+        "story": [
+          "Theodore Andoseh gave his life to Jesus Christ in 1978, listening to the preaching of Prof. Zacharias Tanee Fomum, who became his spiritual father and trained him as a disciple.",
+          "He first served at his side: as a laboratory assistant at the University of Yaoundé, then as his personal assistant and private secretary. In those years he published the first revival tract, “God speaks to the man who wants to hear”, and started the first prayer chain in Yaoundé.",
+          "As a national missionary, he planted more than fifty churches in Cameroon. He was consecrated a bishop in Yaoundé in 1989.",
+          "In 1994 he left as a missionary to Nigeria with his wife, Adela. They served there for fourteen years.",
+          "Since 2009, when Prof. Fomum went to be with the Lord, he has led CMFI among the nations. In December 2019, at Koume near Bertoua, he brought the messages of the third World Convention to members from 93 nations. He is also the author of several books on serving God and building up the Church."
+        ]
       }
     }
   },

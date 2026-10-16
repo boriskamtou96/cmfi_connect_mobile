@@ -1019,6 +1019,17 @@
     "missionariesSubtitle": "Los que el Señor envía a las naciones",
     "heroes": "Nuestros héroes",
     "heroesSubtitle": "Aquellos cuya fe nos inspira",
+    "founder": "Nuestro fundador",
+    "founderSubtitle": "El Prof. Zacharias Tanee Fomum",
+    "leader": "Nuestro líder",
+    "leaderSubtitle": "Theodore Andoseh",
+    "missionariesEmpty": "Los retratos de nuestros misioneros llegarán pronto.",
+    "heroesEmpty": "Los retratos de nuestros héroes llegarán pronto.",
+    "personGone": "Este retrato ya no está disponible.",
+    "photoOf": "Foto de {name}",
+    "keyDates": "Fechas clave",
+    "life": "Su vida",
+    "story": "Su historia",
     "goalOf": "NUESTRO OBJETIVO · {n}/{total}",
     "previousGoal": "Objetivo anterior",
     "nextGoal": "Siguiente objetivo",
@@ -1052,6 +1063,58 @@
         "fasting": "Ayuno",
         "intercession": "Intercesión",
         "pray": "Orar ahora"
+      }
+    },
+    "lives": {
+      "founder": {
+        "name": "Prof. Zacharias Tanee Fomum",
+        "line": "1945 – 2009 · Fundador de la CMCI",
+        "facts": [
+          "fundación de la CMCI",
+          "libros escritos",
+          "naciones visitadas"
+        ],
+        "dates": [
+          "Nace el 20 de junio en Camerún, en una familia presbiteriana.",
+          "Entrega su vida a Jesucristo el 13 de junio, al leer un tratado.",
+          "Se entrega por completo al Señor el 1 de octubre, en Sierra Leona.",
+          "Es lleno del Espíritu Santo el 24 de octubre, tras siete días de oración.",
+          "Funda la CMCI en Yaundé el 12 de mayo.",
+          "Recibe el doctorado en ciencias de la Universidad de Durham.",
+          "Parte con el Señor el 14 de marzo."
+        ],
+        "story": [
+          "Zacharias Tanee Fomum nació el 20 de junio de 1945 en Camerún, en una familia presbiteriana originaria de Batibo, en el noroeste del país. Siendo todavía escolar, entregó su vida a Jesucristo el 13 de junio de 1956, al leer un tratado titulado «Alguien murió por ti».",
+          "Siendo estudiante en el Fourah Bay College, en Sierra Leona, se entregó sin reservas al Señor y a su servicio el 1 de octubre de 1966. El 24 de octubre de 1970, al final de siete días de oración y ayuno, fue lleno del Espíritu Santo. Desde entonces, la oración fue el centro de su vida.",
+          "Doctor en química orgánica por la Universidad Makerere, en Uganda, enseñó en la Universidad de Yaundé, donde llegó a ser profesor. Dirigió un centenar de tesis y memorias, y en 2005 la Universidad de Durham, en Gran Bretaña, le otorgó un doctorado en ciencias por el conjunto de su obra.",
+          "El 12 de mayo de 1975, en Yaundé, fundó la Comunidad Misionera Cristiana Internacional: un movimiento para ganar almas, hacer discípulos, plantar iglesias y enviar misioneros. Hizo más de 700 viajes misioneros en Camerún y más de 500 a más de 70 naciones, en seis continentes.",
+          "Pasaba cada día largas horas a solas con Dios, dirigió muchas cruzadas, asedios y marchas de oración, y ayunó a menudo. Escribió más de 150 libros sobre la oración, el ayuno, la santidad, el discipulado y la misión, leídos en muchos idiomas.",
+          "Con su esposa, Prisca Zei Fomum, servidora de Dios entre los niños, tuvo siete hijos, todos comprometidos en la obra del Evangelio. Juntos vivían con sencillez para dar al Evangelio la mayor parte de sus ingresos.",
+          "Partió a la presencia del Señor el 14 de marzo de 2009 y fue sepultado en Yaundé el 21 de marzo. La obra que fundó continúa entre las naciones."
+        ]
+      },
+      "leader": {
+        "name": "Theodore Andoseh",
+        "line": "Líder de la CMCI desde 2009",
+        "facts": [
+          "iglesias plantadas",
+          "años en Nigeria",
+          "al frente de la CMCI"
+        ],
+        "dates": [
+          "Entrega su vida a Jesucristo bajo la predicación del Prof. Fomum.",
+          "Es consagrado obispo en Yaundé.",
+          "Parte como misionero a Nigeria con su esposa, Adela.",
+          "Asume la dirección de la CMCI.",
+          "Trae los mensajes de la 3.ª Convención Mundial a miembros de 93 naciones."
+        ],
+        "story": [
+          "Theodore Andoseh entregó su vida a Jesucristo en 1978, al escuchar predicar al Prof. Zacharias Tanee Fomum, que llegó a ser su padre espiritual y lo formó como discípulo.",
+          "Primero sirvió a su lado: como asistente de laboratorio en la Universidad de Yaundé, y luego como su asistente personal y secretario particular. En esos años publicó el primer tratado del avivamiento, «Dios habla al hombre que quiere oír», e inició la primera cadena de oración de Yaundé.",
+          "Como misionero nacional, plantó más de cincuenta iglesias en Camerún. Fue consagrado obispo en Yaundé en 1989.",
+          "En 1994 partió como misionero a Nigeria con su esposa, Adela. Allí sirvieron durante catorce años.",
+          "Desde 2009, cuando el Prof. Fomum partió con el Señor, dirige la CMCI entre las naciones. En diciembre de 2019, en Koume, cerca de Bertoua, trajo los mensajes de la tercera Convención Mundial a miembros llegados de 93 naciones. También es autor de varios libros sobre el servicio a Dios y la edificación de la Iglesia."
+        ]
       }
     }
   },

@@ -1,6 +1,10 @@
 import 'package:cmfi_connect/src/core/i18n/strings.g.dart';
 import 'package:cmfi_connect/src/core/widgets/app_back_button.dart';
 import 'package:cmfi_connect/src/features/ministry/domain/globe_math.dart';
+import 'package:cmfi_connect/src/features/ministry/domain/ministry_lives.dart';
+import 'package:cmfi_connect/src/features/ministry/domain/ministry_person.dart';
+import 'package:cmfi_connect/src/features/ministry/presentation/life_screen.dart';
+import 'package:cmfi_connect/src/features/ministry/presentation/ministry_people_screen.dart';
 import 'package:cmfi_connect/src/features/ministry/presentation/ministry_screen.dart';
 import 'package:cmfi_connect/src/features/ministry/presentation/nations_screen.dart';
 import 'package:cmfi_connect/src/features/ministry/presentation/purpose_screen.dart';
@@ -72,7 +76,7 @@ void main() {
     await tester.pumpAndSettle();
   }
 
-  testWidgets('our ministry: a page of sub-menus, two of them to come', (
+  testWidgets('our ministry: our founder, our leader and the sub-menus', (
     tester,
   ) async {
     await pumpApp(tester, token: 't');
@@ -81,16 +85,11 @@ void main() {
     expect(find.byType(MinistryScreen), findsOneWidget);
     expect(find.text('3 nations'), findsOneWidget);
     expect(find.bySemanticsLabel(RegExp('Globe : 3 nations')), findsOneWidget);
+    expect(find.text('NOTRE FONDATEUR'), findsOneWidget);
+    expect(find.text('NOTRE LEADER'), findsOneWidget);
     expect(find.text('Nos missionnaires'), findsOneWidget);
     expect(find.text('Nos héros'), findsOneWidget);
-    expect(find.text('Bientôt'), findsNWidgets(2));
-
-    // to come: nothing opens
-    await tester.ensureVisible(find.text('Nos héros'));
-    await tester.pumpAndSettle();
-    await tester.tap(find.text('Nos héros'));
-    await tester.pumpAndSettle();
-    expect(find.byType(MinistryScreen), findsOneWidget);
+    expect(find.text('Bientôt'), findsNothing);
 
     await tester.ensureVisible(find.text('Notre but'));
     await tester.pumpAndSettle();
@@ -193,5 +192,133 @@ void main() {
     await openMinistry(tester);
 
     expect(find.text('154 nations'), findsOneWidget);
+  });
+
+  testWidgets('our founder: his portrait, his key dates and his life', (
+    tester,
+  ) async {
+    await pumpApp(tester, token: 't');
+    await openMinistry(tester);
+
+    await tester.tap(find.text('NOTRE FONDATEUR'));
+    await tester.pumpAndSettle();
+    expect(find.byType(FounderScreen), findsOneWidget);
+    expect(find.text('Pr Zacharias Tanee Fomum'), findsOneWidget);
+    expect(find.text('1945 – 2009 · Fondateur de la CMCI'), findsOneWidget);
+    expect(
+      find.bySemanticsLabel('Photo de Pr Zacharias Tanee Fomum'),
+      findsOneWidget,
+    );
+    expect(find.text('150+'), findsOneWidget);
+    expect(find.text('livres écrits'), findsOneWidget);
+
+    await scrollTo(tester, find.text('Fonde la CMCI à Yaoundé le 12 mai.'));
+    expect(find.text('1975'), findsWidgets);
+    await scrollTo(tester, find.textContaining('inhumé à Yaoundé le 21 mars'));
+
+    // the back button scrolled away with the header: the system back
+    await tester.binding.handlePopRoute();
+    await tester.pumpAndSettle();
+    await tester.tap(find.text('NOTRE LEADER'));
+    await tester.pumpAndSettle();
+    expect(find.byType(LeaderScreen), findsOneWidget);
+    expect(find.text('Théodore Andoseh'), findsOneWidget);
+    expect(find.text('Leader de la CMCI depuis 2009'), findsOneWidget);
+    await scrollTo(tester, find.text('Est consacré évêque à Yaoundé.'));
+  });
+
+  test('every language has a text for each fact and each date', () {
+    for (final locale in AppLocale.values) {
+      final lives = locale.buildSync().ministry.lives;
+      for (final (life, facts, dates, story) in [
+        (
+          MinistryLife.founder,
+          lives.founder.facts,
+          lives.founder.dates,
+          lives.founder.story,
+        ),
+        (
+          MinistryLife.leader,
+          lives.leader.facts,
+          lives.leader.dates,
+          lives.leader.story,
+        ),
+      ]) {
+        expect(facts, hasLength(life.facts.length), reason: '$locale');
+        expect(dates, hasLength(life.years.length), reason: '$locale');
+        expect(story, isNotEmpty, reason: '$locale');
+      }
+    }
+  });
+
+  testWidgets('our missionaries: the list, then a story', (tester) async {
+    final app = await pumpApp(tester, token: 't');
+    await openMinistry(tester);
+
+    await scrollTo(tester, find.text('Nos missionnaires'));
+    await tester.tap(find.text('Nos missionnaires'));
+    await tester.pumpAndSettle();
+    expect(find.byType(MinistryPeopleScreen), findsOneWidget);
+    expect(find.text('Paul Ndjock'), findsOneWidget);
+    expect(find.text('🇹🇩 Tchad · Depuis 2004'), findsOneWidget);
+    expect(find.text('Implantation d’églises'), findsOneWidget);
+    // without photo: the initials
+    expect(find.text('EM'), findsOneWidget);
+    expect(find.text('🇧🇯 Bénin'), findsOneWidget);
+
+    await tester.tap(find.text('Paul Ndjock'));
+    await tester.pumpAndSettle();
+    expect(find.byType(MinistryPersonScreen), findsOneWidget);
+    expect(find.text('NOS MISSIONNAIRES'), findsOneWidget);
+    expect(find.text('Son histoire'), findsOneWidget);
+    // a paragraph per blank line
+    expect(find.text('Parti de Yaoundé avec sa famille.'), findsOneWidget);
+    expect(find.text('Il sert à N’Djamena.'), findsOneWidget);
+
+    // the list stays on the phone: seen again without network
+    app.ministryApi.offline = true;
+    await tester.tap(find.byType(AppBackButton));
+    await tester.pumpAndSettle();
+    expect(find.text('Paul Ndjock'), findsOneWidget);
+  });
+
+  testWidgets('our heroes: none published yet', (tester) async {
+    await pumpApp(tester, token: 't');
+    await openMinistry(tester);
+
+    await scrollTo(tester, find.text('Nos héros'));
+    await tester.tap(find.text('Nos héros'));
+    await tester.pumpAndSettle();
+    expect(
+      find.text('Les portraits de nos héros arrivent bientôt.'),
+      findsOneWidget,
+    );
+  });
+
+  testWidgets('never seen and no network: try again', (tester) async {
+    final app = await pumpApp(
+      tester,
+      token: 't',
+      ministryApi: FakeMinistryApi(offline: true),
+    );
+    await openMinistry(tester);
+
+    await scrollTo(tester, find.text('Nos missionnaires'));
+    await tester.tap(find.text('Nos missionnaires'));
+    await tester.pumpAndSettle();
+    expect(find.text('Réessayer'), findsOneWidget);
+
+    app.ministryApi.offline = false;
+    await tester.tap(find.text('Réessayer'));
+    await tester.pumpAndSettle();
+    expect(find.text('Paul Ndjock'), findsOneWidget);
+    expect(
+      find.byWidgetPredicate(
+        (widget) =>
+            widget is MinistryPeopleScreen &&
+            widget.kind == MinistryPersonKind.missionary.name,
+      ),
+      findsOneWidget,
+    );
   });
 }

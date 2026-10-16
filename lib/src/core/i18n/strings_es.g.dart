@@ -817,6 +817,17 @@ class _Translations$ministry$es extends Translations$ministry$fr {
 	@override String get missionariesSubtitle => 'Los que el Señor envía a las naciones';
 	@override String get heroes => 'Nuestros héroes';
 	@override String get heroesSubtitle => 'Aquellos cuya fe nos inspira';
+	@override String get founder => 'Nuestro fundador';
+	@override String get founderSubtitle => 'El Prof. Zacharias Tanee Fomum';
+	@override String get leader => 'Nuestro líder';
+	@override String get leaderSubtitle => 'Theodore Andoseh';
+	@override String get missionariesEmpty => 'Los retratos de nuestros misioneros llegarán pronto.';
+	@override String get heroesEmpty => 'Los retratos de nuestros héroes llegarán pronto.';
+	@override String get personGone => 'Este retrato ya no está disponible.';
+	@override String photoOf({required Object name}) => 'Foto de ${name}';
+	@override String get keyDates => 'Fechas clave';
+	@override String get life => 'Su vida';
+	@override String get story => 'Su historia';
 	@override String goalOf({required Object n, required Object total}) => 'NUESTRO OBJETIVO · ${n}/${total}';
 	@override String get previousGoal => 'Objetivo anterior';
 	@override String get nextGoal => 'Siguiente objetivo';
@@ -831,6 +842,7 @@ class _Translations$ministry$es extends Translations$ministry$fr {
 		'internet': 'Internet',
 	};
 	@override late final _Translations$ministry$goals$es goals = _Translations$ministry$goals$es._(_root);
+	@override late final _Translations$ministry$lives$es lives = _Translations$ministry$lives$es._(_root);
 }
 
 // Path: prayer
@@ -1836,6 +1848,17 @@ class _Translations$ministry$goals$es extends Translations$ministry$goals$fr {
 	@override late final _Translations$ministry$goals$revival$es revival = _Translations$ministry$goals$revival$es._(_root);
 }
 
+// Path: ministry.lives
+class _Translations$ministry$lives$es extends Translations$ministry$lives$fr {
+	_Translations$ministry$lives$es._(TranslationsEs root) : this._root = root, super.internal(root);
+
+	final TranslationsEs _root; // ignore: unused_field
+
+	// Translations
+	@override late final _Translations$ministry$lives$founder$es founder = _Translations$ministry$lives$founder$es._(_root);
+	@override late final _Translations$ministry$lives$leader$es leader = _Translations$ministry$lives$leader$es._(_root);
+}
+
 // Path: prayer.hero
 class _Translations$prayer$hero$es extends Translations$prayer$hero$fr {
 	_Translations$prayer$hero$es._(TranslationsEs root) : this._root = root, super.internal(root);
@@ -2261,6 +2284,70 @@ class _Translations$ministry$goals$revival$es extends Translations$ministry$goal
 	@override String get fasting => 'Ayuno';
 	@override String get intercession => 'Intercesión';
 	@override String get pray => 'Orar ahora';
+}
+
+// Path: ministry.lives.founder
+class _Translations$ministry$lives$founder$es extends Translations$ministry$lives$founder$fr {
+	_Translations$ministry$lives$founder$es._(TranslationsEs root) : this._root = root, super.internal(root);
+
+	final TranslationsEs _root; // ignore: unused_field
+
+	// Translations
+	@override String get name => 'Prof. Zacharias Tanee Fomum';
+	@override String get line => '1945 – 2009 · Fundador de la CMCI';
+	@override List<String> get facts => [
+		'fundación de la CMCI',
+		'libros escritos',
+		'naciones visitadas',
+	];
+	@override List<String> get dates => [
+		'Nace el 20 de junio en Camerún, en una familia presbiteriana.',
+		'Entrega su vida a Jesucristo el 13 de junio, al leer un tratado.',
+		'Se entrega por completo al Señor el 1 de octubre, en Sierra Leona.',
+		'Es lleno del Espíritu Santo el 24 de octubre, tras siete días de oración.',
+		'Funda la CMCI en Yaundé el 12 de mayo.',
+		'Recibe el doctorado en ciencias de la Universidad de Durham.',
+		'Parte con el Señor el 14 de marzo.',
+	];
+	@override List<String> get story => [
+		'Zacharias Tanee Fomum nació el 20 de junio de 1945 en Camerún, en una familia presbiteriana originaria de Batibo, en el noroeste del país. Siendo todavía escolar, entregó su vida a Jesucristo el 13 de junio de 1956, al leer un tratado titulado «Alguien murió por ti».',
+		'Siendo estudiante en el Fourah Bay College, en Sierra Leona, se entregó sin reservas al Señor y a su servicio el 1 de octubre de 1966. El 24 de octubre de 1970, al final de siete días de oración y ayuno, fue lleno del Espíritu Santo. Desde entonces, la oración fue el centro de su vida.',
+		'Doctor en química orgánica por la Universidad Makerere, en Uganda, enseñó en la Universidad de Yaundé, donde llegó a ser profesor. Dirigió un centenar de tesis y memorias, y en 2005 la Universidad de Durham, en Gran Bretaña, le otorgó un doctorado en ciencias por el conjunto de su obra.',
+		'El 12 de mayo de 1975, en Yaundé, fundó la Comunidad Misionera Cristiana Internacional: un movimiento para ganar almas, hacer discípulos, plantar iglesias y enviar misioneros. Hizo más de 700 viajes misioneros en Camerún y más de 500 a más de 70 naciones, en seis continentes.',
+		'Pasaba cada día largas horas a solas con Dios, dirigió muchas cruzadas, asedios y marchas de oración, y ayunó a menudo. Escribió más de 150 libros sobre la oración, el ayuno, la santidad, el discipulado y la misión, leídos en muchos idiomas.',
+		'Con su esposa, Prisca Zei Fomum, servidora de Dios entre los niños, tuvo siete hijos, todos comprometidos en la obra del Evangelio. Juntos vivían con sencillez para dar al Evangelio la mayor parte de sus ingresos.',
+		'Partió a la presencia del Señor el 14 de marzo de 2009 y fue sepultado en Yaundé el 21 de marzo. La obra que fundó continúa entre las naciones.',
+	];
+}
+
+// Path: ministry.lives.leader
+class _Translations$ministry$lives$leader$es extends Translations$ministry$lives$leader$fr {
+	_Translations$ministry$lives$leader$es._(TranslationsEs root) : this._root = root, super.internal(root);
+
+	final TranslationsEs _root; // ignore: unused_field
+
+	// Translations
+	@override String get name => 'Theodore Andoseh';
+	@override String get line => 'Líder de la CMCI desde 2009';
+	@override List<String> get facts => [
+		'iglesias plantadas',
+		'años en Nigeria',
+		'al frente de la CMCI',
+	];
+	@override List<String> get dates => [
+		'Entrega su vida a Jesucristo bajo la predicación del Prof. Fomum.',
+		'Es consagrado obispo en Yaundé.',
+		'Parte como misionero a Nigeria con su esposa, Adela.',
+		'Asume la dirección de la CMCI.',
+		'Trae los mensajes de la 3.ª Convención Mundial a miembros de 93 naciones.',
+	];
+	@override List<String> get story => [
+		'Theodore Andoseh entregó su vida a Jesucristo en 1978, al escuchar predicar al Prof. Zacharias Tanee Fomum, que llegó a ser su padre espiritual y lo formó como discípulo.',
+		'Primero sirvió a su lado: como asistente de laboratorio en la Universidad de Yaundé, y luego como su asistente personal y secretario particular. En esos años publicó el primer tratado del avivamiento, «Dios habla al hombre que quiere oír», e inició la primera cadena de oración de Yaundé.',
+		'Como misionero nacional, plantó más de cincuenta iglesias en Camerún. Fue consagrado obispo en Yaundé en 1989.',
+		'En 1994 partió como misionero a Nigeria con su esposa, Adela. Allí sirvieron durante catorce años.',
+		'Desde 2009, cuando el Prof. Fomum partió con el Señor, dirige la CMCI entre las naciones. En diciembre de 2019, en Koume, cerca de Bertoua, trajo los mensajes de la tercera Convención Mundial a miembros llegados de 93 naciones. También es autor de varios libros sobre el servicio a Dios y la edificación de la Iglesia.',
+	];
 }
 
 // Path: prayer.retreat.hints
@@ -3179,6 +3266,17 @@ extension on TranslationsEs {
 			'ministry.missionariesSubtitle' => 'Los que el Señor envía a las naciones',
 			'ministry.heroes' => 'Nuestros héroes',
 			'ministry.heroesSubtitle' => 'Aquellos cuya fe nos inspira',
+			'ministry.founder' => 'Nuestro fundador',
+			'ministry.founderSubtitle' => 'El Prof. Zacharias Tanee Fomum',
+			'ministry.leader' => 'Nuestro líder',
+			'ministry.leaderSubtitle' => 'Theodore Andoseh',
+			'ministry.missionariesEmpty' => 'Los retratos de nuestros misioneros llegarán pronto.',
+			'ministry.heroesEmpty' => 'Los retratos de nuestros héroes llegarán pronto.',
+			'ministry.personGone' => 'Este retrato ya no está disponible.',
+			'ministry.photoOf' => ({required Object name}) => 'Foto de ${name}',
+			'ministry.keyDates' => 'Fechas clave',
+			'ministry.life' => 'Su vida',
+			'ministry.story' => 'Su historia',
 			'ministry.goalOf' => ({required Object n, required Object total}) => 'NUESTRO OBJETIVO · ${n}/${total}',
 			'ministry.previousGoal' => 'Objetivo anterior',
 			'ministry.nextGoal' => 'Siguiente objetivo',
@@ -3204,6 +3302,40 @@ extension on TranslationsEs {
 			'ministry.goals.revival.fasting' => 'Ayuno',
 			'ministry.goals.revival.intercession' => 'Intercesión',
 			'ministry.goals.revival.pray' => 'Orar ahora',
+			'ministry.lives.founder.name' => 'Prof. Zacharias Tanee Fomum',
+			'ministry.lives.founder.line' => '1945 – 2009 · Fundador de la CMCI',
+			'ministry.lives.founder.facts.0' => 'fundación de la CMCI',
+			'ministry.lives.founder.facts.1' => 'libros escritos',
+			'ministry.lives.founder.facts.2' => 'naciones visitadas',
+			'ministry.lives.founder.dates.0' => 'Nace el 20 de junio en Camerún, en una familia presbiteriana.',
+			'ministry.lives.founder.dates.1' => 'Entrega su vida a Jesucristo el 13 de junio, al leer un tratado.',
+			'ministry.lives.founder.dates.2' => 'Se entrega por completo al Señor el 1 de octubre, en Sierra Leona.',
+			'ministry.lives.founder.dates.3' => 'Es lleno del Espíritu Santo el 24 de octubre, tras siete días de oración.',
+			'ministry.lives.founder.dates.4' => 'Funda la CMCI en Yaundé el 12 de mayo.',
+			'ministry.lives.founder.dates.5' => 'Recibe el doctorado en ciencias de la Universidad de Durham.',
+			'ministry.lives.founder.dates.6' => 'Parte con el Señor el 14 de marzo.',
+			'ministry.lives.founder.story.0' => 'Zacharias Tanee Fomum nació el 20 de junio de 1945 en Camerún, en una familia presbiteriana originaria de Batibo, en el noroeste del país. Siendo todavía escolar, entregó su vida a Jesucristo el 13 de junio de 1956, al leer un tratado titulado «Alguien murió por ti».',
+			'ministry.lives.founder.story.1' => 'Siendo estudiante en el Fourah Bay College, en Sierra Leona, se entregó sin reservas al Señor y a su servicio el 1 de octubre de 1966. El 24 de octubre de 1970, al final de siete días de oración y ayuno, fue lleno del Espíritu Santo. Desde entonces, la oración fue el centro de su vida.',
+			'ministry.lives.founder.story.2' => 'Doctor en química orgánica por la Universidad Makerere, en Uganda, enseñó en la Universidad de Yaundé, donde llegó a ser profesor. Dirigió un centenar de tesis y memorias, y en 2005 la Universidad de Durham, en Gran Bretaña, le otorgó un doctorado en ciencias por el conjunto de su obra.',
+			'ministry.lives.founder.story.3' => 'El 12 de mayo de 1975, en Yaundé, fundó la Comunidad Misionera Cristiana Internacional: un movimiento para ganar almas, hacer discípulos, plantar iglesias y enviar misioneros. Hizo más de 700 viajes misioneros en Camerún y más de 500 a más de 70 naciones, en seis continentes.',
+			'ministry.lives.founder.story.4' => 'Pasaba cada día largas horas a solas con Dios, dirigió muchas cruzadas, asedios y marchas de oración, y ayunó a menudo. Escribió más de 150 libros sobre la oración, el ayuno, la santidad, el discipulado y la misión, leídos en muchos idiomas.',
+			'ministry.lives.founder.story.5' => 'Con su esposa, Prisca Zei Fomum, servidora de Dios entre los niños, tuvo siete hijos, todos comprometidos en la obra del Evangelio. Juntos vivían con sencillez para dar al Evangelio la mayor parte de sus ingresos.',
+			'ministry.lives.founder.story.6' => 'Partió a la presencia del Señor el 14 de marzo de 2009 y fue sepultado en Yaundé el 21 de marzo. La obra que fundó continúa entre las naciones.',
+			'ministry.lives.leader.name' => 'Theodore Andoseh',
+			'ministry.lives.leader.line' => 'Líder de la CMCI desde 2009',
+			'ministry.lives.leader.facts.0' => 'iglesias plantadas',
+			'ministry.lives.leader.facts.1' => 'años en Nigeria',
+			'ministry.lives.leader.facts.2' => 'al frente de la CMCI',
+			'ministry.lives.leader.dates.0' => 'Entrega su vida a Jesucristo bajo la predicación del Prof. Fomum.',
+			'ministry.lives.leader.dates.1' => 'Es consagrado obispo en Yaundé.',
+			'ministry.lives.leader.dates.2' => 'Parte como misionero a Nigeria con su esposa, Adela.',
+			'ministry.lives.leader.dates.3' => 'Asume la dirección de la CMCI.',
+			'ministry.lives.leader.dates.4' => 'Trae los mensajes de la 3.ª Convención Mundial a miembros de 93 naciones.',
+			'ministry.lives.leader.story.0' => 'Theodore Andoseh entregó su vida a Jesucristo en 1978, al escuchar predicar al Prof. Zacharias Tanee Fomum, que llegó a ser su padre espiritual y lo formó como discípulo.',
+			'ministry.lives.leader.story.1' => 'Primero sirvió a su lado: como asistente de laboratorio en la Universidad de Yaundé, y luego como su asistente personal y secretario particular. En esos años publicó el primer tratado del avivamiento, «Dios habla al hombre que quiere oír», e inició la primera cadena de oración de Yaundé.',
+			'ministry.lives.leader.story.2' => 'Como misionero nacional, plantó más de cincuenta iglesias en Camerún. Fue consagrado obispo en Yaundé en 1989.',
+			'ministry.lives.leader.story.3' => 'En 1994 partió como misionero a Nigeria con su esposa, Adela. Allí sirvieron durante catorce años.',
+			'ministry.lives.leader.story.4' => 'Desde 2009, cuando el Prof. Fomum partió con el Señor, dirige la CMCI entre las naciones. En diciembre de 2019, en Koume, cerca de Bertoua, trajo los mensajes de la tercera Convención Mundial a miembros llegados de 93 naciones. También es autor de varios libros sobre el servicio a Dios y la edificación de la Iglesia.',
 			'prayer.moments.morning' => 'Mañana',
 			'prayer.moments.noon' => 'Mediodía',
 			'prayer.moments.evening' => 'Tarde',
@@ -3348,6 +3480,8 @@ extension on TranslationsEs {
 			'prayer.lists.sheet.list' => 'Lista',
 			'prayer.lists.sheet.save' => 'Guardar',
 			'prayer.lists.sheet.remove' => 'Quitar de la lista',
+			_ => null,
+		} ?? switch (path) {
 			'prayer.lists.sheet.removeTitle' => ({required Object name}) => '¿Quitar a ${name}?',
 			'prayer.lists.sheet.removeText' => 'Ya no orarás por esta persona en tus retiros.',
 			'prayer.lists.addShort' => 'Añadir',
@@ -3393,8 +3527,6 @@ extension on TranslationsEs {
 			'prayer.importunity.form.goalPlaceholder' => '10.000',
 			'prayer.importunity.form.create' => 'Crear',
 			'prayer.importunity.form.save' => 'Guardar',
-			_ => null,
-		} ?? switch (path) {
 			'prayer.importunity.inviteSheet.title' => 'Invitar a orar',
 			'prayer.importunity.inviteSheet.family' => 'Mi familia espiritual',
 			'prayer.importunity.inviteSheet.familyText' => ({required num n, required Object name}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('es'))(n, one: '${name} y sus discípulos: ${n} persona', other: '${name} y sus discípulos: ${n} personas', ), 

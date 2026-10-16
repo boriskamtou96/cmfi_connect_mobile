@@ -818,6 +818,17 @@ class _Translations$ministry$en extends Translations$ministry$fr {
 	@override String get missionariesSubtitle => 'Those the Lord sends to the nations';
 	@override String get heroes => 'Our heroes';
 	@override String get heroesSubtitle => 'Those whose faith inspires us';
+	@override String get founder => 'Our founder';
+	@override String get founderSubtitle => 'Prof. Zacharias Tanee Fomum';
+	@override String get leader => 'Our leader';
+	@override String get leaderSubtitle => 'Theodore Andoseh';
+	@override String get missionariesEmpty => 'Portraits of our missionaries are coming soon.';
+	@override String get heroesEmpty => 'Portraits of our heroes are coming soon.';
+	@override String get personGone => 'This portrait is no longer available.';
+	@override String photoOf({required Object name}) => 'Photo of ${name}';
+	@override String get keyDates => 'Key dates';
+	@override String get life => 'His life';
+	@override String get story => 'Their story';
 	@override String goalOf({required Object n, required Object total}) => 'OUR GOAL · ${n}/${total}';
 	@override String get previousGoal => 'Previous goal';
 	@override String get nextGoal => 'Next goal';
@@ -832,6 +843,7 @@ class _Translations$ministry$en extends Translations$ministry$fr {
 		'internet': 'Internet',
 	};
 	@override late final _Translations$ministry$goals$en goals = _Translations$ministry$goals$en._(_root);
+	@override late final _Translations$ministry$lives$en lives = _Translations$ministry$lives$en._(_root);
 }
 
 // Path: prayer
@@ -1837,6 +1849,17 @@ class _Translations$ministry$goals$en extends Translations$ministry$goals$fr {
 	@override late final _Translations$ministry$goals$revival$en revival = _Translations$ministry$goals$revival$en._(_root);
 }
 
+// Path: ministry.lives
+class _Translations$ministry$lives$en extends Translations$ministry$lives$fr {
+	_Translations$ministry$lives$en._(TranslationsEn root) : this._root = root, super.internal(root);
+
+	final TranslationsEn _root; // ignore: unused_field
+
+	// Translations
+	@override late final _Translations$ministry$lives$founder$en founder = _Translations$ministry$lives$founder$en._(_root);
+	@override late final _Translations$ministry$lives$leader$en leader = _Translations$ministry$lives$leader$en._(_root);
+}
+
 // Path: prayer.hero
 class _Translations$prayer$hero$en extends Translations$prayer$hero$fr {
 	_Translations$prayer$hero$en._(TranslationsEn root) : this._root = root, super.internal(root);
@@ -2262,6 +2285,70 @@ class _Translations$ministry$goals$revival$en extends Translations$ministry$goal
 	@override String get fasting => 'Fasting';
 	@override String get intercession => 'Intercession';
 	@override String get pray => 'Pray now';
+}
+
+// Path: ministry.lives.founder
+class _Translations$ministry$lives$founder$en extends Translations$ministry$lives$founder$fr {
+	_Translations$ministry$lives$founder$en._(TranslationsEn root) : this._root = root, super.internal(root);
+
+	final TranslationsEn _root; // ignore: unused_field
+
+	// Translations
+	@override String get name => 'Prof. Zacharias Tanee Fomum';
+	@override String get line => '1945 – 2009 · Founder of CMFI';
+	@override List<String> get facts => [
+		'CMFI founded',
+		'books written',
+		'nations visited',
+	];
+	@override List<String> get dates => [
+		'Born on 20 June in Cameroon, into a Presbyterian family.',
+		'Gives his life to Jesus Christ on 13 June, through a tract.',
+		'Surrenders himself wholly to the Lord on 1 October, in Sierra Leone.',
+		'Filled with the Holy Spirit on 24 October, after seven days of prayer.',
+		'Founds CMFI in Yaoundé on 12 May.',
+		'Awarded a Doctor of Science by Durham University.',
+		'Goes to be with the Lord on 14 March.',
+	];
+	@override List<String> get story => [
+		'Zacharias Tanee Fomum was born on 20 June 1945 in Cameroon, into a Presbyterian family from Batibo, in the North-West. While still a schoolboy, he gave his life to Jesus Christ on 13 June 1956, through a tract entitled “Someone died for you”.',
+		'As a student at Fourah Bay College in Sierra Leone, he surrendered himself without reserve to the Lord and to His service on 1 October 1966. On 24 October 1970, at the end of seven days of prayer and fasting, he was filled with the Holy Spirit. From then on, prayer was the centre of his life.',
+		'With a doctorate in organic chemistry from Makerere University in Uganda, he taught at the University of Yaoundé, where he became a professor. He supervised about a hundred theses and dissertations, and in 2005 Durham University, in Great Britain, awarded him a Doctor of Science for his whole body of work.',
+		'On 12 May 1975, in Yaoundé, he founded Christian Missionary Fellowship International: a movement to win souls, make disciples, plant churches and send out missionaries. He made more than 700 missionary journeys in Cameroon and more than 500 to over 70 nations, on six continents.',
+		'He spent long hours alone with God every day, led many prayer crusades, sieges and walks, and fasted often. He wrote more than 150 books on prayer, fasting, holiness, discipleship and mission, read in many languages.',
+		'With his wife, Prisca Zei Fomum, a minister to children, he had seven children, all involved in the work of the Gospel. Together they lived simply, so as to give the largest part of their income to the Gospel.',
+		'He went to be with the Lord on 14 March 2009 and was buried in Yaoundé on 21 March. The work he founded goes on among the nations.',
+	];
+}
+
+// Path: ministry.lives.leader
+class _Translations$ministry$lives$leader$en extends Translations$ministry$lives$leader$fr {
+	_Translations$ministry$lives$leader$en._(TranslationsEn root) : this._root = root, super.internal(root);
+
+	final TranslationsEn _root; // ignore: unused_field
+
+	// Translations
+	@override String get name => 'Theodore Andoseh';
+	@override String get line => 'Leader of CMFI since 2009';
+	@override List<String> get facts => [
+		'churches planted',
+		'years in Nigeria',
+		'leading CMFI',
+	];
+	@override List<String> get dates => [
+		'Gives his life to Jesus Christ under the preaching of Prof. Fomum.',
+		'Consecrated a bishop in Yaoundé.',
+		'Sent as a missionary to Nigeria with his wife, Adela.',
+		'Takes up the leadership of CMFI.',
+		'Brings the messages of the 3rd World Convention to members from 93 nations.',
+	];
+	@override List<String> get story => [
+		'Theodore Andoseh gave his life to Jesus Christ in 1978, listening to the preaching of Prof. Zacharias Tanee Fomum, who became his spiritual father and trained him as a disciple.',
+		'He first served at his side: as a laboratory assistant at the University of Yaoundé, then as his personal assistant and private secretary. In those years he published the first revival tract, “God speaks to the man who wants to hear”, and started the first prayer chain in Yaoundé.',
+		'As a national missionary, he planted more than fifty churches in Cameroon. He was consecrated a bishop in Yaoundé in 1989.',
+		'In 1994 he left as a missionary to Nigeria with his wife, Adela. They served there for fourteen years.',
+		'Since 2009, when Prof. Fomum went to be with the Lord, he has led CMFI among the nations. In December 2019, at Koume near Bertoua, he brought the messages of the third World Convention to members from 93 nations. He is also the author of several books on serving God and building up the Church.',
+	];
 }
 
 // Path: prayer.retreat.hints
@@ -3180,6 +3267,17 @@ extension on TranslationsEn {
 			'ministry.missionariesSubtitle' => 'Those the Lord sends to the nations',
 			'ministry.heroes' => 'Our heroes',
 			'ministry.heroesSubtitle' => 'Those whose faith inspires us',
+			'ministry.founder' => 'Our founder',
+			'ministry.founderSubtitle' => 'Prof. Zacharias Tanee Fomum',
+			'ministry.leader' => 'Our leader',
+			'ministry.leaderSubtitle' => 'Theodore Andoseh',
+			'ministry.missionariesEmpty' => 'Portraits of our missionaries are coming soon.',
+			'ministry.heroesEmpty' => 'Portraits of our heroes are coming soon.',
+			'ministry.personGone' => 'This portrait is no longer available.',
+			'ministry.photoOf' => ({required Object name}) => 'Photo of ${name}',
+			'ministry.keyDates' => 'Key dates',
+			'ministry.life' => 'His life',
+			'ministry.story' => 'Their story',
 			'ministry.goalOf' => ({required Object n, required Object total}) => 'OUR GOAL · ${n}/${total}',
 			'ministry.previousGoal' => 'Previous goal',
 			'ministry.nextGoal' => 'Next goal',
@@ -3205,6 +3303,40 @@ extension on TranslationsEn {
 			'ministry.goals.revival.fasting' => 'Fasting',
 			'ministry.goals.revival.intercession' => 'Intercession',
 			'ministry.goals.revival.pray' => 'Pray now',
+			'ministry.lives.founder.name' => 'Prof. Zacharias Tanee Fomum',
+			'ministry.lives.founder.line' => '1945 – 2009 · Founder of CMFI',
+			'ministry.lives.founder.facts.0' => 'CMFI founded',
+			'ministry.lives.founder.facts.1' => 'books written',
+			'ministry.lives.founder.facts.2' => 'nations visited',
+			'ministry.lives.founder.dates.0' => 'Born on 20 June in Cameroon, into a Presbyterian family.',
+			'ministry.lives.founder.dates.1' => 'Gives his life to Jesus Christ on 13 June, through a tract.',
+			'ministry.lives.founder.dates.2' => 'Surrenders himself wholly to the Lord on 1 October, in Sierra Leone.',
+			'ministry.lives.founder.dates.3' => 'Filled with the Holy Spirit on 24 October, after seven days of prayer.',
+			'ministry.lives.founder.dates.4' => 'Founds CMFI in Yaoundé on 12 May.',
+			'ministry.lives.founder.dates.5' => 'Awarded a Doctor of Science by Durham University.',
+			'ministry.lives.founder.dates.6' => 'Goes to be with the Lord on 14 March.',
+			'ministry.lives.founder.story.0' => 'Zacharias Tanee Fomum was born on 20 June 1945 in Cameroon, into a Presbyterian family from Batibo, in the North-West. While still a schoolboy, he gave his life to Jesus Christ on 13 June 1956, through a tract entitled “Someone died for you”.',
+			'ministry.lives.founder.story.1' => 'As a student at Fourah Bay College in Sierra Leone, he surrendered himself without reserve to the Lord and to His service on 1 October 1966. On 24 October 1970, at the end of seven days of prayer and fasting, he was filled with the Holy Spirit. From then on, prayer was the centre of his life.',
+			'ministry.lives.founder.story.2' => 'With a doctorate in organic chemistry from Makerere University in Uganda, he taught at the University of Yaoundé, where he became a professor. He supervised about a hundred theses and dissertations, and in 2005 Durham University, in Great Britain, awarded him a Doctor of Science for his whole body of work.',
+			'ministry.lives.founder.story.3' => 'On 12 May 1975, in Yaoundé, he founded Christian Missionary Fellowship International: a movement to win souls, make disciples, plant churches and send out missionaries. He made more than 700 missionary journeys in Cameroon and more than 500 to over 70 nations, on six continents.',
+			'ministry.lives.founder.story.4' => 'He spent long hours alone with God every day, led many prayer crusades, sieges and walks, and fasted often. He wrote more than 150 books on prayer, fasting, holiness, discipleship and mission, read in many languages.',
+			'ministry.lives.founder.story.5' => 'With his wife, Prisca Zei Fomum, a minister to children, he had seven children, all involved in the work of the Gospel. Together they lived simply, so as to give the largest part of their income to the Gospel.',
+			'ministry.lives.founder.story.6' => 'He went to be with the Lord on 14 March 2009 and was buried in Yaoundé on 21 March. The work he founded goes on among the nations.',
+			'ministry.lives.leader.name' => 'Theodore Andoseh',
+			'ministry.lives.leader.line' => 'Leader of CMFI since 2009',
+			'ministry.lives.leader.facts.0' => 'churches planted',
+			'ministry.lives.leader.facts.1' => 'years in Nigeria',
+			'ministry.lives.leader.facts.2' => 'leading CMFI',
+			'ministry.lives.leader.dates.0' => 'Gives his life to Jesus Christ under the preaching of Prof. Fomum.',
+			'ministry.lives.leader.dates.1' => 'Consecrated a bishop in Yaoundé.',
+			'ministry.lives.leader.dates.2' => 'Sent as a missionary to Nigeria with his wife, Adela.',
+			'ministry.lives.leader.dates.3' => 'Takes up the leadership of CMFI.',
+			'ministry.lives.leader.dates.4' => 'Brings the messages of the 3rd World Convention to members from 93 nations.',
+			'ministry.lives.leader.story.0' => 'Theodore Andoseh gave his life to Jesus Christ in 1978, listening to the preaching of Prof. Zacharias Tanee Fomum, who became his spiritual father and trained him as a disciple.',
+			'ministry.lives.leader.story.1' => 'He first served at his side: as a laboratory assistant at the University of Yaoundé, then as his personal assistant and private secretary. In those years he published the first revival tract, “God speaks to the man who wants to hear”, and started the first prayer chain in Yaoundé.',
+			'ministry.lives.leader.story.2' => 'As a national missionary, he planted more than fifty churches in Cameroon. He was consecrated a bishop in Yaoundé in 1989.',
+			'ministry.lives.leader.story.3' => 'In 1994 he left as a missionary to Nigeria with his wife, Adela. They served there for fourteen years.',
+			'ministry.lives.leader.story.4' => 'Since 2009, when Prof. Fomum went to be with the Lord, he has led CMFI among the nations. In December 2019, at Koume near Bertoua, he brought the messages of the third World Convention to members from 93 nations. He is also the author of several books on serving God and building up the Church.',
 			'prayer.moments.morning' => 'Morning',
 			'prayer.moments.noon' => 'Noon',
 			'prayer.moments.evening' => 'Evening',
@@ -3349,6 +3481,8 @@ extension on TranslationsEn {
 			'prayer.lists.sheet.list' => 'List',
 			'prayer.lists.sheet.save' => 'Save',
 			'prayer.lists.sheet.remove' => 'Remove from the list',
+			_ => null,
+		} ?? switch (path) {
 			'prayer.lists.sheet.removeTitle' => ({required Object name}) => 'Remove ${name}?',
 			'prayer.lists.sheet.removeText' => 'You won\'t pray for this person in your retreats any more.',
 			'prayer.lists.addShort' => 'Add',
@@ -3394,8 +3528,6 @@ extension on TranslationsEn {
 			'prayer.importunity.form.goalPlaceholder' => '10,000',
 			'prayer.importunity.form.create' => 'Create',
 			'prayer.importunity.form.save' => 'Save',
-			_ => null,
-		} ?? switch (path) {
 			'prayer.importunity.inviteSheet.title' => 'Invite to pray',
 			'prayer.importunity.inviteSheet.family' => 'My spiritual family',
 			'prayer.importunity.inviteSheet.familyText' => ({required num n, required Object name}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n, one: '${name} and their disciples: ${n} person', other: '${name} and their disciples: ${n} people', ), 

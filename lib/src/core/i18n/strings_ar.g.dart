@@ -903,6 +903,17 @@ class _Translations$ministry$ar extends Translations$ministry$fr {
 	@override String get missionariesSubtitle => 'الذين يرسلهم الرب إلى الأمم';
 	@override String get heroes => 'أبطالنا';
 	@override String get heroesSubtitle => 'الذين يلهمنا إيمانهم';
+	@override String get founder => 'مؤسسنا';
+	@override String get founderSubtitle => 'البروفيسور زكرياس تاني فومم';
+	@override String get leader => 'قائدنا';
+	@override String get leaderSubtitle => 'ثيودور أندوسيه';
+	@override String get missionariesEmpty => 'صور مرسلينا وقصصهم قادمة قريبًا.';
+	@override String get heroesEmpty => 'صور أبطالنا وقصصهم قادمة قريبًا.';
+	@override String get personGone => 'هذا التعريف لم يعد متاحًا.';
+	@override String photoOf({required Object name}) => 'صورة ${name}';
+	@override String get keyDates => 'تواريخ مهمة';
+	@override String get life => 'حياته';
+	@override String get story => 'القصة';
 	@override String goalOf({required Object n, required Object total}) => 'هدفنا · ${n}/${total}';
 	@override String get previousGoal => 'الهدف السابق';
 	@override String get nextGoal => 'الهدف التالي';
@@ -917,6 +928,7 @@ class _Translations$ministry$ar extends Translations$ministry$fr {
 		'internet': 'الإنترنت',
 	};
 	@override late final _Translations$ministry$goals$ar goals = _Translations$ministry$goals$ar._(_root);
+	@override late final _Translations$ministry$lives$ar lives = _Translations$ministry$lives$ar._(_root);
 }
 
 // Path: prayer
@@ -1998,6 +2010,17 @@ class _Translations$ministry$goals$ar extends Translations$ministry$goals$fr {
 	@override late final _Translations$ministry$goals$revival$ar revival = _Translations$ministry$goals$revival$ar._(_root);
 }
 
+// Path: ministry.lives
+class _Translations$ministry$lives$ar extends Translations$ministry$lives$fr {
+	_Translations$ministry$lives$ar._(TranslationsAr root) : this._root = root, super.internal(root);
+
+	final TranslationsAr _root; // ignore: unused_field
+
+	// Translations
+	@override late final _Translations$ministry$lives$founder$ar founder = _Translations$ministry$lives$founder$ar._(_root);
+	@override late final _Translations$ministry$lives$leader$ar leader = _Translations$ministry$lives$leader$ar._(_root);
+}
+
 // Path: prayer.hero
 class _Translations$prayer$hero$ar extends Translations$prayer$hero$fr {
 	_Translations$prayer$hero$ar._(TranslationsAr root) : this._root = root, super.internal(root);
@@ -2469,6 +2492,70 @@ class _Translations$ministry$goals$revival$ar extends Translations$ministry$goal
 	@override String get fasting => 'الصوم';
 	@override String get intercession => 'التشفع';
 	@override String get pray => 'صلِّ الآن';
+}
+
+// Path: ministry.lives.founder
+class _Translations$ministry$lives$founder$ar extends Translations$ministry$lives$founder$fr {
+	_Translations$ministry$lives$founder$ar._(TranslationsAr root) : this._root = root, super.internal(root);
+
+	final TranslationsAr _root; // ignore: unused_field
+
+	// Translations
+	@override String get name => 'البروفيسور زكرياس تاني فومم';
+	@override String get line => '1945 – 2009 · مؤسس CMFI';
+	@override List<String> get facts => [
+		'تأسيس CMFI',
+		'كتب ألّفها',
+		'أمم زارها',
+	];
+	@override List<String> get dates => [
+		'وُلد في 20 يونيو في الكاميرون، في عائلة مشيخية.',
+		'سلّم حياته ليسوع المسيح في 13 يونيو، من خلال نشرة.',
+		'كرّس نفسه بالكامل للرب في 1 أكتوبر، في سيراليون.',
+		'امتلأ بالروح القدس في 24 أكتوبر، بعد سبعة أيام من الصلاة.',
+		'أسّس CMFI في ياوندي في 12 مايو.',
+		'نال دكتوراه العلوم من جامعة دورهام.',
+		'انتقل إلى الرب في 14 مارس.',
+	];
+	@override List<String> get story => [
+		'وُلد في 20 يونيو 1945 في الكاميرون، في عائلة مشيخية من باتيبو في شمال غرب البلاد. وبينما كان لا يزال تلميذًا، سلّم حياته ليسوع المسيح في 13 يونيو 1956، عندما قرأ نشرة بعنوان «شخص مات لأجلك».',
+		'وعندما كان طالبًا في كلية فوراه باي في سيراليون، كرّس نفسه بلا تحفّظ للرب ولخدمته في 1 أكتوبر 1966. وفي 24 أكتوبر 1970، بعد سبعة أيام من الصلاة والصوم، امتلأ بالروح القدس. ومنذ ذلك الحين صارت الصلاة محور حياته.',
+		'حصل على الدكتوراه في الكيمياء العضوية من جامعة ماكيريري في أوغندا، ثم درّس في جامعة ياوندي حيث صار أستاذًا. أشرف على نحو مئة أطروحة ورسالة، ومنحته جامعة دورهام في بريطانيا عام 2005 دكتوراه العلوم تقديرًا لمجمل أعماله.',
+		'في 12 مايو 1975، في ياوندي، أسّس الشركة المسيحية الإرسالية الدولية (CMFI): حركة لربح النفوس وتلمذة التلاميذ وغرس الكنائس وإرسال المرسلين. قام بأكثر من 700 رحلة إرسالية في الكاميرون وبأكثر من 500 رحلة إلى أكثر من 70 أمة في ست قارات.',
+		'كان يقضي كل يوم ساعات طويلة وحده مع الله، وقاد كثيرًا من حملات الصلاة وحصاراتها ومسيراتها، وصام كثيرًا. كتب أكثر من 150 كتابًا عن الصلاة والصوم والقداسة والتلمذة والإرسالية، تُقرأ بلغات كثيرة.',
+		'رُزق مع زوجته بريسكا زي فومم، خادمة الرب بين الأطفال، بسبعة أبناء كلهم منخرطون في عمل الإنجيل. وعاشا معًا ببساطة ليقدّما للإنجيل الجزء الأكبر من دخلهما.',
+		'انتقل إلى محضر الرب في 14 مارس 2009، ودُفن في ياوندي في 21 مارس. والعمل الذي أسّسه مستمر بين الأمم.',
+	];
+}
+
+// Path: ministry.lives.leader
+class _Translations$ministry$lives$leader$ar extends Translations$ministry$lives$leader$fr {
+	_Translations$ministry$lives$leader$ar._(TranslationsAr root) : this._root = root, super.internal(root);
+
+	final TranslationsAr _root; // ignore: unused_field
+
+	// Translations
+	@override String get name => 'ثيودور أندوسيه';
+	@override String get line => 'قائد CMFI منذ 2009';
+	@override List<String> get facts => [
+		'كنيسة غرسها',
+		'سنة في نيجيريا',
+		'على رأس CMFI',
+	];
+	@override List<String> get dates => [
+		'سلّم حياته ليسوع المسيح من خلال وعظ البروفيسور فومم.',
+		'رُسم أسقفًا في ياوندي.',
+		'أُرسل مرسلًا إلى نيجيريا مع زوجته أديلا.',
+		'تولّى قيادة CMFI.',
+		'قدّم رسائل المؤتمر العالمي الثالث لأعضاء من 93 أمة.',
+	];
+	@override List<String> get story => [
+		'سلّم ثيودور أندوسيه حياته ليسوع المسيح عام 1978 وهو يستمع إلى وعظ البروفيسور زكرياس تاني فومم، الذي صار أباه الروحي وتلمذه.',
+		'خدم أولًا إلى جانبه: مساعدًا في المختبر في جامعة ياوندي، ثم مساعدًا شخصيًا وسكرتيرًا خاصًا له. وفي تلك السنوات نشر أول نشرة للنهضة، «الله يتكلم إلى الإنسان الذي يريد أن يسمع»، وأطلق أول سلسلة صلاة في ياوندي.',
+		'وبصفته مرسلًا وطنيًا، غرس أكثر من خمسين كنيسة في الكاميرون. ورُسم أسقفًا في ياوندي عام 1989.',
+		'في عام 1994 ذهب مرسلًا إلى نيجيريا مع زوجته أديلا، وخدما هناك أربعة عشر عامًا.',
+		'ومنذ عام 2009، حين انتقل البروفيسور فومم إلى الرب، يقود CMFI بين الأمم. وفي ديسمبر 2019، في كومي قرب برتوا، قدّم رسائل المؤتمر العالمي الثالث لأعضاء جاؤوا من 93 أمة. وهو أيضًا مؤلف عدة كتب عن خدمة الله وبنيان الكنيسة.',
+	];
 }
 
 // Path: prayer.retreat.hints
@@ -3394,6 +3481,17 @@ extension on TranslationsAr {
 			'ministry.missionariesSubtitle' => 'الذين يرسلهم الرب إلى الأمم',
 			'ministry.heroes' => 'أبطالنا',
 			'ministry.heroesSubtitle' => 'الذين يلهمنا إيمانهم',
+			'ministry.founder' => 'مؤسسنا',
+			'ministry.founderSubtitle' => 'البروفيسور زكرياس تاني فومم',
+			'ministry.leader' => 'قائدنا',
+			'ministry.leaderSubtitle' => 'ثيودور أندوسيه',
+			'ministry.missionariesEmpty' => 'صور مرسلينا وقصصهم قادمة قريبًا.',
+			'ministry.heroesEmpty' => 'صور أبطالنا وقصصهم قادمة قريبًا.',
+			'ministry.personGone' => 'هذا التعريف لم يعد متاحًا.',
+			'ministry.photoOf' => ({required Object name}) => 'صورة ${name}',
+			'ministry.keyDates' => 'تواريخ مهمة',
+			'ministry.life' => 'حياته',
+			'ministry.story' => 'القصة',
 			'ministry.goalOf' => ({required Object n, required Object total}) => 'هدفنا · ${n}/${total}',
 			'ministry.previousGoal' => 'الهدف السابق',
 			'ministry.nextGoal' => 'الهدف التالي',
@@ -3419,6 +3517,40 @@ extension on TranslationsAr {
 			'ministry.goals.revival.fasting' => 'الصوم',
 			'ministry.goals.revival.intercession' => 'التشفع',
 			'ministry.goals.revival.pray' => 'صلِّ الآن',
+			'ministry.lives.founder.name' => 'البروفيسور زكرياس تاني فومم',
+			'ministry.lives.founder.line' => '1945 – 2009 · مؤسس CMFI',
+			'ministry.lives.founder.facts.0' => 'تأسيس CMFI',
+			'ministry.lives.founder.facts.1' => 'كتب ألّفها',
+			'ministry.lives.founder.facts.2' => 'أمم زارها',
+			'ministry.lives.founder.dates.0' => 'وُلد في 20 يونيو في الكاميرون، في عائلة مشيخية.',
+			'ministry.lives.founder.dates.1' => 'سلّم حياته ليسوع المسيح في 13 يونيو، من خلال نشرة.',
+			'ministry.lives.founder.dates.2' => 'كرّس نفسه بالكامل للرب في 1 أكتوبر، في سيراليون.',
+			'ministry.lives.founder.dates.3' => 'امتلأ بالروح القدس في 24 أكتوبر، بعد سبعة أيام من الصلاة.',
+			'ministry.lives.founder.dates.4' => 'أسّس CMFI في ياوندي في 12 مايو.',
+			'ministry.lives.founder.dates.5' => 'نال دكتوراه العلوم من جامعة دورهام.',
+			'ministry.lives.founder.dates.6' => 'انتقل إلى الرب في 14 مارس.',
+			'ministry.lives.founder.story.0' => 'وُلد في 20 يونيو 1945 في الكاميرون، في عائلة مشيخية من باتيبو في شمال غرب البلاد. وبينما كان لا يزال تلميذًا، سلّم حياته ليسوع المسيح في 13 يونيو 1956، عندما قرأ نشرة بعنوان «شخص مات لأجلك».',
+			'ministry.lives.founder.story.1' => 'وعندما كان طالبًا في كلية فوراه باي في سيراليون، كرّس نفسه بلا تحفّظ للرب ولخدمته في 1 أكتوبر 1966. وفي 24 أكتوبر 1970، بعد سبعة أيام من الصلاة والصوم، امتلأ بالروح القدس. ومنذ ذلك الحين صارت الصلاة محور حياته.',
+			'ministry.lives.founder.story.2' => 'حصل على الدكتوراه في الكيمياء العضوية من جامعة ماكيريري في أوغندا، ثم درّس في جامعة ياوندي حيث صار أستاذًا. أشرف على نحو مئة أطروحة ورسالة، ومنحته جامعة دورهام في بريطانيا عام 2005 دكتوراه العلوم تقديرًا لمجمل أعماله.',
+			'ministry.lives.founder.story.3' => 'في 12 مايو 1975، في ياوندي، أسّس الشركة المسيحية الإرسالية الدولية (CMFI): حركة لربح النفوس وتلمذة التلاميذ وغرس الكنائس وإرسال المرسلين. قام بأكثر من 700 رحلة إرسالية في الكاميرون وبأكثر من 500 رحلة إلى أكثر من 70 أمة في ست قارات.',
+			'ministry.lives.founder.story.4' => 'كان يقضي كل يوم ساعات طويلة وحده مع الله، وقاد كثيرًا من حملات الصلاة وحصاراتها ومسيراتها، وصام كثيرًا. كتب أكثر من 150 كتابًا عن الصلاة والصوم والقداسة والتلمذة والإرسالية، تُقرأ بلغات كثيرة.',
+			'ministry.lives.founder.story.5' => 'رُزق مع زوجته بريسكا زي فومم، خادمة الرب بين الأطفال، بسبعة أبناء كلهم منخرطون في عمل الإنجيل. وعاشا معًا ببساطة ليقدّما للإنجيل الجزء الأكبر من دخلهما.',
+			'ministry.lives.founder.story.6' => 'انتقل إلى محضر الرب في 14 مارس 2009، ودُفن في ياوندي في 21 مارس. والعمل الذي أسّسه مستمر بين الأمم.',
+			'ministry.lives.leader.name' => 'ثيودور أندوسيه',
+			'ministry.lives.leader.line' => 'قائد CMFI منذ 2009',
+			'ministry.lives.leader.facts.0' => 'كنيسة غرسها',
+			'ministry.lives.leader.facts.1' => 'سنة في نيجيريا',
+			'ministry.lives.leader.facts.2' => 'على رأس CMFI',
+			'ministry.lives.leader.dates.0' => 'سلّم حياته ليسوع المسيح من خلال وعظ البروفيسور فومم.',
+			'ministry.lives.leader.dates.1' => 'رُسم أسقفًا في ياوندي.',
+			'ministry.lives.leader.dates.2' => 'أُرسل مرسلًا إلى نيجيريا مع زوجته أديلا.',
+			'ministry.lives.leader.dates.3' => 'تولّى قيادة CMFI.',
+			'ministry.lives.leader.dates.4' => 'قدّم رسائل المؤتمر العالمي الثالث لأعضاء من 93 أمة.',
+			'ministry.lives.leader.story.0' => 'سلّم ثيودور أندوسيه حياته ليسوع المسيح عام 1978 وهو يستمع إلى وعظ البروفيسور زكرياس تاني فومم، الذي صار أباه الروحي وتلمذه.',
+			'ministry.lives.leader.story.1' => 'خدم أولًا إلى جانبه: مساعدًا في المختبر في جامعة ياوندي، ثم مساعدًا شخصيًا وسكرتيرًا خاصًا له. وفي تلك السنوات نشر أول نشرة للنهضة، «الله يتكلم إلى الإنسان الذي يريد أن يسمع»، وأطلق أول سلسلة صلاة في ياوندي.',
+			'ministry.lives.leader.story.2' => 'وبصفته مرسلًا وطنيًا، غرس أكثر من خمسين كنيسة في الكاميرون. ورُسم أسقفًا في ياوندي عام 1989.',
+			'ministry.lives.leader.story.3' => 'في عام 1994 ذهب مرسلًا إلى نيجيريا مع زوجته أديلا، وخدما هناك أربعة عشر عامًا.',
+			'ministry.lives.leader.story.4' => 'ومنذ عام 2009، حين انتقل البروفيسور فومم إلى الرب، يقود CMFI بين الأمم. وفي ديسمبر 2019، في كومي قرب برتوا، قدّم رسائل المؤتمر العالمي الثالث لأعضاء جاؤوا من 93 أمة. وهو أيضًا مؤلف عدة كتب عن خدمة الله وبنيان الكنيسة.',
 			'prayer.moments.morning' => 'الصباح',
 			'prayer.moments.noon' => 'الظهر',
 			'prayer.moments.evening' => 'المساء',
@@ -3563,6 +3695,8 @@ extension on TranslationsAr {
 			'prayer.lists.sheet.list' => 'القائمة',
 			'prayer.lists.sheet.save' => 'حفظ',
 			'prayer.lists.sheet.remove' => 'إزالة من القائمة',
+			_ => null,
+		} ?? switch (path) {
 			'prayer.lists.sheet.removeTitle' => ({required Object name}) => 'إزالة ${name}؟',
 			'prayer.lists.sheet.removeText' => 'لن تصلّي بعد الآن من أجل هذا الشخص في خلواتك.',
 			'prayer.lists.addShort' => 'إضافة',
@@ -3608,8 +3742,6 @@ extension on TranslationsAr {
 			'prayer.importunity.form.goalPlaceholder' => '10000',
 			'prayer.importunity.form.create' => 'إنشاء',
 			'prayer.importunity.form.save' => 'حفظ',
-			_ => null,
-		} ?? switch (path) {
 			'prayer.importunity.inviteSheet.title' => 'الدعوة إلى الصلاة',
 			'prayer.importunity.inviteSheet.family' => 'عائلتي الروحية',
 			'prayer.importunity.inviteSheet.familyText' => ({required num n, required Object name}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n, zero: '${name} وتلاميذه: لا أحد', one: '${name} وتلاميذه: شخص واحد', two: '${name} وتلاميذه: شخصان', few: '${name} وتلاميذه: ${n} أشخاص', many: '${name} وتلاميذه: ${n} شخصًا', other: '${name} وتلاميذه: ${n} شخص', ), 

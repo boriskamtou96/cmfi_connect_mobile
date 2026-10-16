@@ -1019,6 +1019,17 @@
     "missionariesSubtitle": "Ceux que le Seigneur envoie aux nations",
     "heroes": "Nos héros",
     "heroesSubtitle": "Ceux dont la foi nous inspire",
+    "founder": "Notre fondateur",
+    "founderSubtitle": "Le Pr Zacharias Tanee Fomum",
+    "leader": "Notre leader",
+    "leaderSubtitle": "Théodore Andoseh",
+    "missionariesEmpty": "Les portraits de nos missionnaires arrivent bientôt.",
+    "heroesEmpty": "Les portraits de nos héros arrivent bientôt.",
+    "personGone": "Ce portrait n'est plus disponible.",
+    "photoOf": "Photo de {name}",
+    "keyDates": "Les grandes dates",
+    "life": "Sa vie",
+    "story": "Son histoire",
     "goalOf": "NOTRE BUT · {n}/{total}",
     "previousGoal": "But précédent",
     "nextGoal": "But suivant",
@@ -1052,6 +1063,58 @@
         "fasting": "Jeûne",
         "intercession": "Intercession",
         "pray": "Prier maintenant"
+      }
+    },
+    "lives": {
+      "founder": {
+        "name": "Pr Zacharias Tanee Fomum",
+        "line": "1945 – 2009 · Fondateur de la CMCI",
+        "facts": [
+          "fondation de la CMCI",
+          "livres écrits",
+          "nations visitées"
+        ],
+        "dates": [
+          "Naît le 20 juin au Cameroun, dans une famille presbytérienne.",
+          "Donne sa vie à Jésus-Christ le 13 juin, en lisant un tract.",
+          "Se livre tout entier au Seigneur le 1er octobre, en Sierra Leone.",
+          "Est rempli du Saint-Esprit le 24 octobre, après sept jours de prière.",
+          "Fonde la CMCI à Yaoundé le 12 mai.",
+          "Reçoit le doctorat ès sciences de l'Université de Durham.",
+          "Rejoint le Seigneur le 14 mars."
+        ],
+        "story": [
+          "Zacharias Tanee Fomum est né le 20 juin 1945 au Cameroun, dans une famille presbytérienne originaire de Batibo, dans le Nord-Ouest. Encore écolier, il a donné sa vie à Jésus-Christ le 13 juin 1956, en lisant un tract intitulé « Quelqu'un est mort pour toi ».",
+          "Étudiant à Fourah Bay College, en Sierra Leone, il s'est livré sans réserve au Seigneur et à son service le 1er octobre 1966. Le 24 octobre 1970, au terme de sept jours de prière et de jeûne, il a été rempli du Saint-Esprit. Dès lors, la prière est devenue le centre de sa vie.",
+          "Docteur en chimie organique de l'université Makerere, en Ouganda, il a enseigné à l'Université de Yaoundé, où il est devenu professeur. Il a dirigé une centaine de thèses et de mémoires, et l'Université de Durham, en Grande-Bretagne, lui a décerné en 2005 un doctorat ès sciences pour l'ensemble de ses travaux.",
+          "Le 12 mai 1975, à Yaoundé, il a fondé la Communauté Missionnaire Chrétienne Internationale : un mouvement pour gagner des âmes, faire des disciples, implanter des églises et envoyer des missionnaires. Il a fait plus de 700 voyages missionnaires au Cameroun et plus de 500 dans plus de 70 nations, sur six continents.",
+          "Il passait chaque jour de longues heures seul avec Dieu, a conduit de nombreuses croisades, sièges et marches de prière, et a souvent jeûné. Il a écrit plus de 150 livres sur la prière, le jeûne, la sainteté, la formation des disciples et la mission, lus dans de nombreuses langues.",
+          "Avec son épouse, Prisca Zei Fomum, servante de Dieu auprès des enfants, il a eu sept enfants, tous engagés dans l'œuvre de l'Évangile. Ensemble, ils vivaient simplement pour donner à l'Évangile la plus grande part de leurs revenus.",
+          "Il est entré dans la présence du Seigneur le 14 mars 2009 et a été inhumé à Yaoundé le 21 mars. L'œuvre qu'il a fondée continue dans les nations."
+        ]
+      },
+      "leader": {
+        "name": "Théodore Andoseh",
+        "line": "Leader de la CMCI depuis 2009",
+        "facts": [
+          "églises implantées",
+          "ans au Nigeria",
+          "à la tête de la CMCI"
+        ],
+        "dates": [
+          "Donne sa vie à Jésus-Christ sous la prédication du Pr Fomum.",
+          "Est consacré évêque à Yaoundé.",
+          "Part comme missionnaire au Nigeria avec son épouse, Adela.",
+          "Prend la conduite de la CMCI.",
+          "Apporte les messages de la 3e convention mondiale à des membres de 93 nations."
+        ],
+        "story": [
+          "Théodore Andoseh a donné sa vie à Jésus-Christ en 1978, en écoutant prêcher le Pr Zacharias Tanee Fomum, qui est devenu son père spirituel et l'a formé comme disciple.",
+          "Il a d'abord servi à ses côtés : assistant de laboratoire à l'Université de Yaoundé, puis son assistant personnel et son secrétaire particulier. Dans ces années, il a publié le premier tract du réveil, « Dieu parle à l'homme qui veut entendre », et lancé la première chaîne de prière de Yaoundé.",
+          "Missionnaire national, il a implanté plus de cinquante églises au Cameroun. Il a été consacré évêque à Yaoundé en 1989.",
+          "En 1994, il est parti comme missionnaire au Nigeria avec son épouse, Adela. Ils y ont servi quatorze ans.",
+          "Depuis 2009, quand le Pr Fomum est entré dans la présence du Seigneur, il conduit la CMCI dans les nations. En décembre 2019, à Koumé, près de Bertoua, il a apporté les messages de la troisième convention mondiale à des membres venus de 93 nations. Il est aussi l'auteur de plusieurs livres sur le service de Dieu et l'édification de l'Église."
+        ]
       }
     }
   },

@@ -796,6 +796,17 @@ class _Translations$ministry$zh extends Translations$ministry$fr {
 	@override String get missionariesSubtitle => '主差往万国的人';
 	@override String get heroes => '我们的英雄';
 	@override String get heroesSubtitle => '他们的信心激励着我们';
+	@override String get founder => '我们的创始人';
+	@override String get founderSubtitle => 'Zacharias Tanee Fomum 教授';
+	@override String get leader => '我们的领袖';
+	@override String get leaderSubtitle => 'Theodore Andoseh';
+	@override String get missionariesEmpty => '我们宣教士的介绍即将推出。';
+	@override String get heroesEmpty => '我们英雄的介绍即将推出。';
+	@override String get personGone => '此介绍已不再提供。';
+	@override String photoOf({required Object name}) => '${name}的照片';
+	@override String get keyDates => '重要日期';
+	@override String get life => '生平';
+	@override String get story => '故事';
 	@override String goalOf({required Object n, required Object total}) => '我们的目标 · ${n}/${total}';
 	@override String get previousGoal => '上一个目标';
 	@override String get nextGoal => '下一个目标';
@@ -810,6 +821,7 @@ class _Translations$ministry$zh extends Translations$ministry$fr {
 		'internet': '互联网',
 	};
 	@override late final _Translations$ministry$goals$zh goals = _Translations$ministry$goals$zh._(_root);
+	@override late final _Translations$ministry$lives$zh lives = _Translations$ministry$lives$zh._(_root);
 }
 
 // Path: prayer
@@ -1796,6 +1808,17 @@ class _Translations$ministry$goals$zh extends Translations$ministry$goals$fr {
 	@override late final _Translations$ministry$goals$revival$zh revival = _Translations$ministry$goals$revival$zh._(_root);
 }
 
+// Path: ministry.lives
+class _Translations$ministry$lives$zh extends Translations$ministry$lives$fr {
+	_Translations$ministry$lives$zh._(TranslationsZh root) : this._root = root, super.internal(root);
+
+	final TranslationsZh _root; // ignore: unused_field
+
+	// Translations
+	@override late final _Translations$ministry$lives$founder$zh founder = _Translations$ministry$lives$founder$zh._(_root);
+	@override late final _Translations$ministry$lives$leader$zh leader = _Translations$ministry$lives$leader$zh._(_root);
+}
+
 // Path: prayer.hero
 class _Translations$prayer$hero$zh extends Translations$prayer$hero$fr {
 	_Translations$prayer$hero$zh._(TranslationsZh root) : this._root = root, super.internal(root);
@@ -2209,6 +2232,70 @@ class _Translations$ministry$goals$revival$zh extends Translations$ministry$goal
 	@override String get fasting => '禁食';
 	@override String get intercession => '代祷';
 	@override String get pray => '现在祷告';
+}
+
+// Path: ministry.lives.founder
+class _Translations$ministry$lives$founder$zh extends Translations$ministry$lives$founder$fr {
+	_Translations$ministry$lives$founder$zh._(TranslationsZh root) : this._root = root, super.internal(root);
+
+	final TranslationsZh _root; // ignore: unused_field
+
+	// Translations
+	@override String get name => 'Zacharias Tanee Fomum 教授';
+	@override String get line => '1945 – 2009 · CMFI 创始人';
+	@override List<String> get facts => [
+		'创立 CMFI',
+		'本著作',
+		'个走访的国家',
+	];
+	@override List<String> get dates => [
+		'6月20日生于喀麦隆一个长老会家庭。',
+		'6月13日通过一份福音单张把生命交给耶稣基督。',
+		'10月1日在塞拉利昂把自己完全献给主。',
+		'经过七天祷告，于10月24日被圣灵充满。',
+		'5月12日在雅温得创立 CMFI。',
+		'获得杜伦大学理学博士学位。',
+		'3月14日被主接去。',
+	];
+	@override List<String> get story => [
+		'他于1945年6月20日出生在喀麦隆，家族是来自西北部巴蒂博的长老会信徒。还在上学时，他于1956年6月13日读了一份名为《有人为你而死》的福音单张，把生命交给了耶稣基督。',
+		'在塞拉利昂富拉湾学院求学期间，他于1966年10月1日毫无保留地把自己献给主和主的事工。1970年10月24日，在七天的祷告禁食之后，他被圣灵充满。从那时起，祷告成了他生命的中心。',
+		'他在乌干达马凯雷雷大学获得有机化学博士学位，之后在雅温得大学任教并成为教授。他指导了约一百篇博士和硕士论文；2005年，英国杜伦大学因他的全部学术成就授予他理学博士学位。',
+		'1975年5月12日，他在雅温得创立了国际基督教宣教团契（CMFI）：一个赢得灵魂、使人作门徒、建立教会、差派宣教士的运动。他在喀麦隆进行了700多次宣教旅程，又在六大洲70多个国家进行了500多次旅程。',
+		'他每天花很长时间独自与神相处，带领了许多祷告大会、祷告围城和祷告行走，并经常禁食。他写了150多本关于祷告、禁食、圣洁、门徒训练和宣教的书，以多种语言被阅读。',
+		'他与妻子 Prisca Zei Fomum（一位在儿童中服事的同工）育有七个孩子，都投身于福音工作。他们一同过着简朴的生活，把收入的绝大部分奉献给福音。',
+		'2009年3月14日，他被主接去，3月21日安葬于雅温得。他所创立的事工在万国中继续前进。',
+	];
+}
+
+// Path: ministry.lives.leader
+class _Translations$ministry$lives$leader$zh extends Translations$ministry$lives$leader$fr {
+	_Translations$ministry$lives$leader$zh._(TranslationsZh root) : this._root = root, super.internal(root);
+
+	final TranslationsZh _root; // ignore: unused_field
+
+	// Translations
+	@override String get name => 'Theodore Andoseh';
+	@override String get line => '自2009年起担任 CMFI 领袖';
+	@override List<String> get facts => [
+		'建立的教会',
+		'在尼日利亚的年数',
+		'开始领导 CMFI',
+	];
+	@override List<String> get dates => [
+		'在 Fomum 教授的讲道中把生命交给耶稣基督。',
+		'在雅温得被按立为主教。',
+		'与妻子 Adela 一同作为宣教士前往尼日利亚。',
+		'开始领导 CMFI。',
+		'在第三届世界大会上向来自93个国家的成员传讲信息。',
+	];
+	@override List<String> get story => [
+		'1978年，Theodore Andoseh 在聆听 Zacharias Tanee Fomum 教授讲道时把生命交给了耶稣基督。Fomum 教授成了他属灵的父亲，并培养他作门徒。',
+		'他起初在 Fomum 教授身边服事：先是在雅温得大学担任实验室助理，后来成为他的私人助理和私人秘书。在那些年里，他出版了第一份复兴福音单张《神对愿意聆听的人说话》，并在雅温得发起了第一条祷告链。',
+		'作为本国宣教士，他在喀麦隆建立了五十多间教会。1989年，他在雅温得被按立为主教。',
+		'1994年，他与妻子 Adela 一同作为宣教士前往尼日利亚，在那里服事了十四年。',
+		'自2009年 Fomum 教授被主接去之后，他在万国中带领 CMFI。2019年12月，他在贝尔图阿附近的库梅，向来自93个国家的成员传讲第三届世界大会的信息。他也写了多本关于事奉神和建造教会的书。',
+	];
 }
 
 // Path: prayer.retreat.hints
@@ -3125,6 +3212,17 @@ extension on TranslationsZh {
 			'ministry.missionariesSubtitle' => '主差往万国的人',
 			'ministry.heroes' => '我们的英雄',
 			'ministry.heroesSubtitle' => '他们的信心激励着我们',
+			'ministry.founder' => '我们的创始人',
+			'ministry.founderSubtitle' => 'Zacharias Tanee Fomum 教授',
+			'ministry.leader' => '我们的领袖',
+			'ministry.leaderSubtitle' => 'Theodore Andoseh',
+			'ministry.missionariesEmpty' => '我们宣教士的介绍即将推出。',
+			'ministry.heroesEmpty' => '我们英雄的介绍即将推出。',
+			'ministry.personGone' => '此介绍已不再提供。',
+			'ministry.photoOf' => ({required Object name}) => '${name}的照片',
+			'ministry.keyDates' => '重要日期',
+			'ministry.life' => '生平',
+			'ministry.story' => '故事',
 			'ministry.goalOf' => ({required Object n, required Object total}) => '我们的目标 · ${n}/${total}',
 			'ministry.previousGoal' => '上一个目标',
 			'ministry.nextGoal' => '下一个目标',
@@ -3150,6 +3248,40 @@ extension on TranslationsZh {
 			'ministry.goals.revival.fasting' => '禁食',
 			'ministry.goals.revival.intercession' => '代祷',
 			'ministry.goals.revival.pray' => '现在祷告',
+			'ministry.lives.founder.name' => 'Zacharias Tanee Fomum 教授',
+			'ministry.lives.founder.line' => '1945 – 2009 · CMFI 创始人',
+			'ministry.lives.founder.facts.0' => '创立 CMFI',
+			'ministry.lives.founder.facts.1' => '本著作',
+			'ministry.lives.founder.facts.2' => '个走访的国家',
+			'ministry.lives.founder.dates.0' => '6月20日生于喀麦隆一个长老会家庭。',
+			'ministry.lives.founder.dates.1' => '6月13日通过一份福音单张把生命交给耶稣基督。',
+			'ministry.lives.founder.dates.2' => '10月1日在塞拉利昂把自己完全献给主。',
+			'ministry.lives.founder.dates.3' => '经过七天祷告，于10月24日被圣灵充满。',
+			'ministry.lives.founder.dates.4' => '5月12日在雅温得创立 CMFI。',
+			'ministry.lives.founder.dates.5' => '获得杜伦大学理学博士学位。',
+			'ministry.lives.founder.dates.6' => '3月14日被主接去。',
+			'ministry.lives.founder.story.0' => '他于1945年6月20日出生在喀麦隆，家族是来自西北部巴蒂博的长老会信徒。还在上学时，他于1956年6月13日读了一份名为《有人为你而死》的福音单张，把生命交给了耶稣基督。',
+			'ministry.lives.founder.story.1' => '在塞拉利昂富拉湾学院求学期间，他于1966年10月1日毫无保留地把自己献给主和主的事工。1970年10月24日，在七天的祷告禁食之后，他被圣灵充满。从那时起，祷告成了他生命的中心。',
+			'ministry.lives.founder.story.2' => '他在乌干达马凯雷雷大学获得有机化学博士学位，之后在雅温得大学任教并成为教授。他指导了约一百篇博士和硕士论文；2005年，英国杜伦大学因他的全部学术成就授予他理学博士学位。',
+			'ministry.lives.founder.story.3' => '1975年5月12日，他在雅温得创立了国际基督教宣教团契（CMFI）：一个赢得灵魂、使人作门徒、建立教会、差派宣教士的运动。他在喀麦隆进行了700多次宣教旅程，又在六大洲70多个国家进行了500多次旅程。',
+			'ministry.lives.founder.story.4' => '他每天花很长时间独自与神相处，带领了许多祷告大会、祷告围城和祷告行走，并经常禁食。他写了150多本关于祷告、禁食、圣洁、门徒训练和宣教的书，以多种语言被阅读。',
+			'ministry.lives.founder.story.5' => '他与妻子 Prisca Zei Fomum（一位在儿童中服事的同工）育有七个孩子，都投身于福音工作。他们一同过着简朴的生活，把收入的绝大部分奉献给福音。',
+			'ministry.lives.founder.story.6' => '2009年3月14日，他被主接去，3月21日安葬于雅温得。他所创立的事工在万国中继续前进。',
+			'ministry.lives.leader.name' => 'Theodore Andoseh',
+			'ministry.lives.leader.line' => '自2009年起担任 CMFI 领袖',
+			'ministry.lives.leader.facts.0' => '建立的教会',
+			'ministry.lives.leader.facts.1' => '在尼日利亚的年数',
+			'ministry.lives.leader.facts.2' => '开始领导 CMFI',
+			'ministry.lives.leader.dates.0' => '在 Fomum 教授的讲道中把生命交给耶稣基督。',
+			'ministry.lives.leader.dates.1' => '在雅温得被按立为主教。',
+			'ministry.lives.leader.dates.2' => '与妻子 Adela 一同作为宣教士前往尼日利亚。',
+			'ministry.lives.leader.dates.3' => '开始领导 CMFI。',
+			'ministry.lives.leader.dates.4' => '在第三届世界大会上向来自93个国家的成员传讲信息。',
+			'ministry.lives.leader.story.0' => '1978年，Theodore Andoseh 在聆听 Zacharias Tanee Fomum 教授讲道时把生命交给了耶稣基督。Fomum 教授成了他属灵的父亲，并培养他作门徒。',
+			'ministry.lives.leader.story.1' => '他起初在 Fomum 教授身边服事：先是在雅温得大学担任实验室助理，后来成为他的私人助理和私人秘书。在那些年里，他出版了第一份复兴福音单张《神对愿意聆听的人说话》，并在雅温得发起了第一条祷告链。',
+			'ministry.lives.leader.story.2' => '作为本国宣教士，他在喀麦隆建立了五十多间教会。1989年，他在雅温得被按立为主教。',
+			'ministry.lives.leader.story.3' => '1994年，他与妻子 Adela 一同作为宣教士前往尼日利亚，在那里服事了十四年。',
+			'ministry.lives.leader.story.4' => '自2009年 Fomum 教授被主接去之后，他在万国中带领 CMFI。2019年12月，他在贝尔图阿附近的库梅，向来自93个国家的成员传讲第三届世界大会的信息。他也写了多本关于事奉神和建造教会的书。',
 			'prayer.moments.morning' => '早晨',
 			'prayer.moments.noon' => '中午',
 			'prayer.moments.evening' => '傍晚',
@@ -3294,6 +3426,8 @@ extension on TranslationsZh {
 			'prayer.lists.sheet.list' => '名单',
 			'prayer.lists.sheet.save' => '保存',
 			'prayer.lists.sheet.remove' => '从名单中移除',
+			_ => null,
+		} ?? switch (path) {
 			'prayer.lists.sheet.removeTitle' => ({required Object name}) => '移除 ${name}？',
 			'prayer.lists.sheet.removeText' => '你的每日祷告中将不再为这个人祷告。',
 			'prayer.lists.addShort' => '添加',
@@ -3339,8 +3473,6 @@ extension on TranslationsZh {
 			'prayer.importunity.form.goalPlaceholder' => '10000',
 			'prayer.importunity.form.create' => '创建',
 			'prayer.importunity.form.save' => '保存',
-			_ => null,
-		} ?? switch (path) {
 			'prayer.importunity.inviteSheet.title' => '邀请一起祷告',
 			'prayer.importunity.inviteSheet.family' => '我的属灵家人',
 			'prayer.importunity.inviteSheet.familyText' => ({required num n, required Object name}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n, other: '${name}及其门徒：${n} 人', ), 

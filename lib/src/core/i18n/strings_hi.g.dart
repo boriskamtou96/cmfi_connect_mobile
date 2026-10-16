@@ -817,6 +817,17 @@ class _Translations$ministry$hi extends Translations$ministry$fr {
 	@override String get missionariesSubtitle => 'जिन्हें प्रभु राष्ट्रों में भेजता है';
 	@override String get heroes => 'हमारे नायक';
 	@override String get heroesSubtitle => 'जिनका विश्वास हमें प्रेरित करता है';
+	@override String get founder => 'हमारे संस्थापक';
+	@override String get founderSubtitle => 'प्रो. ज़कारियस तनी फ़ोमुम';
+	@override String get leader => 'हमारे अगुवे';
+	@override String get leaderSubtitle => 'थियोडोर एंडोसेह';
+	@override String get missionariesEmpty => 'हमारे मिशनरियों के परिचय जल्द ही आ रहे हैं।';
+	@override String get heroesEmpty => 'हमारे नायकों के परिचय जल्द ही आ रहे हैं।';
+	@override String get personGone => 'यह परिचय अब उपलब्ध नहीं है।';
+	@override String photoOf({required Object name}) => '${name} की फ़ोटो';
+	@override String get keyDates => 'मुख्य तिथियाँ';
+	@override String get life => 'उनका जीवन';
+	@override String get story => 'उनकी कहानी';
 	@override String goalOf({required Object n, required Object total}) => 'हमारा लक्ष्य · ${n}/${total}';
 	@override String get previousGoal => 'पिछला लक्ष्य';
 	@override String get nextGoal => 'अगला लक्ष्य';
@@ -831,6 +842,7 @@ class _Translations$ministry$hi extends Translations$ministry$fr {
 		'internet': 'इंटरनेट',
 	};
 	@override late final _Translations$ministry$goals$hi goals = _Translations$ministry$goals$hi._(_root);
+	@override late final _Translations$ministry$lives$hi lives = _Translations$ministry$lives$hi._(_root);
 }
 
 // Path: prayer
@@ -1835,6 +1847,17 @@ class _Translations$ministry$goals$hi extends Translations$ministry$goals$fr {
 	@override late final _Translations$ministry$goals$revival$hi revival = _Translations$ministry$goals$revival$hi._(_root);
 }
 
+// Path: ministry.lives
+class _Translations$ministry$lives$hi extends Translations$ministry$lives$fr {
+	_Translations$ministry$lives$hi._(TranslationsHi root) : this._root = root, super.internal(root);
+
+	final TranslationsHi _root; // ignore: unused_field
+
+	// Translations
+	@override late final _Translations$ministry$lives$founder$hi founder = _Translations$ministry$lives$founder$hi._(_root);
+	@override late final _Translations$ministry$lives$leader$hi leader = _Translations$ministry$lives$leader$hi._(_root);
+}
+
 // Path: prayer.hero
 class _Translations$prayer$hero$hi extends Translations$prayer$hero$fr {
 	_Translations$prayer$hero$hi._(TranslationsHi root) : this._root = root, super.internal(root);
@@ -2260,6 +2283,70 @@ class _Translations$ministry$goals$revival$hi extends Translations$ministry$goal
 	@override String get fasting => 'उपवास';
 	@override String get intercession => 'मध्यस्थ प्रार्थना';
 	@override String get pray => 'अभी प्रार्थना करो';
+}
+
+// Path: ministry.lives.founder
+class _Translations$ministry$lives$founder$hi extends Translations$ministry$lives$founder$fr {
+	_Translations$ministry$lives$founder$hi._(TranslationsHi root) : this._root = root, super.internal(root);
+
+	final TranslationsHi _root; // ignore: unused_field
+
+	// Translations
+	@override String get name => 'प्रो. ज़कारियस तनी फ़ोमुम';
+	@override String get line => '1945 – 2009 · CMFI के संस्थापक';
+	@override List<String> get facts => [
+		'CMFI की स्थापना',
+		'लिखी गई पुस्तकें',
+		'राष्ट्रों की यात्रा',
+	];
+	@override List<String> get dates => [
+		'20 जून को कैमरून में एक प्रेस्बिटेरियन परिवार में जन्म।',
+		'13 जून को एक ट्रैक्ट के द्वारा अपना जीवन यीशु मसीह को सौंपा।',
+		'1 अक्टूबर को सिएरा लियोन में स्वयं को पूरी तरह प्रभु को समर्पित किया।',
+		'सात दिन की प्रार्थना के बाद 24 अक्टूबर को पवित्र आत्मा से भर गए।',
+		'12 मई को याउंडे में CMFI की स्थापना की।',
+		'डरहम विश्वविद्यालय से डॉक्टर ऑफ़ साइंस की उपाधि मिली।',
+		'14 मार्च को प्रभु के पास चले गए।',
+	];
+	@override List<String> get story => [
+		'उनका जन्म 20 जून 1945 को कैमरून में, उत्तर-पश्चिम के बातिबो से आए एक प्रेस्बिटेरियन परिवार में हुआ। स्कूल में पढ़ते हुए ही, 13 जून 1956 को, “किसी ने तुम्हारे लिए अपनी जान दी” नामक एक ट्रैक्ट पढ़कर उन्होंने अपना जीवन यीशु मसीह को सौंप दिया।',
+		'सिएरा लियोन के फ़ोरा बे कॉलेज में छात्र रहते हुए, 1 अक्टूबर 1966 को उन्होंने स्वयं को बिना किसी शर्त के प्रभु और उसकी सेवा के लिए समर्पित कर दिया। 24 अक्टूबर 1970 को, सात दिन की प्रार्थना और उपवास के बाद, वे पवित्र आत्मा से भर गए। तब से प्रार्थना उनके जीवन का केंद्र बन गई।',
+		'युगांडा के माकेरेरे विश्वविद्यालय से कार्बनिक रसायन में डॉक्टरेट करने के बाद उन्होंने याउंडे विश्वविद्यालय में पढ़ाया, जहाँ वे प्रोफ़ेसर बने। उन्होंने लगभग सौ शोध-प्रबंधों का मार्गदर्शन किया, और 2005 में ब्रिटेन के डरहम विश्वविद्यालय ने उनके समग्र कार्य के लिए उन्हें डॉक्टर ऑफ़ साइंस की उपाधि दी।',
+		'12 मई 1975 को याउंडे में उन्होंने क्रिश्चियन मिशनरी फ़ेलोशिप इंटरनेशनल (CMFI) की स्थापना की: आत्माओं को जीतने, चेले बनाने, कलीसियाएँ स्थापित करने और मिशनरी भेजने के लिए एक आंदोलन। उन्होंने कैमरून में 700 से अधिक मिशनरी यात्राएँ कीं और छह महाद्वीपों के 70 से अधिक राष्ट्रों में 500 से अधिक यात्राएँ कीं।',
+		'वे हर दिन लंबे घंटे परमेश्वर के साथ अकेले बिताते थे, उन्होंने प्रार्थना के अनेक अभियानों, घेरों और प्रार्थना-यात्राओं की अगुवाई की, और अक्सर उपवास किया। उन्होंने प्रार्थना, उपवास, पवित्रता, शिष्यता और मिशन पर 150 से अधिक पुस्तकें लिखीं, जो अनेक भाषाओं में पढ़ी जाती हैं।',
+		'अपनी पत्नी प्रिस्का ज़ेई फ़ोमुम के साथ, जो बच्चों के बीच सेवा करती थीं, उनके सात बच्चे हुए, जो सभी सुसमाचार के कार्य में लगे हैं। दोनों ने सादगी से जीवन बिताया ताकि अपनी आय का सबसे बड़ा भाग सुसमाचार के लिए दे सकें।',
+		'14 मार्च 2009 को वे प्रभु की उपस्थिति में चले गए और 21 मार्च को याउंडे में दफ़नाए गए। उनके द्वारा स्थापित कार्य राष्ट्रों में आगे बढ़ रहा है।',
+	];
+}
+
+// Path: ministry.lives.leader
+class _Translations$ministry$lives$leader$hi extends Translations$ministry$lives$leader$fr {
+	_Translations$ministry$lives$leader$hi._(TranslationsHi root) : this._root = root, super.internal(root);
+
+	final TranslationsHi _root; // ignore: unused_field
+
+	// Translations
+	@override String get name => 'थियोडोर एंडोसेह';
+	@override String get line => '2009 से CMFI के अगुवे';
+	@override List<String> get facts => [
+		'स्थापित कलीसियाएँ',
+		'वर्ष नाइजीरिया में',
+		'CMFI की अगुवाई',
+	];
+	@override List<String> get dates => [
+		'प्रो. फ़ोमुम के प्रचार के द्वारा अपना जीवन यीशु मसीह को सौंपा।',
+		'याउंडे में बिशप के रूप में अभिषिक्त हुए।',
+		'अपनी पत्नी अडेला के साथ मिशनरी के रूप में नाइजीरिया गए।',
+		'CMFI की अगुवाई सँभाली।',
+		'तीसरे विश्व सम्मेलन में 93 राष्ट्रों से आए सदस्यों को संदेश दिए।',
+	];
+	@override List<String> get story => [
+		'1978 में प्रो. ज़कारियस तनी फ़ोमुम का प्रचार सुनकर थियोडोर एंडोसेह ने अपना जीवन यीशु मसीह को सौंप दिया। प्रो. फ़ोमुम उनके आत्मिक पिता बने और उन्हें चेले के रूप में तैयार किया।',
+		'पहले उन्होंने उनके साथ सेवा की: याउंडे विश्वविद्यालय में प्रयोगशाला सहायक के रूप में, फिर उनके निजी सहायक और निजी सचिव के रूप में। उन्हीं वर्षों में उन्होंने जागृति का पहला ट्रैक्ट, “परमेश्वर उस मनुष्य से बात करता है जो सुनना चाहता है”, प्रकाशित किया और याउंडे में पहली प्रार्थना-श्रृंखला शुरू की।',
+		'एक राष्ट्रीय मिशनरी के रूप में उन्होंने कैमरून में पचास से अधिक कलीसियाएँ स्थापित कीं। 1989 में याउंडे में वे बिशप के रूप में अभिषिक्त हुए।',
+		'1994 में वे अपनी पत्नी अडेला के साथ मिशनरी बनकर नाइजीरिया गए। वहाँ उन्होंने चौदह वर्ष सेवा की।',
+		'2009 से, जब प्रो. फ़ोमुम प्रभु के पास चले गए, वे राष्ट्रों में CMFI की अगुवाई कर रहे हैं। दिसंबर 2019 में, बर्टुआ के पास कूमे में, उन्होंने तीसरे विश्व सम्मेलन में 93 राष्ट्रों से आए सदस्यों को संदेश दिए। वे परमेश्वर की सेवा और कलीसिया के निर्माण पर कई पुस्तकों के लेखक भी हैं।',
+	];
 }
 
 // Path: prayer.retreat.hints
@@ -3178,6 +3265,17 @@ extension on TranslationsHi {
 			'ministry.missionariesSubtitle' => 'जिन्हें प्रभु राष्ट्रों में भेजता है',
 			'ministry.heroes' => 'हमारे नायक',
 			'ministry.heroesSubtitle' => 'जिनका विश्वास हमें प्रेरित करता है',
+			'ministry.founder' => 'हमारे संस्थापक',
+			'ministry.founderSubtitle' => 'प्रो. ज़कारियस तनी फ़ोमुम',
+			'ministry.leader' => 'हमारे अगुवे',
+			'ministry.leaderSubtitle' => 'थियोडोर एंडोसेह',
+			'ministry.missionariesEmpty' => 'हमारे मिशनरियों के परिचय जल्द ही आ रहे हैं।',
+			'ministry.heroesEmpty' => 'हमारे नायकों के परिचय जल्द ही आ रहे हैं।',
+			'ministry.personGone' => 'यह परिचय अब उपलब्ध नहीं है।',
+			'ministry.photoOf' => ({required Object name}) => '${name} की फ़ोटो',
+			'ministry.keyDates' => 'मुख्य तिथियाँ',
+			'ministry.life' => 'उनका जीवन',
+			'ministry.story' => 'उनकी कहानी',
 			'ministry.goalOf' => ({required Object n, required Object total}) => 'हमारा लक्ष्य · ${n}/${total}',
 			'ministry.previousGoal' => 'पिछला लक्ष्य',
 			'ministry.nextGoal' => 'अगला लक्ष्य',
@@ -3203,6 +3301,40 @@ extension on TranslationsHi {
 			'ministry.goals.revival.fasting' => 'उपवास',
 			'ministry.goals.revival.intercession' => 'मध्यस्थ प्रार्थना',
 			'ministry.goals.revival.pray' => 'अभी प्रार्थना करो',
+			'ministry.lives.founder.name' => 'प्रो. ज़कारियस तनी फ़ोमुम',
+			'ministry.lives.founder.line' => '1945 – 2009 · CMFI के संस्थापक',
+			'ministry.lives.founder.facts.0' => 'CMFI की स्थापना',
+			'ministry.lives.founder.facts.1' => 'लिखी गई पुस्तकें',
+			'ministry.lives.founder.facts.2' => 'राष्ट्रों की यात्रा',
+			'ministry.lives.founder.dates.0' => '20 जून को कैमरून में एक प्रेस्बिटेरियन परिवार में जन्म।',
+			'ministry.lives.founder.dates.1' => '13 जून को एक ट्रैक्ट के द्वारा अपना जीवन यीशु मसीह को सौंपा।',
+			'ministry.lives.founder.dates.2' => '1 अक्टूबर को सिएरा लियोन में स्वयं को पूरी तरह प्रभु को समर्पित किया।',
+			'ministry.lives.founder.dates.3' => 'सात दिन की प्रार्थना के बाद 24 अक्टूबर को पवित्र आत्मा से भर गए।',
+			'ministry.lives.founder.dates.4' => '12 मई को याउंडे में CMFI की स्थापना की।',
+			'ministry.lives.founder.dates.5' => 'डरहम विश्वविद्यालय से डॉक्टर ऑफ़ साइंस की उपाधि मिली।',
+			'ministry.lives.founder.dates.6' => '14 मार्च को प्रभु के पास चले गए।',
+			'ministry.lives.founder.story.0' => 'उनका जन्म 20 जून 1945 को कैमरून में, उत्तर-पश्चिम के बातिबो से आए एक प्रेस्बिटेरियन परिवार में हुआ। स्कूल में पढ़ते हुए ही, 13 जून 1956 को, “किसी ने तुम्हारे लिए अपनी जान दी” नामक एक ट्रैक्ट पढ़कर उन्होंने अपना जीवन यीशु मसीह को सौंप दिया।',
+			'ministry.lives.founder.story.1' => 'सिएरा लियोन के फ़ोरा बे कॉलेज में छात्र रहते हुए, 1 अक्टूबर 1966 को उन्होंने स्वयं को बिना किसी शर्त के प्रभु और उसकी सेवा के लिए समर्पित कर दिया। 24 अक्टूबर 1970 को, सात दिन की प्रार्थना और उपवास के बाद, वे पवित्र आत्मा से भर गए। तब से प्रार्थना उनके जीवन का केंद्र बन गई।',
+			'ministry.lives.founder.story.2' => 'युगांडा के माकेरेरे विश्वविद्यालय से कार्बनिक रसायन में डॉक्टरेट करने के बाद उन्होंने याउंडे विश्वविद्यालय में पढ़ाया, जहाँ वे प्रोफ़ेसर बने। उन्होंने लगभग सौ शोध-प्रबंधों का मार्गदर्शन किया, और 2005 में ब्रिटेन के डरहम विश्वविद्यालय ने उनके समग्र कार्य के लिए उन्हें डॉक्टर ऑफ़ साइंस की उपाधि दी।',
+			'ministry.lives.founder.story.3' => '12 मई 1975 को याउंडे में उन्होंने क्रिश्चियन मिशनरी फ़ेलोशिप इंटरनेशनल (CMFI) की स्थापना की: आत्माओं को जीतने, चेले बनाने, कलीसियाएँ स्थापित करने और मिशनरी भेजने के लिए एक आंदोलन। उन्होंने कैमरून में 700 से अधिक मिशनरी यात्राएँ कीं और छह महाद्वीपों के 70 से अधिक राष्ट्रों में 500 से अधिक यात्राएँ कीं।',
+			'ministry.lives.founder.story.4' => 'वे हर दिन लंबे घंटे परमेश्वर के साथ अकेले बिताते थे, उन्होंने प्रार्थना के अनेक अभियानों, घेरों और प्रार्थना-यात्राओं की अगुवाई की, और अक्सर उपवास किया। उन्होंने प्रार्थना, उपवास, पवित्रता, शिष्यता और मिशन पर 150 से अधिक पुस्तकें लिखीं, जो अनेक भाषाओं में पढ़ी जाती हैं।',
+			'ministry.lives.founder.story.5' => 'अपनी पत्नी प्रिस्का ज़ेई फ़ोमुम के साथ, जो बच्चों के बीच सेवा करती थीं, उनके सात बच्चे हुए, जो सभी सुसमाचार के कार्य में लगे हैं। दोनों ने सादगी से जीवन बिताया ताकि अपनी आय का सबसे बड़ा भाग सुसमाचार के लिए दे सकें।',
+			'ministry.lives.founder.story.6' => '14 मार्च 2009 को वे प्रभु की उपस्थिति में चले गए और 21 मार्च को याउंडे में दफ़नाए गए। उनके द्वारा स्थापित कार्य राष्ट्रों में आगे बढ़ रहा है।',
+			'ministry.lives.leader.name' => 'थियोडोर एंडोसेह',
+			'ministry.lives.leader.line' => '2009 से CMFI के अगुवे',
+			'ministry.lives.leader.facts.0' => 'स्थापित कलीसियाएँ',
+			'ministry.lives.leader.facts.1' => 'वर्ष नाइजीरिया में',
+			'ministry.lives.leader.facts.2' => 'CMFI की अगुवाई',
+			'ministry.lives.leader.dates.0' => 'प्रो. फ़ोमुम के प्रचार के द्वारा अपना जीवन यीशु मसीह को सौंपा।',
+			'ministry.lives.leader.dates.1' => 'याउंडे में बिशप के रूप में अभिषिक्त हुए।',
+			'ministry.lives.leader.dates.2' => 'अपनी पत्नी अडेला के साथ मिशनरी के रूप में नाइजीरिया गए।',
+			'ministry.lives.leader.dates.3' => 'CMFI की अगुवाई सँभाली।',
+			'ministry.lives.leader.dates.4' => 'तीसरे विश्व सम्मेलन में 93 राष्ट्रों से आए सदस्यों को संदेश दिए।',
+			'ministry.lives.leader.story.0' => '1978 में प्रो. ज़कारियस तनी फ़ोमुम का प्रचार सुनकर थियोडोर एंडोसेह ने अपना जीवन यीशु मसीह को सौंप दिया। प्रो. फ़ोमुम उनके आत्मिक पिता बने और उन्हें चेले के रूप में तैयार किया।',
+			'ministry.lives.leader.story.1' => 'पहले उन्होंने उनके साथ सेवा की: याउंडे विश्वविद्यालय में प्रयोगशाला सहायक के रूप में, फिर उनके निजी सहायक और निजी सचिव के रूप में। उन्हीं वर्षों में उन्होंने जागृति का पहला ट्रैक्ट, “परमेश्वर उस मनुष्य से बात करता है जो सुनना चाहता है”, प्रकाशित किया और याउंडे में पहली प्रार्थना-श्रृंखला शुरू की।',
+			'ministry.lives.leader.story.2' => 'एक राष्ट्रीय मिशनरी के रूप में उन्होंने कैमरून में पचास से अधिक कलीसियाएँ स्थापित कीं। 1989 में याउंडे में वे बिशप के रूप में अभिषिक्त हुए।',
+			'ministry.lives.leader.story.3' => '1994 में वे अपनी पत्नी अडेला के साथ मिशनरी बनकर नाइजीरिया गए। वहाँ उन्होंने चौदह वर्ष सेवा की।',
+			'ministry.lives.leader.story.4' => '2009 से, जब प्रो. फ़ोमुम प्रभु के पास चले गए, वे राष्ट्रों में CMFI की अगुवाई कर रहे हैं। दिसंबर 2019 में, बर्टुआ के पास कूमे में, उन्होंने तीसरे विश्व सम्मेलन में 93 राष्ट्रों से आए सदस्यों को संदेश दिए। वे परमेश्वर की सेवा और कलीसिया के निर्माण पर कई पुस्तकों के लेखक भी हैं।',
 			'prayer.moments.morning' => 'सुबह',
 			'prayer.moments.noon' => 'दोपहर',
 			'prayer.moments.evening' => 'शाम',
@@ -3347,6 +3479,8 @@ extension on TranslationsHi {
 			'prayer.lists.sheet.list' => 'सूची',
 			'prayer.lists.sheet.save' => 'सेव करो',
 			'prayer.lists.sheet.remove' => 'सूची से हटाओ',
+			_ => null,
+		} ?? switch (path) {
 			'prayer.lists.sheet.removeTitle' => ({required Object name}) => '${name} को हटाना है?',
 			'prayer.lists.sheet.removeText' => 'अब तुम्हारे प्रार्थना-समय में इस व्यक्ति के लिए प्रार्थना नहीं होगी।',
 			'prayer.lists.addShort' => 'जोड़ो',
@@ -3392,8 +3526,6 @@ extension on TranslationsHi {
 			'prayer.importunity.form.goalPlaceholder' => '10,000',
 			'prayer.importunity.form.create' => 'बनाओ',
 			'prayer.importunity.form.save' => 'सेव करो',
-			_ => null,
-		} ?? switch (path) {
 			'prayer.importunity.inviteSheet.title' => 'प्रार्थना का न्योता दो',
 			'prayer.importunity.inviteSheet.family' => 'मेरा आत्मिक परिवार',
 			'prayer.importunity.inviteSheet.familyText' => ({required num n, required Object name}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n, one: '${name} और उनके चेले: ${n} व्यक्ति', other: '${name} और उनके चेले: ${n} लोग', ), 

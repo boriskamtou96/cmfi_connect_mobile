@@ -8,11 +8,13 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '../../../core/network/api_call.dart';
 import '../../../core/network/dio_provider.dart';
 import '../../../core/storage/preferences.dart';
+import '../domain/ministry_person.dart';
 import '../domain/nation.dart';
 
 part 'ministry_api.g.dart';
 
-/// Our ministry (/v1/ministry): the nations where it is present.
+/// Our ministry (/v1/ministry): the nations where it is present, our
+/// missionaries and our heroes.
 class MinistryApi {
   const MinistryApi(this._dio);
 
@@ -26,13 +28,27 @@ class MinistryApi {
         Nation.fromJson(json as Map<String, dynamic>),
     ];
   });
+
+  /// The published portraits of [kind], in the admins' order.
+  Future<List<MinistryPerson>> people(MinistryPersonKind kind) =>
+      apiCall(() async {
+        final response = await _dio.get<Map<String, dynamic>>(
+          '/ministry/people',
+          queryParameters: {'kind': kind.name},
+        );
+        return [
+          for (final json in response.contentList)
+            MinistryPerson.fromJson(json as Map<String, dynamic>),
+        ];
+      });
 }
 
 @Riverpod(keepAlive: true)
 MinistryApi ministryApi(Ref ref) => MinistryApi(ref.watch(dioProvider));
 
 /// The nations seen last, kept for offline; the first time, the copy shipped
-/// with the app (assets/ministry/nations.json, the list of 154).
+/// with the app (assets/ministry/nations.json, the list of 154). The
+/// portraits seen last too (none shipped).
 class MinistryLocalStore {
   const MinistryLocalStore(this._preferences);
 
@@ -51,6 +67,24 @@ class MinistryLocalStore {
 
   Future<List<Nation>> shipped(AssetBundle bundle) async =>
       _decode(await bundle.loadString(shippedAsset, cache: false));
+
+  List<MinistryPerson>? savedPeople(MinistryPersonKind kind) {
+    final raw = _preferences.getString('ministry_people_${kind.name}');
+    return raw == null
+        ? null
+        : [
+            for (final json in jsonDecode(raw) as List<dynamic>)
+              MinistryPerson.fromJson(json as Map<String, dynamic>),
+          ];
+  }
+
+  Future<void> savePeople(
+    MinistryPersonKind kind,
+    List<MinistryPerson> people,
+  ) => _preferences.setString(
+    'ministry_people_${kind.name}',
+    jsonEncode(people),
+  );
 
   static List<Nation> _decode(String raw) => [
     for (final json in jsonDecode(raw) as List<dynamic>)

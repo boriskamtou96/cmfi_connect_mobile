@@ -27,6 +27,8 @@ import '../features/hymns/presentation/hymn_projection_screen.dart';
 import '../features/hymns/presentation/hymn_reader_screen.dart';
 import '../features/hymns/presentation/hymns_screen.dart';
 import '../features/members/presentation/delete_account_screen.dart';
+import '../features/ministry/presentation/life_screen.dart';
+import '../features/ministry/presentation/ministry_people_screen.dart';
 import '../features/ministry/presentation/ministry_screen.dart';
 import '../features/ministry/presentation/nations_screen.dart';
 import '../features/ministry/presentation/purpose_screen.dart';
@@ -232,6 +234,26 @@ class AppRouter extends RootStackRouter {
     AutoRoute(
       path: '/ministry/purpose',
       page: PurposeRoute.page,
+      guards: [authGuard],
+    ),
+    AutoRoute(
+      path: '/ministry/founder',
+      page: FounderRoute.page,
+      guards: [authGuard],
+    ),
+    AutoRoute(
+      path: '/ministry/leader',
+      page: LeaderRoute.page,
+      guards: [authGuard],
+    ),
+    AutoRoute(
+      path: '/ministry/people/:kind',
+      page: MinistryPeopleRoute.page,
+      guards: [authGuard],
+    ),
+    AutoRoute(
+      path: '/ministry/people/:kind/:personId',
+      page: MinistryPersonRoute.page,
       guards: [authGuard],
     ),
     AutoRoute(

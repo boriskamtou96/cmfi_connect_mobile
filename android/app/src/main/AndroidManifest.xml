@@ -1,4 +1,17 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
+  <!-- What the app itself needs (the plugins bring theirs too; declared here
+       so the published app never depends on them). Nothing else is asked:
+       the photo, the calendar and the files go through the system's pickers. -->
+  <!-- the API, the Bible, the images -->
+  <uses-permission android:name="android.permission.INTERNET"/>
+  <!-- offline: the days kept on the phone leave when the network comes back
+       (connectivity_plus) -->
+  <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+  <!-- the reminders, the announcements, the invitations to pray (asked at
+       the first reminder, Android 13 and later) -->
+  <uses-permission android:name="android.permission.POST_NOTIFICATIONS"/>
+  <!-- signing in with the fingerprint or the face (local_auth) -->
+  <uses-permission android:name="android.permission.USE_BIOMETRIC"/>
   <!-- the evening report reminder and the widget's midnight update are
        scheduled again after a reboot -->
   <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>

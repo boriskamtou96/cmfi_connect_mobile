@@ -11,6 +11,7 @@ import '../../../core/theme/app_tones.dart';
 import '../../../core/widgets/app_back_button.dart';
 import '../../../core/widgets/error_view.dart';
 import '../../../core/widgets/skeleton.dart';
+import '../../../routing/app_router.dart';
 import '../application/bible_library.dart';
 import '../application/bible_position.dart';
 import '../application/bible_settings.dart';
@@ -231,7 +232,7 @@ class _Results extends StatelessWidget {
               ),
             );
           }
-          return Padding(
+          final count = Padding(
             padding: const EdgeInsetsDirectional.fromSTEB(24, 8, 24, 4),
             child: Text(
               verses.length >= 200
@@ -243,6 +244,45 @@ class _Results extends StatelessWidget {
                 color: scheme.onSurfaceVariant,
               ),
             ),
+          );
+          final word = query.trim();
+          if (word.contains(' ')) {
+            return count;
+          }
+          // one word: all its verses, book by book
+          return Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              Padding(
+                padding: const EdgeInsets.fromLTRB(
+                  AppSpacing.lg,
+                  AppSpacing.sm,
+                  AppSpacing.lg,
+                  AppSpacing.xs,
+                ),
+                child: Material(
+                  color: tone.soft,
+                  borderRadius: BorderRadius.circular(AppRadius.lg),
+                  child: ListTile(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(AppRadius.lg),
+                    ),
+                    onTap: () =>
+                        context.router.push(ConcordanceRoute(word: word)),
+                    leading: Icon(AppIcons.concordance, color: tone.onSoft),
+                    title: Text(
+                      t.bible.concordanceOf(word: word),
+                      style: TextStyle(
+                        fontWeight: FontWeight.w800,
+                        color: tone.onSoft,
+                      ),
+                    ),
+                    trailing: Icon(AppIcons.chevronRight, color: tone.onSoft),
+                  ),
+                ),
+              ),
+              count,
+            ],
           );
         }
         final verse = verses[index - 1];

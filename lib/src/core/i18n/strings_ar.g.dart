@@ -1172,6 +1172,36 @@ class _Translations$bible$ar extends Translations$bible$fr {
 	@override String get jesusInRedHelp => 'في الترجمات التي تميّزها';
 	@override String get remove => 'إزالة';
 	@override String get readInBible => 'اقرأ في الكتاب المقدس';
+	@override String get concordance => 'فهرس الكلمات';
+	@override String concordanceOf({required Object word}) => 'فهرس كلمة «${word}»';
+	@override String get concordanceHint => 'كلمة من الكتاب المقدس';
+	@override String get concordanceTip => 'اكتب كلمة: يعرض فهرس الكلمات كل آية ترد فيها، سفرًا سفرًا.';
+	@override String get concordanceNeedsDownload => 'يبحث فهرس الكلمات في الكتاب المقدس كله: نزّله أولًا.';
+	@override String get concordanceNone => 'هذه الكلمة غير موجودة في هذه الترجمة.';
+	@override String get exactWord => 'هذه الكلمة';
+	@override String get startsWith => 'تبدأ بـ…';
+	@override String occurrences({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n,
+		one: 'مرة',
+		two: 'مرتان',
+		few: 'مرات',
+		many: 'مرة',
+		other: 'مرة',
+		zero: 'مرة',
+	);
+	@override String inVerses({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n,
+		one: 'في آية واحدة',
+		two: 'في آيتين',
+		few: 'في ${n} آيات',
+		many: 'في ${n} آية',
+		other: 'في ${n} آية',
+		zero: 'في ${n} آية',
+	);
+	@override String get spread => 'أين ترد هذه الكلمة';
+	@override String get forms => 'الصيغ الموجودة';
+	@override String bookCount({required Object book, required Object n}) => '${book}: ${n}';
+	@override String get allBooks => 'كل الأسفار';
+	@override String get pickWord => 'اختر كلمة';
+	@override String get pickWordHelp => 'يعرض فهرس الكلمات كل آية ترد فيها.';
 	@override String get more => 'خيارات أخرى';
 }
 
@@ -3883,6 +3913,22 @@ extension on TranslationsAr {
 			'bible.jesusInRedHelp' => 'في الترجمات التي تميّزها',
 			'bible.remove' => 'إزالة',
 			'bible.readInBible' => 'اقرأ في الكتاب المقدس',
+			'bible.concordance' => 'فهرس الكلمات',
+			'bible.concordanceOf' => ({required Object word}) => 'فهرس كلمة «${word}»',
+			'bible.concordanceHint' => 'كلمة من الكتاب المقدس',
+			'bible.concordanceTip' => 'اكتب كلمة: يعرض فهرس الكلمات كل آية ترد فيها، سفرًا سفرًا.',
+			'bible.concordanceNeedsDownload' => 'يبحث فهرس الكلمات في الكتاب المقدس كله: نزّله أولًا.',
+			'bible.concordanceNone' => 'هذه الكلمة غير موجودة في هذه الترجمة.',
+			'bible.exactWord' => 'هذه الكلمة',
+			'bible.startsWith' => 'تبدأ بـ…',
+			'bible.occurrences' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n, one: 'مرة', two: 'مرتان', few: 'مرات', many: 'مرة', other: 'مرة', zero: 'مرة', ), 
+			'bible.inVerses' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n, one: 'في آية واحدة', two: 'في آيتين', few: 'في ${n} آيات', many: 'في ${n} آية', other: 'في ${n} آية', zero: 'في ${n} آية', ), 
+			'bible.spread' => 'أين ترد هذه الكلمة',
+			'bible.forms' => 'الصيغ الموجودة',
+			'bible.bookCount' => ({required Object book, required Object n}) => '${book}: ${n}',
+			'bible.allBooks' => 'كل الأسفار',
+			'bible.pickWord' => 'اختر كلمة',
+			'bible.pickWordHelp' => 'يعرض فهرس الكلمات كل آية ترد فيها.',
 			'bible.more' => 'خيارات أخرى',
 			'profilePhoto.title' => 'صورة الملف الشخصي',
 			'profilePhoto.add' => 'إضافة صورة للملف الشخصي',

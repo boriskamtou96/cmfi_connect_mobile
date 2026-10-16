@@ -1040,6 +1040,26 @@ class _Translations$bible$zh extends Translations$bible$fr {
 	@override String get jesusInRedHelp => '适用于标注了耶稣话语的译本';
 	@override String get remove => '移除';
 	@override String get readInBible => '在圣经中阅读';
+	@override String get concordance => '经文汇编';
+	@override String concordanceOf({required Object word}) => '“${word}”的经文汇编';
+	@override String get concordanceHint => '圣经中的一个词';
+	@override String get concordanceTip => '输入一个词：经文汇编按书卷列出它出现的每一节经文。';
+	@override String get concordanceNeedsDownload => '经文汇编会查遍整本圣经：请先下载。';
+	@override String get concordanceNone => '这本圣经中没有这个词。';
+	@override String get exactWord => '这个词';
+	@override String get startsWith => '开头为…';
+	@override String occurrences({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n,
+		other: '次',
+	);
+	@override String inVerses({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n,
+		other: '出现在 ${n} 节经文中',
+	);
+	@override String get spread => '这个词出现的位置';
+	@override String get forms => '找到的形式';
+	@override String bookCount({required Object book, required Object n}) => '${book}：${n}';
+	@override String get allBooks => '所有书卷';
+	@override String get pickWord => '选择一个词';
+	@override String get pickWordHelp => '经文汇编会列出它出现的每一节经文。';
 	@override String get more => '更多选项';
 }
 
@@ -3614,6 +3634,22 @@ extension on TranslationsZh {
 			'bible.jesusInRedHelp' => '适用于标注了耶稣话语的译本',
 			'bible.remove' => '移除',
 			'bible.readInBible' => '在圣经中阅读',
+			'bible.concordance' => '经文汇编',
+			'bible.concordanceOf' => ({required Object word}) => '“${word}”的经文汇编',
+			'bible.concordanceHint' => '圣经中的一个词',
+			'bible.concordanceTip' => '输入一个词：经文汇编按书卷列出它出现的每一节经文。',
+			'bible.concordanceNeedsDownload' => '经文汇编会查遍整本圣经：请先下载。',
+			'bible.concordanceNone' => '这本圣经中没有这个词。',
+			'bible.exactWord' => '这个词',
+			'bible.startsWith' => '开头为…',
+			'bible.occurrences' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n, other: '次', ), 
+			'bible.inVerses' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n, other: '出现在 ${n} 节经文中', ), 
+			'bible.spread' => '这个词出现的位置',
+			'bible.forms' => '找到的形式',
+			'bible.bookCount' => ({required Object book, required Object n}) => '${book}：${n}',
+			'bible.allBooks' => '所有书卷',
+			'bible.pickWord' => '选择一个词',
+			'bible.pickWordHelp' => '经文汇编会列出它出现的每一节经文。',
 			'bible.more' => '更多选项',
 			'profilePhoto.title' => '头像',
 			'profilePhoto.add' => '添加头像',

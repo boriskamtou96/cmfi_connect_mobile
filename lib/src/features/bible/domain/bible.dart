@@ -458,4 +458,133 @@ class BibleText {
     }
     return found;
   }
+
+  /// Every verse where [word] is, in the order of the Bible: the word itself
+  /// (accents ignored, unless [word] has some: "aimé" is not "aime"), or,
+  /// with [prefix], every word that starts with it ("aim": aime, aimer…).
+  /// Chinese has no spaces between words: the characters are looked for.
+  Concordance concordance(String word, {bool prefix = false}) {
+    final written = _wordPattern.firstMatch(word.trim())?[0] ?? '';
+    final term = normalizeBibleText(written);
+    final han = _han.hasMatch(term);
+    if (term.isEmpty || (!han && term.length < 2)) {
+      return Concordance(word: written, prefix: prefix, hits: const []);
+    }
+    // the accents typed count: "aimé" only
+    final exact = written.toLowerCase();
+    final strict = !prefix && exact != term;
+    final hits = <ConcordanceHit>[];
+    final forms = <String, ({String form, int count})>{};
+
+    void found(String form) {
+      final key = form.toLowerCase();
+      final seen = forms[key];
+      forms[key] = (form: seen?.form ?? form, count: (seen?.count ?? 0) + 1);
+    }
+
+    for (final verse in searchIndex) {
+      if (!verse.plain.contains(term)) {
+        continue;
+      }
+      final ranges = <({int start, int end})>[];
+      if (han) {
+        var at = verse.text.indexOf(written);
+        while (at >= 0) {
+          ranges.add((start: at, end: at + written.length));
+          found(written);
+          at = verse.text.indexOf(written, at + written.length);
+        }
+      } else {
+        for (final match in _wordPattern.allMatches(verse.text)) {
+          final form = match[0]!;
+          final matches = strict
+              ? form.toLowerCase() == exact
+              : prefix
+              ? normalizeBibleText(form).startsWith(term)
+              : normalizeBibleText(form) == term;
+          if (matches) {
+            ranges.add((start: match.start, end: match.end));
+            found(form);
+          }
+        }
+      }
+      if (ranges.isNotEmpty) {
+        hits.add(
+          ConcordanceHit(ref: verse.ref, text: verse.text, ranges: ranges),
+        );
+      }
+    }
+    return Concordance(
+      word: written,
+      prefix: prefix,
+      hits: hits,
+      forms: forms.values.toList()..sort((a, b) => b.count.compareTo(a.count)),
+    );
+  }
+}
+
+/// A word: letters (with their accents and marks) and digits. "l'amour" is
+/// two words, "Saint-Esprit" too.
+final _wordPattern = RegExp(r'[\p{L}\p{M}\p{N}]+', unicode: true);
+final _han = RegExp(r'\p{Script=Han}', unicode: true);
+
+/// The words [text] offers to the concordance, as written, each once (accents
+/// and case ignored), in their order, at least [minLength] letters. Chinese
+/// writes without spaces: none.
+List<String> concordanceWords(String text, {int minLength = 3}) {
+  if (_han.hasMatch(text)) {
+    return const [];
+  }
+  final seen = <String>{};
+  return [
+    for (final match in _wordPattern.allMatches(text))
+      if (normalizeBibleText(match[0]!) case final plain
+          when plain.length >= minLength &&
+              !RegExp(r'^\d+$').hasMatch(plain) &&
+              seen.add(plain))
+        match[0]!,
+  ];
+}
+
+/// A verse of the concordance, with where the word is in it.
+class ConcordanceHit {
+  const ConcordanceHit({
+    required this.ref,
+    required this.text,
+    required this.ranges,
+  });
+
+  final BibleRef ref;
+  final String text;
+  final List<({int start, int end})> ranges;
+}
+
+/// Where a word is in a Bible: the verses, and the words found as written
+/// (with [prefix], "aime", "aimer"…; accents apart, "aime", "aimé"), the most
+/// frequent first.
+class Concordance {
+  const Concordance({
+    required this.word,
+    required this.prefix,
+    required this.hits,
+    this.forms = const [],
+  });
+
+  final String word;
+  final bool prefix;
+  final List<ConcordanceHit> hits;
+  final List<({String form, int count})> forms;
+
+  /// How many times the word is there (twice in a verse counts twice).
+  int get occurrences =>
+      hits.fold(0, (total, hit) => total + hit.ranges.length);
+
+  /// Book id -> how many times.
+  Map<String, int> get byBook {
+    final counts = <String, int>{};
+    for (final hit in hits) {
+      counts[hit.ref.book] = (counts[hit.ref.book] ?? 0) + hit.ranges.length;
+    }
+    return counts;
+  }
 }

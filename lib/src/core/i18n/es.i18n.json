@@ -1568,6 +1568,28 @@
     "jesusInRedHelp": "En las versiones que las indican",
     "remove": "Quitar",
     "readInBible": "Leer en la Biblia",
+    "concordance": "Concordancia",
+    "concordanceOf": "Concordancia de «{word}»",
+    "concordanceHint": "Una palabra de la Biblia",
+    "concordanceTip": "Escribe una palabra: la concordancia muestra todos los versículos donde aparece, libro por libro.",
+    "concordanceNeedsDownload": "La concordancia recorre toda la Biblia: descárgala primero.",
+    "concordanceNone": "Esta palabra no está en esta Biblia.",
+    "exactWord": "Esta palabra",
+    "startsWith": "Empieza por…",
+    "occurrences(plural, param=n)": {
+      "one": "vez",
+      "other": "veces"
+    },
+    "inVerses(plural, param=n)": {
+      "one": "en {n} versículo",
+      "other": "en {n} versículos"
+    },
+    "spread": "Dónde aparece esta palabra",
+    "forms": "Formas encontradas",
+    "bookCount": "{book}: {n}",
+    "allBooks": "Todos los libros",
+    "pickWord": "Elige una palabra",
+    "pickWordHelp": "La concordancia muestra todos los versículos donde aparece.",
     "more": "Más opciones"
   },
   "profilePhoto": {

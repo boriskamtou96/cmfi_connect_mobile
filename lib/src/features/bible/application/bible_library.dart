@@ -161,3 +161,16 @@ Future<BibleSearch> bibleSearch(Ref ref, String version, String query) async {
     downloaded: text != null,
   );
 }
+
+/// The concordance of [word] in the downloaded [version]; null when it is
+/// not on the phone.
+@riverpod
+Future<Concordance?> bibleConcordance(
+  Ref ref,
+  String version,
+  String word, {
+  bool prefix = false,
+}) async {
+  final text = await ref.watch(bibleTextProvider(version).future);
+  return text?.concordance(word, prefix: prefix);
+}

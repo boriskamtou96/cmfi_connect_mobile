@@ -204,6 +204,55 @@ class ChurchFormRouteArgs {
 }
 
 /// generated route for
+/// [ConcordanceScreen]
+class ConcordanceRoute extends PageRouteInfo<ConcordanceRouteArgs> {
+  ConcordanceRoute({String word = '', Key? key, List<PageRouteInfo>? children})
+    : super(
+        ConcordanceRoute.name,
+        args: ConcordanceRouteArgs(word: word, key: key),
+        rawQueryParams: {'word': word},
+        initialChildren: children,
+      );
+
+  static const String name = 'ConcordanceRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      final queryParams = data.queryParams;
+      final args = data.argsAs<ConcordanceRouteArgs>(
+        orElse: () =>
+            ConcordanceRouteArgs(word: queryParams.getString('word', '')),
+      );
+      return ConcordanceScreen(word: args.word, key: args.key);
+    },
+  );
+}
+
+class ConcordanceRouteArgs {
+  const ConcordanceRouteArgs({this.word = '', this.key});
+
+  final String word;
+
+  final Key? key;
+
+  @override
+  String toString() {
+    return 'ConcordanceRouteArgs{word: $word, key: $key}';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (other is! ConcordanceRouteArgs) return false;
+    return word == other.word && key == other.key;
+  }
+
+  @override
+  int get hashCode => word.hashCode ^ key.hashCode;
+}
+
+/// generated route for
 /// [DeleteAccountScreen]
 class DeleteAccountRoute extends PageRouteInfo<void> {
   const DeleteAccountRoute({List<PageRouteInfo>? children})

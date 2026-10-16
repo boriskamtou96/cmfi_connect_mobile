@@ -34,8 +34,13 @@ class ShareVerses extends VerseAction {
   const ShareVerses();
 }
 
-/// Under the selected verses: their reference, the highlight colors, keep,
-/// copy and share. [anchor] (share) is where the iPad sheet points from.
+/// The concordance of a word of the verses.
+class ConcordanceVerses extends VerseAction {
+  const ConcordanceVerses();
+}
+
+/// Under the selected verses: their reference, the concordance, the
+/// highlight colors, keep, copy and share. [anchor] (share) is where the iPad sheet points from.
 class VerseActions extends StatelessWidget {
   const VerseActions({
     required this.label,
@@ -120,6 +125,12 @@ class VerseActions extends StatelessWidget {
                           color: palette.text,
                         ),
                       ),
+                    ),
+                    IconButton(
+                      tooltip: t.bible.concordance,
+                      onPressed: () => onAction(const ConcordanceVerses()),
+                      color: palette.text,
+                      icon: const Icon(AppIcons.concordance, size: 22),
                     ),
                     IconButton(
                       tooltip: t.bible.closeSelection,

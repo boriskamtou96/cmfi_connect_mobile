@@ -458,3 +458,107 @@ final class BibleSearchFamily extends $Family
   @override
   String toString() => r'bibleSearchProvider';
 }
+
+/// The concordance of [word] in the downloaded [version]; null when it is
+/// not on the phone.
+
+@ProviderFor(bibleConcordance)
+final bibleConcordanceProvider = BibleConcordanceFamily._();
+
+/// The concordance of [word] in the downloaded [version]; null when it is
+/// not on the phone.
+
+final class BibleConcordanceProvider
+    extends
+        $FunctionalProvider<
+          AsyncValue<Concordance?>,
+          Concordance?,
+          FutureOr<Concordance?>
+        >
+    with $FutureModifier<Concordance?>, $FutureProvider<Concordance?> {
+  /// The concordance of [word] in the downloaded [version]; null when it is
+  /// not on the phone.
+  BibleConcordanceProvider._({
+    required BibleConcordanceFamily super.from,
+    required (String, String, {bool prefix}) super.argument,
+  }) : super(
+         retry: null,
+         name: r'bibleConcordanceProvider',
+         isAutoDispose: true,
+         dependencies: null,
+         $allTransitiveDependencies: null,
+       );
+
+  @override
+  String debugGetCreateSourceHash() => _$bibleConcordanceHash();
+
+  @override
+  String toString() {
+    return r'bibleConcordanceProvider'
+        ''
+        '$argument';
+  }
+
+  @$internal
+  @override
+  $FutureProviderElement<Concordance?> $createElement(
+    $ProviderPointer pointer,
+  ) => $FutureProviderElement(pointer);
+
+  @override
+  FutureOr<Concordance?> create(Ref ref) {
+    final argument = this.argument as (String, String, {bool prefix});
+    return bibleConcordance(
+      ref,
+      argument.$1,
+      argument.$2,
+      prefix: argument.prefix,
+    );
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return other is BibleConcordanceProvider && other.argument == argument;
+  }
+
+  @override
+  int get hashCode {
+    return argument.hashCode;
+  }
+}
+
+String _$bibleConcordanceHash() => r'8e89ea21611c0d7ce43507ab55a7d518a2e18f1e';
+
+/// The concordance of [word] in the downloaded [version]; null when it is
+/// not on the phone.
+
+final class BibleConcordanceFamily extends $Family
+    with
+        $FunctionalFamilyOverride<
+          FutureOr<Concordance?>,
+          (String, String, {bool prefix})
+        > {
+  BibleConcordanceFamily._()
+    : super(
+        retry: null,
+        name: r'bibleConcordanceProvider',
+        dependencies: null,
+        $allTransitiveDependencies: null,
+        isAutoDispose: true,
+      );
+
+  /// The concordance of [word] in the downloaded [version]; null when it is
+  /// not on the phone.
+
+  BibleConcordanceProvider call(
+    String version,
+    String word, {
+    bool prefix = false,
+  }) => BibleConcordanceProvider._(
+    argument: (version, word, prefix: prefix),
+    from: this,
+  );
+
+  @override
+  String toString() => r'bibleConcordanceProvider';
+}

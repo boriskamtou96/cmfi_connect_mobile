@@ -1751,6 +1751,36 @@
     "jesusInRedHelp": "في الترجمات التي تميّزها",
     "remove": "إزالة",
     "readInBible": "اقرأ في الكتاب المقدس",
+    "concordance": "فهرس الكلمات",
+    "concordanceOf": "فهرس كلمة «{word}»",
+    "concordanceHint": "كلمة من الكتاب المقدس",
+    "concordanceTip": "اكتب كلمة: يعرض فهرس الكلمات كل آية ترد فيها، سفرًا سفرًا.",
+    "concordanceNeedsDownload": "يبحث فهرس الكلمات في الكتاب المقدس كله: نزّله أولًا.",
+    "concordanceNone": "هذه الكلمة غير موجودة في هذه الترجمة.",
+    "exactWord": "هذه الكلمة",
+    "startsWith": "تبدأ بـ…",
+    "occurrences(plural, param=n)": {
+      "one": "مرة",
+      "two": "مرتان",
+      "few": "مرات",
+      "many": "مرة",
+      "other": "مرة",
+      "zero": "مرة"
+    },
+    "inVerses(plural, param=n)": {
+      "one": "في آية واحدة",
+      "two": "في آيتين",
+      "few": "في {n} آيات",
+      "many": "في {n} آية",
+      "other": "في {n} آية",
+      "zero": "في {n} آية"
+    },
+    "spread": "أين ترد هذه الكلمة",
+    "forms": "الصيغ الموجودة",
+    "bookCount": "{book}: {n}",
+    "allBooks": "كل الأسفار",
+    "pickWord": "اختر كلمة",
+    "pickWordHelp": "يعرض فهرس الكلمات كل آية ترد فيها.",
     "more": "خيارات أخرى"
   },
   "profilePhoto": {

@@ -1569,6 +1569,28 @@
     "jesusInRedHelp": "In the versions that mark them",
     "remove": "Remove",
     "readInBible": "Read in the Bible",
+    "concordance": "Concordance",
+    "concordanceOf": "Concordance of “{word}”",
+    "concordanceHint": "A word of the Bible",
+    "concordanceTip": "Type a word: the concordance shows every verse where it appears, book by book.",
+    "concordanceNeedsDownload": "The concordance goes through the whole Bible: download it first.",
+    "concordanceNone": "This word is not in this Bible.",
+    "exactWord": "This word",
+    "startsWith": "Starts with…",
+    "occurrences(plural, param=n)": {
+      "one": "occurrence",
+      "other": "occurrences"
+    },
+    "inVerses(plural, param=n)": {
+      "one": "in {n} verse",
+      "other": "in {n} verses"
+    },
+    "spread": "Where this word appears",
+    "forms": "Forms found",
+    "bookCount": "{book}: {n}",
+    "allBooks": "All books",
+    "pickWord": "Choose a word",
+    "pickWordHelp": "The concordance shows every verse where it appears.",
     "more": "More options"
   },
   "profilePhoto": {

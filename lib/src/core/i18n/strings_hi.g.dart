@@ -1066,6 +1066,28 @@ class _Translations$bible$hi extends Translations$bible$fr {
 	@override String get jesusInRedHelp => 'उन अनुवादों में जो उन्हें चिह्नित करते हैं';
 	@override String get remove => 'हटाएँ';
 	@override String get readInBible => 'बाइबल में पढ़ें';
+	@override String get concordance => 'शब्द-अनुक्रमणिका';
+	@override String concordanceOf({required Object word}) => '“${word}” की शब्द-अनुक्रमणिका';
+	@override String get concordanceHint => 'बाइबल का एक शब्द';
+	@override String get concordanceTip => 'एक शब्द लिखें: शब्द-अनुक्रमणिका हर वह पद दिखाती है जिसमें वह आता है, पुस्तक दर पुस्तक।';
+	@override String get concordanceNeedsDownload => 'शब्द-अनुक्रमणिका पूरी बाइबल में खोजती है: पहले उसे डाउनलोड करें।';
+	@override String get concordanceNone => 'यह शब्द इस बाइबल में नहीं है।';
+	@override String get exactWord => 'यही शब्द';
+	@override String get startsWith => 'से शुरू…';
+	@override String occurrences({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n,
+		one: 'बार',
+		other: 'बार',
+	);
+	@override String inVerses({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n,
+		one: '${n} पद में',
+		other: '${n} पदों में',
+	);
+	@override String get spread => 'यह शब्द कहाँ आता है';
+	@override String get forms => 'मिले हुए रूप';
+	@override String bookCount({required Object book, required Object n}) => '${book}: ${n}';
+	@override String get allBooks => 'सभी पुस्तकें';
+	@override String get pickWord => 'एक शब्द चुनें';
+	@override String get pickWordHelp => 'शब्द-अनुक्रमणिका हर वह पद दिखाती है जिसमें वह आता है।';
 	@override String get more => 'और विकल्प';
 }
 
@@ -3667,6 +3689,22 @@ extension on TranslationsHi {
 			'bible.jesusInRedHelp' => 'उन अनुवादों में जो उन्हें चिह्नित करते हैं',
 			'bible.remove' => 'हटाएँ',
 			'bible.readInBible' => 'बाइबल में पढ़ें',
+			'bible.concordance' => 'शब्द-अनुक्रमणिका',
+			'bible.concordanceOf' => ({required Object word}) => '“${word}” की शब्द-अनुक्रमणिका',
+			'bible.concordanceHint' => 'बाइबल का एक शब्द',
+			'bible.concordanceTip' => 'एक शब्द लिखें: शब्द-अनुक्रमणिका हर वह पद दिखाती है जिसमें वह आता है, पुस्तक दर पुस्तक।',
+			'bible.concordanceNeedsDownload' => 'शब्द-अनुक्रमणिका पूरी बाइबल में खोजती है: पहले उसे डाउनलोड करें।',
+			'bible.concordanceNone' => 'यह शब्द इस बाइबल में नहीं है।',
+			'bible.exactWord' => 'यही शब्द',
+			'bible.startsWith' => 'से शुरू…',
+			'bible.occurrences' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n, one: 'बार', other: 'बार', ), 
+			'bible.inVerses' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n, one: '${n} पद में', other: '${n} पदों में', ), 
+			'bible.spread' => 'यह शब्द कहाँ आता है',
+			'bible.forms' => 'मिले हुए रूप',
+			'bible.bookCount' => ({required Object book, required Object n}) => '${book}: ${n}',
+			'bible.allBooks' => 'सभी पुस्तकें',
+			'bible.pickWord' => 'एक शब्द चुनें',
+			'bible.pickWordHelp' => 'शब्द-अनुक्रमणिका हर वह पद दिखाती है जिसमें वह आता है।',
 			'bible.more' => 'और विकल्प',
 			'profilePhoto.title' => 'प्रोफ़ाइल फ़ोटो',
 			'profilePhoto.add' => 'प्रोफ़ाइल फ़ोटो जोड़ें',

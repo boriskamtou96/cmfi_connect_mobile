@@ -1066,6 +1066,28 @@ class _Translations$bible$es extends Translations$bible$fr {
 	@override String get jesusInRedHelp => 'En las versiones que las indican';
 	@override String get remove => 'Quitar';
 	@override String get readInBible => 'Leer en la Biblia';
+	@override String get concordance => 'Concordancia';
+	@override String concordanceOf({required Object word}) => 'Concordancia de «${word}»';
+	@override String get concordanceHint => 'Una palabra de la Biblia';
+	@override String get concordanceTip => 'Escribe una palabra: la concordancia muestra todos los versículos donde aparece, libro por libro.';
+	@override String get concordanceNeedsDownload => 'La concordancia recorre toda la Biblia: descárgala primero.';
+	@override String get concordanceNone => 'Esta palabra no está en esta Biblia.';
+	@override String get exactWord => 'Esta palabra';
+	@override String get startsWith => 'Empieza por…';
+	@override String occurrences({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('es'))(n,
+		one: 'vez',
+		other: 'veces',
+	);
+	@override String inVerses({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('es'))(n,
+		one: 'en ${n} versículo',
+		other: 'en ${n} versículos',
+	);
+	@override String get spread => 'Dónde aparece esta palabra';
+	@override String get forms => 'Formas encontradas';
+	@override String bookCount({required Object book, required Object n}) => '${book}: ${n}';
+	@override String get allBooks => 'Todos los libros';
+	@override String get pickWord => 'Elige una palabra';
+	@override String get pickWordHelp => 'La concordancia muestra todos los versículos donde aparece.';
 	@override String get more => 'Más opciones';
 }
 
@@ -3668,6 +3690,22 @@ extension on TranslationsEs {
 			'bible.jesusInRedHelp' => 'En las versiones que las indican',
 			'bible.remove' => 'Quitar',
 			'bible.readInBible' => 'Leer en la Biblia',
+			'bible.concordance' => 'Concordancia',
+			'bible.concordanceOf' => ({required Object word}) => 'Concordancia de «${word}»',
+			'bible.concordanceHint' => 'Una palabra de la Biblia',
+			'bible.concordanceTip' => 'Escribe una palabra: la concordancia muestra todos los versículos donde aparece, libro por libro.',
+			'bible.concordanceNeedsDownload' => 'La concordancia recorre toda la Biblia: descárgala primero.',
+			'bible.concordanceNone' => 'Esta palabra no está en esta Biblia.',
+			'bible.exactWord' => 'Esta palabra',
+			'bible.startsWith' => 'Empieza por…',
+			'bible.occurrences' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('es'))(n, one: 'vez', other: 'veces', ), 
+			'bible.inVerses' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('es'))(n, one: 'en ${n} versículo', other: 'en ${n} versículos', ), 
+			'bible.spread' => 'Dónde aparece esta palabra',
+			'bible.forms' => 'Formas encontradas',
+			'bible.bookCount' => ({required Object book, required Object n}) => '${book}: ${n}',
+			'bible.allBooks' => 'Todos los libros',
+			'bible.pickWord' => 'Elige una palabra',
+			'bible.pickWordHelp' => 'La concordancia muestra todos los versículos donde aparece.',
 			'bible.more' => 'Más opciones',
 			'profilePhoto.title' => 'Foto de perfil',
 			'profilePhoto.add' => 'Añadir una foto de perfil',

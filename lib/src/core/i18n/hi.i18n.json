@@ -1568,6 +1568,28 @@
     "jesusInRedHelp": "उन अनुवादों में जो उन्हें चिह्नित करते हैं",
     "remove": "हटाएँ",
     "readInBible": "बाइबल में पढ़ें",
+    "concordance": "शब्द-अनुक्रमणिका",
+    "concordanceOf": "“{word}” की शब्द-अनुक्रमणिका",
+    "concordanceHint": "बाइबल का एक शब्द",
+    "concordanceTip": "एक शब्द लिखें: शब्द-अनुक्रमणिका हर वह पद दिखाती है जिसमें वह आता है, पुस्तक दर पुस्तक।",
+    "concordanceNeedsDownload": "शब्द-अनुक्रमणिका पूरी बाइबल में खोजती है: पहले उसे डाउनलोड करें।",
+    "concordanceNone": "यह शब्द इस बाइबल में नहीं है।",
+    "exactWord": "यही शब्द",
+    "startsWith": "से शुरू…",
+    "occurrences(plural, param=n)": {
+      "one": "बार",
+      "other": "बार"
+    },
+    "inVerses(plural, param=n)": {
+      "one": "{n} पद में",
+      "other": "{n} पदों में"
+    },
+    "spread": "यह शब्द कहाँ आता है",
+    "forms": "मिले हुए रूप",
+    "bookCount": "{book}: {n}",
+    "allBooks": "सभी पुस्तकें",
+    "pickWord": "एक शब्द चुनें",
+    "pickWordHelp": "शब्द-अनुक्रमणिका हर वह पद दिखाती है जिसमें वह आता है।",
     "more": "और विकल्प"
   },
   "profilePhoto": {

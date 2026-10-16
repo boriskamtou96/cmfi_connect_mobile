@@ -2181,6 +2181,60 @@ class Translations$bible$fr {
 	/// fr: 'Lire dans la Bible'
 	String get readInBible => 'Lire dans la Bible';
 
+	/// fr: 'Concordance'
+	String get concordance => 'Concordance';
+
+	/// fr: 'Concordance de « {word} »'
+	String concordanceOf({required Object word}) => 'Concordance de « ${word} »';
+
+	/// fr: 'Un mot de la Bible'
+	String get concordanceHint => 'Un mot de la Bible';
+
+	/// fr: 'Tape un mot : la concordance montre tous les versets où il apparaît, livre par livre.'
+	String get concordanceTip => 'Tape un mot : la concordance montre tous les versets où il apparaît, livre par livre.';
+
+	/// fr: 'La concordance parcourt toute la Bible : télécharge-la d'abord.'
+	String get concordanceNeedsDownload => 'La concordance parcourt toute la Bible : télécharge-la d\'abord.';
+
+	/// fr: 'Ce mot n'est pas dans cette Bible.'
+	String get concordanceNone => 'Ce mot n\'est pas dans cette Bible.';
+
+	/// fr: 'Ce mot'
+	String get exactWord => 'Ce mot';
+
+	/// fr: 'Commence par…'
+	String get startsWith => 'Commence par…';
+
+	/// fr: '(one) {occurrence} (other) {occurrences}'
+	String occurrences({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('fr'))(n,
+		one: 'occurrence',
+		other: 'occurrences',
+	);
+
+	/// fr: '(one) {dans {n} verset} (other) {dans {n} versets}'
+	String inVerses({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('fr'))(n,
+		one: 'dans ${n} verset',
+		other: 'dans ${n} versets',
+	);
+
+	/// fr: 'Où ce mot apparaît'
+	String get spread => 'Où ce mot apparaît';
+
+	/// fr: 'Formes trouvées'
+	String get forms => 'Formes trouvées';
+
+	/// fr: '{book} : {n}'
+	String bookCount({required Object book, required Object n}) => '${book} : ${n}';
+
+	/// fr: 'Tous les livres'
+	String get allBooks => 'Tous les livres';
+
+	/// fr: 'Choisis un mot'
+	String get pickWord => 'Choisis un mot';
+
+	/// fr: 'La concordance montre tous les versets où il apparaît.'
+	String get pickWordHelp => 'La concordance montre tous les versets où il apparaît.';
+
 	/// fr: 'Plus d'options'
 	String get more => 'Plus d\'options';
 }
@@ -6083,6 +6137,22 @@ extension on Translations {
 			'bible.jesusInRedHelp' => 'Dans les versions qui les indiquent',
 			'bible.remove' => 'Retirer',
 			'bible.readInBible' => 'Lire dans la Bible',
+			'bible.concordance' => 'Concordance',
+			'bible.concordanceOf' => ({required Object word}) => 'Concordance de « ${word} »',
+			'bible.concordanceHint' => 'Un mot de la Bible',
+			'bible.concordanceTip' => 'Tape un mot : la concordance montre tous les versets où il apparaît, livre par livre.',
+			'bible.concordanceNeedsDownload' => 'La concordance parcourt toute la Bible : télécharge-la d\'abord.',
+			'bible.concordanceNone' => 'Ce mot n\'est pas dans cette Bible.',
+			'bible.exactWord' => 'Ce mot',
+			'bible.startsWith' => 'Commence par…',
+			'bible.occurrences' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('fr'))(n, one: 'occurrence', other: 'occurrences', ), 
+			'bible.inVerses' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('fr'))(n, one: 'dans ${n} verset', other: 'dans ${n} versets', ), 
+			'bible.spread' => 'Où ce mot apparaît',
+			'bible.forms' => 'Formes trouvées',
+			'bible.bookCount' => ({required Object book, required Object n}) => '${book} : ${n}',
+			'bible.allBooks' => 'Tous les livres',
+			'bible.pickWord' => 'Choisis un mot',
+			'bible.pickWordHelp' => 'La concordance montre tous les versets où il apparaît.',
 			'bible.more' => 'Plus d\'options',
 			'profilePhoto.title' => 'Photo de profil',
 			'profilePhoto.add' => 'Ajouter une photo de profil',

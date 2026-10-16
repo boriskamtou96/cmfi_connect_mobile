@@ -36,6 +36,7 @@ import '../application/bible_reading.dart';
 import '../application/bible_settings.dart';
 import '../domain/bible.dart';
 import '../domain/bible_version.dart';
+import 'concordance_screen.dart';
 import 'widgets/bible_books_sheet.dart';
 import 'widgets/bible_settings_sheet.dart';
 import 'widgets/bible_versions_sheet.dart';
@@ -221,6 +222,15 @@ class _Reader extends HookConsumerWidget {
             version: version.abbreviation,
           );
           toast.success(add ? t.bible.favoriteAdded : t.bible.favoriteRemoved);
+        case ConcordanceVerses():
+          final words = concordanceWords(
+            verses.map((verse) => verse.text).join(' '),
+          );
+          if (words.isEmpty) {
+            await context.router.push(ConcordanceRoute());
+          } else if (context.mounted) {
+            await showConcordanceWords(context, words);
+          }
         case CopyVerses():
           await Clipboard.setData(ClipboardData(text: asText(verses)));
           toast.success(t.bible.copied);
@@ -396,7 +406,7 @@ class _Reader extends HookConsumerWidget {
   }
 }
 
-enum _MenuAction { marks, download, display }
+enum _MenuAction { marks, concordance, download, display }
 
 /// "Jean 3 ▾ | LSG ▾", then the search, "Aa" and the menu.
 class _TopBar extends ConsumerWidget {
@@ -546,6 +556,9 @@ class _TopBar extends ConsumerWidget {
                 _MenuAction.marks => context.router.push(
                   const BibleMarksRoute(),
                 ),
+                _MenuAction.concordance => context.router.push(
+                  ConcordanceRoute(),
+                ),
                 _MenuAction.download => download(),
                 _MenuAction.display => showBibleSettings(context),
               },
@@ -554,6 +567,11 @@ class _TopBar extends ConsumerWidget {
                   value: _MenuAction.marks,
                   icon: AppIcons.bookmark,
                   label: t.bible.marks,
+                ),
+                AdaptiveAction(
+                  value: _MenuAction.concordance,
+                  icon: AppIcons.concordance,
+                  label: t.bible.concordance,
                 ),
                 if (!downloaded)
                   AdaptiveAction(

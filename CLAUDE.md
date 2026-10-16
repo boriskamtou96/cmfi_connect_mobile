@@ -265,7 +265,7 @@ Règles de dépendance :
 
 ## Mise en production
 
-- La liste complète : `docs/MISE_EN_PROD.md`. Signature Android de publication : `android/key.properties` (modèle `key.properties.example`, jamais dans git), sinon la clé de debug. `PrivacyInfo.xcprivacy` dans Runner, TodayWidget et les trois extensions Shield (UserDefaults : `CA92.1`, `1C8F.1` pour l'App Group). `ITSAppUsesNonExemptEncryption` à false.
+- La liste complète : `docs/MISE_EN_PROD.md`. Signature Android de publication : `android/key.properties` (modèle `key.properties.example`, jamais dans git), sinon la clé de debug. Release Android : `scripts/release-android.sh` (vérifie la clé, `dart format`, `flutter analyze`, `flutter test`, construit l'`.aab` prod, refuse une signature de debug). R8 réduit le code (réglage par défaut de Flutter) ; pas d'obscurcissement du Dart (`--obfuscate`) : Crashlytics lirait des traces illisibles sans l'envoi des symboles. `PrivacyInfo.xcprivacy` dans Runner, TodayWidget et les trois extensions Shield (UserDefaults : `CA92.1`, `1C8F.1` pour l'App Group). `ITSAppUsesNonExemptEncryption` à false.
 
 ## Bas de Plus
 

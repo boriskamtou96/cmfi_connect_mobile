@@ -73,7 +73,7 @@ Dans App Store Connect :
 
 La fiche des stores prévoit la v1 sur iPhone seulement ; si Android part en même temps :
 
-- [ ] **Créer la clé d'envoi** une seule fois et la garder précieusement (une copie ailleurs) :
+- [x] ✅ **Clé d'envoi** créée (`~/upload-keystore.jks`, « CMFI », valable jusqu'en 2054) et `android/key.properties` rempli. Garde une copie de la clé et de son mot de passe ailleurs que sur ce Mac. Pour mémoire, elle se crée ainsi :
 
   ```bash
   keytool -genkey -v -keystore ~/cmfi-connect-upload.jks -keyalg RSA -keysize 2048 -validity 10000 -alias upload
@@ -81,13 +81,20 @@ La fiche des stores prévoit la v1 sur iPhone seulement ; si Android part en mê
 
   puis copier `android/key.properties.example` en `android/key.properties` et le remplir (ce fichier ne va jamais dans git).
 - [ ] **Google Play Console** (compte développeur, 25 $ une fois) : créer l'app `com.cmficonnect.app`, la fiche (`store/fiche-stores.md`, captures `store/screenshots/android/`), la **sécurité des données**, la classification, le public cible, la politique de confidentialité.
-- [ ] **Construire** :
+- [ ] **Outils Android** (une fois) : dans Android Studio › Settings › Languages & Frameworks › Android SDK › onglet **SDK Tools**, cocher **Android SDK Command-line Tools (latest)**, Apply. Puis accepter les licences :
 
   ```bash
-  flutter build appbundle --flavor prod --dart-define-from-file=.env
+  flutter doctor --android-licenses
   ```
 
-  puis envoyer `build/app/outputs/bundle/prodRelease/app-prod-release.aab` en **test interne** d'abord.
+  Sans ces outils, `flutter build appbundle` s'arrête sur « failed to strip debug symbols ».
+- [ ] **Construire** : tout est vérifié et construit par
+
+  ```bash
+  scripts/release-android.sh
+  ```
+
+  (clé d'envoi présente, code vérifié et testé, paquet `prod`, signé avec ta clé et pas celle de debug), puis envoyer `build/app/outputs/bundle/prodRelease/app-prod-release.aab` en **test interne** d'abord. Google Play découpe le paquet par type de téléphone : chaque utilisateur ne télécharge que sa part.
 - [ ] **Liens qui ouvrent l'app** : copier l'empreinte SHA-256 de Play Console › Intégrité de l'application dans `playSigningSha256` du site (`src/config.ts`), puis `npm run deploy` du site.
 - [ ] Nouveau compte développeur personnel : Google demande 12 testeurs pendant 14 jours avant la production. Un compte d'organisation (avec un numéro D-U-N-S) n'a pas cette règle.
 

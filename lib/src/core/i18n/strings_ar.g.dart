@@ -489,6 +489,8 @@ class _Translations$more$ar extends Translations$more$fr {
 	@override String get staff => 'الفريق والأدوار';
 	@override String get manageEvents => 'الفعاليات';
 	@override String get disciples => 'تلاميذي';
+	@override String version({required Object version}) => 'الإصدار ${version}';
+	@override String copyright({required Object year}) => '© ${year} Christian Missionary Fellowship International. جميع الحقوق محفوظة.';
 }
 
 // Path: authorities
@@ -784,8 +786,10 @@ class _Translations$premium$ar extends Translations$premium$fr {
 	@override String get supportTitle => 'أنت تدعم العمل';
 	@override String get supportText => 'اشتراكك يُبقي التطبيق حيًّا للجماعة كلها.';
 	@override String get annual => 'سنوي';
+	@override String get lifetime => 'مدى الحياة';
 	@override String get monthly => 'شهري';
 	@override String perYear({required Object price}) => '${price} / سنة';
+	@override String once({required Object price}) => '${price} مرة واحدة';
 	@override String perMonth({required Object price}) => '${price} / شهر';
 	@override String annualPerMonth({required Object price}) => 'أي ${price} شهريًا';
 	@override String get best => 'الأوفر';
@@ -830,6 +834,10 @@ class _Translations$premium$ar extends Translations$premium$fr {
 	@override String get termsShort => 'الشروط';
 	@override String get semiannual => 'نصف سنوي';
 	@override String perSemester({required Object price}) => '${price} / 6 أشهر';
+	@override String get buyLifetime => 'اشترِ مدى الحياة';
+	@override String get lifetimeNote => 'مدى الحياة: دفعة واحدة، بلا اشتراك ولا تجديد.';
+	@override String get manage => 'إدارة اشتراكي';
+	@override String get manageFailed => 'تعذّر فتح إدارة الاشتراك. حاول لاحقًا.';
 }
 
 // Path: homeWidget
@@ -3094,6 +3102,8 @@ extension on TranslationsAr {
 			'more.staff' => 'الفريق والأدوار',
 			'more.manageEvents' => 'الفعاليات',
 			'more.disciples' => 'تلاميذي',
+			'more.version' => ({required Object version}) => 'الإصدار ${version}',
+			'more.copyright' => ({required Object year}) => '© ${year} Christian Missionary Fellowship International. جميع الحقوق محفوظة.',
 			'authorities.title' => 'مرشديّ الروحيون',
 			'authorities.intro' => 'الأشخاص الذين يرافقونك في مسيرتك مع الله: صانع التلاميذ الخاص بك وسائر مرشديك.',
 			'authorities.discipleMaker' => 'صانع التلاميذ',
@@ -3209,10 +3219,10 @@ extension on TranslationsAr {
 			'hymns.reader.typefaceSerif' => 'كلاسيكي',
 			'hymns.reader.typefaceAutoHelp' => 'كلاسيكي عندما يكون النص كبيرًا',
 			'hymns.reader.background' => 'الخلفية',
-			'hymns.reader.themeAuto' => 'تلقائي',
-			'hymns.reader.themeLight' => 'فاتح',
 			_ => null,
 		} ?? switch (path) {
+			'hymns.reader.themeAuto' => 'تلقائي',
+			'hymns.reader.themeLight' => 'فاتح',
 			'hymns.reader.themeSepia' => 'سيبيا',
 			'hymns.reader.themeDark' => 'داكن',
 			'hymns.reader.repeatChorus' => 'تكرار القرار بعد كل مقطع',
@@ -3445,8 +3455,10 @@ extension on TranslationsAr {
 			'premium.supportTitle' => 'أنت تدعم العمل',
 			'premium.supportText' => 'اشتراكك يُبقي التطبيق حيًّا للجماعة كلها.',
 			'premium.annual' => 'سنوي',
+			'premium.lifetime' => 'مدى الحياة',
 			'premium.monthly' => 'شهري',
 			'premium.perYear' => ({required Object price}) => '${price} / سنة',
+			'premium.once' => ({required Object price}) => '${price} مرة واحدة',
 			'premium.perMonth' => ({required Object price}) => '${price} / شهر',
 			'premium.annualPerMonth' => ({required Object price}) => 'أي ${price} شهريًا',
 			'premium.best' => 'الأوفر',
@@ -3477,6 +3489,10 @@ extension on TranslationsAr {
 			'premium.termsShort' => 'الشروط',
 			'premium.semiannual' => 'نصف سنوي',
 			'premium.perSemester' => ({required Object price}) => '${price} / 6 أشهر',
+			'premium.buyLifetime' => 'اشترِ مدى الحياة',
+			'premium.lifetimeNote' => 'مدى الحياة: دفعة واحدة، بلا اشتراك ولا تجديد.',
+			'premium.manage' => 'إدارة اشتراكي',
+			'premium.manageFailed' => 'تعذّر فتح إدارة الاشتراك. حاول لاحقًا.',
 			'homeWidget.title' => 'اليوم',
 			'homeWidget.done' => 'تم',
 			'homeWidget.todo' => 'للتعبئة',
@@ -3717,6 +3733,8 @@ extension on TranslationsAr {
 			'prayer.lists.answeredBanner' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n, zero: '${n} صلاة مستجابة هذا الشهر', one: 'صلاة واحدة مستجابة هذا الشهر', two: 'صلاتان مستجابتان هذا الشهر', few: '${n} صلوات مستجابة هذا الشهر', many: '${n} صلاة مستجابة هذا الشهر', other: '${n} صلاة مستجابة هذا الشهر', ), 
 			'prayer.lists.lastAnswered' => ({required Object name, required Object what}) => '${name}: ${what}',
 			'prayer.lists.sheet.addTitle' => 'إضافة شخص',
+			_ => null,
+		} ?? switch (path) {
 			'prayer.lists.sheet.editTitle' => 'تعديل',
 			'prayer.lists.sheet.name' => 'الاسم',
 			'prayer.lists.sheet.namePlaceholder' => 'بولس م.',
@@ -3725,8 +3743,6 @@ extension on TranslationsAr {
 			'prayer.lists.sheet.list' => 'القائمة',
 			'prayer.lists.sheet.save' => 'حفظ',
 			'prayer.lists.sheet.remove' => 'إزالة من القائمة',
-			_ => null,
-		} ?? switch (path) {
 			'prayer.lists.sheet.removeTitle' => ({required Object name}) => 'إزالة ${name}؟',
 			'prayer.lists.sheet.removeText' => 'لن تصلّي بعد الآن من أجل هذا الشخص في خلواتك.',
 			'prayer.lists.addShort' => 'إضافة',

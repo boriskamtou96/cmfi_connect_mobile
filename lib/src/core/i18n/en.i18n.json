@@ -508,7 +508,9 @@
     "admin": "Administration",
     "staff": "Team and roles",
     "manageEvents": "Events",
-    "disciples": "My disciples"
+    "disciples": "My disciples",
+    "version": "Version {version}",
+    "copyright": "© {year} Christian Missionary Fellowship International. All rights reserved."
   },
   "authorities": {
     "title": "My spiritual leaders",
@@ -935,8 +937,10 @@
     "supportTitle": "You support the work",
     "supportText": "Your subscription keeps the app going for the whole community.",
     "annual": "Yearly",
+    "lifetime": "Lifetime",
     "monthly": "Monthly",
     "perYear": "{price} / year",
+    "once": "{price} once",
     "perMonth": "{price} / month",
     "annualPerMonth": "that's {price} a month",
     "best": "Best value",
@@ -972,7 +976,11 @@
     "restoreShort": "Restore",
     "termsShort": "Terms",
     "semiannual": "6 months",
-    "perSemester": "{price} / 6 months"
+    "perSemester": "{price} / 6 months",
+    "buyLifetime": "Buy for life",
+    "lifetimeNote": "Lifetime: a single payment, no subscription, nothing renews.",
+    "manage": "Manage my subscription",
+    "manageFailed": "Subscription management won't open. Try again later."
   },
   "homeWidget": {
     "title": "Today",

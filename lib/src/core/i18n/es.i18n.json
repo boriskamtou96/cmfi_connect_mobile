@@ -508,7 +508,9 @@
     "admin": "Administración",
     "staff": "Equipo y roles",
     "manageEvents": "Eventos",
-    "disciples": "Mis discípulos"
+    "disciples": "Mis discípulos",
+    "version": "Versión {version}",
+    "copyright": "© {year} Comunidad Misionera Cristiana Internacional. Todos los derechos reservados."
   },
   "authorities": {
     "title": "Mis autoridades espirituales",
@@ -934,8 +936,10 @@
     "supportTitle": "Apoyas la obra",
     "supportText": "Tu suscripción mantiene la app para toda la comunidad.",
     "annual": "Anual",
+    "lifetime": "De por vida",
     "monthly": "Mensual",
     "perYear": "{price} / año",
+    "once": "{price} una vez",
     "perMonth": "{price} / mes",
     "annualPerMonth": "es decir, {price} al mes",
     "best": "La más ventajosa",
@@ -971,7 +975,11 @@
     "restoreShort": "Restaurar",
     "termsShort": "Condiciones",
     "semiannual": "Semestral",
-    "perSemester": "{price} / 6 meses"
+    "perSemester": "{price} / 6 meses",
+    "buyLifetime": "Comprar de por vida",
+    "lifetimeNote": "De por vida: un solo pago, sin suscripción ni renovación.",
+    "manage": "Gestionar mi suscripción",
+    "manageFailed": "La gestión de la suscripción no se abre. Inténtalo más tarde."
   },
   "homeWidget": {
     "title": "Hoy",

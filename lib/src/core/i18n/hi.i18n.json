@@ -508,7 +508,9 @@
     "admin": "प्रबंधन",
     "staff": "टीम और भूमिकाएँ",
     "manageEvents": "कार्यक्रम",
-    "disciples": "मेरे शिष्य"
+    "disciples": "मेरे शिष्य",
+    "version": "संस्करण {version}",
+    "copyright": "© {year} Christian Missionary Fellowship International. सर्वाधिकार सुरक्षित।"
   },
   "authorities": {
     "title": "मेरे आत्मिक अगुवे",
@@ -934,8 +936,10 @@
     "supportTitle": "तुम सेवकाई का साथ देते हो",
     "supportText": "तुम्हारी सदस्यता पूरे समुदाय के लिए ऐप को चालू रखती है।",
     "annual": "सालाना",
+    "lifetime": "आजीवन",
     "monthly": "मासिक",
     "perYear": "{price} / साल",
+    "once": "{price} एक बार",
     "perMonth": "{price} / महीना",
     "annualPerMonth": "यानी {price} प्रति महीना",
     "best": "सबसे फ़ायदेमंद",
@@ -971,7 +975,11 @@
     "restoreShort": "बहाल करें",
     "termsShort": "शर्तें",
     "semiannual": "छमाही",
-    "perSemester": "{price} / 6 महीने"
+    "perSemester": "{price} / 6 महीने",
+    "buyLifetime": "आजीवन खरीदें",
+    "lifetimeNote": "आजीवन: एक ही भुगतान, कोई सदस्यता नहीं, कोई नवीनीकरण नहीं।",
+    "manage": "मेरी सदस्यता प्रबंधित करें",
+    "manageFailed": "सदस्यता प्रबंधन नहीं खुल रहा। बाद में फिर कोशिश करें।"
   },
   "homeWidget": {
     "title": "आज",

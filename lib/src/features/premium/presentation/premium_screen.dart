@@ -9,6 +9,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../core/config/app_config.dart';
 import '../../../core/i18n/strings.g.dart';
+import '../../../core/services/app_log.dart';
 import '../../../core/services/link_launcher.dart';
 import '../../../core/services/premium_store.dart';
 import '../../../core/theme/app_colors.dart';
@@ -139,7 +140,10 @@ class PremiumScreen extends HookConsumerWidget {
                           FadeSlideIn(
                             index: 4,
                             child: active
-                                ? _Active(offered: offered)
+                                ? _Active(
+                                    offered: offered,
+                                    onManage: () => manage(context, ref),
+                                  )
                                 : switch (plans) {
                                     AsyncData() when available.isEmpty =>
                                       _Unavailable(
@@ -165,7 +169,10 @@ class PremiumScreen extends HookConsumerWidget {
                           ),
                           if (!active) ...[
                             const SizedBox(height: AppSpacing.xl),
-                            const _FinePrint(),
+                            _FinePrint(
+                              lifetime:
+                                  selected?.period == PremiumPeriod.lifetime,
+                            ),
                           ],
                         ],
                       ),
@@ -200,6 +207,18 @@ class PremiumScreen extends HookConsumerWidget {
 
 /// A sky of small stars, a few of them golden; the same sky each time
 /// (seeded), thicker towards the top.
+/// The Customer Center of RevenueCat; a message when it can't open.
+Future<void> manage(BuildContext context, WidgetRef ref) async {
+  final toast = ref.read(toasterProvider).of(context);
+  final failed = context.t.premium.manageFailed;
+  try {
+    await ref.read(premiumStoreProvider).manage();
+  } on PlatformException catch (error, stack) {
+    AppLog.error(error, stack, reason: 'customer center did not open');
+    toast.error(failed);
+  }
+}
+
 class _StarsPainter extends CustomPainter {
   const _StarsPainter();
 
@@ -362,18 +381,20 @@ class _Benefit extends StatelessWidget {
   }
 }
 
-/// "24,99 € / an", "14,99 € / 6 mois", "2,99 € / mois".
+/// "24,99 € / an", "14,99 € / 6 mois", "2,99 € / mois", "49,99 € une fois".
 String _periodPrice(BuildContext context, PremiumPlan plan) {
   final t = context.t.premium;
   return switch (plan.period) {
     PremiumPeriod.monthly => t.perMonth(price: plan.price),
     PremiumPeriod.semiannual => t.perSemester(price: plan.price),
     PremiumPeriod.annual => t.perYear(price: plan.price),
+    PremiumPeriod.lifetime => t.once(price: plan.price),
   };
 }
 
-/// The plans one under the other, the longest first, each with what it saves
-/// on the months paid one by one.
+/// The plans one under the other, the longest subscription first and the
+/// lifetime one last, each subscription with what it saves on the months paid
+/// one by one.
 class _Plans extends StatelessWidget {
   const _Plans({
     required this.plans,
@@ -391,11 +412,15 @@ class _Plans extends StatelessWidget {
     final monthly = plans
         .where((plan) => plan.period == PremiumPeriod.monthly)
         .firstOrNull;
-    final ordered = [...plans]
-      ..sort((a, b) => b.period.months.compareTo(a.period.months));
+    int rank(PremiumPlan plan) =>
+        plan.period == PremiumPeriod.lifetime ? -1 : plan.period.months;
+    final ordered = [...plans]..sort((a, b) => rank(b).compareTo(rank(a)));
 
     String? badge(PremiumPlan plan) {
-      if (monthly == null || monthly.amount <= 0 || plan == monthly) {
+      if (monthly == null ||
+          monthly.amount <= 0 ||
+          plan == monthly ||
+          plan.period == PremiumPeriod.lifetime) {
         return null;
       }
       final saving = 1 - plan.amount / (monthly.amount * plan.period.months);
@@ -506,6 +531,7 @@ class _PlanRow extends StatelessWidget {
                                 PremiumPeriod.monthly => t.monthly,
                                 PremiumPeriod.semiannual => t.semiannual,
                                 PremiumPeriod.annual => t.annual,
+                                PremiumPeriod.lifetime => t.lifetime,
                               }.toUpperCase(),
                               style: TextStyle(
                                 fontSize: 12,
@@ -641,10 +667,13 @@ class _Unavailable extends StatelessWidget {
 
 /// Premium is on: a golden card instead of the plans.
 class _Active extends StatelessWidget {
-  const _Active({required this.offered});
+  const _Active({required this.offered, required this.onManage});
 
   /// Given with the role (the team), not bought.
   final bool offered;
+
+  /// Bought: "Gérer mon abonnement" opens the Customer Center.
+  final VoidCallback onManage;
 
   @override
   Widget build(BuildContext context) {
@@ -687,6 +716,19 @@ class _Active extends StatelessWidget {
             textAlign: TextAlign.center,
             style: const TextStyle(color: _onNightMuted, height: 1.4),
           ),
+          if (!offered) ...[
+            const SizedBox(height: AppSpacing.md),
+            OutlinedButton.icon(
+              onPressed: onManage,
+              style: OutlinedButton.styleFrom(
+                foregroundColor: AppColors.goldLight,
+                side: const BorderSide(color: AppColors.gold),
+                minimumSize: const Size(0, 44),
+              ),
+              icon: const Icon(AppIcons.settings, size: 18),
+              label: Text(t.manage),
+            ),
+          ],
         ],
       ),
     );
@@ -695,7 +737,10 @@ class _Active extends StatelessWidget {
 
 /// What the stores ask to say, at the end of the page.
 class _FinePrint extends StatelessWidget {
-  const _FinePrint();
+  const _FinePrint({required this.lifetime});
+
+  /// The lifetime plan is chosen: paid once, nothing renews.
+  final bool lifetime;
 
   @override
   Widget build(BuildContext context) {
@@ -726,6 +771,18 @@ class _FinePrint extends StatelessWidget {
             color: _onNightMuted,
           ),
         ),
+        if (lifetime) ...[
+          const SizedBox(height: AppSpacing.sm),
+          Text(
+            t.lifetimeNote,
+            textAlign: TextAlign.center,
+            style: const TextStyle(
+              fontSize: 12,
+              height: 1.4,
+              color: AppColors.goldLight,
+            ),
+          ),
+        ],
       ],
     );
   }
@@ -848,6 +905,8 @@ class _Footer extends ConsumerWidget {
                   : Text(
                       active
                           ? context.t.common.close
+                          : plan?.period == PremiumPeriod.lifetime
+                          ? t.buyLifetime
                           : trial != null
                           ? t.startTrial
                           : t.subscribe,

@@ -91,9 +91,7 @@ void main() {
       ]),
     );
     await openMore(tester);
-    await tester.scrollUntilVisible(find.text('Équipe et rôles'), 200);
-    await tester.drag(find.byType(Scrollable).last, const Offset(0, -100));
-    await tester.pumpAndSettle();
+    await scrollTo(tester, find.text('Équipe et rôles'));
     expect(find.text('ADMINISTRATION'), findsOneWidget);
     await tester.tap(find.text('Équipe et rôles'));
     await tester.pumpAndSettle();

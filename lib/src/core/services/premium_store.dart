@@ -3,9 +3,11 @@ import 'dart:async';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 import 'package:purchases_flutter/purchases_flutter.dart';
+import 'package:purchases_ui_flutter/purchases_ui_flutter.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../config/app_config.dart';
+import '../config/flavor.dart';
 import '../session/session.dart';
 import '../storage/account_storage.dart';
 
@@ -14,10 +16,14 @@ part 'premium_store.g.dart';
 enum PremiumPeriod {
   monthly(1),
   semiannual(6),
-  annual(12);
+  annual(12),
+
+  /// Paid once, never renewed.
+  lifetime(0);
 
   const PremiumPeriod(this.months);
 
+  /// What one payment covers; 0 for [lifetime].
   final int months;
 }
 
@@ -50,7 +56,7 @@ class PremiumPlan {
   final Object? handle;
 }
 
-/// The Premium subscription (RevenueCat, entitlement "premium"). Behind a
+/// The Premium subscription (RevenueCat, entitlement "cmfi_connect_pro"). Behind a
 /// provider: tests use a fake, and without a key (AppConfig) Premium is
 /// simply never active.
 abstract class PremiumStore {
@@ -62,8 +68,8 @@ abstract class PremiumStore {
   /// Premium starts or ends (bought, restored, expired).
   Stream<bool> get changes;
 
-  /// The monthly, 6-month and yearly plans of the store; empty when
-  /// unreachable.
+  /// The monthly, 6-month, yearly and lifetime plans of the store; empty
+  /// when unreachable.
   Future<List<PremiumPlan>> plans();
 
   /// true once bought, false when the user closed the store's sheet. Throws
@@ -72,6 +78,10 @@ abstract class PremiumStore {
 
   /// Premium bought on another phone or before reinstalling: true if found.
   Future<bool> restore();
+
+  /// "Gérer mon abonnement": RevenueCat's Customer Center (cancel, ask for a
+  /// refund, restore, change plan). Throws when it can't open.
+  Future<void> manage();
 }
 
 class NoPremiumStore implements PremiumStore {
@@ -97,12 +107,15 @@ class NoPremiumStore implements PremiumStore {
 
   @override
   Future<bool> restore() async => false;
+
+  @override
+  Future<void> manage() async {}
 }
 
 class RevenueCatStore implements PremiumStore {
   RevenueCatStore(this._apiKey);
 
-  static const entitlement = 'premium';
+  static const entitlement = 'cmfi_connect_pro';
 
   final String _apiKey;
   final _changes = StreamController<bool>.broadcast();
@@ -172,6 +185,8 @@ class RevenueCatStore implements PremiumStore {
           _plan(package, PremiumPeriod.semiannual),
         if (offering?.annual case final package?)
           _plan(package, PremiumPeriod.annual),
+        if (offering?.lifetime case final package?)
+          _plan(package, PremiumPeriod.lifetime),
       ];
     } on PlatformException {
       return const [];
@@ -187,7 +202,8 @@ class RevenueCatStore implements PremiumStore {
       period: period,
       price: product.priceString,
       amount: product.price,
-      pricePerMonth: period == PremiumPeriod.monthly
+      pricePerMonth:
+          period == PremiumPeriod.monthly || period == PremiumPeriod.lifetime
           ? null
           : product.pricePerMonthString,
       trialDays: !free
@@ -230,6 +246,13 @@ class RevenueCatStore implements PremiumStore {
     await _configure();
     return _active(await Purchases.restorePurchases());
   }
+
+  @override
+  Future<void> manage() async {
+    await _configure();
+    // what changed there comes back through the customer info listener
+    await RevenueCatUI.presentCustomerCenter();
+  }
 }
 
 @Riverpod(keepAlive: true)
@@ -238,12 +261,13 @@ PremiumStore premiumStore(Ref ref) {
   return key.isEmpty ? const NoPremiumStore() : RevenueCatStore(key);
 }
 
-/// v1: Premium is offered to everyone (the purchases come in v1.1): the
-/// widget, the year of the summary and the progress of the goals are open,
-/// and nothing leads to the paywall. Set to false to open the purchases; all
-/// the Premium code stays in place.
+/// v1: in the published app (prod), Premium is offered to everyone (the
+/// purchases come in v1.1): the widget, the year of the summary and the
+/// progress of the goals are open, and nothing leads to the paywall. The dev
+/// app sells it, with the RevenueCat Test Store (no real payment). Return
+/// false for prod too to open the purchases.
 @Riverpod(keepAlive: true)
-bool premiumForEveryone(Ref ref) => true;
+bool premiumForEveryone(Ref ref) => ref.watch(flavorProvider) == Flavor.prod;
 
 /// Whether the signed-in member has Premium (the home-screen widget, the
 /// year and the progress of the goals in the summary). false while unknown.

@@ -17,6 +17,9 @@ import UIKit
         .setMethodCallHandler { call, result in
           if call.method == "version" {
             result(Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "")
+          } else if call.method == "build" {
+            // shown at the bottom of Plus: "Version 1.0.0 (1)"
+            result(Bundle.main.infoDictionary?["CFBundleVersion"] as? String ?? "")
           } else {
             result(FlutterMethodNotImplemented)
           }

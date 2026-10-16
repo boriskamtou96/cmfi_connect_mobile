@@ -82,7 +82,7 @@ dependencies:
   phone_numbers_parser: ^9.0.28
 
   # Premium (RevenueCat)
-  purchases_flutter: ^10.15.2
+  purchases_flutter: ^10.16.0
 
   # Notifications sent by the admins (Firebase Cloud Messaging)
   firebase_core: ^4.15.0
@@ -96,6 +96,7 @@ dependencies:
   # Shortcuts on the app icon (long press): today's report, hymns, retreat
   quick_actions: ^1.1.1
   app_links: ^7.0.0
+  purchases_ui_flutter: ^10.16.0
 
 dev_dependencies:
   flutter_test:

@@ -1,8 +1,10 @@
+import 'package:cmfi_connect/src/core/config/flavor.dart';
 import 'package:cmfi_connect/src/core/i18n/strings.g.dart';
 import 'package:cmfi_connect/src/core/services/premium_store.dart';
 import 'package:cmfi_connect/src/core/theme/app_icons.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:intl/date_symbol_data_local.dart';
 
 import '../../helpers/fakes.dart';
@@ -15,6 +17,12 @@ void main() {
   // a list builds a little below the screen: scroll, then bring it in
   Future<void> reach(WidgetTester tester, Finder finder) async {
     await tester.scrollUntilVisible(finder, 200);
+    await tester.ensureVisible(finder);
+    await tester.pumpAndSettle();
+  }
+
+  // the paywall builds all of it: bring it in
+  Future<void> show(WidgetTester tester, Finder finder) async {
     await tester.ensureVisible(finder);
     await tester.pumpAndSettle();
   }
@@ -175,5 +183,48 @@ void main() {
     await tester.pumpAndSettle();
 
     expect(app.toasts.messages, ['Aucun achat Premium pour ce compte']);
+  });
+
+  testWidgets('for life: paid once, then managed in the Customer Center', (
+    tester,
+  ) async {
+    final app = await pumpApp(tester, token: 't');
+    await openMore(tester);
+    await tester.pumpAndSettle();
+    await reach(tester, find.text('CMFI Connect Premium'));
+    await tester.tap(find.text('CMFI Connect Premium'));
+    await tester.pumpAndSettle();
+
+    // the last plan, without a saving badge
+    await show(tester, find.text('À VIE'));
+    expect(find.text('49,99 €'), findsOneWidget);
+    expect(find.text('une fois'), findsOneWidget);
+    await tester.tap(find.text('À VIE'));
+    await tester.pumpAndSettle();
+    await reach(
+      tester,
+      find.text('À vie : un seul paiement, sans abonnement ni renouvellement.'),
+    );
+    await tester.tap(find.text('Acheter à vie'));
+    await tester.pumpAndSettle();
+
+    expect(app.premium.bought, [PremiumPeriod.lifetime]);
+    await show(tester, find.text('Gérer mon abonnement'));
+    await tester.tap(find.text('Gérer mon abonnement'));
+    await tester.pumpAndSettle();
+    expect(app.premium.managed, 1);
+  });
+
+  test('the dev app sells Premium; the published one offers it (v1)', () {
+    for (final (flavor, offered) in [
+      (Flavor.dev, false),
+      (Flavor.prod, true),
+    ]) {
+      final container = ProviderContainer(
+        overrides: [flavorProvider.overrideWithValue(flavor)],
+      );
+      addTearDown(container.dispose);
+      expect(container.read(premiumForEveryoneProvider), offered);
+    }
   });
 }

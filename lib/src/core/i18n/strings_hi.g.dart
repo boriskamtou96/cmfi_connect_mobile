@@ -465,6 +465,8 @@ class _Translations$more$hi extends Translations$more$fr {
 	@override String get staff => 'टीम और भूमिकाएँ';
 	@override String get manageEvents => 'कार्यक्रम';
 	@override String get disciples => 'मेरे शिष्य';
+	@override String version({required Object version}) => 'संस्करण ${version}';
+	@override String copyright({required Object year}) => '© ${year} Christian Missionary Fellowship International. सर्वाधिकार सुरक्षित।';
 }
 
 // Path: authorities
@@ -718,8 +720,10 @@ class _Translations$premium$hi extends Translations$premium$fr {
 	@override String get supportTitle => 'तुम सेवकाई का साथ देते हो';
 	@override String get supportText => 'तुम्हारी सदस्यता पूरे समुदाय के लिए ऐप को चालू रखती है।';
 	@override String get annual => 'सालाना';
+	@override String get lifetime => 'आजीवन';
 	@override String get monthly => 'मासिक';
 	@override String perYear({required Object price}) => '${price} / साल';
+	@override String once({required Object price}) => '${price} एक बार';
 	@override String perMonth({required Object price}) => '${price} / महीना';
 	@override String annualPerMonth({required Object price}) => 'यानी ${price} प्रति महीना';
 	@override String get best => 'सबसे फ़ायदेमंद';
@@ -756,6 +760,10 @@ class _Translations$premium$hi extends Translations$premium$fr {
 	@override String get termsShort => 'शर्तें';
 	@override String get semiannual => 'छमाही';
 	@override String perSemester({required Object price}) => '${price} / 6 महीने';
+	@override String get buyLifetime => 'आजीवन खरीदें';
+	@override String get lifetimeNote => 'आजीवन: एक ही भुगतान, कोई सदस्यता नहीं, कोई नवीनीकरण नहीं।';
+	@override String get manage => 'मेरी सदस्यता प्रबंधित करें';
+	@override String get manageFailed => 'सदस्यता प्रबंधन नहीं खुल रहा। बाद में फिर कोशिश करें।';
 }
 
 // Path: homeWidget
@@ -2870,6 +2878,8 @@ extension on TranslationsHi {
 			'more.staff' => 'टीम और भूमिकाएँ',
 			'more.manageEvents' => 'कार्यक्रम',
 			'more.disciples' => 'मेरे शिष्य',
+			'more.version' => ({required Object version}) => 'संस्करण ${version}',
+			'more.copyright' => ({required Object year}) => '© ${year} Christian Missionary Fellowship International. सर्वाधिकार सुरक्षित।',
 			'authorities.title' => 'मेरे आत्मिक अगुवे',
 			'authorities.intro' => 'वे लोग जो परमेश्वर के साथ तुम्हारे सफ़र में तुम्हारा साथ देते हैं: तुम्हारा चेला बनाने वाला और तुम्हारे दूसरे अगुवे।',
 			'authorities.discipleMaker' => 'चेला बनाने वाला',
@@ -2985,10 +2995,10 @@ extension on TranslationsHi {
 			'hymns.reader.typefaceSerif' => 'क्लासिक',
 			'hymns.reader.typefaceAutoHelp' => 'टेक्स्ट बड़ा होने पर क्लासिक',
 			'hymns.reader.background' => 'बैकग्राउंड',
-			'hymns.reader.themeAuto' => 'ऑटो',
-			'hymns.reader.themeLight' => 'लाइट',
 			_ => null,
 		} ?? switch (path) {
+			'hymns.reader.themeAuto' => 'ऑटो',
+			'hymns.reader.themeLight' => 'लाइट',
 			'hymns.reader.themeSepia' => 'सेपिया',
 			'hymns.reader.themeDark' => 'डार्क',
 			'hymns.reader.repeatChorus' => 'हर पद के बाद कोरस दोहराओ',
@@ -3221,8 +3231,10 @@ extension on TranslationsHi {
 			'premium.supportTitle' => 'तुम सेवकाई का साथ देते हो',
 			'premium.supportText' => 'तुम्हारी सदस्यता पूरे समुदाय के लिए ऐप को चालू रखती है।',
 			'premium.annual' => 'सालाना',
+			'premium.lifetime' => 'आजीवन',
 			'premium.monthly' => 'मासिक',
 			'premium.perYear' => ({required Object price}) => '${price} / साल',
+			'premium.once' => ({required Object price}) => '${price} एक बार',
 			'premium.perMonth' => ({required Object price}) => '${price} / महीना',
 			'premium.annualPerMonth' => ({required Object price}) => 'यानी ${price} प्रति महीना',
 			'premium.best' => 'सबसे फ़ायदेमंद',
@@ -3253,6 +3265,10 @@ extension on TranslationsHi {
 			'premium.termsShort' => 'शर्तें',
 			'premium.semiannual' => 'छमाही',
 			'premium.perSemester' => ({required Object price}) => '${price} / 6 महीने',
+			'premium.buyLifetime' => 'आजीवन खरीदें',
+			'premium.lifetimeNote' => 'आजीवन: एक ही भुगतान, कोई सदस्यता नहीं, कोई नवीनीकरण नहीं।',
+			'premium.manage' => 'मेरी सदस्यता प्रबंधित करें',
+			'premium.manageFailed' => 'सदस्यता प्रबंधन नहीं खुल रहा। बाद में फिर कोशिश करें।',
 			'homeWidget.title' => 'आज',
 			'homeWidget.done' => 'हो गया',
 			'homeWidget.todo' => 'भरना बाकी',
@@ -3493,6 +3509,8 @@ extension on TranslationsHi {
 			'prayer.lists.answeredBanner' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n, one: 'इस महीने ${n} प्रार्थना का उत्तर मिला', other: 'इस महीने ${n} प्रार्थनाओं का उत्तर मिला', ), 
 			'prayer.lists.lastAnswered' => ({required Object name, required Object what}) => '${name}: ${what}',
 			'prayer.lists.sheet.addTitle' => 'व्यक्ति जोड़ो',
+			_ => null,
+		} ?? switch (path) {
 			'prayer.lists.sheet.editTitle' => 'बदलो',
 			'prayer.lists.sheet.name' => 'नाम',
 			'prayer.lists.sheet.namePlaceholder' => 'राहुल एम.',
@@ -3501,8 +3519,6 @@ extension on TranslationsHi {
 			'prayer.lists.sheet.list' => 'सूची',
 			'prayer.lists.sheet.save' => 'सेव करो',
 			'prayer.lists.sheet.remove' => 'सूची से हटाओ',
-			_ => null,
-		} ?? switch (path) {
 			'prayer.lists.sheet.removeTitle' => ({required Object name}) => '${name} को हटाना है?',
 			'prayer.lists.sheet.removeText' => 'अब तुम्हारे प्रार्थना-समय में इस व्यक्ति के लिए प्रार्थना नहीं होगी।',
 			'prayer.lists.addShort' => 'जोड़ो',

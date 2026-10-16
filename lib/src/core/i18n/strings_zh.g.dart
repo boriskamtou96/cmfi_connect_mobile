@@ -459,6 +459,8 @@ class _Translations$more$zh extends Translations$more$fr {
 	@override String get staff => '团队与角色';
 	@override String get manageEvents => '活动';
 	@override String get disciples => '我的门徒';
+	@override String version({required Object version}) => '版本 ${version}';
+	@override String copyright({required Object year}) => '© ${year} Christian Missionary Fellowship International. 保留所有权利。';
 }
 
 // Path: authorities
@@ -702,8 +704,10 @@ class _Translations$premium$zh extends Translations$premium$fr {
 	@override String get supportTitle => '你在支持这份事工';
 	@override String get supportText => '你的订阅让整个团契都能继续使用这个应用。';
 	@override String get annual => '按年';
+	@override String get lifetime => '终身';
 	@override String get monthly => '按月';
 	@override String perYear({required Object price}) => '${price} / 年';
+	@override String once({required Object price}) => '${price} 一次性';
 	@override String perMonth({required Object price}) => '${price} / 月';
 	@override String annualPerMonth({required Object price}) => '相当于每月 ${price}';
 	@override String get best => '最划算';
@@ -738,6 +742,10 @@ class _Translations$premium$zh extends Translations$premium$fr {
 	@override String get termsShort => '条款';
 	@override String get semiannual => '半年';
 	@override String perSemester({required Object price}) => '${price} / 6 个月';
+	@override String get buyLifetime => '终身购买';
+	@override String get lifetimeNote => '终身：一次付款，无需订阅，不会续费。';
+	@override String get manage => '管理我的订阅';
+	@override String get manageFailed => '无法打开订阅管理，请稍后再试。';
 }
 
 // Path: homeWidget
@@ -2815,6 +2823,8 @@ extension on TranslationsZh {
 			'more.staff' => '团队与角色',
 			'more.manageEvents' => '活动',
 			'more.disciples' => '我的门徒',
+			'more.version' => ({required Object version}) => '版本 ${version}',
+			'more.copyright' => ({required Object year}) => '© ${year} Christian Missionary Fellowship International. 保留所有权利。',
 			'authorities.title' => '我的属灵带领者',
 			'authorities.intro' => '在与神同行的路上陪伴你的人：你的门训者和其他带领者。',
 			'authorities.discipleMaker' => '门训者',
@@ -2930,10 +2940,10 @@ extension on TranslationsZh {
 			'hymns.reader.typefaceSerif' => '经典',
 			'hymns.reader.typefaceAutoHelp' => '文字较大时使用经典字体',
 			'hymns.reader.background' => '背景',
-			'hymns.reader.themeAuto' => '自动',
-			'hymns.reader.themeLight' => '浅色',
 			_ => null,
 		} ?? switch (path) {
+			'hymns.reader.themeAuto' => '自动',
+			'hymns.reader.themeLight' => '浅色',
 			'hymns.reader.themeSepia' => '羊皮纸',
 			'hymns.reader.themeDark' => '深色',
 			'hymns.reader.repeatChorus' => '每节之后重复副歌',
@@ -3166,8 +3176,10 @@ extension on TranslationsZh {
 			'premium.supportTitle' => '你在支持这份事工',
 			'premium.supportText' => '你的订阅让整个团契都能继续使用这个应用。',
 			'premium.annual' => '按年',
+			'premium.lifetime' => '终身',
 			'premium.monthly' => '按月',
 			'premium.perYear' => ({required Object price}) => '${price} / 年',
+			'premium.once' => ({required Object price}) => '${price} 一次性',
 			'premium.perMonth' => ({required Object price}) => '${price} / 月',
 			'premium.annualPerMonth' => ({required Object price}) => '相当于每月 ${price}',
 			'premium.best' => '最划算',
@@ -3198,6 +3210,10 @@ extension on TranslationsZh {
 			'premium.termsShort' => '条款',
 			'premium.semiannual' => '半年',
 			'premium.perSemester' => ({required Object price}) => '${price} / 6 个月',
+			'premium.buyLifetime' => '终身购买',
+			'premium.lifetimeNote' => '终身：一次付款，无需订阅，不会续费。',
+			'premium.manage' => '管理我的订阅',
+			'premium.manageFailed' => '无法打开订阅管理，请稍后再试。',
 			'homeWidget.title' => '今天',
 			'homeWidget.done' => '已完成',
 			'homeWidget.todo' => '待填写',
@@ -3438,6 +3454,8 @@ extension on TranslationsZh {
 			'prayer.lists.answeredBanner' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n, other: '本月有 ${n} 个祷告蒙应允', ), 
 			'prayer.lists.lastAnswered' => ({required Object name, required Object what}) => '${name}：${what}',
 			'prayer.lists.sheet.addTitle' => '添加一个人',
+			_ => null,
+		} ?? switch (path) {
 			'prayer.lists.sheet.editTitle' => '编辑',
 			'prayer.lists.sheet.name' => '姓名',
 			'prayer.lists.sheet.namePlaceholder' => '李明',
@@ -3446,8 +3464,6 @@ extension on TranslationsZh {
 			'prayer.lists.sheet.list' => '名单',
 			'prayer.lists.sheet.save' => '保存',
 			'prayer.lists.sheet.remove' => '从名单中移除',
-			_ => null,
-		} ?? switch (path) {
 			'prayer.lists.sheet.removeTitle' => ({required Object name}) => '移除 ${name}？',
 			'prayer.lists.sheet.removeText' => '你的每日祷告中将不再为这个人祷告。',
 			'prayer.lists.addShort' => '添加',

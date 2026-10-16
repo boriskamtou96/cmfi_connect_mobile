@@ -1971,6 +1971,9 @@ class FakePremiumStore implements PremiumStore {
   final loggedIn = <String>[];
   var loggedOut = false;
   final bought = <PremiumPeriod>[];
+
+  /// The times the Customer Center opened.
+  var managed = 0;
   final _changes = StreamController<bool>.broadcast();
 
   static const monthly = PremiumPlan(
@@ -1991,6 +1994,11 @@ class FakePremiumStore implements PremiumStore {
     pricePerMonth: '2,08 €',
     trialDays: 7,
   );
+  static const lifetime = PremiumPlan(
+    period: PremiumPeriod.lifetime,
+    price: '49,99 €',
+    amount: 49.99,
+  );
 
   @override
   Future<void> logIn(String userId) async => loggedIn.add(userId);
@@ -2009,6 +2017,7 @@ class FakePremiumStore implements PremiumStore {
     monthly,
     semiannual,
     annual,
+    lifetime,
   ];
 
   @override
@@ -2023,6 +2032,9 @@ class FakePremiumStore implements PremiumStore {
     active = active || restorable;
     return active;
   }
+
+  @override
+  Future<void> manage() async => managed++;
 }
 
 /// The store's rating sheet: counts the requests, for the version [version].

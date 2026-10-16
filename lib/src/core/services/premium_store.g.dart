@@ -50,26 +50,29 @@ final class PremiumStoreProvider
 
 String _$premiumStoreHash() => r'bc858f62f0ff7df01e4e80ab4f76f68d1eddb08a';
 
-/// v1: Premium is offered to everyone (the purchases come in v1.1): the
-/// widget, the year of the summary and the progress of the goals are open,
-/// and nothing leads to the paywall. Set to false to open the purchases; all
-/// the Premium code stays in place.
+/// v1: in the published app (prod), Premium is offered to everyone (the
+/// purchases come in v1.1): the widget, the year of the summary and the
+/// progress of the goals are open, and nothing leads to the paywall. The dev
+/// app sells it, with the RevenueCat Test Store (no real payment). Return
+/// false for prod too to open the purchases.
 
 @ProviderFor(premiumForEveryone)
 final premiumForEveryoneProvider = PremiumForEveryoneProvider._();
 
-/// v1: Premium is offered to everyone (the purchases come in v1.1): the
-/// widget, the year of the summary and the progress of the goals are open,
-/// and nothing leads to the paywall. Set to false to open the purchases; all
-/// the Premium code stays in place.
+/// v1: in the published app (prod), Premium is offered to everyone (the
+/// purchases come in v1.1): the widget, the year of the summary and the
+/// progress of the goals are open, and nothing leads to the paywall. The dev
+/// app sells it, with the RevenueCat Test Store (no real payment). Return
+/// false for prod too to open the purchases.
 
 final class PremiumForEveryoneProvider
     extends $FunctionalProvider<bool, bool, bool>
     with $Provider<bool> {
-  /// v1: Premium is offered to everyone (the purchases come in v1.1): the
-  /// widget, the year of the summary and the progress of the goals are open,
-  /// and nothing leads to the paywall. Set to false to open the purchases; all
-  /// the Premium code stays in place.
+  /// v1: in the published app (prod), Premium is offered to everyone (the
+  /// purchases come in v1.1): the widget, the year of the summary and the
+  /// progress of the goals are open, and nothing leads to the paywall. The dev
+  /// app sells it, with the RevenueCat Test Store (no real payment). Return
+  /// false for prod too to open the purchases.
   PremiumForEveryoneProvider._()
     : super(
         from: null,
@@ -104,7 +107,7 @@ final class PremiumForEveryoneProvider
 }
 
 String _$premiumForEveryoneHash() =>
-    r'1fa6ffac897c468af6dcbb7b0a2480118d12a797';
+    r'933e4269576440936a095576c5e99695004b8c8e';
 
 /// Whether the signed-in member has Premium (the home-screen widget, the
 /// year and the progress of the goals in the summary). false while unknown.

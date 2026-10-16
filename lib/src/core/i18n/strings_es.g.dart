@@ -465,6 +465,8 @@ class _Translations$more$es extends Translations$more$fr {
 	@override String get staff => 'Equipo y roles';
 	@override String get manageEvents => 'Eventos';
 	@override String get disciples => 'Mis discípulos';
+	@override String version({required Object version}) => 'Versión ${version}';
+	@override String copyright({required Object year}) => '© ${year} Comunidad Misionera Cristiana Internacional. Todos los derechos reservados.';
 }
 
 // Path: authorities
@@ -718,8 +720,10 @@ class _Translations$premium$es extends Translations$premium$fr {
 	@override String get supportTitle => 'Apoyas la obra';
 	@override String get supportText => 'Tu suscripción mantiene la app para toda la comunidad.';
 	@override String get annual => 'Anual';
+	@override String get lifetime => 'De por vida';
 	@override String get monthly => 'Mensual';
 	@override String perYear({required Object price}) => '${price} / año';
+	@override String once({required Object price}) => '${price} una vez';
 	@override String perMonth({required Object price}) => '${price} / mes';
 	@override String annualPerMonth({required Object price}) => 'es decir, ${price} al mes';
 	@override String get best => 'La más ventajosa';
@@ -756,6 +760,10 @@ class _Translations$premium$es extends Translations$premium$fr {
 	@override String get termsShort => 'Condiciones';
 	@override String get semiannual => 'Semestral';
 	@override String perSemester({required Object price}) => '${price} / 6 meses';
+	@override String get buyLifetime => 'Comprar de por vida';
+	@override String get lifetimeNote => 'De por vida: un solo pago, sin suscripción ni renovación.';
+	@override String get manage => 'Gestionar mi suscripción';
+	@override String get manageFailed => 'La gestión de la suscripción no se abre. Inténtalo más tarde.';
 }
 
 // Path: homeWidget
@@ -2871,6 +2879,8 @@ extension on TranslationsEs {
 			'more.staff' => 'Equipo y roles',
 			'more.manageEvents' => 'Eventos',
 			'more.disciples' => 'Mis discípulos',
+			'more.version' => ({required Object version}) => 'Versión ${version}',
+			'more.copyright' => ({required Object year}) => '© ${year} Comunidad Misionera Cristiana Internacional. Todos los derechos reservados.',
 			'authorities.title' => 'Mis autoridades espirituales',
 			'authorities.intro' => 'Las personas que te acompañan en tu caminar con Dios: tu discipulador y tus otros líderes.',
 			'authorities.discipleMaker' => 'Discipulador',
@@ -2986,10 +2996,10 @@ extension on TranslationsEs {
 			'hymns.reader.typefaceSerif' => 'Clásica',
 			'hymns.reader.typefaceAutoHelp' => 'Clásica cuando el texto es grande',
 			'hymns.reader.background' => 'Fondo',
-			'hymns.reader.themeAuto' => 'Auto',
-			'hymns.reader.themeLight' => 'Claro',
 			_ => null,
 		} ?? switch (path) {
+			'hymns.reader.themeAuto' => 'Auto',
+			'hymns.reader.themeLight' => 'Claro',
 			'hymns.reader.themeSepia' => 'Sepia',
 			'hymns.reader.themeDark' => 'Oscuro',
 			'hymns.reader.repeatChorus' => 'Repetir el coro después de cada estrofa',
@@ -3222,8 +3232,10 @@ extension on TranslationsEs {
 			'premium.supportTitle' => 'Apoyas la obra',
 			'premium.supportText' => 'Tu suscripción mantiene la app para toda la comunidad.',
 			'premium.annual' => 'Anual',
+			'premium.lifetime' => 'De por vida',
 			'premium.monthly' => 'Mensual',
 			'premium.perYear' => ({required Object price}) => '${price} / año',
+			'premium.once' => ({required Object price}) => '${price} una vez',
 			'premium.perMonth' => ({required Object price}) => '${price} / mes',
 			'premium.annualPerMonth' => ({required Object price}) => 'es decir, ${price} al mes',
 			'premium.best' => 'La más ventajosa',
@@ -3254,6 +3266,10 @@ extension on TranslationsEs {
 			'premium.termsShort' => 'Condiciones',
 			'premium.semiannual' => 'Semestral',
 			'premium.perSemester' => ({required Object price}) => '${price} / 6 meses',
+			'premium.buyLifetime' => 'Comprar de por vida',
+			'premium.lifetimeNote' => 'De por vida: un solo pago, sin suscripción ni renovación.',
+			'premium.manage' => 'Gestionar mi suscripción',
+			'premium.manageFailed' => 'La gestión de la suscripción no se abre. Inténtalo más tarde.',
 			'homeWidget.title' => 'Hoy',
 			'homeWidget.done' => 'Hecho',
 			'homeWidget.todo' => 'Por rellenar',
@@ -3494,6 +3510,8 @@ extension on TranslationsEs {
 			'prayer.lists.answeredBanner' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('es'))(n, one: '${n} oración contestada este mes', other: '${n} oraciones contestadas este mes', ), 
 			'prayer.lists.lastAnswered' => ({required Object name, required Object what}) => '${name}: ${what}',
 			'prayer.lists.sheet.addTitle' => 'Añadir una persona',
+			_ => null,
+		} ?? switch (path) {
 			'prayer.lists.sheet.editTitle' => 'Editar',
 			'prayer.lists.sheet.name' => 'Nombre',
 			'prayer.lists.sheet.namePlaceholder' => 'Pablo M.',
@@ -3502,8 +3520,6 @@ extension on TranslationsEs {
 			'prayer.lists.sheet.list' => 'Lista',
 			'prayer.lists.sheet.save' => 'Guardar',
 			'prayer.lists.sheet.remove' => 'Quitar de la lista',
-			_ => null,
-		} ?? switch (path) {
 			'prayer.lists.sheet.removeTitle' => ({required Object name}) => '¿Quitar a ${name}?',
 			'prayer.lists.sheet.removeText' => 'Ya no orarás por esta persona en tus retiros.',
 			'prayer.lists.addShort' => 'Añadir',

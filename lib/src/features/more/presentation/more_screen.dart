@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../core/i18n/strings.g.dart';
+import '../../../core/services/app_version.dart';
 import '../../../core/services/premium_store.dart';
 import '../../../core/session/session.dart';
 import '../../../core/storage/preferences.dart';
@@ -480,6 +481,8 @@ class MoreScreen extends ConsumerWidget {
               child: Text(t.members.deleteAccount.button),
             ),
           ),
+          const SizedBox(height: AppSpacing.lg),
+          const _About(),
         ],
       ),
     );
@@ -590,6 +593,46 @@ class _Section extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [SectionLabel(label), const SizedBox(height: 10), card],
+    );
+  }
+}
+
+/// At the very bottom: the name of the app, its version and the copyright.
+class _About extends ConsumerWidget {
+  const _About();
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final t = context.t;
+    final muted = Theme.of(context).colorScheme.onSurfaceVariant;
+    final version = ref.watch(appVersionProvider).value ?? '';
+
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(
+        AppSpacing.xl,
+        0,
+        AppSpacing.xl,
+        AppSpacing.xl,
+      ),
+      child: Column(
+        children: [
+          Text(
+            t.app.name,
+            style: TextStyle(fontWeight: FontWeight.w800, color: muted),
+          ),
+          if (version.isNotEmpty)
+            Text(
+              t.more.version(version: version),
+              style: TextStyle(fontSize: 13, color: muted),
+            ),
+          const SizedBox(height: AppSpacing.xs),
+          Text(
+            t.more.copyright(year: DateTime.now().year),
+            textAlign: TextAlign.center,
+            style: TextStyle(fontSize: 12, height: 1.4, color: muted),
+          ),
+        ],
+      ),
     );
   }
 }

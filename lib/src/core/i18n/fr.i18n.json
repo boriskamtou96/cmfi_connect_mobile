@@ -508,7 +508,9 @@
     "admin": "Administration",
     "staff": "Équipe et rôles",
     "manageEvents": "Évènements",
-    "disciples": "Mes disciples"
+    "disciples": "Mes disciples",
+    "version": "Version {version}",
+    "copyright": "© {year} Communauté Missionnaire Chrétienne Internationale. Tous droits réservés."
   },
   "authorities": {
     "title": "Mes autorités spirituelles",
@@ -934,8 +936,10 @@
     "supportTitle": "Tu soutiens l'œuvre",
     "supportText": "Ton abonnement fait vivre l'app pour toute la communauté.",
     "annual": "Annuel",
+    "lifetime": "À vie",
     "monthly": "Mensuel",
     "perYear": "{price} / an",
+    "once": "{price} une fois",
     "perMonth": "{price} / mois",
     "annualPerMonth": "soit {price} par mois",
     "best": "Le plus avantageux",
@@ -971,7 +975,11 @@
     "restoreShort": "Restaurer",
     "termsShort": "Conditions",
     "semiannual": "Semestriel",
-    "perSemester": "{price} / 6 mois"
+    "perSemester": "{price} / 6 mois",
+    "buyLifetime": "Acheter à vie",
+    "lifetimeNote": "À vie : un seul paiement, sans abonnement ni renouvellement.",
+    "manage": "Gérer mon abonnement",
+    "manageFailed": "La gestion de l'abonnement ne s'ouvre pas. Réessaie plus tard."
   },
   "homeWidget": {
     "title": "Aujourd'hui",

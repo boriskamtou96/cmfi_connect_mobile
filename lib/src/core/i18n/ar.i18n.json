@@ -564,7 +564,9 @@
     "admin": "الإدارة",
     "staff": "الفريق والأدوار",
     "manageEvents": "الفعاليات",
-    "disciples": "تلاميذي"
+    "disciples": "تلاميذي",
+    "version": "الإصدار {version}",
+    "copyright": "© {year} Christian Missionary Fellowship International. جميع الحقوق محفوظة."
   },
   "authorities": {
     "title": "مرشديّ الروحيون",
@@ -1036,8 +1038,10 @@
     "supportTitle": "أنت تدعم العمل",
     "supportText": "اشتراكك يُبقي التطبيق حيًّا للجماعة كلها.",
     "annual": "سنوي",
+    "lifetime": "مدى الحياة",
     "monthly": "شهري",
     "perYear": "{price} / سنة",
+    "once": "{price} مرة واحدة",
     "perMonth": "{price} / شهر",
     "annualPerMonth": "أي {price} شهريًا",
     "best": "الأوفر",
@@ -1081,7 +1085,11 @@
     "restoreShort": "استعادة",
     "termsShort": "الشروط",
     "semiannual": "نصف سنوي",
-    "perSemester": "{price} / 6 أشهر"
+    "perSemester": "{price} / 6 أشهر",
+    "buyLifetime": "اشترِ مدى الحياة",
+    "lifetimeNote": "مدى الحياة: دفعة واحدة، بلا اشتراك ولا تجديد.",
+    "manage": "إدارة اشتراكي",
+    "manageFailed": "تعذّر فتح إدارة الاشتراك. حاول لاحقًا."
   },
   "homeWidget": {
     "title": "اليوم",

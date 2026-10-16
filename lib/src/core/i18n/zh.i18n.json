@@ -494,7 +494,9 @@
     "admin": "管理",
     "staff": "团队与角色",
     "manageEvents": "活动",
-    "disciples": "我的门徒"
+    "disciples": "我的门徒",
+    "version": "版本 {version}",
+    "copyright": "© {year} Christian Missionary Fellowship International. 保留所有权利。"
   },
   "authorities": {
     "title": "我的属灵带领者",
@@ -909,8 +911,10 @@
     "supportTitle": "你在支持这份事工",
     "supportText": "你的订阅让整个团契都能继续使用这个应用。",
     "annual": "按年",
+    "lifetime": "终身",
     "monthly": "按月",
     "perYear": "{price} / 年",
+    "once": "{price} 一次性",
     "perMonth": "{price} / 月",
     "annualPerMonth": "相当于每月 {price}",
     "best": "最划算",
@@ -944,7 +948,11 @@
     "restoreShort": "恢复购买",
     "termsShort": "条款",
     "semiannual": "半年",
-    "perSemester": "{price} / 6 个月"
+    "perSemester": "{price} / 6 个月",
+    "buyLifetime": "终身购买",
+    "lifetimeNote": "终身：一次付款，无需订阅，不会续费。",
+    "manage": "管理我的订阅",
+    "manageFailed": "无法打开订阅管理，请稍后再试。"
   },
   "homeWidget": {
     "title": "今天",

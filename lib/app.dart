@@ -40,25 +40,19 @@ class App extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final router = ref.watch(appRouterProvider);
 
-    // the links that open the app are caught from the start: one arriving
-    // signed out waits for the sign-in (SignedInTasks opens it)
     ref.listen(pendingDeepLinkProvider, (_, _) {});
 
-    // the "Verset du jour" widget of the home screen, signed in or not: the
-    // next two weeks, again when the language changes
     ref.listen(verseWidgetProvider, (_, next) {
       if (next.value case final verses?) {
         unawaited(ref.read(homeWidgetsProvider).showVerses(verses));
       }
     });
 
-    // Signing out (the "Plus" tab, or a 401 seen by AuthInterceptor) goes back
-    // to the welcome screen. Signing in is handled by the login / sign-up screens.
     ref.listen(sessionProvider, (previous, next) {
       if (previous?.value == SessionStatus.authenticated &&
           next.value == SessionStatus.unauthenticated) {
         router.replaceAll([const WelcomeRoute()]);
-        // nothing of the account stays: days kept offline, cache, reminders
+
         unawaited(ref.read(reportsLocalStoreProvider).clear());
         unawaited(ref.read(eventsLocalStoreProvider).clear());
         unawaited(ref.read(prayerLocalStoreProvider).clear());
@@ -68,18 +62,17 @@ class App extends ConsumerWidget {
         unawaited(ref.read(crashReportingProvider).identify(null));
         unawaited(ref.read(sentReportsProvider.notifier).forget());
         unawaited(ref.read(streakMilestonesProvider.notifier).clear());
-        // no shortcut into an account that is gone
+
         unawaited(ref.read(appShortcutsProvider).clear());
         ref
           ..invalidate(pendingReportsProvider)
           ..invalidate(lastHistoryProvider)
-          // kept alive: the next account must not see this one's prayers
           ..invalidate(retreatLogProvider)
           ..invalidate(prayerPeopleProvider)
           ..invalidate(importunitiesProvider)
           ..invalidate(inboxProvider)
           ..invalidate(premiumProvider);
-        // the widget of the home screen keeps nothing of the account
+
         unawaited(
           ref
               .read(homeWidgetsProvider)
@@ -88,7 +81,6 @@ class App extends ConsumerWidget {
       }
     });
 
-    // the popups (core/widgets/app_toast.dart) share these settings
     return ToastificationWrapper(
       config: const ToastificationConfig(
         alignment: Alignment.topCenter,
@@ -101,7 +93,6 @@ class App extends ConsumerWidget {
         theme: AppTheme.light(),
         darkTheme: AppTheme.dark(),
         themeMode: ref.watch(savedThemeModeProvider),
-        // switching light / dark cross-fades every color
         themeAnimationStyle: AnimationStyle(
           duration: AppMotion.slow,
           curve: AppMotion.standard,
@@ -110,8 +101,6 @@ class App extends ConsumerWidget {
         supportedLocales: AppLocaleUtils.supportedLocales,
         localizationsDelegates: GlobalMaterialLocalizations.delegates,
         routerConfig: router.config(),
-        // status bar icons that read on the app's background, even when the
-        // chosen mode is not the phone's (screens on dark blue set their own)
         builder: (context, child) => AnnotatedRegion<SystemUiOverlayStyle>(
           value: Theme.of(context).brightness == Brightness.dark
               ? SystemUiOverlayStyle.light

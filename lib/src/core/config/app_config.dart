@@ -8,7 +8,7 @@ part 'app_config.g.dart';
 class AppConfig {
   const AppConfig({required this.apiBaseUrl, this.revenueCatKey = ''});
 
-  /// flutter run --flavor dev --dart-define=API_BASE_URL=http://192.168.1.20:8080/v1
+  /// flutter run --flavor dev --dart-define=API_BASE_URL=http://192.168.100.2:8080/v1
   static const _apiBaseUrlOverride = String.fromEnvironment('API_BASE_URL');
 
   // The public RevenueCat keys, from .env:
@@ -45,7 +45,7 @@ class AppConfig {
       ),
       // TODO(cmfi): set the production API URL once it is deployed
       Flavor.prod => AppConfig(
-        apiBaseUrl: 'https://api.cmfi-connect.com/v1',
+        apiBaseUrl: 'https://cmfi-connect-backend-dev.onrender.com/v1',
         revenueCatKey: revenueCatKey,
       ),
     };

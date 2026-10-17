@@ -32,6 +32,7 @@ import 'package:cmfi_connect/src/features/authorities/infrastructure/authorities
 import 'package:cmfi_connect/src/features/bible/infrastructure/bible_api.dart';
 import 'package:cmfi_connect/src/features/bible/infrastructure/bible_storage.dart';
 import 'package:cmfi_connect/src/features/disciples/infrastructure/disciples_api.dart';
+import 'package:cmfi_connect/src/features/documents/infrastructure/documents_api.dart';
 import 'package:cmfi_connect/src/features/events/infrastructure/events_api.dart';
 import 'package:cmfi_connect/src/features/hymns/infrastructure/hymn_book_storage.dart';
 import 'package:cmfi_connect/src/features/hymns/infrastructure/hymns_api.dart';
@@ -93,6 +94,7 @@ class TestApp {
     required this.bibleApi,
     required this.bibleStorage,
     required this.appShield,
+    required this.documentsApi,
     required this.biometrics,
     required this.savedLogin,
   });
@@ -137,6 +139,7 @@ class TestApp {
   final FakeBibleApi bibleApi;
   final FakeBibleStorage bibleStorage;
   final FakeAppShield appShield;
+  final FakeDocumentsApi documentsApi;
   final FakeBiometrics biometrics;
   final FakeSavedLoginStorage savedLogin;
 }
@@ -164,6 +167,7 @@ Future<TestApp> pumpApp(
   FakePremiumStore? premium,
   FakeMinistryApi? ministryApi,
   FakeAppShield? appShield,
+  FakeDocumentsApi? documentsApi,
   FakeBiometrics? biometrics,
   FakeSavedLoginStorage? savedLogin,
   FakePhoneVerification? phoneVerification,
@@ -220,6 +224,7 @@ Future<TestApp> pumpApp(
   final widgets = FakeHomeWidgets();
   final ministry = ministryApi ?? FakeMinistryApi();
   final shield = appShield ?? FakeAppShield();
+  final library = documentsApi ?? FakeDocumentsApi();
   final faceId = biometrics ?? FakeBiometrics();
   final keychain = savedLogin ?? FakeSavedLoginStorage();
   final review = storeReview ?? FakeStoreReview();
@@ -273,6 +278,7 @@ Future<TestApp> pumpApp(
       homeWidgetsProvider.overrideWithValue(widgets),
       ministryApiProvider.overrideWithValue(ministry),
       appShieldProvider.overrideWith((ref) async => shield),
+      documentsApiProvider.overrideWithValue(library),
       biometricsProvider.overrideWithValue(faceId),
       savedLoginStorageProvider.overrideWithValue(keychain),
       crashReportingProvider.overrideWithValue(const NoCrashReporting()),
@@ -335,6 +341,7 @@ Future<TestApp> pumpApp(
     bibleApi: bible,
     bibleStorage: bibleStorage,
     appShield: shield,
+    documentsApi: library,
     biometrics: faceId,
     savedLogin: keychain,
   );

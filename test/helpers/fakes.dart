@@ -33,6 +33,8 @@ import 'package:cmfi_connect/src/features/authorities/domain/authority.dart';
 import 'package:cmfi_connect/src/features/authorities/infrastructure/authorities_api.dart';
 import 'package:cmfi_connect/src/features/disciples/domain/disciple.dart';
 import 'package:cmfi_connect/src/features/disciples/infrastructure/disciples_api.dart';
+import 'package:cmfi_connect/src/features/documents/domain/library_document.dart';
+import 'package:cmfi_connect/src/features/documents/infrastructure/documents_api.dart';
 import 'package:cmfi_connect/src/features/events/domain/event.dart';
 import 'package:cmfi_connect/src/features/events/domain/event_draft.dart';
 import 'package:cmfi_connect/src/features/events/infrastructure/events_api.dart';
@@ -2427,4 +2429,96 @@ class FakeSavedLoginStorage implements SavedLoginStorage {
     savedPhone = null;
     savedPassword = null;
   }
+}
+
+/// Nos documents without the server: [documents] answer like the API
+/// (search on the words, case and accents aside; one category; a page at a
+/// time); [pagesAsked] keeps the pages fetched.
+class FakeDocumentsApi implements DocumentsApi {
+  FakeDocumentsApi({List<LibraryDocument>? documents, this.offline = false})
+    : documents = documents ?? sampleDocuments;
+
+  List<LibraryDocument> documents;
+  bool offline;
+  final pagesAsked = <int>[];
+
+  static const sampleDocuments = [
+    LibraryDocument(
+      id: 1,
+      title: 'Règlement intérieur',
+      description: 'À lire par tous les responsables.',
+      category: 'Règlements',
+      file: LibraryFile(
+        id: 11,
+        url: '/v1/media/a.pdf',
+        name: 'Règlement intérieur.pdf',
+        sizeBytes: 184320,
+      ),
+    ),
+    LibraryDocument(
+      id: 2,
+      title: "Fiche d'inscription",
+      category: 'Formulaires',
+      file: LibraryFile(
+        id: 12,
+        url: '/v1/media/b.docx',
+        name: 'Inscription.docx',
+        kind: DocumentKind.word,
+        sizeBytes: 2516582,
+      ),
+    ),
+  ];
+
+  static String _plain(String text) => text
+      .toLowerCase()
+      .replaceAll(RegExp('[éèêë]'), 'e')
+      .replaceAll(RegExp('[àâ]'), 'a')
+      .replaceAll(RegExp('[îï]'), 'i');
+
+  @override
+  Future<DocumentsPage> list({
+    String search = '',
+    String category = '',
+    int page = 1,
+    int size = 20,
+  }) async {
+    if (offline) {
+      throw const NetworkException();
+    }
+    pagesAsked.add(page);
+    final words = _plain(search).split(' ').where((w) => w.isNotEmpty);
+    final kept = [
+      for (final document in documents)
+        if ((category.isEmpty || document.category == category) &&
+            words.every(
+              _plain(
+                '${document.title} ${document.description} ${document.category}',
+              ).contains,
+            ))
+          document,
+    ];
+    final start = (page - 1) * size;
+    return (items: kept.skip(start).take(size).toList(), total: kept.length);
+  }
+
+  @override
+  Future<List<DocumentCategory>> categories() async {
+    if (offline) {
+      throw const NetworkException();
+    }
+    final counts = <String, int>{};
+    for (final document in documents) {
+      if (document.category.isNotEmpty) {
+        counts[document.category] = (counts[document.category] ?? 0) + 1;
+      }
+    }
+    return [
+      for (final MapEntry(:key, :value) in counts.entries)
+        DocumentCategory(name: key, count: value),
+    ]..sort((a, b) => a.name.compareTo(b.name));
+  }
+
+  @override
+  Future<Uint8List> file(String url) async =>
+      Uint8List.fromList(const [37, 80, 68, 70]);
 }

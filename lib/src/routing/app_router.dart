@@ -16,6 +16,7 @@ import '../features/bible/presentation/bible_search_screen.dart';
 import '../features/bible/presentation/concordance_screen.dart';
 import '../features/disciples/presentation/disciple_reports_screen.dart';
 import '../features/disciples/presentation/disciples_screen.dart';
+import '../features/documents/presentation/documents_screen.dart';
 import '../features/events/presentation/admin/admin_events_screen.dart';
 import '../features/events/presentation/admin/event_form_screen.dart';
 import '../features/events/presentation/admin/event_program_screen.dart';
@@ -135,6 +136,11 @@ class AppRouter extends RootStackRouter {
       guards: [authGuard],
     ),
     AutoRoute(path: '/items', page: ItemsRoute.page, guards: [authGuard]),
+    AutoRoute(
+      path: '/documents',
+      page: DocumentsRoute.page,
+      guards: [authGuard],
+    ),
     AutoRoute(
       path: '/seek-first',
       page: SeekFirstRoute.page,

@@ -1760,5 +1760,25 @@
       "notificationTitle": "Suche zuerst Gott",
       "notificationBody": "Tippe hier, um deinen Bericht auszufüllen."
     }
+  },
+  "documents": {
+    "title": "Unsere Dokumente",
+    "subtitle": "Lehren, Regeln, Formulare…",
+    "moreSubtitle": "Die Bibliothek der Gemeinschaft",
+    "search": "Ein Dokument suchen",
+    "all": "Alle",
+    "empty": "Noch keine Dokumente. Die Dokumente der Gemeinschaft erscheinen hier.",
+    "none": "Kein Dokument passt zu deiner Suche.",
+    "sizeKb": "{n} KB",
+    "sizeMb": "{n} MB",
+    "pdf": "PDF",
+    "word": "Word",
+    "open": "Das Dokument öffnen",
+    "download": "Herunterladen",
+    "count(plural, param=n)": {
+      "one": "{n} Dokument",
+      "other": "{n} Dokumente"
+    },
+    "more": "Mehr anzeigen"
   }
 }

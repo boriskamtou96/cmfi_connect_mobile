@@ -1761,5 +1761,25 @@
       "notificationTitle": "Seek God first",
       "notificationBody": "Tap here to fill in your report."
     }
+  },
+  "documents": {
+    "title": "Our documents",
+    "subtitle": "Teachings, rules, forms…",
+    "moreSubtitle": "The library of the community",
+    "search": "Search a document",
+    "all": "All",
+    "empty": "No document yet. The documents the community publishes will show here.",
+    "none": "No document matches your search.",
+    "sizeKb": "{n} KB",
+    "sizeMb": "{n} MB",
+    "pdf": "PDF",
+    "word": "Word",
+    "open": "Open the document",
+    "download": "Download",
+    "count(plural, param=n)": {
+      "one": "{n} document",
+      "other": "{n} documents"
+    },
+    "more": "Show more"
   }
 }

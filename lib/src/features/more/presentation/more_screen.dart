@@ -234,6 +234,22 @@ class MoreScreen extends ConsumerWidget {
                     onTap: () => context.router.push(const MinistryRoute()),
                   ),
                   ListTile(
+                    leading: moduleIcon(AppIcons.documentsTile, events),
+                    title: Text(
+                      t.documents.title,
+                      style: const TextStyle(fontWeight: FontWeight.w600),
+                    ),
+                    subtitle: Text(
+                      t.documents.moreSubtitle,
+                      style: TextStyle(
+                        fontSize: 13,
+                        color: scheme.onSurfaceVariant,
+                      ),
+                    ),
+                    trailing: const Icon(AppIcons.chevronRight),
+                    onTap: () => context.router.push(const DocumentsRoute()),
+                  ),
+                  ListTile(
                     leading: moduleIcon(AppIcons.notificationsTile, events),
                     title: Text(
                       t.notifications.title,

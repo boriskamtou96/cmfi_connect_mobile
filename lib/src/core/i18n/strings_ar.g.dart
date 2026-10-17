@@ -76,6 +76,7 @@ class TranslationsAr extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _Translations$disciples$ar disciples = _Translations$disciples$ar._(_root);
 	@override late final _Translations$weekStory$ar weekStory = _Translations$weekStory$ar._(_root);
 	@override late final _Translations$seekFirst$ar seekFirst = _Translations$seekFirst$ar._(_root);
+	@override late final _Translations$documents$ar documents = _Translations$documents$ar._(_root);
 }
 
 // Path: app
@@ -1421,6 +1422,37 @@ class _Translations$seekFirst$ar extends Translations$seekFirst$fr {
 	@override String get moreOff => 'أغلق التطبيقات حتى تنجز تقريرك';
 	@override String get privacy => 'لا يرى CMFI Connect أبدًا التطبيقات التي تختارها: هاتفك يحتفظ بها لنفسه.';
 	@override late final _Translations$seekFirst$shield$ar shield = _Translations$seekFirst$shield$ar._(_root);
+}
+
+// Path: documents
+class _Translations$documents$ar extends Translations$documents$fr {
+	_Translations$documents$ar._(TranslationsAr root) : this._root = root, super.internal(root);
+
+	final TranslationsAr _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'مستنداتنا';
+	@override String get subtitle => 'تعاليم، أنظمة، استمارات…';
+	@override String get moreSubtitle => 'مكتبة المجتمع';
+	@override String get search => 'ابحث عن مستند';
+	@override String get all => 'الكل';
+	@override String get empty => 'لا توجد مستندات بعد. ستظهر هنا المستندات التي ينشرها المجتمع.';
+	@override String get none => 'لا يوجد مستند يطابق بحثك.';
+	@override String sizeKb({required Object n}) => '${n} ك.ب';
+	@override String sizeMb({required Object n}) => '${n} م.ب';
+	@override String get pdf => 'PDF';
+	@override String get word => 'Word';
+	@override String get open => 'افتح المستند';
+	@override String get download => 'تنزيل';
+	@override String count({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n,
+		zero: '${n} مستند',
+		one: 'مستند واحد',
+		two: 'مستندان',
+		few: '${n} مستندات',
+		many: '${n} مستندًا',
+		other: '${n} مستند',
+	);
+	@override String get more => 'عرض المزيد';
 }
 
 // Path: onboarding.reports
@@ -4168,6 +4200,21 @@ extension on TranslationsAr {
 			'seekFirst.shield.pause' => ({required Object n}) => 'استراحة 5 دقائق (${n}/3)',
 			'seekFirst.shield.notificationTitle' => 'اطلب الله أولًا',
 			'seekFirst.shield.notificationBody' => 'المس هنا لتملأ تقريرك.',
+			'documents.title' => 'مستنداتنا',
+			'documents.subtitle' => 'تعاليم، أنظمة، استمارات…',
+			'documents.moreSubtitle' => 'مكتبة المجتمع',
+			'documents.search' => 'ابحث عن مستند',
+			'documents.all' => 'الكل',
+			'documents.empty' => 'لا توجد مستندات بعد. ستظهر هنا المستندات التي ينشرها المجتمع.',
+			'documents.none' => 'لا يوجد مستند يطابق بحثك.',
+			'documents.sizeKb' => ({required Object n}) => '${n} ك.ب',
+			'documents.sizeMb' => ({required Object n}) => '${n} م.ب',
+			'documents.pdf' => 'PDF',
+			'documents.word' => 'Word',
+			'documents.open' => 'افتح المستند',
+			'documents.download' => 'تنزيل',
+			'documents.count' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n, zero: '${n} مستند', one: 'مستند واحد', two: 'مستندان', few: '${n} مستندات', many: '${n} مستندًا', other: '${n} مستند', ), 
+			'documents.more' => 'عرض المزيد',
 			_ => null,
 		};
 	}

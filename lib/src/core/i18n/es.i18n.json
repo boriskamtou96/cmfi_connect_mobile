@@ -1760,5 +1760,25 @@
       "notificationTitle": "Busca primero a Dios",
       "notificationBody": "Toca aquí para llenar tu informe."
     }
+  },
+  "documents": {
+    "title": "Nuestros documentos",
+    "subtitle": "Enseñanzas, reglamentos, formularios…",
+    "moreSubtitle": "La biblioteca de la comunidad",
+    "search": "Buscar un documento",
+    "all": "Todos",
+    "empty": "Aún no hay documentos. Los documentos que publique la comunidad aparecerán aquí.",
+    "none": "Ningún documento coincide con tu búsqueda.",
+    "sizeKb": "{n} KB",
+    "sizeMb": "{n} MB",
+    "pdf": "PDF",
+    "word": "Word",
+    "open": "Abrir el documento",
+    "download": "Descargar",
+    "count(plural, param=n)": {
+      "one": "{n} documento",
+      "other": "{n} documentos"
+    },
+    "more": "Ver más"
   }
 }

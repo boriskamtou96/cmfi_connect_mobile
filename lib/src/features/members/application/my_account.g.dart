@@ -39,7 +39,7 @@ final class MyAccountProvider
   MyAccount create() => MyAccount();
 }
 
-String _$myAccountHash() => r'20cf1e39ca87f86b61389558aed04a5245108fc5';
+String _$myAccountHash() => r'ca878c122fed4aa56345eff3b015df5393ff60de';
 
 /// The signed-in account as the server has it now (pseudo, role), kept on the
 /// phone. Without network, the copy saved at the last sign-in or refresh.

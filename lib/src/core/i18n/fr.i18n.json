@@ -1760,5 +1760,25 @@
       "notificationTitle": "Cherche d'abord Dieu",
       "notificationBody": "Touche ici pour remplir ton compte rendu."
     }
+  },
+  "documents": {
+    "title": "Nos documents",
+    "subtitle": "Enseignements, règlements, formulaires…",
+    "moreSubtitle": "La bibliothèque de la communauté",
+    "search": "Rechercher un document",
+    "all": "Tous",
+    "empty": "Aucun document pour l'instant. Les documents publiés par la communauté apparaîtront ici.",
+    "none": "Aucun document ne correspond à ta recherche.",
+    "sizeKb": "{n} Ko",
+    "sizeMb": "{n} Mo",
+    "pdf": "PDF",
+    "word": "Word",
+    "open": "Ouvrir le document",
+    "download": "Télécharger",
+    "count(plural, param=n)": {
+      "one": "{n} document",
+      "other": "{n} documents"
+    },
+    "more": "Voir plus"
   }
 }

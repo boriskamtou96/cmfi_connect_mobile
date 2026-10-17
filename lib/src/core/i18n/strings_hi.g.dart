@@ -76,6 +76,7 @@ class TranslationsHi extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _Translations$disciples$hi disciples = _Translations$disciples$hi._(_root);
 	@override late final _Translations$weekStory$hi weekStory = _Translations$weekStory$hi._(_root);
 	@override late final _Translations$seekFirst$hi seekFirst = _Translations$seekFirst$hi._(_root);
+	@override late final _Translations$documents$hi documents = _Translations$documents$hi._(_root);
 }
 
 // Path: app
@@ -1259,6 +1260,33 @@ class _Translations$seekFirst$hi extends Translations$seekFirst$fr {
 	@override String get moreOff => 'रिपोर्ट पूरी होने तक ऐप बंद रखें';
 	@override String get privacy => 'CMFI Connect कभी नहीं देखता कि तुमने कौन से ऐप चुने: तुम्हारा iPhone उन्हें अपने पास रखता है।';
 	@override late final _Translations$seekFirst$shield$hi shield = _Translations$seekFirst$shield$hi._(_root);
+}
+
+// Path: documents
+class _Translations$documents$hi extends Translations$documents$fr {
+	_Translations$documents$hi._(TranslationsHi root) : this._root = root, super.internal(root);
+
+	final TranslationsHi _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'हमारे दस्तावेज़';
+	@override String get subtitle => 'शिक्षाएँ, नियम, फ़ॉर्म…';
+	@override String get moreSubtitle => 'समुदाय का पुस्तकालय';
+	@override String get search => 'दस्तावेज़ खोजें';
+	@override String get all => 'सभी';
+	@override String get empty => 'अभी कोई दस्तावेज़ नहीं। समुदाय द्वारा प्रकाशित दस्तावेज़ यहाँ दिखेंगे।';
+	@override String get none => 'तुम्हारी खोज से कोई दस्तावेज़ मेल नहीं खाता।';
+	@override String sizeKb({required Object n}) => '${n} KB';
+	@override String sizeMb({required Object n}) => '${n} MB';
+	@override String get pdf => 'PDF';
+	@override String get word => 'Word';
+	@override String get open => 'दस्तावेज़ खोलें';
+	@override String get download => 'डाउनलोड करें';
+	@override String count({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n,
+		one: '${n} दस्तावेज़',
+		other: '${n} दस्तावेज़',
+	);
+	@override String get more => 'और देखें';
 }
 
 // Path: onboarding.reports
@@ -3929,6 +3957,21 @@ extension on TranslationsHi {
 			'seekFirst.shield.pause' => ({required Object n}) => '5 मिनट का विराम (${n}/3)',
 			'seekFirst.shield.notificationTitle' => 'पहले परमेश्वर को खोजो',
 			'seekFirst.shield.notificationBody' => 'अपनी रिपोर्ट भरने के लिए यहाँ टैप करें।',
+			'documents.title' => 'हमारे दस्तावेज़',
+			'documents.subtitle' => 'शिक्षाएँ, नियम, फ़ॉर्म…',
+			'documents.moreSubtitle' => 'समुदाय का पुस्तकालय',
+			'documents.search' => 'दस्तावेज़ खोजें',
+			'documents.all' => 'सभी',
+			'documents.empty' => 'अभी कोई दस्तावेज़ नहीं। समुदाय द्वारा प्रकाशित दस्तावेज़ यहाँ दिखेंगे।',
+			'documents.none' => 'तुम्हारी खोज से कोई दस्तावेज़ मेल नहीं खाता।',
+			'documents.sizeKb' => ({required Object n}) => '${n} KB',
+			'documents.sizeMb' => ({required Object n}) => '${n} MB',
+			'documents.pdf' => 'PDF',
+			'documents.word' => 'Word',
+			'documents.open' => 'दस्तावेज़ खोलें',
+			'documents.download' => 'डाउनलोड करें',
+			'documents.count' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n, one: '${n} दस्तावेज़', other: '${n} दस्तावेज़', ), 
+			'documents.more' => 'और देखें',
 			_ => null,
 		};
 	}

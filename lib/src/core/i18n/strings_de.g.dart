@@ -76,6 +76,7 @@ class TranslationsDe extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _Translations$disciples$de disciples = _Translations$disciples$de._(_root);
 	@override late final _Translations$weekStory$de weekStory = _Translations$weekStory$de._(_root);
 	@override late final _Translations$seekFirst$de seekFirst = _Translations$seekFirst$de._(_root);
+	@override late final _Translations$documents$de documents = _Translations$documents$de._(_root);
 }
 
 // Path: app
@@ -1260,6 +1261,33 @@ class _Translations$seekFirst$de extends Translations$seekFirst$fr {
 	@override String get moreOff => 'Apps schließen, bis dein Bericht fertig ist';
 	@override String get privacy => 'CMFI Connect sieht nie, welche Apps du wählst: Dein iPhone behält sie für sich.';
 	@override late final _Translations$seekFirst$shield$de shield = _Translations$seekFirst$shield$de._(_root);
+}
+
+// Path: documents
+class _Translations$documents$de extends Translations$documents$fr {
+	_Translations$documents$de._(TranslationsDe root) : this._root = root, super.internal(root);
+
+	final TranslationsDe _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Unsere Dokumente';
+	@override String get subtitle => 'Lehren, Regeln, Formulare…';
+	@override String get moreSubtitle => 'Die Bibliothek der Gemeinschaft';
+	@override String get search => 'Ein Dokument suchen';
+	@override String get all => 'Alle';
+	@override String get empty => 'Noch keine Dokumente. Die Dokumente der Gemeinschaft erscheinen hier.';
+	@override String get none => 'Kein Dokument passt zu deiner Suche.';
+	@override String sizeKb({required Object n}) => '${n} KB';
+	@override String sizeMb({required Object n}) => '${n} MB';
+	@override String get pdf => 'PDF';
+	@override String get word => 'Word';
+	@override String get open => 'Das Dokument öffnen';
+	@override String get download => 'Herunterladen';
+	@override String count({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('de'))(n,
+		one: '${n} Dokument',
+		other: '${n} Dokumente',
+	);
+	@override String get more => 'Mehr anzeigen';
 }
 
 // Path: onboarding.reports
@@ -3930,6 +3958,21 @@ extension on TranslationsDe {
 			'seekFirst.shield.pause' => ({required Object n}) => '5 Min. Pause (${n}/3)',
 			'seekFirst.shield.notificationTitle' => 'Suche zuerst Gott',
 			'seekFirst.shield.notificationBody' => 'Tippe hier, um deinen Bericht auszufüllen.',
+			'documents.title' => 'Unsere Dokumente',
+			'documents.subtitle' => 'Lehren, Regeln, Formulare…',
+			'documents.moreSubtitle' => 'Die Bibliothek der Gemeinschaft',
+			'documents.search' => 'Ein Dokument suchen',
+			'documents.all' => 'Alle',
+			'documents.empty' => 'Noch keine Dokumente. Die Dokumente der Gemeinschaft erscheinen hier.',
+			'documents.none' => 'Kein Dokument passt zu deiner Suche.',
+			'documents.sizeKb' => ({required Object n}) => '${n} KB',
+			'documents.sizeMb' => ({required Object n}) => '${n} MB',
+			'documents.pdf' => 'PDF',
+			'documents.word' => 'Word',
+			'documents.open' => 'Das Dokument öffnen',
+			'documents.download' => 'Herunterladen',
+			'documents.count' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('de'))(n, one: '${n} Dokument', other: '${n} Dokumente', ), 
+			'documents.more' => 'Mehr anzeigen',
 			_ => null,
 		};
 	}

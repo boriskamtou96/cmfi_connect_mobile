@@ -267,6 +267,12 @@ Règles de dépendance :
 
 - La liste complète : `docs/MISE_EN_PROD.md`. Signature Android de publication : `android/key.properties` (modèle `key.properties.example`, jamais dans git), sinon la clé de debug. Release Android : `scripts/release-android.sh` (vérifie la clé, `dart format`, `flutter analyze`, `flutter test`, construit l'`.aab` prod, refuse une signature de debug). R8 réduit le code (réglage par défaut de Flutter) ; pas d'obscurcissement du Dart (`--obfuscate`) : Crashlytics lirait des traces illisibles sans l'envoi des symboles. `PrivacyInfo.xcprivacy` dans Runner, TodayWidget et les trois extensions Shield (UserDefaults : `CA92.1`, `1C8F.1` pour l'App Group). `ITSAppUsesNonExemptEncryption` à false.
 
+## Nos documents
+
+- Plus › Communauté › « Nos documents » (`DocumentsScreen`, `/documents`, `features/documents`) : la bibliothèque de la communauté, des PDF et des fichiers Word que les admins publient sur le site admin. `GET /v1/documents?search=&category=&page=&size=` (paginé, `meta.total` ; recherche sur les mots du titre, de la description, de la catégorie et du nom du fichier, accents et casse ignorés, côté serveur), `GET /v1/documents/categories` (les puces ; vide sans réseau). `Documents(search, category)` charge une page de 20 puis la suivante en arrivant au bas de la liste (ou « Voir plus »), comme `Inbox` ; tirer vers le bas recharge. La recherche attend 300 ms après la frappe.
+- `DocumentRow` : tuile PDF (bordeaux) ou Word (bleu), titre, description, « Catégorie · 180 Ko · 12 oct. 2026 » (`documentSize`). Toucher ouvre le fichier (`linkLauncherProvider` : le lecteur du téléphone ou le navigateur, qui sait aussi montrer un .docx), la flèche le télécharge et le confie au partage (`shareFile`, avec son nom et son type).
+- Dans les tests : `FakeDocumentsApi(documents:, offline:)` (`pagesAsked`), `pumpApp(documentsApi:)`.
+
 ## Bas de Plus
 
 - Tout en bas de Plus (`_About`, sous « Supprimer mon compte ») : le nom de l'app, « Version 1.0.0 (1) » (`appVersionProvider`, `core/services/app_version.dart` : canal `cmficonnect/app`, méthodes `version` et `build`, répondues par `MainActivity.kt` et `AppDelegate.swift` ; vide dans les tests et sur le web) et « © <année> Communauté Missionnaire Chrétienne Internationale. Tous droits réservés. » (`more.copyright`, « Christian Missionary Fellowship International » hors fr/es). La version vient de `version:` dans pubspec.yaml.

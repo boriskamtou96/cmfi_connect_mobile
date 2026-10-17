@@ -76,6 +76,7 @@ class TranslationsZh extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _Translations$disciples$zh disciples = _Translations$disciples$zh._(_root);
 	@override late final _Translations$weekStory$zh weekStory = _Translations$weekStory$zh._(_root);
 	@override late final _Translations$seekFirst$zh seekFirst = _Translations$seekFirst$zh._(_root);
+	@override late final _Translations$documents$zh documents = _Translations$documents$zh._(_root);
 }
 
 // Path: app
@@ -1220,6 +1221,32 @@ class _Translations$seekFirst$zh extends Translations$seekFirst$fr {
 	@override String get moreOff => '在完成汇报前关闭应用';
 	@override String get privacy => 'CMFI Connect 永远看不到你选择了哪些应用：它们只保存在你的 iPhone 上。';
 	@override late final _Translations$seekFirst$shield$zh shield = _Translations$seekFirst$shield$zh._(_root);
+}
+
+// Path: documents
+class _Translations$documents$zh extends Translations$documents$fr {
+	_Translations$documents$zh._(TranslationsZh root) : this._root = root, super.internal(root);
+
+	final TranslationsZh _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => '我们的文件';
+	@override String get subtitle => '教导、规章、表格…';
+	@override String get moreSubtitle => '团契的资料库';
+	@override String get search => '搜索文件';
+	@override String get all => '全部';
+	@override String get empty => '暂无文件。团契发布的文件会显示在这里。';
+	@override String get none => '没有符合搜索的文件。';
+	@override String sizeKb({required Object n}) => '${n} KB';
+	@override String sizeMb({required Object n}) => '${n} MB';
+	@override String get pdf => 'PDF';
+	@override String get word => 'Word';
+	@override String get open => '打开文件';
+	@override String get download => '下载';
+	@override String count({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n,
+		other: '${n} 个文件',
+	);
+	@override String get more => '查看更多';
 }
 
 // Path: onboarding.reports
@@ -3870,6 +3897,21 @@ extension on TranslationsZh {
 			'seekFirst.shield.pause' => ({required Object n}) => '暂停 5 分钟（${n}/3）',
 			'seekFirst.shield.notificationTitle' => '先求神',
 			'seekFirst.shield.notificationBody' => '轻点此处填写你的汇报。',
+			'documents.title' => '我们的文件',
+			'documents.subtitle' => '教导、规章、表格…',
+			'documents.moreSubtitle' => '团契的资料库',
+			'documents.search' => '搜索文件',
+			'documents.all' => '全部',
+			'documents.empty' => '暂无文件。团契发布的文件会显示在这里。',
+			'documents.none' => '没有符合搜索的文件。',
+			'documents.sizeKb' => ({required Object n}) => '${n} KB',
+			'documents.sizeMb' => ({required Object n}) => '${n} MB',
+			'documents.pdf' => 'PDF',
+			'documents.word' => 'Word',
+			'documents.open' => '打开文件',
+			'documents.download' => '下载',
+			'documents.count' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n, other: '${n} 个文件', ), 
+			'documents.more' => '查看更多',
 			_ => null,
 		};
 	}

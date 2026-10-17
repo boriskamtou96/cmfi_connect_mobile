@@ -42,7 +42,7 @@ final class SavedLoginProvider
   SavedLogin create() => SavedLogin();
 }
 
-String _$savedLoginHash() => r'9bc415bc074c9f88c6376cf2376b9ab651dd3c55';
+String _$savedLoginHash() => r'd211038989f900d196ddaf4b7c107b86c848cea6';
 
 /// The number kept from one sign-in to the next, and the sign-in with Face
 /// ID / the fingerprint. Signing out keeps both (it is the point: back in

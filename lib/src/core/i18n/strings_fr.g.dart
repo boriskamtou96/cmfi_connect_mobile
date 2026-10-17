@@ -78,6 +78,7 @@ class Translations with BaseTranslations<AppLocale, Translations> {
 	late final Translations$disciples$fr disciples = Translations$disciples$fr.internal(_root);
 	late final Translations$weekStory$fr weekStory = Translations$weekStory$fr.internal(_root);
 	late final Translations$seekFirst$fr seekFirst = Translations$seekFirst$fr.internal(_root);
+	late final Translations$documents$fr documents = Translations$documents$fr.internal(_root);
 }
 
 // Path: app
@@ -2599,6 +2600,63 @@ class Translations$seekFirst$fr {
 	String get privacy => 'CMFI Connect ne voit jamais les apps que tu choisis : ton iPhone les garde pour lui.';
 
 	late final Translations$seekFirst$shield$fr shield = Translations$seekFirst$shield$fr.internal(_root);
+}
+
+// Path: documents
+class Translations$documents$fr {
+	Translations$documents$fr.internal(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// fr: 'Nos documents'
+	String get title => 'Nos documents';
+
+	/// fr: 'Enseignements, règlements, formulaires…'
+	String get subtitle => 'Enseignements, règlements, formulaires…';
+
+	/// fr: 'La bibliothèque de la communauté'
+	String get moreSubtitle => 'La bibliothèque de la communauté';
+
+	/// fr: 'Rechercher un document'
+	String get search => 'Rechercher un document';
+
+	/// fr: 'Tous'
+	String get all => 'Tous';
+
+	/// fr: 'Aucun document pour l'instant. Les documents publiés par la communauté apparaîtront ici.'
+	String get empty => 'Aucun document pour l\'instant. Les documents publiés par la communauté apparaîtront ici.';
+
+	/// fr: 'Aucun document ne correspond à ta recherche.'
+	String get none => 'Aucun document ne correspond à ta recherche.';
+
+	/// fr: '{n} Ko'
+	String sizeKb({required Object n}) => '${n} Ko';
+
+	/// fr: '{n} Mo'
+	String sizeMb({required Object n}) => '${n} Mo';
+
+	/// fr: 'PDF'
+	String get pdf => 'PDF';
+
+	/// fr: 'Word'
+	String get word => 'Word';
+
+	/// fr: 'Ouvrir le document'
+	String get open => 'Ouvrir le document';
+
+	/// fr: 'Télécharger'
+	String get download => 'Télécharger';
+
+	/// fr: '(one) {{n} document} (other) {{n} documents}'
+	String count({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('fr'))(n,
+		one: '${n} document',
+		other: '${n} documents',
+	);
+
+	/// fr: 'Voir plus'
+	String get more => 'Voir plus';
 }
 
 // Path: onboarding.reports
@@ -6498,6 +6556,21 @@ extension on Translations {
 			'seekFirst.shield.pause' => ({required Object n}) => 'Pause de 5 min (${n}/3)',
 			'seekFirst.shield.notificationTitle' => 'Cherche d\'abord Dieu',
 			'seekFirst.shield.notificationBody' => 'Touche ici pour remplir ton compte rendu.',
+			'documents.title' => 'Nos documents',
+			'documents.subtitle' => 'Enseignements, règlements, formulaires…',
+			'documents.moreSubtitle' => 'La bibliothèque de la communauté',
+			'documents.search' => 'Rechercher un document',
+			'documents.all' => 'Tous',
+			'documents.empty' => 'Aucun document pour l\'instant. Les documents publiés par la communauté apparaîtront ici.',
+			'documents.none' => 'Aucun document ne correspond à ta recherche.',
+			'documents.sizeKb' => ({required Object n}) => '${n} Ko',
+			'documents.sizeMb' => ({required Object n}) => '${n} Mo',
+			'documents.pdf' => 'PDF',
+			'documents.word' => 'Word',
+			'documents.open' => 'Ouvrir le document',
+			'documents.download' => 'Télécharger',
+			'documents.count' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('fr'))(n, one: '${n} document', other: '${n} documents', ), 
+			'documents.more' => 'Voir plus',
 			_ => null,
 		};
 	}

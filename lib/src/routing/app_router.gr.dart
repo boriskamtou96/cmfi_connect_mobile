@@ -355,6 +355,22 @@ class DisciplesRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
+/// [DocumentsScreen]
+class DocumentsRoute extends PageRouteInfo<void> {
+  const DocumentsRoute({List<PageRouteInfo>? children})
+    : super(DocumentsRoute.name, initialChildren: children);
+
+  static const String name = 'DocumentsRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const DocumentsScreen();
+    },
+  );
+}
+
+/// generated route for
 /// [EventFormScreen]
 class EventFormRoute extends PageRouteInfo<EventFormRouteArgs> {
   EventFormRoute({int? eventId, Key? key, List<PageRouteInfo>? children})

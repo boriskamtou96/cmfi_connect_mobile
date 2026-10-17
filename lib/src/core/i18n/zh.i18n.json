@@ -1700,5 +1700,24 @@
       "notificationTitle": "先求神",
       "notificationBody": "轻点此处填写你的汇报。"
     }
+  },
+  "documents": {
+    "title": "我们的文件",
+    "subtitle": "教导、规章、表格…",
+    "moreSubtitle": "团契的资料库",
+    "search": "搜索文件",
+    "all": "全部",
+    "empty": "暂无文件。团契发布的文件会显示在这里。",
+    "none": "没有符合搜索的文件。",
+    "sizeKb": "{n} KB",
+    "sizeMb": "{n} MB",
+    "pdf": "PDF",
+    "word": "Word",
+    "open": "打开文件",
+    "download": "下载",
+    "count(plural, param=n)": {
+      "other": "{n} 个文件"
+    },
+    "more": "查看更多"
   }
 }

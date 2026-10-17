@@ -116,6 +116,9 @@ abstract final class AppIcons {
   static const calendarCheck = PhosphorIconsRegular.calendarCheck;
   static const time = PhosphorIconsRegular.clock;
   static const pdf = PhosphorIconsRegular.filePdf;
+  static const wordFile = PhosphorIconsRegular.fileDoc;
+  // Nos documents: the library of the community
+  static const documentsTile = PhosphorIconsDuotone.books;
   static const csv = PhosphorIconsRegular.fileCsv;
   static const message = PhosphorIconsRegular.chatCircleText;
 

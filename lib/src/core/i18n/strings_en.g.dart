@@ -76,6 +76,7 @@ class TranslationsEn extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _Translations$disciples$en disciples = _Translations$disciples$en._(_root);
 	@override late final _Translations$weekStory$en weekStory = _Translations$weekStory$en._(_root);
 	@override late final _Translations$seekFirst$en seekFirst = _Translations$seekFirst$en._(_root);
+	@override late final _Translations$documents$en documents = _Translations$documents$en._(_root);
 }
 
 // Path: app
@@ -1261,6 +1262,33 @@ class _Translations$seekFirst$en extends Translations$seekFirst$fr {
 	@override String get moreOff => 'Close apps until your report is done';
 	@override String get privacy => 'CMFI Connect never sees the apps you choose: your iPhone keeps them to itself.';
 	@override late final _Translations$seekFirst$shield$en shield = _Translations$seekFirst$shield$en._(_root);
+}
+
+// Path: documents
+class _Translations$documents$en extends Translations$documents$fr {
+	_Translations$documents$en._(TranslationsEn root) : this._root = root, super.internal(root);
+
+	final TranslationsEn _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Our documents';
+	@override String get subtitle => 'Teachings, rules, forms…';
+	@override String get moreSubtitle => 'The library of the community';
+	@override String get search => 'Search a document';
+	@override String get all => 'All';
+	@override String get empty => 'No document yet. The documents the community publishes will show here.';
+	@override String get none => 'No document matches your search.';
+	@override String sizeKb({required Object n}) => '${n} KB';
+	@override String sizeMb({required Object n}) => '${n} MB';
+	@override String get pdf => 'PDF';
+	@override String get word => 'Word';
+	@override String get open => 'Open the document';
+	@override String get download => 'Download';
+	@override String count({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n,
+		one: '${n} document',
+		other: '${n} documents',
+	);
+	@override String get more => 'Show more';
 }
 
 // Path: onboarding.reports
@@ -3931,6 +3959,21 @@ extension on TranslationsEn {
 			'seekFirst.shield.pause' => ({required Object n}) => '5-min break (${n}/3)',
 			'seekFirst.shield.notificationTitle' => 'Seek God first',
 			'seekFirst.shield.notificationBody' => 'Tap here to fill in your report.',
+			'documents.title' => 'Our documents',
+			'documents.subtitle' => 'Teachings, rules, forms…',
+			'documents.moreSubtitle' => 'The library of the community',
+			'documents.search' => 'Search a document',
+			'documents.all' => 'All',
+			'documents.empty' => 'No document yet. The documents the community publishes will show here.',
+			'documents.none' => 'No document matches your search.',
+			'documents.sizeKb' => ({required Object n}) => '${n} KB',
+			'documents.sizeMb' => ({required Object n}) => '${n} MB',
+			'documents.pdf' => 'PDF',
+			'documents.word' => 'Word',
+			'documents.open' => 'Open the document',
+			'documents.download' => 'Download',
+			'documents.count' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n, one: '${n} document', other: '${n} documents', ), 
+			'documents.more' => 'Show more',
 			_ => null,
 		};
 	}

@@ -166,7 +166,13 @@ enum NotificationGroup {
   weekStory(firstId: 4000, channelId: 'week_story'),
 
   /// The reading of the day of the Bible reading plan.
-  biblePlan(firstId: 5000, channelId: 'bible_plan');
+  biblePlan(firstId: 5000, channelId: 'bible_plan'),
+
+  /// The verses to review (Mémorisation).
+  memory(firstId: 6000, channelId: 'memory'),
+
+  /// The people to contact again (Suivi des âmes): no name in them.
+  souls(firstId: 7000, channelId: 'souls');
 
   const NotificationGroup({required this.firstId, required this.channelId});
 

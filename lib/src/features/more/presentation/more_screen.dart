@@ -18,13 +18,13 @@ import '../../../core/widgets/adaptive.dart';
 import '../../../core/widgets/adaptive_dialogs.dart';
 import '../../../core/widgets/adaptive_menus.dart';
 import '../../../core/widgets/app_toast.dart';
+import '../../../core/widgets/biometric_method.dart';
 import '../../../core/widgets/fade_slide_in.dart';
 import '../../../core/widgets/section_card.dart';
 import '../../../core/widgets/sub_page.dart';
 import '../../../routing/app_router.dart';
 import '../../auth/application/saved_login.dart';
 import '../../auth/infrastructure/auth_api.dart';
-import '../../auth/presentation/widgets/biometric_method.dart';
 import '../../authorities/application/authorities_controller.dart';
 import '../../disciples/application/disciples.dart';
 import '../../members/application/my_account.dart';
@@ -197,6 +197,22 @@ class MoreScreen extends ConsumerWidget {
                       trailing: const Icon(AppIcons.chevronRight),
                       onTap: () => context.router.push(const DisciplesRoute()),
                     ),
+                  ListTile(
+                    leading: moduleIcon(AppIcons.soulsTile, AppModule.reports),
+                    title: Text(
+                      t.souls.title,
+                      style: const TextStyle(fontWeight: FontWeight.w600),
+                    ),
+                    subtitle: Text(
+                      t.souls.moreSubtitle,
+                      style: TextStyle(
+                        fontSize: 13,
+                        color: scheme.onSurfaceVariant,
+                      ),
+                    ),
+                    trailing: const Icon(AppIcons.chevronRight),
+                    onTap: () => context.router.push(const SoulsRoute()),
+                  ),
                 ],
               ),
             ),
@@ -248,6 +264,22 @@ class MoreScreen extends ConsumerWidget {
                     ),
                     trailing: const Icon(AppIcons.chevronRight),
                     onTap: () => context.router.push(const DocumentsRoute()),
+                  ),
+                  ListTile(
+                    leading: moduleIcon(AppIcons.teachingsTile, events),
+                    title: Text(
+                      t.teachings.title,
+                      style: const TextStyle(fontWeight: FontWeight.w600),
+                    ),
+                    subtitle: Text(
+                      t.teachings.moreSubtitle,
+                      style: TextStyle(
+                        fontSize: 13,
+                        color: scheme.onSurfaceVariant,
+                      ),
+                    ),
+                    trailing: const Icon(AppIcons.chevronRight),
+                    onTap: () => context.router.push(const TeachingsRoute()),
                   ),
                   ListTile(
                     leading: moduleIcon(AppIcons.notificationsTile, events),

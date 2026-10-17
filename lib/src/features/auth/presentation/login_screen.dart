@@ -17,6 +17,7 @@ import '../../../core/widgets/adaptive_dialogs.dart';
 import '../../../core/widgets/app_back_button.dart';
 import '../../../core/widgets/app_button.dart';
 import '../../../core/widgets/app_toast.dart';
+import '../../../core/widgets/biometric_method.dart';
 import '../../../core/widgets/cmfi_logo.dart';
 import '../../../core/widgets/password_field.dart';
 import '../../../core/widgets/phone_field.dart';
@@ -24,7 +25,6 @@ import '../../../routing/app_router.dart';
 import '../application/login_controller.dart';
 import '../application/saved_login.dart';
 import 'widgets/auth_footer.dart';
-import 'widgets/biometric_method.dart';
 
 @RoutePage()
 class LoginScreen extends HookConsumerWidget {

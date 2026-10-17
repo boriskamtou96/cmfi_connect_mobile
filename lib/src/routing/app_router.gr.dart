@@ -959,6 +959,71 @@ class LoginRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
+/// [MemoryReviewScreen]
+class MemoryReviewRoute extends PageRouteInfo<MemoryReviewRouteArgs> {
+  MemoryReviewRoute({String? verseId, Key? key, List<PageRouteInfo>? children})
+    : super(
+        MemoryReviewRoute.name,
+        args: MemoryReviewRouteArgs(verseId: verseId, key: key),
+        rawQueryParams: {'verse': verseId},
+        initialChildren: children,
+      );
+
+  static const String name = 'MemoryReviewRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      final queryParams = data.queryParams;
+      final args = data.argsAs<MemoryReviewRouteArgs>(
+        orElse: () =>
+            MemoryReviewRouteArgs(verseId: queryParams.optString('verse')),
+      );
+      return MemoryReviewScreen(verseId: args.verseId, key: args.key);
+    },
+  );
+}
+
+class MemoryReviewRouteArgs {
+  const MemoryReviewRouteArgs({this.verseId, this.key});
+
+  final String? verseId;
+
+  final Key? key;
+
+  @override
+  String toString() {
+    return 'MemoryReviewRouteArgs{verseId: $verseId, key: $key}';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (other is! MemoryReviewRouteArgs) return false;
+    return verseId == other.verseId && key == other.key;
+  }
+
+  @override
+  int get hashCode => verseId.hashCode ^ key.hashCode;
+}
+
+/// generated route for
+/// [MemoryScreen]
+class MemoryRoute extends PageRouteInfo<void> {
+  const MemoryRoute({List<PageRouteInfo>? children})
+    : super(MemoryRoute.name, initialChildren: children);
+
+  static const String name = 'MemoryRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const MemoryScreen();
+    },
+  );
+}
+
+/// generated route for
 /// [MinistryPeopleScreen]
 class MinistryPeopleRoute extends PageRouteInfo<MinistryPeopleRouteArgs> {
   MinistryPeopleRoute({
@@ -1610,6 +1675,118 @@ class SeekFirstRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
+/// [SoulFormScreen]
+class SoulFormRoute extends PageRouteInfo<SoulFormRouteArgs> {
+  SoulFormRoute({String? soulId, Key? key, List<PageRouteInfo>? children})
+    : super(
+        SoulFormRoute.name,
+        args: SoulFormRouteArgs(soulId: soulId, key: key),
+        rawQueryParams: {'id': soulId},
+        initialChildren: children,
+      );
+
+  static const String name = 'SoulFormRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      final queryParams = data.queryParams;
+      final args = data.argsAs<SoulFormRouteArgs>(
+        orElse: () => SoulFormRouteArgs(soulId: queryParams.optString('id')),
+      );
+      return SoulFormScreen(soulId: args.soulId, key: args.key);
+    },
+  );
+}
+
+class SoulFormRouteArgs {
+  const SoulFormRouteArgs({this.soulId, this.key});
+
+  final String? soulId;
+
+  final Key? key;
+
+  @override
+  String toString() {
+    return 'SoulFormRouteArgs{soulId: $soulId, key: $key}';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (other is! SoulFormRouteArgs) return false;
+    return soulId == other.soulId && key == other.key;
+  }
+
+  @override
+  int get hashCode => soulId.hashCode ^ key.hashCode;
+}
+
+/// generated route for
+/// [SoulScreen]
+class SoulRoute extends PageRouteInfo<SoulRouteArgs> {
+  SoulRoute({required String soulId, Key? key, List<PageRouteInfo>? children})
+    : super(
+        SoulRoute.name,
+        args: SoulRouteArgs(soulId: soulId, key: key),
+        rawPathParams: {'id': soulId},
+        initialChildren: children,
+      );
+
+  static const String name = 'SoulRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      final pathParams = data.inheritedPathParams;
+      final args = data.argsAs<SoulRouteArgs>(
+        orElse: () => SoulRouteArgs(soulId: pathParams.getString('id')),
+      );
+      return SoulScreen(soulId: args.soulId, key: args.key);
+    },
+  );
+}
+
+class SoulRouteArgs {
+  const SoulRouteArgs({required this.soulId, this.key});
+
+  final String soulId;
+
+  final Key? key;
+
+  @override
+  String toString() {
+    return 'SoulRouteArgs{soulId: $soulId, key: $key}';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (other is! SoulRouteArgs) return false;
+    return soulId == other.soulId && key == other.key;
+  }
+
+  @override
+  int get hashCode => soulId.hashCode ^ key.hashCode;
+}
+
+/// generated route for
+/// [SoulsScreen]
+class SoulsRoute extends PageRouteInfo<void> {
+  const SoulsRoute({List<PageRouteInfo>? children})
+    : super(SoulsRoute.name, initialChildren: children);
+
+  static const String name = 'SoulsRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const SoulsScreen();
+    },
+  );
+}
+
+/// generated route for
 /// [SplashScreen]
 class SplashRoute extends PageRouteInfo<void> {
   const SplashRoute({List<PageRouteInfo>? children})
@@ -1621,6 +1798,38 @@ class SplashRoute extends PageRouteInfo<void> {
     name,
     builder: (data) {
       return const SplashScreen();
+    },
+  );
+}
+
+/// generated route for
+/// [TeachingPlayerScreen]
+class TeachingPlayerRoute extends PageRouteInfo<void> {
+  const TeachingPlayerRoute({List<PageRouteInfo>? children})
+    : super(TeachingPlayerRoute.name, initialChildren: children);
+
+  static const String name = 'TeachingPlayerRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const TeachingPlayerScreen();
+    },
+  );
+}
+
+/// generated route for
+/// [TeachingsScreen]
+class TeachingsRoute extends PageRouteInfo<void> {
+  const TeachingsRoute({List<PageRouteInfo>? children})
+    : super(TeachingsRoute.name, initialChildren: children);
+
+  static const String name = 'TeachingsRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const TeachingsScreen();
     },
   );
 }

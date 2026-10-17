@@ -98,6 +98,12 @@ dependencies:
   app_links: ^7.0.0
   purchases_ui_flutter: ^10.16.0
   local_auth: ^3.0.2
+  # Enseignements: audio messages streamed or kept offline, played on with
+  # the screen locked (controls on the lock screen and in the notification)
+  just_audio: ^0.10.6
+  audio_service: ^0.18.19
+  # (comes with just_audio) the audio session: spoken word, on in the background
+  audio_session: ^0.2.4
 
 dev_dependencies:
   flutter_test:

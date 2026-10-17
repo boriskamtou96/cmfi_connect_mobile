@@ -78,6 +78,9 @@ class TranslationsEn extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _Translations$seekFirst$en seekFirst = _Translations$seekFirst$en._(_root);
 	@override late final _Translations$documents$en documents = _Translations$documents$en._(_root);
 	@override late final _Translations$biblePlan$en biblePlan = _Translations$biblePlan$en._(_root);
+	@override late final _Translations$teachings$en teachings = _Translations$teachings$en._(_root);
+	@override late final _Translations$memorize$en memorize = _Translations$memorize$en._(_root);
+	@override late final _Translations$souls$en souls = _Translations$souls$en._(_root);
 }
 
 // Path: app
@@ -1352,6 +1355,206 @@ class _Translations$biblePlan$en extends Translations$biblePlan$fr {
 	@override String uncheck({required Object chapter}) => '${chapter}: read';
 }
 
+// Path: teachings
+class _Translations$teachings$en extends Translations$teachings$fr {
+	_Translations$teachings$en._(TranslationsEn root) : this._root = root, super.internal(root);
+
+	final TranslationsEn _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Teachings';
+	@override String get subtitle => 'Hear the Word wherever you are';
+	@override String get search => 'Search a message, a speaker…';
+	@override String get all => 'All';
+	@override String get downloadedChip => 'Downloaded';
+	@override String count({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n,
+		one: '${n} message',
+		other: '${n} messages',
+	);
+	@override String get empty => 'No teachings yet.';
+	@override String get none => 'No teaching matches.';
+	@override String get noneDownloaded => 'No message downloaded. Tap a message\'s cloud to listen without network.';
+	@override String get more => 'See more';
+	@override String get offline => 'No network: here are the messages kept on your phone.';
+	@override String get play => 'Listen';
+	@override String get pause => 'Pause';
+	@override String get heard => 'Heard';
+	@override String get download => 'Download to listen offline';
+	@override String get downloaded => 'Kept on your phone';
+	@override String get removed => 'Removed from the phone';
+	@override String get cancelDownload => 'Stop the download';
+	@override String get removeDownload => 'Remove from the phone';
+	@override String get back15 => 'Back 15 seconds';
+	@override String get forward15 => 'Forward 15 seconds';
+	@override String speed({required Object speed}) => 'Speed ${speed}';
+	@override String recordedOn({required Object date}) => 'Message of ${date}';
+	@override String get moreSubtitle => 'Sermons and teachings to listen to';
+}
+
+// Path: memorize
+class _Translations$memorize$en extends Translations$memorize$fr {
+	_Translations$memorize$en._(TranslationsEn root) : this._root = root, super.internal(root);
+
+	final TranslationsEn _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Memorization';
+	@override String get subtitle => 'Hide the Word in your heart';
+	@override String get toReview => 'To review';
+	@override String get learning => 'Learning';
+	@override String get known => 'Known';
+	@override String reviewCount({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n,
+		one: 'Review ${n} verse',
+		other: 'Review ${n} verses',
+	);
+	@override String get nothingDue => 'Nothing to review today.';
+	@override String nextOn({required Object date}) => 'Next review: ${date}.';
+	@override String get tomorrow => 'tomorrow';
+	@override String get reminder => 'Review reminder';
+	@override String get reminderAt => 'Reminder time';
+	@override String get myVerses => 'My verses';
+	@override String get howToAdd => 'To add one: in the Bible, tap a verse, then the brain in the bar.';
+	@override String get empty => 'No verse to memorize yet.';
+	@override String get openBible => 'Open the Bible';
+	@override String get late => 'Late';
+	@override String get today => 'Today';
+	@override String dueIn({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n,
+		one: 'In ${n} day',
+		other: 'In ${n} days',
+	);
+	@override Map<String, String> get stages => {
+		'fresh': 'New',
+		'learning': 'Learning',
+		'known': 'Known',
+	};
+	@override String stats({required Object stage, required Object lapses}) => '${stage} · forgotten ${lapses} times';
+	@override String get reviewNow => 'Review now';
+	@override String get remove => 'Remove';
+	@override String get removeTitle => 'Remove this verse?';
+	@override String get removeText => 'Its progress will be erased.';
+	@override String get removed => 'Verse removed';
+	@override String progress({required Object done, required Object total}) => '${done} / ${total}';
+	@override String get show => 'Show the verse';
+	@override Map<String, String> get hints => {
+		'full': 'Text',
+		'gaps': 'Gaps',
+		'initials': 'Initials',
+		'none': 'None',
+	};
+	@override String get recite => 'Recite the verse, then check.';
+	@override Map<String, String> get grades => {
+		'again': 'Again',
+		'hard': 'Hard',
+		'good': 'Good',
+		'easy': 'Easy',
+	};
+	@override String get now => 'Right away';
+	@override String later({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n,
+		one: '${n} day',
+		other: '${n} days',
+	);
+	@override String get doneTitle => 'Reviews done!';
+	@override String doneText({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n,
+		one: 'You reviewed ${n} verse. May the Word dwell in you!',
+		other: 'You reviewed ${n} verses. May the Word dwell in you!',
+	);
+	@override String get back => 'Back';
+	@override String get reminderTitle => 'Your verses to review';
+	@override String reminderBody({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n,
+		one: '${n} verse is waiting for you today.',
+		other: '${n} verses are waiting for you today.',
+	);
+	@override String get reminderChannel => 'Memorization';
+	@override String get homeTitle => 'Verses to review';
+	@override String homeText({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n,
+		one: '${n} verse waiting',
+		other: '${n} verses waiting',
+	);
+	@override String get menu => 'Memorize verses';
+	@override String get memorize => 'Memorize';
+	@override String get added => 'Added to your verses to memorize';
+	@override String get already => 'This passage is already in your verses';
+}
+
+// Path: souls
+class _Translations$souls$en extends Translations$souls$fr {
+	_Translations$souls$en._(TranslationsEn root) : this._root = root, super.internal(root);
+
+	final TranslationsEn _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Soul follow-up';
+	@override String get subtitle => '"He who wins souls is wise." Proverbs 11:30';
+	@override String get search => 'Search a person…';
+	@override String get people => 'People';
+	@override String get received => 'Received Jesus';
+	@override String get toContact => 'To contact';
+	@override String get all => 'All';
+	@override Map<String, String> get stages => {
+		'met': 'Met',
+		'interested': 'Interested',
+		'received': 'Received Jesus',
+		'followUp': 'Being grounded',
+		'church': 'Comes to church',
+		'baptized': 'Baptized',
+	};
+	@override String get contactSection => 'To contact again';
+	@override String get everyone => 'Everyone';
+	@override String get contactToday => 'Contact today';
+	@override String contactLate({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n,
+		one: '${n} day late',
+		other: '${n} days late',
+	);
+	@override String contactOn({required Object date}) => 'Next contact on ${date}';
+	@override String get empty => 'Note here the people you share the Gospel with: pray for them and follow them to church.';
+	@override String get none => 'Nobody matches.';
+	@override String get add => 'Add';
+	@override String get addTitle => 'New person';
+	@override String get editTitle => 'Edit';
+	@override String get name => 'Name';
+	@override String get nameRequired => 'Write their name.';
+	@override String get phone => 'Phone';
+	@override String get place => 'Where you met';
+	@override String get metOn => 'Met on';
+	@override String get stage => 'Where is this person?';
+	@override String get firstNote => 'A note (optional)';
+	@override String get noteHint => 'What was said, prayer requests…';
+	@override String get save => 'Save';
+	@override String get saved => 'Saved';
+	@override String get call => 'Call';
+	@override String get whatsApp => 'WhatsApp';
+	@override String get sms => 'Text';
+	@override String get edit => 'Edit';
+	@override String get delete => 'Delete';
+	@override String deleteTitle({required Object name}) => 'Delete ${name}?';
+	@override String get deleteText => 'Their notes will be erased from your phone.';
+	@override String get deleted => 'Deleted';
+	@override String get nextContact => 'Next contact';
+	@override String get plan => 'Plan a reminder';
+	@override String get change => 'Change the date';
+	@override String get clear => 'Remove the reminder';
+	@override String get noContact => 'No reminder planned';
+	@override String metAt({required Object date}) => 'Met on ${date}';
+	@override String get notes => 'Notes';
+	@override String get addNote => 'Add the note';
+	@override String get noNotes => 'No notes yet.';
+	@override String get deleteNote => 'Delete the note';
+	@override String get export => 'Export (spreadsheet)';
+	@override late final _Translations$souls$csv$en csv = _Translations$souls$csv$en._(_root);
+	@override String lock({required Object method}) => 'Lock with ${method}';
+	@override String get lockedTitle => 'Your soul follow-up is locked';
+	@override String get unlock => 'Unlock';
+	@override String get unlockReason => 'Open your soul follow-up';
+	@override String get privacy => 'This information stays on your phone: it is never sent.';
+	@override String get reminderTitle => 'Soul follow-up';
+	@override String reminderBody({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n,
+		one: '${n} person to contact today.',
+		other: '${n} people to contact today.',
+	);
+	@override String get reminderChannel => 'Soul follow-up';
+	@override String get moreSubtitle => 'The people you share the Gospel with';
+}
+
 // Path: onboarding.reports
 class _Translations$onboarding$reports$en extends Translations$onboarding$reports$fr {
 	_Translations$onboarding$reports$en._(TranslationsEn root) : this._root = root, super.internal(root);
@@ -2397,6 +2600,22 @@ class _Translations$seekFirst$shield$en extends Translations$seekFirst$shield$fr
 	@override String pause({required Object n}) => '5-min break (${n}/3)';
 	@override String get notificationTitle => 'Seek God first';
 	@override String get notificationBody => 'Tap here to fill in your report.';
+}
+
+// Path: souls.csv
+class _Translations$souls$csv$en extends Translations$souls$csv$fr {
+	_Translations$souls$csv$en._(TranslationsEn root) : this._root = root, super.internal(root);
+
+	final TranslationsEn _root; // ignore: unused_field
+
+	// Translations
+	@override String get name => 'Name';
+	@override String get phone => 'Phone';
+	@override String get place => 'Place';
+	@override String get metOn => 'Met on';
+	@override String get stage => 'Stage';
+	@override String get next => 'Next contact';
+	@override String get notes => 'Notes';
 }
 
 // Path: reports.units.chapters
@@ -4076,6 +4295,152 @@ extension on TranslationsEn {
 			'biblePlan.homeTitle' => 'Today\'s reading',
 			'biblePlan.check' => ({required Object chapter}) => 'Mark ${chapter} as read',
 			'biblePlan.uncheck' => ({required Object chapter}) => '${chapter}: read',
+			'teachings.title' => 'Teachings',
+			'teachings.subtitle' => 'Hear the Word wherever you are',
+			'teachings.search' => 'Search a message, a speaker…',
+			'teachings.all' => 'All',
+			'teachings.downloadedChip' => 'Downloaded',
+			'teachings.count' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n, one: '${n} message', other: '${n} messages', ), 
+			'teachings.empty' => 'No teachings yet.',
+			'teachings.none' => 'No teaching matches.',
+			'teachings.noneDownloaded' => 'No message downloaded. Tap a message\'s cloud to listen without network.',
+			'teachings.more' => 'See more',
+			'teachings.offline' => 'No network: here are the messages kept on your phone.',
+			'teachings.play' => 'Listen',
+			'teachings.pause' => 'Pause',
+			'teachings.heard' => 'Heard',
+			'teachings.download' => 'Download to listen offline',
+			'teachings.downloaded' => 'Kept on your phone',
+			'teachings.removed' => 'Removed from the phone',
+			'teachings.cancelDownload' => 'Stop the download',
+			'teachings.removeDownload' => 'Remove from the phone',
+			'teachings.back15' => 'Back 15 seconds',
+			'teachings.forward15' => 'Forward 15 seconds',
+			'teachings.speed' => ({required Object speed}) => 'Speed ${speed}',
+			'teachings.recordedOn' => ({required Object date}) => 'Message of ${date}',
+			'teachings.moreSubtitle' => 'Sermons and teachings to listen to',
+			'memorize.title' => 'Memorization',
+			'memorize.subtitle' => 'Hide the Word in your heart',
+			'memorize.toReview' => 'To review',
+			'memorize.learning' => 'Learning',
+			'memorize.known' => 'Known',
+			'memorize.reviewCount' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n, one: 'Review ${n} verse', other: 'Review ${n} verses', ), 
+			'memorize.nothingDue' => 'Nothing to review today.',
+			'memorize.nextOn' => ({required Object date}) => 'Next review: ${date}.',
+			'memorize.tomorrow' => 'tomorrow',
+			'memorize.reminder' => 'Review reminder',
+			'memorize.reminderAt' => 'Reminder time',
+			'memorize.myVerses' => 'My verses',
+			'memorize.howToAdd' => 'To add one: in the Bible, tap a verse, then the brain in the bar.',
+			'memorize.empty' => 'No verse to memorize yet.',
+			'memorize.openBible' => 'Open the Bible',
+			'memorize.late' => 'Late',
+			'memorize.today' => 'Today',
+			'memorize.dueIn' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n, one: 'In ${n} day', other: 'In ${n} days', ), 
+			'memorize.stages.fresh' => 'New',
+			'memorize.stages.learning' => 'Learning',
+			'memorize.stages.known' => 'Known',
+			'memorize.stats' => ({required Object stage, required Object lapses}) => '${stage} · forgotten ${lapses} times',
+			'memorize.reviewNow' => 'Review now',
+			'memorize.remove' => 'Remove',
+			'memorize.removeTitle' => 'Remove this verse?',
+			'memorize.removeText' => 'Its progress will be erased.',
+			'memorize.removed' => 'Verse removed',
+			'memorize.progress' => ({required Object done, required Object total}) => '${done} / ${total}',
+			'memorize.show' => 'Show the verse',
+			'memorize.hints.full' => 'Text',
+			'memorize.hints.gaps' => 'Gaps',
+			'memorize.hints.initials' => 'Initials',
+			'memorize.hints.none' => 'None',
+			'memorize.recite' => 'Recite the verse, then check.',
+			'memorize.grades.again' => 'Again',
+			'memorize.grades.hard' => 'Hard',
+			'memorize.grades.good' => 'Good',
+			'memorize.grades.easy' => 'Easy',
+			'memorize.now' => 'Right away',
+			'memorize.later' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n, one: '${n} day', other: '${n} days', ), 
+			'memorize.doneTitle' => 'Reviews done!',
+			'memorize.doneText' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n, one: 'You reviewed ${n} verse. May the Word dwell in you!', other: 'You reviewed ${n} verses. May the Word dwell in you!', ), 
+			'memorize.back' => 'Back',
+			'memorize.reminderTitle' => 'Your verses to review',
+			'memorize.reminderBody' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n, one: '${n} verse is waiting for you today.', other: '${n} verses are waiting for you today.', ), 
+			'memorize.reminderChannel' => 'Memorization',
+			'memorize.homeTitle' => 'Verses to review',
+			'memorize.homeText' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n, one: '${n} verse waiting', other: '${n} verses waiting', ), 
+			'memorize.menu' => 'Memorize verses',
+			'memorize.memorize' => 'Memorize',
+			'memorize.added' => 'Added to your verses to memorize',
+			'memorize.already' => 'This passage is already in your verses',
+			'souls.title' => 'Soul follow-up',
+			'souls.subtitle' => '"He who wins souls is wise." Proverbs 11:30',
+			'souls.search' => 'Search a person…',
+			'souls.people' => 'People',
+			'souls.received' => 'Received Jesus',
+			'souls.toContact' => 'To contact',
+			'souls.all' => 'All',
+			'souls.stages.met' => 'Met',
+			'souls.stages.interested' => 'Interested',
+			'souls.stages.received' => 'Received Jesus',
+			'souls.stages.followUp' => 'Being grounded',
+			'souls.stages.church' => 'Comes to church',
+			'souls.stages.baptized' => 'Baptized',
+			'souls.contactSection' => 'To contact again',
+			'souls.everyone' => 'Everyone',
+			'souls.contactToday' => 'Contact today',
+			'souls.contactLate' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n, one: '${n} day late', other: '${n} days late', ), 
+			'souls.contactOn' => ({required Object date}) => 'Next contact on ${date}',
+			'souls.empty' => 'Note here the people you share the Gospel with: pray for them and follow them to church.',
+			'souls.none' => 'Nobody matches.',
+			'souls.add' => 'Add',
+			'souls.addTitle' => 'New person',
+			'souls.editTitle' => 'Edit',
+			'souls.name' => 'Name',
+			'souls.nameRequired' => 'Write their name.',
+			'souls.phone' => 'Phone',
+			'souls.place' => 'Where you met',
+			'souls.metOn' => 'Met on',
+			'souls.stage' => 'Where is this person?',
+			'souls.firstNote' => 'A note (optional)',
+			'souls.noteHint' => 'What was said, prayer requests…',
+			'souls.save' => 'Save',
+			'souls.saved' => 'Saved',
+			'souls.call' => 'Call',
+			'souls.whatsApp' => 'WhatsApp',
+			'souls.sms' => 'Text',
+			'souls.edit' => 'Edit',
+			'souls.delete' => 'Delete',
+			'souls.deleteTitle' => ({required Object name}) => 'Delete ${name}?',
+			'souls.deleteText' => 'Their notes will be erased from your phone.',
+			'souls.deleted' => 'Deleted',
+			'souls.nextContact' => 'Next contact',
+			'souls.plan' => 'Plan a reminder',
+			'souls.change' => 'Change the date',
+			'souls.clear' => 'Remove the reminder',
+			'souls.noContact' => 'No reminder planned',
+			'souls.metAt' => ({required Object date}) => 'Met on ${date}',
+			'souls.notes' => 'Notes',
+			'souls.addNote' => 'Add the note',
+			'souls.noNotes' => 'No notes yet.',
+			'souls.deleteNote' => 'Delete the note',
+			'souls.export' => 'Export (spreadsheet)',
+			'souls.csv.name' => 'Name',
+			'souls.csv.phone' => 'Phone',
+			'souls.csv.place' => 'Place',
+			'souls.csv.metOn' => 'Met on',
+			'souls.csv.stage' => 'Stage',
+			_ => null,
+		} ?? switch (path) {
+			'souls.csv.next' => 'Next contact',
+			'souls.csv.notes' => 'Notes',
+			'souls.lock' => ({required Object method}) => 'Lock with ${method}',
+			'souls.lockedTitle' => 'Your soul follow-up is locked',
+			'souls.unlock' => 'Unlock',
+			'souls.unlockReason' => 'Open your soul follow-up',
+			'souls.privacy' => 'This information stays on your phone: it is never sent.',
+			'souls.reminderTitle' => 'Soul follow-up',
+			'souls.reminderBody' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n, one: '${n} person to contact today.', other: '${n} people to contact today.', ), 
+			'souls.reminderChannel' => 'Soul follow-up',
+			'souls.moreSubtitle' => 'The people you share the Gospel with',
 			_ => null,
 		};
 	}

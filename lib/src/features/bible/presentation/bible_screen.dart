@@ -34,6 +34,7 @@ import '../application/bible_marks.dart';
 import '../application/bible_position.dart';
 import '../application/bible_reading.dart';
 import '../application/bible_settings.dart';
+import '../application/memory_verses.dart';
 import '../domain/bible.dart';
 import '../domain/bible_version.dart';
 import 'concordance_screen.dart';
@@ -231,6 +232,25 @@ class _Reader extends HookConsumerWidget {
           } else if (context.mounted) {
             await showConcordanceWords(context, words);
           }
+        case MemorizeVerses():
+          final numbers = [for (final verse in verses) verse.number];
+          final added = await ref
+              .read(memoryVersesProvider.notifier)
+              .add(
+                book: current.book,
+                chapter: current.chapter,
+                first: numbers.reduce(min),
+                last: numbers.reduce(max),
+                label: label(verses),
+                text: verses.map((verse) => verse.text).join(' '),
+                version: version.abbreviation,
+              );
+          HapticFeedback.lightImpact();
+          if (added) {
+            toast.success(t.memorize.added);
+          } else {
+            toast.info(t.memorize.already);
+          }
         case CopyVerses():
           await Clipboard.setData(ClipboardData(text: asText(verses)));
           toast.success(t.bible.copied);
@@ -406,7 +426,7 @@ class _Reader extends HookConsumerWidget {
   }
 }
 
-enum _MenuAction { plan, marks, concordance, download, display }
+enum _MenuAction { plan, memory, marks, concordance, download, display }
 
 /// "Jean 3 ▾ | LSG ▾", then the search, "Aa" and the menu.
 class _TopBar extends ConsumerWidget {
@@ -557,6 +577,7 @@ class _TopBar extends ConsumerWidget {
                 _MenuAction.marks => context.router.push(
                   const BibleMarksRoute(),
                 ),
+                _MenuAction.memory => context.router.push(const MemoryRoute()),
                 _MenuAction.concordance => context.router.push(
                   ConcordanceRoute(),
                 ),
@@ -568,6 +589,11 @@ class _TopBar extends ConsumerWidget {
                   value: _MenuAction.plan,
                   icon: AppIcons.readingPlan,
                   label: t.biblePlan.title,
+                ),
+                AdaptiveAction(
+                  value: _MenuAction.memory,
+                  icon: AppIcons.memorize,
+                  label: t.memorize.menu,
                 ),
                 AdaptiveAction(
                   value: _MenuAction.marks,

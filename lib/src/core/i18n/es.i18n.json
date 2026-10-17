@@ -1833,5 +1833,192 @@
     "homeTitle": "Lectura del día",
     "check": "Marcar {chapter} como leído",
     "uncheck": "{chapter}: leído"
+  },
+  "teachings": {
+    "title": "Enseñanzas",
+    "subtitle": "Escucha la Palabra estés donde estés",
+    "search": "Buscar un mensaje, un predicador…",
+    "all": "Todos",
+    "downloadedChip": "Descargados",
+    "count(plural, param=n)": {
+      "one": "{n} mensaje",
+      "other": "{n} mensajes"
+    },
+    "empty": "Aún no hay enseñanzas.",
+    "none": "Ninguna enseñanza coincide.",
+    "noneDownloaded": "Ningún mensaje descargado. Toca la nube de un mensaje para escucharlo sin red.",
+    "more": "Ver más",
+    "offline": "Sin red: estos son los mensajes guardados en tu teléfono.",
+    "play": "Escuchar",
+    "pause": "Pausa",
+    "heard": "Escuchado",
+    "download": "Descargar para escuchar sin red",
+    "downloaded": "Guardado en tu teléfono",
+    "removed": "Quitado del teléfono",
+    "cancelDownload": "Detener la descarga",
+    "removeDownload": "Quitar del teléfono",
+    "back15": "Retroceder 15 segundos",
+    "forward15": "Avanzar 15 segundos",
+    "speed": "Velocidad {speed}",
+    "recordedOn": "Mensaje del {date}",
+    "moreSubtitle": "Predicaciones y enseñanzas para escuchar"
+  },
+  "memorize": {
+    "title": "Memorización",
+    "subtitle": "Guarda la Palabra en tu corazón",
+    "toReview": "Por repasar",
+    "learning": "Aprendiendo",
+    "known": "Sabidos",
+    "reviewCount(plural, param=n)": {
+      "one": "Repasar {n} versículo",
+      "other": "Repasar {n} versículos"
+    },
+    "nothingDue": "Nada que repasar hoy.",
+    "nextOn": "Próximo repaso: {date}.",
+    "tomorrow": "mañana",
+    "reminder": "Recordatorio de repaso",
+    "reminderAt": "Hora del recordatorio",
+    "myVerses": "Mis versículos",
+    "howToAdd": "Para añadir uno: en la Biblia, toca un versículo y luego el cerebro de la barra.",
+    "empty": "Aún no hay versículos para memorizar.",
+    "openBible": "Abrir la Biblia",
+    "late": "Atrasado",
+    "today": "Hoy",
+    "dueIn(plural, param=n)": {
+      "one": "En {n} día",
+      "other": "En {n} días"
+    },
+    "stages(map)": {
+      "fresh": "Nuevo",
+      "learning": "Aprendiendo",
+      "known": "Sabido"
+    },
+    "stats": "{stage} · olvidado {lapses} veces",
+    "reviewNow": "Repasar ahora",
+    "remove": "Quitar",
+    "removeTitle": "¿Quitar este versículo?",
+    "removeText": "Se borrará su progreso.",
+    "removed": "Versículo quitado",
+    "progress": "{done} / {total}",
+    "show": "Ver el versículo",
+    "hints(map)": {
+      "full": "Texto",
+      "gaps": "Huecos",
+      "initials": "Iniciales",
+      "none": "Nada"
+    },
+    "recite": "Recita el versículo y luego comprueba.",
+    "grades(map)": {
+      "again": "Otra vez",
+      "hard": "Difícil",
+      "good": "Bien",
+      "easy": "Fácil"
+    },
+    "now": "Enseguida",
+    "later(plural, param=n)": {
+      "one": "{n} día",
+      "other": "{n} días"
+    },
+    "doneTitle": "¡Repaso terminado!",
+    "doneText(plural, param=n)": {
+      "one": "Repasaste {n} versículo. ¡Que la Palabra more en ti!",
+      "other": "Repasaste {n} versículos. ¡Que la Palabra more en ti!"
+    },
+    "back": "Volver",
+    "reminderTitle": "Tus versículos por repasar",
+    "reminderBody(plural, param=n)": {
+      "one": "{n} versículo te espera hoy.",
+      "other": "{n} versículos te esperan hoy."
+    },
+    "reminderChannel": "Memorización",
+    "homeTitle": "Versículos por repasar",
+    "homeText(plural, param=n)": {
+      "one": "{n} versículo te espera",
+      "other": "{n} versículos te esperan"
+    },
+    "menu": "Memorizar versículos",
+    "memorize": "Memorizar",
+    "added": "Añadido a tus versículos para memorizar",
+    "already": "Este pasaje ya está en tus versículos"
+  },
+  "souls": {
+    "title": "Seguimiento de almas",
+    "subtitle": "«El que gana almas es sabio.» Proverbios 11:30",
+    "search": "Buscar una persona…",
+    "people": "Personas",
+    "received": "Recibieron a Jesús",
+    "toContact": "Por contactar",
+    "all": "Todas",
+    "stages(map)": {
+      "met": "Conocido(a)",
+      "interested": "Interesado(a)",
+      "received": "Recibió a Jesús",
+      "followUp": "En afianzamiento",
+      "church": "Viene a la iglesia",
+      "baptized": "Bautizado(a)"
+    },
+    "contactSection": "Por volver a contactar",
+    "everyone": "Todas las personas",
+    "contactToday": "Contactar hoy",
+    "contactLate(plural, param=n)": {
+      "one": "Con {n} día de retraso",
+      "other": "Con {n} días de retraso"
+    },
+    "contactOn": "Próximo contacto el {date}",
+    "empty": "Anota aquí a las personas que evangelizas: ora por ellas y acompáñalas hasta la iglesia.",
+    "none": "Nadie coincide.",
+    "add": "Añadir",
+    "addTitle": "Nueva persona",
+    "editTitle": "Editar",
+    "name": "Nombre",
+    "nameRequired": "Escribe su nombre.",
+    "phone": "Teléfono",
+    "place": "Dónde se conocieron",
+    "metOn": "Conocido(a) el",
+    "stage": "¿En qué punto está?",
+    "firstNote": "Una nota (opcional)",
+    "noteHint": "Lo que se dijo, motivos de oración…",
+    "save": "Guardar",
+    "saved": "Guardado",
+    "call": "Llamar",
+    "whatsApp": "WhatsApp",
+    "sms": "SMS",
+    "edit": "Editar",
+    "delete": "Eliminar",
+    "deleteTitle": "¿Eliminar a {name}?",
+    "deleteText": "Sus notas se borrarán de tu teléfono.",
+    "deleted": "Eliminado",
+    "nextContact": "Próximo contacto",
+    "plan": "Programar un recordatorio",
+    "change": "Cambiar la fecha",
+    "clear": "Quitar el recordatorio",
+    "noContact": "Ningún recordatorio previsto",
+    "metAt": "Conocido(a) el {date}",
+    "notes": "Notas",
+    "addNote": "Añadir la nota",
+    "noNotes": "Aún no hay notas.",
+    "deleteNote": "Eliminar la nota",
+    "export": "Exportar (hoja de cálculo)",
+    "csv": {
+      "name": "Nombre",
+      "phone": "Teléfono",
+      "place": "Lugar",
+      "metOn": "Conocido el",
+      "stage": "Etapa",
+      "next": "Próximo contacto",
+      "notes": "Notas"
+    },
+    "lock": "Bloquear con {method}",
+    "lockedTitle": "Tu seguimiento de almas está bloqueado",
+    "unlock": "Desbloquear",
+    "unlockReason": "Abre tu seguimiento de almas",
+    "privacy": "Esta información se queda en tu teléfono: nunca se envía.",
+    "reminderTitle": "Seguimiento de almas",
+    "reminderBody(plural, param=n)": {
+      "one": "{n} persona por contactar hoy.",
+      "other": "{n} personas por contactar hoy."
+    },
+    "reminderChannel": "Seguimiento de almas",
+    "moreSubtitle": "Las personas que evangelizas"
   }
 }

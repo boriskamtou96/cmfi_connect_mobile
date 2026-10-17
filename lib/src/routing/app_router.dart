@@ -15,6 +15,8 @@ import '../features/bible/presentation/bible_plan_screen.dart';
 import '../features/bible/presentation/bible_screen.dart';
 import '../features/bible/presentation/bible_search_screen.dart';
 import '../features/bible/presentation/concordance_screen.dart';
+import '../features/bible/presentation/memory_review_screen.dart';
+import '../features/bible/presentation/memory_screen.dart';
 import '../features/disciples/presentation/disciple_reports_screen.dart';
 import '../features/disciples/presentation/disciples_screen.dart';
 import '../features/documents/presentation/documents_screen.dart';
@@ -60,6 +62,11 @@ import '../features/reports/presentation/report_sending_screen.dart';
 import '../features/reports/presentation/reports_screen.dart';
 import '../features/seek_first/presentation/seek_first_screen.dart';
 import '../features/shell/presentation/app_shell_screen.dart';
+import '../features/souls/presentation/soul_form_screen.dart';
+import '../features/souls/presentation/soul_screen.dart';
+import '../features/souls/presentation/souls_screen.dart';
+import '../features/teachings/presentation/teaching_player_screen.dart';
+import '../features/teachings/presentation/teachings_screen.dart';
 import 'auth_guard.dart';
 import 'fade_through_route.dart';
 
@@ -141,12 +148,39 @@ class AppRouter extends RootStackRouter {
       page: ConcordanceRoute.page,
       guards: [authGuard],
     ),
+    AutoRoute(
+      path: '/bible/memory',
+      page: MemoryRoute.page,
+      guards: [authGuard],
+    ),
+    AutoRoute(
+      path: '/bible/memory/review',
+      page: MemoryReviewRoute.page,
+      guards: [authGuard],
+    ),
     AutoRoute(path: '/items', page: ItemsRoute.page, guards: [authGuard]),
     AutoRoute(
       path: '/documents',
       page: DocumentsRoute.page,
       guards: [authGuard],
     ),
+    AutoRoute(
+      path: '/teachings',
+      page: TeachingsRoute.page,
+      guards: [authGuard],
+    ),
+    AutoRoute(
+      path: '/teachings/player',
+      page: TeachingPlayerRoute.page,
+      guards: [authGuard],
+    ),
+    AutoRoute(path: '/souls', page: SoulsRoute.page, guards: [authGuard]),
+    AutoRoute(
+      path: '/souls/edit',
+      page: SoulFormRoute.page,
+      guards: [authGuard],
+    ),
+    AutoRoute(path: '/souls/:id', page: SoulRoute.page, guards: [authGuard]),
     AutoRoute(
       path: '/seek-first',
       page: SeekFirstRoute.page,

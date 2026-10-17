@@ -78,6 +78,9 @@ class TranslationsHi extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _Translations$seekFirst$hi seekFirst = _Translations$seekFirst$hi._(_root);
 	@override late final _Translations$documents$hi documents = _Translations$documents$hi._(_root);
 	@override late final _Translations$biblePlan$hi biblePlan = _Translations$biblePlan$hi._(_root);
+	@override late final _Translations$teachings$hi teachings = _Translations$teachings$hi._(_root);
+	@override late final _Translations$memorize$hi memorize = _Translations$memorize$hi._(_root);
+	@override late final _Translations$souls$hi souls = _Translations$souls$hi._(_root);
 }
 
 // Path: app
@@ -1350,6 +1353,206 @@ class _Translations$biblePlan$hi extends Translations$biblePlan$fr {
 	@override String uncheck({required Object chapter}) => '${chapter}: पढ़ा';
 }
 
+// Path: teachings
+class _Translations$teachings$hi extends Translations$teachings$fr {
+	_Translations$teachings$hi._(TranslationsHi root) : this._root = root, super.internal(root);
+
+	final TranslationsHi _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'शिक्षाएँ';
+	@override String get subtitle => 'जहाँ भी हो, वचन सुनो';
+	@override String get search => 'संदेश या वक्ता खोजो…';
+	@override String get all => 'सभी';
+	@override String get downloadedChip => 'डाउनलोड किए';
+	@override String count({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n,
+		one: '${n} संदेश',
+		other: '${n} संदेश',
+	);
+	@override String get empty => 'अभी कोई शिक्षा नहीं है।';
+	@override String get none => 'कोई मेल खाती शिक्षा नहीं।';
+	@override String get noneDownloaded => 'कोई संदेश डाउनलोड नहीं हुआ। बिना नेटवर्क सुनने के लिए संदेश का बादल छुओ।';
+	@override String get more => 'और देखो';
+	@override String get offline => 'नेटवर्क नहीं: ये तुम्हारे फ़ोन में रखे संदेश हैं।';
+	@override String get play => 'सुनो';
+	@override String get pause => 'रोको';
+	@override String get heard => 'सुना गया';
+	@override String get download => 'बिना नेटवर्क सुनने के लिए डाउनलोड करो';
+	@override String get downloaded => 'तुम्हारे फ़ोन में रखा गया';
+	@override String get removed => 'फ़ोन से हटाया गया';
+	@override String get cancelDownload => 'डाउनलोड रोको';
+	@override String get removeDownload => 'फ़ोन से हटाओ';
+	@override String get back15 => '15 सेकंड पीछे';
+	@override String get forward15 => '15 सेकंड आगे';
+	@override String speed({required Object speed}) => 'गति ${speed}';
+	@override String recordedOn({required Object date}) => '${date} का संदेश';
+	@override String get moreSubtitle => 'सुनने के लिए प्रवचन और शिक्षाएँ';
+}
+
+// Path: memorize
+class _Translations$memorize$hi extends Translations$memorize$fr {
+	_Translations$memorize$hi._(TranslationsHi root) : this._root = root, super.internal(root);
+
+	final TranslationsHi _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'कंठस्थ करना';
+	@override String get subtitle => 'वचन को अपने हृदय में रखो';
+	@override String get toReview => 'दोहराने को';
+	@override String get learning => 'सीख रहे';
+	@override String get known => 'याद';
+	@override String reviewCount({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n,
+		one: '${n} पद दोहराओ',
+		other: '${n} पद दोहराओ',
+	);
+	@override String get nothingDue => 'आज दोहराने को कुछ नहीं।';
+	@override String nextOn({required Object date}) => 'अगली दोहराई: ${date}।';
+	@override String get tomorrow => 'कल';
+	@override String get reminder => 'दोहराई की याद';
+	@override String get reminderAt => 'याद का समय';
+	@override String get myVerses => 'मेरे पद';
+	@override String get howToAdd => 'जोड़ने के लिए: बाइबल में कोई पद छुओ, फिर पट्टी में दिमाग़ का चिह्न।';
+	@override String get empty => 'अभी कंठस्थ करने को कोई पद नहीं।';
+	@override String get openBible => 'बाइबल खोलो';
+	@override String get late => 'देर से';
+	@override String get today => 'आज';
+	@override String dueIn({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n,
+		one: '${n} दिन में',
+		other: '${n} दिन में',
+	);
+	@override Map<String, String> get stages => {
+		'fresh': 'नया',
+		'learning': 'सीख रहे',
+		'known': 'याद',
+	};
+	@override String stats({required Object stage, required Object lapses}) => '${stage} · ${lapses} बार भूले';
+	@override String get reviewNow => 'अभी दोहराओ';
+	@override String get remove => 'हटाओ';
+	@override String get removeTitle => 'यह पद हटाएँ?';
+	@override String get removeText => 'इसकी प्रगति मिट जाएगी।';
+	@override String get removed => 'पद हटाया गया';
+	@override String progress({required Object done, required Object total}) => '${done} / ${total}';
+	@override String get show => 'पद दिखाओ';
+	@override Map<String, String> get hints => {
+		'full': 'पाठ',
+		'gaps': 'रिक्त',
+		'initials': 'पहले अक्षर',
+		'none': 'कुछ नहीं',
+	};
+	@override String get recite => 'पद बोलो, फिर जाँचो।';
+	@override Map<String, String> get grades => {
+		'again': 'फिर से',
+		'hard': 'कठिन',
+		'good': 'ठीक',
+		'easy': 'आसान',
+	};
+	@override String get now => 'अभी';
+	@override String later({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n,
+		one: '${n} दिन',
+		other: '${n} दिन',
+	);
+	@override String get doneTitle => 'दोहराई पूरी!';
+	@override String doneText({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n,
+		one: 'तुमने ${n} पद दोहराया। वचन तुममें बसा रहे!',
+		other: 'तुमने ${n} पद दोहराए। वचन तुममें बसा रहे!',
+	);
+	@override String get back => 'वापस';
+	@override String get reminderTitle => 'तुम्हारे दोहराने वाले पद';
+	@override String reminderBody({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n,
+		one: 'आज ${n} पद तुम्हारा इंतज़ार कर रहा है।',
+		other: 'आज ${n} पद तुम्हारा इंतज़ार कर रहे हैं।',
+	);
+	@override String get reminderChannel => 'कंठस्थ करना';
+	@override String get homeTitle => 'दोहराने वाले पद';
+	@override String homeText({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n,
+		one: '${n} पद इंतज़ार में',
+		other: '${n} पद इंतज़ार में',
+	);
+	@override String get menu => 'पद कंठस्थ करो';
+	@override String get memorize => 'कंठस्थ करो';
+	@override String get added => 'कंठस्थ करने वाले पदों में जोड़ा गया';
+	@override String get already => 'यह अंश पहले से तुम्हारे पदों में है';
+}
+
+// Path: souls
+class _Translations$souls$hi extends Translations$souls$fr {
+	_Translations$souls$hi._(TranslationsHi root) : this._root = root, super.internal(root);
+
+	final TranslationsHi _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'आत्माओं की देखभाल';
+	@override String get subtitle => '"जो आत्माओं को जीतता है वह बुद्धिमान है।" नीतिवचन 11:30';
+	@override String get search => 'किसी को खोजो…';
+	@override String get people => 'लोग';
+	@override String get received => 'यीशु को ग्रहण किया';
+	@override String get toContact => 'संपर्क करना है';
+	@override String get all => 'सभी';
+	@override Map<String, String> get stages => {
+		'met': 'मिले',
+		'interested': 'रुचि है',
+		'received': 'यीशु को ग्रहण किया',
+		'followUp': 'स्थिर हो रहे',
+		'church': 'कलीसिया आते हैं',
+		'baptized': 'बपतिस्मा हुआ',
+	};
+	@override String get contactSection => 'फिर संपर्क करना है';
+	@override String get everyone => 'सभी लोग';
+	@override String get contactToday => 'आज संपर्क करो';
+	@override String contactLate({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n,
+		one: '${n} दिन देर',
+		other: '${n} दिन देर',
+	);
+	@override String contactOn({required Object date}) => 'अगला संपर्क ${date} को';
+	@override String get empty => 'यहाँ उन लोगों को लिखो जिन्हें तुम सुसमाचार सुनाते हो: उनके लिए प्रार्थना करो और कलीसिया तक साथ दो।';
+	@override String get none => 'कोई मेल नहीं।';
+	@override String get add => 'जोड़ो';
+	@override String get addTitle => 'नया व्यक्ति';
+	@override String get editTitle => 'बदलो';
+	@override String get name => 'नाम';
+	@override String get nameRequired => 'नाम लिखो।';
+	@override String get phone => 'फ़ोन';
+	@override String get place => 'कहाँ मिले';
+	@override String get metOn => 'मिलने की तारीख़';
+	@override String get stage => 'यह व्यक्ति कहाँ तक पहुँचा?';
+	@override String get firstNote => 'एक नोट (वैकल्पिक)';
+	@override String get noteHint => 'क्या कहा गया, प्रार्थना विषय…';
+	@override String get save => 'सहेजो';
+	@override String get saved => 'सहेजा गया';
+	@override String get call => 'कॉल करो';
+	@override String get whatsApp => 'WhatsApp';
+	@override String get sms => 'SMS';
+	@override String get edit => 'बदलो';
+	@override String get delete => 'मिटाओ';
+	@override String deleteTitle({required Object name}) => '${name} को मिटाएँ?';
+	@override String get deleteText => 'इनके नोट तुम्हारे फ़ोन से मिट जाएँगे।';
+	@override String get deleted => 'मिटाया गया';
+	@override String get nextContact => 'अगला संपर्क';
+	@override String get plan => 'याद दिलाना तय करो';
+	@override String get change => 'तारीख़ बदलो';
+	@override String get clear => 'याद हटाओ';
+	@override String get noContact => 'कोई याद तय नहीं';
+	@override String metAt({required Object date}) => '${date} को मिले';
+	@override String get notes => 'नोट';
+	@override String get addNote => 'नोट जोड़ो';
+	@override String get noNotes => 'अभी कोई नोट नहीं।';
+	@override String get deleteNote => 'नोट मिटाओ';
+	@override String get export => 'निर्यात (स्प्रेडशीट)';
+	@override late final _Translations$souls$csv$hi csv = _Translations$souls$csv$hi._(_root);
+	@override String lock({required Object method}) => '${method} से लॉक करो';
+	@override String get lockedTitle => 'तुम्हारी आत्माओं की देखभाल लॉक है';
+	@override String get unlock => 'अनलॉक करो';
+	@override String get unlockReason => 'आत्माओं की देखभाल खोलो';
+	@override String get privacy => 'यह जानकारी तुम्हारे फ़ोन में ही रहती है: कभी भेजी नहीं जाती।';
+	@override String get reminderTitle => 'आत्माओं की देखभाल';
+	@override String reminderBody({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n,
+		one: 'आज ${n} व्यक्ति से संपर्क करना है।',
+		other: 'आज ${n} लोगों से संपर्क करना है।',
+	);
+	@override String get reminderChannel => 'आत्माओं की देखभाल';
+	@override String get moreSubtitle => 'जिन्हें तुम सुसमाचार सुनाते हो';
+}
+
 // Path: onboarding.reports
 class _Translations$onboarding$reports$hi extends Translations$onboarding$reports$fr {
 	_Translations$onboarding$reports$hi._(TranslationsHi root) : this._root = root, super.internal(root);
@@ -2395,6 +2598,22 @@ class _Translations$seekFirst$shield$hi extends Translations$seekFirst$shield$fr
 	@override String pause({required Object n}) => '5 मिनट का विराम (${n}/3)';
 	@override String get notificationTitle => 'पहले परमेश्वर को खोजो';
 	@override String get notificationBody => 'अपनी रिपोर्ट भरने के लिए यहाँ टैप करें।';
+}
+
+// Path: souls.csv
+class _Translations$souls$csv$hi extends Translations$souls$csv$fr {
+	_Translations$souls$csv$hi._(TranslationsHi root) : this._root = root, super.internal(root);
+
+	final TranslationsHi _root; // ignore: unused_field
+
+	// Translations
+	@override String get name => 'नाम';
+	@override String get phone => 'फ़ोन';
+	@override String get place => 'जगह';
+	@override String get metOn => 'मिलने की तारीख़';
+	@override String get stage => 'चरण';
+	@override String get next => 'अगला संपर्क';
+	@override String get notes => 'नोट';
 }
 
 // Path: reports.units.chapters
@@ -4074,6 +4293,152 @@ extension on TranslationsHi {
 			'biblePlan.homeTitle' => 'आज का पठन',
 			'biblePlan.check' => ({required Object chapter}) => '${chapter} को पढ़ा हुआ चिह्नित करें',
 			'biblePlan.uncheck' => ({required Object chapter}) => '${chapter}: पढ़ा',
+			'teachings.title' => 'शिक्षाएँ',
+			'teachings.subtitle' => 'जहाँ भी हो, वचन सुनो',
+			'teachings.search' => 'संदेश या वक्ता खोजो…',
+			'teachings.all' => 'सभी',
+			'teachings.downloadedChip' => 'डाउनलोड किए',
+			'teachings.count' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n, one: '${n} संदेश', other: '${n} संदेश', ), 
+			'teachings.empty' => 'अभी कोई शिक्षा नहीं है।',
+			'teachings.none' => 'कोई मेल खाती शिक्षा नहीं।',
+			'teachings.noneDownloaded' => 'कोई संदेश डाउनलोड नहीं हुआ। बिना नेटवर्क सुनने के लिए संदेश का बादल छुओ।',
+			'teachings.more' => 'और देखो',
+			'teachings.offline' => 'नेटवर्क नहीं: ये तुम्हारे फ़ोन में रखे संदेश हैं।',
+			'teachings.play' => 'सुनो',
+			'teachings.pause' => 'रोको',
+			'teachings.heard' => 'सुना गया',
+			'teachings.download' => 'बिना नेटवर्क सुनने के लिए डाउनलोड करो',
+			'teachings.downloaded' => 'तुम्हारे फ़ोन में रखा गया',
+			'teachings.removed' => 'फ़ोन से हटाया गया',
+			'teachings.cancelDownload' => 'डाउनलोड रोको',
+			'teachings.removeDownload' => 'फ़ोन से हटाओ',
+			'teachings.back15' => '15 सेकंड पीछे',
+			'teachings.forward15' => '15 सेकंड आगे',
+			'teachings.speed' => ({required Object speed}) => 'गति ${speed}',
+			'teachings.recordedOn' => ({required Object date}) => '${date} का संदेश',
+			'teachings.moreSubtitle' => 'सुनने के लिए प्रवचन और शिक्षाएँ',
+			'memorize.title' => 'कंठस्थ करना',
+			'memorize.subtitle' => 'वचन को अपने हृदय में रखो',
+			'memorize.toReview' => 'दोहराने को',
+			'memorize.learning' => 'सीख रहे',
+			'memorize.known' => 'याद',
+			'memorize.reviewCount' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n, one: '${n} पद दोहराओ', other: '${n} पद दोहराओ', ), 
+			'memorize.nothingDue' => 'आज दोहराने को कुछ नहीं।',
+			'memorize.nextOn' => ({required Object date}) => 'अगली दोहराई: ${date}।',
+			'memorize.tomorrow' => 'कल',
+			'memorize.reminder' => 'दोहराई की याद',
+			'memorize.reminderAt' => 'याद का समय',
+			'memorize.myVerses' => 'मेरे पद',
+			'memorize.howToAdd' => 'जोड़ने के लिए: बाइबल में कोई पद छुओ, फिर पट्टी में दिमाग़ का चिह्न।',
+			'memorize.empty' => 'अभी कंठस्थ करने को कोई पद नहीं।',
+			'memorize.openBible' => 'बाइबल खोलो',
+			'memorize.late' => 'देर से',
+			'memorize.today' => 'आज',
+			'memorize.dueIn' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n, one: '${n} दिन में', other: '${n} दिन में', ), 
+			'memorize.stages.fresh' => 'नया',
+			'memorize.stages.learning' => 'सीख रहे',
+			'memorize.stages.known' => 'याद',
+			'memorize.stats' => ({required Object stage, required Object lapses}) => '${stage} · ${lapses} बार भूले',
+			'memorize.reviewNow' => 'अभी दोहराओ',
+			'memorize.remove' => 'हटाओ',
+			'memorize.removeTitle' => 'यह पद हटाएँ?',
+			'memorize.removeText' => 'इसकी प्रगति मिट जाएगी।',
+			'memorize.removed' => 'पद हटाया गया',
+			'memorize.progress' => ({required Object done, required Object total}) => '${done} / ${total}',
+			'memorize.show' => 'पद दिखाओ',
+			'memorize.hints.full' => 'पाठ',
+			'memorize.hints.gaps' => 'रिक्त',
+			'memorize.hints.initials' => 'पहले अक्षर',
+			'memorize.hints.none' => 'कुछ नहीं',
+			'memorize.recite' => 'पद बोलो, फिर जाँचो।',
+			'memorize.grades.again' => 'फिर से',
+			'memorize.grades.hard' => 'कठिन',
+			'memorize.grades.good' => 'ठीक',
+			'memorize.grades.easy' => 'आसान',
+			'memorize.now' => 'अभी',
+			'memorize.later' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n, one: '${n} दिन', other: '${n} दिन', ), 
+			'memorize.doneTitle' => 'दोहराई पूरी!',
+			'memorize.doneText' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n, one: 'तुमने ${n} पद दोहराया। वचन तुममें बसा रहे!', other: 'तुमने ${n} पद दोहराए। वचन तुममें बसा रहे!', ), 
+			'memorize.back' => 'वापस',
+			'memorize.reminderTitle' => 'तुम्हारे दोहराने वाले पद',
+			'memorize.reminderBody' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n, one: 'आज ${n} पद तुम्हारा इंतज़ार कर रहा है।', other: 'आज ${n} पद तुम्हारा इंतज़ार कर रहे हैं।', ), 
+			'memorize.reminderChannel' => 'कंठस्थ करना',
+			'memorize.homeTitle' => 'दोहराने वाले पद',
+			'memorize.homeText' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n, one: '${n} पद इंतज़ार में', other: '${n} पद इंतज़ार में', ), 
+			'memorize.menu' => 'पद कंठस्थ करो',
+			'memorize.memorize' => 'कंठस्थ करो',
+			'memorize.added' => 'कंठस्थ करने वाले पदों में जोड़ा गया',
+			'memorize.already' => 'यह अंश पहले से तुम्हारे पदों में है',
+			'souls.title' => 'आत्माओं की देखभाल',
+			'souls.subtitle' => '"जो आत्माओं को जीतता है वह बुद्धिमान है।" नीतिवचन 11:30',
+			'souls.search' => 'किसी को खोजो…',
+			'souls.people' => 'लोग',
+			'souls.received' => 'यीशु को ग्रहण किया',
+			'souls.toContact' => 'संपर्क करना है',
+			'souls.all' => 'सभी',
+			'souls.stages.met' => 'मिले',
+			'souls.stages.interested' => 'रुचि है',
+			'souls.stages.received' => 'यीशु को ग्रहण किया',
+			'souls.stages.followUp' => 'स्थिर हो रहे',
+			'souls.stages.church' => 'कलीसिया आते हैं',
+			'souls.stages.baptized' => 'बपतिस्मा हुआ',
+			'souls.contactSection' => 'फिर संपर्क करना है',
+			'souls.everyone' => 'सभी लोग',
+			'souls.contactToday' => 'आज संपर्क करो',
+			'souls.contactLate' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n, one: '${n} दिन देर', other: '${n} दिन देर', ), 
+			'souls.contactOn' => ({required Object date}) => 'अगला संपर्क ${date} को',
+			'souls.empty' => 'यहाँ उन लोगों को लिखो जिन्हें तुम सुसमाचार सुनाते हो: उनके लिए प्रार्थना करो और कलीसिया तक साथ दो।',
+			'souls.none' => 'कोई मेल नहीं।',
+			'souls.add' => 'जोड़ो',
+			'souls.addTitle' => 'नया व्यक्ति',
+			'souls.editTitle' => 'बदलो',
+			'souls.name' => 'नाम',
+			'souls.nameRequired' => 'नाम लिखो।',
+			'souls.phone' => 'फ़ोन',
+			'souls.place' => 'कहाँ मिले',
+			'souls.metOn' => 'मिलने की तारीख़',
+			'souls.stage' => 'यह व्यक्ति कहाँ तक पहुँचा?',
+			'souls.firstNote' => 'एक नोट (वैकल्पिक)',
+			'souls.noteHint' => 'क्या कहा गया, प्रार्थना विषय…',
+			'souls.save' => 'सहेजो',
+			'souls.saved' => 'सहेजा गया',
+			'souls.call' => 'कॉल करो',
+			'souls.whatsApp' => 'WhatsApp',
+			'souls.sms' => 'SMS',
+			'souls.edit' => 'बदलो',
+			'souls.delete' => 'मिटाओ',
+			'souls.deleteTitle' => ({required Object name}) => '${name} को मिटाएँ?',
+			'souls.deleteText' => 'इनके नोट तुम्हारे फ़ोन से मिट जाएँगे।',
+			'souls.deleted' => 'मिटाया गया',
+			'souls.nextContact' => 'अगला संपर्क',
+			'souls.plan' => 'याद दिलाना तय करो',
+			'souls.change' => 'तारीख़ बदलो',
+			'souls.clear' => 'याद हटाओ',
+			'souls.noContact' => 'कोई याद तय नहीं',
+			'souls.metAt' => ({required Object date}) => '${date} को मिले',
+			'souls.notes' => 'नोट',
+			'souls.addNote' => 'नोट जोड़ो',
+			'souls.noNotes' => 'अभी कोई नोट नहीं।',
+			'souls.deleteNote' => 'नोट मिटाओ',
+			'souls.export' => 'निर्यात (स्प्रेडशीट)',
+			'souls.csv.name' => 'नाम',
+			'souls.csv.phone' => 'फ़ोन',
+			'souls.csv.place' => 'जगह',
+			'souls.csv.metOn' => 'मिलने की तारीख़',
+			'souls.csv.stage' => 'चरण',
+			_ => null,
+		} ?? switch (path) {
+			'souls.csv.next' => 'अगला संपर्क',
+			'souls.csv.notes' => 'नोट',
+			'souls.lock' => ({required Object method}) => '${method} से लॉक करो',
+			'souls.lockedTitle' => 'तुम्हारी आत्माओं की देखभाल लॉक है',
+			'souls.unlock' => 'अनलॉक करो',
+			'souls.unlockReason' => 'आत्माओं की देखभाल खोलो',
+			'souls.privacy' => 'यह जानकारी तुम्हारे फ़ोन में ही रहती है: कभी भेजी नहीं जाती।',
+			'souls.reminderTitle' => 'आत्माओं की देखभाल',
+			'souls.reminderBody' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n, one: 'आज ${n} व्यक्ति से संपर्क करना है।', other: 'आज ${n} लोगों से संपर्क करना है।', ), 
+			'souls.reminderChannel' => 'आत्माओं की देखभाल',
+			'souls.moreSubtitle' => 'जिन्हें तुम सुसमाचार सुनाते हो',
 			_ => null,
 		};
 	}

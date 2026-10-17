@@ -78,6 +78,9 @@ class TranslationsAr extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _Translations$seekFirst$ar seekFirst = _Translations$seekFirst$ar._(_root);
 	@override late final _Translations$documents$ar documents = _Translations$documents$ar._(_root);
 	@override late final _Translations$biblePlan$ar biblePlan = _Translations$biblePlan$ar._(_root);
+	@override late final _Translations$teachings$ar teachings = _Translations$teachings$ar._(_root);
+	@override late final _Translations$memorize$ar memorize = _Translations$memorize$ar._(_root);
+	@override late final _Translations$souls$ar souls = _Translations$souls$ar._(_root);
 }
 
 // Path: app
@@ -1524,6 +1527,206 @@ class _Translations$biblePlan$ar extends Translations$biblePlan$fr {
 	@override String uncheck({required Object chapter}) => '${chapter}: مقروء';
 }
 
+// Path: teachings
+class _Translations$teachings$ar extends Translations$teachings$fr {
+	_Translations$teachings$ar._(TranslationsAr root) : this._root = root, super.internal(root);
+
+	final TranslationsAr _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'التعاليم';
+	@override String get subtitle => 'استمع إلى الكلمة أينما كنت';
+	@override String get search => 'ابحث عن رسالة أو واعظ…';
+	@override String get all => 'الكل';
+	@override String get downloadedChip => 'المحمَّلة';
+	@override String count({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n,
+		one: 'رسالة واحدة',
+		other: '${n} رسائل',
+	);
+	@override String get empty => 'لا توجد تعاليم حتى الآن.';
+	@override String get none => 'لا يوجد تعليم مطابق.';
+	@override String get noneDownloaded => 'لا توجد رسائل محمَّلة. المس سحابة الرسالة لتستمع إليها دون شبكة.';
+	@override String get more => 'عرض المزيد';
+	@override String get offline => 'لا توجد شبكة: هذه هي الرسائل المحفوظة على هاتفك.';
+	@override String get play => 'استمع';
+	@override String get pause => 'إيقاف مؤقت';
+	@override String get heard => 'تم الاستماع';
+	@override String get download => 'حمّل للاستماع دون شبكة';
+	@override String get downloaded => 'حُفظ على هاتفك';
+	@override String get removed => 'أُزيل من الهاتف';
+	@override String get cancelDownload => 'أوقف التحميل';
+	@override String get removeDownload => 'أزل من الهاتف';
+	@override String get back15 => 'رجوع 15 ثانية';
+	@override String get forward15 => 'تقدّم 15 ثانية';
+	@override String speed({required Object speed}) => 'السرعة ${speed}';
+	@override String recordedOn({required Object date}) => 'رسالة ${date}';
+	@override String get moreSubtitle => 'عظات وتعاليم للاستماع';
+}
+
+// Path: memorize
+class _Translations$memorize$ar extends Translations$memorize$fr {
+	_Translations$memorize$ar._(TranslationsAr root) : this._root = root, super.internal(root);
+
+	final TranslationsAr _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'الحفظ';
+	@override String get subtitle => 'اخبأ الكلمة في قلبك';
+	@override String get toReview => 'للمراجعة';
+	@override String get learning => 'قيد الحفظ';
+	@override String get known => 'محفوظة';
+	@override String reviewCount({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n,
+		one: 'راجع آية واحدة',
+		other: 'راجع ${n} آيات',
+	);
+	@override String get nothingDue => 'لا شيء للمراجعة اليوم.';
+	@override String nextOn({required Object date}) => 'المراجعة القادمة: ${date}.';
+	@override String get tomorrow => 'غدًا';
+	@override String get reminder => 'تذكير بالمراجعة';
+	@override String get reminderAt => 'وقت التذكير';
+	@override String get myVerses => 'آياتي';
+	@override String get howToAdd => 'لإضافة آية: في الكتاب المقدس، المس آية ثم أيقونة الدماغ في الشريط.';
+	@override String get empty => 'لا توجد آيات للحفظ حتى الآن.';
+	@override String get openBible => 'افتح الكتاب المقدس';
+	@override String get late => 'متأخرة';
+	@override String get today => 'اليوم';
+	@override String dueIn({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n,
+		one: 'بعد يوم',
+		other: 'بعد ${n} أيام',
+	);
+	@override Map<String, String> get stages => {
+		'fresh': 'جديدة',
+		'learning': 'قيد الحفظ',
+		'known': 'محفوظة',
+	};
+	@override String stats({required Object stage, required Object lapses}) => '${stage} · نُسيت ${lapses} مرات';
+	@override String get reviewNow => 'راجع الآن';
+	@override String get remove => 'أزل';
+	@override String get removeTitle => 'إزالة هذه الآية؟';
+	@override String get removeText => 'سيُمحى تقدّمك فيها.';
+	@override String get removed => 'أُزيلت الآية';
+	@override String progress({required Object done, required Object total}) => '${done} / ${total}';
+	@override String get show => 'أظهر الآية';
+	@override Map<String, String> get hints => {
+		'full': 'النص',
+		'gaps': 'فراغات',
+		'initials': 'الحروف الأولى',
+		'none': 'لا شيء',
+	};
+	@override String get recite => 'اتلُ الآية ثم تحقّق.';
+	@override Map<String, String> get grades => {
+		'again': 'مجددًا',
+		'hard': 'صعب',
+		'good': 'جيد',
+		'easy': 'سهل',
+	};
+	@override String get now => 'فورًا';
+	@override String later({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n,
+		one: 'يوم',
+		other: '${n} أيام',
+	);
+	@override String get doneTitle => 'انتهت المراجعة!';
+	@override String doneText({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n,
+		one: 'راجعت آية واحدة. لتسكن فيك الكلمة!',
+		other: 'راجعت ${n} آيات. لتسكن فيك الكلمة!',
+	);
+	@override String get back => 'رجوع';
+	@override String get reminderTitle => 'آياتك للمراجعة';
+	@override String reminderBody({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n,
+		one: 'آية واحدة تنتظرك اليوم.',
+		other: '${n} آيات تنتظرك اليوم.',
+	);
+	@override String get reminderChannel => 'الحفظ';
+	@override String get homeTitle => 'آيات للمراجعة';
+	@override String homeText({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n,
+		one: 'آية واحدة تنتظرك',
+		other: '${n} آيات تنتظرك',
+	);
+	@override String get menu => 'احفظ آيات';
+	@override String get memorize => 'احفظ';
+	@override String get added => 'أُضيفت إلى آياتك للحفظ';
+	@override String get already => 'هذا المقطع موجود بالفعل في آياتك';
+}
+
+// Path: souls
+class _Translations$souls$ar extends Translations$souls$fr {
+	_Translations$souls$ar._(TranslationsAr root) : this._root = root, super.internal(root);
+
+	final TranslationsAr _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'متابعة النفوس';
+	@override String get subtitle => '«رابح النفوس حكيم» أمثال 11: 30';
+	@override String get search => 'ابحث عن شخص…';
+	@override String get people => 'أشخاص';
+	@override String get received => 'قبلوا يسوع';
+	@override String get toContact => 'للتواصل';
+	@override String get all => 'الكل';
+	@override Map<String, String> get stages => {
+		'met': 'تمّ اللقاء',
+		'interested': 'مهتم',
+		'received': 'قبل يسوع',
+		'followUp': 'في مرحلة التثبيت',
+		'church': 'يأتي إلى الكنيسة',
+		'baptized': 'تعمّد',
+	};
+	@override String get contactSection => 'للتواصل مجددًا';
+	@override String get everyone => 'جميع الأشخاص';
+	@override String get contactToday => 'تواصل اليوم';
+	@override String contactLate({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n,
+		one: 'متأخر يومًا',
+		other: 'متأخر ${n} أيام',
+	);
+	@override String contactOn({required Object date}) => 'التواصل القادم في ${date}';
+	@override String get empty => 'سجّل هنا الأشخاص الذين تبشّرهم: صلِّ لأجلهم ورافقهم حتى الكنيسة.';
+	@override String get none => 'لا يوجد أحد مطابق.';
+	@override String get add => 'أضف';
+	@override String get addTitle => 'شخص جديد';
+	@override String get editTitle => 'تعديل';
+	@override String get name => 'الاسم';
+	@override String get nameRequired => 'اكتب الاسم.';
+	@override String get phone => 'الهاتف';
+	@override String get place => 'أين التقيتما';
+	@override String get metOn => 'تاريخ اللقاء';
+	@override String get stage => 'أين وصل هذا الشخص؟';
+	@override String get firstNote => 'ملاحظة (اختياري)';
+	@override String get noteHint => 'ما قيل، طلبات الصلاة…';
+	@override String get save => 'احفظ';
+	@override String get saved => 'تم الحفظ';
+	@override String get call => 'اتصل';
+	@override String get whatsApp => 'واتساب';
+	@override String get sms => 'رسالة';
+	@override String get edit => 'تعديل';
+	@override String get delete => 'احذف';
+	@override String deleteTitle({required Object name}) => 'حذف ${name}؟';
+	@override String get deleteText => 'ستُمحى ملاحظاته من هاتفك.';
+	@override String get deleted => 'تم الحذف';
+	@override String get nextContact => 'التواصل القادم';
+	@override String get plan => 'حدّد تذكيرًا';
+	@override String get change => 'غيّر التاريخ';
+	@override String get clear => 'أزل التذكير';
+	@override String get noContact => 'لا يوجد تذكير';
+	@override String metAt({required Object date}) => 'تمّ اللقاء في ${date}';
+	@override String get notes => 'ملاحظات';
+	@override String get addNote => 'أضف الملاحظة';
+	@override String get noNotes => 'لا توجد ملاحظات بعد.';
+	@override String get deleteNote => 'احذف الملاحظة';
+	@override String get export => 'تصدير (جدول)';
+	@override late final _Translations$souls$csv$ar csv = _Translations$souls$csv$ar._(_root);
+	@override String lock({required Object method}) => 'اقفل بـ${method}';
+	@override String get lockedTitle => 'متابعة النفوس مقفلة';
+	@override String get unlock => 'افتح القفل';
+	@override String get unlockReason => 'افتح متابعة النفوس';
+	@override String get privacy => 'تبقى هذه المعلومات على هاتفك: لا تُرسَل أبدًا.';
+	@override String get reminderTitle => 'متابعة النفوس';
+	@override String reminderBody({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n,
+		one: 'شخص واحد للتواصل معه اليوم.',
+		other: '${n} أشخاص للتواصل معهم اليوم.',
+	);
+	@override String get reminderChannel => 'متابعة النفوس';
+	@override String get moreSubtitle => 'الأشخاص الذين تبشّرهم';
+}
+
 // Path: onboarding.reports
 class _Translations$onboarding$reports$ar extends Translations$onboarding$reports$fr {
 	_Translations$onboarding$reports$ar._(TranslationsAr root) : this._root = root, super.internal(root);
@@ -2627,6 +2830,22 @@ class _Translations$seekFirst$shield$ar extends Translations$seekFirst$shield$fr
 	@override String pause({required Object n}) => 'استراحة 5 دقائق (${n}/3)';
 	@override String get notificationTitle => 'اطلب الله أولًا';
 	@override String get notificationBody => 'المس هنا لتملأ تقريرك.';
+}
+
+// Path: souls.csv
+class _Translations$souls$csv$ar extends Translations$souls$csv$fr {
+	_Translations$souls$csv$ar._(TranslationsAr root) : this._root = root, super.internal(root);
+
+	final TranslationsAr _root; // ignore: unused_field
+
+	// Translations
+	@override String get name => 'الاسم';
+	@override String get phone => 'الهاتف';
+	@override String get place => 'المكان';
+	@override String get metOn => 'تاريخ اللقاء';
+	@override String get stage => 'المرحلة';
+	@override String get next => 'التواصل القادم';
+	@override String get notes => 'ملاحظات';
 }
 
 // Path: reports.units.chapters
@@ -4325,6 +4544,152 @@ extension on TranslationsAr {
 			'biblePlan.homeTitle' => 'قراءة اليوم',
 			'biblePlan.check' => ({required Object chapter}) => 'علّم ${chapter} كمقروء',
 			'biblePlan.uncheck' => ({required Object chapter}) => '${chapter}: مقروء',
+			'teachings.title' => 'التعاليم',
+			'teachings.subtitle' => 'استمع إلى الكلمة أينما كنت',
+			'teachings.search' => 'ابحث عن رسالة أو واعظ…',
+			'teachings.all' => 'الكل',
+			'teachings.downloadedChip' => 'المحمَّلة',
+			'teachings.count' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n, one: 'رسالة واحدة', other: '${n} رسائل', ), 
+			'teachings.empty' => 'لا توجد تعاليم حتى الآن.',
+			'teachings.none' => 'لا يوجد تعليم مطابق.',
+			'teachings.noneDownloaded' => 'لا توجد رسائل محمَّلة. المس سحابة الرسالة لتستمع إليها دون شبكة.',
+			'teachings.more' => 'عرض المزيد',
+			'teachings.offline' => 'لا توجد شبكة: هذه هي الرسائل المحفوظة على هاتفك.',
+			'teachings.play' => 'استمع',
+			'teachings.pause' => 'إيقاف مؤقت',
+			'teachings.heard' => 'تم الاستماع',
+			'teachings.download' => 'حمّل للاستماع دون شبكة',
+			'teachings.downloaded' => 'حُفظ على هاتفك',
+			'teachings.removed' => 'أُزيل من الهاتف',
+			'teachings.cancelDownload' => 'أوقف التحميل',
+			'teachings.removeDownload' => 'أزل من الهاتف',
+			'teachings.back15' => 'رجوع 15 ثانية',
+			'teachings.forward15' => 'تقدّم 15 ثانية',
+			'teachings.speed' => ({required Object speed}) => 'السرعة ${speed}',
+			'teachings.recordedOn' => ({required Object date}) => 'رسالة ${date}',
+			'teachings.moreSubtitle' => 'عظات وتعاليم للاستماع',
+			'memorize.title' => 'الحفظ',
+			'memorize.subtitle' => 'اخبأ الكلمة في قلبك',
+			'memorize.toReview' => 'للمراجعة',
+			'memorize.learning' => 'قيد الحفظ',
+			'memorize.known' => 'محفوظة',
+			'memorize.reviewCount' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n, one: 'راجع آية واحدة', other: 'راجع ${n} آيات', ), 
+			'memorize.nothingDue' => 'لا شيء للمراجعة اليوم.',
+			'memorize.nextOn' => ({required Object date}) => 'المراجعة القادمة: ${date}.',
+			'memorize.tomorrow' => 'غدًا',
+			'memorize.reminder' => 'تذكير بالمراجعة',
+			'memorize.reminderAt' => 'وقت التذكير',
+			'memorize.myVerses' => 'آياتي',
+			'memorize.howToAdd' => 'لإضافة آية: في الكتاب المقدس، المس آية ثم أيقونة الدماغ في الشريط.',
+			'memorize.empty' => 'لا توجد آيات للحفظ حتى الآن.',
+			'memorize.openBible' => 'افتح الكتاب المقدس',
+			'memorize.late' => 'متأخرة',
+			'memorize.today' => 'اليوم',
+			'memorize.dueIn' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n, one: 'بعد يوم', other: 'بعد ${n} أيام', ), 
+			'memorize.stages.fresh' => 'جديدة',
+			'memorize.stages.learning' => 'قيد الحفظ',
+			'memorize.stages.known' => 'محفوظة',
+			'memorize.stats' => ({required Object stage, required Object lapses}) => '${stage} · نُسيت ${lapses} مرات',
+			'memorize.reviewNow' => 'راجع الآن',
+			'memorize.remove' => 'أزل',
+			'memorize.removeTitle' => 'إزالة هذه الآية؟',
+			'memorize.removeText' => 'سيُمحى تقدّمك فيها.',
+			'memorize.removed' => 'أُزيلت الآية',
+			'memorize.progress' => ({required Object done, required Object total}) => '${done} / ${total}',
+			'memorize.show' => 'أظهر الآية',
+			'memorize.hints.full' => 'النص',
+			'memorize.hints.gaps' => 'فراغات',
+			'memorize.hints.initials' => 'الحروف الأولى',
+			'memorize.hints.none' => 'لا شيء',
+			'memorize.recite' => 'اتلُ الآية ثم تحقّق.',
+			'memorize.grades.again' => 'مجددًا',
+			'memorize.grades.hard' => 'صعب',
+			'memorize.grades.good' => 'جيد',
+			'memorize.grades.easy' => 'سهل',
+			'memorize.now' => 'فورًا',
+			'memorize.later' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n, one: 'يوم', other: '${n} أيام', ), 
+			'memorize.doneTitle' => 'انتهت المراجعة!',
+			'memorize.doneText' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n, one: 'راجعت آية واحدة. لتسكن فيك الكلمة!', other: 'راجعت ${n} آيات. لتسكن فيك الكلمة!', ), 
+			'memorize.back' => 'رجوع',
+			'memorize.reminderTitle' => 'آياتك للمراجعة',
+			'memorize.reminderBody' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n, one: 'آية واحدة تنتظرك اليوم.', other: '${n} آيات تنتظرك اليوم.', ), 
+			'memorize.reminderChannel' => 'الحفظ',
+			'memorize.homeTitle' => 'آيات للمراجعة',
+			'memorize.homeText' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n, one: 'آية واحدة تنتظرك', other: '${n} آيات تنتظرك', ), 
+			'memorize.menu' => 'احفظ آيات',
+			'memorize.memorize' => 'احفظ',
+			'memorize.added' => 'أُضيفت إلى آياتك للحفظ',
+			'memorize.already' => 'هذا المقطع موجود بالفعل في آياتك',
+			'souls.title' => 'متابعة النفوس',
+			'souls.subtitle' => '«رابح النفوس حكيم» أمثال 11: 30',
+			'souls.search' => 'ابحث عن شخص…',
+			'souls.people' => 'أشخاص',
+			'souls.received' => 'قبلوا يسوع',
+			'souls.toContact' => 'للتواصل',
+			'souls.all' => 'الكل',
+			'souls.stages.met' => 'تمّ اللقاء',
+			'souls.stages.interested' => 'مهتم',
+			'souls.stages.received' => 'قبل يسوع',
+			'souls.stages.followUp' => 'في مرحلة التثبيت',
+			'souls.stages.church' => 'يأتي إلى الكنيسة',
+			'souls.stages.baptized' => 'تعمّد',
+			'souls.contactSection' => 'للتواصل مجددًا',
+			'souls.everyone' => 'جميع الأشخاص',
+			'souls.contactToday' => 'تواصل اليوم',
+			'souls.contactLate' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n, one: 'متأخر يومًا', other: 'متأخر ${n} أيام', ), 
+			'souls.contactOn' => ({required Object date}) => 'التواصل القادم في ${date}',
+			'souls.empty' => 'سجّل هنا الأشخاص الذين تبشّرهم: صلِّ لأجلهم ورافقهم حتى الكنيسة.',
+			'souls.none' => 'لا يوجد أحد مطابق.',
+			'souls.add' => 'أضف',
+			'souls.addTitle' => 'شخص جديد',
+			'souls.editTitle' => 'تعديل',
+			'souls.name' => 'الاسم',
+			'souls.nameRequired' => 'اكتب الاسم.',
+			'souls.phone' => 'الهاتف',
+			'souls.place' => 'أين التقيتما',
+			'souls.metOn' => 'تاريخ اللقاء',
+			'souls.stage' => 'أين وصل هذا الشخص؟',
+			'souls.firstNote' => 'ملاحظة (اختياري)',
+			'souls.noteHint' => 'ما قيل، طلبات الصلاة…',
+			'souls.save' => 'احفظ',
+			'souls.saved' => 'تم الحفظ',
+			'souls.call' => 'اتصل',
+			'souls.whatsApp' => 'واتساب',
+			'souls.sms' => 'رسالة',
+			'souls.edit' => 'تعديل',
+			'souls.delete' => 'احذف',
+			'souls.deleteTitle' => ({required Object name}) => 'حذف ${name}؟',
+			'souls.deleteText' => 'ستُمحى ملاحظاته من هاتفك.',
+			'souls.deleted' => 'تم الحذف',
+			'souls.nextContact' => 'التواصل القادم',
+			'souls.plan' => 'حدّد تذكيرًا',
+			'souls.change' => 'غيّر التاريخ',
+			'souls.clear' => 'أزل التذكير',
+			'souls.noContact' => 'لا يوجد تذكير',
+			'souls.metAt' => ({required Object date}) => 'تمّ اللقاء في ${date}',
+			'souls.notes' => 'ملاحظات',
+			'souls.addNote' => 'أضف الملاحظة',
+			'souls.noNotes' => 'لا توجد ملاحظات بعد.',
+			'souls.deleteNote' => 'احذف الملاحظة',
+			'souls.export' => 'تصدير (جدول)',
+			'souls.csv.name' => 'الاسم',
+			'souls.csv.phone' => 'الهاتف',
+			'souls.csv.place' => 'المكان',
+			'souls.csv.metOn' => 'تاريخ اللقاء',
+			'souls.csv.stage' => 'المرحلة',
+			_ => null,
+		} ?? switch (path) {
+			'souls.csv.next' => 'التواصل القادم',
+			'souls.csv.notes' => 'ملاحظات',
+			'souls.lock' => ({required Object method}) => 'اقفل بـ${method}',
+			'souls.lockedTitle' => 'متابعة النفوس مقفلة',
+			'souls.unlock' => 'افتح القفل',
+			'souls.unlockReason' => 'افتح متابعة النفوس',
+			'souls.privacy' => 'تبقى هذه المعلومات على هاتفك: لا تُرسَل أبدًا.',
+			'souls.reminderTitle' => 'متابعة النفوس',
+			'souls.reminderBody' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n, one: 'شخص واحد للتواصل معه اليوم.', other: '${n} أشخاص للتواصل معهم اليوم.', ), 
+			'souls.reminderChannel' => 'متابعة النفوس',
+			'souls.moreSubtitle' => 'الأشخاص الذين تبشّرهم',
 			_ => null,
 		};
 	}

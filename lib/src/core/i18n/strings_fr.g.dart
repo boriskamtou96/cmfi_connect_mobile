@@ -80,6 +80,9 @@ class Translations with BaseTranslations<AppLocale, Translations> {
 	late final Translations$seekFirst$fr seekFirst = Translations$seekFirst$fr.internal(_root);
 	late final Translations$documents$fr documents = Translations$documents$fr.internal(_root);
 	late final Translations$biblePlan$fr biblePlan = Translations$biblePlan$fr.internal(_root);
+	late final Translations$teachings$fr teachings = Translations$teachings$fr.internal(_root);
+	late final Translations$memorize$fr memorize = Translations$memorize$fr.internal(_root);
+	late final Translations$souls$fr souls = Translations$souls$fr.internal(_root);
 }
 
 // Path: app
@@ -2792,6 +2795,451 @@ class Translations$biblePlan$fr {
 	String uncheck({required Object chapter}) => '${chapter} : lu';
 }
 
+// Path: teachings
+class Translations$teachings$fr {
+	Translations$teachings$fr.internal(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// fr: 'Enseignements'
+	String get title => 'Enseignements';
+
+	/// fr: 'Écoute la Parole, où que tu sois'
+	String get subtitle => 'Écoute la Parole, où que tu sois';
+
+	/// fr: 'Chercher un message, un orateur…'
+	String get search => 'Chercher un message, un orateur…';
+
+	/// fr: 'Tous'
+	String get all => 'Tous';
+
+	/// fr: 'Téléchargés'
+	String get downloadedChip => 'Téléchargés';
+
+	/// fr: '(one) {{n} message} (other) {{n} messages}'
+	String count({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('fr'))(n,
+		one: '${n} message',
+		other: '${n} messages',
+	);
+
+	/// fr: 'Aucun enseignement pour l'instant.'
+	String get empty => 'Aucun enseignement pour l\'instant.';
+
+	/// fr: 'Aucun enseignement ne correspond.'
+	String get none => 'Aucun enseignement ne correspond.';
+
+	/// fr: 'Aucun message téléchargé. Touche le nuage d'un message pour l'écouter sans réseau.'
+	String get noneDownloaded => 'Aucun message téléchargé. Touche le nuage d\'un message pour l\'écouter sans réseau.';
+
+	/// fr: 'Voir plus'
+	String get more => 'Voir plus';
+
+	/// fr: 'Sans réseau : voici les messages gardés sur ton téléphone.'
+	String get offline => 'Sans réseau : voici les messages gardés sur ton téléphone.';
+
+	/// fr: 'Écouter'
+	String get play => 'Écouter';
+
+	/// fr: 'Pause'
+	String get pause => 'Pause';
+
+	/// fr: 'Écouté'
+	String get heard => 'Écouté';
+
+	/// fr: 'Télécharger pour écouter sans réseau'
+	String get download => 'Télécharger pour écouter sans réseau';
+
+	/// fr: 'Gardé sur ton téléphone'
+	String get downloaded => 'Gardé sur ton téléphone';
+
+	/// fr: 'Retiré du téléphone'
+	String get removed => 'Retiré du téléphone';
+
+	/// fr: 'Arrêter le téléchargement'
+	String get cancelDownload => 'Arrêter le téléchargement';
+
+	/// fr: 'Retirer du téléphone'
+	String get removeDownload => 'Retirer du téléphone';
+
+	/// fr: 'Reculer de 15 secondes'
+	String get back15 => 'Reculer de 15 secondes';
+
+	/// fr: 'Avancer de 15 secondes'
+	String get forward15 => 'Avancer de 15 secondes';
+
+	/// fr: 'Vitesse {speed}'
+	String speed({required Object speed}) => 'Vitesse ${speed}';
+
+	/// fr: 'Message du {date}'
+	String recordedOn({required Object date}) => 'Message du ${date}';
+
+	/// fr: 'Prédications et enseignements à écouter'
+	String get moreSubtitle => 'Prédications et enseignements à écouter';
+}
+
+// Path: memorize
+class Translations$memorize$fr {
+	Translations$memorize$fr.internal(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// fr: 'Mémorisation'
+	String get title => 'Mémorisation';
+
+	/// fr: 'Cache la Parole dans ton cœur'
+	String get subtitle => 'Cache la Parole dans ton cœur';
+
+	/// fr: 'À réviser'
+	String get toReview => 'À réviser';
+
+	/// fr: 'En cours'
+	String get learning => 'En cours';
+
+	/// fr: 'Sus'
+	String get known => 'Sus';
+
+	/// fr: '(one) {Réviser {n} verset} (other) {Réviser {n} versets}'
+	String reviewCount({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('fr'))(n,
+		one: 'Réviser ${n} verset',
+		other: 'Réviser ${n} versets',
+	);
+
+	/// fr: 'Rien à réviser aujourd'hui.'
+	String get nothingDue => 'Rien à réviser aujourd\'hui.';
+
+	/// fr: 'Prochaine révision : {date}.'
+	String nextOn({required Object date}) => 'Prochaine révision : ${date}.';
+
+	/// fr: 'demain'
+	String get tomorrow => 'demain';
+
+	/// fr: 'Rappel des révisions'
+	String get reminder => 'Rappel des révisions';
+
+	/// fr: 'Heure du rappel'
+	String get reminderAt => 'Heure du rappel';
+
+	/// fr: 'Mes versets'
+	String get myVerses => 'Mes versets';
+
+	/// fr: 'Pour en ajouter un : dans la Bible, touche un verset puis le cerveau de la barre.'
+	String get howToAdd => 'Pour en ajouter un : dans la Bible, touche un verset puis le cerveau de la barre.';
+
+	/// fr: 'Aucun verset à mémoriser pour l'instant.'
+	String get empty => 'Aucun verset à mémoriser pour l\'instant.';
+
+	/// fr: 'Ouvrir la Bible'
+	String get openBible => 'Ouvrir la Bible';
+
+	/// fr: 'En retard'
+	String get late => 'En retard';
+
+	/// fr: 'Aujourd'hui'
+	String get today => 'Aujourd\'hui';
+
+	/// fr: '(one) {Dans {n} jour} (other) {Dans {n} jours}'
+	String dueIn({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('fr'))(n,
+		one: 'Dans ${n} jour',
+		other: 'Dans ${n} jours',
+	);
+
+	Map<String, String> get stages => {
+		'fresh': 'Nouveau',
+		'learning': 'En cours',
+		'known': 'Su',
+	};
+
+	/// fr: '{stage} · oublié {lapses} fois'
+	String stats({required Object stage, required Object lapses}) => '${stage} · oublié ${lapses} fois';
+
+	/// fr: 'Réviser maintenant'
+	String get reviewNow => 'Réviser maintenant';
+
+	/// fr: 'Retirer'
+	String get remove => 'Retirer';
+
+	/// fr: 'Retirer ce verset ?'
+	String get removeTitle => 'Retirer ce verset ?';
+
+	/// fr: 'Sa progression sera effacée.'
+	String get removeText => 'Sa progression sera effacée.';
+
+	/// fr: 'Verset retiré'
+	String get removed => 'Verset retiré';
+
+	/// fr: '{done} / {total}'
+	String progress({required Object done, required Object total}) => '${done} / ${total}';
+
+	/// fr: 'Voir le verset'
+	String get show => 'Voir le verset';
+
+	Map<String, String> get hints => {
+		'full': 'Texte',
+		'gaps': 'Trous',
+		'initials': 'Initiales',
+		'none': 'Rien',
+	};
+
+	/// fr: 'Récite le verset, puis vérifie.'
+	String get recite => 'Récite le verset, puis vérifie.';
+
+	Map<String, String> get grades => {
+		'again': 'Encore',
+		'hard': 'Difficile',
+		'good': 'Bien',
+		'easy': 'Facile',
+	};
+
+	/// fr: 'Tout de suite'
+	String get now => 'Tout de suite';
+
+	/// fr: '(one) {{n} jour} (other) {{n} jours}'
+	String later({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('fr'))(n,
+		one: '${n} jour',
+		other: '${n} jours',
+	);
+
+	/// fr: 'Révisions terminées !'
+	String get doneTitle => 'Révisions terminées !';
+
+	/// fr: '(one) {Tu as révisé {n} verset. Que la Parole demeure en toi !} (other) {Tu as révisé {n} versets. Que la Parole demeure en toi !}'
+	String doneText({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('fr'))(n,
+		one: 'Tu as révisé ${n} verset. Que la Parole demeure en toi !',
+		other: 'Tu as révisé ${n} versets. Que la Parole demeure en toi !',
+	);
+
+	/// fr: 'Retour'
+	String get back => 'Retour';
+
+	/// fr: 'Tes versets à réviser'
+	String get reminderTitle => 'Tes versets à réviser';
+
+	/// fr: '(one) {{n} verset t'attend aujourd'hui.} (other) {{n} versets t'attendent aujourd'hui.}'
+	String reminderBody({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('fr'))(n,
+		one: '${n} verset t\'attend aujourd\'hui.',
+		other: '${n} versets t\'attendent aujourd\'hui.',
+	);
+
+	/// fr: 'Mémorisation'
+	String get reminderChannel => 'Mémorisation';
+
+	/// fr: 'Versets à réviser'
+	String get homeTitle => 'Versets à réviser';
+
+	/// fr: '(one) {{n} verset t'attend} (other) {{n} versets t'attendent}'
+	String homeText({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('fr'))(n,
+		one: '${n} verset t\'attend',
+		other: '${n} versets t\'attendent',
+	);
+
+	/// fr: 'Mémoriser des versets'
+	String get menu => 'Mémoriser des versets';
+
+	/// fr: 'Mémoriser'
+	String get memorize => 'Mémoriser';
+
+	/// fr: 'Ajouté à tes versets à mémoriser'
+	String get added => 'Ajouté à tes versets à mémoriser';
+
+	/// fr: 'Ce passage est déjà dans tes versets'
+	String get already => 'Ce passage est déjà dans tes versets';
+}
+
+// Path: souls
+class Translations$souls$fr {
+	Translations$souls$fr.internal(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// fr: 'Suivi des âmes'
+	String get title => 'Suivi des âmes';
+
+	/// fr: '« Celui qui gagne des âmes est sage. » Proverbes 11:30'
+	String get subtitle => '« Celui qui gagne des âmes est sage. » Proverbes 11:30';
+
+	/// fr: 'Chercher une personne…'
+	String get search => 'Chercher une personne…';
+
+	/// fr: 'Personnes'
+	String get people => 'Personnes';
+
+	/// fr: 'Ont reçu Jésus'
+	String get received => 'Ont reçu Jésus';
+
+	/// fr: 'À recontacter'
+	String get toContact => 'À recontacter';
+
+	/// fr: 'Toutes'
+	String get all => 'Toutes';
+
+	Map<String, String> get stages => {
+		'met': 'Rencontré(e)',
+		'interested': 'Intéressé(e)',
+		'received': 'A reçu Jésus',
+		'followUp': 'En affermissement',
+		'church': 'Vient à l\'église',
+		'baptized': 'Baptisé(e)',
+	};
+
+	/// fr: 'À recontacter'
+	String get contactSection => 'À recontacter';
+
+	/// fr: 'Toutes les personnes'
+	String get everyone => 'Toutes les personnes';
+
+	/// fr: 'À recontacter aujourd'hui'
+	String get contactToday => 'À recontacter aujourd\'hui';
+
+	/// fr: '(one) {En retard de {n} jour} (other) {En retard de {n} jours}'
+	String contactLate({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('fr'))(n,
+		one: 'En retard de ${n} jour',
+		other: 'En retard de ${n} jours',
+	);
+
+	/// fr: 'Prochain contact le {date}'
+	String contactOn({required Object date}) => 'Prochain contact le ${date}';
+
+	/// fr: 'Note ici les personnes que tu évangélises : prie pour elles et suis-les jusqu'à l'église.'
+	String get empty => 'Note ici les personnes que tu évangélises : prie pour elles et suis-les jusqu\'à l\'église.';
+
+	/// fr: 'Personne ne correspond.'
+	String get none => 'Personne ne correspond.';
+
+	/// fr: 'Ajouter'
+	String get add => 'Ajouter';
+
+	/// fr: 'Nouvelle personne'
+	String get addTitle => 'Nouvelle personne';
+
+	/// fr: 'Modifier'
+	String get editTitle => 'Modifier';
+
+	/// fr: 'Nom'
+	String get name => 'Nom';
+
+	/// fr: 'Écris son nom.'
+	String get nameRequired => 'Écris son nom.';
+
+	/// fr: 'Téléphone'
+	String get phone => 'Téléphone';
+
+	/// fr: 'Où vous vous êtes rencontrés'
+	String get place => 'Où vous vous êtes rencontrés';
+
+	/// fr: 'Rencontré(e) le'
+	String get metOn => 'Rencontré(e) le';
+
+	/// fr: 'Où en est cette personne ?'
+	String get stage => 'Où en est cette personne ?';
+
+	/// fr: 'Une note (facultatif)'
+	String get firstNote => 'Une note (facultatif)';
+
+	/// fr: 'Ce qui a été dit, ses sujets de prière…'
+	String get noteHint => 'Ce qui a été dit, ses sujets de prière…';
+
+	/// fr: 'Enregistrer'
+	String get save => 'Enregistrer';
+
+	/// fr: 'Enregistré'
+	String get saved => 'Enregistré';
+
+	/// fr: 'Appeler'
+	String get call => 'Appeler';
+
+	/// fr: 'WhatsApp'
+	String get whatsApp => 'WhatsApp';
+
+	/// fr: 'SMS'
+	String get sms => 'SMS';
+
+	/// fr: 'Modifier'
+	String get edit => 'Modifier';
+
+	/// fr: 'Supprimer'
+	String get delete => 'Supprimer';
+
+	/// fr: 'Supprimer {name} ?'
+	String deleteTitle({required Object name}) => 'Supprimer ${name} ?';
+
+	/// fr: 'Ses notes seront effacées de ton téléphone.'
+	String get deleteText => 'Ses notes seront effacées de ton téléphone.';
+
+	/// fr: 'Supprimé'
+	String get deleted => 'Supprimé';
+
+	/// fr: 'Prochain contact'
+	String get nextContact => 'Prochain contact';
+
+	/// fr: 'Planifier un rappel'
+	String get plan => 'Planifier un rappel';
+
+	/// fr: 'Changer la date'
+	String get change => 'Changer la date';
+
+	/// fr: 'Retirer le rappel'
+	String get clear => 'Retirer le rappel';
+
+	/// fr: 'Aucun rappel prévu'
+	String get noContact => 'Aucun rappel prévu';
+
+	/// fr: 'Rencontré(e) le {date}'
+	String metAt({required Object date}) => 'Rencontré(e) le ${date}';
+
+	/// fr: 'Notes'
+	String get notes => 'Notes';
+
+	/// fr: 'Ajouter la note'
+	String get addNote => 'Ajouter la note';
+
+	/// fr: 'Aucune note pour l'instant.'
+	String get noNotes => 'Aucune note pour l\'instant.';
+
+	/// fr: 'Supprimer la note'
+	String get deleteNote => 'Supprimer la note';
+
+	/// fr: 'Exporter (tableur)'
+	String get export => 'Exporter (tableur)';
+
+	late final Translations$souls$csv$fr csv = Translations$souls$csv$fr.internal(_root);
+
+	/// fr: 'Verrouiller avec {method}'
+	String lock({required Object method}) => 'Verrouiller avec ${method}';
+
+	/// fr: 'Ton suivi des âmes est verrouillé'
+	String get lockedTitle => 'Ton suivi des âmes est verrouillé';
+
+	/// fr: 'Déverrouiller'
+	String get unlock => 'Déverrouiller';
+
+	/// fr: 'Ouvre ton suivi des âmes'
+	String get unlockReason => 'Ouvre ton suivi des âmes';
+
+	/// fr: 'Ces informations restent sur ton téléphone : elles ne sont jamais envoyées.'
+	String get privacy => 'Ces informations restent sur ton téléphone : elles ne sont jamais envoyées.';
+
+	/// fr: 'Suivi des âmes'
+	String get reminderTitle => 'Suivi des âmes';
+
+	/// fr: '(one) {{n} personne à recontacter aujourd'hui.} (other) {{n} personnes à recontacter aujourd'hui.}'
+	String reminderBody({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('fr'))(n,
+		one: '${n} personne à recontacter aujourd\'hui.',
+		other: '${n} personnes à recontacter aujourd\'hui.',
+	);
+
+	/// fr: 'Suivi des âmes'
+	String get reminderChannel => 'Suivi des âmes';
+
+	/// fr: 'Les personnes que tu évangélises'
+	String get moreSubtitle => 'Les personnes que tu évangélises';
+}
+
 // Path: onboarding.reports
 class Translations$onboarding$reports$fr {
 	Translations$onboarding$reports$fr.internal(this._root);
@@ -4910,6 +5358,36 @@ class Translations$seekFirst$shield$fr {
 	String get notificationBody => 'Touche ici pour remplir ton compte rendu.';
 }
 
+// Path: souls.csv
+class Translations$souls$csv$fr {
+	Translations$souls$csv$fr.internal(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// fr: 'Nom'
+	String get name => 'Nom';
+
+	/// fr: 'Téléphone'
+	String get phone => 'Téléphone';
+
+	/// fr: 'Lieu'
+	String get place => 'Lieu';
+
+	/// fr: 'Rencontré le'
+	String get metOn => 'Rencontré le';
+
+	/// fr: 'Étape'
+	String get stage => 'Étape';
+
+	/// fr: 'Prochain contact'
+	String get next => 'Prochain contact';
+
+	/// fr: 'Notes'
+	String get notes => 'Notes';
+}
+
 // Path: reports.units.chapters
 class Translations$reports$units$chapters$fr {
 	Translations$reports$units$chapters$fr.internal(this._root);
@@ -6745,6 +7223,152 @@ extension on Translations {
 			'biblePlan.homeTitle' => 'Lecture du jour',
 			'biblePlan.check' => ({required Object chapter}) => 'Marquer ${chapter} comme lu',
 			'biblePlan.uncheck' => ({required Object chapter}) => '${chapter} : lu',
+			'teachings.title' => 'Enseignements',
+			'teachings.subtitle' => 'Écoute la Parole, où que tu sois',
+			'teachings.search' => 'Chercher un message, un orateur…',
+			'teachings.all' => 'Tous',
+			'teachings.downloadedChip' => 'Téléchargés',
+			'teachings.count' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('fr'))(n, one: '${n} message', other: '${n} messages', ), 
+			'teachings.empty' => 'Aucun enseignement pour l\'instant.',
+			'teachings.none' => 'Aucun enseignement ne correspond.',
+			'teachings.noneDownloaded' => 'Aucun message téléchargé. Touche le nuage d\'un message pour l\'écouter sans réseau.',
+			'teachings.more' => 'Voir plus',
+			'teachings.offline' => 'Sans réseau : voici les messages gardés sur ton téléphone.',
+			'teachings.play' => 'Écouter',
+			'teachings.pause' => 'Pause',
+			'teachings.heard' => 'Écouté',
+			'teachings.download' => 'Télécharger pour écouter sans réseau',
+			'teachings.downloaded' => 'Gardé sur ton téléphone',
+			'teachings.removed' => 'Retiré du téléphone',
+			'teachings.cancelDownload' => 'Arrêter le téléchargement',
+			'teachings.removeDownload' => 'Retirer du téléphone',
+			'teachings.back15' => 'Reculer de 15 secondes',
+			'teachings.forward15' => 'Avancer de 15 secondes',
+			'teachings.speed' => ({required Object speed}) => 'Vitesse ${speed}',
+			'teachings.recordedOn' => ({required Object date}) => 'Message du ${date}',
+			'teachings.moreSubtitle' => 'Prédications et enseignements à écouter',
+			'memorize.title' => 'Mémorisation',
+			'memorize.subtitle' => 'Cache la Parole dans ton cœur',
+			'memorize.toReview' => 'À réviser',
+			'memorize.learning' => 'En cours',
+			'memorize.known' => 'Sus',
+			'memorize.reviewCount' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('fr'))(n, one: 'Réviser ${n} verset', other: 'Réviser ${n} versets', ), 
+			'memorize.nothingDue' => 'Rien à réviser aujourd\'hui.',
+			'memorize.nextOn' => ({required Object date}) => 'Prochaine révision : ${date}.',
+			'memorize.tomorrow' => 'demain',
+			'memorize.reminder' => 'Rappel des révisions',
+			'memorize.reminderAt' => 'Heure du rappel',
+			'memorize.myVerses' => 'Mes versets',
+			'memorize.howToAdd' => 'Pour en ajouter un : dans la Bible, touche un verset puis le cerveau de la barre.',
+			'memorize.empty' => 'Aucun verset à mémoriser pour l\'instant.',
+			'memorize.openBible' => 'Ouvrir la Bible',
+			'memorize.late' => 'En retard',
+			'memorize.today' => 'Aujourd\'hui',
+			'memorize.dueIn' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('fr'))(n, one: 'Dans ${n} jour', other: 'Dans ${n} jours', ), 
+			'memorize.stages.fresh' => 'Nouveau',
+			'memorize.stages.learning' => 'En cours',
+			'memorize.stages.known' => 'Su',
+			'memorize.stats' => ({required Object stage, required Object lapses}) => '${stage} · oublié ${lapses} fois',
+			'memorize.reviewNow' => 'Réviser maintenant',
+			'memorize.remove' => 'Retirer',
+			'memorize.removeTitle' => 'Retirer ce verset ?',
+			'memorize.removeText' => 'Sa progression sera effacée.',
+			'memorize.removed' => 'Verset retiré',
+			'memorize.progress' => ({required Object done, required Object total}) => '${done} / ${total}',
+			'memorize.show' => 'Voir le verset',
+			'memorize.hints.full' => 'Texte',
+			'memorize.hints.gaps' => 'Trous',
+			'memorize.hints.initials' => 'Initiales',
+			'memorize.hints.none' => 'Rien',
+			'memorize.recite' => 'Récite le verset, puis vérifie.',
+			'memorize.grades.again' => 'Encore',
+			'memorize.grades.hard' => 'Difficile',
+			'memorize.grades.good' => 'Bien',
+			'memorize.grades.easy' => 'Facile',
+			'memorize.now' => 'Tout de suite',
+			'memorize.later' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('fr'))(n, one: '${n} jour', other: '${n} jours', ), 
+			'memorize.doneTitle' => 'Révisions terminées !',
+			'memorize.doneText' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('fr'))(n, one: 'Tu as révisé ${n} verset. Que la Parole demeure en toi !', other: 'Tu as révisé ${n} versets. Que la Parole demeure en toi !', ), 
+			'memorize.back' => 'Retour',
+			'memorize.reminderTitle' => 'Tes versets à réviser',
+			'memorize.reminderBody' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('fr'))(n, one: '${n} verset t\'attend aujourd\'hui.', other: '${n} versets t\'attendent aujourd\'hui.', ), 
+			'memorize.reminderChannel' => 'Mémorisation',
+			'memorize.homeTitle' => 'Versets à réviser',
+			'memorize.homeText' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('fr'))(n, one: '${n} verset t\'attend', other: '${n} versets t\'attendent', ), 
+			'memorize.menu' => 'Mémoriser des versets',
+			'memorize.memorize' => 'Mémoriser',
+			'memorize.added' => 'Ajouté à tes versets à mémoriser',
+			'memorize.already' => 'Ce passage est déjà dans tes versets',
+			'souls.title' => 'Suivi des âmes',
+			'souls.subtitle' => '« Celui qui gagne des âmes est sage. » Proverbes 11:30',
+			'souls.search' => 'Chercher une personne…',
+			'souls.people' => 'Personnes',
+			'souls.received' => 'Ont reçu Jésus',
+			'souls.toContact' => 'À recontacter',
+			'souls.all' => 'Toutes',
+			'souls.stages.met' => 'Rencontré(e)',
+			'souls.stages.interested' => 'Intéressé(e)',
+			'souls.stages.received' => 'A reçu Jésus',
+			'souls.stages.followUp' => 'En affermissement',
+			'souls.stages.church' => 'Vient à l\'église',
+			'souls.stages.baptized' => 'Baptisé(e)',
+			'souls.contactSection' => 'À recontacter',
+			'souls.everyone' => 'Toutes les personnes',
+			'souls.contactToday' => 'À recontacter aujourd\'hui',
+			'souls.contactLate' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('fr'))(n, one: 'En retard de ${n} jour', other: 'En retard de ${n} jours', ), 
+			'souls.contactOn' => ({required Object date}) => 'Prochain contact le ${date}',
+			'souls.empty' => 'Note ici les personnes que tu évangélises : prie pour elles et suis-les jusqu\'à l\'église.',
+			'souls.none' => 'Personne ne correspond.',
+			'souls.add' => 'Ajouter',
+			'souls.addTitle' => 'Nouvelle personne',
+			'souls.editTitle' => 'Modifier',
+			'souls.name' => 'Nom',
+			'souls.nameRequired' => 'Écris son nom.',
+			'souls.phone' => 'Téléphone',
+			'souls.place' => 'Où vous vous êtes rencontrés',
+			'souls.metOn' => 'Rencontré(e) le',
+			'souls.stage' => 'Où en est cette personne ?',
+			'souls.firstNote' => 'Une note (facultatif)',
+			'souls.noteHint' => 'Ce qui a été dit, ses sujets de prière…',
+			'souls.save' => 'Enregistrer',
+			'souls.saved' => 'Enregistré',
+			'souls.call' => 'Appeler',
+			'souls.whatsApp' => 'WhatsApp',
+			'souls.sms' => 'SMS',
+			'souls.edit' => 'Modifier',
+			'souls.delete' => 'Supprimer',
+			'souls.deleteTitle' => ({required Object name}) => 'Supprimer ${name} ?',
+			'souls.deleteText' => 'Ses notes seront effacées de ton téléphone.',
+			'souls.deleted' => 'Supprimé',
+			'souls.nextContact' => 'Prochain contact',
+			'souls.plan' => 'Planifier un rappel',
+			'souls.change' => 'Changer la date',
+			'souls.clear' => 'Retirer le rappel',
+			'souls.noContact' => 'Aucun rappel prévu',
+			'souls.metAt' => ({required Object date}) => 'Rencontré(e) le ${date}',
+			'souls.notes' => 'Notes',
+			'souls.addNote' => 'Ajouter la note',
+			'souls.noNotes' => 'Aucune note pour l\'instant.',
+			'souls.deleteNote' => 'Supprimer la note',
+			'souls.export' => 'Exporter (tableur)',
+			'souls.csv.name' => 'Nom',
+			'souls.csv.phone' => 'Téléphone',
+			'souls.csv.place' => 'Lieu',
+			'souls.csv.metOn' => 'Rencontré le',
+			'souls.csv.stage' => 'Étape',
+			_ => null,
+		} ?? switch (path) {
+			'souls.csv.next' => 'Prochain contact',
+			'souls.csv.notes' => 'Notes',
+			'souls.lock' => ({required Object method}) => 'Verrouiller avec ${method}',
+			'souls.lockedTitle' => 'Ton suivi des âmes est verrouillé',
+			'souls.unlock' => 'Déverrouiller',
+			'souls.unlockReason' => 'Ouvre ton suivi des âmes',
+			'souls.privacy' => 'Ces informations restent sur ton téléphone : elles ne sont jamais envoyées.',
+			'souls.reminderTitle' => 'Suivi des âmes',
+			'souls.reminderBody' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('fr'))(n, one: '${n} personne à recontacter aujourd\'hui.', other: '${n} personnes à recontacter aujourd\'hui.', ), 
+			'souls.reminderChannel' => 'Suivi des âmes',
+			'souls.moreSubtitle' => 'Les personnes que tu évangélises',
 			_ => null,
 		};
 	}

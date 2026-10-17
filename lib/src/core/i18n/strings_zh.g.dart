@@ -78,6 +78,9 @@ class TranslationsZh extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _Translations$seekFirst$zh seekFirst = _Translations$seekFirst$zh._(_root);
 	@override late final _Translations$documents$zh documents = _Translations$documents$zh._(_root);
 	@override late final _Translations$biblePlan$zh biblePlan = _Translations$biblePlan$zh._(_root);
+	@override late final _Translations$teachings$zh teachings = _Translations$teachings$zh._(_root);
+	@override late final _Translations$memorize$zh memorize = _Translations$memorize$zh._(_root);
+	@override late final _Translations$souls$zh souls = _Translations$souls$zh._(_root);
 }
 
 // Path: app
@@ -1308,6 +1311,206 @@ class _Translations$biblePlan$zh extends Translations$biblePlan$fr {
 	@override String uncheck({required Object chapter}) => '${chapter}：已读';
 }
 
+// Path: teachings
+class _Translations$teachings$zh extends Translations$teachings$fr {
+	_Translations$teachings$zh._(TranslationsZh root) : this._root = root, super.internal(root);
+
+	final TranslationsZh _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => '教导';
+	@override String get subtitle => '随时随地聆听圣言';
+	@override String get search => '搜索信息或讲员…';
+	@override String get all => '全部';
+	@override String get downloadedChip => '已下载';
+	@override String count({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n,
+		one: '${n} 篇信息',
+		other: '${n} 篇信息',
+	);
+	@override String get empty => '暂时还没有教导。';
+	@override String get none => '没有符合的教导。';
+	@override String get noneDownloaded => '还没有下载信息。点信息旁的云朵，即可离线收听。';
+	@override String get more => '查看更多';
+	@override String get offline => '没有网络：这是保存在手机上的信息。';
+	@override String get play => '收听';
+	@override String get pause => '暂停';
+	@override String get heard => '已听完';
+	@override String get download => '下载以便离线收听';
+	@override String get downloaded => '已保存到手机';
+	@override String get removed => '已从手机移除';
+	@override String get cancelDownload => '停止下载';
+	@override String get removeDownload => '从手机移除';
+	@override String get back15 => '后退 15 秒';
+	@override String get forward15 => '前进 15 秒';
+	@override String speed({required Object speed}) => '速度 ${speed}';
+	@override String recordedOn({required Object date}) => '${date} 的信息';
+	@override String get moreSubtitle => '可收听的讲道与教导';
+}
+
+// Path: memorize
+class _Translations$memorize$zh extends Translations$memorize$fr {
+	_Translations$memorize$zh._(TranslationsZh root) : this._root = root, super.internal(root);
+
+	final TranslationsZh _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => '背经';
+	@override String get subtitle => '将神的话藏在心里';
+	@override String get toReview => '待复习';
+	@override String get learning => '学习中';
+	@override String get known => '已熟记';
+	@override String reviewCount({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n,
+		one: '复习 ${n} 节经文',
+		other: '复习 ${n} 节经文',
+	);
+	@override String get nothingDue => '今天没有要复习的。';
+	@override String nextOn({required Object date}) => '下次复习：${date}。';
+	@override String get tomorrow => '明天';
+	@override String get reminder => '复习提醒';
+	@override String get reminderAt => '提醒时间';
+	@override String get myVerses => '我的经文';
+	@override String get howToAdd => '添加方法：在圣经中点一节经文，再点工具栏里的大脑图标。';
+	@override String get empty => '还没有要背的经文。';
+	@override String get openBible => '打开圣经';
+	@override String get late => '已逾期';
+	@override String get today => '今天';
+	@override String dueIn({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n,
+		one: '${n} 天后',
+		other: '${n} 天后',
+	);
+	@override Map<String, String> get stages => {
+		'fresh': '新',
+		'learning': '学习中',
+		'known': '已熟记',
+	};
+	@override String stats({required Object stage, required Object lapses}) => '${stage} · 忘记 ${lapses} 次';
+	@override String get reviewNow => '现在复习';
+	@override String get remove => '移除';
+	@override String get removeTitle => '移除这节经文？';
+	@override String get removeText => '它的进度将被清除。';
+	@override String get removed => '经文已移除';
+	@override String progress({required Object done, required Object total}) => '${done} / ${total}';
+	@override String get show => '显示经文';
+	@override Map<String, String> get hints => {
+		'full': '全文',
+		'gaps': '填空',
+		'initials': '首字',
+		'none': '无提示',
+	};
+	@override String get recite => '先背诵经文，再核对。';
+	@override Map<String, String> get grades => {
+		'again': '再来',
+		'hard': '困难',
+		'good': '良好',
+		'easy': '容易',
+	};
+	@override String get now => '马上';
+	@override String later({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n,
+		one: '${n} 天',
+		other: '${n} 天',
+	);
+	@override String get doneTitle => '复习完成！';
+	@override String doneText({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n,
+		one: '你复习了 ${n} 节经文。愿主的道住在你心里！',
+		other: '你复习了 ${n} 节经文。愿主的道住在你心里！',
+	);
+	@override String get back => '返回';
+	@override String get reminderTitle => '你要复习的经文';
+	@override String reminderBody({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n,
+		one: '今天有 ${n} 节经文等你复习。',
+		other: '今天有 ${n} 节经文等你复习。',
+	);
+	@override String get reminderChannel => '背经';
+	@override String get homeTitle => '待复习经文';
+	@override String homeText({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n,
+		one: '${n} 节经文等你',
+		other: '${n} 节经文等你',
+	);
+	@override String get menu => '背诵经文';
+	@override String get memorize => '背诵';
+	@override String get added => '已加入背经列表';
+	@override String get already => '这段经文已在你的列表中';
+}
+
+// Path: souls
+class _Translations$souls$zh extends Translations$souls$fr {
+	_Translations$souls$zh._(TranslationsZh root) : this._root = root, super.internal(root);
+
+	final TranslationsZh _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => '灵魂跟进';
+	@override String get subtitle => '「有智慧的必能得人。」箴言 11:30';
+	@override String get search => '搜索某人…';
+	@override String get people => '人数';
+	@override String get received => '已接受耶稣';
+	@override String get toContact => '待联系';
+	@override String get all => '全部';
+	@override Map<String, String> get stages => {
+		'met': '已结识',
+		'interested': '有兴趣',
+		'received': '已接受耶稣',
+		'followUp': '坚固中',
+		'church': '来教会',
+		'baptized': '已受洗',
+	};
+	@override String get contactSection => '待再次联系';
+	@override String get everyone => '所有人';
+	@override String get contactToday => '今天联系';
+	@override String contactLate({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n,
+		one: '逾期 ${n} 天',
+		other: '逾期 ${n} 天',
+	);
+	@override String contactOn({required Object date}) => '下次联系：${date}';
+	@override String get empty => '在这里记下你传福音的对象：为他们祷告，陪伴他们走进教会。';
+	@override String get none => '没有符合的人。';
+	@override String get add => '添加';
+	@override String get addTitle => '新增人员';
+	@override String get editTitle => '编辑';
+	@override String get name => '姓名';
+	@override String get nameRequired => '请填写姓名。';
+	@override String get phone => '电话';
+	@override String get place => '在哪里认识';
+	@override String get metOn => '认识日期';
+	@override String get stage => '此人目前的状况？';
+	@override String get firstNote => '备注（可选）';
+	@override String get noteHint => '谈话内容、代祷事项…';
+	@override String get save => '保存';
+	@override String get saved => '已保存';
+	@override String get call => '打电话';
+	@override String get whatsApp => 'WhatsApp';
+	@override String get sms => '短信';
+	@override String get edit => '编辑';
+	@override String get delete => '删除';
+	@override String deleteTitle({required Object name}) => '删除 ${name}？';
+	@override String get deleteText => '相关备注将从手机中删除。';
+	@override String get deleted => '已删除';
+	@override String get nextContact => '下次联系';
+	@override String get plan => '设置提醒';
+	@override String get change => '更改日期';
+	@override String get clear => '取消提醒';
+	@override String get noContact => '没有提醒';
+	@override String metAt({required Object date}) => '${date} 认识';
+	@override String get notes => '备注';
+	@override String get addNote => '添加备注';
+	@override String get noNotes => '还没有备注。';
+	@override String get deleteNote => '删除备注';
+	@override String get export => '导出（表格）';
+	@override late final _Translations$souls$csv$zh csv = _Translations$souls$csv$zh._(_root);
+	@override String lock({required Object method}) => '使用${method}锁定';
+	@override String get lockedTitle => '灵魂跟进已锁定';
+	@override String get unlock => '解锁';
+	@override String get unlockReason => '打开灵魂跟进';
+	@override String get privacy => '这些信息只保存在你的手机上，绝不会上传。';
+	@override String get reminderTitle => '灵魂跟进';
+	@override String reminderBody({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n,
+		one: '今天要联系 ${n} 人。',
+		other: '今天要联系 ${n} 人。',
+	);
+	@override String get reminderChannel => '灵魂跟进';
+	@override String get moreSubtitle => '你传福音的对象';
+}
+
 // Path: onboarding.reports
 class _Translations$onboarding$reports$zh extends Translations$onboarding$reports$fr {
 	_Translations$onboarding$reports$zh._(TranslationsZh root) : this._root = root, super.internal(root);
@@ -2338,6 +2541,22 @@ class _Translations$seekFirst$shield$zh extends Translations$seekFirst$shield$fr
 	@override String pause({required Object n}) => '暂停 5 分钟（${n}/3）';
 	@override String get notificationTitle => '先求神';
 	@override String get notificationBody => '轻点此处填写你的汇报。';
+}
+
+// Path: souls.csv
+class _Translations$souls$csv$zh extends Translations$souls$csv$fr {
+	_Translations$souls$csv$zh._(TranslationsZh root) : this._root = root, super.internal(root);
+
+	final TranslationsZh _root; // ignore: unused_field
+
+	// Translations
+	@override String get name => '姓名';
+	@override String get phone => '电话';
+	@override String get place => '地点';
+	@override String get metOn => '认识日期';
+	@override String get stage => '阶段';
+	@override String get next => '下次联系';
+	@override String get notes => '备注';
 }
 
 // Path: reports.units.chapters
@@ -4012,6 +4231,152 @@ extension on TranslationsZh {
 			'biblePlan.homeTitle' => '今日读经',
 			'biblePlan.check' => ({required Object chapter}) => '将${chapter}标为已读',
 			'biblePlan.uncheck' => ({required Object chapter}) => '${chapter}：已读',
+			'teachings.title' => '教导',
+			'teachings.subtitle' => '随时随地聆听圣言',
+			'teachings.search' => '搜索信息或讲员…',
+			'teachings.all' => '全部',
+			'teachings.downloadedChip' => '已下载',
+			'teachings.count' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n, one: '${n} 篇信息', other: '${n} 篇信息', ), 
+			'teachings.empty' => '暂时还没有教导。',
+			'teachings.none' => '没有符合的教导。',
+			'teachings.noneDownloaded' => '还没有下载信息。点信息旁的云朵，即可离线收听。',
+			'teachings.more' => '查看更多',
+			'teachings.offline' => '没有网络：这是保存在手机上的信息。',
+			'teachings.play' => '收听',
+			'teachings.pause' => '暂停',
+			'teachings.heard' => '已听完',
+			'teachings.download' => '下载以便离线收听',
+			'teachings.downloaded' => '已保存到手机',
+			'teachings.removed' => '已从手机移除',
+			'teachings.cancelDownload' => '停止下载',
+			'teachings.removeDownload' => '从手机移除',
+			'teachings.back15' => '后退 15 秒',
+			'teachings.forward15' => '前进 15 秒',
+			'teachings.speed' => ({required Object speed}) => '速度 ${speed}',
+			'teachings.recordedOn' => ({required Object date}) => '${date} 的信息',
+			'teachings.moreSubtitle' => '可收听的讲道与教导',
+			'memorize.title' => '背经',
+			'memorize.subtitle' => '将神的话藏在心里',
+			'memorize.toReview' => '待复习',
+			'memorize.learning' => '学习中',
+			'memorize.known' => '已熟记',
+			'memorize.reviewCount' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n, one: '复习 ${n} 节经文', other: '复习 ${n} 节经文', ), 
+			'memorize.nothingDue' => '今天没有要复习的。',
+			'memorize.nextOn' => ({required Object date}) => '下次复习：${date}。',
+			'memorize.tomorrow' => '明天',
+			'memorize.reminder' => '复习提醒',
+			'memorize.reminderAt' => '提醒时间',
+			'memorize.myVerses' => '我的经文',
+			'memorize.howToAdd' => '添加方法：在圣经中点一节经文，再点工具栏里的大脑图标。',
+			'memorize.empty' => '还没有要背的经文。',
+			'memorize.openBible' => '打开圣经',
+			'memorize.late' => '已逾期',
+			'memorize.today' => '今天',
+			'memorize.dueIn' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n, one: '${n} 天后', other: '${n} 天后', ), 
+			'memorize.stages.fresh' => '新',
+			'memorize.stages.learning' => '学习中',
+			'memorize.stages.known' => '已熟记',
+			'memorize.stats' => ({required Object stage, required Object lapses}) => '${stage} · 忘记 ${lapses} 次',
+			'memorize.reviewNow' => '现在复习',
+			'memorize.remove' => '移除',
+			'memorize.removeTitle' => '移除这节经文？',
+			'memorize.removeText' => '它的进度将被清除。',
+			'memorize.removed' => '经文已移除',
+			'memorize.progress' => ({required Object done, required Object total}) => '${done} / ${total}',
+			'memorize.show' => '显示经文',
+			'memorize.hints.full' => '全文',
+			'memorize.hints.gaps' => '填空',
+			'memorize.hints.initials' => '首字',
+			'memorize.hints.none' => '无提示',
+			'memorize.recite' => '先背诵经文，再核对。',
+			'memorize.grades.again' => '再来',
+			'memorize.grades.hard' => '困难',
+			'memorize.grades.good' => '良好',
+			'memorize.grades.easy' => '容易',
+			'memorize.now' => '马上',
+			'memorize.later' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n, one: '${n} 天', other: '${n} 天', ), 
+			'memorize.doneTitle' => '复习完成！',
+			'memorize.doneText' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n, one: '你复习了 ${n} 节经文。愿主的道住在你心里！', other: '你复习了 ${n} 节经文。愿主的道住在你心里！', ), 
+			'memorize.back' => '返回',
+			'memorize.reminderTitle' => '你要复习的经文',
+			'memorize.reminderBody' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n, one: '今天有 ${n} 节经文等你复习。', other: '今天有 ${n} 节经文等你复习。', ), 
+			'memorize.reminderChannel' => '背经',
+			'memorize.homeTitle' => '待复习经文',
+			'memorize.homeText' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n, one: '${n} 节经文等你', other: '${n} 节经文等你', ), 
+			'memorize.menu' => '背诵经文',
+			'memorize.memorize' => '背诵',
+			'memorize.added' => '已加入背经列表',
+			'memorize.already' => '这段经文已在你的列表中',
+			'souls.title' => '灵魂跟进',
+			'souls.subtitle' => '「有智慧的必能得人。」箴言 11:30',
+			'souls.search' => '搜索某人…',
+			'souls.people' => '人数',
+			'souls.received' => '已接受耶稣',
+			'souls.toContact' => '待联系',
+			'souls.all' => '全部',
+			'souls.stages.met' => '已结识',
+			'souls.stages.interested' => '有兴趣',
+			'souls.stages.received' => '已接受耶稣',
+			'souls.stages.followUp' => '坚固中',
+			'souls.stages.church' => '来教会',
+			'souls.stages.baptized' => '已受洗',
+			'souls.contactSection' => '待再次联系',
+			'souls.everyone' => '所有人',
+			'souls.contactToday' => '今天联系',
+			'souls.contactLate' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n, one: '逾期 ${n} 天', other: '逾期 ${n} 天', ), 
+			'souls.contactOn' => ({required Object date}) => '下次联系：${date}',
+			'souls.empty' => '在这里记下你传福音的对象：为他们祷告，陪伴他们走进教会。',
+			'souls.none' => '没有符合的人。',
+			'souls.add' => '添加',
+			'souls.addTitle' => '新增人员',
+			'souls.editTitle' => '编辑',
+			'souls.name' => '姓名',
+			'souls.nameRequired' => '请填写姓名。',
+			'souls.phone' => '电话',
+			'souls.place' => '在哪里认识',
+			'souls.metOn' => '认识日期',
+			'souls.stage' => '此人目前的状况？',
+			'souls.firstNote' => '备注（可选）',
+			'souls.noteHint' => '谈话内容、代祷事项…',
+			'souls.save' => '保存',
+			'souls.saved' => '已保存',
+			'souls.call' => '打电话',
+			'souls.whatsApp' => 'WhatsApp',
+			'souls.sms' => '短信',
+			'souls.edit' => '编辑',
+			'souls.delete' => '删除',
+			'souls.deleteTitle' => ({required Object name}) => '删除 ${name}？',
+			'souls.deleteText' => '相关备注将从手机中删除。',
+			'souls.deleted' => '已删除',
+			'souls.nextContact' => '下次联系',
+			'souls.plan' => '设置提醒',
+			'souls.change' => '更改日期',
+			'souls.clear' => '取消提醒',
+			'souls.noContact' => '没有提醒',
+			'souls.metAt' => ({required Object date}) => '${date} 认识',
+			'souls.notes' => '备注',
+			'souls.addNote' => '添加备注',
+			'souls.noNotes' => '还没有备注。',
+			'souls.deleteNote' => '删除备注',
+			'souls.export' => '导出（表格）',
+			'souls.csv.name' => '姓名',
+			'souls.csv.phone' => '电话',
+			'souls.csv.place' => '地点',
+			'souls.csv.metOn' => '认识日期',
+			'souls.csv.stage' => '阶段',
+			_ => null,
+		} ?? switch (path) {
+			'souls.csv.next' => '下次联系',
+			'souls.csv.notes' => '备注',
+			'souls.lock' => ({required Object method}) => '使用${method}锁定',
+			'souls.lockedTitle' => '灵魂跟进已锁定',
+			'souls.unlock' => '解锁',
+			'souls.unlockReason' => '打开灵魂跟进',
+			'souls.privacy' => '这些信息只保存在你的手机上，绝不会上传。',
+			'souls.reminderTitle' => '灵魂跟进',
+			'souls.reminderBody' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n, one: '今天要联系 ${n} 人。', other: '今天要联系 ${n} 人。', ), 
+			'souls.reminderChannel' => '灵魂跟进',
+			'souls.moreSubtitle' => '你传福音的对象',
 			_ => null,
 		};
 	}

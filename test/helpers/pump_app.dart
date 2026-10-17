@@ -47,6 +47,10 @@ import 'package:cmfi_connect/src/features/reports/domain/activity_type.dart';
 import 'package:cmfi_connect/src/features/reports/domain/daily_report.dart';
 import 'package:cmfi_connect/src/features/reports/infrastructure/activities_api.dart';
 import 'package:cmfi_connect/src/features/reports/infrastructure/reports_api.dart';
+import 'package:cmfi_connect/src/features/souls/infrastructure/souls_storage.dart';
+import 'package:cmfi_connect/src/features/teachings/application/teaching_player.dart';
+import 'package:cmfi_connect/src/features/teachings/infrastructure/teaching_files.dart';
+import 'package:cmfi_connect/src/features/teachings/infrastructure/teachings_api.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -97,6 +101,10 @@ class TestApp {
     required this.documentsApi,
     required this.biometrics,
     required this.savedLogin,
+    required this.teachingsApi,
+    required this.player,
+    required this.teachingFiles,
+    required this.soulsStorage,
   });
 
   final ProviderContainer container;
@@ -142,6 +150,10 @@ class TestApp {
   final FakeDocumentsApi documentsApi;
   final FakeBiometrics biometrics;
   final FakeSavedLoginStorage savedLogin;
+  final FakeTeachingsApi teachingsApi;
+  final FakeTeachingPlayer player;
+  final FakeTeachingFiles teachingFiles;
+  final FakeSoulsStorage soulsStorage;
 }
 
 Future<TestApp> pumpApp(
@@ -170,6 +182,9 @@ Future<TestApp> pumpApp(
   FakeDocumentsApi? documentsApi,
   FakeBiometrics? biometrics,
   FakeSavedLoginStorage? savedLogin,
+  FakeTeachingsApi? teachingsApi,
+  FakeTeachingFiles? teachingFiles,
+  FakeSoulsStorage? soulsStorage,
   FakePhoneVerification? phoneVerification,
   FakeStoreReview? storeReview,
   FakeAppShortcuts? shortcuts,
@@ -233,6 +248,10 @@ Future<TestApp> pumpApp(
   final disciples = disciplesApi ?? FakeDisciplesApi();
   final bible = bibleApi ?? FakeBibleApi();
   final bibleStorage = FakeBibleStorage();
+  final teachings = teachingsApi ?? FakeTeachingsApi();
+  final player = FakeTeachingPlayer();
+  final files = teachingFiles ?? FakeTeachingFiles();
+  final souls = soulsStorage ?? FakeSoulsStorage();
 
   final container = ProviderContainer(
     overrides: [
@@ -281,6 +300,10 @@ Future<TestApp> pumpApp(
       documentsApiProvider.overrideWithValue(library),
       biometricsProvider.overrideWithValue(faceId),
       savedLoginStorageProvider.overrideWithValue(keychain),
+      teachingsApiProvider.overrideWithValue(teachings),
+      teachingPlayerProvider.overrideWithValue(player),
+      teachingFilesProvider.overrideWithValue(files),
+      soulsStorageProvider.overrideWithValue(souls),
       crashReportingProvider.overrideWithValue(const NoCrashReporting()),
       phoneVerificationProvider.overrideWithValue(
         phoneVerification ?? FakePhoneVerification(),
@@ -344,6 +367,10 @@ Future<TestApp> pumpApp(
     documentsApi: library,
     biometrics: faceId,
     savedLogin: keychain,
+    teachingsApi: teachings,
+    player: player,
+    teachingFiles: files,
+    soulsStorage: souls,
   );
 }
 

@@ -20,6 +20,7 @@ import '../../../core/widgets/app_toast.dart';
 import '../../../routing/app_router.dart';
 import '../../bible/application/bible_plan.dart';
 import '../../bible/application/bible_position.dart';
+import '../../bible/application/memory_verses.dart';
 import '../../bible/domain/bible.dart';
 import '../../events/application/event_reminders.dart';
 import '../../home/application/week_story.dart';
@@ -40,6 +41,8 @@ import '../../reports/application/reports_providers.dart';
 import '../../reports/application/today_widget.dart';
 import '../../reports/domain/report_sending.dart';
 import '../../seek_first/application/seek_first.dart';
+import '../../souls/application/souls.dart';
+import '../../teachings/application/now_playing.dart';
 import '../../verses/application/verse_of_the_day.dart';
 import '../../verses/domain/verse.dart';
 
@@ -85,6 +88,11 @@ class SignedInTasks extends HookConsumerWidget {
           unawaited(ref.read(seekFirstProvider.notifier).forget());
           // the reading plan was the account's
           unawaited(ref.read(biblePlanProvider.notifier).stop());
+          // the verses and the souls stay on the phone, their reminders go;
+          // the teaching heard stops
+          unawaited(ref.read(memoryVersesProvider.notifier).forget());
+          unawaited(ref.read(soulsProvider.notifier).forget());
+          unawaited(ref.read(nowPlayingProvider.notifier).stop());
         }
       });
       return subscription.close;
@@ -164,6 +172,10 @@ class SignedInTasks extends HookConsumerWidget {
           openToday();
         } else if (payload == BiblePlan.payload && context.mounted) {
           context.router.push(const BiblePlanRoute());
+        } else if (payload == MemoryVerses.payload && context.mounted) {
+          context.router.push(MemoryReviewRoute());
+        } else if (payload == Souls.payload && context.mounted) {
+          context.router.push(const SoulsRoute());
         } else if (week != null && context.mounted) {
           context.router.push(WeekStoryRoute(monday: week.toApiDate()));
         } else if (sendDay != null && context.mounted) {
@@ -320,6 +332,13 @@ class SignedInTasks extends HookConsumerWidget {
         unawaited(ref.read(retreatRemindersProvider.notifier).reschedule());
         unawaited(ref.read(reportSendingProvider.notifier).reschedule());
         unawaited(ref.read(biblePlanProvider.notifier).reschedule());
+        unawaited(ref.read(memoryVersesProvider.notifier).reschedule());
+        // the souls are read from the Keychain first
+        unawaited(
+          ref
+              .read(soulsProvider.future)
+              .then((_) => ref.read(soulsProvider.notifier).reschedule()),
+        );
         unawaited(planWeekStories(notifications, now: DateTime.now()));
       }
 

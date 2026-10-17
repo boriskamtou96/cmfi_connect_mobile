@@ -14,9 +14,9 @@ import '../../../core/utils/date_extensions.dart';
 import '../../../core/utils/date_format.dart';
 import '../../../core/widgets/adaptive_dialogs.dart';
 import '../../../core/widgets/adaptive_menus.dart';
-import '../../../core/widgets/adaptive_pickers.dart';
 import '../../../core/widgets/app_back_button.dart';
 import '../../../core/widgets/fade_slide_in.dart';
+import '../../../core/widgets/reminder_row.dart';
 import '../../../core/widgets/section_card.dart';
 import '../../../core/widgets/segmented_tabs.dart';
 import '../../../routing/app_router.dart';
@@ -272,74 +272,6 @@ class _Grid extends StatelessWidget {
   );
 }
 
-/// "Rappel chaque jour  07:00  [on]" on a single line.
-class _ReminderRow extends StatelessWidget {
-  const _ReminderRow({
-    required this.on,
-    required this.minutes,
-    required this.onChanged,
-    required this.onTime,
-  });
-
-  final bool on;
-  final int minutes;
-  final ValueChanged<bool> onChanged;
-  final ValueChanged<int> onTime;
-
-  @override
-  Widget build(BuildContext context) {
-    final t = context.t.biblePlan;
-    final scheme = Theme.of(context).colorScheme;
-    final time = TimeOfDay(hour: minutes ~/ 60, minute: minutes % 60);
-    return SectionCard(
-      children: [
-        Padding(
-          padding: const EdgeInsetsDirectional.fromSTEB(
-            AppSpacing.lg,
-            AppSpacing.xs,
-            AppSpacing.sm,
-            AppSpacing.xs,
-          ),
-          child: Row(
-            children: [
-              Icon(AppIcons.reminder, color: scheme.onSurfaceVariant),
-              const SizedBox(width: AppSpacing.md),
-              Expanded(
-                child: Text(
-                  t.reminder,
-                  style: const TextStyle(fontWeight: FontWeight.w600),
-                ),
-              ),
-              if (on)
-                TextButton(
-                  onPressed: () async {
-                    final picked = await showAppTimePicker(
-                      context,
-                      initialTime: time,
-                      use24h: true,
-                    );
-                    if (picked != null) {
-                      onTime(picked.hour * 60 + picked.minute);
-                    }
-                  },
-                  child: Text(
-                    time.format(context),
-                    semanticsLabel: '${t.reminderAt} ${time.format(context)}',
-                    style: const TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.w700,
-                    ),
-                  ),
-                ),
-              Switch.adaptive(value: on, onChanged: onChanged),
-            ],
-          ),
-        ),
-      ],
-    );
-  }
-}
-
 // ----- making a plan -----
 
 class _Setup extends HookConsumerWidget {
@@ -460,7 +392,9 @@ class _Setup extends HookConsumerWidget {
             ),
           ],
           SizedBox(height: gap),
-          _ReminderRow(
+          ReminderRow(
+            label: t.reminder,
+            timeLabel: t.reminderAt,
             on: reminder.value,
             minutes: minutes.value,
             onChanged: (on) => reminder.value = on,
@@ -711,7 +645,9 @@ class _Progress extends HookConsumerWidget {
             ),
             const SizedBox(height: AppSpacing.md),
           ],
-          _ReminderRow(
+          ReminderRow(
+            label: t.reminder,
+            timeLabel: t.reminderAt,
             on: plan.reminder,
             minutes: plan.reminderMinutes,
             onChanged: (on) =>

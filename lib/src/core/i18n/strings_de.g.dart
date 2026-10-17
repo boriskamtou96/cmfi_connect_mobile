@@ -78,6 +78,9 @@ class TranslationsDe extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _Translations$seekFirst$de seekFirst = _Translations$seekFirst$de._(_root);
 	@override late final _Translations$documents$de documents = _Translations$documents$de._(_root);
 	@override late final _Translations$biblePlan$de biblePlan = _Translations$biblePlan$de._(_root);
+	@override late final _Translations$teachings$de teachings = _Translations$teachings$de._(_root);
+	@override late final _Translations$memorize$de memorize = _Translations$memorize$de._(_root);
+	@override late final _Translations$souls$de souls = _Translations$souls$de._(_root);
 }
 
 // Path: app
@@ -1351,6 +1354,206 @@ class _Translations$biblePlan$de extends Translations$biblePlan$fr {
 	@override String uncheck({required Object chapter}) => '${chapter}: gelesen';
 }
 
+// Path: teachings
+class _Translations$teachings$de extends Translations$teachings$fr {
+	_Translations$teachings$de._(TranslationsDe root) : this._root = root, super.internal(root);
+
+	final TranslationsDe _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Lehren';
+	@override String get subtitle => 'Höre das Wort, wo du auch bist';
+	@override String get search => 'Botschaft, Sprecher suchen…';
+	@override String get all => 'Alle';
+	@override String get downloadedChip => 'Heruntergeladen';
+	@override String count({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('de'))(n,
+		one: '${n} Botschaft',
+		other: '${n} Botschaften',
+	);
+	@override String get empty => 'Noch keine Lehren.';
+	@override String get none => 'Keine passende Lehre.';
+	@override String get noneDownloaded => 'Keine Botschaft heruntergeladen. Tippe auf die Wolke einer Botschaft, um sie offline zu hören.';
+	@override String get more => 'Mehr anzeigen';
+	@override String get offline => 'Kein Netz: Hier sind die Botschaften auf deinem Handy.';
+	@override String get play => 'Anhören';
+	@override String get pause => 'Pause';
+	@override String get heard => 'Gehört';
+	@override String get download => 'Zum Offline-Hören herunterladen';
+	@override String get downloaded => 'Auf deinem Handy gespeichert';
+	@override String get removed => 'Vom Handy entfernt';
+	@override String get cancelDownload => 'Download abbrechen';
+	@override String get removeDownload => 'Vom Handy entfernen';
+	@override String get back15 => '15 Sekunden zurück';
+	@override String get forward15 => '15 Sekunden vor';
+	@override String speed({required Object speed}) => 'Geschwindigkeit ${speed}';
+	@override String recordedOn({required Object date}) => 'Botschaft vom ${date}';
+	@override String get moreSubtitle => 'Predigten und Lehren zum Anhören';
+}
+
+// Path: memorize
+class _Translations$memorize$de extends Translations$memorize$fr {
+	_Translations$memorize$de._(TranslationsDe root) : this._root = root, super.internal(root);
+
+	final TranslationsDe _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Auswendiglernen';
+	@override String get subtitle => 'Bewahre das Wort in deinem Herzen';
+	@override String get toReview => 'Zu wiederholen';
+	@override String get learning => 'Am Lernen';
+	@override String get known => 'Gelernt';
+	@override String reviewCount({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('de'))(n,
+		one: '${n} Vers wiederholen',
+		other: '${n} Verse wiederholen',
+	);
+	@override String get nothingDue => 'Heute nichts zu wiederholen.';
+	@override String nextOn({required Object date}) => 'Nächste Wiederholung: ${date}.';
+	@override String get tomorrow => 'morgen';
+	@override String get reminder => 'Erinnerung zum Wiederholen';
+	@override String get reminderAt => 'Uhrzeit der Erinnerung';
+	@override String get myVerses => 'Meine Verse';
+	@override String get howToAdd => 'Zum Hinzufügen: Tippe in der Bibel auf einen Vers, dann auf das Gehirn in der Leiste.';
+	@override String get empty => 'Noch kein Vers zum Auswendiglernen.';
+	@override String get openBible => 'Bibel öffnen';
+	@override String get late => 'Überfällig';
+	@override String get today => 'Heute';
+	@override String dueIn({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('de'))(n,
+		one: 'In ${n} Tag',
+		other: 'In ${n} Tagen',
+	);
+	@override Map<String, String> get stages => {
+		'fresh': 'Neu',
+		'learning': 'Am Lernen',
+		'known': 'Gelernt',
+	};
+	@override String stats({required Object stage, required Object lapses}) => '${stage} · ${lapses}-mal vergessen';
+	@override String get reviewNow => 'Jetzt wiederholen';
+	@override String get remove => 'Entfernen';
+	@override String get removeTitle => 'Diesen Vers entfernen?';
+	@override String get removeText => 'Der Fortschritt wird gelöscht.';
+	@override String get removed => 'Vers entfernt';
+	@override String progress({required Object done, required Object total}) => '${done} / ${total}';
+	@override String get show => 'Vers anzeigen';
+	@override Map<String, String> get hints => {
+		'full': 'Text',
+		'gaps': 'Lücken',
+		'initials': 'Initialen',
+		'none': 'Nichts',
+	};
+	@override String get recite => 'Sag den Vers auf, dann prüfe.';
+	@override Map<String, String> get grades => {
+		'again': 'Nochmal',
+		'hard': 'Schwer',
+		'good': 'Gut',
+		'easy': 'Leicht',
+	};
+	@override String get now => 'Sofort';
+	@override String later({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('de'))(n,
+		one: '${n} Tag',
+		other: '${n} Tage',
+	);
+	@override String get doneTitle => 'Wiederholung geschafft!';
+	@override String doneText({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('de'))(n,
+		one: 'Du hast ${n} Vers wiederholt. Das Wort bleibe in dir!',
+		other: 'Du hast ${n} Verse wiederholt. Das Wort bleibe in dir!',
+	);
+	@override String get back => 'Zurück';
+	@override String get reminderTitle => 'Deine Verse zum Wiederholen';
+	@override String reminderBody({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('de'))(n,
+		one: '${n} Vers wartet heute auf dich.',
+		other: '${n} Verse warten heute auf dich.',
+	);
+	@override String get reminderChannel => 'Auswendiglernen';
+	@override String get homeTitle => 'Verse zum Wiederholen';
+	@override String homeText({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('de'))(n,
+		one: '${n} Vers wartet',
+		other: '${n} Verse warten',
+	);
+	@override String get menu => 'Verse auswendig lernen';
+	@override String get memorize => 'Auswendig lernen';
+	@override String get added => 'Zu deinen Lernversen hinzugefügt';
+	@override String get already => 'Diese Stelle ist schon in deinen Versen';
+}
+
+// Path: souls
+class _Translations$souls$de extends Translations$souls$fr {
+	_Translations$souls$de._(TranslationsDe root) : this._root = root, super.internal(root);
+
+	final TranslationsDe _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Seelenbegleitung';
+	@override String get subtitle => '„Wer Seelen gewinnt, ist weise.“ Sprüche 11,30';
+	@override String get search => 'Person suchen…';
+	@override String get people => 'Personen';
+	@override String get received => 'Jesus angenommen';
+	@override String get toContact => 'Zu kontaktieren';
+	@override String get all => 'Alle';
+	@override Map<String, String> get stages => {
+		'met': 'Begegnet',
+		'interested': 'Interessiert',
+		'received': 'Hat Jesus angenommen',
+		'followUp': 'Wird gefestigt',
+		'church': 'Kommt zur Gemeinde',
+		'baptized': 'Getauft',
+	};
+	@override String get contactSection => 'Erneut kontaktieren';
+	@override String get everyone => 'Alle Personen';
+	@override String get contactToday => 'Heute kontaktieren';
+	@override String contactLate({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('de'))(n,
+		one: '${n} Tag überfällig',
+		other: '${n} Tage überfällig',
+	);
+	@override String contactOn({required Object date}) => 'Nächster Kontakt am ${date}';
+	@override String get empty => 'Notiere hier die Menschen, denen du das Evangelium bringst: Bete für sie und begleite sie bis in die Gemeinde.';
+	@override String get none => 'Niemand passt.';
+	@override String get add => 'Hinzufügen';
+	@override String get addTitle => 'Neue Person';
+	@override String get editTitle => 'Bearbeiten';
+	@override String get name => 'Name';
+	@override String get nameRequired => 'Schreibe den Namen.';
+	@override String get phone => 'Telefon';
+	@override String get place => 'Wo ihr euch getroffen habt';
+	@override String get metOn => 'Getroffen am';
+	@override String get stage => 'Wo steht diese Person?';
+	@override String get firstNote => 'Eine Notiz (optional)';
+	@override String get noteHint => 'Was gesagt wurde, Gebetsanliegen…';
+	@override String get save => 'Speichern';
+	@override String get saved => 'Gespeichert';
+	@override String get call => 'Anrufen';
+	@override String get whatsApp => 'WhatsApp';
+	@override String get sms => 'SMS';
+	@override String get edit => 'Bearbeiten';
+	@override String get delete => 'Löschen';
+	@override String deleteTitle({required Object name}) => '${name} löschen?';
+	@override String get deleteText => 'Die Notizen werden von deinem Handy gelöscht.';
+	@override String get deleted => 'Gelöscht';
+	@override String get nextContact => 'Nächster Kontakt';
+	@override String get plan => 'Erinnerung planen';
+	@override String get change => 'Datum ändern';
+	@override String get clear => 'Erinnerung entfernen';
+	@override String get noContact => 'Keine Erinnerung geplant';
+	@override String metAt({required Object date}) => 'Getroffen am ${date}';
+	@override String get notes => 'Notizen';
+	@override String get addNote => 'Notiz hinzufügen';
+	@override String get noNotes => 'Noch keine Notizen.';
+	@override String get deleteNote => 'Notiz löschen';
+	@override String get export => 'Exportieren (Tabelle)';
+	@override late final _Translations$souls$csv$de csv = _Translations$souls$csv$de._(_root);
+	@override String lock({required Object method}) => 'Mit ${method} sperren';
+	@override String get lockedTitle => 'Deine Seelenbegleitung ist gesperrt';
+	@override String get unlock => 'Entsperren';
+	@override String get unlockReason => 'Öffne deine Seelenbegleitung';
+	@override String get privacy => 'Diese Angaben bleiben auf deinem Handy: Sie werden nie gesendet.';
+	@override String get reminderTitle => 'Seelenbegleitung';
+	@override String reminderBody({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('de'))(n,
+		one: 'Heute ${n} Person kontaktieren.',
+		other: 'Heute ${n} Personen kontaktieren.',
+	);
+	@override String get reminderChannel => 'Seelenbegleitung';
+	@override String get moreSubtitle => 'Die Menschen, denen du das Evangelium bringst';
+}
+
 // Path: onboarding.reports
 class _Translations$onboarding$reports$de extends Translations$onboarding$reports$fr {
 	_Translations$onboarding$reports$de._(TranslationsDe root) : this._root = root, super.internal(root);
@@ -2396,6 +2599,22 @@ class _Translations$seekFirst$shield$de extends Translations$seekFirst$shield$fr
 	@override String pause({required Object n}) => '5 Min. Pause (${n}/3)';
 	@override String get notificationTitle => 'Suche zuerst Gott';
 	@override String get notificationBody => 'Tippe hier, um deinen Bericht auszufüllen.';
+}
+
+// Path: souls.csv
+class _Translations$souls$csv$de extends Translations$souls$csv$fr {
+	_Translations$souls$csv$de._(TranslationsDe root) : this._root = root, super.internal(root);
+
+	final TranslationsDe _root; // ignore: unused_field
+
+	// Translations
+	@override String get name => 'Name';
+	@override String get phone => 'Telefon';
+	@override String get place => 'Ort';
+	@override String get metOn => 'Getroffen am';
+	@override String get stage => 'Stufe';
+	@override String get next => 'Nächster Kontakt';
+	@override String get notes => 'Notizen';
 }
 
 // Path: reports.units.chapters
@@ -4075,6 +4294,152 @@ extension on TranslationsDe {
 			'biblePlan.homeTitle' => 'Heutige Lesung',
 			'biblePlan.check' => ({required Object chapter}) => '${chapter} als gelesen markieren',
 			'biblePlan.uncheck' => ({required Object chapter}) => '${chapter}: gelesen',
+			'teachings.title' => 'Lehren',
+			'teachings.subtitle' => 'Höre das Wort, wo du auch bist',
+			'teachings.search' => 'Botschaft, Sprecher suchen…',
+			'teachings.all' => 'Alle',
+			'teachings.downloadedChip' => 'Heruntergeladen',
+			'teachings.count' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('de'))(n, one: '${n} Botschaft', other: '${n} Botschaften', ), 
+			'teachings.empty' => 'Noch keine Lehren.',
+			'teachings.none' => 'Keine passende Lehre.',
+			'teachings.noneDownloaded' => 'Keine Botschaft heruntergeladen. Tippe auf die Wolke einer Botschaft, um sie offline zu hören.',
+			'teachings.more' => 'Mehr anzeigen',
+			'teachings.offline' => 'Kein Netz: Hier sind die Botschaften auf deinem Handy.',
+			'teachings.play' => 'Anhören',
+			'teachings.pause' => 'Pause',
+			'teachings.heard' => 'Gehört',
+			'teachings.download' => 'Zum Offline-Hören herunterladen',
+			'teachings.downloaded' => 'Auf deinem Handy gespeichert',
+			'teachings.removed' => 'Vom Handy entfernt',
+			'teachings.cancelDownload' => 'Download abbrechen',
+			'teachings.removeDownload' => 'Vom Handy entfernen',
+			'teachings.back15' => '15 Sekunden zurück',
+			'teachings.forward15' => '15 Sekunden vor',
+			'teachings.speed' => ({required Object speed}) => 'Geschwindigkeit ${speed}',
+			'teachings.recordedOn' => ({required Object date}) => 'Botschaft vom ${date}',
+			'teachings.moreSubtitle' => 'Predigten und Lehren zum Anhören',
+			'memorize.title' => 'Auswendiglernen',
+			'memorize.subtitle' => 'Bewahre das Wort in deinem Herzen',
+			'memorize.toReview' => 'Zu wiederholen',
+			'memorize.learning' => 'Am Lernen',
+			'memorize.known' => 'Gelernt',
+			'memorize.reviewCount' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('de'))(n, one: '${n} Vers wiederholen', other: '${n} Verse wiederholen', ), 
+			'memorize.nothingDue' => 'Heute nichts zu wiederholen.',
+			'memorize.nextOn' => ({required Object date}) => 'Nächste Wiederholung: ${date}.',
+			'memorize.tomorrow' => 'morgen',
+			'memorize.reminder' => 'Erinnerung zum Wiederholen',
+			'memorize.reminderAt' => 'Uhrzeit der Erinnerung',
+			'memorize.myVerses' => 'Meine Verse',
+			'memorize.howToAdd' => 'Zum Hinzufügen: Tippe in der Bibel auf einen Vers, dann auf das Gehirn in der Leiste.',
+			'memorize.empty' => 'Noch kein Vers zum Auswendiglernen.',
+			'memorize.openBible' => 'Bibel öffnen',
+			'memorize.late' => 'Überfällig',
+			'memorize.today' => 'Heute',
+			'memorize.dueIn' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('de'))(n, one: 'In ${n} Tag', other: 'In ${n} Tagen', ), 
+			'memorize.stages.fresh' => 'Neu',
+			'memorize.stages.learning' => 'Am Lernen',
+			'memorize.stages.known' => 'Gelernt',
+			'memorize.stats' => ({required Object stage, required Object lapses}) => '${stage} · ${lapses}-mal vergessen',
+			'memorize.reviewNow' => 'Jetzt wiederholen',
+			'memorize.remove' => 'Entfernen',
+			'memorize.removeTitle' => 'Diesen Vers entfernen?',
+			'memorize.removeText' => 'Der Fortschritt wird gelöscht.',
+			'memorize.removed' => 'Vers entfernt',
+			'memorize.progress' => ({required Object done, required Object total}) => '${done} / ${total}',
+			'memorize.show' => 'Vers anzeigen',
+			'memorize.hints.full' => 'Text',
+			'memorize.hints.gaps' => 'Lücken',
+			'memorize.hints.initials' => 'Initialen',
+			'memorize.hints.none' => 'Nichts',
+			'memorize.recite' => 'Sag den Vers auf, dann prüfe.',
+			'memorize.grades.again' => 'Nochmal',
+			'memorize.grades.hard' => 'Schwer',
+			'memorize.grades.good' => 'Gut',
+			'memorize.grades.easy' => 'Leicht',
+			'memorize.now' => 'Sofort',
+			'memorize.later' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('de'))(n, one: '${n} Tag', other: '${n} Tage', ), 
+			'memorize.doneTitle' => 'Wiederholung geschafft!',
+			'memorize.doneText' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('de'))(n, one: 'Du hast ${n} Vers wiederholt. Das Wort bleibe in dir!', other: 'Du hast ${n} Verse wiederholt. Das Wort bleibe in dir!', ), 
+			'memorize.back' => 'Zurück',
+			'memorize.reminderTitle' => 'Deine Verse zum Wiederholen',
+			'memorize.reminderBody' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('de'))(n, one: '${n} Vers wartet heute auf dich.', other: '${n} Verse warten heute auf dich.', ), 
+			'memorize.reminderChannel' => 'Auswendiglernen',
+			'memorize.homeTitle' => 'Verse zum Wiederholen',
+			'memorize.homeText' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('de'))(n, one: '${n} Vers wartet', other: '${n} Verse warten', ), 
+			'memorize.menu' => 'Verse auswendig lernen',
+			'memorize.memorize' => 'Auswendig lernen',
+			'memorize.added' => 'Zu deinen Lernversen hinzugefügt',
+			'memorize.already' => 'Diese Stelle ist schon in deinen Versen',
+			'souls.title' => 'Seelenbegleitung',
+			'souls.subtitle' => '„Wer Seelen gewinnt, ist weise.“ Sprüche 11,30',
+			'souls.search' => 'Person suchen…',
+			'souls.people' => 'Personen',
+			'souls.received' => 'Jesus angenommen',
+			'souls.toContact' => 'Zu kontaktieren',
+			'souls.all' => 'Alle',
+			'souls.stages.met' => 'Begegnet',
+			'souls.stages.interested' => 'Interessiert',
+			'souls.stages.received' => 'Hat Jesus angenommen',
+			'souls.stages.followUp' => 'Wird gefestigt',
+			'souls.stages.church' => 'Kommt zur Gemeinde',
+			'souls.stages.baptized' => 'Getauft',
+			'souls.contactSection' => 'Erneut kontaktieren',
+			'souls.everyone' => 'Alle Personen',
+			'souls.contactToday' => 'Heute kontaktieren',
+			'souls.contactLate' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('de'))(n, one: '${n} Tag überfällig', other: '${n} Tage überfällig', ), 
+			'souls.contactOn' => ({required Object date}) => 'Nächster Kontakt am ${date}',
+			'souls.empty' => 'Notiere hier die Menschen, denen du das Evangelium bringst: Bete für sie und begleite sie bis in die Gemeinde.',
+			'souls.none' => 'Niemand passt.',
+			'souls.add' => 'Hinzufügen',
+			'souls.addTitle' => 'Neue Person',
+			'souls.editTitle' => 'Bearbeiten',
+			'souls.name' => 'Name',
+			'souls.nameRequired' => 'Schreibe den Namen.',
+			'souls.phone' => 'Telefon',
+			'souls.place' => 'Wo ihr euch getroffen habt',
+			'souls.metOn' => 'Getroffen am',
+			'souls.stage' => 'Wo steht diese Person?',
+			'souls.firstNote' => 'Eine Notiz (optional)',
+			'souls.noteHint' => 'Was gesagt wurde, Gebetsanliegen…',
+			'souls.save' => 'Speichern',
+			'souls.saved' => 'Gespeichert',
+			'souls.call' => 'Anrufen',
+			'souls.whatsApp' => 'WhatsApp',
+			'souls.sms' => 'SMS',
+			'souls.edit' => 'Bearbeiten',
+			'souls.delete' => 'Löschen',
+			'souls.deleteTitle' => ({required Object name}) => '${name} löschen?',
+			'souls.deleteText' => 'Die Notizen werden von deinem Handy gelöscht.',
+			'souls.deleted' => 'Gelöscht',
+			'souls.nextContact' => 'Nächster Kontakt',
+			'souls.plan' => 'Erinnerung planen',
+			'souls.change' => 'Datum ändern',
+			'souls.clear' => 'Erinnerung entfernen',
+			'souls.noContact' => 'Keine Erinnerung geplant',
+			'souls.metAt' => ({required Object date}) => 'Getroffen am ${date}',
+			'souls.notes' => 'Notizen',
+			'souls.addNote' => 'Notiz hinzufügen',
+			'souls.noNotes' => 'Noch keine Notizen.',
+			'souls.deleteNote' => 'Notiz löschen',
+			'souls.export' => 'Exportieren (Tabelle)',
+			'souls.csv.name' => 'Name',
+			'souls.csv.phone' => 'Telefon',
+			'souls.csv.place' => 'Ort',
+			'souls.csv.metOn' => 'Getroffen am',
+			'souls.csv.stage' => 'Stufe',
+			_ => null,
+		} ?? switch (path) {
+			'souls.csv.next' => 'Nächster Kontakt',
+			'souls.csv.notes' => 'Notizen',
+			'souls.lock' => ({required Object method}) => 'Mit ${method} sperren',
+			'souls.lockedTitle' => 'Deine Seelenbegleitung ist gesperrt',
+			'souls.unlock' => 'Entsperren',
+			'souls.unlockReason' => 'Öffne deine Seelenbegleitung',
+			'souls.privacy' => 'Diese Angaben bleiben auf deinem Handy: Sie werden nie gesendet.',
+			'souls.reminderTitle' => 'Seelenbegleitung',
+			'souls.reminderBody' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('de'))(n, one: 'Heute ${n} Person kontaktieren.', other: 'Heute ${n} Personen kontaktieren.', ), 
+			'souls.reminderChannel' => 'Seelenbegleitung',
+			'souls.moreSubtitle' => 'Die Menschen, denen du das Evangelium bringst',
 			_ => null,
 		};
 	}

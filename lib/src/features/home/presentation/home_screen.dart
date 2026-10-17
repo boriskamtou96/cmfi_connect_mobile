@@ -19,6 +19,7 @@ import '../../bible/application/bible_library.dart';
 import '../../bible/application/bible_plan.dart';
 import '../../bible/application/bible_position.dart';
 import '../../bible/application/bible_settings.dart';
+import '../../bible/application/memory_verses.dart';
 import '../../bible/domain/bible.dart';
 import '../../bible/domain/reading_plan.dart';
 import '../../events/application/events_providers.dart';
@@ -643,6 +644,9 @@ class _Resume extends ConsumerWidget {
     final reading = plan == null || plan.doneOn(day)
         ? const <BibleRef>[]
         : plan.chaptersOf(day);
+    // the verses learnt by heart: those to review today
+    ref.watch(memoryVersesProvider);
+    final memory = ref.read(memoryVersesProvider.notifier).dueOn(day).length;
     final version = ref.watch(bibleVersionProvider);
     final names = <String, String>{
       for (final BibleBook book
@@ -723,6 +727,27 @@ class _Resume extends ConsumerWidget {
                 title: t.biblePlan.homeTitle,
                 text: readingLabel(reading, (book) => names[book] ?? book),
                 onTap: () => context.router.push(const BiblePlanRoute()),
+              ),
+            ],
+            if (memory > 0) ...[
+              Divider(
+                height: 1,
+                indent: 74,
+                endIndent: 16,
+                color: scheme.outlineVariant,
+              ),
+              _Row(
+                leading: _Tile(
+                  color: bible.soft,
+                  child: PhosphorIcon(
+                    AppIcons.memorizeTile,
+                    size: 22,
+                    color: bible.onSoft,
+                  ),
+                ),
+                title: t.memorize.homeTitle,
+                text: t.memorize.homeText(n: memory),
+                onTap: () => context.router.push(MemoryReviewRoute()),
               ),
             ],
             Divider(

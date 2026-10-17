@@ -1770,5 +1770,192 @@
     "homeTitle": "今日读经",
     "check": "将{chapter}标为已读",
     "uncheck": "{chapter}：已读"
+  },
+  "teachings": {
+    "title": "教导",
+    "subtitle": "随时随地聆听圣言",
+    "search": "搜索信息或讲员…",
+    "all": "全部",
+    "downloadedChip": "已下载",
+    "count(plural, param=n)": {
+      "one": "{n} 篇信息",
+      "other": "{n} 篇信息"
+    },
+    "empty": "暂时还没有教导。",
+    "none": "没有符合的教导。",
+    "noneDownloaded": "还没有下载信息。点信息旁的云朵，即可离线收听。",
+    "more": "查看更多",
+    "offline": "没有网络：这是保存在手机上的信息。",
+    "play": "收听",
+    "pause": "暂停",
+    "heard": "已听完",
+    "download": "下载以便离线收听",
+    "downloaded": "已保存到手机",
+    "removed": "已从手机移除",
+    "cancelDownload": "停止下载",
+    "removeDownload": "从手机移除",
+    "back15": "后退 15 秒",
+    "forward15": "前进 15 秒",
+    "speed": "速度 {speed}",
+    "recordedOn": "{date} 的信息",
+    "moreSubtitle": "可收听的讲道与教导"
+  },
+  "memorize": {
+    "title": "背经",
+    "subtitle": "将神的话藏在心里",
+    "toReview": "待复习",
+    "learning": "学习中",
+    "known": "已熟记",
+    "reviewCount(plural, param=n)": {
+      "one": "复习 {n} 节经文",
+      "other": "复习 {n} 节经文"
+    },
+    "nothingDue": "今天没有要复习的。",
+    "nextOn": "下次复习：{date}。",
+    "tomorrow": "明天",
+    "reminder": "复习提醒",
+    "reminderAt": "提醒时间",
+    "myVerses": "我的经文",
+    "howToAdd": "添加方法：在圣经中点一节经文，再点工具栏里的大脑图标。",
+    "empty": "还没有要背的经文。",
+    "openBible": "打开圣经",
+    "late": "已逾期",
+    "today": "今天",
+    "dueIn(plural, param=n)": {
+      "one": "{n} 天后",
+      "other": "{n} 天后"
+    },
+    "stages(map)": {
+      "fresh": "新",
+      "learning": "学习中",
+      "known": "已熟记"
+    },
+    "stats": "{stage} · 忘记 {lapses} 次",
+    "reviewNow": "现在复习",
+    "remove": "移除",
+    "removeTitle": "移除这节经文？",
+    "removeText": "它的进度将被清除。",
+    "removed": "经文已移除",
+    "progress": "{done} / {total}",
+    "show": "显示经文",
+    "hints(map)": {
+      "full": "全文",
+      "gaps": "填空",
+      "initials": "首字",
+      "none": "无提示"
+    },
+    "recite": "先背诵经文，再核对。",
+    "grades(map)": {
+      "again": "再来",
+      "hard": "困难",
+      "good": "良好",
+      "easy": "容易"
+    },
+    "now": "马上",
+    "later(plural, param=n)": {
+      "one": "{n} 天",
+      "other": "{n} 天"
+    },
+    "doneTitle": "复习完成！",
+    "doneText(plural, param=n)": {
+      "one": "你复习了 {n} 节经文。愿主的道住在你心里！",
+      "other": "你复习了 {n} 节经文。愿主的道住在你心里！"
+    },
+    "back": "返回",
+    "reminderTitle": "你要复习的经文",
+    "reminderBody(plural, param=n)": {
+      "one": "今天有 {n} 节经文等你复习。",
+      "other": "今天有 {n} 节经文等你复习。"
+    },
+    "reminderChannel": "背经",
+    "homeTitle": "待复习经文",
+    "homeText(plural, param=n)": {
+      "one": "{n} 节经文等你",
+      "other": "{n} 节经文等你"
+    },
+    "menu": "背诵经文",
+    "memorize": "背诵",
+    "added": "已加入背经列表",
+    "already": "这段经文已在你的列表中"
+  },
+  "souls": {
+    "title": "灵魂跟进",
+    "subtitle": "「有智慧的必能得人。」箴言 11:30",
+    "search": "搜索某人…",
+    "people": "人数",
+    "received": "已接受耶稣",
+    "toContact": "待联系",
+    "all": "全部",
+    "stages(map)": {
+      "met": "已结识",
+      "interested": "有兴趣",
+      "received": "已接受耶稣",
+      "followUp": "坚固中",
+      "church": "来教会",
+      "baptized": "已受洗"
+    },
+    "contactSection": "待再次联系",
+    "everyone": "所有人",
+    "contactToday": "今天联系",
+    "contactLate(plural, param=n)": {
+      "one": "逾期 {n} 天",
+      "other": "逾期 {n} 天"
+    },
+    "contactOn": "下次联系：{date}",
+    "empty": "在这里记下你传福音的对象：为他们祷告，陪伴他们走进教会。",
+    "none": "没有符合的人。",
+    "add": "添加",
+    "addTitle": "新增人员",
+    "editTitle": "编辑",
+    "name": "姓名",
+    "nameRequired": "请填写姓名。",
+    "phone": "电话",
+    "place": "在哪里认识",
+    "metOn": "认识日期",
+    "stage": "此人目前的状况？",
+    "firstNote": "备注（可选）",
+    "noteHint": "谈话内容、代祷事项…",
+    "save": "保存",
+    "saved": "已保存",
+    "call": "打电话",
+    "whatsApp": "WhatsApp",
+    "sms": "短信",
+    "edit": "编辑",
+    "delete": "删除",
+    "deleteTitle": "删除 {name}？",
+    "deleteText": "相关备注将从手机中删除。",
+    "deleted": "已删除",
+    "nextContact": "下次联系",
+    "plan": "设置提醒",
+    "change": "更改日期",
+    "clear": "取消提醒",
+    "noContact": "没有提醒",
+    "metAt": "{date} 认识",
+    "notes": "备注",
+    "addNote": "添加备注",
+    "noNotes": "还没有备注。",
+    "deleteNote": "删除备注",
+    "export": "导出（表格）",
+    "csv": {
+      "name": "姓名",
+      "phone": "电话",
+      "place": "地点",
+      "metOn": "认识日期",
+      "stage": "阶段",
+      "next": "下次联系",
+      "notes": "备注"
+    },
+    "lock": "使用{method}锁定",
+    "lockedTitle": "灵魂跟进已锁定",
+    "unlock": "解锁",
+    "unlockReason": "打开灵魂跟进",
+    "privacy": "这些信息只保存在你的手机上，绝不会上传。",
+    "reminderTitle": "灵魂跟进",
+    "reminderBody(plural, param=n)": {
+      "one": "今天要联系 {n} 人。",
+      "other": "今天要联系 {n} 人。"
+    },
+    "reminderChannel": "灵魂跟进",
+    "moreSubtitle": "你传福音的对象"
   }
 }

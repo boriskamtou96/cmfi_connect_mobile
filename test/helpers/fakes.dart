@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:io';
 import 'dart:typed_data';
 
 import 'package:cmfi_connect/src/core/network/app_exception.dart';
@@ -58,6 +59,12 @@ import 'package:cmfi_connect/src/features/reports/domain/report_goal.dart';
 import 'package:cmfi_connect/src/features/reports/domain/report_summary.dart';
 import 'package:cmfi_connect/src/features/reports/infrastructure/activities_api.dart';
 import 'package:cmfi_connect/src/features/reports/infrastructure/reports_api.dart';
+import 'package:cmfi_connect/src/features/souls/infrastructure/souls_storage.dart';
+import 'package:cmfi_connect/src/features/teachings/application/teaching_player.dart';
+import 'package:cmfi_connect/src/features/teachings/domain/teaching.dart';
+import 'package:cmfi_connect/src/features/teachings/infrastructure/teaching_files.dart';
+import 'package:cmfi_connect/src/features/teachings/infrastructure/teachings_api.dart';
+import 'package:dio/dio.dart' show CancelToken;
 import 'package:flutter/widgets.dart';
 
 /// In-memory token storage: the real one needs the Keychain / Keystore.
@@ -2521,4 +2528,172 @@ class FakeDocumentsApi implements DocumentsApi {
   @override
   Future<Uint8List> file(String url) async =>
       Uint8List.fromList(const [37, 80, 68, 70]);
+}
+
+/// Enseignements: two messages, the newest first.
+class FakeTeachingsApi implements TeachingsApi {
+  FakeTeachingsApi({List<Teaching>? teachings, this.offline = false})
+    : teachings = teachings ?? sampleTeachings;
+
+  List<Teaching> teachings;
+  bool offline;
+
+  static const sampleTeachings = [
+    Teaching(
+      id: 1,
+      title: 'Le message de la croix',
+      speaker: 'Pr Zacharias Tanee Fomum',
+      category: 'Prédications',
+      recordedOn: '1994-08-15',
+      description: 'La croix, puissance de Dieu.',
+      audio: TeachingAudio(
+        id: 21,
+        url: '/v1/media/croix.mp3',
+        sizeBytes: 12000000,
+      ),
+      durationSeconds: 3125,
+    ),
+    Teaching(
+      id: 2,
+      title: 'La prière',
+      speaker: 'Théodore Andoseh',
+      category: 'Vie chrétienne',
+      audio: TeachingAudio(
+        id: 22,
+        url: '/v1/media/priere.m4a',
+        format: AudioFormat.m4a,
+      ),
+      durationSeconds: 1800,
+    ),
+  ];
+
+  @override
+  Future<TeachingsPage> list({
+    String search = '',
+    String category = '',
+    int page = 1,
+    int size = 20,
+  }) async {
+    if (offline) {
+      throw const NetworkException();
+    }
+    final words = search.toLowerCase().split(' ').where((w) => w.isNotEmpty);
+    final kept = [
+      for (final teaching in teachings)
+        if ((category.isEmpty || teaching.category == category) &&
+            words.every(
+              '${teaching.title} ${teaching.speaker}'.toLowerCase().contains,
+            ))
+          teaching,
+    ];
+    final start = (page - 1) * size;
+    return (items: kept.skip(start).take(size).toList(), total: kept.length);
+  }
+
+  @override
+  Future<List<TeachingCategory>> categories() async {
+    if (offline) {
+      throw const NetworkException();
+    }
+    final names = {for (final t in teachings) t.category}..remove('');
+    return [for (final name in names) TeachingCategory(name: name, count: 1)];
+  }
+}
+
+/// A player that plays nothing: it says what it was asked.
+class FakeTeachingPlayer implements TeachingPlayer {
+  final _controller = StreamController<PlayerSnapshot>.broadcast();
+  PlayerSnapshot _snapshot = const PlayerSnapshot();
+
+  /// What [open] was given: the source and where it started.
+  final opened = <({Teaching teaching, Uri source, Duration start})>[];
+
+  @override
+  Stream<PlayerSnapshot> get snapshots => _controller.stream;
+
+  @override
+  PlayerSnapshot get snapshot => _snapshot;
+
+  /// What the real player would say (the position moving, the end).
+  void emit(PlayerSnapshot snapshot) {
+    _snapshot = snapshot;
+    _controller.add(snapshot);
+  }
+
+  @override
+  Future<void> open(
+    Teaching teaching, {
+    required Uri source,
+    Uri? artwork,
+    Duration start = Duration.zero,
+    double speed = 1,
+  }) async {
+    opened.add((teaching: teaching, source: source, start: start));
+    emit(
+      PlayerSnapshot(
+        teaching: teaching,
+        playing: true,
+        position: start,
+        duration: teaching.duration,
+        speed: speed,
+      ),
+    );
+  }
+
+  @override
+  Future<void> play() async => emit(_snapshot.copyWith(playing: true));
+
+  @override
+  Future<void> pause() async => emit(_snapshot.copyWith(playing: false));
+
+  @override
+  Future<void> seek(Duration position) async =>
+      emit(_snapshot.copyWith(position: position));
+
+  @override
+  Future<void> setSpeed(double speed) async =>
+      emit(_snapshot.copyWith(speed: speed));
+
+  @override
+  Future<void> stop() async => emit(const PlayerSnapshot());
+}
+
+/// The teachings kept "on the phone": their ids.
+class FakeTeachingFiles implements TeachingFiles {
+  final kept = <int>{};
+  bool fail = false;
+
+  @override
+  Future<File?> fileOf(Teaching teaching) async => kept.contains(teaching.id)
+      ? File('/tmp/teachings/${teaching.id}.${teaching.audio.format.name}')
+      : null;
+
+  @override
+  Future<void> download(
+    Teaching teaching,
+    String url, {
+    required void Function(double progress) onProgress,
+    CancelToken? cancel,
+  }) async {
+    if (fail) {
+      throw const NetworkException();
+    }
+    onProgress(0.5);
+    kept.add(teaching.id);
+  }
+
+  @override
+  Future<void> delete(Teaching teaching) async => kept.remove(teaching.id);
+}
+
+/// The Keychain of Suivi des âmes, in memory.
+class FakeSoulsStorage implements SoulsStorage {
+  final saved = <int, String>{};
+
+  @override
+  Future<String?> read(int accountId) async => saved[accountId];
+
+  @override
+  Future<void> write(int accountId, String json) async =>
+      saved[accountId] = json;
 }

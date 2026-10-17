@@ -1,9 +1,9 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/widgets.dart';
 
-import '../../../../core/i18n/strings.g.dart';
-import '../../../../core/services/biometrics.dart';
-import '../../../../core/theme/app_icons.dart';
+import '../i18n/strings.g.dart';
+import '../services/biometrics.dart';
+import '../theme/app_icons.dart';
 
 /// "Face ID", "Touch ID" on iPhone; "ton empreinte", "ton visage" on
 /// Android, as the phones name them.

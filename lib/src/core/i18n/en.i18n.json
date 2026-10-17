@@ -1834,5 +1834,192 @@
     "homeTitle": "Today's reading",
     "check": "Mark {chapter} as read",
     "uncheck": "{chapter}: read"
+  },
+  "teachings": {
+    "title": "Teachings",
+    "subtitle": "Hear the Word wherever you are",
+    "search": "Search a message, a speaker…",
+    "all": "All",
+    "downloadedChip": "Downloaded",
+    "count(plural, param=n)": {
+      "one": "{n} message",
+      "other": "{n} messages"
+    },
+    "empty": "No teachings yet.",
+    "none": "No teaching matches.",
+    "noneDownloaded": "No message downloaded. Tap a message's cloud to listen without network.",
+    "more": "See more",
+    "offline": "No network: here are the messages kept on your phone.",
+    "play": "Listen",
+    "pause": "Pause",
+    "heard": "Heard",
+    "download": "Download to listen offline",
+    "downloaded": "Kept on your phone",
+    "removed": "Removed from the phone",
+    "cancelDownload": "Stop the download",
+    "removeDownload": "Remove from the phone",
+    "back15": "Back 15 seconds",
+    "forward15": "Forward 15 seconds",
+    "speed": "Speed {speed}",
+    "recordedOn": "Message of {date}",
+    "moreSubtitle": "Sermons and teachings to listen to"
+  },
+  "memorize": {
+    "title": "Memorization",
+    "subtitle": "Hide the Word in your heart",
+    "toReview": "To review",
+    "learning": "Learning",
+    "known": "Known",
+    "reviewCount(plural, param=n)": {
+      "one": "Review {n} verse",
+      "other": "Review {n} verses"
+    },
+    "nothingDue": "Nothing to review today.",
+    "nextOn": "Next review: {date}.",
+    "tomorrow": "tomorrow",
+    "reminder": "Review reminder",
+    "reminderAt": "Reminder time",
+    "myVerses": "My verses",
+    "howToAdd": "To add one: in the Bible, tap a verse, then the brain in the bar.",
+    "empty": "No verse to memorize yet.",
+    "openBible": "Open the Bible",
+    "late": "Late",
+    "today": "Today",
+    "dueIn(plural, param=n)": {
+      "one": "In {n} day",
+      "other": "In {n} days"
+    },
+    "stages(map)": {
+      "fresh": "New",
+      "learning": "Learning",
+      "known": "Known"
+    },
+    "stats": "{stage} · forgotten {lapses} times",
+    "reviewNow": "Review now",
+    "remove": "Remove",
+    "removeTitle": "Remove this verse?",
+    "removeText": "Its progress will be erased.",
+    "removed": "Verse removed",
+    "progress": "{done} / {total}",
+    "show": "Show the verse",
+    "hints(map)": {
+      "full": "Text",
+      "gaps": "Gaps",
+      "initials": "Initials",
+      "none": "None"
+    },
+    "recite": "Recite the verse, then check.",
+    "grades(map)": {
+      "again": "Again",
+      "hard": "Hard",
+      "good": "Good",
+      "easy": "Easy"
+    },
+    "now": "Right away",
+    "later(plural, param=n)": {
+      "one": "{n} day",
+      "other": "{n} days"
+    },
+    "doneTitle": "Reviews done!",
+    "doneText(plural, param=n)": {
+      "one": "You reviewed {n} verse. May the Word dwell in you!",
+      "other": "You reviewed {n} verses. May the Word dwell in you!"
+    },
+    "back": "Back",
+    "reminderTitle": "Your verses to review",
+    "reminderBody(plural, param=n)": {
+      "one": "{n} verse is waiting for you today.",
+      "other": "{n} verses are waiting for you today."
+    },
+    "reminderChannel": "Memorization",
+    "homeTitle": "Verses to review",
+    "homeText(plural, param=n)": {
+      "one": "{n} verse waiting",
+      "other": "{n} verses waiting"
+    },
+    "menu": "Memorize verses",
+    "memorize": "Memorize",
+    "added": "Added to your verses to memorize",
+    "already": "This passage is already in your verses"
+  },
+  "souls": {
+    "title": "Soul follow-up",
+    "subtitle": "\"He who wins souls is wise.\" Proverbs 11:30",
+    "search": "Search a person…",
+    "people": "People",
+    "received": "Received Jesus",
+    "toContact": "To contact",
+    "all": "All",
+    "stages(map)": {
+      "met": "Met",
+      "interested": "Interested",
+      "received": "Received Jesus",
+      "followUp": "Being grounded",
+      "church": "Comes to church",
+      "baptized": "Baptized"
+    },
+    "contactSection": "To contact again",
+    "everyone": "Everyone",
+    "contactToday": "Contact today",
+    "contactLate(plural, param=n)": {
+      "one": "{n} day late",
+      "other": "{n} days late"
+    },
+    "contactOn": "Next contact on {date}",
+    "empty": "Note here the people you share the Gospel with: pray for them and follow them to church.",
+    "none": "Nobody matches.",
+    "add": "Add",
+    "addTitle": "New person",
+    "editTitle": "Edit",
+    "name": "Name",
+    "nameRequired": "Write their name.",
+    "phone": "Phone",
+    "place": "Where you met",
+    "metOn": "Met on",
+    "stage": "Where is this person?",
+    "firstNote": "A note (optional)",
+    "noteHint": "What was said, prayer requests…",
+    "save": "Save",
+    "saved": "Saved",
+    "call": "Call",
+    "whatsApp": "WhatsApp",
+    "sms": "Text",
+    "edit": "Edit",
+    "delete": "Delete",
+    "deleteTitle": "Delete {name}?",
+    "deleteText": "Their notes will be erased from your phone.",
+    "deleted": "Deleted",
+    "nextContact": "Next contact",
+    "plan": "Plan a reminder",
+    "change": "Change the date",
+    "clear": "Remove the reminder",
+    "noContact": "No reminder planned",
+    "metAt": "Met on {date}",
+    "notes": "Notes",
+    "addNote": "Add the note",
+    "noNotes": "No notes yet.",
+    "deleteNote": "Delete the note",
+    "export": "Export (spreadsheet)",
+    "csv": {
+      "name": "Name",
+      "phone": "Phone",
+      "place": "Place",
+      "metOn": "Met on",
+      "stage": "Stage",
+      "next": "Next contact",
+      "notes": "Notes"
+    },
+    "lock": "Lock with {method}",
+    "lockedTitle": "Your soul follow-up is locked",
+    "unlock": "Unlock",
+    "unlockReason": "Open your soul follow-up",
+    "privacy": "This information stays on your phone: it is never sent.",
+    "reminderTitle": "Soul follow-up",
+    "reminderBody(plural, param=n)": {
+      "one": "{n} person to contact today.",
+      "other": "{n} people to contact today."
+    },
+    "reminderChannel": "Soul follow-up",
+    "moreSubtitle": "The people you share the Gospel with"
   }
 }

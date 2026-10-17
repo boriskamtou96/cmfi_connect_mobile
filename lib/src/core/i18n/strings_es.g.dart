@@ -78,6 +78,9 @@ class TranslationsEs extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _Translations$seekFirst$es seekFirst = _Translations$seekFirst$es._(_root);
 	@override late final _Translations$documents$es documents = _Translations$documents$es._(_root);
 	@override late final _Translations$biblePlan$es biblePlan = _Translations$biblePlan$es._(_root);
+	@override late final _Translations$teachings$es teachings = _Translations$teachings$es._(_root);
+	@override late final _Translations$memorize$es memorize = _Translations$memorize$es._(_root);
+	@override late final _Translations$souls$es souls = _Translations$souls$es._(_root);
 }
 
 // Path: app
@@ -1351,6 +1354,206 @@ class _Translations$biblePlan$es extends Translations$biblePlan$fr {
 	@override String uncheck({required Object chapter}) => '${chapter}: leído';
 }
 
+// Path: teachings
+class _Translations$teachings$es extends Translations$teachings$fr {
+	_Translations$teachings$es._(TranslationsEs root) : this._root = root, super.internal(root);
+
+	final TranslationsEs _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Enseñanzas';
+	@override String get subtitle => 'Escucha la Palabra estés donde estés';
+	@override String get search => 'Buscar un mensaje, un predicador…';
+	@override String get all => 'Todos';
+	@override String get downloadedChip => 'Descargados';
+	@override String count({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('es'))(n,
+		one: '${n} mensaje',
+		other: '${n} mensajes',
+	);
+	@override String get empty => 'Aún no hay enseñanzas.';
+	@override String get none => 'Ninguna enseñanza coincide.';
+	@override String get noneDownloaded => 'Ningún mensaje descargado. Toca la nube de un mensaje para escucharlo sin red.';
+	@override String get more => 'Ver más';
+	@override String get offline => 'Sin red: estos son los mensajes guardados en tu teléfono.';
+	@override String get play => 'Escuchar';
+	@override String get pause => 'Pausa';
+	@override String get heard => 'Escuchado';
+	@override String get download => 'Descargar para escuchar sin red';
+	@override String get downloaded => 'Guardado en tu teléfono';
+	@override String get removed => 'Quitado del teléfono';
+	@override String get cancelDownload => 'Detener la descarga';
+	@override String get removeDownload => 'Quitar del teléfono';
+	@override String get back15 => 'Retroceder 15 segundos';
+	@override String get forward15 => 'Avanzar 15 segundos';
+	@override String speed({required Object speed}) => 'Velocidad ${speed}';
+	@override String recordedOn({required Object date}) => 'Mensaje del ${date}';
+	@override String get moreSubtitle => 'Predicaciones y enseñanzas para escuchar';
+}
+
+// Path: memorize
+class _Translations$memorize$es extends Translations$memorize$fr {
+	_Translations$memorize$es._(TranslationsEs root) : this._root = root, super.internal(root);
+
+	final TranslationsEs _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Memorización';
+	@override String get subtitle => 'Guarda la Palabra en tu corazón';
+	@override String get toReview => 'Por repasar';
+	@override String get learning => 'Aprendiendo';
+	@override String get known => 'Sabidos';
+	@override String reviewCount({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('es'))(n,
+		one: 'Repasar ${n} versículo',
+		other: 'Repasar ${n} versículos',
+	);
+	@override String get nothingDue => 'Nada que repasar hoy.';
+	@override String nextOn({required Object date}) => 'Próximo repaso: ${date}.';
+	@override String get tomorrow => 'mañana';
+	@override String get reminder => 'Recordatorio de repaso';
+	@override String get reminderAt => 'Hora del recordatorio';
+	@override String get myVerses => 'Mis versículos';
+	@override String get howToAdd => 'Para añadir uno: en la Biblia, toca un versículo y luego el cerebro de la barra.';
+	@override String get empty => 'Aún no hay versículos para memorizar.';
+	@override String get openBible => 'Abrir la Biblia';
+	@override String get late => 'Atrasado';
+	@override String get today => 'Hoy';
+	@override String dueIn({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('es'))(n,
+		one: 'En ${n} día',
+		other: 'En ${n} días',
+	);
+	@override Map<String, String> get stages => {
+		'fresh': 'Nuevo',
+		'learning': 'Aprendiendo',
+		'known': 'Sabido',
+	};
+	@override String stats({required Object stage, required Object lapses}) => '${stage} · olvidado ${lapses} veces';
+	@override String get reviewNow => 'Repasar ahora';
+	@override String get remove => 'Quitar';
+	@override String get removeTitle => '¿Quitar este versículo?';
+	@override String get removeText => 'Se borrará su progreso.';
+	@override String get removed => 'Versículo quitado';
+	@override String progress({required Object done, required Object total}) => '${done} / ${total}';
+	@override String get show => 'Ver el versículo';
+	@override Map<String, String> get hints => {
+		'full': 'Texto',
+		'gaps': 'Huecos',
+		'initials': 'Iniciales',
+		'none': 'Nada',
+	};
+	@override String get recite => 'Recita el versículo y luego comprueba.';
+	@override Map<String, String> get grades => {
+		'again': 'Otra vez',
+		'hard': 'Difícil',
+		'good': 'Bien',
+		'easy': 'Fácil',
+	};
+	@override String get now => 'Enseguida';
+	@override String later({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('es'))(n,
+		one: '${n} día',
+		other: '${n} días',
+	);
+	@override String get doneTitle => '¡Repaso terminado!';
+	@override String doneText({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('es'))(n,
+		one: 'Repasaste ${n} versículo. ¡Que la Palabra more en ti!',
+		other: 'Repasaste ${n} versículos. ¡Que la Palabra more en ti!',
+	);
+	@override String get back => 'Volver';
+	@override String get reminderTitle => 'Tus versículos por repasar';
+	@override String reminderBody({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('es'))(n,
+		one: '${n} versículo te espera hoy.',
+		other: '${n} versículos te esperan hoy.',
+	);
+	@override String get reminderChannel => 'Memorización';
+	@override String get homeTitle => 'Versículos por repasar';
+	@override String homeText({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('es'))(n,
+		one: '${n} versículo te espera',
+		other: '${n} versículos te esperan',
+	);
+	@override String get menu => 'Memorizar versículos';
+	@override String get memorize => 'Memorizar';
+	@override String get added => 'Añadido a tus versículos para memorizar';
+	@override String get already => 'Este pasaje ya está en tus versículos';
+}
+
+// Path: souls
+class _Translations$souls$es extends Translations$souls$fr {
+	_Translations$souls$es._(TranslationsEs root) : this._root = root, super.internal(root);
+
+	final TranslationsEs _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Seguimiento de almas';
+	@override String get subtitle => '«El que gana almas es sabio.» Proverbios 11:30';
+	@override String get search => 'Buscar una persona…';
+	@override String get people => 'Personas';
+	@override String get received => 'Recibieron a Jesús';
+	@override String get toContact => 'Por contactar';
+	@override String get all => 'Todas';
+	@override Map<String, String> get stages => {
+		'met': 'Conocido(a)',
+		'interested': 'Interesado(a)',
+		'received': 'Recibió a Jesús',
+		'followUp': 'En afianzamiento',
+		'church': 'Viene a la iglesia',
+		'baptized': 'Bautizado(a)',
+	};
+	@override String get contactSection => 'Por volver a contactar';
+	@override String get everyone => 'Todas las personas';
+	@override String get contactToday => 'Contactar hoy';
+	@override String contactLate({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('es'))(n,
+		one: 'Con ${n} día de retraso',
+		other: 'Con ${n} días de retraso',
+	);
+	@override String contactOn({required Object date}) => 'Próximo contacto el ${date}';
+	@override String get empty => 'Anota aquí a las personas que evangelizas: ora por ellas y acompáñalas hasta la iglesia.';
+	@override String get none => 'Nadie coincide.';
+	@override String get add => 'Añadir';
+	@override String get addTitle => 'Nueva persona';
+	@override String get editTitle => 'Editar';
+	@override String get name => 'Nombre';
+	@override String get nameRequired => 'Escribe su nombre.';
+	@override String get phone => 'Teléfono';
+	@override String get place => 'Dónde se conocieron';
+	@override String get metOn => 'Conocido(a) el';
+	@override String get stage => '¿En qué punto está?';
+	@override String get firstNote => 'Una nota (opcional)';
+	@override String get noteHint => 'Lo que se dijo, motivos de oración…';
+	@override String get save => 'Guardar';
+	@override String get saved => 'Guardado';
+	@override String get call => 'Llamar';
+	@override String get whatsApp => 'WhatsApp';
+	@override String get sms => 'SMS';
+	@override String get edit => 'Editar';
+	@override String get delete => 'Eliminar';
+	@override String deleteTitle({required Object name}) => '¿Eliminar a ${name}?';
+	@override String get deleteText => 'Sus notas se borrarán de tu teléfono.';
+	@override String get deleted => 'Eliminado';
+	@override String get nextContact => 'Próximo contacto';
+	@override String get plan => 'Programar un recordatorio';
+	@override String get change => 'Cambiar la fecha';
+	@override String get clear => 'Quitar el recordatorio';
+	@override String get noContact => 'Ningún recordatorio previsto';
+	@override String metAt({required Object date}) => 'Conocido(a) el ${date}';
+	@override String get notes => 'Notas';
+	@override String get addNote => 'Añadir la nota';
+	@override String get noNotes => 'Aún no hay notas.';
+	@override String get deleteNote => 'Eliminar la nota';
+	@override String get export => 'Exportar (hoja de cálculo)';
+	@override late final _Translations$souls$csv$es csv = _Translations$souls$csv$es._(_root);
+	@override String lock({required Object method}) => 'Bloquear con ${method}';
+	@override String get lockedTitle => 'Tu seguimiento de almas está bloqueado';
+	@override String get unlock => 'Desbloquear';
+	@override String get unlockReason => 'Abre tu seguimiento de almas';
+	@override String get privacy => 'Esta información se queda en tu teléfono: nunca se envía.';
+	@override String get reminderTitle => 'Seguimiento de almas';
+	@override String reminderBody({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('es'))(n,
+		one: '${n} persona por contactar hoy.',
+		other: '${n} personas por contactar hoy.',
+	);
+	@override String get reminderChannel => 'Seguimiento de almas';
+	@override String get moreSubtitle => 'Las personas que evangelizas';
+}
+
 // Path: onboarding.reports
 class _Translations$onboarding$reports$es extends Translations$onboarding$reports$fr {
 	_Translations$onboarding$reports$es._(TranslationsEs root) : this._root = root, super.internal(root);
@@ -2396,6 +2599,22 @@ class _Translations$seekFirst$shield$es extends Translations$seekFirst$shield$fr
 	@override String pause({required Object n}) => 'Pausa de 5 min (${n}/3)';
 	@override String get notificationTitle => 'Busca primero a Dios';
 	@override String get notificationBody => 'Toca aquí para llenar tu informe.';
+}
+
+// Path: souls.csv
+class _Translations$souls$csv$es extends Translations$souls$csv$fr {
+	_Translations$souls$csv$es._(TranslationsEs root) : this._root = root, super.internal(root);
+
+	final TranslationsEs _root; // ignore: unused_field
+
+	// Translations
+	@override String get name => 'Nombre';
+	@override String get phone => 'Teléfono';
+	@override String get place => 'Lugar';
+	@override String get metOn => 'Conocido el';
+	@override String get stage => 'Etapa';
+	@override String get next => 'Próximo contacto';
+	@override String get notes => 'Notas';
 }
 
 // Path: reports.units.chapters
@@ -4075,6 +4294,152 @@ extension on TranslationsEs {
 			'biblePlan.homeTitle' => 'Lectura del día',
 			'biblePlan.check' => ({required Object chapter}) => 'Marcar ${chapter} como leído',
 			'biblePlan.uncheck' => ({required Object chapter}) => '${chapter}: leído',
+			'teachings.title' => 'Enseñanzas',
+			'teachings.subtitle' => 'Escucha la Palabra estés donde estés',
+			'teachings.search' => 'Buscar un mensaje, un predicador…',
+			'teachings.all' => 'Todos',
+			'teachings.downloadedChip' => 'Descargados',
+			'teachings.count' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('es'))(n, one: '${n} mensaje', other: '${n} mensajes', ), 
+			'teachings.empty' => 'Aún no hay enseñanzas.',
+			'teachings.none' => 'Ninguna enseñanza coincide.',
+			'teachings.noneDownloaded' => 'Ningún mensaje descargado. Toca la nube de un mensaje para escucharlo sin red.',
+			'teachings.more' => 'Ver más',
+			'teachings.offline' => 'Sin red: estos son los mensajes guardados en tu teléfono.',
+			'teachings.play' => 'Escuchar',
+			'teachings.pause' => 'Pausa',
+			'teachings.heard' => 'Escuchado',
+			'teachings.download' => 'Descargar para escuchar sin red',
+			'teachings.downloaded' => 'Guardado en tu teléfono',
+			'teachings.removed' => 'Quitado del teléfono',
+			'teachings.cancelDownload' => 'Detener la descarga',
+			'teachings.removeDownload' => 'Quitar del teléfono',
+			'teachings.back15' => 'Retroceder 15 segundos',
+			'teachings.forward15' => 'Avanzar 15 segundos',
+			'teachings.speed' => ({required Object speed}) => 'Velocidad ${speed}',
+			'teachings.recordedOn' => ({required Object date}) => 'Mensaje del ${date}',
+			'teachings.moreSubtitle' => 'Predicaciones y enseñanzas para escuchar',
+			'memorize.title' => 'Memorización',
+			'memorize.subtitle' => 'Guarda la Palabra en tu corazón',
+			'memorize.toReview' => 'Por repasar',
+			'memorize.learning' => 'Aprendiendo',
+			'memorize.known' => 'Sabidos',
+			'memorize.reviewCount' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('es'))(n, one: 'Repasar ${n} versículo', other: 'Repasar ${n} versículos', ), 
+			'memorize.nothingDue' => 'Nada que repasar hoy.',
+			'memorize.nextOn' => ({required Object date}) => 'Próximo repaso: ${date}.',
+			'memorize.tomorrow' => 'mañana',
+			'memorize.reminder' => 'Recordatorio de repaso',
+			'memorize.reminderAt' => 'Hora del recordatorio',
+			'memorize.myVerses' => 'Mis versículos',
+			'memorize.howToAdd' => 'Para añadir uno: en la Biblia, toca un versículo y luego el cerebro de la barra.',
+			'memorize.empty' => 'Aún no hay versículos para memorizar.',
+			'memorize.openBible' => 'Abrir la Biblia',
+			'memorize.late' => 'Atrasado',
+			'memorize.today' => 'Hoy',
+			'memorize.dueIn' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('es'))(n, one: 'En ${n} día', other: 'En ${n} días', ), 
+			'memorize.stages.fresh' => 'Nuevo',
+			'memorize.stages.learning' => 'Aprendiendo',
+			'memorize.stages.known' => 'Sabido',
+			'memorize.stats' => ({required Object stage, required Object lapses}) => '${stage} · olvidado ${lapses} veces',
+			'memorize.reviewNow' => 'Repasar ahora',
+			'memorize.remove' => 'Quitar',
+			'memorize.removeTitle' => '¿Quitar este versículo?',
+			'memorize.removeText' => 'Se borrará su progreso.',
+			'memorize.removed' => 'Versículo quitado',
+			'memorize.progress' => ({required Object done, required Object total}) => '${done} / ${total}',
+			'memorize.show' => 'Ver el versículo',
+			'memorize.hints.full' => 'Texto',
+			'memorize.hints.gaps' => 'Huecos',
+			'memorize.hints.initials' => 'Iniciales',
+			'memorize.hints.none' => 'Nada',
+			'memorize.recite' => 'Recita el versículo y luego comprueba.',
+			'memorize.grades.again' => 'Otra vez',
+			'memorize.grades.hard' => 'Difícil',
+			'memorize.grades.good' => 'Bien',
+			'memorize.grades.easy' => 'Fácil',
+			'memorize.now' => 'Enseguida',
+			'memorize.later' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('es'))(n, one: '${n} día', other: '${n} días', ), 
+			'memorize.doneTitle' => '¡Repaso terminado!',
+			'memorize.doneText' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('es'))(n, one: 'Repasaste ${n} versículo. ¡Que la Palabra more en ti!', other: 'Repasaste ${n} versículos. ¡Que la Palabra more en ti!', ), 
+			'memorize.back' => 'Volver',
+			'memorize.reminderTitle' => 'Tus versículos por repasar',
+			'memorize.reminderBody' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('es'))(n, one: '${n} versículo te espera hoy.', other: '${n} versículos te esperan hoy.', ), 
+			'memorize.reminderChannel' => 'Memorización',
+			'memorize.homeTitle' => 'Versículos por repasar',
+			'memorize.homeText' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('es'))(n, one: '${n} versículo te espera', other: '${n} versículos te esperan', ), 
+			'memorize.menu' => 'Memorizar versículos',
+			'memorize.memorize' => 'Memorizar',
+			'memorize.added' => 'Añadido a tus versículos para memorizar',
+			'memorize.already' => 'Este pasaje ya está en tus versículos',
+			'souls.title' => 'Seguimiento de almas',
+			'souls.subtitle' => '«El que gana almas es sabio.» Proverbios 11:30',
+			'souls.search' => 'Buscar una persona…',
+			'souls.people' => 'Personas',
+			'souls.received' => 'Recibieron a Jesús',
+			'souls.toContact' => 'Por contactar',
+			'souls.all' => 'Todas',
+			'souls.stages.met' => 'Conocido(a)',
+			'souls.stages.interested' => 'Interesado(a)',
+			'souls.stages.received' => 'Recibió a Jesús',
+			'souls.stages.followUp' => 'En afianzamiento',
+			'souls.stages.church' => 'Viene a la iglesia',
+			'souls.stages.baptized' => 'Bautizado(a)',
+			'souls.contactSection' => 'Por volver a contactar',
+			'souls.everyone' => 'Todas las personas',
+			'souls.contactToday' => 'Contactar hoy',
+			'souls.contactLate' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('es'))(n, one: 'Con ${n} día de retraso', other: 'Con ${n} días de retraso', ), 
+			'souls.contactOn' => ({required Object date}) => 'Próximo contacto el ${date}',
+			'souls.empty' => 'Anota aquí a las personas que evangelizas: ora por ellas y acompáñalas hasta la iglesia.',
+			'souls.none' => 'Nadie coincide.',
+			'souls.add' => 'Añadir',
+			'souls.addTitle' => 'Nueva persona',
+			'souls.editTitle' => 'Editar',
+			'souls.name' => 'Nombre',
+			'souls.nameRequired' => 'Escribe su nombre.',
+			'souls.phone' => 'Teléfono',
+			'souls.place' => 'Dónde se conocieron',
+			'souls.metOn' => 'Conocido(a) el',
+			'souls.stage' => '¿En qué punto está?',
+			'souls.firstNote' => 'Una nota (opcional)',
+			'souls.noteHint' => 'Lo que se dijo, motivos de oración…',
+			'souls.save' => 'Guardar',
+			'souls.saved' => 'Guardado',
+			'souls.call' => 'Llamar',
+			'souls.whatsApp' => 'WhatsApp',
+			'souls.sms' => 'SMS',
+			'souls.edit' => 'Editar',
+			'souls.delete' => 'Eliminar',
+			'souls.deleteTitle' => ({required Object name}) => '¿Eliminar a ${name}?',
+			'souls.deleteText' => 'Sus notas se borrarán de tu teléfono.',
+			'souls.deleted' => 'Eliminado',
+			'souls.nextContact' => 'Próximo contacto',
+			'souls.plan' => 'Programar un recordatorio',
+			'souls.change' => 'Cambiar la fecha',
+			'souls.clear' => 'Quitar el recordatorio',
+			'souls.noContact' => 'Ningún recordatorio previsto',
+			'souls.metAt' => ({required Object date}) => 'Conocido(a) el ${date}',
+			'souls.notes' => 'Notas',
+			'souls.addNote' => 'Añadir la nota',
+			'souls.noNotes' => 'Aún no hay notas.',
+			'souls.deleteNote' => 'Eliminar la nota',
+			'souls.export' => 'Exportar (hoja de cálculo)',
+			'souls.csv.name' => 'Nombre',
+			'souls.csv.phone' => 'Teléfono',
+			'souls.csv.place' => 'Lugar',
+			'souls.csv.metOn' => 'Conocido el',
+			'souls.csv.stage' => 'Etapa',
+			_ => null,
+		} ?? switch (path) {
+			'souls.csv.next' => 'Próximo contacto',
+			'souls.csv.notes' => 'Notas',
+			'souls.lock' => ({required Object method}) => 'Bloquear con ${method}',
+			'souls.lockedTitle' => 'Tu seguimiento de almas está bloqueado',
+			'souls.unlock' => 'Desbloquear',
+			'souls.unlockReason' => 'Abre tu seguimiento de almas',
+			'souls.privacy' => 'Esta información se queda en tu teléfono: nunca se envía.',
+			'souls.reminderTitle' => 'Seguimiento de almas',
+			'souls.reminderBody' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('es'))(n, one: '${n} persona por contactar hoy.', other: '${n} personas por contactar hoy.', ), 
+			'souls.reminderChannel' => 'Seguimiento de almas',
+			'souls.moreSubtitle' => 'Las personas que evangelizas',
 			_ => null,
 		};
 	}

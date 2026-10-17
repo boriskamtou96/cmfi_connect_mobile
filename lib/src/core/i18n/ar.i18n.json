@@ -2083,5 +2083,192 @@
     "homeTitle": "قراءة اليوم",
     "check": "علّم {chapter} كمقروء",
     "uncheck": "{chapter}: مقروء"
+  },
+  "teachings": {
+    "title": "التعاليم",
+    "subtitle": "استمع إلى الكلمة أينما كنت",
+    "search": "ابحث عن رسالة أو واعظ…",
+    "all": "الكل",
+    "downloadedChip": "المحمَّلة",
+    "count(plural, param=n)": {
+      "one": "رسالة واحدة",
+      "other": "{n} رسائل"
+    },
+    "empty": "لا توجد تعاليم حتى الآن.",
+    "none": "لا يوجد تعليم مطابق.",
+    "noneDownloaded": "لا توجد رسائل محمَّلة. المس سحابة الرسالة لتستمع إليها دون شبكة.",
+    "more": "عرض المزيد",
+    "offline": "لا توجد شبكة: هذه هي الرسائل المحفوظة على هاتفك.",
+    "play": "استمع",
+    "pause": "إيقاف مؤقت",
+    "heard": "تم الاستماع",
+    "download": "حمّل للاستماع دون شبكة",
+    "downloaded": "حُفظ على هاتفك",
+    "removed": "أُزيل من الهاتف",
+    "cancelDownload": "أوقف التحميل",
+    "removeDownload": "أزل من الهاتف",
+    "back15": "رجوع 15 ثانية",
+    "forward15": "تقدّم 15 ثانية",
+    "speed": "السرعة {speed}",
+    "recordedOn": "رسالة {date}",
+    "moreSubtitle": "عظات وتعاليم للاستماع"
+  },
+  "memorize": {
+    "title": "الحفظ",
+    "subtitle": "اخبأ الكلمة في قلبك",
+    "toReview": "للمراجعة",
+    "learning": "قيد الحفظ",
+    "known": "محفوظة",
+    "reviewCount(plural, param=n)": {
+      "one": "راجع آية واحدة",
+      "other": "راجع {n} آيات"
+    },
+    "nothingDue": "لا شيء للمراجعة اليوم.",
+    "nextOn": "المراجعة القادمة: {date}.",
+    "tomorrow": "غدًا",
+    "reminder": "تذكير بالمراجعة",
+    "reminderAt": "وقت التذكير",
+    "myVerses": "آياتي",
+    "howToAdd": "لإضافة آية: في الكتاب المقدس، المس آية ثم أيقونة الدماغ في الشريط.",
+    "empty": "لا توجد آيات للحفظ حتى الآن.",
+    "openBible": "افتح الكتاب المقدس",
+    "late": "متأخرة",
+    "today": "اليوم",
+    "dueIn(plural, param=n)": {
+      "one": "بعد يوم",
+      "other": "بعد {n} أيام"
+    },
+    "stages(map)": {
+      "fresh": "جديدة",
+      "learning": "قيد الحفظ",
+      "known": "محفوظة"
+    },
+    "stats": "{stage} · نُسيت {lapses} مرات",
+    "reviewNow": "راجع الآن",
+    "remove": "أزل",
+    "removeTitle": "إزالة هذه الآية؟",
+    "removeText": "سيُمحى تقدّمك فيها.",
+    "removed": "أُزيلت الآية",
+    "progress": "{done} / {total}",
+    "show": "أظهر الآية",
+    "hints(map)": {
+      "full": "النص",
+      "gaps": "فراغات",
+      "initials": "الحروف الأولى",
+      "none": "لا شيء"
+    },
+    "recite": "اتلُ الآية ثم تحقّق.",
+    "grades(map)": {
+      "again": "مجددًا",
+      "hard": "صعب",
+      "good": "جيد",
+      "easy": "سهل"
+    },
+    "now": "فورًا",
+    "later(plural, param=n)": {
+      "one": "يوم",
+      "other": "{n} أيام"
+    },
+    "doneTitle": "انتهت المراجعة!",
+    "doneText(plural, param=n)": {
+      "one": "راجعت آية واحدة. لتسكن فيك الكلمة!",
+      "other": "راجعت {n} آيات. لتسكن فيك الكلمة!"
+    },
+    "back": "رجوع",
+    "reminderTitle": "آياتك للمراجعة",
+    "reminderBody(plural, param=n)": {
+      "one": "آية واحدة تنتظرك اليوم.",
+      "other": "{n} آيات تنتظرك اليوم."
+    },
+    "reminderChannel": "الحفظ",
+    "homeTitle": "آيات للمراجعة",
+    "homeText(plural, param=n)": {
+      "one": "آية واحدة تنتظرك",
+      "other": "{n} آيات تنتظرك"
+    },
+    "menu": "احفظ آيات",
+    "memorize": "احفظ",
+    "added": "أُضيفت إلى آياتك للحفظ",
+    "already": "هذا المقطع موجود بالفعل في آياتك"
+  },
+  "souls": {
+    "title": "متابعة النفوس",
+    "subtitle": "«رابح النفوس حكيم» أمثال 11: 30",
+    "search": "ابحث عن شخص…",
+    "people": "أشخاص",
+    "received": "قبلوا يسوع",
+    "toContact": "للتواصل",
+    "all": "الكل",
+    "stages(map)": {
+      "met": "تمّ اللقاء",
+      "interested": "مهتم",
+      "received": "قبل يسوع",
+      "followUp": "في مرحلة التثبيت",
+      "church": "يأتي إلى الكنيسة",
+      "baptized": "تعمّد"
+    },
+    "contactSection": "للتواصل مجددًا",
+    "everyone": "جميع الأشخاص",
+    "contactToday": "تواصل اليوم",
+    "contactLate(plural, param=n)": {
+      "one": "متأخر يومًا",
+      "other": "متأخر {n} أيام"
+    },
+    "contactOn": "التواصل القادم في {date}",
+    "empty": "سجّل هنا الأشخاص الذين تبشّرهم: صلِّ لأجلهم ورافقهم حتى الكنيسة.",
+    "none": "لا يوجد أحد مطابق.",
+    "add": "أضف",
+    "addTitle": "شخص جديد",
+    "editTitle": "تعديل",
+    "name": "الاسم",
+    "nameRequired": "اكتب الاسم.",
+    "phone": "الهاتف",
+    "place": "أين التقيتما",
+    "metOn": "تاريخ اللقاء",
+    "stage": "أين وصل هذا الشخص؟",
+    "firstNote": "ملاحظة (اختياري)",
+    "noteHint": "ما قيل، طلبات الصلاة…",
+    "save": "احفظ",
+    "saved": "تم الحفظ",
+    "call": "اتصل",
+    "whatsApp": "واتساب",
+    "sms": "رسالة",
+    "edit": "تعديل",
+    "delete": "احذف",
+    "deleteTitle": "حذف {name}؟",
+    "deleteText": "ستُمحى ملاحظاته من هاتفك.",
+    "deleted": "تم الحذف",
+    "nextContact": "التواصل القادم",
+    "plan": "حدّد تذكيرًا",
+    "change": "غيّر التاريخ",
+    "clear": "أزل التذكير",
+    "noContact": "لا يوجد تذكير",
+    "metAt": "تمّ اللقاء في {date}",
+    "notes": "ملاحظات",
+    "addNote": "أضف الملاحظة",
+    "noNotes": "لا توجد ملاحظات بعد.",
+    "deleteNote": "احذف الملاحظة",
+    "export": "تصدير (جدول)",
+    "csv": {
+      "name": "الاسم",
+      "phone": "الهاتف",
+      "place": "المكان",
+      "metOn": "تاريخ اللقاء",
+      "stage": "المرحلة",
+      "next": "التواصل القادم",
+      "notes": "ملاحظات"
+    },
+    "lock": "اقفل بـ{method}",
+    "lockedTitle": "متابعة النفوس مقفلة",
+    "unlock": "افتح القفل",
+    "unlockReason": "افتح متابعة النفوس",
+    "privacy": "تبقى هذه المعلومات على هاتفك: لا تُرسَل أبدًا.",
+    "reminderTitle": "متابعة النفوس",
+    "reminderBody(plural, param=n)": {
+      "one": "شخص واحد للتواصل معه اليوم.",
+      "other": "{n} أشخاص للتواصل معهم اليوم."
+    },
+    "reminderChannel": "متابعة النفوس",
+    "moreSubtitle": "الأشخاص الذين تبشّرهم"
   }
 }

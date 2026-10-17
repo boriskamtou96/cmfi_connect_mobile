@@ -1833,5 +1833,192 @@
     "homeTitle": "Heutige Lesung",
     "check": "{chapter} als gelesen markieren",
     "uncheck": "{chapter}: gelesen"
+  },
+  "teachings": {
+    "title": "Lehren",
+    "subtitle": "Höre das Wort, wo du auch bist",
+    "search": "Botschaft, Sprecher suchen…",
+    "all": "Alle",
+    "downloadedChip": "Heruntergeladen",
+    "count(plural, param=n)": {
+      "one": "{n} Botschaft",
+      "other": "{n} Botschaften"
+    },
+    "empty": "Noch keine Lehren.",
+    "none": "Keine passende Lehre.",
+    "noneDownloaded": "Keine Botschaft heruntergeladen. Tippe auf die Wolke einer Botschaft, um sie offline zu hören.",
+    "more": "Mehr anzeigen",
+    "offline": "Kein Netz: Hier sind die Botschaften auf deinem Handy.",
+    "play": "Anhören",
+    "pause": "Pause",
+    "heard": "Gehört",
+    "download": "Zum Offline-Hören herunterladen",
+    "downloaded": "Auf deinem Handy gespeichert",
+    "removed": "Vom Handy entfernt",
+    "cancelDownload": "Download abbrechen",
+    "removeDownload": "Vom Handy entfernen",
+    "back15": "15 Sekunden zurück",
+    "forward15": "15 Sekunden vor",
+    "speed": "Geschwindigkeit {speed}",
+    "recordedOn": "Botschaft vom {date}",
+    "moreSubtitle": "Predigten und Lehren zum Anhören"
+  },
+  "memorize": {
+    "title": "Auswendiglernen",
+    "subtitle": "Bewahre das Wort in deinem Herzen",
+    "toReview": "Zu wiederholen",
+    "learning": "Am Lernen",
+    "known": "Gelernt",
+    "reviewCount(plural, param=n)": {
+      "one": "{n} Vers wiederholen",
+      "other": "{n} Verse wiederholen"
+    },
+    "nothingDue": "Heute nichts zu wiederholen.",
+    "nextOn": "Nächste Wiederholung: {date}.",
+    "tomorrow": "morgen",
+    "reminder": "Erinnerung zum Wiederholen",
+    "reminderAt": "Uhrzeit der Erinnerung",
+    "myVerses": "Meine Verse",
+    "howToAdd": "Zum Hinzufügen: Tippe in der Bibel auf einen Vers, dann auf das Gehirn in der Leiste.",
+    "empty": "Noch kein Vers zum Auswendiglernen.",
+    "openBible": "Bibel öffnen",
+    "late": "Überfällig",
+    "today": "Heute",
+    "dueIn(plural, param=n)": {
+      "one": "In {n} Tag",
+      "other": "In {n} Tagen"
+    },
+    "stages(map)": {
+      "fresh": "Neu",
+      "learning": "Am Lernen",
+      "known": "Gelernt"
+    },
+    "stats": "{stage} · {lapses}-mal vergessen",
+    "reviewNow": "Jetzt wiederholen",
+    "remove": "Entfernen",
+    "removeTitle": "Diesen Vers entfernen?",
+    "removeText": "Der Fortschritt wird gelöscht.",
+    "removed": "Vers entfernt",
+    "progress": "{done} / {total}",
+    "show": "Vers anzeigen",
+    "hints(map)": {
+      "full": "Text",
+      "gaps": "Lücken",
+      "initials": "Initialen",
+      "none": "Nichts"
+    },
+    "recite": "Sag den Vers auf, dann prüfe.",
+    "grades(map)": {
+      "again": "Nochmal",
+      "hard": "Schwer",
+      "good": "Gut",
+      "easy": "Leicht"
+    },
+    "now": "Sofort",
+    "later(plural, param=n)": {
+      "one": "{n} Tag",
+      "other": "{n} Tage"
+    },
+    "doneTitle": "Wiederholung geschafft!",
+    "doneText(plural, param=n)": {
+      "one": "Du hast {n} Vers wiederholt. Das Wort bleibe in dir!",
+      "other": "Du hast {n} Verse wiederholt. Das Wort bleibe in dir!"
+    },
+    "back": "Zurück",
+    "reminderTitle": "Deine Verse zum Wiederholen",
+    "reminderBody(plural, param=n)": {
+      "one": "{n} Vers wartet heute auf dich.",
+      "other": "{n} Verse warten heute auf dich."
+    },
+    "reminderChannel": "Auswendiglernen",
+    "homeTitle": "Verse zum Wiederholen",
+    "homeText(plural, param=n)": {
+      "one": "{n} Vers wartet",
+      "other": "{n} Verse warten"
+    },
+    "menu": "Verse auswendig lernen",
+    "memorize": "Auswendig lernen",
+    "added": "Zu deinen Lernversen hinzugefügt",
+    "already": "Diese Stelle ist schon in deinen Versen"
+  },
+  "souls": {
+    "title": "Seelenbegleitung",
+    "subtitle": "„Wer Seelen gewinnt, ist weise.“ Sprüche 11,30",
+    "search": "Person suchen…",
+    "people": "Personen",
+    "received": "Jesus angenommen",
+    "toContact": "Zu kontaktieren",
+    "all": "Alle",
+    "stages(map)": {
+      "met": "Begegnet",
+      "interested": "Interessiert",
+      "received": "Hat Jesus angenommen",
+      "followUp": "Wird gefestigt",
+      "church": "Kommt zur Gemeinde",
+      "baptized": "Getauft"
+    },
+    "contactSection": "Erneut kontaktieren",
+    "everyone": "Alle Personen",
+    "contactToday": "Heute kontaktieren",
+    "contactLate(plural, param=n)": {
+      "one": "{n} Tag überfällig",
+      "other": "{n} Tage überfällig"
+    },
+    "contactOn": "Nächster Kontakt am {date}",
+    "empty": "Notiere hier die Menschen, denen du das Evangelium bringst: Bete für sie und begleite sie bis in die Gemeinde.",
+    "none": "Niemand passt.",
+    "add": "Hinzufügen",
+    "addTitle": "Neue Person",
+    "editTitle": "Bearbeiten",
+    "name": "Name",
+    "nameRequired": "Schreibe den Namen.",
+    "phone": "Telefon",
+    "place": "Wo ihr euch getroffen habt",
+    "metOn": "Getroffen am",
+    "stage": "Wo steht diese Person?",
+    "firstNote": "Eine Notiz (optional)",
+    "noteHint": "Was gesagt wurde, Gebetsanliegen…",
+    "save": "Speichern",
+    "saved": "Gespeichert",
+    "call": "Anrufen",
+    "whatsApp": "WhatsApp",
+    "sms": "SMS",
+    "edit": "Bearbeiten",
+    "delete": "Löschen",
+    "deleteTitle": "{name} löschen?",
+    "deleteText": "Die Notizen werden von deinem Handy gelöscht.",
+    "deleted": "Gelöscht",
+    "nextContact": "Nächster Kontakt",
+    "plan": "Erinnerung planen",
+    "change": "Datum ändern",
+    "clear": "Erinnerung entfernen",
+    "noContact": "Keine Erinnerung geplant",
+    "metAt": "Getroffen am {date}",
+    "notes": "Notizen",
+    "addNote": "Notiz hinzufügen",
+    "noNotes": "Noch keine Notizen.",
+    "deleteNote": "Notiz löschen",
+    "export": "Exportieren (Tabelle)",
+    "csv": {
+      "name": "Name",
+      "phone": "Telefon",
+      "place": "Ort",
+      "metOn": "Getroffen am",
+      "stage": "Stufe",
+      "next": "Nächster Kontakt",
+      "notes": "Notizen"
+    },
+    "lock": "Mit {method} sperren",
+    "lockedTitle": "Deine Seelenbegleitung ist gesperrt",
+    "unlock": "Entsperren",
+    "unlockReason": "Öffne deine Seelenbegleitung",
+    "privacy": "Diese Angaben bleiben auf deinem Handy: Sie werden nie gesendet.",
+    "reminderTitle": "Seelenbegleitung",
+    "reminderBody(plural, param=n)": {
+      "one": "Heute {n} Person kontaktieren.",
+      "other": "Heute {n} Personen kontaktieren."
+    },
+    "reminderChannel": "Seelenbegleitung",
+    "moreSubtitle": "Die Menschen, denen du das Evangelium bringst"
   }
 }

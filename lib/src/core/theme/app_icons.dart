@@ -198,4 +198,18 @@ abstract final class AppIcons {
   static const downloaded = PhosphorIconsRegular.cloudCheck;
   static const chapters = PhosphorIconsRegular.listNumbers;
   static const bibleVersion = PhosphorIconsRegular.translate;
+
+  // Enseignements (audio)
+  static const teachingsTile = PhosphorIconsDuotone.headphones;
+  static const back15 = PhosphorIconsRegular.arrowCounterClockwise;
+  static const forward15 = PhosphorIconsRegular.arrowClockwise;
+
+  // Mémorisation des versets
+  static const memorize = PhosphorIconsRegular.brain;
+  static const memorizeTile = PhosphorIconsDuotone.brain;
+
+  // Suivi des âmes
+  static const soulsTile = PhosphorIconsDuotone.footprints;
+  static const addNote = PhosphorIconsRegular.notePencil;
+  static const sms = PhosphorIconsRegular.chatText;
 }

@@ -39,8 +39,13 @@ class ConcordanceVerses extends VerseAction {
   const ConcordanceVerses();
 }
 
+/// Learn the verses by heart (Mémorisation).
+class MemorizeVerses extends VerseAction {
+  const MemorizeVerses();
+}
+
 /// Under the selected verses: their reference, the concordance, the
-/// highlight colors, keep, copy and share. [anchor] (share) is where the iPad sheet points from.
+/// highlight colors, keep, copy and share; memorize them. [anchor] (share) is where the iPad sheet points from.
 class VerseActions extends StatelessWidget {
   const VerseActions({
     required this.label,
@@ -125,6 +130,12 @@ class VerseActions extends StatelessWidget {
                           color: palette.text,
                         ),
                       ),
+                    ),
+                    IconButton(
+                      tooltip: t.memorize.memorize,
+                      onPressed: () => onAction(const MemorizeVerses()),
+                      color: palette.text,
+                      icon: const Icon(AppIcons.memorize, size: 22),
                     ),
                     IconButton(
                       tooltip: t.bible.concordance,

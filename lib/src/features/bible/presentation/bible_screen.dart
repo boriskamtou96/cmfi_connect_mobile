@@ -406,7 +406,7 @@ class _Reader extends HookConsumerWidget {
   }
 }
 
-enum _MenuAction { marks, concordance, download, display }
+enum _MenuAction { plan, marks, concordance, download, display }
 
 /// "Jean 3 ▾ | LSG ▾", then the search, "Aa" and the menu.
 class _TopBar extends ConsumerWidget {
@@ -553,6 +553,7 @@ class _TopBar extends ConsumerWidget {
               tooltip: t.bible.more,
               icon: Icon(AppIcons.moreOptions, color: palette.text),
               onSelected: (action) => switch (action) {
+                _MenuAction.plan => context.router.push(const BiblePlanRoute()),
                 _MenuAction.marks => context.router.push(
                   const BibleMarksRoute(),
                 ),
@@ -563,6 +564,11 @@ class _TopBar extends ConsumerWidget {
                 _MenuAction.display => showBibleSettings(context),
               },
               actions: [
+                AdaptiveAction(
+                  value: _MenuAction.plan,
+                  icon: AppIcons.readingPlan,
+                  label: t.biblePlan.title,
+                ),
                 AdaptiveAction(
                   value: _MenuAction.marks,
                   icon: AppIcons.bookmark,

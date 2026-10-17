@@ -6,6 +6,7 @@ import '../../../core/storage/preferences.dart';
 import '../../../core/utils/date_extensions.dart';
 import '../../reports/application/day_report_controller.dart';
 import '../domain/bible.dart';
+import 'bible_plan.dart';
 
 part 'bible_reading.g.dart';
 
@@ -44,6 +45,8 @@ class BibleReading extends _$BibleReading {
     if (total != null) {
       await _keep({...state, chapter.chapterRef.key});
     }
+    // read in the reading plan too, report or not
+    await ref.read(biblePlanProvider.notifier).markRead(chapter);
     return total;
   }
 
@@ -51,6 +54,7 @@ class BibleReading extends _$BibleReading {
   Future<int?> unmark(BibleRef chapter) async {
     final total = await _addToReport(-1);
     await _keep({...state}..remove(chapter.chapterRef.key));
+    await ref.read(biblePlanProvider.notifier).unmark(chapter);
     return total;
   }
 

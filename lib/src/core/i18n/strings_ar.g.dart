@@ -77,6 +77,7 @@ class TranslationsAr extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _Translations$weekStory$ar weekStory = _Translations$weekStory$ar._(_root);
 	@override late final _Translations$seekFirst$ar seekFirst = _Translations$seekFirst$ar._(_root);
 	@override late final _Translations$documents$ar documents = _Translations$documents$ar._(_root);
+	@override late final _Translations$biblePlan$ar biblePlan = _Translations$biblePlan$ar._(_root);
 }
 
 // Path: app
@@ -1453,6 +1454,74 @@ class _Translations$documents$ar extends Translations$documents$fr {
 		other: '${n} مستند',
 	);
 	@override String get more => 'عرض المزيد';
+}
+
+// Path: biblePlan
+class _Translations$biblePlan$ar extends Translations$biblePlan$fr {
+	_Translations$biblePlan$ar._(TranslationsAr root) : this._root = root, super.internal(root);
+
+	final TranslationsAr _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'خطة القراءة';
+	@override String get intro => 'اختر ما تريد قراءته وفي أي مدة: يوزّع التطبيق الأصحاحات يومًا بعد يوم.';
+	@override String get duration => 'المدة';
+	@override String get months3 => '3 أشهر';
+	@override String get months6 => '6 أشهر';
+	@override String get year => 'سنة';
+	@override String get custom => 'أخرى';
+	@override String days({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n,
+		zero: '${n} يوم',
+		one: 'يوم واحد',
+		two: 'يومان',
+		few: '${n} أيام',
+		many: '${n} يومًا',
+		other: '${n} يوم',
+	);
+	@override String get scope => 'ما تقرأه';
+	@override Map<String, String> get scopes => {
+		'bible': 'الكتاب المقدس كله',
+		'newTestament': 'العهد الجديد',
+		'oldTestament': 'العهد القديم',
+		'psalmsProverbs': 'المزامير والأمثال',
+	};
+	@override String get order => 'الترتيب';
+	@override Map<String, String> get orders => {
+		'canonical': 'بترتيب الأسفار',
+		'parallel': 'العهد القديم والجديد كل يوم',
+	};
+	@override String get reminder => 'تذكير يومي';
+	@override String get reminderAt => 'وقت التذكير';
+	@override String summary({required Object chapters, required Object days, required Object perDay}) => '${chapters} أصحاحًا في ${days} يومًا، نحو ${perDay} في اليوم';
+	@override String endsOn({required Object date}) => 'ينتهي في ${date}';
+	@override String startsOn({required Object date}) => 'تبدأ الخطة في ${date}.';
+	@override String get start => 'ابدأ الخطة';
+	@override String dayOf({required Object day, required Object total}) => 'اليوم ${day} من ${total}';
+	@override String get today => 'قراءة اليوم';
+	@override String get todayDone => 'تمت قراءة اليوم. أحسنت!';
+	@override String get read => 'اقرأ';
+	@override String behind({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n,
+		zero: 'تأخر ${n} يوم',
+		one: 'تأخر يوم واحد',
+		two: 'تأخر يومين',
+		few: 'تأخر ${n} أيام',
+		many: 'تأخر ${n} يومًا',
+		other: 'تأخر ${n} يوم',
+	);
+	@override String get catchUp => 'استدرك على مهلك: تبقى الأصحاحات المتأخرة في الأسفل لتعلّم عليها.';
+	@override String chaptersRead({required Object read, required Object total}) => '${read} من ${total} أصحاحًا';
+	@override String get late => 'متأخر';
+	@override String get upcoming => 'القادم';
+	@override String dayNumber({required Object n}) => 'اليوم ${n}';
+	@override String get finished => 'اكتملت الخطة! قرأت كل شيء.';
+	@override String get stop => 'أوقف الخطة';
+	@override String get stopTitle => 'إيقاف هذه الخطة؟';
+	@override String get stopText => 'سيُمحى تقدّمك في هذه الخطة. تبقى الأصحاحات المحسوبة في تقاريرك.';
+	@override String get reminderTitle => 'قراءتك اليوم';
+	@override String get reminderChannel => 'خطة القراءة';
+	@override String get homeTitle => 'قراءة اليوم';
+	@override String check({required Object chapter}) => 'علّم ${chapter} كمقروء';
+	@override String uncheck({required Object chapter}) => '${chapter}: مقروء';
 }
 
 // Path: onboarding.reports
@@ -4215,6 +4284,47 @@ extension on TranslationsAr {
 			'documents.download' => 'تنزيل',
 			'documents.count' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n, zero: '${n} مستند', one: 'مستند واحد', two: 'مستندان', few: '${n} مستندات', many: '${n} مستندًا', other: '${n} مستند', ), 
 			'documents.more' => 'عرض المزيد',
+			'biblePlan.title' => 'خطة القراءة',
+			'biblePlan.intro' => 'اختر ما تريد قراءته وفي أي مدة: يوزّع التطبيق الأصحاحات يومًا بعد يوم.',
+			'biblePlan.duration' => 'المدة',
+			'biblePlan.months3' => '3 أشهر',
+			'biblePlan.months6' => '6 أشهر',
+			'biblePlan.year' => 'سنة',
+			'biblePlan.custom' => 'أخرى',
+			'biblePlan.days' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n, zero: '${n} يوم', one: 'يوم واحد', two: 'يومان', few: '${n} أيام', many: '${n} يومًا', other: '${n} يوم', ), 
+			'biblePlan.scope' => 'ما تقرأه',
+			'biblePlan.scopes.bible' => 'الكتاب المقدس كله',
+			'biblePlan.scopes.newTestament' => 'العهد الجديد',
+			'biblePlan.scopes.oldTestament' => 'العهد القديم',
+			'biblePlan.scopes.psalmsProverbs' => 'المزامير والأمثال',
+			'biblePlan.order' => 'الترتيب',
+			'biblePlan.orders.canonical' => 'بترتيب الأسفار',
+			'biblePlan.orders.parallel' => 'العهد القديم والجديد كل يوم',
+			'biblePlan.reminder' => 'تذكير يومي',
+			'biblePlan.reminderAt' => 'وقت التذكير',
+			'biblePlan.summary' => ({required Object chapters, required Object days, required Object perDay}) => '${chapters} أصحاحًا في ${days} يومًا، نحو ${perDay} في اليوم',
+			'biblePlan.endsOn' => ({required Object date}) => 'ينتهي في ${date}',
+			'biblePlan.startsOn' => ({required Object date}) => 'تبدأ الخطة في ${date}.',
+			'biblePlan.start' => 'ابدأ الخطة',
+			'biblePlan.dayOf' => ({required Object day, required Object total}) => 'اليوم ${day} من ${total}',
+			'biblePlan.today' => 'قراءة اليوم',
+			'biblePlan.todayDone' => 'تمت قراءة اليوم. أحسنت!',
+			'biblePlan.read' => 'اقرأ',
+			'biblePlan.behind' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n, zero: 'تأخر ${n} يوم', one: 'تأخر يوم واحد', two: 'تأخر يومين', few: 'تأخر ${n} أيام', many: 'تأخر ${n} يومًا', other: 'تأخر ${n} يوم', ), 
+			'biblePlan.catchUp' => 'استدرك على مهلك: تبقى الأصحاحات المتأخرة في الأسفل لتعلّم عليها.',
+			'biblePlan.chaptersRead' => ({required Object read, required Object total}) => '${read} من ${total} أصحاحًا',
+			'biblePlan.late' => 'متأخر',
+			'biblePlan.upcoming' => 'القادم',
+			'biblePlan.dayNumber' => ({required Object n}) => 'اليوم ${n}',
+			'biblePlan.finished' => 'اكتملت الخطة! قرأت كل شيء.',
+			'biblePlan.stop' => 'أوقف الخطة',
+			'biblePlan.stopTitle' => 'إيقاف هذه الخطة؟',
+			'biblePlan.stopText' => 'سيُمحى تقدّمك في هذه الخطة. تبقى الأصحاحات المحسوبة في تقاريرك.',
+			'biblePlan.reminderTitle' => 'قراءتك اليوم',
+			'biblePlan.reminderChannel' => 'خطة القراءة',
+			'biblePlan.homeTitle' => 'قراءة اليوم',
+			'biblePlan.check' => ({required Object chapter}) => 'علّم ${chapter} كمقروء',
+			'biblePlan.uncheck' => ({required Object chapter}) => '${chapter}: مقروء',
 			_ => null,
 		};
 	}

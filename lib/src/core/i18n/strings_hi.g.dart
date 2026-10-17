@@ -77,6 +77,7 @@ class TranslationsHi extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _Translations$weekStory$hi weekStory = _Translations$weekStory$hi._(_root);
 	@override late final _Translations$seekFirst$hi seekFirst = _Translations$seekFirst$hi._(_root);
 	@override late final _Translations$documents$hi documents = _Translations$documents$hi._(_root);
+	@override late final _Translations$biblePlan$hi biblePlan = _Translations$biblePlan$hi._(_root);
 }
 
 // Path: app
@@ -1287,6 +1288,66 @@ class _Translations$documents$hi extends Translations$documents$fr {
 		other: '${n} दस्तावेज़',
 	);
 	@override String get more => 'और देखें';
+}
+
+// Path: biblePlan
+class _Translations$biblePlan$hi extends Translations$biblePlan$fr {
+	_Translations$biblePlan$hi._(TranslationsHi root) : this._root = root, super.internal(root);
+
+	final TranslationsHi _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'पठन योजना';
+	@override String get intro => 'चुनो कि क्या पढ़ना है और कितने समय में: ऐप अध्यायों को दिन-ब-दिन बाँट देता है।';
+	@override String get duration => 'अवधि';
+	@override String get months3 => '3 महीने';
+	@override String get months6 => '6 महीने';
+	@override String get year => '1 साल';
+	@override String get custom => 'अन्य';
+	@override String days({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n,
+		one: '${n} दिन',
+		other: '${n} दिन',
+	);
+	@override String get scope => 'तुम क्या पढ़ते हो';
+	@override Map<String, String> get scopes => {
+		'bible': 'पूरी बाइबल',
+		'newTestament': 'नया नियम',
+		'oldTestament': 'पुराना नियम',
+		'psalmsProverbs': 'भजन संहिता और नीतिवचन',
+	};
+	@override String get order => 'क्रम';
+	@override Map<String, String> get orders => {
+		'canonical': 'पुस्तकों के क्रम में',
+		'parallel': 'हर दिन पुराना और नया नियम',
+	};
+	@override String get reminder => 'रोज़ का रिमाइंडर';
+	@override String get reminderAt => 'रिमाइंडर का समय';
+	@override String summary({required Object days, required Object chapters, required Object perDay}) => '${days} दिनों में ${chapters} अध्याय, रोज़ लगभग ${perDay}';
+	@override String endsOn({required Object date}) => '${date} को समाप्त';
+	@override String startsOn({required Object date}) => 'योजना ${date} को शुरू होगी।';
+	@override String get start => 'योजना शुरू करें';
+	@override String dayOf({required Object day, required Object total}) => 'दिन ${day} / ${total}';
+	@override String get today => 'आज का पठन';
+	@override String get todayDone => 'आज का पठन पूरा हुआ। शाबाश!';
+	@override String get read => 'पढ़ें';
+	@override String behind({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n,
+		one: '${n} दिन पीछे',
+		other: '${n} दिन पीछे',
+	);
+	@override String get catchUp => 'अपनी गति से पूरा करो: पीछे छूटे अध्याय नीचे चिह्नित करने के लिए हैं।';
+	@override String chaptersRead({required Object total, required Object read}) => '${total} में से ${read} अध्याय';
+	@override String get late => 'पीछे छूटे';
+	@override String get upcoming => 'आने वाले';
+	@override String dayNumber({required Object n}) => 'दिन ${n}';
+	@override String get finished => 'योजना पूरी! तुमने सब पढ़ लिया।';
+	@override String get stop => 'योजना रोकें';
+	@override String get stopTitle => 'यह योजना रोकें?';
+	@override String get stopText => 'इस योजना में तुम्हारी प्रगति मिट जाएगी। तुम्हारी रिपोर्ट में गिने गए अध्याय वहीं रहेंगे।';
+	@override String get reminderTitle => 'आज का तुम्हारा पठन';
+	@override String get reminderChannel => 'पठन योजना';
+	@override String get homeTitle => 'आज का पठन';
+	@override String check({required Object chapter}) => '${chapter} को पढ़ा हुआ चिह्नित करें';
+	@override String uncheck({required Object chapter}) => '${chapter}: पढ़ा';
 }
 
 // Path: onboarding.reports
@@ -3972,6 +4033,47 @@ extension on TranslationsHi {
 			'documents.download' => 'डाउनलोड करें',
 			'documents.count' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n, one: '${n} दस्तावेज़', other: '${n} दस्तावेज़', ), 
 			'documents.more' => 'और देखें',
+			'biblePlan.title' => 'पठन योजना',
+			'biblePlan.intro' => 'चुनो कि क्या पढ़ना है और कितने समय में: ऐप अध्यायों को दिन-ब-दिन बाँट देता है।',
+			'biblePlan.duration' => 'अवधि',
+			'biblePlan.months3' => '3 महीने',
+			'biblePlan.months6' => '6 महीने',
+			'biblePlan.year' => '1 साल',
+			'biblePlan.custom' => 'अन्य',
+			'biblePlan.days' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n, one: '${n} दिन', other: '${n} दिन', ), 
+			'biblePlan.scope' => 'तुम क्या पढ़ते हो',
+			'biblePlan.scopes.bible' => 'पूरी बाइबल',
+			'biblePlan.scopes.newTestament' => 'नया नियम',
+			'biblePlan.scopes.oldTestament' => 'पुराना नियम',
+			'biblePlan.scopes.psalmsProverbs' => 'भजन संहिता और नीतिवचन',
+			'biblePlan.order' => 'क्रम',
+			'biblePlan.orders.canonical' => 'पुस्तकों के क्रम में',
+			'biblePlan.orders.parallel' => 'हर दिन पुराना और नया नियम',
+			'biblePlan.reminder' => 'रोज़ का रिमाइंडर',
+			'biblePlan.reminderAt' => 'रिमाइंडर का समय',
+			'biblePlan.summary' => ({required Object days, required Object chapters, required Object perDay}) => '${days} दिनों में ${chapters} अध्याय, रोज़ लगभग ${perDay}',
+			'biblePlan.endsOn' => ({required Object date}) => '${date} को समाप्त',
+			'biblePlan.startsOn' => ({required Object date}) => 'योजना ${date} को शुरू होगी।',
+			'biblePlan.start' => 'योजना शुरू करें',
+			'biblePlan.dayOf' => ({required Object day, required Object total}) => 'दिन ${day} / ${total}',
+			'biblePlan.today' => 'आज का पठन',
+			'biblePlan.todayDone' => 'आज का पठन पूरा हुआ। शाबाश!',
+			'biblePlan.read' => 'पढ़ें',
+			'biblePlan.behind' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n, one: '${n} दिन पीछे', other: '${n} दिन पीछे', ), 
+			'biblePlan.catchUp' => 'अपनी गति से पूरा करो: पीछे छूटे अध्याय नीचे चिह्नित करने के लिए हैं।',
+			'biblePlan.chaptersRead' => ({required Object total, required Object read}) => '${total} में से ${read} अध्याय',
+			'biblePlan.late' => 'पीछे छूटे',
+			'biblePlan.upcoming' => 'आने वाले',
+			'biblePlan.dayNumber' => ({required Object n}) => 'दिन ${n}',
+			'biblePlan.finished' => 'योजना पूरी! तुमने सब पढ़ लिया।',
+			'biblePlan.stop' => 'योजना रोकें',
+			'biblePlan.stopTitle' => 'यह योजना रोकें?',
+			'biblePlan.stopText' => 'इस योजना में तुम्हारी प्रगति मिट जाएगी। तुम्हारी रिपोर्ट में गिने गए अध्याय वहीं रहेंगे।',
+			'biblePlan.reminderTitle' => 'आज का तुम्हारा पठन',
+			'biblePlan.reminderChannel' => 'पठन योजना',
+			'biblePlan.homeTitle' => 'आज का पठन',
+			'biblePlan.check' => ({required Object chapter}) => '${chapter} को पढ़ा हुआ चिह्नित करें',
+			'biblePlan.uncheck' => ({required Object chapter}) => '${chapter}: पढ़ा',
 			_ => null,
 		};
 	}

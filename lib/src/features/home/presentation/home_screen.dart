@@ -15,8 +15,12 @@ import '../../../core/widgets/cmfi_logo.dart';
 import '../../../core/widgets/fade_slide_in.dart';
 import '../../../core/widgets/media_picture.dart';
 import '../../../routing/app_router.dart';
+import '../../bible/application/bible_library.dart';
+import '../../bible/application/bible_plan.dart';
 import '../../bible/application/bible_position.dart';
+import '../../bible/application/bible_settings.dart';
 import '../../bible/domain/bible.dart';
+import '../../bible/domain/reading_plan.dart';
 import '../../events/application/events_providers.dart';
 import '../../events/domain/event.dart';
 import '../../events/infrastructure/events_api.dart';
@@ -632,6 +636,19 @@ class _Resume extends ConsumerWidget {
         : ref.watch(hymnBookProvider(last.bookCode))?.hymn(last.number);
     final hymns = AppModule.hymns.tone(context);
     final prayer = AppModule.prayer.tone(context);
+    final bible = AppModule.bible.tone(context);
+    // the reading plan: today's chapters, while not all read
+    final plan = ref.watch(biblePlanProvider);
+    final day = today();
+    final reading = plan == null || plan.doneOn(day)
+        ? const <BibleRef>[]
+        : plan.chaptersOf(day);
+    final version = ref.watch(bibleVersionProvider);
+    final names = <String, String>{
+      for (final BibleBook book
+          in ref.watch(bibleBooksProvider(version.id)).value ?? const [])
+        book.id: book.name,
+    };
 
     return Container(
       decoration: _card(context),
@@ -687,6 +704,27 @@ class _Resume extends ConsumerWidget {
                   icon: const Icon(AppIcons.play, size: 16),
                 ),
               ),
+            if (reading.isNotEmpty) ...[
+              Divider(
+                height: 1,
+                indent: 74,
+                endIndent: 16,
+                color: scheme.outlineVariant,
+              ),
+              _Row(
+                leading: _Tile(
+                  color: bible.soft,
+                  child: PhosphorIcon(
+                    AppIcons.readingPlan,
+                    size: 22,
+                    color: bible.onSoft,
+                  ),
+                ),
+                title: t.biblePlan.homeTitle,
+                text: readingLabel(reading, (book) => names[book] ?? book),
+                onTap: () => context.router.push(const BiblePlanRoute()),
+              ),
+            ],
             Divider(
               height: 1,
               indent: 74,

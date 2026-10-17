@@ -1780,5 +1780,58 @@
       "other": "{n} documentos"
     },
     "more": "Ver más"
+  },
+  "biblePlan": {
+    "title": "Plan de lectura",
+    "intro": "Elige qué quieres leer y en cuánto tiempo: la app reparte los capítulos día tras día.",
+    "duration": "Duración",
+    "months3": "3 meses",
+    "months6": "6 meses",
+    "year": "1 año",
+    "custom": "Otra",
+    "days(plural, param=n)": {
+      "one": "{n} día",
+      "other": "{n} días"
+    },
+    "scope": "Qué lees",
+    "scopes(map)": {
+      "bible": "Toda la Biblia",
+      "newTestament": "El Nuevo Testamento",
+      "oldTestament": "El Antiguo Testamento",
+      "psalmsProverbs": "Salmos y Proverbios"
+    },
+    "order": "Orden",
+    "orders(map)": {
+      "canonical": "En el orden de los libros",
+      "parallel": "Antiguo y Nuevo Testamento cada día"
+    },
+    "reminder": "Recordatorio diario",
+    "reminderAt": "Hora del recordatorio",
+    "summary": "{chapters} capítulos en {days} días, unos {perDay} al día",
+    "endsOn": "Termina el {date}",
+    "startsOn": "El plan empieza el {date}.",
+    "start": "Empezar el plan",
+    "dayOf": "Día {day} de {total}",
+    "today": "Lectura del día",
+    "todayDone": "Lectura del día hecha. ¡Bravo!",
+    "read": "Leer",
+    "behind(plural, param=n)": {
+      "one": "{n} día de retraso",
+      "other": "{n} días de retraso"
+    },
+    "catchUp": "Ponte al día a tu ritmo: los capítulos atrasados siguen abajo para marcar.",
+    "chaptersRead": "{read} de {total} capítulos",
+    "late": "Atrasados",
+    "upcoming": "Próximos",
+    "dayNumber": "Día {n}",
+    "finished": "¡Plan terminado! Lo leíste todo.",
+    "stop": "Detener el plan",
+    "stopTitle": "¿Detener este plan?",
+    "stopText": "Se borrará tu progreso en este plan. Los capítulos contados en tus informes se quedan.",
+    "reminderTitle": "Tu lectura del día",
+    "reminderChannel": "Plan de lectura",
+    "homeTitle": "Lectura del día",
+    "check": "Marcar {chapter} como leído",
+    "uncheck": "{chapter}: leído"
   }
 }

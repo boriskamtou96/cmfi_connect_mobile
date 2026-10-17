@@ -18,6 +18,7 @@ import '../../../core/session/session.dart';
 import '../../../core/utils/date_extensions.dart';
 import '../../../core/widgets/app_toast.dart';
 import '../../../routing/app_router.dart';
+import '../../bible/application/bible_plan.dart';
 import '../../bible/application/bible_position.dart';
 import '../../bible/domain/bible.dart';
 import '../../events/application/event_reminders.dart';
@@ -82,6 +83,8 @@ class SignedInTasks extends HookConsumerWidget {
       final subscription = ref.listenManual(sessionProvider, (_, next) {
         if (next.value == SessionStatus.unauthenticated) {
           unawaited(ref.read(seekFirstProvider.notifier).forget());
+          // the reading plan was the account's
+          unawaited(ref.read(biblePlanProvider.notifier).stop());
         }
       });
       return subscription.close;
@@ -159,6 +162,8 @@ class SignedInTasks extends HookConsumerWidget {
         final week = weekStoryOf(payload);
         if (payload == ReportReminder.payload) {
           openToday();
+        } else if (payload == BiblePlan.payload && context.mounted) {
+          context.router.push(const BiblePlanRoute());
         } else if (week != null && context.mounted) {
           context.router.push(WeekStoryRoute(monday: week.toApiDate()));
         } else if (sendDay != null && context.mounted) {
@@ -314,6 +319,7 @@ class SignedInTasks extends HookConsumerWidget {
         unawaited(reminder.reschedule());
         unawaited(ref.read(retreatRemindersProvider.notifier).reschedule());
         unawaited(ref.read(reportSendingProvider.notifier).reschedule());
+        unawaited(ref.read(biblePlanProvider.notifier).reschedule());
         unawaited(planWeekStories(notifications, now: DateTime.now()));
       }
 

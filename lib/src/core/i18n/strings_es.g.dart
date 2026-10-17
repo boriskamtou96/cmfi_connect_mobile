@@ -77,6 +77,7 @@ class TranslationsEs extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _Translations$weekStory$es weekStory = _Translations$weekStory$es._(_root);
 	@override late final _Translations$seekFirst$es seekFirst = _Translations$seekFirst$es._(_root);
 	@override late final _Translations$documents$es documents = _Translations$documents$es._(_root);
+	@override late final _Translations$biblePlan$es biblePlan = _Translations$biblePlan$es._(_root);
 }
 
 // Path: app
@@ -1288,6 +1289,66 @@ class _Translations$documents$es extends Translations$documents$fr {
 		other: '${n} documentos',
 	);
 	@override String get more => 'Ver más';
+}
+
+// Path: biblePlan
+class _Translations$biblePlan$es extends Translations$biblePlan$fr {
+	_Translations$biblePlan$es._(TranslationsEs root) : this._root = root, super.internal(root);
+
+	final TranslationsEs _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Plan de lectura';
+	@override String get intro => 'Elige qué quieres leer y en cuánto tiempo: la app reparte los capítulos día tras día.';
+	@override String get duration => 'Duración';
+	@override String get months3 => '3 meses';
+	@override String get months6 => '6 meses';
+	@override String get year => '1 año';
+	@override String get custom => 'Otra';
+	@override String days({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('es'))(n,
+		one: '${n} día',
+		other: '${n} días',
+	);
+	@override String get scope => 'Qué lees';
+	@override Map<String, String> get scopes => {
+		'bible': 'Toda la Biblia',
+		'newTestament': 'El Nuevo Testamento',
+		'oldTestament': 'El Antiguo Testamento',
+		'psalmsProverbs': 'Salmos y Proverbios',
+	};
+	@override String get order => 'Orden';
+	@override Map<String, String> get orders => {
+		'canonical': 'En el orden de los libros',
+		'parallel': 'Antiguo y Nuevo Testamento cada día',
+	};
+	@override String get reminder => 'Recordatorio diario';
+	@override String get reminderAt => 'Hora del recordatorio';
+	@override String summary({required Object chapters, required Object days, required Object perDay}) => '${chapters} capítulos en ${days} días, unos ${perDay} al día';
+	@override String endsOn({required Object date}) => 'Termina el ${date}';
+	@override String startsOn({required Object date}) => 'El plan empieza el ${date}.';
+	@override String get start => 'Empezar el plan';
+	@override String dayOf({required Object day, required Object total}) => 'Día ${day} de ${total}';
+	@override String get today => 'Lectura del día';
+	@override String get todayDone => 'Lectura del día hecha. ¡Bravo!';
+	@override String get read => 'Leer';
+	@override String behind({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('es'))(n,
+		one: '${n} día de retraso',
+		other: '${n} días de retraso',
+	);
+	@override String get catchUp => 'Ponte al día a tu ritmo: los capítulos atrasados siguen abajo para marcar.';
+	@override String chaptersRead({required Object read, required Object total}) => '${read} de ${total} capítulos';
+	@override String get late => 'Atrasados';
+	@override String get upcoming => 'Próximos';
+	@override String dayNumber({required Object n}) => 'Día ${n}';
+	@override String get finished => '¡Plan terminado! Lo leíste todo.';
+	@override String get stop => 'Detener el plan';
+	@override String get stopTitle => '¿Detener este plan?';
+	@override String get stopText => 'Se borrará tu progreso en este plan. Los capítulos contados en tus informes se quedan.';
+	@override String get reminderTitle => 'Tu lectura del día';
+	@override String get reminderChannel => 'Plan de lectura';
+	@override String get homeTitle => 'Lectura del día';
+	@override String check({required Object chapter}) => 'Marcar ${chapter} como leído';
+	@override String uncheck({required Object chapter}) => '${chapter}: leído';
 }
 
 // Path: onboarding.reports
@@ -3973,6 +4034,47 @@ extension on TranslationsEs {
 			'documents.download' => 'Descargar',
 			'documents.count' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('es'))(n, one: '${n} documento', other: '${n} documentos', ), 
 			'documents.more' => 'Ver más',
+			'biblePlan.title' => 'Plan de lectura',
+			'biblePlan.intro' => 'Elige qué quieres leer y en cuánto tiempo: la app reparte los capítulos día tras día.',
+			'biblePlan.duration' => 'Duración',
+			'biblePlan.months3' => '3 meses',
+			'biblePlan.months6' => '6 meses',
+			'biblePlan.year' => '1 año',
+			'biblePlan.custom' => 'Otra',
+			'biblePlan.days' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('es'))(n, one: '${n} día', other: '${n} días', ), 
+			'biblePlan.scope' => 'Qué lees',
+			'biblePlan.scopes.bible' => 'Toda la Biblia',
+			'biblePlan.scopes.newTestament' => 'El Nuevo Testamento',
+			'biblePlan.scopes.oldTestament' => 'El Antiguo Testamento',
+			'biblePlan.scopes.psalmsProverbs' => 'Salmos y Proverbios',
+			'biblePlan.order' => 'Orden',
+			'biblePlan.orders.canonical' => 'En el orden de los libros',
+			'biblePlan.orders.parallel' => 'Antiguo y Nuevo Testamento cada día',
+			'biblePlan.reminder' => 'Recordatorio diario',
+			'biblePlan.reminderAt' => 'Hora del recordatorio',
+			'biblePlan.summary' => ({required Object chapters, required Object days, required Object perDay}) => '${chapters} capítulos en ${days} días, unos ${perDay} al día',
+			'biblePlan.endsOn' => ({required Object date}) => 'Termina el ${date}',
+			'biblePlan.startsOn' => ({required Object date}) => 'El plan empieza el ${date}.',
+			'biblePlan.start' => 'Empezar el plan',
+			'biblePlan.dayOf' => ({required Object day, required Object total}) => 'Día ${day} de ${total}',
+			'biblePlan.today' => 'Lectura del día',
+			'biblePlan.todayDone' => 'Lectura del día hecha. ¡Bravo!',
+			'biblePlan.read' => 'Leer',
+			'biblePlan.behind' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('es'))(n, one: '${n} día de retraso', other: '${n} días de retraso', ), 
+			'biblePlan.catchUp' => 'Ponte al día a tu ritmo: los capítulos atrasados siguen abajo para marcar.',
+			'biblePlan.chaptersRead' => ({required Object read, required Object total}) => '${read} de ${total} capítulos',
+			'biblePlan.late' => 'Atrasados',
+			'biblePlan.upcoming' => 'Próximos',
+			'biblePlan.dayNumber' => ({required Object n}) => 'Día ${n}',
+			'biblePlan.finished' => '¡Plan terminado! Lo leíste todo.',
+			'biblePlan.stop' => 'Detener el plan',
+			'biblePlan.stopTitle' => '¿Detener este plan?',
+			'biblePlan.stopText' => 'Se borrará tu progreso en este plan. Los capítulos contados en tus informes se quedan.',
+			'biblePlan.reminderTitle' => 'Tu lectura del día',
+			'biblePlan.reminderChannel' => 'Plan de lectura',
+			'biblePlan.homeTitle' => 'Lectura del día',
+			'biblePlan.check' => ({required Object chapter}) => 'Marcar ${chapter} como leído',
+			'biblePlan.uncheck' => ({required Object chapter}) => '${chapter}: leído',
 			_ => null,
 		};
 	}

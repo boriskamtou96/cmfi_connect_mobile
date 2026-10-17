@@ -47,7 +47,7 @@ final class BibleReadingProvider
   }
 }
 
-String _$bibleReadingHash() => r'74d09a8e46b3a33b71a225a40fdce3d883b6152f';
+String _$bibleReadingHash() => r'4b89a343f7215beb505e1c15530faf082cb4e149';
 
 /// The chapters marked "J'ai lu ce chapitre" today ("JHN.3"), each one added
 /// to "Lecture biblique" in today's report.

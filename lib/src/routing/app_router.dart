@@ -11,6 +11,7 @@ import '../features/auth/presentation/register_screen.dart';
 import '../features/authorities/presentation/authorities_screen.dart';
 import '../features/authorities/presentation/authority_form_screen.dart';
 import '../features/bible/presentation/bible_marks_screen.dart';
+import '../features/bible/presentation/bible_plan_screen.dart';
 import '../features/bible/presentation/bible_screen.dart';
 import '../features/bible/presentation/bible_search_screen.dart';
 import '../features/bible/presentation/concordance_screen.dart';
@@ -128,6 +129,11 @@ class AppRouter extends RootStackRouter {
     AutoRoute(
       path: '/bible/marks',
       page: BibleMarksRoute.page,
+      guards: [authGuard],
+    ),
+    AutoRoute(
+      path: '/bible/plan',
+      page: BiblePlanRoute.page,
       guards: [authGuard],
     ),
     AutoRoute(

@@ -72,6 +72,10 @@ abstract final class AppIcons {
 
   // Actions
   static const add = PhosphorIconsRegular.plus;
+  static const plus = PhosphorIconsRegular.plus;
+  static const minus = PhosphorIconsRegular.minus;
+  // the Bible reading plan
+  static const readingPlan = PhosphorIconsDuotone.calendarCheck;
   static const addCircle = PhosphorIconsRegular.plusCircle;
   static const remove = PhosphorIconsRegular.minus;
   static const search = PhosphorIconsRegular.magnifyingGlass;

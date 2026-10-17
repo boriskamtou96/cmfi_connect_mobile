@@ -2022,5 +2022,66 @@
       "other": "{n} مستند"
     },
     "more": "عرض المزيد"
+  },
+  "biblePlan": {
+    "title": "خطة القراءة",
+    "intro": "اختر ما تريد قراءته وفي أي مدة: يوزّع التطبيق الأصحاحات يومًا بعد يوم.",
+    "duration": "المدة",
+    "months3": "3 أشهر",
+    "months6": "6 أشهر",
+    "year": "سنة",
+    "custom": "أخرى",
+    "days(plural, param=n)": {
+      "zero": "{n} يوم",
+      "one": "يوم واحد",
+      "two": "يومان",
+      "few": "{n} أيام",
+      "many": "{n} يومًا",
+      "other": "{n} يوم"
+    },
+    "scope": "ما تقرأه",
+    "scopes(map)": {
+      "bible": "الكتاب المقدس كله",
+      "newTestament": "العهد الجديد",
+      "oldTestament": "العهد القديم",
+      "psalmsProverbs": "المزامير والأمثال"
+    },
+    "order": "الترتيب",
+    "orders(map)": {
+      "canonical": "بترتيب الأسفار",
+      "parallel": "العهد القديم والجديد كل يوم"
+    },
+    "reminder": "تذكير يومي",
+    "reminderAt": "وقت التذكير",
+    "summary": "{chapters} أصحاحًا في {days} يومًا، نحو {perDay} في اليوم",
+    "endsOn": "ينتهي في {date}",
+    "startsOn": "تبدأ الخطة في {date}.",
+    "start": "ابدأ الخطة",
+    "dayOf": "اليوم {day} من {total}",
+    "today": "قراءة اليوم",
+    "todayDone": "تمت قراءة اليوم. أحسنت!",
+    "read": "اقرأ",
+    "behind(plural, param=n)": {
+      "zero": "تأخر {n} يوم",
+      "one": "تأخر يوم واحد",
+      "two": "تأخر يومين",
+      "few": "تأخر {n} أيام",
+      "many": "تأخر {n} يومًا",
+      "other": "تأخر {n} يوم"
+    },
+    "catchUp": "استدرك على مهلك: تبقى الأصحاحات المتأخرة في الأسفل لتعلّم عليها.",
+    "chaptersRead": "{read} من {total} أصحاحًا",
+    "late": "متأخر",
+    "upcoming": "القادم",
+    "dayNumber": "اليوم {n}",
+    "finished": "اكتملت الخطة! قرأت كل شيء.",
+    "stop": "أوقف الخطة",
+    "stopTitle": "إيقاف هذه الخطة؟",
+    "stopText": "سيُمحى تقدّمك في هذه الخطة. تبقى الأصحاحات المحسوبة في تقاريرك.",
+    "reminderTitle": "قراءتك اليوم",
+    "reminderChannel": "خطة القراءة",
+    "homeTitle": "قراءة اليوم",
+    "check": "علّم {chapter} كمقروء",
+    "uncheck": "{chapter}: مقروء"
   }
 }

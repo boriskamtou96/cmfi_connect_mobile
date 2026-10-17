@@ -107,6 +107,22 @@ class BibleMarksRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
+/// [BiblePlanScreen]
+class BiblePlanRoute extends PageRouteInfo<void> {
+  const BiblePlanRoute({List<PageRouteInfo>? children})
+    : super(BiblePlanRoute.name, initialChildren: children);
+
+  static const String name = 'BiblePlanRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const BiblePlanScreen();
+    },
+  );
+}
+
+/// generated route for
 /// [BibleScreen]
 class BibleRoute extends PageRouteInfo<void> {
   const BibleRoute({List<PageRouteInfo>? children})

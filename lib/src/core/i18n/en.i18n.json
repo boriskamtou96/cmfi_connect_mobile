@@ -1781,5 +1781,58 @@
       "other": "{n} documents"
     },
     "more": "Show more"
+  },
+  "biblePlan": {
+    "title": "Reading plan",
+    "intro": "Choose what you want to read and in how long: the app shares out the chapters day after day.",
+    "duration": "Length",
+    "months3": "3 months",
+    "months6": "6 months",
+    "year": "1 year",
+    "custom": "Other",
+    "days(plural, param=n)": {
+      "one": "{n} day",
+      "other": "{n} days"
+    },
+    "scope": "What you read",
+    "scopes(map)": {
+      "bible": "The whole Bible",
+      "newTestament": "The New Testament",
+      "oldTestament": "The Old Testament",
+      "psalmsProverbs": "Psalms and Proverbs"
+    },
+    "order": "Order",
+    "orders(map)": {
+      "canonical": "In the order of the books",
+      "parallel": "Old and New Testament each day"
+    },
+    "reminder": "Daily reminder",
+    "reminderAt": "Reminder time",
+    "summary": "{chapters} chapters in {days} days, about {perDay} a day",
+    "endsOn": "Ends on {date}",
+    "startsOn": "The plan starts on {date}.",
+    "start": "Start the plan",
+    "dayOf": "Day {day} of {total}",
+    "today": "Today's reading",
+    "todayDone": "Today's reading is done. Well done!",
+    "read": "Read",
+    "behind(plural, param=n)": {
+      "one": "{n} day behind",
+      "other": "{n} days behind"
+    },
+    "catchUp": "Catch up at your pace: the late chapters stay below to tick.",
+    "chaptersRead": "{read} of {total} chapters",
+    "late": "Late",
+    "upcoming": "Coming up",
+    "dayNumber": "Day {n}",
+    "finished": "Plan finished! You read it all.",
+    "stop": "Stop the plan",
+    "stopTitle": "Stop this plan?",
+    "stopText": "Your progress in this plan will be erased. The chapters counted in your reports stay there.",
+    "reminderTitle": "Today's reading",
+    "reminderChannel": "Reading plan",
+    "homeTitle": "Today's reading",
+    "check": "Mark {chapter} as read",
+    "uncheck": "{chapter}: read"
   }
 }

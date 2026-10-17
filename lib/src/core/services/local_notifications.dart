@@ -163,7 +163,10 @@ enum NotificationGroup {
   reportSending(firstId: 3000, channelId: 'report_sending'),
 
   /// "Ta semaine avec Dieu", every Sunday evening.
-  weekStory(firstId: 4000, channelId: 'week_story');
+  weekStory(firstId: 4000, channelId: 'week_story'),
+
+  /// The reading of the day of the Bible reading plan.
+  biblePlan(firstId: 5000, channelId: 'bible_plan');
 
   const NotificationGroup({required this.firstId, required this.channelId});
 

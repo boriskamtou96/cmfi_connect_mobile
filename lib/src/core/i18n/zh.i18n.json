@@ -1719,5 +1719,56 @@
       "other": "{n} 个文件"
     },
     "more": "查看更多"
+  },
+  "biblePlan": {
+    "title": "读经计划",
+    "intro": "选择你要读的内容和用多长时间：应用会把章节一天天分配好。",
+    "duration": "时长",
+    "months3": "3 个月",
+    "months6": "6 个月",
+    "year": "1 年",
+    "custom": "其他",
+    "days(plural, param=n)": {
+      "other": "{n} 天"
+    },
+    "scope": "读什么",
+    "scopes(map)": {
+      "bible": "整本圣经",
+      "newTestament": "新约",
+      "oldTestament": "旧约",
+      "psalmsProverbs": "诗篇和箴言"
+    },
+    "order": "顺序",
+    "orders(map)": {
+      "canonical": "按书卷顺序",
+      "parallel": "每天读旧约和新约"
+    },
+    "reminder": "每日提醒",
+    "reminderAt": "提醒时间",
+    "summary": "{days} 天读 {chapters} 章，每天约 {perDay} 章",
+    "endsOn": "{date} 结束",
+    "startsOn": "计划将于 {date} 开始。",
+    "start": "开始计划",
+    "dayOf": "第 {day} 天，共 {total} 天",
+    "today": "今日读经",
+    "todayDone": "今日读经已完成，真棒！",
+    "read": "阅读",
+    "behind(plural, param=n)": {
+      "other": "落后 {n} 天"
+    },
+    "catchUp": "按你的节奏补上：落后的章节仍在下方等你勾选。",
+    "chaptersRead": "已读 {read} / {total} 章",
+    "late": "落后",
+    "upcoming": "接下来",
+    "dayNumber": "第 {n} 天",
+    "finished": "计划完成！你全部读完了。",
+    "stop": "停止计划",
+    "stopTitle": "停止这个计划？",
+    "stopText": "你在此计划中的进度将被清除。已计入汇报的章节仍会保留。",
+    "reminderTitle": "你的今日读经",
+    "reminderChannel": "读经计划",
+    "homeTitle": "今日读经",
+    "check": "将{chapter}标为已读",
+    "uncheck": "{chapter}：已读"
   }
 }

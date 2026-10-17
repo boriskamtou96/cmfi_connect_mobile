@@ -77,6 +77,7 @@ class TranslationsZh extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _Translations$weekStory$zh weekStory = _Translations$weekStory$zh._(_root);
 	@override late final _Translations$seekFirst$zh seekFirst = _Translations$seekFirst$zh._(_root);
 	@override late final _Translations$documents$zh documents = _Translations$documents$zh._(_root);
+	@override late final _Translations$biblePlan$zh biblePlan = _Translations$biblePlan$zh._(_root);
 }
 
 // Path: app
@@ -1247,6 +1248,64 @@ class _Translations$documents$zh extends Translations$documents$fr {
 		other: '${n} 个文件',
 	);
 	@override String get more => '查看更多';
+}
+
+// Path: biblePlan
+class _Translations$biblePlan$zh extends Translations$biblePlan$fr {
+	_Translations$biblePlan$zh._(TranslationsZh root) : this._root = root, super.internal(root);
+
+	final TranslationsZh _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => '读经计划';
+	@override String get intro => '选择你要读的内容和用多长时间：应用会把章节一天天分配好。';
+	@override String get duration => '时长';
+	@override String get months3 => '3 个月';
+	@override String get months6 => '6 个月';
+	@override String get year => '1 年';
+	@override String get custom => '其他';
+	@override String days({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n,
+		other: '${n} 天',
+	);
+	@override String get scope => '读什么';
+	@override Map<String, String> get scopes => {
+		'bible': '整本圣经',
+		'newTestament': '新约',
+		'oldTestament': '旧约',
+		'psalmsProverbs': '诗篇和箴言',
+	};
+	@override String get order => '顺序';
+	@override Map<String, String> get orders => {
+		'canonical': '按书卷顺序',
+		'parallel': '每天读旧约和新约',
+	};
+	@override String get reminder => '每日提醒';
+	@override String get reminderAt => '提醒时间';
+	@override String summary({required Object days, required Object chapters, required Object perDay}) => '${days} 天读 ${chapters} 章，每天约 ${perDay} 章';
+	@override String endsOn({required Object date}) => '${date} 结束';
+	@override String startsOn({required Object date}) => '计划将于 ${date} 开始。';
+	@override String get start => '开始计划';
+	@override String dayOf({required Object day, required Object total}) => '第 ${day} 天，共 ${total} 天';
+	@override String get today => '今日读经';
+	@override String get todayDone => '今日读经已完成，真棒！';
+	@override String get read => '阅读';
+	@override String behind({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n,
+		other: '落后 ${n} 天',
+	);
+	@override String get catchUp => '按你的节奏补上：落后的章节仍在下方等你勾选。';
+	@override String chaptersRead({required Object read, required Object total}) => '已读 ${read} / ${total} 章';
+	@override String get late => '落后';
+	@override String get upcoming => '接下来';
+	@override String dayNumber({required Object n}) => '第 ${n} 天';
+	@override String get finished => '计划完成！你全部读完了。';
+	@override String get stop => '停止计划';
+	@override String get stopTitle => '停止这个计划？';
+	@override String get stopText => '你在此计划中的进度将被清除。已计入汇报的章节仍会保留。';
+	@override String get reminderTitle => '你的今日读经';
+	@override String get reminderChannel => '读经计划';
+	@override String get homeTitle => '今日读经';
+	@override String check({required Object chapter}) => '将${chapter}标为已读';
+	@override String uncheck({required Object chapter}) => '${chapter}：已读';
 }
 
 // Path: onboarding.reports
@@ -3912,6 +3971,47 @@ extension on TranslationsZh {
 			'documents.download' => '下载',
 			'documents.count' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n, other: '${n} 个文件', ), 
 			'documents.more' => '查看更多',
+			'biblePlan.title' => '读经计划',
+			'biblePlan.intro' => '选择你要读的内容和用多长时间：应用会把章节一天天分配好。',
+			'biblePlan.duration' => '时长',
+			'biblePlan.months3' => '3 个月',
+			'biblePlan.months6' => '6 个月',
+			'biblePlan.year' => '1 年',
+			'biblePlan.custom' => '其他',
+			'biblePlan.days' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n, other: '${n} 天', ), 
+			'biblePlan.scope' => '读什么',
+			'biblePlan.scopes.bible' => '整本圣经',
+			'biblePlan.scopes.newTestament' => '新约',
+			'biblePlan.scopes.oldTestament' => '旧约',
+			'biblePlan.scopes.psalmsProverbs' => '诗篇和箴言',
+			'biblePlan.order' => '顺序',
+			'biblePlan.orders.canonical' => '按书卷顺序',
+			'biblePlan.orders.parallel' => '每天读旧约和新约',
+			'biblePlan.reminder' => '每日提醒',
+			'biblePlan.reminderAt' => '提醒时间',
+			'biblePlan.summary' => ({required Object days, required Object chapters, required Object perDay}) => '${days} 天读 ${chapters} 章，每天约 ${perDay} 章',
+			'biblePlan.endsOn' => ({required Object date}) => '${date} 结束',
+			'biblePlan.startsOn' => ({required Object date}) => '计划将于 ${date} 开始。',
+			'biblePlan.start' => '开始计划',
+			'biblePlan.dayOf' => ({required Object day, required Object total}) => '第 ${day} 天，共 ${total} 天',
+			'biblePlan.today' => '今日读经',
+			'biblePlan.todayDone' => '今日读经已完成，真棒！',
+			'biblePlan.read' => '阅读',
+			'biblePlan.behind' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n, other: '落后 ${n} 天', ), 
+			'biblePlan.catchUp' => '按你的节奏补上：落后的章节仍在下方等你勾选。',
+			'biblePlan.chaptersRead' => ({required Object read, required Object total}) => '已读 ${read} / ${total} 章',
+			'biblePlan.late' => '落后',
+			'biblePlan.upcoming' => '接下来',
+			'biblePlan.dayNumber' => ({required Object n}) => '第 ${n} 天',
+			'biblePlan.finished' => '计划完成！你全部读完了。',
+			'biblePlan.stop' => '停止计划',
+			'biblePlan.stopTitle' => '停止这个计划？',
+			'biblePlan.stopText' => '你在此计划中的进度将被清除。已计入汇报的章节仍会保留。',
+			'biblePlan.reminderTitle' => '你的今日读经',
+			'biblePlan.reminderChannel' => '读经计划',
+			'biblePlan.homeTitle' => '今日读经',
+			'biblePlan.check' => ({required Object chapter}) => '将${chapter}标为已读',
+			'biblePlan.uncheck' => ({required Object chapter}) => '${chapter}：已读',
 			_ => null,
 		};
 	}

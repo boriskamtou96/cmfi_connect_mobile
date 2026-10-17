@@ -1779,5 +1779,58 @@
       "other": "{n} दस्तावेज़"
     },
     "more": "और देखें"
+  },
+  "biblePlan": {
+    "title": "पठन योजना",
+    "intro": "चुनो कि क्या पढ़ना है और कितने समय में: ऐप अध्यायों को दिन-ब-दिन बाँट देता है।",
+    "duration": "अवधि",
+    "months3": "3 महीने",
+    "months6": "6 महीने",
+    "year": "1 साल",
+    "custom": "अन्य",
+    "days(plural, param=n)": {
+      "one": "{n} दिन",
+      "other": "{n} दिन"
+    },
+    "scope": "तुम क्या पढ़ते हो",
+    "scopes(map)": {
+      "bible": "पूरी बाइबल",
+      "newTestament": "नया नियम",
+      "oldTestament": "पुराना नियम",
+      "psalmsProverbs": "भजन संहिता और नीतिवचन"
+    },
+    "order": "क्रम",
+    "orders(map)": {
+      "canonical": "पुस्तकों के क्रम में",
+      "parallel": "हर दिन पुराना और नया नियम"
+    },
+    "reminder": "रोज़ का रिमाइंडर",
+    "reminderAt": "रिमाइंडर का समय",
+    "summary": "{days} दिनों में {chapters} अध्याय, रोज़ लगभग {perDay}",
+    "endsOn": "{date} को समाप्त",
+    "startsOn": "योजना {date} को शुरू होगी।",
+    "start": "योजना शुरू करें",
+    "dayOf": "दिन {day} / {total}",
+    "today": "आज का पठन",
+    "todayDone": "आज का पठन पूरा हुआ। शाबाश!",
+    "read": "पढ़ें",
+    "behind(plural, param=n)": {
+      "one": "{n} दिन पीछे",
+      "other": "{n} दिन पीछे"
+    },
+    "catchUp": "अपनी गति से पूरा करो: पीछे छूटे अध्याय नीचे चिह्नित करने के लिए हैं।",
+    "chaptersRead": "{total} में से {read} अध्याय",
+    "late": "पीछे छूटे",
+    "upcoming": "आने वाले",
+    "dayNumber": "दिन {n}",
+    "finished": "योजना पूरी! तुमने सब पढ़ लिया।",
+    "stop": "योजना रोकें",
+    "stopTitle": "यह योजना रोकें?",
+    "stopText": "इस योजना में तुम्हारी प्रगति मिट जाएगी। तुम्हारी रिपोर्ट में गिने गए अध्याय वहीं रहेंगे।",
+    "reminderTitle": "आज का तुम्हारा पठन",
+    "reminderChannel": "पठन योजना",
+    "homeTitle": "आज का पठन",
+    "check": "{chapter} को पढ़ा हुआ चिह्नित करें",
+    "uncheck": "{chapter}: पढ़ा"
   }
 }

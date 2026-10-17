@@ -1780,5 +1780,58 @@
       "other": "{n} Dokumente"
     },
     "more": "Mehr anzeigen"
+  },
+  "biblePlan": {
+    "title": "Leseplan",
+    "intro": "Wähle, was du lesen willst und in welcher Zeit: Die App verteilt die Kapitel Tag für Tag.",
+    "duration": "Dauer",
+    "months3": "3 Monate",
+    "months6": "6 Monate",
+    "year": "1 Jahr",
+    "custom": "Andere",
+    "days(plural, param=n)": {
+      "one": "{n} Tag",
+      "other": "{n} Tage"
+    },
+    "scope": "Was du liest",
+    "scopes(map)": {
+      "bible": "Die ganze Bibel",
+      "newTestament": "Das Neue Testament",
+      "oldTestament": "Das Alte Testament",
+      "psalmsProverbs": "Psalmen und Sprüche"
+    },
+    "order": "Reihenfolge",
+    "orders(map)": {
+      "canonical": "In der Reihenfolge der Bücher",
+      "parallel": "Altes und Neues Testament jeden Tag"
+    },
+    "reminder": "Tägliche Erinnerung",
+    "reminderAt": "Uhrzeit der Erinnerung",
+    "summary": "{chapters} Kapitel in {days} Tagen, etwa {perDay} pro Tag",
+    "endsOn": "Endet am {date}",
+    "startsOn": "Der Plan beginnt am {date}.",
+    "start": "Plan beginnen",
+    "dayOf": "Tag {day} von {total}",
+    "today": "Heutige Lesung",
+    "todayDone": "Die heutige Lesung ist erledigt. Bravo!",
+    "read": "Lesen",
+    "behind(plural, param=n)": {
+      "one": "{n} Tag im Rückstand",
+      "other": "{n} Tage im Rückstand"
+    },
+    "catchUp": "Hole in deinem Tempo auf: Die offenen Kapitel stehen weiter unten.",
+    "chaptersRead": "{read} von {total} Kapiteln",
+    "late": "Im Rückstand",
+    "upcoming": "Als Nächstes",
+    "dayNumber": "Tag {n}",
+    "finished": "Plan abgeschlossen! Du hast alles gelesen.",
+    "stop": "Plan beenden",
+    "stopTitle": "Diesen Plan beenden?",
+    "stopText": "Dein Fortschritt in diesem Plan wird gelöscht. Die in deinen Berichten gezählten Kapitel bleiben dort.",
+    "reminderTitle": "Deine heutige Lesung",
+    "reminderChannel": "Leseplan",
+    "homeTitle": "Heutige Lesung",
+    "check": "{chapter} als gelesen markieren",
+    "uncheck": "{chapter}: gelesen"
   }
 }

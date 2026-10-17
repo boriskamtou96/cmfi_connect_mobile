@@ -1780,5 +1780,58 @@
       "other": "{n} documents"
     },
     "more": "Voir plus"
+  },
+  "biblePlan": {
+    "title": "Plan de lecture",
+    "intro": "Choisis ce que tu veux lire et en combien de temps : l'app répartit les chapitres jour après jour.",
+    "duration": "Durée",
+    "months3": "3 mois",
+    "months6": "6 mois",
+    "year": "1 an",
+    "custom": "Autre",
+    "days(plural, param=n)": {
+      "one": "{n} jour",
+      "other": "{n} jours"
+    },
+    "scope": "Ce que tu lis",
+    "scopes(map)": {
+      "bible": "Toute la Bible",
+      "newTestament": "Le Nouveau Testament",
+      "oldTestament": "L'Ancien Testament",
+      "psalmsProverbs": "Psaumes et Proverbes"
+    },
+    "order": "Ordre",
+    "orders(map)": {
+      "canonical": "Dans l'ordre des livres",
+      "parallel": "Ancien et Nouveau Testament chaque jour"
+    },
+    "reminder": "Rappel chaque jour",
+    "reminderAt": "Heure du rappel",
+    "summary": "{chapters} chapitres en {days} jours, environ {perDay} par jour",
+    "endsOn": "Fin le {date}",
+    "startsOn": "Le plan commence le {date}.",
+    "start": "Commencer le plan",
+    "dayOf": "Jour {day} sur {total}",
+    "today": "Lecture du jour",
+    "todayDone": "Lecture du jour faite. Bravo !",
+    "read": "Lire",
+    "behind(plural, param=n)": {
+      "one": "{n} jour de retard",
+      "other": "{n} jours de retard"
+    },
+    "catchUp": "Rattrape à ton rythme : les chapitres en retard restent à cocher plus bas.",
+    "chaptersRead": "{read} chapitres sur {total}",
+    "late": "En retard",
+    "upcoming": "À venir",
+    "dayNumber": "Jour {n}",
+    "finished": "Plan terminé ! Tu as tout lu.",
+    "stop": "Arrêter le plan",
+    "stopTitle": "Arrêter ce plan ?",
+    "stopText": "Ta progression dans ce plan sera effacée. Les chapitres comptés dans tes comptes rendus y restent.",
+    "reminderTitle": "Ta lecture du jour",
+    "reminderChannel": "Plan de lecture",
+    "homeTitle": "Lecture du jour",
+    "check": "Marquer {chapter} comme lu",
+    "uncheck": "{chapter} : lu"
   }
 }

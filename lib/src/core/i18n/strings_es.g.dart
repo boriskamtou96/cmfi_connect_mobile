@@ -1318,8 +1318,8 @@ class _Translations$biblePlan$es extends Translations$biblePlan$fr {
 	};
 	@override String get order => 'Orden';
 	@override Map<String, String> get orders => {
-		'canonical': 'En el orden de los libros',
-		'parallel': 'Antiguo y Nuevo Testamento cada día',
+		'canonical': 'Libro por libro',
+		'parallel': 'AT + NT cada día',
 	};
 	@override String get reminder => 'Recordatorio diario';
 	@override String get reminderAt => 'Hora del recordatorio';
@@ -1335,7 +1335,7 @@ class _Translations$biblePlan$es extends Translations$biblePlan$fr {
 		one: '${n} día de retraso',
 		other: '${n} días de retraso',
 	);
-	@override String get catchUp => 'Ponte al día a tu ritmo: los capítulos atrasados siguen abajo para marcar.';
+	@override String get catchUp => 'Toca aquí para ver los capítulos atrasados.';
 	@override String chaptersRead({required Object read, required Object total}) => '${read} de ${total} capítulos';
 	@override String get late => 'Atrasados';
 	@override String get upcoming => 'Próximos';
@@ -4048,8 +4048,8 @@ extension on TranslationsEs {
 			'biblePlan.scopes.oldTestament' => 'El Antiguo Testamento',
 			'biblePlan.scopes.psalmsProverbs' => 'Salmos y Proverbios',
 			'biblePlan.order' => 'Orden',
-			'biblePlan.orders.canonical' => 'En el orden de los libros',
-			'biblePlan.orders.parallel' => 'Antiguo y Nuevo Testamento cada día',
+			'biblePlan.orders.canonical' => 'Libro por libro',
+			'biblePlan.orders.parallel' => 'AT + NT cada día',
 			'biblePlan.reminder' => 'Recordatorio diario',
 			'biblePlan.reminderAt' => 'Hora del recordatorio',
 			'biblePlan.summary' => ({required Object chapters, required Object days, required Object perDay}) => '${chapters} capítulos en ${days} días, unos ${perDay} al día',
@@ -4061,7 +4061,7 @@ extension on TranslationsEs {
 			'biblePlan.todayDone' => 'Lectura del día hecha. ¡Bravo!',
 			'biblePlan.read' => 'Leer',
 			'biblePlan.behind' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('es'))(n, one: '${n} día de retraso', other: '${n} días de retraso', ), 
-			'biblePlan.catchUp' => 'Ponte al día a tu ritmo: los capítulos atrasados siguen abajo para marcar.',
+			'biblePlan.catchUp' => 'Toca aquí para ver los capítulos atrasados.',
 			'biblePlan.chaptersRead' => ({required Object read, required Object total}) => '${read} de ${total} capítulos',
 			'biblePlan.late' => 'Atrasados',
 			'biblePlan.upcoming' => 'Próximos',

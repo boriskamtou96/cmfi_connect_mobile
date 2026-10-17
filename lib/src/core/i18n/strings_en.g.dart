@@ -1319,8 +1319,8 @@ class _Translations$biblePlan$en extends Translations$biblePlan$fr {
 	};
 	@override String get order => 'Order';
 	@override Map<String, String> get orders => {
-		'canonical': 'In the order of the books',
-		'parallel': 'Old and New Testament each day',
+		'canonical': 'Book by book',
+		'parallel': 'OT + NT each day',
 	};
 	@override String get reminder => 'Daily reminder';
 	@override String get reminderAt => 'Reminder time';
@@ -1336,7 +1336,7 @@ class _Translations$biblePlan$en extends Translations$biblePlan$fr {
 		one: '${n} day behind',
 		other: '${n} days behind',
 	);
-	@override String get catchUp => 'Catch up at your pace: the late chapters stay below to tick.';
+	@override String get catchUp => 'Tap here to see the chapters to catch up.';
 	@override String chaptersRead({required Object read, required Object total}) => '${read} of ${total} chapters';
 	@override String get late => 'Late';
 	@override String get upcoming => 'Coming up';
@@ -4049,8 +4049,8 @@ extension on TranslationsEn {
 			'biblePlan.scopes.oldTestament' => 'The Old Testament',
 			'biblePlan.scopes.psalmsProverbs' => 'Psalms and Proverbs',
 			'biblePlan.order' => 'Order',
-			'biblePlan.orders.canonical' => 'In the order of the books',
-			'biblePlan.orders.parallel' => 'Old and New Testament each day',
+			'biblePlan.orders.canonical' => 'Book by book',
+			'biblePlan.orders.parallel' => 'OT + NT each day',
 			'biblePlan.reminder' => 'Daily reminder',
 			'biblePlan.reminderAt' => 'Reminder time',
 			'biblePlan.summary' => ({required Object chapters, required Object days, required Object perDay}) => '${chapters} chapters in ${days} days, about ${perDay} a day',
@@ -4062,7 +4062,7 @@ extension on TranslationsEn {
 			'biblePlan.todayDone' => 'Today\'s reading is done. Well done!',
 			'biblePlan.read' => 'Read',
 			'biblePlan.behind' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n, one: '${n} day behind', other: '${n} days behind', ), 
-			'biblePlan.catchUp' => 'Catch up at your pace: the late chapters stay below to tick.',
+			'biblePlan.catchUp' => 'Tap here to see the chapters to catch up.',
 			'biblePlan.chaptersRead' => ({required Object read, required Object total}) => '${read} of ${total} chapters',
 			'biblePlan.late' => 'Late',
 			'biblePlan.upcoming' => 'Coming up',

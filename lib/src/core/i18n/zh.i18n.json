@@ -1741,7 +1741,7 @@
     "order": "顺序",
     "orders(map)": {
       "canonical": "按书卷顺序",
-      "parallel": "每天读旧约和新约"
+      "parallel": "新旧约每天"
     },
     "reminder": "每日提醒",
     "reminderAt": "提醒时间",
@@ -1756,7 +1756,7 @@
     "behind(plural, param=n)": {
       "other": "落后 {n} 天"
     },
-    "catchUp": "按你的节奏补上：落后的章节仍在下方等你勾选。",
+    "catchUp": "点这里查看要补读的章节。",
     "chaptersRead": "已读 {read} / {total} 章",
     "late": "落后",
     "upcoming": "接下来",

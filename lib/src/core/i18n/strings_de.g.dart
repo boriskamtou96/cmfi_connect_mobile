@@ -1318,8 +1318,8 @@ class _Translations$biblePlan$de extends Translations$biblePlan$fr {
 	};
 	@override String get order => 'Reihenfolge';
 	@override Map<String, String> get orders => {
-		'canonical': 'In der Reihenfolge der Bücher',
-		'parallel': 'Altes und Neues Testament jeden Tag',
+		'canonical': 'Buch für Buch',
+		'parallel': 'AT + NT jeden Tag',
 	};
 	@override String get reminder => 'Tägliche Erinnerung';
 	@override String get reminderAt => 'Uhrzeit der Erinnerung';
@@ -1335,7 +1335,7 @@ class _Translations$biblePlan$de extends Translations$biblePlan$fr {
 		one: '${n} Tag im Rückstand',
 		other: '${n} Tage im Rückstand',
 	);
-	@override String get catchUp => 'Hole in deinem Tempo auf: Die offenen Kapitel stehen weiter unten.';
+	@override String get catchUp => 'Tippe hier, um die offenen Kapitel zu sehen.';
 	@override String chaptersRead({required Object read, required Object total}) => '${read} von ${total} Kapiteln';
 	@override String get late => 'Im Rückstand';
 	@override String get upcoming => 'Als Nächstes';
@@ -4048,8 +4048,8 @@ extension on TranslationsDe {
 			'biblePlan.scopes.oldTestament' => 'Das Alte Testament',
 			'biblePlan.scopes.psalmsProverbs' => 'Psalmen und Sprüche',
 			'biblePlan.order' => 'Reihenfolge',
-			'biblePlan.orders.canonical' => 'In der Reihenfolge der Bücher',
-			'biblePlan.orders.parallel' => 'Altes und Neues Testament jeden Tag',
+			'biblePlan.orders.canonical' => 'Buch für Buch',
+			'biblePlan.orders.parallel' => 'AT + NT jeden Tag',
 			'biblePlan.reminder' => 'Tägliche Erinnerung',
 			'biblePlan.reminderAt' => 'Uhrzeit der Erinnerung',
 			'biblePlan.summary' => ({required Object chapters, required Object days, required Object perDay}) => '${chapters} Kapitel in ${days} Tagen, etwa ${perDay} pro Tag',
@@ -4061,7 +4061,7 @@ extension on TranslationsDe {
 			'biblePlan.todayDone' => 'Die heutige Lesung ist erledigt. Bravo!',
 			'biblePlan.read' => 'Lesen',
 			'biblePlan.behind' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('de'))(n, one: '${n} Tag im Rückstand', other: '${n} Tage im Rückstand', ), 
-			'biblePlan.catchUp' => 'Hole in deinem Tempo auf: Die offenen Kapitel stehen weiter unten.',
+			'biblePlan.catchUp' => 'Tippe hier, um die offenen Kapitel zu sehen.',
 			'biblePlan.chaptersRead' => ({required Object read, required Object total}) => '${read} von ${total} Kapiteln',
 			'biblePlan.late' => 'Im Rückstand',
 			'biblePlan.upcoming' => 'Als Nächstes',

@@ -1802,8 +1802,8 @@
     },
     "order": "Orden",
     "orders(map)": {
-      "canonical": "En el orden de los libros",
-      "parallel": "Antiguo y Nuevo Testamento cada día"
+      "canonical": "Libro por libro",
+      "parallel": "AT + NT cada día"
     },
     "reminder": "Recordatorio diario",
     "reminderAt": "Hora del recordatorio",
@@ -1819,7 +1819,7 @@
       "one": "{n} día de retraso",
       "other": "{n} días de retraso"
     },
-    "catchUp": "Ponte al día a tu ritmo: los capítulos atrasados siguen abajo para marcar.",
+    "catchUp": "Toca aquí para ver los capítulos atrasados.",
     "chaptersRead": "{read} de {total} capítulos",
     "late": "Atrasados",
     "upcoming": "Próximos",

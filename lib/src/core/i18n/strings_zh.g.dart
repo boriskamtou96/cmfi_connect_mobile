@@ -1277,7 +1277,7 @@ class _Translations$biblePlan$zh extends Translations$biblePlan$fr {
 	@override String get order => '顺序';
 	@override Map<String, String> get orders => {
 		'canonical': '按书卷顺序',
-		'parallel': '每天读旧约和新约',
+		'parallel': '新旧约每天',
 	};
 	@override String get reminder => '每日提醒';
 	@override String get reminderAt => '提醒时间';
@@ -1292,7 +1292,7 @@ class _Translations$biblePlan$zh extends Translations$biblePlan$fr {
 	@override String behind({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n,
 		other: '落后 ${n} 天',
 	);
-	@override String get catchUp => '按你的节奏补上：落后的章节仍在下方等你勾选。';
+	@override String get catchUp => '点这里查看要补读的章节。';
 	@override String chaptersRead({required Object read, required Object total}) => '已读 ${read} / ${total} 章';
 	@override String get late => '落后';
 	@override String get upcoming => '接下来';
@@ -3986,7 +3986,7 @@ extension on TranslationsZh {
 			'biblePlan.scopes.psalmsProverbs' => '诗篇和箴言',
 			'biblePlan.order' => '顺序',
 			'biblePlan.orders.canonical' => '按书卷顺序',
-			'biblePlan.orders.parallel' => '每天读旧约和新约',
+			'biblePlan.orders.parallel' => '新旧约每天',
 			'biblePlan.reminder' => '每日提醒',
 			'biblePlan.reminderAt' => '提醒时间',
 			'biblePlan.summary' => ({required Object days, required Object chapters, required Object perDay}) => '${days} 天读 ${chapters} 章，每天约 ${perDay} 章',
@@ -3998,7 +3998,7 @@ extension on TranslationsZh {
 			'biblePlan.todayDone' => '今日读经已完成，真棒！',
 			'biblePlan.read' => '阅读',
 			'biblePlan.behind' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n, other: '落后 ${n} 天', ), 
-			'biblePlan.catchUp' => '按你的节奏补上：落后的章节仍在下方等你勾选。',
+			'biblePlan.catchUp' => '点这里查看要补读的章节。',
 			'biblePlan.chaptersRead' => ({required Object read, required Object total}) => '已读 ${read} / ${total} 章',
 			'biblePlan.late' => '落后',
 			'biblePlan.upcoming' => '接下来',

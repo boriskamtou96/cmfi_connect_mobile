@@ -2709,8 +2709,8 @@ class Translations$biblePlan$fr {
 	String get order => 'Ordre';
 
 	Map<String, String> get orders => {
-		'canonical': 'Dans l\'ordre des livres',
-		'parallel': 'Ancien et Nouveau Testament chaque jour',
+		'canonical': 'Livre après livre',
+		'parallel': 'AT + NT chaque jour',
 	};
 
 	/// fr: 'Rappel chaque jour'
@@ -2749,8 +2749,8 @@ class Translations$biblePlan$fr {
 		other: '${n} jours de retard',
 	);
 
-	/// fr: 'Rattrape à ton rythme : les chapitres en retard restent à cocher plus bas.'
-	String get catchUp => 'Rattrape à ton rythme : les chapitres en retard restent à cocher plus bas.';
+	/// fr: 'Touche ici pour voir les chapitres à rattraper.'
+	String get catchUp => 'Touche ici pour voir les chapitres à rattraper.';
 
 	/// fr: '{read} chapitres sur {total}'
 	String chaptersRead({required Object read, required Object total}) => '${read} chapitres sur ${total}';
@@ -6718,8 +6718,8 @@ extension on Translations {
 			'biblePlan.scopes.oldTestament' => 'L\'Ancien Testament',
 			'biblePlan.scopes.psalmsProverbs' => 'Psaumes et Proverbes',
 			'biblePlan.order' => 'Ordre',
-			'biblePlan.orders.canonical' => 'Dans l\'ordre des livres',
-			'biblePlan.orders.parallel' => 'Ancien et Nouveau Testament chaque jour',
+			'biblePlan.orders.canonical' => 'Livre après livre',
+			'biblePlan.orders.parallel' => 'AT + NT chaque jour',
 			'biblePlan.reminder' => 'Rappel chaque jour',
 			'biblePlan.reminderAt' => 'Heure du rappel',
 			'biblePlan.summary' => ({required Object chapters, required Object days, required Object perDay}) => '${chapters} chapitres en ${days} jours, environ ${perDay} par jour',
@@ -6731,7 +6731,7 @@ extension on Translations {
 			'biblePlan.todayDone' => 'Lecture du jour faite. Bravo !',
 			'biblePlan.read' => 'Lire',
 			'biblePlan.behind' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('fr'))(n, one: '${n} jour de retard', other: '${n} jours de retard', ), 
-			'biblePlan.catchUp' => 'Rattrape à ton rythme : les chapitres en retard restent à cocher plus bas.',
+			'biblePlan.catchUp' => 'Touche ici pour voir les chapitres à rattraper.',
 			'biblePlan.chaptersRead' => ({required Object read, required Object total}) => '${read} chapitres sur ${total}',
 			'biblePlan.late' => 'En retard',
 			'biblePlan.upcoming' => 'À venir',

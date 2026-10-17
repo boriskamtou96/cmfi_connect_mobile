@@ -165,14 +165,14 @@ void main() {
       find.text('181 chapitres en 91 jours, environ 2 par jour'),
       findsOneWidget,
     );
-    await scrollTo(tester, find.text('Commencer le plan'));
     await tester.tap(find.text('Commencer le plan'));
     await tester.pumpAndSettle();
 
     expect(find.text('Jour 1 sur 91'), findsOneWidget);
     expect(find.text('0 chapitres sur 181'), findsOneWidget);
     expect(find.text('LECTURE DU JOUR'), findsOneWidget);
-    expect(find.text('Psaumes 1'), findsWidgets);
+    expect(find.text('Psaumes'), findsOneWidget);
+    expect(find.textContaining('Lire · Psaumes 1'), findsOneWidget);
     // the reminder of the coming days
     expect(app.notifications.groups[NotificationGroup.biblePlan], isNotEmpty);
   });
@@ -203,9 +203,13 @@ void main() {
 
     expect(find.text('Jour 3 sur 365'), findsOneWidget);
     expect(find.textContaining('2 jours de retard'), findsOneWidget);
-    expect(find.text('EN RETARD'), findsOneWidget);
     // the first chapter not read yet, the late ones first
     expect(find.textContaining('Lire · Genèse 2'), findsOneWidget);
+    // the chapters to catch up, in a sheet
+    await tester.tap(find.textContaining('2 jours de retard'));
+    await tester.pumpAndSettle();
+    expect(find.text('En retard'), findsOneWidget);
+    expect(find.byTooltip('Marquer Genèse 2 comme lu'), findsOneWidget);
   });
 
   testWidgets('"Lire" opens the chapter in the Bible tab', (tester) async {
@@ -220,7 +224,8 @@ void main() {
   testWidgets('stopped: the plan and its reminders go', (tester) async {
     final app = await openPlan(tester, preferences: planStarted(0));
 
-    await scrollTo(tester, find.text('Arrêter le plan'));
+    await tester.tap(find.byTooltip("Plus d'options"));
+    await tester.pumpAndSettle();
     await tester.tap(find.text('Arrêter le plan'));
     await tester.pumpAndSettle();
     await tester.tap(find.text('Arrêter le plan').last);

@@ -1802,8 +1802,8 @@
     },
     "order": "Reihenfolge",
     "orders(map)": {
-      "canonical": "In der Reihenfolge der Bücher",
-      "parallel": "Altes und Neues Testament jeden Tag"
+      "canonical": "Buch für Buch",
+      "parallel": "AT + NT jeden Tag"
     },
     "reminder": "Tägliche Erinnerung",
     "reminderAt": "Uhrzeit der Erinnerung",
@@ -1819,7 +1819,7 @@
       "one": "{n} Tag im Rückstand",
       "other": "{n} Tage im Rückstand"
     },
-    "catchUp": "Hole in deinem Tempo auf: Die offenen Kapitel stehen weiter unten.",
+    "catchUp": "Tippe hier, um die offenen Kapitel zu sehen.",
     "chaptersRead": "{read} von {total} Kapiteln",
     "late": "Im Rückstand",
     "upcoming": "Als Nächstes",

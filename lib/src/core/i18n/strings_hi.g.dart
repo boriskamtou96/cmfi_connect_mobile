@@ -1317,8 +1317,8 @@ class _Translations$biblePlan$hi extends Translations$biblePlan$fr {
 	};
 	@override String get order => 'क्रम';
 	@override Map<String, String> get orders => {
-		'canonical': 'पुस्तकों के क्रम में',
-		'parallel': 'हर दिन पुराना और नया नियम',
+		'canonical': 'पुस्तक दर पुस्तक',
+		'parallel': 'पुराना + नया हर दिन',
 	};
 	@override String get reminder => 'रोज़ का रिमाइंडर';
 	@override String get reminderAt => 'रिमाइंडर का समय';
@@ -1334,7 +1334,7 @@ class _Translations$biblePlan$hi extends Translations$biblePlan$fr {
 		one: '${n} दिन पीछे',
 		other: '${n} दिन पीछे',
 	);
-	@override String get catchUp => 'अपनी गति से पूरा करो: पीछे छूटे अध्याय नीचे चिह्नित करने के लिए हैं।';
+	@override String get catchUp => 'पीछे छूटे अध्याय देखने के लिए यहाँ छुओ।';
 	@override String chaptersRead({required Object total, required Object read}) => '${total} में से ${read} अध्याय';
 	@override String get late => 'पीछे छूटे';
 	@override String get upcoming => 'आने वाले';
@@ -4047,8 +4047,8 @@ extension on TranslationsHi {
 			'biblePlan.scopes.oldTestament' => 'पुराना नियम',
 			'biblePlan.scopes.psalmsProverbs' => 'भजन संहिता और नीतिवचन',
 			'biblePlan.order' => 'क्रम',
-			'biblePlan.orders.canonical' => 'पुस्तकों के क्रम में',
-			'biblePlan.orders.parallel' => 'हर दिन पुराना और नया नियम',
+			'biblePlan.orders.canonical' => 'पुस्तक दर पुस्तक',
+			'biblePlan.orders.parallel' => 'पुराना + नया हर दिन',
 			'biblePlan.reminder' => 'रोज़ का रिमाइंडर',
 			'biblePlan.reminderAt' => 'रिमाइंडर का समय',
 			'biblePlan.summary' => ({required Object days, required Object chapters, required Object perDay}) => '${days} दिनों में ${chapters} अध्याय, रोज़ लगभग ${perDay}',
@@ -4060,7 +4060,7 @@ extension on TranslationsHi {
 			'biblePlan.todayDone' => 'आज का पठन पूरा हुआ। शाबाश!',
 			'biblePlan.read' => 'पढ़ें',
 			'biblePlan.behind' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n, one: '${n} दिन पीछे', other: '${n} दिन पीछे', ), 
-			'biblePlan.catchUp' => 'अपनी गति से पूरा करो: पीछे छूटे अध्याय नीचे चिह्नित करने के लिए हैं।',
+			'biblePlan.catchUp' => 'पीछे छूटे अध्याय देखने के लिए यहाँ छुओ।',
 			'biblePlan.chaptersRead' => ({required Object total, required Object read}) => '${total} में से ${read} अध्याय',
 			'biblePlan.late' => 'पीछे छूटे',
 			'biblePlan.upcoming' => 'आने वाले',

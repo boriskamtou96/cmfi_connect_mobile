@@ -1803,8 +1803,8 @@
     },
     "order": "Order",
     "orders(map)": {
-      "canonical": "In the order of the books",
-      "parallel": "Old and New Testament each day"
+      "canonical": "Book by book",
+      "parallel": "OT + NT each day"
     },
     "reminder": "Daily reminder",
     "reminderAt": "Reminder time",
@@ -1820,7 +1820,7 @@
       "one": "{n} day behind",
       "other": "{n} days behind"
     },
-    "catchUp": "Catch up at your pace: the late chapters stay below to tick.",
+    "catchUp": "Tap here to see the chapters to catch up.",
     "chaptersRead": "{read} of {total} chapters",
     "late": "Late",
     "upcoming": "Coming up",

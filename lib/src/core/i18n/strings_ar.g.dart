@@ -1487,8 +1487,8 @@ class _Translations$biblePlan$ar extends Translations$biblePlan$fr {
 	};
 	@override String get order => 'الترتيب';
 	@override Map<String, String> get orders => {
-		'canonical': 'بترتيب الأسفار',
-		'parallel': 'العهد القديم والجديد كل يوم',
+		'canonical': 'سفرًا بعد سفر',
+		'parallel': 'العهدان كل يوم',
 	};
 	@override String get reminder => 'تذكير يومي';
 	@override String get reminderAt => 'وقت التذكير';
@@ -1508,7 +1508,7 @@ class _Translations$biblePlan$ar extends Translations$biblePlan$fr {
 		many: 'تأخر ${n} يومًا',
 		other: 'تأخر ${n} يوم',
 	);
-	@override String get catchUp => 'استدرك على مهلك: تبقى الأصحاحات المتأخرة في الأسفل لتعلّم عليها.';
+	@override String get catchUp => 'المس هنا لترى الأصحاحات التي عليك استدراكها.';
 	@override String chaptersRead({required Object read, required Object total}) => '${read} من ${total} أصحاحًا';
 	@override String get late => 'متأخر';
 	@override String get upcoming => 'القادم';
@@ -4298,8 +4298,8 @@ extension on TranslationsAr {
 			'biblePlan.scopes.oldTestament' => 'العهد القديم',
 			'biblePlan.scopes.psalmsProverbs' => 'المزامير والأمثال',
 			'biblePlan.order' => 'الترتيب',
-			'biblePlan.orders.canonical' => 'بترتيب الأسفار',
-			'biblePlan.orders.parallel' => 'العهد القديم والجديد كل يوم',
+			'biblePlan.orders.canonical' => 'سفرًا بعد سفر',
+			'biblePlan.orders.parallel' => 'العهدان كل يوم',
 			'biblePlan.reminder' => 'تذكير يومي',
 			'biblePlan.reminderAt' => 'وقت التذكير',
 			'biblePlan.summary' => ({required Object chapters, required Object days, required Object perDay}) => '${chapters} أصحاحًا في ${days} يومًا، نحو ${perDay} في اليوم',
@@ -4311,7 +4311,7 @@ extension on TranslationsAr {
 			'biblePlan.todayDone' => 'تمت قراءة اليوم. أحسنت!',
 			'biblePlan.read' => 'اقرأ',
 			'biblePlan.behind' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n, zero: 'تأخر ${n} يوم', one: 'تأخر يوم واحد', two: 'تأخر يومين', few: 'تأخر ${n} أيام', many: 'تأخر ${n} يومًا', other: 'تأخر ${n} يوم', ), 
-			'biblePlan.catchUp' => 'استدرك على مهلك: تبقى الأصحاحات المتأخرة في الأسفل لتعلّم عليها.',
+			'biblePlan.catchUp' => 'المس هنا لترى الأصحاحات التي عليك استدراكها.',
 			'biblePlan.chaptersRead' => ({required Object read, required Object total}) => '${read} من ${total} أصحاحًا',
 			'biblePlan.late' => 'متأخر',
 			'biblePlan.upcoming' => 'القادم',

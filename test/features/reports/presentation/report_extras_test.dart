@@ -341,10 +341,7 @@ void main() {
       app.container.invalidate(reportHistoryProvider);
       await openMore(tester);
       await tester.pumpAndSettle();
-      await tester.scrollUntilVisible(
-        find.text('Exporter mon compte rendu'),
-        200,
-      );
+      await scrollTo(tester, find.text('Exporter mon compte rendu'));
       await tester.tap(find.text('Exporter mon compte rendu'));
       await tester.pumpAndSettle();
       return app;

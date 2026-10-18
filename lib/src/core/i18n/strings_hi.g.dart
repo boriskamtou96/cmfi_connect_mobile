@@ -81,6 +81,7 @@ class TranslationsHi extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _Translations$teachings$hi teachings = _Translations$teachings$hi._(_root);
 	@override late final _Translations$memorize$hi memorize = _Translations$memorize$hi._(_root);
 	@override late final _Translations$souls$hi souls = _Translations$souls$hi._(_root);
+	@override late final _Translations$fasts$hi fasts = _Translations$fasts$hi._(_root);
 }
 
 // Path: app
@@ -1107,6 +1108,10 @@ class _Translations$bible$hi extends Translations$bible$fr {
 	@override String get pickWord => 'एक शब्द चुनें';
 	@override String get pickWordHelp => 'शब्द-अनुक्रमणिका हर वह पद दिखाती है जिसमें वह आता है।';
 	@override String get more => 'और विकल्प';
+	@override String get crossReferences => 'संबंधित संदर्भ';
+	@override String crossReferencesOf({required Object passage}) => 'संबंधित संदर्भ · ${passage}';
+	@override String get noCrossReferences => 'इस अंश के लिए कोई संबंधित संदर्भ नहीं।';
+	@override String get crossReferencesSource => 'स्रोत: OpenBible.info (CC-BY)';
 }
 
 // Path: profilePhoto
@@ -1264,6 +1269,10 @@ class _Translations$seekFirst$hi extends Translations$seekFirst$fr {
 	@override String get moreOff => 'रिपोर्ट पूरी होने तक ऐप बंद रखें';
 	@override String get privacy => 'CMFI Connect कभी नहीं देखता कि तुमने कौन से ऐप चुने: तुम्हारा iPhone उन्हें अपने पास रखता है।';
 	@override late final _Translations$seekFirst$shield$hi shield = _Translations$seekFirst$shield$hi._(_root);
+	@override String get permissionsAndroid => 'तुम्हारे ऐप बंद करने के लिए CMFI Connect को दो अनुमतियाँ चाहिए, जो खुलने वाली सेटिंग्स में चालू करनी हैं: «उपयोग डेटा तक पहुँच» (कौन-सा ऐप खुला है) और «दूसरे ऐप्स के ऊपर दिखाएँ» (पहले परमेश्वर को खोजो स्क्रीन दिखाने के लिए)। कुछ भी तुम्हारे फ़ोन से बाहर नहीं जाता।';
+	@override String get permissionsContinue => 'आगे बढ़ो';
+	@override String get deniedAndroid => 'इन दो अनुमतियों के बिना CMFI Connect ऐप बंद नहीं कर सकता। तुम इन्हें सेटिंग्स › ऐप्स › विशेष पहुँच में चालू कर सकते हो।';
+	@override String get privacyAndroid => 'तुम्हारे चुने ऐप तुम्हारे फ़ोन में ही रहते हैं: CMFI Connect उन्हें कभी नहीं भेजता।';
 }
 
 // Path: documents
@@ -1551,6 +1560,70 @@ class _Translations$souls$hi extends Translations$souls$fr {
 	);
 	@override String get reminderChannel => 'आत्माओं की देखभाल';
 	@override String get moreSubtitle => 'जिन्हें तुम सुसमाचार सुनाते हो';
+	@override String get prayToday => 'आज प्रार्थना करो';
+	@override String get prayerReminder => 'हर सुबह याद दिलाओ';
+	@override String get prayerReminderAt => 'प्रार्थना की याद का समय';
+	@override String get prayerTitle => 'एक आत्मा के लिए प्रार्थना करो';
+	@override String get prayerBody => 'आज के व्यक्ति के लिए प्रार्थना करने को कुछ समय निकालो।';
+	@override String get prayerChannel => 'आत्माओं के लिए प्रार्थना';
+}
+
+// Path: fasts
+class _Translations$fasts$hi extends Translations$fasts$fr {
+	_Translations$fasts$hi._(TranslationsHi root) : this._root = root, super.internal(root);
+
+	final TranslationsHi _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'मेरे उपवास';
+	@override String get intro => 'परमेश्वर के लिए अलग हो जाओ: अपना उपवास और उसका कारण चुनो। हर पूरा दिन तुम्हारी रिपोर्ट में गिना जाता है।';
+	@override String get moreSubtitle => 'पूर्ण या आंशिक उपवास, हर दिन गिना जाता';
+	@override String get kind => 'तुम्हारा उपवास';
+	@override Map<String, String> get kinds => {
+		'full': 'पूर्ण उपवास',
+		'partial': 'आंशिक उपवास',
+	};
+	@override Map<String, String> get kindTexts => {
+		'full': 'दिन और रात, हर दिन 24 घंटे, अभी से।',
+		'partial': 'हर दिन चुने हुए समय तक, फिर उपवास तोड़ो।',
+	};
+	@override String get length => 'अवधि';
+	@override String days({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n,
+		one: '${n} दिन',
+		other: '${n} दिन',
+	);
+	@override String get endEachDay => 'हर दिन उपवास का अंत';
+	@override String get topics => 'मैं इसके लिए उपवास करता हूँ';
+	@override String get topicHint => 'एक प्रार्थना विषय…';
+	@override String get addTopic => 'विषय जोड़ो';
+	@override String get removeTopic => 'विषय हटाओ';
+	@override String get history => 'मेरे पिछले उपवास';
+	@override String kept({required Object kept, required Object days}) => '${kept}/${days} दिन';
+	@override String get start => 'उपवास शुरू करो';
+	@override String until({required Object date}) => '${date} तक';
+	@override String hoursLeft({required Object h, required Object m}) => '${h} घं ${m}';
+	@override String minutesLeft({required Object m}) => '${m} मि';
+	@override String dayOf({required Object total, required Object day}) => '${total} में से दिन ${day}';
+	@override String dayEnds({required Object time}) => 'यह दिन ${time} पर पूरा होगा';
+	@override String get stop => 'उपवास तोड़ो';
+	@override String get stopTitle => 'उपवास तोड़ना है?';
+	@override String get stopText => 'पूरे हुए दिन गिने रहेंगे। चल रहा दिन नहीं गिना जाएगा।';
+	@override String counted({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n,
+		one: '${n} उपवास दिन तुम्हारी रिपोर्ट में गिना गया',
+		other: '${n} उपवास दिन तुम्हारी रिपोर्ट में गिने गए',
+	);
+	@override String reportNote({required Object item}) => 'हर पूरा दिन तुम्हारी रिपोर्ट में "${item}" में 1 जोड़ता है।';
+	@override Map<String, String> get items => {
+		'full': 'पूर्ण उपवास',
+		'partial': 'आंशिक उपवास',
+	};
+	@override String dayTitle({required Object day}) => 'उपवास का दिन ${day} पूरा';
+	@override String get dayBody => 'यह तुम्हारी रिपोर्ट में गिना गया। हिम्मत रखो, आगे बढ़ो!';
+	@override String get endTitle => 'तुम्हारा उपवास पूरा हुआ';
+	@override String get endBody => 'प्रभु तुम्हारी प्रार्थनाओं का उत्तर दे।';
+	@override String get channel => 'मेरे उपवास';
+	@override String homeTitle({required Object day, required Object total}) => 'उपवास · दिन ${day}/${total}';
+	@override String homeText({required Object time}) => 'यह दिन ${time} पर पूरा होगा';
 }
 
 // Path: onboarding.reports
@@ -2598,6 +2671,7 @@ class _Translations$seekFirst$shield$hi extends Translations$seekFirst$shield$fr
 	@override String pause({required Object n}) => '5 मिनट का विराम (${n}/3)';
 	@override String get notificationTitle => 'पहले परमेश्वर को खोजो';
 	@override String get notificationBody => 'अपनी रिपोर्ट भरने के लिए यहाँ टैप करें।';
+	@override String get serviceBody => 'तुम्हारे ऐप हर दिन तुम्हारी रिपोर्ट तक बंद रहते हैं।';
 }
 
 // Path: souls.csv
@@ -4146,6 +4220,10 @@ extension on TranslationsHi {
 			'bible.pickWord' => 'एक शब्द चुनें',
 			'bible.pickWordHelp' => 'शब्द-अनुक्रमणिका हर वह पद दिखाती है जिसमें वह आता है।',
 			'bible.more' => 'और विकल्प',
+			'bible.crossReferences' => 'संबंधित संदर्भ',
+			'bible.crossReferencesOf' => ({required Object passage}) => 'संबंधित संदर्भ · ${passage}',
+			'bible.noCrossReferences' => 'इस अंश के लिए कोई संबंधित संदर्भ नहीं।',
+			'bible.crossReferencesSource' => 'स्रोत: OpenBible.info (CC-BY)',
 			'profilePhoto.title' => 'प्रोफ़ाइल फ़ोटो',
 			'profilePhoto.add' => 'प्रोफ़ाइल फ़ोटो जोड़ें',
 			'profilePhoto.change' => 'प्रोफ़ाइल फ़ोटो बदलें',
@@ -4237,6 +4315,11 @@ extension on TranslationsHi {
 			'seekFirst.shield.pause' => ({required Object n}) => '5 मिनट का विराम (${n}/3)',
 			'seekFirst.shield.notificationTitle' => 'पहले परमेश्वर को खोजो',
 			'seekFirst.shield.notificationBody' => 'अपनी रिपोर्ट भरने के लिए यहाँ टैप करें।',
+			'seekFirst.shield.serviceBody' => 'तुम्हारे ऐप हर दिन तुम्हारी रिपोर्ट तक बंद रहते हैं।',
+			'seekFirst.permissionsAndroid' => 'तुम्हारे ऐप बंद करने के लिए CMFI Connect को दो अनुमतियाँ चाहिए, जो खुलने वाली सेटिंग्स में चालू करनी हैं: «उपयोग डेटा तक पहुँच» (कौन-सा ऐप खुला है) और «दूसरे ऐप्स के ऊपर दिखाएँ» (पहले परमेश्वर को खोजो स्क्रीन दिखाने के लिए)। कुछ भी तुम्हारे फ़ोन से बाहर नहीं जाता।',
+			'seekFirst.permissionsContinue' => 'आगे बढ़ो',
+			'seekFirst.deniedAndroid' => 'इन दो अनुमतियों के बिना CMFI Connect ऐप बंद नहीं कर सकता। तुम इन्हें सेटिंग्स › ऐप्स › विशेष पहुँच में चालू कर सकते हो।',
+			'seekFirst.privacyAndroid' => 'तुम्हारे चुने ऐप तुम्हारे फ़ोन में ही रहते हैं: CMFI Connect उन्हें कभी नहीं भेजता।',
 			'documents.title' => 'हमारे दस्तावेज़',
 			'documents.subtitle' => 'शिक्षाएँ, नियम, फ़ॉर्म…',
 			'documents.moreSubtitle' => 'समुदाय का पुस्तकालय',
@@ -4417,6 +4500,8 @@ extension on TranslationsHi {
 			'souls.noContact' => 'कोई याद तय नहीं',
 			'souls.metAt' => ({required Object date}) => '${date} को मिले',
 			'souls.notes' => 'नोट',
+			_ => null,
+		} ?? switch (path) {
 			'souls.addNote' => 'नोट जोड़ो',
 			'souls.noNotes' => 'अभी कोई नोट नहीं।',
 			'souls.deleteNote' => 'नोट मिटाओ',
@@ -4426,8 +4511,6 @@ extension on TranslationsHi {
 			'souls.csv.place' => 'जगह',
 			'souls.csv.metOn' => 'मिलने की तारीख़',
 			'souls.csv.stage' => 'चरण',
-			_ => null,
-		} ?? switch (path) {
 			'souls.csv.next' => 'अगला संपर्क',
 			'souls.csv.notes' => 'नोट',
 			'souls.lock' => ({required Object method}) => '${method} से लॉक करो',
@@ -4439,6 +4522,49 @@ extension on TranslationsHi {
 			'souls.reminderBody' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n, one: 'आज ${n} व्यक्ति से संपर्क करना है।', other: 'आज ${n} लोगों से संपर्क करना है।', ), 
 			'souls.reminderChannel' => 'आत्माओं की देखभाल',
 			'souls.moreSubtitle' => 'जिन्हें तुम सुसमाचार सुनाते हो',
+			'souls.prayToday' => 'आज प्रार्थना करो',
+			'souls.prayerReminder' => 'हर सुबह याद दिलाओ',
+			'souls.prayerReminderAt' => 'प्रार्थना की याद का समय',
+			'souls.prayerTitle' => 'एक आत्मा के लिए प्रार्थना करो',
+			'souls.prayerBody' => 'आज के व्यक्ति के लिए प्रार्थना करने को कुछ समय निकालो।',
+			'souls.prayerChannel' => 'आत्माओं के लिए प्रार्थना',
+			'fasts.title' => 'मेरे उपवास',
+			'fasts.intro' => 'परमेश्वर के लिए अलग हो जाओ: अपना उपवास और उसका कारण चुनो। हर पूरा दिन तुम्हारी रिपोर्ट में गिना जाता है।',
+			'fasts.moreSubtitle' => 'पूर्ण या आंशिक उपवास, हर दिन गिना जाता',
+			'fasts.kind' => 'तुम्हारा उपवास',
+			'fasts.kinds.full' => 'पूर्ण उपवास',
+			'fasts.kinds.partial' => 'आंशिक उपवास',
+			'fasts.kindTexts.full' => 'दिन और रात, हर दिन 24 घंटे, अभी से।',
+			'fasts.kindTexts.partial' => 'हर दिन चुने हुए समय तक, फिर उपवास तोड़ो।',
+			'fasts.length' => 'अवधि',
+			'fasts.days' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n, one: '${n} दिन', other: '${n} दिन', ), 
+			'fasts.endEachDay' => 'हर दिन उपवास का अंत',
+			'fasts.topics' => 'मैं इसके लिए उपवास करता हूँ',
+			'fasts.topicHint' => 'एक प्रार्थना विषय…',
+			'fasts.addTopic' => 'विषय जोड़ो',
+			'fasts.removeTopic' => 'विषय हटाओ',
+			'fasts.history' => 'मेरे पिछले उपवास',
+			'fasts.kept' => ({required Object kept, required Object days}) => '${kept}/${days} दिन',
+			'fasts.start' => 'उपवास शुरू करो',
+			'fasts.until' => ({required Object date}) => '${date} तक',
+			'fasts.hoursLeft' => ({required Object h, required Object m}) => '${h} घं ${m}',
+			'fasts.minutesLeft' => ({required Object m}) => '${m} मि',
+			'fasts.dayOf' => ({required Object total, required Object day}) => '${total} में से दिन ${day}',
+			'fasts.dayEnds' => ({required Object time}) => 'यह दिन ${time} पर पूरा होगा',
+			'fasts.stop' => 'उपवास तोड़ो',
+			'fasts.stopTitle' => 'उपवास तोड़ना है?',
+			'fasts.stopText' => 'पूरे हुए दिन गिने रहेंगे। चल रहा दिन नहीं गिना जाएगा।',
+			'fasts.counted' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n, one: '${n} उपवास दिन तुम्हारी रिपोर्ट में गिना गया', other: '${n} उपवास दिन तुम्हारी रिपोर्ट में गिने गए', ), 
+			'fasts.reportNote' => ({required Object item}) => 'हर पूरा दिन तुम्हारी रिपोर्ट में "${item}" में 1 जोड़ता है।',
+			'fasts.items.full' => 'पूर्ण उपवास',
+			'fasts.items.partial' => 'आंशिक उपवास',
+			'fasts.dayTitle' => ({required Object day}) => 'उपवास का दिन ${day} पूरा',
+			'fasts.dayBody' => 'यह तुम्हारी रिपोर्ट में गिना गया। हिम्मत रखो, आगे बढ़ो!',
+			'fasts.endTitle' => 'तुम्हारा उपवास पूरा हुआ',
+			'fasts.endBody' => 'प्रभु तुम्हारी प्रार्थनाओं का उत्तर दे।',
+			'fasts.channel' => 'मेरे उपवास',
+			'fasts.homeTitle' => ({required Object day, required Object total}) => 'उपवास · दिन ${day}/${total}',
+			'fasts.homeText' => ({required Object time}) => 'यह दिन ${time} पर पूरा होगा',
 			_ => null,
 		};
 	}

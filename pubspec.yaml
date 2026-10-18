@@ -144,6 +144,9 @@ flutter:
     # the verse of the day: one per day in each language, picked from public
     # domain Bibles (Hindi: IRV, CC BY-SA 4.0), see features/verses
     - assets/verses/
+    # the cross references of the Bible: OpenBible.info (CC-BY), the links of
+    # 5 votes or more, 12 per verse at most, see features/bible (cross_references)
+    - assets/bible/
 
   fonts:
     - family: Onest

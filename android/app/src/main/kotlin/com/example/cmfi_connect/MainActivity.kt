@@ -9,8 +9,13 @@ import io.flutter.plugin.common.MethodChannel
 // needs one; audio_service's: the Enseignements keep playing in the background
 // on the same Flutter engine
 class MainActivity : AudioServiceFragmentActivity() {
+    // Cherche d'abord Dieu: the apps closed until the day's report
+    // (SeekFirstChannel.kt, as AppShield.swift on iPhone)
+    private var seekFirst: SeekFirstChannel? = null
+
     override fun configureFlutterEngine(flutterEngine: FlutterEngine) {
         super.configureFlutterEngine(flutterEngine)
+        seekFirst = SeekFirstChannel(this, flutterEngine.dartExecutor.binaryMessenger)
         // the version of the app: the store rating is asked once per version
         // (core/services/store_review.dart)
         MethodChannel(flutterEngine.dartExecutor.binaryMessenger, "cmficonnect/app")
@@ -28,5 +33,11 @@ class MainActivity : AudioServiceFragmentActivity() {
                     else -> result.notImplemented()
                 }
             }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        // back from the settings of a permission
+        seekFirst?.onResume()
     }
 }

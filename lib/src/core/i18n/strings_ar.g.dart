@@ -81,6 +81,7 @@ class TranslationsAr extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _Translations$teachings$ar teachings = _Translations$teachings$ar._(_root);
 	@override late final _Translations$memorize$ar memorize = _Translations$memorize$ar._(_root);
 	@override late final _Translations$souls$ar souls = _Translations$souls$ar._(_root);
+	@override late final _Translations$fasts$ar fasts = _Translations$fasts$ar._(_root);
 }
 
 // Path: app
@@ -1221,6 +1222,10 @@ class _Translations$bible$ar extends Translations$bible$fr {
 	@override String get pickWord => 'اختر كلمة';
 	@override String get pickWordHelp => 'يعرض فهرس الكلمات كل آية ترد فيها.';
 	@override String get more => 'خيارات أخرى';
+	@override String get crossReferences => 'شواهد مرتبطة';
+	@override String crossReferencesOf({required Object passage}) => 'شواهد مرتبطة · ${passage}';
+	@override String get noCrossReferences => 'لا توجد شواهد مرتبطة لهذا المقطع.';
+	@override String get crossReferencesSource => 'المصدر: OpenBible.info (CC-BY)';
 }
 
 // Path: profilePhoto
@@ -1426,6 +1431,10 @@ class _Translations$seekFirst$ar extends Translations$seekFirst$fr {
 	@override String get moreOff => 'أغلق التطبيقات حتى تنجز تقريرك';
 	@override String get privacy => 'لا يرى CMFI Connect أبدًا التطبيقات التي تختارها: هاتفك يحتفظ بها لنفسه.';
 	@override late final _Translations$seekFirst$shield$ar shield = _Translations$seekFirst$shield$ar._(_root);
+	@override String get permissionsAndroid => 'لإغلاق تطبيقاتك، يحتاج CMFI Connect إلى إذنين تفعّلهما في الإعدادات التي ستُفتح: «الوصول إلى بيانات الاستخدام» (لمعرفة التطبيق المفتوح) و«الظهور فوق التطبيقات الأخرى» (لإظهار شاشة اطلب الله أولًا). لا يخرج شيء من هاتفك.';
+	@override String get permissionsContinue => 'متابعة';
+	@override String get deniedAndroid => 'بدون هذين الإذنين لا يستطيع CMFI Connect إغلاق التطبيقات. يمكنك تفعيلهما من الإعدادات › التطبيقات › الوصول الخاص.';
+	@override String get privacyAndroid => 'تبقى التطبيقات التي تختارها على هاتفك: لا يرسلها CMFI Connect أبدًا.';
 }
 
 // Path: documents
@@ -1725,6 +1734,70 @@ class _Translations$souls$ar extends Translations$souls$fr {
 	);
 	@override String get reminderChannel => 'متابعة النفوس';
 	@override String get moreSubtitle => 'الأشخاص الذين تبشّرهم';
+	@override String get prayToday => 'اليوم، صلِّ لأجل';
+	@override String get prayerReminder => 'ذكّرني كل صباح';
+	@override String get prayerReminderAt => 'وقت تذكير الصلاة';
+	@override String get prayerTitle => 'صلِّ لأجل نفس';
+	@override String get prayerBody => 'خذ لحظة لتصلي لأجل شخص اليوم.';
+	@override String get prayerChannel => 'الصلاة لأجل النفوس';
+}
+
+// Path: fasts
+class _Translations$fasts$ar extends Translations$fasts$fr {
+	_Translations$fasts$ar._(TranslationsAr root) : this._root = root, super.internal(root);
+
+	final TranslationsAr _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'أصوامي';
+	@override String get intro => 'تفرّغ لله: اختر صومك ولأجل ماذا تصوم. كل يوم تتمّه يُحتسب في تقريرك.';
+	@override String get moreSubtitle => 'صوم كامل أو جزئي، يُحتسب كل يوم';
+	@override String get kind => 'صومك';
+	@override Map<String, String> get kinds => {
+		'full': 'صوم كامل',
+		'partial': 'صوم جزئي',
+	};
+	@override Map<String, String> get kindTexts => {
+		'full': 'ليلًا ونهارًا، 24 ساعة في اليوم، بدءًا من الآن.',
+		'partial': 'كل يوم حتى الساعة التي تختارها، ثم تفطر.',
+	};
+	@override String get length => 'المدة';
+	@override String days({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n,
+		one: 'يوم',
+		other: '${n} أيام',
+	);
+	@override String get endEachDay => 'نهاية الصوم كل يوم';
+	@override String get topics => 'أصوم من أجل';
+	@override String get topicHint => 'طلبة صلاة…';
+	@override String get addTopic => 'أضف الطلبة';
+	@override String get removeTopic => 'أزل الطلبة';
+	@override String get history => 'أصوامي الأخيرة';
+	@override String kept({required Object kept, required Object days}) => '${kept}/${days} أيام';
+	@override String get start => 'ابدأ الصوم';
+	@override String until({required Object date}) => 'حتى ${date}';
+	@override String hoursLeft({required Object h, required Object m}) => '${h} س ${m}';
+	@override String minutesLeft({required Object m}) => '${m} د';
+	@override String dayOf({required Object day, required Object total}) => 'اليوم ${day} من ${total}';
+	@override String dayEnds({required Object time}) => 'ينتهي هذا اليوم عند ${time}';
+	@override String get stop => 'أنهِ الصوم';
+	@override String get stopTitle => 'إنهاء صومك؟';
+	@override String get stopText => 'تبقى الأيام المكتملة محتسبة. أما اليوم الجاري فلن يُحتسب.';
+	@override String counted({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n,
+		one: 'احتُسب يوم صوم في تقريرك',
+		other: 'احتُسبت ${n} أيام صوم في تقريرك',
+	);
+	@override String reportNote({required Object item}) => 'كل يوم تتمّه يضيف 1 إلى «${item}» في تقريرك.';
+	@override Map<String, String> get items => {
+		'full': 'صوم كامل',
+		'partial': 'صوم جزئي',
+	};
+	@override String dayTitle({required Object day}) => 'اكتمل اليوم ${day} من الصوم';
+	@override String get dayBody => 'يُحتسب في تقريرك. تشجّع وواصل!';
+	@override String get endTitle => 'انتهى صومك';
+	@override String get endBody => 'ليستجب الرب صلواتك.';
+	@override String get channel => 'أصوامي';
+	@override String homeTitle({required Object day, required Object total}) => 'صوم · اليوم ${day} من ${total}';
+	@override String homeText({required Object time}) => 'ينتهي هذا اليوم عند ${time}';
 }
 
 // Path: onboarding.reports
@@ -2830,6 +2903,7 @@ class _Translations$seekFirst$shield$ar extends Translations$seekFirst$shield$fr
 	@override String pause({required Object n}) => 'استراحة 5 دقائق (${n}/3)';
 	@override String get notificationTitle => 'اطلب الله أولًا';
 	@override String get notificationBody => 'المس هنا لتملأ تقريرك.';
+	@override String get serviceBody => 'تُغلق تطبيقاتك كل يوم حتى تقريرك.';
 }
 
 // Path: souls.csv
@@ -4397,6 +4471,10 @@ extension on TranslationsAr {
 			'bible.pickWord' => 'اختر كلمة',
 			'bible.pickWordHelp' => 'يعرض فهرس الكلمات كل آية ترد فيها.',
 			'bible.more' => 'خيارات أخرى',
+			'bible.crossReferences' => 'شواهد مرتبطة',
+			'bible.crossReferencesOf' => ({required Object passage}) => 'شواهد مرتبطة · ${passage}',
+			'bible.noCrossReferences' => 'لا توجد شواهد مرتبطة لهذا المقطع.',
+			'bible.crossReferencesSource' => 'المصدر: OpenBible.info (CC-BY)',
 			'profilePhoto.title' => 'صورة الملف الشخصي',
 			'profilePhoto.add' => 'إضافة صورة للملف الشخصي',
 			'profilePhoto.change' => 'تغيير صورة الملف الشخصي',
@@ -4488,6 +4566,11 @@ extension on TranslationsAr {
 			'seekFirst.shield.pause' => ({required Object n}) => 'استراحة 5 دقائق (${n}/3)',
 			'seekFirst.shield.notificationTitle' => 'اطلب الله أولًا',
 			'seekFirst.shield.notificationBody' => 'المس هنا لتملأ تقريرك.',
+			'seekFirst.shield.serviceBody' => 'تُغلق تطبيقاتك كل يوم حتى تقريرك.',
+			'seekFirst.permissionsAndroid' => 'لإغلاق تطبيقاتك، يحتاج CMFI Connect إلى إذنين تفعّلهما في الإعدادات التي ستُفتح: «الوصول إلى بيانات الاستخدام» (لمعرفة التطبيق المفتوح) و«الظهور فوق التطبيقات الأخرى» (لإظهار شاشة اطلب الله أولًا). لا يخرج شيء من هاتفك.',
+			'seekFirst.permissionsContinue' => 'متابعة',
+			'seekFirst.deniedAndroid' => 'بدون هذين الإذنين لا يستطيع CMFI Connect إغلاق التطبيقات. يمكنك تفعيلهما من الإعدادات › التطبيقات › الوصول الخاص.',
+			'seekFirst.privacyAndroid' => 'تبقى التطبيقات التي تختارها على هاتفك: لا يرسلها CMFI Connect أبدًا.',
 			'documents.title' => 'مستنداتنا',
 			'documents.subtitle' => 'تعاليم، أنظمة، استمارات…',
 			'documents.moreSubtitle' => 'مكتبة المجتمع',
@@ -4668,6 +4751,8 @@ extension on TranslationsAr {
 			'souls.noContact' => 'لا يوجد تذكير',
 			'souls.metAt' => ({required Object date}) => 'تمّ اللقاء في ${date}',
 			'souls.notes' => 'ملاحظات',
+			_ => null,
+		} ?? switch (path) {
 			'souls.addNote' => 'أضف الملاحظة',
 			'souls.noNotes' => 'لا توجد ملاحظات بعد.',
 			'souls.deleteNote' => 'احذف الملاحظة',
@@ -4677,8 +4762,6 @@ extension on TranslationsAr {
 			'souls.csv.place' => 'المكان',
 			'souls.csv.metOn' => 'تاريخ اللقاء',
 			'souls.csv.stage' => 'المرحلة',
-			_ => null,
-		} ?? switch (path) {
 			'souls.csv.next' => 'التواصل القادم',
 			'souls.csv.notes' => 'ملاحظات',
 			'souls.lock' => ({required Object method}) => 'اقفل بـ${method}',
@@ -4690,6 +4773,49 @@ extension on TranslationsAr {
 			'souls.reminderBody' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n, one: 'شخص واحد للتواصل معه اليوم.', other: '${n} أشخاص للتواصل معهم اليوم.', ), 
 			'souls.reminderChannel' => 'متابعة النفوس',
 			'souls.moreSubtitle' => 'الأشخاص الذين تبشّرهم',
+			'souls.prayToday' => 'اليوم، صلِّ لأجل',
+			'souls.prayerReminder' => 'ذكّرني كل صباح',
+			'souls.prayerReminderAt' => 'وقت تذكير الصلاة',
+			'souls.prayerTitle' => 'صلِّ لأجل نفس',
+			'souls.prayerBody' => 'خذ لحظة لتصلي لأجل شخص اليوم.',
+			'souls.prayerChannel' => 'الصلاة لأجل النفوس',
+			'fasts.title' => 'أصوامي',
+			'fasts.intro' => 'تفرّغ لله: اختر صومك ولأجل ماذا تصوم. كل يوم تتمّه يُحتسب في تقريرك.',
+			'fasts.moreSubtitle' => 'صوم كامل أو جزئي، يُحتسب كل يوم',
+			'fasts.kind' => 'صومك',
+			'fasts.kinds.full' => 'صوم كامل',
+			'fasts.kinds.partial' => 'صوم جزئي',
+			'fasts.kindTexts.full' => 'ليلًا ونهارًا، 24 ساعة في اليوم، بدءًا من الآن.',
+			'fasts.kindTexts.partial' => 'كل يوم حتى الساعة التي تختارها، ثم تفطر.',
+			'fasts.length' => 'المدة',
+			'fasts.days' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n, one: 'يوم', other: '${n} أيام', ), 
+			'fasts.endEachDay' => 'نهاية الصوم كل يوم',
+			'fasts.topics' => 'أصوم من أجل',
+			'fasts.topicHint' => 'طلبة صلاة…',
+			'fasts.addTopic' => 'أضف الطلبة',
+			'fasts.removeTopic' => 'أزل الطلبة',
+			'fasts.history' => 'أصوامي الأخيرة',
+			'fasts.kept' => ({required Object kept, required Object days}) => '${kept}/${days} أيام',
+			'fasts.start' => 'ابدأ الصوم',
+			'fasts.until' => ({required Object date}) => 'حتى ${date}',
+			'fasts.hoursLeft' => ({required Object h, required Object m}) => '${h} س ${m}',
+			'fasts.minutesLeft' => ({required Object m}) => '${m} د',
+			'fasts.dayOf' => ({required Object day, required Object total}) => 'اليوم ${day} من ${total}',
+			'fasts.dayEnds' => ({required Object time}) => 'ينتهي هذا اليوم عند ${time}',
+			'fasts.stop' => 'أنهِ الصوم',
+			'fasts.stopTitle' => 'إنهاء صومك؟',
+			'fasts.stopText' => 'تبقى الأيام المكتملة محتسبة. أما اليوم الجاري فلن يُحتسب.',
+			'fasts.counted' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n, one: 'احتُسب يوم صوم في تقريرك', other: 'احتُسبت ${n} أيام صوم في تقريرك', ), 
+			'fasts.reportNote' => ({required Object item}) => 'كل يوم تتمّه يضيف 1 إلى «${item}» في تقريرك.',
+			'fasts.items.full' => 'صوم كامل',
+			'fasts.items.partial' => 'صوم جزئي',
+			'fasts.dayTitle' => ({required Object day}) => 'اكتمل اليوم ${day} من الصوم',
+			'fasts.dayBody' => 'يُحتسب في تقريرك. تشجّع وواصل!',
+			'fasts.endTitle' => 'انتهى صومك',
+			'fasts.endBody' => 'ليستجب الرب صلواتك.',
+			'fasts.channel' => 'أصوامي',
+			'fasts.homeTitle' => ({required Object day, required Object total}) => 'صوم · اليوم ${day} من ${total}',
+			'fasts.homeText' => ({required Object time}) => 'ينتهي هذا اليوم عند ${time}',
 			_ => null,
 		};
 	}

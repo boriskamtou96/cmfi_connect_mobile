@@ -81,6 +81,7 @@ class TranslationsEn extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _Translations$teachings$en teachings = _Translations$teachings$en._(_root);
 	@override late final _Translations$memorize$en memorize = _Translations$memorize$en._(_root);
 	@override late final _Translations$souls$en souls = _Translations$souls$en._(_root);
+	@override late final _Translations$fasts$en fasts = _Translations$fasts$en._(_root);
 }
 
 // Path: app
@@ -1108,6 +1109,10 @@ class _Translations$bible$en extends Translations$bible$fr {
 	@override String get pickWord => 'Choose a word';
 	@override String get pickWordHelp => 'The concordance shows every verse where it appears.';
 	@override String get more => 'More options';
+	@override String get crossReferences => 'Cross references';
+	@override String crossReferencesOf({required Object passage}) => 'Cross references · ${passage}';
+	@override String get noCrossReferences => 'No cross reference for this passage.';
+	@override String get crossReferencesSource => 'Source: OpenBible.info (CC-BY)';
 }
 
 // Path: profilePhoto
@@ -1266,6 +1271,10 @@ class _Translations$seekFirst$en extends Translations$seekFirst$fr {
 	@override String get moreOff => 'Close apps until your report is done';
 	@override String get privacy => 'CMFI Connect never sees the apps you choose: your iPhone keeps them to itself.';
 	@override late final _Translations$seekFirst$shield$en shield = _Translations$seekFirst$shield$en._(_root);
+	@override String get permissionsAndroid => 'To close your apps, CMFI Connect needs two permissions, to turn on in the settings that will open: "Usage access" (to know which app is open) and "Display over other apps" (to show the Seek God first screen). Nothing leaves your phone.';
+	@override String get permissionsContinue => 'Continue';
+	@override String get deniedAndroid => 'Without these two permissions, CMFI Connect can\'t close apps. You can turn them on in Settings › Apps › Special access.';
+	@override String get privacyAndroid => 'The apps you choose stay on your phone: CMFI Connect never sends them.';
 }
 
 // Path: documents
@@ -1553,6 +1562,70 @@ class _Translations$souls$en extends Translations$souls$fr {
 	);
 	@override String get reminderChannel => 'Soul follow-up';
 	@override String get moreSubtitle => 'The people you share the Gospel with';
+	@override String get prayToday => 'Today, pray for';
+	@override String get prayerReminder => 'Remind me each morning';
+	@override String get prayerReminderAt => 'Prayer reminder time';
+	@override String get prayerTitle => 'Pray for a soul';
+	@override String get prayerBody => 'Take a moment to pray for today\'s person.';
+	@override String get prayerChannel => 'Prayer for souls';
+}
+
+// Path: fasts
+class _Translations$fasts$en extends Translations$fasts$fr {
+	_Translations$fasts$en._(TranslationsEn root) : this._root = root, super.internal(root);
+
+	final TranslationsEn _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'My fasts';
+	@override String get intro => 'Set yourself apart for God: choose your fast and what you fast for. Each day kept counts in your report.';
+	@override String get moreSubtitle => 'Full or partial fast, counted each day';
+	@override String get kind => 'Your fast';
+	@override Map<String, String> get kinds => {
+		'full': 'Full fast',
+		'partial': 'Partial fast',
+	};
+	@override Map<String, String> get kindTexts => {
+		'full': 'Day and night, 24 hours a day, from now.',
+		'partial': 'Each day until the time you choose, then you break the fast.',
+	};
+	@override String get length => 'Length';
+	@override String days({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n,
+		one: '${n} day',
+		other: '${n} days',
+	);
+	@override String get endEachDay => 'End of the fast each day';
+	@override String get topics => 'I fast for';
+	@override String get topicHint => 'A prayer request…';
+	@override String get addTopic => 'Add the request';
+	@override String get removeTopic => 'Remove the request';
+	@override String get history => 'My last fasts';
+	@override String kept({required Object kept, required Object days}) => '${kept}/${days} days';
+	@override String get start => 'Start the fast';
+	@override String until({required Object date}) => 'Until ${date}';
+	@override String hoursLeft({required Object h, required Object m}) => '${h} h ${m}';
+	@override String minutesLeft({required Object m}) => '${m} min';
+	@override String dayOf({required Object day, required Object total}) => 'Day ${day} of ${total}';
+	@override String dayEnds({required Object time}) => 'This day ends at ${time}';
+	@override String get stop => 'Break the fast';
+	@override String get stopTitle => 'Break your fast?';
+	@override String get stopText => 'The days already kept stay counted. The day under way will not be.';
+	@override String counted({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n,
+		one: '${n} day of fasting counted in your report',
+		other: '${n} days of fasting counted in your report',
+	);
+	@override String reportNote({required Object item}) => 'Each day kept adds 1 to "${item}" in your report.';
+	@override Map<String, String> get items => {
+		'full': 'Full fast',
+		'partial': 'Partial fast',
+	};
+	@override String dayTitle({required Object day}) => 'Day ${day} of fasting done';
+	@override String get dayBody => 'It counts in your report. Take heart, keep going!';
+	@override String get endTitle => 'Your fast is over';
+	@override String get endBody => 'May the Lord answer your prayers.';
+	@override String get channel => 'My fasts';
+	@override String homeTitle({required Object day, required Object total}) => 'Fast · day ${day} of ${total}';
+	@override String homeText({required Object time}) => 'This day ends at ${time}';
 }
 
 // Path: onboarding.reports
@@ -2600,6 +2673,7 @@ class _Translations$seekFirst$shield$en extends Translations$seekFirst$shield$fr
 	@override String pause({required Object n}) => '5-min break (${n}/3)';
 	@override String get notificationTitle => 'Seek God first';
 	@override String get notificationBody => 'Tap here to fill in your report.';
+	@override String get serviceBody => 'Your apps close each day until your report.';
 }
 
 // Path: souls.csv
@@ -4148,6 +4222,10 @@ extension on TranslationsEn {
 			'bible.pickWord' => 'Choose a word',
 			'bible.pickWordHelp' => 'The concordance shows every verse where it appears.',
 			'bible.more' => 'More options',
+			'bible.crossReferences' => 'Cross references',
+			'bible.crossReferencesOf' => ({required Object passage}) => 'Cross references · ${passage}',
+			'bible.noCrossReferences' => 'No cross reference for this passage.',
+			'bible.crossReferencesSource' => 'Source: OpenBible.info (CC-BY)',
 			'profilePhoto.title' => 'Profile photo',
 			'profilePhoto.add' => 'Add a profile photo',
 			'profilePhoto.change' => 'Change the profile photo',
@@ -4239,6 +4317,11 @@ extension on TranslationsEn {
 			'seekFirst.shield.pause' => ({required Object n}) => '5-min break (${n}/3)',
 			'seekFirst.shield.notificationTitle' => 'Seek God first',
 			'seekFirst.shield.notificationBody' => 'Tap here to fill in your report.',
+			'seekFirst.shield.serviceBody' => 'Your apps close each day until your report.',
+			'seekFirst.permissionsAndroid' => 'To close your apps, CMFI Connect needs two permissions, to turn on in the settings that will open: "Usage access" (to know which app is open) and "Display over other apps" (to show the Seek God first screen). Nothing leaves your phone.',
+			'seekFirst.permissionsContinue' => 'Continue',
+			'seekFirst.deniedAndroid' => 'Without these two permissions, CMFI Connect can\'t close apps. You can turn them on in Settings › Apps › Special access.',
+			'seekFirst.privacyAndroid' => 'The apps you choose stay on your phone: CMFI Connect never sends them.',
 			'documents.title' => 'Our documents',
 			'documents.subtitle' => 'Teachings, rules, forms…',
 			'documents.moreSubtitle' => 'The library of the community',
@@ -4419,6 +4502,8 @@ extension on TranslationsEn {
 			'souls.noContact' => 'No reminder planned',
 			'souls.metAt' => ({required Object date}) => 'Met on ${date}',
 			'souls.notes' => 'Notes',
+			_ => null,
+		} ?? switch (path) {
 			'souls.addNote' => 'Add the note',
 			'souls.noNotes' => 'No notes yet.',
 			'souls.deleteNote' => 'Delete the note',
@@ -4428,8 +4513,6 @@ extension on TranslationsEn {
 			'souls.csv.place' => 'Place',
 			'souls.csv.metOn' => 'Met on',
 			'souls.csv.stage' => 'Stage',
-			_ => null,
-		} ?? switch (path) {
 			'souls.csv.next' => 'Next contact',
 			'souls.csv.notes' => 'Notes',
 			'souls.lock' => ({required Object method}) => 'Lock with ${method}',
@@ -4441,6 +4524,49 @@ extension on TranslationsEn {
 			'souls.reminderBody' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n, one: '${n} person to contact today.', other: '${n} people to contact today.', ), 
 			'souls.reminderChannel' => 'Soul follow-up',
 			'souls.moreSubtitle' => 'The people you share the Gospel with',
+			'souls.prayToday' => 'Today, pray for',
+			'souls.prayerReminder' => 'Remind me each morning',
+			'souls.prayerReminderAt' => 'Prayer reminder time',
+			'souls.prayerTitle' => 'Pray for a soul',
+			'souls.prayerBody' => 'Take a moment to pray for today\'s person.',
+			'souls.prayerChannel' => 'Prayer for souls',
+			'fasts.title' => 'My fasts',
+			'fasts.intro' => 'Set yourself apart for God: choose your fast and what you fast for. Each day kept counts in your report.',
+			'fasts.moreSubtitle' => 'Full or partial fast, counted each day',
+			'fasts.kind' => 'Your fast',
+			'fasts.kinds.full' => 'Full fast',
+			'fasts.kinds.partial' => 'Partial fast',
+			'fasts.kindTexts.full' => 'Day and night, 24 hours a day, from now.',
+			'fasts.kindTexts.partial' => 'Each day until the time you choose, then you break the fast.',
+			'fasts.length' => 'Length',
+			'fasts.days' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n, one: '${n} day', other: '${n} days', ), 
+			'fasts.endEachDay' => 'End of the fast each day',
+			'fasts.topics' => 'I fast for',
+			'fasts.topicHint' => 'A prayer request…',
+			'fasts.addTopic' => 'Add the request',
+			'fasts.removeTopic' => 'Remove the request',
+			'fasts.history' => 'My last fasts',
+			'fasts.kept' => ({required Object kept, required Object days}) => '${kept}/${days} days',
+			'fasts.start' => 'Start the fast',
+			'fasts.until' => ({required Object date}) => 'Until ${date}',
+			'fasts.hoursLeft' => ({required Object h, required Object m}) => '${h} h ${m}',
+			'fasts.minutesLeft' => ({required Object m}) => '${m} min',
+			'fasts.dayOf' => ({required Object day, required Object total}) => 'Day ${day} of ${total}',
+			'fasts.dayEnds' => ({required Object time}) => 'This day ends at ${time}',
+			'fasts.stop' => 'Break the fast',
+			'fasts.stopTitle' => 'Break your fast?',
+			'fasts.stopText' => 'The days already kept stay counted. The day under way will not be.',
+			'fasts.counted' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n, one: '${n} day of fasting counted in your report', other: '${n} days of fasting counted in your report', ), 
+			'fasts.reportNote' => ({required Object item}) => 'Each day kept adds 1 to "${item}" in your report.',
+			'fasts.items.full' => 'Full fast',
+			'fasts.items.partial' => 'Partial fast',
+			'fasts.dayTitle' => ({required Object day}) => 'Day ${day} of fasting done',
+			'fasts.dayBody' => 'It counts in your report. Take heart, keep going!',
+			'fasts.endTitle' => 'Your fast is over',
+			'fasts.endBody' => 'May the Lord answer your prayers.',
+			'fasts.channel' => 'My fasts',
+			'fasts.homeTitle' => ({required Object day, required Object total}) => 'Fast · day ${day} of ${total}',
+			'fasts.homeText' => ({required Object time}) => 'This day ends at ${time}',
 			_ => null,
 		};
 	}

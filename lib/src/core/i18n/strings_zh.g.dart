@@ -81,6 +81,7 @@ class TranslationsZh extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _Translations$teachings$zh teachings = _Translations$teachings$zh._(_root);
 	@override late final _Translations$memorize$zh memorize = _Translations$memorize$zh._(_root);
 	@override late final _Translations$souls$zh souls = _Translations$souls$zh._(_root);
+	@override late final _Translations$fasts$zh fasts = _Translations$fasts$zh._(_root);
 }
 
 // Path: app
@@ -1079,6 +1080,10 @@ class _Translations$bible$zh extends Translations$bible$fr {
 	@override String get pickWord => '选择一个词';
 	@override String get pickWordHelp => '经文汇编会列出它出现的每一节经文。';
 	@override String get more => '更多选项';
+	@override String get crossReferences => '串珠经文';
+	@override String crossReferencesOf({required Object passage}) => '串珠经文 · ${passage}';
+	@override String get noCrossReferences => '此段经文没有串珠。';
+	@override String get crossReferencesSource => '来源：OpenBible.info（CC-BY）';
 }
 
 // Path: profilePhoto
@@ -1225,6 +1230,10 @@ class _Translations$seekFirst$zh extends Translations$seekFirst$fr {
 	@override String get moreOff => '在完成汇报前关闭应用';
 	@override String get privacy => 'CMFI Connect 永远看不到你选择了哪些应用：它们只保存在你的 iPhone 上。';
 	@override late final _Translations$seekFirst$shield$zh shield = _Translations$seekFirst$shield$zh._(_root);
+	@override String get permissionsAndroid => '为了关闭你的应用，CMFI Connect 需要在即将打开的设置中开启两项权限：“使用情况访问权限”（知道哪个应用在前台）和“显示在其他应用上层”（显示“先求神”页面）。任何数据都不会离开你的手机。';
+	@override String get permissionsContinue => '继续';
+	@override String get deniedAndroid => '没有这两项权限，CMFI Connect 无法关闭应用。你可以在“设置 › 应用 › 特殊访问权限”中开启。';
+	@override String get privacyAndroid => '你选择的应用只保存在手机上：CMFI Connect 绝不会上传。';
 }
 
 // Path: documents
@@ -1509,6 +1518,70 @@ class _Translations$souls$zh extends Translations$souls$fr {
 	);
 	@override String get reminderChannel => '灵魂跟进';
 	@override String get moreSubtitle => '你传福音的对象';
+	@override String get prayToday => '今天为他代祷';
+	@override String get prayerReminder => '每天早上提醒我';
+	@override String get prayerReminderAt => '代祷提醒时间';
+	@override String get prayerTitle => '为一个灵魂代祷';
+	@override String get prayerBody => '花点时间为今天的这个人祷告。';
+	@override String get prayerChannel => '为灵魂代祷';
+}
+
+// Path: fasts
+class _Translations$fasts$zh extends Translations$fasts$fr {
+	_Translations$fasts$zh._(TranslationsZh root) : this._root = root, super.internal(root);
+
+	final TranslationsZh _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => '我的禁食';
+	@override String get intro => '为神分别出来：选择你的禁食和代祷事项。每坚持一天都会计入你的报告。';
+	@override String get moreSubtitle => '完全或部分禁食，每天计入';
+	@override String get kind => '你的禁食';
+	@override Map<String, String> get kinds => {
+		'full': '完全禁食',
+		'partial': '部分禁食',
+	};
+	@override Map<String, String> get kindTexts => {
+		'full': '昼夜不食，每天 24 小时，从现在开始。',
+		'partial': '每天禁食到所选时间，然后开斋。',
+	};
+	@override String get length => '时长';
+	@override String days({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n,
+		one: '${n} 天',
+		other: '${n} 天',
+	);
+	@override String get endEachDay => '每天结束禁食的时间';
+	@override String get topics => '我为此禁食';
+	@override String get topicHint => '一个代祷事项…';
+	@override String get addTopic => '添加事项';
+	@override String get removeTopic => '移除事项';
+	@override String get history => '最近的禁食';
+	@override String kept({required Object kept, required Object days}) => '${kept}/${days} 天';
+	@override String get start => '开始禁食';
+	@override String until({required Object date}) => '直到 ${date}';
+	@override String hoursLeft({required Object h, required Object m}) => '${h} 小时 ${m}';
+	@override String minutesLeft({required Object m}) => '${m} 分钟';
+	@override String dayOf({required Object day, required Object total}) => '第 ${day} 天，共 ${total} 天';
+	@override String dayEnds({required Object time}) => '今天的禁食在 ${time} 结束';
+	@override String get stop => '结束禁食';
+	@override String get stopTitle => '要结束禁食吗？';
+	@override String get stopText => '已完成的天数仍计入，进行中的这一天不计。';
+	@override String counted({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n,
+		one: '已有 ${n} 天禁食计入报告',
+		other: '已有 ${n} 天禁食计入报告',
+	);
+	@override String reportNote({required Object item}) => '每坚持一天，报告中的“${item}”加 1。';
+	@override Map<String, String> get items => {
+		'full': '完全禁食',
+		'partial': '部分禁食',
+	};
+	@override String dayTitle({required Object day}) => '禁食第 ${day} 天完成';
+	@override String get dayBody => '已计入报告。加油，继续！';
+	@override String get endTitle => '你的禁食结束了';
+	@override String get endBody => '愿主垂听你的祷告。';
+	@override String get channel => '我的禁食';
+	@override String homeTitle({required Object day, required Object total}) => '禁食 · 第 ${day}/${total} 天';
+	@override String homeText({required Object time}) => '今天在 ${time} 结束';
 }
 
 // Path: onboarding.reports
@@ -2541,6 +2614,7 @@ class _Translations$seekFirst$shield$zh extends Translations$seekFirst$shield$fr
 	@override String pause({required Object n}) => '暂停 5 分钟（${n}/3）';
 	@override String get notificationTitle => '先求神';
 	@override String get notificationBody => '轻点此处填写你的汇报。';
+	@override String get serviceBody => '你的应用每天都会关闭，直到你填写报告。';
 }
 
 // Path: souls.csv
@@ -4084,6 +4158,10 @@ extension on TranslationsZh {
 			'bible.pickWord' => '选择一个词',
 			'bible.pickWordHelp' => '经文汇编会列出它出现的每一节经文。',
 			'bible.more' => '更多选项',
+			'bible.crossReferences' => '串珠经文',
+			'bible.crossReferencesOf' => ({required Object passage}) => '串珠经文 · ${passage}',
+			'bible.noCrossReferences' => '此段经文没有串珠。',
+			'bible.crossReferencesSource' => '来源：OpenBible.info（CC-BY）',
 			'profilePhoto.title' => '头像',
 			'profilePhoto.add' => '添加头像',
 			'profilePhoto.change' => '更换头像',
@@ -4175,6 +4253,11 @@ extension on TranslationsZh {
 			'seekFirst.shield.pause' => ({required Object n}) => '暂停 5 分钟（${n}/3）',
 			'seekFirst.shield.notificationTitle' => '先求神',
 			'seekFirst.shield.notificationBody' => '轻点此处填写你的汇报。',
+			'seekFirst.shield.serviceBody' => '你的应用每天都会关闭，直到你填写报告。',
+			'seekFirst.permissionsAndroid' => '为了关闭你的应用，CMFI Connect 需要在即将打开的设置中开启两项权限：“使用情况访问权限”（知道哪个应用在前台）和“显示在其他应用上层”（显示“先求神”页面）。任何数据都不会离开你的手机。',
+			'seekFirst.permissionsContinue' => '继续',
+			'seekFirst.deniedAndroid' => '没有这两项权限，CMFI Connect 无法关闭应用。你可以在“设置 › 应用 › 特殊访问权限”中开启。',
+			'seekFirst.privacyAndroid' => '你选择的应用只保存在手机上：CMFI Connect 绝不会上传。',
 			'documents.title' => '我们的文件',
 			'documents.subtitle' => '教导、规章、表格…',
 			'documents.moreSubtitle' => '团契的资料库',
@@ -4355,6 +4438,8 @@ extension on TranslationsZh {
 			'souls.noContact' => '没有提醒',
 			'souls.metAt' => ({required Object date}) => '${date} 认识',
 			'souls.notes' => '备注',
+			_ => null,
+		} ?? switch (path) {
 			'souls.addNote' => '添加备注',
 			'souls.noNotes' => '还没有备注。',
 			'souls.deleteNote' => '删除备注',
@@ -4364,8 +4449,6 @@ extension on TranslationsZh {
 			'souls.csv.place' => '地点',
 			'souls.csv.metOn' => '认识日期',
 			'souls.csv.stage' => '阶段',
-			_ => null,
-		} ?? switch (path) {
 			'souls.csv.next' => '下次联系',
 			'souls.csv.notes' => '备注',
 			'souls.lock' => ({required Object method}) => '使用${method}锁定',
@@ -4377,6 +4460,49 @@ extension on TranslationsZh {
 			'souls.reminderBody' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n, one: '今天要联系 ${n} 人。', other: '今天要联系 ${n} 人。', ), 
 			'souls.reminderChannel' => '灵魂跟进',
 			'souls.moreSubtitle' => '你传福音的对象',
+			'souls.prayToday' => '今天为他代祷',
+			'souls.prayerReminder' => '每天早上提醒我',
+			'souls.prayerReminderAt' => '代祷提醒时间',
+			'souls.prayerTitle' => '为一个灵魂代祷',
+			'souls.prayerBody' => '花点时间为今天的这个人祷告。',
+			'souls.prayerChannel' => '为灵魂代祷',
+			'fasts.title' => '我的禁食',
+			'fasts.intro' => '为神分别出来：选择你的禁食和代祷事项。每坚持一天都会计入你的报告。',
+			'fasts.moreSubtitle' => '完全或部分禁食，每天计入',
+			'fasts.kind' => '你的禁食',
+			'fasts.kinds.full' => '完全禁食',
+			'fasts.kinds.partial' => '部分禁食',
+			'fasts.kindTexts.full' => '昼夜不食，每天 24 小时，从现在开始。',
+			'fasts.kindTexts.partial' => '每天禁食到所选时间，然后开斋。',
+			'fasts.length' => '时长',
+			'fasts.days' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n, one: '${n} 天', other: '${n} 天', ), 
+			'fasts.endEachDay' => '每天结束禁食的时间',
+			'fasts.topics' => '我为此禁食',
+			'fasts.topicHint' => '一个代祷事项…',
+			'fasts.addTopic' => '添加事项',
+			'fasts.removeTopic' => '移除事项',
+			'fasts.history' => '最近的禁食',
+			'fasts.kept' => ({required Object kept, required Object days}) => '${kept}/${days} 天',
+			'fasts.start' => '开始禁食',
+			'fasts.until' => ({required Object date}) => '直到 ${date}',
+			'fasts.hoursLeft' => ({required Object h, required Object m}) => '${h} 小时 ${m}',
+			'fasts.minutesLeft' => ({required Object m}) => '${m} 分钟',
+			'fasts.dayOf' => ({required Object day, required Object total}) => '第 ${day} 天，共 ${total} 天',
+			'fasts.dayEnds' => ({required Object time}) => '今天的禁食在 ${time} 结束',
+			'fasts.stop' => '结束禁食',
+			'fasts.stopTitle' => '要结束禁食吗？',
+			'fasts.stopText' => '已完成的天数仍计入，进行中的这一天不计。',
+			'fasts.counted' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n, one: '已有 ${n} 天禁食计入报告', other: '已有 ${n} 天禁食计入报告', ), 
+			'fasts.reportNote' => ({required Object item}) => '每坚持一天，报告中的“${item}”加 1。',
+			'fasts.items.full' => '完全禁食',
+			'fasts.items.partial' => '部分禁食',
+			'fasts.dayTitle' => ({required Object day}) => '禁食第 ${day} 天完成',
+			'fasts.dayBody' => '已计入报告。加油，继续！',
+			'fasts.endTitle' => '你的禁食结束了',
+			'fasts.endBody' => '愿主垂听你的祷告。',
+			'fasts.channel' => '我的禁食',
+			'fasts.homeTitle' => ({required Object day, required Object total}) => '禁食 · 第 ${day}/${total} 天',
+			'fasts.homeText' => ({required Object time}) => '今天在 ${time} 结束',
 			_ => null,
 		};
 	}

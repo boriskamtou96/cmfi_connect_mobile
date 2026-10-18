@@ -1622,7 +1622,11 @@
     "allBooks": "All books",
     "pickWord": "Choose a word",
     "pickWordHelp": "The concordance shows every verse where it appears.",
-    "more": "More options"
+    "more": "More options",
+    "crossReferences": "Cross references",
+    "crossReferencesOf": "Cross references · {passage}",
+    "noCrossReferences": "No cross reference for this passage.",
+    "crossReferencesSource": "Source: OpenBible.info (CC-BY)"
   },
   "profilePhoto": {
     "title": "Profile photo",
@@ -1759,8 +1763,13 @@
       "fill": "Fill in my report",
       "pause": "5-min break ({n}/3)",
       "notificationTitle": "Seek God first",
-      "notificationBody": "Tap here to fill in your report."
-    }
+      "notificationBody": "Tap here to fill in your report.",
+      "serviceBody": "Your apps close each day until your report."
+    },
+    "permissionsAndroid": "To close your apps, CMFI Connect needs two permissions, to turn on in the settings that will open: \"Usage access\" (to know which app is open) and \"Display over other apps\" (to show the Seek God first screen). Nothing leaves your phone.",
+    "permissionsContinue": "Continue",
+    "deniedAndroid": "Without these two permissions, CMFI Connect can't close apps. You can turn them on in Settings › Apps › Special access.",
+    "privacyAndroid": "The apps you choose stay on your phone: CMFI Connect never sends them."
   },
   "documents": {
     "title": "Our documents",
@@ -2020,6 +2029,63 @@
       "other": "{n} people to contact today."
     },
     "reminderChannel": "Soul follow-up",
-    "moreSubtitle": "The people you share the Gospel with"
+    "moreSubtitle": "The people you share the Gospel with",
+    "prayToday": "Today, pray for",
+    "prayerReminder": "Remind me each morning",
+    "prayerReminderAt": "Prayer reminder time",
+    "prayerTitle": "Pray for a soul",
+    "prayerBody": "Take a moment to pray for today's person.",
+    "prayerChannel": "Prayer for souls"
+  },
+  "fasts": {
+    "title": "My fasts",
+    "intro": "Set yourself apart for God: choose your fast and what you fast for. Each day kept counts in your report.",
+    "moreSubtitle": "Full or partial fast, counted each day",
+    "kind": "Your fast",
+    "kinds(map)": {
+      "full": "Full fast",
+      "partial": "Partial fast"
+    },
+    "kindTexts(map)": {
+      "full": "Day and night, 24 hours a day, from now.",
+      "partial": "Each day until the time you choose, then you break the fast."
+    },
+    "length": "Length",
+    "days(plural, param=n)": {
+      "one": "{n} day",
+      "other": "{n} days"
+    },
+    "endEachDay": "End of the fast each day",
+    "topics": "I fast for",
+    "topicHint": "A prayer request…",
+    "addTopic": "Add the request",
+    "removeTopic": "Remove the request",
+    "history": "My last fasts",
+    "kept": "{kept}/{days} days",
+    "start": "Start the fast",
+    "until": "Until {date}",
+    "hoursLeft": "{h} h {m}",
+    "minutesLeft": "{m} min",
+    "dayOf": "Day {day} of {total}",
+    "dayEnds": "This day ends at {time}",
+    "stop": "Break the fast",
+    "stopTitle": "Break your fast?",
+    "stopText": "The days already kept stay counted. The day under way will not be.",
+    "counted(plural, param=n)": {
+      "one": "{n} day of fasting counted in your report",
+      "other": "{n} days of fasting counted in your report"
+    },
+    "reportNote": "Each day kept adds 1 to \"{item}\" in your report.",
+    "items(map)": {
+      "full": "Full fast",
+      "partial": "Partial fast"
+    },
+    "dayTitle": "Day {day} of fasting done",
+    "dayBody": "It counts in your report. Take heart, keep going!",
+    "endTitle": "Your fast is over",
+    "endBody": "May the Lord answer your prayers.",
+    "channel": "My fasts",
+    "homeTitle": "Fast · day {day} of {total}",
+    "homeText": "This day ends at {time}"
   }
 }

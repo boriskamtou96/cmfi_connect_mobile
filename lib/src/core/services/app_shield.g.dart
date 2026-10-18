@@ -45,4 +45,4 @@ final class AppShieldProvider
   }
 }
 
-String _$appShieldHash() => r'524cd33a34d2327d6731b4bed35699de82eef927';
+String _$appShieldHash() => r'84fb96f2d409f08104442ba09228c2dd7266ff2c';

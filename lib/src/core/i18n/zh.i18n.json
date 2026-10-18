@@ -1573,7 +1573,11 @@
     "allBooks": "所有书卷",
     "pickWord": "选择一个词",
     "pickWordHelp": "经文汇编会列出它出现的每一节经文。",
-    "more": "更多选项"
+    "more": "更多选项",
+    "crossReferences": "串珠经文",
+    "crossReferencesOf": "串珠经文 · {passage}",
+    "noCrossReferences": "此段经文没有串珠。",
+    "crossReferencesSource": "来源：OpenBible.info（CC-BY）"
   },
   "profilePhoto": {
     "title": "头像",
@@ -1698,8 +1702,13 @@
       "fill": "填写我的汇报",
       "pause": "暂停 5 分钟（{n}/3）",
       "notificationTitle": "先求神",
-      "notificationBody": "轻点此处填写你的汇报。"
-    }
+      "notificationBody": "轻点此处填写你的汇报。",
+      "serviceBody": "你的应用每天都会关闭，直到你填写报告。"
+    },
+    "permissionsAndroid": "为了关闭你的应用，CMFI Connect 需要在即将打开的设置中开启两项权限：“使用情况访问权限”（知道哪个应用在前台）和“显示在其他应用上层”（显示“先求神”页面）。任何数据都不会离开你的手机。",
+    "permissionsContinue": "继续",
+    "deniedAndroid": "没有这两项权限，CMFI Connect 无法关闭应用。你可以在“设置 › 应用 › 特殊访问权限”中开启。",
+    "privacyAndroid": "你选择的应用只保存在手机上：CMFI Connect 绝不会上传。"
   },
   "documents": {
     "title": "我们的文件",
@@ -1956,6 +1965,63 @@
       "other": "今天要联系 {n} 人。"
     },
     "reminderChannel": "灵魂跟进",
-    "moreSubtitle": "你传福音的对象"
+    "moreSubtitle": "你传福音的对象",
+    "prayToday": "今天为他代祷",
+    "prayerReminder": "每天早上提醒我",
+    "prayerReminderAt": "代祷提醒时间",
+    "prayerTitle": "为一个灵魂代祷",
+    "prayerBody": "花点时间为今天的这个人祷告。",
+    "prayerChannel": "为灵魂代祷"
+  },
+  "fasts": {
+    "title": "我的禁食",
+    "intro": "为神分别出来：选择你的禁食和代祷事项。每坚持一天都会计入你的报告。",
+    "moreSubtitle": "完全或部分禁食，每天计入",
+    "kind": "你的禁食",
+    "kinds(map)": {
+      "full": "完全禁食",
+      "partial": "部分禁食"
+    },
+    "kindTexts(map)": {
+      "full": "昼夜不食，每天 24 小时，从现在开始。",
+      "partial": "每天禁食到所选时间，然后开斋。"
+    },
+    "length": "时长",
+    "days(plural, param=n)": {
+      "one": "{n} 天",
+      "other": "{n} 天"
+    },
+    "endEachDay": "每天结束禁食的时间",
+    "topics": "我为此禁食",
+    "topicHint": "一个代祷事项…",
+    "addTopic": "添加事项",
+    "removeTopic": "移除事项",
+    "history": "最近的禁食",
+    "kept": "{kept}/{days} 天",
+    "start": "开始禁食",
+    "until": "直到 {date}",
+    "hoursLeft": "{h} 小时 {m}",
+    "minutesLeft": "{m} 分钟",
+    "dayOf": "第 {day} 天，共 {total} 天",
+    "dayEnds": "今天的禁食在 {time} 结束",
+    "stop": "结束禁食",
+    "stopTitle": "要结束禁食吗？",
+    "stopText": "已完成的天数仍计入，进行中的这一天不计。",
+    "counted(plural, param=n)": {
+      "one": "已有 {n} 天禁食计入报告",
+      "other": "已有 {n} 天禁食计入报告"
+    },
+    "reportNote": "每坚持一天，报告中的“{item}”加 1。",
+    "items(map)": {
+      "full": "完全禁食",
+      "partial": "部分禁食"
+    },
+    "dayTitle": "禁食第 {day} 天完成",
+    "dayBody": "已计入报告。加油，继续！",
+    "endTitle": "你的禁食结束了",
+    "endBody": "愿主垂听你的祷告。",
+    "channel": "我的禁食",
+    "homeTitle": "禁食 · 第 {day}/{total} 天",
+    "homeText": "今天在 {time} 结束"
   }
 }

@@ -172,7 +172,13 @@ enum NotificationGroup {
   memory(firstId: 6000, channelId: 'memory'),
 
   /// The people to contact again (Suivi des âmes): no name in them.
-  souls(firstId: 7000, channelId: 'souls');
+  souls(firstId: 7000, channelId: 'souls'),
+
+  /// The daily prayer for a soul (Suivi des âmes): no name either.
+  soulsPrayer(firstId: 8000, channelId: 'souls_prayer'),
+
+  /// The end of each fasting day and of the fast (Mes jeûnes).
+  fasts(firstId: 9000, channelId: 'fasts');
 
   const NotificationGroup({required this.firstId, required this.channelId});
 

@@ -619,6 +619,22 @@ class ExportReportRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
+/// [FastsScreen]
+class FastsRoute extends PageRouteInfo<void> {
+  const FastsRoute({List<PageRouteInfo>? children})
+    : super(FastsRoute.name, initialChildren: children);
+
+  static const String name = 'FastsRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const FastsScreen();
+    },
+  );
+}
+
+/// generated route for
 /// [ForgotPasswordScreen]
 class ForgotPasswordRoute extends PageRouteInfo<ForgotPasswordRouteArgs> {
   ForgotPasswordRoute({String? phone, Key? key, List<PageRouteInfo>? children})

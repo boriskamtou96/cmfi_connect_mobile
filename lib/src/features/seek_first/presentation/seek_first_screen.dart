@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -35,6 +36,10 @@ String selectionLabel(BuildContext context, SeekFirstState state) {
 
 /// Plus › Cherche d'abord Dieu: the apps chosen stay closed each day, from
 /// a set hour, until the day's report is saved (Matthieu 6:33).
+/// Android asks other permissions than Screen Time, and keeps the apps
+/// chosen in the app itself.
+bool get _android => defaultTargetPlatform == TargetPlatform.android;
+
 @RoutePage()
 class SeekFirstScreen extends ConsumerWidget {
   const SeekFirstScreen({super.key});
@@ -199,7 +204,7 @@ class _Settings extends ConsumerWidget {
         case SeekFirstOutcome.enabled:
           break;
         case SeekFirstOutcome.denied:
-          toast.error(t.denied);
+          toast.error(_android ? t.deniedAndroid : t.denied);
         case SeekFirstOutcome.noApps:
           toast.info(t.noApps);
       }
@@ -290,7 +295,7 @@ class _Settings extends ConsumerWidget {
             const SizedBox(width: AppSpacing.sm),
             Expanded(
               child: Text(
-                t.privacy,
+                _android ? t.privacyAndroid : t.privacy,
                 style: TextStyle(fontSize: 13, color: scheme.onSurfaceVariant),
               ),
             ),

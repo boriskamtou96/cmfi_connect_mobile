@@ -18,7 +18,7 @@ class SeekFirstState {
     this.pausesLeft = 0,
   });
 
-  /// false where the phone can't close apps (Android for now).
+  /// false where the phone can't close apps (the web, iOS before 16).
   final bool supported;
   final bool enabled;
 
@@ -183,5 +183,7 @@ Map<String, String> shieldTexts() {
     'pause': t.pause(n: '{n}'),
     'notificationTitle': t.notificationTitle,
     'notificationBody': t.notificationBody,
+    // Android: the quiet notification of the watch
+    'serviceBody': t.serviceBody,
   };
 }

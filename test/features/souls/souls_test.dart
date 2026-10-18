@@ -110,7 +110,8 @@ void main() {
     await tester.tap(find.text('Enregistrer'));
     await tester.pumpAndSettle();
 
-    expect(find.text('Paul Mbarga'), findsOneWidget);
+    // in the list, and as the soul of the day
+    expect(find.text('Paul Mbarga'), findsWidgets);
     final saved = jsonDecode(storage.saved[sampleAccount.id]!) as List;
     expect(saved.single['stage'], 'received');
     expect(saved.single['notes'].single['text'], 'A prié au marché');
@@ -119,7 +120,7 @@ void main() {
   testWidgets('followed: the stage, a note, the next contact', (tester) async {
     final app = await openSouls(tester, storage: keeping([amina()]));
 
-    await tester.tap(find.text('Amina Ngono'));
+    await tester.tap(find.text('Amina Ngono').last);
     await tester.pumpAndSettle();
     expect(find.byType(SoulScreen), findsOneWidget);
     expect(find.text('Veut lire la Bible'), findsOneWidget);
@@ -188,6 +189,25 @@ void main() {
     faceId.accept = true;
     await tester.tap(find.text('Déverrouiller'));
     await tester.pumpAndSettle();
-    expect(find.text('Amina Ngono'), findsOneWidget);
+    expect(find.text('Amina Ngono'), findsWidgets);
+  });
+
+  testWidgets('each day a soul to pray for, reminded without its name', (
+    tester,
+  ) async {
+    final app = await openSouls(tester, storage: keeping([amina()]));
+
+    expect(find.text("Aujourd'hui, prie pour"), findsOneWidget);
+    expect(find.text('Amina Ngono'), findsWidgets);
+
+    await tester.tap(find.byType(Switch));
+    await tester.pumpAndSettle();
+    final planned = app.notifications.groups[NotificationGroup.soulsPrayer]!;
+    expect(planned, isNotEmpty);
+    expect(
+      planned.first.body,
+      'Prends un moment pour prier pour la personne du jour.',
+    );
+    expect(jsonDecode(app.preferences.getString('souls_prayer')!)['on'], true);
   });
 }

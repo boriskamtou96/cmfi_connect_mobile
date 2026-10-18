@@ -1,5 +1,3 @@
-import 'dart:math' as math;
-
 import 'package:flutter/material.dart';
 
 import '../../../../core/i18n/strings.g.dart';
@@ -8,6 +6,8 @@ import '../../../../core/theme/app_icons.dart';
 import '../../../../core/theme/app_spacing.dart';
 import '../../../../core/theme/app_tones.dart';
 import '../../domain/prayer.dart';
+
+export '../../../../core/widgets/progress_ring.dart';
 
 /// The colors of each retreat: dawn, midday sun, dusk, night. The same in
 /// light and dark mode, like a picture.
@@ -72,54 +72,6 @@ extension PrayerListLook on PrayerList {
     PrayerList.backsliders => t.prayer.lists.answeredOn.backsliders(date: date),
     PrayerList.coworkers => t.prayer.lists.answeredOn.coworkers(date: date),
   };
-}
-
-/// A round progress: a faint ring and its filled part from the top.
-class ProgressRingPainter extends CustomPainter {
-  const ProgressRingPainter({
-    required this.progress,
-    required this.color,
-    required this.track,
-    this.stroke = 8,
-  });
-
-  final double progress;
-  final Color color;
-  final Color track;
-  final double stroke;
-
-  @override
-  void paint(Canvas canvas, Size size) {
-    final arc = (Offset.zero & size).deflate(stroke / 2);
-    canvas
-      ..drawArc(
-        arc,
-        0,
-        math.pi * 2,
-        false,
-        Paint()
-          ..color = track
-          ..style = PaintingStyle.stroke
-          ..strokeWidth = stroke,
-      )
-      ..drawArc(
-        arc,
-        -math.pi / 2,
-        math.pi * 2 * progress.clamp(0, 1),
-        false,
-        Paint()
-          ..color = color
-          ..style = PaintingStyle.stroke
-          ..strokeCap = StrokeCap.round
-          ..strokeWidth = stroke,
-      );
-  }
-
-  @override
-  bool shouldRepaint(ProgressRingPainter oldDelegate) =>
-      progress != oldDelegate.progress ||
-      color != oldDelegate.color ||
-      track != oldDelegate.track;
 }
 
 /// "Sujets de la communauté" + its action, above a group of cards.

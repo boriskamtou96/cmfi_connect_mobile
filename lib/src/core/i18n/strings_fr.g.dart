@@ -83,6 +83,7 @@ class Translations with BaseTranslations<AppLocale, Translations> {
 	late final Translations$teachings$fr teachings = Translations$teachings$fr.internal(_root);
 	late final Translations$memorize$fr memorize = Translations$memorize$fr.internal(_root);
 	late final Translations$souls$fr souls = Translations$souls$fr.internal(_root);
+	late final Translations$fasts$fr fasts = Translations$fasts$fr.internal(_root);
 }
 
 // Path: app
@@ -2277,6 +2278,18 @@ class Translations$bible$fr {
 
 	/// fr: 'Plus d'options'
 	String get more => 'Plus d\'options';
+
+	/// fr: 'Références croisées'
+	String get crossReferences => 'Références croisées';
+
+	/// fr: 'Références croisées · {passage}'
+	String crossReferencesOf({required Object passage}) => 'Références croisées · ${passage}';
+
+	/// fr: 'Aucune référence croisée pour ce passage.'
+	String get noCrossReferences => 'Aucune référence croisée pour ce passage.';
+
+	/// fr: 'Source : OpenBible.info (CC-BY)'
+	String get crossReferencesSource => 'Source : OpenBible.info (CC-BY)';
 }
 
 // Path: profilePhoto
@@ -2604,6 +2617,18 @@ class Translations$seekFirst$fr {
 	String get privacy => 'CMFI Connect ne voit jamais les apps que tu choisis : ton iPhone les garde pour lui.';
 
 	late final Translations$seekFirst$shield$fr shield = Translations$seekFirst$shield$fr.internal(_root);
+
+	/// fr: 'Pour fermer tes apps, CMFI Connect a besoin de deux autorisations, à activer dans les réglages qui vont s'ouvrir : « Accès aux données d'utilisation » (savoir quelle app est ouverte) et « Afficher par-dessus les autres applis » (montrer l'écran Cherche d'abord Dieu). Rien ne quitte ton téléphone.'
+	String get permissionsAndroid => 'Pour fermer tes apps, CMFI Connect a besoin de deux autorisations, à activer dans les réglages qui vont s\'ouvrir : « Accès aux données d\'utilisation » (savoir quelle app est ouverte) et « Afficher par-dessus les autres applis » (montrer l\'écran Cherche d\'abord Dieu). Rien ne quitte ton téléphone.';
+
+	/// fr: 'Continuer'
+	String get permissionsContinue => 'Continuer';
+
+	/// fr: 'Sans ces deux autorisations, CMFI Connect ne peut pas fermer d'apps. Tu peux les activer dans Réglages › Applications › Accès spécial.'
+	String get deniedAndroid => 'Sans ces deux autorisations, CMFI Connect ne peut pas fermer d\'apps. Tu peux les activer dans Réglages › Applications › Accès spécial.';
+
+	/// fr: 'Les apps que tu choisis restent sur ton téléphone : CMFI Connect ne les envoie jamais.'
+	String get privacyAndroid => 'Les apps que tu choisis restent sur ton téléphone : CMFI Connect ne les envoie jamais.';
 }
 
 // Path: documents
@@ -3238,6 +3263,146 @@ class Translations$souls$fr {
 
 	/// fr: 'Les personnes que tu évangélises'
 	String get moreSubtitle => 'Les personnes que tu évangélises';
+
+	/// fr: 'Aujourd'hui, prie pour'
+	String get prayToday => 'Aujourd\'hui, prie pour';
+
+	/// fr: 'Me le rappeler chaque matin'
+	String get prayerReminder => 'Me le rappeler chaque matin';
+
+	/// fr: 'Heure du rappel de prière'
+	String get prayerReminderAt => 'Heure du rappel de prière';
+
+	/// fr: 'Prie pour une âme'
+	String get prayerTitle => 'Prie pour une âme';
+
+	/// fr: 'Prends un moment pour prier pour la personne du jour.'
+	String get prayerBody => 'Prends un moment pour prier pour la personne du jour.';
+
+	/// fr: 'Prière pour les âmes'
+	String get prayerChannel => 'Prière pour les âmes';
+}
+
+// Path: fasts
+class Translations$fasts$fr {
+	Translations$fasts$fr.internal(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// fr: 'Mes jeûnes'
+	String get title => 'Mes jeûnes';
+
+	/// fr: 'Mets-toi à part pour Dieu : choisis ton jeûne et ce pour quoi tu jeûnes. Chaque jour tenu compte dans ton compte rendu.'
+	String get intro => 'Mets-toi à part pour Dieu : choisis ton jeûne et ce pour quoi tu jeûnes. Chaque jour tenu compte dans ton compte rendu.';
+
+	/// fr: 'Jeûne complet ou partiel, compté chaque jour'
+	String get moreSubtitle => 'Jeûne complet ou partiel, compté chaque jour';
+
+	/// fr: 'Ton jeûne'
+	String get kind => 'Ton jeûne';
+
+	Map<String, String> get kinds => {
+		'full': 'Jeûne complet',
+		'partial': 'Jeûne partiel',
+	};
+	Map<String, String> get kindTexts => {
+		'full': 'Jour et nuit, 24 heures par jour, à partir de maintenant.',
+		'partial': 'Chaque jour jusqu\'à l\'heure choisie, puis tu romps le jeûne.',
+	};
+
+	/// fr: 'Durée'
+	String get length => 'Durée';
+
+	/// fr: '(one) {{n} jour} (other) {{n} jours}'
+	String days({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('fr'))(n,
+		one: '${n} jour',
+		other: '${n} jours',
+	);
+
+	/// fr: 'Fin du jeûne chaque jour'
+	String get endEachDay => 'Fin du jeûne chaque jour';
+
+	/// fr: 'Je jeûne pour'
+	String get topics => 'Je jeûne pour';
+
+	/// fr: 'Un sujet de prière…'
+	String get topicHint => 'Un sujet de prière…';
+
+	/// fr: 'Ajouter le sujet'
+	String get addTopic => 'Ajouter le sujet';
+
+	/// fr: 'Retirer le sujet'
+	String get removeTopic => 'Retirer le sujet';
+
+	/// fr: 'Mes derniers jeûnes'
+	String get history => 'Mes derniers jeûnes';
+
+	/// fr: '{kept}/{days} jours'
+	String kept({required Object kept, required Object days}) => '${kept}/${days} jours';
+
+	/// fr: 'Commencer le jeûne'
+	String get start => 'Commencer le jeûne';
+
+	/// fr: 'Jusqu'au {date}'
+	String until({required Object date}) => 'Jusqu\'au ${date}';
+
+	/// fr: '{h} h {m}'
+	String hoursLeft({required Object h, required Object m}) => '${h} h ${m}';
+
+	/// fr: '{m} min'
+	String minutesLeft({required Object m}) => '${m} min';
+
+	/// fr: 'Jour {day} sur {total}'
+	String dayOf({required Object day, required Object total}) => 'Jour ${day} sur ${total}';
+
+	/// fr: 'Ce jour s'achève à {time}'
+	String dayEnds({required Object time}) => 'Ce jour s\'achève à ${time}';
+
+	/// fr: 'Rompre le jeûne'
+	String get stop => 'Rompre le jeûne';
+
+	/// fr: 'Rompre ton jeûne ?'
+	String get stopTitle => 'Rompre ton jeûne ?';
+
+	/// fr: 'Les jours déjà tenus restent comptés. Le jour en cours ne le sera pas.'
+	String get stopText => 'Les jours déjà tenus restent comptés. Le jour en cours ne le sera pas.';
+
+	/// fr: '(one) {{n} jour de jeûne compté dans ton compte rendu} (other) {{n} jours de jeûne comptés dans ton compte rendu}'
+	String counted({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('fr'))(n,
+		one: '${n} jour de jeûne compté dans ton compte rendu',
+		other: '${n} jours de jeûne comptés dans ton compte rendu',
+	);
+
+	/// fr: 'Chaque jour tenu ajoute 1 à « {item} » dans ton compte rendu.'
+	String reportNote({required Object item}) => 'Chaque jour tenu ajoute 1 à « ${item} » dans ton compte rendu.';
+
+	Map<String, String> get items => {
+		'full': 'Jeûne complet',
+		'partial': 'Jeûne partiel',
+	};
+
+	/// fr: 'Jour {day} de jeûne accompli'
+	String dayTitle({required Object day}) => 'Jour ${day} de jeûne accompli';
+
+	/// fr: 'Il compte dans ton compte rendu. Courage, continue !'
+	String get dayBody => 'Il compte dans ton compte rendu. Courage, continue !';
+
+	/// fr: 'Ton jeûne est terminé'
+	String get endTitle => 'Ton jeûne est terminé';
+
+	/// fr: 'Que le Seigneur exauce tes prières.'
+	String get endBody => 'Que le Seigneur exauce tes prières.';
+
+	/// fr: 'Mes jeûnes'
+	String get channel => 'Mes jeûnes';
+
+	/// fr: 'Jeûne · jour {day} sur {total}'
+	String homeTitle({required Object day, required Object total}) => 'Jeûne · jour ${day} sur ${total}';
+
+	/// fr: 'Ce jour s'achève à {time}'
+	String homeText({required Object time}) => 'Ce jour s\'achève à ${time}';
 }
 
 // Path: onboarding.reports
@@ -5356,6 +5521,9 @@ class Translations$seekFirst$shield$fr {
 
 	/// fr: 'Touche ici pour remplir ton compte rendu.'
 	String get notificationBody => 'Touche ici pour remplir ton compte rendu.';
+
+	/// fr: 'Tes apps se ferment chaque jour jusqu'à ton compte rendu.'
+	String get serviceBody => 'Tes apps se ferment chaque jour jusqu\'à ton compte rendu.';
 }
 
 // Path: souls.csv
@@ -7076,6 +7244,10 @@ extension on Translations {
 			'bible.pickWord' => 'Choisis un mot',
 			'bible.pickWordHelp' => 'La concordance montre tous les versets où il apparaît.',
 			'bible.more' => 'Plus d\'options',
+			'bible.crossReferences' => 'Références croisées',
+			'bible.crossReferencesOf' => ({required Object passage}) => 'Références croisées · ${passage}',
+			'bible.noCrossReferences' => 'Aucune référence croisée pour ce passage.',
+			'bible.crossReferencesSource' => 'Source : OpenBible.info (CC-BY)',
 			'profilePhoto.title' => 'Photo de profil',
 			'profilePhoto.add' => 'Ajouter une photo de profil',
 			'profilePhoto.change' => 'Changer la photo de profil',
@@ -7167,6 +7339,11 @@ extension on Translations {
 			'seekFirst.shield.pause' => ({required Object n}) => 'Pause de 5 min (${n}/3)',
 			'seekFirst.shield.notificationTitle' => 'Cherche d\'abord Dieu',
 			'seekFirst.shield.notificationBody' => 'Touche ici pour remplir ton compte rendu.',
+			'seekFirst.shield.serviceBody' => 'Tes apps se ferment chaque jour jusqu\'à ton compte rendu.',
+			'seekFirst.permissionsAndroid' => 'Pour fermer tes apps, CMFI Connect a besoin de deux autorisations, à activer dans les réglages qui vont s\'ouvrir : « Accès aux données d\'utilisation » (savoir quelle app est ouverte) et « Afficher par-dessus les autres applis » (montrer l\'écran Cherche d\'abord Dieu). Rien ne quitte ton téléphone.',
+			'seekFirst.permissionsContinue' => 'Continuer',
+			'seekFirst.deniedAndroid' => 'Sans ces deux autorisations, CMFI Connect ne peut pas fermer d\'apps. Tu peux les activer dans Réglages › Applications › Accès spécial.',
+			'seekFirst.privacyAndroid' => 'Les apps que tu choisis restent sur ton téléphone : CMFI Connect ne les envoie jamais.',
 			'documents.title' => 'Nos documents',
 			'documents.subtitle' => 'Enseignements, règlements, formulaires…',
 			'documents.moreSubtitle' => 'La bibliothèque de la communauté',
@@ -7347,6 +7524,8 @@ extension on Translations {
 			'souls.noContact' => 'Aucun rappel prévu',
 			'souls.metAt' => ({required Object date}) => 'Rencontré(e) le ${date}',
 			'souls.notes' => 'Notes',
+			_ => null,
+		} ?? switch (path) {
 			'souls.addNote' => 'Ajouter la note',
 			'souls.noNotes' => 'Aucune note pour l\'instant.',
 			'souls.deleteNote' => 'Supprimer la note',
@@ -7356,8 +7535,6 @@ extension on Translations {
 			'souls.csv.place' => 'Lieu',
 			'souls.csv.metOn' => 'Rencontré le',
 			'souls.csv.stage' => 'Étape',
-			_ => null,
-		} ?? switch (path) {
 			'souls.csv.next' => 'Prochain contact',
 			'souls.csv.notes' => 'Notes',
 			'souls.lock' => ({required Object method}) => 'Verrouiller avec ${method}',
@@ -7369,6 +7546,49 @@ extension on Translations {
 			'souls.reminderBody' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('fr'))(n, one: '${n} personne à recontacter aujourd\'hui.', other: '${n} personnes à recontacter aujourd\'hui.', ), 
 			'souls.reminderChannel' => 'Suivi des âmes',
 			'souls.moreSubtitle' => 'Les personnes que tu évangélises',
+			'souls.prayToday' => 'Aujourd\'hui, prie pour',
+			'souls.prayerReminder' => 'Me le rappeler chaque matin',
+			'souls.prayerReminderAt' => 'Heure du rappel de prière',
+			'souls.prayerTitle' => 'Prie pour une âme',
+			'souls.prayerBody' => 'Prends un moment pour prier pour la personne du jour.',
+			'souls.prayerChannel' => 'Prière pour les âmes',
+			'fasts.title' => 'Mes jeûnes',
+			'fasts.intro' => 'Mets-toi à part pour Dieu : choisis ton jeûne et ce pour quoi tu jeûnes. Chaque jour tenu compte dans ton compte rendu.',
+			'fasts.moreSubtitle' => 'Jeûne complet ou partiel, compté chaque jour',
+			'fasts.kind' => 'Ton jeûne',
+			'fasts.kinds.full' => 'Jeûne complet',
+			'fasts.kinds.partial' => 'Jeûne partiel',
+			'fasts.kindTexts.full' => 'Jour et nuit, 24 heures par jour, à partir de maintenant.',
+			'fasts.kindTexts.partial' => 'Chaque jour jusqu\'à l\'heure choisie, puis tu romps le jeûne.',
+			'fasts.length' => 'Durée',
+			'fasts.days' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('fr'))(n, one: '${n} jour', other: '${n} jours', ), 
+			'fasts.endEachDay' => 'Fin du jeûne chaque jour',
+			'fasts.topics' => 'Je jeûne pour',
+			'fasts.topicHint' => 'Un sujet de prière…',
+			'fasts.addTopic' => 'Ajouter le sujet',
+			'fasts.removeTopic' => 'Retirer le sujet',
+			'fasts.history' => 'Mes derniers jeûnes',
+			'fasts.kept' => ({required Object kept, required Object days}) => '${kept}/${days} jours',
+			'fasts.start' => 'Commencer le jeûne',
+			'fasts.until' => ({required Object date}) => 'Jusqu\'au ${date}',
+			'fasts.hoursLeft' => ({required Object h, required Object m}) => '${h} h ${m}',
+			'fasts.minutesLeft' => ({required Object m}) => '${m} min',
+			'fasts.dayOf' => ({required Object day, required Object total}) => 'Jour ${day} sur ${total}',
+			'fasts.dayEnds' => ({required Object time}) => 'Ce jour s\'achève à ${time}',
+			'fasts.stop' => 'Rompre le jeûne',
+			'fasts.stopTitle' => 'Rompre ton jeûne ?',
+			'fasts.stopText' => 'Les jours déjà tenus restent comptés. Le jour en cours ne le sera pas.',
+			'fasts.counted' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('fr'))(n, one: '${n} jour de jeûne compté dans ton compte rendu', other: '${n} jours de jeûne comptés dans ton compte rendu', ), 
+			'fasts.reportNote' => ({required Object item}) => 'Chaque jour tenu ajoute 1 à « ${item} » dans ton compte rendu.',
+			'fasts.items.full' => 'Jeûne complet',
+			'fasts.items.partial' => 'Jeûne partiel',
+			'fasts.dayTitle' => ({required Object day}) => 'Jour ${day} de jeûne accompli',
+			'fasts.dayBody' => 'Il compte dans ton compte rendu. Courage, continue !',
+			'fasts.endTitle' => 'Ton jeûne est terminé',
+			'fasts.endBody' => 'Que le Seigneur exauce tes prières.',
+			'fasts.channel' => 'Mes jeûnes',
+			'fasts.homeTitle' => ({required Object day, required Object total}) => 'Jeûne · jour ${day} sur ${total}',
+			'fasts.homeText' => ({required Object time}) => 'Ce jour s\'achève à ${time}',
 			_ => null,
 		};
 	}

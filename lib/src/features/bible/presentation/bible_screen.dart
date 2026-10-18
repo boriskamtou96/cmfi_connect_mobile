@@ -42,6 +42,7 @@ import 'widgets/bible_books_sheet.dart';
 import 'widgets/bible_settings_sheet.dart';
 import 'widgets/bible_versions_sheet.dart';
 import 'widgets/chapter_view.dart';
+import 'widgets/cross_references_sheet.dart';
 import 'widgets/verse_actions.dart';
 
 /// The Bible tab: the chapter read last, in the version of the app's
@@ -232,6 +233,12 @@ class _Reader extends HookConsumerWidget {
           } else if (context.mounted) {
             await showConcordanceWords(context, words);
           }
+        case CrossReferenceVerses():
+          await showCrossReferences(
+            context,
+            verses: [for (final (:ref, text: _) in marked(verses)) ref],
+            label: label(verses),
+          );
         case MemorizeVerses():
           final numbers = [for (final verse in verses) verse.number];
           final added = await ref

@@ -1,0 +1,5 @@
+/* Siri phrases (SiriShortcuts.swift): ${applicationName} is the app's name */
+"Fill in my report in ${applicationName}" = "Remplis mon compte rendu dans ${applicationName}";
+"Open my report in ${applicationName}" = "Ouvre mon compte rendu dans ${applicationName}";
+"Start the retreat in ${applicationName}" = "Commence la retraite dans ${applicationName}";
+"Pray with ${applicationName}" = "Prie avec ${applicationName}";

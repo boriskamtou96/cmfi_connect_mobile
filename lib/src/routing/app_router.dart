@@ -26,6 +26,7 @@ import '../features/events/presentation/admin/event_program_screen.dart';
 import '../features/events/presentation/admin/event_registrants_screen.dart';
 import '../features/events/presentation/event_screen.dart';
 import '../features/events/presentation/events_screen.dart';
+import '../features/fasts/presentation/fasts_screen.dart';
 import '../features/home/presentation/home_screen.dart';
 import '../features/home/presentation/week_story_screen.dart';
 import '../features/hymns/presentation/hymn_projection_screen.dart';
@@ -175,6 +176,7 @@ class AppRouter extends RootStackRouter {
       guards: [authGuard],
     ),
     AutoRoute(path: '/souls', page: SoulsRoute.page, guards: [authGuard]),
+    AutoRoute(path: '/fasts', page: FastsRoute.page, guards: [authGuard]),
     AutoRoute(
       path: '/souls/edit',
       page: SoulFormRoute.page,

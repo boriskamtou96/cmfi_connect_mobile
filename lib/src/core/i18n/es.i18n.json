@@ -1621,7 +1621,11 @@
     "allBooks": "Todos los libros",
     "pickWord": "Elige una palabra",
     "pickWordHelp": "La concordancia muestra todos los versículos donde aparece.",
-    "more": "Más opciones"
+    "more": "Más opciones",
+    "crossReferences": "Referencias cruzadas",
+    "crossReferencesOf": "Referencias cruzadas · {passage}",
+    "noCrossReferences": "Ninguna referencia cruzada para este pasaje.",
+    "crossReferencesSource": "Fuente: OpenBible.info (CC-BY)"
   },
   "profilePhoto": {
     "title": "Foto de perfil",
@@ -1758,8 +1762,13 @@
       "fill": "Llenar mi informe",
       "pause": "Pausa de 5 min ({n}/3)",
       "notificationTitle": "Busca primero a Dios",
-      "notificationBody": "Toca aquí para llenar tu informe."
-    }
+      "notificationBody": "Toca aquí para llenar tu informe.",
+      "serviceBody": "Tus apps se cierran cada día hasta tu informe."
+    },
+    "permissionsAndroid": "Para cerrar tus apps, CMFI Connect necesita dos permisos, que activarás en los ajustes que se van a abrir: «Acceso a datos de uso» (saber qué app está abierta) y «Mostrar sobre otras apps» (mostrar la pantalla Busca primero a Dios). Nada sale de tu teléfono.",
+    "permissionsContinue": "Continuar",
+    "deniedAndroid": "Sin estos dos permisos, CMFI Connect no puede cerrar apps. Puedes activarlos en Ajustes › Aplicaciones › Acceso especial.",
+    "privacyAndroid": "Las apps que eliges se quedan en tu teléfono: CMFI Connect nunca las envía."
   },
   "documents": {
     "title": "Nuestros documentos",
@@ -2019,6 +2028,63 @@
       "other": "{n} personas por contactar hoy."
     },
     "reminderChannel": "Seguimiento de almas",
-    "moreSubtitle": "Las personas que evangelizas"
+    "moreSubtitle": "Las personas que evangelizas",
+    "prayToday": "Hoy, ora por",
+    "prayerReminder": "Recordármelo cada mañana",
+    "prayerReminderAt": "Hora del recordatorio de oración",
+    "prayerTitle": "Ora por un alma",
+    "prayerBody": "Tómate un momento para orar por la persona del día.",
+    "prayerChannel": "Oración por las almas"
+  },
+  "fasts": {
+    "title": "Mis ayunos",
+    "intro": "Apártate para Dios: elige tu ayuno y por qué ayunas. Cada día cumplido cuenta en tu informe.",
+    "moreSubtitle": "Ayuno completo o parcial, contado cada día",
+    "kind": "Tu ayuno",
+    "kinds(map)": {
+      "full": "Ayuno completo",
+      "partial": "Ayuno parcial"
+    },
+    "kindTexts(map)": {
+      "full": "Día y noche, 24 horas al día, desde ahora.",
+      "partial": "Cada día hasta la hora elegida; luego rompes el ayuno."
+    },
+    "length": "Duración",
+    "days(plural, param=n)": {
+      "one": "{n} día",
+      "other": "{n} días"
+    },
+    "endEachDay": "Fin del ayuno cada día",
+    "topics": "Ayuno por",
+    "topicHint": "Un motivo de oración…",
+    "addTopic": "Añadir el motivo",
+    "removeTopic": "Quitar el motivo",
+    "history": "Mis últimos ayunos",
+    "kept": "{kept}/{days} días",
+    "start": "Comenzar el ayuno",
+    "until": "Hasta el {date}",
+    "hoursLeft": "{h} h {m}",
+    "minutesLeft": "{m} min",
+    "dayOf": "Día {day} de {total}",
+    "dayEnds": "Este día termina a las {time}",
+    "stop": "Romper el ayuno",
+    "stopTitle": "¿Romper tu ayuno?",
+    "stopText": "Los días ya cumplidos siguen contados. El día en curso no.",
+    "counted(plural, param=n)": {
+      "one": "{n} día de ayuno contado en tu informe",
+      "other": "{n} días de ayuno contados en tu informe"
+    },
+    "reportNote": "Cada día cumplido suma 1 a «{item}» en tu informe.",
+    "items(map)": {
+      "full": "Ayuno completo",
+      "partial": "Ayuno parcial"
+    },
+    "dayTitle": "Día {day} de ayuno cumplido",
+    "dayBody": "Cuenta en tu informe. ¡Ánimo, sigue!",
+    "endTitle": "Tu ayuno ha terminado",
+    "endBody": "Que el Señor responda a tus oraciones.",
+    "channel": "Mis ayunos",
+    "homeTitle": "Ayuno · día {day} de {total}",
+    "homeText": "Este día termina a las {time}"
   }
 }

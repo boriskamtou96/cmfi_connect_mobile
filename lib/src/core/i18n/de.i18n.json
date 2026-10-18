@@ -1621,7 +1621,11 @@
     "allBooks": "Alle Bücher",
     "pickWord": "Wähle ein Wort",
     "pickWordHelp": "Die Konkordanz zeigt jeden Vers, in dem es vorkommt.",
-    "more": "Weitere Optionen"
+    "more": "Weitere Optionen",
+    "crossReferences": "Querverweise",
+    "crossReferencesOf": "Querverweise · {passage}",
+    "noCrossReferences": "Keine Querverweise zu dieser Stelle.",
+    "crossReferencesSource": "Quelle: OpenBible.info (CC-BY)"
   },
   "profilePhoto": {
     "title": "Profilbild",
@@ -1758,8 +1762,13 @@
       "fill": "Meinen Bericht ausfüllen",
       "pause": "5 Min. Pause ({n}/3)",
       "notificationTitle": "Suche zuerst Gott",
-      "notificationBody": "Tippe hier, um deinen Bericht auszufüllen."
-    }
+      "notificationBody": "Tippe hier, um deinen Bericht auszufüllen.",
+      "serviceBody": "Deine Apps schließen sich jeden Tag bis zu deinem Bericht."
+    },
+    "permissionsAndroid": "Um deine Apps zu schließen, braucht CMFI Connect zwei Berechtigungen, die du in den gleich geöffneten Einstellungen einschaltest: „Zugriff auf Nutzungsdaten“ (welche App offen ist) und „Über anderen Apps einblenden“ (den Bildschirm Suche zuerst Gott zeigen). Nichts verlässt dein Handy.",
+    "permissionsContinue": "Weiter",
+    "deniedAndroid": "Ohne diese zwei Berechtigungen kann CMFI Connect keine Apps schließen. Du kannst sie unter Einstellungen › Apps › Spezieller Zugriff einschalten.",
+    "privacyAndroid": "Die Apps, die du wählst, bleiben auf deinem Handy: CMFI Connect sendet sie nie."
   },
   "documents": {
     "title": "Unsere Dokumente",
@@ -2019,6 +2028,63 @@
       "other": "Heute {n} Personen kontaktieren."
     },
     "reminderChannel": "Seelenbegleitung",
-    "moreSubtitle": "Die Menschen, denen du das Evangelium bringst"
+    "moreSubtitle": "Die Menschen, denen du das Evangelium bringst",
+    "prayToday": "Bete heute für",
+    "prayerReminder": "Jeden Morgen erinnern",
+    "prayerReminderAt": "Uhrzeit der Gebetserinnerung",
+    "prayerTitle": "Bete für eine Seele",
+    "prayerBody": "Nimm dir einen Moment, um für die Person des Tages zu beten.",
+    "prayerChannel": "Gebet für Seelen"
+  },
+  "fasts": {
+    "title": "Mein Fasten",
+    "intro": "Sondere dich für Gott ab: Wähle dein Fasten und wofür du fastest. Jeder durchgehaltene Tag zählt in deinem Bericht.",
+    "moreSubtitle": "Volles oder teilweises Fasten, täglich gezählt",
+    "kind": "Dein Fasten",
+    "kinds(map)": {
+      "full": "Volles Fasten",
+      "partial": "Teilfasten"
+    },
+    "kindTexts(map)": {
+      "full": "Tag und Nacht, 24 Stunden am Tag, ab jetzt.",
+      "partial": "Jeden Tag bis zur gewählten Uhrzeit, dann brichst du das Fasten."
+    },
+    "length": "Dauer",
+    "days(plural, param=n)": {
+      "one": "{n} Tag",
+      "other": "{n} Tage"
+    },
+    "endEachDay": "Ende des Fastens jeden Tag",
+    "topics": "Ich faste für",
+    "topicHint": "Ein Gebetsanliegen…",
+    "addTopic": "Anliegen hinzufügen",
+    "removeTopic": "Anliegen entfernen",
+    "history": "Meine letzten Fastenzeiten",
+    "kept": "{kept}/{days} Tage",
+    "start": "Fasten beginnen",
+    "until": "Bis {date}",
+    "hoursLeft": "{h} Std. {m}",
+    "minutesLeft": "{m} Min.",
+    "dayOf": "Tag {day} von {total}",
+    "dayEnds": "Dieser Tag endet um {time}",
+    "stop": "Fasten abbrechen",
+    "stopTitle": "Fasten abbrechen?",
+    "stopText": "Die schon gehaltenen Tage bleiben gezählt. Der laufende Tag nicht.",
+    "counted(plural, param=n)": {
+      "one": "{n} Fastentag in deinem Bericht gezählt",
+      "other": "{n} Fastentage in deinem Bericht gezählt"
+    },
+    "reportNote": "Jeder gehaltene Tag fügt „{item}“ in deinem Bericht 1 hinzu.",
+    "items(map)": {
+      "full": "Volles Fasten",
+      "partial": "Teilfasten"
+    },
+    "dayTitle": "Fastentag {day} geschafft",
+    "dayBody": "Er zählt in deinem Bericht. Nur Mut, mach weiter!",
+    "endTitle": "Dein Fasten ist zu Ende",
+    "endBody": "Der Herr erhöre deine Gebete.",
+    "channel": "Mein Fasten",
+    "homeTitle": "Fasten · Tag {day} von {total}",
+    "homeText": "Dieser Tag endet um {time}"
   }
 }

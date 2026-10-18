@@ -19,6 +19,7 @@ import '../../../core/widgets/adaptive_menus.dart';
 import '../../../core/widgets/app_back_button.dart';
 import '../../../core/widgets/biometric_method.dart';
 import '../../../core/widgets/error_view.dart';
+import '../../../core/widgets/reminder_row.dart';
 import '../../../core/widgets/section_card.dart';
 import '../../../core/widgets/skeleton.dart';
 import '../../../routing/app_router.dart';
@@ -207,6 +208,12 @@ class SoulsScreen extends HookConsumerWidget {
                   AsyncValue(value: _?) => Column(
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
+                      if (ref.read(soulsProvider.notifier).toPrayFor(day)
+                          case final soul?
+                          when stage.value == null && search.isEmpty) ...[
+                        _PrayFor(soul: soul),
+                        const SizedBox(height: AppSpacing.md),
+                      ],
                       if (toContact.isNotEmpty) ...[
                         SectionCard(
                           header: t.contactSection,
@@ -435,6 +442,79 @@ class _Chips extends StatelessWidget {
               chip('${t.stages[stage.name]} · $count', stage),
         ],
       ),
+    );
+  }
+}
+
+/// The person to pray for today, and the reminder of it each morning.
+class _PrayFor extends ConsumerWidget {
+  const _PrayFor({required this.soul});
+
+  final Soul soul;
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final t = context.t.souls;
+    final notifier = ref.read(soulsProvider.notifier);
+    final reminder = notifier.prayerReminder();
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        Material(
+          color: AppColors.gold.withValues(alpha: 0.16),
+          borderRadius: BorderRadius.circular(AppRadius.lg),
+          clipBehavior: Clip.antiAlias,
+          child: InkWell(
+            onTap: () => context.router.push(SoulRoute(soulId: soul.id)),
+            child: Padding(
+              padding: const EdgeInsets.all(AppSpacing.lg),
+              child: Row(
+                children: [
+                  const Icon(
+                    AppIcons.prayerTile,
+                    color: AppColors.gold,
+                    size: 30,
+                  ),
+                  const SizedBox(width: AppSpacing.md),
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          t.prayToday,
+                          style: const TextStyle(
+                            fontSize: 13,
+                            fontWeight: FontWeight.w700,
+                            color: AppColors.gold,
+                          ),
+                        ),
+                        Text(
+                          soul.name,
+                          style: const TextStyle(
+                            fontSize: 17,
+                            fontWeight: FontWeight.w800,
+                          ),
+                        ),
+                        Text(t.stages[soul.stage.name] ?? ''),
+                      ],
+                    ),
+                  ),
+                  const Icon(AppIcons.chevronRight),
+                ],
+              ),
+            ),
+          ),
+        ),
+        const SizedBox(height: AppSpacing.sm),
+        ReminderRow(
+          label: t.prayerReminder,
+          timeLabel: t.prayerReminderAt,
+          on: reminder.on,
+          minutes: reminder.minutes,
+          onChanged: (on) => notifier.setPrayerReminder(on: on),
+          onTime: (minutes) => notifier.setPrayerReminder(minutes: minutes),
+        ),
+      ],
     );
   }
 }

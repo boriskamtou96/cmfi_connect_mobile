@@ -176,11 +176,88 @@ class Souls extends _$Souls {
       planned,
       channelName: t.reminderChannel,
     );
+    await _planPrayers();
+  }
+
+  /// The person to pray for on [day]: each one in turn, the same all day
+  /// (by the order they were added); null without anyone.
+  Soul? toPrayFor(DateTime day) {
+    final souls = [...?state.value]..sort((a, b) => a.id.compareTo(b.id));
+    if (souls.isEmpty) {
+      return null;
+    }
+    final days = DateTime.utc(
+      day.year,
+      day.month,
+      day.day,
+    ).difference(DateTime.utc(2026)).inDays;
+    return souls[days % souls.length];
+  }
+
+  /// The daily reminder to pray for the person of the day (key
+  /// `souls_prayer`, off until turned on, 7 o'clock).
+  ({bool on, int minutes}) prayerReminder() {
+    final raw = ref.read(sharedPreferencesProvider).getString(prayerKey);
+    if (raw == null) {
+      return (on: false, minutes: 7 * 60);
+    }
+    final json = jsonDecode(raw) as Map<String, dynamic>;
+    return (on: json['on'] as bool, minutes: json['minutes'] as int);
+  }
+
+  static const prayerKey = 'souls_prayer';
+
+  Future<void> setPrayerReminder({bool? on, int? minutes}) async {
+    final current = prayerReminder();
+    final next = (on: on ?? current.on, minutes: minutes ?? current.minutes);
+    if (next.on && !current.on) {
+      await ref.read(localNotificationsProvider).requestPermission();
+    }
+    await ref
+        .read(sharedPreferencesProvider)
+        .setString(
+          prayerKey,
+          jsonEncode({'on': next.on, 'minutes': next.minutes}),
+        );
+    ref.notifyListeners();
+    await reschedule();
+  }
+
+  /// The next 14 mornings, while someone is followed: no name in them.
+  Future<void> _planPrayers() async {
+    final notifications = ref.read(localNotificationsProvider);
+    final setting = prayerReminder();
+    if (!setting.on || (state.value ?? const []).isEmpty) {
+      await notifications.cancel(NotificationGroup.soulsPrayer);
+      return;
+    }
+    final t = LocaleSettings.instance.currentTranslations.souls;
+    final now = DateTime.now();
+    final first = today();
+    await notifications.replace(NotificationGroup.soulsPrayer, [
+      for (var i = 0; i < 14; i++)
+        if (DateTime(
+              first.year,
+              first.month,
+              first.day + i,
+            ).add(Duration(minutes: setting.minutes))
+            case final at when at.isAfter(now))
+          (
+            id: i,
+            at: at,
+            title: t.prayerTitle,
+            body: t.prayerBody,
+            payload: payload,
+          ),
+    ], channelName: t.prayerChannel);
   }
 
   /// Signing out: the list stays in this account's place, its reminders go.
-  Future<void> forget() =>
-      ref.read(localNotificationsProvider).cancel(NotificationGroup.souls);
+  Future<void> forget() async {
+    final notifications = ref.read(localNotificationsProvider);
+    await notifications.cancel(NotificationGroup.souls);
+    await notifications.cancel(NotificationGroup.soulsPrayer);
+  }
 }
 
 /// The lock of Suivi des âmes (key `souls_lock`): Face ID or the fingerprint

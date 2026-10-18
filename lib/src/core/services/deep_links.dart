@@ -16,7 +16,7 @@ sealed class AppLink {
 
   /// What follows `to=`: "events/42", "hymns/chants-edification-1/3",
   /// "prayer/topics/5", "prayer/importunities/7", "prayer/retreat",
-  /// "bible/JHN.3.16".
+  /// "bible/JHN.3.16", "reports/today".
   String get path;
 
   /// The link to share, which opens this screen.
@@ -64,6 +64,9 @@ sealed class AppLink {
     }
     if (to == 'prayer/retreat') {
       return const RetreatLink();
+    }
+    if (to == 'reports/today') {
+      return const TodayLink();
     }
     if (_bible.firstMatch(to) case final m?) {
       return BibleLink(m[1]!);
@@ -115,6 +118,14 @@ class RetreatLink extends AppLink {
 
   @override
   String get path => 'prayer/retreat';
+}
+
+/// Today's report, to fill in (Siri, a closed app on Android).
+class TodayLink extends AppLink {
+  const TodayLink();
+
+  @override
+  String get path => 'reports/today';
 }
 
 /// A chapter or a verse of the Bible, the same in every version.

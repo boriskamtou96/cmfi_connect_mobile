@@ -37,14 +37,19 @@ class ShieldSelection {
 
 /// « Cherche d'abord Dieu »: the apps the member chose stay closed each day,
 /// from a set hour, until the day's report is saved. Behind a provider:
-/// tests use a fake, and where the phone can't (Android for now, the web,
-/// iOS before 16) [supported] is false.
+/// tests use a fake, and where the phone can't (the web, iOS before 16)
+/// [supported] is false.
 ///
 /// iOS: Screen Time (FamilyControls, ManagedSettings, DeviceActivity), in
 /// Runner/AppShield.swift; the extensions ShieldMonitor (closes the apps
 /// again each morning, ends a pause), ShieldConfig (the screen shown on a
 /// closed app) and ShieldActions (its buttons) share the settings through
 /// the App Group.
+///
+/// Android: usage access and drawing over other apps (two special
+/// permissions, asked in the settings), a list of the phone's apps, and a
+/// service that covers a closed app (SeekFirstChannel.kt, SeekFirstService.kt,
+/// ShieldActivity.kt).
 abstract class AppShield {
   bool get supported;
 
@@ -130,8 +135,19 @@ class NativeAppShield implements AppShield {
       await _channel.invokeMethod<bool>('authorized') ?? false;
 
   @override
-  Future<bool> authorize() async =>
-      await _channel.invokeMethod<bool>('authorize') ?? false;
+  Future<bool> authorize() async {
+    // Android explains the two permissions before the settings
+    final t = LocaleSettings.instance.currentTranslations;
+    return await _channel.invokeMethod<bool>('authorize', {
+          'texts': {
+            'title': t.seekFirst.title,
+            'text': t.seekFirst.permissionsAndroid,
+            'continue': t.seekFirst.permissionsContinue,
+            'cancel': t.common.cancel,
+          },
+        }) ??
+        false;
+  }
 
   @override
   Future<ShieldSelection> selection() async => ShieldSelection.fromMap(
@@ -176,7 +192,8 @@ class NativeAppShield implements AppShield {
       await _channel.invokeMethod<int>('pausesLeft') ?? 0;
 }
 
-/// Screen Time needs iOS 16: AppShield.swift says whether this phone has it.
+/// Screen Time needs iOS 16: AppShield.swift says whether this phone has it;
+/// SeekFirstChannel.kt answers on Android.
 Future<bool> _nativeShieldAvailable() async {
   try {
     return await const MethodChannel(
@@ -192,7 +209,9 @@ Future<bool> _nativeShieldAvailable() async {
 
 @Riverpod(keepAlive: true)
 Future<AppShield> appShield(Ref ref) async {
-  if (kIsWeb || defaultTargetPlatform != TargetPlatform.iOS) {
+  if (kIsWeb ||
+      (defaultTargetPlatform != TargetPlatform.iOS &&
+          defaultTargetPlatform != TargetPlatform.android)) {
     return const NoAppShield();
   }
   return await _nativeShieldAvailable()

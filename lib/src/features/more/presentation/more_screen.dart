@@ -313,6 +313,22 @@ class MoreScreen extends ConsumerWidget {
               card: SectionCard(
                 children: [
                   ListTile(
+                    leading: moduleIcon(AppIcons.fastsTile, AppModule.prayer),
+                    title: Text(
+                      t.fasts.title,
+                      style: const TextStyle(fontWeight: FontWeight.w600),
+                    ),
+                    subtitle: Text(
+                      t.fasts.moreSubtitle,
+                      style: TextStyle(
+                        fontSize: 13,
+                        color: scheme.onSurfaceVariant,
+                      ),
+                    ),
+                    trailing: const Icon(AppIcons.chevronRight),
+                    onTap: () => context.router.push(const FastsRoute()),
+                  ),
+                  ListTile(
                     leading: moduleIcon(AppIcons.itemsTile, AppModule.reports),
                     title: Text(
                       t.more.myItems,

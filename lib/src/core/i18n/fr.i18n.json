@@ -1621,7 +1621,11 @@
     "allBooks": "Tous les livres",
     "pickWord": "Choisis un mot",
     "pickWordHelp": "La concordance montre tous les versets où il apparaît.",
-    "more": "Plus d'options"
+    "more": "Plus d'options",
+    "crossReferences": "Références croisées",
+    "crossReferencesOf": "Références croisées · {passage}",
+    "noCrossReferences": "Aucune référence croisée pour ce passage.",
+    "crossReferencesSource": "Source : OpenBible.info (CC-BY)"
   },
   "profilePhoto": {
     "title": "Photo de profil",
@@ -1758,8 +1762,13 @@
       "fill": "Remplir mon compte rendu",
       "pause": "Pause de 5 min ({n}/3)",
       "notificationTitle": "Cherche d'abord Dieu",
-      "notificationBody": "Touche ici pour remplir ton compte rendu."
-    }
+      "notificationBody": "Touche ici pour remplir ton compte rendu.",
+      "serviceBody": "Tes apps se ferment chaque jour jusqu'à ton compte rendu."
+    },
+    "permissionsAndroid": "Pour fermer tes apps, CMFI Connect a besoin de deux autorisations, à activer dans les réglages qui vont s'ouvrir : « Accès aux données d'utilisation » (savoir quelle app est ouverte) et « Afficher par-dessus les autres applis » (montrer l'écran Cherche d'abord Dieu). Rien ne quitte ton téléphone.",
+    "permissionsContinue": "Continuer",
+    "deniedAndroid": "Sans ces deux autorisations, CMFI Connect ne peut pas fermer d'apps. Tu peux les activer dans Réglages › Applications › Accès spécial.",
+    "privacyAndroid": "Les apps que tu choisis restent sur ton téléphone : CMFI Connect ne les envoie jamais."
   },
   "documents": {
     "title": "Nos documents",
@@ -2019,6 +2028,63 @@
       "other": "{n} personnes à recontacter aujourd'hui."
     },
     "reminderChannel": "Suivi des âmes",
-    "moreSubtitle": "Les personnes que tu évangélises"
+    "moreSubtitle": "Les personnes que tu évangélises",
+    "prayToday": "Aujourd'hui, prie pour",
+    "prayerReminder": "Me le rappeler chaque matin",
+    "prayerReminderAt": "Heure du rappel de prière",
+    "prayerTitle": "Prie pour une âme",
+    "prayerBody": "Prends un moment pour prier pour la personne du jour.",
+    "prayerChannel": "Prière pour les âmes"
+  },
+  "fasts": {
+    "title": "Mes jeûnes",
+    "intro": "Mets-toi à part pour Dieu : choisis ton jeûne et ce pour quoi tu jeûnes. Chaque jour tenu compte dans ton compte rendu.",
+    "moreSubtitle": "Jeûne complet ou partiel, compté chaque jour",
+    "kind": "Ton jeûne",
+    "kinds(map)": {
+      "full": "Jeûne complet",
+      "partial": "Jeûne partiel"
+    },
+    "kindTexts(map)": {
+      "full": "Jour et nuit, 24 heures par jour, à partir de maintenant.",
+      "partial": "Chaque jour jusqu'à l'heure choisie, puis tu romps le jeûne."
+    },
+    "length": "Durée",
+    "days(plural, param=n)": {
+      "one": "{n} jour",
+      "other": "{n} jours"
+    },
+    "endEachDay": "Fin du jeûne chaque jour",
+    "topics": "Je jeûne pour",
+    "topicHint": "Un sujet de prière…",
+    "addTopic": "Ajouter le sujet",
+    "removeTopic": "Retirer le sujet",
+    "history": "Mes derniers jeûnes",
+    "kept": "{kept}/{days} jours",
+    "start": "Commencer le jeûne",
+    "until": "Jusqu'au {date}",
+    "hoursLeft": "{h} h {m}",
+    "minutesLeft": "{m} min",
+    "dayOf": "Jour {day} sur {total}",
+    "dayEnds": "Ce jour s'achève à {time}",
+    "stop": "Rompre le jeûne",
+    "stopTitle": "Rompre ton jeûne ?",
+    "stopText": "Les jours déjà tenus restent comptés. Le jour en cours ne le sera pas.",
+    "counted(plural, param=n)": {
+      "one": "{n} jour de jeûne compté dans ton compte rendu",
+      "other": "{n} jours de jeûne comptés dans ton compte rendu"
+    },
+    "reportNote": "Chaque jour tenu ajoute 1 à « {item} » dans ton compte rendu.",
+    "items(map)": {
+      "full": "Jeûne complet",
+      "partial": "Jeûne partiel"
+    },
+    "dayTitle": "Jour {day} de jeûne accompli",
+    "dayBody": "Il compte dans ton compte rendu. Courage, continue !",
+    "endTitle": "Ton jeûne est terminé",
+    "endBody": "Que le Seigneur exauce tes prières.",
+    "channel": "Mes jeûnes",
+    "homeTitle": "Jeûne · jour {day} sur {total}",
+    "homeText": "Ce jour s'achève à {time}"
   }
 }

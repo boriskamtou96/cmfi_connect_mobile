@@ -207,9 +207,13 @@ abstract final class AppIcons {
   // Mémorisation des versets
   static const memorize = PhosphorIconsRegular.brain;
   static const memorizeTile = PhosphorIconsDuotone.brain;
+  static const crossReferences = PhosphorIconsRegular.arrowsSplit;
 
   // Suivi des âmes
   static const soulsTile = PhosphorIconsDuotone.footprints;
   static const addNote = PhosphorIconsRegular.notePencil;
   static const sms = PhosphorIconsRegular.chatText;
+
+  // Mes jeûnes
+  static const fastsTile = PhosphorIconsDuotone.forkKnife;
 }

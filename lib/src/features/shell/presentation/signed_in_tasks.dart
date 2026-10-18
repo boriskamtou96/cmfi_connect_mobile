@@ -23,6 +23,7 @@ import '../../bible/application/bible_position.dart';
 import '../../bible/application/memory_verses.dart';
 import '../../bible/domain/bible.dart';
 import '../../events/application/event_reminders.dart';
+import '../../fasts/application/fasts.dart';
 import '../../home/application/week_story.dart';
 import '../../home/domain/week_story.dart';
 import '../../notifications/application/inbox.dart';
@@ -93,6 +94,8 @@ class SignedInTasks extends HookConsumerWidget {
           unawaited(ref.read(memoryVersesProvider.notifier).forget());
           unawaited(ref.read(soulsProvider.notifier).forget());
           unawaited(ref.read(nowPlayingProvider.notifier).stop());
+          // the fasts were the account's
+          unawaited(ref.read(fastsProvider.notifier).forget());
         }
       });
       return subscription.close;
@@ -176,6 +179,8 @@ class SignedInTasks extends HookConsumerWidget {
           context.router.push(MemoryReviewRoute());
         } else if (payload == Souls.payload && context.mounted) {
           context.router.push(const SoulsRoute());
+        } else if (payload == Fasts.payload && context.mounted) {
+          context.router.push(const FastsRoute());
         } else if (week != null && context.mounted) {
           context.router.push(WeekStoryRoute(monday: week.toApiDate()));
         } else if (sendDay != null && context.mounted) {
@@ -278,7 +283,8 @@ class SignedInTasks extends HookConsumerWidget {
         }
       }
 
-      // a link: an event, a hymn, a prayer topic, the retreat of the moment
+      // a link: an event, a hymn, a prayer topic, the retreat of the moment,
+      // today's report
       void openLink(AppLink? link) {
         if (link == null || !context.mounted) {
           return;
@@ -305,6 +311,8 @@ class SignedInTasks extends HookConsumerWidget {
             );
           case RetreatLink():
             unawaited(openShortcut(AppShortcut.retreat));
+          case TodayLink():
+            unawaited(openShortcut(AppShortcut.today));
           case BibleLink(:final reference):
             unawaited(openBible(BibleRef.parse(reference)));
         }
@@ -333,6 +341,13 @@ class SignedInTasks extends HookConsumerWidget {
         unawaited(ref.read(reportSendingProvider.notifier).reschedule());
         unawaited(ref.read(biblePlanProvider.notifier).reschedule());
         unawaited(ref.read(memoryVersesProvider.notifier).reschedule());
+        // the days of fasting kept go to the report
+        unawaited(
+          ref
+              .read(fastsProvider.notifier)
+              .catchUp()
+              .then((_) => ref.read(fastsProvider.notifier).reschedule()),
+        );
         // the souls are read from the Keychain first
         unawaited(
           ref

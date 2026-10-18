@@ -39,6 +39,11 @@ class ConcordanceVerses extends VerseAction {
   const ConcordanceVerses();
 }
 
+/// The passages linked to the verses (OpenBible.info).
+class CrossReferenceVerses extends VerseAction {
+  const CrossReferenceVerses();
+}
+
 /// Learn the verses by heart (Mémorisation).
 class MemorizeVerses extends VerseAction {
   const MemorizeVerses();
@@ -130,6 +135,12 @@ class VerseActions extends StatelessWidget {
                           color: palette.text,
                         ),
                       ),
+                    ),
+                    IconButton(
+                      tooltip: t.bible.crossReferences,
+                      onPressed: () => onAction(const CrossReferenceVerses()),
+                      color: palette.text,
+                      icon: const Icon(AppIcons.crossReferences, size: 22),
                     ),
                     IconButton(
                       tooltip: t.memorize.memorize,

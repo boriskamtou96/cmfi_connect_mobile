@@ -53,21 +53,28 @@ void main() {
     expect(find.text('Encore 3 pauses aujourd\'hui'), findsOneWidget);
   });
 
-  testWidgets('without Screen Time access, nothing closes', (tester) async {
-    final app = await pumpApp(
-      tester,
-      token: 't',
-      appShield: FakeAppShield(granted: false),
-    );
-    await openSeekFirst(tester);
+  testWidgets(
+    'without the access (Screen Time, or the permissions of Android), nothing closes',
+    (tester) async {
+      final app = await pumpApp(
+        tester,
+        token: 't',
+        appShield: FakeAppShield(granted: false),
+      );
+      await openSeekFirst(tester);
 
-    await tester.tap(find.byType(Switch));
-    await tester.pumpAndSettle();
+      await tester.tap(find.byType(Switch));
+      await tester.pumpAndSettle();
 
-    expect(app.toasts.messages.single, startsWith("Sans l'accès à Temps"));
-    expect(tester.widget<Switch>(find.byType(Switch)).value, isFalse);
-    expect(app.appShield.configured?['enabled'], isFalse);
-  });
+      // the tests run as an Android phone: its two permissions
+      expect(
+        app.toasts.messages.single,
+        startsWith('Sans ces deux autorisations'),
+      );
+      expect(tester.widget<Switch>(find.byType(Switch)).value, isFalse);
+      expect(app.appShield.configured?['enabled'], isFalse);
+    },
+  );
 
   testWidgets('no app chosen: it stays off', (tester) async {
     final app = await pumpApp(

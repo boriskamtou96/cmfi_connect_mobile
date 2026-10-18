@@ -25,6 +25,7 @@ import '../../bible/domain/reading_plan.dart';
 import '../../events/application/events_providers.dart';
 import '../../events/domain/event.dart';
 import '../../events/infrastructure/events_api.dart';
+import '../../fasts/application/fasts.dart';
 import '../../hymns/application/hymn_collections.dart';
 import '../../hymns/application/hymn_library.dart';
 import '../../members/presentation/widgets/member_avatar.dart';
@@ -644,6 +645,11 @@ class _Resume extends ConsumerWidget {
     final reading = plan == null || plan.doneOn(day)
         ? const <BibleRef>[]
         : plan.chaptersOf(day);
+    // a fast under way: its day and what is left of it
+    final fast = ref.watch(fastsProvider).current;
+    final fastDay = fast == null || fast.isOverAt(DateTime.now())
+        ? null
+        : fast.dayAt(DateTime.now()).clamp(0, fast.days - 1);
     // the verses learnt by heart: those to review today
     ref.watch(memoryVersesProvider);
     final memory = ref.read(memoryVersesProvider.notifier).dueOn(day).length;
@@ -727,6 +733,29 @@ class _Resume extends ConsumerWidget {
                 title: t.biblePlan.homeTitle,
                 text: readingLabel(reading, (book) => names[book] ?? book),
                 onTap: () => context.router.push(const BiblePlanRoute()),
+              ),
+            ],
+            if (fast != null && fastDay != null) ...[
+              Divider(
+                height: 1,
+                indent: 74,
+                endIndent: 16,
+                color: scheme.outlineVariant,
+              ),
+              _Row(
+                leading: _Tile(
+                  color: prayer.soft,
+                  child: PhosphorIcon(
+                    AppIcons.fastsTile,
+                    size: 22,
+                    color: prayer.onSoft,
+                  ),
+                ),
+                title: t.fasts.homeTitle(day: fastDay + 1, total: fast.days),
+                text: t.fasts.homeText(
+                  time: context.formatDate(fast.endOfDay(fastDay), 'HH:mm'),
+                ),
+                onTap: () => context.router.push(const FastsRoute()),
               ),
             ],
             if (memory > 0) ...[

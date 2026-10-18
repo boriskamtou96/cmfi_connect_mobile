@@ -44,7 +44,7 @@ final class SoulsProvider extends $AsyncNotifierProvider<Souls, List<Soul>> {
   Souls create() => Souls();
 }
 
-String _$soulsHash() => r'3a34dbd83d2cae73da3b5074c7b7b494e2ea59ea';
+String _$soulsHash() => r'c90f1d31b449e06ab64af3b42ed6a669beb1d293';
 
 /// Suivi des âmes: the people the signed-in member follows, kept on the
 /// phone for this account (SoulsStorage). A day planned to contact someone

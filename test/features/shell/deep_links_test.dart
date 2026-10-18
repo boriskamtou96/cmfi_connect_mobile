@@ -6,6 +6,7 @@ import 'package:cmfi_connect/src/features/prayer/domain/prayer.dart';
 import 'package:cmfi_connect/src/features/prayer/presentation/importunity_screen.dart';
 import 'package:cmfi_connect/src/features/prayer/presentation/prayer_topics_screen.dart';
 import 'package:cmfi_connect/src/features/prayer/presentation/retreat_screen.dart';
+import 'package:cmfi_connect/src/features/reports/presentation/reports_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:intl/date_symbol_data_local.dart';
@@ -48,6 +49,8 @@ void main() {
         ),
       );
       expect(parse('$site/open?to=/prayer/retreat/'), isA<RetreatLink>());
+      // Siri, and a closed app on Android
+      expect(parse('cmficonnect://open?to=reports/today'), isA<TodayLink>());
     });
 
     test('anything else is left alone', () {
@@ -135,6 +138,15 @@ void main() {
       app.incomingLinks.add('$site/open?to=prayer/retreat');
       await tester.pumpAndSettle();
       expect(find.byType(RetreatScreen), findsOneWidget);
+    });
+
+    testWidgets("Siri's link: today's report", (tester) async {
+      final app = await pumpApp(tester, token: 't');
+      await openMore(tester);
+
+      app.incomingLinks.add('cmficonnect://open?to=reports/today');
+      await tester.pumpAndSettle();
+      expect(find.byType(ReportsScreen), findsOneWidget);
     });
 
     testWidgets('signed out: the link waits for the sign-in', (tester) async {

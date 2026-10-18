@@ -60,15 +60,18 @@ final class SharedPreferencesProvider
 
 String _$sharedPreferencesHash() => r'70ef90bd70df9f89260fca9b542d9f8d25d8e3cb';
 
-/// Whether the presentation screens were already shown (first launch only).
+/// Whether the presentation was already shown: the welcome shows its three
+/// pages once, then only its first one (after a sign-out, for instance).
 
 @ProviderFor(OnboardingSeen)
 final onboardingSeenProvider = OnboardingSeenProvider._();
 
-/// Whether the presentation screens were already shown (first launch only).
+/// Whether the presentation was already shown: the welcome shows its three
+/// pages once, then only its first one (after a sign-out, for instance).
 final class OnboardingSeenProvider
     extends $NotifierProvider<OnboardingSeen, bool> {
-  /// Whether the presentation screens were already shown (first launch only).
+  /// Whether the presentation was already shown: the welcome shows its three
+  /// pages once, then only its first one (after a sign-out, for instance).
   OnboardingSeenProvider._()
     : super(
         from: null,
@@ -98,7 +101,8 @@ final class OnboardingSeenProvider
 
 String _$onboardingSeenHash() => r'a69371c1da5d52d46f645c91f55fa3025941b73a';
 
-/// Whether the presentation screens were already shown (first launch only).
+/// Whether the presentation was already shown: the welcome shows its three
+/// pages once, then only its first one (after a sign-out, for instance).
 
 abstract class _$OnboardingSeen extends $Notifier<bool> {
   bool build();

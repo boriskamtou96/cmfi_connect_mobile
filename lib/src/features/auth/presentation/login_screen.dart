@@ -14,17 +14,16 @@ import '../../../core/theme/app_spacing.dart';
 import '../../../core/utils/countries.dart';
 import '../../../core/utils/phone.dart';
 import '../../../core/widgets/adaptive_dialogs.dart';
-import '../../../core/widgets/app_back_button.dart';
 import '../../../core/widgets/app_button.dart';
 import '../../../core/widgets/app_toast.dart';
 import '../../../core/widgets/biometric_method.dart';
-import '../../../core/widgets/cmfi_logo.dart';
 import '../../../core/widgets/password_field.dart';
 import '../../../core/widgets/phone_field.dart';
 import '../../../routing/app_router.dart';
 import '../application/login_controller.dart';
 import '../application/saved_login.dart';
 import 'widgets/auth_footer.dart';
+import 'widgets/login_header.dart';
 
 @RoutePage()
 class LoginScreen extends HookConsumerWidget {
@@ -149,87 +148,90 @@ class LoginScreen extends HookConsumerWidget {
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.surface,
       body: SafeArea(
+        // the faces go up under the status bar
+        top: false,
         child: AutofillGroup(
           child: Form(
             key: formKey,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                if (context.router.canPop())
-                  const Align(
-                    alignment: AlignmentDirectional.centerStart,
-                    child: Padding(
-                      padding: EdgeInsetsDirectional.only(start: AppSpacing.xs),
-                      child: AppBackButton(),
-                    ),
-                  ),
                 Expanded(
                   child: SingleChildScrollView(
-                    padding: const EdgeInsetsDirectional.fromSTEB(
-                      AppSpacing.xl,
-                      AppSpacing.lg,
-                      AppSpacing.xl,
-                      AppSpacing.lg,
-                    ),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [
-                        const Align(
-                          alignment: AlignmentDirectional.centerStart,
-                          child: CmfiLogo(size: 56),
-                        ),
-                        const SizedBox(height: AppSpacing.lg + 6),
-                        Text(
-                          t.auth.login.title,
-                          style: textTheme.headlineMedium,
-                        ),
-                        const SizedBox(height: 10),
-                        Text(
-                          t.auth.login.subtitle,
-                          style: textTheme.bodyMedium?.copyWith(
-                            color: Theme.of(
-                              context,
-                            ).colorScheme.onSurfaceVariant,
+                        LoginHeader(canPop: context.router.canPop()),
+                        Padding(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
+                            AppSpacing.xl,
+                            AppSpacing.lg + 2,
+                            AppSpacing.xl,
+                            AppSpacing.lg,
                           ),
-                        ),
-                        const SizedBox(height: 26),
-                        PhoneField(
-                          controller: phoneController,
-                          country: country,
-                          onCountryChanged: ref
-                              .read(phoneCountryProvider.notifier)
-                              .save,
-                          lenient: true,
-                        ),
-                        const SizedBox(height: AppSpacing.lg),
-                        PasswordField(
-                          controller: passwordController,
-                          onSubmitted: submit,
-                        ),
-                        if (kind != null &&
-                            method != null &&
-                            (saved?.biometric ?? false)) ...[
-                          const SizedBox(height: AppSpacing.md),
-                          OutlinedButton.icon(
-                            onPressed: state.isLoading
-                                ? null
-                                : signInWithBiometrics,
-                            style: OutlinedButton.styleFrom(
-                              minimumSize: const Size.fromHeight(52),
-                            ),
-                            icon: Icon(biometricIcon(kind)),
-                            label: Text(
-                              t.auth.biometric.signIn(method: method),
-                            ),
-                          ),
-                        ],
-                        Align(
-                          alignment: AlignmentDirectional.centerEnd,
-                          child: TextButton(
-                            onPressed: () => context.router.push(
-                              ForgotPasswordRoute(phone: phoneController.text),
-                            ),
-                            child: Text(t.auth.forgot.link),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.stretch,
+                            children: [
+                              Text(
+                                t.auth.login.title,
+                                style: textTheme.headlineMedium?.copyWith(
+                                  fontSize: 34,
+                                  fontWeight: FontWeight.w800,
+                                  letterSpacing: -1,
+                                ),
+                              ),
+                              const SizedBox(height: 10),
+                              Text(
+                                t.auth.login.subtitle,
+                                style: textTheme.bodyMedium?.copyWith(
+                                  color: Theme.of(
+                                    context,
+                                  ).colorScheme.onSurfaceVariant,
+                                ),
+                              ),
+                              const SizedBox(height: 26),
+                              PhoneField(
+                                controller: phoneController,
+                                country: country,
+                                onCountryChanged: ref
+                                    .read(phoneCountryProvider.notifier)
+                                    .save,
+                                lenient: true,
+                              ),
+                              const SizedBox(height: AppSpacing.lg),
+                              PasswordField(
+                                controller: passwordController,
+                                onSubmitted: submit,
+                              ),
+                              if (kind != null &&
+                                  method != null &&
+                                  (saved?.biometric ?? false)) ...[
+                                const SizedBox(height: AppSpacing.md),
+                                OutlinedButton.icon(
+                                  onPressed: state.isLoading
+                                      ? null
+                                      : signInWithBiometrics,
+                                  style: OutlinedButton.styleFrom(
+                                    minimumSize: const Size.fromHeight(52),
+                                  ),
+                                  icon: Icon(biometricIcon(kind)),
+                                  label: Text(
+                                    t.auth.biometric.signIn(method: method),
+                                  ),
+                                ),
+                              ],
+                              Align(
+                                alignment: AlignmentDirectional.centerEnd,
+                                child: TextButton(
+                                  onPressed: () => context.router.push(
+                                    ForgotPasswordRoute(
+                                      phone: phoneController.text,
+                                    ),
+                                  ),
+                                  child: Text(t.auth.forgot.link),
+                                ),
+                              ),
+                            ],
                           ),
                         ),
                       ],

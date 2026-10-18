@@ -47,51 +47,44 @@
     "invalidEmail": "Ungültige E-Mail-Adresse",
     "invalidCode": "Nur Buchstaben und Ziffern, ohne Leerzeichen"
   },
-  "onboarding": {
-    "skip": "Überspringen",
-    "next": "Weiter",
-    "start": "Los geht's",
-    "step": "Seite {current} von {total}",
-    "reports": {
-      "title": "Dein Weg mit Gott, Tag für Tag",
+  "welcome": {
+    "seek": {
+      "before": "Suche zuerst ",
+      "marked": "Gott",
+      "after": ", jeden Tag",
       "text": "Notiere in Sekunden deine Bibellese, dein Gebet, dein Fasten … und verfolge deinen Fortschritt Woche für Woche."
     },
     "worship": {
-      "title": "Singe und bete, wo immer du bist",
+      "before": "Singe und ",
+      "marked": "bete",
+      "after": ", wo immer du bist",
       "text": "Finde die Lieder der Gemeinschaft und bete jeden Tag mit deinen Brüdern und Schwestern für die Gebetsanliegen."
     },
     "community": {
-      "title": "Bleib mit deiner Gemeinschaft verbunden",
+      "before": "Bleib mit deiner ",
+      "marked": "Gemeinschaft",
+      "after": " verbunden",
       "text": "Die Veranstaltungen und Ankündigungen deiner Gemeinde an einem Ort, damit du nichts verpasst."
     },
+    "step": "Seite {current} von {total}",
+    "streak(plural, param=n)": {
+      "one": "{n} Tag mit Gott",
+      "other": "{n} Tage mit Gott"
+    },
     "sample": {
-      "today": "Heute",
       "bibleReading": "Bibellese",
+      "chapters": "10 Kap.",
       "prayerAlone": "Persönliches Gebet",
-      "meditation": "Meditation",
-      "groupPrayer": "Gebet in der Gruppe",
-      "thisWeek": "Diese Woche",
-      "weekScore": "4 von 5 Tagen",
       "hymn": "Lied",
       "hymnNumber": "Nr. 12",
-      "fullScreen": "Vollbild",
       "prayerOfTheDay": "Gebetsanliegen des Tages",
       "prayerTopic": "Für die Prüfungen unserer Jugendlichen",
       "praying": "12 Personen beten",
       "iPray": "Ich bete",
-      "vigil": "Gebetsnacht",
-      "vigilMeta": "20 Uhr · Ortsgemeinde",
-      "join": "Ich bin dabei",
       "retreat": "Jugendfreizeit",
-      "retreatMeta": "Ganztägig",
       "announcement": "Ankündigung",
-      "announcementText": "Der Gottesdienst am Sonntag beginnt um 8:30 Uhr.",
-      "chapters": "10 Kap."
-    }
-  },
-  "welcome": {
-    "title": "Willkommen bei CMFI Connect",
-    "text": "Erstelle in einer Minute dein Konto, um deinen Tagesbericht auszufüllen und das Leben deiner Gemeinschaft mitzuverfolgen.",
+      "announcementText": "Der Gottesdienst am Sonntag beginnt um 8:30 Uhr."
+    },
     "createAccount": "Konto erstellen",
     "haveAccount": "Ich habe schon ein Konto"
   },
@@ -104,6 +97,7 @@
     "login": {
       "title": "Willkommen zurück",
       "subtitle": "Melde dich an, um deinen heutigen Bericht auszufüllen.",
+      "welcomeBack": "Schön, dass du da bist!",
       "submit": "Anmelden",
       "noAccount": "Noch kein Konto?",
       "createAccount": "Konto erstellen"

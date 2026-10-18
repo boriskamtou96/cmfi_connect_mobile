@@ -47,51 +47,44 @@
     "invalidEmail": "Invalid email address",
     "invalidCode": "Letters and digits only, no spaces"
   },
-  "onboarding": {
-    "skip": "Skip",
-    "next": "Next",
-    "start": "Get started",
-    "step": "Screen {current} of {total}",
-    "reports": {
-      "title": "Your walk with God, day after day",
+  "welcome": {
+    "seek": {
+      "before": "Seek ",
+      "marked": "God",
+      "after": " first, every day",
       "text": "Log your Bible reading, prayer and fasting in seconds… and watch your progress week after week."
     },
     "worship": {
-      "title": "Sing and pray, wherever you are",
+      "before": "Sing and ",
+      "marked": "pray",
+      "after": ", wherever you are",
       "text": "Find the community's hymns and carry the prayer topics with your brothers and sisters every day."
     },
     "community": {
-      "title": "Stay close to your community",
+      "before": "Stay close to your ",
+      "marked": "community",
+      "after": "",
       "text": "Your assembly's events and announcements, all in one place, so you never miss a thing."
     },
+    "step": "Screen {current} of {total}",
+    "streak(plural, param=n)": {
+      "one": "{n} day with God",
+      "other": "{n} days with God"
+    },
     "sample": {
-      "today": "Today",
       "bibleReading": "Bible reading",
+      "chapters": "10 ch.",
       "prayerAlone": "Prayer alone",
-      "meditation": "Meditation",
-      "groupPrayer": "Group prayer",
-      "thisWeek": "This week",
-      "weekScore": "4 days out of 5",
       "hymn": "Hymn",
       "hymnNumber": "No. 12",
-      "fullScreen": "Full screen",
       "prayerOfTheDay": "Prayer topic of the day",
       "prayerTopic": "For our young people's exams",
       "praying": "12 people are praying",
       "iPray": "I pray",
-      "vigil": "Prayer vigil",
-      "vigilMeta": "8 pm · Local assembly",
-      "join": "I'm going",
       "retreat": "Youth retreat",
-      "retreatMeta": "All day",
       "announcement": "Announcement",
-      "announcementText": "Sunday service starts at 8:30 am.",
-      "chapters": "10 ch."
-    }
-  },
-  "welcome": {
-    "title": "Welcome to CMFI Connect",
-    "text": "Create your account in a minute to fill in your daily report and follow your community's life.",
+      "announcementText": "Sunday service starts at 8:30 am."
+    },
     "createAccount": "Create my account",
     "haveAccount": "I already have an account"
   },
@@ -104,6 +97,7 @@
     "login": {
       "title": "Welcome back",
       "subtitle": "Sign in to fill in today's report.",
+      "welcomeBack": "Glad you're here!",
       "submit": "Sign in",
       "noAccount": "No account yet?",
       "createAccount": "Create an account"

@@ -13,7 +13,8 @@ part 'preferences.g.dart';
 SharedPreferences sharedPreferences(Ref ref) =>
     throw UnimplementedError('sharedPreferencesProvider must be overridden');
 
-/// Whether the presentation screens were already shown (first launch only).
+/// Whether the presentation was already shown: the welcome shows its three
+/// pages once, then only its first one (after a sign-out, for instance).
 @Riverpod(keepAlive: true)
 class OnboardingSeen extends _$OnboardingSeen {
   static const _key = 'onboarding_seen';

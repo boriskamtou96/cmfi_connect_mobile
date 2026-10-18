@@ -43,7 +43,6 @@ class TranslationsAr extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _Translations$common$ar common = _Translations$common$ar._(_root);
 	@override late final _Translations$errors$ar errors = _Translations$errors$ar._(_root);
 	@override late final _Translations$validation$ar validation = _Translations$validation$ar._(_root);
-	@override late final _Translations$onboarding$ar onboarding = _Translations$onboarding$ar._(_root);
 	@override late final _Translations$welcome$ar welcome = _Translations$welcome$ar._(_root);
 	@override late final _Translations$auth$ar auth = _Translations$auth$ar._(_root);
 	@override late final _Translations$countries$ar countries = _Translations$countries$ar._(_root);
@@ -160,23 +159,6 @@ class _Translations$validation$ar extends Translations$validation$fr {
 	@override String get invalidCode => 'أحرف وأرقام فقط، دون مسافات';
 }
 
-// Path: onboarding
-class _Translations$onboarding$ar extends Translations$onboarding$fr {
-	_Translations$onboarding$ar._(TranslationsAr root) : this._root = root, super.internal(root);
-
-	final TranslationsAr _root; // ignore: unused_field
-
-	// Translations
-	@override String get skip => 'تخطٍّ';
-	@override String get next => 'التالي';
-	@override String get start => 'ابدأ';
-	@override String step({required Object current, required Object total}) => 'الشاشة ${current} من ${total}';
-	@override late final _Translations$onboarding$reports$ar reports = _Translations$onboarding$reports$ar._(_root);
-	@override late final _Translations$onboarding$worship$ar worship = _Translations$onboarding$worship$ar._(_root);
-	@override late final _Translations$onboarding$community$ar community = _Translations$onboarding$community$ar._(_root);
-	@override late final _Translations$onboarding$sample$ar sample = _Translations$onboarding$sample$ar._(_root);
-}
-
 // Path: welcome
 class _Translations$welcome$ar extends Translations$welcome$fr {
 	_Translations$welcome$ar._(TranslationsAr root) : this._root = root, super.internal(root);
@@ -184,8 +166,19 @@ class _Translations$welcome$ar extends Translations$welcome$fr {
 	final TranslationsAr _root; // ignore: unused_field
 
 	// Translations
-	@override String get title => 'مرحبًا بك في CMFI Connect';
-	@override String get text => 'أنشئ حسابك في دقيقة واحدة لتملأ تقريرك اليومي وتتابع حياة مجتمعك.';
+	@override late final _Translations$welcome$seek$ar seek = _Translations$welcome$seek$ar._(_root);
+	@override late final _Translations$welcome$worship$ar worship = _Translations$welcome$worship$ar._(_root);
+	@override late final _Translations$welcome$community$ar community = _Translations$welcome$community$ar._(_root);
+	@override String step({required Object current, required Object total}) => 'الشاشة ${current} من ${total}';
+	@override String streak({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n,
+		zero: '${n} يوم مع الله',
+		one: 'يوم واحد مع الله',
+		two: 'يومان مع الله',
+		few: '${n} أيام مع الله',
+		many: '${n} يومًا مع الله',
+		other: '${n} يوم مع الله',
+	);
+	@override late final _Translations$welcome$sample$ar sample = _Translations$welcome$sample$ar._(_root);
 	@override String get createAccount => 'إنشاء حسابي';
 	@override String get haveAccount => 'لديّ حساب بالفعل';
 }
@@ -1800,68 +1793,64 @@ class _Translations$fasts$ar extends Translations$fasts$fr {
 	@override String homeText({required Object time}) => 'ينتهي هذا اليوم عند ${time}';
 }
 
-// Path: onboarding.reports
-class _Translations$onboarding$reports$ar extends Translations$onboarding$reports$fr {
-	_Translations$onboarding$reports$ar._(TranslationsAr root) : this._root = root, super.internal(root);
+// Path: welcome.seek
+class _Translations$welcome$seek$ar extends Translations$welcome$seek$fr {
+	_Translations$welcome$seek$ar._(TranslationsAr root) : this._root = root, super.internal(root);
 
 	final TranslationsAr _root; // ignore: unused_field
 
 	// Translations
-	@override String get title => 'مسيرتك مع الله، يومًا بعد يوم';
+	@override String get before => 'اطلب ';
+	@override String get marked => 'الله';
+	@override String get after => ' أولًا، كل يوم';
 	@override String get text => 'سجّل في ثوانٍ قراءتك للكتاب المقدس، وصلاتك، وصومك… وتابع تقدّمك أسبوعًا بعد أسبوع.';
 }
 
-// Path: onboarding.worship
-class _Translations$onboarding$worship$ar extends Translations$onboarding$worship$fr {
-	_Translations$onboarding$worship$ar._(TranslationsAr root) : this._root = root, super.internal(root);
+// Path: welcome.worship
+class _Translations$welcome$worship$ar extends Translations$welcome$worship$fr {
+	_Translations$welcome$worship$ar._(TranslationsAr root) : this._root = root, super.internal(root);
 
 	final TranslationsAr _root; // ignore: unused_field
 
 	// Translations
-	@override String get title => 'رنّم وصلِّ أينما كنت';
+	@override String get before => '';
+	@override String get marked => 'رنّم';
+	@override String get after => ' وصلِّ أينما كنت';
 	@override String get text => 'اعثر على ترانيم المجتمع، واحمل كل يوم طلبات الصلاة مع إخوتك وأخواتك.';
 }
 
-// Path: onboarding.community
-class _Translations$onboarding$community$ar extends Translations$onboarding$community$fr {
-	_Translations$onboarding$community$ar._(TranslationsAr root) : this._root = root, super.internal(root);
+// Path: welcome.community
+class _Translations$welcome$community$ar extends Translations$welcome$community$fr {
+	_Translations$welcome$community$ar._(TranslationsAr root) : this._root = root, super.internal(root);
 
 	final TranslationsAr _root; // ignore: unused_field
 
 	// Translations
-	@override String get title => 'ابقَ على صلة بمجتمعك';
+	@override String get before => 'ابقَ على صلة ';
+	@override String get marked => 'بمجتمعك';
+	@override String get after => '';
 	@override String get text => 'فعاليات جماعتك وإعلاناتها في مكان واحد، حتى لا يفوتك شيء.';
 }
 
-// Path: onboarding.sample
-class _Translations$onboarding$sample$ar extends Translations$onboarding$sample$fr {
-	_Translations$onboarding$sample$ar._(TranslationsAr root) : this._root = root, super.internal(root);
+// Path: welcome.sample
+class _Translations$welcome$sample$ar extends Translations$welcome$sample$fr {
+	_Translations$welcome$sample$ar._(TranslationsAr root) : this._root = root, super.internal(root);
 
 	final TranslationsAr _root; // ignore: unused_field
 
 	// Translations
-	@override String get today => 'اليوم';
 	@override String get bibleReading => 'قراءة الكتاب المقدس';
+	@override String get chapters => '10 إصحاحات';
 	@override String get prayerAlone => 'الصلاة الفردية';
-	@override String get meditation => 'التأمل';
-	@override String get groupPrayer => 'الصلاة الجماعية';
-	@override String get thisWeek => 'هذا الأسبوع';
-	@override String get weekScore => '4 أيام من 5';
 	@override String get hymn => 'ترنيمة';
 	@override String get hymnNumber => 'رقم 12';
-	@override String get fullScreen => 'ملء الشاشة';
 	@override String get prayerOfTheDay => 'طلب الصلاة لهذا اليوم';
 	@override String get prayerTopic => 'من أجل امتحانات شبابنا';
 	@override String get praying => '12 شخصًا يصلّون';
 	@override String get iPray => 'أصلّي';
-	@override String get vigil => 'سهرة صلاة';
-	@override String get vigilMeta => '20:00 · الجماعة المحلية';
-	@override String get join => 'سأشارك';
 	@override String get retreat => 'خلوة الشباب';
-	@override String get retreatMeta => 'طوال اليوم';
 	@override String get announcement => 'إعلان';
 	@override String get announcementText => 'تبدأ عبادة الأحد في الساعة 8:30 صباحًا.';
-	@override String get chapters => '10 إصحاحات';
 }
 
 // Path: auth.login
@@ -1873,6 +1862,7 @@ class _Translations$auth$login$ar extends Translations$auth$login$fr {
 	// Translations
 	@override String get title => 'مرحبًا بعودتك';
 	@override String get subtitle => 'سجّل الدخول لتملأ تقرير اليوم.';
+	@override String get welcomeBack => 'يسعدنا وجودك!';
 	@override String get submit => 'تسجيل الدخول';
 	@override String get noAccount => 'ليس لديك حساب بعد؟';
 	@override String get createAccount => 'إنشاء حساب';
@@ -3251,40 +3241,32 @@ extension on TranslationsAr {
 			'validation.invalidPhone' => 'رقم هاتف غير صالح',
 			'validation.invalidEmail' => 'عنوان بريد إلكتروني غير صالح',
 			'validation.invalidCode' => 'أحرف وأرقام فقط، دون مسافات',
-			'onboarding.skip' => 'تخطٍّ',
-			'onboarding.next' => 'التالي',
-			'onboarding.start' => 'ابدأ',
-			'onboarding.step' => ({required Object current, required Object total}) => 'الشاشة ${current} من ${total}',
-			'onboarding.reports.title' => 'مسيرتك مع الله، يومًا بعد يوم',
-			'onboarding.reports.text' => 'سجّل في ثوانٍ قراءتك للكتاب المقدس، وصلاتك، وصومك… وتابع تقدّمك أسبوعًا بعد أسبوع.',
-			'onboarding.worship.title' => 'رنّم وصلِّ أينما كنت',
-			'onboarding.worship.text' => 'اعثر على ترانيم المجتمع، واحمل كل يوم طلبات الصلاة مع إخوتك وأخواتك.',
-			'onboarding.community.title' => 'ابقَ على صلة بمجتمعك',
-			'onboarding.community.text' => 'فعاليات جماعتك وإعلاناتها في مكان واحد، حتى لا يفوتك شيء.',
-			'onboarding.sample.today' => 'اليوم',
-			'onboarding.sample.bibleReading' => 'قراءة الكتاب المقدس',
-			'onboarding.sample.prayerAlone' => 'الصلاة الفردية',
-			'onboarding.sample.meditation' => 'التأمل',
-			'onboarding.sample.groupPrayer' => 'الصلاة الجماعية',
-			'onboarding.sample.thisWeek' => 'هذا الأسبوع',
-			'onboarding.sample.weekScore' => '4 أيام من 5',
-			'onboarding.sample.hymn' => 'ترنيمة',
-			'onboarding.sample.hymnNumber' => 'رقم 12',
-			'onboarding.sample.fullScreen' => 'ملء الشاشة',
-			'onboarding.sample.prayerOfTheDay' => 'طلب الصلاة لهذا اليوم',
-			'onboarding.sample.prayerTopic' => 'من أجل امتحانات شبابنا',
-			'onboarding.sample.praying' => '12 شخصًا يصلّون',
-			'onboarding.sample.iPray' => 'أصلّي',
-			'onboarding.sample.vigil' => 'سهرة صلاة',
-			'onboarding.sample.vigilMeta' => '20:00 · الجماعة المحلية',
-			'onboarding.sample.join' => 'سأشارك',
-			'onboarding.sample.retreat' => 'خلوة الشباب',
-			'onboarding.sample.retreatMeta' => 'طوال اليوم',
-			'onboarding.sample.announcement' => 'إعلان',
-			'onboarding.sample.announcementText' => 'تبدأ عبادة الأحد في الساعة 8:30 صباحًا.',
-			'onboarding.sample.chapters' => '10 إصحاحات',
-			'welcome.title' => 'مرحبًا بك في CMFI Connect',
-			'welcome.text' => 'أنشئ حسابك في دقيقة واحدة لتملأ تقريرك اليومي وتتابع حياة مجتمعك.',
+			'welcome.seek.before' => 'اطلب ',
+			'welcome.seek.marked' => 'الله',
+			'welcome.seek.after' => ' أولًا، كل يوم',
+			'welcome.seek.text' => 'سجّل في ثوانٍ قراءتك للكتاب المقدس، وصلاتك، وصومك… وتابع تقدّمك أسبوعًا بعد أسبوع.',
+			'welcome.worship.before' => '',
+			'welcome.worship.marked' => 'رنّم',
+			'welcome.worship.after' => ' وصلِّ أينما كنت',
+			'welcome.worship.text' => 'اعثر على ترانيم المجتمع، واحمل كل يوم طلبات الصلاة مع إخوتك وأخواتك.',
+			'welcome.community.before' => 'ابقَ على صلة ',
+			'welcome.community.marked' => 'بمجتمعك',
+			'welcome.community.after' => '',
+			'welcome.community.text' => 'فعاليات جماعتك وإعلاناتها في مكان واحد، حتى لا يفوتك شيء.',
+			'welcome.step' => ({required Object current, required Object total}) => 'الشاشة ${current} من ${total}',
+			'welcome.streak' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n, zero: '${n} يوم مع الله', one: 'يوم واحد مع الله', two: 'يومان مع الله', few: '${n} أيام مع الله', many: '${n} يومًا مع الله', other: '${n} يوم مع الله', ), 
+			'welcome.sample.bibleReading' => 'قراءة الكتاب المقدس',
+			'welcome.sample.chapters' => '10 إصحاحات',
+			'welcome.sample.prayerAlone' => 'الصلاة الفردية',
+			'welcome.sample.hymn' => 'ترنيمة',
+			'welcome.sample.hymnNumber' => 'رقم 12',
+			'welcome.sample.prayerOfTheDay' => 'طلب الصلاة لهذا اليوم',
+			'welcome.sample.prayerTopic' => 'من أجل امتحانات شبابنا',
+			'welcome.sample.praying' => '12 شخصًا يصلّون',
+			'welcome.sample.iPray' => 'أصلّي',
+			'welcome.sample.retreat' => 'خلوة الشباب',
+			'welcome.sample.announcement' => 'إعلان',
+			'welcome.sample.announcementText' => 'تبدأ عبادة الأحد في الساعة 8:30 صباحًا.',
 			'welcome.createAccount' => 'إنشاء حسابي',
 			'welcome.haveAccount' => 'لديّ حساب بالفعل',
 			'auth.phone' => 'الهاتف',
@@ -3294,6 +3276,7 @@ extension on TranslationsAr {
 			'auth.hidePassword' => 'إخفاء كلمة المرور',
 			'auth.login.title' => 'مرحبًا بعودتك',
 			'auth.login.subtitle' => 'سجّل الدخول لتملأ تقرير اليوم.',
+			'auth.login.welcomeBack' => 'يسعدنا وجودك!',
 			'auth.login.submit' => 'تسجيل الدخول',
 			'auth.login.noAccount' => 'ليس لديك حساب بعد؟',
 			'auth.login.createAccount' => 'إنشاء حساب',
@@ -3723,8 +3706,6 @@ extension on TranslationsAr {
 			'hymns.chooseBook' => 'اختر كتاب الترانيم',
 			'hymns.count' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n, zero: '${n} ترنيمة', one: 'ترنيمة واحدة', two: 'ترنيمتان', few: '${n} ترانيم', many: '${n} ترنيمة', other: '${n} ترنيمة', ), 
 			'hymns.number' => ({required Object number}) => 'رقم ${number}',
-			_ => null,
-		} ?? switch (path) {
 			'hymns.emptyFavorites' => 'المس النجمة بجانب أي ترنيمة لتجدها هنا.',
 			'hymns.emptyRecent' => 'ستظهر هنا الترانيم التي تفتحها.',
 			'hymns.noResult' => ({required Object query}) => 'لا توجد ترنيمة تطابق «${query}».',
@@ -3732,6 +3713,8 @@ extension on TranslationsAr {
 			'hymns.upToDate' => 'كتب الترانيم محدّثة.',
 			'hymns.updated' => 'تم تحديث كتب الترانيم.',
 			'hymns.chorus' => 'القرار',
+			_ => null,
+		} ?? switch (path) {
 			'hymns.chorusNumber' => ({required Object label}) => 'القرار ${label}',
 			'hymns.verse' => ({required Object label}) => 'المقطع ${label}',
 			'hymns.times' => ({required Object n}) => '×${n}',
@@ -4237,8 +4220,6 @@ extension on TranslationsAr {
 			'prayer.lists.uses.coworkers' => 'تصلّي خلوة المساء كل يوم من أجل 10 من العاملين معك في الخدمة (5 + 5)، بالتناوب.',
 			'prayer.lists.privateNote' => 'لا يراها أحد غيرك.',
 			'prayer.lists.count' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n, zero: 'لا أحد', one: 'شخص واحد', two: 'شخصان', few: '${n} أشخاص', many: '${n} شخصًا', other: '${n} شخص', ), 
-			_ => null,
-		} ?? switch (path) {
 			'prayer.lists.empty' => 'لا أحد حتى الآن. أضف الذين تصلّي من أجلهم.',
 			'prayer.lists.add' => 'إضافة شخص',
 			'prayer.lists.prayedToday' => 'اليوم',
@@ -4246,6 +4227,8 @@ extension on TranslationsAr {
 			'prayer.lists.answeredTitle.unbelievers' => 'آمنوا بالرب',
 			'prayer.lists.answeredTitle.believers' => 'صلوات مستجابة',
 			'prayer.lists.answeredTitle.backsliders' => 'رجعوا إلى الرب',
+			_ => null,
+		} ?? switch (path) {
 			'prayer.lists.answeredTitle.coworkers' => 'صلوات مستجابة',
 			'prayer.lists.answeredOn.unbelievers' => ({required Object date}) => 'آمن بالرب في ${date}',
 			'prayer.lists.answeredOn.believers' => ({required Object date}) => 'استُجيبت الصلاة في ${date}',
@@ -4751,8 +4734,6 @@ extension on TranslationsAr {
 			'souls.noContact' => 'لا يوجد تذكير',
 			'souls.metAt' => ({required Object date}) => 'تمّ اللقاء في ${date}',
 			'souls.notes' => 'ملاحظات',
-			_ => null,
-		} ?? switch (path) {
 			'souls.addNote' => 'أضف الملاحظة',
 			'souls.noNotes' => 'لا توجد ملاحظات بعد.',
 			'souls.deleteNote' => 'احذف الملاحظة',
@@ -4760,6 +4741,8 @@ extension on TranslationsAr {
 			'souls.csv.name' => 'الاسم',
 			'souls.csv.phone' => 'الهاتف',
 			'souls.csv.place' => 'المكان',
+			_ => null,
+		} ?? switch (path) {
 			'souls.csv.metOn' => 'تاريخ اللقاء',
 			'souls.csv.stage' => 'المرحلة',
 			'souls.csv.next' => 'التواصل القادم',

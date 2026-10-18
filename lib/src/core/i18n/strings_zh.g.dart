@@ -43,7 +43,6 @@ class TranslationsZh extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _Translations$common$zh common = _Translations$common$zh._(_root);
 	@override late final _Translations$errors$zh errors = _Translations$errors$zh._(_root);
 	@override late final _Translations$validation$zh validation = _Translations$validation$zh._(_root);
-	@override late final _Translations$onboarding$zh onboarding = _Translations$onboarding$zh._(_root);
 	@override late final _Translations$welcome$zh welcome = _Translations$welcome$zh._(_root);
 	@override late final _Translations$auth$zh auth = _Translations$auth$zh._(_root);
 	@override late final _Translations$countries$zh countries = _Translations$countries$zh._(_root);
@@ -160,23 +159,6 @@ class _Translations$validation$zh extends Translations$validation$fr {
 	@override String get invalidCode => '只能使用字母和数字，不含空格';
 }
 
-// Path: onboarding
-class _Translations$onboarding$zh extends Translations$onboarding$fr {
-	_Translations$onboarding$zh._(TranslationsZh root) : this._root = root, super.internal(root);
-
-	final TranslationsZh _root; // ignore: unused_field
-
-	// Translations
-	@override String get skip => '跳过';
-	@override String get next => '下一步';
-	@override String get start => '开始';
-	@override String step({required Object current, required Object total}) => '第 ${current} 页，共 ${total} 页';
-	@override late final _Translations$onboarding$reports$zh reports = _Translations$onboarding$reports$zh._(_root);
-	@override late final _Translations$onboarding$worship$zh worship = _Translations$onboarding$worship$zh._(_root);
-	@override late final _Translations$onboarding$community$zh community = _Translations$onboarding$community$zh._(_root);
-	@override late final _Translations$onboarding$sample$zh sample = _Translations$onboarding$sample$zh._(_root);
-}
-
 // Path: welcome
 class _Translations$welcome$zh extends Translations$welcome$fr {
 	_Translations$welcome$zh._(TranslationsZh root) : this._root = root, super.internal(root);
@@ -184,8 +166,14 @@ class _Translations$welcome$zh extends Translations$welcome$fr {
 	final TranslationsZh _root; // ignore: unused_field
 
 	// Translations
-	@override String get title => '欢迎使用 CMFI Connect';
-	@override String get text => '只需一分钟创建账号，就能填写你的每日汇报，关注团契的动态。';
+	@override late final _Translations$welcome$seek$zh seek = _Translations$welcome$seek$zh._(_root);
+	@override late final _Translations$welcome$worship$zh worship = _Translations$welcome$worship$zh._(_root);
+	@override late final _Translations$welcome$community$zh community = _Translations$welcome$community$zh._(_root);
+	@override String step({required Object current, required Object total}) => '第 ${current} 页，共 ${total} 页';
+	@override String streak({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n,
+		other: '与神同行 ${n} 天',
+	);
+	@override late final _Translations$welcome$sample$zh sample = _Translations$welcome$sample$zh._(_root);
 	@override String get createAccount => '创建账号';
 	@override String get haveAccount => '我已有账号';
 }
@@ -1584,68 +1572,64 @@ class _Translations$fasts$zh extends Translations$fasts$fr {
 	@override String homeText({required Object time}) => '今天在 ${time} 结束';
 }
 
-// Path: onboarding.reports
-class _Translations$onboarding$reports$zh extends Translations$onboarding$reports$fr {
-	_Translations$onboarding$reports$zh._(TranslationsZh root) : this._root = root, super.internal(root);
+// Path: welcome.seek
+class _Translations$welcome$seek$zh extends Translations$welcome$seek$fr {
+	_Translations$welcome$seek$zh._(TranslationsZh root) : this._root = root, super.internal(root);
 
 	final TranslationsZh _root; // ignore: unused_field
 
 	// Translations
-	@override String get title => '与神同行，日复一日';
+	@override String get before => '每天先寻求';
+	@override String get marked => '神';
+	@override String get after => '';
 	@override String get text => '几秒钟就能记下你的读经、祷告、禁食……每周都能看到自己的进步。';
 }
 
-// Path: onboarding.worship
-class _Translations$onboarding$worship$zh extends Translations$onboarding$worship$fr {
-	_Translations$onboarding$worship$zh._(TranslationsZh root) : this._root = root, super.internal(root);
+// Path: welcome.worship
+class _Translations$welcome$worship$zh extends Translations$welcome$worship$fr {
+	_Translations$welcome$worship$zh._(TranslationsZh root) : this._root = root, super.internal(root);
 
 	final TranslationsZh _root; // ignore: unused_field
 
 	// Translations
-	@override String get title => '随时随地，歌唱与祷告';
+	@override String get before => '随时随地，歌唱与';
+	@override String get marked => '祷告';
+	@override String get after => '';
 	@override String get text => '查看团契的诗歌，每天与弟兄姊妹一起为代祷事项祷告。';
 }
 
-// Path: onboarding.community
-class _Translations$onboarding$community$zh extends Translations$onboarding$community$fr {
-	_Translations$onboarding$community$zh._(TranslationsZh root) : this._root = root, super.internal(root);
+// Path: welcome.community
+class _Translations$welcome$community$zh extends Translations$welcome$community$fr {
+	_Translations$welcome$community$zh._(TranslationsZh root) : this._root = root, super.internal(root);
 
 	final TranslationsZh _root; // ignore: unused_field
 
 	// Translations
-	@override String get title => '与你的团契保持联系';
+	@override String get before => '与你的';
+	@override String get marked => '团契';
+	@override String get after => '保持联系';
 	@override String get text => '你所在聚会点的活动和通知都在这里，一条也不会错过。';
 }
 
-// Path: onboarding.sample
-class _Translations$onboarding$sample$zh extends Translations$onboarding$sample$fr {
-	_Translations$onboarding$sample$zh._(TranslationsZh root) : this._root = root, super.internal(root);
+// Path: welcome.sample
+class _Translations$welcome$sample$zh extends Translations$welcome$sample$fr {
+	_Translations$welcome$sample$zh._(TranslationsZh root) : this._root = root, super.internal(root);
 
 	final TranslationsZh _root; // ignore: unused_field
 
 	// Translations
-	@override String get today => '今天';
 	@override String get bibleReading => '读经';
+	@override String get chapters => '10 章';
 	@override String get prayerAlone => '个人祷告';
-	@override String get meditation => '默想';
-	@override String get groupPrayer => '小组祷告';
-	@override String get thisWeek => '本周';
-	@override String get weekScore => '4/5 天';
 	@override String get hymn => '诗歌';
 	@override String get hymnNumber => '第 12 首';
-	@override String get fullScreen => '全屏';
 	@override String get prayerOfTheDay => '今日代祷事项';
 	@override String get prayerTopic => '为青年们的考试祷告';
 	@override String get praying => '12 人正在祷告';
 	@override String get iPray => '我来祷告';
-	@override String get vigil => '守夜祷告会';
-	@override String get vigilMeta => '晚上 8 点 · 本地聚会点';
-	@override String get join => '我要参加';
 	@override String get retreat => '青年退修会';
-	@override String get retreatMeta => '全天';
 	@override String get announcement => '通知';
 	@override String get announcementText => '主日崇拜早上 8:30 开始。';
-	@override String get chapters => '10 章';
 }
 
 // Path: auth.login
@@ -1657,6 +1641,7 @@ class _Translations$auth$login$zh extends Translations$auth$login$fr {
 	// Translations
 	@override String get title => '欢迎回来';
 	@override String get subtitle => '登录后填写今天的汇报。';
+	@override String get welcomeBack => '很高兴见到你！';
 	@override String get submit => '登录';
 	@override String get noAccount => '还没有账号？';
 	@override String get createAccount => '创建账号';
@@ -2938,40 +2923,32 @@ extension on TranslationsZh {
 			'validation.invalidPhone' => '手机号无效',
 			'validation.invalidEmail' => '邮箱地址无效',
 			'validation.invalidCode' => '只能使用字母和数字，不含空格',
-			'onboarding.skip' => '跳过',
-			'onboarding.next' => '下一步',
-			'onboarding.start' => '开始',
-			'onboarding.step' => ({required Object current, required Object total}) => '第 ${current} 页，共 ${total} 页',
-			'onboarding.reports.title' => '与神同行，日复一日',
-			'onboarding.reports.text' => '几秒钟就能记下你的读经、祷告、禁食……每周都能看到自己的进步。',
-			'onboarding.worship.title' => '随时随地，歌唱与祷告',
-			'onboarding.worship.text' => '查看团契的诗歌，每天与弟兄姊妹一起为代祷事项祷告。',
-			'onboarding.community.title' => '与你的团契保持联系',
-			'onboarding.community.text' => '你所在聚会点的活动和通知都在这里，一条也不会错过。',
-			'onboarding.sample.today' => '今天',
-			'onboarding.sample.bibleReading' => '读经',
-			'onboarding.sample.prayerAlone' => '个人祷告',
-			'onboarding.sample.meditation' => '默想',
-			'onboarding.sample.groupPrayer' => '小组祷告',
-			'onboarding.sample.thisWeek' => '本周',
-			'onboarding.sample.weekScore' => '4/5 天',
-			'onboarding.sample.hymn' => '诗歌',
-			'onboarding.sample.hymnNumber' => '第 12 首',
-			'onboarding.sample.fullScreen' => '全屏',
-			'onboarding.sample.prayerOfTheDay' => '今日代祷事项',
-			'onboarding.sample.prayerTopic' => '为青年们的考试祷告',
-			'onboarding.sample.praying' => '12 人正在祷告',
-			'onboarding.sample.iPray' => '我来祷告',
-			'onboarding.sample.vigil' => '守夜祷告会',
-			'onboarding.sample.vigilMeta' => '晚上 8 点 · 本地聚会点',
-			'onboarding.sample.join' => '我要参加',
-			'onboarding.sample.retreat' => '青年退修会',
-			'onboarding.sample.retreatMeta' => '全天',
-			'onboarding.sample.announcement' => '通知',
-			'onboarding.sample.announcementText' => '主日崇拜早上 8:30 开始。',
-			'onboarding.sample.chapters' => '10 章',
-			'welcome.title' => '欢迎使用 CMFI Connect',
-			'welcome.text' => '只需一分钟创建账号，就能填写你的每日汇报，关注团契的动态。',
+			'welcome.seek.before' => '每天先寻求',
+			'welcome.seek.marked' => '神',
+			'welcome.seek.after' => '',
+			'welcome.seek.text' => '几秒钟就能记下你的读经、祷告、禁食……每周都能看到自己的进步。',
+			'welcome.worship.before' => '随时随地，歌唱与',
+			'welcome.worship.marked' => '祷告',
+			'welcome.worship.after' => '',
+			'welcome.worship.text' => '查看团契的诗歌，每天与弟兄姊妹一起为代祷事项祷告。',
+			'welcome.community.before' => '与你的',
+			'welcome.community.marked' => '团契',
+			'welcome.community.after' => '保持联系',
+			'welcome.community.text' => '你所在聚会点的活动和通知都在这里，一条也不会错过。',
+			'welcome.step' => ({required Object current, required Object total}) => '第 ${current} 页，共 ${total} 页',
+			'welcome.streak' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n, other: '与神同行 ${n} 天', ), 
+			'welcome.sample.bibleReading' => '读经',
+			'welcome.sample.chapters' => '10 章',
+			'welcome.sample.prayerAlone' => '个人祷告',
+			'welcome.sample.hymn' => '诗歌',
+			'welcome.sample.hymnNumber' => '第 12 首',
+			'welcome.sample.prayerOfTheDay' => '今日代祷事项',
+			'welcome.sample.prayerTopic' => '为青年们的考试祷告',
+			'welcome.sample.praying' => '12 人正在祷告',
+			'welcome.sample.iPray' => '我来祷告',
+			'welcome.sample.retreat' => '青年退修会',
+			'welcome.sample.announcement' => '通知',
+			'welcome.sample.announcementText' => '主日崇拜早上 8:30 开始。',
 			'welcome.createAccount' => '创建账号',
 			'welcome.haveAccount' => '我已有账号',
 			'auth.phone' => '手机号',
@@ -2981,6 +2958,7 @@ extension on TranslationsZh {
 			'auth.hidePassword' => '隐藏密码',
 			'auth.login.title' => '欢迎回来',
 			'auth.login.subtitle' => '登录后填写今天的汇报。',
+			'auth.login.welcomeBack' => '很高兴见到你！',
 			'auth.login.submit' => '登录',
 			'auth.login.noAccount' => '还没有账号？',
 			'auth.login.createAccount' => '创建账号',
@@ -3410,8 +3388,6 @@ extension on TranslationsZh {
 			'hymns.chooseBook' => '选择诗歌本',
 			'hymns.count' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n, other: '${n} 首诗歌', ), 
 			'hymns.number' => ({required Object number}) => '第 ${number} 首',
-			_ => null,
-		} ?? switch (path) {
 			'hymns.emptyFavorites' => '点一下诗歌的星标，就能在这里找到它。',
 			'hymns.emptyRecent' => '你打开过的诗歌会显示在这里。',
 			'hymns.noResult' => ({required Object query}) => '没有与「${query}」相符的诗歌。',
@@ -3419,6 +3395,8 @@ extension on TranslationsZh {
 			'hymns.upToDate' => '诗歌本已是最新。',
 			'hymns.updated' => '诗歌本已更新。',
 			'hymns.chorus' => '副歌',
+			_ => null,
+		} ?? switch (path) {
 			'hymns.chorusNumber' => ({required Object label}) => '副歌 ${label}',
 			'hymns.verse' => ({required Object label}) => '第 ${label} 节',
 			'hymns.times' => ({required Object n}) => '×${n}',
@@ -3924,8 +3902,6 @@ extension on TranslationsZh {
 			'prayer.lists.uses.coworkers' => '傍晚祷告每天轮流为你的 10 位同工（5 + 5）祷告。',
 			'prayer.lists.privateNote' => '只有你能看到。',
 			'prayer.lists.count' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n, zero: '暂无', other: '${n} 人', ), 
-			_ => null,
-		} ?? switch (path) {
 			'prayer.lists.empty' => '暂时还没有人。添加你为之祷告的人吧。',
 			'prayer.lists.add' => '添加一个人',
 			'prayer.lists.prayedToday' => '今天',
@@ -3933,6 +3909,8 @@ extension on TranslationsZh {
 			'prayer.lists.answeredTitle.unbelievers' => '已信主',
 			'prayer.lists.answeredTitle.believers' => '蒙应允的祷告',
 			'prayer.lists.answeredTitle.backsliders' => '已回到主面前',
+			_ => null,
+		} ?? switch (path) {
 			'prayer.lists.answeredTitle.coworkers' => '蒙应允的祷告',
 			'prayer.lists.answeredOn.unbelievers' => ({required Object date}) => '于 ${date} 信主',
 			'prayer.lists.answeredOn.believers' => ({required Object date}) => '于 ${date} 蒙应允',
@@ -4438,8 +4416,6 @@ extension on TranslationsZh {
 			'souls.noContact' => '没有提醒',
 			'souls.metAt' => ({required Object date}) => '${date} 认识',
 			'souls.notes' => '备注',
-			_ => null,
-		} ?? switch (path) {
 			'souls.addNote' => '添加备注',
 			'souls.noNotes' => '还没有备注。',
 			'souls.deleteNote' => '删除备注',
@@ -4447,6 +4423,8 @@ extension on TranslationsZh {
 			'souls.csv.name' => '姓名',
 			'souls.csv.phone' => '电话',
 			'souls.csv.place' => '地点',
+			_ => null,
+		} ?? switch (path) {
 			'souls.csv.metOn' => '认识日期',
 			'souls.csv.stage' => '阶段',
 			'souls.csv.next' => '下次联系',

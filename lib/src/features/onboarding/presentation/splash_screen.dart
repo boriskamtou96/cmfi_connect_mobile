@@ -8,14 +8,13 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import '../../../core/i18n/strings.g.dart';
 import '../../../core/services/app_log.dart';
 import '../../../core/session/session.dart';
-import '../../../core/storage/preferences.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_motion.dart';
 import '../../../core/widgets/cmfi_logo.dart';
 import '../../../routing/app_router.dart';
 
-/// First route. Looks like the native splash, decides where to go
-/// (presentation, welcome or the app), then hands over.
+/// First route. Looks like the native splash, decides where to go (the
+/// welcome or the app), then hands over.
 @RoutePage()
 class SplashScreen extends HookConsumerWidget {
   const SplashScreen({super.key});
@@ -38,8 +37,7 @@ class SplashScreen extends HookConsumerWidget {
 
         final PageRouteInfo next = switch (status) {
           SessionStatus.authenticated => const AppShellRoute(),
-          _ when ref.read(onboardingSeenProvider) => const WelcomeRoute(),
-          _ => const OnboardingRoute(),
+          _ => const WelcomeRoute(),
         };
         await context.router.replaceAll([next]);
         FlutterNativeSplash.remove();

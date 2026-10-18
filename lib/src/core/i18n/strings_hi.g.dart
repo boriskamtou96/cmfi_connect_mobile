@@ -43,7 +43,6 @@ class TranslationsHi extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _Translations$common$hi common = _Translations$common$hi._(_root);
 	@override late final _Translations$errors$hi errors = _Translations$errors$hi._(_root);
 	@override late final _Translations$validation$hi validation = _Translations$validation$hi._(_root);
-	@override late final _Translations$onboarding$hi onboarding = _Translations$onboarding$hi._(_root);
 	@override late final _Translations$welcome$hi welcome = _Translations$welcome$hi._(_root);
 	@override late final _Translations$auth$hi auth = _Translations$auth$hi._(_root);
 	@override late final _Translations$countries$hi countries = _Translations$countries$hi._(_root);
@@ -160,23 +159,6 @@ class _Translations$validation$hi extends Translations$validation$fr {
 	@override String get invalidCode => 'सिर्फ़ अक्षर और अंक, बिना स्पेस के';
 }
 
-// Path: onboarding
-class _Translations$onboarding$hi extends Translations$onboarding$fr {
-	_Translations$onboarding$hi._(TranslationsHi root) : this._root = root, super.internal(root);
-
-	final TranslationsHi _root; // ignore: unused_field
-
-	// Translations
-	@override String get skip => 'छोड़ो';
-	@override String get next => 'आगे';
-	@override String get start => 'शुरू करो';
-	@override String step({required Object total, required Object current}) => '${total} में से स्क्रीन ${current}';
-	@override late final _Translations$onboarding$reports$hi reports = _Translations$onboarding$reports$hi._(_root);
-	@override late final _Translations$onboarding$worship$hi worship = _Translations$onboarding$worship$hi._(_root);
-	@override late final _Translations$onboarding$community$hi community = _Translations$onboarding$community$hi._(_root);
-	@override late final _Translations$onboarding$sample$hi sample = _Translations$onboarding$sample$hi._(_root);
-}
-
 // Path: welcome
 class _Translations$welcome$hi extends Translations$welcome$fr {
 	_Translations$welcome$hi._(TranslationsHi root) : this._root = root, super.internal(root);
@@ -184,8 +166,15 @@ class _Translations$welcome$hi extends Translations$welcome$fr {
 	final TranslationsHi _root; // ignore: unused_field
 
 	// Translations
-	@override String get title => 'CMFI Connect में स्वागत है';
-	@override String get text => 'एक मिनट में अपना अकाउंट बनाओ, ताकि अपनी दैनिक रिपोर्ट भर सको और अपने समुदाय की हर गतिविधि पर नज़र रख सको।';
+	@override late final _Translations$welcome$seek$hi seek = _Translations$welcome$seek$hi._(_root);
+	@override late final _Translations$welcome$worship$hi worship = _Translations$welcome$worship$hi._(_root);
+	@override late final _Translations$welcome$community$hi community = _Translations$welcome$community$hi._(_root);
+	@override String step({required Object total, required Object current}) => '${total} में से स्क्रीन ${current}';
+	@override String streak({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n,
+		one: 'परमेश्वर के साथ ${n} दिन',
+		other: 'परमेश्वर के साथ ${n} दिन',
+	);
+	@override late final _Translations$welcome$sample$hi sample = _Translations$welcome$sample$hi._(_root);
 	@override String get createAccount => 'अकाउंट बनाओ';
 	@override String get haveAccount => 'मेरा अकाउंट पहले से है';
 }
@@ -1626,68 +1615,64 @@ class _Translations$fasts$hi extends Translations$fasts$fr {
 	@override String homeText({required Object time}) => 'यह दिन ${time} पर पूरा होगा';
 }
 
-// Path: onboarding.reports
-class _Translations$onboarding$reports$hi extends Translations$onboarding$reports$fr {
-	_Translations$onboarding$reports$hi._(TranslationsHi root) : this._root = root, super.internal(root);
+// Path: welcome.seek
+class _Translations$welcome$seek$hi extends Translations$welcome$seek$fr {
+	_Translations$welcome$seek$hi._(TranslationsHi root) : this._root = root, super.internal(root);
 
 	final TranslationsHi _root; // ignore: unused_field
 
 	// Translations
-	@override String get title => 'परमेश्वर के साथ तुम्हारा सफ़र, दिन-ब-दिन';
+	@override String get before => 'हर दिन, पहले ';
+	@override String get marked => 'परमेश्वर';
+	@override String get after => ' को खोजो';
 	@override String get text => 'कुछ ही सेकंड में अपना बाइबल पठन, प्रार्थना, उपवास… दर्ज करो और हफ़्ते-दर-हफ़्ते अपनी प्रगति देखो।';
 }
 
-// Path: onboarding.worship
-class _Translations$onboarding$worship$hi extends Translations$onboarding$worship$fr {
-	_Translations$onboarding$worship$hi._(TranslationsHi root) : this._root = root, super.internal(root);
+// Path: welcome.worship
+class _Translations$welcome$worship$hi extends Translations$welcome$worship$fr {
+	_Translations$welcome$worship$hi._(TranslationsHi root) : this._root = root, super.internal(root);
 
 	final TranslationsHi _root; // ignore: unused_field
 
 	// Translations
-	@override String get title => 'जहाँ भी हो, गाओ और प्रार्थना करो';
+	@override String get before => 'जहाँ भी हो, गाओ और ';
+	@override String get marked => 'प्रार्थना';
+	@override String get after => ' करो';
 	@override String get text => 'समुदाय के भजन यहाँ पाओ और हर दिन अपने भाई-बहनों के साथ प्रार्थना विषयों के लिए प्रार्थना करो।';
 }
 
-// Path: onboarding.community
-class _Translations$onboarding$community$hi extends Translations$onboarding$community$fr {
-	_Translations$onboarding$community$hi._(TranslationsHi root) : this._root = root, super.internal(root);
+// Path: welcome.community
+class _Translations$welcome$community$hi extends Translations$welcome$community$fr {
+	_Translations$welcome$community$hi._(TranslationsHi root) : this._root = root, super.internal(root);
 
 	final TranslationsHi _root; // ignore: unused_field
 
 	// Translations
-	@override String get title => 'अपने समुदाय से जुड़ाव बनाए रखो';
+	@override String get before => 'अपने ';
+	@override String get marked => 'समुदाय';
+	@override String get after => ' से जुड़ाव बनाए रखो';
 	@override String get text => 'तुम्हारी सभा के कार्यक्रम और घोषणाएँ, एक ही जगह पर, ताकि कुछ भी न छूटे।';
 }
 
-// Path: onboarding.sample
-class _Translations$onboarding$sample$hi extends Translations$onboarding$sample$fr {
-	_Translations$onboarding$sample$hi._(TranslationsHi root) : this._root = root, super.internal(root);
+// Path: welcome.sample
+class _Translations$welcome$sample$hi extends Translations$welcome$sample$fr {
+	_Translations$welcome$sample$hi._(TranslationsHi root) : this._root = root, super.internal(root);
 
 	final TranslationsHi _root; // ignore: unused_field
 
 	// Translations
-	@override String get today => 'आज';
 	@override String get bibleReading => 'बाइबल पठन';
+	@override String get chapters => '10 अध्याय';
 	@override String get prayerAlone => 'व्यक्तिगत प्रार्थना';
-	@override String get meditation => 'मनन';
-	@override String get groupPrayer => 'समूह प्रार्थना';
-	@override String get thisWeek => 'इस हफ़्ते';
-	@override String get weekScore => '5 में से 4 दिन';
 	@override String get hymn => 'भजन';
 	@override String get hymnNumber => 'नं. 12';
-	@override String get fullScreen => 'फ़ुल स्क्रीन';
 	@override String get prayerOfTheDay => 'आज का प्रार्थना विषय';
 	@override String get prayerTopic => 'हमारे युवाओं की परीक्षाओं के लिए';
 	@override String get praying => '12 लोग प्रार्थना कर रहे हैं';
 	@override String get iPray => 'प्रार्थना में शामिल हूँ';
-	@override String get vigil => 'रात्रि प्रार्थना सभा';
-	@override String get vigilMeta => 'रात 8 बजे · स्थानीय सभा';
-	@override String get join => 'मैं शामिल हूँ';
 	@override String get retreat => 'युवा रिट्रीट';
-	@override String get retreatMeta => 'पूरा दिन';
 	@override String get announcement => 'घोषणा';
 	@override String get announcementText => 'रविवार की आराधना सुबह 8:30 बजे शुरू होगी।';
-	@override String get chapters => '10 अध्याय';
 }
 
 // Path: auth.login
@@ -1699,6 +1684,7 @@ class _Translations$auth$login$hi extends Translations$auth$login$fr {
 	// Translations
 	@override String get title => 'फिर से स्वागत है';
 	@override String get subtitle => 'आज की रिपोर्ट भरने के लिए लॉग इन करो।';
+	@override String get welcomeBack => 'तुम्हें देखकर खुशी हुई!';
 	@override String get submit => 'लॉग इन करो';
 	@override String get noAccount => 'अभी तक अकाउंट नहीं है?';
 	@override String get createAccount => 'अकाउंट बनाओ';
@@ -3000,40 +2986,32 @@ extension on TranslationsHi {
 			'validation.invalidPhone' => 'फ़ोन नंबर सही नहीं है',
 			'validation.invalidEmail' => 'ईमेल पता सही नहीं है',
 			'validation.invalidCode' => 'सिर्फ़ अक्षर और अंक, बिना स्पेस के',
-			'onboarding.skip' => 'छोड़ो',
-			'onboarding.next' => 'आगे',
-			'onboarding.start' => 'शुरू करो',
-			'onboarding.step' => ({required Object total, required Object current}) => '${total} में से स्क्रीन ${current}',
-			'onboarding.reports.title' => 'परमेश्वर के साथ तुम्हारा सफ़र, दिन-ब-दिन',
-			'onboarding.reports.text' => 'कुछ ही सेकंड में अपना बाइबल पठन, प्रार्थना, उपवास… दर्ज करो और हफ़्ते-दर-हफ़्ते अपनी प्रगति देखो।',
-			'onboarding.worship.title' => 'जहाँ भी हो, गाओ और प्रार्थना करो',
-			'onboarding.worship.text' => 'समुदाय के भजन यहाँ पाओ और हर दिन अपने भाई-बहनों के साथ प्रार्थना विषयों के लिए प्रार्थना करो।',
-			'onboarding.community.title' => 'अपने समुदाय से जुड़ाव बनाए रखो',
-			'onboarding.community.text' => 'तुम्हारी सभा के कार्यक्रम और घोषणाएँ, एक ही जगह पर, ताकि कुछ भी न छूटे।',
-			'onboarding.sample.today' => 'आज',
-			'onboarding.sample.bibleReading' => 'बाइबल पठन',
-			'onboarding.sample.prayerAlone' => 'व्यक्तिगत प्रार्थना',
-			'onboarding.sample.meditation' => 'मनन',
-			'onboarding.sample.groupPrayer' => 'समूह प्रार्थना',
-			'onboarding.sample.thisWeek' => 'इस हफ़्ते',
-			'onboarding.sample.weekScore' => '5 में से 4 दिन',
-			'onboarding.sample.hymn' => 'भजन',
-			'onboarding.sample.hymnNumber' => 'नं. 12',
-			'onboarding.sample.fullScreen' => 'फ़ुल स्क्रीन',
-			'onboarding.sample.prayerOfTheDay' => 'आज का प्रार्थना विषय',
-			'onboarding.sample.prayerTopic' => 'हमारे युवाओं की परीक्षाओं के लिए',
-			'onboarding.sample.praying' => '12 लोग प्रार्थना कर रहे हैं',
-			'onboarding.sample.iPray' => 'प्रार्थना में शामिल हूँ',
-			'onboarding.sample.vigil' => 'रात्रि प्रार्थना सभा',
-			'onboarding.sample.vigilMeta' => 'रात 8 बजे · स्थानीय सभा',
-			'onboarding.sample.join' => 'मैं शामिल हूँ',
-			'onboarding.sample.retreat' => 'युवा रिट्रीट',
-			'onboarding.sample.retreatMeta' => 'पूरा दिन',
-			'onboarding.sample.announcement' => 'घोषणा',
-			'onboarding.sample.announcementText' => 'रविवार की आराधना सुबह 8:30 बजे शुरू होगी।',
-			'onboarding.sample.chapters' => '10 अध्याय',
-			'welcome.title' => 'CMFI Connect में स्वागत है',
-			'welcome.text' => 'एक मिनट में अपना अकाउंट बनाओ, ताकि अपनी दैनिक रिपोर्ट भर सको और अपने समुदाय की हर गतिविधि पर नज़र रख सको।',
+			'welcome.seek.before' => 'हर दिन, पहले ',
+			'welcome.seek.marked' => 'परमेश्वर',
+			'welcome.seek.after' => ' को खोजो',
+			'welcome.seek.text' => 'कुछ ही सेकंड में अपना बाइबल पठन, प्रार्थना, उपवास… दर्ज करो और हफ़्ते-दर-हफ़्ते अपनी प्रगति देखो।',
+			'welcome.worship.before' => 'जहाँ भी हो, गाओ और ',
+			'welcome.worship.marked' => 'प्रार्थना',
+			'welcome.worship.after' => ' करो',
+			'welcome.worship.text' => 'समुदाय के भजन यहाँ पाओ और हर दिन अपने भाई-बहनों के साथ प्रार्थना विषयों के लिए प्रार्थना करो।',
+			'welcome.community.before' => 'अपने ',
+			'welcome.community.marked' => 'समुदाय',
+			'welcome.community.after' => ' से जुड़ाव बनाए रखो',
+			'welcome.community.text' => 'तुम्हारी सभा के कार्यक्रम और घोषणाएँ, एक ही जगह पर, ताकि कुछ भी न छूटे।',
+			'welcome.step' => ({required Object total, required Object current}) => '${total} में से स्क्रीन ${current}',
+			'welcome.streak' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n, one: 'परमेश्वर के साथ ${n} दिन', other: 'परमेश्वर के साथ ${n} दिन', ), 
+			'welcome.sample.bibleReading' => 'बाइबल पठन',
+			'welcome.sample.chapters' => '10 अध्याय',
+			'welcome.sample.prayerAlone' => 'व्यक्तिगत प्रार्थना',
+			'welcome.sample.hymn' => 'भजन',
+			'welcome.sample.hymnNumber' => 'नं. 12',
+			'welcome.sample.prayerOfTheDay' => 'आज का प्रार्थना विषय',
+			'welcome.sample.prayerTopic' => 'हमारे युवाओं की परीक्षाओं के लिए',
+			'welcome.sample.praying' => '12 लोग प्रार्थना कर रहे हैं',
+			'welcome.sample.iPray' => 'प्रार्थना में शामिल हूँ',
+			'welcome.sample.retreat' => 'युवा रिट्रीट',
+			'welcome.sample.announcement' => 'घोषणा',
+			'welcome.sample.announcementText' => 'रविवार की आराधना सुबह 8:30 बजे शुरू होगी।',
 			'welcome.createAccount' => 'अकाउंट बनाओ',
 			'welcome.haveAccount' => 'मेरा अकाउंट पहले से है',
 			'auth.phone' => 'फ़ोन',
@@ -3043,6 +3021,7 @@ extension on TranslationsHi {
 			'auth.hidePassword' => 'पासवर्ड छिपाओ',
 			'auth.login.title' => 'फिर से स्वागत है',
 			'auth.login.subtitle' => 'आज की रिपोर्ट भरने के लिए लॉग इन करो।',
+			'auth.login.welcomeBack' => 'तुम्हें देखकर खुशी हुई!',
 			'auth.login.submit' => 'लॉग इन करो',
 			'auth.login.noAccount' => 'अभी तक अकाउंट नहीं है?',
 			'auth.login.createAccount' => 'अकाउंट बनाओ',
@@ -3472,8 +3451,6 @@ extension on TranslationsHi {
 			'hymns.chooseBook' => 'भजन संग्रह चुनो',
 			'hymns.count' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n, one: '${n} भजन', other: '${n} भजन', ), 
 			'hymns.number' => ({required Object number}) => 'नं. ${number}',
-			_ => null,
-		} ?? switch (path) {
 			'hymns.emptyFavorites' => 'किसी भजन का स्टार टैप करो, वह यहाँ दिखेगा।',
 			'hymns.emptyRecent' => 'हाल में खोले गए भजन यहाँ दिखेंगे।',
 			'hymns.noResult' => ({required Object query}) => '“${query}” से मेल खाता कोई भजन नहीं मिला।',
@@ -3481,6 +3458,8 @@ extension on TranslationsHi {
 			'hymns.upToDate' => 'भजन संग्रह अप-टू-डेट हैं।',
 			'hymns.updated' => 'भजन संग्रह अपडेट हो गए हैं।',
 			'hymns.chorus' => 'कोरस',
+			_ => null,
+		} ?? switch (path) {
 			'hymns.chorusNumber' => ({required Object label}) => 'कोरस ${label}',
 			'hymns.verse' => ({required Object label}) => 'पद ${label}',
 			'hymns.times' => ({required Object n}) => '×${n}',
@@ -3986,8 +3965,6 @@ extension on TranslationsHi {
 			'prayer.lists.uses.coworkers' => 'शाम के प्रार्थना-समय में हर दिन तुम्हारे 10 सहकर्मियों (5 + 5) के लिए बारी-बारी से प्रार्थना होती है।',
 			'prayer.lists.privateNote' => 'इसे सिर्फ़ तुम देख सकते हो।',
 			'prayer.lists.count' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n, zero: 'कोई नहीं', one: '${n} व्यक्ति', other: '${n} लोग', ), 
-			_ => null,
-		} ?? switch (path) {
 			'prayer.lists.empty' => 'अभी तक कोई नहीं। उन लोगों को जोड़ो जिनके लिए तुम प्रार्थना करते हो।',
 			'prayer.lists.add' => 'व्यक्ति जोड़ो',
 			'prayer.lists.prayedToday' => 'आज',
@@ -3995,6 +3972,8 @@ extension on TranslationsHi {
 			'prayer.lists.answeredTitle.unbelievers' => 'प्रभु पर विश्वास किया',
 			'prayer.lists.answeredTitle.believers' => 'उत्तर मिली प्रार्थनाएँ',
 			'prayer.lists.answeredTitle.backsliders' => 'प्रभु के पास लौट आए',
+			_ => null,
+		} ?? switch (path) {
 			'prayer.lists.answeredTitle.coworkers' => 'उत्तर मिली प्रार्थनाएँ',
 			'prayer.lists.answeredOn.unbelievers' => ({required Object date}) => '${date} को प्रभु पर विश्वास किया',
 			'prayer.lists.answeredOn.believers' => ({required Object date}) => '${date} को उत्तर मिला',
@@ -4500,8 +4479,6 @@ extension on TranslationsHi {
 			'souls.noContact' => 'कोई याद तय नहीं',
 			'souls.metAt' => ({required Object date}) => '${date} को मिले',
 			'souls.notes' => 'नोट',
-			_ => null,
-		} ?? switch (path) {
 			'souls.addNote' => 'नोट जोड़ो',
 			'souls.noNotes' => 'अभी कोई नोट नहीं।',
 			'souls.deleteNote' => 'नोट मिटाओ',
@@ -4509,6 +4486,8 @@ extension on TranslationsHi {
 			'souls.csv.name' => 'नाम',
 			'souls.csv.phone' => 'फ़ोन',
 			'souls.csv.place' => 'जगह',
+			_ => null,
+		} ?? switch (path) {
 			'souls.csv.metOn' => 'मिलने की तारीख़',
 			'souls.csv.stage' => 'चरण',
 			'souls.csv.next' => 'अगला संपर्क',

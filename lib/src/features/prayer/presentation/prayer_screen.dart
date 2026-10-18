@@ -16,9 +16,9 @@ import '../../../core/theme/app_tones.dart';
 import '../../../core/utils/date_extensions.dart';
 import '../../../core/utils/date_format.dart';
 import '../../../core/widgets/app_toast.dart';
+import '../../../core/widgets/photo_kit.dart';
 import '../../../core/widgets/section_card.dart';
 import '../../../core/widgets/skeleton.dart';
-import '../../../core/widgets/tab_page.dart';
 import '../../../routing/app_router.dart';
 import '../../members/presentation/widgets/member_avatar.dart';
 import '../application/importunities.dart';
@@ -34,17 +34,22 @@ import 'widgets/invitation_menu.dart';
 import 'widgets/prayer_look.dart';
 import 'widgets/topic_row.dart';
 
-/// The Prière tab, like a routine (after Hallow): the days prayed, the four
-/// retreats of the day one under the other, the importunity topics to
-/// proclaim, the topics of the community on a shelf and the user's lists.
+/// The Prière tab, like a routine (after Hallow), photographic: the retreat
+/// of the moment over a photo of someone praying, graded night blue (the
+/// days prayed and the time of the week in frosted chips, "Commencer"), the
+/// four retreats of the day as photo cards tinted with their moment, then
+/// the importunity topics to proclaim, the topics of the community and the
+/// user's lists.
 @RoutePage()
-class PrayerScreen extends ConsumerWidget {
+class PrayerScreen extends HookConsumerWidget {
   const PrayerScreen({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final t = context.t;
     final scheme = Theme.of(context).colorScheme;
+    final top = MediaQuery.paddingOf(context).top;
+    final scroll = useScrollController();
     final importunities = ref.watch(importunitiesProvider).value ?? const [];
     final invitations = importunities.where((topic) => topic.isInvitation);
     final joined = importunities.where((topic) => !topic.isInvitation);
@@ -60,75 +65,100 @@ class PrayerScreen extends ConsumerWidget {
       });
     }
 
-    return TabPage(
-      title: t.nav.prayer,
-      actions: [
-        IconButton(
-          tooltip: t.prayer.reminders.title,
-          onPressed: () => showRetreatRemindersSheet(context),
-          icon: Icon(AppIcons.reminder, color: scheme.onSurfaceVariant),
-        ),
-      ],
-      child: RefreshIndicator.adaptive(
-        onRefresh: refresh,
-        child: ListView(
-          padding: const EdgeInsetsDirectional.fromSTEB(16, 4, 16, 32),
-          children: [
-            for (final invitation in invitations) ...[
-              _InvitationCard(topic: invitation),
-              const SizedBox(height: AppSpacing.md),
-            ],
-            const _Summary(),
-            const SizedBox(height: 20),
-            const _Routine(),
-            const SizedBox(height: 28),
-            PrayerSectionHeader(
-              title: t.prayer.together,
-              action: t.prayer.importunity.newTopic,
-              onAction: () => showImportunityForm(context),
-            ),
-            const SizedBox(height: 10),
-            if (joined.isEmpty)
-              _ImportunityIntro(onCreate: () => showImportunityForm(context))
-            else
-              for (final topic in joined) ...[
-                _ImportunityCard(topic: topic),
-                const SizedBox(height: 10),
+    return Scaffold(
+      body: Stack(
+        children: [
+          RefreshIndicator.adaptive(
+            onRefresh: refresh,
+            edgeOffset: top,
+            child: ListView(
+              controller: scroll,
+              padding: const EdgeInsets.only(bottom: 32),
+              children: [
+                const _Hero(),
+                Padding(
+                  padding: const EdgeInsetsDirectional.fromSTEB(16, 20, 16, 0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      for (final invitation in invitations) ...[
+                        _InvitationCard(topic: invitation),
+                        const SizedBox(height: AppSpacing.lg),
+                      ],
+                      const _RetreatGrid(),
+                      const SizedBox(height: 28),
+                      PrayerSectionHeader(
+                        title: t.prayer.together,
+                        action: t.prayer.importunity.newTopic,
+                        onAction: () => showImportunityForm(context),
+                      ),
+                      const SizedBox(height: 10),
+                      if (joined.isEmpty)
+                        _ImportunityIntro(
+                          onCreate: () => showImportunityForm(context),
+                        )
+                      else
+                        for (final topic in joined) ...[
+                          _ImportunityCard(topic: topic),
+                          const SizedBox(height: 10),
+                        ],
+                      const SizedBox(height: 18),
+                      PrayerSectionHeader(
+                        title: t.prayer.topics.title,
+                        action: t.prayer.topics.all,
+                        onAction: () =>
+                            context.router.push(const PrayerTopicsRoute()),
+                      ),
+                      const SizedBox(height: 10),
+                      const _CommunityTopics(),
+                      const SizedBox(height: 28),
+                      PrayerSectionHeader(
+                        title: t.prayer.lists.title,
+                        trailing: Row(
+                          children: [
+                            Icon(
+                              AppIcons.private,
+                              size: 16,
+                              color: scheme.onSurfaceVariant,
+                            ),
+                            const SizedBox(width: 4),
+                            Text(
+                              t.prayer.lists.private,
+                              style: TextStyle(
+                                fontSize: 13,
+                                color: scheme.onSurfaceVariant,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      const SizedBox(height: 10),
+                      const _ListsCard(),
+                      const _AnsweredBanner(),
+                    ],
+                  ),
+                ),
               ],
-            const SizedBox(height: 18),
-            PrayerSectionHeader(
-              title: t.prayer.topics.title,
-              action: t.prayer.topics.all,
-              onAction: () => context.router.push(const PrayerTopicsRoute()),
             ),
-            const SizedBox(height: 10),
-            const _CommunityTopics(),
-            const SizedBox(height: 28),
-            PrayerSectionHeader(
-              title: t.prayer.lists.title,
-              trailing: Row(
-                children: [
-                  Icon(
-                    AppIcons.private,
-                    size: 16,
-                    color: scheme.onSurfaceVariant,
-                  ),
-                  const SizedBox(width: 4),
-                  Text(
-                    t.prayer.lists.private,
-                    style: TextStyle(
-                      fontSize: 13,
-                      color: scheme.onSurfaceVariant,
-                    ),
-                  ),
-                ],
-              ),
+          ),
+          // under the status bar, the page once the photo has gone up
+          Positioned(
+            left: 0,
+            right: 0,
+            top: 0,
+            height: top,
+            child: ListenableBuilder(
+              listenable: scroll,
+              builder: (context, _) {
+                final offset = scroll.hasClients ? scroll.offset : 0.0;
+                return Opacity(
+                  opacity: ((offset - _Hero.height + 60) / 40).clamp(0, 1),
+                  child: ColoredBox(color: scheme.surfaceContainerLowest),
+                );
+              },
             ),
-            const SizedBox(height: 10),
-            const _ListsCard(),
-            const _AnsweredBanner(),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
@@ -370,49 +400,242 @@ class _AnsweredBanner extends ConsumerWidget {
   }
 }
 
-/// The colour of the words of [moment] on the page (lighter on dark: the
-/// night blue would be lost on it).
-Color _momentInk(RetreatMoment moment, BuildContext context) =>
-    Theme.of(context).brightness == Brightness.dark
-    ? Color.lerp(moment.colors.first, Colors.white, 0.45)!
-    : moment.ink;
+/// The photos of the four retreats: someone reading at dawn, worship at
+/// noon, a sister praying in the evening, praying hands at night.
+const _momentPhotos = {
+  RetreatMoment.morning: (StockPhotos.reading, Alignment(0.05, -0.3)),
+  RetreatMoment.noon: (StockPhotos.worship, Alignment(0.2, -0.2)),
+  RetreatMoment.evening: (StockPhotos.womanWorshipping, Alignment(0, -0.4)),
+  RetreatMoment.night: (StockPhotos.prayingHands, Alignment(0, -0.3)),
+};
 
-/// The days prayed out of the last seven, and the time prayed this week.
-class _Summary extends ConsumerWidget {
-  const _Summary();
+/// What the line under a retreat says: made, to pray now or next, its
+/// reminder, or when it is prayed.
+String _retreatStatus(
+  BuildContext context, {
+  required RetreatMoment moment,
+  required Set<RetreatMoment> done,
+  required RetreatMoment? next,
+  required Map<RetreatMoment, TimeOfDay?> reminders,
+}) {
+  final t = context.t;
+  final current = momentAt(DateTime.now());
+  if (done.contains(moment)) {
+    return t.prayer.routine.done;
+  }
+  if (moment == next) {
+    return moment == current ? t.prayer.routine.now : t.prayer.routine.next;
+  }
+  if (reminders[moment] case final time? when moment.index > current.index) {
+    return t.prayer.routine.reminder(time: time.format(context));
+  }
+  return t.prayer.routine.later[moment.name]!;
+}
+
+/// The top of the tab, on a photo of a sister praying by a window (graded
+/// night blue): the title and the reminders, the days prayed out of the last
+/// seven and the time prayed this week in frosted chips, then the retreat
+/// to pray now, what it prays for and "Commencer" (once the four are made,
+/// a word of blessing).
+class _Hero extends ConsumerWidget {
+  const _Hero();
+
+  /// Below the status bar; taller with big letters.
+  static const height = 470.0;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final t = context.t;
+    final top = MediaQuery.paddingOf(context).top;
     final log = ref.watch(retreatLogProvider).value ?? const <RetreatRecord>[];
     final days = {for (final record in log) record.day.dateOnly}.length;
     final monday = today().startOfWeek;
     final minutes = log
         .where((record) => !record.day.dateOnly.isBefore(monday))
         .fold(0, (sum, record) => sum + record.minutes);
+    final now = DateTime.now();
+    final next = nextRetreat(ref.watch(retreatsTodayProvider), now);
 
-    // side by side, one under the other when the words are long
-    return Wrap(
-      spacing: AppSpacing.sm,
-      runSpacing: AppSpacing.sm,
-      children: [
-        _SummaryChip(
-          icon: AppIcons.streak,
-          color: AppColors.gold,
-          text: t.prayer.routine.days(n: days),
-        ),
-        _SummaryChip(
-          icon: AppIcons.time,
-          color: AppModule.prayer.tone(context).onSoft,
-          text: t.prayer.routine.week(time: minutes.toDurationLabel()),
-        ),
-      ],
+    return AnnotatedRegion<SystemUiOverlayStyle>(
+      // white status bar on the photo, in both modes
+      value: SystemUiOverlayStyle.light,
+      child: Stack(
+        children: [
+          const Positioned.fill(
+            child: GradedPhoto(
+              StockPhotos.prayingByWindow,
+              grade: PhotoGrade.night,
+              alignment: Alignment(0.6, -0.5),
+            ),
+          ),
+          const Positioned.fill(
+            child: PhotoScrim(
+              colors: [
+                Color(0x99061F40),
+                Color(0x00061F40),
+                Color(0x40061F40),
+                Color(0xFA061F40),
+              ],
+              stops: [0, 0.2, 0.4, 0.74],
+            ),
+          ),
+          ConstrainedBox(
+            constraints: BoxConstraints(minHeight: top + height),
+            child: Padding(
+              padding: EdgeInsetsDirectional.fromSTEB(20, top + 12, 20, 22),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    children: [
+                      Expanded(
+                        child: Semantics(
+                          header: true,
+                          child: Text(
+                            t.nav.prayer,
+                            style: const TextStyle(
+                              fontSize: 30,
+                              fontWeight: FontWeight.w800,
+                              letterSpacing: -0.6,
+                              color: Colors.white,
+                            ),
+                          ),
+                        ),
+                      ),
+                      IconButton(
+                        tooltip: t.prayer.reminders.title,
+                        color: Colors.white,
+                        onPressed: () => showRetreatRemindersSheet(context),
+                        icon: const Icon(AppIcons.reminder),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: AppSpacing.sm),
+                  Wrap(
+                    spacing: AppSpacing.sm,
+                    runSpacing: AppSpacing.sm,
+                    children: [
+                      _GlassChip(
+                        icon: AppIcons.streak,
+                        color: AppColors.goldLight,
+                        text: t.prayer.routine.days(n: days),
+                      ),
+                      _GlassChip(
+                        icon: AppIcons.time,
+                        color: const Color(0xFFD9BCEB),
+                        text: t.prayer.routine.week(
+                          time: minutes.toDurationLabel(),
+                        ),
+                      ),
+                    ],
+                  ),
+                  // the face of the photo
+                  const SizedBox(height: 170),
+                  if (next == null)
+                    Text(
+                      t.prayer.hero.allDone,
+                      style: const TextStyle(
+                        fontFamily: 'Lora',
+                        fontSize: 24,
+                        height: 1.25,
+                        fontWeight: FontWeight.w600,
+                        color: Colors.white,
+                      ),
+                    )
+                  else ...[
+                    Row(
+                      children: [
+                        Container(
+                          width: 30,
+                          height: 30,
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            gradient: LinearGradient(colors: next.colors),
+                          ),
+                          child: Icon(next.icon, size: 16, color: Colors.white),
+                        ),
+                        const SizedBox(width: 10),
+                        Expanded(
+                          child: Text(
+                            '${next.retreat(t)} · '
+                            '${next == momentAt(now) ? t.prayer.routine.now : t.prayer.routine.next}',
+                            style: const TextStyle(
+                              fontSize: 13.5,
+                              fontWeight: FontWeight.w700,
+                              color: AppColors.goldLight,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 10),
+                    Text(
+                      t.prayer.hero.title,
+                      style: const TextStyle(
+                        fontFamily: 'Lora',
+                        fontSize: 30,
+                        height: 1.15,
+                        fontWeight: FontWeight.w600,
+                        color: Colors.white,
+                      ),
+                    ),
+                    const SizedBox(height: AppSpacing.sm),
+                    Text(
+                      t.prayer.hero.preview[next.name]!,
+                      style: TextStyle(
+                        fontSize: 14.5,
+                        height: 1.4,
+                        color: Colors.white.withValues(alpha: 0.8),
+                      ),
+                    ),
+                    const SizedBox(height: AppSpacing.lg),
+                    Wrap(
+                      spacing: 14,
+                      runSpacing: AppSpacing.sm,
+                      crossAxisAlignment: WrapCrossAlignment.center,
+                      children: [
+                        FilledButton.icon(
+                          onPressed: () => context.router.push(
+                            RetreatSessionRoute(moment: next),
+                          ),
+                          icon: const Icon(AppIcons.play, size: 16),
+                          label: Text(t.prayer.hero.start),
+                          style: FilledButton.styleFrom(
+                            backgroundColor: AppColors.goldLight,
+                            foregroundColor: AppColors.primaryDeep,
+                            minimumSize: const Size(0, 48),
+                            padding: const EdgeInsets.symmetric(horizontal: 22),
+                            shape: const StadiumBorder(),
+                            textStyle: const TextStyle(
+                              fontFamily: AppTheme.fontFamily,
+                              fontSize: 15.5,
+                              fontWeight: FontWeight.w800,
+                            ),
+                          ),
+                        ),
+                        Text(
+                          t.prayer.hero.meta,
+                          style: TextStyle(
+                            fontSize: 13,
+                            fontWeight: FontWeight.w600,
+                            color: Colors.white.withValues(alpha: 0.7),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ],
+              ),
+            ),
+          ),
+        ],
+      ),
     );
   }
 }
 
-class _SummaryChip extends StatelessWidget {
-  const _SummaryChip({
+class _GlassChip extends StatelessWidget {
+  const _GlassChip({
     required this.icon,
     required this.color,
     required this.text,
@@ -423,22 +646,22 @@ class _SummaryChip extends StatelessWidget {
   final String text;
 
   @override
-  Widget build(BuildContext context) => Container(
-    constraints: const BoxConstraints(minHeight: 34),
-    padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 7),
-    decoration: ShapeDecoration(
-      color: Theme.of(context).colorScheme.surface,
-      shape: const StadiumBorder(),
-    ),
+  Widget build(BuildContext context) => FrostedGlass(
+    radius: 99,
+    padding: const EdgeInsetsDirectional.fromSTEB(10, 6, 14, 6),
     child: Row(
       mainAxisSize: MainAxisSize.min,
       children: [
-        Icon(icon, size: 16, color: color),
+        Icon(icon, size: 15, color: color),
         const SizedBox(width: 6),
         Flexible(
           child: Text(
             text,
-            style: const TextStyle(fontSize: 13, fontWeight: FontWeight.w700),
+            style: const TextStyle(
+              fontSize: 13,
+              fontWeight: FontWeight.w700,
+              color: Colors.white,
+            ),
           ),
         ),
       ],
@@ -446,20 +669,31 @@ class _SummaryChip extends StatelessWidget {
   );
 }
 
-/// The four retreats of the day, one under the other like a routine: made,
-/// to pray now (what it prays for, "Commencer"), or later (its reminder).
-class _Routine extends ConsumerWidget {
-  const _Routine();
+/// "Ta routine du jour": the four retreats two by two, each on its photo
+/// tinted with the colours of its moment. The one to pray has a gold
+/// border, a made one its check; a touch opens the retreat.
+class _RetreatGrid extends ConsumerWidget {
+  const _RetreatGrid();
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final t = context.t;
-    final scheme = Theme.of(context).colorScheme;
     final done = ref.watch(retreatsTodayProvider);
     final reminders = ref.watch(retreatRemindersProvider);
-    final now = DateTime.now();
-    final next = nextRetreat(done, now);
-    final current = momentAt(now);
+    final next = nextRetreat(done, DateTime.now());
+
+    Widget card(RetreatMoment moment) => _RetreatCard(
+      moment: moment,
+      done: done.contains(moment),
+      next: moment == next,
+      status: _retreatStatus(
+        context,
+        moment: moment,
+        done: done,
+        next: next,
+        reminders: reminders,
+      ),
+    );
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -475,208 +709,133 @@ class _Routine extends ConsumerWidget {
             ),
           ),
         ),
-        if (next == null) ...[
-          const SizedBox(height: 4),
-          Text(
-            t.prayer.hero.allDone,
-            style: TextStyle(fontSize: 14, color: scheme.onSurfaceVariant),
+        const SizedBox(height: AppSpacing.md),
+        for (final (i, pair) in const [
+          (RetreatMoment.morning, RetreatMoment.noon),
+          (RetreatMoment.evening, RetreatMoment.night),
+        ].indexed) ...[
+          if (i > 0) const SizedBox(height: 10),
+          IntrinsicHeight(
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                Expanded(child: card(pair.$1)),
+                const SizedBox(width: 10),
+                Expanded(child: card(pair.$2)),
+              ],
+            ),
           ),
         ],
-        const SizedBox(height: 10),
-        Material(
-          color: scheme.surface,
-          borderRadius: BorderRadius.circular(AppRadius.xl),
-          clipBehavior: Clip.antiAlias,
-          child: Column(
-            children: [
-              for (final (i, moment) in RetreatMoment.values.indexed)
-                _RoutineRow(
-                  moment: moment,
-                  first: i == 0,
-                  last: i == RetreatMoment.values.length - 1,
-                  done: done.contains(moment),
-                  next: moment == next,
-                  status: done.contains(moment)
-                      ? t.prayer.routine.done
-                      : moment == next
-                      ? (moment == current
-                            ? t.prayer.routine.now
-                            : t.prayer.routine.next)
-                      : reminders[moment] != null &&
-                            moment.index > current.index
-                      ? t.prayer.routine.reminder(
-                          time: reminders[moment]!.format(context),
-                        )
-                      : t.prayer.routine.later[moment.name]!,
-                  reminder: reminders[moment] != null,
-                ),
-            ],
-          ),
-        ),
       ],
     );
   }
 }
 
-class _RoutineRow extends StatelessWidget {
-  const _RoutineRow({
+class _RetreatCard extends StatelessWidget {
+  const _RetreatCard({
     required this.moment,
-    required this.first,
-    required this.last,
     required this.done,
     required this.next,
     required this.status,
-    required this.reminder,
   });
 
   final RetreatMoment moment;
-  final bool first;
-  final bool last;
   final bool done;
 
-  /// The one to pray now: it opens up, with "Commencer".
+  /// The one to pray now (or next): a gold border.
   final bool next;
   final String status;
-
-  /// A reminder is set for it.
-  final bool reminder;
 
   @override
   Widget build(BuildContext context) {
     final t = context.t;
-    final scheme = Theme.of(context).colorScheme;
-    final line = scheme.outlineVariant;
-
-    return InkWell(
-      onTap: () => context.router.push(RetreatRoute(moment: moment)),
-      child: Padding(
-        padding: const EdgeInsetsDirectional.fromSTEB(14, 0, 6, 0),
-        child: IntrinsicHeight(
-          child: Row(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
+    final (photo, alignment) = _momentPhotos[moment]!;
+    return Semantics(
+      button: true,
+      label: '${moment.retreat(t)}, $status',
+      excludeSemantics: true,
+      child: Material(
+        clipBehavior: Clip.antiAlias,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(22),
+          side: next
+              ? const BorderSide(color: AppColors.goldLight, width: 3)
+              : BorderSide.none,
+        ),
+        child: InkWell(
+          onTap: () => context.router.push(RetreatRoute(moment: moment)),
+          child: Stack(
             children: [
-              // the cover of the retreat, on the line of the day
-              SizedBox(
-                width: 56,
-                child: Column(
-                  children: [
-                    Container(
-                      width: 2,
-                      height: 12,
-                      color: first ? Colors.transparent : line,
-                    ),
-                    Container(
-                      width: 56,
-                      height: 56,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(AppRadius.md),
-                        gradient: LinearGradient(
-                          begin: Alignment.topLeft,
-                          end: Alignment.bottomRight,
-                          colors: moment.colors,
-                        ),
-                      ),
-                      child: Icon(moment.icon, color: Colors.white, size: 26),
-                    ),
-                    Expanded(
-                      child: Container(
-                        width: 2,
-                        color: last ? Colors.transparent : line,
-                      ),
-                    ),
+              Positioned.fill(
+                child: GradedPhoto(
+                  photo,
+                  alignment: alignment,
+                  grade: PhotoGrade.night,
+                ),
+              ),
+              Positioned.fill(
+                child: PhotoScrim(
+                  colors: [
+                    moment.colors.first.withValues(alpha: 0.25),
+                    moment.colors.last.withValues(alpha: 0.92),
                   ],
                 ),
               ),
-              const SizedBox(width: 14),
-              Expanded(
+              ConstrainedBox(
+                constraints: const BoxConstraints(minHeight: 170),
                 child: Padding(
-                  padding: EdgeInsets.only(top: 16, bottom: last ? 16 : 14),
+                  padding: const EdgeInsetsDirectional.fromSTEB(12, 12, 10, 12),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
+                      Row(
+                        children: [
+                          Container(
+                            width: 34,
+                            height: 34,
+                            decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              color: Colors.white.withValues(alpha: 0.22),
+                            ),
+                            child: Icon(
+                              moment.icon,
+                              size: 18,
+                              color: Colors.white,
+                            ),
+                          ),
+                          const Spacer(),
+                          if (done)
+                            const Icon(
+                              AppIcons.checkCircleFilled,
+                              color: Colors.white,
+                              size: 26,
+                            ),
+                        ],
+                      ),
+                      const SizedBox(height: 62),
                       Text(
                         moment.retreat(t),
                         style: const TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.w700,
+                          fontSize: 15.5,
+                          height: 1.15,
+                          fontWeight: FontWeight.w800,
+                          color: Colors.white,
                         ),
                       ),
                       const SizedBox(height: 2),
                       Text(
                         status,
                         style: TextStyle(
-                          fontSize: 13.5,
-                          fontWeight: next ? FontWeight.w700 : FontWeight.w500,
-                          color: done
-                              ? scheme.primary
-                              : next
-                              ? _momentInk(moment, context)
-                              : scheme.onSurfaceVariant,
+                          fontSize: 12.5,
+                          fontWeight: next ? FontWeight.w800 : FontWeight.w600,
+                          color: next
+                              ? AppColors.goldLight
+                              : Colors.white.withValues(alpha: 0.85),
                         ),
                       ),
-                      if (next) ...[
-                        const SizedBox(height: 8),
-                        Text(
-                          t.prayer.hero.preview[moment.name]!,
-                          style: TextStyle(
-                            fontSize: 14,
-                            height: 1.35,
-                            color: scheme.onSurfaceVariant,
-                          ),
-                        ),
-                        const SizedBox(height: 12),
-                        FilledButton.icon(
-                          onPressed: () => context.router.push(
-                            RetreatSessionRoute(moment: moment),
-                          ),
-                          icon: const Icon(AppIcons.play, size: 16),
-                          label: Text(t.prayer.hero.start),
-                          style: FilledButton.styleFrom(
-                            backgroundColor: moment.ink,
-                            foregroundColor: Colors.white,
-                            minimumSize: const Size(0, 42),
-                            padding: const EdgeInsets.symmetric(horizontal: 18),
-                            shape: const StadiumBorder(),
-                            textStyle: const TextStyle(
-                              fontFamily: AppTheme.fontFamily,
-                              fontSize: 15,
-                              fontWeight: FontWeight.w700,
-                            ),
-                          ),
-                        ),
-                      ],
                     ],
                   ),
                 ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(top: 24),
-                child: done
-                    ? Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 12),
-                        child: Icon(
-                          AppIcons.checkCircleFilled,
-                          color: scheme.primary,
-                          size: 24,
-                          semanticLabel: t.prayer.retreat.done,
-                        ),
-                      )
-                    : next
-                    ? const SizedBox(width: 48)
-                    : SizedBox(
-                        height: 40,
-                        child: IconButton(
-                          tooltip: t.prayer.reminders.title,
-                          onPressed: () => showRetreatRemindersSheet(context),
-                          icon: Icon(
-                            AppIcons.reminder,
-                            size: 20,
-                            color: reminder
-                                ? _momentInk(moment, context)
-                                : scheme.onSurfaceVariant,
-                          ),
-                        ),
-                      ),
               ),
             ],
           ),
@@ -700,6 +859,11 @@ class _ImportunityCard extends HookConsumerWidget {
     final tones = AppTones.of(context);
     final tone = AppModule.prayer.tone(context);
     final progress = topic.progress;
+    final faces = [
+      if (!topic.isOwner) topic.owner,
+      for (final member in topic.members)
+        if (member.username != topic.owner.username) member,
+    ].take(3).toList();
     final notifier = ref.read(importunitiesProvider.notifier);
     final sendTimer = useRef<Timer?>(null);
     // leaving the tab: what was counted goes now
@@ -774,6 +938,22 @@ class _ImportunityCard extends HookConsumerWidget {
                       ],
                     ),
                   ),
+                  // who prays too: real members (their photo, else their
+                  // initials), when the server names them
+                  if (faces.isNotEmpty && !topic.reached && topic.isOpen)
+                    FaceStack(
+                      faces: [
+                        for (final member in faces)
+                          MemberAvatar(
+                            initials: member.initials,
+                            photo: member.avatar,
+                            size: 28,
+                          ),
+                      ],
+                      ring: tones.personalSoft,
+                      size: 32,
+                      overlap: 0.18,
+                    ),
                   if (topic.reached)
                     StatusPill(
                       t.prayer.importunity.reached,

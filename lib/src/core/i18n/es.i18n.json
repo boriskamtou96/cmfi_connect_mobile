@@ -47,51 +47,44 @@
     "invalidEmail": "Correo electrónico no válido",
     "invalidCode": "Solo letras y números, sin espacios"
   },
-  "onboarding": {
-    "skip": "Omitir",
-    "next": "Siguiente",
-    "start": "Empezar",
-    "step": "Pantalla {current} de {total}",
-    "reports": {
-      "title": "Tu caminar con Dios, día tras día",
+  "welcome": {
+    "seek": {
+      "before": "Busca primero a ",
+      "marked": "Dios",
+      "after": ", cada día",
       "text": "Anota en pocos segundos tu lectura bíblica, tu oración, tus ayunos… y mira tu progreso semana tras semana."
     },
     "worship": {
-      "title": "Canta y ora, estés donde estés",
+      "before": "Canta y ",
+      "marked": "ora",
+      "after": ", estés donde estés",
       "text": "Encuentra los himnos de la comunidad e intercede cada día por los motivos de oración junto a tus hermanos y hermanas."
     },
     "community": {
-      "title": "Mantente unido a tu comunidad",
+      "before": "Mantente unido a tu ",
+      "marked": "comunidad",
+      "after": "",
       "text": "Los eventos y los anuncios de tu asamblea, en un solo lugar, para que no te pierdas nada."
     },
+    "step": "Pantalla {current} de {total}",
+    "streak(plural, param=n)": {
+      "one": "{n} día con Dios",
+      "other": "{n} días con Dios"
+    },
     "sample": {
-      "today": "Hoy",
       "bibleReading": "Lectura bíblica",
+      "chapters": "10 cap.",
       "prayerAlone": "Oración a solas",
-      "meditation": "Meditación",
-      "groupPrayer": "Oración en grupo",
-      "thisWeek": "Esta semana",
-      "weekScore": "4 días de 5",
       "hymn": "Himno",
       "hymnNumber": "N.º 12",
-      "fullScreen": "Pantalla completa",
       "prayerOfTheDay": "Motivo de oración del día",
       "prayerTopic": "Por los exámenes de nuestros jóvenes",
       "praying": "12 personas oran",
       "iPray": "Oraré",
-      "vigil": "Vigilia de oración",
-      "vigilMeta": "20:00 · Asamblea local",
-      "join": "Participaré",
       "retreat": "Retiro de jóvenes",
-      "retreatMeta": "Todo el día",
       "announcement": "Anuncio",
-      "announcementText": "El culto del domingo empieza a las 8:30.",
-      "chapters": "10 cap."
-    }
-  },
-  "welcome": {
-    "title": "Te damos la bienvenida a CMFI Connect",
-    "text": "Crea tu cuenta en un minuto para completar tu informe y seguir la vida de tu comunidad.",
+      "announcementText": "El culto del domingo empieza a las 8:30."
+    },
     "createAccount": "Crear mi cuenta",
     "haveAccount": "Ya tengo una cuenta"
   },
@@ -104,6 +97,7 @@
     "login": {
       "title": "¡Hola de nuevo!",
       "subtitle": "Inicia sesión para completar tu informe del día.",
+      "welcomeBack": "¡Qué bueno verte!",
       "submit": "Iniciar sesión",
       "noAccount": "¿Aún no tienes cuenta?",
       "createAccount": "Crear una cuenta"

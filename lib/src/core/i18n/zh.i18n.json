@@ -47,51 +47,43 @@
     "invalidEmail": "邮箱地址无效",
     "invalidCode": "只能使用字母和数字，不含空格"
   },
-  "onboarding": {
-    "skip": "跳过",
-    "next": "下一步",
-    "start": "开始",
-    "step": "第 {current} 页，共 {total} 页",
-    "reports": {
-      "title": "与神同行，日复一日",
+  "welcome": {
+    "seek": {
+      "before": "每天先寻求",
+      "marked": "神",
+      "after": "",
       "text": "几秒钟就能记下你的读经、祷告、禁食……每周都能看到自己的进步。"
     },
     "worship": {
-      "title": "随时随地，歌唱与祷告",
+      "before": "随时随地，歌唱与",
+      "marked": "祷告",
+      "after": "",
       "text": "查看团契的诗歌，每天与弟兄姊妹一起为代祷事项祷告。"
     },
     "community": {
-      "title": "与你的团契保持联系",
+      "before": "与你的",
+      "marked": "团契",
+      "after": "保持联系",
       "text": "你所在聚会点的活动和通知都在这里，一条也不会错过。"
     },
+    "step": "第 {current} 页，共 {total} 页",
+    "streak(plural, param=n)": {
+      "other": "与神同行 {n} 天"
+    },
     "sample": {
-      "today": "今天",
       "bibleReading": "读经",
+      "chapters": "10 章",
       "prayerAlone": "个人祷告",
-      "meditation": "默想",
-      "groupPrayer": "小组祷告",
-      "thisWeek": "本周",
-      "weekScore": "4/5 天",
       "hymn": "诗歌",
       "hymnNumber": "第 12 首",
-      "fullScreen": "全屏",
       "prayerOfTheDay": "今日代祷事项",
       "prayerTopic": "为青年们的考试祷告",
       "praying": "12 人正在祷告",
       "iPray": "我来祷告",
-      "vigil": "守夜祷告会",
-      "vigilMeta": "晚上 8 点 · 本地聚会点",
-      "join": "我要参加",
       "retreat": "青年退修会",
-      "retreatMeta": "全天",
       "announcement": "通知",
-      "announcementText": "主日崇拜早上 8:30 开始。",
-      "chapters": "10 章"
-    }
-  },
-  "welcome": {
-    "title": "欢迎使用 CMFI Connect",
-    "text": "只需一分钟创建账号，就能填写你的每日汇报，关注团契的动态。",
+      "announcementText": "主日崇拜早上 8:30 开始。"
+    },
     "createAccount": "创建账号",
     "haveAccount": "我已有账号"
   },
@@ -104,6 +96,7 @@
     "login": {
       "title": "欢迎回来",
       "subtitle": "登录后填写今天的汇报。",
+      "welcomeBack": "很高兴见到你！",
       "submit": "登录",
       "noAccount": "还没有账号？",
       "createAccount": "创建账号"

@@ -14,6 +14,7 @@ import '../../../core/utils/date_format.dart';
 import '../../../core/widgets/cmfi_logo.dart';
 import '../../../core/widgets/fade_slide_in.dart';
 import '../../../core/widgets/media_picture.dart';
+import '../../../core/widgets/photo_kit.dart';
 import '../../../routing/app_router.dart';
 import '../../bible/application/bible_library.dart';
 import '../../bible/application/bible_plan.dart';
@@ -30,6 +31,7 @@ import '../../hymns/application/hymn_collections.dart';
 import '../../hymns/application/hymn_library.dart';
 import '../../members/presentation/widgets/member_avatar.dart';
 import '../../ministry/application/nations.dart';
+import '../../ministry/domain/ministry_lives.dart';
 import '../../notifications/application/inbox.dart';
 import '../../prayer/application/retreats.dart';
 import '../../prayer/domain/retreat.dart';
@@ -1011,13 +1013,22 @@ class _Community extends ConsumerWidget {
             ],
             if (upcoming.isEmpty) divider,
             _Row(
-              leading: _Tile(
-                color: tone.soft,
-                child: PhosphorIcon(
-                  AppIcons.ministryTile,
-                  size: 22,
-                  color: tone.onSoft,
-                ),
+              // our founder and our leader: real faces of the ministry
+              leading: FaceStack(
+                faces: [
+                  for (final life in const [
+                    MinistryLife.founder,
+                    MinistryLife.leader,
+                  ])
+                    Image.asset(
+                      life.asset,
+                      fit: BoxFit.cover,
+                      excludeFromSemantics: true,
+                    ),
+                ],
+                ring: scheme.surface,
+                size: 44,
+                overlap: 0.3,
               ),
               title: t.ministry.title,
               text: t.ministry.homeText(n: nations),

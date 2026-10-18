@@ -47,51 +47,44 @@
     "invalidEmail": "Adresse e-mail invalide",
     "invalidCode": "Lettres et chiffres uniquement, sans espace"
   },
-  "onboarding": {
-    "skip": "Passer",
-    "next": "Suivant",
-    "start": "Commencer",
-    "step": "Écran {current} sur {total}",
-    "reports": {
-      "title": "Ta marche avec Dieu, jour après jour",
+  "welcome": {
+    "seek": {
+      "before": "Cherche d'abord ",
+      "marked": "Dieu",
+      "after": ", chaque jour",
       "text": "Note en quelques secondes ta lecture biblique, ta prière, tes jeûnes… et vois ta progression semaine après semaine."
     },
     "worship": {
-      "title": "Chante et prie, où que tu sois",
+      "before": "Chante et ",
+      "marked": "prie",
+      "after": ", où que tu sois",
       "text": "Retrouve les cantiques de la communauté et porte chaque jour les sujets de prière avec tes frères et sœurs."
     },
     "community": {
-      "title": "Reste lié à ta communauté",
+      "before": "Reste lié à ta ",
+      "marked": "communauté",
+      "after": "",
       "text": "Les évènements et les annonces de ton assemblée, au même endroit, pour ne rien manquer."
     },
+    "step": "Écran {current} sur {total}",
+    "streak(plural, param=n)": {
+      "one": "{n} jour avec Dieu",
+      "other": "{n} jours avec Dieu"
+    },
     "sample": {
-      "today": "Aujourd'hui",
       "bibleReading": "Lecture biblique",
+      "chapters": "10 ch.",
       "prayerAlone": "Prière seule",
-      "meditation": "Méditation",
-      "groupPrayer": "Prière en groupe",
-      "thisWeek": "Cette semaine",
-      "weekScore": "4 jours sur 5",
       "hymn": "Cantique",
       "hymnNumber": "N° 12",
-      "fullScreen": "Plein écran",
       "prayerOfTheDay": "Sujet de prière du jour",
       "prayerTopic": "Pour les examens de nos jeunes",
       "praying": "12 personnes prient",
       "iPray": "Je prie",
-      "vigil": "Veillée de prière",
-      "vigilMeta": "20 h · Assemblée locale",
-      "join": "Je participe",
       "retreat": "Retraite des jeunes",
-      "retreatMeta": "Toute la journée",
       "announcement": "Annonce",
-      "announcementText": "Le culte de dimanche commence à 8 h 30.",
-      "chapters": "10 ch."
-    }
-  },
-  "welcome": {
-    "title": "Bienvenue sur CMFI Connect",
-    "text": "Crée ton compte en une minute pour remplir ton compte rendu et suivre la vie de ta communauté.",
+      "announcementText": "Le culte de dimanche commence à 8 h 30."
+    },
     "createAccount": "Créer mon compte",
     "haveAccount": "J'ai déjà un compte"
   },
@@ -104,6 +97,7 @@
     "login": {
       "title": "Content de te revoir",
       "subtitle": "Connecte-toi pour remplir ton compte rendu du jour.",
+      "welcomeBack": "Bon retour !",
       "submit": "Se connecter",
       "noAccount": "Pas encore de compte ?",
       "createAccount": "Créer un compte"

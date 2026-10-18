@@ -6,7 +6,8 @@ import 'package:intl/date_symbol_data_local.dart';
 import '../../helpers/fakes.dart';
 import '../../helpers/pump_app.dart';
 
-const welcomeTitle = 'Bienvenue sur CMFI Connect';
+/// Only on the welcome screen.
+const welcomeTitle = "J'ai déjà un compte";
 
 /// Plus › Supprimer mon compte, then the password.
 Future<void> openAndConfirm(WidgetTester tester, String password) async {

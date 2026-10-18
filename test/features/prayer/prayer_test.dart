@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:cmfi_connect/src/core/i18n/strings.g.dart';
+import 'package:cmfi_connect/src/core/theme/app_icons.dart';
 import 'package:cmfi_connect/src/core/utils/date_extensions.dart';
 import 'package:cmfi_connect/src/features/prayer/application/importunities.dart';
 import 'package:cmfi_connect/src/features/prayer/domain/prayer.dart';
@@ -157,6 +158,49 @@ void main() {
   });
 
   group('the Prière tab', () {
+    testWidgets('the four retreats as cards, the one made checked', (
+      tester,
+    ) async {
+      final api = FakePrayerApi()
+        ..retreatList.add(
+          RetreatRecord(day: today(), moment: RetreatMoment.morning),
+        );
+      await pumpApp(tester, token: 't', prayerApi: api);
+      await openPrayer(tester);
+      await scrollTo(tester, find.text('Retraite de la nuit'));
+
+      for (final name in [
+        'Retraite du matin',
+        'Retraite de midi',
+        'Retraite du soir',
+        'Retraite de la nuit',
+      ]) {
+        expect(find.text(name), findsOneWidget);
+      }
+      expect(find.text('Faite · 15 min'), findsOneWidget);
+      expect(find.byIcon(AppIcons.checkCircleFilled), findsOneWidget);
+      expect(find.text('1 sur 4'), findsOneWidget);
+
+      await tester.tap(find.text('Retraite de la nuit'));
+      await tester.pumpAndSettle();
+      expect(find.text('Retraites de 15 minutes'), findsOneWidget);
+    });
+
+    testWidgets('the photo at the top: the days prayed and "Commencer"', (
+      tester,
+    ) async {
+      await pumpApp(tester, token: 't');
+      await openPrayer(tester);
+
+      expect(find.text('15 minutes\navec le Seigneur'), findsOneWidget);
+      expect(find.textContaining('jour'), findsWidgets);
+      expect(find.text('Commencer'), findsOneWidget);
+      await tester.tap(find.text('Commencer'));
+      await tester.pump();
+      await tester.pump(const Duration(milliseconds: 500));
+      expect(find.text('Point 1 sur 15'), findsOneWidget);
+    });
+
     testWidgets('a retreat at my pace: 15 points, then the day and report', (
       tester,
     ) async {
@@ -171,6 +215,7 @@ void main() {
 
       expect(find.text('Ta routine du jour'), findsOneWidget);
       // the midday retreat, at its own pace
+      await scrollTo(tester, find.text('Retraite de midi'));
       await tester.tap(find.text('Retraite de midi'));
       await tester.pumpAndSettle();
       expect(find.text('Retraites de 15 minutes'), findsOneWidget);
@@ -472,6 +517,7 @@ void main() {
         find.text('${inviter.firstName} ${inviter.lastName} t\'invite à prier'),
         findsOneWidget,
       );
+      await scrollTo(tester, find.text('Je prie avec vous'));
       await tester.tap(find.text('Je prie avec vous'));
       await tester.pumpAndSettle();
       expect(

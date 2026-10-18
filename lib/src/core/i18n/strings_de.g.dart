@@ -43,7 +43,6 @@ class TranslationsDe extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _Translations$common$de common = _Translations$common$de._(_root);
 	@override late final _Translations$errors$de errors = _Translations$errors$de._(_root);
 	@override late final _Translations$validation$de validation = _Translations$validation$de._(_root);
-	@override late final _Translations$onboarding$de onboarding = _Translations$onboarding$de._(_root);
 	@override late final _Translations$welcome$de welcome = _Translations$welcome$de._(_root);
 	@override late final _Translations$auth$de auth = _Translations$auth$de._(_root);
 	@override late final _Translations$countries$de countries = _Translations$countries$de._(_root);
@@ -160,23 +159,6 @@ class _Translations$validation$de extends Translations$validation$fr {
 	@override String get invalidCode => 'Nur Buchstaben und Ziffern, ohne Leerzeichen';
 }
 
-// Path: onboarding
-class _Translations$onboarding$de extends Translations$onboarding$fr {
-	_Translations$onboarding$de._(TranslationsDe root) : this._root = root, super.internal(root);
-
-	final TranslationsDe _root; // ignore: unused_field
-
-	// Translations
-	@override String get skip => 'Überspringen';
-	@override String get next => 'Weiter';
-	@override String get start => 'Los geht\'s';
-	@override String step({required Object current, required Object total}) => 'Seite ${current} von ${total}';
-	@override late final _Translations$onboarding$reports$de reports = _Translations$onboarding$reports$de._(_root);
-	@override late final _Translations$onboarding$worship$de worship = _Translations$onboarding$worship$de._(_root);
-	@override late final _Translations$onboarding$community$de community = _Translations$onboarding$community$de._(_root);
-	@override late final _Translations$onboarding$sample$de sample = _Translations$onboarding$sample$de._(_root);
-}
-
 // Path: welcome
 class _Translations$welcome$de extends Translations$welcome$fr {
 	_Translations$welcome$de._(TranslationsDe root) : this._root = root, super.internal(root);
@@ -184,8 +166,15 @@ class _Translations$welcome$de extends Translations$welcome$fr {
 	final TranslationsDe _root; // ignore: unused_field
 
 	// Translations
-	@override String get title => 'Willkommen bei CMFI Connect';
-	@override String get text => 'Erstelle in einer Minute dein Konto, um deinen Tagesbericht auszufüllen und das Leben deiner Gemeinschaft mitzuverfolgen.';
+	@override late final _Translations$welcome$seek$de seek = _Translations$welcome$seek$de._(_root);
+	@override late final _Translations$welcome$worship$de worship = _Translations$welcome$worship$de._(_root);
+	@override late final _Translations$welcome$community$de community = _Translations$welcome$community$de._(_root);
+	@override String step({required Object current, required Object total}) => 'Seite ${current} von ${total}';
+	@override String streak({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('de'))(n,
+		one: '${n} Tag mit Gott',
+		other: '${n} Tage mit Gott',
+	);
+	@override late final _Translations$welcome$sample$de sample = _Translations$welcome$sample$de._(_root);
 	@override String get createAccount => 'Konto erstellen';
 	@override String get haveAccount => 'Ich habe schon ein Konto';
 }
@@ -1627,68 +1616,64 @@ class _Translations$fasts$de extends Translations$fasts$fr {
 	@override String homeText({required Object time}) => 'Dieser Tag endet um ${time}';
 }
 
-// Path: onboarding.reports
-class _Translations$onboarding$reports$de extends Translations$onboarding$reports$fr {
-	_Translations$onboarding$reports$de._(TranslationsDe root) : this._root = root, super.internal(root);
+// Path: welcome.seek
+class _Translations$welcome$seek$de extends Translations$welcome$seek$fr {
+	_Translations$welcome$seek$de._(TranslationsDe root) : this._root = root, super.internal(root);
 
 	final TranslationsDe _root; // ignore: unused_field
 
 	// Translations
-	@override String get title => 'Dein Weg mit Gott, Tag für Tag';
+	@override String get before => 'Suche zuerst ';
+	@override String get marked => 'Gott';
+	@override String get after => ', jeden Tag';
 	@override String get text => 'Notiere in Sekunden deine Bibellese, dein Gebet, dein Fasten … und verfolge deinen Fortschritt Woche für Woche.';
 }
 
-// Path: onboarding.worship
-class _Translations$onboarding$worship$de extends Translations$onboarding$worship$fr {
-	_Translations$onboarding$worship$de._(TranslationsDe root) : this._root = root, super.internal(root);
+// Path: welcome.worship
+class _Translations$welcome$worship$de extends Translations$welcome$worship$fr {
+	_Translations$welcome$worship$de._(TranslationsDe root) : this._root = root, super.internal(root);
 
 	final TranslationsDe _root; // ignore: unused_field
 
 	// Translations
-	@override String get title => 'Singe und bete, wo immer du bist';
+	@override String get before => 'Singe und ';
+	@override String get marked => 'bete';
+	@override String get after => ', wo immer du bist';
 	@override String get text => 'Finde die Lieder der Gemeinschaft und bete jeden Tag mit deinen Brüdern und Schwestern für die Gebetsanliegen.';
 }
 
-// Path: onboarding.community
-class _Translations$onboarding$community$de extends Translations$onboarding$community$fr {
-	_Translations$onboarding$community$de._(TranslationsDe root) : this._root = root, super.internal(root);
+// Path: welcome.community
+class _Translations$welcome$community$de extends Translations$welcome$community$fr {
+	_Translations$welcome$community$de._(TranslationsDe root) : this._root = root, super.internal(root);
 
 	final TranslationsDe _root; // ignore: unused_field
 
 	// Translations
-	@override String get title => 'Bleib mit deiner Gemeinschaft verbunden';
+	@override String get before => 'Bleib mit deiner ';
+	@override String get marked => 'Gemeinschaft';
+	@override String get after => ' verbunden';
 	@override String get text => 'Die Veranstaltungen und Ankündigungen deiner Gemeinde an einem Ort, damit du nichts verpasst.';
 }
 
-// Path: onboarding.sample
-class _Translations$onboarding$sample$de extends Translations$onboarding$sample$fr {
-	_Translations$onboarding$sample$de._(TranslationsDe root) : this._root = root, super.internal(root);
+// Path: welcome.sample
+class _Translations$welcome$sample$de extends Translations$welcome$sample$fr {
+	_Translations$welcome$sample$de._(TranslationsDe root) : this._root = root, super.internal(root);
 
 	final TranslationsDe _root; // ignore: unused_field
 
 	// Translations
-	@override String get today => 'Heute';
 	@override String get bibleReading => 'Bibellese';
+	@override String get chapters => '10 Kap.';
 	@override String get prayerAlone => 'Persönliches Gebet';
-	@override String get meditation => 'Meditation';
-	@override String get groupPrayer => 'Gebet in der Gruppe';
-	@override String get thisWeek => 'Diese Woche';
-	@override String get weekScore => '4 von 5 Tagen';
 	@override String get hymn => 'Lied';
 	@override String get hymnNumber => 'Nr. 12';
-	@override String get fullScreen => 'Vollbild';
 	@override String get prayerOfTheDay => 'Gebetsanliegen des Tages';
 	@override String get prayerTopic => 'Für die Prüfungen unserer Jugendlichen';
 	@override String get praying => '12 Personen beten';
 	@override String get iPray => 'Ich bete';
-	@override String get vigil => 'Gebetsnacht';
-	@override String get vigilMeta => '20 Uhr · Ortsgemeinde';
-	@override String get join => 'Ich bin dabei';
 	@override String get retreat => 'Jugendfreizeit';
-	@override String get retreatMeta => 'Ganztägig';
 	@override String get announcement => 'Ankündigung';
 	@override String get announcementText => 'Der Gottesdienst am Sonntag beginnt um 8:30 Uhr.';
-	@override String get chapters => '10 Kap.';
 }
 
 // Path: auth.login
@@ -1700,6 +1685,7 @@ class _Translations$auth$login$de extends Translations$auth$login$fr {
 	// Translations
 	@override String get title => 'Willkommen zurück';
 	@override String get subtitle => 'Melde dich an, um deinen heutigen Bericht auszufüllen.';
+	@override String get welcomeBack => 'Schön, dass du da bist!';
 	@override String get submit => 'Anmelden';
 	@override String get noAccount => 'Noch kein Konto?';
 	@override String get createAccount => 'Konto erstellen';
@@ -3001,40 +2987,32 @@ extension on TranslationsDe {
 			'validation.invalidPhone' => 'Ungültige Telefonnummer',
 			'validation.invalidEmail' => 'Ungültige E-Mail-Adresse',
 			'validation.invalidCode' => 'Nur Buchstaben und Ziffern, ohne Leerzeichen',
-			'onboarding.skip' => 'Überspringen',
-			'onboarding.next' => 'Weiter',
-			'onboarding.start' => 'Los geht\'s',
-			'onboarding.step' => ({required Object current, required Object total}) => 'Seite ${current} von ${total}',
-			'onboarding.reports.title' => 'Dein Weg mit Gott, Tag für Tag',
-			'onboarding.reports.text' => 'Notiere in Sekunden deine Bibellese, dein Gebet, dein Fasten … und verfolge deinen Fortschritt Woche für Woche.',
-			'onboarding.worship.title' => 'Singe und bete, wo immer du bist',
-			'onboarding.worship.text' => 'Finde die Lieder der Gemeinschaft und bete jeden Tag mit deinen Brüdern und Schwestern für die Gebetsanliegen.',
-			'onboarding.community.title' => 'Bleib mit deiner Gemeinschaft verbunden',
-			'onboarding.community.text' => 'Die Veranstaltungen und Ankündigungen deiner Gemeinde an einem Ort, damit du nichts verpasst.',
-			'onboarding.sample.today' => 'Heute',
-			'onboarding.sample.bibleReading' => 'Bibellese',
-			'onboarding.sample.prayerAlone' => 'Persönliches Gebet',
-			'onboarding.sample.meditation' => 'Meditation',
-			'onboarding.sample.groupPrayer' => 'Gebet in der Gruppe',
-			'onboarding.sample.thisWeek' => 'Diese Woche',
-			'onboarding.sample.weekScore' => '4 von 5 Tagen',
-			'onboarding.sample.hymn' => 'Lied',
-			'onboarding.sample.hymnNumber' => 'Nr. 12',
-			'onboarding.sample.fullScreen' => 'Vollbild',
-			'onboarding.sample.prayerOfTheDay' => 'Gebetsanliegen des Tages',
-			'onboarding.sample.prayerTopic' => 'Für die Prüfungen unserer Jugendlichen',
-			'onboarding.sample.praying' => '12 Personen beten',
-			'onboarding.sample.iPray' => 'Ich bete',
-			'onboarding.sample.vigil' => 'Gebetsnacht',
-			'onboarding.sample.vigilMeta' => '20 Uhr · Ortsgemeinde',
-			'onboarding.sample.join' => 'Ich bin dabei',
-			'onboarding.sample.retreat' => 'Jugendfreizeit',
-			'onboarding.sample.retreatMeta' => 'Ganztägig',
-			'onboarding.sample.announcement' => 'Ankündigung',
-			'onboarding.sample.announcementText' => 'Der Gottesdienst am Sonntag beginnt um 8:30 Uhr.',
-			'onboarding.sample.chapters' => '10 Kap.',
-			'welcome.title' => 'Willkommen bei CMFI Connect',
-			'welcome.text' => 'Erstelle in einer Minute dein Konto, um deinen Tagesbericht auszufüllen und das Leben deiner Gemeinschaft mitzuverfolgen.',
+			'welcome.seek.before' => 'Suche zuerst ',
+			'welcome.seek.marked' => 'Gott',
+			'welcome.seek.after' => ', jeden Tag',
+			'welcome.seek.text' => 'Notiere in Sekunden deine Bibellese, dein Gebet, dein Fasten … und verfolge deinen Fortschritt Woche für Woche.',
+			'welcome.worship.before' => 'Singe und ',
+			'welcome.worship.marked' => 'bete',
+			'welcome.worship.after' => ', wo immer du bist',
+			'welcome.worship.text' => 'Finde die Lieder der Gemeinschaft und bete jeden Tag mit deinen Brüdern und Schwestern für die Gebetsanliegen.',
+			'welcome.community.before' => 'Bleib mit deiner ',
+			'welcome.community.marked' => 'Gemeinschaft',
+			'welcome.community.after' => ' verbunden',
+			'welcome.community.text' => 'Die Veranstaltungen und Ankündigungen deiner Gemeinde an einem Ort, damit du nichts verpasst.',
+			'welcome.step' => ({required Object current, required Object total}) => 'Seite ${current} von ${total}',
+			'welcome.streak' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('de'))(n, one: '${n} Tag mit Gott', other: '${n} Tage mit Gott', ), 
+			'welcome.sample.bibleReading' => 'Bibellese',
+			'welcome.sample.chapters' => '10 Kap.',
+			'welcome.sample.prayerAlone' => 'Persönliches Gebet',
+			'welcome.sample.hymn' => 'Lied',
+			'welcome.sample.hymnNumber' => 'Nr. 12',
+			'welcome.sample.prayerOfTheDay' => 'Gebetsanliegen des Tages',
+			'welcome.sample.prayerTopic' => 'Für die Prüfungen unserer Jugendlichen',
+			'welcome.sample.praying' => '12 Personen beten',
+			'welcome.sample.iPray' => 'Ich bete',
+			'welcome.sample.retreat' => 'Jugendfreizeit',
+			'welcome.sample.announcement' => 'Ankündigung',
+			'welcome.sample.announcementText' => 'Der Gottesdienst am Sonntag beginnt um 8:30 Uhr.',
 			'welcome.createAccount' => 'Konto erstellen',
 			'welcome.haveAccount' => 'Ich habe schon ein Konto',
 			'auth.phone' => 'Telefon',
@@ -3044,6 +3022,7 @@ extension on TranslationsDe {
 			'auth.hidePassword' => 'Passwort verbergen',
 			'auth.login.title' => 'Willkommen zurück',
 			'auth.login.subtitle' => 'Melde dich an, um deinen heutigen Bericht auszufüllen.',
+			'auth.login.welcomeBack' => 'Schön, dass du da bist!',
 			'auth.login.submit' => 'Anmelden',
 			'auth.login.noAccount' => 'Noch kein Konto?',
 			'auth.login.createAccount' => 'Konto erstellen',
@@ -3473,8 +3452,6 @@ extension on TranslationsDe {
 			'hymns.chooseBook' => 'Liederbuch wählen',
 			'hymns.count' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('de'))(n, one: '${n} Lied', other: '${n} Lieder', ), 
 			'hymns.number' => ({required Object number}) => 'Nr. ${number}',
-			_ => null,
-		} ?? switch (path) {
 			'hymns.emptyFavorites' => 'Tippe auf den Stern eines Liedes, um es hier wiederzufinden.',
 			'hymns.emptyRecent' => 'Die Lieder, die du öffnest, erscheinen hier.',
 			'hymns.noResult' => ({required Object query}) => 'Kein Lied passt zu „${query}“.',
@@ -3482,6 +3459,8 @@ extension on TranslationsDe {
 			'hymns.upToDate' => 'Die Liederbücher sind auf dem neuesten Stand.',
 			'hymns.updated' => 'Die Liederbücher wurden aktualisiert.',
 			'hymns.chorus' => 'Refrain',
+			_ => null,
+		} ?? switch (path) {
 			'hymns.chorusNumber' => ({required Object label}) => 'Refrain ${label}',
 			'hymns.verse' => ({required Object label}) => 'Strophe ${label}',
 			'hymns.times' => ({required Object n}) => '×${n}',
@@ -3987,8 +3966,6 @@ extension on TranslationsDe {
 			'prayer.lists.uses.coworkers' => 'In der Gebetszeit am Abend betest du jeden Tag der Reihe nach für 10 deiner Mitarbeiter (5 + 5).',
 			'prayer.lists.privateNote' => 'Nur du kannst sie sehen.',
 			'prayer.lists.count' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('de'))(n, zero: 'Niemand', one: '${n} Person', other: '${n} Personen', ), 
-			_ => null,
-		} ?? switch (path) {
 			'prayer.lists.empty' => 'Noch niemand. Füge die Menschen hinzu, für die du betest.',
 			'prayer.lists.add' => 'Person hinzufügen',
 			'prayer.lists.prayedToday' => 'Heute',
@@ -3996,6 +3973,8 @@ extension on TranslationsDe {
 			'prayer.lists.answeredTitle.unbelievers' => 'Zum Glauben an den Herrn gekommen',
 			'prayer.lists.answeredTitle.believers' => 'Erhörte Gebete',
 			'prayer.lists.answeredTitle.backsliders' => 'Zum Herrn zurückgekehrt',
+			_ => null,
+		} ?? switch (path) {
 			'prayer.lists.answeredTitle.coworkers' => 'Erhörte Gebete',
 			'prayer.lists.answeredOn.unbelievers' => ({required Object date}) => 'Am ${date} zum Glauben an den Herrn gekommen',
 			'prayer.lists.answeredOn.believers' => ({required Object date}) => 'Erhört am ${date}',
@@ -4501,8 +4480,6 @@ extension on TranslationsDe {
 			'souls.noContact' => 'Keine Erinnerung geplant',
 			'souls.metAt' => ({required Object date}) => 'Getroffen am ${date}',
 			'souls.notes' => 'Notizen',
-			_ => null,
-		} ?? switch (path) {
 			'souls.addNote' => 'Notiz hinzufügen',
 			'souls.noNotes' => 'Noch keine Notizen.',
 			'souls.deleteNote' => 'Notiz löschen',
@@ -4510,6 +4487,8 @@ extension on TranslationsDe {
 			'souls.csv.name' => 'Name',
 			'souls.csv.phone' => 'Telefon',
 			'souls.csv.place' => 'Ort',
+			_ => null,
+		} ?? switch (path) {
 			'souls.csv.metOn' => 'Getroffen am',
 			'souls.csv.stage' => 'Stufe',
 			'souls.csv.next' => 'Nächster Kontakt',

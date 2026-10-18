@@ -8,7 +8,8 @@ import 'package:intl/date_symbol_data_local.dart';
 import 'helpers/fakes.dart';
 import 'helpers/pump_app.dart';
 
-const welcomeTitle = 'Bienvenue sur CMFI Connect';
+/// Only on the welcome screen.
+const welcomeButton = "J'ai déjà un compte";
 const invalidCredentials = 'Numéro de téléphone ou mot de passe incorrect.';
 
 Future<void> tapText(WidgetTester tester, String text) async {
@@ -28,43 +29,53 @@ void main() {
   setUp(() => LocaleSettings.setLocale(AppLocale.fr));
 
   group('launch', () {
-    testWidgets(
-      'first launch shows the presentation, skipping it opens the welcome screen',
-      (tester) async {
-        final app = await pumpApp(tester, onboardingSeen: false);
+    testWidgets('signed out, the welcome screen comes first', (tester) async {
+      await pumpApp(tester);
 
-        expect(
-          find.text('Ta marche avec Dieu, jour après jour'),
-          findsOneWidget,
-        );
-
-        await tapText(tester, 'Passer');
-
-        expect(find.text(welcomeTitle), findsOneWidget);
-        expect(app.preferences.getBool('onboarding_seen'), isTrue);
-      },
-    );
-
-    testWidgets('the presentation has three pages, the last one starts', (
-      tester,
-    ) async {
-      await pumpApp(tester, onboardingSeen: false);
-
-      await tapText(tester, 'Suivant');
-      expect(find.text('Chante et prie, où que tu sois'), findsOneWidget);
-      await tapText(tester, 'Suivant');
-      expect(find.text('Reste lié à ta communauté'), findsOneWidget);
-      await tapText(tester, 'Commencer');
-
-      expect(find.text(welcomeTitle), findsOneWidget);
+      expect(find.text(welcomeButton), findsOneWidget);
+      expect(find.text('Créer mon compte'), findsOneWidget);
+      expect(
+        find.text(
+          'Note en quelques secondes ta lecture biblique, ta prière, tes '
+          'jeûnes… et vois ta progression semaine après semaine.',
+        ),
+        findsOneWidget,
+      );
     });
 
-    testWidgets('presentation already seen: the welcome screen comes first', (
+    testWidgets('first launch: three pages to swipe, the buttons stay', (
+      tester,
+    ) async {
+      final app = await pumpApp(tester, onboardingSeen: false);
+      expect(find.bySemanticsLabel('Écran 1 sur 3'), findsOneWidget);
+
+      await tester.fling(find.byType(PageView), const Offset(-300, 0), 1000);
+      await tester.pumpAndSettle();
+      expect(find.textContaining('Retrouve les cantiques'), findsOneWidget);
+
+      await tester.fling(find.byType(PageView), const Offset(-300, 0), 1000);
+      await tester.pumpAndSettle();
+      expect(
+        find.textContaining('Les évènements et les annonces'),
+        findsOneWidget,
+      );
+      expect(find.text(welcomeButton), findsOneWidget);
+
+      await tapText(tester, 'Créer mon compte');
+      expect(find.text(welcomeButton), findsNothing);
+      expect(app.preferences.getBool('onboarding_seen'), isTrue);
+    });
+
+    testWidgets('presentation already seen: the first page only', (
       tester,
     ) async {
       await pumpApp(tester);
 
-      expect(find.text(welcomeTitle), findsOneWidget);
+      expect(find.text(welcomeButton), findsOneWidget);
+      expect(find.bySemanticsLabel(RegExp('Écran')), findsNothing);
+      await tester.fling(find.byType(PageView), const Offset(-300, 0), 1000);
+      await tester.pumpAndSettle();
+      expect(find.textContaining('Retrouve les cantiques'), findsNothing);
     });
 
     testWidgets('a stored token opens the home tab directly', (tester) async {
@@ -87,6 +98,16 @@ void main() {
       expect(find.text('Bonjour Boris'), findsOneWidget);
       expect(app.storage.token, 'test-token');
       expect(app.authApi.loggedInWith, '+237690000001');
+    });
+
+    testWidgets('the sign-in is welcoming: faces and a word', (tester) async {
+      await pumpApp(tester);
+
+      await tapText(tester, welcomeButton);
+
+      expect(find.text('Content de te revoir'), findsOneWidget);
+      expect(find.text('Bon retour !'), findsOneWidget);
+      expect(find.byTooltip('Retour'), findsOneWidget);
     });
 
     testWidgets('another country: its dial code, kept for the next time', (
@@ -265,7 +286,7 @@ void main() {
         await scrollToEnd(tester);
         await tapText(tester, 'Se déconnecter');
 
-        expect(find.text(welcomeTitle), findsOneWidget);
+        expect(find.text(welcomeButton), findsOneWidget);
         expect(app.storage.token, isNull);
       },
     );
@@ -280,7 +301,7 @@ void main() {
         await app.container.read(sessionProvider.notifier).signOut();
         await tester.pumpAndSettle();
 
-        expect(find.text(welcomeTitle), findsOneWidget);
+        expect(find.text(welcomeButton), findsOneWidget);
       },
     );
   });

@@ -29,7 +29,7 @@ class FadeThroughRoute<T> extends PageRoute<T> {
     AutoRoutePage<T> page,
   ) => FadeThroughRoute<T>(page: page);
 
-  /// Same, for the dark blue screens (splash, welcome): they fade to dark blue.
+  /// Same, for the dark blue splash: it fades to dark blue.
   static Route<T> darkBuilder<T>(
     BuildContext context,
     Widget child,

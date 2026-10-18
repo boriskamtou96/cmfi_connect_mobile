@@ -15,6 +15,10 @@ abstract final class AppColors {
   static const gold = Color(0xFFE2A93B); // Or lumière: the flame, rare accents
   static const goldLight = Color(0xFFF6D27A);
 
+  // The photographic look (core/widgets/photo_kit.dart)
+  static const night = Color(0xFF061F40); // the veils over the photos
+  static const cream = Color(0xFFFFF4E0); // welcome and sign-in, light mode
+
   // Neutrals
   static const ink = Color(0xFF0F1A2A);
   static const muted = Color(0xFF556375);

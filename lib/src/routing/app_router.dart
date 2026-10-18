@@ -41,7 +41,6 @@ import '../features/ministry/presentation/purpose_screen.dart';
 import '../features/more/presentation/more_screen.dart';
 import '../features/notifications/presentation/notification_screen.dart';
 import '../features/notifications/presentation/notifications_screen.dart';
-import '../features/onboarding/presentation/onboarding_screen.dart';
 import '../features/onboarding/presentation/splash_screen.dart';
 import '../features/onboarding/presentation/welcome_screen.dart';
 import '../features/prayer/domain/prayer.dart';
@@ -96,14 +95,9 @@ class AppRouter extends RootStackRouter {
       customRouteBuilder: FadeThroughRoute.darkBuilder,
     ),
     CustomRoute(
-      path: '/onboarding',
-      page: OnboardingRoute.page,
-      customRouteBuilder: FadeThroughRoute.builder,
-    ),
-    CustomRoute(
       path: '/welcome',
       page: WelcomeRoute.page,
-      customRouteBuilder: FadeThroughRoute.darkBuilder,
+      customRouteBuilder: FadeThroughRoute.builder,
     ),
     AutoRoute(path: '/login', page: LoginRoute.page),
     AutoRoute(path: '/register', page: RegisterRoute.page),

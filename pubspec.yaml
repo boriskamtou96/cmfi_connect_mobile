@@ -147,6 +147,9 @@ flutter:
     # the cross references of the Bible: OpenBible.info (CC-BY), the links of
     # 5 votes or more, 12 per verse at most, see features/bible (cross_references)
     - assets/bible/
+    # stock photos of the photographic look (Unsplash licence, credits in
+    # assets/photos/CREDITS.md), see core/widgets/photo_kit.dart
+    - assets/photos/
 
   fonts:
     - family: Onest

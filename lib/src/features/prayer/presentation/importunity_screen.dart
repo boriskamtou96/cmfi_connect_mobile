@@ -332,13 +332,14 @@ class _PrayerTime extends HookConsumerWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        t.prayer.importunity.timeLabel,
+                        mine.paused
+                            ? '${t.prayer.importunity.timeLabel} · '
+                                  '${t.reports.timer.paused}'
+                            : t.prayer.importunity.timeLabel,
                         style: TextStyle(fontSize: 12.5, color: tone.onSoft),
                       ),
                       Text(
-                        mine.paused
-                            ? '${stopwatchClock(elapsed)} · ${t.reports.timer.paused}'
-                            : stopwatchClock(elapsed),
+                        stopwatchClock(elapsed),
                         style: TextStyle(
                           fontSize: 22,
                           fontWeight: FontWeight.w800,

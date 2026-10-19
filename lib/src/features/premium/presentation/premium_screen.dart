@@ -119,27 +119,41 @@ class PremiumScreen extends HookConsumerWidget {
                         children: [
                           const FadeSlideIn(child: _Hero()),
                           const SizedBox(height: AppSpacing.md),
-                          for (final (i, (icon, title, text)) in [
-                            (
-                              AppIcons.homeWidgetTile,
-                              t.widgetTitle,
-                              t.widgetText,
+                          FadeSlideIn(
+                            index: 1,
+                            child: Row(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                for (final (i, (icon, title, text)) in [
+                                  (
+                                    AppIcons.homeWidgetTile,
+                                    t.widgetTitle,
+                                    t.widgetText,
+                                  ),
+                                  (
+                                    AppIcons.progressTile,
+                                    t.statsTitle,
+                                    t.statsText,
+                                  ),
+                                  (
+                                    AppIcons.supportTile,
+                                    t.supportTitle,
+                                    t.supportText,
+                                  ),
+                                ].indexed) ...[
+                                  if (i > 0)
+                                    const SizedBox(width: AppSpacing.sm),
+                                  Expanded(
+                                    child: _Benefit(
+                                      icon: icon,
+                                      title: title,
+                                      text: text,
+                                    ),
+                                  ),
+                                ],
+                              ],
                             ),
-                            (AppIcons.progressTile, t.statsTitle, t.statsText),
-                            (
-                              AppIcons.supportTile,
-                              t.supportTitle,
-                              t.supportText,
-                            ),
-                          ].indexed)
-                            FadeSlideIn(
-                              index: i + 1,
-                              child: _Benefit(
-                                icon: icon,
-                                title: title,
-                                text: text,
-                              ),
-                            ),
+                          ),
                           const SizedBox(height: AppSpacing.md),
                           FadeSlideIn(
                             index: 4,
@@ -269,8 +283,8 @@ class _Hero extends StatelessWidget {
         Row(
           children: [
             Container(
-              width: 96,
-              height: 88,
+              width: 84,
+              height: 76,
               alignment: Alignment.center,
               decoration: BoxDecoration(
                 gradient: RadialGradient(
@@ -283,7 +297,7 @@ class _Hero extends StatelessWidget {
                   stops: const [0, 0.5, 1],
                 ),
               ),
-              child: const DoveMascot(pose: DovePose.celebrate, size: 76),
+              child: const DoveMascot(pose: DovePose.celebrate, size: 64),
             ),
             const SizedBox(width: AppSpacing.sm),
             Expanded(
@@ -313,7 +327,7 @@ class _Hero extends StatelessWidget {
                       child: Text(
                         t.pill,
                         style: const TextStyle(
-                          fontSize: 38,
+                          fontSize: 34,
                           height: 1.1,
                           fontWeight: FontWeight.w800,
                           letterSpacing: -0.5,
@@ -340,7 +354,8 @@ class _Hero extends StatelessWidget {
   }
 }
 
-/// What Premium opens, lit in gold.
+/// What Premium opens, lit in gold: one of three side by side, its icon
+/// and its title (the sentence that explains it is read by screen readers).
 class _Benefit extends StatelessWidget {
   const _Benefit({required this.icon, required this.title, required this.text});
 
@@ -350,10 +365,10 @@ class _Benefit extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 5),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
+    return Semantics(
+      label: '$title. $text',
+      excludeSemantics: true,
+      child: Column(
         children: [
           Container(
             width: 38,
@@ -366,28 +381,15 @@ class _Benefit extends StatelessWidget {
             ),
             child: PhosphorIcon(icon, color: AppColors.goldLight, size: 21),
           ),
-          const SizedBox(width: AppSpacing.md),
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  title,
-                  style: const TextStyle(
-                    fontSize: 14.5,
-                    fontWeight: FontWeight.w700,
-                    color: _onNight,
-                  ),
-                ),
-                Text(
-                  text,
-                  style: const TextStyle(
-                    fontSize: 13,
-                    height: 1.3,
-                    color: _onNightMuted,
-                  ),
-                ),
-              ],
+          const SizedBox(height: 6),
+          Text(
+            title,
+            textAlign: TextAlign.center,
+            style: const TextStyle(
+              fontSize: 12.5,
+              height: 1.25,
+              fontWeight: FontWeight.w700,
+              color: _onNight,
             ),
           ),
         ],
@@ -457,9 +459,10 @@ class _Plans extends StatelessWidget {
             color: _onNight,
           ),
         ),
-        const SizedBox(height: AppSpacing.sm),
+        // room for the saving badges on the top edge
+        const SizedBox(height: AppSpacing.lg),
         for (var i = 0; i < ordered.length; i += 2) ...[
-          if (i > 0) const SizedBox(height: AppSpacing.sm),
+          if (i > 0) const SizedBox(height: AppSpacing.md),
           IntrinsicHeight(
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -507,7 +510,7 @@ class _PlanTile extends StatelessWidget {
     // "24,99 €" large, "/ an" small beside it; read whole ("24,99 € / an")
     final full = _periodPrice(context, plan);
     final period = full.replaceFirst(plan.price, '').trim();
-    return Semantics(
+    final tile = Semantics(
       selected: selected,
       button: true,
       child: AnimatedContainer(
@@ -615,16 +618,26 @@ class _PlanTile extends StatelessWidget {
                       ),
                     ),
                   ],
-                  if (badge case final text?) ...[
-                    const SizedBox(height: 6),
-                    _SavingBadge(text),
-                  ],
                 ],
               ),
             ),
           ),
         ),
       ),
+    );
+    final badge = this.badge;
+    if (badge == null) {
+      return tile;
+    }
+    // what it saves, on the top edge of the tile
+    return Stack(
+      clipBehavior: Clip.none,
+      // as tall as the other tile of the row
+      fit: StackFit.passthrough,
+      children: [
+        tile,
+        PositionedDirectional(top: -9, end: 30, child: _SavingBadge(badge)),
+      ],
     );
   }
 }

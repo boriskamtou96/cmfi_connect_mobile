@@ -2631,6 +2631,10 @@ class _Translations$prayer$importunity$es extends Translations$prayer$importunit
 	@override late final _Translations$prayer$importunity$inviteSheet$es inviteSheet = _Translations$prayer$importunity$inviteSheet$es._(_root);
 	@override String get eyebrow => 'Tema de importunidad';
 	@override String get proclaim => 'Proclamar';
+	@override String get timer => 'Cronometrar mi oración';
+	@override String get timeLabel => 'Tiempo de oración por este motivo';
+	@override String mineTime({required Object n, required Object time}) => 'Tú: ${n} · ${time} de oración';
+	@override String get timerNote => 'El tiempo se suma a «Oración personal» en tu informe.';
 }
 
 // Path: streak.lines
@@ -4097,6 +4101,10 @@ extension on TranslationsEs {
 			'prayer.importunity.inviteSheet.sent' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('es'))(n, zero: 'Ya estaban invitados.', one: '${n} invitación enviada', other: '${n} invitaciones enviadas', ), 
 			'prayer.importunity.eyebrow' => 'Tema de importunidad',
 			'prayer.importunity.proclaim' => 'Proclamar',
+			'prayer.importunity.timer' => 'Cronometrar mi oración',
+			'prayer.importunity.timeLabel' => 'Tiempo de oración por este motivo',
+			'prayer.importunity.mineTime' => ({required Object n, required Object time}) => 'Tú: ${n} · ${time} de oración',
+			'prayer.importunity.timerNote' => 'El tiempo se suma a «Oración personal» en tu informe.',
 			'sending.title' => 'Envío a mis autoridades',
 			'sending.moreOff' => 'Desactivado',
 			'sending.intro' => 'En el momento elegido, CMFI Connect prepara tu informe del período. Solo tienes que enviarlo a tus autoridades espirituales.',
@@ -4510,12 +4518,12 @@ extension on TranslationsEs {
 			'souls.save' => 'Guardar',
 			'souls.saved' => 'Guardado',
 			'souls.call' => 'Llamar',
+			_ => null,
+		} ?? switch (path) {
 			'souls.whatsApp' => 'WhatsApp',
 			'souls.sms' => 'SMS',
 			'souls.edit' => 'Editar',
 			'souls.delete' => 'Eliminar',
-			_ => null,
-		} ?? switch (path) {
 			'souls.deleteTitle' => ({required Object name}) => '¿Eliminar a ${name}?',
 			'souls.deleteText' => 'Sus notas se borrarán de tu teléfono.',
 			'souls.deleted' => 'Eliminado',

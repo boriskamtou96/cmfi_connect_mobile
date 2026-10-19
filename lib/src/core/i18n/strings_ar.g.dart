@@ -2866,6 +2866,10 @@ class _Translations$prayer$importunity$ar extends Translations$prayer$importunit
 	@override late final _Translations$prayer$importunity$inviteSheet$ar inviteSheet = _Translations$prayer$importunity$inviteSheet$ar._(_root);
 	@override String get eyebrow => 'موضوع لجاجة';
 	@override String get proclaim => 'أُعلن';
+	@override String get timer => 'وقّت صلاتي';
+	@override String get timeLabel => 'وقت الصلاة لهذا الموضوع';
+	@override String mineTime({required Object n, required Object time}) => 'أنت: ${n} · ${time} من الصلاة';
+	@override String get timerNote => 'يُضاف الوقت إلى «الصلاة الفردية» في تقريرك.';
 }
 
 // Path: streak.lines
@@ -4351,6 +4355,10 @@ extension on TranslationsAr {
 			'prayer.importunity.inviteSheet.sent' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n, zero: 'كانوا مدعوّين بالفعل.', one: 'تم إرسال دعوة واحدة', two: 'تم إرسال دعوتين', few: 'تم إرسال ${n} دعوات', many: 'تم إرسال ${n} دعوة', other: 'تم إرسال ${n} دعوة', ), 
 			'prayer.importunity.eyebrow' => 'موضوع لجاجة',
 			'prayer.importunity.proclaim' => 'أُعلن',
+			'prayer.importunity.timer' => 'وقّت صلاتي',
+			'prayer.importunity.timeLabel' => 'وقت الصلاة لهذا الموضوع',
+			'prayer.importunity.mineTime' => ({required Object n, required Object time}) => 'أنت: ${n} · ${time} من الصلاة',
+			'prayer.importunity.timerNote' => 'يُضاف الوقت إلى «الصلاة الفردية» في تقريرك.',
 			'sending.title' => 'الإرسال إلى مرشديّ',
 			'sending.moreOff' => 'متوقف',
 			'sending.intro' => 'في الوقت الذي تختاره، يُعِدّ CMFI Connect تقريرك عن الفترة. ما عليك إلا إرساله إلى مرشديك الروحيين.',
@@ -4764,12 +4772,12 @@ extension on TranslationsAr {
 			'souls.save' => 'احفظ',
 			'souls.saved' => 'تم الحفظ',
 			'souls.call' => 'اتصل',
+			_ => null,
+		} ?? switch (path) {
 			'souls.whatsApp' => 'واتساب',
 			'souls.sms' => 'رسالة',
 			'souls.edit' => 'تعديل',
 			'souls.delete' => 'احذف',
-			_ => null,
-		} ?? switch (path) {
 			'souls.deleteTitle' => ({required Object name}) => 'حذف ${name}؟',
 			'souls.deleteText' => 'ستُمحى ملاحظاته من هاتفك.',
 			'souls.deleted' => 'تم الحذف',

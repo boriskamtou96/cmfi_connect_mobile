@@ -9,14 +9,20 @@ part of 'report_timer.dart';
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint, type=warning
 /// The one stopwatch that can run (key `report_timer`), null without one.
+/// The minutes counted for each source are kept apart (key
+/// `report_timer_sources`: "importunity:7" → minutes).
 
 @ProviderFor(ReportTimer)
 final reportTimerProvider = ReportTimerProvider._();
 
 /// The one stopwatch that can run (key `report_timer`), null without one.
+/// The minutes counted for each source are kept apart (key
+/// `report_timer_sources`: "importunity:7" → minutes).
 final class ReportTimerProvider
     extends $NotifierProvider<ReportTimer, RunningTimer?> {
   /// The one stopwatch that can run (key `report_timer`), null without one.
+  /// The minutes counted for each source are kept apart (key
+  /// `report_timer_sources`: "importunity:7" → minutes).
   ReportTimerProvider._()
     : super(
         from: null,
@@ -44,9 +50,11 @@ final class ReportTimerProvider
   }
 }
 
-String _$reportTimerHash() => r'df6679a72e33aba9c88884e494bb9f15b4331c7c';
+String _$reportTimerHash() => r'7aaeef1cbf07a98144edad7acf799ad8a3a0a3cb';
 
 /// The one stopwatch that can run (key `report_timer`), null without one.
+/// The minutes counted for each source are kept apart (key
+/// `report_timer_sources`: "importunity:7" → minutes).
 
 abstract class _$ReportTimer extends $Notifier<RunningTimer?> {
   RunningTimer? build();

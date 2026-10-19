@@ -1448,7 +1448,11 @@
         }
       },
       "eyebrow": "Importunity topic",
-      "proclaim": "Proclaim"
+      "proclaim": "Proclaim",
+      "timer": "Time my prayer",
+      "timeLabel": "Prayer time for this topic",
+      "mineTime": "You: {n} · {time} of prayer",
+      "timerNote": "The time is added to \"Personal prayer\" in your report."
     }
   },
   "sending": {

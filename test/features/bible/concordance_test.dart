@@ -2,7 +2,6 @@ import 'package:cmfi_connect/src/core/i18n/strings.g.dart';
 import 'package:cmfi_connect/src/features/bible/domain/bible.dart';
 import 'package:cmfi_connect/src/features/bible/presentation/bible_screen.dart';
 import 'package:cmfi_connect/src/features/bible/presentation/concordance_screen.dart';
-import 'package:cmfi_connect/src/features/shell/presentation/widgets/floating_nav_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:intl/date_symbol_data_local.dart';
@@ -118,7 +117,7 @@ void main() {
     );
     await tester.tap(
       find.descendant(
-        of: find.byType(FloatingNavBar),
+        of: find.byType(NavigationBar),
         matching: find.text('Bible'),
       ),
     );

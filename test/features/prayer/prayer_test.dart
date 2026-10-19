@@ -9,6 +9,7 @@ import 'package:cmfi_connect/src/features/prayer/application/importunities.dart'
 import 'package:cmfi_connect/src/features/prayer/domain/prayer.dart';
 import 'package:cmfi_connect/src/features/prayer/domain/retreat.dart';
 import 'package:cmfi_connect/src/features/prayer/presentation/prayer_screen.dart';
+import 'package:cmfi_connect/src/features/reports/application/report_timer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:intl/date_symbol_data_local.dart';
@@ -415,6 +416,36 @@ void main() {
       await tester.pumpAndSettle();
       expect(api.counts, [(7, 3)]);
       expect(find.text('43 sur 100'), findsOneWidget);
+    });
+
+    testWidgets('a time of prayer for the topic, added to « Prière seule »', (
+      tester,
+    ) async {
+      final api = FakePrayerApi(importunities: [topic]);
+      final app = await pumpApp(tester, token: 't', prayerApi: api);
+      await openPrayer(tester);
+      await scrollToMiddle(tester, find.text('Seigneur, sauve Paul'));
+      await tester.tap(find.text('Seigneur, sauve Paul'));
+      await tester.pumpAndSettle();
+
+      await tester.tap(find.text('Chronométrer ma prière'));
+      // the seconds go by: no pumpAndSettle while it runs
+      await tester.pump(const Duration(milliseconds: 500));
+      await tester.pump(const Duration(milliseconds: 500));
+      expect(find.text('Temps de prière pour ce sujet'), findsOneWidget);
+      expect(app.container.read(reportTimerProvider)?.source, 'importunity:7');
+
+      await tester.tap(find.byTooltip('Mettre en pause'));
+      await tester.pumpAndSettle();
+      await tester.tap(find.text('Terminer'));
+      await tester.pumpAndSettle();
+
+      expect(app.toasts.messages.last, '1 min ajoutées à « Prière seule »');
+      expect(find.text('Toi : 10 · 1 min de prière'), findsOneWidget);
+      final entry = app.reportsApi.days[today()]!.entries.firstWhere(
+        (entry) => entry.code == 'PS',
+      );
+      expect(entry.durationMinutes, 1);
     });
 
     testWidgets('"Proclamer" counts from the tab, without opening it', (

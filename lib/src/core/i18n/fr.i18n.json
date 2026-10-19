@@ -1447,7 +1447,11 @@
         }
       },
       "eyebrow": "Sujet d'importunité",
-      "proclaim": "Proclamer"
+      "proclaim": "Proclamer",
+      "timer": "Chronométrer ma prière",
+      "timeLabel": "Temps de prière pour ce sujet",
+      "mineTime": "Toi : {n} · {time} de prière",
+      "timerNote": "Le temps s'ajoute à « Prière seule » dans ton compte rendu."
     }
   },
   "sending": {

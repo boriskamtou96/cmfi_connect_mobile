@@ -1405,7 +1405,11 @@
         }
       },
       "eyebrow": "恒切祷告事项",
-      "proclaim": "宣告"
+      "proclaim": "宣告",
+      "timer": "为祷告计时",
+      "timeLabel": "为此事项祷告的时间",
+      "mineTime": "你：{n} · 祷告 {time}",
+      "timerNote": "时间会计入报告中的“个人祷告”。"
     }
   },
   "sending": {

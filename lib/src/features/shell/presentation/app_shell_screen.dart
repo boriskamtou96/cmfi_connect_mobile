@@ -5,15 +5,15 @@ import '../../../core/i18n/strings.g.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_icons.dart';
 import '../../../core/theme/app_motion.dart';
+import '../../../core/theme/app_theme.dart';
 import '../../../core/theme/app_tones.dart';
 import '../../../routing/app_router.dart';
 import '../../reports/presentation/widgets/timer_banner.dart';
 import 'signed_in_tasks.dart';
-import 'widgets/floating_nav_bar.dart';
 
-/// The signed-in app: five tabs in a floating capsule (Plus opens from the
-/// photo of the home screen), a stopwatch running above them. Each module
-/// lights its tab in its own color.
+/// The signed-in app: five tabs (Plus opens from the photo of the home
+/// screen), a stopwatch running above them. Each module lights its tab in
+/// its own color.
 @RoutePage()
 class AppShellScreen extends StatelessWidget {
   const AppShellScreen({super.key});
@@ -67,48 +67,76 @@ class AppShellScreen extends StatelessWidget {
         return SignedInTasks(
           child: Scaffold(
             body: child,
-            // the tabs float in a capsule; a stopwatch running shows above
-            bottomNavigationBar: SafeArea(
-              top: false,
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  const TimerBanner(),
-                  FloatingNavBar(
-                    selectedIndex: tabsRouter.activeIndex,
-                    onSelected: tabsRouter.setActiveIndex,
-                    accent: accent,
-                    indicator: indicator,
-                    items: [
-                      (
-                        icon: AppIcons.home,
-                        activeIcon: AppIcons.homeActive,
-                        label: t.nav.home,
-                      ),
-                      (
-                        icon: AppIcons.reports,
-                        activeIcon: AppIcons.reportsActive,
-                        label: t.nav.reports,
-                      ),
-                      (
-                        icon: AppIcons.hymns,
-                        activeIcon: AppIcons.hymnsActive,
-                        label: t.nav.hymns,
-                      ),
-                      (
-                        icon: AppIcons.prayer,
-                        activeIcon: AppIcons.prayerActive,
-                        label: t.nav.prayer,
-                      ),
-                      (
-                        icon: AppIcons.bible,
-                        activeIcon: AppIcons.bibleActive,
-                        label: t.nav.bible,
-                      ),
-                    ],
+            // a stopwatch running shows above the tabs
+            bottomNavigationBar: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                const TimerBanner(),
+                DecoratedBox(
+                  decoration: BoxDecoration(
+                    border: Border(
+                      top: BorderSide(color: scheme.outlineVariant),
+                    ),
                   ),
-                ],
-              ),
+                  child: NavigationBarTheme(
+                    data: NavigationBarTheme.of(context).copyWith(
+                      indicatorColor: indicator,
+                      iconTheme: WidgetStateProperty.resolveWith(
+                        (states) => IconThemeData(
+                          size: 22,
+                          color: states.contains(WidgetState.selected)
+                              ? accent
+                              : scheme.onSurfaceVariant,
+                        ),
+                      ),
+                      labelTextStyle: WidgetStateProperty.resolveWith(
+                        (states) => TextStyle(
+                          fontFamily: AppTheme.fontFamily,
+                          fontSize: 11,
+                          fontWeight: states.contains(WidgetState.selected)
+                              ? FontWeight.w600
+                              : FontWeight.w500,
+                          letterSpacing: -0.1,
+                          color: states.contains(WidgetState.selected)
+                              ? accent
+                              : scheme.onSurfaceVariant,
+                        ),
+                      ),
+                    ),
+                    child: NavigationBar(
+                      selectedIndex: tabsRouter.activeIndex,
+                      onDestinationSelected: tabsRouter.setActiveIndex,
+                      destinations: [
+                        NavigationDestination(
+                          icon: const Icon(AppIcons.home),
+                          selectedIcon: const Icon(AppIcons.homeActive),
+                          label: t.nav.home,
+                        ),
+                        NavigationDestination(
+                          icon: const Icon(AppIcons.reports),
+                          selectedIcon: const Icon(AppIcons.reportsActive),
+                          label: t.nav.reports,
+                        ),
+                        NavigationDestination(
+                          icon: const Icon(AppIcons.hymns),
+                          selectedIcon: const Icon(AppIcons.hymnsActive),
+                          label: t.nav.hymns,
+                        ),
+                        NavigationDestination(
+                          icon: const Icon(AppIcons.prayer),
+                          selectedIcon: const Icon(AppIcons.prayerActive),
+                          label: t.nav.prayer,
+                        ),
+                        NavigationDestination(
+                          icon: const Icon(AppIcons.bible),
+                          selectedIcon: const Icon(AppIcons.bibleActive),
+                          label: t.nav.bible,
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ],
             ),
           ),
         );

@@ -1447,7 +1447,11 @@
         }
       },
       "eyebrow": "Tema de importunidad",
-      "proclaim": "Proclamar"
+      "proclaim": "Proclamar",
+      "timer": "Cronometrar mi oración",
+      "timeLabel": "Tiempo de oración por este motivo",
+      "mineTime": "Tú: {n} · {time} de oración",
+      "timerNote": "El tiempo se suma a «Oración personal» en tu informe."
     }
   },
   "sending": {

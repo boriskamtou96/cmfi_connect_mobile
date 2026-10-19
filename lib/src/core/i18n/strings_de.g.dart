@@ -2631,6 +2631,10 @@ class _Translations$prayer$importunity$de extends Translations$prayer$importunit
 	@override late final _Translations$prayer$importunity$inviteSheet$de inviteSheet = _Translations$prayer$importunity$inviteSheet$de._(_root);
 	@override String get eyebrow => 'Anliegen der Beharrlichkeit';
 	@override String get proclaim => 'Proklamieren';
+	@override String get timer => 'Mein Gebet stoppen';
+	@override String get timeLabel => 'Gebetszeit für dieses Anliegen';
+	@override String mineTime({required Object n, required Object time}) => 'Du: ${n} · ${time} Gebet';
+	@override String get timerNote => 'Die Zeit kommt zu „Persönliches Gebet“ in deinem Bericht.';
 }
 
 // Path: streak.lines
@@ -4097,6 +4101,10 @@ extension on TranslationsDe {
 			'prayer.importunity.inviteSheet.sent' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('de'))(n, zero: 'Sie waren schon eingeladen.', one: '${n} Einladung gesendet', other: '${n} Einladungen gesendet', ), 
 			'prayer.importunity.eyebrow' => 'Anliegen der Beharrlichkeit',
 			'prayer.importunity.proclaim' => 'Proklamieren',
+			'prayer.importunity.timer' => 'Mein Gebet stoppen',
+			'prayer.importunity.timeLabel' => 'Gebetszeit für dieses Anliegen',
+			'prayer.importunity.mineTime' => ({required Object n, required Object time}) => 'Du: ${n} · ${time} Gebet',
+			'prayer.importunity.timerNote' => 'Die Zeit kommt zu „Persönliches Gebet“ in deinem Bericht.',
 			'sending.title' => 'An meine Leiter senden',
 			'sending.moreOff' => 'Aus',
 			'sending.intro' => 'Zur gewählten Zeit bereitet CMFI Connect deinen Bericht für den Zeitraum vor. Du musst ihn nur noch an deine geistlichen Leiter senden.',
@@ -4510,12 +4518,12 @@ extension on TranslationsDe {
 			'souls.save' => 'Speichern',
 			'souls.saved' => 'Gespeichert',
 			'souls.call' => 'Anrufen',
+			_ => null,
+		} ?? switch (path) {
 			'souls.whatsApp' => 'WhatsApp',
 			'souls.sms' => 'SMS',
 			'souls.edit' => 'Bearbeiten',
 			'souls.delete' => 'Löschen',
-			_ => null,
-		} ?? switch (path) {
 			'souls.deleteTitle' => ({required Object name}) => '${name} löschen?',
 			'souls.deleteText' => 'Die Notizen werden von deinem Handy gelöscht.',
 			'souls.deleted' => 'Gelöscht',

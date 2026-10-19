@@ -5464,6 +5464,18 @@ class Translations$prayer$importunity$fr {
 
 	/// fr: 'Proclamer'
 	String get proclaim => 'Proclamer';
+
+	/// fr: 'Chronométrer ma prière'
+	String get timer => 'Chronométrer ma prière';
+
+	/// fr: 'Temps de prière pour ce sujet'
+	String get timeLabel => 'Temps de prière pour ce sujet';
+
+	/// fr: 'Toi : {n} · {time} de prière'
+	String mineTime({required Object n, required Object time}) => 'Toi : ${n} · ${time} de prière';
+
+	/// fr: 'Le temps s'ajoute à « Prière seule » dans ton compte rendu.'
+	String get timerNote => 'Le temps s\'ajoute à « Prière seule » dans ton compte rendu.';
 }
 
 // Path: streak.lines
@@ -7140,6 +7152,10 @@ extension on Translations {
 			'prayer.importunity.inviteSheet.sent' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('fr'))(n, zero: 'Ils étaient déjà invités.', one: '${n} invitation envoyée', other: '${n} invitations envoyées', ), 
 			'prayer.importunity.eyebrow' => 'Sujet d\'importunité',
 			'prayer.importunity.proclaim' => 'Proclamer',
+			'prayer.importunity.timer' => 'Chronométrer ma prière',
+			'prayer.importunity.timeLabel' => 'Temps de prière pour ce sujet',
+			'prayer.importunity.mineTime' => ({required Object n, required Object time}) => 'Toi : ${n} · ${time} de prière',
+			'prayer.importunity.timerNote' => 'Le temps s\'ajoute à « Prière seule » dans ton compte rendu.',
 			'sending.title' => 'Envoi à mes autorités',
 			'sending.moreOff' => 'Désactivé',
 			'sending.intro' => 'Au moment choisi, CMFI Connect prépare ton compte rendu de la période. Tu n\'as plus qu\'à l\'envoyer à tes autorités spirituelles.',
@@ -7553,12 +7569,12 @@ extension on Translations {
 			'souls.save' => 'Enregistrer',
 			'souls.saved' => 'Enregistré',
 			'souls.call' => 'Appeler',
+			_ => null,
+		} ?? switch (path) {
 			'souls.whatsApp' => 'WhatsApp',
 			'souls.sms' => 'SMS',
 			'souls.edit' => 'Modifier',
 			'souls.delete' => 'Supprimer',
-			_ => null,
-		} ?? switch (path) {
 			'souls.deleteTitle' => ({required Object name}) => 'Supprimer ${name} ?',
 			'souls.deleteText' => 'Ses notes seront effacées de ton téléphone.',
 			'souls.deleted' => 'Supprimé',

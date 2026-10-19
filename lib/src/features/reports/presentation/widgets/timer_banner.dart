@@ -24,6 +24,65 @@ String stopwatchClock(Duration elapsed) {
   return h > 0 ? '$h:${m.toString().padLeft(2, '0')}:$s' : '$m:$s';
 }
 
+/// Starts the stopwatch of an item ([source]: what else it counts for);
+/// when another one runs, it is replaced (uncounted) once the member agrees.
+/// false when they didn't.
+Future<bool> startStopwatch(
+  BuildContext context,
+  WidgetRef ref, {
+  required int activityTypeId,
+  required String code,
+  required String label,
+  String? source,
+}) async {
+  final t = context.t;
+  final running = ref.read(reportTimerProvider);
+  if (running != null &&
+      (running.activityTypeId != activityTypeId || running.source != source)) {
+    final yes = await showConfirmDialog(
+      context,
+      title: t.reports.timer.replaceTitle,
+      text: t.reports.timer.replaceText(
+        item: t.itemLabel(running.code, running.label),
+      ),
+      confirmLabel: t.reports.timer.replace,
+    );
+    if (!yes) {
+      return false;
+    }
+  }
+  HapticFeedback.mediumImpact();
+  await ref
+      .read(reportTimerProvider.notifier)
+      .start(
+        activityTypeId: activityTypeId,
+        code: code,
+        label: label,
+        source: source,
+      );
+  return true;
+}
+
+/// Stops the stopwatch, adds its minutes to the report and says so.
+Future<void> finishStopwatch(BuildContext context, WidgetRef ref) async {
+  final timer = ref.read(reportTimerProvider);
+  if (timer == null) {
+    return;
+  }
+  final t = context.t;
+  final toast = ref.read(toasterProvider).of(context);
+  final label = t.itemLabel(timer.code, timer.label);
+  HapticFeedback.mediumImpact();
+  final minutes = await ref.read(reportTimerProvider.notifier).finish();
+  if (minutes == null) {
+    toast.info(t.reports.timer.noItem);
+  } else {
+    toast.success(
+      t.reports.timer.added(time: minutes.toDurationLabel(), item: label),
+    );
+  }
+}
+
 /// Above the tabs while a stopwatch runs, on every tab: the item, the time
 /// going by, pause / resume, « Terminer » (its minutes go to the report); a
 /// long press cancels it. Nothing without a stopwatch.
@@ -56,18 +115,7 @@ class TimerBanner extends HookConsumerWidget {
     final elapsed = timer.elapsedAt(timer.paused ? timer.pausedAt! : now.value);
     final notifier = ref.read(reportTimerProvider.notifier);
 
-    Future<void> finish() async {
-      final toast = ref.read(toasterProvider).of(context);
-      final added = t.reports.timer.added;
-      final noItem = t.reports.timer.noItem;
-      HapticFeedback.mediumImpact();
-      final minutes = await notifier.finish();
-      if (minutes == null) {
-        toast.info(noItem);
-      } else {
-        toast.success(added(time: minutes.toDurationLabel(), item: label));
-      }
-    }
+    Future<void> finish() => finishStopwatch(context, ref);
 
     // a long press: stopped without counting anything
     Future<void> discard() async {

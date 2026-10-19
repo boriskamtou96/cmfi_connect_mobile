@@ -2630,6 +2630,10 @@ class _Translations$prayer$importunity$hi extends Translations$prayer$importunit
 	@override late final _Translations$prayer$importunity$inviteSheet$hi inviteSheet = _Translations$prayer$importunity$inviteSheet$hi._(_root);
 	@override String get eyebrow => 'लगातार प्रार्थना का विषय';
 	@override String get proclaim => 'घोषणा करो';
+	@override String get timer => 'मेरी प्रार्थना का समय गिनो';
+	@override String get timeLabel => 'इस विषय के लिए प्रार्थना का समय';
+	@override String mineTime({required Object n, required Object time}) => 'तुम: ${n} · ${time} प्रार्थना';
+	@override String get timerNote => 'यह समय तुम्हारी रिपोर्ट में "व्यक्तिगत प्रार्थना" में जुड़ता है।';
 }
 
 // Path: streak.lines
@@ -4096,6 +4100,10 @@ extension on TranslationsHi {
 			'prayer.importunity.inviteSheet.sent' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n, zero: 'उन्हें पहले ही न्योता दिया जा चुका था।', one: '${n} न्योता भेजा गया', other: '${n} न्योते भेजे गए', ), 
 			'prayer.importunity.eyebrow' => 'लगातार प्रार्थना का विषय',
 			'prayer.importunity.proclaim' => 'घोषणा करो',
+			'prayer.importunity.timer' => 'मेरी प्रार्थना का समय गिनो',
+			'prayer.importunity.timeLabel' => 'इस विषय के लिए प्रार्थना का समय',
+			'prayer.importunity.mineTime' => ({required Object n, required Object time}) => 'तुम: ${n} · ${time} प्रार्थना',
+			'prayer.importunity.timerNote' => 'यह समय तुम्हारी रिपोर्ट में "व्यक्तिगत प्रार्थना" में जुड़ता है।',
 			'sending.title' => 'मेरे आत्मिक अगुवों को भेजना',
 			'sending.moreOff' => 'बंद',
 			'sending.intro' => 'चुने हुए समय पर CMFI Connect उस अवधि की तुम्हारी रिपोर्ट तैयार करता है। तुम्हें बस उसे अपने आत्मिक अगुवों को भेजना है।',
@@ -4509,12 +4517,12 @@ extension on TranslationsHi {
 			'souls.save' => 'सहेजो',
 			'souls.saved' => 'सहेजा गया',
 			'souls.call' => 'कॉल करो',
+			_ => null,
+		} ?? switch (path) {
 			'souls.whatsApp' => 'WhatsApp',
 			'souls.sms' => 'SMS',
 			'souls.edit' => 'बदलो',
 			'souls.delete' => 'मिटाओ',
-			_ => null,
-		} ?? switch (path) {
 			'souls.deleteTitle' => ({required Object name}) => '${name} को मिटाएँ?',
 			'souls.deleteText' => 'इनके नोट तुम्हारे फ़ोन से मिट जाएँगे।',
 			'souls.deleted' => 'मिटाया गया',

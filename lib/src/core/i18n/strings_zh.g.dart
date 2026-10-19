@@ -2572,6 +2572,10 @@ class _Translations$prayer$importunity$zh extends Translations$prayer$importunit
 	@override late final _Translations$prayer$importunity$inviteSheet$zh inviteSheet = _Translations$prayer$importunity$inviteSheet$zh._(_root);
 	@override String get eyebrow => '恒切祷告事项';
 	@override String get proclaim => '宣告';
+	@override String get timer => '为祷告计时';
+	@override String get timeLabel => '为此事项祷告的时间';
+	@override String mineTime({required Object n, required Object time}) => '你：${n} · 祷告 ${time}';
+	@override String get timerNote => '时间会计入报告中的“个人祷告”。';
 }
 
 // Path: streak.lines
@@ -4033,6 +4037,10 @@ extension on TranslationsZh {
 			'prayer.importunity.inviteSheet.sent' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n, zero: '他们之前已被邀请过了。', other: '已发送 ${n} 个邀请', ), 
 			'prayer.importunity.eyebrow' => '恒切祷告事项',
 			'prayer.importunity.proclaim' => '宣告',
+			'prayer.importunity.timer' => '为祷告计时',
+			'prayer.importunity.timeLabel' => '为此事项祷告的时间',
+			'prayer.importunity.mineTime' => ({required Object n, required Object time}) => '你：${n} · 祷告 ${time}',
+			'prayer.importunity.timerNote' => '时间会计入报告中的“个人祷告”。',
 			'sending.title' => '发送给我的属灵长辈',
 			'sending.moreOff' => '已关闭',
 			'sending.intro' => '到了你选定的时间，CMFI Connect 会准备好这段时间的报告，你只需发送给你的属灵长辈。',
@@ -4446,12 +4454,12 @@ extension on TranslationsZh {
 			'souls.save' => '保存',
 			'souls.saved' => '已保存',
 			'souls.call' => '打电话',
+			_ => null,
+		} ?? switch (path) {
 			'souls.whatsApp' => 'WhatsApp',
 			'souls.sms' => '短信',
 			'souls.edit' => '编辑',
 			'souls.delete' => '删除',
-			_ => null,
-		} ?? switch (path) {
 			'souls.deleteTitle' => ({required Object name}) => '删除 ${name}？',
 			'souls.deleteText' => '相关备注将从手机中删除。',
 			'souls.deleted' => '已删除',

@@ -12,6 +12,7 @@ import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_icons.dart';
 import '../../../core/theme/app_spacing.dart';
 import '../../../core/theme/app_tones.dart';
+import '../../../core/utils/date_extensions.dart';
 import '../../../core/utils/date_format.dart';
 import '../../../core/utils/text_direction.dart';
 import '../../../core/widgets/adaptive_dialogs.dart';
@@ -24,6 +25,9 @@ import '../../../core/widgets/sub_page.dart';
 import '../../../routing/app_router.dart';
 import '../../members/domain/member.dart';
 import '../../members/presentation/widgets/member_avatar.dart';
+import '../../reports/application/report_timer.dart';
+import '../../reports/application/reports_providers.dart';
+import '../../reports/presentation/widgets/timer_banner.dart';
 import '../application/importunities.dart';
 import '../domain/prayer.dart';
 import 'widgets/invitation_menu.dart';
@@ -151,23 +155,7 @@ class ImportunityScreen extends HookConsumerWidget {
               ),
             ),
             const SizedBox(height: AppSpacing.md),
-            Text(
-              t.prayer.importunity.mine(n: context.formatNumber(topic.myCount)),
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                fontSize: 15,
-                fontWeight: FontWeight.w700,
-                color: tone.onSoft,
-              ),
-            ),
-            if (canCount)
-              Center(
-                child: TextButton.icon(
-                  onPressed: addMany,
-                  icon: const Icon(AppIcons.addCircle, size: 18),
-                  label: Text(t.prayer.importunity.addMany),
-                ),
-              ),
+            _PrayerTime(topic: topic, canCount: canCount, onAddMany: addMany),
           ],
           const SizedBox(height: AppSpacing.lg),
           if (topic.goal case final goal?) ...[
@@ -254,6 +242,185 @@ class ImportunityScreen extends HookConsumerWidget {
           ],
         ],
       ),
+    );
+  }
+}
+
+/// Under the counter: « Toi : 53 · 1 h 20 de prière », then « Chronométrer
+/// ma prière » and « Ajouter un nombre ». While its stopwatch runs (the one
+/// of the report, for « Prière seule »), a card with the time going by,
+/// pause and « Terminer »: the minutes go to the report and to this topic.
+class _PrayerTime extends HookConsumerWidget {
+  const _PrayerTime({
+    required this.topic,
+    required this.canCount,
+    required this.onAddMany,
+  });
+
+  final Importunity topic;
+  final bool canCount;
+  final VoidCallback onAddMany;
+
+  /// « Prière seule », counted in time.
+  static const _prayerCode = 'PS';
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final t = context.t;
+    final tone = AppModule.prayer.tone(context);
+    final source = 'importunity:${topic.id}';
+    final timer = ref.watch(reportTimerProvider);
+    final mine = timer?.source == source ? timer : null;
+    final prayer = ref
+        .watch(activitiesProvider)
+        .value
+        ?.where((item) => item.code == _prayerCode && item.tracksDuration)
+        .firstOrNull;
+    final minutes = ref.read(reportTimerProvider.notifier).minutesFor(source);
+    final now = useState(DateTime.now());
+    final running = mine != null && !mine.paused;
+    useEffect(() {
+      if (!running) {
+        return null;
+      }
+      now.value = DateTime.now();
+      final tick = Timer.periodic(
+        const Duration(seconds: 1),
+        (_) => now.value = DateTime.now(),
+      );
+      return tick.cancel;
+    }, [running, mine?.startedAt]);
+
+    final count = context.formatNumber(topic.myCount);
+    final mineText = Text(
+      minutes > 0
+          ? t.prayer.importunity.mineTime(
+              n: count,
+              time: minutes.toDurationLabel(),
+            )
+          : t.prayer.importunity.mine(n: count),
+      textAlign: TextAlign.center,
+      style: TextStyle(
+        fontSize: 15,
+        fontWeight: FontWeight.w700,
+        color: tone.onSoft,
+      ),
+    );
+
+    if (mine != null) {
+      final elapsed = mine.elapsedAt(mine.paused ? mine.pausedAt! : now.value);
+      return Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          mineText,
+          const SizedBox(height: AppSpacing.md),
+          Container(
+            padding: const EdgeInsetsDirectional.fromSTEB(16, 10, 8, 10),
+            decoration: BoxDecoration(
+              color: tone.soft,
+              borderRadius: BorderRadius.circular(AppRadius.xl),
+            ),
+            child: Row(
+              children: [
+                Icon(
+                  mine.paused ? AppIcons.stopwatch : AppIcons.stopwatchActive,
+                  color: tone.onSoft,
+                ),
+                const SizedBox(width: AppSpacing.md),
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        t.prayer.importunity.timeLabel,
+                        style: TextStyle(fontSize: 12.5, color: tone.onSoft),
+                      ),
+                      Text(
+                        mine.paused
+                            ? '${stopwatchClock(elapsed)} · ${t.reports.timer.paused}'
+                            : stopwatchClock(elapsed),
+                        style: TextStyle(
+                          fontSize: 22,
+                          fontWeight: FontWeight.w800,
+                          color: tone.onSoft,
+                          fontFeatures: const [FontFeature.tabularFigures()],
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                IconButton(
+                  tooltip: mine.paused
+                      ? t.reports.timer.resume
+                      : t.reports.timer.pause,
+                  color: tone.onSoft,
+                  onPressed: mine.paused
+                      ? ref.read(reportTimerProvider.notifier).resume
+                      : ref.read(reportTimerProvider.notifier).pause,
+                  icon: Icon(mine.paused ? AppIcons.play : AppIcons.pause),
+                ),
+                FilledButton(
+                  onPressed: () => finishStopwatch(context, ref),
+                  style: FilledButton.styleFrom(
+                    backgroundColor: tone.color,
+                    foregroundColor: Colors.white,
+                    minimumSize: const Size(0, 44),
+                  ),
+                  child: Text(t.reports.timer.finish),
+                ),
+              ],
+            ),
+          ),
+          const SizedBox(height: AppSpacing.xs),
+          Text(
+            t.prayer.importunity.timerNote,
+            textAlign: TextAlign.center,
+            style: TextStyle(
+              fontSize: 12.5,
+              color: Theme.of(context).colorScheme.onSurfaceVariant,
+            ),
+          ),
+        ],
+      );
+    }
+
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        mineText,
+        if (canCount) ...[
+          const SizedBox(height: AppSpacing.sm),
+          Wrap(
+            alignment: WrapAlignment.center,
+            spacing: AppSpacing.sm,
+            runSpacing: AppSpacing.xs,
+            children: [
+              if (prayer != null)
+                FilledButton.tonalIcon(
+                  onPressed: () => startStopwatch(
+                    context,
+                    ref,
+                    activityTypeId: prayer.id,
+                    code: prayer.code,
+                    label: prayer.label,
+                    source: source,
+                  ),
+                  style: FilledButton.styleFrom(
+                    backgroundColor: tone.soft,
+                    foregroundColor: tone.onSoft,
+                  ),
+                  icon: const Icon(AppIcons.stopwatch, size: 18),
+                  label: Text(t.prayer.importunity.timer),
+                ),
+              TextButton.icon(
+                onPressed: onAddMany,
+                icon: const Icon(AppIcons.addCircle, size: 18),
+                label: Text(t.prayer.importunity.addMany),
+              ),
+            ],
+          ),
+        ],
+      ],
     );
   }
 }

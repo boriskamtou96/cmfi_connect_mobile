@@ -2632,6 +2632,10 @@ class _Translations$prayer$importunity$en extends Translations$prayer$importunit
 	@override late final _Translations$prayer$importunity$inviteSheet$en inviteSheet = _Translations$prayer$importunity$inviteSheet$en._(_root);
 	@override String get eyebrow => 'Importunity topic';
 	@override String get proclaim => 'Proclaim';
+	@override String get timer => 'Time my prayer';
+	@override String get timeLabel => 'Prayer time for this topic';
+	@override String mineTime({required Object n, required Object time}) => 'You: ${n} · ${time} of prayer';
+	@override String get timerNote => 'The time is added to "Personal prayer" in your report.';
 }
 
 // Path: streak.lines
@@ -4098,6 +4102,10 @@ extension on TranslationsEn {
 			'prayer.importunity.inviteSheet.sent' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n, zero: 'They were already invited.', one: '${n} invitation sent', other: '${n} invitations sent', ), 
 			'prayer.importunity.eyebrow' => 'Importunity topic',
 			'prayer.importunity.proclaim' => 'Proclaim',
+			'prayer.importunity.timer' => 'Time my prayer',
+			'prayer.importunity.timeLabel' => 'Prayer time for this topic',
+			'prayer.importunity.mineTime' => ({required Object n, required Object time}) => 'You: ${n} · ${time} of prayer',
+			'prayer.importunity.timerNote' => 'The time is added to "Personal prayer" in your report.',
 			'sending.title' => 'Send to my authorities',
 			'sending.moreOff' => 'Off',
 			'sending.intro' => 'At the chosen time, CMFI Connect prepares your report for the period. You just have to send it to your spiritual authorities.',
@@ -4511,12 +4519,12 @@ extension on TranslationsEn {
 			'souls.save' => 'Save',
 			'souls.saved' => 'Saved',
 			'souls.call' => 'Call',
+			_ => null,
+		} ?? switch (path) {
 			'souls.whatsApp' => 'WhatsApp',
 			'souls.sms' => 'Text',
 			'souls.edit' => 'Edit',
 			'souls.delete' => 'Delete',
-			_ => null,
-		} ?? switch (path) {
 			'souls.deleteTitle' => ({required Object name}) => 'Delete ${name}?',
 			'souls.deleteText' => 'Their notes will be erased from your phone.',
 			'souls.deleted' => 'Deleted',

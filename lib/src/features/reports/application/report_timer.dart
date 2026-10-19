@@ -20,6 +20,7 @@ class RunningTimer {
     required this.startedAt,
     this.pausedAt,
     this.pausedFor = Duration.zero,
+    this.source,
   });
 
   factory RunningTimer.fromJson(Map<String, dynamic> json) => RunningTimer(
@@ -31,6 +32,7 @@ class RunningTimer {
         ? null
         : DateTime.parse(json['paused_at'] as String),
     pausedFor: Duration(seconds: json['paused_seconds'] as int? ?? 0),
+    source: json['source'] as String?,
   );
 
   final int activityTypeId;
@@ -45,6 +47,20 @@ class RunningTimer {
 
   /// The pauses before [pausedAt].
   final Duration pausedFor;
+
+  /// What it was started for, besides its item ("importunity:7"): the time
+  /// is kept for it too (`ReportTimer.minutesFor`); null from the report.
+  final String? source;
+
+  RunningTimer _with({DateTime? pausedAt, Duration? pausedFor}) => RunningTimer(
+    activityTypeId: activityTypeId,
+    code: code,
+    label: label,
+    startedAt: startedAt,
+    pausedAt: pausedAt,
+    pausedFor: pausedFor ?? this.pausedFor,
+    source: source,
+  );
 
   bool get paused => pausedAt != null;
 
@@ -66,13 +82,17 @@ class RunningTimer {
     'started_at': startedAt.toIso8601String(),
     if (pausedAt != null) 'paused_at': pausedAt!.toIso8601String(),
     'paused_seconds': pausedFor.inSeconds,
+    if (source != null) 'source': source,
   };
 }
 
 /// The one stopwatch that can run (key `report_timer`), null without one.
+/// The minutes counted for each source are kept apart (key
+/// `report_timer_sources`: "importunity:7" → minutes).
 @Riverpod(keepAlive: true)
 class ReportTimer extends _$ReportTimer {
   static const key = 'report_timer';
+  static const sourcesKey = 'report_timer_sources';
 
   @override
   RunningTimer? build() {
@@ -97,35 +117,56 @@ class ReportTimer extends _$ReportTimer {
     }
   }
 
-  /// Starts it for an item (another one running is replaced).
+  /// Starts it for an item (another one running is replaced), and for
+  /// [source] if given.
   Future<void> start({
     required int activityTypeId,
     required String code,
     required String label,
+    String? source,
   }) => _save(
     RunningTimer(
       activityTypeId: activityTypeId,
       code: code,
       label: label,
       startedAt: DateTime.now(),
+      source: source,
     ),
   );
+
+  /// The minutes counted so far for [source] (0 before any).
+  int minutesFor(String source) {
+    final raw = ref.read(sharedPreferencesProvider).getString(sourcesKey);
+    if (raw == null) {
+      return 0;
+    }
+    try {
+      return (jsonDecode(raw) as Map<String, dynamic>)[source] as int? ?? 0;
+    } on Object {
+      return 0;
+    }
+  }
+
+  Future<void> _addFor(String source, int minutes) async {
+    final preferences = ref.read(sharedPreferencesProvider);
+    Map<String, dynamic> all;
+    try {
+      all =
+          jsonDecode(preferences.getString(sourcesKey) ?? '{}')
+              as Map<String, dynamic>;
+    } on Object {
+      all = {};
+    }
+    all[source] = (all[source] as int? ?? 0) + minutes;
+    await preferences.setString(sourcesKey, jsonEncode(all));
+  }
 
   Future<void> pause() async {
     final timer = state;
     if (timer == null || timer.paused) {
       return;
     }
-    await _save(
-      RunningTimer(
-        activityTypeId: timer.activityTypeId,
-        code: timer.code,
-        label: timer.label,
-        startedAt: timer.startedAt,
-        pausedAt: DateTime.now(),
-        pausedFor: timer.pausedFor,
-      ),
-    );
+    await _save(timer._with(pausedAt: DateTime.now()));
   }
 
   Future<void> resume() async {
@@ -135,11 +176,7 @@ class ReportTimer extends _$ReportTimer {
       return;
     }
     await _save(
-      RunningTimer(
-        activityTypeId: timer.activityTypeId,
-        code: timer.code,
-        label: timer.label,
-        startedAt: timer.startedAt,
+      timer._with(
         pausedFor: timer.pausedFor + DateTime.now().difference(pausedAt),
       ),
     );
@@ -155,6 +192,9 @@ class ReportTimer extends _$ReportTimer {
     }
     final minutes = RunningTimer.minutesOf(timer.elapsedAt(DateTime.now()));
     await _save(null);
+    if (timer.source case final source?) {
+      await _addFor(source, minutes);
+    }
     final start = timer.startedAt;
     final added = await addMinutesToDayReport(
       ref,

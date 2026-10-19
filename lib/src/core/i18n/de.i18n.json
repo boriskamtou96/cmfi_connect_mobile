@@ -1447,7 +1447,11 @@
         }
       },
       "eyebrow": "Anliegen der Beharrlichkeit",
-      "proclaim": "Proklamieren"
+      "proclaim": "Proklamieren",
+      "timer": "Mein Gebet stoppen",
+      "timeLabel": "Gebetszeit für dieses Anliegen",
+      "mineTime": "Du: {n} · {time} Gebet",
+      "timerNote": "Die Zeit kommt zu „Persönliches Gebet“ in deinem Bericht."
     }
   },
   "sending": {

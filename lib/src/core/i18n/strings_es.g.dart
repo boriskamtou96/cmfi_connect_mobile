@@ -764,6 +764,7 @@ class _Translations$premium$es extends Translations$premium$fr {
 	@override String get lifetimeNote => 'De por vida: un solo pago, sin suscripción ni renovación.';
 	@override String get manage => 'Gestionar mi suscripción';
 	@override String get manageFailed => 'La gestión de la suscripción no se abre. Inténtalo más tarde.';
+	@override String get crown => 'Miembro Premium';
 }
 
 // Path: homeWidget
@@ -1684,7 +1685,7 @@ class _Translations$auth$login$es extends Translations$auth$login$fr {
 
 	// Translations
 	@override String get title => '¡Hola de nuevo!';
-	@override String get subtitle => 'Inicia sesión para completar tu informe del día.';
+	@override String get subtitle => 'Inicia sesión para retomar tu caminar con Dios y tu comunidad.';
 	@override String get welcomeBack => '¡Qué bueno verte!';
 	@override String get submit => 'Iniciar sesión';
 	@override String get noAccount => '¿Aún no tienes cuenta?';
@@ -3021,7 +3022,7 @@ extension on TranslationsEs {
 			'auth.showPassword' => 'Mostrar la contraseña',
 			'auth.hidePassword' => 'Ocultar la contraseña',
 			'auth.login.title' => '¡Hola de nuevo!',
-			'auth.login.subtitle' => 'Inicia sesión para completar tu informe del día.',
+			'auth.login.subtitle' => 'Inicia sesión para retomar tu caminar con Dios y tu comunidad.',
 			'auth.login.welcomeBack' => '¡Qué bueno verte!',
 			'auth.login.submit' => 'Iniciar sesión',
 			'auth.login.noAccount' => '¿Aún no tienes cuenta?',
@@ -3747,6 +3748,7 @@ extension on TranslationsEs {
 			'premium.lifetimeNote' => 'De por vida: un solo pago, sin suscripción ni renovación.',
 			'premium.manage' => 'Gestionar mi suscripción',
 			'premium.manageFailed' => 'La gestión de la suscripción no se abre. Inténtalo más tarde.',
+			'premium.crown' => 'Miembro Premium',
 			'homeWidget.title' => 'Hoy',
 			'homeWidget.done' => 'Hecho',
 			'homeWidget.todo' => 'Por rellenar',
@@ -3972,9 +3974,9 @@ extension on TranslationsEs {
 			'prayer.lists.next' => 'Próximamente',
 			'prayer.lists.answeredTitle.unbelievers' => 'Creyeron en el Señor',
 			'prayer.lists.answeredTitle.believers' => 'Oraciones contestadas',
-			'prayer.lists.answeredTitle.backsliders' => 'Volvieron al Señor',
 			_ => null,
 		} ?? switch (path) {
+			'prayer.lists.answeredTitle.backsliders' => 'Volvieron al Señor',
 			'prayer.lists.answeredTitle.coworkers' => 'Oraciones contestadas',
 			'prayer.lists.answeredOn.unbelievers' => ({required Object date}) => 'Creyó en el Señor el ${date}',
 			'prayer.lists.answeredOn.believers' => ({required Object date}) => 'Contestada el ${date}',
@@ -4486,9 +4488,9 @@ extension on TranslationsEs {
 			'souls.export' => 'Exportar (hoja de cálculo)',
 			'souls.csv.name' => 'Nombre',
 			'souls.csv.phone' => 'Teléfono',
-			'souls.csv.place' => 'Lugar',
 			_ => null,
 		} ?? switch (path) {
+			'souls.csv.place' => 'Lugar',
 			'souls.csv.metOn' => 'Conocido el',
 			'souls.csv.stage' => 'Etapa',
 			'souls.csv.next' => 'Próximo contacto',

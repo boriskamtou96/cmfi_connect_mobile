@@ -95,7 +95,7 @@
     "hidePassword": "隐藏密码",
     "login": {
       "title": "欢迎回来",
-      "subtitle": "登录后填写今天的汇报。",
+      "subtitle": "登录，继续你与神同行的路，与教会肢体相连。",
       "welcomeBack": "很高兴见到你！",
       "submit": "登录",
       "noAccount": "还没有账号？",
@@ -968,7 +968,8 @@
     "buyLifetime": "终身购买",
     "lifetimeNote": "终身：一次付款，无需订阅，不会续费。",
     "manage": "管理我的订阅",
-    "manageFailed": "无法打开订阅管理，请稍后再试。"
+    "manageFailed": "无法打开订阅管理，请稍后再试。",
+    "crown": "高级版会员"
   },
   "homeWidget": {
     "title": "今天",

@@ -764,6 +764,7 @@ class _Translations$premium$de extends Translations$premium$fr {
 	@override String get lifetimeNote => 'Lebenslang: eine einzige Zahlung, kein Abo, keine Verlängerung.';
 	@override String get manage => 'Mein Abo verwalten';
 	@override String get manageFailed => 'Die Abo-Verwaltung öffnet sich nicht. Versuche es später noch einmal.';
+	@override String get crown => 'Premium-Mitglied';
 }
 
 // Path: homeWidget
@@ -1684,7 +1685,7 @@ class _Translations$auth$login$de extends Translations$auth$login$fr {
 
 	// Translations
 	@override String get title => 'Willkommen zurück';
-	@override String get subtitle => 'Melde dich an, um deinen heutigen Bericht auszufüllen.';
+	@override String get subtitle => 'Melde dich an, um deinen Weg mit Gott und deine Gemeinschaft wiederzufinden.';
 	@override String get welcomeBack => 'Schön, dass du da bist!';
 	@override String get submit => 'Anmelden';
 	@override String get noAccount => 'Noch kein Konto?';
@@ -3021,7 +3022,7 @@ extension on TranslationsDe {
 			'auth.showPassword' => 'Passwort anzeigen',
 			'auth.hidePassword' => 'Passwort verbergen',
 			'auth.login.title' => 'Willkommen zurück',
-			'auth.login.subtitle' => 'Melde dich an, um deinen heutigen Bericht auszufüllen.',
+			'auth.login.subtitle' => 'Melde dich an, um deinen Weg mit Gott und deine Gemeinschaft wiederzufinden.',
 			'auth.login.welcomeBack' => 'Schön, dass du da bist!',
 			'auth.login.submit' => 'Anmelden',
 			'auth.login.noAccount' => 'Noch kein Konto?',
@@ -3747,6 +3748,7 @@ extension on TranslationsDe {
 			'premium.lifetimeNote' => 'Lebenslang: eine einzige Zahlung, kein Abo, keine Verlängerung.',
 			'premium.manage' => 'Mein Abo verwalten',
 			'premium.manageFailed' => 'Die Abo-Verwaltung öffnet sich nicht. Versuche es später noch einmal.',
+			'premium.crown' => 'Premium-Mitglied',
 			'homeWidget.title' => 'Heute',
 			'homeWidget.done' => 'Erledigt',
 			'homeWidget.todo' => 'Auszufüllen',
@@ -3972,9 +3974,9 @@ extension on TranslationsDe {
 			'prayer.lists.next' => 'Demnächst',
 			'prayer.lists.answeredTitle.unbelievers' => 'Zum Glauben an den Herrn gekommen',
 			'prayer.lists.answeredTitle.believers' => 'Erhörte Gebete',
-			'prayer.lists.answeredTitle.backsliders' => 'Zum Herrn zurückgekehrt',
 			_ => null,
 		} ?? switch (path) {
+			'prayer.lists.answeredTitle.backsliders' => 'Zum Herrn zurückgekehrt',
 			'prayer.lists.answeredTitle.coworkers' => 'Erhörte Gebete',
 			'prayer.lists.answeredOn.unbelievers' => ({required Object date}) => 'Am ${date} zum Glauben an den Herrn gekommen',
 			'prayer.lists.answeredOn.believers' => ({required Object date}) => 'Erhört am ${date}',
@@ -4486,9 +4488,9 @@ extension on TranslationsDe {
 			'souls.export' => 'Exportieren (Tabelle)',
 			'souls.csv.name' => 'Name',
 			'souls.csv.phone' => 'Telefon',
-			'souls.csv.place' => 'Ort',
 			_ => null,
 		} ?? switch (path) {
+			'souls.csv.place' => 'Ort',
 			'souls.csv.metOn' => 'Getroffen am',
 			'souls.csv.stage' => 'Stufe',
 			'souls.csv.next' => 'Nächster Kontakt',

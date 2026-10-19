@@ -765,6 +765,7 @@ class _Translations$premium$en extends Translations$premium$fr {
 	@override String get lifetimeNote => 'Lifetime: a single payment, no subscription, nothing renews.';
 	@override String get manage => 'Manage my subscription';
 	@override String get manageFailed => 'Subscription management won\'t open. Try again later.';
+	@override String get crown => 'Premium member';
 }
 
 // Path: homeWidget
@@ -1685,7 +1686,7 @@ class _Translations$auth$login$en extends Translations$auth$login$fr {
 
 	// Translations
 	@override String get title => 'Welcome back';
-	@override String get subtitle => 'Sign in to fill in today\'s report.';
+	@override String get subtitle => 'Sign in to pick up your walk with God and your community.';
 	@override String get welcomeBack => 'Glad you\'re here!';
 	@override String get submit => 'Sign in';
 	@override String get noAccount => 'No account yet?';
@@ -3022,7 +3023,7 @@ extension on TranslationsEn {
 			'auth.showPassword' => 'Show password',
 			'auth.hidePassword' => 'Hide password',
 			'auth.login.title' => 'Welcome back',
-			'auth.login.subtitle' => 'Sign in to fill in today\'s report.',
+			'auth.login.subtitle' => 'Sign in to pick up your walk with God and your community.',
 			'auth.login.welcomeBack' => 'Glad you\'re here!',
 			'auth.login.submit' => 'Sign in',
 			'auth.login.noAccount' => 'No account yet?',
@@ -3748,6 +3749,7 @@ extension on TranslationsEn {
 			'premium.lifetimeNote' => 'Lifetime: a single payment, no subscription, nothing renews.',
 			'premium.manage' => 'Manage my subscription',
 			'premium.manageFailed' => 'Subscription management won\'t open. Try again later.',
+			'premium.crown' => 'Premium member',
 			'homeWidget.title' => 'Today',
 			'homeWidget.done' => 'Done',
 			'homeWidget.todo' => 'To fill in',
@@ -3973,9 +3975,9 @@ extension on TranslationsEn {
 			'prayer.lists.next' => 'Coming up',
 			'prayer.lists.answeredTitle.unbelievers' => 'Believed in the Lord',
 			'prayer.lists.answeredTitle.believers' => 'Answered prayers',
-			'prayer.lists.answeredTitle.backsliders' => 'Came back to the Lord',
 			_ => null,
 		} ?? switch (path) {
+			'prayer.lists.answeredTitle.backsliders' => 'Came back to the Lord',
 			'prayer.lists.answeredTitle.coworkers' => 'Answered prayers',
 			'prayer.lists.answeredOn.unbelievers' => ({required Object date}) => 'Believed in the Lord on ${date}',
 			'prayer.lists.answeredOn.believers' => ({required Object date}) => 'Answered on ${date}',
@@ -4487,9 +4489,9 @@ extension on TranslationsEn {
 			'souls.export' => 'Export (spreadsheet)',
 			'souls.csv.name' => 'Name',
 			'souls.csv.phone' => 'Phone',
-			'souls.csv.place' => 'Place',
 			_ => null,
 		} ?? switch (path) {
+			'souls.csv.place' => 'Place',
 			'souls.csv.metOn' => 'Met on',
 			'souls.csv.stage' => 'Stage',
 			'souls.csv.next' => 'Next contact',

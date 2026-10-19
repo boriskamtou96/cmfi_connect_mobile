@@ -1551,6 +1551,9 @@ class Translations$premium$fr {
 
 	/// fr: 'La gestion de l'abonnement ne s'ouvre pas. Réessaie plus tard.'
 	String get manageFailed => 'La gestion de l\'abonnement ne s\'ouvre pas. Réessaie plus tard.';
+
+	/// fr: 'Membre Premium'
+	String get crown => 'Membre Premium';
 }
 
 // Path: homeWidget
@@ -3505,8 +3508,8 @@ class Translations$auth$login$fr {
 	/// fr: 'Content de te revoir'
 	String get title => 'Content de te revoir';
 
-	/// fr: 'Connecte-toi pour remplir ton compte rendu du jour.'
-	String get subtitle => 'Connecte-toi pour remplir ton compte rendu du jour.';
+	/// fr: 'Connecte-toi pour retrouver ta marche avec Dieu et ta communauté.'
+	String get subtitle => 'Connecte-toi pour retrouver ta marche avec Dieu et ta communauté.';
 
 	/// fr: 'Bon retour !'
 	String get welcomeBack => 'Bon retour !';
@@ -6030,7 +6033,7 @@ extension on Translations {
 			'auth.showPassword' => 'Afficher le mot de passe',
 			'auth.hidePassword' => 'Masquer le mot de passe',
 			'auth.login.title' => 'Content de te revoir',
-			'auth.login.subtitle' => 'Connecte-toi pour remplir ton compte rendu du jour.',
+			'auth.login.subtitle' => 'Connecte-toi pour retrouver ta marche avec Dieu et ta communauté.',
 			'auth.login.welcomeBack' => 'Bon retour !',
 			'auth.login.submit' => 'Se connecter',
 			'auth.login.noAccount' => 'Pas encore de compte ?',
@@ -6756,6 +6759,7 @@ extension on Translations {
 			'premium.lifetimeNote' => 'À vie : un seul paiement, sans abonnement ni renouvellement.',
 			'premium.manage' => 'Gérer mon abonnement',
 			'premium.manageFailed' => 'La gestion de l\'abonnement ne s\'ouvre pas. Réessaie plus tard.',
+			'premium.crown' => 'Membre Premium',
 			'homeWidget.title' => 'Aujourd\'hui',
 			'homeWidget.done' => 'Fait',
 			'homeWidget.todo' => 'À remplir',
@@ -6981,9 +6985,9 @@ extension on Translations {
 			'prayer.lists.next' => 'Prochainement',
 			'prayer.lists.answeredTitle.unbelievers' => 'Ont cru au Seigneur',
 			'prayer.lists.answeredTitle.believers' => 'Prières exaucées',
-			'prayer.lists.answeredTitle.backsliders' => 'Sont revenus au Seigneur',
 			_ => null,
 		} ?? switch (path) {
+			'prayer.lists.answeredTitle.backsliders' => 'Sont revenus au Seigneur',
 			'prayer.lists.answeredTitle.coworkers' => 'Prières exaucées',
 			'prayer.lists.answeredOn.unbelievers' => ({required Object date}) => 'A cru au Seigneur le ${date}',
 			'prayer.lists.answeredOn.believers' => ({required Object date}) => 'Exaucé le ${date}',
@@ -7495,9 +7499,9 @@ extension on Translations {
 			'souls.export' => 'Exporter (tableur)',
 			'souls.csv.name' => 'Nom',
 			'souls.csv.phone' => 'Téléphone',
-			'souls.csv.place' => 'Lieu',
 			_ => null,
 		} ?? switch (path) {
+			'souls.csv.place' => 'Lieu',
 			'souls.csv.metOn' => 'Rencontré le',
 			'souls.csv.stage' => 'Étape',
 			'souls.csv.next' => 'Prochain contact',

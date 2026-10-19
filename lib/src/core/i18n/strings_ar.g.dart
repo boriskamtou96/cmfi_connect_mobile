@@ -842,6 +842,7 @@ class _Translations$premium$ar extends Translations$premium$fr {
 	@override String get lifetimeNote => 'مدى الحياة: دفعة واحدة، بلا اشتراك ولا تجديد.';
 	@override String get manage => 'إدارة اشتراكي';
 	@override String get manageFailed => 'تعذّر فتح إدارة الاشتراك. حاول لاحقًا.';
+	@override String get crown => 'عضو بريميوم';
 }
 
 // Path: homeWidget
@@ -1861,7 +1862,7 @@ class _Translations$auth$login$ar extends Translations$auth$login$fr {
 
 	// Translations
 	@override String get title => 'مرحبًا بعودتك';
-	@override String get subtitle => 'سجّل الدخول لتملأ تقرير اليوم.';
+	@override String get subtitle => 'سجّل الدخول لتواصل مسيرتك مع الله ومع جماعتك.';
 	@override String get welcomeBack => 'يسعدنا وجودك!';
 	@override String get submit => 'تسجيل الدخول';
 	@override String get noAccount => 'ليس لديك حساب بعد؟';
@@ -3275,7 +3276,7 @@ extension on TranslationsAr {
 			'auth.showPassword' => 'إظهار كلمة المرور',
 			'auth.hidePassword' => 'إخفاء كلمة المرور',
 			'auth.login.title' => 'مرحبًا بعودتك',
-			'auth.login.subtitle' => 'سجّل الدخول لتملأ تقرير اليوم.',
+			'auth.login.subtitle' => 'سجّل الدخول لتواصل مسيرتك مع الله ومع جماعتك.',
 			'auth.login.welcomeBack' => 'يسعدنا وجودك!',
 			'auth.login.submit' => 'تسجيل الدخول',
 			'auth.login.noAccount' => 'ليس لديك حساب بعد؟',
@@ -4001,6 +4002,7 @@ extension on TranslationsAr {
 			'premium.lifetimeNote' => 'مدى الحياة: دفعة واحدة، بلا اشتراك ولا تجديد.',
 			'premium.manage' => 'إدارة اشتراكي',
 			'premium.manageFailed' => 'تعذّر فتح إدارة الاشتراك. حاول لاحقًا.',
+			'premium.crown' => 'عضو بريميوم',
 			'homeWidget.title' => 'اليوم',
 			'homeWidget.done' => 'تم',
 			'homeWidget.todo' => 'للتعبئة',
@@ -4226,9 +4228,9 @@ extension on TranslationsAr {
 			'prayer.lists.next' => 'قريبًا',
 			'prayer.lists.answeredTitle.unbelievers' => 'آمنوا بالرب',
 			'prayer.lists.answeredTitle.believers' => 'صلوات مستجابة',
-			'prayer.lists.answeredTitle.backsliders' => 'رجعوا إلى الرب',
 			_ => null,
 		} ?? switch (path) {
+			'prayer.lists.answeredTitle.backsliders' => 'رجعوا إلى الرب',
 			'prayer.lists.answeredTitle.coworkers' => 'صلوات مستجابة',
 			'prayer.lists.answeredOn.unbelievers' => ({required Object date}) => 'آمن بالرب في ${date}',
 			'prayer.lists.answeredOn.believers' => ({required Object date}) => 'استُجيبت الصلاة في ${date}',
@@ -4740,9 +4742,9 @@ extension on TranslationsAr {
 			'souls.export' => 'تصدير (جدول)',
 			'souls.csv.name' => 'الاسم',
 			'souls.csv.phone' => 'الهاتف',
-			'souls.csv.place' => 'المكان',
 			_ => null,
 		} ?? switch (path) {
+			'souls.csv.place' => 'المكان',
 			'souls.csv.metOn' => 'تاريخ اللقاء',
 			'souls.csv.stage' => 'المرحلة',
 			'souls.csv.next' => 'التواصل القادم',

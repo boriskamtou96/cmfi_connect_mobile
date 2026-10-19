@@ -745,6 +745,7 @@ class _Translations$premium$zh extends Translations$premium$fr {
 	@override String get lifetimeNote => '终身：一次付款，无需订阅，不会续费。';
 	@override String get manage => '管理我的订阅';
 	@override String get manageFailed => '无法打开订阅管理，请稍后再试。';
+	@override String get crown => '高级版会员';
 }
 
 // Path: homeWidget
@@ -1640,7 +1641,7 @@ class _Translations$auth$login$zh extends Translations$auth$login$fr {
 
 	// Translations
 	@override String get title => '欢迎回来';
-	@override String get subtitle => '登录后填写今天的汇报。';
+	@override String get subtitle => '登录，继续你与神同行的路，与教会肢体相连。';
 	@override String get welcomeBack => '很高兴见到你！';
 	@override String get submit => '登录';
 	@override String get noAccount => '还没有账号？';
@@ -2957,7 +2958,7 @@ extension on TranslationsZh {
 			'auth.showPassword' => '显示密码',
 			'auth.hidePassword' => '隐藏密码',
 			'auth.login.title' => '欢迎回来',
-			'auth.login.subtitle' => '登录后填写今天的汇报。',
+			'auth.login.subtitle' => '登录，继续你与神同行的路，与教会肢体相连。',
 			'auth.login.welcomeBack' => '很高兴见到你！',
 			'auth.login.submit' => '登录',
 			'auth.login.noAccount' => '还没有账号？',
@@ -3683,6 +3684,7 @@ extension on TranslationsZh {
 			'premium.lifetimeNote' => '终身：一次付款，无需订阅，不会续费。',
 			'premium.manage' => '管理我的订阅',
 			'premium.manageFailed' => '无法打开订阅管理，请稍后再试。',
+			'premium.crown' => '高级版会员',
 			'homeWidget.title' => '今天',
 			'homeWidget.done' => '已完成',
 			'homeWidget.todo' => '待填写',
@@ -3908,9 +3910,9 @@ extension on TranslationsZh {
 			'prayer.lists.next' => '即将轮到',
 			'prayer.lists.answeredTitle.unbelievers' => '已信主',
 			'prayer.lists.answeredTitle.believers' => '蒙应允的祷告',
-			'prayer.lists.answeredTitle.backsliders' => '已回到主面前',
 			_ => null,
 		} ?? switch (path) {
+			'prayer.lists.answeredTitle.backsliders' => '已回到主面前',
 			'prayer.lists.answeredTitle.coworkers' => '蒙应允的祷告',
 			'prayer.lists.answeredOn.unbelievers' => ({required Object date}) => '于 ${date} 信主',
 			'prayer.lists.answeredOn.believers' => ({required Object date}) => '于 ${date} 蒙应允',
@@ -4422,9 +4424,9 @@ extension on TranslationsZh {
 			'souls.export' => '导出（表格）',
 			'souls.csv.name' => '姓名',
 			'souls.csv.phone' => '电话',
-			'souls.csv.place' => '地点',
 			_ => null,
 		} ?? switch (path) {
+			'souls.csv.place' => '地点',
 			'souls.csv.metOn' => '认识日期',
 			'souls.csv.stage' => '阶段',
 			'souls.csv.next' => '下次联系',

@@ -96,7 +96,7 @@
     "hidePassword": "Hide password",
     "login": {
       "title": "Welcome back",
-      "subtitle": "Sign in to fill in today's report.",
+      "subtitle": "Sign in to pick up your walk with God and your community.",
       "welcomeBack": "Glad you're here!",
       "submit": "Sign in",
       "noAccount": "No account yet?",
@@ -997,7 +997,8 @@
     "buyLifetime": "Buy for life",
     "lifetimeNote": "Lifetime: a single payment, no subscription, nothing renews.",
     "manage": "Manage my subscription",
-    "manageFailed": "Subscription management won't open. Try again later."
+    "manageFailed": "Subscription management won't open. Try again later.",
+    "crown": "Premium member"
   },
   "homeWidget": {
     "title": "Today",

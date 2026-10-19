@@ -96,7 +96,7 @@
     "hidePassword": "Ocultar la contraseña",
     "login": {
       "title": "¡Hola de nuevo!",
-      "subtitle": "Inicia sesión para completar tu informe del día.",
+      "subtitle": "Inicia sesión para retomar tu caminar con Dios y tu comunidad.",
       "welcomeBack": "¡Qué bueno verte!",
       "submit": "Iniciar sesión",
       "noAccount": "¿Aún no tienes cuenta?",
@@ -996,7 +996,8 @@
     "buyLifetime": "Comprar de por vida",
     "lifetimeNote": "De por vida: un solo pago, sin suscripción ni renovación.",
     "manage": "Gestionar mi suscripción",
-    "manageFailed": "La gestión de la suscripción no se abre. Inténtalo más tarde."
+    "manageFailed": "La gestión de la suscripción no se abre. Inténtalo más tarde.",
+    "crown": "Miembro Premium"
   },
   "homeWidget": {
     "title": "Hoy",

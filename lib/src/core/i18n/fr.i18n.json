@@ -96,7 +96,7 @@
     "hidePassword": "Masquer le mot de passe",
     "login": {
       "title": "Content de te revoir",
-      "subtitle": "Connecte-toi pour remplir ton compte rendu du jour.",
+      "subtitle": "Connecte-toi pour retrouver ta marche avec Dieu et ta communauté.",
       "welcomeBack": "Bon retour !",
       "submit": "Se connecter",
       "noAccount": "Pas encore de compte ?",
@@ -996,7 +996,8 @@
     "buyLifetime": "Acheter à vie",
     "lifetimeNote": "À vie : un seul paiement, sans abonnement ni renouvellement.",
     "manage": "Gérer mon abonnement",
-    "manageFailed": "La gestion de l'abonnement ne s'ouvre pas. Réessaie plus tard."
+    "manageFailed": "La gestion de l'abonnement ne s'ouvre pas. Réessaie plus tard.",
+    "crown": "Membre Premium"
   },
   "homeWidget": {
     "title": "Aujourd'hui",

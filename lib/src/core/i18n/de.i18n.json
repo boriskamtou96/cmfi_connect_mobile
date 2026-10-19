@@ -96,7 +96,7 @@
     "hidePassword": "Passwort verbergen",
     "login": {
       "title": "Willkommen zurück",
-      "subtitle": "Melde dich an, um deinen heutigen Bericht auszufüllen.",
+      "subtitle": "Melde dich an, um deinen Weg mit Gott und deine Gemeinschaft wiederzufinden.",
       "welcomeBack": "Schön, dass du da bist!",
       "submit": "Anmelden",
       "noAccount": "Noch kein Konto?",
@@ -996,7 +996,8 @@
     "buyLifetime": "Lebenslang kaufen",
     "lifetimeNote": "Lebenslang: eine einzige Zahlung, kein Abo, keine Verlängerung.",
     "manage": "Mein Abo verwalten",
-    "manageFailed": "Die Abo-Verwaltung öffnet sich nicht. Versuche es später noch einmal."
+    "manageFailed": "Die Abo-Verwaltung öffnet sich nicht. Versuche es später noch einmal.",
+    "crown": "Premium-Mitglied"
   },
   "homeWidget": {
     "title": "Heute",

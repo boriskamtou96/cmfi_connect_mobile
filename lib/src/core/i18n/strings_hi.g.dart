@@ -764,6 +764,7 @@ class _Translations$premium$hi extends Translations$premium$fr {
 	@override String get lifetimeNote => 'आजीवन: एक ही भुगतान, कोई सदस्यता नहीं, कोई नवीनीकरण नहीं।';
 	@override String get manage => 'मेरी सदस्यता प्रबंधित करें';
 	@override String get manageFailed => 'सदस्यता प्रबंधन नहीं खुल रहा। बाद में फिर कोशिश करें।';
+	@override String get crown => 'प्रीमियम सदस्य';
 }
 
 // Path: homeWidget
@@ -1683,7 +1684,7 @@ class _Translations$auth$login$hi extends Translations$auth$login$fr {
 
 	// Translations
 	@override String get title => 'फिर से स्वागत है';
-	@override String get subtitle => 'आज की रिपोर्ट भरने के लिए लॉग इन करो।';
+	@override String get subtitle => 'परमेश्वर के साथ अपनी यात्रा और अपनी कलीसिया से फिर जुड़ने के लिए लॉग इन करो।';
 	@override String get welcomeBack => 'तुम्हें देखकर खुशी हुई!';
 	@override String get submit => 'लॉग इन करो';
 	@override String get noAccount => 'अभी तक अकाउंट नहीं है?';
@@ -3020,7 +3021,7 @@ extension on TranslationsHi {
 			'auth.showPassword' => 'पासवर्ड दिखाओ',
 			'auth.hidePassword' => 'पासवर्ड छिपाओ',
 			'auth.login.title' => 'फिर से स्वागत है',
-			'auth.login.subtitle' => 'आज की रिपोर्ट भरने के लिए लॉग इन करो।',
+			'auth.login.subtitle' => 'परमेश्वर के साथ अपनी यात्रा और अपनी कलीसिया से फिर जुड़ने के लिए लॉग इन करो।',
 			'auth.login.welcomeBack' => 'तुम्हें देखकर खुशी हुई!',
 			'auth.login.submit' => 'लॉग इन करो',
 			'auth.login.noAccount' => 'अभी तक अकाउंट नहीं है?',
@@ -3746,6 +3747,7 @@ extension on TranslationsHi {
 			'premium.lifetimeNote' => 'आजीवन: एक ही भुगतान, कोई सदस्यता नहीं, कोई नवीनीकरण नहीं।',
 			'premium.manage' => 'मेरी सदस्यता प्रबंधित करें',
 			'premium.manageFailed' => 'सदस्यता प्रबंधन नहीं खुल रहा। बाद में फिर कोशिश करें।',
+			'premium.crown' => 'प्रीमियम सदस्य',
 			'homeWidget.title' => 'आज',
 			'homeWidget.done' => 'हो गया',
 			'homeWidget.todo' => 'भरना बाकी',
@@ -3971,9 +3973,9 @@ extension on TranslationsHi {
 			'prayer.lists.next' => 'जल्द ही',
 			'prayer.lists.answeredTitle.unbelievers' => 'प्रभु पर विश्वास किया',
 			'prayer.lists.answeredTitle.believers' => 'उत्तर मिली प्रार्थनाएँ',
-			'prayer.lists.answeredTitle.backsliders' => 'प्रभु के पास लौट आए',
 			_ => null,
 		} ?? switch (path) {
+			'prayer.lists.answeredTitle.backsliders' => 'प्रभु के पास लौट आए',
 			'prayer.lists.answeredTitle.coworkers' => 'उत्तर मिली प्रार्थनाएँ',
 			'prayer.lists.answeredOn.unbelievers' => ({required Object date}) => '${date} को प्रभु पर विश्वास किया',
 			'prayer.lists.answeredOn.believers' => ({required Object date}) => '${date} को उत्तर मिला',
@@ -4485,9 +4487,9 @@ extension on TranslationsHi {
 			'souls.export' => 'निर्यात (स्प्रेडशीट)',
 			'souls.csv.name' => 'नाम',
 			'souls.csv.phone' => 'फ़ोन',
-			'souls.csv.place' => 'जगह',
 			_ => null,
 		} ?? switch (path) {
+			'souls.csv.place' => 'जगह',
 			'souls.csv.metOn' => 'मिलने की तारीख़',
 			'souls.csv.stage' => 'चरण',
 			'souls.csv.next' => 'अगला संपर्क',

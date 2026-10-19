@@ -12,6 +12,7 @@ import '../../../../core/theme/app_icons.dart';
 import '../../../../core/widgets/adaptive.dart';
 import '../../../../core/widgets/adaptive_menus.dart';
 import '../../../../core/widgets/app_toast.dart';
+import '../../../../core/widgets/premium_crown.dart';
 import '../../../../routing/app_router.dart';
 import '../../../members/presentation/widgets/member_avatar.dart';
 import '../../application/current_profile.dart';
@@ -46,11 +47,16 @@ class ProfilePhotoButton extends HookConsumerWidget {
         child: SizedBox.square(
           dimension: size,
           child: Stack(
+            // the Premium crown leans out of the photo
+            clipBehavior: Clip.none,
             children: [
-              MemberAvatar(
-                initials: profile?.initials ?? '',
-                photo: profile?.avatar,
+              PremiumCrown(
                 size: size,
+                child: MemberAvatar(
+                  initials: profile?.initials ?? '',
+                  photo: profile?.avatar,
+                  size: size,
+                ),
               ),
               if (busy.value)
                 Positioned.fill(

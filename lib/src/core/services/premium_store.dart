@@ -7,7 +7,6 @@ import 'package:purchases_ui_flutter/purchases_ui_flutter.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../config/app_config.dart';
-import '../config/flavor.dart';
 import '../session/session.dart';
 import '../storage/account_storage.dart';
 
@@ -261,13 +260,14 @@ PremiumStore premiumStore(Ref ref) {
   return key.isEmpty ? const NoPremiumStore() : RevenueCatStore(key);
 }
 
-/// v1: in the published app (prod), Premium is offered to everyone (the
-/// purchases come in v1.1): the widget, the year of the summary and the
-/// progress of the goals are open, and nothing leads to the paywall. The dev
-/// app sells it, with the RevenueCat Test Store (no real payment). Return
-/// false for prod too to open the purchases.
+/// Premium offered to everyone: the widget, the year of the summary and the
+/// progress of the goals open, and nothing leading to the paywall. It was so
+/// in the published app of v1; the purchases are open now in both apps (the
+/// dev one with the RevenueCat Test Store, the published one with the keys
+/// of the App Store and Google Play in .env). Kept to offer it again if ever
+/// needed: return true.
 @Riverpod(keepAlive: true)
-bool premiumForEveryone(Ref ref) => ref.watch(flavorProvider) == Flavor.prod;
+bool premiumForEveryone(Ref ref) => false;
 
 /// Whether the signed-in member has Premium (the home-screen widget, the
 /// year and the progress of the goals in the summary). false while unknown.

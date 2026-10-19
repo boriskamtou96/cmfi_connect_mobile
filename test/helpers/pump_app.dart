@@ -47,6 +47,7 @@ import 'package:cmfi_connect/src/features/reports/domain/activity_type.dart';
 import 'package:cmfi_connect/src/features/reports/domain/daily_report.dart';
 import 'package:cmfi_connect/src/features/reports/infrastructure/activities_api.dart';
 import 'package:cmfi_connect/src/features/reports/infrastructure/reports_api.dart';
+import 'package:cmfi_connect/src/features/shell/presentation/widgets/floating_nav_bar.dart';
 import 'package:cmfi_connect/src/features/souls/infrastructure/souls_storage.dart';
 import 'package:cmfi_connect/src/features/teachings/application/teaching_player.dart';
 import 'package:cmfi_connect/src/features/teachings/infrastructure/teaching_files.dart';
@@ -385,7 +386,7 @@ Future<void> scrollToEnd(WidgetTester tester) async {
 /// first).
 Future<void> openMore(WidgetTester tester) async {
   final home = find.descendant(
-    of: find.byType(NavigationBar),
+    of: find.byType(FloatingNavBar),
     matching: find.text('Accueil'),
   );
   if (home.evaluate().isNotEmpty) {

@@ -22,6 +22,7 @@ class PrayerLocalStore {
   static const _pendingRetreatsKey = 'prayer_retreats_pending';
   static const _importunitiesKey = 'prayer_importunities';
   static const _pendingCountsKey = 'prayer_counts_pending';
+  static const _retreatExtrasKey = 'prayer_retreat_extras';
 
   List<T>? _list<T>(String key, T Function(Map<String, dynamic>) fromJson) {
     final raw = _preferences.getString(key);
@@ -36,6 +37,26 @@ class PrayerLocalStore {
 
   Future<void> _save(String key, List<Object> items) =>
       _preferences.setString(key, jsonEncode(items));
+
+  /// What the retreats add from the network (the assembly, the country,
+  /// the authorities' names), as last known: a retreat opens at once,
+  /// without network too.
+  Map<String, String> retreatExtras() {
+    final raw = _preferences.getString(_retreatExtrasKey);
+    if (raw == null) {
+      return const {};
+    }
+    try {
+      return (jsonDecode(raw) as Map<String, dynamic>).map(
+        (key, value) => MapEntry(key, '$value'),
+      );
+    } on Object {
+      return const {};
+    }
+  }
+
+  Future<void> saveRetreatExtras(Map<String, String> extras) =>
+      _preferences.setString(_retreatExtrasKey, jsonEncode(extras));
 
   List<PrayerTopic>? topics() => _list(_topicsKey, PrayerTopic.fromJson);
   Future<void> saveTopics(List<PrayerTopic> topics) =>
@@ -92,6 +113,7 @@ class PrayerLocalStore {
       _pendingRetreatsKey,
       _importunitiesKey,
       _pendingCountsKey,
+      _retreatExtrasKey,
     ]) {
       await _preferences.remove(key);
     }

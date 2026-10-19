@@ -11,6 +11,7 @@ import '../../../../core/theme/app_motion.dart';
 import '../../../../core/theme/app_spacing.dart';
 import '../../../../core/theme/app_theme.dart';
 import '../../../../core/utils/date_extensions.dart';
+import '../../../../core/widgets/adaptive_pickers.dart';
 import '../../../../core/widgets/code_chip.dart';
 import '../../../../core/widgets/rolling_text.dart';
 import '../../application/report_item_texts.dart';
@@ -21,13 +22,18 @@ typedef EntryValues = ({int? quantity, int? durationMinutes});
 
 /// Opens the input sheet of one item. null when closed without validating.
 /// Also sets a daily goal: [caption] under the title, [clearLabel] for the
-/// button that empties it.
+/// button that empties it. An item counted in time can also take its
+/// duration from a start and an end; with [onStartTimer] (today's report),
+/// « Démarrer le chrono » closes the sheet and starts it ([timerRunning]:
+/// it runs already for this item).
 Future<EntryValues?> showEntrySheet(
   BuildContext context, {
   required ReportEntry entry,
   required bool personal,
   String? caption,
   String? clearLabel,
+  VoidCallback? onStartTimer,
+  bool timerRunning = false,
 }) => showModalBottomSheet<EntryValues>(
   context: context,
   isScrollControlled: true,
@@ -37,6 +43,8 @@ Future<EntryValues?> showEntrySheet(
     personal: personal,
     caption: caption,
     clearLabel: clearLabel,
+    onStartTimer: onStartTimer,
+    timerRunning: timerRunning,
   ),
 );
 
@@ -46,6 +54,8 @@ class EntrySheet extends HookWidget {
     required this.personal,
     this.caption,
     this.clearLabel,
+    this.onStartTimer,
+    this.timerRunning = false,
     super.key,
   });
 
@@ -53,6 +63,8 @@ class EntrySheet extends HookWidget {
   final bool personal;
   final String? caption;
   final String? clearLabel;
+  final VoidCallback? onStartTimer;
+  final bool timerRunning;
 
   // limits of the API
   static const maxQuantity = 100000;
@@ -68,6 +80,8 @@ class EntrySheet extends HookWidget {
     );
     useListenable(quantityController);
     final minutes = useState(entry.durationMinutes);
+    // « De 06:00 à 06:45 » once a start and an end were picked
+    final span = useState<String?>(null);
     // the number slides in from below (+) or above (−) when a button changes it
     final nudge = useAnimationController(
       duration: AppMotion.medium,
@@ -98,8 +112,44 @@ class EntrySheet extends HookWidget {
       }
     }
 
-    void addMinutes(int delta) =>
-        minutes.value = ((minutes.value ?? 0) + delta).clamp(0, maxMinutes);
+    void addMinutes(int delta) {
+      span.value = null;
+      minutes.value = ((minutes.value ?? 0) + delta).clamp(0, maxMinutes);
+    }
+
+    // the start, then the end: the time between (past midnight too)
+    Future<void> pickSpan() async {
+      final now = TimeOfDay.now();
+      final from = await showAppTimePicker(
+        context,
+        initialTime: TimeOfDay(hour: (now.hour + 23) % 24, minute: now.minute),
+        helpText: t.reports.timer.from,
+        use24h: true,
+      );
+      if (from == null || !context.mounted) {
+        return;
+      }
+      final to = await showAppTimePicker(
+        context,
+        initialTime: now,
+        helpText: t.reports.timer.to,
+        use24h: true,
+      );
+      if (to == null || !context.mounted) {
+        return;
+      }
+      final start = from.hour * 60 + from.minute;
+      final end = to.hour * 60 + to.minute;
+      final length = (end - start + 1440) % 1440;
+      if (length == 0) {
+        return;
+      }
+      minutes.value = length;
+      span.value = t.reports.timer.span(
+        from: from.format(context),
+        to: to.format(context),
+      );
+    }
 
     void validate() => Navigator.of(context).pop<EntryValues>((
       quantity: entry.tracksQuantity ? quantity() : null,
@@ -265,7 +315,10 @@ class EntrySheet extends HookWidget {
                     _PresetChip(
                       label: preset.toDurationLabel(),
                       selected: minutes.value == preset,
-                      onTap: () => minutes.value = preset,
+                      onTap: () {
+                        span.value = null;
+                        minutes.value = preset;
+                      },
                     ),
                 ],
               ),
@@ -291,6 +344,47 @@ class EntrySheet extends HookWidget {
                   ),
                 ],
               ),
+              if (onStartTimer != null) ...[
+                const SizedBox(height: AppSpacing.md),
+                FilledButton.tonalIcon(
+                  onPressed: timerRunning
+                      ? null
+                      : () {
+                          Navigator.of(context).pop();
+                          onStartTimer!();
+                        },
+                  style: FilledButton.styleFrom(
+                    minimumSize: const Size.fromHeight(48),
+                  ),
+                  icon: Icon(
+                    timerRunning
+                        ? AppIcons.stopwatchActive
+                        : AppIcons.stopwatch,
+                    size: 20,
+                  ),
+                  label: Text(
+                    timerRunning
+                        ? t.reports.timer.running
+                        : t.reports.timer.start,
+                  ),
+                ),
+              ],
+              const SizedBox(height: AppSpacing.xs),
+              Center(
+                child: TextButton.icon(
+                  onPressed: pickSpan,
+                  icon: const Icon(AppIcons.time, size: 18),
+                  label: Text(t.reports.timer.startEnd),
+                ),
+              ),
+              if (span.value case final text?) ...[
+                const SizedBox(height: AppSpacing.xs),
+                Text(
+                  text,
+                  textAlign: TextAlign.center,
+                  style: TextStyle(color: scheme.onSurfaceVariant),
+                ),
+              ],
             ],
             const SizedBox(height: AppSpacing.xl),
             Row(

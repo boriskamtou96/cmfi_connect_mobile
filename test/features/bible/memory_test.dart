@@ -5,6 +5,7 @@ import 'package:cmfi_connect/src/core/services/local_notifications.dart';
 import 'package:cmfi_connect/src/core/utils/date_extensions.dart';
 import 'package:cmfi_connect/src/features/bible/domain/memory_verse.dart';
 import 'package:cmfi_connect/src/features/bible/presentation/memory_review_screen.dart';
+import 'package:cmfi_connect/src/features/shell/presentation/widgets/floating_nav_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:intl/date_symbol_data_local.dart';
@@ -92,7 +93,7 @@ void main() {
     );
     await tester.tap(
       find.descendant(
-        of: find.byType(NavigationBar),
+        of: find.byType(FloatingNavBar),
         matching: find.text('Bible'),
       ),
     );
@@ -153,7 +154,7 @@ void main() {
     );
     await tester.tap(
       find.descendant(
-        of: find.byType(NavigationBar),
+        of: find.byType(FloatingNavBar),
         matching: find.text('Bible'),
       ),
     );

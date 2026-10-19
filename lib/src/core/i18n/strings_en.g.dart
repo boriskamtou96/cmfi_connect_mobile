@@ -308,6 +308,7 @@ class _Translations$reports$en extends Translations$reports$fr {
 	@override String goalsReached({required Object reached, required Object total}) => 'Reached: ${reached} of ${total}';
 	@override late final _Translations$reports$standardItems$en standardItems = _Translations$reports$standardItems$en._(_root);
 	@override late final _Translations$reports$units$en units = _Translations$reports$units$en._(_root);
+	@override late final _Translations$reports$timer$en timer = _Translations$reports$timer$en._(_root);
 }
 
 // Path: reminder
@@ -1936,6 +1937,31 @@ class _Translations$reports$units$en extends Translations$reports$units$fr {
 	@override late final _Translations$reports$units$percent$en percent = _Translations$reports$units$percent$en._(_root);
 }
 
+// Path: reports.timer
+class _Translations$reports$timer$en extends Translations$reports$timer$fr {
+	_Translations$reports$timer$en._(TranslationsEn root) : this._root = root, super.internal(root);
+
+	final TranslationsEn _root; // ignore: unused_field
+
+	// Translations
+	@override String get start => 'Start the stopwatch';
+	@override String get running => 'Stopwatch running';
+	@override String get startEnd => 'Start – end';
+	@override String get from => 'Start time';
+	@override String get to => 'End time';
+	@override String span({required Object from, required Object to}) => 'From ${from} to ${to}';
+	@override String get pause => 'Pause';
+	@override String get resume => 'Resume';
+	@override String get finish => 'Finish';
+	@override String get discard => 'Cancel the stopwatch';
+	@override String get paused => 'Paused';
+	@override String added({required Object time, required Object item}) => '${time} added to "${item}"';
+	@override String get noItem => 'The stopwatch stopped, but this item is no longer in your report.';
+	@override String get replaceTitle => 'Replace the stopwatch?';
+	@override String replaceText({required Object item}) => 'A stopwatch is already running for "${item}". It will stop without being counted.';
+	@override String get replace => 'Replace';
+}
+
 // Path: export.doc
 class _Translations$export$doc$en extends Translations$export$doc$fr {
 	_Translations$export$doc$en._(TranslationsEn root) : this._root = root, super.internal(root);
@@ -3232,6 +3258,22 @@ extension on TranslationsEn {
 			'reports.units.percent.label' => 'percentage',
 			'reports.units.percent.symbol' => '%',
 			'reports.units.percent.count' => ({required Object value}) => '${value}%',
+			'reports.timer.start' => 'Start the stopwatch',
+			'reports.timer.running' => 'Stopwatch running',
+			'reports.timer.startEnd' => 'Start – end',
+			'reports.timer.from' => 'Start time',
+			'reports.timer.to' => 'End time',
+			'reports.timer.span' => ({required Object from, required Object to}) => 'From ${from} to ${to}',
+			'reports.timer.pause' => 'Pause',
+			'reports.timer.resume' => 'Resume',
+			'reports.timer.finish' => 'Finish',
+			'reports.timer.discard' => 'Cancel the stopwatch',
+			'reports.timer.paused' => 'Paused',
+			'reports.timer.added' => ({required Object time, required Object item}) => '${time} added to "${item}"',
+			'reports.timer.noItem' => 'The stopwatch stopped, but this item is no longer in your report.',
+			'reports.timer.replaceTitle' => 'Replace the stopwatch?',
+			'reports.timer.replaceText' => ({required Object item}) => 'A stopwatch is already running for "${item}". It will stop without being counted.',
+			'reports.timer.replace' => 'Replace',
 			'reminder.title' => 'Your daily report',
 			'reminder.body' => 'Take a minute to note your reading, your prayer… before the day ends.',
 			'reminder.channel' => 'Report reminder',
@@ -3445,6 +3487,8 @@ extension on TranslationsEn {
 			'admin.roleFor' => ({required Object username}) => 'Role of @${username}',
 			'admin.roleChanged' => ({required Object username, required Object role}) => '@${username}: ${role}',
 			'admin.memberUsername' => 'Member\'s username',
+			_ => null,
+		} ?? switch (path) {
 			'admin.empty' => 'No admin yet.',
 			'hymns.searchHint' => 'Number, title or words',
 			'hymns.openNumber' => 'Go to a number',
@@ -3461,8 +3505,6 @@ extension on TranslationsEn {
 			'hymns.upToDate' => 'The hymn books are up to date.',
 			'hymns.updated' => 'The hymn books have been updated.',
 			'hymns.chorus' => 'Chorus',
-			_ => null,
-		} ?? switch (path) {
 			'hymns.chorusNumber' => ({required Object label}) => 'Chorus ${label}',
 			'hymns.verse' => ({required Object label}) => 'Verse ${label}',
 			'hymns.times' => ({required Object n}) => '×${n}',
@@ -3959,6 +4001,8 @@ extension on TranslationsEn {
 			'prayer.topics.openDocument' => 'Open the PDF',
 			'prayer.lists.title' => 'My prayer lists',
 			'prayer.lists.private' => 'Only for you',
+			_ => null,
+		} ?? switch (path) {
 			'prayer.lists.names.unbelievers' => 'Not yet believed',
 			'prayer.lists.names.believers' => 'Believers',
 			'prayer.lists.names.backsliders' => 'Backsliders',
@@ -3975,8 +4019,6 @@ extension on TranslationsEn {
 			'prayer.lists.next' => 'Coming up',
 			'prayer.lists.answeredTitle.unbelievers' => 'Believed in the Lord',
 			'prayer.lists.answeredTitle.believers' => 'Answered prayers',
-			_ => null,
-		} ?? switch (path) {
 			'prayer.lists.answeredTitle.backsliders' => 'Came back to the Lord',
 			'prayer.lists.answeredTitle.coworkers' => 'Answered prayers',
 			'prayer.lists.answeredOn.unbelievers' => ({required Object date}) => 'Believed in the Lord on ${date}',
@@ -4473,6 +4515,8 @@ extension on TranslationsEn {
 			'souls.sms' => 'Text',
 			'souls.edit' => 'Edit',
 			'souls.delete' => 'Delete',
+			_ => null,
+		} ?? switch (path) {
 			'souls.deleteTitle' => ({required Object name}) => 'Delete ${name}?',
 			'souls.deleteText' => 'Their notes will be erased from your phone.',
 			'souls.deleted' => 'Deleted',
@@ -4489,8 +4533,6 @@ extension on TranslationsEn {
 			'souls.export' => 'Export (spreadsheet)',
 			'souls.csv.name' => 'Name',
 			'souls.csv.phone' => 'Phone',
-			_ => null,
-		} ?? switch (path) {
 			'souls.csv.place' => 'Place',
 			'souls.csv.metOn' => 'Met on',
 			'souls.csv.stage' => 'Stage',

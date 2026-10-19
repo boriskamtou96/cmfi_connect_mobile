@@ -308,6 +308,7 @@ class _Translations$reports$de extends Translations$reports$fr {
 	@override String goalsReached({required Object reached, required Object total}) => 'Erreicht: ${reached} von ${total}';
 	@override late final _Translations$reports$standardItems$de standardItems = _Translations$reports$standardItems$de._(_root);
 	@override late final _Translations$reports$units$de units = _Translations$reports$units$de._(_root);
+	@override late final _Translations$reports$timer$de timer = _Translations$reports$timer$de._(_root);
 }
 
 // Path: reminder
@@ -1935,6 +1936,31 @@ class _Translations$reports$units$de extends Translations$reports$units$fr {
 	@override late final _Translations$reports$units$percent$de percent = _Translations$reports$units$percent$de._(_root);
 }
 
+// Path: reports.timer
+class _Translations$reports$timer$de extends Translations$reports$timer$fr {
+	_Translations$reports$timer$de._(TranslationsDe root) : this._root = root, super.internal(root);
+
+	final TranslationsDe _root; // ignore: unused_field
+
+	// Translations
+	@override String get start => 'Stoppuhr starten';
+	@override String get running => 'Stoppuhr läuft';
+	@override String get startEnd => 'Beginn – Ende';
+	@override String get from => 'Beginn';
+	@override String get to => 'Ende';
+	@override String span({required Object from, required Object to}) => 'Von ${from} bis ${to}';
+	@override String get pause => 'Pausieren';
+	@override String get resume => 'Fortsetzen';
+	@override String get finish => 'Beenden';
+	@override String get discard => 'Stoppuhr verwerfen';
+	@override String get paused => 'Pausiert';
+	@override String added({required Object time, required Object item}) => '${time} zu „${item}“ hinzugefügt';
+	@override String get noItem => 'Die Stoppuhr ist gestoppt, aber dieses Element ist nicht mehr in deinem Bericht.';
+	@override String get replaceTitle => 'Stoppuhr ersetzen?';
+	@override String replaceText({required Object item}) => 'Für „${item}“ läuft schon eine Stoppuhr. Sie stoppt, ohne gezählt zu werden.';
+	@override String get replace => 'Ersetzen';
+}
+
 // Path: export.doc
 class _Translations$export$doc$de extends Translations$export$doc$fr {
 	_Translations$export$doc$de._(TranslationsDe root) : this._root = root, super.internal(root);
@@ -3231,6 +3257,22 @@ extension on TranslationsDe {
 			'reports.units.percent.label' => 'Prozent',
 			'reports.units.percent.symbol' => '%',
 			'reports.units.percent.count' => ({required Object value}) => '${value} %',
+			'reports.timer.start' => 'Stoppuhr starten',
+			'reports.timer.running' => 'Stoppuhr läuft',
+			'reports.timer.startEnd' => 'Beginn – Ende',
+			'reports.timer.from' => 'Beginn',
+			'reports.timer.to' => 'Ende',
+			'reports.timer.span' => ({required Object from, required Object to}) => 'Von ${from} bis ${to}',
+			'reports.timer.pause' => 'Pausieren',
+			'reports.timer.resume' => 'Fortsetzen',
+			'reports.timer.finish' => 'Beenden',
+			'reports.timer.discard' => 'Stoppuhr verwerfen',
+			'reports.timer.paused' => 'Pausiert',
+			'reports.timer.added' => ({required Object time, required Object item}) => '${time} zu „${item}“ hinzugefügt',
+			'reports.timer.noItem' => 'Die Stoppuhr ist gestoppt, aber dieses Element ist nicht mehr in deinem Bericht.',
+			'reports.timer.replaceTitle' => 'Stoppuhr ersetzen?',
+			'reports.timer.replaceText' => ({required Object item}) => 'Für „${item}“ läuft schon eine Stoppuhr. Sie stoppt, ohne gezählt zu werden.',
+			'reports.timer.replace' => 'Ersetzen',
 			'reminder.title' => 'Dein Tagesbericht',
 			'reminder.body' => 'Nimm dir eine Minute, um deine Bibellese, dein Gebet … festzuhalten, bevor der Tag endet.',
 			'reminder.channel' => 'Erinnerung an den Tagesbericht',
@@ -3444,6 +3486,8 @@ extension on TranslationsDe {
 			'admin.roleFor' => ({required Object username}) => 'Rolle von @${username}',
 			'admin.roleChanged' => ({required Object username, required Object role}) => '@${username}: ${role}',
 			'admin.memberUsername' => 'Benutzername des Mitglieds',
+			_ => null,
+		} ?? switch (path) {
 			'admin.empty' => 'Noch keine Admins.',
 			'hymns.searchHint' => 'Nummer, Titel oder Text',
 			'hymns.openNumber' => 'Zu Nummer springen',
@@ -3460,8 +3504,6 @@ extension on TranslationsDe {
 			'hymns.upToDate' => 'Die Liederbücher sind auf dem neuesten Stand.',
 			'hymns.updated' => 'Die Liederbücher wurden aktualisiert.',
 			'hymns.chorus' => 'Refrain',
-			_ => null,
-		} ?? switch (path) {
 			'hymns.chorusNumber' => ({required Object label}) => 'Refrain ${label}',
 			'hymns.verse' => ({required Object label}) => 'Strophe ${label}',
 			'hymns.times' => ({required Object n}) => '×${n}',
@@ -3958,6 +4000,8 @@ extension on TranslationsDe {
 			'prayer.topics.openDocument' => 'PDF öffnen',
 			'prayer.lists.title' => 'Meine Gebetslisten',
 			'prayer.lists.private' => 'Nur für dich',
+			_ => null,
+		} ?? switch (path) {
 			'prayer.lists.names.unbelievers' => 'Noch nicht gläubig',
 			'prayer.lists.names.believers' => 'Gläubige',
 			'prayer.lists.names.backsliders' => 'Abgefallene',
@@ -3974,8 +4018,6 @@ extension on TranslationsDe {
 			'prayer.lists.next' => 'Demnächst',
 			'prayer.lists.answeredTitle.unbelievers' => 'Zum Glauben an den Herrn gekommen',
 			'prayer.lists.answeredTitle.believers' => 'Erhörte Gebete',
-			_ => null,
-		} ?? switch (path) {
 			'prayer.lists.answeredTitle.backsliders' => 'Zum Herrn zurückgekehrt',
 			'prayer.lists.answeredTitle.coworkers' => 'Erhörte Gebete',
 			'prayer.lists.answeredOn.unbelievers' => ({required Object date}) => 'Am ${date} zum Glauben an den Herrn gekommen',
@@ -4472,6 +4514,8 @@ extension on TranslationsDe {
 			'souls.sms' => 'SMS',
 			'souls.edit' => 'Bearbeiten',
 			'souls.delete' => 'Löschen',
+			_ => null,
+		} ?? switch (path) {
 			'souls.deleteTitle' => ({required Object name}) => '${name} löschen?',
 			'souls.deleteText' => 'Die Notizen werden von deinem Handy gelöscht.',
 			'souls.deleted' => 'Gelöscht',
@@ -4488,8 +4532,6 @@ extension on TranslationsDe {
 			'souls.export' => 'Exportieren (Tabelle)',
 			'souls.csv.name' => 'Name',
 			'souls.csv.phone' => 'Telefon',
-			_ => null,
-		} ?? switch (path) {
 			'souls.csv.place' => 'Ort',
 			'souls.csv.metOn' => 'Getroffen am',
 			'souls.csv.stage' => 'Stufe',

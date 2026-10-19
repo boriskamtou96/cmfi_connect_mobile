@@ -181,14 +181,18 @@ class FakeProfileApi implements ProfileApi {
   final updates = <Profile>[];
   final creates = <Profile>[];
 
+  /// A network that never answers (a retreat must not wait for it).
+  bool slow = false;
+
   @override
-  Future<Profile> get() async =>
-      profile ??
-      (throw const ApiException(
-        status: 404,
-        code: 'NOT_FOUND',
-        message: 'Profile not found',
-      ));
+  Future<Profile> get() async => slow
+      ? await Completer<Profile>().future
+      : profile ??
+            (throw const ApiException(
+              status: 404,
+              code: 'NOT_FOUND',
+              message: 'Profile not found',
+            ));
 
   @override
   Future<Profile> update(Profile profile) async {

@@ -534,6 +534,7 @@ class Translations$reports$fr {
 
 	late final Translations$reports$standardItems$fr standardItems = Translations$reports$standardItems$fr.internal(_root);
 	late final Translations$reports$units$fr units = Translations$reports$units$fr.internal(_root);
+	late final Translations$reports$timer$fr timer = Translations$reports$timer$fr.internal(_root);
 }
 
 // Path: reminder
@@ -4023,6 +4024,63 @@ class Translations$reports$units$fr {
 	late final Translations$reports$units$percent$fr percent = Translations$reports$units$percent$fr.internal(_root);
 }
 
+// Path: reports.timer
+class Translations$reports$timer$fr {
+	Translations$reports$timer$fr.internal(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// fr: 'Démarrer le chrono'
+	String get start => 'Démarrer le chrono';
+
+	/// fr: 'Chrono en cours'
+	String get running => 'Chrono en cours';
+
+	/// fr: 'Début – fin'
+	String get startEnd => 'Début – fin';
+
+	/// fr: 'Heure de début'
+	String get from => 'Heure de début';
+
+	/// fr: 'Heure de fin'
+	String get to => 'Heure de fin';
+
+	/// fr: 'De {from} à {to}'
+	String span({required Object from, required Object to}) => 'De ${from} à ${to}';
+
+	/// fr: 'Mettre en pause'
+	String get pause => 'Mettre en pause';
+
+	/// fr: 'Reprendre'
+	String get resume => 'Reprendre';
+
+	/// fr: 'Terminer'
+	String get finish => 'Terminer';
+
+	/// fr: 'Annuler le chrono'
+	String get discard => 'Annuler le chrono';
+
+	/// fr: 'En pause'
+	String get paused => 'En pause';
+
+	/// fr: '{time} ajoutées à « {item} »'
+	String added({required Object time, required Object item}) => '${time} ajoutées à « ${item} »';
+
+	/// fr: 'Le chrono s'est arrêté, mais cet élément n'est plus dans ton compte rendu.'
+	String get noItem => 'Le chrono s\'est arrêté, mais cet élément n\'est plus dans ton compte rendu.';
+
+	/// fr: 'Remplacer le chrono ?'
+	String get replaceTitle => 'Remplacer le chrono ?';
+
+	/// fr: 'Un chrono tourne déjà pour « {item} ». Il s'arrêtera sans être compté.'
+	String replaceText({required Object item}) => 'Un chrono tourne déjà pour « ${item} ». Il s\'arrêtera sans être compté.';
+
+	/// fr: 'Remplacer'
+	String get replace => 'Remplacer';
+}
+
 // Path: export.doc
 class Translations$export$doc$fr {
 	Translations$export$doc$fr.internal(this._root);
@@ -6242,6 +6300,22 @@ extension on Translations {
 			'reports.units.percent.label' => 'pourcentage',
 			'reports.units.percent.symbol' => '%',
 			'reports.units.percent.count' => ({required Object value}) => '${value} %',
+			'reports.timer.start' => 'Démarrer le chrono',
+			'reports.timer.running' => 'Chrono en cours',
+			'reports.timer.startEnd' => 'Début – fin',
+			'reports.timer.from' => 'Heure de début',
+			'reports.timer.to' => 'Heure de fin',
+			'reports.timer.span' => ({required Object from, required Object to}) => 'De ${from} à ${to}',
+			'reports.timer.pause' => 'Mettre en pause',
+			'reports.timer.resume' => 'Reprendre',
+			'reports.timer.finish' => 'Terminer',
+			'reports.timer.discard' => 'Annuler le chrono',
+			'reports.timer.paused' => 'En pause',
+			'reports.timer.added' => ({required Object time, required Object item}) => '${time} ajoutées à « ${item} »',
+			'reports.timer.noItem' => 'Le chrono s\'est arrêté, mais cet élément n\'est plus dans ton compte rendu.',
+			'reports.timer.replaceTitle' => 'Remplacer le chrono ?',
+			'reports.timer.replaceText' => ({required Object item}) => 'Un chrono tourne déjà pour « ${item} ». Il s\'arrêtera sans être compté.',
+			'reports.timer.replace' => 'Remplacer',
 			'reminder.title' => 'Ton compte rendu du jour',
 			'reminder.body' => 'Prends une minute pour noter ta lecture, ta prière… avant la fin de la journée.',
 			'reminder.channel' => 'Rappel du compte rendu',
@@ -6455,6 +6529,8 @@ extension on Translations {
 			'admin.roleFor' => ({required Object username}) => 'Rôle de @${username}',
 			'admin.roleChanged' => ({required Object username, required Object role}) => '@${username} : ${role}',
 			'admin.memberUsername' => 'Pseudo du membre',
+			_ => null,
+		} ?? switch (path) {
 			'admin.empty' => 'Aucun admin pour l\'instant.',
 			'hymns.searchHint' => 'Numéro, titre ou paroles',
 			'hymns.openNumber' => 'Aller à un numéro',
@@ -6471,8 +6547,6 @@ extension on Translations {
 			'hymns.upToDate' => 'Les recueils sont à jour.',
 			'hymns.updated' => 'Les recueils ont été mis à jour.',
 			'hymns.chorus' => 'Refrain',
-			_ => null,
-		} ?? switch (path) {
 			'hymns.chorusNumber' => ({required Object label}) => 'Refrain ${label}',
 			'hymns.verse' => ({required Object label}) => 'Couplet ${label}',
 			'hymns.times' => ({required Object n}) => '×${n}',
@@ -6969,6 +7043,8 @@ extension on Translations {
 			'prayer.topics.openDocument' => 'Ouvrir le PDF',
 			'prayer.lists.title' => 'Mes listes de prière',
 			'prayer.lists.private' => 'Pour toi seul',
+			_ => null,
+		} ?? switch (path) {
 			'prayer.lists.names.unbelievers' => 'Pas encore cru',
 			'prayer.lists.names.believers' => 'Croyants',
 			'prayer.lists.names.backsliders' => 'Rétrogrades',
@@ -6985,8 +7061,6 @@ extension on Translations {
 			'prayer.lists.next' => 'Prochainement',
 			'prayer.lists.answeredTitle.unbelievers' => 'Ont cru au Seigneur',
 			'prayer.lists.answeredTitle.believers' => 'Prières exaucées',
-			_ => null,
-		} ?? switch (path) {
 			'prayer.lists.answeredTitle.backsliders' => 'Sont revenus au Seigneur',
 			'prayer.lists.answeredTitle.coworkers' => 'Prières exaucées',
 			'prayer.lists.answeredOn.unbelievers' => ({required Object date}) => 'A cru au Seigneur le ${date}',
@@ -7483,6 +7557,8 @@ extension on Translations {
 			'souls.sms' => 'SMS',
 			'souls.edit' => 'Modifier',
 			'souls.delete' => 'Supprimer',
+			_ => null,
+		} ?? switch (path) {
 			'souls.deleteTitle' => ({required Object name}) => 'Supprimer ${name} ?',
 			'souls.deleteText' => 'Ses notes seront effacées de ton téléphone.',
 			'souls.deleted' => 'Supprimé',
@@ -7499,8 +7575,6 @@ extension on Translations {
 			'souls.export' => 'Exporter (tableur)',
 			'souls.csv.name' => 'Nom',
 			'souls.csv.phone' => 'Téléphone',
-			_ => null,
-		} ?? switch (path) {
 			'souls.csv.place' => 'Lieu',
 			'souls.csv.metOn' => 'Rencontré le',
 			'souls.csv.stage' => 'Étape',

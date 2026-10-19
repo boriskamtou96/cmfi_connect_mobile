@@ -92,14 +92,22 @@ final class RetreatContentFamily extends $Family
   String toString() => r'retreatContentProvider';
 }
 
-/// The fifteen points of a retreat, filled with the user's data. Without
-/// network, what is kept on the phone (or nothing) fills them.
+/// The fifteen points of a retreat, filled with the user's data. The texts
+/// are in the app; what comes from the network (the assembly, the
+/// authorities, the lists) is waited for 2 seconds at most, all at once, and
+/// what is kept on the phone fills in meanwhile: a retreat opens at once,
+/// on a weak network or without one. The fresh values, once there, are kept
+/// for the next time.
 
 @ProviderFor(retreatPlan)
 final retreatPlanProvider = RetreatPlanFamily._();
 
-/// The fifteen points of a retreat, filled with the user's data. Without
-/// network, what is kept on the phone (or nothing) fills them.
+/// The fifteen points of a retreat, filled with the user's data. The texts
+/// are in the app; what comes from the network (the assembly, the
+/// authorities, the lists) is waited for 2 seconds at most, all at once, and
+/// what is kept on the phone fills in meanwhile: a retreat opens at once,
+/// on a weak network or without one. The fresh values, once there, are kept
+/// for the next time.
 
 final class RetreatPlanProvider
     extends
@@ -111,8 +119,12 @@ final class RetreatPlanProvider
     with
         $FutureModifier<List<PlannedPoint>>,
         $FutureProvider<List<PlannedPoint>> {
-  /// The fifteen points of a retreat, filled with the user's data. Without
-  /// network, what is kept on the phone (or nothing) fills them.
+  /// The fifteen points of a retreat, filled with the user's data. The texts
+  /// are in the app; what comes from the network (the assembly, the
+  /// authorities, the lists) is waited for 2 seconds at most, all at once, and
+  /// what is kept on the phone fills in meanwhile: a retreat opens at once,
+  /// on a weak network or without one. The fresh values, once there, are kept
+  /// for the next time.
   RetreatPlanProvider._({
     required RetreatPlanFamily super.from,
     required (RetreatMoment, String) super.argument,
@@ -157,10 +169,14 @@ final class RetreatPlanProvider
   }
 }
 
-String _$retreatPlanHash() => r'fb939c28b137f8c57c0c3122caa16ce7018e519b';
+String _$retreatPlanHash() => r'3eb4ad3e1cac83503db30a7f5fe5cdabb6bd83ff';
 
-/// The fifteen points of a retreat, filled with the user's data. Without
-/// network, what is kept on the phone (or nothing) fills them.
+/// The fifteen points of a retreat, filled with the user's data. The texts
+/// are in the app; what comes from the network (the assembly, the
+/// authorities, the lists) is waited for 2 seconds at most, all at once, and
+/// what is kept on the phone fills in meanwhile: a retreat opens at once,
+/// on a weak network or without one. The fresh values, once there, are kept
+/// for the next time.
 
 final class RetreatPlanFamily extends $Family
     with
@@ -177,8 +193,12 @@ final class RetreatPlanFamily extends $Family
         isAutoDispose: true,
       );
 
-  /// The fifteen points of a retreat, filled with the user's data. Without
-  /// network, what is kept on the phone (or nothing) fills them.
+  /// The fifteen points of a retreat, filled with the user's data. The texts
+  /// are in the app; what comes from the network (the assembly, the
+  /// authorities, the lists) is waited for 2 seconds at most, all at once, and
+  /// what is kept on the phone fills in meanwhile: a retreat opens at once,
+  /// on a weak network or without one. The fresh values, once there, are kept
+  /// for the next time.
 
   RetreatPlanProvider call(RetreatMoment moment, String language) =>
       RetreatPlanProvider._(argument: (moment, language), from: this);

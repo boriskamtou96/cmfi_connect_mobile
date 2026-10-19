@@ -324,6 +324,7 @@ class _Translations$reports$ar extends Translations$reports$fr {
 	@override String goalsReached({required Object reached, required Object total}) => 'المحقَّقة: ${reached} من ${total}';
 	@override late final _Translations$reports$standardItems$ar standardItems = _Translations$reports$standardItems$ar._(_root);
 	@override late final _Translations$reports$units$ar units = _Translations$reports$units$ar._(_root);
+	@override late final _Translations$reports$timer$ar timer = _Translations$reports$timer$ar._(_root);
 }
 
 // Path: reminder
@@ -2128,6 +2129,31 @@ class _Translations$reports$units$ar extends Translations$reports$units$fr {
 	@override late final _Translations$reports$units$percent$ar percent = _Translations$reports$units$percent$ar._(_root);
 }
 
+// Path: reports.timer
+class _Translations$reports$timer$ar extends Translations$reports$timer$fr {
+	_Translations$reports$timer$ar._(TranslationsAr root) : this._root = root, super.internal(root);
+
+	final TranslationsAr _root; // ignore: unused_field
+
+	// Translations
+	@override String get start => 'ابدأ المؤقت';
+	@override String get running => 'المؤقت يعمل';
+	@override String get startEnd => 'البداية – النهاية';
+	@override String get from => 'وقت البداية';
+	@override String get to => 'وقت النهاية';
+	@override String span({required Object from, required Object to}) => 'من ${from} إلى ${to}';
+	@override String get pause => 'إيقاف مؤقت';
+	@override String get resume => 'استئناف';
+	@override String get finish => 'إنهاء';
+	@override String get discard => 'إلغاء المؤقت';
+	@override String get paused => 'متوقف مؤقتًا';
+	@override String added({required Object time, required Object item}) => 'أُضيفت ${time} إلى «${item}»';
+	@override String get noItem => 'توقف المؤقت، لكن هذا العنصر لم يعد في تقريرك.';
+	@override String get replaceTitle => 'استبدال المؤقت؟';
+	@override String replaceText({required Object item}) => 'هناك مؤقت يعمل لـ«${item}». سيتوقف دون احتسابه.';
+	@override String get replace => 'استبدال';
+}
+
 // Path: export.doc
 class _Translations$export$doc$ar extends Translations$export$doc$fr {
 	_Translations$export$doc$ar._(TranslationsAr root) : this._root = root, super.internal(root);
@@ -3485,6 +3511,22 @@ extension on TranslationsAr {
 			'reports.units.percent.label' => 'النسبة المئوية',
 			'reports.units.percent.symbol' => '%',
 			'reports.units.percent.count' => ({required Object value}) => '${value}%',
+			'reports.timer.start' => 'ابدأ المؤقت',
+			'reports.timer.running' => 'المؤقت يعمل',
+			'reports.timer.startEnd' => 'البداية – النهاية',
+			'reports.timer.from' => 'وقت البداية',
+			'reports.timer.to' => 'وقت النهاية',
+			'reports.timer.span' => ({required Object from, required Object to}) => 'من ${from} إلى ${to}',
+			'reports.timer.pause' => 'إيقاف مؤقت',
+			'reports.timer.resume' => 'استئناف',
+			'reports.timer.finish' => 'إنهاء',
+			'reports.timer.discard' => 'إلغاء المؤقت',
+			'reports.timer.paused' => 'متوقف مؤقتًا',
+			'reports.timer.added' => ({required Object time, required Object item}) => 'أُضيفت ${time} إلى «${item}»',
+			'reports.timer.noItem' => 'توقف المؤقت، لكن هذا العنصر لم يعد في تقريرك.',
+			'reports.timer.replaceTitle' => 'استبدال المؤقت؟',
+			'reports.timer.replaceText' => ({required Object item}) => 'هناك مؤقت يعمل لـ«${item}». سيتوقف دون احتسابه.',
+			'reports.timer.replace' => 'استبدال',
 			'reminder.title' => 'تقريرك لهذا اليوم',
 			'reminder.body' => 'خصّص دقيقة لتسجّل قراءتك وصلاتك… قبل نهاية اليوم.',
 			'reminder.channel' => 'تذكير التقرير',
@@ -3698,6 +3740,8 @@ extension on TranslationsAr {
 			'admin.roleFor' => ({required Object username}) => 'دور @${username}',
 			'admin.roleChanged' => ({required Object username, required Object role}) => '@${username}: ${role}',
 			'admin.memberUsername' => 'اسم مستخدم العضو',
+			_ => null,
+		} ?? switch (path) {
 			'admin.empty' => 'لا يوجد مشرفون حتى الآن.',
 			'hymns.searchHint' => 'الرقم أو العنوان أو الكلمات',
 			'hymns.openNumber' => 'الانتقال إلى رقم',
@@ -3714,8 +3758,6 @@ extension on TranslationsAr {
 			'hymns.upToDate' => 'كتب الترانيم محدّثة.',
 			'hymns.updated' => 'تم تحديث كتب الترانيم.',
 			'hymns.chorus' => 'القرار',
-			_ => null,
-		} ?? switch (path) {
 			'hymns.chorusNumber' => ({required Object label}) => 'القرار ${label}',
 			'hymns.verse' => ({required Object label}) => 'المقطع ${label}',
 			'hymns.times' => ({required Object n}) => '×${n}',
@@ -4212,6 +4254,8 @@ extension on TranslationsAr {
 			'prayer.topics.openDocument' => 'فتح ملف PDF',
 			'prayer.lists.title' => 'قوائم صلاتي',
 			'prayer.lists.private' => 'لك وحدك',
+			_ => null,
+		} ?? switch (path) {
 			'prayer.lists.names.unbelievers' => 'لم يؤمنوا بعد',
 			'prayer.lists.names.believers' => 'المؤمنون',
 			'prayer.lists.names.backsliders' => 'المرتدّون',
@@ -4228,8 +4272,6 @@ extension on TranslationsAr {
 			'prayer.lists.next' => 'قريبًا',
 			'prayer.lists.answeredTitle.unbelievers' => 'آمنوا بالرب',
 			'prayer.lists.answeredTitle.believers' => 'صلوات مستجابة',
-			_ => null,
-		} ?? switch (path) {
 			'prayer.lists.answeredTitle.backsliders' => 'رجعوا إلى الرب',
 			'prayer.lists.answeredTitle.coworkers' => 'صلوات مستجابة',
 			'prayer.lists.answeredOn.unbelievers' => ({required Object date}) => 'آمن بالرب في ${date}',
@@ -4726,6 +4768,8 @@ extension on TranslationsAr {
 			'souls.sms' => 'رسالة',
 			'souls.edit' => 'تعديل',
 			'souls.delete' => 'احذف',
+			_ => null,
+		} ?? switch (path) {
 			'souls.deleteTitle' => ({required Object name}) => 'حذف ${name}؟',
 			'souls.deleteText' => 'ستُمحى ملاحظاته من هاتفك.',
 			'souls.deleted' => 'تم الحذف',
@@ -4742,8 +4786,6 @@ extension on TranslationsAr {
 			'souls.export' => 'تصدير (جدول)',
 			'souls.csv.name' => 'الاسم',
 			'souls.csv.phone' => 'الهاتف',
-			_ => null,
-		} ?? switch (path) {
 			'souls.csv.place' => 'المكان',
 			'souls.csv.metOn' => 'تاريخ اللقاء',
 			'souls.csv.stage' => 'المرحلة',

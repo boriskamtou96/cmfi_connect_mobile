@@ -304,6 +304,7 @@ class _Translations$reports$zh extends Translations$reports$fr {
 	@override String goalsReached({required Object reached, required Object total}) => '已达成：${reached}/${total}';
 	@override late final _Translations$reports$standardItems$zh standardItems = _Translations$reports$standardItems$zh._(_root);
 	@override late final _Translations$reports$units$zh units = _Translations$reports$units$zh._(_root);
+	@override late final _Translations$reports$timer$zh timer = _Translations$reports$timer$zh._(_root);
 }
 
 // Path: reminder
@@ -1887,6 +1888,31 @@ class _Translations$reports$units$zh extends Translations$reports$units$fr {
 	@override late final _Translations$reports$units$percent$zh percent = _Translations$reports$units$percent$zh._(_root);
 }
 
+// Path: reports.timer
+class _Translations$reports$timer$zh extends Translations$reports$timer$fr {
+	_Translations$reports$timer$zh._(TranslationsZh root) : this._root = root, super.internal(root);
+
+	final TranslationsZh _root; // ignore: unused_field
+
+	// Translations
+	@override String get start => '开始计时';
+	@override String get running => '正在计时';
+	@override String get startEnd => '开始 – 结束';
+	@override String get from => '开始时间';
+	@override String get to => '结束时间';
+	@override String span({required Object from, required Object to}) => '从 ${from} 到 ${to}';
+	@override String get pause => '暂停';
+	@override String get resume => '继续';
+	@override String get finish => '结束';
+	@override String get discard => '取消计时';
+	@override String get paused => '已暂停';
+	@override String added({required Object item, required Object time}) => '已为“${item}”增加 ${time}';
+	@override String get noItem => '计时已停止，但此项目已不在你的报告中。';
+	@override String get replaceTitle => '替换计时？';
+	@override String replaceText({required Object item}) => '“${item}”已在计时，它将停止且不计入。';
+	@override String get replace => '替换';
+}
+
 // Path: export.doc
 class _Translations$export$doc$zh extends Translations$export$doc$fr {
 	_Translations$export$doc$zh._(TranslationsZh root) : this._root = root, super.internal(root);
@@ -3167,6 +3193,22 @@ extension on TranslationsZh {
 			'reports.units.percent.label' => '百分比',
 			'reports.units.percent.symbol' => '%',
 			'reports.units.percent.count' => ({required Object value}) => '${value}%',
+			'reports.timer.start' => '开始计时',
+			'reports.timer.running' => '正在计时',
+			'reports.timer.startEnd' => '开始 – 结束',
+			'reports.timer.from' => '开始时间',
+			'reports.timer.to' => '结束时间',
+			'reports.timer.span' => ({required Object from, required Object to}) => '从 ${from} 到 ${to}',
+			'reports.timer.pause' => '暂停',
+			'reports.timer.resume' => '继续',
+			'reports.timer.finish' => '结束',
+			'reports.timer.discard' => '取消计时',
+			'reports.timer.paused' => '已暂停',
+			'reports.timer.added' => ({required Object item, required Object time}) => '已为“${item}”增加 ${time}',
+			'reports.timer.noItem' => '计时已停止，但此项目已不在你的报告中。',
+			'reports.timer.replaceTitle' => '替换计时？',
+			'reports.timer.replaceText' => ({required Object item}) => '“${item}”已在计时，它将停止且不计入。',
+			'reports.timer.replace' => '替换',
 			'reminder.title' => '你的今日汇报',
 			'reminder.body' => '在今天结束前，花一分钟记下你的读经、祷告……',
 			'reminder.channel' => '汇报提醒',
@@ -3380,6 +3422,8 @@ extension on TranslationsZh {
 			'admin.roleFor' => ({required Object username}) => '@${username} 的角色',
 			'admin.roleChanged' => ({required Object username, required Object role}) => '@${username}：${role}',
 			'admin.memberUsername' => '成员的用户名',
+			_ => null,
+		} ?? switch (path) {
 			'admin.empty' => '暂时还没有管理员。',
 			'hymns.searchHint' => '编号、标题或歌词',
 			'hymns.openNumber' => '按编号查找',
@@ -3396,8 +3440,6 @@ extension on TranslationsZh {
 			'hymns.upToDate' => '诗歌本已是最新。',
 			'hymns.updated' => '诗歌本已更新。',
 			'hymns.chorus' => '副歌',
-			_ => null,
-		} ?? switch (path) {
 			'hymns.chorusNumber' => ({required Object label}) => '副歌 ${label}',
 			'hymns.verse' => ({required Object label}) => '第 ${label} 节',
 			'hymns.times' => ({required Object n}) => '×${n}',
@@ -3894,6 +3936,8 @@ extension on TranslationsZh {
 			'prayer.topics.openDocument' => '打开 PDF',
 			'prayer.lists.title' => '我的祷告名单',
 			'prayer.lists.private' => '仅你可见',
+			_ => null,
+		} ?? switch (path) {
 			'prayer.lists.names.unbelievers' => '尚未信主',
 			'prayer.lists.names.believers' => '信徒',
 			'prayer.lists.names.backsliders' => '退后的信徒',
@@ -3910,8 +3954,6 @@ extension on TranslationsZh {
 			'prayer.lists.next' => '即将轮到',
 			'prayer.lists.answeredTitle.unbelievers' => '已信主',
 			'prayer.lists.answeredTitle.believers' => '蒙应允的祷告',
-			_ => null,
-		} ?? switch (path) {
 			'prayer.lists.answeredTitle.backsliders' => '已回到主面前',
 			'prayer.lists.answeredTitle.coworkers' => '蒙应允的祷告',
 			'prayer.lists.answeredOn.unbelievers' => ({required Object date}) => '于 ${date} 信主',
@@ -4408,6 +4450,8 @@ extension on TranslationsZh {
 			'souls.sms' => '短信',
 			'souls.edit' => '编辑',
 			'souls.delete' => '删除',
+			_ => null,
+		} ?? switch (path) {
 			'souls.deleteTitle' => ({required Object name}) => '删除 ${name}？',
 			'souls.deleteText' => '相关备注将从手机中删除。',
 			'souls.deleted' => '已删除',
@@ -4424,8 +4468,6 @@ extension on TranslationsZh {
 			'souls.export' => '导出（表格）',
 			'souls.csv.name' => '姓名',
 			'souls.csv.phone' => '电话',
-			_ => null,
-		} ?? switch (path) {
 			'souls.csv.place' => '地点',
 			'souls.csv.metOn' => '认识日期',
 			'souls.csv.stage' => '阶段',

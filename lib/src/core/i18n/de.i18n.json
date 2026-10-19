@@ -373,6 +373,24 @@
         "symbol": "%",
         "count": "{value} %"
       }
+    },
+    "timer": {
+      "start": "Stoppuhr starten",
+      "running": "Stoppuhr läuft",
+      "startEnd": "Beginn – Ende",
+      "from": "Beginn",
+      "to": "Ende",
+      "span": "Von {from} bis {to}",
+      "pause": "Pausieren",
+      "resume": "Fortsetzen",
+      "finish": "Beenden",
+      "discard": "Stoppuhr verwerfen",
+      "paused": "Pausiert",
+      "added": "{time} zu „{item}“ hinzugefügt",
+      "noItem": "Die Stoppuhr ist gestoppt, aber dieses Element ist nicht mehr in deinem Bericht.",
+      "replaceTitle": "Stoppuhr ersetzen?",
+      "replaceText": "Für „{item}“ läuft schon eine Stoppuhr. Sie stoppt, ohne gezählt zu werden.",
+      "replace": "Ersetzen"
     }
   },
   "reminder": {

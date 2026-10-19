@@ -362,6 +362,24 @@
         "symbol": "%",
         "count": "{value}%"
       }
+    },
+    "timer": {
+      "start": "开始计时",
+      "running": "正在计时",
+      "startEnd": "开始 – 结束",
+      "from": "开始时间",
+      "to": "结束时间",
+      "span": "从 {from} 到 {to}",
+      "pause": "暂停",
+      "resume": "继续",
+      "finish": "结束",
+      "discard": "取消计时",
+      "paused": "已暂停",
+      "added": "已为“{item}”增加 {time}",
+      "noItem": "计时已停止，但此项目已不在你的报告中。",
+      "replaceTitle": "替换计时？",
+      "replaceText": "“{item}”已在计时，它将停止且不计入。",
+      "replace": "替换"
     }
   },
   "reminder": {

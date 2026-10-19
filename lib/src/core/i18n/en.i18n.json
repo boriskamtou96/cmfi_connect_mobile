@@ -373,6 +373,24 @@
         "symbol": "%",
         "count": "{value}%"
       }
+    },
+    "timer": {
+      "start": "Start the stopwatch",
+      "running": "Stopwatch running",
+      "startEnd": "Start – end",
+      "from": "Start time",
+      "to": "End time",
+      "span": "From {from} to {to}",
+      "pause": "Pause",
+      "resume": "Resume",
+      "finish": "Finish",
+      "discard": "Cancel the stopwatch",
+      "paused": "Paused",
+      "added": "{time} added to \"{item}\"",
+      "noItem": "The stopwatch stopped, but this item is no longer in your report.",
+      "replaceTitle": "Replace the stopwatch?",
+      "replaceText": "A stopwatch is already running for \"{item}\". It will stop without being counted.",
+      "replace": "Replace"
     }
   },
   "reminder": {

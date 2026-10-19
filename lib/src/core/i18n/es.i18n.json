@@ -373,6 +373,24 @@
         "symbol": "%",
         "count": "{value} %"
       }
+    },
+    "timer": {
+      "start": "Iniciar el cronómetro",
+      "running": "Cronómetro en marcha",
+      "startEnd": "Inicio – fin",
+      "from": "Hora de inicio",
+      "to": "Hora de fin",
+      "span": "De {from} a {to}",
+      "pause": "Pausar",
+      "resume": "Reanudar",
+      "finish": "Terminar",
+      "discard": "Cancelar el cronómetro",
+      "paused": "En pausa",
+      "added": "{time} añadidos a «{item}»",
+      "noItem": "El cronómetro se detuvo, pero este elemento ya no está en tu informe.",
+      "replaceTitle": "¿Reemplazar el cronómetro?",
+      "replaceText": "Ya hay un cronómetro para «{item}». Se detendrá sin contarse.",
+      "replace": "Reemplazar"
     }
   },
   "reminder": {

@@ -373,6 +373,24 @@
         "symbol": "%",
         "count": "{value} %"
       }
+    },
+    "timer": {
+      "start": "Démarrer le chrono",
+      "running": "Chrono en cours",
+      "startEnd": "Début – fin",
+      "from": "Heure de début",
+      "to": "Heure de fin",
+      "span": "De {from} à {to}",
+      "pause": "Mettre en pause",
+      "resume": "Reprendre",
+      "finish": "Terminer",
+      "discard": "Annuler le chrono",
+      "paused": "En pause",
+      "added": "{time} ajoutées à « {item} »",
+      "noItem": "Le chrono s'est arrêté, mais cet élément n'est plus dans ton compte rendu.",
+      "replaceTitle": "Remplacer le chrono ?",
+      "replaceText": "Un chrono tourne déjà pour « {item} ». Il s'arrêtera sans être compté.",
+      "replace": "Remplacer"
     }
   },
   "reminder": {

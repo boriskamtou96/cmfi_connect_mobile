@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -12,6 +13,7 @@ import '../../../../core/theme/app_tones.dart';
 import '../../../../core/utils/date_extensions.dart';
 import '../../../../core/utils/date_format.dart';
 import '../../../../core/widgets/adaptive.dart';
+import '../../../../core/widgets/adaptive_dialogs.dart';
 import '../../../../core/widgets/animated_progress_bar.dart';
 import '../../../../core/widgets/app_toast.dart';
 import '../../../../core/widgets/error_view.dart';
@@ -26,6 +28,7 @@ import '../../application/day_report_controller.dart';
 import '../../application/report_goals.dart';
 import '../../application/report_item_texts.dart';
 import '../../application/report_reminder.dart';
+import '../../application/report_timer.dart';
 import '../../application/reports_providers.dart';
 import '../../application/streak_milestones.dart';
 import '../../domain/daily_report.dart';
@@ -51,12 +54,42 @@ class TodayView extends ConsumerWidget {
     final report = ref.watch(provider);
     final goals = ref.watch(reportGoalsProvider);
 
+    // the stopwatch of an item counted in time, today only; another one
+    // running stops (uncounted) once the member agrees
+    Future<void> startTimer(ReportEntry entry) async {
+      final timers = ref.read(reportTimerProvider.notifier);
+      final running = ref.read(reportTimerProvider);
+      if (running != null && running.activityTypeId != entry.activityTypeId) {
+        final label = t.itemLabel(running.code, running.label);
+        final yes = await showConfirmDialog(
+          context,
+          title: t.reports.timer.replaceTitle,
+          text: t.reports.timer.replaceText(item: label),
+          confirmLabel: t.reports.timer.replace,
+        );
+        if (!yes) {
+          return;
+        }
+      }
+      HapticFeedback.mediumImpact();
+      await timers.start(
+        activityTypeId: entry.activityTypeId,
+        code: entry.code,
+        label: entry.label,
+      );
+    }
+
     Future<void> edit(ReportEntry entry, {required bool personal}) async {
       final goal = goals[entry.activityTypeId];
+      final running = ref.read(reportTimerProvider);
       final values = await showEntrySheet(
         context,
         entry: entry,
         personal: personal,
+        onStartTimer: entry.tracksDuration && day == today()
+            ? () => startTimer(entry)
+            : null,
+        timerRunning: running?.activityTypeId == entry.activityTypeId,
         caption: goal == null
             ? null
             : t.items.goal(

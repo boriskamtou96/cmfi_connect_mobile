@@ -308,6 +308,7 @@ class _Translations$reports$hi extends Translations$reports$fr {
 	@override String goalsReached({required Object total, required Object reached}) => 'पूरे हुए: ${total} में से ${reached}';
 	@override late final _Translations$reports$standardItems$hi standardItems = _Translations$reports$standardItems$hi._(_root);
 	@override late final _Translations$reports$units$hi units = _Translations$reports$units$hi._(_root);
+	@override late final _Translations$reports$timer$hi timer = _Translations$reports$timer$hi._(_root);
 }
 
 // Path: reminder
@@ -1934,6 +1935,31 @@ class _Translations$reports$units$hi extends Translations$reports$units$fr {
 	@override late final _Translations$reports$units$percent$hi percent = _Translations$reports$units$percent$hi._(_root);
 }
 
+// Path: reports.timer
+class _Translations$reports$timer$hi extends Translations$reports$timer$fr {
+	_Translations$reports$timer$hi._(TranslationsHi root) : this._root = root, super.internal(root);
+
+	final TranslationsHi _root; // ignore: unused_field
+
+	// Translations
+	@override String get start => 'स्टॉपवॉच शुरू करो';
+	@override String get running => 'स्टॉपवॉच चल रही है';
+	@override String get startEnd => 'शुरू – अंत';
+	@override String get from => 'शुरू होने का समय';
+	@override String get to => 'खत्म होने का समय';
+	@override String span({required Object from, required Object to}) => '${from} से ${to} तक';
+	@override String get pause => 'रोको';
+	@override String get resume => 'फिर शुरू करो';
+	@override String get finish => 'खत्म करो';
+	@override String get discard => 'स्टॉपवॉच रद्द करो';
+	@override String get paused => 'रुका हुआ';
+	@override String added({required Object item, required Object time}) => '"${item}" में ${time} जोड़े गए';
+	@override String get noItem => 'स्टॉपवॉच रुक गई, पर यह तत्व अब तुम्हारी रिपोर्ट में नहीं है।';
+	@override String get replaceTitle => 'स्टॉपवॉच बदलें?';
+	@override String replaceText({required Object item}) => '"${item}" के लिए स्टॉपवॉच पहले से चल रही है। वह बिना गिने रुक जाएगी।';
+	@override String get replace => 'बदलो';
+}
+
 // Path: export.doc
 class _Translations$export$doc$hi extends Translations$export$doc$fr {
 	_Translations$export$doc$hi._(TranslationsHi root) : this._root = root, super.internal(root);
@@ -3230,6 +3256,22 @@ extension on TranslationsHi {
 			'reports.units.percent.label' => 'प्रतिशत',
 			'reports.units.percent.symbol' => '%',
 			'reports.units.percent.count' => ({required Object value}) => '${value}%',
+			'reports.timer.start' => 'स्टॉपवॉच शुरू करो',
+			'reports.timer.running' => 'स्टॉपवॉच चल रही है',
+			'reports.timer.startEnd' => 'शुरू – अंत',
+			'reports.timer.from' => 'शुरू होने का समय',
+			'reports.timer.to' => 'खत्म होने का समय',
+			'reports.timer.span' => ({required Object from, required Object to}) => '${from} से ${to} तक',
+			'reports.timer.pause' => 'रोको',
+			'reports.timer.resume' => 'फिर शुरू करो',
+			'reports.timer.finish' => 'खत्म करो',
+			'reports.timer.discard' => 'स्टॉपवॉच रद्द करो',
+			'reports.timer.paused' => 'रुका हुआ',
+			'reports.timer.added' => ({required Object item, required Object time}) => '"${item}" में ${time} जोड़े गए',
+			'reports.timer.noItem' => 'स्टॉपवॉच रुक गई, पर यह तत्व अब तुम्हारी रिपोर्ट में नहीं है।',
+			'reports.timer.replaceTitle' => 'स्टॉपवॉच बदलें?',
+			'reports.timer.replaceText' => ({required Object item}) => '"${item}" के लिए स्टॉपवॉच पहले से चल रही है। वह बिना गिने रुक जाएगी।',
+			'reports.timer.replace' => 'बदलो',
 			'reminder.title' => 'तुम्हारी आज की रिपोर्ट',
 			'reminder.body' => 'दिन ख़त्म होने से पहले एक मिनट निकालकर अपना बाइबल पठन, अपनी प्रार्थना… दर्ज करो।',
 			'reminder.channel' => 'रिपोर्ट रिमाइंडर',
@@ -3443,6 +3485,8 @@ extension on TranslationsHi {
 			'admin.roleFor' => ({required Object username}) => '@${username} की भूमिका',
 			'admin.roleChanged' => ({required Object username, required Object role}) => '@${username}: ${role}',
 			'admin.memberUsername' => 'सदस्य का यूज़रनेम',
+			_ => null,
+		} ?? switch (path) {
 			'admin.empty' => 'अभी तक कोई एडमिन नहीं है।',
 			'hymns.searchHint' => 'नंबर, शीर्षक या बोल',
 			'hymns.openNumber' => 'नंबर पर जाओ',
@@ -3459,8 +3503,6 @@ extension on TranslationsHi {
 			'hymns.upToDate' => 'भजन संग्रह अप-टू-डेट हैं।',
 			'hymns.updated' => 'भजन संग्रह अपडेट हो गए हैं।',
 			'hymns.chorus' => 'कोरस',
-			_ => null,
-		} ?? switch (path) {
 			'hymns.chorusNumber' => ({required Object label}) => 'कोरस ${label}',
 			'hymns.verse' => ({required Object label}) => 'पद ${label}',
 			'hymns.times' => ({required Object n}) => '×${n}',
@@ -3957,6 +3999,8 @@ extension on TranslationsHi {
 			'prayer.topics.openDocument' => 'PDF खोलो',
 			'prayer.lists.title' => 'मेरी प्रार्थना सूचियाँ',
 			'prayer.lists.private' => 'सिर्फ़ तुम्हारे लिए',
+			_ => null,
+		} ?? switch (path) {
 			'prayer.lists.names.unbelievers' => 'अब तक विश्वास नहीं किया',
 			'prayer.lists.names.believers' => 'विश्वासी',
 			'prayer.lists.names.backsliders' => 'पीछे हटे हुए विश्वासी',
@@ -3973,8 +4017,6 @@ extension on TranslationsHi {
 			'prayer.lists.next' => 'जल्द ही',
 			'prayer.lists.answeredTitle.unbelievers' => 'प्रभु पर विश्वास किया',
 			'prayer.lists.answeredTitle.believers' => 'उत्तर मिली प्रार्थनाएँ',
-			_ => null,
-		} ?? switch (path) {
 			'prayer.lists.answeredTitle.backsliders' => 'प्रभु के पास लौट आए',
 			'prayer.lists.answeredTitle.coworkers' => 'उत्तर मिली प्रार्थनाएँ',
 			'prayer.lists.answeredOn.unbelievers' => ({required Object date}) => '${date} को प्रभु पर विश्वास किया',
@@ -4471,6 +4513,8 @@ extension on TranslationsHi {
 			'souls.sms' => 'SMS',
 			'souls.edit' => 'बदलो',
 			'souls.delete' => 'मिटाओ',
+			_ => null,
+		} ?? switch (path) {
 			'souls.deleteTitle' => ({required Object name}) => '${name} को मिटाएँ?',
 			'souls.deleteText' => 'इनके नोट तुम्हारे फ़ोन से मिट जाएँगे।',
 			'souls.deleted' => 'मिटाया गया',
@@ -4487,8 +4531,6 @@ extension on TranslationsHi {
 			'souls.export' => 'निर्यात (स्प्रेडशीट)',
 			'souls.csv.name' => 'नाम',
 			'souls.csv.phone' => 'फ़ोन',
-			_ => null,
-		} ?? switch (path) {
 			'souls.csv.place' => 'जगह',
 			'souls.csv.metOn' => 'मिलने की तारीख़',
 			'souls.csv.stage' => 'चरण',

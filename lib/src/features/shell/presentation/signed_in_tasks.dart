@@ -38,6 +38,7 @@ import '../../prayer/presentation/widgets/topic_row.dart';
 import '../../reports/application/pending_reports.dart';
 import '../../reports/application/report_reminder.dart';
 import '../../reports/application/report_sending.dart';
+import '../../reports/application/report_timer.dart';
 import '../../reports/application/reports_providers.dart';
 import '../../reports/application/today_widget.dart';
 import '../../reports/domain/report_sending.dart';
@@ -96,6 +97,8 @@ class SignedInTasks extends HookConsumerWidget {
           unawaited(ref.read(nowPlayingProvider.notifier).stop());
           // the fasts were the account's
           unawaited(ref.read(fastsProvider.notifier).forget());
+          // and its stopwatch
+          unawaited(ref.read(reportTimerProvider.notifier).discard());
         }
       });
       return subscription.close;

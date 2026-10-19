@@ -11,6 +11,7 @@ import '../../../core/utils/date_extensions.dart';
 import '../../authorities/application/authorities_controller.dart';
 import '../../authorities/domain/authority.dart';
 import '../../profile/application/current_profile.dart';
+import '../../profile/domain/profile.dart';
 import '../../reports/application/day_report_controller.dart';
 import '../domain/prayer.dart';
 import '../domain/retreat.dart';
@@ -57,8 +58,12 @@ class PlannedPoint {
   final String? value;
 }
 
-/// The fifteen points of a retreat, filled with the user's data. Without
-/// network, what is kept on the phone (or nothing) fills them.
+/// The fifteen points of a retreat, filled with the user's data. The texts
+/// are in the app; what comes from the network (the assembly, the
+/// authorities, the lists) is waited for 2 seconds at most, all at once, and
+/// what is kept on the phone fills in meanwhile: a retreat opens at once,
+/// on a weak network or without one. The fresh values, once there, are kept
+/// for the next time.
 @riverpod
 Future<List<PlannedPoint>> retreatPlan(
   Ref ref,
@@ -67,26 +72,60 @@ Future<List<PlannedPoint>> retreatPlan(
 ) async {
   final content = await ref.watch(retreatContentProvider(language).future);
   final hints = retreatHints[moment] ?? const {};
-  Future<T?> optional<T>(Future<T> future) async {
-    try {
-      return await future;
-    } on Object {
-      return null;
-    }
-  }
+  final store = ref.watch(prayerLocalStoreProvider);
+  final kept = store.retreatExtras();
+  Future<T?> quick<T>(Future<T> future) => future
+      .then<T?>((value) => value)
+      .timeout(_networkWait, onTimeout: () => null)
+      .catchError((Object _) => null);
 
   final needs = hints.values;
-  final profile =
+  // asked together, not one after the other
+  final profileAsked =
       needs.any((hint) => hint is AssemblyHint || hint is MyCountryHint)
-      ? await optional(ref.watch(currentProfileProvider.future))
-      : null;
-  final authorities = needs.any((hint) => hint is AuthoritiesHint)
-      ? await optional(ref.watch(authoritiesControllerProvider.future))
-      : null;
-  final people = needs.any((hint) => hint is ListHint)
-      ? await optional(ref.watch(prayerPeopleProvider.future))
-      : null;
+      ? quick(ref.watch(currentProfileProvider.future))
+      : Future<Profile?>.value();
+  final authoritiesAsked = needs.any((hint) => hint is AuthoritiesHint)
+      ? quick(ref.watch(authoritiesControllerProvider.future))
+      : Future<List<Authority>?>.value();
+  final peopleAsked = needs.any((hint) => hint is ListHint)
+      ? quick(ref.watch(prayerPeopleProvider.future))
+      : Future<List<PrayerPerson>?>.value();
+  final profile = await profileAsked;
+  final authorities = await authoritiesAsked;
+  final people = await peopleAsked ?? store.people();
   final day = today();
+
+  final assembly =
+      _nonEmpty(profile?.assembly) ??
+      _nonEmpty(profile?.church) ??
+      (profile == null ? _nonEmpty(kept['assembly']) : null);
+  final country = profile == null
+      ? _nonEmpty(kept['country'])
+      : Country.tryParse(profile.country)?.name(language) ??
+            _nonEmpty(profile.country);
+  final leaders = authorities == null
+      ? _nonEmpty(kept['authorities'])
+      : _nonEmpty(
+          [
+            for (final authority in authorities)
+              if (authority.status != AuthorityStatus.declined)
+                [
+                  authority.firstName,
+                  authority.lastName ?? '',
+                ].where((part) => part.isNotEmpty).join(' '),
+          ].join(', '),
+        );
+  if (profile != null || authorities != null) {
+    unawaited(
+      store.saveRetreatExtras({
+        ...kept,
+        if (profile != null) 'assembly': assembly ?? '',
+        if (profile != null) 'country': country ?? '',
+        if (authorities != null) 'authorities': leaders ?? '',
+      }),
+    );
+  }
 
   final texts = content.points[moment] ?? const <String>[];
   return [
@@ -97,22 +136,13 @@ Future<List<PlannedPoint>> retreatPlan(
           number: i + 1,
           text: text,
           hint: hint,
-          value: _nonEmpty(profile?.assembly) ?? _nonEmpty(profile?.church),
+          value: assembly,
         ),
         final AuthoritiesHint hint => PlannedPoint(
           number: i + 1,
           text: text,
           hint: hint,
-          value: _nonEmpty(
-            [
-              for (final authority in authorities ?? const <Authority>[])
-                if (authority.status != AuthorityStatus.declined)
-                  [
-                    authority.firstName,
-                    authority.lastName ?? '',
-                  ].where((part) => part.isNotEmpty).join(' '),
-            ].join(', '),
-          ),
+          value: leaders,
         ),
         final ListHint hint => PlannedPoint(
           number: i + 1,
@@ -131,9 +161,7 @@ Future<List<PlannedPoint>> retreatPlan(
           text: text,
           hint: hint,
           // a code ("CM") since the list of countries, free text before
-          value:
-              Country.tryParse(profile?.country)?.name(language) ??
-              _nonEmpty(profile?.country),
+          value: country,
         ),
         final HymnHint hint => PlannedPoint(
           number: i + 1,
@@ -143,6 +171,10 @@ Future<List<PlannedPoint>> retreatPlan(
       },
   ];
 }
+
+/// How long a retreat waits for the network before opening with what the
+/// phone keeps.
+const _networkWait = Duration(seconds: 2);
 
 String? _nonEmpty(String? value) =>
     value == null || value.trim().isEmpty ? null : value.trim();

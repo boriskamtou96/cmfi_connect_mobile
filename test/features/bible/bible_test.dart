@@ -10,6 +10,7 @@ import 'package:cmfi_connect/src/features/bible/application/bible_settings.dart'
 import 'package:cmfi_connect/src/features/bible/domain/bible.dart';
 import 'package:cmfi_connect/src/features/bible/presentation/bible_screen.dart';
 import 'package:cmfi_connect/src/features/bible/presentation/widgets/chapter_view.dart';
+import 'package:cmfi_connect/src/features/shell/presentation/widgets/floating_nav_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -38,7 +39,7 @@ void main() {
     );
     await tester.tap(
       find.descendant(
-        of: find.byType(NavigationBar),
+        of: find.byType(FloatingNavBar),
         matching: find.text('Bible'),
       ),
     );

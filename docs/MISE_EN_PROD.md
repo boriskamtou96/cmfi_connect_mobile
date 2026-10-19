@@ -42,7 +42,7 @@ Voir le README de chacun (`npm run deploy`).
 - [x] ✅ Signature Android de publication lue depuis `android/key.properties` (voir 5.).
 - [x] ✅ Déclaration de confidentialité Apple (`PrivacyInfo.xcprivacy`) dans l'app, le widget et les extensions ; « pas de chiffrement spécial » déclaré (`ITSAppUsesNonExemptEncryption`), Apple ne pose plus la question à chaque envoi.
 - [ ] **Numéro de version** dans `pubspec.yaml` : `version: 1.0.0+1` → le premier envoi peut rester `1.0.0+1`. À chaque nouvel envoi, augmenter le nombre après le `+` (`1.0.0+2`, `1.0.1+3`…).
-- [ ] **Premium** : en v1, offert à tous dans l'app publiée (rien à créer). Pour ouvrir les achats plus tard : remplir `REVENUE_CAT_APPLE_API_KEY` et `REVENUE_CAT_GOOGLE_API_KEY` dans `.env`, créer les produits dans les stores et dans RevenueCat (accès `cmfi_connect_pro`), puis me demander de basculer `premiumForEveryone`.
+- [ ] **Premium** : les achats sont ouverts dans l'app publiée (Premium n'est plus offert à tous). À faire avant de publier : remplir `REVENUE_CAT_APPLE_API_KEY` et `REVENUE_CAT_GOOGLE_API_KEY` dans `.env` (sinon le paywall n'a aucune formule), créer les produits dans les stores (prix, essai gratuit) et les relier dans RevenueCat à l'accès `cmfi_connect_pro` et aux 4 packages de l'offre courante « default ».
 - [ ] **Notifications push iOS** : dans Firebase (projet `cmfi-connect`) › Paramètres › Cloud Messaging, ajouter la **clé APNs** (fichier `.p8` créé sur developer.apple.com › Keys, avec « Apple Push Notifications service »).
 - [ ] Supprimer les comptes de test de la base (les 46 comptes de ta base locale ne vont pas en production : la base de prod part vide).
 

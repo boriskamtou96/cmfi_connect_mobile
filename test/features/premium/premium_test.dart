@@ -215,10 +215,10 @@ void main() {
     expect(app.premium.managed, 1);
   });
 
-  test('the dev app sells Premium; the published one offers it (v1)', () {
+  test('both apps sell Premium (no longer offered to everyone)', () {
     for (final (flavor, offered) in [
       (Flavor.dev, false),
-      (Flavor.prod, true),
+      (Flavor.prod, false),
     ]) {
       final container = ProviderContainer(
         overrides: [flavorProvider.overrideWithValue(flavor)],

@@ -1266,7 +1266,9 @@
       "quitTitle": "Gebetszeit abbrechen?",
       "quitText": "Sie wird für deinen Tag nicht gezählt.",
       "quit": "Abbrechen",
-      "keepPraying": "Weiterbeten"
+      "keepPraying": "Weiterbeten",
+      "voiceOff": "Vorlesen",
+      "voiceOn": "Vorlesen ist an"
     },
     "done": {
       "title": "{retreat} beendet",
@@ -1490,7 +1492,16 @@
     "shared": "Geteilt",
     "noRecipients": "Wähle deine Empfänger in den Einstellungen oder teile das PDF.",
     "settings": "Einstellungen",
-    "permissionDenied": "Erlaube Benachrichtigungen, um rechtzeitig erinnert zu werden."
+    "permissionDenied": "Erlaube Benachrichtigungen, um rechtzeitig erinnert zu werden.",
+    "inApp": "In der App senden",
+    "viaApp": "In der App",
+    "inAppSent": "An {name} in der App gesendet",
+    "inAppUnavailable": "{name} kann ihn gerade nicht in der App empfangen.",
+    "inAppHistory": "In der App gesendet",
+    "replied": "Beantwortet",
+    "seen": "Gelesen",
+    "formerAuthority": "Frühere Autorität",
+    "theirReply": "„{text}“"
   },
   "streak": {
     "title(plural, param=n)": {
@@ -1809,12 +1820,16 @@
   },
   "biblePlan": {
     "title": "Leseplan",
-    "intro": "Wähle, was du lesen willst und in welcher Zeit: Die App verteilt die Kapitel Tag für Tag.",
     "duration": "Dauer",
     "months3": "3 Monate",
     "months6": "6 Monate",
     "year": "1 Jahr",
     "custom": "Andere",
+    "unitMonths(plural, param=n)": {
+      "one": "Monat",
+      "other": "Monate"
+    },
+    "unitYear": "Jahr",
     "days(plural, param=n)": {
       "one": "{n} Tag",
       "other": "{n} Tage"
@@ -1826,6 +1841,12 @@
       "oldTestament": "Das Alte Testament",
       "psalmsProverbs": "Psalmen und Sprüche"
     },
+    "chaptersShort(plural, param=n)": {
+      "one": "{n} Kap.",
+      "other": "{n} Kap."
+    },
+    "oldTestament": "Altes Testament",
+    "newTestament": "Neues Testament",
     "order": "Reihenfolge",
     "orders(map)": {
       "canonical": "Buch für Buch",
@@ -1834,6 +1855,12 @@
     "reminder": "Tägliche Erinnerung",
     "reminderAt": "Uhrzeit der Erinnerung",
     "summary": "{chapters} Kapitel in {days} Tagen, etwa {perDay} pro Tag",
+    "chapterCount(plural, param=n)": {
+      "one": "{n} Kapitel",
+      "other": "{n} Kapitel"
+    },
+    "inDays": "über {days}",
+    "perDayAbout": "etwa {perDay} pro Tag",
     "endsOn": "Endet am {date}",
     "startsOn": "Der Plan beginnt am {date}.",
     "start": "Plan beginnen",
@@ -1846,6 +1873,7 @@
       "other": "{n} Tage im Rückstand"
     },
     "catchUp": "Tippe hier, um die offenen Kapitel zu sehen.",
+    "catchUpShort": "nachholen",
     "chaptersRead": "{read} von {total} Kapiteln",
     "late": "Im Rückstand",
     "upcoming": "Als Nächstes",
@@ -2103,5 +2131,31 @@
     "channel": "Mein Fasten",
     "homeTitle": "Fasten · Tag {day} von {total}",
     "homeText": "Dieser Tag endet um {time}"
+  },
+  "received": {
+    "title": "Erhaltene Berichte",
+    "subtitle": "Von deinen Jüngern in der App gesendet",
+    "unreadCount(plural, param=n)": {
+      "one": "{n} neuer",
+      "other": "{n} neue"
+    },
+    "empty": "Noch kein Bericht erhalten. Wenn dir ein Jünger seinen in der App sendet, kommt er hier an.",
+    "day": "Am {date}",
+    "period": "{from} bis {to}",
+    "unread": "Neu",
+    "yourReply": "Deine Antwort: „{text}“",
+    "open": "Ansehen",
+    "encourage": "Ermutigen",
+    "editReply": "Ändern",
+    "encourageTitle": "Ein Wort für {name}",
+    "suggestions": [
+      "Schöne Treue, mach weiter!",
+      "Ich bete für dich.",
+      "Gott stärke dich!",
+      "Bravo für deine Ausdauer."
+    ],
+    "hint": "Schreib deine Ermutigung…",
+    "send": "Senden",
+    "sent": "{name} hat dein Wort erhalten"
   }
 }

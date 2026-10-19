@@ -22,6 +22,7 @@ import '../../bible/application/bible_plan.dart';
 import '../../bible/application/bible_position.dart';
 import '../../bible/application/memory_verses.dart';
 import '../../bible/domain/bible.dart';
+import '../../disciples/application/received_reports.dart';
 import '../../events/application/event_reminders.dart';
 import '../../fasts/application/fasts.dart';
 import '../../home/application/week_story.dart';
@@ -35,6 +36,7 @@ import '../../prayer/application/retreats.dart';
 import '../../prayer/domain/prayer.dart';
 import '../../prayer/presentation/prayer_screen.dart';
 import '../../prayer/presentation/widgets/topic_row.dart';
+import '../../reports/application/in_app_sendings.dart';
 import '../../reports/application/pending_reports.dart';
 import '../../reports/application/report_reminder.dart';
 import '../../reports/application/report_sending.dart';
@@ -195,8 +197,9 @@ class SignedInTasks extends HookConsumerWidget {
         }
       }
 
-      // a push touched: an announcement of the leaders, or an invitation to
-      // pray for an importunity topic
+      // a push touched: an announcement of the leaders, an invitation to
+      // pray for an importunity topic, a report a disciple sent in the app,
+      // or the answer of an authority to the user's
       void openAnnouncement(Map<String, String>? data) {
         final id = int.tryParse(data?['id'] ?? '');
         if (id == null) {
@@ -212,6 +215,16 @@ class SignedInTasks extends HookConsumerWidget {
             ref.invalidate(importunitiesProvider);
             if (context.mounted) {
               context.router.push(ImportunityRoute(importunityId: id));
+            }
+          case 'report_sending':
+            ref.invalidate(receivedReportsProvider);
+            if (context.mounted) {
+              context.router.push(const ReceivedReportsRoute());
+            }
+          case 'report_reply':
+            ref.invalidate(sentInAppProvider);
+            if (context.mounted) {
+              context.router.push(const ReportSendingRoute());
             }
         }
       }
@@ -395,8 +408,13 @@ class SignedInTasks extends HookConsumerWidget {
       );
       final received = push.received.listen((message) {
         unawaited(ref.read(inboxProvider.notifier).refresh());
-        if (message.data['type'] == 'importunity_invite') {
-          ref.invalidate(importunitiesProvider);
+        switch (message.data['type']) {
+          case 'importunity_invite':
+            ref.invalidate(importunitiesProvider);
+          case 'report_sending':
+            ref.invalidate(receivedReportsProvider);
+          case 'report_reply':
+            ref.invalidate(sentInAppProvider);
         }
         if (context.mounted && message.title.isNotEmpty) {
           toast

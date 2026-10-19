@@ -16,25 +16,39 @@ import '../../../core/widgets/sub_page.dart';
 import '../../../routing/app_router.dart';
 import '../../authorities/application/authorities_controller.dart';
 import '../../authorities/domain/authority.dart';
+import '../../members/presentation/widgets/member_avatar.dart';
+import '../application/in_app_sendings.dart';
 import '../application/report_files.dart';
 import '../application/report_sending.dart';
+import '../domain/in_app_sending.dart';
 import '../domain/report_sending.dart';
 
 /// "Par WhatsApp", "Par e-mail"…: how an authority can get the report.
 String sendingChannels(Translations t, Authority authority) {
   final phone = (authority.phoneNumber ?? '').isNotEmpty;
   final email = (authority.email ?? '').isNotEmpty;
-  return switch ((phone, email)) {
+  final others = switch ((phone, email)) {
     (true, true) => t.sending.viaBoth,
     (true, false) => t.sending.viaWhatsApp,
     (false, true) => t.sending.viaEmail,
-    _ => t.sending.viaShare,
+    _ => null,
   };
+  if (receivesInApp(authority)) {
+    return others == null ? t.sending.viaApp : '${t.sending.viaApp} · $others';
+  }
+  return others ?? t.sending.viaShare;
 }
 
+/// A member found by pseudo who accepted and sees the reports: the report
+/// can go to them in the app (the server checks it again).
+bool receivesInApp(Authority authority) =>
+    authority.username != null &&
+    authority.status == AuthorityStatus.accepted &&
+    authority.sharesRegularity;
+
 /// The settings of the regular sending of the report to the authorities:
-/// on or off, the rhythm, the day and time, who it goes to; then the last
-/// reports sent.
+/// on or off, the rhythm, the day and time, who it goes to; then the
+/// reports sent in the app with the answers, and the last reports sent.
 @RoutePage()
 class ReportSendingScreen extends ConsumerWidget {
   const ReportSendingScreen({super.key});
@@ -48,6 +62,7 @@ class ReportSendingScreen extends ConsumerWidget {
     final settings = ref.watch(reportSendingProvider);
     final notifier = ref.read(reportSendingProvider.notifier);
     final sent = ref.watch(sentReportsProvider);
+    final inApp = ref.watch(sentInAppProvider).value ?? const <InAppSending>[];
     final authorities = [
       for (final authority
           in ref.watch(authoritiesControllerProvider).value ??
@@ -273,6 +288,23 @@ class ReportSendingScreen extends ConsumerWidget {
               label: Text(s.prepareNow),
             ),
           ),
+          if (inApp.isNotEmpty) ...[
+            const SizedBox(height: AppSpacing.xl),
+            SectionCard(
+              header: s.inAppHistory,
+              children: [
+                for (final sending in inApp)
+                  _InAppSendingTile(
+                    sending: sending,
+                    authority: authorities
+                        .where(
+                          (authority) => authority.id == sending.authorityId,
+                        )
+                        .firstOrNull,
+                  ),
+              ],
+            ),
+          ],
           if (sent.isNotEmpty) ...[
             const SizedBox(height: AppSpacing.xl),
             SectionCard(
@@ -295,6 +327,65 @@ class ReportSendingScreen extends ConsumerWidget {
               ],
             ),
           ],
+        ],
+      ),
+    );
+  }
+}
+
+/// A report sent in the app: to whom, the period, then their answer, or
+/// « Lu » / « Envoyé ».
+class _InAppSendingTile extends StatelessWidget {
+  const _InAppSendingTile({required this.sending, required this.authority});
+
+  final InAppSending sending;
+
+  /// null once they are no longer among the authorities.
+  final Authority? authority;
+
+  @override
+  Widget build(BuildContext context) {
+    final t = context.t;
+    final s = t.sending;
+    final scheme = Theme.of(context).colorScheme;
+    final locale = Localizations.localeOf(context).toLanguageTag();
+    final authority = this.authority;
+    final status = sending.reply.isNotEmpty
+        ? s.replied
+        : sending.readAt != null
+        ? s.seen
+        : s.sent;
+
+    return ListTile(
+      leading: authority == null
+          ? const Icon(AppIcons.sendReport)
+          : MemberAvatar(
+              initials: authority.initials,
+              photo: authority.avatar,
+              size: 40,
+            ),
+      title: Text(
+        authority?.fullName ?? s.formerAuthority,
+        style: const TextStyle(fontWeight: FontWeight.w600),
+      ),
+      subtitle: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            '${exportPeriodLabel(t, locale, sending.periodFrom, sending.periodTo)}'
+            ' · $status',
+          ),
+          if (sending.reply.isNotEmpty)
+            Padding(
+              padding: const EdgeInsets.only(top: AppSpacing.xs),
+              child: Text(
+                s.theirReply(text: sending.reply),
+                style: TextStyle(
+                  fontStyle: FontStyle.italic,
+                  color: scheme.onSurface,
+                ),
+              ),
+            ),
         ],
       ),
     );

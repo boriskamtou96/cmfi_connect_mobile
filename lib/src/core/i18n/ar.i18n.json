@@ -1399,7 +1399,9 @@
       "quitTitle": "إيقاف الخلوة؟",
       "quitText": "لن تُحتسب في يومك.",
       "quit": "إيقاف",
-      "keepPraying": "متابعة الصلاة"
+      "keepPraying": "متابعة الصلاة",
+      "voiceOff": "اقرأ بصوت عالٍ",
+      "voiceOn": "القراءة بصوت عالٍ مفعّلة"
     },
     "done": {
       "title": "اكتملت {retreat}",
@@ -1657,7 +1659,16 @@
     "shared": "مشاركة",
     "noRecipients": "اختر المستلمين في الإعدادات، أو شارك ملف PDF.",
     "settings": "الإعدادات",
-    "permissionDenied": "اسمح بالإشعارات لتصلك في الوقت المناسب."
+    "permissionDenied": "اسمح بالإشعارات لتصلك في الوقت المناسب.",
+    "inApp": "إرسال في التطبيق",
+    "viaApp": "في التطبيق",
+    "inAppSent": "أُرسل إلى {name} في التطبيق",
+    "inAppUnavailable": "لا يمكن لـ{name} استلامه في التطبيق حاليًا.",
+    "inAppHistory": "المرسَلة في التطبيق",
+    "replied": "تمّ الرد",
+    "seen": "مقروء",
+    "formerAuthority": "مرشد سابق",
+    "theirReply": "«{text}»"
   },
   "streak": {
     "title(plural, param=n)": {
@@ -2055,12 +2066,20 @@
   },
   "biblePlan": {
     "title": "خطة القراءة",
-    "intro": "اختر ما تريد قراءته وفي أي مدة: يوزّع التطبيق الأصحاحات يومًا بعد يوم.",
     "duration": "المدة",
     "months3": "3 أشهر",
     "months6": "6 أشهر",
     "year": "سنة",
     "custom": "أخرى",
+    "unitMonths(plural, param=n)": {
+      "zero": "شهر",
+      "one": "شهر",
+      "two": "شهران",
+      "few": "أشهر",
+      "many": "شهرًا",
+      "other": "شهر"
+    },
+    "unitYear": "سنة",
     "days(plural, param=n)": {
       "zero": "{n} يوم",
       "one": "يوم واحد",
@@ -2076,6 +2095,16 @@
       "oldTestament": "العهد القديم",
       "psalmsProverbs": "المزامير والأمثال"
     },
+    "chaptersShort(plural, param=n)": {
+      "zero": "{n} أصحاح",
+      "one": "أصحاح واحد",
+      "two": "أصحاحان",
+      "few": "{n} أصحاحات",
+      "many": "{n} أصحاحًا",
+      "other": "{n} أصحاح"
+    },
+    "oldTestament": "العهد القديم",
+    "newTestament": "العهد الجديد",
     "order": "الترتيب",
     "orders(map)": {
       "canonical": "سفرًا بعد سفر",
@@ -2084,6 +2113,16 @@
     "reminder": "تذكير يومي",
     "reminderAt": "وقت التذكير",
     "summary": "{chapters} أصحاحًا في {days} يومًا، نحو {perDay} في اليوم",
+    "chapterCount(plural, param=n)": {
+      "zero": "{n} أصحاح",
+      "one": "أصحاح واحد",
+      "two": "أصحاحان",
+      "few": "{n} أصحاحات",
+      "many": "{n} أصحاحًا",
+      "other": "{n} أصحاح"
+    },
+    "inDays": "في {days}",
+    "perDayAbout": "نحو {perDay} في اليوم",
     "endsOn": "ينتهي في {date}",
     "startsOn": "تبدأ الخطة في {date}.",
     "start": "ابدأ الخطة",
@@ -2100,6 +2139,7 @@
       "other": "تأخر {n} يوم"
     },
     "catchUp": "المس هنا لترى الأصحاحات التي عليك استدراكها.",
+    "catchUpShort": "استدراك",
     "chaptersRead": "{read} من {total} أصحاحًا",
     "late": "متأخر",
     "upcoming": "القادم",
@@ -2357,5 +2397,35 @@
     "channel": "أصوامي",
     "homeTitle": "صوم · اليوم {day} من {total}",
     "homeText": "ينتهي هذا اليوم عند {time}"
+  },
+  "received": {
+    "title": "التقارير المستلمة",
+    "subtitle": "أرسلها تلاميذك في التطبيق",
+    "unreadCount(plural, param=n)": {
+      "zero": "لا جديد",
+      "one": "تقرير جديد",
+      "two": "تقريران جديدان",
+      "few": "{n} تقارير جديدة",
+      "many": "{n} تقريرًا جديدًا",
+      "other": "{n} تقرير جديد"
+    },
+    "empty": "لم تستلم أي تقرير بعد. عندما يرسل لك تلميذ تقريره في التطبيق، يصل إلى هنا.",
+    "day": "يوم {date}",
+    "period": "من {from} إلى {to}",
+    "unread": "جديد",
+    "yourReply": "ردّك: «{text}»",
+    "open": "عرض",
+    "encourage": "شجّع",
+    "editReply": "تعديل",
+    "encourageTitle": "كلمة لـ{name}",
+    "suggestions": [
+      "أمانة جميلة، واصل!",
+      "أنا أصلّي من أجلك.",
+      "ليقوّك الله!",
+      "أحسنت على مثابرتك."
+    ],
+    "hint": "اكتب كلمة تشجيع…",
+    "send": "إرسال",
+    "sent": "وصلت كلمتك إلى {name}"
   }
 }

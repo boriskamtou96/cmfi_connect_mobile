@@ -27,6 +27,7 @@ import '../../auth/application/saved_login.dart';
 import '../../auth/infrastructure/auth_api.dart';
 import '../../authorities/application/authorities_controller.dart';
 import '../../disciples/application/disciples.dart';
+import '../../disciples/application/received_reports.dart';
 import '../../members/application/my_account.dart';
 import '../../ministry/application/nations.dart';
 import '../../notifications/application/inbox.dart';
@@ -60,6 +61,10 @@ class MoreScreen extends ConsumerWidget {
     final requests = ref.watch(authorityRequestsProvider).value?.length ?? 0;
     // the members who chose the user as disciple maker or authority
     final disciples = ref.watch(disciplesListProvider()).value?.total ?? 0;
+    // the reports they sent in the app, not opened yet
+    final receivedUnread = disciples > 0
+        ? ref.watch(receivedReportsUnreadProvider)
+        : 0;
     final unread = ref.watch(inboxProvider).value?.unread ?? 0;
     final premium = ref.watch(premiumProvider).value ?? false;
     // v1: Premium is offered to everyone, nothing leads to the paywall
@@ -196,6 +201,34 @@ class MoreScreen extends ConsumerWidget {
                       ),
                       trailing: const Icon(AppIcons.chevronRight),
                       onTap: () => context.router.push(const DisciplesRoute()),
+                    ),
+                  if (disciples > 0)
+                    ListTile(
+                      leading: moduleIcon(
+                        AppIcons.receivedReportsTile,
+                        AppModule.reports,
+                      ),
+                      title: Text(
+                        t.received.title,
+                        style: const TextStyle(fontWeight: FontWeight.w600),
+                      ),
+                      subtitle: Text(
+                        receivedUnread > 0
+                            ? t.received.unreadCount(n: receivedUnread)
+                            : t.received.subtitle,
+                        style: TextStyle(
+                          fontSize: 13,
+                          fontWeight: receivedUnread > 0
+                              ? FontWeight.w700
+                              : null,
+                          color: receivedUnread > 0
+                              ? scheme.primary
+                              : scheme.onSurfaceVariant,
+                        ),
+                      ),
+                      trailing: const Icon(AppIcons.chevronRight),
+                      onTap: () =>
+                          context.router.push(const ReceivedReportsRoute()),
                     ),
                   ListTile(
                     leading: moduleIcon(AppIcons.soulsTile, AppModule.reports),

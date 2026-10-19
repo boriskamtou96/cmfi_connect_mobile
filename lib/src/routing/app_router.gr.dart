@@ -1455,6 +1455,22 @@ class PurposeRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
+/// [ReceivedReportsScreen]
+class ReceivedReportsRoute extends PageRouteInfo<void> {
+  const ReceivedReportsRoute({List<PageRouteInfo>? children})
+    : super(ReceivedReportsRoute.name, initialChildren: children);
+
+  static const String name = 'ReceivedReportsRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const ReceivedReportsScreen();
+    },
+  );
+}
+
+/// generated route for
 /// [RegisterScreen]
 class RegisterRoute extends PageRouteInfo<void> {
   const RegisterRoute({List<PageRouteInfo>? children})

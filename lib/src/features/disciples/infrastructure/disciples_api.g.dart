@@ -21,7 +21,7 @@ final class DisciplesApiProvider
         argument: null,
         retry: null,
         name: r'disciplesApiProvider',
-        isAutoDispose: true,
+        isAutoDispose: false,
         dependencies: null,
         $allTransitiveDependencies: null,
       );
@@ -48,4 +48,4 @@ final class DisciplesApiProvider
   }
 }
 
-String _$disciplesApiHash() => r'91f7ce71191935cef8eab5d9c2c398f99c095716';
+String _$disciplesApiHash() => r'f1f6d2de3d3508d95e2dadbb52eb7c7f3df3459b';

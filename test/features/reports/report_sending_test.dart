@@ -192,6 +192,80 @@ void main() {
       'compte-rendu_2026-10-12_2026-10-18.pdf',
     );
   });
+  testWidgets('a member who sees the reports gets it in the app, and answers', (
+    tester,
+  ) async {
+    const marie = Authority(
+      id: 8,
+      firstName: 'Marie',
+      lastName: 'Ewane',
+      username: 'marie.ewane',
+    );
+    final app = await pumpApp(
+      tester,
+      token: 't',
+      authoritiesApi: FakeAuthoritiesApi([paul, marie]),
+      reportSendingsApi: FakeReportSendingsApi(receivers: {8}),
+      initialPreferences: {'report_sending': '{"authorities":[7,8]}'},
+    );
+
+    app.notifications.tapsController.add('report_send:2026-10-18');
+    await tester.pumpAndSettle();
+    // Marie is a member: in the app; Paul only by WhatsApp or e-mail
+    expect(find.text("Dans l'app"), findsOneWidget);
+    expect(find.byTooltip("Envoyer dans l'app"), findsOneWidget);
+
+    await tester.tap(find.byTooltip("Envoyer dans l'app"));
+    await tester.pumpAndSettle();
+    final sent = app.reportSendingsApi.sends.single;
+    expect(sent.ids, [8]);
+    expect(
+      (sent.from, sent.to),
+      (DateTime(2026, 10, 12), DateTime(2026, 10, 18)),
+    );
+    expect(app.toasts.messages, contains("Envoyé à Marie dans l'app"));
+    expect(find.text('Envoyé'), findsOneWidget);
+
+    // she answers: the push opens the settings, with her word
+    final sending = app.reportSendingsApi.sentList.first;
+    app.reportSendingsApi.sentList[0] = sending.copyWith(
+      readAt: DateTime(2026, 10, 19, 8),
+      reply: 'Belle fidélité, continue !',
+      repliedAt: DateTime(2026, 10, 19, 8, 5),
+    );
+    app.push.tapsController.add({
+      'type': 'report_reply',
+      'id': '${sending.id}',
+    });
+    await tester.pumpAndSettle();
+    await reach(tester, "ENVOYÉS DANS L'APP");
+    await reach(tester, '« Belle fidélité, continue ! »');
+    expect(find.text('Marie Ewane'), findsWidgets);
+    expect(find.textContaining('Répondu'), findsOneWidget);
+  });
+
+  testWidgets('no longer able to receive it: said, nothing marked sent', (
+    tester,
+  ) async {
+    const marie = Authority(id: 8, firstName: 'Marie', username: 'marie.ewane');
+    final app = await pumpApp(
+      tester,
+      token: 't',
+      authoritiesApi: FakeAuthoritiesApi([marie]),
+      initialPreferences: {'report_sending': '{"authorities":[8]}'},
+    );
+    app.notifications.tapsController.add('report_send:2026-10-18');
+    await tester.pumpAndSettle();
+
+    await tester.tap(find.byTooltip("Envoyer dans l'app"));
+    await tester.pumpAndSettle();
+    expect(
+      app.toasts.messages,
+      contains("Marie ne peut pas le recevoir dans l'app pour l'instant."),
+    );
+    expect(find.text('Envoyé'), findsNothing);
+  });
+
   testWidgets('signing out forgets what the phone kept for the account', (
     tester,
   ) async {

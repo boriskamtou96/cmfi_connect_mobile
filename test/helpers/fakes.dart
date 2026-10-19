@@ -22,6 +22,7 @@ import 'package:cmfi_connect/src/core/services/push_messaging.dart';
 import 'package:cmfi_connect/src/core/services/screen_awake.dart';
 import 'package:cmfi_connect/src/core/services/share_service.dart';
 import 'package:cmfi_connect/src/core/services/store_review.dart';
+import 'package:cmfi_connect/src/core/services/voice_reader.dart';
 import 'package:cmfi_connect/src/core/session/account.dart';
 import 'package:cmfi_connect/src/core/storage/account_storage.dart';
 import 'package:cmfi_connect/src/core/storage/saved_login.dart';
@@ -33,6 +34,7 @@ import 'package:cmfi_connect/src/features/auth/infrastructure/login_response.dar
 import 'package:cmfi_connect/src/features/authorities/domain/authority.dart';
 import 'package:cmfi_connect/src/features/authorities/infrastructure/authorities_api.dart';
 import 'package:cmfi_connect/src/features/disciples/domain/disciple.dart';
+import 'package:cmfi_connect/src/features/disciples/domain/received_report.dart';
 import 'package:cmfi_connect/src/features/disciples/infrastructure/disciples_api.dart';
 import 'package:cmfi_connect/src/features/documents/domain/library_document.dart';
 import 'package:cmfi_connect/src/features/documents/infrastructure/documents_api.dart';
@@ -55,9 +57,11 @@ import 'package:cmfi_connect/src/features/profile/domain/profile.dart';
 import 'package:cmfi_connect/src/features/profile/infrastructure/profile_api.dart';
 import 'package:cmfi_connect/src/features/reports/domain/activity_type.dart';
 import 'package:cmfi_connect/src/features/reports/domain/daily_report.dart';
+import 'package:cmfi_connect/src/features/reports/domain/in_app_sending.dart';
 import 'package:cmfi_connect/src/features/reports/domain/report_goal.dart';
 import 'package:cmfi_connect/src/features/reports/domain/report_summary.dart';
 import 'package:cmfi_connect/src/features/reports/infrastructure/activities_api.dart';
+import 'package:cmfi_connect/src/features/reports/infrastructure/report_sendings_api.dart';
 import 'package:cmfi_connect/src/features/reports/infrastructure/reports_api.dart';
 import 'package:cmfi_connect/src/features/souls/infrastructure/souls_storage.dart';
 import 'package:cmfi_connect/src/features/teachings/application/teaching_player.dart';
@@ -1873,6 +1877,58 @@ class FakeChime implements Chime {
   Future<void> dispose() async {}
 }
 
+/// The phone's voice: what it was asked to say, in which language, and
+/// how many times it was told to stop.
+class FakeVoiceReader implements VoiceReader {
+  final spoken = <({String text, String language})>[];
+  var stops = 0;
+
+  @override
+  Future<void> speak(String text, String language) async =>
+      spoken.add((text: text, language: language));
+
+  @override
+  Future<void> stop() async => stops++;
+}
+
+/// The report sent in the app: who it can go to ([receivers], authority
+/// ids), what was sent, and the answers (in [sentList], newest first).
+class FakeReportSendingsApi implements ReportSendingsApi {
+  FakeReportSendingsApi({this.receivers = const {}, List<InAppSending>? sent})
+    : sentList = sent ?? [];
+
+  Set<int> receivers;
+  final List<InAppSending> sentList;
+  final sends = <({DateTime from, DateTime to, List<int> ids})>[];
+  var _next = 1;
+
+  @override
+  Future<List<InAppSending>> send({
+    required DateTime from,
+    required DateTime to,
+    List<int> authorityIds = const [],
+  }) async {
+    sends.add((from: from, to: to, ids: authorityIds));
+    final done = [
+      for (final id in authorityIds.isEmpty ? receivers : authorityIds)
+        if (receivers.contains(id))
+          InAppSending(
+            id: _next++,
+            authorityId: id,
+            periodFrom: from,
+            periodTo: to,
+            sentAt: DateTime.now(),
+          ),
+    ];
+    sentList.insertAll(0, done);
+    return done;
+  }
+
+  @override
+  Future<List<InAppSending>> sent({int size = 30}) async =>
+      sentList.take(size).toList();
+}
+
 /// Pushes that never leave: [token] is the address of the phone, [granted]
 /// what the user answers, and the test adds taps and received pushes.
 class FakePushMessaging implements PushMessaging {
@@ -2100,10 +2156,36 @@ class FakeAppShortcuts implements AppShortcuts {
 
 /// The members who chose the user as disciple maker, and the dates asked.
 class FakeDisciplesApi implements DisciplesApi {
-  FakeDisciplesApi([this.disciples = const []]);
+  FakeDisciplesApi([this.disciples = const [], List<ReceivedReport>? sent])
+    : receivedList = sent ?? [];
 
   List<Disciple> disciples;
   final asked = <DateTime>[];
+
+  /// The reports the disciples sent in the app, newest first; the ids
+  /// opened.
+  final List<ReceivedReport> receivedList;
+  final opened = <int>[];
+
+  @override
+  Future<ReceivedReportsPage> received({int page = 1, int size = 20}) async => (
+    items: receivedList.skip((page - 1) * size).take(size).toList(),
+    total: receivedList.length,
+  );
+
+  @override
+  Future<void> markRead(int id) async => opened.add(id);
+
+  @override
+  Future<ReceivedReport> reply(int id, String text) async {
+    final index = receivedList.indexWhere((report) => report.id == id);
+    final answered = receivedList[index].copyWith(
+      reply: text,
+      repliedAt: DateTime.now(),
+    );
+    receivedList[index] = answered;
+    return answered;
+  }
 
   /// The pages asked, with their search.
   final pages = <({String search, int page})>[];

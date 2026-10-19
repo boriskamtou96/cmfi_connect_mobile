@@ -13,6 +13,7 @@ import '../../../core/theme/app_spacing.dart';
 import '../../../core/theme/app_tones.dart';
 import '../../../core/utils/date_extensions.dart';
 import '../../../core/utils/phone.dart';
+import '../../../core/widgets/adaptive.dart';
 import '../../../core/widgets/app_button.dart';
 import '../../../core/widgets/app_toast.dart';
 import '../../../core/widgets/error_view.dart';
@@ -25,6 +26,7 @@ import '../../authorities/application/authorities_controller.dart';
 import '../../authorities/domain/authority.dart';
 import '../../members/presentation/widgets/member_avatar.dart';
 import '../../profile/application/current_profile.dart';
+import '../application/in_app_sendings.dart';
 import '../application/report_files.dart';
 import '../application/report_goals.dart';
 import '../application/report_sending.dart';
@@ -34,7 +36,8 @@ import '../domain/report_sending.dart';
 import 'report_sending_screen.dart';
 
 /// The report of a period ready to send (opened by the notification of a
-/// sending, or "Prepare now"): the message, then one tap per authority,
+/// sending, or "Prepare now"): the message, then one tap per authority, in
+/// the app (a member who sees the reports: they get a push and answer),
 /// WhatsApp or e-mail; or the PDF through the share sheet. [day] is the day
 /// of the sending ("2026-10-18"): the period ends that day, or is the month
 /// before.
@@ -69,6 +72,8 @@ class ReportSendScreen extends HookConsumerWidget {
     // who it went to on this screen
     final sentTo = useState(<int>{});
     final busy = useState(false);
+    // the authority it is being sent to in the app
+    final sendingTo = useState<int?>(null);
     final periodLabel = exportPeriodLabel(t, locale, period.from, period.to);
 
     final days = history.value;
@@ -134,6 +139,30 @@ class ReportSendScreen extends HookConsumerWidget {
       if (await links.open(uri)) {
         sentTo.value = {...sentTo.value, authority.id};
         await recordSent(authority.fullName);
+      }
+    }
+
+    // in the app: a push for them, the period with their disciples' reports
+    Future<void> sendInApp(Authority authority) async {
+      final toast = ref.read(toasterProvider).of(context);
+      sendingTo.value = authority.id;
+      try {
+        final done = await ref
+            .read(sentInAppProvider.notifier)
+            .send(from: period.from, to: period.to, authorityId: authority.id);
+        if (!done) {
+          toast.info(s.inAppUnavailable(name: authority.firstName));
+          return;
+        }
+        sentTo.value = {...sentTo.value, authority.id};
+        toast.success(s.inAppSent(name: authority.firstName));
+        await recordSent(authority.fullName);
+      } on Object catch (error) {
+        toast.error(userMessageFor(error, t));
+      } finally {
+        if (context.mounted) {
+          sendingTo.value = null;
+        }
       }
     }
 
@@ -265,6 +294,10 @@ class ReportSendScreen extends HookConsumerWidget {
                     _Recipient(
                       authority: authority,
                       sent: sentTo.value.contains(authority.id),
+                      sendingInApp: sendingTo.value == authority.id,
+                      onInApp: receivesInApp(authority)
+                          ? () => sendInApp(authority)
+                          : null,
                       onWhatsApp: (authority.phoneNumber ?? '').isEmpty
                           ? null
                           : () => send(authority, whatsApp(authority)),
@@ -302,18 +335,22 @@ class ReportSendScreen extends HookConsumerWidget {
   }
 }
 
-/// An authority it goes to: WhatsApp and e-mail when known, "Envoyé" once
-/// done.
+/// An authority it goes to: in the app for a member who sees the reports,
+/// WhatsApp and e-mail when known, "Envoyé" once done.
 class _Recipient extends StatelessWidget {
   const _Recipient({
     required this.authority,
     required this.sent,
+    required this.sendingInApp,
+    required this.onInApp,
     required this.onWhatsApp,
     required this.onEmail,
   });
 
   final Authority authority;
   final bool sent;
+  final bool sendingInApp;
+  final VoidCallback? onInApp;
   final VoidCallback? onWhatsApp;
   final VoidCallback? onEmail;
 
@@ -344,6 +381,14 @@ class _Recipient extends StatelessWidget {
       trailing: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
+          if (onInApp case final open?)
+            IconButton.filledTonal(
+              tooltip: s.inApp,
+              onPressed: sendingInApp ? null : open,
+              icon: sendingInApp
+                  ? const AppSpinner(size: 20)
+                  : const Icon(AppIcons.sendReport),
+            ),
           if (onWhatsApp case final open?)
             IconButton.filledTonal(
               tooltip: s.whatsApp,

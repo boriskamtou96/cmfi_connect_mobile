@@ -1233,7 +1233,9 @@
       "quitTitle": "要停止这次祷告吗？",
       "quitText": "这次祷告不会计入你今天的汇报。",
       "quit": "停止",
-      "keepPraying": "继续祷告"
+      "keepPraying": "继续祷告",
+      "voiceOff": "朗读",
+      "voiceOn": "朗读已开启"
     },
     "done": {
       "title": "{retreat}已完成",
@@ -1448,7 +1450,16 @@
     "shared": "已分享",
     "noRecipients": "请在设置中选择收件人，或分享 PDF。",
     "settings": "设置",
-    "permissionDenied": "请允许通知，以便按时提醒你。"
+    "permissionDenied": "请允许通知，以便按时提醒你。",
+    "inApp": "在应用中发送",
+    "viaApp": "在应用中",
+    "inAppSent": "已在应用中发送给{name}",
+    "inAppUnavailable": "{name}暂时无法在应用中接收。",
+    "inAppHistory": "在应用中发送的",
+    "replied": "已回复",
+    "seen": "已读",
+    "formerAuthority": "以前的带领者",
+    "theirReply": "“{text}”"
   },
   "streak": {
     "title(plural, param=n)": {
@@ -1747,12 +1758,15 @@
   },
   "biblePlan": {
     "title": "读经计划",
-    "intro": "选择你要读的内容和用多长时间：应用会把章节一天天分配好。",
     "duration": "时长",
     "months3": "3 个月",
     "months6": "6 个月",
     "year": "1 年",
     "custom": "其他",
+    "unitMonths(plural, param=n)": {
+      "other": "个月"
+    },
+    "unitYear": "年",
     "days(plural, param=n)": {
       "other": "{n} 天"
     },
@@ -1763,6 +1777,11 @@
       "oldTestament": "旧约",
       "psalmsProverbs": "诗篇和箴言"
     },
+    "chaptersShort(plural, param=n)": {
+      "other": "{n} 章"
+    },
+    "oldTestament": "旧约",
+    "newTestament": "新约",
     "order": "顺序",
     "orders(map)": {
       "canonical": "按书卷顺序",
@@ -1771,6 +1790,11 @@
     "reminder": "每日提醒",
     "reminderAt": "提醒时间",
     "summary": "{days} 天读 {chapters} 章，每天约 {perDay} 章",
+    "chapterCount(plural, param=n)": {
+      "other": "{n} 章"
+    },
+    "inDays": "{days}读完",
+    "perDayAbout": "每天约 {perDay} 章",
     "endsOn": "{date} 结束",
     "startsOn": "计划将于 {date} 开始。",
     "start": "开始计划",
@@ -1782,6 +1806,7 @@
       "other": "落后 {n} 天"
     },
     "catchUp": "点这里查看要补读的章节。",
+    "catchUpShort": "补读",
     "chaptersRead": "已读 {read} / {total} 章",
     "late": "落后",
     "upcoming": "接下来",
@@ -2039,5 +2064,30 @@
     "channel": "我的禁食",
     "homeTitle": "禁食 · 第 {day}/{total} 天",
     "homeText": "今天在 {time} 结束"
+  },
+  "received": {
+    "title": "收到的报告",
+    "subtitle": "你的门徒在应用中发送",
+    "unreadCount(plural, param=n)": {
+      "other": "{n} 份新报告"
+    },
+    "empty": "还没有收到报告。门徒在应用中发送报告后，会出现在这里。",
+    "day": "{date}",
+    "period": "{from} 至 {to}",
+    "unread": "新",
+    "yourReply": "你的回复：“{text}”",
+    "open": "查看",
+    "encourage": "鼓励",
+    "editReply": "修改",
+    "encourageTitle": "给{name}的一句话",
+    "suggestions": [
+      "忠心可嘉，继续加油！",
+      "我为你祷告。",
+      "愿神坚固你！",
+      "为你的坚持喝彩。"
+    ],
+    "hint": "写下你的鼓励…",
+    "send": "发送",
+    "sent": "{name}已收到你的话"
   }
 }

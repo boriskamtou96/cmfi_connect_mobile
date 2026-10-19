@@ -56,6 +56,7 @@ abstract final class AppIcons {
   static const supportTile = PhosphorIconsDuotone.heart;
   static const authoritiesTile = PhosphorIconsDuotone.usersThree;
   static const disciplesTile = PhosphorIconsDuotone.plant;
+  static const receivedReportsTile = PhosphorIconsDuotone.tray;
   static const adminTile = PhosphorIconsDuotone.shieldCheck;
   static const hymnBookTile = PhosphorIconsDuotone.bookOpenText;
   static const itemsTile = PhosphorIconsDuotone.slidersHorizontal;
@@ -179,6 +180,9 @@ abstract final class AppIcons {
   static const premiumLock = PhosphorIconsFill.lockSimple;
   static const premiumCrown = PhosphorIconsFill.crown;
   static const stopwatch = PhosphorIconsRegular.timer;
+  // a retreat read aloud
+  static const voiceOn = PhosphorIconsFill.userSound;
+  static const voiceOff = PhosphorIconsRegular.userSound;
   static const stopwatchActive = PhosphorIconsFill.timer;
   // Cherche d'abord Dieu: the sun rising, the day given to God first
   static const seekFirst = PhosphorIconsFill.sunHorizon;

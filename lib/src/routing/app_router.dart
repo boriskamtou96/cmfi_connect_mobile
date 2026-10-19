@@ -19,6 +19,7 @@ import '../features/bible/presentation/memory_review_screen.dart';
 import '../features/bible/presentation/memory_screen.dart';
 import '../features/disciples/presentation/disciple_reports_screen.dart';
 import '../features/disciples/presentation/disciples_screen.dart';
+import '../features/disciples/presentation/received_reports_screen.dart';
 import '../features/documents/presentation/documents_screen.dart';
 import '../features/events/presentation/admin/admin_events_screen.dart';
 import '../features/events/presentation/admin/event_form_screen.dart';
@@ -260,6 +261,11 @@ class AppRouter extends RootStackRouter {
     AutoRoute(
       path: '/disciples',
       page: DisciplesRoute.page,
+      guards: [authGuard],
+    ),
+    AutoRoute(
+      path: '/disciples/received',
+      page: ReceivedReportsRoute.page,
       guards: [authGuard],
     ),
     AutoRoute(

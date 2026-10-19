@@ -81,6 +81,7 @@ class TranslationsHi extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _Translations$memorize$hi memorize = _Translations$memorize$hi._(_root);
 	@override late final _Translations$souls$hi souls = _Translations$souls$hi._(_root);
 	@override late final _Translations$fasts$hi fasts = _Translations$fasts$hi._(_root);
+	@override late final _Translations$received$hi received = _Translations$received$hi._(_root);
 }
 
 // Path: app
@@ -930,6 +931,15 @@ class _Translations$sending$hi extends Translations$sending$fr {
 	@override String get noRecipients => 'सेटिंग्स में प्राप्तकर्ता चुनो, या PDF शेयर करो।';
 	@override String get settings => 'सेटिंग्स';
 	@override String get permissionDenied => 'सही समय पर याद दिलाने के लिए सूचनाएँ चालू करो।';
+	@override String get inApp => 'ऐप में भेजें';
+	@override String get viaApp => 'ऐप में';
+	@override String inAppSent({required Object name}) => '${name} को ऐप में भेजी गई';
+	@override String inAppUnavailable({required Object name}) => '${name} अभी इसे ऐप में नहीं पा सकते।';
+	@override String get inAppHistory => 'ऐप में भेजी गईं';
+	@override String get replied => 'जवाब दिया';
+	@override String get seen => 'पढ़ी गई';
+	@override String get formerAuthority => 'पूर्व अगुवा';
+	@override String theirReply({required Object text}) => '“${text}”';
 }
 
 // Path: streak
@@ -1301,12 +1311,16 @@ class _Translations$biblePlan$hi extends Translations$biblePlan$fr {
 
 	// Translations
 	@override String get title => 'पठन योजना';
-	@override String get intro => 'चुनो कि क्या पढ़ना है और कितने समय में: ऐप अध्यायों को दिन-ब-दिन बाँट देता है।';
 	@override String get duration => 'अवधि';
 	@override String get months3 => '3 महीने';
 	@override String get months6 => '6 महीने';
 	@override String get year => '1 साल';
 	@override String get custom => 'अन्य';
+	@override String unitMonths({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n,
+		one: 'महीना',
+		other: 'महीने',
+	);
+	@override String get unitYear => 'साल';
 	@override String days({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n,
 		one: '${n} दिन',
 		other: '${n} दिन',
@@ -1318,6 +1332,12 @@ class _Translations$biblePlan$hi extends Translations$biblePlan$fr {
 		'oldTestament': 'पुराना नियम',
 		'psalmsProverbs': 'भजन संहिता और नीतिवचन',
 	};
+	@override String chaptersShort({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n,
+		one: '${n} अध्याय',
+		other: '${n} अध्याय',
+	);
+	@override String get oldTestament => 'पुराना नियम';
+	@override String get newTestament => 'नया नियम';
 	@override String get order => 'क्रम';
 	@override Map<String, String> get orders => {
 		'canonical': 'पुस्तक दर पुस्तक',
@@ -1326,6 +1346,12 @@ class _Translations$biblePlan$hi extends Translations$biblePlan$fr {
 	@override String get reminder => 'रोज़ का रिमाइंडर';
 	@override String get reminderAt => 'रिमाइंडर का समय';
 	@override String summary({required Object days, required Object chapters, required Object perDay}) => '${days} दिनों में ${chapters} अध्याय, रोज़ लगभग ${perDay}';
+	@override String chapterCount({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n,
+		one: '${n} अध्याय',
+		other: '${n} अध्याय',
+	);
+	@override String inDays({required Object days}) => '${days} में';
+	@override String perDayAbout({required Object perDay}) => 'रोज़ लगभग ${perDay}';
 	@override String endsOn({required Object date}) => '${date} को समाप्त';
 	@override String startsOn({required Object date}) => 'योजना ${date} को शुरू होगी।';
 	@override String get start => 'योजना शुरू करें';
@@ -1338,6 +1364,7 @@ class _Translations$biblePlan$hi extends Translations$biblePlan$fr {
 		other: '${n} दिन पीछे',
 	);
 	@override String get catchUp => 'पीछे छूटे अध्याय देखने के लिए यहाँ छुओ।';
+	@override String get catchUpShort => 'पूरा करो';
 	@override String chaptersRead({required Object total, required Object read}) => '${total} में से ${read} अध्याय';
 	@override String get late => 'पीछे छूटे';
 	@override String get upcoming => 'आने वाले';
@@ -1615,6 +1642,39 @@ class _Translations$fasts$hi extends Translations$fasts$fr {
 	@override String get channel => 'मेरे उपवास';
 	@override String homeTitle({required Object day, required Object total}) => 'उपवास · दिन ${day}/${total}';
 	@override String homeText({required Object time}) => 'यह दिन ${time} पर पूरा होगा';
+}
+
+// Path: received
+class _Translations$received$hi extends Translations$received$fr {
+	_Translations$received$hi._(TranslationsHi root) : this._root = root, super.internal(root);
+
+	final TranslationsHi _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'मिली रिपोर्टें';
+	@override String get subtitle => 'आपके शिष्यों ने ऐप में भेजीं';
+	@override String unreadCount({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n,
+		one: '${n} नई',
+		other: '${n} नई',
+	);
+	@override String get empty => 'अभी तक कोई रिपोर्ट नहीं मिली। जब कोई शिष्य ऐप में अपनी रिपोर्ट भेजेगा, वह यहाँ आएगी।';
+	@override String day({required Object date}) => '${date} को';
+	@override String period({required Object from, required Object to}) => '${from} से ${to} तक';
+	@override String get unread => 'नई';
+	@override String yourReply({required Object text}) => 'आपका जवाब: “${text}”';
+	@override String get open => 'देखें';
+	@override String get encourage => 'प्रोत्साहित करें';
+	@override String get editReply => 'बदलें';
+	@override String encourageTitle({required Object name}) => '${name} के लिए एक शब्द';
+	@override List<String> get suggestions => [
+		'सुंदर विश्वासयोग्यता, जारी रखें!',
+		'मैं आपके लिए प्रार्थना में हूँ।',
+		'परमेश्वर आपको सामर्थ दे!',
+		'आपकी लगन के लिए शाबाश।',
+	];
+	@override String get hint => 'अपना प्रोत्साहन लिखें…';
+	@override String get send => 'भेजें';
+	@override String sent({required Object name}) => '${name} को आपका संदेश मिल गया';
 }
 
 // Path: welcome.seek
@@ -2467,6 +2527,8 @@ class _Translations$prayer$session$hi extends Translations$prayer$session$fr {
 	@override String get quitText => 'यह तुम्हारे दिन में नहीं गिना जाएगा।';
 	@override String get quit => 'रोको';
 	@override String get keepPraying => 'प्रार्थना जारी रखो';
+	@override String get voiceOff => 'ज़ोर से पढ़ो';
+	@override String get voiceOn => 'ज़ोर से पढ़ना चालू है';
 }
 
 // Path: prayer.done
@@ -3972,6 +4034,8 @@ extension on TranslationsHi {
 			'prayer.session.quitText' => 'यह तुम्हारे दिन में नहीं गिना जाएगा।',
 			'prayer.session.quit' => 'रोको',
 			'prayer.session.keepPraying' => 'प्रार्थना जारी रखो',
+			'prayer.session.voiceOff' => 'ज़ोर से पढ़ो',
+			'prayer.session.voiceOn' => 'ज़ोर से पढ़ना चालू है',
 			'prayer.done.title' => ({required Object retreat}) => '${retreat} पूरा हुआ',
 			'prayer.done.text' => 'प्रभु के साथ 15 मिनट।\nउसने तुम्हारी हर प्रार्थना सुनी है।',
 			'prayer.done.report' => 'तुम्हारी रिपोर्ट में जोड़ दिया गया',
@@ -4001,10 +4065,10 @@ extension on TranslationsHi {
 			'prayer.topics.download' => 'PDF डाउनलोड करो',
 			'prayer.topics.noDocument' => 'PDF नहीं है',
 			'prayer.topics.openDocument' => 'PDF खोलो',
-			'prayer.lists.title' => 'मेरी प्रार्थना सूचियाँ',
-			'prayer.lists.private' => 'सिर्फ़ तुम्हारे लिए',
 			_ => null,
 		} ?? switch (path) {
+			'prayer.lists.title' => 'मेरी प्रार्थना सूचियाँ',
+			'prayer.lists.private' => 'सिर्फ़ तुम्हारे लिए',
 			'prayer.lists.names.unbelievers' => 'अब तक विश्वास नहीं किया',
 			'prayer.lists.names.believers' => 'विश्वासी',
 			'prayer.lists.names.backsliders' => 'पीछे हटे हुए विश्वासी',
@@ -4140,6 +4204,15 @@ extension on TranslationsHi {
 			'sending.noRecipients' => 'सेटिंग्स में प्राप्तकर्ता चुनो, या PDF शेयर करो।',
 			'sending.settings' => 'सेटिंग्स',
 			'sending.permissionDenied' => 'सही समय पर याद दिलाने के लिए सूचनाएँ चालू करो।',
+			'sending.inApp' => 'ऐप में भेजें',
+			'sending.viaApp' => 'ऐप में',
+			'sending.inAppSent' => ({required Object name}) => '${name} को ऐप में भेजी गई',
+			'sending.inAppUnavailable' => ({required Object name}) => '${name} अभी इसे ऐप में नहीं पा सकते।',
+			'sending.inAppHistory' => 'ऐप में भेजी गईं',
+			'sending.replied' => 'जवाब दिया',
+			'sending.seen' => 'पढ़ी गई',
+			'sending.formerAuthority' => 'पूर्व अगुवा',
+			'sending.theirReply' => ({required Object text}) => '“${text}”',
 			'streak.title' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n, one: 'लगातार ${n} दिन!', other: 'लगातार ${n} दिन!', ), 
 			'streak.cardDays' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n, one: 'दिन परमेश्वर के साथ', other: 'दिन परमेश्वर के साथ', ), 
 			'streak.lines.week' => 'पूरा एक हफ़्ता प्रभु के साथ, हर दिन। शाबाश, ऐसे ही चलते रहो!',
@@ -4367,24 +4440,31 @@ extension on TranslationsHi {
 			'documents.count' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n, one: '${n} दस्तावेज़', other: '${n} दस्तावेज़', ), 
 			'documents.more' => 'और देखें',
 			'biblePlan.title' => 'पठन योजना',
-			'biblePlan.intro' => 'चुनो कि क्या पढ़ना है और कितने समय में: ऐप अध्यायों को दिन-ब-दिन बाँट देता है।',
 			'biblePlan.duration' => 'अवधि',
 			'biblePlan.months3' => '3 महीने',
 			'biblePlan.months6' => '6 महीने',
 			'biblePlan.year' => '1 साल',
 			'biblePlan.custom' => 'अन्य',
+			'biblePlan.unitMonths' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n, one: 'महीना', other: 'महीने', ), 
+			'biblePlan.unitYear' => 'साल',
 			'biblePlan.days' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n, one: '${n} दिन', other: '${n} दिन', ), 
 			'biblePlan.scope' => 'तुम क्या पढ़ते हो',
 			'biblePlan.scopes.bible' => 'पूरी बाइबल',
 			'biblePlan.scopes.newTestament' => 'नया नियम',
 			'biblePlan.scopes.oldTestament' => 'पुराना नियम',
 			'biblePlan.scopes.psalmsProverbs' => 'भजन संहिता और नीतिवचन',
+			'biblePlan.chaptersShort' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n, one: '${n} अध्याय', other: '${n} अध्याय', ), 
+			'biblePlan.oldTestament' => 'पुराना नियम',
+			'biblePlan.newTestament' => 'नया नियम',
 			'biblePlan.order' => 'क्रम',
 			'biblePlan.orders.canonical' => 'पुस्तक दर पुस्तक',
 			'biblePlan.orders.parallel' => 'पुराना + नया हर दिन',
 			'biblePlan.reminder' => 'रोज़ का रिमाइंडर',
 			'biblePlan.reminderAt' => 'रिमाइंडर का समय',
 			'biblePlan.summary' => ({required Object days, required Object chapters, required Object perDay}) => '${days} दिनों में ${chapters} अध्याय, रोज़ लगभग ${perDay}',
+			'biblePlan.chapterCount' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n, one: '${n} अध्याय', other: '${n} अध्याय', ), 
+			'biblePlan.inDays' => ({required Object days}) => '${days} में',
+			'biblePlan.perDayAbout' => ({required Object perDay}) => 'रोज़ लगभग ${perDay}',
 			'biblePlan.endsOn' => ({required Object date}) => '${date} को समाप्त',
 			'biblePlan.startsOn' => ({required Object date}) => 'योजना ${date} को शुरू होगी।',
 			'biblePlan.start' => 'योजना शुरू करें',
@@ -4394,6 +4474,7 @@ extension on TranslationsHi {
 			'biblePlan.read' => 'पढ़ें',
 			'biblePlan.behind' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n, one: '${n} दिन पीछे', other: '${n} दिन पीछे', ), 
 			'biblePlan.catchUp' => 'पीछे छूटे अध्याय देखने के लिए यहाँ छुओ।',
+			'biblePlan.catchUpShort' => 'पूरा करो',
 			'biblePlan.chaptersRead' => ({required Object total, required Object read}) => '${total} में से ${read} अध्याय',
 			'biblePlan.late' => 'पीछे छूटे',
 			'biblePlan.upcoming' => 'आने वाले',
@@ -4498,6 +4579,8 @@ extension on TranslationsHi {
 			'souls.stages.baptized' => 'बपतिस्मा हुआ',
 			'souls.contactSection' => 'फिर संपर्क करना है',
 			'souls.everyone' => 'सभी लोग',
+			_ => null,
+		} ?? switch (path) {
 			'souls.contactToday' => 'आज संपर्क करो',
 			'souls.contactLate' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n, one: '${n} दिन देर', other: '${n} दिन देर', ), 
 			'souls.contactOn' => ({required Object date}) => 'अगला संपर्क ${date} को',
@@ -4517,8 +4600,6 @@ extension on TranslationsHi {
 			'souls.save' => 'सहेजो',
 			'souls.saved' => 'सहेजा गया',
 			'souls.call' => 'कॉल करो',
-			_ => null,
-		} ?? switch (path) {
 			'souls.whatsApp' => 'WhatsApp',
 			'souls.sms' => 'SMS',
 			'souls.edit' => 'बदलो',
@@ -4596,6 +4677,25 @@ extension on TranslationsHi {
 			'fasts.channel' => 'मेरे उपवास',
 			'fasts.homeTitle' => ({required Object day, required Object total}) => 'उपवास · दिन ${day}/${total}',
 			'fasts.homeText' => ({required Object time}) => 'यह दिन ${time} पर पूरा होगा',
+			'received.title' => 'मिली रिपोर्टें',
+			'received.subtitle' => 'आपके शिष्यों ने ऐप में भेजीं',
+			'received.unreadCount' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n, one: '${n} नई', other: '${n} नई', ), 
+			'received.empty' => 'अभी तक कोई रिपोर्ट नहीं मिली। जब कोई शिष्य ऐप में अपनी रिपोर्ट भेजेगा, वह यहाँ आएगी।',
+			'received.day' => ({required Object date}) => '${date} को',
+			'received.period' => ({required Object from, required Object to}) => '${from} से ${to} तक',
+			'received.unread' => 'नई',
+			'received.yourReply' => ({required Object text}) => 'आपका जवाब: “${text}”',
+			'received.open' => 'देखें',
+			'received.encourage' => 'प्रोत्साहित करें',
+			'received.editReply' => 'बदलें',
+			'received.encourageTitle' => ({required Object name}) => '${name} के लिए एक शब्द',
+			'received.suggestions.0' => 'सुंदर विश्वासयोग्यता, जारी रखें!',
+			'received.suggestions.1' => 'मैं आपके लिए प्रार्थना में हूँ।',
+			'received.suggestions.2' => 'परमेश्वर आपको सामर्थ दे!',
+			'received.suggestions.3' => 'आपकी लगन के लिए शाबाश।',
+			'received.hint' => 'अपना प्रोत्साहन लिखें…',
+			'received.send' => 'भेजें',
+			'received.sent' => ({required Object name}) => '${name} को आपका संदेश मिल गया',
 			_ => null,
 		};
 	}

@@ -5,6 +5,7 @@ import '../../../core/network/api_call.dart';
 import '../../../core/network/dio_provider.dart';
 import '../../../core/utils/date_extensions.dart';
 import '../domain/disciple.dart';
+import '../domain/received_report.dart';
 
 part 'disciples_api.g.dart';
 
@@ -58,7 +59,40 @@ class DisciplesApi {
     );
     return DiscipleReports.fromJson(response.content);
   });
+
+  /// The periods the disciples sent the user in the app, the newest first.
+  Future<ReceivedReportsPage> received({int page = 1, int size = 20}) =>
+      apiCall(() async {
+        final response = await _dio.get<Map<String, dynamic>>(
+          '/report-sendings/received',
+          queryParameters: {'page': page, 'size': size},
+        );
+        final meta = response.data!['meta'] as Map<String, dynamic>?;
+        final items = [
+          for (final item in response.contentList)
+            ReceivedReport.fromJson(item as Map<String, dynamic>),
+        ];
+        return (
+          items: items,
+          total: (meta?['total'] as num?)?.toInt() ?? items.length,
+        );
+      });
+
+  /// The user opened it.
+  Future<void> markRead(int id) => apiCall(() async {
+    await _dio.post<void>('/report-sendings/$id/read');
+  });
+
+  /// The user's word of encouragement (it replaces an earlier one).
+  Future<ReceivedReport> reply(int id, String text) => apiCall(() async {
+    final response = await _dio.post<Map<String, dynamic>>(
+      '/report-sendings/$id/reply',
+      data: {'text': text},
+    );
+    return ReceivedReport.fromJson(response.content);
+  });
 }
 
-@riverpod
+// kept alive: « Comptes rendus reçus » is (the badge of Plus)
+@Riverpod(keepAlive: true)
 DisciplesApi disciplesApi(Ref ref) => DisciplesApi(ref.watch(dioProvider));

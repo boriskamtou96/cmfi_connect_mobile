@@ -7,6 +7,7 @@ import 'package:cmfi_connect/src/features/bible/domain/bible.dart';
 import 'package:cmfi_connect/src/features/bible/domain/reading_plan.dart';
 import 'package:cmfi_connect/src/features/bible/presentation/bible_plan_screen.dart';
 import 'package:cmfi_connect/src/features/bible/presentation/bible_screen.dart';
+import 'package:cmfi_connect/src/features/bible/presentation/widgets/plan_shelf.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:intl/date_symbol_data_local.dart';
@@ -146,25 +147,37 @@ void main() {
     };
   }
 
+  /// The shelf of the 66 books at the top of the page.
+  PlanShelf shelf(WidgetTester tester) =>
+      tester.widget<PlanShelf>(find.byType(PlanShelf));
+
   testWidgets('made in a few taps: 3 months, the New Testament', (
     tester,
   ) async {
     final app = await openPlan(tester);
 
     expect(find.byType(BiblePlanScreen), findsOneWidget);
-    // a year of the whole Bible by default
+    // a year of the whole Bible by default, all 66 books on the shelf
     expect(
-      find.text('1189 chapitres en 365 jours, environ 3,3 par jour'),
+      find.bySemanticsLabel(
+        RegExp('^1189 chapitres en 365 jours, environ 3,3 par jour'),
+      ),
       findsOneWidget,
     );
-    await tester.tap(find.text('3 mois'));
+    expect(shelf(tester).inScope.where((book) => book), hasLength(66));
+    await tester.tap(find.bySemanticsLabel('3 mois'));
     await tester.pumpAndSettle();
     await tester.tap(find.text('Psaumes et Proverbes'));
     await tester.pumpAndSettle();
     expect(
-      find.text('181 chapitres en 91 jours, environ 2 par jour'),
+      find.bySemanticsLabel(
+        RegExp('^181 chapitres en 91 jours, environ 2 par jour'),
+      ),
       findsOneWidget,
     );
+    expect(find.text('181 ch.'), findsOneWidget);
+    // only Psalms and Proverbs stand out
+    expect(shelf(tester).inScope.where((book) => book), hasLength(2));
     await tester.tap(find.text('Commencer le plan'));
     await tester.pumpAndSettle();
 
@@ -186,6 +199,9 @@ void main() {
     await tester.pumpAndSettle();
 
     expect(find.text('1 chapitres sur 1189'), findsOneWidget);
+    // Genesis fills with gold on the shelf, the bookmark on it
+    expect(shelf(tester).read.first, 1 / 50);
+    expect(shelf(tester).bookmark, 0);
     expect(
       app.reportsApi.days[today()]?.entries
           .where((entry) => entry.code == 'LB')

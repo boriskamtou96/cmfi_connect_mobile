@@ -4,12 +4,15 @@ import 'dart:io';
 import 'package:cmfi_connect/src/core/i18n/strings.g.dart';
 import 'package:cmfi_connect/src/core/storage/preferences.dart';
 import 'package:cmfi_connect/src/core/utils/date_extensions.dart';
+import 'package:cmfi_connect/src/core/widgets/app_back_button.dart';
 import 'package:cmfi_connect/src/features/authorities/domain/authority.dart';
 import 'package:cmfi_connect/src/features/bible/application/bible_position.dart';
 import 'package:cmfi_connect/src/features/bible/domain/bible.dart';
 import 'package:cmfi_connect/src/features/bible/presentation/bible_screen.dart';
 import 'package:cmfi_connect/src/features/disciples/domain/disciple.dart';
+import 'package:cmfi_connect/src/features/disciples/domain/received_report.dart';
 import 'package:cmfi_connect/src/features/disciples/presentation/disciples_screen.dart';
+import 'package:cmfi_connect/src/features/disciples/presentation/received_reports_screen.dart';
 import 'package:cmfi_connect/src/features/members/domain/member.dart';
 import 'package:cmfi_connect/src/features/reports/presentation/widgets/entry_sheet.dart';
 import 'package:flutter/material.dart';
@@ -325,6 +328,71 @@ void main() {
         scrollable: find.byType(Scrollable).first,
       );
       expect(find.text('1 sur 12 éléments · 8 %'), findsOneWidget);
+    });
+
+    testWidgets('a week sent in the app: new in Plus, opened, encouraged', (
+      tester,
+    ) async {
+      final sent = ReceivedReport(
+        id: 5,
+        authorityId: 11,
+        member: paul.member,
+        periodFrom: daysAgo(6),
+        periodTo: today(),
+        sentAt: DateTime.now(),
+      );
+      final api = FakeDisciplesApi([paul, claire], [sent])
+        ..reportsOf[11] = reports;
+      final app = await pumpApp(tester, token: 't', disciplesApi: api);
+      await openMore(tester);
+
+      expect(find.text('Comptes rendus reçus'), findsOneWidget);
+      expect(find.text('1 nouveau'), findsOneWidget);
+      await tester.tap(find.text('Comptes rendus reçus'));
+      await tester.pumpAndSettle();
+      expect(find.byType(ReceivedReportsScreen), findsOneWidget);
+      expect(find.text('Paul'), findsOneWidget);
+      expect(find.bySemanticsLabel(RegExp('Nouveau')), findsOneWidget);
+
+      // « Voir »: their days, and it is no longer new
+      await tester.tap(find.text('Voir'));
+      await tester.pumpAndSettle();
+      expect(app.disciplesApi.opened, [5]);
+      expect(find.text('Lecture biblique'), findsOneWidget);
+      await tester.tap(find.byType(AppBackButton));
+      await tester.pumpAndSettle();
+      expect(find.bySemanticsLabel(RegExp('Nouveau')), findsNothing);
+
+      // a ready-made word, sent
+      await tester.tap(find.text('Encourager'));
+      await tester.pumpAndSettle();
+      expect(find.text('Un mot pour Paul'), findsOneWidget);
+      await tester.tap(find.text('Je prie pour toi.'));
+      await tester.pumpAndSettle();
+      await tester.tap(find.widgetWithText(FilledButton, 'Envoyer'));
+      await tester.pumpAndSettle();
+      expect(app.disciplesApi.receivedList.single.reply, 'Je prie pour toi.');
+      expect(app.toasts.messages, contains('Paul a reçu ton mot'));
+      expect(find.text('Ta réponse : « Je prie pour toi. »'), findsOneWidget);
+      expect(find.text('Modifier'), findsOneWidget);
+    });
+
+    testWidgets('the push of a disciple opens the reports received', (
+      tester,
+    ) async {
+      final app = await pumpApp(
+        tester,
+        token: 't',
+        disciplesApi: FakeDisciplesApi([paul]),
+      );
+      app.push.tapsController.add({'type': 'report_sending', 'id': '5'});
+      await tester.pumpAndSettle();
+
+      expect(find.byType(ReceivedReportsScreen), findsOneWidget);
+      expect(
+        find.textContaining('Aucun compte rendu reçu pour l'),
+        findsOneWidget,
+      );
     });
 
     testWidgets('they stopped sharing meanwhile: said', (tester) async {

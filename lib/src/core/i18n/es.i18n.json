@@ -1266,7 +1266,9 @@
       "quitTitle": "¿Detener el retiro?",
       "quitText": "No se contará en tu día.",
       "quit": "Detener",
-      "keepPraying": "Seguir orando"
+      "keepPraying": "Seguir orando",
+      "voiceOff": "Leer en voz alta",
+      "voiceOn": "Lectura en voz alta activada"
     },
     "done": {
       "title": "{retreat} terminado",
@@ -1490,7 +1492,16 @@
     "shared": "Compartido",
     "noRecipients": "Elige tus destinatarios en los ajustes, o comparte el PDF.",
     "settings": "Ajustes",
-    "permissionDenied": "Permite las notificaciones para recibir el aviso a tiempo."
+    "permissionDenied": "Permite las notificaciones para recibir el aviso a tiempo.",
+    "inApp": "Enviar en la app",
+    "viaApp": "En la app",
+    "inAppSent": "Enviado a {name} en la app",
+    "inAppUnavailable": "{name} no puede recibirlo en la app por ahora.",
+    "inAppHistory": "Enviados en la app",
+    "replied": "Respondido",
+    "seen": "Leído",
+    "formerAuthority": "Antigua autoridad",
+    "theirReply": "«{text}»"
   },
   "streak": {
     "title(plural, param=n)": {
@@ -1809,12 +1820,16 @@
   },
   "biblePlan": {
     "title": "Plan de lectura",
-    "intro": "Elige qué quieres leer y en cuánto tiempo: la app reparte los capítulos día tras día.",
     "duration": "Duración",
     "months3": "3 meses",
     "months6": "6 meses",
     "year": "1 año",
     "custom": "Otra",
+    "unitMonths(plural, param=n)": {
+      "one": "mes",
+      "other": "meses"
+    },
+    "unitYear": "año",
     "days(plural, param=n)": {
       "one": "{n} día",
       "other": "{n} días"
@@ -1826,6 +1841,12 @@
       "oldTestament": "El Antiguo Testamento",
       "psalmsProverbs": "Salmos y Proverbios"
     },
+    "chaptersShort(plural, param=n)": {
+      "one": "{n} cap.",
+      "other": "{n} cap."
+    },
+    "oldTestament": "Antiguo Testamento",
+    "newTestament": "Nuevo Testamento",
     "order": "Orden",
     "orders(map)": {
       "canonical": "Libro por libro",
@@ -1834,6 +1855,12 @@
     "reminder": "Recordatorio diario",
     "reminderAt": "Hora del recordatorio",
     "summary": "{chapters} capítulos en {days} días, unos {perDay} al día",
+    "chapterCount(plural, param=n)": {
+      "one": "{n} capítulo",
+      "other": "{n} capítulos"
+    },
+    "inDays": "en {days}",
+    "perDayAbout": "unos {perDay} al día",
     "endsOn": "Termina el {date}",
     "startsOn": "El plan empieza el {date}.",
     "start": "Empezar el plan",
@@ -1846,6 +1873,7 @@
       "other": "{n} días de retraso"
     },
     "catchUp": "Toca aquí para ver los capítulos atrasados.",
+    "catchUpShort": "ponerse al día",
     "chaptersRead": "{read} de {total} capítulos",
     "late": "Atrasados",
     "upcoming": "Próximos",
@@ -2103,5 +2131,31 @@
     "channel": "Mis ayunos",
     "homeTitle": "Ayuno · día {day} de {total}",
     "homeText": "Este día termina a las {time}"
+  },
+  "received": {
+    "title": "Informes recibidos",
+    "subtitle": "Enviados por tus discípulos en la app",
+    "unreadCount(plural, param=n)": {
+      "one": "{n} nuevo",
+      "other": "{n} nuevos"
+    },
+    "empty": "Aún no has recibido ningún informe. Cuando un discípulo te envíe el suyo en la app, llegará aquí.",
+    "day": "El {date}",
+    "period": "Del {from} al {to}",
+    "unread": "Nuevo",
+    "yourReply": "Tu respuesta: «{text}»",
+    "open": "Ver",
+    "encourage": "Animar",
+    "editReply": "Cambiar",
+    "encourageTitle": "Una palabra para {name}",
+    "suggestions": [
+      "¡Qué fidelidad, sigue así!",
+      "Oro por ti.",
+      "¡Que Dios te fortalezca!",
+      "Bravo por tu perseverancia."
+    ],
+    "hint": "Escribe tu ánimo…",
+    "send": "Enviar",
+    "sent": "{name} recibió tu palabra"
   }
 }

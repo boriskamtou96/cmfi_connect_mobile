@@ -20,6 +20,7 @@ import 'package:cmfi_connect/src/core/services/push_messaging.dart';
 import 'package:cmfi_connect/src/core/services/screen_awake.dart';
 import 'package:cmfi_connect/src/core/services/share_service.dart';
 import 'package:cmfi_connect/src/core/services/store_review.dart';
+import 'package:cmfi_connect/src/core/services/voice_reader.dart';
 import 'package:cmfi_connect/src/core/session/account.dart';
 import 'package:cmfi_connect/src/core/storage/account_storage.dart';
 import 'package:cmfi_connect/src/core/storage/preferences.dart';
@@ -46,6 +47,7 @@ import 'package:cmfi_connect/src/features/profile/infrastructure/profile_api.dar
 import 'package:cmfi_connect/src/features/reports/domain/activity_type.dart';
 import 'package:cmfi_connect/src/features/reports/domain/daily_report.dart';
 import 'package:cmfi_connect/src/features/reports/infrastructure/activities_api.dart';
+import 'package:cmfi_connect/src/features/reports/infrastructure/report_sendings_api.dart';
 import 'package:cmfi_connect/src/features/reports/infrastructure/reports_api.dart';
 import 'package:cmfi_connect/src/features/souls/infrastructure/souls_storage.dart';
 import 'package:cmfi_connect/src/features/teachings/application/teaching_player.dart';
@@ -105,6 +107,8 @@ class TestApp {
     required this.player,
     required this.teachingFiles,
     required this.soulsStorage,
+    required this.voice,
+    required this.reportSendingsApi,
   });
 
   final ProviderContainer container;
@@ -154,6 +158,8 @@ class TestApp {
   final FakeTeachingPlayer player;
   final FakeTeachingFiles teachingFiles;
   final FakeSoulsStorage soulsStorage;
+  final FakeVoiceReader voice;
+  final FakeReportSendingsApi reportSendingsApi;
 }
 
 Future<TestApp> pumpApp(
@@ -190,6 +196,7 @@ Future<TestApp> pumpApp(
   FakeAppShortcuts? shortcuts,
   FakeIncomingLinks? incomingLinks,
   FakeDisciplesApi? disciplesApi,
+  FakeReportSendingsApi? reportSendingsApi,
   FakeBibleApi? bibleApi,
   // the pictures picked for a profile photo, decoded beforehand
   PhotoDecoder? photoDecoder,
@@ -252,6 +259,8 @@ Future<TestApp> pumpApp(
   final player = FakeTeachingPlayer();
   final files = teachingFiles ?? FakeTeachingFiles();
   final souls = soulsStorage ?? FakeSoulsStorage();
+  final voice = FakeVoiceReader();
+  final sendings = reportSendingsApi ?? FakeReportSendingsApi();
 
   final container = ProviderContainer(
     overrides: [
@@ -304,6 +313,8 @@ Future<TestApp> pumpApp(
       teachingPlayerProvider.overrideWithValue(player),
       teachingFilesProvider.overrideWithValue(files),
       soulsStorageProvider.overrideWithValue(souls),
+      voiceReaderProvider.overrideWithValue(voice),
+      reportSendingsApiProvider.overrideWithValue(sendings),
       crashReportingProvider.overrideWithValue(const NoCrashReporting()),
       phoneVerificationProvider.overrideWithValue(
         phoneVerification ?? FakePhoneVerification(),
@@ -371,6 +382,8 @@ Future<TestApp> pumpApp(
     player: player,
     teachingFiles: files,
     soulsStorage: souls,
+    voice: voice,
+    reportSendingsApi: sendings,
   );
 }
 

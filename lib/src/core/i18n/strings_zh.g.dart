@@ -81,6 +81,7 @@ class TranslationsZh extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _Translations$memorize$zh memorize = _Translations$memorize$zh._(_root);
 	@override late final _Translations$souls$zh souls = _Translations$souls$zh._(_root);
 	@override late final _Translations$fasts$zh fasts = _Translations$fasts$zh._(_root);
+	@override late final _Translations$received$zh received = _Translations$received$zh._(_root);
 }
 
 // Path: app
@@ -908,6 +909,15 @@ class _Translations$sending$zh extends Translations$sending$fr {
 	@override String get noRecipients => '请在设置中选择收件人，或分享 PDF。';
 	@override String get settings => '设置';
 	@override String get permissionDenied => '请允许通知，以便按时提醒你。';
+	@override String get inApp => '在应用中发送';
+	@override String get viaApp => '在应用中';
+	@override String inAppSent({required Object name}) => '已在应用中发送给${name}';
+	@override String inAppUnavailable({required Object name}) => '${name}暂时无法在应用中接收。';
+	@override String get inAppHistory => '在应用中发送的';
+	@override String get replied => '已回复';
+	@override String get seen => '已读';
+	@override String get formerAuthority => '以前的带领者';
+	@override String theirReply({required Object text}) => '“${text}”';
 }
 
 // Path: streak
@@ -1260,12 +1270,15 @@ class _Translations$biblePlan$zh extends Translations$biblePlan$fr {
 
 	// Translations
 	@override String get title => '读经计划';
-	@override String get intro => '选择你要读的内容和用多长时间：应用会把章节一天天分配好。';
 	@override String get duration => '时长';
 	@override String get months3 => '3 个月';
 	@override String get months6 => '6 个月';
 	@override String get year => '1 年';
 	@override String get custom => '其他';
+	@override String unitMonths({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n,
+		other: '个月',
+	);
+	@override String get unitYear => '年';
 	@override String days({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n,
 		other: '${n} 天',
 	);
@@ -1276,6 +1289,11 @@ class _Translations$biblePlan$zh extends Translations$biblePlan$fr {
 		'oldTestament': '旧约',
 		'psalmsProverbs': '诗篇和箴言',
 	};
+	@override String chaptersShort({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n,
+		other: '${n} 章',
+	);
+	@override String get oldTestament => '旧约';
+	@override String get newTestament => '新约';
 	@override String get order => '顺序';
 	@override Map<String, String> get orders => {
 		'canonical': '按书卷顺序',
@@ -1284,6 +1302,11 @@ class _Translations$biblePlan$zh extends Translations$biblePlan$fr {
 	@override String get reminder => '每日提醒';
 	@override String get reminderAt => '提醒时间';
 	@override String summary({required Object days, required Object chapters, required Object perDay}) => '${days} 天读 ${chapters} 章，每天约 ${perDay} 章';
+	@override String chapterCount({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n,
+		other: '${n} 章',
+	);
+	@override String inDays({required Object days}) => '${days}读完';
+	@override String perDayAbout({required Object perDay}) => '每天约 ${perDay} 章';
 	@override String endsOn({required Object date}) => '${date} 结束';
 	@override String startsOn({required Object date}) => '计划将于 ${date} 开始。';
 	@override String get start => '开始计划';
@@ -1295,6 +1318,7 @@ class _Translations$biblePlan$zh extends Translations$biblePlan$fr {
 		other: '落后 ${n} 天',
 	);
 	@override String get catchUp => '点这里查看要补读的章节。';
+	@override String get catchUpShort => '补读';
 	@override String chaptersRead({required Object read, required Object total}) => '已读 ${read} / ${total} 章';
 	@override String get late => '落后';
 	@override String get upcoming => '接下来';
@@ -1572,6 +1596,38 @@ class _Translations$fasts$zh extends Translations$fasts$fr {
 	@override String get channel => '我的禁食';
 	@override String homeTitle({required Object day, required Object total}) => '禁食 · 第 ${day}/${total} 天';
 	@override String homeText({required Object time}) => '今天在 ${time} 结束';
+}
+
+// Path: received
+class _Translations$received$zh extends Translations$received$fr {
+	_Translations$received$zh._(TranslationsZh root) : this._root = root, super.internal(root);
+
+	final TranslationsZh _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => '收到的报告';
+	@override String get subtitle => '你的门徒在应用中发送';
+	@override String unreadCount({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n,
+		other: '${n} 份新报告',
+	);
+	@override String get empty => '还没有收到报告。门徒在应用中发送报告后，会出现在这里。';
+	@override String day({required Object date}) => '${date}';
+	@override String period({required Object from, required Object to}) => '${from} 至 ${to}';
+	@override String get unread => '新';
+	@override String yourReply({required Object text}) => '你的回复：“${text}”';
+	@override String get open => '查看';
+	@override String get encourage => '鼓励';
+	@override String get editReply => '修改';
+	@override String encourageTitle({required Object name}) => '给${name}的一句话';
+	@override List<String> get suggestions => [
+		'忠心可嘉，继续加油！',
+		'我为你祷告。',
+		'愿神坚固你！',
+		'为你的坚持喝彩。',
+	];
+	@override String get hint => '写下你的鼓励…';
+	@override String get send => '发送';
+	@override String sent({required Object name}) => '${name}已收到你的话';
 }
 
 // Path: welcome.seek
@@ -2416,6 +2472,8 @@ class _Translations$prayer$session$zh extends Translations$prayer$session$fr {
 	@override String get quitText => '这次祷告不会计入你今天的汇报。';
 	@override String get quit => '停止';
 	@override String get keepPraying => '继续祷告';
+	@override String get voiceOff => '朗读';
+	@override String get voiceOn => '朗读已开启';
 }
 
 // Path: prayer.done
@@ -3909,6 +3967,8 @@ extension on TranslationsZh {
 			'prayer.session.quitText' => '这次祷告不会计入你今天的汇报。',
 			'prayer.session.quit' => '停止',
 			'prayer.session.keepPraying' => '继续祷告',
+			'prayer.session.voiceOff' => '朗读',
+			'prayer.session.voiceOn' => '朗读已开启',
 			'prayer.done.title' => ({required Object retreat}) => '${retreat}已完成',
 			'prayer.done.text' => '与主同在 15 分钟。\n他听见了你的每一个祷告。',
 			'prayer.done.report' => '已添加到你的汇报',
@@ -3938,10 +3998,10 @@ extension on TranslationsZh {
 			'prayer.topics.download' => '下载 PDF',
 			'prayer.topics.noDocument' => '没有 PDF',
 			'prayer.topics.openDocument' => '打开 PDF',
-			'prayer.lists.title' => '我的祷告名单',
-			'prayer.lists.private' => '仅你可见',
 			_ => null,
 		} ?? switch (path) {
+			'prayer.lists.title' => '我的祷告名单',
+			'prayer.lists.private' => '仅你可见',
 			'prayer.lists.names.unbelievers' => '尚未信主',
 			'prayer.lists.names.believers' => '信徒',
 			'prayer.lists.names.backsliders' => '退后的信徒',
@@ -4077,6 +4137,15 @@ extension on TranslationsZh {
 			'sending.noRecipients' => '请在设置中选择收件人，或分享 PDF。',
 			'sending.settings' => '设置',
 			'sending.permissionDenied' => '请允许通知，以便按时提醒你。',
+			'sending.inApp' => '在应用中发送',
+			'sending.viaApp' => '在应用中',
+			'sending.inAppSent' => ({required Object name}) => '已在应用中发送给${name}',
+			'sending.inAppUnavailable' => ({required Object name}) => '${name}暂时无法在应用中接收。',
+			'sending.inAppHistory' => '在应用中发送的',
+			'sending.replied' => '已回复',
+			'sending.seen' => '已读',
+			'sending.formerAuthority' => '以前的带领者',
+			'sending.theirReply' => ({required Object text}) => '“${text}”',
 			'streak.title' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n, other: '连续 ${n} 天！', ), 
 			'streak.cardDays' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n, other: '天，与神同在', ), 
 			'streak.lines.week' => '整整一周，天天与主同在。真棒，继续加油！',
@@ -4304,24 +4373,31 @@ extension on TranslationsZh {
 			'documents.count' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n, other: '${n} 个文件', ), 
 			'documents.more' => '查看更多',
 			'biblePlan.title' => '读经计划',
-			'biblePlan.intro' => '选择你要读的内容和用多长时间：应用会把章节一天天分配好。',
 			'biblePlan.duration' => '时长',
 			'biblePlan.months3' => '3 个月',
 			'biblePlan.months6' => '6 个月',
 			'biblePlan.year' => '1 年',
 			'biblePlan.custom' => '其他',
+			'biblePlan.unitMonths' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n, other: '个月', ), 
+			'biblePlan.unitYear' => '年',
 			'biblePlan.days' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n, other: '${n} 天', ), 
 			'biblePlan.scope' => '读什么',
 			'biblePlan.scopes.bible' => '整本圣经',
 			'biblePlan.scopes.newTestament' => '新约',
 			'biblePlan.scopes.oldTestament' => '旧约',
 			'biblePlan.scopes.psalmsProverbs' => '诗篇和箴言',
+			'biblePlan.chaptersShort' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n, other: '${n} 章', ), 
+			'biblePlan.oldTestament' => '旧约',
+			'biblePlan.newTestament' => '新约',
 			'biblePlan.order' => '顺序',
 			'biblePlan.orders.canonical' => '按书卷顺序',
 			'biblePlan.orders.parallel' => '新旧约每天',
 			'biblePlan.reminder' => '每日提醒',
 			'biblePlan.reminderAt' => '提醒时间',
 			'biblePlan.summary' => ({required Object days, required Object chapters, required Object perDay}) => '${days} 天读 ${chapters} 章，每天约 ${perDay} 章',
+			'biblePlan.chapterCount' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n, other: '${n} 章', ), 
+			'biblePlan.inDays' => ({required Object days}) => '${days}读完',
+			'biblePlan.perDayAbout' => ({required Object perDay}) => '每天约 ${perDay} 章',
 			'biblePlan.endsOn' => ({required Object date}) => '${date} 结束',
 			'biblePlan.startsOn' => ({required Object date}) => '计划将于 ${date} 开始。',
 			'biblePlan.start' => '开始计划',
@@ -4331,6 +4407,7 @@ extension on TranslationsZh {
 			'biblePlan.read' => '阅读',
 			'biblePlan.behind' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n, other: '落后 ${n} 天', ), 
 			'biblePlan.catchUp' => '点这里查看要补读的章节。',
+			'biblePlan.catchUpShort' => '补读',
 			'biblePlan.chaptersRead' => ({required Object read, required Object total}) => '已读 ${read} / ${total} 章',
 			'biblePlan.late' => '落后',
 			'biblePlan.upcoming' => '接下来',
@@ -4435,6 +4512,8 @@ extension on TranslationsZh {
 			'souls.stages.baptized' => '已受洗',
 			'souls.contactSection' => '待再次联系',
 			'souls.everyone' => '所有人',
+			_ => null,
+		} ?? switch (path) {
 			'souls.contactToday' => '今天联系',
 			'souls.contactLate' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n, one: '逾期 ${n} 天', other: '逾期 ${n} 天', ), 
 			'souls.contactOn' => ({required Object date}) => '下次联系：${date}',
@@ -4454,8 +4533,6 @@ extension on TranslationsZh {
 			'souls.save' => '保存',
 			'souls.saved' => '已保存',
 			'souls.call' => '打电话',
-			_ => null,
-		} ?? switch (path) {
 			'souls.whatsApp' => 'WhatsApp',
 			'souls.sms' => '短信',
 			'souls.edit' => '编辑',
@@ -4533,6 +4610,25 @@ extension on TranslationsZh {
 			'fasts.channel' => '我的禁食',
 			'fasts.homeTitle' => ({required Object day, required Object total}) => '禁食 · 第 ${day}/${total} 天',
 			'fasts.homeText' => ({required Object time}) => '今天在 ${time} 结束',
+			'received.title' => '收到的报告',
+			'received.subtitle' => '你的门徒在应用中发送',
+			'received.unreadCount' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n, other: '${n} 份新报告', ), 
+			'received.empty' => '还没有收到报告。门徒在应用中发送报告后，会出现在这里。',
+			'received.day' => ({required Object date}) => '${date}',
+			'received.period' => ({required Object from, required Object to}) => '${from} 至 ${to}',
+			'received.unread' => '新',
+			'received.yourReply' => ({required Object text}) => '你的回复：“${text}”',
+			'received.open' => '查看',
+			'received.encourage' => '鼓励',
+			'received.editReply' => '修改',
+			'received.encourageTitle' => ({required Object name}) => '给${name}的一句话',
+			'received.suggestions.0' => '忠心可嘉，继续加油！',
+			'received.suggestions.1' => '我为你祷告。',
+			'received.suggestions.2' => '愿神坚固你！',
+			'received.suggestions.3' => '为你的坚持喝彩。',
+			'received.hint' => '写下你的鼓励…',
+			'received.send' => '发送',
+			'received.sent' => ({required Object name}) => '${name}已收到你的话',
 			_ => null,
 		};
 	}

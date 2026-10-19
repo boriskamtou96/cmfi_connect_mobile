@@ -104,6 +104,8 @@ dependencies:
   audio_service: ^0.18.19
   # (comes with just_audio) the audio session: spoken word, on in the background
   audio_session: ^0.2.4
+  # Retreats read aloud by the phone's own voice (offline, the 7 languages)
+  flutter_tts: ^4.2.5
 
 dev_dependencies:
   flutter_test:

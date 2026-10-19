@@ -1267,7 +1267,9 @@
       "quitTitle": "Stop the retreat?",
       "quitText": "It won't be counted in your day.",
       "quit": "Stop",
-      "keepPraying": "Keep praying"
+      "keepPraying": "Keep praying",
+      "voiceOff": "Read aloud",
+      "voiceOn": "Reading aloud"
     },
     "done": {
       "title": "{retreat} finished",
@@ -1491,7 +1493,16 @@
     "shared": "Shared",
     "noRecipients": "Choose your recipients in the settings, or share the PDF.",
     "settings": "Settings",
-    "permissionDenied": "Allow notifications to be told at the right time."
+    "permissionDenied": "Allow notifications to be told at the right time.",
+    "inApp": "Send in the app",
+    "viaApp": "In the app",
+    "inAppSent": "Sent to {name} in the app",
+    "inAppUnavailable": "{name} can't receive it in the app for now.",
+    "inAppHistory": "Sent in the app",
+    "replied": "Answered",
+    "seen": "Read",
+    "formerAuthority": "Former leader",
+    "theirReply": "“{text}”"
   },
   "streak": {
     "title(plural, param=n)": {
@@ -1810,12 +1821,16 @@
   },
   "biblePlan": {
     "title": "Reading plan",
-    "intro": "Choose what you want to read and in how long: the app shares out the chapters day after day.",
     "duration": "Length",
     "months3": "3 months",
     "months6": "6 months",
     "year": "1 year",
     "custom": "Other",
+    "unitMonths(plural, param=n)": {
+      "one": "month",
+      "other": "months"
+    },
+    "unitYear": "year",
     "days(plural, param=n)": {
       "one": "{n} day",
       "other": "{n} days"
@@ -1827,6 +1842,12 @@
       "oldTestament": "The Old Testament",
       "psalmsProverbs": "Psalms and Proverbs"
     },
+    "chaptersShort(plural, param=n)": {
+      "one": "{n} ch.",
+      "other": "{n} ch."
+    },
+    "oldTestament": "Old Testament",
+    "newTestament": "New Testament",
     "order": "Order",
     "orders(map)": {
       "canonical": "Book by book",
@@ -1835,6 +1856,12 @@
     "reminder": "Daily reminder",
     "reminderAt": "Reminder time",
     "summary": "{chapters} chapters in {days} days, about {perDay} a day",
+    "chapterCount(plural, param=n)": {
+      "one": "{n} chapter",
+      "other": "{n} chapters"
+    },
+    "inDays": "in {days}",
+    "perDayAbout": "about {perDay} a day",
     "endsOn": "Ends on {date}",
     "startsOn": "The plan starts on {date}.",
     "start": "Start the plan",
@@ -1847,6 +1874,7 @@
       "other": "{n} days behind"
     },
     "catchUp": "Tap here to see the chapters to catch up.",
+    "catchUpShort": "catch up",
     "chaptersRead": "{read} of {total} chapters",
     "late": "Late",
     "upcoming": "Coming up",
@@ -2104,5 +2132,31 @@
     "channel": "My fasts",
     "homeTitle": "Fast · day {day} of {total}",
     "homeText": "This day ends at {time}"
+  },
+  "received": {
+    "title": "Reports received",
+    "subtitle": "Sent by your disciples in the app",
+    "unreadCount(plural, param=n)": {
+      "one": "{n} new",
+      "other": "{n} new"
+    },
+    "empty": "No report received yet. When a disciple sends you theirs in the app, it arrives here.",
+    "day": "On {date}",
+    "period": "{from} to {to}",
+    "unread": "New",
+    "yourReply": "Your answer: “{text}”",
+    "open": "View",
+    "encourage": "Encourage",
+    "editReply": "Edit",
+    "encourageTitle": "A word for {name}",
+    "suggestions": [
+      "Faithful indeed, keep going!",
+      "I'm praying for you.",
+      "May God strengthen you!",
+      "Well done for persevering."
+    ],
+    "hint": "Write your encouragement…",
+    "send": "Send",
+    "sent": "{name} got your word"
   }
 }

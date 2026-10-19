@@ -263,6 +263,41 @@ void main() {
       );
     });
 
+    testWidgets('read aloud: each point as it comes, kept for next time', (
+      tester,
+    ) async {
+      final app = await pumpApp(tester, token: 't');
+      await openPrayer(tester);
+      await scrollTo(tester, find.text('Retraite de midi'));
+      await tester.tap(find.text('Retraite de midi'));
+      await tester.pumpAndSettle();
+      await tester.tap(find.text('Lire à mon rythme, sans minuteur'));
+      await tester.pumpAndSettle();
+      expect(app.voice.spoken, isEmpty);
+
+      await tester.tap(find.byTooltip('Lire à voix haute'));
+      await tester.pumpAndSettle();
+      expect(app.voice.spoken.single.language, 'fr');
+      final first = app.voice.spoken.single.text;
+      expect(first, isNotEmpty);
+      expect(app.preferences.getBool('retreat_voice'), isTrue);
+      expect(find.byTooltip('Lecture à voix haute activée'), findsOneWidget);
+
+      // the next point, read in turn
+      await tester.tap(find.bySemanticsLabel('Point suivant').first);
+      await tester.pumpAndSettle();
+      expect(app.voice.spoken, hasLength(2));
+      expect(app.voice.spoken.last.text, isNot(first));
+
+      // off: silent at once
+      final stops = app.voice.stops;
+      await tester.tap(find.byTooltip('Lecture à voix haute activée'));
+      await tester.pumpAndSettle();
+      expect(app.voice.stops, greaterThan(stops));
+      expect(app.preferences.getBool('retreat_voice'), isFalse);
+      expect(app.voice.spoken, hasLength(2));
+    });
+
     testWidgets('the routine: the retreat made, the days prayed, the week', (
       tester,
     ) async {

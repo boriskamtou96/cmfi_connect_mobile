@@ -81,6 +81,7 @@ class TranslationsDe extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _Translations$memorize$de memorize = _Translations$memorize$de._(_root);
 	@override late final _Translations$souls$de souls = _Translations$souls$de._(_root);
 	@override late final _Translations$fasts$de fasts = _Translations$fasts$de._(_root);
+	@override late final _Translations$received$de received = _Translations$received$de._(_root);
 }
 
 // Path: app
@@ -930,6 +931,15 @@ class _Translations$sending$de extends Translations$sending$fr {
 	@override String get noRecipients => 'Wähle deine Empfänger in den Einstellungen oder teile das PDF.';
 	@override String get settings => 'Einstellungen';
 	@override String get permissionDenied => 'Erlaube Benachrichtigungen, um rechtzeitig erinnert zu werden.';
+	@override String get inApp => 'In der App senden';
+	@override String get viaApp => 'In der App';
+	@override String inAppSent({required Object name}) => 'An ${name} in der App gesendet';
+	@override String inAppUnavailable({required Object name}) => '${name} kann ihn gerade nicht in der App empfangen.';
+	@override String get inAppHistory => 'In der App gesendet';
+	@override String get replied => 'Beantwortet';
+	@override String get seen => 'Gelesen';
+	@override String get formerAuthority => 'Frühere Autorität';
+	@override String theirReply({required Object text}) => '„${text}“';
 }
 
 // Path: streak
@@ -1302,12 +1312,16 @@ class _Translations$biblePlan$de extends Translations$biblePlan$fr {
 
 	// Translations
 	@override String get title => 'Leseplan';
-	@override String get intro => 'Wähle, was du lesen willst und in welcher Zeit: Die App verteilt die Kapitel Tag für Tag.';
 	@override String get duration => 'Dauer';
 	@override String get months3 => '3 Monate';
 	@override String get months6 => '6 Monate';
 	@override String get year => '1 Jahr';
 	@override String get custom => 'Andere';
+	@override String unitMonths({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('de'))(n,
+		one: 'Monat',
+		other: 'Monate',
+	);
+	@override String get unitYear => 'Jahr';
 	@override String days({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('de'))(n,
 		one: '${n} Tag',
 		other: '${n} Tage',
@@ -1319,6 +1333,12 @@ class _Translations$biblePlan$de extends Translations$biblePlan$fr {
 		'oldTestament': 'Das Alte Testament',
 		'psalmsProverbs': 'Psalmen und Sprüche',
 	};
+	@override String chaptersShort({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('de'))(n,
+		one: '${n} Kap.',
+		other: '${n} Kap.',
+	);
+	@override String get oldTestament => 'Altes Testament';
+	@override String get newTestament => 'Neues Testament';
 	@override String get order => 'Reihenfolge';
 	@override Map<String, String> get orders => {
 		'canonical': 'Buch für Buch',
@@ -1327,6 +1347,12 @@ class _Translations$biblePlan$de extends Translations$biblePlan$fr {
 	@override String get reminder => 'Tägliche Erinnerung';
 	@override String get reminderAt => 'Uhrzeit der Erinnerung';
 	@override String summary({required Object chapters, required Object days, required Object perDay}) => '${chapters} Kapitel in ${days} Tagen, etwa ${perDay} pro Tag';
+	@override String chapterCount({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('de'))(n,
+		one: '${n} Kapitel',
+		other: '${n} Kapitel',
+	);
+	@override String inDays({required Object days}) => 'über ${days}';
+	@override String perDayAbout({required Object perDay}) => 'etwa ${perDay} pro Tag';
 	@override String endsOn({required Object date}) => 'Endet am ${date}';
 	@override String startsOn({required Object date}) => 'Der Plan beginnt am ${date}.';
 	@override String get start => 'Plan beginnen';
@@ -1339,6 +1365,7 @@ class _Translations$biblePlan$de extends Translations$biblePlan$fr {
 		other: '${n} Tage im Rückstand',
 	);
 	@override String get catchUp => 'Tippe hier, um die offenen Kapitel zu sehen.';
+	@override String get catchUpShort => 'nachholen';
 	@override String chaptersRead({required Object read, required Object total}) => '${read} von ${total} Kapiteln';
 	@override String get late => 'Im Rückstand';
 	@override String get upcoming => 'Als Nächstes';
@@ -1616,6 +1643,39 @@ class _Translations$fasts$de extends Translations$fasts$fr {
 	@override String get channel => 'Mein Fasten';
 	@override String homeTitle({required Object day, required Object total}) => 'Fasten · Tag ${day} von ${total}';
 	@override String homeText({required Object time}) => 'Dieser Tag endet um ${time}';
+}
+
+// Path: received
+class _Translations$received$de extends Translations$received$fr {
+	_Translations$received$de._(TranslationsDe root) : this._root = root, super.internal(root);
+
+	final TranslationsDe _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Erhaltene Berichte';
+	@override String get subtitle => 'Von deinen Jüngern in der App gesendet';
+	@override String unreadCount({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('de'))(n,
+		one: '${n} neuer',
+		other: '${n} neue',
+	);
+	@override String get empty => 'Noch kein Bericht erhalten. Wenn dir ein Jünger seinen in der App sendet, kommt er hier an.';
+	@override String day({required Object date}) => 'Am ${date}';
+	@override String period({required Object from, required Object to}) => '${from} bis ${to}';
+	@override String get unread => 'Neu';
+	@override String yourReply({required Object text}) => 'Deine Antwort: „${text}“';
+	@override String get open => 'Ansehen';
+	@override String get encourage => 'Ermutigen';
+	@override String get editReply => 'Ändern';
+	@override String encourageTitle({required Object name}) => 'Ein Wort für ${name}';
+	@override List<String> get suggestions => [
+		'Schöne Treue, mach weiter!',
+		'Ich bete für dich.',
+		'Gott stärke dich!',
+		'Bravo für deine Ausdauer.',
+	];
+	@override String get hint => 'Schreib deine Ermutigung…';
+	@override String get send => 'Senden';
+	@override String sent({required Object name}) => '${name} hat dein Wort erhalten';
 }
 
 // Path: welcome.seek
@@ -2468,6 +2528,8 @@ class _Translations$prayer$session$de extends Translations$prayer$session$fr {
 	@override String get quitText => 'Sie wird für deinen Tag nicht gezählt.';
 	@override String get quit => 'Abbrechen';
 	@override String get keepPraying => 'Weiterbeten';
+	@override String get voiceOff => 'Vorlesen';
+	@override String get voiceOn => 'Vorlesen ist an';
 }
 
 // Path: prayer.done
@@ -3973,6 +4035,8 @@ extension on TranslationsDe {
 			'prayer.session.quitText' => 'Sie wird für deinen Tag nicht gezählt.',
 			'prayer.session.quit' => 'Abbrechen',
 			'prayer.session.keepPraying' => 'Weiterbeten',
+			'prayer.session.voiceOff' => 'Vorlesen',
+			'prayer.session.voiceOn' => 'Vorlesen ist an',
 			'prayer.done.title' => ({required Object retreat}) => '${retreat} beendet',
 			'prayer.done.text' => '15 Minuten mit dem Herrn.\nEr hat jedes deiner Gebete gehört.',
 			'prayer.done.report' => 'Zu deinem Bericht hinzugefügt',
@@ -4002,10 +4066,10 @@ extension on TranslationsDe {
 			'prayer.topics.download' => 'PDF herunterladen',
 			'prayer.topics.noDocument' => 'Kein PDF',
 			'prayer.topics.openDocument' => 'PDF öffnen',
-			'prayer.lists.title' => 'Meine Gebetslisten',
-			'prayer.lists.private' => 'Nur für dich',
 			_ => null,
 		} ?? switch (path) {
+			'prayer.lists.title' => 'Meine Gebetslisten',
+			'prayer.lists.private' => 'Nur für dich',
 			'prayer.lists.names.unbelievers' => 'Noch nicht gläubig',
 			'prayer.lists.names.believers' => 'Gläubige',
 			'prayer.lists.names.backsliders' => 'Abgefallene',
@@ -4141,6 +4205,15 @@ extension on TranslationsDe {
 			'sending.noRecipients' => 'Wähle deine Empfänger in den Einstellungen oder teile das PDF.',
 			'sending.settings' => 'Einstellungen',
 			'sending.permissionDenied' => 'Erlaube Benachrichtigungen, um rechtzeitig erinnert zu werden.',
+			'sending.inApp' => 'In der App senden',
+			'sending.viaApp' => 'In der App',
+			'sending.inAppSent' => ({required Object name}) => 'An ${name} in der App gesendet',
+			'sending.inAppUnavailable' => ({required Object name}) => '${name} kann ihn gerade nicht in der App empfangen.',
+			'sending.inAppHistory' => 'In der App gesendet',
+			'sending.replied' => 'Beantwortet',
+			'sending.seen' => 'Gelesen',
+			'sending.formerAuthority' => 'Frühere Autorität',
+			'sending.theirReply' => ({required Object text}) => '„${text}“',
 			'streak.title' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('de'))(n, one: '${n} Tag in Folge!', other: '${n} Tage in Folge!', ), 
 			'streak.cardDays' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('de'))(n, one: 'Tag mit Gott', other: 'Tage mit Gott', ), 
 			'streak.lines.week' => 'Eine ganze Woche mit dem Herrn, Tag für Tag. Bravo, mach weiter!',
@@ -4368,24 +4441,31 @@ extension on TranslationsDe {
 			'documents.count' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('de'))(n, one: '${n} Dokument', other: '${n} Dokumente', ), 
 			'documents.more' => 'Mehr anzeigen',
 			'biblePlan.title' => 'Leseplan',
-			'biblePlan.intro' => 'Wähle, was du lesen willst und in welcher Zeit: Die App verteilt die Kapitel Tag für Tag.',
 			'biblePlan.duration' => 'Dauer',
 			'biblePlan.months3' => '3 Monate',
 			'biblePlan.months6' => '6 Monate',
 			'biblePlan.year' => '1 Jahr',
 			'biblePlan.custom' => 'Andere',
+			'biblePlan.unitMonths' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('de'))(n, one: 'Monat', other: 'Monate', ), 
+			'biblePlan.unitYear' => 'Jahr',
 			'biblePlan.days' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('de'))(n, one: '${n} Tag', other: '${n} Tage', ), 
 			'biblePlan.scope' => 'Was du liest',
 			'biblePlan.scopes.bible' => 'Die ganze Bibel',
 			'biblePlan.scopes.newTestament' => 'Das Neue Testament',
 			'biblePlan.scopes.oldTestament' => 'Das Alte Testament',
 			'biblePlan.scopes.psalmsProverbs' => 'Psalmen und Sprüche',
+			'biblePlan.chaptersShort' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('de'))(n, one: '${n} Kap.', other: '${n} Kap.', ), 
+			'biblePlan.oldTestament' => 'Altes Testament',
+			'biblePlan.newTestament' => 'Neues Testament',
 			'biblePlan.order' => 'Reihenfolge',
 			'biblePlan.orders.canonical' => 'Buch für Buch',
 			'biblePlan.orders.parallel' => 'AT + NT jeden Tag',
 			'biblePlan.reminder' => 'Tägliche Erinnerung',
 			'biblePlan.reminderAt' => 'Uhrzeit der Erinnerung',
 			'biblePlan.summary' => ({required Object chapters, required Object days, required Object perDay}) => '${chapters} Kapitel in ${days} Tagen, etwa ${perDay} pro Tag',
+			'biblePlan.chapterCount' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('de'))(n, one: '${n} Kapitel', other: '${n} Kapitel', ), 
+			'biblePlan.inDays' => ({required Object days}) => 'über ${days}',
+			'biblePlan.perDayAbout' => ({required Object perDay}) => 'etwa ${perDay} pro Tag',
 			'biblePlan.endsOn' => ({required Object date}) => 'Endet am ${date}',
 			'biblePlan.startsOn' => ({required Object date}) => 'Der Plan beginnt am ${date}.',
 			'biblePlan.start' => 'Plan beginnen',
@@ -4395,6 +4475,7 @@ extension on TranslationsDe {
 			'biblePlan.read' => 'Lesen',
 			'biblePlan.behind' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('de'))(n, one: '${n} Tag im Rückstand', other: '${n} Tage im Rückstand', ), 
 			'biblePlan.catchUp' => 'Tippe hier, um die offenen Kapitel zu sehen.',
+			'biblePlan.catchUpShort' => 'nachholen',
 			'biblePlan.chaptersRead' => ({required Object read, required Object total}) => '${read} von ${total} Kapiteln',
 			'biblePlan.late' => 'Im Rückstand',
 			'biblePlan.upcoming' => 'Als Nächstes',
@@ -4499,6 +4580,8 @@ extension on TranslationsDe {
 			'souls.stages.baptized' => 'Getauft',
 			'souls.contactSection' => 'Erneut kontaktieren',
 			'souls.everyone' => 'Alle Personen',
+			_ => null,
+		} ?? switch (path) {
 			'souls.contactToday' => 'Heute kontaktieren',
 			'souls.contactLate' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('de'))(n, one: '${n} Tag überfällig', other: '${n} Tage überfällig', ), 
 			'souls.contactOn' => ({required Object date}) => 'Nächster Kontakt am ${date}',
@@ -4518,8 +4601,6 @@ extension on TranslationsDe {
 			'souls.save' => 'Speichern',
 			'souls.saved' => 'Gespeichert',
 			'souls.call' => 'Anrufen',
-			_ => null,
-		} ?? switch (path) {
 			'souls.whatsApp' => 'WhatsApp',
 			'souls.sms' => 'SMS',
 			'souls.edit' => 'Bearbeiten',
@@ -4597,6 +4678,25 @@ extension on TranslationsDe {
 			'fasts.channel' => 'Mein Fasten',
 			'fasts.homeTitle' => ({required Object day, required Object total}) => 'Fasten · Tag ${day} von ${total}',
 			'fasts.homeText' => ({required Object time}) => 'Dieser Tag endet um ${time}',
+			'received.title' => 'Erhaltene Berichte',
+			'received.subtitle' => 'Von deinen Jüngern in der App gesendet',
+			'received.unreadCount' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('de'))(n, one: '${n} neuer', other: '${n} neue', ), 
+			'received.empty' => 'Noch kein Bericht erhalten. Wenn dir ein Jünger seinen in der App sendet, kommt er hier an.',
+			'received.day' => ({required Object date}) => 'Am ${date}',
+			'received.period' => ({required Object from, required Object to}) => '${from} bis ${to}',
+			'received.unread' => 'Neu',
+			'received.yourReply' => ({required Object text}) => 'Deine Antwort: „${text}“',
+			'received.open' => 'Ansehen',
+			'received.encourage' => 'Ermutigen',
+			'received.editReply' => 'Ändern',
+			'received.encourageTitle' => ({required Object name}) => 'Ein Wort für ${name}',
+			'received.suggestions.0' => 'Schöne Treue, mach weiter!',
+			'received.suggestions.1' => 'Ich bete für dich.',
+			'received.suggestions.2' => 'Gott stärke dich!',
+			'received.suggestions.3' => 'Bravo für deine Ausdauer.',
+			'received.hint' => 'Schreib deine Ermutigung…',
+			'received.send' => 'Senden',
+			'received.sent' => ({required Object name}) => '${name} hat dein Wort erhalten',
 			_ => null,
 		};
 	}

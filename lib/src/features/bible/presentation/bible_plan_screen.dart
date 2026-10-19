@@ -9,6 +9,7 @@ import '../../../core/i18n/strings.g.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_icons.dart';
 import '../../../core/theme/app_spacing.dart';
+import '../../../core/theme/app_theme.dart';
 import '../../../core/theme/app_tones.dart';
 import '../../../core/utils/date_extensions.dart';
 import '../../../core/utils/date_format.dart';
@@ -16,7 +17,6 @@ import '../../../core/widgets/adaptive_dialogs.dart';
 import '../../../core/widgets/adaptive_menus.dart';
 import '../../../core/widgets/app_back_button.dart';
 import '../../../core/widgets/fade_slide_in.dart';
-import '../../../core/widgets/progress_ring.dart';
 import '../../../core/widgets/reminder_row.dart';
 import '../../../core/widgets/section_card.dart';
 import '../../../core/widgets/segmented_tabs.dart';
@@ -28,6 +28,7 @@ import '../application/bible_reading.dart';
 import '../application/bible_settings.dart';
 import '../domain/bible.dart';
 import '../domain/reading_plan.dart';
+import 'widgets/plan_shelf.dart';
 
 /// The names of the books in the Bible read, the codes while they load.
 String Function(String) useBookNames(WidgetRef ref) {
@@ -53,8 +54,10 @@ Future<void> openPlanChapter(
 /// Bible › ⋮ › Plan de lecture (and the home screen): a plan made on the
 /// phone, the chapters shared out over 3, 6 or 12 months (or any number of
 /// days). Without a plan, its settings; with one, today's reading to tick,
-/// the late chapters (a sheet), the next days and the reminder. Each page
-/// holds on one screen: it scrolls only when the text is very large.
+/// the late chapters (a sheet), the next days and the reminder. Both pages
+/// open on the shelf of the 66 books (« Livre ouvert », [PlanShelf]): what
+/// the plan reads, then what is read. Each page holds on one screen: it
+/// scrolls only when the text is very large (a little on an iPhone SE).
 @RoutePage()
 class BiblePlanScreen extends HookConsumerWidget {
   const BiblePlanScreen({super.key});
@@ -128,7 +131,11 @@ class _Header extends StatelessWidget {
   @override
   Widget build(BuildContext context) => Container(
     decoration: const BoxDecoration(
-      color: AppColors.primaryDeep,
+      gradient: LinearGradient(
+        begin: Alignment.topCenter,
+        end: Alignment.bottomCenter,
+        colors: [AppColors.primaryDeep, AppColors.night],
+      ),
       borderRadius: BorderRadius.vertical(
         bottom: Radius.circular(AppRadius.xxl),
       ),
@@ -179,17 +186,25 @@ class _Header extends StatelessWidget {
   );
 }
 
-/// One choice among a few, as a tile: two side by side.
-class _Option extends StatelessWidget {
-  const _Option({
-    required this.label,
+/// One choice among a few, as a tile: bordeaux once chosen.
+class _PickTile extends StatelessWidget {
+  const _PickTile({
     required this.selected,
     required this.onTap,
+    required this.child,
+    this.label,
+    this.dense = false,
   });
 
-  final String label;
   final bool selected;
   final VoidCallback onTap;
+  final Widget child;
+
+  /// What a screen reader says, when [child] says it in pieces.
+  final String? label;
+
+  /// Less padding (a small phone).
+  final bool dense;
 
   @override
   Widget build(BuildContext context) {
@@ -198,43 +213,25 @@ class _Option extends StatelessWidget {
     return Semantics(
       selected: selected,
       button: true,
+      label: label,
+      excludeSemantics: label != null,
       child: Material(
-        color: selected ? tone.soft : scheme.surface,
+        color: selected ? tone.color : scheme.surface,
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(AppRadius.lg),
+          borderRadius: BorderRadius.circular(AppRadius.lg + 2),
           side: BorderSide(
-            color: selected ? tone.onSoft : scheme.outlineVariant,
-            width: selected ? 1.5 : 1,
+            color: selected ? tone.color : scheme.outlineVariant,
           ),
         ),
         clipBehavior: Clip.antiAlias,
         child: InkWell(
           onTap: onTap,
           child: Padding(
-            padding: const EdgeInsets.symmetric(
+            padding: EdgeInsets.symmetric(
               horizontal: AppSpacing.md,
-              vertical: AppSpacing.sm,
+              vertical: dense ? 6 : 10,
             ),
-            child: Row(
-              children: [
-                Expanded(
-                  child: Text(
-                    label,
-                    style: TextStyle(
-                      fontWeight: FontWeight.w600,
-                      height: 1.25,
-                      color: selected ? tone.onSoft : null,
-                    ),
-                  ),
-                ),
-                const SizedBox(width: AppSpacing.xs),
-                Icon(
-                  selected ? AppIcons.checkCircleFilled : AppIcons.checkCircle,
-                  size: 20,
-                  color: selected ? tone.onSoft : scheme.outlineVariant,
-                ),
-              ],
-            ),
+            child: child,
           ),
         ),
       ),
@@ -302,32 +299,123 @@ class _Setup extends HookConsumerWidget {
     final length = plan.schedule.length;
     final language = TranslationProvider.of(context).locale.languageCode;
     final perDay = NumberFormat('0.#', language).format(plan.total / length);
-    // a small phone (iPhone SE): no intro, closer sections, still one page
+    final scheme = Theme.of(context).colorScheme;
+    final tone = AppModule.bible.tone(context);
+    // a small phone (iPhone SE): a lower shelf, closer tiles
     final small = MediaQuery.sizeOf(context).height < 700;
-    final gap = small ? AppSpacing.md : AppSpacing.lg;
+    final gap = small ? AppSpacing.md - 2 : AppSpacing.md + 2;
+    // the durations as a big figure over its unit
+    final durations = [
+      (value: '3', unit: t.unitMonths(n: 3), label: t.months3),
+      (value: '6', unit: t.unitMonths(n: 6), label: t.months6),
+      (value: '1', unit: t.unitYear, label: t.year),
+      (value: '…', unit: t.custom, label: t.custom),
+    ];
 
     return _Page(
       header: _Header(
         title: t.title,
-        child: small
-            ? const SizedBox()
-            : Text(
-                t.intro,
-                style: const TextStyle(
-                  color: AppColors.onPrimaryMuted,
-                  height: 1.35,
-                ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            const SizedBox(height: AppSpacing.xs),
+            PlanShelf(
+              inScope: scopeBooks(scope.value),
+              height: small ? 50 : 84,
+            ),
+            SizedBox(height: small ? AppSpacing.sm : AppSpacing.md + 2),
+            // what the plan will be, read as one sentence
+            Semantics(
+              label:
+                  '${t.summary(chapters: plan.total, days: length, perDay: perDay)}. '
+                  '${t.endsOn(date: context.formatDate(plan.end, 'd MMMM y'))}',
+              excludeSemantics: true,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text.rich(
+                    TextSpan(
+                      children: [
+                        TextSpan(
+                          text: t.chapterCount(n: plan.total),
+                          style: TextStyle(
+                            fontFamily: 'Lora',
+                            fontSize: small ? 21 : 25,
+                            fontWeight: FontWeight.w600,
+                            color: AppColors.goldLight,
+                          ),
+                        ),
+                        const TextSpan(text: '  '),
+                        TextSpan(
+                          text: t.inDays(days: t.days(n: length)),
+                        ),
+                      ],
+                    ),
+                    style: const TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w700,
+                      color: Colors.white,
+                    ),
+                  ),
+                  const SizedBox(height: 2),
+                  Text(
+                    '${t.perDayAbout(perDay: perDay)} · '
+                    '${t.endsOn(date: context.formatDate(plan.end, 'd MMMM y'))}',
+                    style: const TextStyle(color: AppColors.onPrimaryMuted),
+                  ),
+                ],
               ),
+            ),
+          ],
+        ),
       ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           SectionLabel(t.duration),
           const SizedBox(height: AppSpacing.sm),
-          SegmentedTabs(
-            labels: [t.months3, t.months6, t.year, t.custom],
-            selectedIndex: preset.value,
-            onChanged: (index) => preset.value = index,
+          Row(
+            children: [
+              for (final (i, duration) in durations.indexed) ...[
+                if (i > 0) const SizedBox(width: AppSpacing.sm),
+                Expanded(
+                  child: _PickTile(
+                    selected: preset.value == i,
+                    onTap: () => preset.value = i,
+                    label: duration.label,
+                    dense: small,
+                    child: Column(
+                      children: [
+                        Text(
+                          duration.value,
+                          style: TextStyle(
+                            fontFamily: 'Lora',
+                            fontSize: small ? 19 : 24,
+                            height: 1.1,
+                            fontWeight: FontWeight.w600,
+                            color: preset.value == i
+                                ? Colors.white
+                                : tone.onSoft,
+                          ),
+                        ),
+                        Text(
+                          duration.unit,
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                          style: TextStyle(
+                            fontSize: 12.5,
+                            fontWeight: FontWeight.w700,
+                            color: preset.value == i
+                                ? Colors.white
+                                : scheme.onSurfaceVariant,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ],
+            ],
           ),
           if (preset.value == _presets.length)
             Padding(
@@ -371,24 +459,64 @@ class _Setup extends HookConsumerWidget {
           _Grid(
             children: [
               for (final value in PlanScope.values)
-                _Option(
-                  label: t.scopes[value.name] ?? value.name,
+                _PickTile(
                   selected: value == scope.value,
                   onTap: () => scope.value = value,
+                  dense: small,
+                  child: Row(
+                    children: [
+                      MiniShelf(
+                        books: scopeBooks(value),
+                        color: value == scope.value
+                            ? Colors.white
+                            : tone.onSoft,
+                      ),
+                      const SizedBox(width: 10),
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              t.scopes[value.name] ?? value.name,
+                              style: TextStyle(
+                                fontSize: 14,
+                                height: 1.2,
+                                fontWeight: FontWeight.w700,
+                                color: value == scope.value
+                                    ? Colors.white
+                                    : null,
+                              ),
+                            ),
+                            Text(
+                              t.chaptersShort(n: scopeChapters(value).length),
+                              style: TextStyle(
+                                fontSize: 12,
+                                fontWeight: FontWeight.w600,
+                                color: value == scope.value
+                                    ? Colors.white.withValues(alpha: 0.8)
+                                    : scheme.onSurfaceVariant,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
             ],
           ),
           if (scope.value == PlanScope.bible) ...[
-            SizedBox(height: gap),
-            SectionLabel(t.order),
-            const SizedBox(height: AppSpacing.sm),
-            SegmentedTabs(
-              labels: [
-                for (final value in PlanOrder.values)
-                  t.orders[value.name] ?? value.name,
-              ],
-              selectedIndex: order.value.index,
-              onChanged: (index) => order.value = PlanOrder.values[index],
+            const SizedBox(height: AppSpacing.md),
+            Semantics(
+              label: t.order,
+              child: SegmentedTabs(
+                labels: [
+                  for (final value in PlanOrder.values)
+                    t.orders[value.name] ?? value.name,
+                ],
+                selectedIndex: order.value.index,
+                onChanged: (index) => order.value = PlanOrder.values[index],
+              ),
             ),
           ],
           SizedBox(height: gap),
@@ -402,68 +530,28 @@ class _Setup extends HookConsumerWidget {
           ),
         ],
       ),
-      bottom: Column(
-        mainAxisSize: MainAxisSize.min,
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          _Summary(
-            text: t.summary(chapters: plan.total, days: length, perDay: perDay),
-            end: t.endsOn(date: context.formatDate(plan.end, 'd MMMM y')),
-          ),
-          const SizedBox(height: AppSpacing.sm),
-          FilledButton(
-            onPressed: () => ref.read(biblePlanProvider.notifier).start(plan),
-            style: FilledButton.styleFrom(
-              minimumSize: const Size.fromHeight(52),
-            ),
-            child: Text(t.start),
-          ),
-        ],
+      bottom: FilledButton.icon(
+        onPressed: () => ref.read(biblePlanProvider.notifier).start(plan),
+        style: _mainButton(tone.color),
+        icon: const Icon(AppIcons.bookmark, size: 20),
+        label: Text(t.start),
       ),
     );
   }
 }
 
-/// What the plan will be, above its button: two short lines.
-class _Summary extends StatelessWidget {
-  const _Summary({required this.text, required this.end});
-
-  final String text;
-  final String end;
-
-  @override
-  Widget build(BuildContext context) {
-    final tone = AppModule.bible.tone(context);
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Icon(AppIcons.calendarCheck, color: tone.onSoft, size: 22),
-        const SizedBox(width: AppSpacing.sm),
-        Flexible(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                text,
-                style: TextStyle(
-                  fontWeight: FontWeight.w700,
-                  color: tone.onSoft,
-                  height: 1.3,
-                ),
-              ),
-              Text(
-                end,
-                style: TextStyle(
-                  color: Theme.of(context).colorScheme.onSurfaceVariant,
-                ),
-              ),
-            ],
-          ),
-        ),
-      ],
-    );
-  }
-}
+/// The main button of both pages: in the bordeaux of the Bible, round.
+ButtonStyle _mainButton(Color color) => FilledButton.styleFrom(
+  backgroundColor: color,
+  foregroundColor: Colors.white,
+  minimumSize: const Size.fromHeight(54),
+  shape: const StadiumBorder(),
+  textStyle: const TextStyle(
+    fontFamily: AppTheme.fontFamily,
+    fontSize: 16,
+    fontWeight: FontWeight.w800,
+  ),
+);
 
 // ----- following a plan -----
 
@@ -477,7 +565,7 @@ class _Progress extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final t = context.t.biblePlan;
-    final scheme = Theme.of(context).colorScheme;
+    final tone = AppModule.bible.tone(context);
     final nameOf = useBookNames(ref);
     final now = today();
     final plan = progress.plan;
@@ -485,6 +573,8 @@ class _Progress extends HookConsumerWidget {
     final todayChapters = progress.chaptersOf(now);
     final behind = progress.behindOn(now);
     final next = progress.nextOn(now);
+    // the bookmark: the book of today's reading (else of the next chapter)
+    final marked = todayChapters.firstOrNull ?? next;
 
     Future<void> stop() async {
       final yes = await showConfirmDialog(
@@ -515,42 +605,56 @@ class _Progress extends HookConsumerWidget {
             ),
           ],
         ),
-        child: _ProgressSummary(progress: progress, index: index),
+        child: _ProgressSummary(
+          progress: progress,
+          index: index,
+          bookmark: marked == null
+              ? null
+              : planBooks.indexWhere((book) => book.$1 == marked.book),
+        ),
       ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           if (behind > 0) ...[
-            Material(
-              color: AppColors.gold.withValues(alpha: 0.16),
-              borderRadius: BorderRadius.circular(AppRadius.lg),
-              clipBehavior: Clip.antiAlias,
-              child: InkWell(
-                onTap: () => _showLate(context, progress, now),
-                child: Padding(
-                  padding: const EdgeInsets.all(AppSpacing.md),
-                  child: Row(
-                    children: [
-                      const Icon(AppIcons.countdown, color: AppColors.gold),
-                      const SizedBox(width: AppSpacing.md),
-                      Expanded(
-                        child: Text.rich(
-                          TextSpan(
-                            children: [
-                              TextSpan(
-                                text: t.behind(n: behind),
-                                style: const TextStyle(
-                                  fontWeight: FontWeight.w700,
+            Semantics(
+              button: true,
+              hint: t.catchUp,
+              child: Material(
+                color: AppColors.gold.withValues(alpha: 0.16),
+                borderRadius: BorderRadius.circular(AppRadius.lg + 2),
+                clipBehavior: Clip.antiAlias,
+                child: InkWell(
+                  onTap: () => _showLate(context, progress, now),
+                  child: Padding(
+                    padding: const EdgeInsetsDirectional.fromSTEB(
+                      14,
+                      10,
+                      8,
+                      10,
+                    ),
+                    child: Row(
+                      children: [
+                        const Icon(AppIcons.countdown, color: AppColors.gold),
+                        const SizedBox(width: 10),
+                        Expanded(
+                          child: Text.rich(
+                            TextSpan(
+                              children: [
+                                TextSpan(
+                                  text: t.behind(n: behind),
+                                  style: const TextStyle(
+                                    fontWeight: FontWeight.w800,
+                                  ),
                                 ),
-                              ),
-                              TextSpan(text: ' · ${t.catchUp}'),
-                            ],
+                                TextSpan(text: ' · ${t.catchUpShort}'),
+                              ],
+                            ),
                           ),
-                          style: const TextStyle(height: 1.3),
                         ),
-                      ),
-                      const Icon(AppIcons.chevronRight),
-                    ],
+                        const Icon(AppIcons.chevronRight),
+                      ],
+                    ),
                   ),
                 ),
               ),
@@ -558,90 +662,110 @@ class _Progress extends HookConsumerWidget {
             const SizedBox(height: AppSpacing.md),
           ],
           if (todayChapters.isNotEmpty) ...[
-            SectionCard(
-              header: t.today,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.fromLTRB(
-                    AppSpacing.lg,
-                    AppSpacing.xs,
-                    AppSpacing.lg,
-                    AppSpacing.md,
-                  ),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
+            _PlanCard(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  Row(
                     children: [
-                      _ChapterDots(chapters: todayChapters, nameOf: nameOf),
-                      if (progress.doneOn(now)) ...[
-                        const SizedBox(height: AppSpacing.sm),
-                        Text(
-                          t.todayDone,
-                          style: TextStyle(
-                            fontWeight: FontWeight.w700,
-                            color: scheme.primary,
+                      Icon(
+                        AppIcons.bookmarkFilled,
+                        size: 18,
+                        color: tone.onSoft,
+                      ),
+                      const SizedBox(width: 6),
+                      Expanded(
+                        child: Semantics(
+                          header: true,
+                          child: Text(
+                            t.today.toUpperCase(),
+                            style: TextStyle(
+                              fontSize: 12,
+                              letterSpacing: 1,
+                              fontWeight: FontWeight.w800,
+                              color: tone.onSoft,
+                            ),
                           ),
                         ),
-                      ],
+                      ),
                     ],
                   ),
-                ),
-              ],
+                  _ChapterDots(chapters: todayChapters, nameOf: nameOf),
+                  if (progress.doneOn(now)) ...[
+                    const SizedBox(height: AppSpacing.sm),
+                    Text(
+                      t.todayDone,
+                      style: TextStyle(
+                        fontWeight: FontWeight.w700,
+                        color: tone.onSoft,
+                      ),
+                    ),
+                  ],
+                ],
+              ),
             ),
             const SizedBox(height: AppSpacing.md),
           ],
           if (index + 1 < progress.length) ...[
-            SectionCard(
-              header: t.upcoming,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.fromLTRB(
-                    AppSpacing.lg,
-                    0,
-                    AppSpacing.lg,
-                    AppSpacing.md,
+            _PlanCard(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  Semantics(
+                    header: true,
+                    child: Text(
+                      t.upcoming.toUpperCase(),
+                      style: TextStyle(
+                        fontSize: 12,
+                        letterSpacing: 1,
+                        fontWeight: FontWeight.w800,
+                        color: Theme.of(context).colorScheme.onSurfaceVariant,
+                      ),
+                    ),
                   ),
-                  child: Column(
-                    children: [
-                      for (var i = 1; i <= _upcomingDays; i++)
-                        if (index + i >= 0 && index + i < progress.length)
-                          Padding(
-                            padding: const EdgeInsets.symmetric(
-                              vertical: AppSpacing.xs,
-                            ),
-                            child: Row(
-                              children: [
-                                SizedBox(
-                                  width: 72,
-                                  child: Text(
-                                    context.formatDate(
-                                      now.add(Duration(days: i)),
-                                      'EEE d',
-                                    ),
-                                    style: TextStyle(
-                                      color: scheme.onSurfaceVariant,
-                                    ),
-                                  ),
+                  const SizedBox(height: AppSpacing.xs),
+                  for (var i = 1; i <= _upcomingDays; i++)
+                    if (index + i >= 0 && index + i < progress.length)
+                      Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 3),
+                        child: Row(
+                          children: [
+                            // one line, however long the day's name
+                            ConstrainedBox(
+                              constraints: const BoxConstraints(minWidth: 68),
+                              child: Text(
+                                context.formatDate(
+                                  now.add(Duration(days: i)),
+                                  'EEE d',
                                 ),
-                                Expanded(
-                                  child: Text(
-                                    readingLabel(
-                                      progress.schedule[index + i],
-                                      nameOf,
-                                    ),
-                                    maxLines: 1,
-                                    overflow: TextOverflow.ellipsis,
-                                    style: const TextStyle(
-                                      fontWeight: FontWeight.w600,
-                                    ),
-                                  ),
+                                maxLines: 1,
+                                softWrap: false,
+                                style: TextStyle(
+                                  color: Theme.of(
+                                    context,
+                                  ).colorScheme.onSurfaceVariant,
                                 ),
-                              ],
+                              ),
                             ),
-                          ),
-                    ],
-                  ),
-                ),
-              ],
+                            const SizedBox(width: AppSpacing.sm),
+                            Expanded(
+                              child: Text(
+                                readingLabel(
+                                  progress.schedule[index + i],
+                                  nameOf,
+                                ),
+                                maxLines: 1,
+                                overflow: TextOverflow.ellipsis,
+                                style: const TextStyle(
+                                  fontWeight: FontWeight.w600,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                ],
+              ),
             ),
             const SizedBox(height: AppSpacing.md),
           ],
@@ -662,9 +786,7 @@ class _Progress extends HookConsumerWidget {
           ? null
           : FilledButton.icon(
               onPressed: () => openPlanChapter(context, ref, next),
-              style: FilledButton.styleFrom(
-                minimumSize: const Size.fromHeight(52),
-              ),
+              style: _mainButton(tone.color),
               icon: const Icon(AppIcons.bibleTile),
               label: Text('${t.read} · ${readingLabel([next], nameOf)}'),
             ),
@@ -672,78 +794,106 @@ class _Progress extends HookConsumerWidget {
   }
 }
 
-/// The ring and the figures of the header.
+/// The top of a plan being read: the shelf filling with gold (the bookmark
+/// on the book of the day), the day, the chapters read, the end, and the
+/// share read in big.
 class _ProgressSummary extends StatelessWidget {
-  const _ProgressSummary({required this.progress, required this.index});
+  const _ProgressSummary({
+    required this.progress,
+    required this.index,
+    required this.bookmark,
+  });
 
   final PlanProgress progress;
   final int index;
+  final int? bookmark;
 
   @override
   Widget build(BuildContext context) {
     final t = context.t.biblePlan;
-    return Row(
+    final small = MediaQuery.sizeOf(context).height < 700;
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        SizedBox.square(
-          dimension: 64,
-          child: Stack(
-            alignment: Alignment.center,
-            children: [
-              SizedBox.expand(
-                child: CustomPaint(
-                  painter: ProgressRingPainter(
-                    progress: progress.progress,
-                    color: AppColors.goldLight,
-                    track: Colors.white.withValues(alpha: 0.12),
-                  ),
-                ),
-              ),
-              Text(
-                context.formatPercent(progress.progress),
-                style: const TextStyle(
-                  color: Colors.white,
-                  fontWeight: FontWeight.w800,
-                  fontSize: 15,
-                ),
-              ),
-            ],
-          ),
+        const SizedBox(height: AppSpacing.xs),
+        PlanShelf(
+          inScope: scopeBooks(progress.plan.scope),
+          read: readShares(progress),
+          bookmark: bookmark,
+          height: small ? 48 : 80,
         ),
-        const SizedBox(width: AppSpacing.lg),
-        Expanded(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                progress.finished
-                    ? t.finished
-                    : t.dayOf(
-                        day: (index + 1).clamp(1, progress.length),
-                        total: progress.length,
-                      ),
-                style: const TextStyle(
-                  color: Colors.white,
-                  fontWeight: FontWeight.w800,
-                  fontSize: 16,
-                ),
+        SizedBox(height: small ? AppSpacing.sm : AppSpacing.md + 2),
+        Row(
+          crossAxisAlignment: CrossAxisAlignment.end,
+          children: [
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    progress.finished
+                        ? t.finished
+                        : t.dayOf(
+                            day: (index + 1).clamp(1, progress.length),
+                            total: progress.length,
+                          ),
+                    style: TextStyle(
+                      fontFamily: 'Lora',
+                      fontSize: small ? 21 : 24,
+                      fontWeight: FontWeight.w600,
+                      color: Colors.white,
+                    ),
+                  ),
+                  Text(
+                    t.chaptersRead(
+                      read: progress.readCount,
+                      total: progress.plan.total,
+                    ),
+                    style: const TextStyle(color: AppColors.onPrimaryMuted),
+                  ),
+                  Text(
+                    t.endsOn(
+                      date: context.formatDate(progress.plan.end, 'd MMMM y'),
+                    ),
+                    style: const TextStyle(color: AppColors.goldLight),
+                  ),
+                ],
               ),
-              Text(
-                t.chaptersRead(
-                  read: progress.readCount,
-                  total: progress.plan.total,
-                ),
-                style: const TextStyle(color: AppColors.onPrimaryMuted),
+            ),
+            const SizedBox(width: AppSpacing.md),
+            Text(
+              context.formatPercent(progress.progress),
+              style: const TextStyle(
+                fontSize: 34,
+                height: 1,
+                fontWeight: FontWeight.w800,
+                color: AppColors.goldLight,
               ),
-              Text(
-                t.endsOn(
-                  date: context.formatDate(progress.plan.end, 'd MMMM y'),
-                ),
-                style: const TextStyle(color: AppColors.goldLight),
-              ),
-            ],
-          ),
+            ),
+          ],
         ),
       ],
+    );
+  }
+}
+
+/// A card of the progress page: white (the surface), round, a hairline.
+class _PlanCard extends StatelessWidget {
+  const _PlanCard({required this.child});
+
+  final Widget child;
+
+  @override
+  Widget build(BuildContext context) {
+    final scheme = Theme.of(context).colorScheme;
+    return Container(
+      padding: const EdgeInsetsDirectional.fromSTEB(16, 12, 16, 14),
+      decoration: BoxDecoration(
+        color: scheme.surface,
+        borderRadius: BorderRadius.circular(AppRadius.xl + 2),
+        border: Border.all(color: scheme.outlineVariant),
+      ),
+      child: child,
     );
   }
 }

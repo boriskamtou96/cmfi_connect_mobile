@@ -1266,7 +1266,9 @@
       "quitTitle": "प्रार्थना-समय रोकना है?",
       "quitText": "यह तुम्हारे दिन में नहीं गिना जाएगा।",
       "quit": "रोको",
-      "keepPraying": "प्रार्थना जारी रखो"
+      "keepPraying": "प्रार्थना जारी रखो",
+      "voiceOff": "ज़ोर से पढ़ो",
+      "voiceOn": "ज़ोर से पढ़ना चालू है"
     },
     "done": {
       "title": "{retreat} पूरा हुआ",
@@ -1490,7 +1492,16 @@
     "shared": "शेयर किया",
     "noRecipients": "सेटिंग्स में प्राप्तकर्ता चुनो, या PDF शेयर करो।",
     "settings": "सेटिंग्स",
-    "permissionDenied": "सही समय पर याद दिलाने के लिए सूचनाएँ चालू करो।"
+    "permissionDenied": "सही समय पर याद दिलाने के लिए सूचनाएँ चालू करो।",
+    "inApp": "ऐप में भेजें",
+    "viaApp": "ऐप में",
+    "inAppSent": "{name} को ऐप में भेजी गई",
+    "inAppUnavailable": "{name} अभी इसे ऐप में नहीं पा सकते।",
+    "inAppHistory": "ऐप में भेजी गईं",
+    "replied": "जवाब दिया",
+    "seen": "पढ़ी गई",
+    "formerAuthority": "पूर्व अगुवा",
+    "theirReply": "“{text}”"
   },
   "streak": {
     "title(plural, param=n)": {
@@ -1808,12 +1819,16 @@
   },
   "biblePlan": {
     "title": "पठन योजना",
-    "intro": "चुनो कि क्या पढ़ना है और कितने समय में: ऐप अध्यायों को दिन-ब-दिन बाँट देता है।",
     "duration": "अवधि",
     "months3": "3 महीने",
     "months6": "6 महीने",
     "year": "1 साल",
     "custom": "अन्य",
+    "unitMonths(plural, param=n)": {
+      "one": "महीना",
+      "other": "महीने"
+    },
+    "unitYear": "साल",
     "days(plural, param=n)": {
       "one": "{n} दिन",
       "other": "{n} दिन"
@@ -1825,6 +1840,12 @@
       "oldTestament": "पुराना नियम",
       "psalmsProverbs": "भजन संहिता और नीतिवचन"
     },
+    "chaptersShort(plural, param=n)": {
+      "one": "{n} अध्याय",
+      "other": "{n} अध्याय"
+    },
+    "oldTestament": "पुराना नियम",
+    "newTestament": "नया नियम",
     "order": "क्रम",
     "orders(map)": {
       "canonical": "पुस्तक दर पुस्तक",
@@ -1833,6 +1854,12 @@
     "reminder": "रोज़ का रिमाइंडर",
     "reminderAt": "रिमाइंडर का समय",
     "summary": "{days} दिनों में {chapters} अध्याय, रोज़ लगभग {perDay}",
+    "chapterCount(plural, param=n)": {
+      "one": "{n} अध्याय",
+      "other": "{n} अध्याय"
+    },
+    "inDays": "{days} में",
+    "perDayAbout": "रोज़ लगभग {perDay}",
     "endsOn": "{date} को समाप्त",
     "startsOn": "योजना {date} को शुरू होगी।",
     "start": "योजना शुरू करें",
@@ -1845,6 +1872,7 @@
       "other": "{n} दिन पीछे"
     },
     "catchUp": "पीछे छूटे अध्याय देखने के लिए यहाँ छुओ।",
+    "catchUpShort": "पूरा करो",
     "chaptersRead": "{total} में से {read} अध्याय",
     "late": "पीछे छूटे",
     "upcoming": "आने वाले",
@@ -2102,5 +2130,31 @@
     "channel": "मेरे उपवास",
     "homeTitle": "उपवास · दिन {day}/{total}",
     "homeText": "यह दिन {time} पर पूरा होगा"
+  },
+  "received": {
+    "title": "मिली रिपोर्टें",
+    "subtitle": "आपके शिष्यों ने ऐप में भेजीं",
+    "unreadCount(plural, param=n)": {
+      "one": "{n} नई",
+      "other": "{n} नई"
+    },
+    "empty": "अभी तक कोई रिपोर्ट नहीं मिली। जब कोई शिष्य ऐप में अपनी रिपोर्ट भेजेगा, वह यहाँ आएगी।",
+    "day": "{date} को",
+    "period": "{from} से {to} तक",
+    "unread": "नई",
+    "yourReply": "आपका जवाब: “{text}”",
+    "open": "देखें",
+    "encourage": "प्रोत्साहित करें",
+    "editReply": "बदलें",
+    "encourageTitle": "{name} के लिए एक शब्द",
+    "suggestions": [
+      "सुंदर विश्वासयोग्यता, जारी रखें!",
+      "मैं आपके लिए प्रार्थना में हूँ।",
+      "परमेश्वर आपको सामर्थ दे!",
+      "आपकी लगन के लिए शाबाश।"
+    ],
+    "hint": "अपना प्रोत्साहन लिखें…",
+    "send": "भेजें",
+    "sent": "{name} को आपका संदेश मिल गया"
   }
 }

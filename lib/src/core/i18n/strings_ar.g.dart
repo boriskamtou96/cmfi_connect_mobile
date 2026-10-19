@@ -81,6 +81,7 @@ class TranslationsAr extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _Translations$memorize$ar memorize = _Translations$memorize$ar._(_root);
 	@override late final _Translations$souls$ar souls = _Translations$souls$ar._(_root);
 	@override late final _Translations$fasts$ar fasts = _Translations$fasts$ar._(_root);
+	@override late final _Translations$received$ar received = _Translations$received$ar._(_root);
 }
 
 // Path: app
@@ -1020,6 +1021,15 @@ class _Translations$sending$ar extends Translations$sending$fr {
 	@override String get noRecipients => 'اختر المستلمين في الإعدادات، أو شارك ملف PDF.';
 	@override String get settings => 'الإعدادات';
 	@override String get permissionDenied => 'اسمح بالإشعارات لتصلك في الوقت المناسب.';
+	@override String get inApp => 'إرسال في التطبيق';
+	@override String get viaApp => 'في التطبيق';
+	@override String inAppSent({required Object name}) => 'أُرسل إلى ${name} في التطبيق';
+	@override String inAppUnavailable({required Object name}) => 'لا يمكن لـ${name} استلامه في التطبيق حاليًا.';
+	@override String get inAppHistory => 'المرسَلة في التطبيق';
+	@override String get replied => 'تمّ الرد';
+	@override String get seen => 'مقروء';
+	@override String get formerAuthority => 'مرشد سابق';
+	@override String theirReply({required Object text}) => '«${text}»';
 }
 
 // Path: streak
@@ -1471,12 +1481,20 @@ class _Translations$biblePlan$ar extends Translations$biblePlan$fr {
 
 	// Translations
 	@override String get title => 'خطة القراءة';
-	@override String get intro => 'اختر ما تريد قراءته وفي أي مدة: يوزّع التطبيق الأصحاحات يومًا بعد يوم.';
 	@override String get duration => 'المدة';
 	@override String get months3 => '3 أشهر';
 	@override String get months6 => '6 أشهر';
 	@override String get year => 'سنة';
 	@override String get custom => 'أخرى';
+	@override String unitMonths({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n,
+		zero: 'شهر',
+		one: 'شهر',
+		two: 'شهران',
+		few: 'أشهر',
+		many: 'شهرًا',
+		other: 'شهر',
+	);
+	@override String get unitYear => 'سنة';
 	@override String days({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n,
 		zero: '${n} يوم',
 		one: 'يوم واحد',
@@ -1492,6 +1510,16 @@ class _Translations$biblePlan$ar extends Translations$biblePlan$fr {
 		'oldTestament': 'العهد القديم',
 		'psalmsProverbs': 'المزامير والأمثال',
 	};
+	@override String chaptersShort({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n,
+		zero: '${n} أصحاح',
+		one: 'أصحاح واحد',
+		two: 'أصحاحان',
+		few: '${n} أصحاحات',
+		many: '${n} أصحاحًا',
+		other: '${n} أصحاح',
+	);
+	@override String get oldTestament => 'العهد القديم';
+	@override String get newTestament => 'العهد الجديد';
 	@override String get order => 'الترتيب';
 	@override Map<String, String> get orders => {
 		'canonical': 'سفرًا بعد سفر',
@@ -1500,6 +1528,16 @@ class _Translations$biblePlan$ar extends Translations$biblePlan$fr {
 	@override String get reminder => 'تذكير يومي';
 	@override String get reminderAt => 'وقت التذكير';
 	@override String summary({required Object chapters, required Object days, required Object perDay}) => '${chapters} أصحاحًا في ${days} يومًا، نحو ${perDay} في اليوم';
+	@override String chapterCount({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n,
+		zero: '${n} أصحاح',
+		one: 'أصحاح واحد',
+		two: 'أصحاحان',
+		few: '${n} أصحاحات',
+		many: '${n} أصحاحًا',
+		other: '${n} أصحاح',
+	);
+	@override String inDays({required Object days}) => 'في ${days}';
+	@override String perDayAbout({required Object perDay}) => 'نحو ${perDay} في اليوم';
 	@override String endsOn({required Object date}) => 'ينتهي في ${date}';
 	@override String startsOn({required Object date}) => 'تبدأ الخطة في ${date}.';
 	@override String get start => 'ابدأ الخطة';
@@ -1516,6 +1554,7 @@ class _Translations$biblePlan$ar extends Translations$biblePlan$fr {
 		other: 'تأخر ${n} يوم',
 	);
 	@override String get catchUp => 'المس هنا لترى الأصحاحات التي عليك استدراكها.';
+	@override String get catchUpShort => 'استدراك';
 	@override String chaptersRead({required Object read, required Object total}) => '${read} من ${total} أصحاحًا';
 	@override String get late => 'متأخر';
 	@override String get upcoming => 'القادم';
@@ -1793,6 +1832,43 @@ class _Translations$fasts$ar extends Translations$fasts$fr {
 	@override String get channel => 'أصوامي';
 	@override String homeTitle({required Object day, required Object total}) => 'صوم · اليوم ${day} من ${total}';
 	@override String homeText({required Object time}) => 'ينتهي هذا اليوم عند ${time}';
+}
+
+// Path: received
+class _Translations$received$ar extends Translations$received$fr {
+	_Translations$received$ar._(TranslationsAr root) : this._root = root, super.internal(root);
+
+	final TranslationsAr _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'التقارير المستلمة';
+	@override String get subtitle => 'أرسلها تلاميذك في التطبيق';
+	@override String unreadCount({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n,
+		zero: 'لا جديد',
+		one: 'تقرير جديد',
+		two: 'تقريران جديدان',
+		few: '${n} تقارير جديدة',
+		many: '${n} تقريرًا جديدًا',
+		other: '${n} تقرير جديد',
+	);
+	@override String get empty => 'لم تستلم أي تقرير بعد. عندما يرسل لك تلميذ تقريره في التطبيق، يصل إلى هنا.';
+	@override String day({required Object date}) => 'يوم ${date}';
+	@override String period({required Object from, required Object to}) => 'من ${from} إلى ${to}';
+	@override String get unread => 'جديد';
+	@override String yourReply({required Object text}) => 'ردّك: «${text}»';
+	@override String get open => 'عرض';
+	@override String get encourage => 'شجّع';
+	@override String get editReply => 'تعديل';
+	@override String encourageTitle({required Object name}) => 'كلمة لـ${name}';
+	@override List<String> get suggestions => [
+		'أمانة جميلة، واصل!',
+		'أنا أصلّي من أجلك.',
+		'ليقوّك الله!',
+		'أحسنت على مثابرتك.',
+	];
+	@override String get hint => 'اكتب كلمة تشجيع…';
+	@override String get send => 'إرسال';
+	@override String sent({required Object name}) => 'وصلت كلمتك إلى ${name}';
 }
 
 // Path: welcome.seek
@@ -2676,6 +2752,8 @@ class _Translations$prayer$session$ar extends Translations$prayer$session$fr {
 	@override String get quitText => 'لن تُحتسب في يومك.';
 	@override String get quit => 'إيقاف';
 	@override String get keepPraying => 'متابعة الصلاة';
+	@override String get voiceOff => 'اقرأ بصوت عالٍ';
+	@override String get voiceOn => 'القراءة بصوت عالٍ مفعّلة';
 }
 
 // Path: prayer.done
@@ -4227,6 +4305,8 @@ extension on TranslationsAr {
 			'prayer.session.quitText' => 'لن تُحتسب في يومك.',
 			'prayer.session.quit' => 'إيقاف',
 			'prayer.session.keepPraying' => 'متابعة الصلاة',
+			'prayer.session.voiceOff' => 'اقرأ بصوت عالٍ',
+			'prayer.session.voiceOn' => 'القراءة بصوت عالٍ مفعّلة',
 			'prayer.done.title' => ({required Object retreat}) => 'اكتملت ${retreat}',
 			'prayer.done.text' => '15 دقيقة مع الرب.\nلقد سمع كل صلاة من صلواتك.',
 			'prayer.done.report' => 'تمت الإضافة إلى تقريرك',
@@ -4256,10 +4336,10 @@ extension on TranslationsAr {
 			'prayer.topics.download' => 'تنزيل ملف PDF',
 			'prayer.topics.noDocument' => 'لا يوجد ملف PDF',
 			'prayer.topics.openDocument' => 'فتح ملف PDF',
-			'prayer.lists.title' => 'قوائم صلاتي',
-			'prayer.lists.private' => 'لك وحدك',
 			_ => null,
 		} ?? switch (path) {
+			'prayer.lists.title' => 'قوائم صلاتي',
+			'prayer.lists.private' => 'لك وحدك',
 			'prayer.lists.names.unbelievers' => 'لم يؤمنوا بعد',
 			'prayer.lists.names.believers' => 'المؤمنون',
 			'prayer.lists.names.backsliders' => 'المرتدّون',
@@ -4395,6 +4475,15 @@ extension on TranslationsAr {
 			'sending.noRecipients' => 'اختر المستلمين في الإعدادات، أو شارك ملف PDF.',
 			'sending.settings' => 'الإعدادات',
 			'sending.permissionDenied' => 'اسمح بالإشعارات لتصلك في الوقت المناسب.',
+			'sending.inApp' => 'إرسال في التطبيق',
+			'sending.viaApp' => 'في التطبيق',
+			'sending.inAppSent' => ({required Object name}) => 'أُرسل إلى ${name} في التطبيق',
+			'sending.inAppUnavailable' => ({required Object name}) => 'لا يمكن لـ${name} استلامه في التطبيق حاليًا.',
+			'sending.inAppHistory' => 'المرسَلة في التطبيق',
+			'sending.replied' => 'تمّ الرد',
+			'sending.seen' => 'مقروء',
+			'sending.formerAuthority' => 'مرشد سابق',
+			'sending.theirReply' => ({required Object text}) => '«${text}»',
 			'streak.title' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n, zero: '${n} يوم على التوالي!', one: 'يوم واحد على التوالي!', two: 'يومان على التوالي!', few: '${n} أيام على التوالي!', many: '${n} يومًا على التوالي!', other: '${n} يوم على التوالي!', ), 
 			'streak.cardDays' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n, zero: 'يوم مع الله', one: 'يوم مع الله', two: 'يومان مع الله', few: 'أيام مع الله', many: 'يومًا مع الله', other: 'يوم مع الله', ), 
 			'streak.lines.week' => 'أسبوع كامل مع الرب، يومًا بعد يوم. أحسنت، تابع!',
@@ -4622,24 +4711,31 @@ extension on TranslationsAr {
 			'documents.count' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n, zero: '${n} مستند', one: 'مستند واحد', two: 'مستندان', few: '${n} مستندات', many: '${n} مستندًا', other: '${n} مستند', ), 
 			'documents.more' => 'عرض المزيد',
 			'biblePlan.title' => 'خطة القراءة',
-			'biblePlan.intro' => 'اختر ما تريد قراءته وفي أي مدة: يوزّع التطبيق الأصحاحات يومًا بعد يوم.',
 			'biblePlan.duration' => 'المدة',
 			'biblePlan.months3' => '3 أشهر',
 			'biblePlan.months6' => '6 أشهر',
 			'biblePlan.year' => 'سنة',
 			'biblePlan.custom' => 'أخرى',
+			'biblePlan.unitMonths' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n, zero: 'شهر', one: 'شهر', two: 'شهران', few: 'أشهر', many: 'شهرًا', other: 'شهر', ), 
+			'biblePlan.unitYear' => 'سنة',
 			'biblePlan.days' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n, zero: '${n} يوم', one: 'يوم واحد', two: 'يومان', few: '${n} أيام', many: '${n} يومًا', other: '${n} يوم', ), 
 			'biblePlan.scope' => 'ما تقرأه',
 			'biblePlan.scopes.bible' => 'الكتاب المقدس كله',
 			'biblePlan.scopes.newTestament' => 'العهد الجديد',
 			'biblePlan.scopes.oldTestament' => 'العهد القديم',
 			'biblePlan.scopes.psalmsProverbs' => 'المزامير والأمثال',
+			'biblePlan.chaptersShort' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n, zero: '${n} أصحاح', one: 'أصحاح واحد', two: 'أصحاحان', few: '${n} أصحاحات', many: '${n} أصحاحًا', other: '${n} أصحاح', ), 
+			'biblePlan.oldTestament' => 'العهد القديم',
+			'biblePlan.newTestament' => 'العهد الجديد',
 			'biblePlan.order' => 'الترتيب',
 			'biblePlan.orders.canonical' => 'سفرًا بعد سفر',
 			'biblePlan.orders.parallel' => 'العهدان كل يوم',
 			'biblePlan.reminder' => 'تذكير يومي',
 			'biblePlan.reminderAt' => 'وقت التذكير',
 			'biblePlan.summary' => ({required Object chapters, required Object days, required Object perDay}) => '${chapters} أصحاحًا في ${days} يومًا، نحو ${perDay} في اليوم',
+			'biblePlan.chapterCount' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n, zero: '${n} أصحاح', one: 'أصحاح واحد', two: 'أصحاحان', few: '${n} أصحاحات', many: '${n} أصحاحًا', other: '${n} أصحاح', ), 
+			'biblePlan.inDays' => ({required Object days}) => 'في ${days}',
+			'biblePlan.perDayAbout' => ({required Object perDay}) => 'نحو ${perDay} في اليوم',
 			'biblePlan.endsOn' => ({required Object date}) => 'ينتهي في ${date}',
 			'biblePlan.startsOn' => ({required Object date}) => 'تبدأ الخطة في ${date}.',
 			'biblePlan.start' => 'ابدأ الخطة',
@@ -4649,6 +4745,7 @@ extension on TranslationsAr {
 			'biblePlan.read' => 'اقرأ',
 			'biblePlan.behind' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n, zero: 'تأخر ${n} يوم', one: 'تأخر يوم واحد', two: 'تأخر يومين', few: 'تأخر ${n} أيام', many: 'تأخر ${n} يومًا', other: 'تأخر ${n} يوم', ), 
 			'biblePlan.catchUp' => 'المس هنا لترى الأصحاحات التي عليك استدراكها.',
+			'biblePlan.catchUpShort' => 'استدراك',
 			'biblePlan.chaptersRead' => ({required Object read, required Object total}) => '${read} من ${total} أصحاحًا',
 			'biblePlan.late' => 'متأخر',
 			'biblePlan.upcoming' => 'القادم',
@@ -4753,6 +4850,8 @@ extension on TranslationsAr {
 			'souls.stages.baptized' => 'تعمّد',
 			'souls.contactSection' => 'للتواصل مجددًا',
 			'souls.everyone' => 'جميع الأشخاص',
+			_ => null,
+		} ?? switch (path) {
 			'souls.contactToday' => 'تواصل اليوم',
 			'souls.contactLate' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n, one: 'متأخر يومًا', other: 'متأخر ${n} أيام', ), 
 			'souls.contactOn' => ({required Object date}) => 'التواصل القادم في ${date}',
@@ -4772,8 +4871,6 @@ extension on TranslationsAr {
 			'souls.save' => 'احفظ',
 			'souls.saved' => 'تم الحفظ',
 			'souls.call' => 'اتصل',
-			_ => null,
-		} ?? switch (path) {
 			'souls.whatsApp' => 'واتساب',
 			'souls.sms' => 'رسالة',
 			'souls.edit' => 'تعديل',
@@ -4851,6 +4948,25 @@ extension on TranslationsAr {
 			'fasts.channel' => 'أصوامي',
 			'fasts.homeTitle' => ({required Object day, required Object total}) => 'صوم · اليوم ${day} من ${total}',
 			'fasts.homeText' => ({required Object time}) => 'ينتهي هذا اليوم عند ${time}',
+			'received.title' => 'التقارير المستلمة',
+			'received.subtitle' => 'أرسلها تلاميذك في التطبيق',
+			'received.unreadCount' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n, zero: 'لا جديد', one: 'تقرير جديد', two: 'تقريران جديدان', few: '${n} تقارير جديدة', many: '${n} تقريرًا جديدًا', other: '${n} تقرير جديد', ), 
+			'received.empty' => 'لم تستلم أي تقرير بعد. عندما يرسل لك تلميذ تقريره في التطبيق، يصل إلى هنا.',
+			'received.day' => ({required Object date}) => 'يوم ${date}',
+			'received.period' => ({required Object from, required Object to}) => 'من ${from} إلى ${to}',
+			'received.unread' => 'جديد',
+			'received.yourReply' => ({required Object text}) => 'ردّك: «${text}»',
+			'received.open' => 'عرض',
+			'received.encourage' => 'شجّع',
+			'received.editReply' => 'تعديل',
+			'received.encourageTitle' => ({required Object name}) => 'كلمة لـ${name}',
+			'received.suggestions.0' => 'أمانة جميلة، واصل!',
+			'received.suggestions.1' => 'أنا أصلّي من أجلك.',
+			'received.suggestions.2' => 'ليقوّك الله!',
+			'received.suggestions.3' => 'أحسنت على مثابرتك.',
+			'received.hint' => 'اكتب كلمة تشجيع…',
+			'received.send' => 'إرسال',
+			'received.sent' => ({required Object name}) => 'وصلت كلمتك إلى ${name}',
 			_ => null,
 		};
 	}

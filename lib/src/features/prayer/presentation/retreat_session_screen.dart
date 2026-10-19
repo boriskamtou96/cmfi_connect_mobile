@@ -10,6 +10,7 @@ import '../../../core/i18n/strings.g.dart';
 import '../../../core/network/app_exception_message.dart';
 import '../../../core/services/chime.dart';
 import '../../../core/services/screen_awake.dart';
+import '../../../core/services/voice_reader.dart';
 import '../../../core/storage/preferences.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_icons.dart';
@@ -44,6 +45,9 @@ class RetreatSessionScreen extends HookConsumerWidget {
   static const secondsPerPoint = 60;
   static const _soundKey = 'retreat_sound';
 
+  /// Each point read aloud (key `retreat_voice`, off until turned on).
+  static const voiceKey = 'retreat_voice';
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final t = context.t;
@@ -55,6 +59,8 @@ class RetreatSessionScreen extends HookConsumerWidget {
     final finished = useState(false);
     final preferences = ref.read(sharedPreferencesProvider);
     final sound = useState(preferences.getBool(_soundKey) ?? true);
+    final voice = useState(preferences.getBool(voiceKey) ?? false);
+    final reader = ref.read(voiceReaderProvider);
     // a retreat made again today doesn't add its minutes twice
     final alreadyDone = useMemoized(
       () => ref.read(retreatsTodayProvider).contains(moment),
@@ -127,6 +133,23 @@ class RetreatSessionScreen extends HookConsumerWidget {
     }
 
     final point = points.isEmpty ? null : points[index.value];
+
+    // read aloud: each point as it comes (the minute begins, or a tap moves
+    // on), silent while paused, and when the retreat ends or is left
+    final spoken = point == null ? null : _spokenText(context, point);
+    useEffect(() {
+      if (voice.value && !paused.value && !finished.value && spoken != null) {
+        unawaited(reader.speak(spoken, language));
+      } else {
+        unawaited(reader.stop());
+      }
+      return null;
+    }, [index.value, voice.value, paused.value, finished.value, spoken]);
+    useEffect(
+      () =>
+          () => unawaited(reader.stop()),
+      const [],
+    );
     final accent = moment.colors.first;
     final white60 = Colors.white.withValues(alpha: 0.65);
     final last = index.value == retreatPoints - 1;
@@ -200,6 +223,22 @@ class RetreatSessionScreen extends HookConsumerWidget {
                                 style: TextStyle(fontSize: 13, color: white60),
                               ),
                             ],
+                          ),
+                        ),
+                        IconButton(
+                          tooltip: voice.value
+                              ? t.prayer.session.voiceOn
+                              : t.prayer.session.voiceOff,
+                          onPressed: () {
+                            voice.value = !voice.value;
+                            unawaited(
+                              preferences.setBool(voiceKey, voice.value),
+                            );
+                          },
+                          icon: Icon(
+                            voice.value ? AppIcons.voiceOn : AppIcons.voiceOff,
+                            color: voice.value ? accent : Colors.white,
+                            size: 24,
                           ),
                         ),
                         IconButton(
@@ -368,6 +407,19 @@ class RetreatSessionScreen extends HookConsumerWidget {
       ),
     );
   }
+}
+
+/// What the voice reads of a point: its text, what the app adds (the
+/// assembly, the authorities, the nation of the day…) and the people of the
+/// list.
+String _spokenText(BuildContext context, PlannedPoint point) {
+  final extra = point.hint is ListHint ? null : pointHintText(context, point);
+  return [
+    point.text,
+    ?extra,
+    if (point.people.isNotEmpty)
+      point.people.map((person) => person.name).join(', '),
+  ].join('. ');
 }
 
 /// Fifteen short bars: the points prayed, the current one filling up.

@@ -74,6 +74,7 @@ class TranslationsEn extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _Translations$profilePhoto$en profilePhoto = _Translations$profilePhoto$en._(_root);
 	@override late final _Translations$disciples$en disciples = _Translations$disciples$en._(_root);
 	@override late final _Translations$weekStory$en weekStory = _Translations$weekStory$en._(_root);
+	@override late final _Translations$yearStory$en yearStory = _Translations$yearStory$en._(_root);
 	@override late final _Translations$seekFirst$en seekFirst = _Translations$seekFirst$en._(_root);
 	@override late final _Translations$documents$en documents = _Translations$documents$en._(_root);
 	@override late final _Translations$biblePlan$en biblePlan = _Translations$biblePlan$en._(_root);
@@ -1227,6 +1228,108 @@ class _Translations$weekStory$en extends Translations$weekStory$fr {
 	@override String page({required Object current, required Object total}) => '${current} of ${total}';
 }
 
+// Path: yearStory
+class _Translations$yearStory$en extends Translations$yearStory$fr {
+	_Translations$yearStory$en._(TranslationsEn root) : this._root = root, super.internal(root);
+
+	final TranslationsEn _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Your year with God';
+	@override String since({required Object date}) => 'Since ${date}';
+	@override String get intro => 'Look back on all you lived with the Lord this year.';
+	@override String get tapHint => 'Tap on the right to go on, on the left to go back.';
+	@override String page({required Object current, required Object total}) => '${current} of ${total}';
+	@override String get faithfulLead => 'You were faithful';
+	@override String days({required num n, required Object total}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n,
+		one: '${n} day\nout of ${total}',
+		other: '${n} days\nout of ${total}',
+	);
+	@override String bestStreak({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n,
+		one: 'Your longest streak: ${n} day',
+		other: 'Your longest streak: ${n} days in a row',
+	);
+	@override String faithfulMonth({required num n, required Object month}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n,
+		one: 'Your most faithful month: ${month} (${n} day)',
+		other: 'Your most faithful month: ${month} (${n} days)',
+	);
+	@override String get prayerLead => 'You prayed';
+	@override String retreats({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n,
+		one: '${n} retreat',
+		other: '${n} retreats',
+	);
+	@override String retreatsTime({required Object time}) => 'of 15 minutes · ${time} with the Lord';
+	@override String prayerAlone({required Object time}) => '${time} of personal prayer';
+	@override String get prayerAloneText => 'of personal prayer with the Lord';
+	@override String faithfulMoment({required num n, required Object moment}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n,
+		one: 'Your most faithful time: ${moment} (${n} time)',
+		other: 'Your most faithful time: ${moment} (${n} times)',
+	);
+	@override String get wordLead => 'You read the Word';
+	@override String get memoryLead => 'You hid the Word in your heart';
+	@override String chapters({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n,
+		one: '${n} chapter',
+		other: '${n} chapters',
+	);
+	@override String bibleShare({required Object percent}) => '${percent} of the Bible';
+	@override String get wholeBible => 'As much as the whole Bible!';
+	@override String versesKnown({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n,
+		one: 'verse learnt by heart',
+		other: 'verses learnt by heart',
+	);
+	@override String versesLearning({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n,
+		one: 'verse being memorized',
+		other: 'verses being memorized',
+	);
+	@override String get fastLead => 'You fasted';
+	@override String fastDays({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n,
+		one: '${n} day',
+		other: '${n} days',
+	);
+	@override String get fastText => 'of fasting before the Lord';
+	@override String fullFasts({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n,
+		one: 'day of full fast',
+		other: 'days of full fast',
+	);
+	@override String partialFasts({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n,
+		one: 'day of partial fast',
+		other: 'days of partial fast',
+	);
+	@override String get goalsLead => 'Your goals';
+	@override String get goalsReached => 'reached on average';
+	@override String bestMonth({required Object month, required Object percent}) => 'Your best month: ${month} · ${percent}';
+	@override String get summaryTitle => 'My year with God';
+	@override String get statDays => 'days filled in';
+	@override String statStreak({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n,
+		one: 'day in a row, your record',
+		other: 'days in a row, your record',
+	);
+	@override String statRetreats({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n,
+		one: 'retreat',
+		other: 'retreats',
+	);
+	@override String get statPrayer => 'of personal prayer';
+	@override String statChapters({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n,
+		one: 'chapter read',
+		other: 'chapters read',
+	);
+	@override String statFasts({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n,
+		one: 'day of fasting',
+		other: 'days of fasting',
+	);
+	@override String get statGoals => 'of goals';
+	@override String get emptyText => 'Fill in your report every day: your year will be written here.';
+	@override String get share => 'Share my year';
+	@override String homeText({required Object year}) => 'Your faithfulness, your prayer, the Word: look back on all you lived with God in ${year}.';
+	@override String get open => 'See my year';
+	@override String get notificationTitle => 'Your year with God is ready';
+	@override String notificationBody({required Object year}) => 'Look back on all you lived with the Lord in ${year}, and share it.';
+	@override String get channel => 'Your year with God';
+	@override String get moreTitle => 'My year with God';
+	@override String moreSoFar({required Object year}) => '${year} so far';
+	@override String moreDone({required Object year}) => 'All of ${year}';
+}
+
 // Path: seekFirst
 class _Translations$seekFirst$en extends Translations$seekFirst$fr {
 	_Translations$seekFirst$en._(TranslationsEn root) : this._root = root, super.internal(root);
@@ -2020,6 +2123,8 @@ class _Translations$reports$timer$en extends Translations$reports$timer$fr {
 	@override String get replaceTitle => 'Replace the stopwatch?';
 	@override String replaceText({required Object item}) => 'A stopwatch is already running for "${item}". It will stop without being counted.';
 	@override String get replace => 'Replace';
+	@override String get channel => 'Running stopwatch';
+	@override String get ongoingBody => 'Tap to pause or finish';
 }
 
 // Path: export.doc
@@ -3340,6 +3445,8 @@ extension on TranslationsEn {
 			'reports.timer.replaceTitle' => 'Replace the stopwatch?',
 			'reports.timer.replaceText' => ({required Object item}) => 'A stopwatch is already running for "${item}". It will stop without being counted.',
 			'reports.timer.replace' => 'Replace',
+			'reports.timer.channel' => 'Running stopwatch',
+			'reports.timer.ongoingBody' => 'Tap to pause or finish',
 			'reminder.title' => 'Your daily report',
 			'reminder.body' => 'Take a minute to note your reading, your prayer… before the day ends.',
 			'reminder.channel' => 'Report reminder',
@@ -3551,10 +3658,10 @@ extension on TranslationsEn {
 			'admin.giveRole' => 'Give a role',
 			'admin.you' => 'you',
 			'admin.roleFor' => ({required Object username}) => 'Role of @${username}',
-			'admin.roleChanged' => ({required Object username, required Object role}) => '@${username}: ${role}',
-			'admin.memberUsername' => 'Member\'s username',
 			_ => null,
 		} ?? switch (path) {
+			'admin.roleChanged' => ({required Object username, required Object role}) => '@${username}: ${role}',
+			'admin.memberUsername' => 'Member\'s username',
 			'admin.empty' => 'No admin yet.',
 			'hymns.searchHint' => 'Number, title or words',
 			'hymns.openNumber' => 'Go to a number',
@@ -4065,10 +4172,10 @@ extension on TranslationsEn {
 			'prayer.topics.archiveEmpty' => 'No past topic.',
 			'prayer.topics.current' => 'At the moment',
 			'prayer.topics.download' => 'Download the PDF',
-			'prayer.topics.noDocument' => 'No PDF',
-			'prayer.topics.openDocument' => 'Open the PDF',
 			_ => null,
 		} ?? switch (path) {
+			'prayer.topics.noDocument' => 'No PDF',
+			'prayer.topics.openDocument' => 'Open the PDF',
 			'prayer.lists.title' => 'My prayer lists',
 			'prayer.lists.private' => 'Only for you',
 			'prayer.lists.names.unbelievers' => 'Not yet believed',
@@ -4390,6 +4497,54 @@ extension on TranslationsEn {
 			'weekStory.pastWeeks' => 'Past weeks',
 			'weekStory.weekOf' => ({required Object date}) => 'Week of ${date}',
 			'weekStory.page' => ({required Object current, required Object total}) => '${current} of ${total}',
+			'yearStory.title' => 'Your year with God',
+			'yearStory.since' => ({required Object date}) => 'Since ${date}',
+			'yearStory.intro' => 'Look back on all you lived with the Lord this year.',
+			'yearStory.tapHint' => 'Tap on the right to go on, on the left to go back.',
+			'yearStory.page' => ({required Object current, required Object total}) => '${current} of ${total}',
+			'yearStory.faithfulLead' => 'You were faithful',
+			'yearStory.days' => ({required num n, required Object total}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n, one: '${n} day\nout of ${total}', other: '${n} days\nout of ${total}', ), 
+			'yearStory.bestStreak' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n, one: 'Your longest streak: ${n} day', other: 'Your longest streak: ${n} days in a row', ), 
+			'yearStory.faithfulMonth' => ({required num n, required Object month}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n, one: 'Your most faithful month: ${month} (${n} day)', other: 'Your most faithful month: ${month} (${n} days)', ), 
+			'yearStory.prayerLead' => 'You prayed',
+			'yearStory.retreats' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n, one: '${n} retreat', other: '${n} retreats', ), 
+			'yearStory.retreatsTime' => ({required Object time}) => 'of 15 minutes · ${time} with the Lord',
+			'yearStory.prayerAlone' => ({required Object time}) => '${time} of personal prayer',
+			'yearStory.prayerAloneText' => 'of personal prayer with the Lord',
+			'yearStory.faithfulMoment' => ({required num n, required Object moment}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n, one: 'Your most faithful time: ${moment} (${n} time)', other: 'Your most faithful time: ${moment} (${n} times)', ), 
+			'yearStory.wordLead' => 'You read the Word',
+			'yearStory.memoryLead' => 'You hid the Word in your heart',
+			'yearStory.chapters' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n, one: '${n} chapter', other: '${n} chapters', ), 
+			'yearStory.bibleShare' => ({required Object percent}) => '${percent} of the Bible',
+			'yearStory.wholeBible' => 'As much as the whole Bible!',
+			'yearStory.versesKnown' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n, one: 'verse learnt by heart', other: 'verses learnt by heart', ), 
+			'yearStory.versesLearning' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n, one: 'verse being memorized', other: 'verses being memorized', ), 
+			'yearStory.fastLead' => 'You fasted',
+			'yearStory.fastDays' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n, one: '${n} day', other: '${n} days', ), 
+			'yearStory.fastText' => 'of fasting before the Lord',
+			'yearStory.fullFasts' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n, one: 'day of full fast', other: 'days of full fast', ), 
+			'yearStory.partialFasts' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n, one: 'day of partial fast', other: 'days of partial fast', ), 
+			'yearStory.goalsLead' => 'Your goals',
+			'yearStory.goalsReached' => 'reached on average',
+			'yearStory.bestMonth' => ({required Object month, required Object percent}) => 'Your best month: ${month} · ${percent}',
+			'yearStory.summaryTitle' => 'My year with God',
+			'yearStory.statDays' => 'days filled in',
+			'yearStory.statStreak' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n, one: 'day in a row, your record', other: 'days in a row, your record', ), 
+			'yearStory.statRetreats' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n, one: 'retreat', other: 'retreats', ), 
+			'yearStory.statPrayer' => 'of personal prayer',
+			'yearStory.statChapters' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n, one: 'chapter read', other: 'chapters read', ), 
+			'yearStory.statFasts' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n, one: 'day of fasting', other: 'days of fasting', ), 
+			'yearStory.statGoals' => 'of goals',
+			'yearStory.emptyText' => 'Fill in your report every day: your year will be written here.',
+			'yearStory.share' => 'Share my year',
+			'yearStory.homeText' => ({required Object year}) => 'Your faithfulness, your prayer, the Word: look back on all you lived with God in ${year}.',
+			'yearStory.open' => 'See my year',
+			'yearStory.notificationTitle' => 'Your year with God is ready',
+			'yearStory.notificationBody' => ({required Object year}) => 'Look back on all you lived with the Lord in ${year}, and share it.',
+			'yearStory.channel' => 'Your year with God',
+			'yearStory.moreTitle' => 'My year with God',
+			'yearStory.moreSoFar' => ({required Object year}) => '${year} so far',
+			'yearStory.moreDone' => ({required Object year}) => 'All of ${year}',
 			'seekFirst.title' => 'Seek God first',
 			'seekFirst.verse' => 'But seek first God’s Kingdom and his righteousness; and all these things will be given to you as well.',
 			'seekFirst.verseRef' => 'Matthew 6:33',
@@ -4531,6 +4686,8 @@ extension on TranslationsEn {
 			'memorize.openBible' => 'Open the Bible',
 			'memorize.late' => 'Late',
 			'memorize.today' => 'Today',
+			_ => null,
+		} ?? switch (path) {
 			'memorize.dueIn' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n, one: 'In ${n} day', other: 'In ${n} days', ), 
 			'memorize.stages.fresh' => 'New',
 			'memorize.stages.learning' => 'Learning',
@@ -4581,8 +4738,6 @@ extension on TranslationsEn {
 			'souls.stages.baptized' => 'Baptized',
 			'souls.contactSection' => 'To contact again',
 			'souls.everyone' => 'Everyone',
-			_ => null,
-		} ?? switch (path) {
 			'souls.contactToday' => 'Contact today',
 			'souls.contactLate' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n, one: '${n} day late', other: '${n} days late', ), 
 			'souls.contactOn' => ({required Object date}) => 'Next contact on ${date}',

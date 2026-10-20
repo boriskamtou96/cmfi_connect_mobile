@@ -390,7 +390,9 @@
       "noItem": "The stopwatch stopped, but this item is no longer in your report.",
       "replaceTitle": "Replace the stopwatch?",
       "replaceText": "A stopwatch is already running for \"{item}\". It will stop without being counted.",
-      "replace": "Replace"
+      "replace": "Replace",
+      "channel": "Running stopwatch",
+      "ongoingBody": "Tap to pause or finish"
     }
   },
   "reminder": {
@@ -1745,6 +1747,101 @@
     "pastWeeks": "Past weeks",
     "weekOf": "Week of {date}",
     "page": "{current} of {total}"
+  },
+  "yearStory": {
+    "title": "Your year with God",
+    "since": "Since {date}",
+    "intro": "Look back on all you lived with the Lord this year.",
+    "tapHint": "Tap on the right to go on, on the left to go back.",
+    "page": "{current} of {total}",
+    "faithfulLead": "You were faithful",
+    "days(plural, param=n)": {
+      "one": "{n} day\nout of {total}",
+      "other": "{n} days\nout of {total}"
+    },
+    "bestStreak(plural, param=n)": {
+      "one": "Your longest streak: {n} day",
+      "other": "Your longest streak: {n} days in a row"
+    },
+    "faithfulMonth(plural, param=n)": {
+      "one": "Your most faithful month: {month} ({n} day)",
+      "other": "Your most faithful month: {month} ({n} days)"
+    },
+    "prayerLead": "You prayed",
+    "retreats(plural, param=n)": {
+      "one": "{n} retreat",
+      "other": "{n} retreats"
+    },
+    "retreatsTime": "of 15 minutes · {time} with the Lord",
+    "prayerAlone": "{time} of personal prayer",
+    "prayerAloneText": "of personal prayer with the Lord",
+    "faithfulMoment(plural, param=n)": {
+      "one": "Your most faithful time: {moment} ({n} time)",
+      "other": "Your most faithful time: {moment} ({n} times)"
+    },
+    "wordLead": "You read the Word",
+    "memoryLead": "You hid the Word in your heart",
+    "chapters(plural, param=n)": {
+      "one": "{n} chapter",
+      "other": "{n} chapters"
+    },
+    "bibleShare": "{percent} of the Bible",
+    "wholeBible": "As much as the whole Bible!",
+    "versesKnown(plural, param=n)": {
+      "one": "verse learnt by heart",
+      "other": "verses learnt by heart"
+    },
+    "versesLearning(plural, param=n)": {
+      "one": "verse being memorized",
+      "other": "verses being memorized"
+    },
+    "fastLead": "You fasted",
+    "fastDays(plural, param=n)": {
+      "one": "{n} day",
+      "other": "{n} days"
+    },
+    "fastText": "of fasting before the Lord",
+    "fullFasts(plural, param=n)": {
+      "one": "day of full fast",
+      "other": "days of full fast"
+    },
+    "partialFasts(plural, param=n)": {
+      "one": "day of partial fast",
+      "other": "days of partial fast"
+    },
+    "goalsLead": "Your goals",
+    "goalsReached": "reached on average",
+    "bestMonth": "Your best month: {month} · {percent}",
+    "summaryTitle": "My year with God",
+    "statDays": "days filled in",
+    "statStreak(plural, param=n)": {
+      "one": "day in a row, your record",
+      "other": "days in a row, your record"
+    },
+    "statRetreats(plural, param=n)": {
+      "one": "retreat",
+      "other": "retreats"
+    },
+    "statPrayer": "of personal prayer",
+    "statChapters(plural, param=n)": {
+      "one": "chapter read",
+      "other": "chapters read"
+    },
+    "statFasts(plural, param=n)": {
+      "one": "day of fasting",
+      "other": "days of fasting"
+    },
+    "statGoals": "of goals",
+    "emptyText": "Fill in your report every day: your year will be written here.",
+    "share": "Share my year",
+    "homeText": "Your faithfulness, your prayer, the Word: look back on all you lived with God in {year}.",
+    "open": "See my year",
+    "notificationTitle": "Your year with God is ready",
+    "notificationBody": "Look back on all you lived with the Lord in {year}, and share it.",
+    "channel": "Your year with God",
+    "moreTitle": "My year with God",
+    "moreSoFar": "{year} so far",
+    "moreDone": "All of {year}"
   },
   "seekFirst": {
     "title": "Seek God first",

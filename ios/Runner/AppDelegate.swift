@@ -14,6 +14,10 @@ import UIKit
     if let registrar = registrar(forPlugin: "AppShield") {
       AppShield.register(with: registrar.messenger())
     }
+    // the stopwatch on the lock screen (StopwatchActivities.swift)
+    if #available(iOS 16.1, *), let registrar = registrar(forPlugin: "Stopwatch") {
+      StopwatchActivities.register(with: registrar.messenger())
+    }
     // the version of the app: the store rating is asked once per version
     // (core/services/store_review.dart)
     if let registrar = registrar(forPlugin: "AppVersion") {

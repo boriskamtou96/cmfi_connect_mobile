@@ -127,6 +127,50 @@ class LocalNotifications {
 
   /// The Android channel of the pushes of the server ([channelId] is the
   /// one the server sends), so the user can mute it in the settings.
+  /// The id of the stopwatch's notification, outside the groups.
+  static const stopwatchId = 90000;
+
+  /// The stopwatch of the report as a fixed notification (Android): [title]
+  /// the item, the time running from [since] (drawn by the system, the app
+  /// closed), or [body] alone while paused. A touch opens today's report.
+  Future<void> showStopwatch({
+    required String title,
+    required String body,
+    required DateTime since,
+    required bool running,
+    required String channelName,
+  }) async {
+    await _init();
+    await _plugin.show(
+      id: stopwatchId,
+      title: title,
+      body: body,
+      notificationDetails: NotificationDetails(
+        android: AndroidNotificationDetails(
+          'stopwatch',
+          channelName,
+          importance: Importance.low,
+          priority: Priority.low,
+          category: AndroidNotificationCategory.stopwatch,
+          color: AppColors.primary,
+          ongoing: true,
+          autoCancel: false,
+          onlyAlertOnce: true,
+          silent: true,
+          showWhen: running,
+          usesChronometer: running,
+          when: running ? since.millisecondsSinceEpoch : null,
+        ),
+      ),
+      payload: 'report_today',
+    );
+  }
+
+  Future<void> hideStopwatch() async {
+    await _init();
+    await _plugin.cancel(id: stopwatchId);
+  }
+
   Future<void> createPushChannel(String channelId, String name) async {
     await _init();
     await _plugin
@@ -178,7 +222,10 @@ enum NotificationGroup {
   soulsPrayer(firstId: 8000, channelId: 'souls_prayer'),
 
   /// The end of each fasting day and of the fast (Mes jeûnes).
-  fasts(firstId: 9000, channelId: 'fasts');
+  fasts(firstId: 9000, channelId: 'fasts'),
+
+  /// "Ton année avec Dieu", on 31 December in the evening.
+  yearStory(firstId: 10000, channelId: 'year_story');
 
   const NotificationGroup({required this.firstId, required this.channelId});
 

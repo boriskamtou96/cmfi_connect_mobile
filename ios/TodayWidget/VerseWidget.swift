@@ -237,11 +237,15 @@ struct VerseWidget: Widget {
   }
 }
 
-/// The widgets of the app: today's report, and the verse of the day.
+/// The widgets of the app: today's report, the verse of the day, and the
+/// stopwatch on the lock screen (Activité en direct, iOS 16.1).
 @main
 struct CMFIWidgets: WidgetBundle {
   var body: some Widget {
     TodayWidget()
     VerseWidget()
+    if #available(iOS 16.1, *) {
+      StopwatchLiveActivity()
+    }
   }
 }

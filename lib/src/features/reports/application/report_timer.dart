@@ -1,10 +1,14 @@
+import 'dart:async';
 import 'dart:convert';
 
 import 'package:flutter/foundation.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
+import '../../../core/i18n/strings.g.dart';
+import '../../../core/services/lock_screen_timer.dart';
 import '../../../core/storage/preferences.dart';
 import 'report_counts.dart';
+import 'report_item_texts.dart';
 
 part 'report_timer.g.dart';
 
@@ -88,7 +92,10 @@ class RunningTimer {
 
 /// The one stopwatch that can run (key `report_timer`), null without one.
 /// The minutes counted for each source are kept apart (key
-/// `report_timer_sources`: "importunity:7" → minutes).
+/// `report_timer_sources`: "importunity:7" → minutes). It is also shown
+/// outside the app (`LockScreenTimer`: the lock screen of the iPhone, a
+/// notification on Android), brought up to date at each change and when
+/// the app opens.
 @Riverpod(keepAlive: true)
 class ReportTimer extends _$ReportTimer {
   static const key = 'report_timer';
@@ -101,14 +108,43 @@ class ReportTimer extends _$ReportTimer {
       return null;
     }
     try {
-      return RunningTimer.fromJson(jsonDecode(raw) as Map<String, dynamic>);
+      final timer = RunningTimer.fromJson(
+        jsonDecode(raw) as Map<String, dynamic>,
+      );
+      // still there after a restart of the phone, in its language
+      scheduleMicrotask(() => _showOutside(timer));
+      return timer;
     } on Object {
       return null;
     }
   }
 
+  void _showOutside(RunningTimer? timer) {
+    final screen = ref.read(lockScreenTimerProvider);
+    if (timer == null) {
+      unawaited(screen.hide());
+      return;
+    }
+    final t = LocaleSettings.instance.currentTranslations;
+    unawaited(
+      screen.show(
+        label: t.itemLabel(timer.code, timer.label),
+        since: timer.startedAt.add(timer.pausedFor),
+        paused: timer.pausedAt == null
+            ? null
+            : timer.elapsedAt(timer.pausedAt!),
+        texts: (
+          paused: t.reports.timer.paused,
+          hint: t.reports.timer.ongoingBody,
+          channel: t.reports.timer.channel,
+        ),
+      ),
+    );
+  }
+
   Future<void> _save(RunningTimer? timer) async {
     state = timer;
+    _showOutside(timer);
     final preferences = ref.read(sharedPreferencesProvider);
     if (timer == null) {
       await preferences.remove(key);

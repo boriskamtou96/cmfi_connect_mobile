@@ -390,7 +390,9 @@
       "noItem": "Die Stoppuhr ist gestoppt, aber dieses Element ist nicht mehr in deinem Bericht.",
       "replaceTitle": "Stoppuhr ersetzen?",
       "replaceText": "Für „{item}“ läuft schon eine Stoppuhr. Sie stoppt, ohne gezählt zu werden.",
-      "replace": "Ersetzen"
+      "replace": "Ersetzen",
+      "channel": "Laufende Stoppuhr",
+      "ongoingBody": "Tippen zum Pausieren oder Beenden"
     }
   },
   "reminder": {
@@ -1744,6 +1746,101 @@
     "pastWeeks": "Vergangene Wochen",
     "weekOf": "Woche vom {date}",
     "page": "{current} von {total}"
+  },
+  "yearStory": {
+    "title": "Dein Jahr mit Gott",
+    "since": "Seit dem {date}",
+    "intro": "Schau zurück auf alles, was du dieses Jahr mit dem Herrn erlebt hast.",
+    "tapHint": "Tippe rechts, um weiterzugehen, links, um zurückzugehen.",
+    "page": "{current} von {total}",
+    "faithfulLead": "Du warst treu",
+    "days(plural, param=n)": {
+      "one": "{n} Tag\nvon {total}",
+      "other": "{n} Tage\nvon {total}"
+    },
+    "bestStreak(plural, param=n)": {
+      "one": "Deine längste Serie: {n} Tag",
+      "other": "Deine längste Serie: {n} Tage in Folge"
+    },
+    "faithfulMonth(plural, param=n)": {
+      "one": "Dein treuester Monat: {month} ({n} Tag)",
+      "other": "Dein treuester Monat: {month} ({n} Tage)"
+    },
+    "prayerLead": "Du hast gebetet",
+    "retreats(plural, param=n)": {
+      "one": "{n} Gebetszeit",
+      "other": "{n} Gebetszeiten"
+    },
+    "retreatsTime": "von 15 Minuten · {time} mit dem Herrn",
+    "prayerAlone": "{time} persönliches Gebet",
+    "prayerAloneText": "persönliches Gebet mit dem Herrn",
+    "faithfulMoment(plural, param=n)": {
+      "one": "Deine treueste Zeit: {moment} ({n}-mal)",
+      "other": "Deine treueste Zeit: {moment} ({n}-mal)"
+    },
+    "wordLead": "Du hast das Wort gelesen",
+    "memoryLead": "Du hast das Wort in deinem Herzen bewahrt",
+    "chapters(plural, param=n)": {
+      "one": "{n} Kapitel",
+      "other": "{n} Kapitel"
+    },
+    "bibleShare": "{percent} der Bibel",
+    "wholeBible": "So viel wie die ganze Bibel!",
+    "versesKnown(plural, param=n)": {
+      "one": "Vers auswendig gelernt",
+      "other": "Verse auswendig gelernt"
+    },
+    "versesLearning(plural, param=n)": {
+      "one": "Vers wird gerade gelernt",
+      "other": "Verse werden gerade gelernt"
+    },
+    "fastLead": "Du hast gefastet",
+    "fastDays(plural, param=n)": {
+      "one": "{n} Tag",
+      "other": "{n} Tage"
+    },
+    "fastText": "Fasten vor dem Herrn",
+    "fullFasts(plural, param=n)": {
+      "one": "Tag Vollfasten",
+      "other": "Tage Vollfasten"
+    },
+    "partialFasts(plural, param=n)": {
+      "one": "Tag Teilfasten",
+      "other": "Tage Teilfasten"
+    },
+    "goalsLead": "Deine Ziele",
+    "goalsReached": "im Durchschnitt erreicht",
+    "bestMonth": "Dein bester Monat: {month} · {percent}",
+    "summaryTitle": "Mein Jahr mit Gott",
+    "statDays": "ausgefüllte Tage",
+    "statStreak(plural, param=n)": {
+      "one": "Tag in Folge, dein Rekord",
+      "other": "Tage in Folge, dein Rekord"
+    },
+    "statRetreats(plural, param=n)": {
+      "one": "Gebetszeit",
+      "other": "Gebetszeiten"
+    },
+    "statPrayer": "persönliches Gebet",
+    "statChapters(plural, param=n)": {
+      "one": "gelesenes Kapitel",
+      "other": "gelesene Kapitel"
+    },
+    "statFasts(plural, param=n)": {
+      "one": "Fastentag",
+      "other": "Fastentage"
+    },
+    "statGoals": "der Ziele",
+    "emptyText": "Fülle deinen Bericht jeden Tag aus: Dein Jahr wird hier geschrieben.",
+    "share": "Mein Jahr teilen",
+    "homeText": "Deine Treue, dein Gebet, das Wort: Schau zurück auf alles, was du {year} mit Gott erlebt hast.",
+    "open": "Mein Jahr ansehen",
+    "notificationTitle": "Dein Jahr mit Gott ist bereit",
+    "notificationBody": "Schau zurück auf alles, was du {year} mit dem Herrn erlebt hast, und teile es.",
+    "channel": "Dein Jahr mit Gott",
+    "moreTitle": "Mein Jahr mit Gott",
+    "moreSoFar": "{year} bis jetzt",
+    "moreDone": "Das ganze Jahr {year}"
   },
   "seekFirst": {
     "title": "Suche zuerst Gott",

@@ -317,20 +317,35 @@ Set<RetreatMoment> retreatsToday(Ref ref) {
 /// The retreats of the week starting on [monday] ("Ta semaine avec Dieu"):
 /// from the server, or what the phone keeps of the last days without network.
 @riverpod
-Future<List<RetreatRecord>> retreatsOfWeek(Ref ref, DateTime monday) async {
-  final sunday = DateTime(monday.year, monday.month, monday.day + 6);
-  bool inWeek(RetreatRecord record) =>
-      !record.day.dateOnly.isBefore(monday) &&
-      !record.day.dateOnly.isAfter(sunday);
+Future<List<RetreatRecord>> retreatsOfWeek(Ref ref, DateTime monday) =>
+    _retreatsBetween(
+      ref,
+      monday,
+      DateTime(monday.year, monday.month, monday.day + 6),
+    );
+
+/// The retreats of [year] ("Ton année avec Dieu"), as [retreatsOfWeek]: the
+/// server gives a year at most.
+@riverpod
+Future<List<RetreatRecord>> retreatsOfYear(Ref ref, int year) =>
+    _retreatsBetween(ref, DateTime(year), DateTime(year, 12, 31));
+
+Future<List<RetreatRecord>> _retreatsBetween(
+  Ref ref,
+  DateTime from,
+  DateTime to,
+) async {
+  bool inPeriod(RetreatRecord record) =>
+      !record.day.dateOnly.isBefore(from) && !record.day.dateOnly.isAfter(to);
   try {
     final records = await ref
         .watch(prayerApiProvider)
-        .retreats(from: monday, to: sunday);
+        .retreats(from: from, to: to);
     final pending = ref.read(prayerLocalStoreProvider).pendingRetreats();
-    return RetreatLog._merge(records, pending).where(inWeek).toList();
+    return RetreatLog._merge(records, pending).where(inPeriod).toList();
   } on NetworkException {
     final log = await ref.watch(retreatLogProvider.future);
-    return log.where(inWeek).toList();
+    return log.where(inPeriod).toList();
   }
 }
 

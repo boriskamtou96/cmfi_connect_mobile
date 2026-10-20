@@ -74,6 +74,7 @@ class TranslationsAr extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _Translations$profilePhoto$ar profilePhoto = _Translations$profilePhoto$ar._(_root);
 	@override late final _Translations$disciples$ar disciples = _Translations$disciples$ar._(_root);
 	@override late final _Translations$weekStory$ar weekStory = _Translations$weekStory$ar._(_root);
+	@override late final _Translations$yearStory$ar yearStory = _Translations$yearStory$ar._(_root);
 	@override late final _Translations$seekFirst$ar seekFirst = _Translations$seekFirst$ar._(_root);
 	@override late final _Translations$documents$ar documents = _Translations$documents$ar._(_root);
 	@override late final _Translations$biblePlan$ar biblePlan = _Translations$biblePlan$ar._(_root);
@@ -1376,6 +1377,168 @@ class _Translations$weekStory$ar extends Translations$weekStory$fr {
 	@override String page({required Object current, required Object total}) => '${current} من ${total}';
 }
 
+// Path: yearStory
+class _Translations$yearStory$ar extends Translations$yearStory$fr {
+	_Translations$yearStory$ar._(TranslationsAr root) : this._root = root, super.internal(root);
+
+	final TranslationsAr _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'عامك مع الله';
+	@override String since({required Object date}) => 'منذ ${date}';
+	@override String get intro => 'استعد كل ما عشته مع الرب هذا العام.';
+	@override String get tapHint => 'المس اليمين للمتابعة واليسار للرجوع.';
+	@override String page({required Object current, required Object total}) => '${current} من ${total}';
+	@override String get faithfulLead => 'كنت أمينًا';
+	@override String days({required num n, required Object total}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n,
+		zero: '${n} يوم\nمن ${total}',
+		one: 'يوم واحد\nمن ${total}',
+		two: 'يومان\nمن ${total}',
+		few: '${n} أيام\nمن ${total}',
+		many: '${n} يومًا\nمن ${total}',
+		other: '${n} يوم\nمن ${total}',
+	);
+	@override String bestStreak({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n,
+		zero: 'أطول سلسلة لك: ${n} يوم على التوالي',
+		one: 'أطول سلسلة لك: يوم واحد',
+		two: 'أطول سلسلة لك: يومان على التوالي',
+		few: 'أطول سلسلة لك: ${n} أيام على التوالي',
+		many: 'أطول سلسلة لك: ${n} يومًا على التوالي',
+		other: 'أطول سلسلة لك: ${n} يوم على التوالي',
+	);
+	@override String faithfulMonth({required num n, required Object month}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n,
+		zero: 'شهرك الأكثر أمانة: ${month} (${n} يوم)',
+		one: 'شهرك الأكثر أمانة: ${month} (يوم واحد)',
+		two: 'شهرك الأكثر أمانة: ${month} (يومان)',
+		few: 'شهرك الأكثر أمانة: ${month} (${n} أيام)',
+		many: 'شهرك الأكثر أمانة: ${month} (${n} يومًا)',
+		other: 'شهرك الأكثر أمانة: ${month} (${n} يوم)',
+	);
+	@override String get prayerLead => 'صلّيت';
+	@override String retreats({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n,
+		zero: '${n} خلوة',
+		one: 'خلوة واحدة',
+		two: 'خلوتان',
+		few: '${n} خلوات',
+		many: '${n} خلوة',
+		other: '${n} خلوة',
+	);
+	@override String retreatsTime({required Object time}) => 'من 15 دقيقة · ${time} مع الرب';
+	@override String prayerAlone({required Object time}) => '${time} من الصلاة الفردية';
+	@override String get prayerAloneText => 'من الصلاة الفردية مع الرب';
+	@override String faithfulMoment({required num n, required Object moment}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n,
+		zero: 'وقتك الأكثر أمانة: ${moment} (${n} مرة)',
+		one: 'وقتك الأكثر أمانة: ${moment} (مرة واحدة)',
+		two: 'وقتك الأكثر أمانة: ${moment} (مرتان)',
+		few: 'وقتك الأكثر أمانة: ${moment} (${n} مرات)',
+		many: 'وقتك الأكثر أمانة: ${moment} (${n} مرة)',
+		other: 'وقتك الأكثر أمانة: ${moment} (${n} مرة)',
+	);
+	@override String get wordLead => 'قرأت كلمة الله';
+	@override String get memoryLead => 'خبّأت كلمة الله في قلبك';
+	@override String chapters({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n,
+		zero: '${n} فصل',
+		one: 'فصل واحد',
+		two: 'فصلان',
+		few: '${n} فصول',
+		many: '${n} فصلًا',
+		other: '${n} فصل',
+	);
+	@override String bibleShare({required Object percent}) => '${percent} من الكتاب المقدس';
+	@override String get wholeBible => 'ما يعادل الكتاب المقدس كله!';
+	@override String versesKnown({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n,
+		zero: 'آية حفظتها عن ظهر قلب',
+		one: 'آية حفظتها عن ظهر قلب',
+		two: 'آيتان حفظتهما عن ظهر قلب',
+		few: 'آيات حفظتها عن ظهر قلب',
+		many: 'آية حفظتها عن ظهر قلب',
+		other: 'آية حفظتها عن ظهر قلب',
+	);
+	@override String versesLearning({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n,
+		zero: 'آية قيد الحفظ',
+		one: 'آية قيد الحفظ',
+		two: 'آيتان قيد الحفظ',
+		few: 'آيات قيد الحفظ',
+		many: 'آية قيد الحفظ',
+		other: 'آية قيد الحفظ',
+	);
+	@override String get fastLead => 'صُمت';
+	@override String fastDays({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n,
+		zero: '${n} يوم',
+		one: 'يوم واحد',
+		two: 'يومان',
+		few: '${n} أيام',
+		many: '${n} يومًا',
+		other: '${n} يوم',
+	);
+	@override String get fastText => 'من الصوم أمام الرب';
+	@override String fullFasts({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n,
+		zero: 'يوم صوم كامل',
+		one: 'يوم صوم كامل',
+		two: 'يوما صوم كامل',
+		few: 'أيام صوم كامل',
+		many: 'يومًا من الصوم الكامل',
+		other: 'يوم صوم كامل',
+	);
+	@override String partialFasts({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n,
+		zero: 'يوم صوم جزئي',
+		one: 'يوم صوم جزئي',
+		two: 'يوما صوم جزئي',
+		few: 'أيام صوم جزئي',
+		many: 'يومًا من الصوم الجزئي',
+		other: 'يوم صوم جزئي',
+	);
+	@override String get goalsLead => 'أهدافك';
+	@override String get goalsReached => 'تحقّقت في المتوسط';
+	@override String bestMonth({required Object month, required Object percent}) => 'أفضل شهر لك: ${month} · ${percent}';
+	@override String get summaryTitle => 'عامي مع الله';
+	@override String get statDays => 'أيام مملوءة';
+	@override String statStreak({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n,
+		zero: 'يوم على التوالي، رقمك القياسي',
+		one: 'يوم على التوالي، رقمك القياسي',
+		two: 'يومان على التوالي، رقمك القياسي',
+		few: 'أيام على التوالي، رقمك القياسي',
+		many: 'يومًا على التوالي، رقمك القياسي',
+		other: 'يوم على التوالي، رقمك القياسي',
+	);
+	@override String statRetreats({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n,
+		zero: 'خلوة',
+		one: 'خلوة',
+		two: 'خلوتان',
+		few: 'خلوات',
+		many: 'خلوة',
+		other: 'خلوة',
+	);
+	@override String get statPrayer => 'من الصلاة الفردية';
+	@override String statChapters({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n,
+		zero: 'فصل مقروء',
+		one: 'فصل مقروء',
+		two: 'فصلان مقروءان',
+		few: 'فصول مقروءة',
+		many: 'فصلًا مقروءًا',
+		other: 'فصل مقروء',
+	);
+	@override String statFasts({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n,
+		zero: 'يوم صوم',
+		one: 'يوم صوم',
+		two: 'يوما صوم',
+		few: 'أيام صوم',
+		many: 'يومًا من الصوم',
+		other: 'يوم صوم',
+	);
+	@override String get statGoals => 'من الأهداف';
+	@override String get emptyText => 'املأ تقريرك كل يوم: سيُكتب عامك هنا.';
+	@override String get share => 'مشاركة عامي';
+	@override String homeText({required Object year}) => 'أمانتك وصلاتك وكلمة الله: استعد كل ما عشته مع الله في ${year}.';
+	@override String get open => 'عرض عامي';
+	@override String get notificationTitle => 'عامك مع الله جاهز';
+	@override String notificationBody({required Object year}) => 'استعد كل ما عشته مع الرب في ${year} وشاركه.';
+	@override String get channel => 'عامك مع الله';
+	@override String get moreTitle => 'عامي مع الله';
+	@override String moreSoFar({required Object year}) => '${year} حتى الآن';
+	@override String moreDone({required Object year}) => 'عام ${year} كاملًا';
+}
+
 // Path: seekFirst
 class _Translations$seekFirst$ar extends Translations$seekFirst$fr {
 	_Translations$seekFirst$ar._(TranslationsAr root) : this._root = root, super.internal(root);
@@ -2228,6 +2391,8 @@ class _Translations$reports$timer$ar extends Translations$reports$timer$fr {
 	@override String get replaceTitle => 'استبدال المؤقت؟';
 	@override String replaceText({required Object item}) => 'هناك مؤقت يعمل لـ«${item}». سيتوقف دون احتسابه.';
 	@override String get replace => 'استبدال';
+	@override String get channel => 'المؤقت الجاري';
+	@override String get ongoingBody => 'اضغط للإيقاف المؤقت أو الإنهاء';
 }
 
 // Path: export.doc
@@ -3609,6 +3774,8 @@ extension on TranslationsAr {
 			'reports.timer.replaceTitle' => 'استبدال المؤقت؟',
 			'reports.timer.replaceText' => ({required Object item}) => 'هناك مؤقت يعمل لـ«${item}». سيتوقف دون احتسابه.',
 			'reports.timer.replace' => 'استبدال',
+			'reports.timer.channel' => 'المؤقت الجاري',
+			'reports.timer.ongoingBody' => 'اضغط للإيقاف المؤقت أو الإنهاء',
 			'reminder.title' => 'تقريرك لهذا اليوم',
 			'reminder.body' => 'خصّص دقيقة لتسجّل قراءتك وصلاتك… قبل نهاية اليوم.',
 			'reminder.channel' => 'تذكير التقرير',
@@ -3820,10 +3987,10 @@ extension on TranslationsAr {
 			'admin.giveRole' => 'منح دور',
 			'admin.you' => 'أنت',
 			'admin.roleFor' => ({required Object username}) => 'دور @${username}',
-			'admin.roleChanged' => ({required Object username, required Object role}) => '@${username}: ${role}',
-			'admin.memberUsername' => 'اسم مستخدم العضو',
 			_ => null,
 		} ?? switch (path) {
+			'admin.roleChanged' => ({required Object username, required Object role}) => '@${username}: ${role}',
+			'admin.memberUsername' => 'اسم مستخدم العضو',
 			'admin.empty' => 'لا يوجد مشرفون حتى الآن.',
 			'hymns.searchHint' => 'الرقم أو العنوان أو الكلمات',
 			'hymns.openNumber' => 'الانتقال إلى رقم',
@@ -4334,10 +4501,10 @@ extension on TranslationsAr {
 			'prayer.topics.current' => 'حاليًا',
 			'prayer.topics.documentSize' => ({required Object kb}) => '${kb} ك.ب',
 			'prayer.topics.download' => 'تنزيل ملف PDF',
-			'prayer.topics.noDocument' => 'لا يوجد ملف PDF',
-			'prayer.topics.openDocument' => 'فتح ملف PDF',
 			_ => null,
 		} ?? switch (path) {
+			'prayer.topics.noDocument' => 'لا يوجد ملف PDF',
+			'prayer.topics.openDocument' => 'فتح ملف PDF',
 			'prayer.lists.title' => 'قوائم صلاتي',
 			'prayer.lists.private' => 'لك وحدك',
 			'prayer.lists.names.unbelievers' => 'لم يؤمنوا بعد',
@@ -4659,6 +4826,54 @@ extension on TranslationsAr {
 			'weekStory.pastWeeks' => 'الأسابيع الماضية',
 			'weekStory.weekOf' => ({required Object date}) => 'أسبوع ${date}',
 			'weekStory.page' => ({required Object current, required Object total}) => '${current} من ${total}',
+			'yearStory.title' => 'عامك مع الله',
+			'yearStory.since' => ({required Object date}) => 'منذ ${date}',
+			'yearStory.intro' => 'استعد كل ما عشته مع الرب هذا العام.',
+			'yearStory.tapHint' => 'المس اليمين للمتابعة واليسار للرجوع.',
+			'yearStory.page' => ({required Object current, required Object total}) => '${current} من ${total}',
+			'yearStory.faithfulLead' => 'كنت أمينًا',
+			'yearStory.days' => ({required num n, required Object total}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n, zero: '${n} يوم\nمن ${total}', one: 'يوم واحد\nمن ${total}', two: 'يومان\nمن ${total}', few: '${n} أيام\nمن ${total}', many: '${n} يومًا\nمن ${total}', other: '${n} يوم\nمن ${total}', ), 
+			'yearStory.bestStreak' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n, zero: 'أطول سلسلة لك: ${n} يوم على التوالي', one: 'أطول سلسلة لك: يوم واحد', two: 'أطول سلسلة لك: يومان على التوالي', few: 'أطول سلسلة لك: ${n} أيام على التوالي', many: 'أطول سلسلة لك: ${n} يومًا على التوالي', other: 'أطول سلسلة لك: ${n} يوم على التوالي', ), 
+			'yearStory.faithfulMonth' => ({required num n, required Object month}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n, zero: 'شهرك الأكثر أمانة: ${month} (${n} يوم)', one: 'شهرك الأكثر أمانة: ${month} (يوم واحد)', two: 'شهرك الأكثر أمانة: ${month} (يومان)', few: 'شهرك الأكثر أمانة: ${month} (${n} أيام)', many: 'شهرك الأكثر أمانة: ${month} (${n} يومًا)', other: 'شهرك الأكثر أمانة: ${month} (${n} يوم)', ), 
+			'yearStory.prayerLead' => 'صلّيت',
+			'yearStory.retreats' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n, zero: '${n} خلوة', one: 'خلوة واحدة', two: 'خلوتان', few: '${n} خلوات', many: '${n} خلوة', other: '${n} خلوة', ), 
+			'yearStory.retreatsTime' => ({required Object time}) => 'من 15 دقيقة · ${time} مع الرب',
+			'yearStory.prayerAlone' => ({required Object time}) => '${time} من الصلاة الفردية',
+			'yearStory.prayerAloneText' => 'من الصلاة الفردية مع الرب',
+			'yearStory.faithfulMoment' => ({required num n, required Object moment}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n, zero: 'وقتك الأكثر أمانة: ${moment} (${n} مرة)', one: 'وقتك الأكثر أمانة: ${moment} (مرة واحدة)', two: 'وقتك الأكثر أمانة: ${moment} (مرتان)', few: 'وقتك الأكثر أمانة: ${moment} (${n} مرات)', many: 'وقتك الأكثر أمانة: ${moment} (${n} مرة)', other: 'وقتك الأكثر أمانة: ${moment} (${n} مرة)', ), 
+			'yearStory.wordLead' => 'قرأت كلمة الله',
+			'yearStory.memoryLead' => 'خبّأت كلمة الله في قلبك',
+			'yearStory.chapters' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n, zero: '${n} فصل', one: 'فصل واحد', two: 'فصلان', few: '${n} فصول', many: '${n} فصلًا', other: '${n} فصل', ), 
+			'yearStory.bibleShare' => ({required Object percent}) => '${percent} من الكتاب المقدس',
+			'yearStory.wholeBible' => 'ما يعادل الكتاب المقدس كله!',
+			'yearStory.versesKnown' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n, zero: 'آية حفظتها عن ظهر قلب', one: 'آية حفظتها عن ظهر قلب', two: 'آيتان حفظتهما عن ظهر قلب', few: 'آيات حفظتها عن ظهر قلب', many: 'آية حفظتها عن ظهر قلب', other: 'آية حفظتها عن ظهر قلب', ), 
+			'yearStory.versesLearning' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n, zero: 'آية قيد الحفظ', one: 'آية قيد الحفظ', two: 'آيتان قيد الحفظ', few: 'آيات قيد الحفظ', many: 'آية قيد الحفظ', other: 'آية قيد الحفظ', ), 
+			'yearStory.fastLead' => 'صُمت',
+			'yearStory.fastDays' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n, zero: '${n} يوم', one: 'يوم واحد', two: 'يومان', few: '${n} أيام', many: '${n} يومًا', other: '${n} يوم', ), 
+			'yearStory.fastText' => 'من الصوم أمام الرب',
+			'yearStory.fullFasts' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n, zero: 'يوم صوم كامل', one: 'يوم صوم كامل', two: 'يوما صوم كامل', few: 'أيام صوم كامل', many: 'يومًا من الصوم الكامل', other: 'يوم صوم كامل', ), 
+			'yearStory.partialFasts' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n, zero: 'يوم صوم جزئي', one: 'يوم صوم جزئي', two: 'يوما صوم جزئي', few: 'أيام صوم جزئي', many: 'يومًا من الصوم الجزئي', other: 'يوم صوم جزئي', ), 
+			'yearStory.goalsLead' => 'أهدافك',
+			'yearStory.goalsReached' => 'تحقّقت في المتوسط',
+			'yearStory.bestMonth' => ({required Object month, required Object percent}) => 'أفضل شهر لك: ${month} · ${percent}',
+			'yearStory.summaryTitle' => 'عامي مع الله',
+			'yearStory.statDays' => 'أيام مملوءة',
+			'yearStory.statStreak' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n, zero: 'يوم على التوالي، رقمك القياسي', one: 'يوم على التوالي، رقمك القياسي', two: 'يومان على التوالي، رقمك القياسي', few: 'أيام على التوالي، رقمك القياسي', many: 'يومًا على التوالي، رقمك القياسي', other: 'يوم على التوالي، رقمك القياسي', ), 
+			'yearStory.statRetreats' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n, zero: 'خلوة', one: 'خلوة', two: 'خلوتان', few: 'خلوات', many: 'خلوة', other: 'خلوة', ), 
+			'yearStory.statPrayer' => 'من الصلاة الفردية',
+			'yearStory.statChapters' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n, zero: 'فصل مقروء', one: 'فصل مقروء', two: 'فصلان مقروءان', few: 'فصول مقروءة', many: 'فصلًا مقروءًا', other: 'فصل مقروء', ), 
+			'yearStory.statFasts' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n, zero: 'يوم صوم', one: 'يوم صوم', two: 'يوما صوم', few: 'أيام صوم', many: 'يومًا من الصوم', other: 'يوم صوم', ), 
+			'yearStory.statGoals' => 'من الأهداف',
+			'yearStory.emptyText' => 'املأ تقريرك كل يوم: سيُكتب عامك هنا.',
+			'yearStory.share' => 'مشاركة عامي',
+			'yearStory.homeText' => ({required Object year}) => 'أمانتك وصلاتك وكلمة الله: استعد كل ما عشته مع الله في ${year}.',
+			'yearStory.open' => 'عرض عامي',
+			'yearStory.notificationTitle' => 'عامك مع الله جاهز',
+			'yearStory.notificationBody' => ({required Object year}) => 'استعد كل ما عشته مع الرب في ${year} وشاركه.',
+			'yearStory.channel' => 'عامك مع الله',
+			'yearStory.moreTitle' => 'عامي مع الله',
+			'yearStory.moreSoFar' => ({required Object year}) => '${year} حتى الآن',
+			'yearStory.moreDone' => ({required Object year}) => 'عام ${year} كاملًا',
 			'seekFirst.title' => 'اطلب الله أولًا',
 			'seekFirst.verse' => 'لكن اطلبوا أولًا ملكوت الله وبرّه، وهذه كلها تُزاد لكم.',
 			'seekFirst.verseRef' => 'متى 6:33',
@@ -4800,6 +5015,8 @@ extension on TranslationsAr {
 			'memorize.openBible' => 'افتح الكتاب المقدس',
 			'memorize.late' => 'متأخرة',
 			'memorize.today' => 'اليوم',
+			_ => null,
+		} ?? switch (path) {
 			'memorize.dueIn' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n, one: 'بعد يوم', other: 'بعد ${n} أيام', ), 
 			'memorize.stages.fresh' => 'جديدة',
 			'memorize.stages.learning' => 'قيد الحفظ',
@@ -4850,8 +5067,6 @@ extension on TranslationsAr {
 			'souls.stages.baptized' => 'تعمّد',
 			'souls.contactSection' => 'للتواصل مجددًا',
 			'souls.everyone' => 'جميع الأشخاص',
-			_ => null,
-		} ?? switch (path) {
 			'souls.contactToday' => 'تواصل اليوم',
 			'souls.contactLate' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n, one: 'متأخر يومًا', other: 'متأخر ${n} أيام', ), 
 			'souls.contactOn' => ({required Object date}) => 'التواصل القادم في ${date}',

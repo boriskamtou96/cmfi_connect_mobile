@@ -10,19 +10,28 @@ part of 'report_timer.dart';
 // ignore_for_file: type=lint, type=warning
 /// The one stopwatch that can run (key `report_timer`), null without one.
 /// The minutes counted for each source are kept apart (key
-/// `report_timer_sources`: "importunity:7" → minutes).
+/// `report_timer_sources`: "importunity:7" → minutes). It is also shown
+/// outside the app (`LockScreenTimer`: the lock screen of the iPhone, a
+/// notification on Android), brought up to date at each change and when
+/// the app opens.
 
 @ProviderFor(ReportTimer)
 final reportTimerProvider = ReportTimerProvider._();
 
 /// The one stopwatch that can run (key `report_timer`), null without one.
 /// The minutes counted for each source are kept apart (key
-/// `report_timer_sources`: "importunity:7" → minutes).
+/// `report_timer_sources`: "importunity:7" → minutes). It is also shown
+/// outside the app (`LockScreenTimer`: the lock screen of the iPhone, a
+/// notification on Android), brought up to date at each change and when
+/// the app opens.
 final class ReportTimerProvider
     extends $NotifierProvider<ReportTimer, RunningTimer?> {
   /// The one stopwatch that can run (key `report_timer`), null without one.
   /// The minutes counted for each source are kept apart (key
-  /// `report_timer_sources`: "importunity:7" → minutes).
+  /// `report_timer_sources`: "importunity:7" → minutes). It is also shown
+  /// outside the app (`LockScreenTimer`: the lock screen of the iPhone, a
+  /// notification on Android), brought up to date at each change and when
+  /// the app opens.
   ReportTimerProvider._()
     : super(
         from: null,
@@ -50,11 +59,14 @@ final class ReportTimerProvider
   }
 }
 
-String _$reportTimerHash() => r'7aaeef1cbf07a98144edad7acf799ad8a3a0a3cb';
+String _$reportTimerHash() => r'a7bad62a52dc8655e601dd5aba3649fd6c4a23bc';
 
 /// The one stopwatch that can run (key `report_timer`), null without one.
 /// The minutes counted for each source are kept apart (key
-/// `report_timer_sources`: "importunity:7" → minutes).
+/// `report_timer_sources`: "importunity:7" → minutes). It is also shown
+/// outside the app (`LockScreenTimer`: the lock screen of the iPhone, a
+/// notification on Android), brought up to date at each change and when
+/// the app opens.
 
 abstract class _$ReportTimer extends $Notifier<RunningTimer?> {
   RunningTimer? build();

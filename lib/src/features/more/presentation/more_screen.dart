@@ -28,6 +28,7 @@ import '../../auth/infrastructure/auth_api.dart';
 import '../../authorities/application/authorities_controller.dart';
 import '../../disciples/application/disciples.dart';
 import '../../disciples/application/received_reports.dart';
+import '../../home/domain/year_story.dart';
 import '../../members/application/my_account.dart';
 import '../../ministry/application/nations.dart';
 import '../../notifications/application/inbox.dart';
@@ -79,6 +80,8 @@ class MoreScreen extends ConsumerWidget {
     // an incomplete profile (no name on the server) invites to fill it in
     final missingName = profile != null && !profile.hasName;
     final events = AppModule.events;
+    // "Mon année avec Dieu": the year so far, or the one just ended
+    final storyYear = latestStoryYear(DateTime.now());
 
     Widget moduleIcon(IconData icon, AppModule module) {
       final tone = module.tone(context);
@@ -345,6 +348,29 @@ class MoreScreen extends ConsumerWidget {
               label: t.more.reports,
               card: SectionCard(
                 children: [
+                  // all year long; in January, the year just ended
+                  ListTile(
+                    leading: moduleIcon(
+                      AppIcons.yearStoryTile,
+                      AppModule.reports,
+                    ),
+                    title: Text(
+                      t.yearStory.moreTitle,
+                      style: const TextStyle(fontWeight: FontWeight.w600),
+                    ),
+                    subtitle: Text(
+                      storyYear < DateTime.now().year
+                          ? t.yearStory.moreDone(year: storyYear)
+                          : t.yearStory.moreSoFar(year: storyYear),
+                      style: TextStyle(
+                        fontSize: 13,
+                        color: scheme.onSurfaceVariant,
+                      ),
+                    ),
+                    trailing: const Icon(AppIcons.chevronRight),
+                    onTap: () =>
+                        context.router.push(YearStoryRoute(year: storyYear)),
+                  ),
                   ListTile(
                     leading: moduleIcon(AppIcons.fastsTile, AppModule.prayer),
                     title: Text(

@@ -1,23 +1,15 @@
-import 'dart:async';
-
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../core/i18n/strings.g.dart';
 import '../../../core/network/app_exception_message.dart';
-import '../../../core/services/share_service.dart';
 import '../../../core/storage/preferences.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_icons.dart';
-import '../../../core/theme/app_motion.dart';
-import '../../../core/theme/app_theme.dart';
 import '../../../core/utils/date_extensions.dart';
 import '../../../core/utils/date_format.dart';
-import '../../../core/utils/widget_image.dart';
-import '../../../core/widgets/app_toast.dart';
 import '../../../core/widgets/cmfi_logo.dart';
 import '../../../core/widgets/goal_ring.dart';
 import '../../prayer/domain/prayer.dart';
@@ -29,6 +21,7 @@ import '../../verses/application/verse_of_the_day.dart';
 import '../../verses/domain/verse.dart';
 import '../application/week_story.dart';
 import '../domain/week_story.dart';
+import 'widgets/story_pager.dart';
 
 enum _Page { intro, faithful, prayer, goals, summary }
 
@@ -44,7 +37,7 @@ class WeekStoryScreen extends HookConsumerWidget {
   final String monday;
 
   /// How long a page stays before the next one.
-  static const pageDuration = Duration(seconds: 8);
+  static const pageDuration = StoryPager.pageDuration;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -107,14 +100,14 @@ List<Color> _colorsOf(_Page page) => switch (page) {
 const _soft = Color(0xDDFFFFFF);
 const _faint = Color(0x99FFFFFF);
 
-class _Story extends HookConsumerWidget {
+class _Story extends StatelessWidget {
   const _Story({required this.story, required this.verse});
 
   final WeekStory story;
   final Verse? verse;
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  Widget build(BuildContext context) {
     final t = context.t;
     final pages = [
       _Page.intro,
@@ -124,214 +117,24 @@ class _Story extends HookConsumerWidget {
       if (story.goals != null) _Page.goals,
       _Page.summary,
     ];
-    final index = useState(0);
-    final page = pages[index.value];
-    final keys = useMemoized(
-      () => {for (final page in _Page.values) page: GlobalKey()},
-    );
-    final reduced = AppMotion.reduced(context);
-    final clock = useAnimationController(
-      duration: WeekStoryScreen.pageDuration,
-    );
-    final sharing = useState(false);
-
-    void go(int delta) {
-      final next = index.value + delta;
-      if (next >= 0 && next < pages.length) {
-        index.value = next;
-      } else if (delta < 0) {
-        clock.forward(from: 0);
-      }
-    }
-
-    // each page runs its clock, then gives way to the next (the last stays)
-    useEffect(() {
-      if (reduced) {
-        clock.value = 1;
-        return null;
-      }
-      void listener(AnimationStatus status) {
-        if (status == AnimationStatus.completed &&
-            index.value < pages.length - 1) {
-          index.value += 1;
-        }
-      }
-
-      clock
-        ..addStatusListener(listener)
-        ..forward(from: 0);
-      return () => clock.removeStatusListener(listener);
-    }, [index.value, reduced]);
-
-    void hold() => clock.stop();
-    void resume() {
-      if (!reduced && !sharing.value && !clock.isCompleted) {
-        clock.forward();
-      }
-    }
-
-    Future<void> share(Rect? origin) async {
-      final service = ref.read(shareServiceProvider);
-      final toast = ref.read(toasterProvider).of(context);
-      sharing.value = true;
-      hold();
-      try {
-        final bytes = await pngOf(keys[page]!, width: 1080);
-        await service.shareFile(
-          bytes,
-          name: 'ma-semaine-avec-dieu-${story.monday.toApiDate()}.png',
-          mimeType: 'image/png',
-          subject: t.weekStory.title,
-          origin: origin,
-        );
-      } on Object catch (error) {
-        toast.error(userMessageFor(error, t));
-      } finally {
-        if (context.mounted) {
-          sharing.value = false;
-          resume();
-        }
-      }
-    }
-
-    final padding = MediaQuery.paddingOf(context);
-    final localizations = MaterialLocalizations.of(context);
-
-    return Stack(
-      children: [
-        // the page, as shared: its colors, the logo, what it tells
-        Positioned.fill(
-          child: AnimatedSwitcher(
-            duration: AppMotion.of(context, AppMotion.medium),
-            child: RepaintBoundary(
-              key: keys[page],
-              child: _PageFrame(
-                key: ValueKey(page),
-                colors: _colorsOf(page),
-                child: switch (page) {
-                  _Page.intro => _IntroPage(story: story),
-                  _Page.faithful => _FaithfulPage(story: story),
-                  _Page.prayer => _PrayerPage(story: story),
-                  _Page.goals => _GoalsPage(story: story),
-                  _Page.summary => _SummaryPage(story: story, verse: verse),
-                },
-              ),
-            ),
-          ),
-        ),
-        // a tap on the right goes on, on the left goes back; held, it waits
-        Positioned.fill(
-          child: GestureDetector(
-            behavior: HitTestBehavior.opaque,
-            onTapUp: (details) => go(
-              details.globalPosition.dx < MediaQuery.sizeOf(context).width / 3
-                  ? -1
-                  : 1,
-            ),
-            onLongPressStart: (_) => hold(),
-            onLongPressEnd: (_) => resume(),
-            child: Row(
-              children: [
-                Expanded(
-                  child: Semantics(
-                    button: true,
-                    label: localizations.previousPageTooltip,
-                    onTap: () => go(-1),
-                    child: const SizedBox.expand(),
-                  ),
-                ),
-                Expanded(
-                  flex: 2,
-                  child: Semantics(
-                    button: true,
-                    label: localizations.nextPageTooltip,
-                    onTap: () => go(1),
-                    child: const SizedBox.expand(),
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ),
-        // the pages, like stories: done, going, to come
-        Positioned(
-          left: 16,
-          right: 16,
-          top: padding.top + 10,
-          child: Semantics(
-            label: t.weekStory.page(
-              current: index.value + 1,
-              total: pages.length,
-            ),
-            child: AnimatedBuilder(
-              animation: clock,
-              builder: (context, _) => Row(
-                children: [
-                  for (var i = 0; i < pages.length; i++) ...[
-                    if (i > 0) const SizedBox(width: 4),
-                    Expanded(
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(2),
-                        child: LinearProgressIndicator(
-                          value: i < index.value
-                              ? 1
-                              : i == index.value
-                              ? clock.value
-                              : 0,
-                          minHeight: 3,
-                          color: Colors.white,
-                          backgroundColor: Colors.white.withValues(alpha: 0.3),
-                        ),
-                      ),
-                    ),
-                  ],
-                ],
-              ),
-            ),
-          ),
-        ),
-        PositionedDirectional(
-          end: 4,
-          top: padding.top + 20,
-          child: IconButton(
-            tooltip: localizations.closeButtonTooltip,
-            onPressed: () => context.router.maybePop(),
-            icon: const Icon(AppIcons.close, color: Colors.white, size: 26),
-          ),
-        ),
-        Positioned(
-          left: 20,
-          right: 20,
-          bottom: padding.bottom + 30,
-          child: Builder(
-            builder: (button) => FilledButton.icon(
-              onPressed: sharing.value
-                  ? null
-                  : () {
-                      final box = button.findRenderObject() as RenderBox?;
-                      share(
-                        box == null
-                            ? null
-                            : box.localToGlobal(Offset.zero) & box.size,
-                      );
-                    },
-              style: FilledButton.styleFrom(
-                backgroundColor: Colors.white,
-                foregroundColor: const Color(0xFF14123A),
-                minimumSize: const Size.fromHeight(54),
-                shape: const StadiumBorder(),
-                textStyle: const TextStyle(
-                  fontFamily: AppTheme.fontFamily,
-                  fontSize: 16,
-                  fontWeight: FontWeight.w800,
-                ),
-              ),
-              icon: const Icon(AppIcons.share, size: 20),
-              label: Text(t.weekStory.share),
-            ),
-          ),
-        ),
-      ],
+    return StoryPager(
+      length: pages.length,
+      pageBuilder: (context, index) => _PageFrame(
+        key: ValueKey(pages[index]),
+        colors: _colorsOf(pages[index]),
+        child: switch (pages[index]) {
+          _Page.intro => _IntroPage(story: story),
+          _Page.faithful => _FaithfulPage(story: story),
+          _Page.prayer => _PrayerPage(story: story),
+          _Page.goals => _GoalsPage(story: story),
+          _Page.summary => _SummaryPage(story: story, verse: verse),
+        },
+      ),
+      pageLabel: (current, total) =>
+          t.weekStory.page(current: current, total: total),
+      shareLabel: t.weekStory.share,
+      shareName: 'ma-semaine-avec-dieu-${story.monday.toApiDate()}.png',
+      shareSubject: t.weekStory.title,
     );
   }
 }

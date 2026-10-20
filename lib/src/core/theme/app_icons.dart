@@ -223,4 +223,7 @@ abstract final class AppIcons {
 
   // Mes jeûnes
   static const fastsTile = PhosphorIconsDuotone.forkKnife;
+
+  // Ton année avec Dieu
+  static const yearStoryTile = PhosphorIconsDuotone.calendarStar;
 }

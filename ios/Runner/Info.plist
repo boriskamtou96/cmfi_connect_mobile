@@ -78,6 +78,8 @@
 	<string>Pour choisir le lieu d'un évènement que tu ajoutes à ton calendrier.</string>
 	<key>NSFaceIDUsageDescription</key>
 	<string>Pour te connecter avec Face ID, sans taper ton mot de passe.</string>
+	<key>NSSupportsLiveActivities</key>
+	<true/>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>Pour choisir ta photo de profil, ou l'affiche et les photos d'un évènement.</string>
 	<key>UIApplicationSupportsIndirectInputEvents</key>

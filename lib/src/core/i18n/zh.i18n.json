@@ -379,7 +379,9 @@
       "noItem": "计时已停止，但此项目已不在你的报告中。",
       "replaceTitle": "替换计时？",
       "replaceText": "“{item}”已在计时，它将停止且不计入。",
-      "replace": "替换"
+      "replace": "替换",
+      "channel": "正在计时",
+      "ongoingBody": "轻点以暂停或结束"
     }
   },
   "reminder": {
@@ -1687,6 +1689,86 @@
     "pastWeeks": "过去几周",
     "weekOf": "{date} 那一周",
     "page": "第 {current} 页，共 {total} 页"
+  },
+  "yearStory": {
+    "title": "你与神同在的一年",
+    "since": "自{date}起",
+    "intro": "回顾这一年你与主同在的点滴。",
+    "tapHint": "点击右侧继续，点击左侧返回。",
+    "page": "第 {current} 页，共 {total} 页",
+    "faithfulLead": "你很忠心",
+    "days(plural, param=n)": {
+      "other": "{total} 天中\n有 {n} 天"
+    },
+    "bestStreak(plural, param=n)": {
+      "other": "你最长的连续纪录：{n} 天"
+    },
+    "faithfulMonth(plural, param=n)": {
+      "other": "你最忠心的月份：{month}（{n} 天）"
+    },
+    "prayerLead": "你祷告了",
+    "retreats(plural, param=n)": {
+      "other": "{n} 次退修"
+    },
+    "retreatsTime": "每次 15 分钟 · 与主同在 {time}",
+    "prayerAlone": "个人祷告 {time}",
+    "prayerAloneText": "与主同在的个人祷告",
+    "faithfulMoment(plural, param=n)": {
+      "other": "你最忠心的时段：{moment}（{n} 次）"
+    },
+    "wordLead": "你读了神的话",
+    "memoryLead": "你把神的话藏在心里",
+    "chapters(plural, param=n)": {
+      "other": "{n} 章"
+    },
+    "bibleShare": "占整本圣经的 {percent}",
+    "wholeBible": "相当于整本圣经！",
+    "versesKnown(plural, param=n)": {
+      "other": "节经文已背熟"
+    },
+    "versesLearning(plural, param=n)": {
+      "other": "节经文正在背诵"
+    },
+    "fastLead": "你禁食了",
+    "fastDays(plural, param=n)": {
+      "other": "{n} 天"
+    },
+    "fastText": "在主面前禁食",
+    "fullFasts(plural, param=n)": {
+      "other": "天完全禁食"
+    },
+    "partialFasts(plural, param=n)": {
+      "other": "天部分禁食"
+    },
+    "goalsLead": "你的目标",
+    "goalsReached": "平均达成",
+    "bestMonth": "你最好的月份：{month} · {percent}",
+    "summaryTitle": "我与神同在的一年",
+    "statDays": "天已填写",
+    "statStreak(plural, param=n)": {
+      "other": "天连续，你的纪录"
+    },
+    "statRetreats(plural, param=n)": {
+      "other": "次退修"
+    },
+    "statPrayer": "个人祷告",
+    "statChapters(plural, param=n)": {
+      "other": "章已读"
+    },
+    "statFasts(plural, param=n)": {
+      "other": "天禁食"
+    },
+    "statGoals": "目标",
+    "emptyText": "每天填写你的报告：你的一年将写在这里。",
+    "share": "分享我的一年",
+    "homeText": "你的忠心、祷告与神的话：回顾 {year} 年你与神同在的点滴。",
+    "open": "查看我的一年",
+    "notificationTitle": "你与神同在的一年已准备好",
+    "notificationBody": "回顾 {year} 年你与主同在的点滴，并分享出去。",
+    "channel": "你与神同在的一年",
+    "moreTitle": "我与神同在的一年",
+    "moreSoFar": "{year} 年至今",
+    "moreDone": "{year} 年全年"
   },
   "seekFirst": {
     "title": "先求神",

@@ -74,6 +74,7 @@ class TranslationsZh extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _Translations$profilePhoto$zh profilePhoto = _Translations$profilePhoto$zh._(_root);
 	@override late final _Translations$disciples$zh disciples = _Translations$disciples$zh._(_root);
 	@override late final _Translations$weekStory$zh weekStory = _Translations$weekStory$zh._(_root);
+	@override late final _Translations$yearStory$zh yearStory = _Translations$yearStory$zh._(_root);
 	@override late final _Translations$seekFirst$zh seekFirst = _Translations$seekFirst$zh._(_root);
 	@override late final _Translations$documents$zh documents = _Translations$documents$zh._(_root);
 	@override late final _Translations$biblePlan$zh biblePlan = _Translations$biblePlan$zh._(_root);
@@ -1189,6 +1190,93 @@ class _Translations$weekStory$zh extends Translations$weekStory$fr {
 	@override String page({required Object current, required Object total}) => '第 ${current} 页，共 ${total} 页';
 }
 
+// Path: yearStory
+class _Translations$yearStory$zh extends Translations$yearStory$fr {
+	_Translations$yearStory$zh._(TranslationsZh root) : this._root = root, super.internal(root);
+
+	final TranslationsZh _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => '你与神同在的一年';
+	@override String since({required Object date}) => '自${date}起';
+	@override String get intro => '回顾这一年你与主同在的点滴。';
+	@override String get tapHint => '点击右侧继续，点击左侧返回。';
+	@override String page({required Object current, required Object total}) => '第 ${current} 页，共 ${total} 页';
+	@override String get faithfulLead => '你很忠心';
+	@override String days({required num n, required Object total}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n,
+		other: '${total} 天中\n有 ${n} 天',
+	);
+	@override String bestStreak({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n,
+		other: '你最长的连续纪录：${n} 天',
+	);
+	@override String faithfulMonth({required num n, required Object month}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n,
+		other: '你最忠心的月份：${month}（${n} 天）',
+	);
+	@override String get prayerLead => '你祷告了';
+	@override String retreats({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n,
+		other: '${n} 次退修',
+	);
+	@override String retreatsTime({required Object time}) => '每次 15 分钟 · 与主同在 ${time}';
+	@override String prayerAlone({required Object time}) => '个人祷告 ${time}';
+	@override String get prayerAloneText => '与主同在的个人祷告';
+	@override String faithfulMoment({required num n, required Object moment}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n,
+		other: '你最忠心的时段：${moment}（${n} 次）',
+	);
+	@override String get wordLead => '你读了神的话';
+	@override String get memoryLead => '你把神的话藏在心里';
+	@override String chapters({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n,
+		other: '${n} 章',
+	);
+	@override String bibleShare({required Object percent}) => '占整本圣经的 ${percent}';
+	@override String get wholeBible => '相当于整本圣经！';
+	@override String versesKnown({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n,
+		other: '节经文已背熟',
+	);
+	@override String versesLearning({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n,
+		other: '节经文正在背诵',
+	);
+	@override String get fastLead => '你禁食了';
+	@override String fastDays({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n,
+		other: '${n} 天',
+	);
+	@override String get fastText => '在主面前禁食';
+	@override String fullFasts({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n,
+		other: '天完全禁食',
+	);
+	@override String partialFasts({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n,
+		other: '天部分禁食',
+	);
+	@override String get goalsLead => '你的目标';
+	@override String get goalsReached => '平均达成';
+	@override String bestMonth({required Object month, required Object percent}) => '你最好的月份：${month} · ${percent}';
+	@override String get summaryTitle => '我与神同在的一年';
+	@override String get statDays => '天已填写';
+	@override String statStreak({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n,
+		other: '天连续，你的纪录',
+	);
+	@override String statRetreats({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n,
+		other: '次退修',
+	);
+	@override String get statPrayer => '个人祷告';
+	@override String statChapters({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n,
+		other: '章已读',
+	);
+	@override String statFasts({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n,
+		other: '天禁食',
+	);
+	@override String get statGoals => '目标';
+	@override String get emptyText => '每天填写你的报告：你的一年将写在这里。';
+	@override String get share => '分享我的一年';
+	@override String homeText({required Object year}) => '你的忠心、祷告与神的话：回顾 ${year} 年你与神同在的点滴。';
+	@override String get open => '查看我的一年';
+	@override String get notificationTitle => '你与神同在的一年已准备好';
+	@override String notificationBody({required Object year}) => '回顾 ${year} 年你与主同在的点滴，并分享出去。';
+	@override String get channel => '你与神同在的一年';
+	@override String get moreTitle => '我与神同在的一年';
+	@override String moreSoFar({required Object year}) => '${year} 年至今';
+	@override String moreDone({required Object year}) => '${year} 年全年';
+}
+
 // Path: seekFirst
 class _Translations$seekFirst$zh extends Translations$seekFirst$fr {
 	_Translations$seekFirst$zh._(TranslationsZh root) : this._root = root, super.internal(root);
@@ -1967,6 +2055,8 @@ class _Translations$reports$timer$zh extends Translations$reports$timer$fr {
 	@override String get replaceTitle => '替换计时？';
 	@override String replaceText({required Object item}) => '“${item}”已在计时，它将停止且不计入。';
 	@override String get replace => '替换';
+	@override String get channel => '正在计时';
+	@override String get ongoingBody => '轻点以暂停或结束';
 }
 
 // Path: export.doc
@@ -3271,6 +3361,8 @@ extension on TranslationsZh {
 			'reports.timer.replaceTitle' => '替换计时？',
 			'reports.timer.replaceText' => ({required Object item}) => '“${item}”已在计时，它将停止且不计入。',
 			'reports.timer.replace' => '替换',
+			'reports.timer.channel' => '正在计时',
+			'reports.timer.ongoingBody' => '轻点以暂停或结束',
 			'reminder.title' => '你的今日汇报',
 			'reminder.body' => '在今天结束前，花一分钟记下你的读经、祷告……',
 			'reminder.channel' => '汇报提醒',
@@ -3482,10 +3574,10 @@ extension on TranslationsZh {
 			'admin.giveRole' => '授予角色',
 			'admin.you' => '你',
 			'admin.roleFor' => ({required Object username}) => '@${username} 的角色',
-			'admin.roleChanged' => ({required Object username, required Object role}) => '@${username}：${role}',
-			'admin.memberUsername' => '成员的用户名',
 			_ => null,
 		} ?? switch (path) {
+			'admin.roleChanged' => ({required Object username, required Object role}) => '@${username}：${role}',
+			'admin.memberUsername' => '成员的用户名',
 			'admin.empty' => '暂时还没有管理员。',
 			'hymns.searchHint' => '编号、标题或歌词',
 			'hymns.openNumber' => '按编号查找',
@@ -3996,10 +4088,10 @@ extension on TranslationsZh {
 			'prayer.topics.current' => '当前',
 			'prayer.topics.documentSize' => ({required Object kb}) => '${kb} KB',
 			'prayer.topics.download' => '下载 PDF',
-			'prayer.topics.noDocument' => '没有 PDF',
-			'prayer.topics.openDocument' => '打开 PDF',
 			_ => null,
 		} ?? switch (path) {
+			'prayer.topics.noDocument' => '没有 PDF',
+			'prayer.topics.openDocument' => '打开 PDF',
 			'prayer.lists.title' => '我的祷告名单',
 			'prayer.lists.private' => '仅你可见',
 			'prayer.lists.names.unbelievers' => '尚未信主',
@@ -4321,6 +4413,54 @@ extension on TranslationsZh {
 			'weekStory.pastWeeks' => '过去几周',
 			'weekStory.weekOf' => ({required Object date}) => '${date} 那一周',
 			'weekStory.page' => ({required Object current, required Object total}) => '第 ${current} 页，共 ${total} 页',
+			'yearStory.title' => '你与神同在的一年',
+			'yearStory.since' => ({required Object date}) => '自${date}起',
+			'yearStory.intro' => '回顾这一年你与主同在的点滴。',
+			'yearStory.tapHint' => '点击右侧继续，点击左侧返回。',
+			'yearStory.page' => ({required Object current, required Object total}) => '第 ${current} 页，共 ${total} 页',
+			'yearStory.faithfulLead' => '你很忠心',
+			'yearStory.days' => ({required num n, required Object total}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n, other: '${total} 天中\n有 ${n} 天', ), 
+			'yearStory.bestStreak' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n, other: '你最长的连续纪录：${n} 天', ), 
+			'yearStory.faithfulMonth' => ({required num n, required Object month}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n, other: '你最忠心的月份：${month}（${n} 天）', ), 
+			'yearStory.prayerLead' => '你祷告了',
+			'yearStory.retreats' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n, other: '${n} 次退修', ), 
+			'yearStory.retreatsTime' => ({required Object time}) => '每次 15 分钟 · 与主同在 ${time}',
+			'yearStory.prayerAlone' => ({required Object time}) => '个人祷告 ${time}',
+			'yearStory.prayerAloneText' => '与主同在的个人祷告',
+			'yearStory.faithfulMoment' => ({required num n, required Object moment}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n, other: '你最忠心的时段：${moment}（${n} 次）', ), 
+			'yearStory.wordLead' => '你读了神的话',
+			'yearStory.memoryLead' => '你把神的话藏在心里',
+			'yearStory.chapters' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n, other: '${n} 章', ), 
+			'yearStory.bibleShare' => ({required Object percent}) => '占整本圣经的 ${percent}',
+			'yearStory.wholeBible' => '相当于整本圣经！',
+			'yearStory.versesKnown' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n, other: '节经文已背熟', ), 
+			'yearStory.versesLearning' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n, other: '节经文正在背诵', ), 
+			'yearStory.fastLead' => '你禁食了',
+			'yearStory.fastDays' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n, other: '${n} 天', ), 
+			'yearStory.fastText' => '在主面前禁食',
+			'yearStory.fullFasts' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n, other: '天完全禁食', ), 
+			'yearStory.partialFasts' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n, other: '天部分禁食', ), 
+			'yearStory.goalsLead' => '你的目标',
+			'yearStory.goalsReached' => '平均达成',
+			'yearStory.bestMonth' => ({required Object month, required Object percent}) => '你最好的月份：${month} · ${percent}',
+			'yearStory.summaryTitle' => '我与神同在的一年',
+			'yearStory.statDays' => '天已填写',
+			'yearStory.statStreak' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n, other: '天连续，你的纪录', ), 
+			'yearStory.statRetreats' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n, other: '次退修', ), 
+			'yearStory.statPrayer' => '个人祷告',
+			'yearStory.statChapters' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n, other: '章已读', ), 
+			'yearStory.statFasts' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n, other: '天禁食', ), 
+			'yearStory.statGoals' => '目标',
+			'yearStory.emptyText' => '每天填写你的报告：你的一年将写在这里。',
+			'yearStory.share' => '分享我的一年',
+			'yearStory.homeText' => ({required Object year}) => '你的忠心、祷告与神的话：回顾 ${year} 年你与神同在的点滴。',
+			'yearStory.open' => '查看我的一年',
+			'yearStory.notificationTitle' => '你与神同在的一年已准备好',
+			'yearStory.notificationBody' => ({required Object year}) => '回顾 ${year} 年你与主同在的点滴，并分享出去。',
+			'yearStory.channel' => '你与神同在的一年',
+			'yearStory.moreTitle' => '我与神同在的一年',
+			'yearStory.moreSoFar' => ({required Object year}) => '${year} 年至今',
+			'yearStory.moreDone' => ({required Object year}) => '${year} 年全年',
 			'seekFirst.title' => '先求神',
 			'seekFirst.verse' => '你们要先求他的国和他的义，这些东西都要加给你们了。',
 			'seekFirst.verseRef' => '马太福音 6:33',
@@ -4462,6 +4602,8 @@ extension on TranslationsZh {
 			'memorize.openBible' => '打开圣经',
 			'memorize.late' => '已逾期',
 			'memorize.today' => '今天',
+			_ => null,
+		} ?? switch (path) {
 			'memorize.dueIn' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n, one: '${n} 天后', other: '${n} 天后', ), 
 			'memorize.stages.fresh' => '新',
 			'memorize.stages.learning' => '学习中',
@@ -4512,8 +4654,6 @@ extension on TranslationsZh {
 			'souls.stages.baptized' => '已受洗',
 			'souls.contactSection' => '待再次联系',
 			'souls.everyone' => '所有人',
-			_ => null,
-		} ?? switch (path) {
 			'souls.contactToday' => '今天联系',
 			'souls.contactLate' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n, one: '逾期 ${n} 天', other: '逾期 ${n} 天', ), 
 			'souls.contactOn' => ({required Object date}) => '下次联系：${date}',

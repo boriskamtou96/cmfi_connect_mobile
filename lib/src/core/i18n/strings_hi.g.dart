@@ -74,6 +74,7 @@ class TranslationsHi extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _Translations$profilePhoto$hi profilePhoto = _Translations$profilePhoto$hi._(_root);
 	@override late final _Translations$disciples$hi disciples = _Translations$disciples$hi._(_root);
 	@override late final _Translations$weekStory$hi weekStory = _Translations$weekStory$hi._(_root);
+	@override late final _Translations$yearStory$hi yearStory = _Translations$yearStory$hi._(_root);
 	@override late final _Translations$seekFirst$hi seekFirst = _Translations$seekFirst$hi._(_root);
 	@override late final _Translations$documents$hi documents = _Translations$documents$hi._(_root);
 	@override late final _Translations$biblePlan$hi biblePlan = _Translations$biblePlan$hi._(_root);
@@ -1225,6 +1226,108 @@ class _Translations$weekStory$hi extends Translations$weekStory$fr {
 	@override String page({required Object total, required Object current}) => '${total} में से ${current}';
 }
 
+// Path: yearStory
+class _Translations$yearStory$hi extends Translations$yearStory$fr {
+	_Translations$yearStory$hi._(TranslationsHi root) : this._root = root, super.internal(root);
+
+	final TranslationsHi _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'परमेश्वर के साथ तुम्हारा साल';
+	@override String since({required Object date}) => '${date} से';
+	@override String get intro => 'इस साल प्रभु के साथ जो कुछ जिया, उसे फिर से देखो।';
+	@override String get tapHint => 'आगे जाने के लिए दाईं ओर, वापस आने के लिए बाईं ओर छुओ।';
+	@override String page({required Object total, required Object current}) => '${total} में से ${current}';
+	@override String get faithfulLead => 'तुम वफ़ादार रहे';
+	@override String days({required num n, required Object total}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n,
+		one: '${total} में से\n${n} दिन',
+		other: '${total} में से\n${n} दिन',
+	);
+	@override String bestStreak({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n,
+		one: 'तुम्हारी सबसे लंबी लड़ी: ${n} दिन',
+		other: 'तुम्हारी सबसे लंबी लड़ी: लगातार ${n} दिन',
+	);
+	@override String faithfulMonth({required num n, required Object month}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n,
+		one: 'तुम्हारा सबसे वफ़ादार महीना: ${month} (${n} दिन)',
+		other: 'तुम्हारा सबसे वफ़ादार महीना: ${month} (${n} दिन)',
+	);
+	@override String get prayerLead => 'तुमने प्रार्थना की';
+	@override String retreats({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n,
+		one: '${n} प्रार्थना-समय',
+		other: '${n} प्रार्थना-समय',
+	);
+	@override String retreatsTime({required Object time}) => '15 मिनट के · प्रभु के साथ ${time}';
+	@override String prayerAlone({required Object time}) => '${time} व्यक्तिगत प्रार्थना';
+	@override String get prayerAloneText => 'प्रभु के साथ व्यक्तिगत प्रार्थना';
+	@override String faithfulMoment({required num n, required Object moment}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n,
+		one: 'तुम्हारा सबसे वफ़ादार समय: ${moment} (${n} बार)',
+		other: 'तुम्हारा सबसे वफ़ादार समय: ${moment} (${n} बार)',
+	);
+	@override String get wordLead => 'तुमने वचन पढ़ा';
+	@override String get memoryLead => 'तुमने वचन को अपने हृदय में रखा';
+	@override String chapters({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n,
+		one: '${n} अध्याय',
+		other: '${n} अध्याय',
+	);
+	@override String bibleShare({required Object percent}) => 'बाइबल का ${percent}';
+	@override String get wholeBible => 'पूरी बाइबल के बराबर!';
+	@override String versesKnown({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n,
+		one: 'पद कंठस्थ किया',
+		other: 'पद कंठस्थ किए',
+	);
+	@override String versesLearning({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n,
+		one: 'पद कंठस्थ हो रहा है',
+		other: 'पद कंठस्थ हो रहे हैं',
+	);
+	@override String get fastLead => 'तुमने उपवास किया';
+	@override String fastDays({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n,
+		one: '${n} दिन',
+		other: '${n} दिन',
+	);
+	@override String get fastText => 'प्रभु के सामने उपवास';
+	@override String fullFasts({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n,
+		one: 'दिन पूर्ण उपवास',
+		other: 'दिन पूर्ण उपवास',
+	);
+	@override String partialFasts({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n,
+		one: 'दिन आंशिक उपवास',
+		other: 'दिन आंशिक उपवास',
+	);
+	@override String get goalsLead => 'तुम्हारे लक्ष्य';
+	@override String get goalsReached => 'औसतन पूरे हुए';
+	@override String bestMonth({required Object month, required Object percent}) => 'तुम्हारा सबसे अच्छा महीना: ${month} · ${percent}';
+	@override String get summaryTitle => 'परमेश्वर के साथ मेरा साल';
+	@override String get statDays => 'दिन भरे गए';
+	@override String statStreak({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n,
+		one: 'दिन लगातार, तुम्हारा रिकॉर्ड',
+		other: 'दिन लगातार, तुम्हारा रिकॉर्ड',
+	);
+	@override String statRetreats({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n,
+		one: 'प्रार्थना-समय',
+		other: 'प्रार्थना-समय',
+	);
+	@override String get statPrayer => 'व्यक्तिगत प्रार्थना';
+	@override String statChapters({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n,
+		one: 'अध्याय पढ़ा',
+		other: 'अध्याय पढ़े',
+	);
+	@override String statFasts({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n,
+		one: 'उपवास का दिन',
+		other: 'उपवास के दिन',
+	);
+	@override String get statGoals => 'लक्ष्य';
+	@override String get emptyText => 'हर दिन अपनी रिपोर्ट भरो: तुम्हारा साल यहाँ लिखा जाएगा।';
+	@override String get share => 'अपना साल साझा करो';
+	@override String homeText({required Object year}) => 'तुम्हारी वफ़ादारी, प्रार्थना, वचन: ${year} में परमेश्वर के साथ जो जिया, उसे फिर से देखो।';
+	@override String get open => 'मेरा साल देखो';
+	@override String get notificationTitle => 'परमेश्वर के साथ तुम्हारा साल तैयार है';
+	@override String notificationBody({required Object year}) => '${year} में प्रभु के साथ जो कुछ जिया, उसे फिर से देखो और साझा करो।';
+	@override String get channel => 'परमेश्वर के साथ तुम्हारा साल';
+	@override String get moreTitle => 'परमेश्वर के साथ मेरा साल';
+	@override String moreSoFar({required Object year}) => '${year} अब तक';
+	@override String moreDone({required Object year}) => 'पूरा ${year}';
+}
+
 // Path: seekFirst
 class _Translations$seekFirst$hi extends Translations$seekFirst$fr {
 	_Translations$seekFirst$hi._(TranslationsHi root) : this._root = root, super.internal(root);
@@ -2018,6 +2121,8 @@ class _Translations$reports$timer$hi extends Translations$reports$timer$fr {
 	@override String get replaceTitle => 'स्टॉपवॉच बदलें?';
 	@override String replaceText({required Object item}) => '"${item}" के लिए स्टॉपवॉच पहले से चल रही है। वह बिना गिने रुक जाएगी।';
 	@override String get replace => 'बदलो';
+	@override String get channel => 'चल रही स्टॉपवॉच';
+	@override String get ongoingBody => 'रोकने या समाप्त करने के लिए टैप करें';
 }
 
 // Path: export.doc
@@ -3338,6 +3443,8 @@ extension on TranslationsHi {
 			'reports.timer.replaceTitle' => 'स्टॉपवॉच बदलें?',
 			'reports.timer.replaceText' => ({required Object item}) => '"${item}" के लिए स्टॉपवॉच पहले से चल रही है। वह बिना गिने रुक जाएगी।',
 			'reports.timer.replace' => 'बदलो',
+			'reports.timer.channel' => 'चल रही स्टॉपवॉच',
+			'reports.timer.ongoingBody' => 'रोकने या समाप्त करने के लिए टैप करें',
 			'reminder.title' => 'तुम्हारी आज की रिपोर्ट',
 			'reminder.body' => 'दिन ख़त्म होने से पहले एक मिनट निकालकर अपना बाइबल पठन, अपनी प्रार्थना… दर्ज करो।',
 			'reminder.channel' => 'रिपोर्ट रिमाइंडर',
@@ -3549,10 +3656,10 @@ extension on TranslationsHi {
 			'admin.giveRole' => 'भूमिका दो',
 			'admin.you' => 'तुम',
 			'admin.roleFor' => ({required Object username}) => '@${username} की भूमिका',
-			'admin.roleChanged' => ({required Object username, required Object role}) => '@${username}: ${role}',
-			'admin.memberUsername' => 'सदस्य का यूज़रनेम',
 			_ => null,
 		} ?? switch (path) {
+			'admin.roleChanged' => ({required Object username, required Object role}) => '@${username}: ${role}',
+			'admin.memberUsername' => 'सदस्य का यूज़रनेम',
 			'admin.empty' => 'अभी तक कोई एडमिन नहीं है।',
 			'hymns.searchHint' => 'नंबर, शीर्षक या बोल',
 			'hymns.openNumber' => 'नंबर पर जाओ',
@@ -4063,10 +4170,10 @@ extension on TranslationsHi {
 			'prayer.topics.current' => 'इस समय',
 			'prayer.topics.documentSize' => ({required Object kb}) => '${kb} KB',
 			'prayer.topics.download' => 'PDF डाउनलोड करो',
-			'prayer.topics.noDocument' => 'PDF नहीं है',
-			'prayer.topics.openDocument' => 'PDF खोलो',
 			_ => null,
 		} ?? switch (path) {
+			'prayer.topics.noDocument' => 'PDF नहीं है',
+			'prayer.topics.openDocument' => 'PDF खोलो',
 			'prayer.lists.title' => 'मेरी प्रार्थना सूचियाँ',
 			'prayer.lists.private' => 'सिर्फ़ तुम्हारे लिए',
 			'prayer.lists.names.unbelievers' => 'अब तक विश्वास नहीं किया',
@@ -4388,6 +4495,54 @@ extension on TranslationsHi {
 			'weekStory.pastWeeks' => 'पिछले हफ़्ते',
 			'weekStory.weekOf' => ({required Object date}) => '${date} का हफ़्ता',
 			'weekStory.page' => ({required Object total, required Object current}) => '${total} में से ${current}',
+			'yearStory.title' => 'परमेश्वर के साथ तुम्हारा साल',
+			'yearStory.since' => ({required Object date}) => '${date} से',
+			'yearStory.intro' => 'इस साल प्रभु के साथ जो कुछ जिया, उसे फिर से देखो।',
+			'yearStory.tapHint' => 'आगे जाने के लिए दाईं ओर, वापस आने के लिए बाईं ओर छुओ।',
+			'yearStory.page' => ({required Object total, required Object current}) => '${total} में से ${current}',
+			'yearStory.faithfulLead' => 'तुम वफ़ादार रहे',
+			'yearStory.days' => ({required num n, required Object total}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n, one: '${total} में से\n${n} दिन', other: '${total} में से\n${n} दिन', ), 
+			'yearStory.bestStreak' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n, one: 'तुम्हारी सबसे लंबी लड़ी: ${n} दिन', other: 'तुम्हारी सबसे लंबी लड़ी: लगातार ${n} दिन', ), 
+			'yearStory.faithfulMonth' => ({required num n, required Object month}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n, one: 'तुम्हारा सबसे वफ़ादार महीना: ${month} (${n} दिन)', other: 'तुम्हारा सबसे वफ़ादार महीना: ${month} (${n} दिन)', ), 
+			'yearStory.prayerLead' => 'तुमने प्रार्थना की',
+			'yearStory.retreats' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n, one: '${n} प्रार्थना-समय', other: '${n} प्रार्थना-समय', ), 
+			'yearStory.retreatsTime' => ({required Object time}) => '15 मिनट के · प्रभु के साथ ${time}',
+			'yearStory.prayerAlone' => ({required Object time}) => '${time} व्यक्तिगत प्रार्थना',
+			'yearStory.prayerAloneText' => 'प्रभु के साथ व्यक्तिगत प्रार्थना',
+			'yearStory.faithfulMoment' => ({required num n, required Object moment}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n, one: 'तुम्हारा सबसे वफ़ादार समय: ${moment} (${n} बार)', other: 'तुम्हारा सबसे वफ़ादार समय: ${moment} (${n} बार)', ), 
+			'yearStory.wordLead' => 'तुमने वचन पढ़ा',
+			'yearStory.memoryLead' => 'तुमने वचन को अपने हृदय में रखा',
+			'yearStory.chapters' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n, one: '${n} अध्याय', other: '${n} अध्याय', ), 
+			'yearStory.bibleShare' => ({required Object percent}) => 'बाइबल का ${percent}',
+			'yearStory.wholeBible' => 'पूरी बाइबल के बराबर!',
+			'yearStory.versesKnown' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n, one: 'पद कंठस्थ किया', other: 'पद कंठस्थ किए', ), 
+			'yearStory.versesLearning' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n, one: 'पद कंठस्थ हो रहा है', other: 'पद कंठस्थ हो रहे हैं', ), 
+			'yearStory.fastLead' => 'तुमने उपवास किया',
+			'yearStory.fastDays' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n, one: '${n} दिन', other: '${n} दिन', ), 
+			'yearStory.fastText' => 'प्रभु के सामने उपवास',
+			'yearStory.fullFasts' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n, one: 'दिन पूर्ण उपवास', other: 'दिन पूर्ण उपवास', ), 
+			'yearStory.partialFasts' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n, one: 'दिन आंशिक उपवास', other: 'दिन आंशिक उपवास', ), 
+			'yearStory.goalsLead' => 'तुम्हारे लक्ष्य',
+			'yearStory.goalsReached' => 'औसतन पूरे हुए',
+			'yearStory.bestMonth' => ({required Object month, required Object percent}) => 'तुम्हारा सबसे अच्छा महीना: ${month} · ${percent}',
+			'yearStory.summaryTitle' => 'परमेश्वर के साथ मेरा साल',
+			'yearStory.statDays' => 'दिन भरे गए',
+			'yearStory.statStreak' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n, one: 'दिन लगातार, तुम्हारा रिकॉर्ड', other: 'दिन लगातार, तुम्हारा रिकॉर्ड', ), 
+			'yearStory.statRetreats' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n, one: 'प्रार्थना-समय', other: 'प्रार्थना-समय', ), 
+			'yearStory.statPrayer' => 'व्यक्तिगत प्रार्थना',
+			'yearStory.statChapters' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n, one: 'अध्याय पढ़ा', other: 'अध्याय पढ़े', ), 
+			'yearStory.statFasts' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n, one: 'उपवास का दिन', other: 'उपवास के दिन', ), 
+			'yearStory.statGoals' => 'लक्ष्य',
+			'yearStory.emptyText' => 'हर दिन अपनी रिपोर्ट भरो: तुम्हारा साल यहाँ लिखा जाएगा।',
+			'yearStory.share' => 'अपना साल साझा करो',
+			'yearStory.homeText' => ({required Object year}) => 'तुम्हारी वफ़ादारी, प्रार्थना, वचन: ${year} में परमेश्वर के साथ जो जिया, उसे फिर से देखो।',
+			'yearStory.open' => 'मेरा साल देखो',
+			'yearStory.notificationTitle' => 'परमेश्वर के साथ तुम्हारा साल तैयार है',
+			'yearStory.notificationBody' => ({required Object year}) => '${year} में प्रभु के साथ जो कुछ जिया, उसे फिर से देखो और साझा करो।',
+			'yearStory.channel' => 'परमेश्वर के साथ तुम्हारा साल',
+			'yearStory.moreTitle' => 'परमेश्वर के साथ मेरा साल',
+			'yearStory.moreSoFar' => ({required Object year}) => '${year} अब तक',
+			'yearStory.moreDone' => ({required Object year}) => 'पूरा ${year}',
 			'seekFirst.title' => 'पहले परमेश्वर को खोजो',
 			'seekFirst.verse' => 'इसलिए पहले तुम परमेश्वर के राज्य और उसकी धार्मिकता की खोज करो तो ये सब वस्तुएँ तुम्हें मिल जाएँगी।',
 			'seekFirst.verseRef' => 'मत्ती 6:33',
@@ -4529,6 +4684,8 @@ extension on TranslationsHi {
 			'memorize.openBible' => 'बाइबल खोलो',
 			'memorize.late' => 'देर से',
 			'memorize.today' => 'आज',
+			_ => null,
+		} ?? switch (path) {
 			'memorize.dueIn' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n, one: '${n} दिन में', other: '${n} दिन में', ), 
 			'memorize.stages.fresh' => 'नया',
 			'memorize.stages.learning' => 'सीख रहे',
@@ -4579,8 +4736,6 @@ extension on TranslationsHi {
 			'souls.stages.baptized' => 'बपतिस्मा हुआ',
 			'souls.contactSection' => 'फिर संपर्क करना है',
 			'souls.everyone' => 'सभी लोग',
-			_ => null,
-		} ?? switch (path) {
 			'souls.contactToday' => 'आज संपर्क करो',
 			'souls.contactLate' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n, one: '${n} दिन देर', other: '${n} दिन देर', ), 
 			'souls.contactOn' => ({required Object date}) => 'अगला संपर्क ${date} को',

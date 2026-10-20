@@ -12,6 +12,7 @@ import 'package:cmfi_connect/src/core/services/home_widgets.dart';
 import 'package:cmfi_connect/src/core/services/image_picking.dart';
 import 'package:cmfi_connect/src/core/services/link_launcher.dart';
 import 'package:cmfi_connect/src/core/services/local_notifications.dart';
+import 'package:cmfi_connect/src/core/services/lock_screen_timer.dart';
 import 'package:cmfi_connect/src/core/services/media_images.dart';
 import 'package:cmfi_connect/src/core/services/network_status.dart';
 import 'package:cmfi_connect/src/core/services/phone_verification.dart';
@@ -109,6 +110,7 @@ class TestApp {
     required this.soulsStorage,
     required this.voice,
     required this.reportSendingsApi,
+    required this.lockScreen,
   });
 
   final ProviderContainer container;
@@ -160,6 +162,7 @@ class TestApp {
   final FakeSoulsStorage soulsStorage;
   final FakeVoiceReader voice;
   final FakeReportSendingsApi reportSendingsApi;
+  final FakeLockScreenTimer lockScreen;
 }
 
 Future<TestApp> pumpApp(
@@ -260,6 +263,7 @@ Future<TestApp> pumpApp(
   final files = teachingFiles ?? FakeTeachingFiles();
   final souls = soulsStorage ?? FakeSoulsStorage();
   final voice = FakeVoiceReader();
+  final lockScreen = FakeLockScreenTimer();
   final sendings = reportSendingsApi ?? FakeReportSendingsApi();
 
   final container = ProviderContainer(
@@ -314,6 +318,7 @@ Future<TestApp> pumpApp(
       teachingFilesProvider.overrideWithValue(files),
       soulsStorageProvider.overrideWithValue(souls),
       voiceReaderProvider.overrideWithValue(voice),
+      lockScreenTimerProvider.overrideWithValue(lockScreen),
       reportSendingsApiProvider.overrideWithValue(sendings),
       crashReportingProvider.overrideWithValue(const NoCrashReporting()),
       phoneVerificationProvider.overrideWithValue(
@@ -384,6 +389,7 @@ Future<TestApp> pumpApp(
     soulsStorage: souls,
     voice: voice,
     reportSendingsApi: sendings,
+    lockScreen: lockScreen,
   );
 }
 

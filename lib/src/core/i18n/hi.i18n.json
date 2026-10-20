@@ -390,7 +390,9 @@
       "noItem": "स्टॉपवॉच रुक गई, पर यह तत्व अब तुम्हारी रिपोर्ट में नहीं है।",
       "replaceTitle": "स्टॉपवॉच बदलें?",
       "replaceText": "\"{item}\" के लिए स्टॉपवॉच पहले से चल रही है। वह बिना गिने रुक जाएगी।",
-      "replace": "बदलो"
+      "replace": "बदलो",
+      "channel": "चल रही स्टॉपवॉच",
+      "ongoingBody": "रोकने या समाप्त करने के लिए टैप करें"
     }
   },
   "reminder": {
@@ -1743,6 +1745,101 @@
     "pastWeeks": "पिछले हफ़्ते",
     "weekOf": "{date} का हफ़्ता",
     "page": "{total} में से {current}"
+  },
+  "yearStory": {
+    "title": "परमेश्वर के साथ तुम्हारा साल",
+    "since": "{date} से",
+    "intro": "इस साल प्रभु के साथ जो कुछ जिया, उसे फिर से देखो।",
+    "tapHint": "आगे जाने के लिए दाईं ओर, वापस आने के लिए बाईं ओर छुओ।",
+    "page": "{total} में से {current}",
+    "faithfulLead": "तुम वफ़ादार रहे",
+    "days(plural, param=n)": {
+      "one": "{total} में से\n{n} दिन",
+      "other": "{total} में से\n{n} दिन"
+    },
+    "bestStreak(plural, param=n)": {
+      "one": "तुम्हारी सबसे लंबी लड़ी: {n} दिन",
+      "other": "तुम्हारी सबसे लंबी लड़ी: लगातार {n} दिन"
+    },
+    "faithfulMonth(plural, param=n)": {
+      "one": "तुम्हारा सबसे वफ़ादार महीना: {month} ({n} दिन)",
+      "other": "तुम्हारा सबसे वफ़ादार महीना: {month} ({n} दिन)"
+    },
+    "prayerLead": "तुमने प्रार्थना की",
+    "retreats(plural, param=n)": {
+      "one": "{n} प्रार्थना-समय",
+      "other": "{n} प्रार्थना-समय"
+    },
+    "retreatsTime": "15 मिनट के · प्रभु के साथ {time}",
+    "prayerAlone": "{time} व्यक्तिगत प्रार्थना",
+    "prayerAloneText": "प्रभु के साथ व्यक्तिगत प्रार्थना",
+    "faithfulMoment(plural, param=n)": {
+      "one": "तुम्हारा सबसे वफ़ादार समय: {moment} ({n} बार)",
+      "other": "तुम्हारा सबसे वफ़ादार समय: {moment} ({n} बार)"
+    },
+    "wordLead": "तुमने वचन पढ़ा",
+    "memoryLead": "तुमने वचन को अपने हृदय में रखा",
+    "chapters(plural, param=n)": {
+      "one": "{n} अध्याय",
+      "other": "{n} अध्याय"
+    },
+    "bibleShare": "बाइबल का {percent}",
+    "wholeBible": "पूरी बाइबल के बराबर!",
+    "versesKnown(plural, param=n)": {
+      "one": "पद कंठस्थ किया",
+      "other": "पद कंठस्थ किए"
+    },
+    "versesLearning(plural, param=n)": {
+      "one": "पद कंठस्थ हो रहा है",
+      "other": "पद कंठस्थ हो रहे हैं"
+    },
+    "fastLead": "तुमने उपवास किया",
+    "fastDays(plural, param=n)": {
+      "one": "{n} दिन",
+      "other": "{n} दिन"
+    },
+    "fastText": "प्रभु के सामने उपवास",
+    "fullFasts(plural, param=n)": {
+      "one": "दिन पूर्ण उपवास",
+      "other": "दिन पूर्ण उपवास"
+    },
+    "partialFasts(plural, param=n)": {
+      "one": "दिन आंशिक उपवास",
+      "other": "दिन आंशिक उपवास"
+    },
+    "goalsLead": "तुम्हारे लक्ष्य",
+    "goalsReached": "औसतन पूरे हुए",
+    "bestMonth": "तुम्हारा सबसे अच्छा महीना: {month} · {percent}",
+    "summaryTitle": "परमेश्वर के साथ मेरा साल",
+    "statDays": "दिन भरे गए",
+    "statStreak(plural, param=n)": {
+      "one": "दिन लगातार, तुम्हारा रिकॉर्ड",
+      "other": "दिन लगातार, तुम्हारा रिकॉर्ड"
+    },
+    "statRetreats(plural, param=n)": {
+      "one": "प्रार्थना-समय",
+      "other": "प्रार्थना-समय"
+    },
+    "statPrayer": "व्यक्तिगत प्रार्थना",
+    "statChapters(plural, param=n)": {
+      "one": "अध्याय पढ़ा",
+      "other": "अध्याय पढ़े"
+    },
+    "statFasts(plural, param=n)": {
+      "one": "उपवास का दिन",
+      "other": "उपवास के दिन"
+    },
+    "statGoals": "लक्ष्य",
+    "emptyText": "हर दिन अपनी रिपोर्ट भरो: तुम्हारा साल यहाँ लिखा जाएगा।",
+    "share": "अपना साल साझा करो",
+    "homeText": "तुम्हारी वफ़ादारी, प्रार्थना, वचन: {year} में परमेश्वर के साथ जो जिया, उसे फिर से देखो।",
+    "open": "मेरा साल देखो",
+    "notificationTitle": "परमेश्वर के साथ तुम्हारा साल तैयार है",
+    "notificationBody": "{year} में प्रभु के साथ जो कुछ जिया, उसे फिर से देखो और साझा करो।",
+    "channel": "परमेश्वर के साथ तुम्हारा साल",
+    "moreTitle": "परमेश्वर के साथ मेरा साल",
+    "moreSoFar": "{year} अब तक",
+    "moreDone": "पूरा {year}"
   },
   "seekFirst": {
     "title": "पहले परमेश्वर को खोजो",

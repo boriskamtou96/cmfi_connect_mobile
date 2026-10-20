@@ -390,7 +390,9 @@
       "noItem": "El cronómetro se detuvo, pero este elemento ya no está en tu informe.",
       "replaceTitle": "¿Reemplazar el cronómetro?",
       "replaceText": "Ya hay un cronómetro para «{item}». Se detendrá sin contarse.",
-      "replace": "Reemplazar"
+      "replace": "Reemplazar",
+      "channel": "Cronómetro en marcha",
+      "ongoingBody": "Toca para pausar o terminar"
     }
   },
   "reminder": {
@@ -1744,6 +1746,101 @@
     "pastWeeks": "Semanas pasadas",
     "weekOf": "Semana del {date}",
     "page": "{current} de {total}"
+  },
+  "yearStory": {
+    "title": "Tu año con Dios",
+    "since": "Desde el {date}",
+    "intro": "Repasa todo lo que viviste con el Señor este año.",
+    "tapHint": "Toca a la derecha para avanzar, a la izquierda para volver.",
+    "page": "{current} de {total}",
+    "faithfulLead": "Fuiste fiel",
+    "days(plural, param=n)": {
+      "one": "{n} día\nde {total}",
+      "other": "{n} días\nde {total}"
+    },
+    "bestStreak(plural, param=n)": {
+      "one": "Tu racha más larga: {n} día",
+      "other": "Tu racha más larga: {n} días seguidos"
+    },
+    "faithfulMonth(plural, param=n)": {
+      "one": "Tu mes más fiel: {month} ({n} día)",
+      "other": "Tu mes más fiel: {month} ({n} días)"
+    },
+    "prayerLead": "Oraste",
+    "retreats(plural, param=n)": {
+      "one": "{n} retiro",
+      "other": "{n} retiros"
+    },
+    "retreatsTime": "de 15 minutos · {time} con el Señor",
+    "prayerAlone": "{time} de oración personal",
+    "prayerAloneText": "de oración personal con el Señor",
+    "faithfulMoment(plural, param=n)": {
+      "one": "Tu momento más fiel: {moment} ({n} vez)",
+      "other": "Tu momento más fiel: {moment} ({n} veces)"
+    },
+    "wordLead": "Leíste la Palabra",
+    "memoryLead": "Guardaste la Palabra en tu corazón",
+    "chapters(plural, param=n)": {
+      "one": "{n} capítulo",
+      "other": "{n} capítulos"
+    },
+    "bibleShare": "{percent} de la Biblia",
+    "wholeBible": "¡El equivalente a toda la Biblia!",
+    "versesKnown(plural, param=n)": {
+      "one": "versículo aprendido de memoria",
+      "other": "versículos aprendidos de memoria"
+    },
+    "versesLearning(plural, param=n)": {
+      "one": "versículo en memorización",
+      "other": "versículos en memorización"
+    },
+    "fastLead": "Ayunaste",
+    "fastDays(plural, param=n)": {
+      "one": "{n} día",
+      "other": "{n} días"
+    },
+    "fastText": "de ayuno delante del Señor",
+    "fullFasts(plural, param=n)": {
+      "one": "día de ayuno completo",
+      "other": "días de ayuno completo"
+    },
+    "partialFasts(plural, param=n)": {
+      "one": "día de ayuno parcial",
+      "other": "días de ayuno parcial"
+    },
+    "goalsLead": "Tus objetivos",
+    "goalsReached": "alcanzados en promedio",
+    "bestMonth": "Tu mejor mes: {month} · {percent}",
+    "summaryTitle": "Mi año con Dios",
+    "statDays": "días llenados",
+    "statStreak(plural, param=n)": {
+      "one": "día seguido, tu récord",
+      "other": "días seguidos, tu récord"
+    },
+    "statRetreats(plural, param=n)": {
+      "one": "retiro",
+      "other": "retiros"
+    },
+    "statPrayer": "de oración personal",
+    "statChapters(plural, param=n)": {
+      "one": "capítulo leído",
+      "other": "capítulos leídos"
+    },
+    "statFasts(plural, param=n)": {
+      "one": "día de ayuno",
+      "other": "días de ayuno"
+    },
+    "statGoals": "de objetivos",
+    "emptyText": "Llena tu informe cada día: tu año se escribirá aquí.",
+    "share": "Compartir mi año",
+    "homeText": "Tu fidelidad, tu oración, la Palabra: repasa todo lo que viviste con Dios en {year}.",
+    "open": "Ver mi año",
+    "notificationTitle": "Tu año con Dios está listo",
+    "notificationBody": "Repasa todo lo que viviste con el Señor en {year} y compártelo.",
+    "channel": "Tu año con Dios",
+    "moreTitle": "Mi año con Dios",
+    "moreSoFar": "{year} hasta ahora",
+    "moreDone": "Todo el año {year}"
   },
   "seekFirst": {
     "title": "Busca primero a Dios",

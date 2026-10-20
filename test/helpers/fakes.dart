@@ -14,6 +14,7 @@ import 'package:cmfi_connect/src/core/services/home_widgets.dart';
 import 'package:cmfi_connect/src/core/services/image_picking.dart';
 import 'package:cmfi_connect/src/core/services/link_launcher.dart';
 import 'package:cmfi_connect/src/core/services/local_notifications.dart';
+import 'package:cmfi_connect/src/core/services/lock_screen_timer.dart';
 import 'package:cmfi_connect/src/core/services/media_images.dart';
 import 'package:cmfi_connect/src/core/services/network_status.dart';
 import 'package:cmfi_connect/src/core/services/phone_verification.dart';
@@ -772,6 +773,18 @@ class FakeLocalNotifications implements LocalNotifications {
 
   @override
   Future<void> cancelAll() async => groups.clear();
+
+  @override
+  Future<void> showStopwatch({
+    required String title,
+    required String body,
+    required DateTime since,
+    required bool running,
+    required String channelName,
+  }) async {}
+
+  @override
+  Future<void> hideStopwatch() async {}
 
   /// The Android channels made for the pushes of the server.
   final pushChannels = <String>[];
@@ -1875,6 +1888,30 @@ class FakeChime implements Chime {
 
   @override
   Future<void> dispose() async {}
+}
+
+/// The stopwatch outside the app: what is shown ([shown], null once hidden)
+/// and every change.
+class FakeLockScreenTimer implements LockScreenTimer {
+  ({String label, DateTime since, Duration? paused})? shown;
+  var changes = 0;
+
+  @override
+  Future<void> show({
+    required String label,
+    required DateTime since,
+    required LockScreenTexts texts,
+    Duration? paused,
+  }) async {
+    shown = (label: label, since: since, paused: paused);
+    changes++;
+  }
+
+  @override
+  Future<void> hide() async {
+    shown = null;
+    changes++;
+  }
 }
 
 /// The phone's voice: what it was asked to say, in which language, and

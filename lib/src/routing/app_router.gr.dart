@@ -1917,3 +1917,51 @@ class WelcomeRoute extends PageRouteInfo<void> {
     },
   );
 }
+
+/// generated route for
+/// [YearStoryScreen]
+class YearStoryRoute extends PageRouteInfo<YearStoryRouteArgs> {
+  YearStoryRoute({required int year, Key? key, List<PageRouteInfo>? children})
+    : super(
+        YearStoryRoute.name,
+        args: YearStoryRouteArgs(year: year, key: key),
+        rawPathParams: {'year': year},
+        initialChildren: children,
+      );
+
+  static const String name = 'YearStoryRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      final pathParams = data.inheritedPathParams;
+      final args = data.argsAs<YearStoryRouteArgs>(
+        orElse: () => YearStoryRouteArgs(year: pathParams.getInt('year')),
+      );
+      return YearStoryScreen(year: args.year, key: args.key);
+    },
+  );
+}
+
+class YearStoryRouteArgs {
+  const YearStoryRouteArgs({required this.year, this.key});
+
+  final int year;
+
+  final Key? key;
+
+  @override
+  String toString() {
+    return 'YearStoryRouteArgs{year: $year, key: $key}';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (other is! YearStoryRouteArgs) return false;
+    return year == other.year && key == other.key;
+  }
+
+  @override
+  int get hashCode => year.hashCode ^ key.hashCode;
+}

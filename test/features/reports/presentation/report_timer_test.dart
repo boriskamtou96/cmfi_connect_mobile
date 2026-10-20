@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:cmfi_connect/src/core/i18n/strings.g.dart';
 import 'package:cmfi_connect/src/core/utils/date_extensions.dart';
+import 'package:cmfi_connect/src/core/utils/stopwatch_clock.dart';
 import 'package:cmfi_connect/src/features/reports/application/report_timer.dart';
 import 'package:cmfi_connect/src/features/reports/presentation/widgets/timer_banner.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -54,11 +55,18 @@ void main() {
     expect(app.container.read(reportTimerProvider)?.code, 'PS');
     expect(find.byType(TimerBanner), findsOneWidget);
     expect(find.text('Prière seule'), findsWidgets);
+    // on the lock screen too, running
+    final started = app.container.read(reportTimerProvider)!.startedAt;
+    expect(app.lockScreen.shown?.label, 'Prière seule');
+    expect(app.lockScreen.shown?.since, started);
+    expect(app.lockScreen.shown?.paused, isNull);
 
     await tester.tap(find.byTooltip('Mettre en pause'));
     await tester.pumpAndSettle();
     expect(app.container.read(reportTimerProvider)?.paused, isTrue);
     expect(find.textContaining('En pause'), findsOneWidget);
+    // still, at the time counted
+    expect(app.lockScreen.shown?.paused, isNotNull);
   });
 
   testWidgets('« Terminer »: its minutes go to the report of the day', (
@@ -83,10 +91,13 @@ void main() {
     );
 
     expect(find.text('45:00 · En pause'), findsOneWidget);
+    // the app opens: shown again outside it (after a restart of the phone)
+    expect(app.lockScreen.shown?.paused, const Duration(minutes: 45));
     await tester.tap(find.text('Terminer'));
     await tester.pumpAndSettle();
 
     expect(app.container.read(reportTimerProvider), isNull);
+    expect(app.lockScreen.shown, isNull);
     expect(find.byType(TimerBanner), findsOneWidget);
     expect(find.text('Terminer'), findsNothing);
     expect(app.toasts.messages, ['45 min ajoutées à « Prière seule »']);

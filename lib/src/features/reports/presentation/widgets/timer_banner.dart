@@ -10,19 +10,11 @@ import '../../../../core/theme/app_colors.dart';
 import '../../../../core/theme/app_icons.dart';
 import '../../../../core/theme/app_spacing.dart';
 import '../../../../core/utils/date_extensions.dart';
+import '../../../../core/utils/stopwatch_clock.dart';
 import '../../../../core/widgets/adaptive_dialogs.dart';
 import '../../../../core/widgets/app_toast.dart';
 import '../../application/report_item_texts.dart';
 import '../../application/report_timer.dart';
-
-/// "12:34", "1:02:05": the time of a stopwatch.
-String stopwatchClock(Duration elapsed) {
-  final seconds = elapsed.inSeconds;
-  final h = seconds ~/ 3600;
-  final m = (seconds % 3600) ~/ 60;
-  final s = (seconds % 60).toString().padLeft(2, '0');
-  return h > 0 ? '$h:${m.toString().padLeft(2, '0')}:$s' : '$m:$s';
-}
 
 /// Starts the stopwatch of an item ([source]: what else it counts for);
 /// when another one runs, it is replaced (uncounted) once the member agrees.

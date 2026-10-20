@@ -26,7 +26,9 @@ import '../../disciples/application/received_reports.dart';
 import '../../events/application/event_reminders.dart';
 import '../../fasts/application/fasts.dart';
 import '../../home/application/week_story.dart';
+import '../../home/application/year_story.dart';
 import '../../home/domain/week_story.dart';
+import '../../home/domain/year_story.dart';
 import '../../notifications/application/inbox.dart';
 import '../../notifications/application/push_registration.dart';
 import '../../prayer/application/importunities.dart';
@@ -176,6 +178,7 @@ class SignedInTasks extends HookConsumerWidget {
         final retreat = retreatOf(payload);
         final sendDay = sendingDayOf(payload);
         final week = weekStoryOf(payload);
+        final year = yearStoryOf(payload);
         if (payload == ReportReminder.payload) {
           openToday();
         } else if (payload == BiblePlan.payload && context.mounted) {
@@ -188,6 +191,8 @@ class SignedInTasks extends HookConsumerWidget {
           context.router.push(const FastsRoute());
         } else if (week != null && context.mounted) {
           context.router.push(WeekStoryRoute(monday: week.toApiDate()));
+        } else if (year != null && context.mounted) {
+          context.router.push(YearStoryRoute(year: year));
         } else if (sendDay != null && context.mounted) {
           context.router.push(ReportSendRoute(day: sendDay.toApiDate()));
         } else if (eventId != null) {
@@ -371,6 +376,7 @@ class SignedInTasks extends HookConsumerWidget {
               .then((_) => ref.read(soulsProvider.notifier).reschedule()),
         );
         unawaited(planWeekStories(notifications, now: DateTime.now()));
+        unawaited(planYearStory(notifications, now: DateTime.now()));
       }
 
       // what was prayed without network

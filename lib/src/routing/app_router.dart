@@ -30,6 +30,7 @@ import '../features/events/presentation/events_screen.dart';
 import '../features/fasts/presentation/fasts_screen.dart';
 import '../features/home/presentation/home_screen.dart';
 import '../features/home/presentation/week_story_screen.dart';
+import '../features/home/presentation/year_story_screen.dart';
 import '../features/hymns/presentation/hymn_projection_screen.dart';
 import '../features/hymns/presentation/hymn_reader_screen.dart';
 import '../features/hymns/presentation/hymns_screen.dart';
@@ -197,6 +198,12 @@ class AppRouter extends RootStackRouter {
     AutoRoute(
       path: '/week/:monday',
       page: WeekStoryRoute.page,
+      guards: [authGuard],
+      fullscreenDialog: true,
+    ),
+    AutoRoute(
+      path: '/year/:year',
+      page: YearStoryRoute.page,
       guards: [authGuard],
       fullscreenDialog: true,
     ),

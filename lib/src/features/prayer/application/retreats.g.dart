@@ -379,7 +379,7 @@ final class RetreatsOfWeekProvider
   }
 }
 
-String _$retreatsOfWeekHash() => r'fb4aa1a10821aecf52b298785600b501412b7aad';
+String _$retreatsOfWeekHash() => r'f90612ec24b6658fffacf8c653579ce15d9b3bef';
 
 /// The retreats of the week starting on [monday] ("Ta semaine avec Dieu"):
 /// from the server, or what the phone keeps of the last days without network.
@@ -403,6 +403,97 @@ final class RetreatsOfWeekFamily extends $Family
 
   @override
   String toString() => r'retreatsOfWeekProvider';
+}
+
+/// The retreats of [year] ("Ton année avec Dieu"), as [retreatsOfWeek]: the
+/// server gives a year at most.
+
+@ProviderFor(retreatsOfYear)
+final retreatsOfYearProvider = RetreatsOfYearFamily._();
+
+/// The retreats of [year] ("Ton année avec Dieu"), as [retreatsOfWeek]: the
+/// server gives a year at most.
+
+final class RetreatsOfYearProvider
+    extends
+        $FunctionalProvider<
+          AsyncValue<List<RetreatRecord>>,
+          List<RetreatRecord>,
+          FutureOr<List<RetreatRecord>>
+        >
+    with
+        $FutureModifier<List<RetreatRecord>>,
+        $FutureProvider<List<RetreatRecord>> {
+  /// The retreats of [year] ("Ton année avec Dieu"), as [retreatsOfWeek]: the
+  /// server gives a year at most.
+  RetreatsOfYearProvider._({
+    required RetreatsOfYearFamily super.from,
+    required int super.argument,
+  }) : super(
+         retry: null,
+         name: r'retreatsOfYearProvider',
+         isAutoDispose: true,
+         dependencies: null,
+         $allTransitiveDependencies: null,
+       );
+
+  @override
+  String debugGetCreateSourceHash() => _$retreatsOfYearHash();
+
+  @override
+  String toString() {
+    return r'retreatsOfYearProvider'
+        ''
+        '($argument)';
+  }
+
+  @$internal
+  @override
+  $FutureProviderElement<List<RetreatRecord>> $createElement(
+    $ProviderPointer pointer,
+  ) => $FutureProviderElement(pointer);
+
+  @override
+  FutureOr<List<RetreatRecord>> create(Ref ref) {
+    final argument = this.argument as int;
+    return retreatsOfYear(ref, argument);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return other is RetreatsOfYearProvider && other.argument == argument;
+  }
+
+  @override
+  int get hashCode {
+    return argument.hashCode;
+  }
+}
+
+String _$retreatsOfYearHash() => r'583d0f72bba8829afe1230d652fd982e90645d76';
+
+/// The retreats of [year] ("Ton année avec Dieu"), as [retreatsOfWeek]: the
+/// server gives a year at most.
+
+final class RetreatsOfYearFamily extends $Family
+    with $FunctionalFamilyOverride<FutureOr<List<RetreatRecord>>, int> {
+  RetreatsOfYearFamily._()
+    : super(
+        retry: null,
+        name: r'retreatsOfYearProvider',
+        dependencies: null,
+        $allTransitiveDependencies: null,
+        isAutoDispose: true,
+      );
+
+  /// The retreats of [year] ("Ton année avec Dieu"), as [retreatsOfWeek]: the
+  /// server gives a year at most.
+
+  RetreatsOfYearProvider call(int year) =>
+      RetreatsOfYearProvider._(argument: year, from: this);
+
+  @override
+  String toString() => r'retreatsOfYearProvider';
 }
 
 /// Adds the minutes of a retreat to "Prière seule" in today's report (and

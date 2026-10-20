@@ -45,6 +45,8 @@ import '../../reports/application/reports_providers.dart';
 import '../../verses/presentation/verse_card.dart';
 import '../application/home_privacy.dart';
 import '../domain/week_story.dart';
+import '../domain/year_story.dart';
+import 'widgets/story_stars.dart';
 
 /// The home screen, "Nuit et or" (validated on 2026-10-16): the summary of
 /// the day first, in the night blue of CMFI (the report, the goals, the
@@ -111,6 +113,14 @@ class HomeScreen extends ConsumerWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [
+                        // from 26 December to January: the year told
+                        if (storyYearAt(DateTime.now()) case final year?) ...[
+                          const SizedBox(height: 24),
+                          FadeSlideIn(
+                            index: 1,
+                            child: _YearStoryCard(year: year),
+                          ),
+                        ],
                         // Sunday evening and Monday: the week told, first
                         if (storyWeekAt(DateTime.now()) case final week?) ...[
                           const SizedBox(height: 24),
@@ -1154,6 +1164,127 @@ class _WeekStoryCard extends StatelessWidget {
                       style: FilledButton.styleFrom(
                         backgroundColor: Colors.white,
                         foregroundColor: const Color(0xFF3A2A9A),
+                        shape: const StadiumBorder(),
+                        textStyle: const TextStyle(
+                          fontFamily: AppTheme.fontFamily,
+                          fontSize: 15,
+                          fontWeight: FontWeight.w800,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+/// "Ton année avec Dieu est prête": from 26 December to 31 January, in the
+/// night blue and gold of the summary.
+class _YearStoryCard extends StatelessWidget {
+  const _YearStoryCard({required this.year});
+
+  final int year;
+
+  @override
+  Widget build(BuildContext context) {
+    final t = context.t;
+    void open() => context.router.push(YearStoryRoute(year: year));
+    return Container(
+      clipBehavior: Clip.antiAlias,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(AppRadius.xl + 4),
+        gradient: const LinearGradient(
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+          colors: _Night.colors,
+        ),
+        // a gold hairline in the dark
+        border: Theme.of(context).brightness == Brightness.dark
+            ? Border.all(color: AppColors.gold.withValues(alpha: 0.35))
+            : null,
+      ),
+      child: Material(
+        type: MaterialType.transparency,
+        child: InkWell(
+          onTap: open,
+          child: Stack(
+            children: [
+              // the gold light and the stars of the year told
+              Positioned.fill(
+                child: DecoratedBox(
+                  decoration: BoxDecoration(
+                    gradient: RadialGradient(
+                      center: AlignmentDirectional.topEnd,
+                      radius: 1.1,
+                      colors: [
+                        AppColors.gold.withValues(alpha: 0.28),
+                        AppColors.gold.withValues(alpha: 0),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+              // beside the year, away from the words
+              const PositionedDirectional(
+                top: 0,
+                end: 0,
+                width: 200,
+                height: 76,
+                child: StoryStars(),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(18),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      children: [
+                        const CmfiLogo(size: 26, disc: true),
+                        const SizedBox(width: 10),
+                        Text(
+                          '$year',
+                          style: const TextStyle(
+                            fontFamily: 'Lora',
+                            fontSize: 30,
+                            fontWeight: FontWeight.w600,
+                            height: 1,
+                            color: AppColors.gold,
+                          ),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 12),
+                    Text(
+                      t.yearStory.title,
+                      style: const TextStyle(
+                        fontSize: 24,
+                        fontWeight: FontWeight.w800,
+                        letterSpacing: -0.4,
+                        color: Colors.white,
+                      ),
+                    ),
+                    const SizedBox(height: 4),
+                    Text(
+                      t.yearStory.homeText(year: year),
+                      style: const TextStyle(
+                        fontSize: 14.5,
+                        height: 1.35,
+                        color: Color(0xE6FFFFFF),
+                      ),
+                    ),
+                    const SizedBox(height: 14),
+                    FilledButton.icon(
+                      onPressed: open,
+                      icon: const Icon(AppIcons.play, size: 18),
+                      label: Text(t.yearStory.open),
+                      style: FilledButton.styleFrom(
+                        backgroundColor: AppColors.gold,
+                        foregroundColor: _Night.colors.last,
                         shape: const StadiumBorder(),
                         textStyle: const TextStyle(
                           fontFamily: AppTheme.fontFamily,

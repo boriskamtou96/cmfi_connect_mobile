@@ -43,9 +43,10 @@ class AppConfig {
             : 'http://localhost:8080/v1',
         revenueCatKey: revenueCatKey,
       ),
-      // TODO(cmfi): set the production API URL once it is deployed
+      // the server on Render, behind our domain (the onrender.com address
+      // stays for the versions already installed)
       Flavor.prod => AppConfig(
-        apiBaseUrl: 'https://cmfi-connect-backend-dev.onrender.com/v1',
+        apiBaseUrl: 'https://api.cmfi-connect.com/v1',
         revenueCatKey: revenueCatKey,
       ),
     };

@@ -703,7 +703,6 @@ class _Translations$notifications$hi extends Translations$notifications$fr {
 	@override String image({required Object n}) => 'चित्र ${n}';
 	@override String get document => 'PDF दस्तावेज़';
 	@override String documentSize({required Object kb}) => '${kb} KB';
-	@override String received({required Object title}) => 'नई सूचना: ${title}';
 }
 
 // Path: premium
@@ -3913,7 +3912,6 @@ extension on TranslationsHi {
 			'notifications.image' => ({required Object n}) => 'चित्र ${n}',
 			'notifications.document' => 'PDF दस्तावेज़',
 			'notifications.documentSize' => ({required Object kb}) => '${kb} KB',
-			'notifications.received' => ({required Object title}) => 'नई सूचना: ${title}',
 			'premium.name' => 'CMFI Connect Premium',
 			'premium.pill' => 'Premium',
 			'premium.subtitle' => 'परमेश्वर के साथ अपनी चाल में आगे बढ़ो, और सेवकाई का साथ दो।',
@@ -4170,9 +4168,9 @@ extension on TranslationsHi {
 			'prayer.topics.current' => 'इस समय',
 			'prayer.topics.documentSize' => ({required Object kb}) => '${kb} KB',
 			'prayer.topics.download' => 'PDF डाउनलोड करो',
+			'prayer.topics.noDocument' => 'PDF नहीं है',
 			_ => null,
 		} ?? switch (path) {
-			'prayer.topics.noDocument' => 'PDF नहीं है',
 			'prayer.topics.openDocument' => 'PDF खोलो',
 			'prayer.lists.title' => 'मेरी प्रार्थना सूचियाँ',
 			'prayer.lists.private' => 'सिर्फ़ तुम्हारे लिए',
@@ -4684,9 +4682,9 @@ extension on TranslationsHi {
 			'memorize.openBible' => 'बाइबल खोलो',
 			'memorize.late' => 'देर से',
 			'memorize.today' => 'आज',
+			'memorize.dueIn' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n, one: '${n} दिन में', other: '${n} दिन में', ), 
 			_ => null,
 		} ?? switch (path) {
-			'memorize.dueIn' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n, one: '${n} दिन में', other: '${n} दिन में', ), 
 			'memorize.stages.fresh' => 'नया',
 			'memorize.stages.learning' => 'सीख रहे',
 			'memorize.stages.known' => 'याद',

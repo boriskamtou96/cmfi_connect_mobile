@@ -1065,8 +1065,7 @@
     },
     "image": "الصورة {n}",
     "document": "مستند PDF",
-    "documentSize": "{kb} ك.ب",
-    "received": "إشعار جديد: {title}"
+    "documentSize": "{kb} ك.ب"
   },
   "premium": {
     "name": "CMFI Connect Premium",

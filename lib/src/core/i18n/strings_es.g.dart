@@ -703,7 +703,6 @@ class _Translations$notifications$es extends Translations$notifications$fr {
 	@override String image({required Object n}) => 'Imagen ${n}';
 	@override String get document => 'Documento PDF';
 	@override String documentSize({required Object kb}) => '${kb} KB';
-	@override String received({required Object title}) => 'Nueva notificación: ${title}';
 }
 
 // Path: premium
@@ -3914,7 +3913,6 @@ extension on TranslationsEs {
 			'notifications.image' => ({required Object n}) => 'Imagen ${n}',
 			'notifications.document' => 'Documento PDF',
 			'notifications.documentSize' => ({required Object kb}) => '${kb} KB',
-			'notifications.received' => ({required Object title}) => 'Nueva notificación: ${title}',
 			'premium.name' => 'CMFI Connect Premium',
 			'premium.pill' => 'Premium',
 			'premium.subtitle' => 'Avanza en tu camino con Dios y apoya la obra.',
@@ -4171,9 +4169,9 @@ extension on TranslationsEs {
 			'prayer.topics.current' => 'En este momento',
 			'prayer.topics.documentSize' => ({required Object kb}) => '${kb} KB',
 			'prayer.topics.download' => 'Descargar el PDF',
+			'prayer.topics.noDocument' => 'Sin PDF',
 			_ => null,
 		} ?? switch (path) {
-			'prayer.topics.noDocument' => 'Sin PDF',
 			'prayer.topics.openDocument' => 'Abrir el PDF',
 			'prayer.lists.title' => 'Mis listas de oración',
 			'prayer.lists.private' => 'Solo para ti',
@@ -4685,9 +4683,9 @@ extension on TranslationsEs {
 			'memorize.openBible' => 'Abrir la Biblia',
 			'memorize.late' => 'Atrasado',
 			'memorize.today' => 'Hoy',
+			'memorize.dueIn' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('es'))(n, one: 'En ${n} día', other: 'En ${n} días', ), 
 			_ => null,
 		} ?? switch (path) {
-			'memorize.dueIn' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('es'))(n, one: 'En ${n} día', other: 'En ${n} días', ), 
 			'memorize.stages.fresh' => 'Nuevo',
 			'memorize.stages.learning' => 'Aprendiendo',
 			'memorize.stages.known' => 'Sabido',

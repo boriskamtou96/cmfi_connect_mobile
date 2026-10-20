@@ -959,8 +959,7 @@
     },
     "image": "Imagen {n}",
     "document": "Documento PDF",
-    "documentSize": "{kb} KB",
-    "received": "Nueva notificación: {title}"
+    "documentSize": "{kb} KB"
   },
   "premium": {
     "name": "CMFI Connect Premium",

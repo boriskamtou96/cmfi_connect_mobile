@@ -1,7 +1,11 @@
 import 'package:cmfi_connect/src/core/i18n/strings.g.dart';
+import 'package:cmfi_connect/src/core/services/local_notifications.dart';
 import 'package:cmfi_connect/src/core/theme/app_icons.dart';
+import 'package:cmfi_connect/src/features/documents/presentation/documents_screen.dart';
 import 'package:cmfi_connect/src/features/notifications/domain/announcement.dart';
+import 'package:cmfi_connect/src/features/notifications/presentation/notification_screen.dart';
 import 'package:cmfi_connect/src/features/prayer/domain/prayer.dart';
+import 'package:cmfi_connect/src/features/prayer/presentation/prayer_topics_screen.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:intl/date_symbol_data_local.dart';
 
@@ -156,7 +160,9 @@ void main() {
     expect(find.text('Je prie avec vous'), findsOneWidget);
   });
 
-  testWidgets('a push received in the app pops up', (tester) async {
+  testWidgets('a push received in the app shows as when it is closed', (
+    tester,
+  ) async {
     final app = await pumpApp(tester, token: 't');
 
     app.push.receivedController.add((
@@ -166,6 +172,29 @@ void main() {
     ));
     await tester.pumpAndSettle();
 
-    expect(app.toasts.messages, ['Nouvelle notification : Jeûne de 3 jours']);
+    // the tests run as Android: the app shows it (iOS does it itself)
+    final shown = app.notifications.pushes.single;
+    expect(shown.title, 'Jeûne de 3 jours');
+    expect(shown.body, 'À partir de lundi.');
+    expect(app.toasts.messages, isEmpty);
+
+    // touched: the announcement opens, as from a push of the phone
+    app.notifications.tapsController.add(
+      '${LocalNotifications.pushPrefix}{"type":"announcement","id":"3"}',
+    );
+    await tester.pumpAndSettle();
+    expect(find.byType(NotificationScreen), findsOneWidget);
+  });
+
+  testWidgets('a new content of the community opens its page', (tester) async {
+    final app = await pumpApp(tester, token: 't');
+
+    app.push.tapsController.add({'type': 'document', 'id': '4'});
+    await tester.pumpAndSettle();
+    expect(find.byType(DocumentsScreen), findsOneWidget);
+
+    app.push.tapsController.add({'type': 'prayer_topic', 'id': '5'});
+    await tester.pumpAndSettle();
+    expect(find.byType(PrayerTopicsScreen), findsOneWidget);
   });
 }

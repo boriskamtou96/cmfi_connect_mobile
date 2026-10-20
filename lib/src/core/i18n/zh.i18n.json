@@ -933,8 +933,7 @@
     },
     "image": "图片 {n}",
     "document": "PDF 文档",
-    "documentSize": "{kb} KB",
-    "received": "新通知：{title}"
+    "documentSize": "{kb} KB"
   },
   "premium": {
     "name": "CMFI Connect Premium",

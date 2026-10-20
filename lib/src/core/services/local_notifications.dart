@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:convert';
 
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter_timezone/flutter_timezone.dart';
@@ -129,6 +130,53 @@ class LocalNotifications {
   /// one the server sends), so the user can mute it in the settings.
   /// The id of the stopwatch's notification, outside the groups.
   static const stopwatchId = 90000;
+
+  /// The payload of a push shown while the app is open: its data after it.
+  static const pushPrefix = 'push:';
+
+  /// The data of a push shown by [showPush], null for another payload.
+  static Map<String, String>? pushDataOf(String? payload) {
+    if (payload == null || !payload.startsWith(pushPrefix)) {
+      return null;
+    }
+    try {
+      return (jsonDecode(payload.substring(pushPrefix.length))
+              as Map<String, dynamic>)
+          .map((key, value) => MapEntry(key, '$value'));
+    } on Object {
+      return null;
+    }
+  }
+
+  /// A push of the server that arrived while the app is open, shown as the
+  /// system shows it when the app is closed (Android shows nothing then):
+  /// in its channel, a touch gives its data back (`pushDataOf`).
+  Future<void> showPush({
+    required String title,
+    required String body,
+    required Map<String, String> data,
+    required String channelId,
+    required String channelName,
+  }) async {
+    await _init();
+    await _plugin.show(
+      // 95000–95999: one each, outside the groups
+      id: 95000 + DateTime.now().millisecondsSinceEpoch % 1000,
+      title: title,
+      body: body,
+      notificationDetails: NotificationDetails(
+        android: AndroidNotificationDetails(
+          channelId,
+          channelName,
+          importance: Importance.high,
+          priority: Priority.high,
+          color: AppColors.primary,
+          styleInformation: BigTextStyleInformation(body),
+        ),
+      ),
+      payload: '$pushPrefix${jsonEncode(data)}',
+    );
+  }
 
   /// The stopwatch of the report as a fixed notification (Android): [title]
   /// the item, the time running from [since] (drawn by the system, the app

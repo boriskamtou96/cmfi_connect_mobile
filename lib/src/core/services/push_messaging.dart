@@ -7,7 +7,8 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'push_messaging.g.dart';
 
-/// A push received while the app is open (the phone doesn't show it then).
+/// A push received while the app is open (iOS shows it then too, Android
+/// doesn't: the app does).
 typedef PushMessage = ({String title, String body, Map<String, String> data});
 
 /// The notifications sent by the server (Firebase Cloud Messaging). Behind a
@@ -64,7 +65,19 @@ class NoPushMessaging implements PushMessaging {
 }
 
 class FirebasePushMessaging implements PushMessaging {
-  FirebasePushMessaging();
+  FirebasePushMessaging() {
+    // iOS: the pushes show also while the app is open (Android: shown by
+    // the app, SignedInTasks)
+    unawaited(
+      _messaging
+          .setForegroundNotificationPresentationOptions(
+            alert: true,
+            badge: true,
+            sound: true,
+          )
+          .catchError((Object _) {}),
+    );
+  }
 
   FirebaseMessaging get _messaging => FirebaseMessaging.instance;
   var _launchTaken = false;

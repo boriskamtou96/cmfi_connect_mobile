@@ -786,6 +786,18 @@ class FakeLocalNotifications implements LocalNotifications {
   @override
   Future<void> hideStopwatch() async {}
 
+  /// The pushes shown while the app was open (Android).
+  final pushes = <({String title, String body, Map<String, String> data})>[];
+
+  @override
+  Future<void> showPush({
+    required String title,
+    required String body,
+    required Map<String, String> data,
+    required String channelId,
+    required String channelName,
+  }) async => pushes.add((title: title, body: body, data: data));
+
   /// The Android channels made for the pushes of the server.
   final pushChannels = <String>[];
 

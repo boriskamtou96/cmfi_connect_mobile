@@ -773,7 +773,6 @@ class _Translations$notifications$ar extends Translations$notifications$fr {
 	@override String image({required Object n}) => 'الصورة ${n}';
 	@override String get document => 'مستند PDF';
 	@override String documentSize({required Object kb}) => '${kb} ك.ب';
-	@override String received({required Object title}) => 'إشعار جديد: ${title}';
 }
 
 // Path: premium
@@ -4244,7 +4243,6 @@ extension on TranslationsAr {
 			'notifications.image' => ({required Object n}) => 'الصورة ${n}',
 			'notifications.document' => 'مستند PDF',
 			'notifications.documentSize' => ({required Object kb}) => '${kb} ك.ب',
-			'notifications.received' => ({required Object title}) => 'إشعار جديد: ${title}',
 			'premium.name' => 'CMFI Connect Premium',
 			'premium.pill' => 'Premium',
 			'premium.subtitle' => 'تقدّم أكثر في مسيرتك مع الله، وادعم العمل.',
@@ -4501,9 +4499,9 @@ extension on TranslationsAr {
 			'prayer.topics.current' => 'حاليًا',
 			'prayer.topics.documentSize' => ({required Object kb}) => '${kb} ك.ب',
 			'prayer.topics.download' => 'تنزيل ملف PDF',
+			'prayer.topics.noDocument' => 'لا يوجد ملف PDF',
 			_ => null,
 		} ?? switch (path) {
-			'prayer.topics.noDocument' => 'لا يوجد ملف PDF',
 			'prayer.topics.openDocument' => 'فتح ملف PDF',
 			'prayer.lists.title' => 'قوائم صلاتي',
 			'prayer.lists.private' => 'لك وحدك',
@@ -5015,9 +5013,9 @@ extension on TranslationsAr {
 			'memorize.openBible' => 'افتح الكتاب المقدس',
 			'memorize.late' => 'متأخرة',
 			'memorize.today' => 'اليوم',
+			'memorize.dueIn' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n, one: 'بعد يوم', other: 'بعد ${n} أيام', ), 
 			_ => null,
 		} ?? switch (path) {
-			'memorize.dueIn' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n, one: 'بعد يوم', other: 'بعد ${n} أيام', ), 
 			'memorize.stages.fresh' => 'جديدة',
 			'memorize.stages.learning' => 'قيد الحفظ',
 			'memorize.stages.known' => 'محفوظة',

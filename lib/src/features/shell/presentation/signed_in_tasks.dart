@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:auto_route/auto_route.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -16,7 +17,6 @@ import '../../../core/services/premium_store.dart';
 import '../../../core/services/push_messaging.dart';
 import '../../../core/session/session.dart';
 import '../../../core/utils/date_extensions.dart';
-import '../../../core/widgets/app_toast.dart';
 import '../../../routing/app_router.dart';
 import '../../bible/application/bible_plan.dart';
 import '../../bible/application/bible_position.dart';
@@ -131,7 +131,6 @@ class SignedInTasks extends HookConsumerWidget {
       final notifications = ref.read(localNotificationsProvider);
       final push = ref.read(pushMessagingProvider);
       final homeWidgets = ref.read(homeWidgetsProvider);
-      final toast = ref.read(toasterProvider);
 
       // a tab, above which nothing stays (Plus, a hymn read)
       void showTab(PageRouteInfo tab) {
@@ -204,7 +203,9 @@ class SignedInTasks extends HookConsumerWidget {
 
       // a push touched: an announcement of the leaders, an invitation to
       // pray for an importunity topic, a report a disciple sent in the app,
-      // or the answer of an authority to the user's
+      // the answer of an authority to the user's, or a new content of the
+      // community (a teaching, a document, an event, a prayer topic: their
+      // page, the new one first)
       void openAnnouncement(Map<String, String>? data) {
         final id = int.tryParse(data?['id'] ?? '');
         if (id == null) {
@@ -231,6 +232,27 @@ class SignedInTasks extends HookConsumerWidget {
             if (context.mounted) {
               context.router.push(const ReportSendingRoute());
             }
+          case 'teaching' when context.mounted:
+            context.router.push(const TeachingsRoute());
+          case 'document' when context.mounted:
+            context.router.push(const DocumentsRoute());
+          case 'event':
+            openEvent(id);
+          case 'prayer_topic':
+            ref.invalidate(prayerTopicsProvider);
+            if (context.mounted) {
+              context.router.push(const PrayerTopicsRoute());
+            }
+        }
+      }
+
+      // a notification of the phone touched: the app's own, or a push shown
+      // while the app was open (Android)
+      void openPayload(String? payload) {
+        if (LocalNotifications.pushDataOf(payload) case final data?) {
+          openAnnouncement(data);
+        } else {
+          open(payload);
         }
       }
 
@@ -388,7 +410,7 @@ class SignedInTasks extends HookConsumerWidget {
       unawaited(pending.send());
       sendPrayer();
       plan();
-      unawaited(notifications.takeLaunchPayload().then(open));
+      unawaited(notifications.takeLaunchPayload().then(openPayload));
       unawaited(ref.read(pushRegistrationProvider.notifier).start());
       unawaited(identifyPremium());
       unawaited(push.takeLaunchData().then(openAnnouncement));
@@ -407,7 +429,7 @@ class SignedInTasks extends HookConsumerWidget {
         fireImmediately: true,
       );
 
-      final taps = notifications.taps.listen(open);
+      final taps = notifications.taps.listen(openPayload);
       final pushTaps = push.taps.listen(openAnnouncement);
       final widgetTaps = homeWidgets.clicks.listen(
         (uri) => unawaited(openFromWidget(uri)),
@@ -422,10 +444,22 @@ class SignedInTasks extends HookConsumerWidget {
           case 'report_reply':
             ref.invalidate(sentInAppProvider);
         }
-        if (context.mounted && message.title.isNotEmpty) {
-          toast
-              .of(context)
-              .info(context.t.notifications.received(title: message.title));
+        // shown as when the app is closed: iOS does it, Android needs the app
+        if (defaultTargetPlatform == TargetPlatform.android &&
+            message.title.isNotEmpty) {
+          unawaited(
+            notifications.showPush(
+              title: message.title,
+              body: message.body,
+              data: message.data,
+              channelId: PushRegistration.channelId,
+              channelName: LocaleSettings
+                  .instance
+                  .currentTranslations
+                  .notifications
+                  .channel,
+            ),
+          );
         }
       });
       final lifecycle = AppLifecycleListener(

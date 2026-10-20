@@ -959,8 +959,7 @@
     },
     "image": "चित्र {n}",
     "document": "PDF दस्तावेज़",
-    "documentSize": "{kb} KB",
-    "received": "नई सूचना: {title}"
+    "documentSize": "{kb} KB"
   },
   "premium": {
     "name": "CMFI Connect Premium",

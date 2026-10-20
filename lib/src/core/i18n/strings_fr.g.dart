@@ -1392,9 +1392,6 @@ class Translations$notifications$fr {
 
 	/// fr: '{kb} Ko'
 	String documentSize({required Object kb}) => '${kb} Ko';
-
-	/// fr: 'Nouvelle notification : {title}'
-	String received({required Object title}) => 'Nouvelle notification : ${title}';
 }
 
 // Path: premium
@@ -7134,7 +7131,6 @@ extension on Translations {
 			'notifications.image' => ({required Object n}) => 'Image ${n}',
 			'notifications.document' => 'Document PDF',
 			'notifications.documentSize' => ({required Object kb}) => '${kb} Ko',
-			'notifications.received' => ({required Object title}) => 'Nouvelle notification : ${title}',
 			'premium.name' => 'CMFI Connect Premium',
 			'premium.pill' => 'Premium',
 			'premium.subtitle' => 'Va plus loin dans ta marche avec Dieu, et soutiens l\'œuvre.',
@@ -7391,9 +7387,9 @@ extension on Translations {
 			'prayer.topics.current' => 'En ce moment',
 			'prayer.topics.documentSize' => ({required Object kb}) => '${kb} Ko',
 			'prayer.topics.download' => 'Télécharger le PDF',
+			'prayer.topics.noDocument' => 'Pas de PDF',
 			_ => null,
 		} ?? switch (path) {
-			'prayer.topics.noDocument' => 'Pas de PDF',
 			'prayer.topics.openDocument' => 'Ouvrir le PDF',
 			'prayer.lists.title' => 'Mes listes de prière',
 			'prayer.lists.private' => 'Pour toi seul',
@@ -7905,9 +7901,9 @@ extension on Translations {
 			'memorize.openBible' => 'Ouvrir la Bible',
 			'memorize.late' => 'En retard',
 			'memorize.today' => 'Aujourd\'hui',
+			'memorize.dueIn' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('fr'))(n, one: 'Dans ${n} jour', other: 'Dans ${n} jours', ), 
 			_ => null,
 		} ?? switch (path) {
-			'memorize.dueIn' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('fr'))(n, one: 'Dans ${n} jour', other: 'Dans ${n} jours', ), 
 			'memorize.stages.fresh' => 'Nouveau',
 			'memorize.stages.learning' => 'En cours',
 			'memorize.stages.known' => 'Su',

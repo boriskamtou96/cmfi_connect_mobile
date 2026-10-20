@@ -686,7 +686,6 @@ class _Translations$notifications$zh extends Translations$notifications$fr {
 	@override String image({required Object n}) => '图片 ${n}';
 	@override String get document => 'PDF 文档';
 	@override String documentSize({required Object kb}) => '${kb} KB';
-	@override String received({required Object title}) => '新通知：${title}';
 }
 
 // Path: premium
@@ -3831,7 +3830,6 @@ extension on TranslationsZh {
 			'notifications.image' => ({required Object n}) => '图片 ${n}',
 			'notifications.document' => 'PDF 文档',
 			'notifications.documentSize' => ({required Object kb}) => '${kb} KB',
-			'notifications.received' => ({required Object title}) => '新通知：${title}',
 			'premium.name' => 'CMFI Connect Premium',
 			'premium.pill' => 'Premium',
 			'premium.subtitle' => '在与神同行的路上走得更远，并支持这份事工。',
@@ -4088,9 +4086,9 @@ extension on TranslationsZh {
 			'prayer.topics.current' => '当前',
 			'prayer.topics.documentSize' => ({required Object kb}) => '${kb} KB',
 			'prayer.topics.download' => '下载 PDF',
+			'prayer.topics.noDocument' => '没有 PDF',
 			_ => null,
 		} ?? switch (path) {
-			'prayer.topics.noDocument' => '没有 PDF',
 			'prayer.topics.openDocument' => '打开 PDF',
 			'prayer.lists.title' => '我的祷告名单',
 			'prayer.lists.private' => '仅你可见',
@@ -4602,9 +4600,9 @@ extension on TranslationsZh {
 			'memorize.openBible' => '打开圣经',
 			'memorize.late' => '已逾期',
 			'memorize.today' => '今天',
+			'memorize.dueIn' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n, one: '${n} 天后', other: '${n} 天后', ), 
 			_ => null,
 		} ?? switch (path) {
-			'memorize.dueIn' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n, one: '${n} 天后', other: '${n} 天后', ), 
 			'memorize.stages.fresh' => '新',
 			'memorize.stages.learning' => '学习中',
 			'memorize.stages.known' => '已熟记',

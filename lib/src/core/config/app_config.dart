@@ -23,8 +23,6 @@ class AppConfig {
     'REVENUE_CAT_GOOGLE_API_KEY',
   );
 
-  /// The site of the app: terms and privacy, linked from the Premium page.
-  // TODO(cmfi): check once the site is online
   static const siteUrl = 'https://cmfi-connect.com';
 
   factory AppConfig.forFlavor(Flavor flavor) {

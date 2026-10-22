@@ -222,7 +222,8 @@
     },
     "hideNumbers": "Hide my numbers",
     "showNumbers": "Show my numbers",
-    "numbersHidden": "hidden"
+    "numbersHidden": "hidden",
+    "daysShort": "{n} d"
   },
   "reports": {
     "title": "Daily report",

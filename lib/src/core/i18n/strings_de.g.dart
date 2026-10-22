@@ -264,6 +264,7 @@ class _Translations$home$de extends Translations$home$fr {
 	@override String get hideNumbers => 'Meine Zahlen ausblenden';
 	@override String get showNumbers => 'Meine Zahlen anzeigen';
 	@override String get numbersHidden => 'ausgeblendet';
+	@override String daysShort({required Object n}) => '${n} T';
 }
 
 // Path: reports
@@ -3333,6 +3334,7 @@ extension on TranslationsDe {
 			'home.hideNumbers' => 'Meine Zahlen ausblenden',
 			'home.showNumbers' => 'Meine Zahlen anzeigen',
 			'home.numbersHidden' => 'ausgeblendet',
+			'home.daysShort' => ({required Object n}) => '${n} T',
 			'reports.title' => 'Tagesbericht',
 			'reports.myItems' => 'Meine Elemente',
 			'reports.tabs.today' => 'Heute',
@@ -3661,9 +3663,9 @@ extension on TranslationsDe {
 			'members.deleteAccount.wrongPassword' => 'Falsches Passwort.',
 			'members.deleteAccount.lastSuperadmin' => 'Du bist der einzige Superadmin: Gib diese Rolle jemand anderem, bevor du dein Konto löschst.',
 			'admin.title' => 'Team und Rollen',
-			'admin.intro' => 'Admins verwalten, was die ganze Gemeinschaft teilt. Nur ein Superadmin kann Rollen vergeben oder entziehen.',
 			_ => null,
 		} ?? switch (path) {
+			'admin.intro' => 'Admins verwalten, was die ganze Gemeinschaft teilt. Nur ein Superadmin kann Rollen vergeben oder entziehen.',
 			'admin.roleUser' => 'Mitglied',
 			'admin.roleAdmin' => 'Admin',
 			'admin.roleSuperadmin' => 'Superadmin',
@@ -4175,9 +4177,9 @@ extension on TranslationsDe {
 			'prayer.topics.categories.event' => 'Veranstaltung',
 			'prayer.topics.categories.fasting' => 'Fasten',
 			'prayer.topics.categories.other' => 'Anliegen',
-			'prayer.topics.until' => ({required Object date}) => 'bis ${date}',
 			_ => null,
 		} ?? switch (path) {
+			'prayer.topics.until' => ({required Object date}) => 'bis ${date}',
 			'prayer.topics.archive' => 'Frühere Anliegen',
 			'prayer.topics.archiveEmpty' => 'Keine früheren Anliegen.',
 			'prayer.topics.current' => 'Aktuell',
@@ -4689,9 +4691,9 @@ extension on TranslationsDe {
 			'memorize.tomorrow' => 'morgen',
 			'memorize.reminder' => 'Erinnerung zum Wiederholen',
 			'memorize.reminderAt' => 'Uhrzeit der Erinnerung',
-			'memorize.myVerses' => 'Meine Verse',
 			_ => null,
 		} ?? switch (path) {
+			'memorize.myVerses' => 'Meine Verse',
 			'memorize.howToAdd' => 'Zum Hinzufügen: Tippe in der Bibel auf einen Vers, dann auf das Gehirn in der Leiste.',
 			'memorize.empty' => 'Noch kein Vers zum Auswendiglernen.',
 			'memorize.openBible' => 'Bibel öffnen',

@@ -264,6 +264,7 @@ class _Translations$home$en extends Translations$home$fr {
 	@override String get hideNumbers => 'Hide my numbers';
 	@override String get showNumbers => 'Show my numbers';
 	@override String get numbersHidden => 'hidden';
+	@override String daysShort({required Object n}) => '${n} d';
 }
 
 // Path: reports
@@ -3334,6 +3335,7 @@ extension on TranslationsEn {
 			'home.hideNumbers' => 'Hide my numbers',
 			'home.showNumbers' => 'Show my numbers',
 			'home.numbersHidden' => 'hidden',
+			'home.daysShort' => ({required Object n}) => '${n} d',
 			'reports.title' => 'Daily report',
 			'reports.myItems' => 'My items',
 			'reports.tabs.today' => 'Today',
@@ -3662,9 +3664,9 @@ extension on TranslationsEn {
 			'members.deleteAccount.wrongPassword' => 'Wrong password.',
 			'members.deleteAccount.lastSuperadmin' => 'You are the only superadmin: give this role to someone else before deleting your account.',
 			'admin.title' => 'Team and roles',
-			'admin.intro' => 'Admins manage what the whole community shares. Only a superadmin gives or takes back a role.',
 			_ => null,
 		} ?? switch (path) {
+			'admin.intro' => 'Admins manage what the whole community shares. Only a superadmin gives or takes back a role.',
 			'admin.roleUser' => 'Member',
 			'admin.roleAdmin' => 'Admin',
 			'admin.roleSuperadmin' => 'Superadmin',
@@ -4176,9 +4178,9 @@ extension on TranslationsEn {
 			'prayer.topics.categories.event' => 'Event',
 			'prayer.topics.categories.fasting' => 'Fasting',
 			'prayer.topics.categories.other' => 'Topic',
-			'prayer.topics.until' => ({required Object date}) => 'until ${date}',
 			_ => null,
 		} ?? switch (path) {
+			'prayer.topics.until' => ({required Object date}) => 'until ${date}',
 			'prayer.topics.documentSize' => ({required Object kb}) => '${kb} KB',
 			'prayer.topics.archive' => 'Past topics',
 			'prayer.topics.archiveEmpty' => 'No past topic.',
@@ -4690,9 +4692,9 @@ extension on TranslationsEn {
 			'memorize.tomorrow' => 'tomorrow',
 			'memorize.reminder' => 'Review reminder',
 			'memorize.reminderAt' => 'Reminder time',
-			'memorize.myVerses' => 'My verses',
 			_ => null,
 		} ?? switch (path) {
+			'memorize.myVerses' => 'My verses',
 			'memorize.howToAdd' => 'To add one: in the Bible, tap a verse, then the brain in the bar.',
 			'memorize.empty' => 'No verse to memorize yet.',
 			'memorize.openBible' => 'Open the Bible',

@@ -230,7 +230,8 @@
     },
     "hideNumbers": "إخفاء أرقامي",
     "showNumbers": "إظهار أرقامي",
-    "numbersHidden": "مخفي"
+    "numbersHidden": "مخفي",
+    "daysShort": "{n} ي"
   },
   "reports": {
     "title": "التقرير",

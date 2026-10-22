@@ -220,7 +220,8 @@
     },
     "hideNumbers": "隐藏我的数字",
     "showNumbers": "显示我的数字",
-    "numbersHidden": "已隐藏"
+    "numbersHidden": "已隐藏",
+    "daysShort": "{n} 天"
   },
   "reports": {
     "title": "每日汇报",

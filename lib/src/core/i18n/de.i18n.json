@@ -222,7 +222,8 @@
     },
     "hideNumbers": "Meine Zahlen ausblenden",
     "showNumbers": "Meine Zahlen anzeigen",
-    "numbersHidden": "ausgeblendet"
+    "numbersHidden": "ausgeblendet",
+    "daysShort": "{n} T"
   },
   "reports": {
     "title": "Tagesbericht",

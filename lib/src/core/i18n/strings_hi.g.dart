@@ -264,6 +264,7 @@ class _Translations$home$hi extends Translations$home$fr {
 	@override String get hideNumbers => 'मेरे आँकड़े छिपाएँ';
 	@override String get showNumbers => 'मेरे आँकड़े दिखाएँ';
 	@override String get numbersHidden => 'छिपा हुआ';
+	@override String daysShort({required Object n}) => '${n} दिन';
 }
 
 // Path: reports
@@ -3332,6 +3333,7 @@ extension on TranslationsHi {
 			'home.hideNumbers' => 'मेरे आँकड़े छिपाएँ',
 			'home.showNumbers' => 'मेरे आँकड़े दिखाएँ',
 			'home.numbersHidden' => 'छिपा हुआ',
+			'home.daysShort' => ({required Object n}) => '${n} दिन',
 			'reports.title' => 'दैनिक रिपोर्ट',
 			'reports.myItems' => 'मेरे आइटम',
 			'reports.tabs.today' => 'आज',
@@ -3660,9 +3662,9 @@ extension on TranslationsHi {
 			'members.deleteAccount.wrongPassword' => 'पासवर्ड ग़लत है।',
 			'members.deleteAccount.lastSuperadmin' => 'तुम अकेले सुपरएडमिन हो: खाता हटाने से पहले यह भूमिका किसी और को दो।',
 			'admin.title' => 'टीम और भूमिकाएँ',
-			'admin.intro' => 'एडमिन वह सब संभालते हैं जो पूरा समुदाय साझा करता है। भूमिका सिर्फ़ सुपरएडमिन ही दे या वापस ले सकते हैं।',
 			_ => null,
 		} ?? switch (path) {
+			'admin.intro' => 'एडमिन वह सब संभालते हैं जो पूरा समुदाय साझा करता है। भूमिका सिर्फ़ सुपरएडमिन ही दे या वापस ले सकते हैं।',
 			'admin.roleUser' => 'सदस्य',
 			'admin.roleAdmin' => 'एडमिन',
 			'admin.roleSuperadmin' => 'सुपरएडमिन',
@@ -4174,9 +4176,9 @@ extension on TranslationsHi {
 			'prayer.topics.categories.event' => 'कार्यक्रम',
 			'prayer.topics.categories.fasting' => 'उपवास',
 			'prayer.topics.categories.other' => 'विषय',
-			'prayer.topics.until' => ({required Object date}) => '${date} तक',
 			_ => null,
 		} ?? switch (path) {
+			'prayer.topics.until' => ({required Object date}) => '${date} तक',
 			'prayer.topics.archive' => 'पिछले विषय',
 			'prayer.topics.archiveEmpty' => 'कोई पिछला विषय नहीं।',
 			'prayer.topics.current' => 'इस समय',
@@ -4688,9 +4690,9 @@ extension on TranslationsHi {
 			'memorize.tomorrow' => 'कल',
 			'memorize.reminder' => 'दोहराई की याद',
 			'memorize.reminderAt' => 'याद का समय',
-			'memorize.myVerses' => 'मेरे पद',
 			_ => null,
 		} ?? switch (path) {
+			'memorize.myVerses' => 'मेरे पद',
 			'memorize.howToAdd' => 'जोड़ने के लिए: बाइबल में कोई पद छुओ, फिर पट्टी में दिमाग़ का चिह्न।',
 			'memorize.empty' => 'अभी कंठस्थ करने को कोई पद नहीं।',
 			'memorize.openBible' => 'बाइबल खोलो',

@@ -264,6 +264,7 @@ class _Translations$home$es extends Translations$home$fr {
 	@override String get hideNumbers => 'Ocultar mis cifras';
 	@override String get showNumbers => 'Mostrar mis cifras';
 	@override String get numbersHidden => 'oculto';
+	@override String daysShort({required Object n}) => '${n} d';
 }
 
 // Path: reports
@@ -3333,6 +3334,7 @@ extension on TranslationsEs {
 			'home.hideNumbers' => 'Ocultar mis cifras',
 			'home.showNumbers' => 'Mostrar mis cifras',
 			'home.numbersHidden' => 'oculto',
+			'home.daysShort' => ({required Object n}) => '${n} d',
 			'reports.title' => 'Informe diario',
 			'reports.myItems' => 'Mis elementos',
 			'reports.tabs.today' => 'Hoy',
@@ -3661,9 +3663,9 @@ extension on TranslationsEs {
 			'members.deleteAccount.wrongPassword' => 'Contraseña incorrecta.',
 			'members.deleteAccount.lastSuperadmin' => 'Eres el único superadmin: da este rol a otra persona antes de eliminar tu cuenta.',
 			'admin.title' => 'Equipo y roles',
-			'admin.intro' => 'Los admins gestionan lo que comparte toda la comunidad. Solo un superadmin da o quita un rol.',
 			_ => null,
 		} ?? switch (path) {
+			'admin.intro' => 'Los admins gestionan lo que comparte toda la comunidad. Solo un superadmin da o quita un rol.',
 			'admin.roleUser' => 'Miembro',
 			'admin.roleAdmin' => 'Admin',
 			'admin.roleSuperadmin' => 'Superadmin',
@@ -4175,9 +4177,9 @@ extension on TranslationsEs {
 			'prayer.topics.categories.event' => 'Evento',
 			'prayer.topics.categories.fasting' => 'Ayuno',
 			'prayer.topics.categories.other' => 'Motivo',
-			'prayer.topics.until' => ({required Object date}) => 'hasta el ${date}',
 			_ => null,
 		} ?? switch (path) {
+			'prayer.topics.until' => ({required Object date}) => 'hasta el ${date}',
 			'prayer.topics.archive' => 'Motivos anteriores',
 			'prayer.topics.archiveEmpty' => 'No hay motivos anteriores.',
 			'prayer.topics.current' => 'En este momento',
@@ -4689,9 +4691,9 @@ extension on TranslationsEs {
 			'memorize.tomorrow' => 'mañana',
 			'memorize.reminder' => 'Recordatorio de repaso',
 			'memorize.reminderAt' => 'Hora del recordatorio',
-			'memorize.myVerses' => 'Mis versículos',
 			_ => null,
 		} ?? switch (path) {
+			'memorize.myVerses' => 'Mis versículos',
 			'memorize.howToAdd' => 'Para añadir uno: en la Biblia, toca un versículo y luego el cerebro de la barra.',
 			'memorize.empty' => 'Aún no hay versículos para memorizar.',
 			'memorize.openBible' => 'Abrir la Biblia',

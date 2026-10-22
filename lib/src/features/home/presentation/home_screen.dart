@@ -281,7 +281,7 @@ class _Summary extends ConsumerWidget {
     String shown(String value) => hidden ? _masked : value;
 
     return Container(
-      padding: EdgeInsets.fromLTRB(20, top + 18, 20, 24),
+      padding: EdgeInsets.fromLTRB(20, top + 12, 20, 20),
       decoration: const BoxDecoration(
         gradient: LinearGradient(
           begin: Alignment.topCenter,
@@ -326,7 +326,7 @@ class _Summary extends ConsumerWidget {
                                 ? t.home.greetingNoName
                                 : t.home.greeting(name: profile.firstName),
                             style: const TextStyle(
-                              fontSize: 28,
+                              fontSize: 26,
                               fontWeight: FontWeight.w800,
                               letterSpacing: -0.6,
                               color: Colors.white,
@@ -369,7 +369,8 @@ class _Summary extends ConsumerWidget {
                   ),
                 ],
               ),
-              const SizedBox(height: 26),
+              const SizedBox(height: 18),
+              // compact (22/10/2026): the ring and the three numbers on one line
               Row(
                 children: [
                   Semantics(
@@ -379,7 +380,7 @@ class _Summary extends ConsumerWidget {
                               '${t.home.progressLabel}',
                     excludeSemantics: true,
                     child: SizedBox.square(
-                      dimension: 118,
+                      dimension: 78,
                       child: Stack(
                         alignment: Alignment.center,
                         children: [
@@ -395,7 +396,7 @@ class _Summary extends ConsumerWidget {
                                   progress: value,
                                   color: AppColors.goldLight,
                                   track: Colors.white.withValues(alpha: 0.12),
-                                  stroke: 9,
+                                  stroke: 7,
                                 ),
                               ),
                             ),
@@ -406,18 +407,18 @@ class _Summary extends ConsumerWidget {
                               Text(
                                 draft == null ? '—' : shown('$filled/$total'),
                                 style: const TextStyle(
-                                  fontSize: 30,
+                                  fontSize: 21,
                                   fontWeight: FontWeight.w800,
-                                  letterSpacing: -0.8,
+                                  letterSpacing: -0.6,
                                   height: 1,
                                   color: Colors.white,
                                 ),
                               ),
-                              const SizedBox(height: 4),
+                              const SizedBox(height: 2),
                               Text(
                                 t.home.items,
                                 style: const TextStyle(
-                                  fontSize: 12,
+                                  fontSize: 10.5,
                                   fontWeight: FontWeight.w600,
                                   color: _Night.muted,
                                 ),
@@ -428,41 +429,45 @@ class _Summary extends ConsumerWidget {
                       ),
                     ),
                   ),
-                  const SizedBox(width: 24),
+                  const SizedBox(width: 12),
                   Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        _Stat(
-                          label: t.home.goalsTitle,
-                          value: goals == null
-                              ? '—'
-                              : shown(
-                                  '${(goals.progress * 100).round()}\u00a0%',
-                                ),
-                          hidden: hidden,
-                          color: AppColors.goldLight,
-                        ),
-                        const _Hairline(),
-                        _Stat(
-                          label: t.home.retreatsTitle,
-                          value: shown(t.home.retreatsValue(n: retreats)),
-                          hidden: hidden,
-                          color: _Night.lavender,
-                        ),
-                        const _Hairline(),
-                        _Stat(
-                          label: t.home.streakTitle,
-                          value: shown(t.home.days(n: streak)),
-                          hidden: hidden,
-                          color: Colors.white,
-                        ),
-                      ],
+                    child: IntrinsicHeight(
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.stretch,
+                        children: [
+                          _Stat(
+                            label: t.home.goalsTitle,
+                            value: goals == null
+                                ? '—'
+                                : shown(
+                                    '${(goals.progress * 100).round()}\u00a0%',
+                                  ),
+                            hidden: hidden,
+                            color: AppColors.goldLight,
+                          ),
+                          const _Hairline(),
+                          _Stat(
+                            label: t.home.retreatsTitle,
+                            value: shown(t.home.retreatsValue(n: retreats)),
+                            hidden: hidden,
+                            color: _Night.lavender,
+                          ),
+                          const _Hairline(),
+                          _Stat(
+                            label: t.home.streakTitle,
+                            value: shown(t.home.daysShort(n: streak)),
+                            spoken: t.home.days(n: streak),
+                            hidden: hidden,
+                            color: Colors.white,
+                            flame: !hidden && streak > 0,
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 ],
               ),
-              const SizedBox(height: 24),
+              const SizedBox(height: 14),
               Semantics(
                 button: true,
                 label: t.home.weekTitle,
@@ -490,7 +495,7 @@ class _Summary extends ConsumerWidget {
                   ),
                 ),
               ),
-              const SizedBox(height: 20),
+              const SizedBox(height: 14),
               SizedBox(
                 width: double.infinity,
                 child: FilledButton(
@@ -498,7 +503,7 @@ class _Summary extends ConsumerWidget {
                   style: FilledButton.styleFrom(
                     backgroundColor: Colors.white,
                     foregroundColor: AppColors.primaryDeep,
-                    minimumSize: const Size.fromHeight(50),
+                    minimumSize: const Size.fromHeight(48),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(16),
                     ),
@@ -523,23 +528,31 @@ class _Summary extends ConsumerWidget {
   }
 }
 
+/// The line between two numbers of the summary.
 class _Hairline extends StatelessWidget {
   const _Hairline();
 
   @override
   Widget build(BuildContext context) => Padding(
-    padding: const EdgeInsets.symmetric(vertical: 8),
-    child: Divider(height: 1, color: Colors.white.withValues(alpha: 0.10)),
+    padding: const EdgeInsets.symmetric(vertical: 6),
+    child: VerticalDivider(
+      width: 1,
+      thickness: 1,
+      color: Colors.white.withValues(alpha: 0.12),
+    ),
   );
 }
 
-/// A number of the summary, its label above with a coloured dot.
+/// A number of the summary, its label above with a coloured dot; a third
+/// of the line.
 class _Stat extends StatelessWidget {
   const _Stat({
     required this.label,
     required this.value,
     required this.color,
     this.hidden = false,
+    this.spoken,
+    this.flame = false,
   });
 
   final String label;
@@ -549,44 +562,81 @@ class _Stat extends StatelessWidget {
   /// The eye is closed: read as "masqué".
   final bool hidden;
 
+  /// What a screen reader says for [value] ("24 jours" for "24 j").
+  final String? spoken;
+
+  /// The streak: a small flame before the number.
+  final bool flame;
+
   @override
-  Widget build(BuildContext context) => Semantics(
-    label: '$label : ${hidden ? context.t.home.numbersHidden : value}',
-    excludeSemantics: true,
-    child: Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Row(
+  Widget build(BuildContext context) => Expanded(
+    child: Semantics(
+      label:
+          '$label : ${hidden ? context.t.home.numbersHidden : spoken ?? value}',
+      excludeSemantics: true,
+      child: Padding(
+        padding: const EdgeInsetsDirectional.only(start: 10),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Container(
-              width: 7,
-              height: 7,
-              decoration: BoxDecoration(shape: BoxShape.circle, color: color),
-            ),
-            const SizedBox(width: 6),
-            Flexible(
-              child: Text(
-                label,
-                style: const TextStyle(
-                  fontSize: 12.5,
-                  fontWeight: FontWeight.w600,
-                  color: _Night.muted,
+            Row(
+              children: [
+                Container(
+                  width: 6,
+                  height: 6,
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: color,
+                  ),
                 ),
-              ),
+                const SizedBox(width: 5),
+                Flexible(
+                  child: Text(
+                    label,
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    style: const TextStyle(
+                      fontSize: 11.5,
+                      fontWeight: FontWeight.w600,
+                      color: _Night.muted,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            const SizedBox(height: 4),
+            Row(
+              children: [
+                if (flame) ...[
+                  const Icon(
+                    AppIcons.streak,
+                    size: 15,
+                    color: AppColors.goldLight,
+                  ),
+                  const SizedBox(width: 2),
+                ],
+                Flexible(
+                  child: FittedBox(
+                    fit: BoxFit.scaleDown,
+                    alignment: AlignmentDirectional.centerStart,
+                    child: Text(
+                      value,
+                      maxLines: 1,
+                      style: const TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.w800,
+                        letterSpacing: -0.3,
+                        color: Colors.white,
+                      ),
+                    ),
+                  ),
+                ),
+              ],
             ),
           ],
         ),
-        const SizedBox(height: 4),
-        Text(
-          value,
-          style: const TextStyle(
-            fontSize: 19,
-            fontWeight: FontWeight.w800,
-            letterSpacing: -0.3,
-            color: Colors.white,
-          ),
-        ),
-      ],
+      ),
     ),
   );
 }
@@ -618,8 +668,8 @@ class _Day extends StatelessWidget {
       ),
       const SizedBox(height: 6),
       Container(
-        width: 28,
-        height: 28,
+        width: 26,
+        height: 26,
         decoration: BoxDecoration(
           shape: BoxShape.circle,
           color: done

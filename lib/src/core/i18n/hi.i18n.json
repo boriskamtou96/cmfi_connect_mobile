@@ -222,7 +222,8 @@
     },
     "hideNumbers": "मेरे आँकड़े छिपाएँ",
     "showNumbers": "मेरे आँकड़े दिखाएँ",
-    "numbersHidden": "छिपा हुआ"
+    "numbersHidden": "छिपा हुआ",
+    "daysShort": "{n} दिन"
   },
   "reports": {
     "title": "दैनिक रिपोर्ट",

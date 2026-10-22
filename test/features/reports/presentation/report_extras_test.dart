@@ -200,7 +200,8 @@ void main() {
 
       // the streak of the summary
       expect(find.text('Série'), findsOneWidget);
-      expect(find.text('3 jours'), findsOneWidget);
+      expect(find.text('3 j'), findsOneWidget);
+      expect(find.bySemanticsLabel(RegExp('Série : 3 jours')), findsOneWidget);
     });
   });
 

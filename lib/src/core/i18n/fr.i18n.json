@@ -222,7 +222,8 @@
     },
     "hideNumbers": "Masquer mes chiffres",
     "showNumbers": "Afficher mes chiffres",
-    "numbersHidden": "masqué"
+    "numbersHidden": "masqué",
+    "daysShort": "{n} j"
   },
   "reports": {
     "title": "Compte rendu",

@@ -222,7 +222,8 @@
     },
     "hideNumbers": "Ocultar mis cifras",
     "showNumbers": "Mostrar mis cifras",
-    "numbersHidden": "oculto"
+    "numbersHidden": "oculto",
+    "daysShort": "{n} d"
   },
   "reports": {
     "title": "Informe diario",

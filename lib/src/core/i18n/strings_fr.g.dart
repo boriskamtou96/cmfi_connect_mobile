@@ -438,6 +438,9 @@ class Translations$home$fr {
 
 	/// fr: 'masqué'
 	String get numbersHidden => 'masqué';
+
+	/// fr: '{n} j'
+	String daysShort({required Object n}) => '${n} j';
 }
 
 // Path: reports
@@ -6563,6 +6566,7 @@ extension on Translations {
 			'home.hideNumbers' => 'Masquer mes chiffres',
 			'home.showNumbers' => 'Afficher mes chiffres',
 			'home.numbersHidden' => 'masqué',
+			'home.daysShort' => ({required Object n}) => '${n} j',
 			'reports.title' => 'Compte rendu',
 			'reports.myItems' => 'Mes éléments',
 			'reports.tabs.today' => 'Aujourd\'hui',
@@ -6891,9 +6895,9 @@ extension on Translations {
 			'members.deleteAccount.wrongPassword' => 'Mot de passe incorrect.',
 			'members.deleteAccount.lastSuperadmin' => 'Tu es le seul superadmin : donne ce rôle à quelqu\'un d\'autre avant de supprimer ton compte.',
 			'admin.title' => 'Équipe et rôles',
-			'admin.intro' => 'Les admins gèrent ce que toute la communauté partage. Seul un superadmin donne ou retire un rôle.',
 			_ => null,
 		} ?? switch (path) {
+			'admin.intro' => 'Les admins gèrent ce que toute la communauté partage. Seul un superadmin donne ou retire un rôle.',
 			'admin.roleUser' => 'Membre',
 			'admin.roleAdmin' => 'Admin',
 			'admin.roleSuperadmin' => 'Superadmin',
@@ -7405,9 +7409,9 @@ extension on Translations {
 			'prayer.topics.categories.event' => 'Évènement',
 			'prayer.topics.categories.fasting' => 'Jeûne',
 			'prayer.topics.categories.other' => 'Sujet',
-			'prayer.topics.until' => ({required Object date}) => 'jusqu\'au ${date}',
 			_ => null,
 		} ?? switch (path) {
+			'prayer.topics.until' => ({required Object date}) => 'jusqu\'au ${date}',
 			'prayer.topics.archive' => 'Sujets passés',
 			'prayer.topics.archiveEmpty' => 'Aucun sujet passé.',
 			'prayer.topics.current' => 'En ce moment',
@@ -7919,9 +7923,9 @@ extension on Translations {
 			'memorize.tomorrow' => 'demain',
 			'memorize.reminder' => 'Rappel des révisions',
 			'memorize.reminderAt' => 'Heure du rappel',
-			'memorize.myVerses' => 'Mes versets',
 			_ => null,
 		} ?? switch (path) {
+			'memorize.myVerses' => 'Mes versets',
 			'memorize.howToAdd' => 'Pour en ajouter un : dans la Bible, touche un verset puis le cerveau de la barre.',
 			'memorize.empty' => 'Aucun verset à mémoriser pour l\'instant.',
 			'memorize.openBible' => 'Ouvrir la Bible',

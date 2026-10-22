@@ -272,6 +272,7 @@ class _Translations$home$ar extends Translations$home$fr {
 	@override String get hideNumbers => 'إخفاء أرقامي';
 	@override String get showNumbers => 'إظهار أرقامي';
 	@override String get numbersHidden => 'مخفي';
+	@override String daysShort({required Object n}) => '${n} ي';
 }
 
 // Path: reports
@@ -3663,6 +3664,7 @@ extension on TranslationsAr {
 			'home.hideNumbers' => 'إخفاء أرقامي',
 			'home.showNumbers' => 'إظهار أرقامي',
 			'home.numbersHidden' => 'مخفي',
+			'home.daysShort' => ({required Object n}) => '${n} ي',
 			'reports.title' => 'التقرير',
 			'reports.myItems' => 'عناصري',
 			'reports.tabs.today' => 'اليوم',
@@ -3991,9 +3993,9 @@ extension on TranslationsAr {
 			'members.deleteAccount.wrongPassword' => 'كلمة المرور غير صحيحة.',
 			'members.deleteAccount.lastSuperadmin' => 'أنت المشرف العام الوحيد: امنح هذا الدور لشخص آخر قبل حذف حسابك.',
 			'admin.title' => 'الفريق والأدوار',
-			'admin.intro' => 'يدير المشرفون ما يتشاركه المجتمع بأكمله. وحده المشرف العام يمنح دورًا أو يسحبه.',
 			_ => null,
 		} ?? switch (path) {
+			'admin.intro' => 'يدير المشرفون ما يتشاركه المجتمع بأكمله. وحده المشرف العام يمنح دورًا أو يسحبه.',
 			'admin.roleUser' => 'عضو',
 			'admin.roleAdmin' => 'مشرف',
 			'admin.roleSuperadmin' => 'مشرف عام',
@@ -4505,9 +4507,9 @@ extension on TranslationsAr {
 			'prayer.topics.categories.event' => 'فعالية',
 			'prayer.topics.categories.fasting' => 'صوم',
 			'prayer.topics.categories.other' => 'طلب',
-			'prayer.topics.until' => ({required Object date}) => 'حتى ${date}',
 			_ => null,
 		} ?? switch (path) {
+			'prayer.topics.until' => ({required Object date}) => 'حتى ${date}',
 			'prayer.topics.archive' => 'الطلبات السابقة',
 			'prayer.topics.archiveEmpty' => 'لا توجد طلبات سابقة.',
 			'prayer.topics.current' => 'حاليًا',
@@ -5019,9 +5021,9 @@ extension on TranslationsAr {
 			'memorize.tomorrow' => 'غدًا',
 			'memorize.reminder' => 'تذكير بالمراجعة',
 			'memorize.reminderAt' => 'وقت التذكير',
-			'memorize.myVerses' => 'آياتي',
 			_ => null,
 		} ?? switch (path) {
+			'memorize.myVerses' => 'آياتي',
 			'memorize.howToAdd' => 'لإضافة آية: في الكتاب المقدس، المس آية ثم أيقونة الدماغ في الشريط.',
 			'memorize.empty' => 'لا توجد آيات للحفظ حتى الآن.',
 			'memorize.openBible' => 'افتح الكتاب المقدس',

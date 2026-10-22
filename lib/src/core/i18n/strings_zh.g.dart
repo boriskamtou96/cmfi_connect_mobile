@@ -262,6 +262,7 @@ class _Translations$home$zh extends Translations$home$fr {
 	@override String get hideNumbers => '隐藏我的数字';
 	@override String get showNumbers => '显示我的数字';
 	@override String get numbersHidden => '已隐藏';
+	@override String daysShort({required Object n}) => '${n} 天';
 }
 
 // Path: reports
@@ -3250,6 +3251,7 @@ extension on TranslationsZh {
 			'home.hideNumbers' => '隐藏我的数字',
 			'home.showNumbers' => '显示我的数字',
 			'home.numbersHidden' => '已隐藏',
+			'home.daysShort' => ({required Object n}) => '${n} 天',
 			'reports.title' => '每日汇报',
 			'reports.myItems' => '我的项目',
 			'reports.tabs.today' => '今天',
@@ -3578,9 +3580,9 @@ extension on TranslationsZh {
 			'members.deleteAccount.wrongPassword' => '密码错误。',
 			'members.deleteAccount.lastSuperadmin' => '你是唯一的超级管理员：删除账户前，请先把这个角色交给别人。',
 			'admin.title' => '团队与角色',
-			'admin.intro' => '管理员负责管理整个团契共享的内容。只有超级管理员可以授予或收回角色。',
 			_ => null,
 		} ?? switch (path) {
+			'admin.intro' => '管理员负责管理整个团契共享的内容。只有超级管理员可以授予或收回角色。',
 			'admin.roleUser' => '成员',
 			'admin.roleAdmin' => '管理员',
 			'admin.roleSuperadmin' => '超级管理员',
@@ -4092,9 +4094,9 @@ extension on TranslationsZh {
 			'prayer.topics.categories.event' => '活动',
 			'prayer.topics.categories.fasting' => '禁食',
 			'prayer.topics.categories.other' => '代祷',
-			'prayer.topics.until' => ({required Object date}) => '至 ${date}',
 			_ => null,
 		} ?? switch (path) {
+			'prayer.topics.until' => ({required Object date}) => '至 ${date}',
 			'prayer.topics.archive' => '往期事项',
 			'prayer.topics.archiveEmpty' => '没有往期事项。',
 			'prayer.topics.current' => '当前',
@@ -4606,9 +4608,9 @@ extension on TranslationsZh {
 			'memorize.tomorrow' => '明天',
 			'memorize.reminder' => '复习提醒',
 			'memorize.reminderAt' => '提醒时间',
-			'memorize.myVerses' => '我的经文',
 			_ => null,
 		} ?? switch (path) {
+			'memorize.myVerses' => '我的经文',
 			'memorize.howToAdd' => '添加方法：在圣经中点一节经文，再点工具栏里的大脑图标。',
 			'memorize.empty' => '还没有要背的经文。',
 			'memorize.openBible' => '打开圣经',

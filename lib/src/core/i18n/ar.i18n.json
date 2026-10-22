@@ -939,7 +939,8 @@
       "cancelTitle": "إلغاء تسجيلك؟",
       "cancelText": "سيصبح مكانك متاحًا لشخص آخر.",
       "keep": "الاحتفاظ بمكاني",
-      "lodgingShort": "إقامة"
+      "lodgingShort": "إقامة",
+      "youAreHint": "ننتظرك!"
     },
     "reminder": {
       "channel": "تذكيرات الفعاليات",

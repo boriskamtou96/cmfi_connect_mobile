@@ -5040,6 +5040,9 @@ class Translations$events$register$fr {
 
 	/// fr: 'hébergement'
 	String get lodgingShort => 'hébergement';
+
+	/// fr: 'On t'attend !'
+	String get youAreHint => 'On t\'attend !';
 }
 
 // Path: events.reminder
@@ -7306,6 +7309,7 @@ extension on Translations {
 			'events.register.cancelText' => 'Ta place sera libérée pour quelqu\'un d\'autre.',
 			'events.register.keep' => 'Garder ma place',
 			'events.register.lodgingShort' => 'hébergement',
+			'events.register.youAreHint' => 'On t\'attend !',
 			'events.reminder.channel' => 'Rappels des évènements',
 			'events.reminder.tomorrow' => ({required Object title}) => 'Demain : ${title}',
 			'events.reminder.soon' => ({required Object title}) => 'Dans 1 h : ${title}',
@@ -7660,9 +7664,9 @@ extension on Translations {
 			'prayer.retreat.selfPaced' => 'Lire à mon rythme, sans minuteur',
 			'prayer.retreat.hints.assembly' => ({required Object name}) => 'Ton assemblée : ${name}',
 			'prayer.retreat.hints.assemblyMissing' => 'Ajoute ton assemblée dans ton profil',
-			'prayer.retreat.hints.authorities' => ({required Object names}) => 'Tes autorités : ${names}',
 			_ => null,
 		} ?? switch (path) {
+			'prayer.retreat.hints.authorities' => ({required Object names}) => 'Tes autorités : ${names}',
 			'prayer.retreat.hints.authoritiesMissing' => 'Ajoute tes autorités spirituelles dans Plus',
 			'prayer.retreat.hints.list' => ({required Object list}) => 'Mes listes · ${list}',
 			'prayer.retreat.hints.listEmpty' => ({required Object list}) => 'Ta liste « ${list} » est vide : ajoute des noms',
@@ -8174,9 +8178,9 @@ extension on Translations {
 			'biblePlan.endsOn' => ({required Object date}) => 'Fin le ${date}',
 			'biblePlan.startsOn' => ({required Object date}) => 'Le plan commence le ${date}.',
 			'biblePlan.start' => 'Commencer le plan',
-			'biblePlan.dayOf' => ({required Object day, required Object total}) => 'Jour ${day} sur ${total}',
 			_ => null,
 		} ?? switch (path) {
+			'biblePlan.dayOf' => ({required Object day, required Object total}) => 'Jour ${day} sur ${total}',
 			'biblePlan.today' => 'Lecture du jour',
 			'biblePlan.todayDone' => 'Lecture du jour faite. Bravo !',
 			'biblePlan.read' => 'Lire',

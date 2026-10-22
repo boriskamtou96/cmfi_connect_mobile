@@ -2343,6 +2343,7 @@ class _Translations$events$register$zh extends Translations$events$register$fr {
 	@override String get cancelText => '你的名额将让给其他人。';
 	@override String get keep => '保留名额';
 	@override String get lodgingShort => '住宿';
+	@override String get youAreHint => '期待你的到来！';
 }
 
 // Path: events.reminder
@@ -3850,6 +3851,7 @@ extension on TranslationsZh {
 			'events.register.cancelText' => '你的名额将让给其他人。',
 			'events.register.keep' => '保留名额',
 			'events.register.lodgingShort' => '住宿',
+			'events.register.youAreHint' => '期待你的到来！',
 			'events.reminder.channel' => '活动提醒',
 			'events.reminder.tomorrow' => ({required Object title}) => '明天：${title}',
 			'events.reminder.soon' => ({required Object title}) => '1 小时后：${title}',
@@ -4204,9 +4206,9 @@ extension on TranslationsZh {
 			'prayer.retreat.selfPaced' => '按自己的节奏阅读，不计时',
 			'prayer.retreat.hints.assembly' => ({required Object name}) => '你的聚会点：${name}',
 			'prayer.retreat.hints.assemblyMissing' => '在个人资料中添加你的聚会点',
-			'prayer.retreat.hints.authorities' => ({required Object names}) => '你的带领者：${names}',
 			_ => null,
 		} ?? switch (path) {
+			'prayer.retreat.hints.authorities' => ({required Object names}) => '你的带领者：${names}',
 			'prayer.retreat.hints.authoritiesMissing' => '在「更多」中添加你的属灵带领者',
 			'prayer.retreat.hints.list' => ({required Object list}) => '我的名单 · ${list}',
 			'prayer.retreat.hints.listEmpty' => ({required Object list}) => '你的「${list}」名单是空的：添加一些名字吧',
@@ -4718,9 +4720,9 @@ extension on TranslationsZh {
 			'biblePlan.endsOn' => ({required Object date}) => '${date} 结束',
 			'biblePlan.startsOn' => ({required Object date}) => '计划将于 ${date} 开始。',
 			'biblePlan.start' => '开始计划',
-			'biblePlan.dayOf' => ({required Object day, required Object total}) => '第 ${day} 天，共 ${total} 天',
 			_ => null,
 		} ?? switch (path) {
+			'biblePlan.dayOf' => ({required Object day, required Object total}) => '第 ${day} 天，共 ${total} 天',
 			'biblePlan.today' => '今日读经',
 			'biblePlan.todayDone' => '今日读经已完成，真棒！',
 			'biblePlan.read' => '阅读',

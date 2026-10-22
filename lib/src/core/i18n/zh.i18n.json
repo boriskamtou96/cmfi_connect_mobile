@@ -822,7 +822,8 @@
       "cancelTitle": "取消报名？",
       "cancelText": "你的名额将让给其他人。",
       "keep": "保留名额",
-      "lodgingShort": "住宿"
+      "lodgingShort": "住宿",
+      "youAreHint": "期待你的到来！"
     },
     "reminder": {
       "channel": "活动提醒",

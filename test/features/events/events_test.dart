@@ -96,7 +96,6 @@ void main() {
 
     await tester.tap(find.text('Je participe'));
     await tester.pumpAndSettle();
-    await tester.tap(find.byTooltip('Une personne de plus'));
     await tester.tap(find.text("J'ai besoin d'un hébergement"));
     await tester.enterText(find.byType(TextField), 'Douala');
     await tester.pump();
@@ -107,9 +106,9 @@ void main() {
       "C'est noté, tu es inscrit ! On te le rappellera la veille.",
     ]);
     expect(find.text('Tu es inscrit'), findsOneWidget);
-    expect(find.text('2 personnes · hébergement · Douala'), findsOneWidget);
+    expect(find.text('hébergement · Douala'), findsOneWidget);
     await scrollPage(tester, find.text('129 inscrits'));
-    expect(app.eventsApi.events[2]?.myRegistration?.people, 2);
+    expect(app.eventsApi.events[2]?.myRegistration?.people, 1);
     // the evening before and an hour before
     expect(app.notifications.plannedEvents, hasLength(2));
     expect(app.notifications.permissionAsked, isTrue);

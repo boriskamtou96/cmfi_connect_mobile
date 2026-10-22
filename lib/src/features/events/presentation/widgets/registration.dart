@@ -15,7 +15,6 @@ import '../../../../core/theme/app_tones.dart';
 import '../../../../core/widgets/adaptive_dialogs.dart';
 import '../../../../core/widgets/app_button.dart';
 import '../../../../core/widgets/app_toast.dart';
-import '../../../../core/widgets/rolling_text.dart';
 import '../../../members/application/my_account.dart';
 import '../../../payments/domain/payment.dart';
 import '../../../payments/infrastructure/payments_api.dart';
@@ -70,10 +69,19 @@ class RegistrationBar extends StatelessWidget {
                 ),
                 Text(
                   [
-                    t.people(n: mine.people, count: context.count(mine.people)),
+                    if (mine.people > 1)
+                      t.people(
+                        n: mine.people,
+                        count: context.count(mine.people),
+                      ),
                     if (mine.needsLodging) t.register.lodgingShort,
                     if (mine.departureCity.isNotEmpty) mine.departureCity,
                     if (mine.paid) t.pay.paidShort,
+                    if (!mine.needsLodging &&
+                        mine.departureCity.isEmpty &&
+                        !mine.paid &&
+                        mine.people <= 1)
+                      t.register.youAreHint,
                   ].join(' · '),
                   style: TextStyle(
                     fontSize: 14,
@@ -202,15 +210,15 @@ class _RegistrationSheet extends HookConsumerWidget {
 
   final CommunityEvent event;
 
-  static const _maxPeople = 50;
-
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final t = context.t.events;
     final scheme = Theme.of(context).colorScheme;
     final tone = AppModule.events.tone(context);
     final mine = event.myRegistration;
-    final people = useState(mine?.people ?? 1);
+    // the member registers themselves (an older registration keeps its
+    // people)
+    final people = mine?.people ?? 1;
     final lodging = useState(mine?.needsLodging ?? false);
     final city = useTextEditingController(text: mine?.departureCity ?? '');
     final sending = useState(false);
@@ -269,7 +277,7 @@ class _RegistrationSheet extends HookConsumerWidget {
             .read(paymentsApiProvider)
             .payForEvent(
               event.id,
-              people: people.value,
+              people: people,
               needsLodging: lodging.value,
               departureCity: city.text.trim(),
               phoneNumber: phone.text.trim(),
@@ -322,7 +330,7 @@ class _RegistrationSheet extends HookConsumerWidget {
       sending.value = true;
       try {
         await controller.register(
-          people: people.value,
+          people: people,
           needsLodging: lodging.value,
           departureCity: city.text,
         );
@@ -330,11 +338,7 @@ class _RegistrationSheet extends HookConsumerWidget {
         toast.success(switch (price) {
           // registered without paying yet
           final price? when mine == null => t.pay.laterDone(
-            amount: formatMoney(
-              price.amount * people.value,
-              price.currency,
-              locale,
-            ),
+            amount: formatMoney(price.amount * people, price.currency, locale),
           ),
           _ when mine == null => t.register.done,
           _ => t.register.updated,
@@ -397,60 +401,6 @@ class _RegistrationSheet extends HookConsumerWidget {
             style: TextStyle(fontSize: 14, color: scheme.onSurfaceVariant),
           ),
           const SizedBox(height: AppSpacing.xl),
-          // how many
-          Row(
-            children: [
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      t.register.people,
-                      style: const TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.w600,
-                      ),
-                    ),
-                    Text(
-                      t.register.peopleHint,
-                      style: TextStyle(
-                        fontSize: 13,
-                        color: scheme.onSurfaceVariant,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              IconButton.filledTonal(
-                tooltip: t.register.less,
-                onPressed: people.value > 1 && !paidAlready
-                    ? () => people.value--
-                    : null,
-                icon: const Icon(AppIcons.remove),
-              ),
-              SizedBox(
-                width: 44,
-                child: Center(
-                  child: RollingText(
-                    '${people.value}',
-                    value: people.value,
-                    alignment: Alignment.center,
-                    style: const TextStyle(
-                      fontSize: 22,
-                      fontWeight: FontWeight.w800,
-                    ),
-                  ),
-                ),
-              ),
-              IconButton.filledTonal(
-                tooltip: t.register.more,
-                onPressed: people.value < _maxPeople && !paidAlready
-                    ? () => people.value++
-                    : null,
-                icon: const Icon(AppIcons.add),
-              ),
-            ],
-          ),
           if (event.asksLodging) ...[
             const SizedBox(height: AppSpacing.md),
             SwitchListTile.adaptive(
@@ -567,11 +517,7 @@ class _RegistrationSheet extends HookConsumerWidget {
                   ),
                 ),
                 Text(
-                  formatMoney(
-                    price.amount * people.value,
-                    price.currency,
-                    locale,
-                  ),
+                  formatMoney(price.amount * people, price.currency, locale),
                   style: const TextStyle(
                     fontSize: 20,
                     fontWeight: FontWeight.w800,
@@ -592,7 +538,7 @@ class _RegistrationSheet extends HookConsumerWidget {
             label: canPay
                 ? t.pay.pay(
                     amount: formatMoney(
-                      price.amount * people.value,
+                      price.amount * people,
                       price.currency,
                       locale,
                     ),

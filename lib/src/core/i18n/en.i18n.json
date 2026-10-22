@@ -846,7 +846,8 @@
       "cancelTitle": "Cancel your registration?",
       "cancelText": "Your seat will go to someone else.",
       "keep": "Keep my seat",
-      "lodgingShort": "accommodation"
+      "lodgingShort": "accommodation",
+      "youAreHint": "We're expecting you!"
     },
     "reminder": {
       "channel": "Event reminders",

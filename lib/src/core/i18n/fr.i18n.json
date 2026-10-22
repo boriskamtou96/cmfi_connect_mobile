@@ -845,7 +845,8 @@
       "cancelTitle": "Annuler ton inscription ?",
       "cancelText": "Ta place sera libérée pour quelqu'un d'autre.",
       "keep": "Garder ma place",
-      "lodgingShort": "hébergement"
+      "lodgingShort": "hébergement",
+      "youAreHint": "On t'attend !"
     },
     "reminder": {
       "channel": "Rappels des évènements",

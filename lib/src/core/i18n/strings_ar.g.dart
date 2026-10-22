@@ -2689,6 +2689,7 @@ class _Translations$events$register$ar extends Translations$events$register$fr {
 	@override String get cancelText => 'سيصبح مكانك متاحًا لشخص آخر.';
 	@override String get keep => 'الاحتفاظ بمكاني';
 	@override String get lodgingShort => 'إقامة';
+	@override String get youAreHint => 'ننتظرك!';
 }
 
 // Path: events.reminder
@@ -4268,6 +4269,7 @@ extension on TranslationsAr {
 			'events.register.cancelText' => 'سيصبح مكانك متاحًا لشخص آخر.',
 			'events.register.keep' => 'الاحتفاظ بمكاني',
 			'events.register.lodgingShort' => 'إقامة',
+			'events.register.youAreHint' => 'ننتظرك!',
 			'events.reminder.channel' => 'تذكيرات الفعاليات',
 			'events.reminder.tomorrow' => ({required Object title}) => 'غدًا: ${title}',
 			'events.reminder.soon' => ({required Object title}) => 'بعد ساعة: ${title}',
@@ -4622,9 +4624,9 @@ extension on TranslationsAr {
 			'prayer.retreat.selfPaced' => 'القراءة على راحتي، دون مؤقّت',
 			'prayer.retreat.hints.assembly' => ({required Object name}) => 'جماعتك: ${name}',
 			'prayer.retreat.hints.assemblyMissing' => 'أضف جماعتك في ملفك الشخصي',
-			'prayer.retreat.hints.authorities' => ({required Object names}) => 'مرشدوك: ${names}',
 			_ => null,
 		} ?? switch (path) {
+			'prayer.retreat.hints.authorities' => ({required Object names}) => 'مرشدوك: ${names}',
 			'prayer.retreat.hints.authoritiesMissing' => 'أضف مرشديك الروحيين من «المزيد»',
 			'prayer.retreat.hints.list' => ({required Object list}) => 'قوائمي · ${list}',
 			'prayer.retreat.hints.listEmpty' => ({required Object list}) => 'قائمتك «${list}» فارغة: أضف أسماء',
@@ -5136,9 +5138,9 @@ extension on TranslationsAr {
 			'biblePlan.endsOn' => ({required Object date}) => 'ينتهي في ${date}',
 			'biblePlan.startsOn' => ({required Object date}) => 'تبدأ الخطة في ${date}.',
 			'biblePlan.start' => 'ابدأ الخطة',
-			'biblePlan.dayOf' => ({required Object day, required Object total}) => 'اليوم ${day} من ${total}',
 			_ => null,
 		} ?? switch (path) {
+			'biblePlan.dayOf' => ({required Object day, required Object total}) => 'اليوم ${day} من ${total}',
 			'biblePlan.today' => 'قراءة اليوم',
 			'biblePlan.todayDone' => 'تمت قراءة اليوم. أحسنت!',
 			'biblePlan.read' => 'اقرأ',

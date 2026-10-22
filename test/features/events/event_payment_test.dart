@@ -39,11 +39,10 @@ void main() {
     await tester.pumpAndSettle();
   }
 
-  /// The sheet, two people, an Orange number.
+  /// The sheet, an Orange number.
   Future<void> fillPayment(WidgetTester tester) async {
     await tester.tap(find.text('Je participe'));
     await tester.pumpAndSettle();
-    await tester.tap(find.byTooltip('Une personne de plus'));
     await tester.enterText(
       find.widgetWithText(TextField, 'Numéro mobile money'),
       '+237 6 90 00 00 01',
@@ -54,7 +53,7 @@ void main() {
   }
 
   Future<void> tapPay(WidgetTester tester) async {
-    final pay = find.text('Payer ${fcfa(10000)}');
+    final pay = find.text('Payer ${fcfa(5000)}');
     await tester.ensureVisible(pay);
     await tester.pumpAndSettle();
     await tester.tap(pay);
@@ -68,7 +67,7 @@ void main() {
 
     expect(find.text('${fcfa(5000)} par personne'), findsOneWidget);
     await fillPayment(tester);
-    expect(find.text(fcfa(10000)), findsOneWidget);
+    expect(find.text(fcfa(5000)), findsOneWidget);
     final orange = tester.widget<OperatorChoice>(
       find.widgetWithText(OperatorChoice, 'Orange'),
     );
@@ -79,7 +78,7 @@ void main() {
     await tester.pump();
     expect(app.paymentsApi.started.single, (
       eventId: 2,
-      people: 2,
+      people: 1,
       phoneNumber: '+237 6 90 00 00 01',
       provider: 'ORANGE_CMR',
     ));
@@ -93,7 +92,7 @@ void main() {
 
     expect(app.toasts.messages, ['Paiement reçu : tu es inscrit !']);
     expect(find.text('Tu es inscrit'), findsOneWidget);
-    expect(find.text('2 personnes · payé'), findsOneWidget);
+    expect(find.text('payé'), findsOneWidget);
   });
 
   testWidgets('a failed payment says why, and can be tried again', (
@@ -117,7 +116,7 @@ void main() {
 
     await tester.tap(find.text('Réessayer'));
     await tester.pumpAndSettle();
-    expect(find.text('Payer ${fcfa(10000)}'), findsOneWidget);
+    expect(find.text('Payer ${fcfa(5000)}'), findsOneWidget);
     expect(find.text('Tu es inscrit'), findsNothing);
   });
 
@@ -144,7 +143,7 @@ void main() {
     expect(app.toasts.errors, [
       "Ce montant dépasse ce que l'opérateur accepte.",
     ]);
-    expect(find.text('Payer ${fcfa(10000)}'), findsOneWidget);
+    expect(find.text('Payer ${fcfa(5000)}'), findsOneWidget);
   });
 
   testWidgets('a paid registration keeps its people and is not cancelled '
@@ -164,13 +163,9 @@ void main() {
     );
     expect(find.text('Annuler mon inscription'), findsNothing);
     expect(find.textContaining('Payer'), findsNothing);
-    final more = tester.widget<IconButton>(
-      find.ancestor(
-        of: find.byTooltip('Une personne de plus'),
-        matching: find.byType(IconButton),
-      ),
-    );
-    expect(more.onPressed, isNull);
+    // the member alone: nobody to add
+    expect(find.text('Combien serez-vous ?'), findsNothing);
+    expect(find.text('2 personnes · payé'), findsOneWidget);
   });
 
   testWidgets('one may register now and pay later', (tester) async {
@@ -185,14 +180,14 @@ void main() {
     await tester.pumpAndSettle();
 
     expect(app.toasts.messages, [
-      "Tu es inscrit ! Pense à payer ${fcfa(10000)} avant l'évènement.",
+      "Tu es inscrit ! Pense à payer ${fcfa(5000)} avant l'évènement.",
     ]);
     expect(app.paymentsApi.started, isEmpty);
-    expect(find.text('À payer : ${fcfa(10000)}'), findsOneWidget);
+    expect(find.text('À payer : ${fcfa(5000)}'), findsOneWidget);
     // paid later from the same sheet
     await tester.tap(find.text('Payer'));
     await tester.pumpAndSettle();
-    expect(find.text('Payer ${fcfa(10000)}'), findsOneWidget);
+    expect(find.text('Payer ${fcfa(5000)}'), findsOneWidget);
   });
 
   testWidgets('without mobile money on the server, registering stays open', (

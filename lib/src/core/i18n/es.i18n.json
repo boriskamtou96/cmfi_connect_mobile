@@ -845,7 +845,8 @@
       "cancelTitle": "¿Cancelar tu inscripción?",
       "cancelText": "Tu plaza quedará libre para otra persona.",
       "keep": "Mantener mi plaza",
-      "lodgingShort": "alojamiento"
+      "lodgingShort": "alojamiento",
+      "youAreHint": "¡Te esperamos!"
     },
     "reminder": {
       "channel": "Recordatorios de eventos",

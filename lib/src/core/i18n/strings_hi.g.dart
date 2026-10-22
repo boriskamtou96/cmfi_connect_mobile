@@ -2411,6 +2411,7 @@ class _Translations$events$register$hi extends Translations$events$register$fr {
 	@override String get cancelText => 'तुम्हारी जगह किसी और को मिल जाएगी।';
 	@override String get keep => 'मेरी जगह रहने दो';
 	@override String get lodgingShort => 'आवास';
+	@override String get youAreHint => 'हम आपका इंतज़ार कर रहे हैं!';
 }
 
 // Path: events.reminder
@@ -3933,6 +3934,7 @@ extension on TranslationsHi {
 			'events.register.cancelText' => 'तुम्हारी जगह किसी और को मिल जाएगी।',
 			'events.register.keep' => 'मेरी जगह रहने दो',
 			'events.register.lodgingShort' => 'आवास',
+			'events.register.youAreHint' => 'हम आपका इंतज़ार कर रहे हैं!',
 			'events.reminder.channel' => 'कार्यक्रम रिमाइंडर',
 			'events.reminder.tomorrow' => ({required Object title}) => 'कल: ${title}',
 			'events.reminder.soon' => ({required Object title}) => '1 घंटे में: ${title}',
@@ -4287,9 +4289,9 @@ extension on TranslationsHi {
 			'prayer.retreat.selfPaced' => 'अपनी रफ़्तार से पढ़ो, बिना टाइमर के',
 			'prayer.retreat.hints.assembly' => ({required Object name}) => 'तुम्हारी सभा: ${name}',
 			'prayer.retreat.hints.assemblyMissing' => 'अपनी प्रोफ़ाइल में अपनी सभा जोड़ो',
-			'prayer.retreat.hints.authorities' => ({required Object names}) => 'तुम्हारे अगुवे: ${names}',
 			_ => null,
 		} ?? switch (path) {
+			'prayer.retreat.hints.authorities' => ({required Object names}) => 'तुम्हारे अगुवे: ${names}',
 			'prayer.retreat.hints.authoritiesMissing' => '‘और’ में अपने आत्मिक अगुवे जोड़ो',
 			'prayer.retreat.hints.list' => ({required Object list}) => 'मेरी सूचियाँ · ${list}',
 			'prayer.retreat.hints.listEmpty' => ({required Object list}) => 'तुम्हारी “${list}” सूची ख़ाली है: नाम जोड़ो',
@@ -4801,9 +4803,9 @@ extension on TranslationsHi {
 			'biblePlan.endsOn' => ({required Object date}) => '${date} को समाप्त',
 			'biblePlan.startsOn' => ({required Object date}) => 'योजना ${date} को शुरू होगी।',
 			'biblePlan.start' => 'योजना शुरू करें',
-			'biblePlan.dayOf' => ({required Object day, required Object total}) => 'दिन ${day} / ${total}',
 			_ => null,
 		} ?? switch (path) {
+			'biblePlan.dayOf' => ({required Object day, required Object total}) => 'दिन ${day} / ${total}',
 			'biblePlan.today' => 'आज का पठन',
 			'biblePlan.todayDone' => 'आज का पठन पूरा हुआ। शाबाश!',
 			'biblePlan.read' => 'पढ़ें',

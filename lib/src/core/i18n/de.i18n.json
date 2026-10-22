@@ -845,7 +845,8 @@
       "cancelTitle": "Anmeldung stornieren?",
       "cancelText": "Dein Platz wird für jemand anderen frei.",
       "keep": "Platz behalten",
-      "lodgingShort": "Unterkunft"
+      "lodgingShort": "Unterkunft",
+      "youAreHint": "Wir freuen uns auf dich!"
     },
     "reminder": {
       "channel": "Erinnerungen an Veranstaltungen",

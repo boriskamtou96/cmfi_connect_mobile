@@ -30,6 +30,7 @@ import '../domain/prayer.dart';
 import '../domain/retreat.dart';
 import 'importunity_screen.dart';
 import 'retreat_reminders_sheet.dart';
+import 'widgets/free_prayer_card.dart';
 import 'widgets/invitation_menu.dart';
 import 'widgets/prayer_look.dart';
 import 'widgets/topic_row.dart';
@@ -86,6 +87,9 @@ class PrayerScreen extends HookConsumerWidget {
                         const SizedBox(height: AppSpacing.lg),
                       ],
                       const _RetreatGrid(),
+                      const SizedBox(height: AppSpacing.md),
+                      // to pray without a retreat: the time of « Prière seule »
+                      const FreePrayerCard(),
                       const SizedBox(height: 28),
                       PrayerSectionHeader(
                         title: t.prayer.together,

@@ -1470,6 +1470,12 @@
       "timeLabel": "Gebetszeit für dieses Anliegen",
       "mineTime": "Du: {n} · {time} Gebet",
       "timerNote": "Die Zeit kommt zu „Persönliches Gebet“ in deinem Bericht."
+    },
+    "free": {
+      "title": "Frei beten",
+      "text": "Ohne Andacht: deine Zeit zählt bei „Persönliches Gebet“.",
+      "start": "Zeit messen",
+      "running": "Persönliches Gebet läuft"
     }
   },
   "sending": {
@@ -1670,7 +1676,10 @@
     "crossReferencesOf": "Querverweise · {passage}",
     "noCrossReferences": "Keine Querverweise zu dieser Stelle.",
     "crossReferencesSource": "Quelle: OpenBible.info (CC-BY)",
-    "readOn": "Auf {site} lesen (geschützter Text)"
+    "readOn": "Auf {site} lesen (geschützter Text)",
+    "listen": "Dieses Kapitel anhören",
+    "listeningAt": "{place} · Vers {verse}",
+    "stopListening": "Vorlesen beenden"
   },
   "profilePhoto": {
     "title": "Profilbild",
@@ -1998,7 +2007,8 @@
     "reminderChannel": "Leseplan",
     "homeTitle": "Heutige Lesung",
     "check": "{chapter} als gelesen markieren",
-    "uncheck": "{chapter}: gelesen"
+    "uncheck": "{chapter}: gelesen",
+    "listen": "Die heutige Lesung anhören"
   },
   "teachings": {
     "title": "Lehren",

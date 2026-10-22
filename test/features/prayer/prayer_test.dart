@@ -327,6 +327,25 @@ void main() {
       );
     });
 
+    testWidgets('praying without a retreat: the stopwatch of Prière seule', (
+      tester,
+    ) async {
+      final app = await pumpApp(tester, token: 't');
+      await openPrayer(tester);
+      await scrollToMiddle(tester, find.text('Prier librement'));
+
+      await tester.tap(find.text('Chronométrer'));
+      // the seconds go by: no pumpAndSettle while it runs
+      await tester.pump(const Duration(milliseconds: 500));
+      await tester.pump(const Duration(milliseconds: 500));
+      final timer = app.container.read(reportTimerProvider);
+      expect(timer?.code, 'PS');
+      expect(timer?.source, isNull);
+      expect(find.text('Prière seule en cours'), findsOneWidget);
+      // and on the lock screen
+      expect(app.lockScreen.shown?.label, 'Prière seule');
+    });
+
     testWidgets('the routine: the retreat made, the days prayed, the week', (
       tester,
     ) async {

@@ -1641,6 +1641,12 @@
       "timeLabel": "وقت الصلاة لهذا الموضوع",
       "mineTime": "أنت: {n} · {time} من الصلاة",
       "timerNote": "يُضاف الوقت إلى «الصلاة الفردية» في تقريرك."
+    },
+    "free": {
+      "title": "صلِّ بحرية",
+      "text": "بلا خلوة: يُحتسب وقتك في «الصلاة الفردية».",
+      "start": "ابدأ المؤقت",
+      "running": "الصلاة الفردية جارية"
     }
   },
   "sending": {
@@ -1869,7 +1875,10 @@
     "crossReferencesOf": "شواهد مرتبطة · {passage}",
     "noCrossReferences": "لا توجد شواهد مرتبطة لهذا المقطع.",
     "crossReferencesSource": "المصدر: OpenBible.info (CC-BY)",
-    "readOn": "تُقرأ على {site} (نص محمي)"
+    "readOn": "تُقرأ على {site} (نص محمي)",
+    "listen": "استمع إلى هذا الأصحاح",
+    "listeningAt": "{place} · الآية {verse}",
+    "stopListening": "إيقاف القراءة"
   },
   "profilePhoto": {
     "title": "صورة الملف الشخصي",
@@ -2328,7 +2337,8 @@
     "reminderChannel": "خطة القراءة",
     "homeTitle": "قراءة اليوم",
     "check": "علّم {chapter} كمقروء",
-    "uncheck": "{chapter}: مقروء"
+    "uncheck": "{chapter}: مقروء",
+    "listen": "استمع إلى قراءة اليوم"
   },
   "teachings": {
     "title": "التعاليم",

@@ -30,6 +30,7 @@ import '../../../core/widgets/skeleton.dart';
 import '../../../core/widgets/tab_page.dart';
 import '../../../routing/app_router.dart';
 import '../application/bible_library.dart';
+import '../application/bible_listening.dart';
 import '../application/bible_marks.dart';
 import '../application/bible_position.dart';
 import '../application/bible_reading.dart';
@@ -393,7 +394,7 @@ class _Reader extends HookConsumerWidget {
                                 ),
                               ),
                           child: selectedNow.isEmpty
-                              ? const SizedBox.shrink()
+                              ? _ListeningBar(books: books, palette: palette)
                               : VerseActions(
                                   label: label(selectedNow),
                                   palette: palette,
@@ -434,6 +435,74 @@ class _Reader extends HookConsumerWidget {
 }
 
 enum _MenuAction { plan, memory, marks, concordance, download, display }
+
+/// While the Bible is read aloud: the place heard ("Jean 3 · verset 5"),
+/// pause / resume, and the cross that stops it. Nothing otherwise.
+class _ListeningBar extends ConsumerWidget {
+  const _ListeningBar({required this.books, required this.palette});
+
+  final List<BibleBook> books;
+  final ReaderPalette palette;
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final listening = ref.watch(bibleListeningProvider);
+    if (listening == null) {
+      return const SizedBox.shrink();
+    }
+    final t = context.t;
+    final notifier = ref.read(bibleListeningProvider.notifier);
+    final place = listening.chapter;
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(12, 0, 12, 12),
+      child: Material(
+        color: AppColors.primaryDeep,
+        borderRadius: BorderRadius.circular(22),
+        child: Padding(
+          padding: const EdgeInsetsDirectional.fromSTEB(16, 6, 6, 6),
+          child: Row(
+            children: [
+              const Icon(
+                AppIcons.listening,
+                color: AppColors.goldLight,
+                size: 22,
+              ),
+              const SizedBox(width: 10),
+              Expanded(
+                child: Text(
+                  t.bible.listeningAt(
+                    place: bibleLabel(place, books),
+                    verse: listening.verse,
+                  ),
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                  style: const TextStyle(
+                    color: Colors.white,
+                    fontWeight: FontWeight.w700,
+                  ),
+                ),
+              ),
+              IconButton(
+                tooltip: listening.playing
+                    ? t.reports.timer.pause
+                    : t.reports.timer.resume,
+                color: Colors.white,
+                onPressed: listening.playing ? notifier.pause : notifier.resume,
+                icon: Icon(listening.playing ? AppIcons.pause : AppIcons.play),
+              ),
+              IconButton(
+                tooltip: t.bible.stopListening,
+                color: AppColors.onPrimaryMuted,
+                onPressed: notifier.stop,
+                icon: const Icon(AppIcons.close),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
 
 /// "Jean 3 ▾ | LSG ▾", then the search, "Aa" and the menu.
 class _TopBar extends ConsumerWidget {
@@ -565,6 +634,18 @@ class _TopBar extends ConsumerWidget {
                   ),
                 ),
               ),
+            ),
+            // the chapter read aloud by the phone's voice
+            IconButton(
+              tooltip: t.bible.listen,
+              icon: Icon(
+                ref.watch(bibleListeningProvider) == null
+                    ? AppIcons.listen
+                    : AppIcons.listening,
+              ),
+              onPressed: () => ref.read(bibleListeningProvider.notifier).start([
+                current.chapterRef,
+              ]),
             ),
             IconButton(
               tooltip: t.bible.search,

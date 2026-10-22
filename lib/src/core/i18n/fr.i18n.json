@@ -1470,6 +1470,12 @@
       "timeLabel": "Temps de prière pour ce sujet",
       "mineTime": "Toi : {n} · {time} de prière",
       "timerNote": "Le temps s'ajoute à « Prière seule » dans ton compte rendu."
+    },
+    "free": {
+      "title": "Prier librement",
+      "text": "Sans retraite : ton temps compte dans « Prière seule ».",
+      "start": "Chronométrer",
+      "running": "Prière seule en cours"
     }
   },
   "sending": {
@@ -1670,7 +1676,10 @@
     "crossReferencesOf": "Références croisées · {passage}",
     "noCrossReferences": "Aucune référence croisée pour ce passage.",
     "crossReferencesSource": "Source : OpenBible.info (CC-BY)",
-    "readOn": "Se lit sur {site} (texte protégé)"
+    "readOn": "Se lit sur {site} (texte protégé)",
+    "listen": "Écouter ce chapitre",
+    "listeningAt": "{place} · verset {verse}",
+    "stopListening": "Arrêter la lecture"
   },
   "profilePhoto": {
     "title": "Photo de profil",
@@ -1998,7 +2007,8 @@
     "reminderChannel": "Plan de lecture",
     "homeTitle": "Lecture du jour",
     "check": "Marquer {chapter} comme lu",
-    "uncheck": "{chapter} : lu"
+    "uncheck": "{chapter} : lu",
+    "listen": "Écouter la lecture du jour"
   },
   "teachings": {
     "title": "Enseignements",

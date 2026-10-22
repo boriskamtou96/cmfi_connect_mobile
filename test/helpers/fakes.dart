@@ -1946,6 +1946,13 @@ class FakeVoiceReader implements VoiceReader {
       spoken.add((text: text, language: language));
 
   @override
+  Future<void> speakToEnd(String text, String language) async {
+    spoken.add((text: text, language: language));
+    // the time of saying it
+    await Future<void>.delayed(const Duration(milliseconds: 100));
+  }
+
+  @override
   Future<void> stop() async => stops++;
 }
 

@@ -872,6 +872,7 @@ class _Translations$prayer$zh extends Translations$prayer$fr {
 	@override late final _Translations$prayer$topics$zh topics = _Translations$prayer$topics$zh._(_root);
 	@override late final _Translations$prayer$lists$zh lists = _Translations$prayer$lists$zh._(_root);
 	@override late final _Translations$prayer$importunity$zh importunity = _Translations$prayer$importunity$zh._(_root);
+	@override late final _Translations$prayer$free$zh free = _Translations$prayer$free$zh._(_root);
 }
 
 // Path: sending
@@ -1093,6 +1094,9 @@ class _Translations$bible$zh extends Translations$bible$fr {
 	@override String get noCrossReferences => '此段经文没有串珠。';
 	@override String get crossReferencesSource => '来源：OpenBible.info（CC-BY）';
 	@override String readOn({required Object site}) => '在 ${site} 上阅读（受版权保护）';
+	@override String get listen => '收听本章';
+	@override String listeningAt({required Object place, required Object verse}) => '${place} · 第 ${verse} 节';
+	@override String get stopListening => '停止朗读';
 }
 
 // Path: profilePhoto
@@ -1428,6 +1432,7 @@ class _Translations$biblePlan$zh extends Translations$biblePlan$fr {
 	@override String get homeTitle => '今日读经';
 	@override String check({required Object chapter}) => '将${chapter}标为已读';
 	@override String uncheck({required Object chapter}) => '${chapter}：已读';
+	@override String get listen => '收听今日读经';
 }
 
 // Path: teachings
@@ -2739,6 +2744,19 @@ class _Translations$prayer$importunity$zh extends Translations$prayer$importunit
 	@override String get timeLabel => '为此事项祷告的时间';
 	@override String mineTime({required Object n, required Object time}) => '你：${n} · 祷告 ${time}';
 	@override String get timerNote => '时间会计入报告中的“个人祷告”。';
+}
+
+// Path: prayer.free
+class _Translations$prayer$free$zh extends Translations$prayer$free$fr {
+	_Translations$prayer$free$zh._(TranslationsZh root) : this._root = root, super.internal(root);
+
+	final TranslationsZh _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => '自由祷告';
+	@override String get text => '不做灵修：你的时间计入「个人祷告」。';
+	@override String get start => '开始计时';
+	@override String get running => '个人祷告进行中';
 }
 
 // Path: streak.lines
@@ -4219,6 +4237,10 @@ extension on TranslationsZh {
 			'prayer.importunity.timeLabel' => '为此事项祷告的时间',
 			'prayer.importunity.mineTime' => ({required Object n, required Object time}) => '你：${n} · 祷告 ${time}',
 			'prayer.importunity.timerNote' => '时间会计入报告中的“个人祷告”。',
+			'prayer.free.title' => '自由祷告',
+			'prayer.free.text' => '不做灵修：你的时间计入「个人祷告」。',
+			'prayer.free.start' => '开始计时',
+			'prayer.free.running' => '个人祷告进行中',
 			'sending.title' => '发送给我的属灵长辈',
 			'sending.moreOff' => '已关闭',
 			'sending.intro' => '到了你选定的时间，CMFI Connect 会准备好这段时间的报告，你只需发送给你的属灵长辈。',
@@ -4380,6 +4402,9 @@ extension on TranslationsZh {
 			'bible.noCrossReferences' => '此段经文没有串珠。',
 			'bible.crossReferencesSource' => '来源：OpenBible.info（CC-BY）',
 			'bible.readOn' => ({required Object site}) => '在 ${site} 上阅读（受版权保护）',
+			'bible.listen' => '收听本章',
+			'bible.listeningAt' => ({required Object place, required Object verse}) => '${place} · 第 ${verse} 节',
+			'bible.stopListening' => '停止朗读',
 			'profilePhoto.title' => '头像',
 			'profilePhoto.add' => '添加头像',
 			'profilePhoto.change' => '更换头像',
@@ -4588,6 +4613,7 @@ extension on TranslationsZh {
 			'biblePlan.homeTitle' => '今日读经',
 			'biblePlan.check' => ({required Object chapter}) => '将${chapter}标为已读',
 			'biblePlan.uncheck' => ({required Object chapter}) => '${chapter}：已读',
+			'biblePlan.listen' => '收听今日读经',
 			'teachings.title' => '教导',
 			'teachings.subtitle' => '随时随地聆听圣言',
 			'teachings.search' => '搜索信息或讲员…',
@@ -4609,6 +4635,8 @@ extension on TranslationsZh {
 			'teachings.removeDownload' => '从手机移除',
 			'teachings.back15' => '后退 15 秒',
 			'teachings.forward15' => '前进 15 秒',
+			_ => null,
+		} ?? switch (path) {
 			'teachings.speed' => ({required Object speed}) => '速度 ${speed}',
 			'teachings.recordedOn' => ({required Object date}) => '${date} 的信息',
 			'teachings.moreSubtitle' => '可收听的讲道与教导',
@@ -4617,8 +4645,6 @@ extension on TranslationsZh {
 			'memorize.subtitle' => '将神的话藏在心里',
 			'memorize.toReview' => '待复习',
 			'memorize.learning' => '学习中',
-			_ => null,
-		} ?? switch (path) {
 			'memorize.known' => '已熟记',
 			'memorize.reviewCount' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n, one: '复习 ${n} 节经文', other: '复习 ${n} 节经文', ), 
 			'memorize.nothingDue' => '今天没有要复习的。',

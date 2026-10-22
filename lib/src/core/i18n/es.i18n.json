@@ -1470,6 +1470,12 @@
       "timeLabel": "Tiempo de oración por este motivo",
       "mineTime": "Tú: {n} · {time} de oración",
       "timerNote": "El tiempo se suma a «Oración personal» en tu informe."
+    },
+    "free": {
+      "title": "Orar libremente",
+      "text": "Sin retiro: tu tiempo cuenta en «Oración personal».",
+      "start": "Cronometrar",
+      "running": "Oración personal en curso"
     }
   },
   "sending": {
@@ -1670,7 +1676,10 @@
     "crossReferencesOf": "Referencias cruzadas · {passage}",
     "noCrossReferences": "Ninguna referencia cruzada para este pasaje.",
     "crossReferencesSource": "Fuente: OpenBible.info (CC-BY)",
-    "readOn": "Se lee en {site} (texto protegido)"
+    "readOn": "Se lee en {site} (texto protegido)",
+    "listen": "Escuchar este capítulo",
+    "listeningAt": "{place} · versículo {verse}",
+    "stopListening": "Detener la lectura"
   },
   "profilePhoto": {
     "title": "Foto de perfil",
@@ -1998,7 +2007,8 @@
     "reminderChannel": "Plan de lectura",
     "homeTitle": "Lectura del día",
     "check": "Marcar {chapter} como leído",
-    "uncheck": "{chapter}: leído"
+    "uncheck": "{chapter}: leído",
+    "listen": "Escuchar la lectura de hoy"
   },
   "teachings": {
     "title": "Enseñanzas",

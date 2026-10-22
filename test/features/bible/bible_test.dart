@@ -4,6 +4,7 @@ import 'dart:io';
 import 'package:cmfi_connect/src/core/i18n/strings.g.dart';
 import 'package:cmfi_connect/src/core/utils/date_extensions.dart';
 import 'package:cmfi_connect/src/core/widgets/reader/reader_palette.dart';
+import 'package:cmfi_connect/src/features/bible/application/bible_listening.dart';
 import 'package:cmfi_connect/src/features/bible/application/bible_marks.dart';
 import 'package:cmfi_connect/src/features/bible/application/bible_position.dart';
 import 'package:cmfi_connect/src/features/bible/application/bible_settings.dart';
@@ -304,6 +305,30 @@ void main() {
       app.container.read(bibleSettingsControllerProvider).version,
       'fra_jnd',
     );
+  });
+
+  testWidgets('the chapter read aloud, verse by verse, then stopped', (
+    tester,
+  ) async {
+    final app = await openBible(tester);
+
+    await tester.tap(find.byTooltip('Écouter ce chapitre'));
+    await tester.pump();
+    await tester.pump(const Duration(milliseconds: 50));
+    expect(find.textContaining('verset 1'), findsOneWidget);
+    await tester.pump(const Duration(milliseconds: 250));
+    // the verses one after the other, in the voice of the version (French)
+    expect(app.voice.spoken.length, greaterThanOrEqualTo(2));
+    expect(app.voice.spoken.first.language, 'fr');
+    expect(
+      app.container.read(bibleListeningProvider)?.chapter,
+      const BibleRef('JHN', 1),
+    );
+
+    await tester.tap(find.byTooltip('Arrêter la lecture'));
+    await tester.pumpAndSettle();
+    expect(app.container.read(bibleListeningProvider), isNull);
+    expect(find.textContaining('verset'), findsNothing);
   });
 
   testWidgets('La Bible du Semeur: read on Bibleserver, at this chapter', (

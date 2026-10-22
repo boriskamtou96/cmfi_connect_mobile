@@ -10,6 +10,10 @@ abstract class VoiceReader {
   /// Reads [text] in [language] ("fr", "en"…), after stopping what was read.
   Future<void> speak(String text, String language);
 
+  /// Reads [text] and returns once it has been said (or stopped): a verse
+  /// after another (the Bible read aloud).
+  Future<void> speakToEnd(String text, String language);
+
   Future<void> stop();
 }
 
@@ -31,9 +35,16 @@ class DeviceVoiceReader implements VoiceReader {
   };
 
   @override
-  Future<void> speak(String text, String language) async {
+  Future<void> speak(String text, String language) => _say(text, language);
+
+  @override
+  Future<void> speakToEnd(String text, String language) =>
+      _say(text, language, toEnd: true);
+
+  Future<void> _say(String text, String language, {bool toEnd = false}) async {
     try {
       await _tts.stop();
+      await _tts.awaitSpeakCompletion(toEnd);
       if (_language != language) {
         _language = language;
         await _tts.setLanguage(_voices[language] ?? 'fr-FR');

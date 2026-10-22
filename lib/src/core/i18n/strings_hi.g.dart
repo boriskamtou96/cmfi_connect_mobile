@@ -895,6 +895,7 @@ class _Translations$prayer$hi extends Translations$prayer$fr {
 	@override late final _Translations$prayer$topics$hi topics = _Translations$prayer$topics$hi._(_root);
 	@override late final _Translations$prayer$lists$hi lists = _Translations$prayer$lists$hi._(_root);
 	@override late final _Translations$prayer$importunity$hi importunity = _Translations$prayer$importunity$hi._(_root);
+	@override late final _Translations$prayer$free$hi free = _Translations$prayer$free$hi._(_root);
 }
 
 // Path: sending
@@ -1123,6 +1124,9 @@ class _Translations$bible$hi extends Translations$bible$fr {
 	@override String get noCrossReferences => 'इस अंश के लिए कोई संबंधित संदर्भ नहीं।';
 	@override String get crossReferencesSource => 'स्रोत: OpenBible.info (CC-BY)';
 	@override String readOn({required Object site}) => '${site} पर पढ़ें (सुरक्षित पाठ)';
+	@override String get listen => 'यह अध्याय सुनें';
+	@override String listeningAt({required Object place, required Object verse}) => '${place} · पद ${verse}';
+	@override String get stopListening => 'पढ़ना बंद करें';
 }
 
 // Path: profilePhoto
@@ -1490,6 +1494,7 @@ class _Translations$biblePlan$hi extends Translations$biblePlan$fr {
 	@override String get homeTitle => 'आज का पठन';
 	@override String check({required Object chapter}) => '${chapter} को पढ़ा हुआ चिह्नित करें';
 	@override String uncheck({required Object chapter}) => '${chapter}: पढ़ा';
+	@override String get listen => 'आज का पाठ सुनें';
 }
 
 // Path: teachings
@@ -2817,6 +2822,19 @@ class _Translations$prayer$importunity$hi extends Translations$prayer$importunit
 	@override String get timeLabel => 'इस विषय के लिए प्रार्थना का समय';
 	@override String mineTime({required Object n, required Object time}) => 'तुम: ${n} · ${time} प्रार्थना';
 	@override String get timerNote => 'यह समय तुम्हारी रिपोर्ट में "व्यक्तिगत प्रार्थना" में जुड़ता है।';
+}
+
+// Path: prayer.free
+class _Translations$prayer$free$hi extends Translations$prayer$free$fr {
+	_Translations$prayer$free$hi._(TranslationsHi root) : this._root = root, super.internal(root);
+
+	final TranslationsHi _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'स्वतंत्र रूप से प्रार्थना करें';
+	@override String get text => 'बिना रिट्रीट: आपका समय «व्यक्तिगत प्रार्थना» में गिना जाता है।';
+	@override String get start => 'समय गिनें';
+	@override String get running => 'व्यक्तिगत प्रार्थना जारी';
 }
 
 // Path: streak.lines
@@ -4302,6 +4320,10 @@ extension on TranslationsHi {
 			'prayer.importunity.timeLabel' => 'इस विषय के लिए प्रार्थना का समय',
 			'prayer.importunity.mineTime' => ({required Object n, required Object time}) => 'तुम: ${n} · ${time} प्रार्थना',
 			'prayer.importunity.timerNote' => 'यह समय तुम्हारी रिपोर्ट में "व्यक्तिगत प्रार्थना" में जुड़ता है।',
+			'prayer.free.title' => 'स्वतंत्र रूप से प्रार्थना करें',
+			'prayer.free.text' => 'बिना रिट्रीट: आपका समय «व्यक्तिगत प्रार्थना» में गिना जाता है।',
+			'prayer.free.start' => 'समय गिनें',
+			'prayer.free.running' => 'व्यक्तिगत प्रार्थना जारी',
 			'sending.title' => 'मेरे आत्मिक अगुवों को भेजना',
 			'sending.moreOff' => 'बंद',
 			'sending.intro' => 'चुने हुए समय पर CMFI Connect उस अवधि की तुम्हारी रिपोर्ट तैयार करता है। तुम्हें बस उसे अपने आत्मिक अगुवों को भेजना है।',
@@ -4463,6 +4485,9 @@ extension on TranslationsHi {
 			'bible.noCrossReferences' => 'इस अंश के लिए कोई संबंधित संदर्भ नहीं।',
 			'bible.crossReferencesSource' => 'स्रोत: OpenBible.info (CC-BY)',
 			'bible.readOn' => ({required Object site}) => '${site} पर पढ़ें (सुरक्षित पाठ)',
+			'bible.listen' => 'यह अध्याय सुनें',
+			'bible.listeningAt' => ({required Object place, required Object verse}) => '${place} · पद ${verse}',
+			'bible.stopListening' => 'पढ़ना बंद करें',
 			'profilePhoto.title' => 'प्रोफ़ाइल फ़ोटो',
 			'profilePhoto.add' => 'प्रोफ़ाइल फ़ोटो जोड़ें',
 			'profilePhoto.change' => 'प्रोफ़ाइल फ़ोटो बदलें',
@@ -4671,6 +4696,7 @@ extension on TranslationsHi {
 			'biblePlan.homeTitle' => 'आज का पठन',
 			'biblePlan.check' => ({required Object chapter}) => '${chapter} को पढ़ा हुआ चिह्नित करें',
 			'biblePlan.uncheck' => ({required Object chapter}) => '${chapter}: पढ़ा',
+			'biblePlan.listen' => 'आज का पाठ सुनें',
 			'teachings.title' => 'शिक्षाएँ',
 			'teachings.subtitle' => 'जहाँ भी हो, वचन सुनो',
 			'teachings.search' => 'संदेश या वक्ता खोजो…',
@@ -4692,6 +4718,8 @@ extension on TranslationsHi {
 			'teachings.removeDownload' => 'फ़ोन से हटाओ',
 			'teachings.back15' => '15 सेकंड पीछे',
 			'teachings.forward15' => '15 सेकंड आगे',
+			_ => null,
+		} ?? switch (path) {
 			'teachings.speed' => ({required Object speed}) => 'गति ${speed}',
 			'teachings.recordedOn' => ({required Object date}) => '${date} का संदेश',
 			'teachings.moreSubtitle' => 'सुनने के लिए प्रवचन और शिक्षाएँ',
@@ -4700,8 +4728,6 @@ extension on TranslationsHi {
 			'memorize.subtitle' => 'वचन को अपने हृदय में रखो',
 			'memorize.toReview' => 'दोहराने को',
 			'memorize.learning' => 'सीख रहे',
-			_ => null,
-		} ?? switch (path) {
 			'memorize.known' => 'याद',
 			'memorize.reviewCount' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n, one: '${n} पद दोहराओ', other: '${n} पद दोहराओ', ), 
 			'memorize.nothingDue' => 'आज दोहराने को कुछ नहीं।',

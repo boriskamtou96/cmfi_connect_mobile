@@ -1470,6 +1470,12 @@
       "timeLabel": "इस विषय के लिए प्रार्थना का समय",
       "mineTime": "तुम: {n} · {time} प्रार्थना",
       "timerNote": "यह समय तुम्हारी रिपोर्ट में \"व्यक्तिगत प्रार्थना\" में जुड़ता है।"
+    },
+    "free": {
+      "title": "स्वतंत्र रूप से प्रार्थना करें",
+      "text": "बिना रिट्रीट: आपका समय «व्यक्तिगत प्रार्थना» में गिना जाता है।",
+      "start": "समय गिनें",
+      "running": "व्यक्तिगत प्रार्थना जारी"
     }
   },
   "sending": {
@@ -1670,7 +1676,10 @@
     "crossReferencesOf": "संबंधित संदर्भ · {passage}",
     "noCrossReferences": "इस अंश के लिए कोई संबंधित संदर्भ नहीं।",
     "crossReferencesSource": "स्रोत: OpenBible.info (CC-BY)",
-    "readOn": "{site} पर पढ़ें (सुरक्षित पाठ)"
+    "readOn": "{site} पर पढ़ें (सुरक्षित पाठ)",
+    "listen": "यह अध्याय सुनें",
+    "listeningAt": "{place} · पद {verse}",
+    "stopListening": "पढ़ना बंद करें"
   },
   "profilePhoto": {
     "title": "प्रोफ़ाइल फ़ोटो",
@@ -1997,7 +2006,8 @@
     "reminderChannel": "पठन योजना",
     "homeTitle": "आज का पठन",
     "check": "{chapter} को पढ़ा हुआ चिह्नित करें",
-    "uncheck": "{chapter}: पढ़ा"
+    "uncheck": "{chapter}: पढ़ा",
+    "listen": "आज का पाठ सुनें"
   },
   "teachings": {
     "title": "शिक्षाएँ",

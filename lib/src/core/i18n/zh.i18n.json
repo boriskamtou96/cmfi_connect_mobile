@@ -1427,6 +1427,12 @@
       "timeLabel": "为此事项祷告的时间",
       "mineTime": "你：{n} · 祷告 {time}",
       "timerNote": "时间会计入报告中的“个人祷告”。"
+    },
+    "free": {
+      "title": "自由祷告",
+      "text": "不做灵修：你的时间计入「个人祷告」。",
+      "start": "开始计时",
+      "running": "个人祷告进行中"
     }
   },
   "sending": {
@@ -1620,7 +1626,10 @@
     "crossReferencesOf": "串珠经文 · {passage}",
     "noCrossReferences": "此段经文没有串珠。",
     "crossReferencesSource": "来源：OpenBible.info（CC-BY）",
-    "readOn": "在 {site} 上阅读（受版权保护）"
+    "readOn": "在 {site} 上阅读（受版权保护）",
+    "listen": "收听本章",
+    "listeningAt": "{place} · 第 {verse} 节",
+    "stopListening": "停止朗读"
   },
   "profilePhoto": {
     "title": "头像",
@@ -1915,7 +1924,8 @@
     "reminderChannel": "读经计划",
     "homeTitle": "今日读经",
     "check": "将{chapter}标为已读",
-    "uncheck": "{chapter}：已读"
+    "uncheck": "{chapter}：已读",
+    "listen": "收听今日读经"
   },
   "teachings": {
     "title": "教导",

@@ -70,6 +70,8 @@ abstract final class AppIcons {
   static const expand = PhosphorIconsRegular.caretUpDown;
   static const close = PhosphorIconsRegular.x;
   static const external = PhosphorIconsRegular.arrowSquareOut;
+  static const listen = PhosphorIconsRegular.headphones;
+  static const listening = PhosphorIconsFill.headphones;
   static const moreOptions = PhosphorIconsRegular.dotsThreeVertical;
 
   // Actions

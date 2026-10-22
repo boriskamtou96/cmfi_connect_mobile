@@ -22,6 +22,7 @@ import '../../../core/widgets/section_card.dart';
 import '../../../core/widgets/segmented_tabs.dart';
 import '../../../routing/app_router.dart';
 import '../application/bible_library.dart';
+import '../application/bible_listening.dart';
 import '../application/bible_plan.dart';
 import '../application/bible_position.dart';
 import '../application/bible_reading.dart';
@@ -784,11 +785,38 @@ class _Progress extends HookConsumerWidget {
       ),
       bottom: next == null
           ? null
-          : FilledButton.icon(
-              onPressed: () => openPlanChapter(context, ref, next),
-              style: _mainButton(tone.color),
-              icon: const Icon(AppIcons.bibleTile),
-              label: Text('${t.read} · ${readingLabel([next], nameOf)}'),
+          : Row(
+              children: [
+                Expanded(
+                  child: FilledButton.icon(
+                    onPressed: () => openPlanChapter(context, ref, next),
+                    style: _mainButton(tone.color),
+                    icon: const Icon(AppIcons.bibleTile),
+                    label: Text('${t.read} · ${readingLabel([next], nameOf)}'),
+                  ),
+                ),
+                const SizedBox(width: AppSpacing.sm),
+                // the day's chapters not read yet, read aloud, in the Bible
+                IconButton.filledTonal(
+                  tooltip: t.listen,
+                  style: IconButton.styleFrom(fixedSize: const Size.square(56)),
+                  onPressed: () {
+                    final unread = [
+                      for (final chapter in todayChapters)
+                        if (!progress.read.contains(chapter.key)) chapter,
+                    ];
+                    ref
+                        .read(bibleListeningProvider.notifier)
+                        .start(unread.isEmpty ? [next] : unread);
+                    openPlanChapter(
+                      context,
+                      ref,
+                      unread.isEmpty ? next : unread.first,
+                    );
+                  },
+                  icon: const Icon(AppIcons.listen),
+                ),
+              ],
             ),
     );
   }

@@ -896,6 +896,7 @@ class _Translations$prayer$en extends Translations$prayer$fr {
 	@override late final _Translations$prayer$topics$en topics = _Translations$prayer$topics$en._(_root);
 	@override late final _Translations$prayer$lists$en lists = _Translations$prayer$lists$en._(_root);
 	@override late final _Translations$prayer$importunity$en importunity = _Translations$prayer$importunity$en._(_root);
+	@override late final _Translations$prayer$free$en free = _Translations$prayer$free$en._(_root);
 }
 
 // Path: sending
@@ -1124,6 +1125,9 @@ class _Translations$bible$en extends Translations$bible$fr {
 	@override String get noCrossReferences => 'No cross reference for this passage.';
 	@override String get crossReferencesSource => 'Source: OpenBible.info (CC-BY)';
 	@override String readOn({required Object site}) => 'Read on ${site} (copyrighted text)';
+	@override String get listen => 'Listen to this chapter';
+	@override String listeningAt({required Object place, required Object verse}) => '${place} · verse ${verse}';
+	@override String get stopListening => 'Stop reading';
 }
 
 // Path: profilePhoto
@@ -1492,6 +1496,7 @@ class _Translations$biblePlan$en extends Translations$biblePlan$fr {
 	@override String get homeTitle => 'Today\'s reading';
 	@override String check({required Object chapter}) => 'Mark ${chapter} as read';
 	@override String uncheck({required Object chapter}) => '${chapter}: read';
+	@override String get listen => 'Listen to today\'s reading';
 }
 
 // Path: teachings
@@ -2819,6 +2824,19 @@ class _Translations$prayer$importunity$en extends Translations$prayer$importunit
 	@override String get timeLabel => 'Prayer time for this topic';
 	@override String mineTime({required Object n, required Object time}) => 'You: ${n} · ${time} of prayer';
 	@override String get timerNote => 'The time is added to "Personal prayer" in your report.';
+}
+
+// Path: prayer.free
+class _Translations$prayer$free$en extends Translations$prayer$free$fr {
+	_Translations$prayer$free$en._(TranslationsEn root) : this._root = root, super.internal(root);
+
+	final TranslationsEn _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Pray freely';
+	@override String get text => 'No retreat: your time counts in “Personal prayer”.';
+	@override String get start => 'Time it';
+	@override String get running => 'Personal prayer running';
 }
 
 // Path: streak.lines
@@ -4304,6 +4322,10 @@ extension on TranslationsEn {
 			'prayer.importunity.timeLabel' => 'Prayer time for this topic',
 			'prayer.importunity.mineTime' => ({required Object n, required Object time}) => 'You: ${n} · ${time} of prayer',
 			'prayer.importunity.timerNote' => 'The time is added to "Personal prayer" in your report.',
+			'prayer.free.title' => 'Pray freely',
+			'prayer.free.text' => 'No retreat: your time counts in “Personal prayer”.',
+			'prayer.free.start' => 'Time it',
+			'prayer.free.running' => 'Personal prayer running',
 			'sending.title' => 'Send to my authorities',
 			'sending.moreOff' => 'Off',
 			'sending.intro' => 'At the chosen time, CMFI Connect prepares your report for the period. You just have to send it to your spiritual authorities.',
@@ -4465,6 +4487,9 @@ extension on TranslationsEn {
 			'bible.noCrossReferences' => 'No cross reference for this passage.',
 			'bible.crossReferencesSource' => 'Source: OpenBible.info (CC-BY)',
 			'bible.readOn' => ({required Object site}) => 'Read on ${site} (copyrighted text)',
+			'bible.listen' => 'Listen to this chapter',
+			'bible.listeningAt' => ({required Object place, required Object verse}) => '${place} · verse ${verse}',
+			'bible.stopListening' => 'Stop reading',
 			'profilePhoto.title' => 'Profile photo',
 			'profilePhoto.add' => 'Add a profile photo',
 			'profilePhoto.change' => 'Change the profile photo',
@@ -4673,6 +4698,7 @@ extension on TranslationsEn {
 			'biblePlan.homeTitle' => 'Today\'s reading',
 			'biblePlan.check' => ({required Object chapter}) => 'Mark ${chapter} as read',
 			'biblePlan.uncheck' => ({required Object chapter}) => '${chapter}: read',
+			'biblePlan.listen' => 'Listen to today\'s reading',
 			'teachings.title' => 'Teachings',
 			'teachings.subtitle' => 'Hear the Word wherever you are',
 			'teachings.search' => 'Search a message, a speaker…',
@@ -4694,6 +4720,8 @@ extension on TranslationsEn {
 			'teachings.removeDownload' => 'Remove from the phone',
 			'teachings.back15' => 'Back 15 seconds',
 			'teachings.forward15' => 'Forward 15 seconds',
+			_ => null,
+		} ?? switch (path) {
 			'teachings.speed' => ({required Object speed}) => 'Speed ${speed}',
 			'teachings.recordedOn' => ({required Object date}) => 'Message of ${date}',
 			'teachings.moreSubtitle' => 'Sermons and teachings to listen to',
@@ -4702,8 +4730,6 @@ extension on TranslationsEn {
 			'memorize.subtitle' => 'Hide the Word in your heart',
 			'memorize.toReview' => 'To review',
 			'memorize.learning' => 'Learning',
-			_ => null,
-		} ?? switch (path) {
 			'memorize.known' => 'Known',
 			'memorize.reviewCount' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n, one: 'Review ${n} verse', other: 'Review ${n} verses', ), 
 			'memorize.nothingDue' => 'Nothing to review today.',

@@ -1471,6 +1471,12 @@
       "timeLabel": "Prayer time for this topic",
       "mineTime": "You: {n} · {time} of prayer",
       "timerNote": "The time is added to \"Personal prayer\" in your report."
+    },
+    "free": {
+      "title": "Pray freely",
+      "text": "No retreat: your time counts in “Personal prayer”.",
+      "start": "Time it",
+      "running": "Personal prayer running"
     }
   },
   "sending": {
@@ -1671,7 +1677,10 @@
     "crossReferencesOf": "Cross references · {passage}",
     "noCrossReferences": "No cross reference for this passage.",
     "crossReferencesSource": "Source: OpenBible.info (CC-BY)",
-    "readOn": "Read on {site} (copyrighted text)"
+    "readOn": "Read on {site} (copyrighted text)",
+    "listen": "Listen to this chapter",
+    "listeningAt": "{place} · verse {verse}",
+    "stopListening": "Stop reading"
   },
   "profilePhoto": {
     "title": "Profile photo",
@@ -1999,7 +2008,8 @@
     "reminderChannel": "Reading plan",
     "homeTitle": "Today's reading",
     "check": "Mark {chapter} as read",
-    "uncheck": "{chapter}: read"
+    "uncheck": "{chapter}: read",
+    "listen": "Listen to today's reading"
   },
   "teachings": {
     "title": "Teachings",

@@ -895,6 +895,7 @@ class _Translations$prayer$es extends Translations$prayer$fr {
 	@override late final _Translations$prayer$topics$es topics = _Translations$prayer$topics$es._(_root);
 	@override late final _Translations$prayer$lists$es lists = _Translations$prayer$lists$es._(_root);
 	@override late final _Translations$prayer$importunity$es importunity = _Translations$prayer$importunity$es._(_root);
+	@override late final _Translations$prayer$free$es free = _Translations$prayer$free$es._(_root);
 }
 
 // Path: sending
@@ -1123,6 +1124,9 @@ class _Translations$bible$es extends Translations$bible$fr {
 	@override String get noCrossReferences => 'Ninguna referencia cruzada para este pasaje.';
 	@override String get crossReferencesSource => 'Fuente: OpenBible.info (CC-BY)';
 	@override String readOn({required Object site}) => 'Se lee en ${site} (texto protegido)';
+	@override String get listen => 'Escuchar este capítulo';
+	@override String listeningAt({required Object place, required Object verse}) => '${place} · versículo ${verse}';
+	@override String get stopListening => 'Detener la lectura';
 }
 
 // Path: profilePhoto
@@ -1491,6 +1495,7 @@ class _Translations$biblePlan$es extends Translations$biblePlan$fr {
 	@override String get homeTitle => 'Lectura del día';
 	@override String check({required Object chapter}) => 'Marcar ${chapter} como leído';
 	@override String uncheck({required Object chapter}) => '${chapter}: leído';
+	@override String get listen => 'Escuchar la lectura de hoy';
 }
 
 // Path: teachings
@@ -2818,6 +2823,19 @@ class _Translations$prayer$importunity$es extends Translations$prayer$importunit
 	@override String get timeLabel => 'Tiempo de oración por este motivo';
 	@override String mineTime({required Object n, required Object time}) => 'Tú: ${n} · ${time} de oración';
 	@override String get timerNote => 'El tiempo se suma a «Oración personal» en tu informe.';
+}
+
+// Path: prayer.free
+class _Translations$prayer$free$es extends Translations$prayer$free$fr {
+	_Translations$prayer$free$es._(TranslationsEs root) : this._root = root, super.internal(root);
+
+	final TranslationsEs _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Orar libremente';
+	@override String get text => 'Sin retiro: tu tiempo cuenta en «Oración personal».';
+	@override String get start => 'Cronometrar';
+	@override String get running => 'Oración personal en curso';
 }
 
 // Path: streak.lines
@@ -4303,6 +4321,10 @@ extension on TranslationsEs {
 			'prayer.importunity.timeLabel' => 'Tiempo de oración por este motivo',
 			'prayer.importunity.mineTime' => ({required Object n, required Object time}) => 'Tú: ${n} · ${time} de oración',
 			'prayer.importunity.timerNote' => 'El tiempo se suma a «Oración personal» en tu informe.',
+			'prayer.free.title' => 'Orar libremente',
+			'prayer.free.text' => 'Sin retiro: tu tiempo cuenta en «Oración personal».',
+			'prayer.free.start' => 'Cronometrar',
+			'prayer.free.running' => 'Oración personal en curso',
 			'sending.title' => 'Envío a mis autoridades',
 			'sending.moreOff' => 'Desactivado',
 			'sending.intro' => 'En el momento elegido, CMFI Connect prepara tu informe del período. Solo tienes que enviarlo a tus autoridades espirituales.',
@@ -4464,6 +4486,9 @@ extension on TranslationsEs {
 			'bible.noCrossReferences' => 'Ninguna referencia cruzada para este pasaje.',
 			'bible.crossReferencesSource' => 'Fuente: OpenBible.info (CC-BY)',
 			'bible.readOn' => ({required Object site}) => 'Se lee en ${site} (texto protegido)',
+			'bible.listen' => 'Escuchar este capítulo',
+			'bible.listeningAt' => ({required Object place, required Object verse}) => '${place} · versículo ${verse}',
+			'bible.stopListening' => 'Detener la lectura',
 			'profilePhoto.title' => 'Foto de perfil',
 			'profilePhoto.add' => 'Añadir una foto de perfil',
 			'profilePhoto.change' => 'Cambiar la foto de perfil',
@@ -4672,6 +4697,7 @@ extension on TranslationsEs {
 			'biblePlan.homeTitle' => 'Lectura del día',
 			'biblePlan.check' => ({required Object chapter}) => 'Marcar ${chapter} como leído',
 			'biblePlan.uncheck' => ({required Object chapter}) => '${chapter}: leído',
+			'biblePlan.listen' => 'Escuchar la lectura de hoy',
 			'teachings.title' => 'Enseñanzas',
 			'teachings.subtitle' => 'Escucha la Palabra estés donde estés',
 			'teachings.search' => 'Buscar un mensaje, un predicador…',
@@ -4693,6 +4719,8 @@ extension on TranslationsEs {
 			'teachings.removeDownload' => 'Quitar del teléfono',
 			'teachings.back15' => 'Retroceder 15 segundos',
 			'teachings.forward15' => 'Avanzar 15 segundos',
+			_ => null,
+		} ?? switch (path) {
 			'teachings.speed' => ({required Object speed}) => 'Velocidad ${speed}',
 			'teachings.recordedOn' => ({required Object date}) => 'Mensaje del ${date}',
 			'teachings.moreSubtitle' => 'Predicaciones y enseñanzas para escuchar',
@@ -4701,8 +4729,6 @@ extension on TranslationsEs {
 			'memorize.subtitle' => 'Guarda la Palabra en tu corazón',
 			'memorize.toReview' => 'Por repasar',
 			'memorize.learning' => 'Aprendiendo',
-			_ => null,
-		} ?? switch (path) {
 			'memorize.known' => 'Sabidos',
 			'memorize.reviewCount' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('es'))(n, one: 'Repasar ${n} versículo', other: 'Repasar ${n} versículos', ), 
 			'memorize.nothingDue' => 'Nada que repasar hoy.',

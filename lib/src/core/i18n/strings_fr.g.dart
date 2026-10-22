@@ -1794,6 +1794,7 @@ class Translations$prayer$fr {
 	late final Translations$prayer$topics$fr topics = Translations$prayer$topics$fr.internal(_root);
 	late final Translations$prayer$lists$fr lists = Translations$prayer$lists$fr.internal(_root);
 	late final Translations$prayer$importunity$fr importunity = Translations$prayer$importunity$fr.internal(_root);
+	late final Translations$prayer$free$fr free = Translations$prayer$free$fr.internal(_root);
 }
 
 // Path: sending
@@ -2325,6 +2326,15 @@ class Translations$bible$fr {
 
 	/// fr: 'Se lit sur {site} (texte protégé)'
 	String readOn({required Object site}) => 'Se lit sur ${site} (texte protégé)';
+
+	/// fr: 'Écouter ce chapitre'
+	String get listen => 'Écouter ce chapitre';
+
+	/// fr: '{place} · verset {verse}'
+	String listeningAt({required Object place, required Object verse}) => '${place} · verset ${verse}';
+
+	/// fr: 'Arrêter la lecture'
+	String get stopListening => 'Arrêter la lecture';
 }
 
 // Path: profilePhoto
@@ -3084,6 +3094,9 @@ class Translations$biblePlan$fr {
 
 	/// fr: '{chapter} : lu'
 	String uncheck({required Object chapter}) => '${chapter} : lu';
+
+	/// fr: 'Écouter la lecture du jour'
+	String get listen => 'Écouter la lecture du jour';
 }
 
 // Path: teachings
@@ -5856,6 +5869,27 @@ class Translations$prayer$importunity$fr {
 	String get timerNote => 'Le temps s\'ajoute à « Prière seule » dans ton compte rendu.';
 }
 
+// Path: prayer.free
+class Translations$prayer$free$fr {
+	Translations$prayer$free$fr.internal(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// fr: 'Prier librement'
+	String get title => 'Prier librement';
+
+	/// fr: 'Sans retraite : ton temps compte dans « Prière seule ».'
+	String get text => 'Sans retraite : ton temps compte dans « Prière seule ».';
+
+	/// fr: 'Chronométrer'
+	String get start => 'Chronométrer';
+
+	/// fr: 'Prière seule en cours'
+	String get running => 'Prière seule en cours';
+}
+
 // Path: streak.lines
 class Translations$streak$lines$fr {
 	Translations$streak$lines$fr.internal(this._root);
@@ -7549,6 +7583,10 @@ extension on Translations {
 			'prayer.importunity.timeLabel' => 'Temps de prière pour ce sujet',
 			'prayer.importunity.mineTime' => ({required Object n, required Object time}) => 'Toi : ${n} · ${time} de prière',
 			'prayer.importunity.timerNote' => 'Le temps s\'ajoute à « Prière seule » dans ton compte rendu.',
+			'prayer.free.title' => 'Prier librement',
+			'prayer.free.text' => 'Sans retraite : ton temps compte dans « Prière seule ».',
+			'prayer.free.start' => 'Chronométrer',
+			'prayer.free.running' => 'Prière seule en cours',
 			'sending.title' => 'Envoi à mes autorités',
 			'sending.moreOff' => 'Désactivé',
 			'sending.intro' => 'Au moment choisi, CMFI Connect prépare ton compte rendu de la période. Tu n\'as plus qu\'à l\'envoyer à tes autorités spirituelles.',
@@ -7710,6 +7748,9 @@ extension on Translations {
 			'bible.noCrossReferences' => 'Aucune référence croisée pour ce passage.',
 			'bible.crossReferencesSource' => 'Source : OpenBible.info (CC-BY)',
 			'bible.readOn' => ({required Object site}) => 'Se lit sur ${site} (texte protégé)',
+			'bible.listen' => 'Écouter ce chapitre',
+			'bible.listeningAt' => ({required Object place, required Object verse}) => '${place} · verset ${verse}',
+			'bible.stopListening' => 'Arrêter la lecture',
 			'profilePhoto.title' => 'Photo de profil',
 			'profilePhoto.add' => 'Ajouter une photo de profil',
 			'profilePhoto.change' => 'Changer la photo de profil',
@@ -7918,6 +7959,7 @@ extension on Translations {
 			'biblePlan.homeTitle' => 'Lecture du jour',
 			'biblePlan.check' => ({required Object chapter}) => 'Marquer ${chapter} comme lu',
 			'biblePlan.uncheck' => ({required Object chapter}) => '${chapter} : lu',
+			'biblePlan.listen' => 'Écouter la lecture du jour',
 			'teachings.title' => 'Enseignements',
 			'teachings.subtitle' => 'Écoute la Parole, où que tu sois',
 			'teachings.search' => 'Chercher un message, un orateur…',
@@ -7939,6 +7981,8 @@ extension on Translations {
 			'teachings.removeDownload' => 'Retirer du téléphone',
 			'teachings.back15' => 'Reculer de 15 secondes',
 			'teachings.forward15' => 'Avancer de 15 secondes',
+			_ => null,
+		} ?? switch (path) {
 			'teachings.speed' => ({required Object speed}) => 'Vitesse ${speed}',
 			'teachings.recordedOn' => ({required Object date}) => 'Message du ${date}',
 			'teachings.moreSubtitle' => 'Prédications et enseignements à écouter',
@@ -7947,8 +7991,6 @@ extension on Translations {
 			'memorize.subtitle' => 'Cache la Parole dans ton cœur',
 			'memorize.toReview' => 'À réviser',
 			'memorize.learning' => 'En cours',
-			_ => null,
-		} ?? switch (path) {
 			'memorize.known' => 'Sus',
 			'memorize.reviewCount' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('fr'))(n, one: 'Réviser ${n} verset', other: 'Réviser ${n} versets', ), 
 			'memorize.nothingDue' => 'Rien à réviser aujourd\'hui.',

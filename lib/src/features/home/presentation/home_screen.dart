@@ -153,7 +153,7 @@ class HomeScreen extends ConsumerWidget {
                           ),
                         ),
                         const FadeSlideIn(index: 3, child: _Listen()),
-                        const SizedBox(height: 30),
+                        const SizedBox(height: 24),
                         FadeSlideIn(
                           index: 3,
                           child: _Title(
@@ -990,7 +990,7 @@ class _Listen extends ConsumerWidget {
     }
 
     return Padding(
-      padding: const EdgeInsets.only(top: 30),
+      padding: const EdgeInsets.only(top: 24),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
@@ -1000,7 +1000,8 @@ class _Listen extends ConsumerWidget {
             onAction: () => context.router.push(const TeachingsRoute()),
           ),
           SizedBox(
-            height: 212,
+            // the cover and two lines of title, nothing more
+            height: 192,
             child: ListView.separated(
               scrollDirection: Axis.horizontal,
               clipBehavior: Clip.none,
@@ -1010,7 +1011,7 @@ class _Listen extends ConsumerWidget {
                 final teaching = teachings[i];
                 final duration = teaching.duration;
                 return SizedBox(
-                  width: 140,
+                  width: 124,
                   child: InkWell(
                     borderRadius: BorderRadius.circular(AppRadius.lg),
                     onTap: () {
@@ -1020,7 +1021,7 @@ class _Listen extends ConsumerWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        TeachingCover(teaching: teaching, size: 140),
+                        TeachingCover(teaching: teaching, size: 124),
                         const SizedBox(height: 8),
                         Text(
                           teaching.title,

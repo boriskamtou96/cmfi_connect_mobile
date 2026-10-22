@@ -989,6 +989,7 @@ class _Translations$prayer$ar extends Translations$prayer$fr {
 	@override late final _Translations$prayer$topics$ar topics = _Translations$prayer$topics$ar._(_root);
 	@override late final _Translations$prayer$lists$ar lists = _Translations$prayer$lists$ar._(_root);
 	@override late final _Translations$prayer$importunity$ar importunity = _Translations$prayer$importunity$ar._(_root);
+	@override late final _Translations$prayer$free$ar free = _Translations$prayer$free$ar._(_root);
 }
 
 // Path: sending
@@ -1245,6 +1246,9 @@ class _Translations$bible$ar extends Translations$bible$fr {
 	@override String get noCrossReferences => 'لا توجد شواهد مرتبطة لهذا المقطع.';
 	@override String get crossReferencesSource => 'المصدر: OpenBible.info (CC-BY)';
 	@override String readOn({required Object site}) => 'تُقرأ على ${site} (نص محمي)';
+	@override String get listen => 'استمع إلى هذا الأصحاح';
+	@override String listeningAt({required Object place, required Object verse}) => '${place} · الآية ${verse}';
+	@override String get stopListening => 'إيقاف القراءة';
 }
 
 // Path: profilePhoto
@@ -1744,6 +1748,7 @@ class _Translations$biblePlan$ar extends Translations$biblePlan$fr {
 	@override String get homeTitle => 'قراءة اليوم';
 	@override String check({required Object chapter}) => 'علّم ${chapter} كمقروء';
 	@override String uncheck({required Object chapter}) => '${chapter}: مقروء';
+	@override String get listen => 'استمع إلى قراءة اليوم';
 }
 
 // Path: teachings
@@ -3133,6 +3138,19 @@ class _Translations$prayer$importunity$ar extends Translations$prayer$importunit
 	@override String get timeLabel => 'وقت الصلاة لهذا الموضوع';
 	@override String mineTime({required Object n, required Object time}) => 'أنت: ${n} · ${time} من الصلاة';
 	@override String get timerNote => 'يُضاف الوقت إلى «الصلاة الفردية» في تقريرك.';
+}
+
+// Path: prayer.free
+class _Translations$prayer$free$ar extends Translations$prayer$free$fr {
+	_Translations$prayer$free$ar._(TranslationsAr root) : this._root = root, super.internal(root);
+
+	final TranslationsAr _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'صلِّ بحرية';
+	@override String get text => 'بلا خلوة: يُحتسب وقتك في «الصلاة الفردية».';
+	@override String get start => 'ابدأ المؤقت';
+	@override String get running => 'الصلاة الفردية جارية';
 }
 
 // Path: streak.lines
@@ -4637,6 +4655,10 @@ extension on TranslationsAr {
 			'prayer.importunity.timeLabel' => 'وقت الصلاة لهذا الموضوع',
 			'prayer.importunity.mineTime' => ({required Object n, required Object time}) => 'أنت: ${n} · ${time} من الصلاة',
 			'prayer.importunity.timerNote' => 'يُضاف الوقت إلى «الصلاة الفردية» في تقريرك.',
+			'prayer.free.title' => 'صلِّ بحرية',
+			'prayer.free.text' => 'بلا خلوة: يُحتسب وقتك في «الصلاة الفردية».',
+			'prayer.free.start' => 'ابدأ المؤقت',
+			'prayer.free.running' => 'الصلاة الفردية جارية',
 			'sending.title' => 'الإرسال إلى مرشديّ',
 			'sending.moreOff' => 'متوقف',
 			'sending.intro' => 'في الوقت الذي تختاره، يُعِدّ CMFI Connect تقريرك عن الفترة. ما عليك إلا إرساله إلى مرشديك الروحيين.',
@@ -4798,6 +4820,9 @@ extension on TranslationsAr {
 			'bible.noCrossReferences' => 'لا توجد شواهد مرتبطة لهذا المقطع.',
 			'bible.crossReferencesSource' => 'المصدر: OpenBible.info (CC-BY)',
 			'bible.readOn' => ({required Object site}) => 'تُقرأ على ${site} (نص محمي)',
+			'bible.listen' => 'استمع إلى هذا الأصحاح',
+			'bible.listeningAt' => ({required Object place, required Object verse}) => '${place} · الآية ${verse}',
+			'bible.stopListening' => 'إيقاف القراءة',
 			'profilePhoto.title' => 'صورة الملف الشخصي',
 			'profilePhoto.add' => 'إضافة صورة للملف الشخصي',
 			'profilePhoto.change' => 'تغيير صورة الملف الشخصي',
@@ -5006,6 +5031,7 @@ extension on TranslationsAr {
 			'biblePlan.homeTitle' => 'قراءة اليوم',
 			'biblePlan.check' => ({required Object chapter}) => 'علّم ${chapter} كمقروء',
 			'biblePlan.uncheck' => ({required Object chapter}) => '${chapter}: مقروء',
+			'biblePlan.listen' => 'استمع إلى قراءة اليوم',
 			'teachings.title' => 'التعاليم',
 			'teachings.subtitle' => 'استمع إلى الكلمة أينما كنت',
 			'teachings.search' => 'ابحث عن رسالة أو واعظ…',
@@ -5027,6 +5053,8 @@ extension on TranslationsAr {
 			'teachings.removeDownload' => 'أزل من الهاتف',
 			'teachings.back15' => 'رجوع 15 ثانية',
 			'teachings.forward15' => 'تقدّم 15 ثانية',
+			_ => null,
+		} ?? switch (path) {
 			'teachings.speed' => ({required Object speed}) => 'السرعة ${speed}',
 			'teachings.recordedOn' => ({required Object date}) => 'رسالة ${date}',
 			'teachings.moreSubtitle' => 'عظات وتعاليم للاستماع',
@@ -5035,8 +5063,6 @@ extension on TranslationsAr {
 			'memorize.subtitle' => 'اخبأ الكلمة في قلبك',
 			'memorize.toReview' => 'للمراجعة',
 			'memorize.learning' => 'قيد الحفظ',
-			_ => null,
-		} ?? switch (path) {
 			'memorize.known' => 'محفوظة',
 			'memorize.reviewCount' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n, one: 'راجع آية واحدة', other: 'راجع ${n} آيات', ), 
 			'memorize.nothingDue' => 'لا شيء للمراجعة اليوم.',

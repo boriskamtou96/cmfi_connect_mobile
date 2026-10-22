@@ -16,6 +16,8 @@ import '../../../core/widgets/skeleton.dart';
 import '../../../core/widgets/sub_page.dart';
 import '../../members/presentation/widgets/member_avatar.dart';
 import '../../reports/application/report_item_texts.dart';
+import '../../reports/application/reports_providers.dart';
+import '../../reports/domain/activity_type.dart';
 import '../../reports/domain/measure_format.dart';
 import '../application/disciples.dart';
 import '../domain/disciple.dart';
@@ -159,14 +161,21 @@ class _Header extends StatelessWidget {
 }
 
 /// A day: its date, how far its goals and its items go, then each item
-/// filled in with its value.
-class _DayCard extends StatelessWidget {
+/// filled in with its value, and the items of everyone left empty at 0.
+class _DayCard extends ConsumerWidget {
   const _DayCard({required this.day});
 
   final DiscipleDay day;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final empty = [
+      for (final item
+          in ref.watch(activitiesProvider).value ?? const <ActivityType>[])
+        if (item.isStandard &&
+            !day.entries.any((entry) => entry.activityTypeId == item.id))
+          item,
+    ];
     final texts = context.t;
     final t = texts.disciples;
     final tones = AppTones.of(context);
@@ -227,6 +236,35 @@ class _DayCard extends StatelessWidget {
                     ),
                   ),
               ],
+              // not filled in: 0
+              for (final item in empty)
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 5),
+                  child: Row(
+                    children: [
+                      Expanded(
+                        child: Text(
+                          texts.itemLabel(item.code, item.label),
+                          style: TextStyle(
+                            fontSize: 14,
+                            color: Theme.of(
+                              context,
+                            ).colorScheme.onSurfaceVariant,
+                          ),
+                        ),
+                      ),
+                      const SizedBox(width: AppSpacing.md),
+                      Text(
+                        '0',
+                        style: TextStyle(
+                          fontSize: 14,
+                          fontWeight: FontWeight.w700,
+                          color: Theme.of(context).colorScheme.onSurfaceVariant,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
             ],
           ),
         ),

@@ -521,8 +521,8 @@ class _Translations$authorities$es extends Translations$authorities$fr {
 	@override String get statusDeclined => 'Rechazada';
 	@override String pendingHelp({required Object name}) => 'Sus datos de contacto aparecerán cuando ${name} acepte.';
 	@override String get requests => 'Solicitudes recibidas';
-	@override String get requestDiscipleMaker => 'te pide que seas su discipulador';
-	@override String get requestAuthority => 'te pide tu acompañamiento';
+	@override String get requestDiscipleMaker => 'Te pide que seas su discipulador';
+	@override String get requestAuthority => 'Te pide tu acompañamiento';
 	@override String get accept => 'Aceptar';
 	@override String get decline => 'Rechazar';
 	@override String acceptedRequest({required Object name}) => 'Ahora acompañas a ${name}.';
@@ -2917,7 +2917,7 @@ class _Translations$prayer$free$es extends Translations$prayer$free$fr {
 	final TranslationsEs _root; // ignore: unused_field
 
 	// Translations
-	@override String get title => 'Orar libremente';
+	@override String get title => 'Oración personal';
 	@override String get text => 'Sin retiro: tu tiempo cuenta en «Oración personal».';
 	@override String get start => 'Cronometrar';
 	@override String get running => 'Oración personal en curso';
@@ -3771,8 +3771,8 @@ extension on TranslationsEs {
 			'authorities.statusDeclined' => 'Rechazada',
 			'authorities.pendingHelp' => ({required Object name}) => 'Sus datos de contacto aparecerán cuando ${name} acepte.',
 			'authorities.requests' => 'Solicitudes recibidas',
-			'authorities.requestDiscipleMaker' => 'te pide que seas su discipulador',
-			'authorities.requestAuthority' => 'te pide tu acompañamiento',
+			'authorities.requestDiscipleMaker' => 'Te pide que seas su discipulador',
+			'authorities.requestAuthority' => 'Te pide tu acompañamiento',
 			'authorities.accept' => 'Aceptar',
 			'authorities.decline' => 'Rechazar',
 			'authorities.acceptedRequest' => ({required Object name}) => 'Ahora acompañas a ${name}.',
@@ -4479,7 +4479,7 @@ extension on TranslationsEs {
 			'prayer.importunity.timeLabel' => 'Tiempo de oración por este motivo',
 			'prayer.importunity.mineTime' => ({required Object n, required Object time}) => 'Tú: ${n} · ${time} de oración',
 			'prayer.importunity.timerNote' => 'El tiempo se suma a «Oración personal» en tu informe.',
-			'prayer.free.title' => 'Orar libremente',
+			'prayer.free.title' => 'Oración personal',
 			'prayer.free.text' => 'Sin retiro: tu tiempo cuenta en «Oración personal».',
 			'prayer.free.start' => 'Cronometrar',
 			'prayer.free.running' => 'Oración personal en curso',

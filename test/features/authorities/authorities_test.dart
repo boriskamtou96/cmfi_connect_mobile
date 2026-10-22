@@ -205,7 +205,7 @@ void main() {
     await tester.pumpAndSettle();
     expect(find.text('DEMANDES REÇUES'), findsOneWidget);
     expect(
-      find.text("te demande d'être son faiseur de disciples"),
+      find.text("Te demande d'être son faiseur de disciples"),
       findsOneWidget,
     );
 

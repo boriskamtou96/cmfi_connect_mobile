@@ -621,8 +621,8 @@
     "statusDeclined": "Abgelehnt",
     "pendingHelp": "Die Kontaktdaten erscheinen, sobald {name} angenommen hat.",
     "requests": "Erhaltene Anfragen",
-    "requestDiscipleMaker": "möchte dich als Jüngermacher",
-    "requestAuthority": "bittet dich um Begleitung",
+    "requestDiscipleMaker": "Möchte dich als Jüngermacher",
+    "requestAuthority": "Bittet dich um Begleitung",
     "accept": "Annehmen",
     "decline": "Ablehnen",
     "acceptedRequest": "Du begleitest jetzt {name}.",
@@ -1533,7 +1533,7 @@
       "timerNote": "Die Zeit kommt zu „Persönliches Gebet“ in deinem Bericht."
     },
     "free": {
-      "title": "Frei beten",
+      "title": "Persönliches Gebet",
       "text": "Ohne Andacht: deine Zeit zählt bei „Persönliches Gebet“.",
       "start": "Zeit messen",
       "running": "Persönliches Gebet läuft"

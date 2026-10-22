@@ -521,8 +521,8 @@ class _Translations$authorities$en extends Translations$authorities$fr {
 	@override String get statusDeclined => 'Declined';
 	@override String pendingHelp({required Object name}) => 'Their contact details will show once ${name} accepts.';
 	@override String get requests => 'Requests';
-	@override String get requestDiscipleMaker => 'asks you to be their disciple maker';
-	@override String get requestAuthority => 'asks you to accompany them';
+	@override String get requestDiscipleMaker => 'Asks you to be their disciple maker';
+	@override String get requestAuthority => 'Asks you to accompany them';
 	@override String get accept => 'Accept';
 	@override String get decline => 'Decline';
 	@override String acceptedRequest({required Object name}) => 'You now accompany ${name}.';
@@ -2918,7 +2918,7 @@ class _Translations$prayer$free$en extends Translations$prayer$free$fr {
 	final TranslationsEn _root; // ignore: unused_field
 
 	// Translations
-	@override String get title => 'Pray freely';
+	@override String get title => 'Personal prayer';
 	@override String get text => 'No retreat: your time counts in “Personal prayer”.';
 	@override String get start => 'Time it';
 	@override String get running => 'Personal prayer running';
@@ -3772,8 +3772,8 @@ extension on TranslationsEn {
 			'authorities.statusDeclined' => 'Declined',
 			'authorities.pendingHelp' => ({required Object name}) => 'Their contact details will show once ${name} accepts.',
 			'authorities.requests' => 'Requests',
-			'authorities.requestDiscipleMaker' => 'asks you to be their disciple maker',
-			'authorities.requestAuthority' => 'asks you to accompany them',
+			'authorities.requestDiscipleMaker' => 'Asks you to be their disciple maker',
+			'authorities.requestAuthority' => 'Asks you to accompany them',
 			'authorities.accept' => 'Accept',
 			'authorities.decline' => 'Decline',
 			'authorities.acceptedRequest' => ({required Object name}) => 'You now accompany ${name}.',
@@ -4480,7 +4480,7 @@ extension on TranslationsEn {
 			'prayer.importunity.timeLabel' => 'Prayer time for this topic',
 			'prayer.importunity.mineTime' => ({required Object n, required Object time}) => 'You: ${n} · ${time} of prayer',
 			'prayer.importunity.timerNote' => 'The time is added to "Personal prayer" in your report.',
-			'prayer.free.title' => 'Pray freely',
+			'prayer.free.title' => 'Personal prayer',
 			'prayer.free.text' => 'No retreat: your time counts in “Personal prayer”.',
 			'prayer.free.start' => 'Time it',
 			'prayer.free.running' => 'Personal prayer running',

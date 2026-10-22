@@ -621,8 +621,8 @@
     "statusDeclined": "Refusée",
     "pendingHelp": "Ses coordonnées s'afficheront quand {name} aura accepté.",
     "requests": "Demandes reçues",
-    "requestDiscipleMaker": "te demande d'être son faiseur de disciples",
-    "requestAuthority": "te demande de l'accompagner",
+    "requestDiscipleMaker": "Te demande d'être son faiseur de disciples",
+    "requestAuthority": "Te demande de l'accompagner",
     "accept": "Accepter",
     "decline": "Refuser",
     "acceptedRequest": "Tu accompagnes maintenant {name}.",
@@ -1533,7 +1533,7 @@
       "timerNote": "Le temps s'ajoute à « Prière seule » dans ton compte rendu."
     },
     "free": {
-      "title": "Prier librement",
+      "title": "Prière seule",
       "text": "Sans retraite : ton temps compte dans « Prière seule ».",
       "start": "Chronométrer",
       "running": "Prière seule en cours"

@@ -38,11 +38,12 @@ class HistoryView extends HookConsumerWidget {
     final to = lastOfMonth.isAfter(now) ? now : lastOfMonth;
     final provider = reportHistoryProvider(from: from, to: to);
     final history = ref.watch(provider);
-    final standardIds = {
+    final standard = [
       for (final activity
           in ref.watch(activitiesProvider).value ?? const <ActivityType>[])
-        if (activity.isStandard) activity.id,
-    };
+        if (activity.isStandard) activity,
+    ];
+    final standardIds = {for (final activity in standard) activity.id};
 
     final days = {
       for (final report in history.value ?? const <DailyReport>[])
@@ -90,6 +91,7 @@ class HistoryView extends HookConsumerWidget {
                     child: switch (days[day]) {
                       final report? => _DayCard(
                         report: report,
+                        standard: standard,
                         standardIds: standardIds,
                         onTap: () => onOpenDay(day),
                       ),
@@ -365,11 +367,15 @@ class _DayCell extends StatelessWidget {
 class _DayCard extends StatelessWidget {
   const _DayCard({
     required this.report,
+    required this.standard,
     required this.standardIds,
     required this.onTap,
   });
 
   final DailyReport report;
+
+  /// The items of everyone: one not filled that day counts 0.
+  final List<ActivityType> standard;
   final Set<int> standardIds;
   final VoidCallback onTap;
 
@@ -409,7 +415,7 @@ class _DayCard extends StatelessWidget {
                     _TodayPill(day: report.date),
                 ],
               ),
-              if (report.entries.isNotEmpty) ...[
+              if (report.entries.isNotEmpty || standard.isNotEmpty) ...[
                 const SizedBox(height: 10),
                 Wrap(
                   spacing: 6,
@@ -420,6 +426,12 @@ class _DayCard extends StatelessWidget {
                         entry: entry,
                         personal: !standardIds.contains(entry.activityTypeId),
                       ),
+                    // not filled in: 0
+                    for (final item in standard)
+                      if (!report.entries.any(
+                        (entry) => entry.activityTypeId == item.id,
+                      ))
+                        _ZeroChip(code: item.code),
                   ],
                 ),
               ],
@@ -494,6 +506,33 @@ class _ValueChip extends StatelessWidget {
           fontSize: 13,
           fontWeight: FontWeight.w700,
           color: personal ? tones.personal : scheme.primary,
+        ),
+      ),
+    );
+  }
+}
+
+/// An item of everyone not filled in that day: "LB 0", faint.
+class _ZeroChip extends StatelessWidget {
+  const _ZeroChip({required this.code});
+
+  final String code;
+
+  @override
+  Widget build(BuildContext context) {
+    final scheme = Theme.of(context).colorScheme;
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 9, vertical: 4),
+      decoration: BoxDecoration(
+        color: scheme.surfaceContainerHighest,
+        borderRadius: BorderRadius.circular(AppRadius.sm),
+      ),
+      child: Text(
+        '$code 0',
+        style: TextStyle(
+          fontSize: 13,
+          fontWeight: FontWeight.w700,
+          color: scheme.onSurfaceVariant,
         ),
       ),
     );

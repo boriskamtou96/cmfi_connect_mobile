@@ -163,7 +163,11 @@ class HomeScreen extends ConsumerWidget {
                                 context.router.push(const EventsRoute()),
                           ),
                         ),
-                        const FadeSlideIn(index: 3, child: _Community()),
+                        const FadeSlideIn(index: 3, child: _Events()),
+                        // the ministry apart from the events
+                        const SizedBox(height: 24),
+                        FadeSlideIn(index: 3, child: _Title(t.ministry.title)),
+                        const FadeSlideIn(index: 3, child: _Ministry()),
                       ],
                     ),
                   ),
@@ -1148,10 +1152,9 @@ class _Row extends StatelessWidget {
   }
 }
 
-/// The community in rows: the next two events (a small poster, when, the
-/// days left), then the ministry.
-class _Community extends ConsumerWidget {
-  const _Community();
+/// The events in rows: the next two (a small poster, when, the days left).
+class _Events extends ConsumerWidget {
+  const _Events();
 
   /// The rest is in "Tout voir".
   static const _max = 2;
@@ -1167,7 +1170,6 @@ class _Community extends ConsumerWidget {
               const <CommunityEvent>[])
         if (event.status == EventStatus.published) event,
     ];
-    final nations = ref.watch(nationsProvider).value?.length ?? 154;
     final now = DateTime.now();
 
     String countdown(CommunityEvent event) {
@@ -1209,7 +1211,8 @@ class _Community extends ConsumerWidget {
                 text: t.events.homeText,
                 onTap: () => context.router.push(const EventsRoute()),
               ),
-            for (final event in upcoming.take(_max)) ...[
+            for (final (i, event) in upcoming.take(_max).indexed) ...[
+              if (i > 0) divider,
               _Row(
                 leading: ClipRRect(
                   borderRadius: BorderRadius.circular(10),
@@ -1251,32 +1254,50 @@ class _Community extends ConsumerWidget {
                   ),
                 ),
               ),
-              divider,
             ],
-            if (upcoming.isEmpty) divider,
-            _Row(
-              // our founder and our leader: real faces of the ministry
-              leading: FaceStack(
-                faces: [
-                  for (final life in const [
-                    MinistryLife.founder,
-                    MinistryLife.leader,
-                  ])
-                    Image.asset(
-                      life.asset,
-                      fit: BoxFit.cover,
-                      excludeFromSemantics: true,
-                    ),
-                ],
-                ring: scheme.surface,
-                size: 44,
-                overlap: 0.3,
-              ),
-              title: t.ministry.title,
-              text: t.ministry.homeText(n: nations),
-              onTap: () => context.router.push(const MinistryRoute()),
-            ),
           ],
+        ),
+      ),
+    );
+  }
+}
+
+/// Our ministry: the faces of our founder and our leader, the nations.
+class _Ministry extends ConsumerWidget {
+  const _Ministry();
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final t = context.t;
+    final scheme = Theme.of(context).colorScheme;
+    final nations = ref.watch(nationsProvider).value?.length ?? 154;
+
+    return Container(
+      decoration: _card(context),
+      clipBehavior: Clip.antiAlias,
+      child: Material(
+        type: MaterialType.transparency,
+        child: _Row(
+          // our founder and our leader: real faces of the ministry
+          leading: FaceStack(
+            faces: [
+              for (final life in const [
+                MinistryLife.founder,
+                MinistryLife.leader,
+              ])
+                Image.asset(
+                  life.asset,
+                  fit: BoxFit.cover,
+                  excludeFromSemantics: true,
+                ),
+            ],
+            ring: scheme.surface,
+            size: 44,
+            overlap: 0.3,
+          ),
+          title: t.ministry.title,
+          text: t.ministry.homeText(n: nations),
+          onTap: () => context.router.push(const MinistryRoute()),
         ),
       ),
     );

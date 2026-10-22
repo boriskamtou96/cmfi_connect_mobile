@@ -2916,7 +2916,7 @@ class _Translations$prayer$free$hi extends Translations$prayer$free$fr {
 	final TranslationsHi _root; // ignore: unused_field
 
 	// Translations
-	@override String get title => 'स्वतंत्र रूप से प्रार्थना करें';
+	@override String get title => 'व्यक्तिगत प्रार्थना';
 	@override String get text => 'बिना रिट्रीट: आपका समय «व्यक्तिगत प्रार्थना» में गिना जाता है।';
 	@override String get start => 'समय गिनें';
 	@override String get running => 'व्यक्तिगत प्रार्थना जारी';
@@ -4478,7 +4478,7 @@ extension on TranslationsHi {
 			'prayer.importunity.timeLabel' => 'इस विषय के लिए प्रार्थना का समय',
 			'prayer.importunity.mineTime' => ({required Object n, required Object time}) => 'तुम: ${n} · ${time} प्रार्थना',
 			'prayer.importunity.timerNote' => 'यह समय तुम्हारी रिपोर्ट में "व्यक्तिगत प्रार्थना" में जुड़ता है।',
-			'prayer.free.title' => 'स्वतंत्र रूप से प्रार्थना करें',
+			'prayer.free.title' => 'व्यक्तिगत प्रार्थना',
 			'prayer.free.text' => 'बिना रिट्रीट: आपका समय «व्यक्तिगत प्रार्थना» में गिना जाता है।',
 			'prayer.free.start' => 'समय गिनें',
 			'prayer.free.running' => 'व्यक्तिगत प्रार्थना जारी',

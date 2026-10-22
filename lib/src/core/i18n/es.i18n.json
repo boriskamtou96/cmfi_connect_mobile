@@ -621,8 +621,8 @@
     "statusDeclined": "Rechazada",
     "pendingHelp": "Sus datos de contacto aparecerán cuando {name} acepte.",
     "requests": "Solicitudes recibidas",
-    "requestDiscipleMaker": "te pide que seas su discipulador",
-    "requestAuthority": "te pide tu acompañamiento",
+    "requestDiscipleMaker": "Te pide que seas su discipulador",
+    "requestAuthority": "Te pide tu acompañamiento",
     "accept": "Aceptar",
     "decline": "Rechazar",
     "acceptedRequest": "Ahora acompañas a {name}.",
@@ -1533,7 +1533,7 @@
       "timerNote": "El tiempo se suma a «Oración personal» en tu informe."
     },
     "free": {
-      "title": "Orar libremente",
+      "title": "Oración personal",
       "text": "Sin retiro: tu tiempo cuenta en «Oración personal».",
       "start": "Cronometrar",
       "running": "Oración personal en curso"

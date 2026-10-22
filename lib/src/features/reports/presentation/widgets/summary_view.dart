@@ -264,8 +264,9 @@ class SummaryView extends HookConsumerWidget {
                           ),
                         ),
                       ),
+                      // not filled in: counts 0
                       Text(
-                        '—',
+                        '0',
                         style: TextStyle(
                           color: Theme.of(context).colorScheme.onSurfaceVariant,
                         ),

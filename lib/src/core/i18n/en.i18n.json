@@ -621,8 +621,8 @@
     "statusDeclined": "Declined",
     "pendingHelp": "Their contact details will show once {name} accepts.",
     "requests": "Requests",
-    "requestDiscipleMaker": "asks you to be their disciple maker",
-    "requestAuthority": "asks you to accompany them",
+    "requestDiscipleMaker": "Asks you to be their disciple maker",
+    "requestAuthority": "Asks you to accompany them",
     "accept": "Accept",
     "decline": "Decline",
     "acceptedRequest": "You now accompany {name}.",
@@ -1534,7 +1534,7 @@
       "timerNote": "The time is added to \"Personal prayer\" in your report."
     },
     "free": {
-      "title": "Pray freely",
+      "title": "Personal prayer",
       "text": "No retreat: your time counts in “Personal prayer”.",
       "start": "Time it",
       "running": "Personal prayer running"

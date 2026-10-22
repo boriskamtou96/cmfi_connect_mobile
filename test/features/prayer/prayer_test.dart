@@ -332,7 +332,7 @@ void main() {
     ) async {
       final app = await pumpApp(tester, token: 't');
       await openPrayer(tester);
-      await scrollToMiddle(tester, find.text('Prier librement'));
+      await scrollToMiddle(tester, find.text('Prière seule'));
 
       await tester.tap(find.text('Chronométrer'));
       // the seconds go by: no pumpAndSettle while it runs

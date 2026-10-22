@@ -36,13 +36,13 @@ void main() {
     tester,
   ) async {
     await pumpApp(tester, token: 't');
-    await scrollTo(tester, find.text('Notre ministère'));
+    await scrollTo(tester, find.text('Notre ministère').last);
 
     // real faces of the ministry, never stock photos
     expect(assetImage('assets/ministry/founder.jpg'), findsOneWidget);
     expect(assetImage('assets/ministry/leader.jpg'), findsOneWidget);
 
-    await tester.tap(find.text('Notre ministère'));
+    await tester.tap(find.text('Notre ministère').last);
     await tester.pumpAndSettle();
     expect(find.byType(MinistryScreen), findsOneWidget);
   });

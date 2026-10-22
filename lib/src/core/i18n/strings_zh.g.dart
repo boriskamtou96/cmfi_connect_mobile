@@ -2838,7 +2838,7 @@ class _Translations$prayer$free$zh extends Translations$prayer$free$fr {
 	final TranslationsZh _root; // ignore: unused_field
 
 	// Translations
-	@override String get title => '自由祷告';
+	@override String get title => '个人祷告';
 	@override String get text => '不做灵修：你的时间计入「个人祷告」。';
 	@override String get start => '开始计时';
 	@override String get running => '个人祷告进行中';
@@ -4395,7 +4395,7 @@ extension on TranslationsZh {
 			'prayer.importunity.timeLabel' => '为此事项祷告的时间',
 			'prayer.importunity.mineTime' => ({required Object n, required Object time}) => '你：${n} · 祷告 ${time}',
 			'prayer.importunity.timerNote' => '时间会计入报告中的“个人祷告”。',
-			'prayer.free.title' => '自由祷告',
+			'prayer.free.title' => '个人祷告',
 			'prayer.free.text' => '不做灵修：你的时间计入「个人祷告」。',
 			'prayer.free.start' => '开始计时',
 			'prayer.free.running' => '个人祷告进行中',

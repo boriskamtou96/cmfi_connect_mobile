@@ -521,8 +521,8 @@ class _Translations$authorities$de extends Translations$authorities$fr {
 	@override String get statusDeclined => 'Abgelehnt';
 	@override String pendingHelp({required Object name}) => 'Die Kontaktdaten erscheinen, sobald ${name} angenommen hat.';
 	@override String get requests => 'Erhaltene Anfragen';
-	@override String get requestDiscipleMaker => 'möchte dich als Jüngermacher';
-	@override String get requestAuthority => 'bittet dich um Begleitung';
+	@override String get requestDiscipleMaker => 'Möchte dich als Jüngermacher';
+	@override String get requestAuthority => 'Bittet dich um Begleitung';
 	@override String get accept => 'Annehmen';
 	@override String get decline => 'Ablehnen';
 	@override String acceptedRequest({required Object name}) => 'Du begleitest jetzt ${name}.';
@@ -2917,7 +2917,7 @@ class _Translations$prayer$free$de extends Translations$prayer$free$fr {
 	final TranslationsDe _root; // ignore: unused_field
 
 	// Translations
-	@override String get title => 'Frei beten';
+	@override String get title => 'Persönliches Gebet';
 	@override String get text => 'Ohne Andacht: deine Zeit zählt bei „Persönliches Gebet“.';
 	@override String get start => 'Zeit messen';
 	@override String get running => 'Persönliches Gebet läuft';
@@ -3771,8 +3771,8 @@ extension on TranslationsDe {
 			'authorities.statusDeclined' => 'Abgelehnt',
 			'authorities.pendingHelp' => ({required Object name}) => 'Die Kontaktdaten erscheinen, sobald ${name} angenommen hat.',
 			'authorities.requests' => 'Erhaltene Anfragen',
-			'authorities.requestDiscipleMaker' => 'möchte dich als Jüngermacher',
-			'authorities.requestAuthority' => 'bittet dich um Begleitung',
+			'authorities.requestDiscipleMaker' => 'Möchte dich als Jüngermacher',
+			'authorities.requestAuthority' => 'Bittet dich um Begleitung',
 			'authorities.accept' => 'Annehmen',
 			'authorities.decline' => 'Ablehnen',
 			'authorities.acceptedRequest' => ({required Object name}) => 'Du begleitest jetzt ${name}.',
@@ -4479,7 +4479,7 @@ extension on TranslationsDe {
 			'prayer.importunity.timeLabel' => 'Gebetszeit für dieses Anliegen',
 			'prayer.importunity.mineTime' => ({required Object n, required Object time}) => 'Du: ${n} · ${time} Gebet',
 			'prayer.importunity.timerNote' => 'Die Zeit kommt zu „Persönliches Gebet“ in deinem Bericht.',
-			'prayer.free.title' => 'Frei beten',
+			'prayer.free.title' => 'Persönliches Gebet',
 			'prayer.free.text' => 'Ohne Andacht: deine Zeit zählt bei „Persönliches Gebet“.',
 			'prayer.free.start' => 'Zeit messen',
 			'prayer.free.running' => 'Persönliches Gebet läuft',

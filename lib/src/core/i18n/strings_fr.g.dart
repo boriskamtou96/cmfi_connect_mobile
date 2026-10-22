@@ -1023,11 +1023,11 @@ class Translations$authorities$fr {
 	/// fr: 'Demandes reçues'
 	String get requests => 'Demandes reçues';
 
-	/// fr: 'te demande d'être son faiseur de disciples'
-	String get requestDiscipleMaker => 'te demande d\'être son faiseur de disciples';
+	/// fr: 'Te demande d'être son faiseur de disciples'
+	String get requestDiscipleMaker => 'Te demande d\'être son faiseur de disciples';
 
-	/// fr: 'te demande de l'accompagner'
-	String get requestAuthority => 'te demande de l\'accompagner';
+	/// fr: 'Te demande de l'accompagner'
+	String get requestAuthority => 'Te demande de l\'accompagner';
 
 	/// fr: 'Accepter'
 	String get accept => 'Accepter';
@@ -6092,8 +6092,8 @@ class Translations$prayer$free$fr {
 
 	// Translations
 
-	/// fr: 'Prier librement'
-	String get title => 'Prier librement';
+	/// fr: 'Prière seule'
+	String get title => 'Prière seule';
 
 	/// fr: 'Sans retraite : ton temps compte dans « Prière seule ».'
 	String get text => 'Sans retraite : ton temps compte dans « Prière seule ».';
@@ -7177,8 +7177,8 @@ extension on Translations {
 			'authorities.statusDeclined' => 'Refusée',
 			'authorities.pendingHelp' => ({required Object name}) => 'Ses coordonnées s\'afficheront quand ${name} aura accepté.',
 			'authorities.requests' => 'Demandes reçues',
-			'authorities.requestDiscipleMaker' => 'te demande d\'être son faiseur de disciples',
-			'authorities.requestAuthority' => 'te demande de l\'accompagner',
+			'authorities.requestDiscipleMaker' => 'Te demande d\'être son faiseur de disciples',
+			'authorities.requestAuthority' => 'Te demande de l\'accompagner',
 			'authorities.accept' => 'Accepter',
 			'authorities.decline' => 'Refuser',
 			'authorities.acceptedRequest' => ({required Object name}) => 'Tu accompagnes maintenant ${name}.',
@@ -7885,7 +7885,7 @@ extension on Translations {
 			'prayer.importunity.timeLabel' => 'Temps de prière pour ce sujet',
 			'prayer.importunity.mineTime' => ({required Object n, required Object time}) => 'Toi : ${n} · ${time} de prière',
 			'prayer.importunity.timerNote' => 'Le temps s\'ajoute à « Prière seule » dans ton compte rendu.',
-			'prayer.free.title' => 'Prier librement',
+			'prayer.free.title' => 'Prière seule',
 			'prayer.free.text' => 'Sans retraite : ton temps compte dans « Prière seule ».',
 			'prayer.free.start' => 'Chronométrer',
 			'prayer.free.running' => 'Prière seule en cours',

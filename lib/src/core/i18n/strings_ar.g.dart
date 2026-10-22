@@ -3232,7 +3232,7 @@ class _Translations$prayer$free$ar extends Translations$prayer$free$fr {
 	final TranslationsAr _root; // ignore: unused_field
 
 	// Translations
-	@override String get title => 'صلِّ بحرية';
+	@override String get title => 'الصلاة الفردية';
 	@override String get text => 'بلا خلوة: يُحتسب وقتك في «الصلاة الفردية».';
 	@override String get start => 'ابدأ المؤقت';
 	@override String get running => 'الصلاة الفردية جارية';
@@ -4813,7 +4813,7 @@ extension on TranslationsAr {
 			'prayer.importunity.timeLabel' => 'وقت الصلاة لهذا الموضوع',
 			'prayer.importunity.mineTime' => ({required Object n, required Object time}) => 'أنت: ${n} · ${time} من الصلاة',
 			'prayer.importunity.timerNote' => 'يُضاف الوقت إلى «الصلاة الفردية» في تقريرك.',
-			'prayer.free.title' => 'صلِّ بحرية',
+			'prayer.free.title' => 'الصلاة الفردية',
 			'prayer.free.text' => 'بلا خلوة: يُحتسب وقتك في «الصلاة الفردية».',
 			'prayer.free.start' => 'ابدأ المؤقت',
 			'prayer.free.running' => 'الصلاة الفردية جارية',

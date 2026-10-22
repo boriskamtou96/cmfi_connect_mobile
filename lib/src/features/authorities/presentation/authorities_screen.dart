@@ -77,6 +77,36 @@ class AuthoritiesScreen extends ConsumerWidget {
       }
     }
 
+    Future<void> makeDiscipleMaker(Authority authority) async {
+      final current = (authorities.value ?? const <Authority>[]).where(
+        (other) => other.isDiscipleMaker,
+      );
+      final former = current.isEmpty ? null : current.first.fullName;
+      final confirmed = await showConfirmDialog(
+        context,
+        title: t.authorities.makeMakerTitle(name: authority.fullName),
+        text: former == null
+            ? t.authorities.makeMakerText(name: authority.fullName)
+            : t.authorities.makeMakerTextFormer(
+                name: authority.fullName,
+                former: former,
+              ),
+        confirmLabel: t.authorities.makeMaker,
+      );
+      if (!confirmed || !context.mounted) {
+        return;
+      }
+      final toast = ref.read(toasterProvider).of(context);
+      try {
+        await ref
+            .read(authoritiesControllerProvider.notifier)
+            .chooseDiscipleMaker(authority);
+        toast.success(t.authorities.madeMaker(name: authority.fullName));
+      } on Object catch (error) {
+        toast.error(userMessageFor(error, t));
+      }
+    }
+
     return SubPage(
       title: t.authorities.title,
       child: switch (authorities) {
@@ -190,6 +220,10 @@ class AuthoritiesScreen extends ConsumerWidget {
                               _AuthorityRow(
                                 authority: authority,
                                 onRemove: () => remove(authority),
+                                onMakeDiscipleMaker:
+                                    authority.status == AuthorityStatus.declined
+                                    ? null
+                                    : () => makeDiscipleMaker(authority),
                               ),
                               // a member: receives the user's reports
                               if (authority.username != null &&
@@ -219,10 +253,17 @@ class AuthoritiesScreen extends ConsumerWidget {
 }
 
 class _AuthorityRow extends StatelessWidget {
-  const _AuthorityRow({required this.authority, required this.onRemove});
+  const _AuthorityRow({
+    required this.authority,
+    required this.onRemove,
+    this.onMakeDiscipleMaker,
+  });
 
   final Authority authority;
   final VoidCallback onRemove;
+
+  /// Another authority: can become the disciple maker.
+  final VoidCallback? onMakeDiscipleMaker;
 
   @override
   Widget build(BuildContext context) {
@@ -297,6 +338,15 @@ class _AuthorityRow extends StatelessWidget {
               ],
             ),
           ),
+          if (onMakeDiscipleMaker != null)
+            IconButton(
+              tooltip: t.authorities.makeMaker,
+              onPressed: onMakeDiscipleMaker,
+              icon: Icon(
+                AppIcons.makeDiscipleMaker,
+                color: scheme.onSurfaceVariant,
+              ),
+            ),
           IconButton(
             tooltip: t.authorities.remove,
             onPressed: onRemove,

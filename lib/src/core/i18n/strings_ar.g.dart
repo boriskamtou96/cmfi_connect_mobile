@@ -571,6 +571,11 @@ class _Translations$authorities$ar extends Translations$authorities$fr {
 		other: '${n} طلب بانتظارك',
 	);
 	@override late final _Translations$authorities$sharing$ar sharing = _Translations$authorities$sharing$ar._(_root);
+	@override String get makeMaker => 'اجعله صانع التلاميذ الخاص بي';
+	@override String makeMakerTitle({required Object name}) => 'هل تجعل ${name} صانع التلاميذ الخاص بك؟';
+	@override String makeMakerText({required Object name}) => 'سيتم إبلاغ ${name}.';
+	@override String makeMakerTextFormer({required Object name, required Object former}) => 'سيتم إبلاغ ${name}. يبقى ${former} ضمن مرشديك.';
+	@override String madeMaker({required Object name}) => '${name} هو الآن صانع التلاميذ الخاص بك.';
 }
 
 // Path: members
@@ -4116,18 +4121,23 @@ extension on TranslationsAr {
 			'authorities.sharing.help' => ({required Object name}) => 'يرى ${name} تقاريرك: العناصر المملوءة وانتظامك ونسبك، ولا يرى أبدًا ملاحظتك.',
 			'authorities.sharing.on' => ({required Object name}) => 'تقاريرك مُشارَكة مع ${name}.',
 			'authorities.sharing.off' => ({required Object name}) => 'لم يعد ${name} يرى تقاريرك.',
+			'authorities.makeMaker' => 'اجعله صانع التلاميذ الخاص بي',
+			'authorities.makeMakerTitle' => ({required Object name}) => 'هل تجعل ${name} صانع التلاميذ الخاص بك؟',
+			'authorities.makeMakerText' => ({required Object name}) => 'سيتم إبلاغ ${name}.',
+			'authorities.makeMakerTextFormer' => ({required Object name, required Object former}) => 'سيتم إبلاغ ${name}. يبقى ${former} ضمن مرشديك.',
+			'authorities.madeMaker' => ({required Object name}) => '${name} هو الآن صانع التلاميذ الخاص بك.',
 			'members.username' => 'اسم المستخدم',
 			'members.usernameHint' => 'firstname.lastname',
 			'members.usernameHelp' => 'بهذا الاسم سيجدك الأعضاء الآخرون.',
 			'members.usernameChecking' => 'جارٍ التحقق…',
 			'members.usernameFree' => ({required Object username}) => '@${username} متاح',
+			_ => null,
+		} ?? switch (path) {
 			'members.usernameCurrent' => 'هذا اسم المستخدم الحالي الخاص بك',
 			'members.usernameTaken' => 'اسم المستخدم هذا مأخوذ بالفعل.',
 			'members.usernameInvalid' => 'من 3 إلى 30 حرفًا: أحرف وأرقام و«.» و«_»، دون أن يبدأ أو ينتهي برمز.',
 			'members.usernameReserved' => 'اسم المستخدم هذا محجوز.',
 			'members.usernameSaved' => ({required Object username}) => 'تم حفظ اسم المستخدم: @${username}',
-			_ => null,
-		} ?? switch (path) {
 			'members.deleteAccount.button' => 'حذف حسابي',
 			'members.deleteAccount.title' => 'حذف حسابي',
 			'members.deleteAccount.intro' => 'هذا نهائي. سيتم مسح حسابك وكل ما يرتبط به:',
@@ -4635,13 +4645,13 @@ extension on TranslationsAr {
 			'prayer.routine.reminder' => ({required Object time}) => 'تذكير في ${time}',
 			'prayer.routine.later.morning' => 'في الصباح · 15 دقيقة',
 			'prayer.routine.later.noon' => 'عند الظهر · 15 دقيقة',
+			_ => null,
+		} ?? switch (path) {
 			'prayer.routine.later.evening' => 'في المساء · 15 دقيقة',
 			'prayer.routine.later.night' => 'في الليل · 15 دقيقة',
 			'prayer.together' => 'نصلّي معًا',
 			'prayer.reminders.title' => 'تذكيرات الخلوات',
 			'prayer.reminders.intro' => 'تذكير في موعد كل خلوة، فقط إذا لم تُتمَّها بعد.',
-			_ => null,
-		} ?? switch (path) {
 			'prayer.reminders.off' => 'معطّل',
 			'prayer.reminders.channel' => 'خلوات الصلاة',
 			'prayer.reminders.body' => '15 دقيقة مع الرب.',
@@ -5149,13 +5159,13 @@ extension on TranslationsAr {
 			'biblePlan.unitMonths' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n, zero: 'شهر', one: 'شهر', two: 'شهران', few: 'أشهر', many: 'شهرًا', other: 'شهر', ), 
 			'biblePlan.unitYear' => 'سنة',
 			'biblePlan.days' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n, zero: '${n} يوم', one: 'يوم واحد', two: 'يومان', few: '${n} أيام', many: '${n} يومًا', other: '${n} يوم', ), 
+			_ => null,
+		} ?? switch (path) {
 			'biblePlan.scope' => 'ما تقرأه',
 			'biblePlan.scopes.bible' => 'الكتاب المقدس كله',
 			'biblePlan.scopes.newTestament' => 'العهد الجديد',
 			'biblePlan.scopes.oldTestament' => 'العهد القديم',
 			'biblePlan.scopes.psalmsProverbs' => 'المزامير والأمثال',
-			_ => null,
-		} ?? switch (path) {
 			'biblePlan.chaptersShort' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n, zero: '${n} أصحاح', one: 'أصحاح واحد', two: 'أصحاحان', few: '${n} أصحاحات', many: '${n} أصحاحًا', other: '${n} أصحاح', ), 
 			'biblePlan.oldTestament' => 'العهد القديم',
 			'biblePlan.newTestament' => 'العهد الجديد',

@@ -19,10 +19,12 @@ import '../../../core/services/push_messaging.dart';
 import '../../../core/session/session.dart';
 import '../../../core/utils/date_extensions.dart';
 import '../../../routing/app_router.dart';
+import '../../authorities/application/authorities_controller.dart';
 import '../../bible/application/bible_plan.dart';
 import '../../bible/application/bible_position.dart';
 import '../../bible/application/memory_verses.dart';
 import '../../bible/domain/bible.dart';
+import '../../disciples/application/disciples.dart';
 import '../../disciples/application/received_reports.dart';
 import '../../events/application/event_reminders.dart';
 import '../../fasts/application/fasts.dart';
@@ -234,6 +236,20 @@ class SignedInTasks extends HookConsumerWidget {
             ref.invalidate(sentInAppProvider);
             if (context.mounted) {
               context.router.push(const ReportSendingRoute());
+            }
+          // asked to accompany someone, a request accepted
+          case 'authority_request' || 'authority_accepted':
+            ref
+              ..invalidate(authorityRequestsProvider)
+              ..invalidate(authoritiesControllerProvider);
+            if (context.mounted) {
+              context.router.push(const AuthoritiesRoute());
+            }
+          // chosen as disciple maker
+          case 'disciple_maker_chosen':
+            ref.invalidate(disciplesListProvider);
+            if (context.mounted) {
+              context.router.push(const DisciplesRoute());
             }
           // Premium offered by the admins: shown at once
           case 'premium_gift':
@@ -454,6 +470,12 @@ class SignedInTasks extends HookConsumerWidget {
             ref.invalidate(sentInAppProvider);
           case 'premium_gift':
             unawaited(ref.read(premiumStoreProvider).refresh());
+          case 'authority_request' || 'authority_accepted':
+            ref
+              ..invalidate(authorityRequestsProvider)
+              ..invalidate(authoritiesControllerProvider);
+          case 'disciple_maker_chosen':
+            ref.invalidate(disciplesListProvider);
         }
         // shown as when the app is closed: iOS does it, Android needs the app
         if (defaultTargetPlatform == TargetPlatform.android &&

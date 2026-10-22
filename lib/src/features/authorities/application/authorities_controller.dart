@@ -61,6 +61,24 @@ class AuthoritiesController extends _$AuthoritiesController {
     }
   }
 
+  /// Makes [authority] the disciple maker (the former one stays an
+  /// authority); throws an AppException on failure (nothing changes).
+  Future<void> chooseDiscipleMaker(Authority authority) async {
+    final chosen = await ref
+        .read(authoritiesApiProvider)
+        .chooseDiscipleMaker(authority.id);
+    if (ref.mounted) {
+      state = AsyncData(
+        _sorted([
+          for (final other in state.value ?? const <Authority>[])
+            other.id == chosen.id
+                ? chosen
+                : other.copyWith(isDiscipleMaker: false),
+        ]),
+      );
+    }
+  }
+
   /// Turns on or off what the disciple maker sees; throws an AppException
   /// on failure (nothing changes).
   Future<void> setSharing(Authority authority, {required bool shares}) async {

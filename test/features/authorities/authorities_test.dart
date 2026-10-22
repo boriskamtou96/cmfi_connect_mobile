@@ -119,6 +119,53 @@ void main() {
     expect(find.text("Tu n'as encore ajouté personne."), findsOneWidget);
   });
 
+  testWidgets('another authority becomes the disciple maker', (tester) async {
+    final app = await pumpApp(
+      tester,
+      token: 't',
+      authoritiesApi: FakeAuthoritiesApi(const [
+        Authority(
+          id: 4,
+          firstName: 'Marc',
+          lastName: 'Ndi',
+          phoneNumber: '+237677554433',
+          isDiscipleMaker: true,
+        ),
+        Authority(
+          id: 5,
+          firstName: 'Paul',
+          lastName: 'Eto',
+          phoneNumber: '+237677554434',
+        ),
+      ]),
+    );
+    await openAuthorities(tester);
+
+    await tester.tap(find.byTooltip('Faire mon faiseur de disciples'));
+    await tester.pumpAndSettle();
+    expect(
+      find.text('Faire de Paul Eto ton faiseur de disciples ?'),
+      findsOneWidget,
+    );
+    expect(
+      find.text('Paul Eto sera prévenu. Marc Ndi reste parmi tes autorités.'),
+      findsOneWidget,
+    );
+    await tester.tap(
+      find.widgetWithText(FilledButton, 'Faire mon faiseur de disciples'),
+    );
+    await tester.pumpAndSettle();
+
+    expect(app.toasts.messages, [
+      'Paul Eto est maintenant ton faiseur de disciples.',
+    ]);
+    final authorities = app.authoritiesApi.authorities;
+    expect(authorities.firstWhere((a) => a.id == 5).isDiscipleMaker, isTrue);
+    expect(authorities.firstWhere((a) => a.id == 4).isDiscipleMaker, isFalse);
+    // Marc is now among the others: he can become it again
+    expect(find.byTooltip('Faire mon faiseur de disciples'), findsOneWidget);
+  });
+
   Future<void> searchPseudo(WidgetTester tester, String username) async {
     await tester.tap(find.text('Ajouter une autorité'));
     await tester.pumpAndSettle();
@@ -216,4 +263,12 @@ void main() {
     expect(app.toasts.messages, ['Tu accompagnes maintenant Clarisse Nguele.']);
     expect(find.text('DEMANDES REÇUES'), findsNothing);
   });
+
+  testWidgets('the push of a request opens the authorities', (tester) async {
+    final app = await pumpApp(tester, token: 't');
+    app.push.tapsController.add({'type': 'authority_request', 'id': '7'});
+    await tester.pumpAndSettle();
+    expect(find.text('Mes autorités spirituelles'), findsWidgets);
+  });
 }
+

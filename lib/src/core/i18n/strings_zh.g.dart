@@ -522,6 +522,11 @@ class _Translations$authorities$zh extends Translations$authorities$fr {
 		other: '${n} 个请求待查看',
 	);
 	@override late final _Translations$authorities$sharing$zh sharing = _Translations$authorities$sharing$zh._(_root);
+	@override String get makeMaker => '设为我的门训者';
+	@override String makeMakerTitle({required Object name}) => '将 ${name} 设为你的门训者？';
+	@override String makeMakerText({required Object name}) => '${name} 会收到通知。';
+	@override String makeMakerTextFormer({required Object name, required Object former}) => '${name} 会收到通知。${former} 仍是你的属灵权柄之一。';
+	@override String madeMaker({required Object name}) => '${name} 现在是你的门训者。';
 }
 
 // Path: members
@@ -3698,18 +3703,23 @@ extension on TranslationsZh {
 			'authorities.sharing.help' => ({required Object name}) => '${name} 能看到你的报告：已填写的项目、你的规律性和百分比，但永远看不到你的备注。',
 			'authorities.sharing.on' => ({required Object name}) => '你的报告已与 ${name} 分享。',
 			'authorities.sharing.off' => ({required Object name}) => '${name} 不再能看到你的报告。',
+			'authorities.makeMaker' => '设为我的门训者',
+			'authorities.makeMakerTitle' => ({required Object name}) => '将 ${name} 设为你的门训者？',
+			'authorities.makeMakerText' => ({required Object name}) => '${name} 会收到通知。',
+			'authorities.makeMakerTextFormer' => ({required Object name, required Object former}) => '${name} 会收到通知。${former} 仍是你的属灵权柄之一。',
+			'authorities.madeMaker' => ({required Object name}) => '${name} 现在是你的门训者。',
 			'members.username' => '用户名',
 			'members.usernameHint' => 'zhang.san',
 			'members.usernameHelp' => '其他成员会通过它找到你。',
 			'members.usernameChecking' => '正在检查…',
 			'members.usernameFree' => ({required Object username}) => '@${username} 可以使用',
+			_ => null,
+		} ?? switch (path) {
 			'members.usernameCurrent' => '这是你当前的用户名',
 			'members.usernameTaken' => '该用户名已被占用。',
 			'members.usernameInvalid' => '3–30 个字符：字母、数字、「.」和「_」，不能以符号开头或结尾。',
 			'members.usernameReserved' => '该用户名已被保留。',
 			'members.usernameSaved' => ({required Object username}) => '用户名已保存：@${username}',
-			_ => null,
-		} ?? switch (path) {
 			'members.deleteAccount.button' => '删除我的账户',
 			'members.deleteAccount.title' => '删除我的账户',
 			'members.deleteAccount.intro' => '此操作无法撤销。你的账户及其相关的一切都将被删除：',
@@ -4217,13 +4227,13 @@ extension on TranslationsZh {
 			'prayer.routine.reminder' => ({required Object time}) => '${time} 提醒',
 			'prayer.routine.later.morning' => '早上 · 15 分钟',
 			'prayer.routine.later.noon' => '中午 · 15 分钟',
+			_ => null,
+		} ?? switch (path) {
 			'prayer.routine.later.evening' => '傍晚 · 15 分钟',
 			'prayer.routine.later.night' => '夜里 · 15 分钟',
 			'prayer.together' => '一起祷告',
 			'prayer.reminders.title' => '祷告提醒',
 			'prayer.reminders.intro' => '在每次祷告的时间提醒你，仅在尚未完成时提醒。',
-			_ => null,
-		} ?? switch (path) {
 			'prayer.reminders.off' => '已关闭',
 			'prayer.reminders.channel' => '15 分钟祷告',
 			'prayer.reminders.body' => '与主同在 15 分钟。',
@@ -4731,13 +4741,13 @@ extension on TranslationsZh {
 			'biblePlan.unitMonths' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n, other: '个月', ), 
 			'biblePlan.unitYear' => '年',
 			'biblePlan.days' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n, other: '${n} 天', ), 
+			_ => null,
+		} ?? switch (path) {
 			'biblePlan.scope' => '读什么',
 			'biblePlan.scopes.bible' => '整本圣经',
 			'biblePlan.scopes.newTestament' => '新约',
 			'biblePlan.scopes.oldTestament' => '旧约',
 			'biblePlan.scopes.psalmsProverbs' => '诗篇和箴言',
-			_ => null,
-		} ?? switch (path) {
 			'biblePlan.chaptersShort' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n, other: '${n} 章', ), 
 			'biblePlan.oldTestament' => '旧约',
 			'biblePlan.newTestament' => '新约',

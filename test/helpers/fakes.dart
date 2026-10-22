@@ -313,6 +313,14 @@ class FakeAuthoritiesApi implements AuthoritiesApi {
   }
 
   @override
+  Future<Authority> chooseDiscipleMaker(int id) async {
+    for (final (i, authority) in authorities.indexed) {
+      authorities[i] = authority.copyWith(isDiscipleMaker: authority.id == id);
+    }
+    return authorities.firstWhere((authority) => authority.id == id);
+  }
+
+  @override
   Future<Authority> create({
     required String firstName,
     required String lastName,

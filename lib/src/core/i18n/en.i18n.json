@@ -636,7 +636,12 @@
       "help": "{name} sees your reports: the items filled in, your regularity and your percentages, never your note.",
       "on": "Your reports are shared with {name}.",
       "off": "{name} no longer sees your reports."
-    }
+    },
+    "makeMaker": "Make my disciple maker",
+    "makeMakerTitle": "Make {name} your disciple maker?",
+    "makeMakerText": "{name} will be told.",
+    "makeMakerTextFormer": "{name} will be told. {former} stays among your authorities.",
+    "madeMaker": "{name} is now your disciple maker."
   },
   "members": {
     "username": "Username",

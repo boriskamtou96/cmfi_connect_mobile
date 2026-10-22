@@ -532,6 +532,11 @@ class _Translations$authorities$hi extends Translations$authorities$fr {
 		other: '${n} अनुरोध देखने बाकी हैं',
 	);
 	@override late final _Translations$authorities$sharing$hi sharing = _Translations$authorities$sharing$hi._(_root);
+	@override String get makeMaker => 'मेरा चेला बनाने वाला बनाएँ';
+	@override String makeMakerTitle({required Object name}) => '${name} को अपना चेला बनाने वाला बनाएँ?';
+	@override String makeMakerText({required Object name}) => '${name} को सूचना दी जाएगी।';
+	@override String makeMakerTextFormer({required Object name, required Object former}) => '${name} को सूचना दी जाएगी। ${former} तुम्हारे अधिकारियों में बने रहेंगे।';
+	@override String madeMaker({required Object name}) => '${name} अब तुम्हारे चेला बनाने वाले हैं।';
 }
 
 // Path: members
@@ -3781,18 +3786,23 @@ extension on TranslationsHi {
 			'authorities.sharing.help' => ({required Object name}) => '${name} तुम्हारी रिपोर्ट देखता है: भरे गए आइटम, तुम्हारी नियमितता और प्रतिशत, तुम्हारा नोट कभी नहीं।',
 			'authorities.sharing.on' => ({required Object name}) => 'तुम्हारी रिपोर्ट ${name} के साथ साझा है।',
 			'authorities.sharing.off' => ({required Object name}) => '${name} अब तुम्हारी रिपोर्ट नहीं देखता।',
+			'authorities.makeMaker' => 'मेरा चेला बनाने वाला बनाएँ',
+			'authorities.makeMakerTitle' => ({required Object name}) => '${name} को अपना चेला बनाने वाला बनाएँ?',
+			'authorities.makeMakerText' => ({required Object name}) => '${name} को सूचना दी जाएगी।',
+			'authorities.makeMakerTextFormer' => ({required Object name, required Object former}) => '${name} को सूचना दी जाएगी। ${former} तुम्हारे अधिकारियों में बने रहेंगे।',
+			'authorities.madeMaker' => ({required Object name}) => '${name} अब तुम्हारे चेला बनाने वाले हैं।',
 			'members.username' => 'यूज़रनेम',
 			'members.usernameHint' => 'naam.surname',
 			'members.usernameHelp' => 'दूसरे सदस्य तुम्हें इसी नाम से ढूँढेंगे।',
 			'members.usernameChecking' => 'जाँच हो रही है…',
 			'members.usernameFree' => ({required Object username}) => '@${username} उपलब्ध है',
+			_ => null,
+		} ?? switch (path) {
 			'members.usernameCurrent' => 'यह तुम्हारा मौजूदा यूज़रनेम है',
 			'members.usernameTaken' => 'यह यूज़रनेम पहले से लिया जा चुका है।',
 			'members.usernameInvalid' => '3 से 30 कैरेक्टर: अक्षर, अंक, “.” और “_”, पर शुरुआत या अंत में कोई चिह्न नहीं।',
 			'members.usernameReserved' => 'यह यूज़रनेम आरक्षित है।',
 			'members.usernameSaved' => ({required Object username}) => 'यूज़रनेम सेव हो गया: @${username}',
-			_ => null,
-		} ?? switch (path) {
 			'members.deleteAccount.button' => 'मेरा खाता हटाओ',
 			'members.deleteAccount.title' => 'मेरा खाता हटाओ',
 			'members.deleteAccount.intro' => 'यह स्थायी है। तुम्हारा खाता और उससे जुड़ा सब कुछ मिटा दिया जाएगा:',
@@ -4300,13 +4310,13 @@ extension on TranslationsHi {
 			'prayer.routine.reminder' => ({required Object time}) => '${time} पर याद दिलाना',
 			'prayer.routine.later.morning' => 'सुबह · 15 मिनट',
 			'prayer.routine.later.noon' => 'दोपहर · 15 मिनट',
+			_ => null,
+		} ?? switch (path) {
 			'prayer.routine.later.evening' => 'शाम · 15 मिनट',
 			'prayer.routine.later.night' => 'रात · 15 मिनट',
 			'prayer.together' => 'साथ मिलकर प्रार्थना',
 			'prayer.reminders.title' => 'प्रार्थना-समय के रिमाइंडर',
 			'prayer.reminders.intro' => 'हर प्रार्थना-समय पर एक रिमाइंडर, सिर्फ़ तब जब वह अभी पूरा न हुआ हो।',
-			_ => null,
-		} ?? switch (path) {
 			'prayer.reminders.off' => 'बंद',
 			'prayer.reminders.channel' => 'प्रार्थना-समय',
 			'prayer.reminders.body' => 'प्रभु के साथ 15 मिनट।',
@@ -4814,13 +4824,13 @@ extension on TranslationsHi {
 			'biblePlan.unitMonths' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n, one: 'महीना', other: 'महीने', ), 
 			'biblePlan.unitYear' => 'साल',
 			'biblePlan.days' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n, one: '${n} दिन', other: '${n} दिन', ), 
+			_ => null,
+		} ?? switch (path) {
 			'biblePlan.scope' => 'तुम क्या पढ़ते हो',
 			'biblePlan.scopes.bible' => 'पूरी बाइबल',
 			'biblePlan.scopes.newTestament' => 'नया नियम',
 			'biblePlan.scopes.oldTestament' => 'पुराना नियम',
 			'biblePlan.scopes.psalmsProverbs' => 'भजन संहिता और नीतिवचन',
-			_ => null,
-		} ?? switch (path) {
 			'biblePlan.chaptersShort' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n, one: '${n} अध्याय', other: '${n} अध्याय', ), 
 			'biblePlan.oldTestament' => 'पुराना नियम',
 			'biblePlan.newTestament' => 'नया नियम',

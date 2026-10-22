@@ -532,6 +532,11 @@ class _Translations$authorities$en extends Translations$authorities$fr {
 		other: '${n} requests to see',
 	);
 	@override late final _Translations$authorities$sharing$en sharing = _Translations$authorities$sharing$en._(_root);
+	@override String get makeMaker => 'Make my disciple maker';
+	@override String makeMakerTitle({required Object name}) => 'Make ${name} your disciple maker?';
+	@override String makeMakerText({required Object name}) => '${name} will be told.';
+	@override String makeMakerTextFormer({required Object name, required Object former}) => '${name} will be told. ${former} stays among your authorities.';
+	@override String madeMaker({required Object name}) => '${name} is now your disciple maker.';
 }
 
 // Path: members
@@ -3783,18 +3788,23 @@ extension on TranslationsEn {
 			'authorities.sharing.help' => ({required Object name}) => '${name} sees your reports: the items filled in, your regularity and your percentages, never your note.',
 			'authorities.sharing.on' => ({required Object name}) => 'Your reports are shared with ${name}.',
 			'authorities.sharing.off' => ({required Object name}) => '${name} no longer sees your reports.',
+			'authorities.makeMaker' => 'Make my disciple maker',
+			'authorities.makeMakerTitle' => ({required Object name}) => 'Make ${name} your disciple maker?',
+			'authorities.makeMakerText' => ({required Object name}) => '${name} will be told.',
+			'authorities.makeMakerTextFormer' => ({required Object name, required Object former}) => '${name} will be told. ${former} stays among your authorities.',
+			'authorities.madeMaker' => ({required Object name}) => '${name} is now your disciple maker.',
 			'members.username' => 'Username',
 			'members.usernameHint' => 'firstname.lastname',
 			'members.usernameHelp' => 'This is how other members will find you.',
 			'members.usernameChecking' => 'Checking…',
 			'members.usernameFree' => ({required Object username}) => '@${username} is available',
+			_ => null,
+		} ?? switch (path) {
 			'members.usernameCurrent' => 'This is your current username',
 			'members.usernameTaken' => 'This username is already taken.',
 			'members.usernameInvalid' => '3 to 30 characters: letters, digits, "." and "_", not starting or ending with a sign.',
 			'members.usernameReserved' => 'This username is reserved.',
 			'members.usernameSaved' => ({required Object username}) => 'Username saved: @${username}',
-			_ => null,
-		} ?? switch (path) {
 			'members.deleteAccount.button' => 'Delete my account',
 			'members.deleteAccount.title' => 'Delete my account',
 			'members.deleteAccount.intro' => 'This is permanent. Your account and everything linked to it will be erased:',
@@ -4302,13 +4312,13 @@ extension on TranslationsEn {
 			'prayer.routine.reminder' => ({required Object time}) => 'Reminder at ${time}',
 			'prayer.routine.later.morning' => 'In the morning · 15 min',
 			'prayer.routine.later.noon' => 'At noon · 15 min',
+			_ => null,
+		} ?? switch (path) {
 			'prayer.routine.later.evening' => 'In the evening · 15 min',
 			'prayer.routine.later.night' => 'At night · 15 min',
 			'prayer.together' => 'Praying together',
 			'prayer.reminders.title' => 'Retreat reminders',
 			'prayer.reminders.intro' => 'A reminder at the time of each retreat, only if it isn\'t done yet.',
-			_ => null,
-		} ?? switch (path) {
 			'prayer.reminders.off' => 'Off',
 			'prayer.reminders.channel' => 'Prayer retreats',
 			'prayer.reminders.body' => '15 minutes with the Lord.',
@@ -4816,13 +4826,13 @@ extension on TranslationsEn {
 			'biblePlan.unitMonths' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n, one: 'month', other: 'months', ), 
 			'biblePlan.unitYear' => 'year',
 			'biblePlan.days' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n, one: '${n} day', other: '${n} days', ), 
+			_ => null,
+		} ?? switch (path) {
 			'biblePlan.scope' => 'What you read',
 			'biblePlan.scopes.bible' => 'The whole Bible',
 			'biblePlan.scopes.newTestament' => 'The New Testament',
 			'biblePlan.scopes.oldTestament' => 'The Old Testament',
 			'biblePlan.scopes.psalmsProverbs' => 'Psalms and Proverbs',
-			_ => null,
-		} ?? switch (path) {
 			'biblePlan.chaptersShort' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n, one: '${n} ch.', other: '${n} ch.', ), 
 			'biblePlan.oldTestament' => 'Old Testament',
 			'biblePlan.newTestament' => 'New Testament',

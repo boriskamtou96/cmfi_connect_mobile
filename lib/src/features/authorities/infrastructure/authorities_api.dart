@@ -95,6 +95,15 @@ class AuthoritiesApi {
     await _dio.delete<void>('/authorities/$id');
   });
 
+  /// The authority [id] becomes the user's disciple maker; the former one
+  /// stays among their authorities.
+  Future<Authority> chooseDiscipleMaker(int id) => apiCall(() async {
+    final response = await _dio.put<Map<String, dynamic>>(
+      '/authorities/$id/disciple-maker',
+    );
+    return Authority.fromJson(response.content);
+  });
+
   /// Whether the disciple maker [id] sees the user's regularity.
   Future<Authority> setSharing(int id, {required bool shares}) =>
       apiCall(() async {

@@ -168,6 +168,7 @@ abstract final class AppIcons {
   static const download = PhosphorIconsRegular.downloadSimple;
   static const update = PhosphorIconsRegular.arrowCircleUp;
   static const card = PhosphorIconsRegular.creditCard;
+  static const makeDiscipleMaker = PhosphorIconsRegular.crownSimple;
   static const mobileMoney = PhosphorIconsRegular.deviceMobile;
   static const arrowRight = PhosphorIconsRegular.arrowRight;
 

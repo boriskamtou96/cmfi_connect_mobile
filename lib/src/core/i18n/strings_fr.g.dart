@@ -1048,6 +1048,21 @@ class Translations$authorities$fr {
 	);
 
 	late final Translations$authorities$sharing$fr sharing = Translations$authorities$sharing$fr.internal(_root);
+
+	/// fr: 'Faire mon faiseur de disciples'
+	String get makeMaker => 'Faire mon faiseur de disciples';
+
+	/// fr: 'Faire de {name} ton faiseur de disciples ?'
+	String makeMakerTitle({required Object name}) => 'Faire de ${name} ton faiseur de disciples ?';
+
+	/// fr: '{name} sera prévenu.'
+	String makeMakerText({required Object name}) => '${name} sera prévenu.';
+
+	/// fr: '{name} sera prévenu. {former} reste parmi tes autorités.'
+	String makeMakerTextFormer({required Object name, required Object former}) => '${name} sera prévenu. ${former} reste parmi tes autorités.';
+
+	/// fr: '{name} est maintenant ton faiseur de disciples.'
+	String madeMaker({required Object name}) => '${name} est maintenant ton faiseur de disciples.';
 }
 
 // Path: members
@@ -7188,18 +7203,23 @@ extension on Translations {
 			'authorities.sharing.help' => ({required Object name}) => '${name} voit tes comptes rendus : les éléments remplis, ta régularité et tes pourcentages, jamais ta note.',
 			'authorities.sharing.on' => ({required Object name}) => 'Tes comptes rendus sont partagés avec ${name}.',
 			'authorities.sharing.off' => ({required Object name}) => '${name} ne voit plus tes comptes rendus.',
+			'authorities.makeMaker' => 'Faire mon faiseur de disciples',
+			'authorities.makeMakerTitle' => ({required Object name}) => 'Faire de ${name} ton faiseur de disciples ?',
+			'authorities.makeMakerText' => ({required Object name}) => '${name} sera prévenu.',
+			'authorities.makeMakerTextFormer' => ({required Object name, required Object former}) => '${name} sera prévenu. ${former} reste parmi tes autorités.',
+			'authorities.madeMaker' => ({required Object name}) => '${name} est maintenant ton faiseur de disciples.',
 			'members.username' => 'Pseudo',
 			'members.usernameHint' => 'prenom.nom',
 			'members.usernameHelp' => 'C\'est ainsi que les autres membres te trouveront.',
 			'members.usernameChecking' => 'Vérification…',
 			'members.usernameFree' => ({required Object username}) => '@${username} est libre',
+			_ => null,
+		} ?? switch (path) {
 			'members.usernameCurrent' => 'C\'est ton pseudo actuel',
 			'members.usernameTaken' => 'Ce pseudo est déjà pris.',
 			'members.usernameInvalid' => '3 à 30 caractères : lettres, chiffres, « . » et « _ », sans commencer ni finir par un signe.',
 			'members.usernameReserved' => 'Ce pseudo est réservé.',
 			'members.usernameSaved' => ({required Object username}) => 'Pseudo enregistré : @${username}',
-			_ => null,
-		} ?? switch (path) {
 			'members.deleteAccount.button' => 'Supprimer mon compte',
 			'members.deleteAccount.title' => 'Supprimer mon compte',
 			'members.deleteAccount.intro' => 'C\'est définitif. Ton compte et tout ce qui y est lié seront effacés :',
@@ -7707,13 +7727,13 @@ extension on Translations {
 			'prayer.routine.reminder' => ({required Object time}) => 'Rappel à ${time}',
 			'prayer.routine.later.morning' => 'Le matin · 15 min',
 			'prayer.routine.later.noon' => 'À midi · 15 min',
+			_ => null,
+		} ?? switch (path) {
 			'prayer.routine.later.evening' => 'En soirée · 15 min',
 			'prayer.routine.later.night' => 'La nuit · 15 min',
 			'prayer.together' => 'Prier ensemble',
 			'prayer.reminders.title' => 'Rappels des retraites',
 			'prayer.reminders.intro' => 'Un rappel à l\'heure de chaque retraite, seulement si elle n\'est pas encore faite.',
-			_ => null,
-		} ?? switch (path) {
 			'prayer.reminders.off' => 'Désactivé',
 			'prayer.reminders.channel' => 'Retraites de prière',
 			'prayer.reminders.body' => '15 minutes avec le Seigneur.',
@@ -8221,13 +8241,13 @@ extension on Translations {
 			'biblePlan.unitMonths' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('fr'))(n, one: 'mois', other: 'mois', ), 
 			'biblePlan.unitYear' => 'an',
 			'biblePlan.days' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('fr'))(n, one: '${n} jour', other: '${n} jours', ), 
+			_ => null,
+		} ?? switch (path) {
 			'biblePlan.scope' => 'Ce que tu lis',
 			'biblePlan.scopes.bible' => 'Toute la Bible',
 			'biblePlan.scopes.newTestament' => 'Le Nouveau Testament',
 			'biblePlan.scopes.oldTestament' => 'L\'Ancien Testament',
 			'biblePlan.scopes.psalmsProverbs' => 'Psaumes et Proverbes',
-			_ => null,
-		} ?? switch (path) {
 			'biblePlan.chaptersShort' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('fr'))(n, one: '${n} ch.', other: '${n} ch.', ), 
 			'biblePlan.oldTestament' => 'Ancien Testament',
 			'biblePlan.newTestament' => 'Nouveau Testament',

@@ -636,7 +636,12 @@
       "help": "{name} sieht deine Berichte: die ausgefüllten Punkte, deine Regelmäßigkeit und deine Prozentsätze, nie deine Notiz.",
       "on": "Deine Berichte werden mit {name} geteilt.",
       "off": "{name} sieht deine Berichte nicht mehr."
-    }
+    },
+    "makeMaker": "Zu meinem Jüngermacher machen",
+    "makeMakerTitle": "{name} zu deinem Jüngermacher machen?",
+    "makeMakerText": "{name} wird benachrichtigt.",
+    "makeMakerTextFormer": "{name} wird benachrichtigt. {former} bleibt unter deinen Autoritäten.",
+    "madeMaker": "{name} ist jetzt dein Jüngermacher."
   },
   "members": {
     "username": "Benutzername",

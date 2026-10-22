@@ -636,7 +636,12 @@
       "help": "{name} voit tes comptes rendus : les éléments remplis, ta régularité et tes pourcentages, jamais ta note.",
       "on": "Tes comptes rendus sont partagés avec {name}.",
       "off": "{name} ne voit plus tes comptes rendus."
-    }
+    },
+    "makeMaker": "Faire mon faiseur de disciples",
+    "makeMakerTitle": "Faire de {name} ton faiseur de disciples ?",
+    "makeMakerText": "{name} sera prévenu.",
+    "makeMakerTextFormer": "{name} sera prévenu. {former} reste parmi tes autorités.",
+    "madeMaker": "{name} est maintenant ton faiseur de disciples."
   },
   "members": {
     "username": "Pseudo",

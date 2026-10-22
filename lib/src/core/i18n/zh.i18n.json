@@ -618,7 +618,12 @@
       "help": "{name} 能看到你的报告：已填写的项目、你的规律性和百分比，但永远看不到你的备注。",
       "on": "你的报告已与 {name} 分享。",
       "off": "{name} 不再能看到你的报告。"
-    }
+    },
+    "makeMaker": "设为我的门训者",
+    "makeMakerTitle": "将 {name} 设为你的门训者？",
+    "makeMakerText": "{name} 会收到通知。",
+    "makeMakerTextFormer": "{name} 会收到通知。{former} 仍是你的属灵权柄之一。",
+    "madeMaker": "{name} 现在是你的门训者。"
   },
   "members": {
     "username": "用户名",

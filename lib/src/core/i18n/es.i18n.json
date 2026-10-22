@@ -636,7 +636,12 @@
       "help": "{name} ve tus informes: los elementos rellenados, tu regularidad y tus porcentajes, nunca tu nota.",
       "on": "Tus informes se comparten con {name}.",
       "off": "{name} ya no ve tus informes."
-    }
+    },
+    "makeMaker": "Hacerlo mi discipulador",
+    "makeMakerTitle": "¿Hacer de {name} tu discipulador?",
+    "makeMakerText": "Se avisará a {name}.",
+    "makeMakerTextFormer": "Se avisará a {name}. {former} sigue entre tus autoridades.",
+    "madeMaker": "{name} es ahora tu discipulador."
   },
   "members": {
     "username": "Nombre de usuario",

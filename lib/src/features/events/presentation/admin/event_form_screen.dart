@@ -133,6 +133,9 @@ class _EventForm extends HookConsumerWidget {
       text: event?.capacity?.toString(),
     );
     final fees = useTextEditingController(text: event?.feeNote);
+    final price = useTextEditingController(
+      text: event?.price?.amount.toString(),
+    );
     final start = useState(
       event == null
           ? DateTime(defaultDay.year, defaultDay.month, defaultDay.day, 9)
@@ -211,6 +214,12 @@ class _EventForm extends HookConsumerWidget {
         asksLodging: asksLodging.value,
         asksDepartureCity: asksDeparture.value,
         feeNote: fees.text.trim(),
+        // empty or 0: free
+        priceAmount: switch (int.tryParse(price.text.trim())) {
+          final amount? when amount > 0 => amount,
+          _ => null,
+        },
+        priceCurrency: event?.price?.currency ?? 'XAF',
         status: status.value,
       );
       saving.value = true;
@@ -388,6 +397,13 @@ class _EventForm extends HookConsumerWidget {
               value: asksDeparture.value,
               onChanged: (value) => asksDeparture.value = value,
               title: Text(t.asksDeparture),
+            ),
+            gap,
+            field(
+              price,
+              t.price,
+              hint: t.priceHint,
+              keyboard: TextInputType.number,
             ),
             gap,
             field(fees, t.fees, hint: t.feesHint, maxLines: 3),

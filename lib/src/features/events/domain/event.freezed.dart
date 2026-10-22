@@ -1706,9 +1706,277 @@ $EventImageCopyWith<$Res> get image {
 
 
 /// @nodoc
+mixin _$EventPrice {
+
+ int get amount; String get currency;
+/// Create a copy of EventPrice
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$EventPriceCopyWith<EventPrice> get copyWith => _$EventPriceCopyWithImpl<EventPrice>(this as EventPrice, _$identity);
+
+  /// Serializes this EventPrice to a JSON map.
+  Map<String, dynamic> toJson();
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is EventPrice&&(identical(other.amount, amount) || other.amount == amount)&&(identical(other.currency, currency) || other.currency == currency));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,amount,currency);
+
+@override
+String toString() {
+  return 'EventPrice(amount: $amount, currency: $currency)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class $EventPriceCopyWith<$Res>  {
+  factory $EventPriceCopyWith(EventPrice value, $Res Function(EventPrice) _then) = _$EventPriceCopyWithImpl;
+@useResult
+$Res call({
+ int amount, String currency
+});
+
+
+
+
+}
+/// @nodoc
+class _$EventPriceCopyWithImpl<$Res>
+    implements $EventPriceCopyWith<$Res> {
+  _$EventPriceCopyWithImpl(this._self, this._then);
+
+  final EventPrice _self;
+  final $Res Function(EventPrice) _then;
+
+/// Create a copy of EventPrice
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? amount = null,Object? currency = null,}) {
+  return _then(_self.copyWith(
+amount: null == amount ? _self.amount : amount // ignore: cast_nullable_to_non_nullable
+as int,currency: null == currency ? _self.currency : currency // ignore: cast_nullable_to_non_nullable
+as String,
+  ));
+}
+
+}
+
+
+/// Adds pattern-matching-related methods to [EventPrice].
+extension EventPricePatterns on EventPrice {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _EventPrice value)?  $default,{required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _EventPrice() when $default != null:
+return $default(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _EventPrice value)  $default,){
+final _that = this;
+switch (_that) {
+case _EventPrice():
+return $default(_that);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _EventPrice value)?  $default,){
+final _that = this;
+switch (_that) {
+case _EventPrice() when $default != null:
+return $default(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( int amount,  String currency)?  $default,{required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _EventPrice() when $default != null:
+return $default(_that.amount,_that.currency);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( int amount,  String currency)  $default,) {final _that = this;
+switch (_that) {
+case _EventPrice():
+return $default(_that.amount,_that.currency);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( int amount,  String currency)?  $default,) {final _that = this;
+switch (_that) {
+case _EventPrice() when $default != null:
+return $default(_that.amount,_that.currency);case _:
+  return null;
+
+}
+}
+
+}
+
+/// @nodoc
+@JsonSerializable()
+
+class _EventPrice implements EventPrice {
+  const _EventPrice({required this.amount, this.currency = 'XAF'});
+  factory _EventPrice.fromJson(Map<String, dynamic> json) => _$EventPriceFromJson(json);
+
+@override final  int amount;
+@override@JsonKey() final  String currency;
+
+/// Create a copy of EventPrice
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$EventPriceCopyWith<_EventPrice> get copyWith => __$EventPriceCopyWithImpl<_EventPrice>(this, _$identity);
+
+@override
+Map<String, dynamic> toJson() {
+  return _$EventPriceToJson(this, );
+}
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _EventPrice&&(identical(other.amount, amount) || other.amount == amount)&&(identical(other.currency, currency) || other.currency == currency));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,amount,currency);
+
+@override
+String toString() {
+  return 'EventPrice(amount: $amount, currency: $currency)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$EventPriceCopyWith<$Res> implements $EventPriceCopyWith<$Res> {
+  factory _$EventPriceCopyWith(_EventPrice value, $Res Function(_EventPrice) _then) = __$EventPriceCopyWithImpl;
+@override @useResult
+$Res call({
+ int amount, String currency
+});
+
+
+
+
+}
+/// @nodoc
+class __$EventPriceCopyWithImpl<$Res>
+    implements _$EventPriceCopyWith<$Res> {
+  __$EventPriceCopyWithImpl(this._self, this._then);
+
+  final _EventPrice _self;
+  final $Res Function(_EventPrice) _then;
+
+/// Create a copy of EventPrice
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? amount = null,Object? currency = null,}) {
+  return _then(_EventPrice(
+amount: null == amount ? _self.amount : amount // ignore: cast_nullable_to_non_nullable
+as int,currency: null == currency ? _self.currency : currency // ignore: cast_nullable_to_non_nullable
+as String,
+  ));
+}
+
+
+}
+
+
+/// @nodoc
 mixin _$MyRegistration {
 
- int get people; bool get needsLodging; String get departureCity; DateTime? get updatedAt;
+ int get people; bool get needsLodging; String get departureCity; DateTime? get updatedAt;/// Made by a payment: the people can't change, and only the organizers
+/// undo it (with a refund).
+ bool get paid;
 /// Create a copy of MyRegistration
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -1721,16 +1989,16 @@ $MyRegistrationCopyWith<MyRegistration> get copyWith => _$MyRegistrationCopyWith
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is MyRegistration&&(identical(other.people, people) || other.people == people)&&(identical(other.needsLodging, needsLodging) || other.needsLodging == needsLodging)&&(identical(other.departureCity, departureCity) || other.departureCity == departureCity)&&(identical(other.updatedAt, updatedAt) || other.updatedAt == updatedAt));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is MyRegistration&&(identical(other.people, people) || other.people == people)&&(identical(other.needsLodging, needsLodging) || other.needsLodging == needsLodging)&&(identical(other.departureCity, departureCity) || other.departureCity == departureCity)&&(identical(other.updatedAt, updatedAt) || other.updatedAt == updatedAt)&&(identical(other.paid, paid) || other.paid == paid));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,people,needsLodging,departureCity,updatedAt);
+int get hashCode => Object.hash(runtimeType,people,needsLodging,departureCity,updatedAt,paid);
 
 @override
 String toString() {
-  return 'MyRegistration(people: $people, needsLodging: $needsLodging, departureCity: $departureCity, updatedAt: $updatedAt)';
+  return 'MyRegistration(people: $people, needsLodging: $needsLodging, departureCity: $departureCity, updatedAt: $updatedAt, paid: $paid)';
 }
 
 
@@ -1741,7 +2009,7 @@ abstract mixin class $MyRegistrationCopyWith<$Res>  {
   factory $MyRegistrationCopyWith(MyRegistration value, $Res Function(MyRegistration) _then) = _$MyRegistrationCopyWithImpl;
 @useResult
 $Res call({
- int people, bool needsLodging, String departureCity, DateTime? updatedAt
+ int people, bool needsLodging, String departureCity, DateTime? updatedAt, bool paid
 });
 
 
@@ -1758,13 +2026,14 @@ class _$MyRegistrationCopyWithImpl<$Res>
 
 /// Create a copy of MyRegistration
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? people = null,Object? needsLodging = null,Object? departureCity = null,Object? updatedAt = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? people = null,Object? needsLodging = null,Object? departureCity = null,Object? updatedAt = freezed,Object? paid = null,}) {
   return _then(_self.copyWith(
 people: null == people ? _self.people : people // ignore: cast_nullable_to_non_nullable
 as int,needsLodging: null == needsLodging ? _self.needsLodging : needsLodging // ignore: cast_nullable_to_non_nullable
 as bool,departureCity: null == departureCity ? _self.departureCity : departureCity // ignore: cast_nullable_to_non_nullable
 as String,updatedAt: freezed == updatedAt ? _self.updatedAt : updatedAt // ignore: cast_nullable_to_non_nullable
-as DateTime?,
+as DateTime?,paid: null == paid ? _self.paid : paid // ignore: cast_nullable_to_non_nullable
+as bool,
   ));
 }
 
@@ -1849,10 +2118,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( int people,  bool needsLodging,  String departureCity,  DateTime? updatedAt)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( int people,  bool needsLodging,  String departureCity,  DateTime? updatedAt,  bool paid)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _MyRegistration() when $default != null:
-return $default(_that.people,_that.needsLodging,_that.departureCity,_that.updatedAt);case _:
+return $default(_that.people,_that.needsLodging,_that.departureCity,_that.updatedAt,_that.paid);case _:
   return orElse();
 
 }
@@ -1870,10 +2139,10 @@ return $default(_that.people,_that.needsLodging,_that.departureCity,_that.update
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( int people,  bool needsLodging,  String departureCity,  DateTime? updatedAt)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( int people,  bool needsLodging,  String departureCity,  DateTime? updatedAt,  bool paid)  $default,) {final _that = this;
 switch (_that) {
 case _MyRegistration():
-return $default(_that.people,_that.needsLodging,_that.departureCity,_that.updatedAt);case _:
+return $default(_that.people,_that.needsLodging,_that.departureCity,_that.updatedAt,_that.paid);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -1890,10 +2159,10 @@ return $default(_that.people,_that.needsLodging,_that.departureCity,_that.update
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( int people,  bool needsLodging,  String departureCity,  DateTime? updatedAt)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( int people,  bool needsLodging,  String departureCity,  DateTime? updatedAt,  bool paid)?  $default,) {final _that = this;
 switch (_that) {
 case _MyRegistration() when $default != null:
-return $default(_that.people,_that.needsLodging,_that.departureCity,_that.updatedAt);case _:
+return $default(_that.people,_that.needsLodging,_that.departureCity,_that.updatedAt,_that.paid);case _:
   return null;
 
 }
@@ -1905,13 +2174,16 @@ return $default(_that.people,_that.needsLodging,_that.departureCity,_that.update
 @JsonSerializable()
 
 class _MyRegistration implements MyRegistration {
-  const _MyRegistration({this.people = 1, this.needsLodging = false, this.departureCity = '', this.updatedAt});
+  const _MyRegistration({this.people = 1, this.needsLodging = false, this.departureCity = '', this.updatedAt, this.paid = false});
   factory _MyRegistration.fromJson(Map<String, dynamic> json) => _$MyRegistrationFromJson(json);
 
 @override@JsonKey() final  int people;
 @override@JsonKey() final  bool needsLodging;
 @override@JsonKey() final  String departureCity;
 @override final  DateTime? updatedAt;
+/// Made by a payment: the people can't change, and only the organizers
+/// undo it (with a refund).
+@override@JsonKey() final  bool paid;
 
 /// Create a copy of MyRegistration
 /// with the given fields replaced by the non-null parameter values.
@@ -1926,16 +2198,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _MyRegistration&&(identical(other.people, people) || other.people == people)&&(identical(other.needsLodging, needsLodging) || other.needsLodging == needsLodging)&&(identical(other.departureCity, departureCity) || other.departureCity == departureCity)&&(identical(other.updatedAt, updatedAt) || other.updatedAt == updatedAt));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _MyRegistration&&(identical(other.people, people) || other.people == people)&&(identical(other.needsLodging, needsLodging) || other.needsLodging == needsLodging)&&(identical(other.departureCity, departureCity) || other.departureCity == departureCity)&&(identical(other.updatedAt, updatedAt) || other.updatedAt == updatedAt)&&(identical(other.paid, paid) || other.paid == paid));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,people,needsLodging,departureCity,updatedAt);
+int get hashCode => Object.hash(runtimeType,people,needsLodging,departureCity,updatedAt,paid);
 
 @override
 String toString() {
-  return 'MyRegistration(people: $people, needsLodging: $needsLodging, departureCity: $departureCity, updatedAt: $updatedAt)';
+  return 'MyRegistration(people: $people, needsLodging: $needsLodging, departureCity: $departureCity, updatedAt: $updatedAt, paid: $paid)';
 }
 
 
@@ -1946,7 +2218,7 @@ abstract mixin class _$MyRegistrationCopyWith<$Res> implements $MyRegistrationCo
   factory _$MyRegistrationCopyWith(_MyRegistration value, $Res Function(_MyRegistration) _then) = __$MyRegistrationCopyWithImpl;
 @override @useResult
 $Res call({
- int people, bool needsLodging, String departureCity, DateTime? updatedAt
+ int people, bool needsLodging, String departureCity, DateTime? updatedAt, bool paid
 });
 
 
@@ -1963,13 +2235,14 @@ class __$MyRegistrationCopyWithImpl<$Res>
 
 /// Create a copy of MyRegistration
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? people = null,Object? needsLodging = null,Object? departureCity = null,Object? updatedAt = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? people = null,Object? needsLodging = null,Object? departureCity = null,Object? updatedAt = freezed,Object? paid = null,}) {
   return _then(_MyRegistration(
 people: null == people ? _self.people : people // ignore: cast_nullable_to_non_nullable
 as int,needsLodging: null == needsLodging ? _self.needsLodging : needsLodging // ignore: cast_nullable_to_non_nullable
 as bool,departureCity: null == departureCity ? _self.departureCity : departureCity // ignore: cast_nullable_to_non_nullable
 as String,updatedAt: freezed == updatedAt ? _self.updatedAt : updatedAt // ignore: cast_nullable_to_non_nullable
-as DateTime?,
+as DateTime?,paid: null == paid ? _self.paid : paid // ignore: cast_nullable_to_non_nullable
+as bool,
   ));
 }
 
@@ -2283,7 +2556,8 @@ $EventImageCopyWith<$Res>? get poster {
 mixin _$CommunityEvent {
 
  int get id; int? get seriesId; String get title; String get theme; DateTime get startsAt; DateTime get endsAt;/// The clock of the venue: times are shown as announced there.
- String get timeZone; String get venue; String get city; String get country; EventImage? get poster;@JsonKey(unknownEnumValue: EventStatus.published) EventStatus get status; RegistrationSummary get registration;// ----- the whole event only -----
+ String get timeZone; String get venue; String get city; String get country; EventImage? get poster;@JsonKey(unknownEnumValue: EventStatus.published) EventStatus get status; RegistrationSummary get registration;/// Per person; null for a free event.
+ EventPrice? get price;// ----- the whole event only -----
  String get themeVerse; String get description; String get address; String get mapsUrl; String get contactName; String get contactPhone; bool get registrationOpen; DateTime? get registrationDeadline; int? get capacity; bool get asksLodging; bool get asksDepartureCity; String get feeNote; List<EventSession> get sessions; List<EventPost> get posts; List<EventPhoto> get photos; MyRegistration? get myRegistration; List<EventEdition> get editions;
 /// Create a copy of CommunityEvent
 /// with the given fields replaced by the non-null parameter values.
@@ -2297,16 +2571,16 @@ $CommunityEventCopyWith<CommunityEvent> get copyWith => _$CommunityEventCopyWith
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is CommunityEvent&&(identical(other.id, id) || other.id == id)&&(identical(other.seriesId, seriesId) || other.seriesId == seriesId)&&(identical(other.title, title) || other.title == title)&&(identical(other.theme, theme) || other.theme == theme)&&(identical(other.startsAt, startsAt) || other.startsAt == startsAt)&&(identical(other.endsAt, endsAt) || other.endsAt == endsAt)&&(identical(other.timeZone, timeZone) || other.timeZone == timeZone)&&(identical(other.venue, venue) || other.venue == venue)&&(identical(other.city, city) || other.city == city)&&(identical(other.country, country) || other.country == country)&&(identical(other.poster, poster) || other.poster == poster)&&(identical(other.status, status) || other.status == status)&&(identical(other.registration, registration) || other.registration == registration)&&(identical(other.themeVerse, themeVerse) || other.themeVerse == themeVerse)&&(identical(other.description, description) || other.description == description)&&(identical(other.address, address) || other.address == address)&&(identical(other.mapsUrl, mapsUrl) || other.mapsUrl == mapsUrl)&&(identical(other.contactName, contactName) || other.contactName == contactName)&&(identical(other.contactPhone, contactPhone) || other.contactPhone == contactPhone)&&(identical(other.registrationOpen, registrationOpen) || other.registrationOpen == registrationOpen)&&(identical(other.registrationDeadline, registrationDeadline) || other.registrationDeadline == registrationDeadline)&&(identical(other.capacity, capacity) || other.capacity == capacity)&&(identical(other.asksLodging, asksLodging) || other.asksLodging == asksLodging)&&(identical(other.asksDepartureCity, asksDepartureCity) || other.asksDepartureCity == asksDepartureCity)&&(identical(other.feeNote, feeNote) || other.feeNote == feeNote)&&const DeepCollectionEquality().equals(other.sessions, sessions)&&const DeepCollectionEquality().equals(other.posts, posts)&&const DeepCollectionEquality().equals(other.photos, photos)&&(identical(other.myRegistration, myRegistration) || other.myRegistration == myRegistration)&&const DeepCollectionEquality().equals(other.editions, editions));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is CommunityEvent&&(identical(other.id, id) || other.id == id)&&(identical(other.seriesId, seriesId) || other.seriesId == seriesId)&&(identical(other.title, title) || other.title == title)&&(identical(other.theme, theme) || other.theme == theme)&&(identical(other.startsAt, startsAt) || other.startsAt == startsAt)&&(identical(other.endsAt, endsAt) || other.endsAt == endsAt)&&(identical(other.timeZone, timeZone) || other.timeZone == timeZone)&&(identical(other.venue, venue) || other.venue == venue)&&(identical(other.city, city) || other.city == city)&&(identical(other.country, country) || other.country == country)&&(identical(other.poster, poster) || other.poster == poster)&&(identical(other.status, status) || other.status == status)&&(identical(other.registration, registration) || other.registration == registration)&&(identical(other.price, price) || other.price == price)&&(identical(other.themeVerse, themeVerse) || other.themeVerse == themeVerse)&&(identical(other.description, description) || other.description == description)&&(identical(other.address, address) || other.address == address)&&(identical(other.mapsUrl, mapsUrl) || other.mapsUrl == mapsUrl)&&(identical(other.contactName, contactName) || other.contactName == contactName)&&(identical(other.contactPhone, contactPhone) || other.contactPhone == contactPhone)&&(identical(other.registrationOpen, registrationOpen) || other.registrationOpen == registrationOpen)&&(identical(other.registrationDeadline, registrationDeadline) || other.registrationDeadline == registrationDeadline)&&(identical(other.capacity, capacity) || other.capacity == capacity)&&(identical(other.asksLodging, asksLodging) || other.asksLodging == asksLodging)&&(identical(other.asksDepartureCity, asksDepartureCity) || other.asksDepartureCity == asksDepartureCity)&&(identical(other.feeNote, feeNote) || other.feeNote == feeNote)&&const DeepCollectionEquality().equals(other.sessions, sessions)&&const DeepCollectionEquality().equals(other.posts, posts)&&const DeepCollectionEquality().equals(other.photos, photos)&&(identical(other.myRegistration, myRegistration) || other.myRegistration == myRegistration)&&const DeepCollectionEquality().equals(other.editions, editions));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hashAll([runtimeType,id,seriesId,title,theme,startsAt,endsAt,timeZone,venue,city,country,poster,status,registration,themeVerse,description,address,mapsUrl,contactName,contactPhone,registrationOpen,registrationDeadline,capacity,asksLodging,asksDepartureCity,feeNote,const DeepCollectionEquality().hash(sessions),const DeepCollectionEquality().hash(posts),const DeepCollectionEquality().hash(photos),myRegistration,const DeepCollectionEquality().hash(editions)]);
+int get hashCode => Object.hashAll([runtimeType,id,seriesId,title,theme,startsAt,endsAt,timeZone,venue,city,country,poster,status,registration,price,themeVerse,description,address,mapsUrl,contactName,contactPhone,registrationOpen,registrationDeadline,capacity,asksLodging,asksDepartureCity,feeNote,const DeepCollectionEquality().hash(sessions),const DeepCollectionEquality().hash(posts),const DeepCollectionEquality().hash(photos),myRegistration,const DeepCollectionEquality().hash(editions)]);
 
 @override
 String toString() {
-  return 'CommunityEvent(id: $id, seriesId: $seriesId, title: $title, theme: $theme, startsAt: $startsAt, endsAt: $endsAt, timeZone: $timeZone, venue: $venue, city: $city, country: $country, poster: $poster, status: $status, registration: $registration, themeVerse: $themeVerse, description: $description, address: $address, mapsUrl: $mapsUrl, contactName: $contactName, contactPhone: $contactPhone, registrationOpen: $registrationOpen, registrationDeadline: $registrationDeadline, capacity: $capacity, asksLodging: $asksLodging, asksDepartureCity: $asksDepartureCity, feeNote: $feeNote, sessions: $sessions, posts: $posts, photos: $photos, myRegistration: $myRegistration, editions: $editions)';
+  return 'CommunityEvent(id: $id, seriesId: $seriesId, title: $title, theme: $theme, startsAt: $startsAt, endsAt: $endsAt, timeZone: $timeZone, venue: $venue, city: $city, country: $country, poster: $poster, status: $status, registration: $registration, price: $price, themeVerse: $themeVerse, description: $description, address: $address, mapsUrl: $mapsUrl, contactName: $contactName, contactPhone: $contactPhone, registrationOpen: $registrationOpen, registrationDeadline: $registrationDeadline, capacity: $capacity, asksLodging: $asksLodging, asksDepartureCity: $asksDepartureCity, feeNote: $feeNote, sessions: $sessions, posts: $posts, photos: $photos, myRegistration: $myRegistration, editions: $editions)';
 }
 
 
@@ -2317,11 +2591,11 @@ abstract mixin class $CommunityEventCopyWith<$Res>  {
   factory $CommunityEventCopyWith(CommunityEvent value, $Res Function(CommunityEvent) _then) = _$CommunityEventCopyWithImpl;
 @useResult
 $Res call({
- int id, int? seriesId, String title, String theme, DateTime startsAt, DateTime endsAt, String timeZone, String venue, String city, String country, EventImage? poster,@JsonKey(unknownEnumValue: EventStatus.published) EventStatus status, RegistrationSummary registration, String themeVerse, String description, String address, String mapsUrl, String contactName, String contactPhone, bool registrationOpen, DateTime? registrationDeadline, int? capacity, bool asksLodging, bool asksDepartureCity, String feeNote, List<EventSession> sessions, List<EventPost> posts, List<EventPhoto> photos, MyRegistration? myRegistration, List<EventEdition> editions
+ int id, int? seriesId, String title, String theme, DateTime startsAt, DateTime endsAt, String timeZone, String venue, String city, String country, EventImage? poster,@JsonKey(unknownEnumValue: EventStatus.published) EventStatus status, RegistrationSummary registration, EventPrice? price, String themeVerse, String description, String address, String mapsUrl, String contactName, String contactPhone, bool registrationOpen, DateTime? registrationDeadline, int? capacity, bool asksLodging, bool asksDepartureCity, String feeNote, List<EventSession> sessions, List<EventPost> posts, List<EventPhoto> photos, MyRegistration? myRegistration, List<EventEdition> editions
 });
 
 
-$EventImageCopyWith<$Res>? get poster;$RegistrationSummaryCopyWith<$Res> get registration;$MyRegistrationCopyWith<$Res>? get myRegistration;
+$EventImageCopyWith<$Res>? get poster;$RegistrationSummaryCopyWith<$Res> get registration;$EventPriceCopyWith<$Res>? get price;$MyRegistrationCopyWith<$Res>? get myRegistration;
 
 }
 /// @nodoc
@@ -2334,7 +2608,7 @@ class _$CommunityEventCopyWithImpl<$Res>
 
 /// Create a copy of CommunityEvent
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? seriesId = freezed,Object? title = null,Object? theme = null,Object? startsAt = null,Object? endsAt = null,Object? timeZone = null,Object? venue = null,Object? city = null,Object? country = null,Object? poster = freezed,Object? status = null,Object? registration = null,Object? themeVerse = null,Object? description = null,Object? address = null,Object? mapsUrl = null,Object? contactName = null,Object? contactPhone = null,Object? registrationOpen = null,Object? registrationDeadline = freezed,Object? capacity = freezed,Object? asksLodging = null,Object? asksDepartureCity = null,Object? feeNote = null,Object? sessions = null,Object? posts = null,Object? photos = null,Object? myRegistration = freezed,Object? editions = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? seriesId = freezed,Object? title = null,Object? theme = null,Object? startsAt = null,Object? endsAt = null,Object? timeZone = null,Object? venue = null,Object? city = null,Object? country = null,Object? poster = freezed,Object? status = null,Object? registration = null,Object? price = freezed,Object? themeVerse = null,Object? description = null,Object? address = null,Object? mapsUrl = null,Object? contactName = null,Object? contactPhone = null,Object? registrationOpen = null,Object? registrationDeadline = freezed,Object? capacity = freezed,Object? asksLodging = null,Object? asksDepartureCity = null,Object? feeNote = null,Object? sessions = null,Object? posts = null,Object? photos = null,Object? myRegistration = freezed,Object? editions = null,}) {
   return _then(_self.copyWith(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as int,seriesId: freezed == seriesId ? _self.seriesId : seriesId // ignore: cast_nullable_to_non_nullable
@@ -2349,7 +2623,8 @@ as String,country: null == country ? _self.country : country // ignore: cast_nul
 as String,poster: freezed == poster ? _self.poster : poster // ignore: cast_nullable_to_non_nullable
 as EventImage?,status: null == status ? _self.status : status // ignore: cast_nullable_to_non_nullable
 as EventStatus,registration: null == registration ? _self.registration : registration // ignore: cast_nullable_to_non_nullable
-as RegistrationSummary,themeVerse: null == themeVerse ? _self.themeVerse : themeVerse // ignore: cast_nullable_to_non_nullable
+as RegistrationSummary,price: freezed == price ? _self.price : price // ignore: cast_nullable_to_non_nullable
+as EventPrice?,themeVerse: null == themeVerse ? _self.themeVerse : themeVerse // ignore: cast_nullable_to_non_nullable
 as String,description: null == description ? _self.description : description // ignore: cast_nullable_to_non_nullable
 as String,address: null == address ? _self.address : address // ignore: cast_nullable_to_non_nullable
 as String,mapsUrl: null == mapsUrl ? _self.mapsUrl : mapsUrl // ignore: cast_nullable_to_non_nullable
@@ -2389,6 +2664,18 @@ $RegistrationSummaryCopyWith<$Res> get registration {
   
   return $RegistrationSummaryCopyWith<$Res>(_self.registration, (value) {
     return _then(_self.copyWith(registration: value));
+  });
+}/// Create a copy of CommunityEvent
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$EventPriceCopyWith<$Res>? get price {
+    if (_self.price == null) {
+    return null;
+  }
+
+  return $EventPriceCopyWith<$Res>(_self.price!, (value) {
+    return _then(_self.copyWith(price: value));
   });
 }/// Create a copy of CommunityEvent
 /// with the given fields replaced by the non-null parameter values.
@@ -2484,10 +2771,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( int id,  int? seriesId,  String title,  String theme,  DateTime startsAt,  DateTime endsAt,  String timeZone,  String venue,  String city,  String country,  EventImage? poster, @JsonKey(unknownEnumValue: EventStatus.published)  EventStatus status,  RegistrationSummary registration,  String themeVerse,  String description,  String address,  String mapsUrl,  String contactName,  String contactPhone,  bool registrationOpen,  DateTime? registrationDeadline,  int? capacity,  bool asksLodging,  bool asksDepartureCity,  String feeNote,  List<EventSession> sessions,  List<EventPost> posts,  List<EventPhoto> photos,  MyRegistration? myRegistration,  List<EventEdition> editions)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( int id,  int? seriesId,  String title,  String theme,  DateTime startsAt,  DateTime endsAt,  String timeZone,  String venue,  String city,  String country,  EventImage? poster, @JsonKey(unknownEnumValue: EventStatus.published)  EventStatus status,  RegistrationSummary registration,  EventPrice? price,  String themeVerse,  String description,  String address,  String mapsUrl,  String contactName,  String contactPhone,  bool registrationOpen,  DateTime? registrationDeadline,  int? capacity,  bool asksLodging,  bool asksDepartureCity,  String feeNote,  List<EventSession> sessions,  List<EventPost> posts,  List<EventPhoto> photos,  MyRegistration? myRegistration,  List<EventEdition> editions)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _CommunityEvent() when $default != null:
-return $default(_that.id,_that.seriesId,_that.title,_that.theme,_that.startsAt,_that.endsAt,_that.timeZone,_that.venue,_that.city,_that.country,_that.poster,_that.status,_that.registration,_that.themeVerse,_that.description,_that.address,_that.mapsUrl,_that.contactName,_that.contactPhone,_that.registrationOpen,_that.registrationDeadline,_that.capacity,_that.asksLodging,_that.asksDepartureCity,_that.feeNote,_that.sessions,_that.posts,_that.photos,_that.myRegistration,_that.editions);case _:
+return $default(_that.id,_that.seriesId,_that.title,_that.theme,_that.startsAt,_that.endsAt,_that.timeZone,_that.venue,_that.city,_that.country,_that.poster,_that.status,_that.registration,_that.price,_that.themeVerse,_that.description,_that.address,_that.mapsUrl,_that.contactName,_that.contactPhone,_that.registrationOpen,_that.registrationDeadline,_that.capacity,_that.asksLodging,_that.asksDepartureCity,_that.feeNote,_that.sessions,_that.posts,_that.photos,_that.myRegistration,_that.editions);case _:
   return orElse();
 
 }
@@ -2505,10 +2792,10 @@ return $default(_that.id,_that.seriesId,_that.title,_that.theme,_that.startsAt,_
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( int id,  int? seriesId,  String title,  String theme,  DateTime startsAt,  DateTime endsAt,  String timeZone,  String venue,  String city,  String country,  EventImage? poster, @JsonKey(unknownEnumValue: EventStatus.published)  EventStatus status,  RegistrationSummary registration,  String themeVerse,  String description,  String address,  String mapsUrl,  String contactName,  String contactPhone,  bool registrationOpen,  DateTime? registrationDeadline,  int? capacity,  bool asksLodging,  bool asksDepartureCity,  String feeNote,  List<EventSession> sessions,  List<EventPost> posts,  List<EventPhoto> photos,  MyRegistration? myRegistration,  List<EventEdition> editions)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( int id,  int? seriesId,  String title,  String theme,  DateTime startsAt,  DateTime endsAt,  String timeZone,  String venue,  String city,  String country,  EventImage? poster, @JsonKey(unknownEnumValue: EventStatus.published)  EventStatus status,  RegistrationSummary registration,  EventPrice? price,  String themeVerse,  String description,  String address,  String mapsUrl,  String contactName,  String contactPhone,  bool registrationOpen,  DateTime? registrationDeadline,  int? capacity,  bool asksLodging,  bool asksDepartureCity,  String feeNote,  List<EventSession> sessions,  List<EventPost> posts,  List<EventPhoto> photos,  MyRegistration? myRegistration,  List<EventEdition> editions)  $default,) {final _that = this;
 switch (_that) {
 case _CommunityEvent():
-return $default(_that.id,_that.seriesId,_that.title,_that.theme,_that.startsAt,_that.endsAt,_that.timeZone,_that.venue,_that.city,_that.country,_that.poster,_that.status,_that.registration,_that.themeVerse,_that.description,_that.address,_that.mapsUrl,_that.contactName,_that.contactPhone,_that.registrationOpen,_that.registrationDeadline,_that.capacity,_that.asksLodging,_that.asksDepartureCity,_that.feeNote,_that.sessions,_that.posts,_that.photos,_that.myRegistration,_that.editions);case _:
+return $default(_that.id,_that.seriesId,_that.title,_that.theme,_that.startsAt,_that.endsAt,_that.timeZone,_that.venue,_that.city,_that.country,_that.poster,_that.status,_that.registration,_that.price,_that.themeVerse,_that.description,_that.address,_that.mapsUrl,_that.contactName,_that.contactPhone,_that.registrationOpen,_that.registrationDeadline,_that.capacity,_that.asksLodging,_that.asksDepartureCity,_that.feeNote,_that.sessions,_that.posts,_that.photos,_that.myRegistration,_that.editions);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -2525,10 +2812,10 @@ return $default(_that.id,_that.seriesId,_that.title,_that.theme,_that.startsAt,_
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( int id,  int? seriesId,  String title,  String theme,  DateTime startsAt,  DateTime endsAt,  String timeZone,  String venue,  String city,  String country,  EventImage? poster, @JsonKey(unknownEnumValue: EventStatus.published)  EventStatus status,  RegistrationSummary registration,  String themeVerse,  String description,  String address,  String mapsUrl,  String contactName,  String contactPhone,  bool registrationOpen,  DateTime? registrationDeadline,  int? capacity,  bool asksLodging,  bool asksDepartureCity,  String feeNote,  List<EventSession> sessions,  List<EventPost> posts,  List<EventPhoto> photos,  MyRegistration? myRegistration,  List<EventEdition> editions)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( int id,  int? seriesId,  String title,  String theme,  DateTime startsAt,  DateTime endsAt,  String timeZone,  String venue,  String city,  String country,  EventImage? poster, @JsonKey(unknownEnumValue: EventStatus.published)  EventStatus status,  RegistrationSummary registration,  EventPrice? price,  String themeVerse,  String description,  String address,  String mapsUrl,  String contactName,  String contactPhone,  bool registrationOpen,  DateTime? registrationDeadline,  int? capacity,  bool asksLodging,  bool asksDepartureCity,  String feeNote,  List<EventSession> sessions,  List<EventPost> posts,  List<EventPhoto> photos,  MyRegistration? myRegistration,  List<EventEdition> editions)?  $default,) {final _that = this;
 switch (_that) {
 case _CommunityEvent() when $default != null:
-return $default(_that.id,_that.seriesId,_that.title,_that.theme,_that.startsAt,_that.endsAt,_that.timeZone,_that.venue,_that.city,_that.country,_that.poster,_that.status,_that.registration,_that.themeVerse,_that.description,_that.address,_that.mapsUrl,_that.contactName,_that.contactPhone,_that.registrationOpen,_that.registrationDeadline,_that.capacity,_that.asksLodging,_that.asksDepartureCity,_that.feeNote,_that.sessions,_that.posts,_that.photos,_that.myRegistration,_that.editions);case _:
+return $default(_that.id,_that.seriesId,_that.title,_that.theme,_that.startsAt,_that.endsAt,_that.timeZone,_that.venue,_that.city,_that.country,_that.poster,_that.status,_that.registration,_that.price,_that.themeVerse,_that.description,_that.address,_that.mapsUrl,_that.contactName,_that.contactPhone,_that.registrationOpen,_that.registrationDeadline,_that.capacity,_that.asksLodging,_that.asksDepartureCity,_that.feeNote,_that.sessions,_that.posts,_that.photos,_that.myRegistration,_that.editions);case _:
   return null;
 
 }
@@ -2540,7 +2827,7 @@ return $default(_that.id,_that.seriesId,_that.title,_that.theme,_that.startsAt,_
 @JsonSerializable()
 
 class _CommunityEvent extends CommunityEvent {
-  const _CommunityEvent({required this.id, this.seriesId, required this.title, this.theme = '', required this.startsAt, required this.endsAt, this.timeZone = CommunityEvent.defaultTimeZone, this.venue = '', this.city = '', this.country = '', this.poster, @JsonKey(unknownEnumValue: EventStatus.published) this.status = EventStatus.published, this.registration = const RegistrationSummary(), this.themeVerse = '', this.description = '', this.address = '', this.mapsUrl = '', this.contactName = '', this.contactPhone = '', this.registrationOpen = true, this.registrationDeadline, this.capacity, this.asksLodging = false, this.asksDepartureCity = false, this.feeNote = '', final  List<EventSession> sessions = const <EventSession>[], final  List<EventPost> posts = const <EventPost>[], final  List<EventPhoto> photos = const <EventPhoto>[], this.myRegistration, final  List<EventEdition> editions = const <EventEdition>[]}): _sessions = sessions,_posts = posts,_photos = photos,_editions = editions,super._();
+  const _CommunityEvent({required this.id, this.seriesId, required this.title, this.theme = '', required this.startsAt, required this.endsAt, this.timeZone = CommunityEvent.defaultTimeZone, this.venue = '', this.city = '', this.country = '', this.poster, @JsonKey(unknownEnumValue: EventStatus.published) this.status = EventStatus.published, this.registration = const RegistrationSummary(), this.price, this.themeVerse = '', this.description = '', this.address = '', this.mapsUrl = '', this.contactName = '', this.contactPhone = '', this.registrationOpen = true, this.registrationDeadline, this.capacity, this.asksLodging = false, this.asksDepartureCity = false, this.feeNote = '', final  List<EventSession> sessions = const <EventSession>[], final  List<EventPost> posts = const <EventPost>[], final  List<EventPhoto> photos = const <EventPhoto>[], this.myRegistration, final  List<EventEdition> editions = const <EventEdition>[]}): _sessions = sessions,_posts = posts,_photos = photos,_editions = editions,super._();
   factory _CommunityEvent.fromJson(Map<String, dynamic> json) => _$CommunityEventFromJson(json);
 
 @override final  int id;
@@ -2557,6 +2844,8 @@ class _CommunityEvent extends CommunityEvent {
 @override final  EventImage? poster;
 @override@JsonKey(unknownEnumValue: EventStatus.published) final  EventStatus status;
 @override@JsonKey() final  RegistrationSummary registration;
+/// Per person; null for a free event.
+@override final  EventPrice? price;
 // ----- the whole event only -----
 @override@JsonKey() final  String themeVerse;
 @override@JsonKey() final  String description;
@@ -2613,16 +2902,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _CommunityEvent&&(identical(other.id, id) || other.id == id)&&(identical(other.seriesId, seriesId) || other.seriesId == seriesId)&&(identical(other.title, title) || other.title == title)&&(identical(other.theme, theme) || other.theme == theme)&&(identical(other.startsAt, startsAt) || other.startsAt == startsAt)&&(identical(other.endsAt, endsAt) || other.endsAt == endsAt)&&(identical(other.timeZone, timeZone) || other.timeZone == timeZone)&&(identical(other.venue, venue) || other.venue == venue)&&(identical(other.city, city) || other.city == city)&&(identical(other.country, country) || other.country == country)&&(identical(other.poster, poster) || other.poster == poster)&&(identical(other.status, status) || other.status == status)&&(identical(other.registration, registration) || other.registration == registration)&&(identical(other.themeVerse, themeVerse) || other.themeVerse == themeVerse)&&(identical(other.description, description) || other.description == description)&&(identical(other.address, address) || other.address == address)&&(identical(other.mapsUrl, mapsUrl) || other.mapsUrl == mapsUrl)&&(identical(other.contactName, contactName) || other.contactName == contactName)&&(identical(other.contactPhone, contactPhone) || other.contactPhone == contactPhone)&&(identical(other.registrationOpen, registrationOpen) || other.registrationOpen == registrationOpen)&&(identical(other.registrationDeadline, registrationDeadline) || other.registrationDeadline == registrationDeadline)&&(identical(other.capacity, capacity) || other.capacity == capacity)&&(identical(other.asksLodging, asksLodging) || other.asksLodging == asksLodging)&&(identical(other.asksDepartureCity, asksDepartureCity) || other.asksDepartureCity == asksDepartureCity)&&(identical(other.feeNote, feeNote) || other.feeNote == feeNote)&&const DeepCollectionEquality().equals(other._sessions, _sessions)&&const DeepCollectionEquality().equals(other._posts, _posts)&&const DeepCollectionEquality().equals(other._photos, _photos)&&(identical(other.myRegistration, myRegistration) || other.myRegistration == myRegistration)&&const DeepCollectionEquality().equals(other._editions, _editions));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _CommunityEvent&&(identical(other.id, id) || other.id == id)&&(identical(other.seriesId, seriesId) || other.seriesId == seriesId)&&(identical(other.title, title) || other.title == title)&&(identical(other.theme, theme) || other.theme == theme)&&(identical(other.startsAt, startsAt) || other.startsAt == startsAt)&&(identical(other.endsAt, endsAt) || other.endsAt == endsAt)&&(identical(other.timeZone, timeZone) || other.timeZone == timeZone)&&(identical(other.venue, venue) || other.venue == venue)&&(identical(other.city, city) || other.city == city)&&(identical(other.country, country) || other.country == country)&&(identical(other.poster, poster) || other.poster == poster)&&(identical(other.status, status) || other.status == status)&&(identical(other.registration, registration) || other.registration == registration)&&(identical(other.price, price) || other.price == price)&&(identical(other.themeVerse, themeVerse) || other.themeVerse == themeVerse)&&(identical(other.description, description) || other.description == description)&&(identical(other.address, address) || other.address == address)&&(identical(other.mapsUrl, mapsUrl) || other.mapsUrl == mapsUrl)&&(identical(other.contactName, contactName) || other.contactName == contactName)&&(identical(other.contactPhone, contactPhone) || other.contactPhone == contactPhone)&&(identical(other.registrationOpen, registrationOpen) || other.registrationOpen == registrationOpen)&&(identical(other.registrationDeadline, registrationDeadline) || other.registrationDeadline == registrationDeadline)&&(identical(other.capacity, capacity) || other.capacity == capacity)&&(identical(other.asksLodging, asksLodging) || other.asksLodging == asksLodging)&&(identical(other.asksDepartureCity, asksDepartureCity) || other.asksDepartureCity == asksDepartureCity)&&(identical(other.feeNote, feeNote) || other.feeNote == feeNote)&&const DeepCollectionEquality().equals(other._sessions, _sessions)&&const DeepCollectionEquality().equals(other._posts, _posts)&&const DeepCollectionEquality().equals(other._photos, _photos)&&(identical(other.myRegistration, myRegistration) || other.myRegistration == myRegistration)&&const DeepCollectionEquality().equals(other._editions, _editions));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hashAll([runtimeType,id,seriesId,title,theme,startsAt,endsAt,timeZone,venue,city,country,poster,status,registration,themeVerse,description,address,mapsUrl,contactName,contactPhone,registrationOpen,registrationDeadline,capacity,asksLodging,asksDepartureCity,feeNote,const DeepCollectionEquality().hash(_sessions),const DeepCollectionEquality().hash(_posts),const DeepCollectionEquality().hash(_photos),myRegistration,const DeepCollectionEquality().hash(_editions)]);
+int get hashCode => Object.hashAll([runtimeType,id,seriesId,title,theme,startsAt,endsAt,timeZone,venue,city,country,poster,status,registration,price,themeVerse,description,address,mapsUrl,contactName,contactPhone,registrationOpen,registrationDeadline,capacity,asksLodging,asksDepartureCity,feeNote,const DeepCollectionEquality().hash(_sessions),const DeepCollectionEquality().hash(_posts),const DeepCollectionEquality().hash(_photos),myRegistration,const DeepCollectionEquality().hash(_editions)]);
 
 @override
 String toString() {
-  return 'CommunityEvent(id: $id, seriesId: $seriesId, title: $title, theme: $theme, startsAt: $startsAt, endsAt: $endsAt, timeZone: $timeZone, venue: $venue, city: $city, country: $country, poster: $poster, status: $status, registration: $registration, themeVerse: $themeVerse, description: $description, address: $address, mapsUrl: $mapsUrl, contactName: $contactName, contactPhone: $contactPhone, registrationOpen: $registrationOpen, registrationDeadline: $registrationDeadline, capacity: $capacity, asksLodging: $asksLodging, asksDepartureCity: $asksDepartureCity, feeNote: $feeNote, sessions: $sessions, posts: $posts, photos: $photos, myRegistration: $myRegistration, editions: $editions)';
+  return 'CommunityEvent(id: $id, seriesId: $seriesId, title: $title, theme: $theme, startsAt: $startsAt, endsAt: $endsAt, timeZone: $timeZone, venue: $venue, city: $city, country: $country, poster: $poster, status: $status, registration: $registration, price: $price, themeVerse: $themeVerse, description: $description, address: $address, mapsUrl: $mapsUrl, contactName: $contactName, contactPhone: $contactPhone, registrationOpen: $registrationOpen, registrationDeadline: $registrationDeadline, capacity: $capacity, asksLodging: $asksLodging, asksDepartureCity: $asksDepartureCity, feeNote: $feeNote, sessions: $sessions, posts: $posts, photos: $photos, myRegistration: $myRegistration, editions: $editions)';
 }
 
 
@@ -2633,11 +2922,11 @@ abstract mixin class _$CommunityEventCopyWith<$Res> implements $CommunityEventCo
   factory _$CommunityEventCopyWith(_CommunityEvent value, $Res Function(_CommunityEvent) _then) = __$CommunityEventCopyWithImpl;
 @override @useResult
 $Res call({
- int id, int? seriesId, String title, String theme, DateTime startsAt, DateTime endsAt, String timeZone, String venue, String city, String country, EventImage? poster,@JsonKey(unknownEnumValue: EventStatus.published) EventStatus status, RegistrationSummary registration, String themeVerse, String description, String address, String mapsUrl, String contactName, String contactPhone, bool registrationOpen, DateTime? registrationDeadline, int? capacity, bool asksLodging, bool asksDepartureCity, String feeNote, List<EventSession> sessions, List<EventPost> posts, List<EventPhoto> photos, MyRegistration? myRegistration, List<EventEdition> editions
+ int id, int? seriesId, String title, String theme, DateTime startsAt, DateTime endsAt, String timeZone, String venue, String city, String country, EventImage? poster,@JsonKey(unknownEnumValue: EventStatus.published) EventStatus status, RegistrationSummary registration, EventPrice? price, String themeVerse, String description, String address, String mapsUrl, String contactName, String contactPhone, bool registrationOpen, DateTime? registrationDeadline, int? capacity, bool asksLodging, bool asksDepartureCity, String feeNote, List<EventSession> sessions, List<EventPost> posts, List<EventPhoto> photos, MyRegistration? myRegistration, List<EventEdition> editions
 });
 
 
-@override $EventImageCopyWith<$Res>? get poster;@override $RegistrationSummaryCopyWith<$Res> get registration;@override $MyRegistrationCopyWith<$Res>? get myRegistration;
+@override $EventImageCopyWith<$Res>? get poster;@override $RegistrationSummaryCopyWith<$Res> get registration;@override $EventPriceCopyWith<$Res>? get price;@override $MyRegistrationCopyWith<$Res>? get myRegistration;
 
 }
 /// @nodoc
@@ -2650,7 +2939,7 @@ class __$CommunityEventCopyWithImpl<$Res>
 
 /// Create a copy of CommunityEvent
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? seriesId = freezed,Object? title = null,Object? theme = null,Object? startsAt = null,Object? endsAt = null,Object? timeZone = null,Object? venue = null,Object? city = null,Object? country = null,Object? poster = freezed,Object? status = null,Object? registration = null,Object? themeVerse = null,Object? description = null,Object? address = null,Object? mapsUrl = null,Object? contactName = null,Object? contactPhone = null,Object? registrationOpen = null,Object? registrationDeadline = freezed,Object? capacity = freezed,Object? asksLodging = null,Object? asksDepartureCity = null,Object? feeNote = null,Object? sessions = null,Object? posts = null,Object? photos = null,Object? myRegistration = freezed,Object? editions = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? seriesId = freezed,Object? title = null,Object? theme = null,Object? startsAt = null,Object? endsAt = null,Object? timeZone = null,Object? venue = null,Object? city = null,Object? country = null,Object? poster = freezed,Object? status = null,Object? registration = null,Object? price = freezed,Object? themeVerse = null,Object? description = null,Object? address = null,Object? mapsUrl = null,Object? contactName = null,Object? contactPhone = null,Object? registrationOpen = null,Object? registrationDeadline = freezed,Object? capacity = freezed,Object? asksLodging = null,Object? asksDepartureCity = null,Object? feeNote = null,Object? sessions = null,Object? posts = null,Object? photos = null,Object? myRegistration = freezed,Object? editions = null,}) {
   return _then(_CommunityEvent(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as int,seriesId: freezed == seriesId ? _self.seriesId : seriesId // ignore: cast_nullable_to_non_nullable
@@ -2665,7 +2954,8 @@ as String,country: null == country ? _self.country : country // ignore: cast_nul
 as String,poster: freezed == poster ? _self.poster : poster // ignore: cast_nullable_to_non_nullable
 as EventImage?,status: null == status ? _self.status : status // ignore: cast_nullable_to_non_nullable
 as EventStatus,registration: null == registration ? _self.registration : registration // ignore: cast_nullable_to_non_nullable
-as RegistrationSummary,themeVerse: null == themeVerse ? _self.themeVerse : themeVerse // ignore: cast_nullable_to_non_nullable
+as RegistrationSummary,price: freezed == price ? _self.price : price // ignore: cast_nullable_to_non_nullable
+as EventPrice?,themeVerse: null == themeVerse ? _self.themeVerse : themeVerse // ignore: cast_nullable_to_non_nullable
 as String,description: null == description ? _self.description : description // ignore: cast_nullable_to_non_nullable
 as String,address: null == address ? _self.address : address // ignore: cast_nullable_to_non_nullable
 as String,mapsUrl: null == mapsUrl ? _self.mapsUrl : mapsUrl // ignore: cast_nullable_to_non_nullable
@@ -2706,6 +2996,18 @@ $RegistrationSummaryCopyWith<$Res> get registration {
   
   return $RegistrationSummaryCopyWith<$Res>(_self.registration, (value) {
     return _then(_self.copyWith(registration: value));
+  });
+}/// Create a copy of CommunityEvent
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$EventPriceCopyWith<$Res>? get price {
+    if (_self.price == null) {
+    return null;
+  }
+
+  return $EventPriceCopyWith<$Res>(_self.price!, (value) {
+    return _then(_self.copyWith(price: value));
   });
 }/// Create a copy of CommunityEvent
 /// with the given fields replaced by the non-null parameter values.

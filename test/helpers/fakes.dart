@@ -53,6 +53,8 @@ import 'package:cmfi_connect/src/features/ministry/domain/nation.dart';
 import 'package:cmfi_connect/src/features/ministry/infrastructure/ministry_api.dart';
 import 'package:cmfi_connect/src/features/notifications/domain/announcement.dart';
 import 'package:cmfi_connect/src/features/notifications/infrastructure/notifications_api.dart';
+import 'package:cmfi_connect/src/features/payments/domain/payment.dart';
+import 'package:cmfi_connect/src/features/payments/infrastructure/payments_api.dart';
 import 'package:cmfi_connect/src/features/prayer/domain/prayer.dart';
 import 'package:cmfi_connect/src/features/prayer/infrastructure/prayer_api.dart';
 import 'package:cmfi_connect/src/features/profile/domain/profile.dart';
@@ -2904,4 +2906,106 @@ class FakeAppInstaller implements AppInstaller {
 
   @override
   Future<void> install() async => installs++;
+}
+
+/// pawaPay through the server: a payment waits for the member's PIN until
+/// the test [complete]s or [fail]s it; completed, the member is registered
+/// (paid) in [events].
+class FakePaymentsApi implements PaymentsApi {
+  FakePaymentsApi({this.events});
+
+  FakeEventsApi? events;
+  final payments = <String, Payment>{};
+  final started =
+      <({int eventId, int people, String phoneNumber, String provider})>[];
+  final guessed = <String>[];
+
+  /// What a new payment answers at once (pending, or failed when refused).
+  PaymentStatus startStatus = PaymentStatus.pending;
+  String startFailure = '';
+  AppException? payError;
+
+  @override
+  Future<List<MobileMoneyCountry>> operators({String currency = 'XAF'}) async =>
+      const [
+        MobileMoneyCountry(
+          country: 'CMR',
+          names: {'fr': 'Cameroun'},
+          prefix: '237',
+          operators: [
+            MobileMoneyOperator(provider: 'MTN_MOMO_CMR', name: 'MTN'),
+            MobileMoneyOperator(provider: 'ORANGE_CMR', name: 'Orange'),
+          ],
+        ),
+      ];
+
+  @override
+  Future<OperatorGuess> guessOperator(String phoneNumber) async {
+    final digits = phoneNumber.replaceAll(RegExp(r'\D'), '');
+    guessed.add(digits);
+    return OperatorGuess(
+      country: 'CMR',
+      provider: digits.startsWith('23769') ? 'ORANGE_CMR' : 'MTN_MOMO_CMR',
+      phoneNumber: digits,
+    );
+  }
+
+  @override
+  Future<Payment> payForEvent(
+    int eventId, {
+    required int people,
+    bool needsLodging = false,
+    String departureCity = '',
+    required String phoneNumber,
+    String provider = '',
+  }) async {
+    if (payError != null) {
+      throw payError!;
+    }
+    started.add((
+      eventId: eventId,
+      people: people,
+      phoneNumber: phoneNumber,
+      provider: provider,
+    ));
+    final price = events?.events[eventId]?.price;
+    final payment = Payment(
+      id: 'pay-${payments.length + 1}',
+      status: startStatus,
+      failureCode: startFailure,
+      amount: (price?.amount ?? 0) * people,
+      currency: price?.currency ?? 'XAF',
+      provider: provider,
+      eventId: eventId,
+      people: people,
+    );
+    _details[payment.id] = (needsLodging, departureCity);
+    return payments[payment.id] = payment;
+  }
+
+  final _details = <String, (bool, String)>{};
+
+  @override
+  Future<Payment> get(String id) async => payments[id]!;
+
+  /// The money arrived: the server registers the member.
+  Future<void> complete(String id) async {
+    final payment = payments[id]!;
+    final (lodging, city) = _details[id]!;
+    final event = await events!.register(
+      payment.eventId!,
+      people: payment.people,
+      needsLodging: lodging,
+      departureCity: city,
+    );
+    events!.events[event.id] = event.copyWith(
+      myRegistration: event.myRegistration!.copyWith(paid: true),
+    );
+    payments[id] = payment.copyWith(status: PaymentStatus.completed);
+  }
+
+  void fail(String id, String code) => payments[id] = payments[id]!.copyWith(
+    status: PaymentStatus.failed,
+    failureCode: code,
+  );
 }

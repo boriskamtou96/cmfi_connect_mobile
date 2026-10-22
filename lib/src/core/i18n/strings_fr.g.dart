@@ -218,6 +218,30 @@ class Translations$errors$fr {
 
 	/// fr: 'Ce membre ne partage plus ses comptes rendus.'
 	String get reportsNotShared => 'Ce membre ne partage plus ses comptes rendus.';
+
+	/// fr: 'Ce numéro n'est pas reconnu. Mets l'indicatif du pays (+237…).'
+	String get invalidPhone => 'Ce numéro n\'est pas reconnu. Mets l\'indicatif du pays (+237…).';
+
+	/// fr: 'Cet opérateur n'accepte pas ce paiement pour le moment.'
+	String get providerUnavailable => 'Cet opérateur n\'accepte pas ce paiement pour le moment.';
+
+	/// fr: 'Ce montant dépasse ce que l'opérateur accepte.'
+	String get amountOutOfBounds => 'Ce montant dépasse ce que l\'opérateur accepte.';
+
+	/// fr: 'Ton inscription est déjà payée.'
+	String get alreadyPaid => 'Ton inscription est déjà payée.';
+
+	/// fr: 'Le paiement mobile money n'est pas encore disponible.'
+	String get paymentsDisabled => 'Le paiement mobile money n\'est pas encore disponible.';
+
+	/// fr: 'Cet évènement est payant : règle ton inscription par mobile money.'
+	String get paymentRequired => 'Cet évènement est payant : règle ton inscription par mobile money.';
+
+	/// fr: 'Inscription payée : contacte les organisateurs pour l'annuler.'
+	String get paidRegistration => 'Inscription payée : contacte les organisateurs pour l\'annuler.';
+
+	/// fr: 'Des membres ont payé : rembourse d'abord leurs paiements depuis le site d'administration.'
+	String get eventHasPayments => 'Des membres ont payé : rembourse d\'abord leurs paiements depuis le site d\'administration.';
 }
 
 // Path: validation
@@ -1369,6 +1393,8 @@ class Translations$events$fr {
 
 	/// fr: 'Évènement {current} sur {total}'
 	String slide({required Object current, required Object total}) => 'Évènement ${current} sur ${total}';
+
+	late final Translations$events$pay$fr pay = Translations$events$pay$fr.internal(_root);
 }
 
 // Path: notifications
@@ -5353,6 +5379,74 @@ class Translations$events$admin$fr {
 
 	/// fr: 'Supprimer'
 	String get confirmDelete => 'Supprimer';
+
+	/// fr: 'Prix par personne (FCFA)'
+	String get price => 'Prix par personne (FCFA)';
+
+	/// fr: 'Vide : gratuit. Payé par mobile money à l'inscription.'
+	String get priceHint => 'Vide : gratuit. Payé par mobile money à l\'inscription.';
+}
+
+// Path: events.pay
+class Translations$events$pay$fr {
+	Translations$events$pay$fr.internal(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// fr: 'Paiement mobile money'
+	String get title => 'Paiement mobile money';
+
+	/// fr: '{price} par personne'
+	String perPerson({required Object price}) => '${price} par personne';
+
+	/// fr: 'Total à payer'
+	String get total => 'Total à payer';
+
+	/// fr: 'Numéro mobile money'
+	String get phone => 'Numéro mobile money';
+
+	/// fr: '+237 6 70 00 00 00'
+	String get phoneHint => '+237 6 70 00 00 00';
+
+	/// fr: 'Avec l'indicatif du pays. La demande de paiement arrive sur ce téléphone.'
+	String get phoneHelp => 'Avec l\'indicatif du pays. La demande de paiement arrive sur ce téléphone.';
+
+	/// fr: 'Opérateur'
+	String get operator => 'Opérateur';
+
+	/// fr: 'Payer {amount}'
+	String pay({required Object amount}) => 'Payer ${amount}';
+
+	/// fr: 'Confirme sur ton téléphone'
+	String get waitingTitle => 'Confirme sur ton téléphone';
+
+	/// fr: 'Une demande de {amount} arrive sur ton téléphone. Saisis ton code PIN mobile money pour valider.'
+	String waitingText({required Object amount}) => 'Une demande de ${amount} arrive sur ton téléphone. Saisis ton code PIN mobile money pour valider.';
+
+	/// fr: 'Toujours en attente. Ton inscription sera confirmée dès que le paiement arrive, même si tu fermes cette fenêtre.'
+	String get waitingSlow => 'Toujours en attente. Ton inscription sera confirmée dès que le paiement arrive, même si tu fermes cette fenêtre.';
+
+	/// fr: 'Fermer'
+	String get close => 'Fermer';
+
+	/// fr: 'Réessayer'
+	String get retry => 'Réessayer';
+
+	/// fr: 'Paiement reçu : tu es inscrit !'
+	String get done => 'Paiement reçu : tu es inscrit !';
+
+	/// fr: 'Le paiement n'a pas abouti'
+	String get failedTitle => 'Le paiement n\'a pas abouti';
+
+	/// fr: 'Inscription payée. Pour l'annuler, contacte les organisateurs : ils te rembourseront.'
+	String get paidNote => 'Inscription payée. Pour l\'annuler, contacte les organisateurs : ils te rembourseront.';
+
+	/// fr: 'Le nombre de personnes payé ne change plus.'
+	String get peopleLocked => 'Le nombre de personnes payé ne change plus.';
+
+	late final Translations$events$pay$failures$fr failures = Translations$events$pay$failures$fr.internal(_root);
 }
 
 // Path: ministry.goals
@@ -6155,6 +6249,33 @@ class Translations$reports$units$percent$fr {
 	String count({required Object value}) => '${value} %';
 }
 
+// Path: events.pay.failures
+class Translations$events$pay$failures$fr {
+	Translations$events$pay$failures$fr.internal(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// fr: 'Le solde de ce compte mobile money est insuffisant.'
+	String get insufficientBalance => 'Le solde de ce compte mobile money est insuffisant.';
+
+	/// fr: 'Ce numéro n'a pas de compte mobile money chez cet opérateur.'
+	String get payerNotFound => 'Ce numéro n\'a pas de compte mobile money chez cet opérateur.';
+
+	/// fr: 'La limite de ce compte mobile money est atteinte.'
+	String get limitReached => 'La limite de ce compte mobile money est atteinte.';
+
+	/// fr: 'Le paiement n'a pas été validé : code PIN non saisi ou refusé.'
+	String get notApproved => 'Le paiement n\'a pas été validé : code PIN non saisi ou refusé.';
+
+	/// fr: 'L'opérateur est indisponible pour le moment. Réessaie plus tard.'
+	String get unavailable => 'L\'opérateur est indisponible pour le moment. Réessaie plus tard.';
+
+	/// fr: 'Le paiement a échoué. Réessaie, ou utilise un autre numéro.'
+	String get generic => 'Le paiement a échoué. Réessaie, ou utilise un autre numéro.';
+}
+
 // Path: ministry.goals.crusade
 class Translations$ministry$goals$crusade$fr {
 	Translations$ministry$goals$crusade$fr.internal(this._root);
@@ -6525,6 +6646,14 @@ extension on Translations {
 			'errors.tooManyPeople' => 'Tes listes sont pleines (500 personnes au plus).',
 			'errors.avatarInvalid' => 'Cette photo ne peut pas être utilisée. Choisis-en une autre.',
 			'errors.reportsNotShared' => 'Ce membre ne partage plus ses comptes rendus.',
+			'errors.invalidPhone' => 'Ce numéro n\'est pas reconnu. Mets l\'indicatif du pays (+237…).',
+			'errors.providerUnavailable' => 'Cet opérateur n\'accepte pas ce paiement pour le moment.',
+			'errors.amountOutOfBounds' => 'Ce montant dépasse ce que l\'opérateur accepte.',
+			'errors.alreadyPaid' => 'Ton inscription est déjà payée.',
+			'errors.paymentsDisabled' => 'Le paiement mobile money n\'est pas encore disponible.',
+			'errors.paymentRequired' => 'Cet évènement est payant : règle ton inscription par mobile money.',
+			'errors.paidRegistration' => 'Inscription payée : contacte les organisateurs pour l\'annuler.',
+			'errors.eventHasPayments' => 'Des membres ont payé : rembourse d\'abord leurs paiements depuis le site d\'administration.',
 			'validation.required' => 'Ce champ est obligatoire',
 			'validation.passwordTooShort' => 'Au moins 6 caractères',
 			'validation.invalidPhone' => 'Numéro de téléphone invalide',
@@ -6994,6 +7123,8 @@ extension on Translations {
 			'members.usernameSaved' => ({required Object username}) => 'Pseudo enregistré : @${username}',
 			'members.deleteAccount.button' => 'Supprimer mon compte',
 			'members.deleteAccount.title' => 'Supprimer mon compte',
+			_ => null,
+		} ?? switch (path) {
 			'members.deleteAccount.intro' => 'C\'est définitif. Ton compte et tout ce qui y est lié seront effacés :',
 			'members.deleteAccount.itemProfile' => 'ton profil, ta photo, ton pseudo et ton mot de passe',
 			'members.deleteAccount.itemReports' => 'tous tes comptes rendus, tes éléments et tes objectifs',
@@ -7002,8 +7133,6 @@ extension on Translations {
 			'members.deleteAccount.itemPrayer' => 'tes listes de prière, tes retraites et tes sujets d\'importunité',
 			'members.deleteAccount.kept' => 'Les évènements, actualités, photos et sujets de prière que tu as publiés comme admin restent pour la communauté, sans ton nom.',
 			'members.deleteAccount.passwordHelp' => 'Pour confirmer que c\'est bien toi.',
-			_ => null,
-		} ?? switch (path) {
 			'members.deleteAccount.confirm' => 'Supprimer définitivement',
 			'members.deleteAccount.done' => 'Ton compte a été supprimé. Que Dieu te bénisse !',
 			'members.deleteAccount.wrongPassword' => 'Mot de passe incorrect.',
@@ -7259,8 +7388,33 @@ extension on Translations {
 			'events.admin.photoDelete' => 'Supprimer cette photo',
 			'events.admin.photoDeleted' => 'Photo supprimée.',
 			'events.admin.confirmDelete' => 'Supprimer',
+			'events.admin.price' => 'Prix par personne (FCFA)',
+			'events.admin.priceHint' => 'Vide : gratuit. Payé par mobile money à l\'inscription.',
 			'events.upcomingCount' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('fr'))(n, one: '${n} évènement à venir', other: '${n} évènements à venir', ), 
 			'events.slide' => ({required Object current, required Object total}) => 'Évènement ${current} sur ${total}',
+			'events.pay.title' => 'Paiement mobile money',
+			'events.pay.perPerson' => ({required Object price}) => '${price} par personne',
+			'events.pay.total' => 'Total à payer',
+			'events.pay.phone' => 'Numéro mobile money',
+			'events.pay.phoneHint' => '+237 6 70 00 00 00',
+			'events.pay.phoneHelp' => 'Avec l\'indicatif du pays. La demande de paiement arrive sur ce téléphone.',
+			'events.pay.operator' => 'Opérateur',
+			'events.pay.pay' => ({required Object amount}) => 'Payer ${amount}',
+			'events.pay.waitingTitle' => 'Confirme sur ton téléphone',
+			'events.pay.waitingText' => ({required Object amount}) => 'Une demande de ${amount} arrive sur ton téléphone. Saisis ton code PIN mobile money pour valider.',
+			'events.pay.waitingSlow' => 'Toujours en attente. Ton inscription sera confirmée dès que le paiement arrive, même si tu fermes cette fenêtre.',
+			'events.pay.close' => 'Fermer',
+			'events.pay.retry' => 'Réessayer',
+			'events.pay.done' => 'Paiement reçu : tu es inscrit !',
+			'events.pay.failedTitle' => 'Le paiement n\'a pas abouti',
+			'events.pay.paidNote' => 'Inscription payée. Pour l\'annuler, contacte les organisateurs : ils te rembourseront.',
+			'events.pay.peopleLocked' => 'Le nombre de personnes payé ne change plus.',
+			'events.pay.failures.insufficientBalance' => 'Le solde de ce compte mobile money est insuffisant.',
+			'events.pay.failures.payerNotFound' => 'Ce numéro n\'a pas de compte mobile money chez cet opérateur.',
+			'events.pay.failures.limitReached' => 'La limite de ce compte mobile money est atteinte.',
+			'events.pay.failures.notApproved' => 'Le paiement n\'a pas été validé : code PIN non saisi ou refusé.',
+			'events.pay.failures.unavailable' => 'L\'opérateur est indisponible pour le moment. Réessaie plus tard.',
+			'events.pay.failures.generic' => 'Le paiement a échoué. Réessaie, ou utilise un autre numéro.',
 			'notifications.title' => 'Notifications',
 			'notifications.channel' => 'Annonces de la communauté',
 			'notifications.empty' => 'Aucune notification pour l\'instant',
@@ -7483,6 +7637,8 @@ extension on Translations {
 			'prayer.retreat.hints.hymn' => 'Ouvrir les cantiques',
 			'prayer.session.point' => ({required Object n}) => 'Point ${n} sur 15',
 			'prayer.session.remaining' => 'restantes',
+			_ => null,
+		} ?? switch (path) {
 			'prayer.session.paused' => 'en pause',
 			'prayer.session.inYourList' => ({required Object list}) => 'Dans ta liste · ${list}',
 			'prayer.session.tomorrow' => 'Demain, les suivants.',
@@ -7516,8 +7672,6 @@ extension on Translations {
 			'prayer.topics.all' => 'Tout voir',
 			'prayer.topics.empty' => 'Aucun sujet en ce moment. Les responsables publieront les prochains ici.',
 			'prayer.topics.categories.church' => 'Église',
-			_ => null,
-		} ?? switch (path) {
 			'prayer.topics.categories.nations' => 'Nations',
 			'prayer.topics.categories.sick' => 'Malades',
 			'prayer.topics.categories.event' => 'Évènement',
@@ -7997,6 +8151,8 @@ extension on Translations {
 			'biblePlan.catchUpShort' => 'rattraper',
 			'biblePlan.chaptersRead' => ({required Object read, required Object total}) => '${read} chapitres sur ${total}',
 			'biblePlan.late' => 'En retard',
+			_ => null,
+		} ?? switch (path) {
 			'biblePlan.upcoming' => 'À venir',
 			'biblePlan.dayNumber' => ({required Object n}) => 'Jour ${n}',
 			'biblePlan.finished' => 'Plan terminé ! Tu as tout lu.',
@@ -8030,8 +8186,6 @@ extension on Translations {
 			'teachings.removeDownload' => 'Retirer du téléphone',
 			'teachings.back15' => 'Reculer de 15 secondes',
 			'teachings.forward15' => 'Avancer de 15 secondes',
-			_ => null,
-		} ?? switch (path) {
 			'teachings.speed' => ({required Object speed}) => 'Vitesse ${speed}',
 			'teachings.recordedOn' => ({required Object date}) => 'Message du ${date}',
 			'teachings.moreSubtitle' => 'Prédications et enseignements à écouter',

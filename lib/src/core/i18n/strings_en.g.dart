@@ -146,6 +146,14 @@ class _Translations$errors$en extends Translations$errors$fr {
 	@override String get tooManyPeople => 'Your lists are full (500 people at most).';
 	@override String get avatarInvalid => 'This photo can\'t be used. Choose another one.';
 	@override String get reportsNotShared => 'This member no longer shares their reports.';
+	@override String get invalidPhone => 'This number is not recognized. Add the country code (+237…).';
+	@override String get providerUnavailable => 'This operator does not accept this payment right now.';
+	@override String get amountOutOfBounds => 'This amount is beyond what the operator accepts.';
+	@override String get alreadyPaid => 'Your registration is already paid.';
+	@override String get paymentsDisabled => 'Mobile money payment is not available yet.';
+	@override String get paymentRequired => 'This event is paid: pay your registration by mobile money.';
+	@override String get paidRegistration => 'Paid registration: contact the organizers to cancel it.';
+	@override String get eventHasPayments => 'Members have paid: refund their payments first from the admin site.';
 }
 
 // Path: validation
@@ -689,6 +697,7 @@ class _Translations$events$en extends Translations$events$fr {
 		other: '${n} upcoming events',
 	);
 	@override String slide({required Object current, required Object total}) => 'Event ${current} of ${total}';
+	@override late final _Translations$events$pay$en pay = _Translations$events$pay$en._(_root);
 }
 
 // Path: notifications
@@ -2531,6 +2540,35 @@ class _Translations$events$admin$en extends Translations$events$admin$fr {
 	@override String get photoDelete => 'Delete this photo';
 	@override String get photoDeleted => 'Photo deleted.';
 	@override String get confirmDelete => 'Delete';
+	@override String get price => 'Price per person (FCFA)';
+	@override String get priceHint => 'Empty: free. Paid by mobile money when registering.';
+}
+
+// Path: events.pay
+class _Translations$events$pay$en extends Translations$events$pay$fr {
+	_Translations$events$pay$en._(TranslationsEn root) : this._root = root, super.internal(root);
+
+	final TranslationsEn _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Mobile money payment';
+	@override String perPerson({required Object price}) => '${price} per person';
+	@override String get total => 'Total to pay';
+	@override String get phone => 'Mobile money number';
+	@override String get phoneHint => '+237 6 70 00 00 00';
+	@override String get phoneHelp => 'With the country code. The payment request arrives on this phone.';
+	@override String get operator => 'Operator';
+	@override String pay({required Object amount}) => 'Pay ${amount}';
+	@override String get waitingTitle => 'Confirm on your phone';
+	@override String waitingText({required Object amount}) => 'A request for ${amount} is arriving on your phone. Enter your mobile money PIN to approve it.';
+	@override String get waitingSlow => 'Still waiting. Your registration will be confirmed as soon as the payment arrives, even if you close this window.';
+	@override String get close => 'Close';
+	@override String get retry => 'Try again';
+	@override String get done => 'Payment received: you are registered!';
+	@override String get failedTitle => 'The payment did not go through';
+	@override String get paidNote => 'Registration paid. To cancel it, contact the organizers: they will refund you.';
+	@override String get peopleLocked => 'The number of people paid for can no longer change.';
+	@override late final _Translations$events$pay$failures$en failures = _Translations$events$pay$failures$en._(_root);
 }
 
 // Path: ministry.goals
@@ -2994,6 +3032,21 @@ class _Translations$reports$units$percent$en extends Translations$reports$units$
 	@override String count({required Object value}) => '${value}%';
 }
 
+// Path: events.pay.failures
+class _Translations$events$pay$failures$en extends Translations$events$pay$failures$fr {
+	_Translations$events$pay$failures$en._(TranslationsEn root) : this._root = root, super.internal(root);
+
+	final TranslationsEn _root; // ignore: unused_field
+
+	// Translations
+	@override String get insufficientBalance => 'This mobile money account does not have enough balance.';
+	@override String get payerNotFound => 'This number has no mobile money account with this operator.';
+	@override String get limitReached => 'This mobile money account has reached its limit.';
+	@override String get notApproved => 'The payment was not approved: PIN not entered or refused.';
+	@override String get unavailable => 'The operator is unavailable right now. Try again later.';
+	@override String get generic => 'The payment failed. Try again, or use another number.';
+}
+
 // Path: ministry.goals.crusade
 class _Translations$ministry$goals$crusade$en extends Translations$ministry$goals$crusade$fr {
 	_Translations$ministry$goals$crusade$en._(TranslationsEn root) : this._root = root, super.internal(root);
@@ -3238,6 +3291,14 @@ extension on TranslationsEn {
 			'errors.tooManyPeople' => 'Your lists are full (500 people at most).',
 			'errors.avatarInvalid' => 'This photo can\'t be used. Choose another one.',
 			'errors.reportsNotShared' => 'This member no longer shares their reports.',
+			'errors.invalidPhone' => 'This number is not recognized. Add the country code (+237…).',
+			'errors.providerUnavailable' => 'This operator does not accept this payment right now.',
+			'errors.amountOutOfBounds' => 'This amount is beyond what the operator accepts.',
+			'errors.alreadyPaid' => 'Your registration is already paid.',
+			'errors.paymentsDisabled' => 'Mobile money payment is not available yet.',
+			'errors.paymentRequired' => 'This event is paid: pay your registration by mobile money.',
+			'errors.paidRegistration' => 'Paid registration: contact the organizers to cancel it.',
+			'errors.eventHasPayments' => 'Members have paid: refund their payments first from the admin site.',
 			'validation.required' => 'This field is required',
 			'validation.passwordTooShort' => 'At least 6 characters',
 			'validation.invalidPhone' => 'Invalid phone number',
@@ -3707,6 +3768,8 @@ extension on TranslationsEn {
 			'members.usernameSaved' => ({required Object username}) => 'Username saved: @${username}',
 			'members.deleteAccount.button' => 'Delete my account',
 			'members.deleteAccount.title' => 'Delete my account',
+			_ => null,
+		} ?? switch (path) {
 			'members.deleteAccount.intro' => 'This is permanent. Your account and everything linked to it will be erased:',
 			'members.deleteAccount.itemProfile' => 'your profile, photo, username and password',
 			'members.deleteAccount.itemReports' => 'all your reports, items and goals',
@@ -3715,8 +3778,6 @@ extension on TranslationsEn {
 			'members.deleteAccount.itemPrayer' => 'your prayer lists, retreats and importunity topics',
 			'members.deleteAccount.kept' => 'Events, news, photos and prayer topics you published as an admin stay for the community, without your name.',
 			'members.deleteAccount.passwordHelp' => 'To confirm it\'s really you.',
-			_ => null,
-		} ?? switch (path) {
 			'members.deleteAccount.confirm' => 'Delete for good',
 			'members.deleteAccount.done' => 'Your account has been deleted. God bless you!',
 			'members.deleteAccount.wrongPassword' => 'Wrong password.',
@@ -3972,8 +4033,33 @@ extension on TranslationsEn {
 			'events.admin.photoDelete' => 'Delete this photo',
 			'events.admin.photoDeleted' => 'Photo deleted.',
 			'events.admin.confirmDelete' => 'Delete',
+			'events.admin.price' => 'Price per person (FCFA)',
+			'events.admin.priceHint' => 'Empty: free. Paid by mobile money when registering.',
 			'events.upcomingCount' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n, one: '${n} upcoming event', other: '${n} upcoming events', ), 
 			'events.slide' => ({required Object current, required Object total}) => 'Event ${current} of ${total}',
+			'events.pay.title' => 'Mobile money payment',
+			'events.pay.perPerson' => ({required Object price}) => '${price} per person',
+			'events.pay.total' => 'Total to pay',
+			'events.pay.phone' => 'Mobile money number',
+			'events.pay.phoneHint' => '+237 6 70 00 00 00',
+			'events.pay.phoneHelp' => 'With the country code. The payment request arrives on this phone.',
+			'events.pay.operator' => 'Operator',
+			'events.pay.pay' => ({required Object amount}) => 'Pay ${amount}',
+			'events.pay.waitingTitle' => 'Confirm on your phone',
+			'events.pay.waitingText' => ({required Object amount}) => 'A request for ${amount} is arriving on your phone. Enter your mobile money PIN to approve it.',
+			'events.pay.waitingSlow' => 'Still waiting. Your registration will be confirmed as soon as the payment arrives, even if you close this window.',
+			'events.pay.close' => 'Close',
+			'events.pay.retry' => 'Try again',
+			'events.pay.done' => 'Payment received: you are registered!',
+			'events.pay.failedTitle' => 'The payment did not go through',
+			'events.pay.paidNote' => 'Registration paid. To cancel it, contact the organizers: they will refund you.',
+			'events.pay.peopleLocked' => 'The number of people paid for can no longer change.',
+			'events.pay.failures.insufficientBalance' => 'This mobile money account does not have enough balance.',
+			'events.pay.failures.payerNotFound' => 'This number has no mobile money account with this operator.',
+			'events.pay.failures.limitReached' => 'This mobile money account has reached its limit.',
+			'events.pay.failures.notApproved' => 'The payment was not approved: PIN not entered or refused.',
+			'events.pay.failures.unavailable' => 'The operator is unavailable right now. Try again later.',
+			'events.pay.failures.generic' => 'The payment failed. Try again, or use another number.',
 			'notifications.title' => 'Notifications',
 			'notifications.channel' => 'Community announcements',
 			'notifications.empty' => 'No notifications yet',
@@ -4196,6 +4282,8 @@ extension on TranslationsEn {
 			'prayer.retreat.hints.hymn' => 'Open the hymns',
 			'prayer.session.point' => ({required Object n}) => 'Point ${n} of 15',
 			'prayer.session.remaining' => 'left',
+			_ => null,
+		} ?? switch (path) {
 			'prayer.session.paused' => 'paused',
 			'prayer.session.inYourList' => ({required Object list}) => 'In your list · ${list}',
 			'prayer.session.tomorrow' => 'Tomorrow, the next ones.',
@@ -4229,8 +4317,6 @@ extension on TranslationsEn {
 			'prayer.topics.all' => 'See all',
 			'prayer.topics.empty' => 'No topic at the moment. The leaders will publish the next ones here.',
 			'prayer.topics.categories.church' => 'Church',
-			_ => null,
-		} ?? switch (path) {
 			'prayer.topics.categories.nations' => 'Nations',
 			'prayer.topics.categories.sick' => 'The sick',
 			'prayer.topics.categories.event' => 'Event',
@@ -4710,6 +4796,8 @@ extension on TranslationsEn {
 			'biblePlan.catchUpShort' => 'catch up',
 			'biblePlan.chaptersRead' => ({required Object read, required Object total}) => '${read} of ${total} chapters',
 			'biblePlan.late' => 'Late',
+			_ => null,
+		} ?? switch (path) {
 			'biblePlan.upcoming' => 'Coming up',
 			'biblePlan.dayNumber' => ({required Object n}) => 'Day ${n}',
 			'biblePlan.finished' => 'Plan finished! You read it all.',
@@ -4743,8 +4831,6 @@ extension on TranslationsEn {
 			'teachings.removeDownload' => 'Remove from the phone',
 			'teachings.back15' => 'Back 15 seconds',
 			'teachings.forward15' => 'Forward 15 seconds',
-			_ => null,
-		} ?? switch (path) {
 			'teachings.speed' => ({required Object speed}) => 'Speed ${speed}',
 			'teachings.recordedOn' => ({required Object date}) => 'Message of ${date}',
 			'teachings.moreSubtitle' => 'Sermons and teachings to listen to',

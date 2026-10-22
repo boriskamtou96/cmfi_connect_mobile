@@ -38,7 +38,15 @@
     "ownerCannotLeave": "You created this topic: delete it instead of leaving it.",
     "tooManyPeople": "Your lists are full (500 people at most).",
     "avatarInvalid": "This photo can't be used. Choose another one.",
-    "reportsNotShared": "This member no longer shares their reports."
+    "reportsNotShared": "This member no longer shares their reports.",
+    "invalidPhone": "This number is not recognized. Add the country code (+237…).",
+    "providerUnavailable": "This operator does not accept this payment right now.",
+    "amountOutOfBounds": "This amount is beyond what the operator accepts.",
+    "alreadyPaid": "Your registration is already paid.",
+    "paymentsDisabled": "Mobile money payment is not available yet.",
+    "paymentRequired": "This event is paid: pay your registration by mobile money.",
+    "paidRegistration": "Paid registration: contact the organizers to cancel it.",
+    "eventHasPayments": "Members have paid: refund their payments first from the admin site."
   },
   "validation": {
     "required": "This field is required",
@@ -951,13 +959,42 @@
       "photosSending": "Sending the photos ({done}/{total})…",
       "photoDelete": "Delete this photo",
       "photoDeleted": "Photo deleted.",
-      "confirmDelete": "Delete"
+      "confirmDelete": "Delete",
+      "price": "Price per person (FCFA)",
+      "priceHint": "Empty: free. Paid by mobile money when registering."
     },
     "upcomingCount(plural, param=n)": {
       "one": "{n} upcoming event",
       "other": "{n} upcoming events"
     },
-    "slide": "Event {current} of {total}"
+    "slide": "Event {current} of {total}",
+    "pay": {
+      "title": "Mobile money payment",
+      "perPerson": "{price} per person",
+      "total": "Total to pay",
+      "phone": "Mobile money number",
+      "phoneHint": "+237 6 70 00 00 00",
+      "phoneHelp": "With the country code. The payment request arrives on this phone.",
+      "operator": "Operator",
+      "pay": "Pay {amount}",
+      "waitingTitle": "Confirm on your phone",
+      "waitingText": "A request for {amount} is arriving on your phone. Enter your mobile money PIN to approve it.",
+      "waitingSlow": "Still waiting. Your registration will be confirmed as soon as the payment arrives, even if you close this window.",
+      "close": "Close",
+      "retry": "Try again",
+      "done": "Payment received: you are registered!",
+      "failedTitle": "The payment did not go through",
+      "paidNote": "Registration paid. To cancel it, contact the organizers: they will refund you.",
+      "peopleLocked": "The number of people paid for can no longer change.",
+      "failures": {
+        "insufficientBalance": "This mobile money account does not have enough balance.",
+        "payerNotFound": "This number has no mobile money account with this operator.",
+        "limitReached": "This mobile money account has reached its limit.",
+        "notApproved": "The payment was not approved: PIN not entered or refused.",
+        "unavailable": "The operator is unavailable right now. Try again later.",
+        "generic": "The payment failed. Try again, or use another number."
+      }
+    }
   },
   "notifications": {
     "title": "Notifications",

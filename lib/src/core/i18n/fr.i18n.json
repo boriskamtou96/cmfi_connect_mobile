@@ -38,7 +38,15 @@
     "ownerCannotLeave": "Tu as créé ce sujet : supprime-le plutôt que de le quitter.",
     "tooManyPeople": "Tes listes sont pleines (500 personnes au plus).",
     "avatarInvalid": "Cette photo ne peut pas être utilisée. Choisis-en une autre.",
-    "reportsNotShared": "Ce membre ne partage plus ses comptes rendus."
+    "reportsNotShared": "Ce membre ne partage plus ses comptes rendus.",
+    "invalidPhone": "Ce numéro n'est pas reconnu. Mets l'indicatif du pays (+237…).",
+    "providerUnavailable": "Cet opérateur n'accepte pas ce paiement pour le moment.",
+    "amountOutOfBounds": "Ce montant dépasse ce que l'opérateur accepte.",
+    "alreadyPaid": "Ton inscription est déjà payée.",
+    "paymentsDisabled": "Le paiement mobile money n'est pas encore disponible.",
+    "paymentRequired": "Cet évènement est payant : règle ton inscription par mobile money.",
+    "paidRegistration": "Inscription payée : contacte les organisateurs pour l'annuler.",
+    "eventHasPayments": "Des membres ont payé : rembourse d'abord leurs paiements depuis le site d'administration."
   },
   "validation": {
     "required": "Ce champ est obligatoire",
@@ -950,13 +958,42 @@
       "photosSending": "Envoi des photos ({done}/{total})…",
       "photoDelete": "Supprimer cette photo",
       "photoDeleted": "Photo supprimée.",
-      "confirmDelete": "Supprimer"
+      "confirmDelete": "Supprimer",
+      "price": "Prix par personne (FCFA)",
+      "priceHint": "Vide : gratuit. Payé par mobile money à l'inscription."
     },
     "upcomingCount(plural, param=n)": {
       "one": "{n} évènement à venir",
       "other": "{n} évènements à venir"
     },
-    "slide": "Évènement {current} sur {total}"
+    "slide": "Évènement {current} sur {total}",
+    "pay": {
+      "title": "Paiement mobile money",
+      "perPerson": "{price} par personne",
+      "total": "Total à payer",
+      "phone": "Numéro mobile money",
+      "phoneHint": "+237 6 70 00 00 00",
+      "phoneHelp": "Avec l'indicatif du pays. La demande de paiement arrive sur ce téléphone.",
+      "operator": "Opérateur",
+      "pay": "Payer {amount}",
+      "waitingTitle": "Confirme sur ton téléphone",
+      "waitingText": "Une demande de {amount} arrive sur ton téléphone. Saisis ton code PIN mobile money pour valider.",
+      "waitingSlow": "Toujours en attente. Ton inscription sera confirmée dès que le paiement arrive, même si tu fermes cette fenêtre.",
+      "close": "Fermer",
+      "retry": "Réessayer",
+      "done": "Paiement reçu : tu es inscrit !",
+      "failedTitle": "Le paiement n'a pas abouti",
+      "paidNote": "Inscription payée. Pour l'annuler, contacte les organisateurs : ils te rembourseront.",
+      "peopleLocked": "Le nombre de personnes payé ne change plus.",
+      "failures": {
+        "insufficientBalance": "Le solde de ce compte mobile money est insuffisant.",
+        "payerNotFound": "Ce numéro n'a pas de compte mobile money chez cet opérateur.",
+        "limitReached": "La limite de ce compte mobile money est atteinte.",
+        "notApproved": "Le paiement n'a pas été validé : code PIN non saisi ou refusé.",
+        "unavailable": "L'opérateur est indisponible pour le moment. Réessaie plus tard.",
+        "generic": "Le paiement a échoué. Réessaie, ou utilise un autre numéro."
+      }
+    }
   },
   "notifications": {
     "title": "Notifications",

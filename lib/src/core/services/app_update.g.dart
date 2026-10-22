@@ -131,7 +131,7 @@ final class AppUpdateProvider
   AppUpdate create() => AppUpdate();
 }
 
-String _$appUpdateHash() => r'86ca3d3f2a65c912d30d06ddb9de310ffd4e852e';
+String _$appUpdateHash() => r'dd2a0a691dc6b01186aba2bad33408be5f350e74';
 
 /// Where this phone stands, read at launch, again when the app comes back
 /// and as soon as the rules change. AppUpdateGate locks the app when the

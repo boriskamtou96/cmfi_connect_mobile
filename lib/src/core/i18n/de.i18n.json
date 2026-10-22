@@ -38,7 +38,15 @@
     "ownerCannotLeave": "Du hast dieses Anliegen erstellt: Lösche es, statt es zu verlassen.",
     "tooManyPeople": "Deine Listen sind voll (höchstens 500 Personen).",
     "avatarInvalid": "Dieses Foto kann nicht verwendet werden. Wähle ein anderes.",
-    "reportsNotShared": "Dieses Mitglied teilt seine Berichte nicht mehr."
+    "reportsNotShared": "Dieses Mitglied teilt seine Berichte nicht mehr.",
+    "invalidPhone": "Diese Nummer wird nicht erkannt. Füge die Ländervorwahl hinzu (+237…).",
+    "providerUnavailable": "Dieser Anbieter nimmt diese Zahlung gerade nicht an.",
+    "amountOutOfBounds": "Dieser Betrag übersteigt, was der Anbieter annimmt.",
+    "alreadyPaid": "Deine Anmeldung ist bereits bezahlt.",
+    "paymentsDisabled": "Die Mobile-Money-Zahlung ist noch nicht verfügbar.",
+    "paymentRequired": "Diese Veranstaltung ist kostenpflichtig: bezahle deine Anmeldung per Mobile Money.",
+    "paidRegistration": "Bezahlte Anmeldung: wende dich zum Stornieren an die Veranstalter.",
+    "eventHasPayments": "Mitglieder haben bezahlt: erstatte zuerst ihre Zahlungen auf der Admin-Seite."
   },
   "validation": {
     "required": "Dieses Feld ist erforderlich",
@@ -950,13 +958,42 @@
       "photosSending": "Fotos werden gesendet ({done}/{total}) …",
       "photoDelete": "Dieses Foto löschen",
       "photoDeleted": "Foto gelöscht.",
-      "confirmDelete": "Löschen"
+      "confirmDelete": "Löschen",
+      "price": "Preis pro Person (FCFA)",
+      "priceHint": "Leer: kostenlos. Bei der Anmeldung per Mobile Money bezahlt."
     },
     "upcomingCount(plural, param=n)": {
       "one": "{n} bevorstehende Veranstaltung",
       "other": "{n} bevorstehende Veranstaltungen"
     },
-    "slide": "Veranstaltung {current} von {total}"
+    "slide": "Veranstaltung {current} von {total}",
+    "pay": {
+      "title": "Mobile-Money-Zahlung",
+      "perPerson": "{price} pro Person",
+      "total": "Zu zahlender Betrag",
+      "phone": "Mobile-Money-Nummer",
+      "phoneHint": "+237 6 70 00 00 00",
+      "phoneHelp": "Mit Ländervorwahl. Die Zahlungsanfrage kommt auf diesem Telefon an.",
+      "operator": "Anbieter",
+      "pay": "{amount} bezahlen",
+      "waitingTitle": "Bestätige auf deinem Telefon",
+      "waitingText": "Eine Anfrage über {amount} kommt auf deinem Telefon an. Gib deine Mobile-Money-PIN ein, um sie zu bestätigen.",
+      "waitingSlow": "Noch ausstehend. Deine Anmeldung wird bestätigt, sobald die Zahlung eingeht, auch wenn du dieses Fenster schließt.",
+      "close": "Schließen",
+      "retry": "Erneut versuchen",
+      "done": "Zahlung erhalten: du bist angemeldet!",
+      "failedTitle": "Die Zahlung ist nicht durchgegangen",
+      "paidNote": "Anmeldung bezahlt. Zum Stornieren wende dich an die Veranstalter: sie erstatten dir den Betrag.",
+      "peopleLocked": "Die bezahlte Personenzahl lässt sich nicht mehr ändern.",
+      "failures": {
+        "insufficientBalance": "Das Guthaben dieses Mobile-Money-Kontos reicht nicht aus.",
+        "payerNotFound": "Diese Nummer hat bei diesem Anbieter kein Mobile-Money-Konto.",
+        "limitReached": "Dieses Mobile-Money-Konto hat sein Limit erreicht.",
+        "notApproved": "Die Zahlung wurde nicht bestätigt: PIN nicht eingegeben oder abgelehnt.",
+        "unavailable": "Der Anbieter ist gerade nicht verfügbar. Versuche es später erneut.",
+        "generic": "Die Zahlung ist fehlgeschlagen. Versuche es erneut oder nutze eine andere Nummer."
+      }
+    }
   },
   "notifications": {
     "title": "Mitteilungen",

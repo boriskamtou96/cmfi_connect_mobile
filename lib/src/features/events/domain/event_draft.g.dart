@@ -31,6 +31,8 @@ _EventDraft _$EventDraftFromJson(Map<String, dynamic> json) => _EventDraft(
   asksLodging: json['asks_lodging'] as bool? ?? false,
   asksDepartureCity: json['asks_departure_city'] as bool? ?? false,
   feeNote: json['fee_note'] as String? ?? '',
+  priceAmount: (json['price_amount'] as num?)?.toInt(),
+  priceCurrency: json['price_currency'] as String? ?? 'XAF',
   status:
       $enumDecodeNullable(_$EventStatusEnumMap, json['status']) ??
       EventStatus.draft,
@@ -62,6 +64,8 @@ Map<String, dynamic> _$EventDraftToJson(_EventDraft instance) =>
       'asks_lodging': instance.asksLodging,
       'asks_departure_city': instance.asksDepartureCity,
       'fee_note': instance.feeNote,
+      'price_amount': ?instance.priceAmount,
+      'price_currency': instance.priceCurrency,
       'status': _$EventStatusEnumMap[instance.status]!,
     };
 

@@ -124,6 +124,14 @@ Map<String, dynamic> _$EventPhotoToJson(_EventPhoto instance) =>
       'caption': instance.caption,
     };
 
+_EventPrice _$EventPriceFromJson(Map<String, dynamic> json) => _EventPrice(
+  amount: (json['amount'] as num).toInt(),
+  currency: json['currency'] as String? ?? 'XAF',
+);
+
+Map<String, dynamic> _$EventPriceToJson(_EventPrice instance) =>
+    <String, dynamic>{'amount': instance.amount, 'currency': instance.currency};
+
 _MyRegistration _$MyRegistrationFromJson(Map<String, dynamic> json) =>
     _MyRegistration(
       people: (json['people'] as num?)?.toInt() ?? 1,
@@ -132,6 +140,7 @@ _MyRegistration _$MyRegistrationFromJson(Map<String, dynamic> json) =>
       updatedAt: json['updated_at'] == null
           ? null
           : DateTime.parse(json['updated_at'] as String),
+      paid: json['paid'] as bool? ?? false,
     );
 
 Map<String, dynamic> _$MyRegistrationToJson(_MyRegistration instance) =>
@@ -140,6 +149,7 @@ Map<String, dynamic> _$MyRegistrationToJson(_MyRegistration instance) =>
       'needs_lodging': instance.needsLodging,
       'departure_city': instance.departureCity,
       'updated_at': ?instance.updatedAt?.toIso8601String(),
+      'paid': instance.paid,
     };
 
 _EventEdition _$EventEditionFromJson(Map<String, dynamic> json) =>
@@ -191,6 +201,9 @@ _CommunityEvent _$CommunityEventFromJson(Map<String, dynamic> json) =>
           : RegistrationSummary.fromJson(
               json['registration'] as Map<String, dynamic>,
             ),
+      price: json['price'] == null
+          ? null
+          : EventPrice.fromJson(json['price'] as Map<String, dynamic>),
       themeVerse: json['theme_verse'] as String? ?? '',
       description: json['description'] as String? ?? '',
       address: json['address'] as String? ?? '',
@@ -248,6 +261,7 @@ Map<String, dynamic> _$CommunityEventToJson(
   'poster': ?instance.poster?.toJson(),
   'status': _$EventStatusEnumMap[instance.status]!,
   'registration': instance.registration.toJson(),
+  'price': ?instance.price?.toJson(),
   'theme_verse': instance.themeVerse,
   'description': instance.description,
   'address': instance.address,

@@ -146,6 +146,14 @@ class _Translations$errors$zh extends Translations$errors$fr {
 	@override String get tooManyPeople => '你的名单已满（最多 500 人）。';
 	@override String get avatarInvalid => '这张照片无法使用，请选择另一张。';
 	@override String get reportsNotShared => '该成员不再分享其报告。';
+	@override String get invalidPhone => '无法识别此号码。请加上国家区号（+237…）。';
+	@override String get providerUnavailable => '该运营商目前不接受此笔付款。';
+	@override String get amountOutOfBounds => '此金额超出运营商可接受的范围。';
+	@override String get alreadyPaid => '你的报名已付款。';
+	@override String get paymentsDisabled => '移动钱包付款尚未开放。';
+	@override String get paymentRequired => '此活动需付费：请用移动钱包支付报名费。';
+	@override String get paidRegistration => '报名已付款：如需取消请联系组织者。';
+	@override String get eventHasPayments => '已有成员付款：请先在管理网站为他们退款。';
 }
 
 // Path: validation
@@ -672,6 +680,7 @@ class _Translations$events$zh extends Translations$events$fr {
 		other: '${n} 个即将举行的活动',
 	);
 	@override String slide({required Object current, required Object total}) => '第 ${current} 个活动，共 ${total} 个';
+	@override late final _Translations$events$pay$zh pay = _Translations$events$pay$zh._(_root);
 }
 
 // Path: notifications
@@ -2460,6 +2469,35 @@ class _Translations$events$admin$zh extends Translations$events$admin$fr {
 	@override String get photoDelete => '删除此照片';
 	@override String get photoDeleted => '照片已删除。';
 	@override String get confirmDelete => '删除';
+	@override String get price => '每人价格（FCFA）';
+	@override String get priceHint => '留空：免费。报名时用移动钱包支付。';
+}
+
+// Path: events.pay
+class _Translations$events$pay$zh extends Translations$events$pay$fr {
+	_Translations$events$pay$zh._(TranslationsZh root) : this._root = root, super.internal(root);
+
+	final TranslationsZh _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => '移动钱包付款';
+	@override String perPerson({required Object price}) => '每人 ${price}';
+	@override String get total => '应付总额';
+	@override String get phone => '移动钱包号码';
+	@override String get phoneHint => '+237 6 70 00 00 00';
+	@override String get phoneHelp => '请带上国家区号。付款请求会发送到这部手机。';
+	@override String get operator => '运营商';
+	@override String pay({required Object amount}) => '支付 ${amount}';
+	@override String get waitingTitle => '请在手机上确认';
+	@override String waitingText({required Object amount}) => '一笔 ${amount} 的付款请求正发送到你的手机。输入移动钱包 PIN 码即可确认。';
+	@override String get waitingSlow => '仍在等待。付款一到账，你的报名就会确认，即使关闭此窗口也一样。';
+	@override String get close => '关闭';
+	@override String get retry => '重试';
+	@override String get done => '已收到付款：你已报名！';
+	@override String get failedTitle => '付款未成功';
+	@override String get paidNote => '报名已付款。如需取消，请联系组织者，他们会为你退款。';
+	@override String get peopleLocked => '已付款的人数不能再更改。';
+	@override late final _Translations$events$pay$failures$zh failures = _Translations$events$pay$failures$zh._(_root);
 }
 
 // Path: ministry.goals
@@ -2911,6 +2949,21 @@ class _Translations$reports$units$percent$zh extends Translations$reports$units$
 	@override String count({required Object value}) => '${value}%';
 }
 
+// Path: events.pay.failures
+class _Translations$events$pay$failures$zh extends Translations$events$pay$failures$fr {
+	_Translations$events$pay$failures$zh._(TranslationsZh root) : this._root = root, super.internal(root);
+
+	final TranslationsZh _root; // ignore: unused_field
+
+	// Translations
+	@override String get insufficientBalance => '该移动钱包余额不足。';
+	@override String get payerNotFound => '该号码在此运营商没有移动钱包账户。';
+	@override String get limitReached => '该移动钱包已达到限额。';
+	@override String get notApproved => '付款未确认：未输入 PIN 码或被拒绝。';
+	@override String get unavailable => '运营商暂时不可用，请稍后再试。';
+	@override String get generic => '付款失败。请重试，或换一个号码。';
+}
+
 // Path: ministry.goals.crusade
 class _Translations$ministry$goals$crusade$zh extends Translations$ministry$goals$crusade$fr {
 	_Translations$ministry$goals$crusade$zh._(TranslationsZh root) : this._root = root, super.internal(root);
@@ -3153,6 +3206,14 @@ extension on TranslationsZh {
 			'errors.tooManyPeople' => '你的名单已满（最多 500 人）。',
 			'errors.avatarInvalid' => '这张照片无法使用，请选择另一张。',
 			'errors.reportsNotShared' => '该成员不再分享其报告。',
+			'errors.invalidPhone' => '无法识别此号码。请加上国家区号（+237…）。',
+			'errors.providerUnavailable' => '该运营商目前不接受此笔付款。',
+			'errors.amountOutOfBounds' => '此金额超出运营商可接受的范围。',
+			'errors.alreadyPaid' => '你的报名已付款。',
+			'errors.paymentsDisabled' => '移动钱包付款尚未开放。',
+			'errors.paymentRequired' => '此活动需付费：请用移动钱包支付报名费。',
+			'errors.paidRegistration' => '报名已付款：如需取消请联系组织者。',
+			'errors.eventHasPayments' => '已有成员付款：请先在管理网站为他们退款。',
 			'validation.required' => '此项为必填',
 			'validation.passwordTooShort' => '至少 6 个字符',
 			'validation.invalidPhone' => '手机号无效',
@@ -3622,6 +3683,8 @@ extension on TranslationsZh {
 			'members.usernameSaved' => ({required Object username}) => '用户名已保存：@${username}',
 			'members.deleteAccount.button' => '删除我的账户',
 			'members.deleteAccount.title' => '删除我的账户',
+			_ => null,
+		} ?? switch (path) {
 			'members.deleteAccount.intro' => '此操作无法撤销。你的账户及其相关的一切都将被删除：',
 			'members.deleteAccount.itemProfile' => '你的个人资料、头像、用户名和密码',
 			'members.deleteAccount.itemReports' => '你所有的汇报、项目和目标',
@@ -3630,8 +3693,6 @@ extension on TranslationsZh {
 			'members.deleteAccount.itemPrayer' => '你的祷告名单、祷告记录和恒切祷告事项',
 			'members.deleteAccount.kept' => '你作为管理员发布的活动、动态、照片和代祷事项会继续留给团契，但不再显示你的名字。',
 			'members.deleteAccount.passwordHelp' => '用于确认是你本人。',
-			_ => null,
-		} ?? switch (path) {
 			'members.deleteAccount.confirm' => '永久删除',
 			'members.deleteAccount.done' => '你的账户已删除。愿神赐福给你！',
 			'members.deleteAccount.wrongPassword' => '密码错误。',
@@ -3887,8 +3948,33 @@ extension on TranslationsZh {
 			'events.admin.photoDelete' => '删除此照片',
 			'events.admin.photoDeleted' => '照片已删除。',
 			'events.admin.confirmDelete' => '删除',
+			'events.admin.price' => '每人价格（FCFA）',
+			'events.admin.priceHint' => '留空：免费。报名时用移动钱包支付。',
 			'events.upcomingCount' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n, other: '${n} 个即将举行的活动', ), 
 			'events.slide' => ({required Object current, required Object total}) => '第 ${current} 个活动，共 ${total} 个',
+			'events.pay.title' => '移动钱包付款',
+			'events.pay.perPerson' => ({required Object price}) => '每人 ${price}',
+			'events.pay.total' => '应付总额',
+			'events.pay.phone' => '移动钱包号码',
+			'events.pay.phoneHint' => '+237 6 70 00 00 00',
+			'events.pay.phoneHelp' => '请带上国家区号。付款请求会发送到这部手机。',
+			'events.pay.operator' => '运营商',
+			'events.pay.pay' => ({required Object amount}) => '支付 ${amount}',
+			'events.pay.waitingTitle' => '请在手机上确认',
+			'events.pay.waitingText' => ({required Object amount}) => '一笔 ${amount} 的付款请求正发送到你的手机。输入移动钱包 PIN 码即可确认。',
+			'events.pay.waitingSlow' => '仍在等待。付款一到账，你的报名就会确认，即使关闭此窗口也一样。',
+			'events.pay.close' => '关闭',
+			'events.pay.retry' => '重试',
+			'events.pay.done' => '已收到付款：你已报名！',
+			'events.pay.failedTitle' => '付款未成功',
+			'events.pay.paidNote' => '报名已付款。如需取消，请联系组织者，他们会为你退款。',
+			'events.pay.peopleLocked' => '已付款的人数不能再更改。',
+			'events.pay.failures.insufficientBalance' => '该移动钱包余额不足。',
+			'events.pay.failures.payerNotFound' => '该号码在此运营商没有移动钱包账户。',
+			'events.pay.failures.limitReached' => '该移动钱包已达到限额。',
+			'events.pay.failures.notApproved' => '付款未确认：未输入 PIN 码或被拒绝。',
+			'events.pay.failures.unavailable' => '运营商暂时不可用，请稍后再试。',
+			'events.pay.failures.generic' => '付款失败。请重试，或换一个号码。',
 			'notifications.title' => '通知',
 			'notifications.channel' => '团契公告',
 			'notifications.empty' => '暂无通知',
@@ -4111,6 +4197,8 @@ extension on TranslationsZh {
 			'prayer.retreat.hints.hymn' => '打开诗歌',
 			'prayer.session.point' => ({required Object n}) => '第 ${n} 点，共 15 点',
 			'prayer.session.remaining' => '剩余',
+			_ => null,
+		} ?? switch (path) {
 			'prayer.session.paused' => '已暂停',
 			'prayer.session.inYourList' => ({required Object list}) => '你的名单 · ${list}',
 			'prayer.session.tomorrow' => '明天为接下来的人祷告。',
@@ -4144,8 +4232,6 @@ extension on TranslationsZh {
 			'prayer.topics.all' => '查看全部',
 			'prayer.topics.empty' => '目前没有代祷事项。带领者会在这里发布新的事项。',
 			'prayer.topics.categories.church' => '教会',
-			_ => null,
-		} ?? switch (path) {
 			'prayer.topics.categories.nations' => '列国',
 			'prayer.topics.categories.sick' => '病人',
 			'prayer.topics.categories.event' => '活动',
@@ -4625,6 +4711,8 @@ extension on TranslationsZh {
 			'biblePlan.catchUpShort' => '补读',
 			'biblePlan.chaptersRead' => ({required Object read, required Object total}) => '已读 ${read} / ${total} 章',
 			'biblePlan.late' => '落后',
+			_ => null,
+		} ?? switch (path) {
 			'biblePlan.upcoming' => '接下来',
 			'biblePlan.dayNumber' => ({required Object n}) => '第 ${n} 天',
 			'biblePlan.finished' => '计划完成！你全部读完了。',
@@ -4658,8 +4746,6 @@ extension on TranslationsZh {
 			'teachings.removeDownload' => '从手机移除',
 			'teachings.back15' => '后退 15 秒',
 			'teachings.forward15' => '前进 15 秒',
-			_ => null,
-		} ?? switch (path) {
 			'teachings.speed' => ({required Object speed}) => '速度 ${speed}',
 			'teachings.recordedOn' => ({required Object date}) => '${date} 的信息',
 			'teachings.moreSubtitle' => '可收听的讲道与教导',

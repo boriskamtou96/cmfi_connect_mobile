@@ -43,6 +43,7 @@ import 'package:cmfi_connect/src/features/hymns/infrastructure/hymns_api.dart';
 import 'package:cmfi_connect/src/features/members/infrastructure/members_api.dart';
 import 'package:cmfi_connect/src/features/ministry/infrastructure/ministry_api.dart';
 import 'package:cmfi_connect/src/features/notifications/infrastructure/notifications_api.dart';
+import 'package:cmfi_connect/src/features/payments/infrastructure/payments_api.dart';
 import 'package:cmfi_connect/src/features/prayer/infrastructure/prayer_api.dart';
 import 'package:cmfi_connect/src/features/profile/application/photo_decoding.dart';
 import 'package:cmfi_connect/src/features/profile/domain/profile.dart';
@@ -116,6 +117,7 @@ class TestApp {
     required this.lockScreen,
     required this.updateRules,
     required this.installer,
+    required this.paymentsApi,
   });
 
   final ProviderContainer container;
@@ -172,6 +174,9 @@ class TestApp {
   /// The update rules of Firebase Remote Config, and the version installed.
   final FakeUpdateRules updateRules;
   final FakeAppInstaller installer;
+
+  /// The mobile money payments (pawaPay through the server).
+  final FakePaymentsApi paymentsApi;
 }
 
 Future<TestApp> pumpApp(
@@ -212,6 +217,7 @@ Future<TestApp> pumpApp(
   FakeBibleApi? bibleApi,
   FakeUpdateRules? updateRules,
   FakeAppInstaller? installer,
+  FakePaymentsApi? paymentsApi,
   // the pictures picked for a profile photo, decoded beforehand
   PhotoDecoder? photoDecoder,
   // v1 offers Premium to everyone (premiumForEveryoneProvider); the tests
@@ -280,6 +286,7 @@ Future<TestApp> pumpApp(
   final sendings = reportSendingsApi ?? FakeReportSendingsApi();
   final rules = updateRules ?? FakeUpdateRules();
   final appInstaller = installer ?? FakeAppInstaller();
+  final payments = (paymentsApi ?? FakePaymentsApi())..events ??= events;
 
   final container = ProviderContainer(
     overrides: [
@@ -338,6 +345,7 @@ Future<TestApp> pumpApp(
       crashReportingProvider.overrideWithValue(const NoCrashReporting()),
       updateRulesSourceProvider.overrideWithValue(rules),
       appInstallerProvider.overrideWithValue(appInstaller),
+      paymentsApiProvider.overrideWithValue(payments),
       phoneVerificationProvider.overrideWithValue(
         phoneVerification ?? FakePhoneVerification(),
       ),
@@ -412,6 +420,7 @@ Future<TestApp> pumpApp(
     lockScreen: lockScreen,
     updateRules: rules,
     installer: appInstaller,
+    paymentsApi: payments,
   );
 }
 

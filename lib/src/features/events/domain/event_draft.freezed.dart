@@ -15,7 +15,8 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$EventDraft {
 
- String get title; String get theme; String get themeVerse; String get description;@UtcInstantConverter() DateTime get startsAt;@UtcInstantConverter() DateTime get endsAt; String get timeZone; String get venue; String get address; String get city; String get country; String get mapsUrl; String get contactName; String get contactPhone; int? get posterId; bool get registrationOpen;@UtcInstantConverter() DateTime? get registrationDeadline; int? get capacity; bool get asksLodging; bool get asksDepartureCity; String get feeNote; EventStatus get status;
+ String get title; String get theme; String get themeVerse; String get description;@UtcInstantConverter() DateTime get startsAt;@UtcInstantConverter() DateTime get endsAt; String get timeZone; String get venue; String get address; String get city; String get country; String get mapsUrl; String get contactName; String get contactPhone; int? get posterId; bool get registrationOpen;@UtcInstantConverter() DateTime? get registrationDeadline; int? get capacity; bool get asksLodging; bool get asksDepartureCity; String get feeNote;/// Per person, in whole XAF; null for a free event.
+ int? get priceAmount; String get priceCurrency; EventStatus get status;
 /// Create a copy of EventDraft
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -28,16 +29,16 @@ $EventDraftCopyWith<EventDraft> get copyWith => _$EventDraftCopyWithImpl<EventDr
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is EventDraft&&(identical(other.title, title) || other.title == title)&&(identical(other.theme, theme) || other.theme == theme)&&(identical(other.themeVerse, themeVerse) || other.themeVerse == themeVerse)&&(identical(other.description, description) || other.description == description)&&(identical(other.startsAt, startsAt) || other.startsAt == startsAt)&&(identical(other.endsAt, endsAt) || other.endsAt == endsAt)&&(identical(other.timeZone, timeZone) || other.timeZone == timeZone)&&(identical(other.venue, venue) || other.venue == venue)&&(identical(other.address, address) || other.address == address)&&(identical(other.city, city) || other.city == city)&&(identical(other.country, country) || other.country == country)&&(identical(other.mapsUrl, mapsUrl) || other.mapsUrl == mapsUrl)&&(identical(other.contactName, contactName) || other.contactName == contactName)&&(identical(other.contactPhone, contactPhone) || other.contactPhone == contactPhone)&&(identical(other.posterId, posterId) || other.posterId == posterId)&&(identical(other.registrationOpen, registrationOpen) || other.registrationOpen == registrationOpen)&&(identical(other.registrationDeadline, registrationDeadline) || other.registrationDeadline == registrationDeadline)&&(identical(other.capacity, capacity) || other.capacity == capacity)&&(identical(other.asksLodging, asksLodging) || other.asksLodging == asksLodging)&&(identical(other.asksDepartureCity, asksDepartureCity) || other.asksDepartureCity == asksDepartureCity)&&(identical(other.feeNote, feeNote) || other.feeNote == feeNote)&&(identical(other.status, status) || other.status == status));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is EventDraft&&(identical(other.title, title) || other.title == title)&&(identical(other.theme, theme) || other.theme == theme)&&(identical(other.themeVerse, themeVerse) || other.themeVerse == themeVerse)&&(identical(other.description, description) || other.description == description)&&(identical(other.startsAt, startsAt) || other.startsAt == startsAt)&&(identical(other.endsAt, endsAt) || other.endsAt == endsAt)&&(identical(other.timeZone, timeZone) || other.timeZone == timeZone)&&(identical(other.venue, venue) || other.venue == venue)&&(identical(other.address, address) || other.address == address)&&(identical(other.city, city) || other.city == city)&&(identical(other.country, country) || other.country == country)&&(identical(other.mapsUrl, mapsUrl) || other.mapsUrl == mapsUrl)&&(identical(other.contactName, contactName) || other.contactName == contactName)&&(identical(other.contactPhone, contactPhone) || other.contactPhone == contactPhone)&&(identical(other.posterId, posterId) || other.posterId == posterId)&&(identical(other.registrationOpen, registrationOpen) || other.registrationOpen == registrationOpen)&&(identical(other.registrationDeadline, registrationDeadline) || other.registrationDeadline == registrationDeadline)&&(identical(other.capacity, capacity) || other.capacity == capacity)&&(identical(other.asksLodging, asksLodging) || other.asksLodging == asksLodging)&&(identical(other.asksDepartureCity, asksDepartureCity) || other.asksDepartureCity == asksDepartureCity)&&(identical(other.feeNote, feeNote) || other.feeNote == feeNote)&&(identical(other.priceAmount, priceAmount) || other.priceAmount == priceAmount)&&(identical(other.priceCurrency, priceCurrency) || other.priceCurrency == priceCurrency)&&(identical(other.status, status) || other.status == status));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hashAll([runtimeType,title,theme,themeVerse,description,startsAt,endsAt,timeZone,venue,address,city,country,mapsUrl,contactName,contactPhone,posterId,registrationOpen,registrationDeadline,capacity,asksLodging,asksDepartureCity,feeNote,status]);
+int get hashCode => Object.hashAll([runtimeType,title,theme,themeVerse,description,startsAt,endsAt,timeZone,venue,address,city,country,mapsUrl,contactName,contactPhone,posterId,registrationOpen,registrationDeadline,capacity,asksLodging,asksDepartureCity,feeNote,priceAmount,priceCurrency,status]);
 
 @override
 String toString() {
-  return 'EventDraft(title: $title, theme: $theme, themeVerse: $themeVerse, description: $description, startsAt: $startsAt, endsAt: $endsAt, timeZone: $timeZone, venue: $venue, address: $address, city: $city, country: $country, mapsUrl: $mapsUrl, contactName: $contactName, contactPhone: $contactPhone, posterId: $posterId, registrationOpen: $registrationOpen, registrationDeadline: $registrationDeadline, capacity: $capacity, asksLodging: $asksLodging, asksDepartureCity: $asksDepartureCity, feeNote: $feeNote, status: $status)';
+  return 'EventDraft(title: $title, theme: $theme, themeVerse: $themeVerse, description: $description, startsAt: $startsAt, endsAt: $endsAt, timeZone: $timeZone, venue: $venue, address: $address, city: $city, country: $country, mapsUrl: $mapsUrl, contactName: $contactName, contactPhone: $contactPhone, posterId: $posterId, registrationOpen: $registrationOpen, registrationDeadline: $registrationDeadline, capacity: $capacity, asksLodging: $asksLodging, asksDepartureCity: $asksDepartureCity, feeNote: $feeNote, priceAmount: $priceAmount, priceCurrency: $priceCurrency, status: $status)';
 }
 
 
@@ -48,7 +49,7 @@ abstract mixin class $EventDraftCopyWith<$Res>  {
   factory $EventDraftCopyWith(EventDraft value, $Res Function(EventDraft) _then) = _$EventDraftCopyWithImpl;
 @useResult
 $Res call({
- String title, String theme, String themeVerse, String description,@UtcInstantConverter() DateTime startsAt,@UtcInstantConverter() DateTime endsAt, String timeZone, String venue, String address, String city, String country, String mapsUrl, String contactName, String contactPhone, int? posterId, bool registrationOpen,@UtcInstantConverter() DateTime? registrationDeadline, int? capacity, bool asksLodging, bool asksDepartureCity, String feeNote, EventStatus status
+ String title, String theme, String themeVerse, String description,@UtcInstantConverter() DateTime startsAt,@UtcInstantConverter() DateTime endsAt, String timeZone, String venue, String address, String city, String country, String mapsUrl, String contactName, String contactPhone, int? posterId, bool registrationOpen,@UtcInstantConverter() DateTime? registrationDeadline, int? capacity, bool asksLodging, bool asksDepartureCity, String feeNote, int? priceAmount, String priceCurrency, EventStatus status
 });
 
 
@@ -65,7 +66,7 @@ class _$EventDraftCopyWithImpl<$Res>
 
 /// Create a copy of EventDraft
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? title = null,Object? theme = null,Object? themeVerse = null,Object? description = null,Object? startsAt = null,Object? endsAt = null,Object? timeZone = null,Object? venue = null,Object? address = null,Object? city = null,Object? country = null,Object? mapsUrl = null,Object? contactName = null,Object? contactPhone = null,Object? posterId = freezed,Object? registrationOpen = null,Object? registrationDeadline = freezed,Object? capacity = freezed,Object? asksLodging = null,Object? asksDepartureCity = null,Object? feeNote = null,Object? status = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? title = null,Object? theme = null,Object? themeVerse = null,Object? description = null,Object? startsAt = null,Object? endsAt = null,Object? timeZone = null,Object? venue = null,Object? address = null,Object? city = null,Object? country = null,Object? mapsUrl = null,Object? contactName = null,Object? contactPhone = null,Object? posterId = freezed,Object? registrationOpen = null,Object? registrationDeadline = freezed,Object? capacity = freezed,Object? asksLodging = null,Object? asksDepartureCity = null,Object? feeNote = null,Object? priceAmount = freezed,Object? priceCurrency = null,Object? status = null,}) {
   return _then(_self.copyWith(
 title: null == title ? _self.title : title // ignore: cast_nullable_to_non_nullable
 as String,theme: null == theme ? _self.theme : theme // ignore: cast_nullable_to_non_nullable
@@ -88,6 +89,8 @@ as DateTime?,capacity: freezed == capacity ? _self.capacity : capacity // ignore
 as int?,asksLodging: null == asksLodging ? _self.asksLodging : asksLodging // ignore: cast_nullable_to_non_nullable
 as bool,asksDepartureCity: null == asksDepartureCity ? _self.asksDepartureCity : asksDepartureCity // ignore: cast_nullable_to_non_nullable
 as bool,feeNote: null == feeNote ? _self.feeNote : feeNote // ignore: cast_nullable_to_non_nullable
+as String,priceAmount: freezed == priceAmount ? _self.priceAmount : priceAmount // ignore: cast_nullable_to_non_nullable
+as int?,priceCurrency: null == priceCurrency ? _self.priceCurrency : priceCurrency // ignore: cast_nullable_to_non_nullable
 as String,status: null == status ? _self.status : status // ignore: cast_nullable_to_non_nullable
 as EventStatus,
   ));
@@ -174,10 +177,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String title,  String theme,  String themeVerse,  String description, @UtcInstantConverter()  DateTime startsAt, @UtcInstantConverter()  DateTime endsAt,  String timeZone,  String venue,  String address,  String city,  String country,  String mapsUrl,  String contactName,  String contactPhone,  int? posterId,  bool registrationOpen, @UtcInstantConverter()  DateTime? registrationDeadline,  int? capacity,  bool asksLodging,  bool asksDepartureCity,  String feeNote,  EventStatus status)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String title,  String theme,  String themeVerse,  String description, @UtcInstantConverter()  DateTime startsAt, @UtcInstantConverter()  DateTime endsAt,  String timeZone,  String venue,  String address,  String city,  String country,  String mapsUrl,  String contactName,  String contactPhone,  int? posterId,  bool registrationOpen, @UtcInstantConverter()  DateTime? registrationDeadline,  int? capacity,  bool asksLodging,  bool asksDepartureCity,  String feeNote,  int? priceAmount,  String priceCurrency,  EventStatus status)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _EventDraft() when $default != null:
-return $default(_that.title,_that.theme,_that.themeVerse,_that.description,_that.startsAt,_that.endsAt,_that.timeZone,_that.venue,_that.address,_that.city,_that.country,_that.mapsUrl,_that.contactName,_that.contactPhone,_that.posterId,_that.registrationOpen,_that.registrationDeadline,_that.capacity,_that.asksLodging,_that.asksDepartureCity,_that.feeNote,_that.status);case _:
+return $default(_that.title,_that.theme,_that.themeVerse,_that.description,_that.startsAt,_that.endsAt,_that.timeZone,_that.venue,_that.address,_that.city,_that.country,_that.mapsUrl,_that.contactName,_that.contactPhone,_that.posterId,_that.registrationOpen,_that.registrationDeadline,_that.capacity,_that.asksLodging,_that.asksDepartureCity,_that.feeNote,_that.priceAmount,_that.priceCurrency,_that.status);case _:
   return orElse();
 
 }
@@ -195,10 +198,10 @@ return $default(_that.title,_that.theme,_that.themeVerse,_that.description,_that
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String title,  String theme,  String themeVerse,  String description, @UtcInstantConverter()  DateTime startsAt, @UtcInstantConverter()  DateTime endsAt,  String timeZone,  String venue,  String address,  String city,  String country,  String mapsUrl,  String contactName,  String contactPhone,  int? posterId,  bool registrationOpen, @UtcInstantConverter()  DateTime? registrationDeadline,  int? capacity,  bool asksLodging,  bool asksDepartureCity,  String feeNote,  EventStatus status)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String title,  String theme,  String themeVerse,  String description, @UtcInstantConverter()  DateTime startsAt, @UtcInstantConverter()  DateTime endsAt,  String timeZone,  String venue,  String address,  String city,  String country,  String mapsUrl,  String contactName,  String contactPhone,  int? posterId,  bool registrationOpen, @UtcInstantConverter()  DateTime? registrationDeadline,  int? capacity,  bool asksLodging,  bool asksDepartureCity,  String feeNote,  int? priceAmount,  String priceCurrency,  EventStatus status)  $default,) {final _that = this;
 switch (_that) {
 case _EventDraft():
-return $default(_that.title,_that.theme,_that.themeVerse,_that.description,_that.startsAt,_that.endsAt,_that.timeZone,_that.venue,_that.address,_that.city,_that.country,_that.mapsUrl,_that.contactName,_that.contactPhone,_that.posterId,_that.registrationOpen,_that.registrationDeadline,_that.capacity,_that.asksLodging,_that.asksDepartureCity,_that.feeNote,_that.status);case _:
+return $default(_that.title,_that.theme,_that.themeVerse,_that.description,_that.startsAt,_that.endsAt,_that.timeZone,_that.venue,_that.address,_that.city,_that.country,_that.mapsUrl,_that.contactName,_that.contactPhone,_that.posterId,_that.registrationOpen,_that.registrationDeadline,_that.capacity,_that.asksLodging,_that.asksDepartureCity,_that.feeNote,_that.priceAmount,_that.priceCurrency,_that.status);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -215,10 +218,10 @@ return $default(_that.title,_that.theme,_that.themeVerse,_that.description,_that
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String title,  String theme,  String themeVerse,  String description, @UtcInstantConverter()  DateTime startsAt, @UtcInstantConverter()  DateTime endsAt,  String timeZone,  String venue,  String address,  String city,  String country,  String mapsUrl,  String contactName,  String contactPhone,  int? posterId,  bool registrationOpen, @UtcInstantConverter()  DateTime? registrationDeadline,  int? capacity,  bool asksLodging,  bool asksDepartureCity,  String feeNote,  EventStatus status)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String title,  String theme,  String themeVerse,  String description, @UtcInstantConverter()  DateTime startsAt, @UtcInstantConverter()  DateTime endsAt,  String timeZone,  String venue,  String address,  String city,  String country,  String mapsUrl,  String contactName,  String contactPhone,  int? posterId,  bool registrationOpen, @UtcInstantConverter()  DateTime? registrationDeadline,  int? capacity,  bool asksLodging,  bool asksDepartureCity,  String feeNote,  int? priceAmount,  String priceCurrency,  EventStatus status)?  $default,) {final _that = this;
 switch (_that) {
 case _EventDraft() when $default != null:
-return $default(_that.title,_that.theme,_that.themeVerse,_that.description,_that.startsAt,_that.endsAt,_that.timeZone,_that.venue,_that.address,_that.city,_that.country,_that.mapsUrl,_that.contactName,_that.contactPhone,_that.posterId,_that.registrationOpen,_that.registrationDeadline,_that.capacity,_that.asksLodging,_that.asksDepartureCity,_that.feeNote,_that.status);case _:
+return $default(_that.title,_that.theme,_that.themeVerse,_that.description,_that.startsAt,_that.endsAt,_that.timeZone,_that.venue,_that.address,_that.city,_that.country,_that.mapsUrl,_that.contactName,_that.contactPhone,_that.posterId,_that.registrationOpen,_that.registrationDeadline,_that.capacity,_that.asksLodging,_that.asksDepartureCity,_that.feeNote,_that.priceAmount,_that.priceCurrency,_that.status);case _:
   return null;
 
 }
@@ -230,7 +233,7 @@ return $default(_that.title,_that.theme,_that.themeVerse,_that.description,_that
 @JsonSerializable()
 
 class _EventDraft implements EventDraft {
-  const _EventDraft({required this.title, this.theme = '', this.themeVerse = '', this.description = '', @UtcInstantConverter() required this.startsAt, @UtcInstantConverter() required this.endsAt, this.timeZone = CommunityEvent.defaultTimeZone, this.venue = '', this.address = '', this.city = '', this.country = '', this.mapsUrl = '', this.contactName = '', this.contactPhone = '', this.posterId, this.registrationOpen = true, @UtcInstantConverter() this.registrationDeadline, this.capacity, this.asksLodging = false, this.asksDepartureCity = false, this.feeNote = '', this.status = EventStatus.draft});
+  const _EventDraft({required this.title, this.theme = '', this.themeVerse = '', this.description = '', @UtcInstantConverter() required this.startsAt, @UtcInstantConverter() required this.endsAt, this.timeZone = CommunityEvent.defaultTimeZone, this.venue = '', this.address = '', this.city = '', this.country = '', this.mapsUrl = '', this.contactName = '', this.contactPhone = '', this.posterId, this.registrationOpen = true, @UtcInstantConverter() this.registrationDeadline, this.capacity, this.asksLodging = false, this.asksDepartureCity = false, this.feeNote = '', this.priceAmount, this.priceCurrency = 'XAF', this.status = EventStatus.draft});
   factory _EventDraft.fromJson(Map<String, dynamic> json) => _$EventDraftFromJson(json);
 
 @override final  String title;
@@ -254,6 +257,9 @@ class _EventDraft implements EventDraft {
 @override@JsonKey() final  bool asksLodging;
 @override@JsonKey() final  bool asksDepartureCity;
 @override@JsonKey() final  String feeNote;
+/// Per person, in whole XAF; null for a free event.
+@override final  int? priceAmount;
+@override@JsonKey() final  String priceCurrency;
 @override@JsonKey() final  EventStatus status;
 
 /// Create a copy of EventDraft
@@ -269,16 +275,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _EventDraft&&(identical(other.title, title) || other.title == title)&&(identical(other.theme, theme) || other.theme == theme)&&(identical(other.themeVerse, themeVerse) || other.themeVerse == themeVerse)&&(identical(other.description, description) || other.description == description)&&(identical(other.startsAt, startsAt) || other.startsAt == startsAt)&&(identical(other.endsAt, endsAt) || other.endsAt == endsAt)&&(identical(other.timeZone, timeZone) || other.timeZone == timeZone)&&(identical(other.venue, venue) || other.venue == venue)&&(identical(other.address, address) || other.address == address)&&(identical(other.city, city) || other.city == city)&&(identical(other.country, country) || other.country == country)&&(identical(other.mapsUrl, mapsUrl) || other.mapsUrl == mapsUrl)&&(identical(other.contactName, contactName) || other.contactName == contactName)&&(identical(other.contactPhone, contactPhone) || other.contactPhone == contactPhone)&&(identical(other.posterId, posterId) || other.posterId == posterId)&&(identical(other.registrationOpen, registrationOpen) || other.registrationOpen == registrationOpen)&&(identical(other.registrationDeadline, registrationDeadline) || other.registrationDeadline == registrationDeadline)&&(identical(other.capacity, capacity) || other.capacity == capacity)&&(identical(other.asksLodging, asksLodging) || other.asksLodging == asksLodging)&&(identical(other.asksDepartureCity, asksDepartureCity) || other.asksDepartureCity == asksDepartureCity)&&(identical(other.feeNote, feeNote) || other.feeNote == feeNote)&&(identical(other.status, status) || other.status == status));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _EventDraft&&(identical(other.title, title) || other.title == title)&&(identical(other.theme, theme) || other.theme == theme)&&(identical(other.themeVerse, themeVerse) || other.themeVerse == themeVerse)&&(identical(other.description, description) || other.description == description)&&(identical(other.startsAt, startsAt) || other.startsAt == startsAt)&&(identical(other.endsAt, endsAt) || other.endsAt == endsAt)&&(identical(other.timeZone, timeZone) || other.timeZone == timeZone)&&(identical(other.venue, venue) || other.venue == venue)&&(identical(other.address, address) || other.address == address)&&(identical(other.city, city) || other.city == city)&&(identical(other.country, country) || other.country == country)&&(identical(other.mapsUrl, mapsUrl) || other.mapsUrl == mapsUrl)&&(identical(other.contactName, contactName) || other.contactName == contactName)&&(identical(other.contactPhone, contactPhone) || other.contactPhone == contactPhone)&&(identical(other.posterId, posterId) || other.posterId == posterId)&&(identical(other.registrationOpen, registrationOpen) || other.registrationOpen == registrationOpen)&&(identical(other.registrationDeadline, registrationDeadline) || other.registrationDeadline == registrationDeadline)&&(identical(other.capacity, capacity) || other.capacity == capacity)&&(identical(other.asksLodging, asksLodging) || other.asksLodging == asksLodging)&&(identical(other.asksDepartureCity, asksDepartureCity) || other.asksDepartureCity == asksDepartureCity)&&(identical(other.feeNote, feeNote) || other.feeNote == feeNote)&&(identical(other.priceAmount, priceAmount) || other.priceAmount == priceAmount)&&(identical(other.priceCurrency, priceCurrency) || other.priceCurrency == priceCurrency)&&(identical(other.status, status) || other.status == status));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hashAll([runtimeType,title,theme,themeVerse,description,startsAt,endsAt,timeZone,venue,address,city,country,mapsUrl,contactName,contactPhone,posterId,registrationOpen,registrationDeadline,capacity,asksLodging,asksDepartureCity,feeNote,status]);
+int get hashCode => Object.hashAll([runtimeType,title,theme,themeVerse,description,startsAt,endsAt,timeZone,venue,address,city,country,mapsUrl,contactName,contactPhone,posterId,registrationOpen,registrationDeadline,capacity,asksLodging,asksDepartureCity,feeNote,priceAmount,priceCurrency,status]);
 
 @override
 String toString() {
-  return 'EventDraft(title: $title, theme: $theme, themeVerse: $themeVerse, description: $description, startsAt: $startsAt, endsAt: $endsAt, timeZone: $timeZone, venue: $venue, address: $address, city: $city, country: $country, mapsUrl: $mapsUrl, contactName: $contactName, contactPhone: $contactPhone, posterId: $posterId, registrationOpen: $registrationOpen, registrationDeadline: $registrationDeadline, capacity: $capacity, asksLodging: $asksLodging, asksDepartureCity: $asksDepartureCity, feeNote: $feeNote, status: $status)';
+  return 'EventDraft(title: $title, theme: $theme, themeVerse: $themeVerse, description: $description, startsAt: $startsAt, endsAt: $endsAt, timeZone: $timeZone, venue: $venue, address: $address, city: $city, country: $country, mapsUrl: $mapsUrl, contactName: $contactName, contactPhone: $contactPhone, posterId: $posterId, registrationOpen: $registrationOpen, registrationDeadline: $registrationDeadline, capacity: $capacity, asksLodging: $asksLodging, asksDepartureCity: $asksDepartureCity, feeNote: $feeNote, priceAmount: $priceAmount, priceCurrency: $priceCurrency, status: $status)';
 }
 
 
@@ -289,7 +295,7 @@ abstract mixin class _$EventDraftCopyWith<$Res> implements $EventDraftCopyWith<$
   factory _$EventDraftCopyWith(_EventDraft value, $Res Function(_EventDraft) _then) = __$EventDraftCopyWithImpl;
 @override @useResult
 $Res call({
- String title, String theme, String themeVerse, String description,@UtcInstantConverter() DateTime startsAt,@UtcInstantConverter() DateTime endsAt, String timeZone, String venue, String address, String city, String country, String mapsUrl, String contactName, String contactPhone, int? posterId, bool registrationOpen,@UtcInstantConverter() DateTime? registrationDeadline, int? capacity, bool asksLodging, bool asksDepartureCity, String feeNote, EventStatus status
+ String title, String theme, String themeVerse, String description,@UtcInstantConverter() DateTime startsAt,@UtcInstantConverter() DateTime endsAt, String timeZone, String venue, String address, String city, String country, String mapsUrl, String contactName, String contactPhone, int? posterId, bool registrationOpen,@UtcInstantConverter() DateTime? registrationDeadline, int? capacity, bool asksLodging, bool asksDepartureCity, String feeNote, int? priceAmount, String priceCurrency, EventStatus status
 });
 
 
@@ -306,7 +312,7 @@ class __$EventDraftCopyWithImpl<$Res>
 
 /// Create a copy of EventDraft
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? title = null,Object? theme = null,Object? themeVerse = null,Object? description = null,Object? startsAt = null,Object? endsAt = null,Object? timeZone = null,Object? venue = null,Object? address = null,Object? city = null,Object? country = null,Object? mapsUrl = null,Object? contactName = null,Object? contactPhone = null,Object? posterId = freezed,Object? registrationOpen = null,Object? registrationDeadline = freezed,Object? capacity = freezed,Object? asksLodging = null,Object? asksDepartureCity = null,Object? feeNote = null,Object? status = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? title = null,Object? theme = null,Object? themeVerse = null,Object? description = null,Object? startsAt = null,Object? endsAt = null,Object? timeZone = null,Object? venue = null,Object? address = null,Object? city = null,Object? country = null,Object? mapsUrl = null,Object? contactName = null,Object? contactPhone = null,Object? posterId = freezed,Object? registrationOpen = null,Object? registrationDeadline = freezed,Object? capacity = freezed,Object? asksLodging = null,Object? asksDepartureCity = null,Object? feeNote = null,Object? priceAmount = freezed,Object? priceCurrency = null,Object? status = null,}) {
   return _then(_EventDraft(
 title: null == title ? _self.title : title // ignore: cast_nullable_to_non_nullable
 as String,theme: null == theme ? _self.theme : theme // ignore: cast_nullable_to_non_nullable
@@ -329,6 +335,8 @@ as DateTime?,capacity: freezed == capacity ? _self.capacity : capacity // ignore
 as int?,asksLodging: null == asksLodging ? _self.asksLodging : asksLodging // ignore: cast_nullable_to_non_nullable
 as bool,asksDepartureCity: null == asksDepartureCity ? _self.asksDepartureCity : asksDepartureCity // ignore: cast_nullable_to_non_nullable
 as bool,feeNote: null == feeNote ? _self.feeNote : feeNote // ignore: cast_nullable_to_non_nullable
+as String,priceAmount: freezed == priceAmount ? _self.priceAmount : priceAmount // ignore: cast_nullable_to_non_nullable
+as int?,priceCurrency: null == priceCurrency ? _self.priceCurrency : priceCurrency // ignore: cast_nullable_to_non_nullable
 as String,status: null == status ? _self.status : status // ignore: cast_nullable_to_non_nullable
 as EventStatus,
   ));

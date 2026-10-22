@@ -146,6 +146,14 @@ class _Translations$errors$ar extends Translations$errors$fr {
 	@override String get tooManyPeople => 'قوائمك ممتلئة (500 شخص كحدّ أقصى).';
 	@override String get avatarInvalid => 'لا يمكن استخدام هذه الصورة. اختر صورة أخرى.';
 	@override String get reportsNotShared => 'لم يعد هذا العضو يشارك تقاريره.';
+	@override String get invalidPhone => 'هذا الرقم غير معروف. أضف رمز البلد (+237…).';
+	@override String get providerUnavailable => 'هذا المشغّل لا يقبل هذا الدفع حاليًا.';
+	@override String get amountOutOfBounds => 'هذا المبلغ يتجاوز ما يقبله المشغّل.';
+	@override String get alreadyPaid => 'تسجيلك مدفوع بالفعل.';
+	@override String get paymentsDisabled => 'الدفع عبر المحفظة الإلكترونية غير متاح بعد.';
+	@override String get paymentRequired => 'هذا الحدث مدفوع: ادفع تسجيلك عبر المحفظة الإلكترونية.';
+	@override String get paidRegistration => 'تسجيل مدفوع: تواصل مع المنظمين لإلغائه.';
+	@override String get eventHasPayments => 'دفع أعضاء رسومهم: أعِد مدفوعاتهم أولًا من موقع الإدارة.';
 }
 
 // Path: validation
@@ -754,6 +762,7 @@ class _Translations$events$ar extends Translations$events$fr {
 		other: '${n} فعالية قادمة',
 	);
 	@override String slide({required Object current, required Object total}) => 'الفعالية ${current} من ${total}';
+	@override late final _Translations$events$pay$ar pay = _Translations$events$pay$ar._(_root);
 }
 
 // Path: notifications
@@ -2811,6 +2820,35 @@ class _Translations$events$admin$ar extends Translations$events$admin$fr {
 	@override String get photoDelete => 'حذف هذه الصورة';
 	@override String get photoDeleted => 'تم حذف الصورة.';
 	@override String get confirmDelete => 'حذف';
+	@override String get price => 'السعر للشخص (FCFA)';
+	@override String get priceHint => 'فارغ: مجاني. يُدفع عبر المحفظة الإلكترونية عند التسجيل.';
+}
+
+// Path: events.pay
+class _Translations$events$pay$ar extends Translations$events$pay$fr {
+	_Translations$events$pay$ar._(TranslationsAr root) : this._root = root, super.internal(root);
+
+	final TranslationsAr _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'الدفع عبر المحفظة الإلكترونية';
+	@override String perPerson({required Object price}) => '${price} للشخص';
+	@override String get total => 'المبلغ الإجمالي';
+	@override String get phone => 'رقم المحفظة الإلكترونية';
+	@override String get phoneHint => '+237 6 70 00 00 00';
+	@override String get phoneHelp => 'مع رمز البلد. يصل طلب الدفع إلى هذا الهاتف.';
+	@override String get operator => 'المشغّل';
+	@override String pay({required Object amount}) => 'ادفع ${amount}';
+	@override String get waitingTitle => 'أكّد على هاتفك';
+	@override String waitingText({required Object amount}) => 'يصل إلى هاتفك طلب بقيمة ${amount}. أدخل الرمز السري لمحفظتك لتأكيده.';
+	@override String get waitingSlow => 'ما زال قيد الانتظار. سيُؤكَّد تسجيلك فور وصول الدفع، حتى لو أغلقت هذه النافذة.';
+	@override String get close => 'إغلاق';
+	@override String get retry => 'إعادة المحاولة';
+	@override String get done => 'تم استلام الدفع: أنت مسجّل!';
+	@override String get failedTitle => 'لم يكتمل الدفع';
+	@override String get paidNote => 'التسجيل مدفوع. لإلغائه، تواصل مع المنظمين: سيعيدون إليك المبلغ.';
+	@override String get peopleLocked => 'لم يعد ممكنًا تغيير عدد الأشخاص المدفوع عنهم.';
+	@override late final _Translations$events$pay$failures$ar failures = _Translations$events$pay$failures$ar._(_root);
 }
 
 // Path: ministry.goals
@@ -3320,6 +3358,21 @@ class _Translations$reports$units$percent$ar extends Translations$reports$units$
 	@override String count({required Object value}) => '${value}%';
 }
 
+// Path: events.pay.failures
+class _Translations$events$pay$failures$ar extends Translations$events$pay$failures$fr {
+	_Translations$events$pay$failures$ar._(TranslationsAr root) : this._root = root, super.internal(root);
+
+	final TranslationsAr _root; // ignore: unused_field
+
+	// Translations
+	@override String get insufficientBalance => 'رصيد هذه المحفظة غير كافٍ.';
+	@override String get payerNotFound => 'لا يوجد لهذا الرقم حساب محفظة لدى هذا المشغّل.';
+	@override String get limitReached => 'بلغت هذه المحفظة حدّها.';
+	@override String get notApproved => 'لم يُؤكَّد الدفع: لم يُدخَل الرمز السري أو رُفض.';
+	@override String get unavailable => 'المشغّل غير متاح حاليًا. حاول لاحقًا.';
+	@override String get generic => 'فشل الدفع. حاول مجددًا أو استخدم رقمًا آخر.';
+}
+
 // Path: ministry.goals.crusade
 class _Translations$ministry$goals$crusade$ar extends Translations$ministry$goals$crusade$fr {
 	_Translations$ministry$goals$crusade$ar._(TranslationsAr root) : this._root = root, super.internal(root);
@@ -3571,6 +3624,14 @@ extension on TranslationsAr {
 			'errors.tooManyPeople' => 'قوائمك ممتلئة (500 شخص كحدّ أقصى).',
 			'errors.avatarInvalid' => 'لا يمكن استخدام هذه الصورة. اختر صورة أخرى.',
 			'errors.reportsNotShared' => 'لم يعد هذا العضو يشارك تقاريره.',
+			'errors.invalidPhone' => 'هذا الرقم غير معروف. أضف رمز البلد (+237…).',
+			'errors.providerUnavailable' => 'هذا المشغّل لا يقبل هذا الدفع حاليًا.',
+			'errors.amountOutOfBounds' => 'هذا المبلغ يتجاوز ما يقبله المشغّل.',
+			'errors.alreadyPaid' => 'تسجيلك مدفوع بالفعل.',
+			'errors.paymentsDisabled' => 'الدفع عبر المحفظة الإلكترونية غير متاح بعد.',
+			'errors.paymentRequired' => 'هذا الحدث مدفوع: ادفع تسجيلك عبر المحفظة الإلكترونية.',
+			'errors.paidRegistration' => 'تسجيل مدفوع: تواصل مع المنظمين لإلغائه.',
+			'errors.eventHasPayments' => 'دفع أعضاء رسومهم: أعِد مدفوعاتهم أولًا من موقع الإدارة.',
 			'validation.required' => 'هذا الحقل مطلوب',
 			'validation.passwordTooShort' => '6 أحرف على الأقل',
 			'validation.invalidPhone' => 'رقم هاتف غير صالح',
@@ -4040,6 +4101,8 @@ extension on TranslationsAr {
 			'members.usernameSaved' => ({required Object username}) => 'تم حفظ اسم المستخدم: @${username}',
 			'members.deleteAccount.button' => 'حذف حسابي',
 			'members.deleteAccount.title' => 'حذف حسابي',
+			_ => null,
+		} ?? switch (path) {
 			'members.deleteAccount.intro' => 'هذا نهائي. سيتم مسح حسابك وكل ما يرتبط به:',
 			'members.deleteAccount.itemProfile' => 'ملفك الشخصي وصورتك واسم المستخدم وكلمة المرور',
 			'members.deleteAccount.itemReports' => 'جميع تقاريرك وعناصرك وأهدافك',
@@ -4048,8 +4111,6 @@ extension on TranslationsAr {
 			'members.deleteAccount.itemPrayer' => 'قوائم صلاتك وخلواتك وطلبات اللجاجة الخاصة بك',
 			'members.deleteAccount.kept' => 'تبقى الفعاليات والأخبار والصور وطلبات الصلاة التي نشرتها بصفتك مشرفًا للمجتمع، من دون اسمك.',
 			'members.deleteAccount.passwordHelp' => 'للتأكد من أنك أنت.',
-			_ => null,
-		} ?? switch (path) {
 			'members.deleteAccount.confirm' => 'حذف نهائي',
 			'members.deleteAccount.done' => 'تم حذف حسابك. باركك الله!',
 			'members.deleteAccount.wrongPassword' => 'كلمة المرور غير صحيحة.',
@@ -4305,8 +4366,33 @@ extension on TranslationsAr {
 			'events.admin.photoDelete' => 'حذف هذه الصورة',
 			'events.admin.photoDeleted' => 'تم حذف الصورة.',
 			'events.admin.confirmDelete' => 'حذف',
+			'events.admin.price' => 'السعر للشخص (FCFA)',
+			'events.admin.priceHint' => 'فارغ: مجاني. يُدفع عبر المحفظة الإلكترونية عند التسجيل.',
 			'events.upcomingCount' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n, zero: 'لا توجد فعاليات قادمة', one: 'فعالية قادمة واحدة', two: 'فعاليتان قادمتان', few: '${n} فعاليات قادمة', many: '${n} فعالية قادمة', other: '${n} فعالية قادمة', ), 
 			'events.slide' => ({required Object current, required Object total}) => 'الفعالية ${current} من ${total}',
+			'events.pay.title' => 'الدفع عبر المحفظة الإلكترونية',
+			'events.pay.perPerson' => ({required Object price}) => '${price} للشخص',
+			'events.pay.total' => 'المبلغ الإجمالي',
+			'events.pay.phone' => 'رقم المحفظة الإلكترونية',
+			'events.pay.phoneHint' => '+237 6 70 00 00 00',
+			'events.pay.phoneHelp' => 'مع رمز البلد. يصل طلب الدفع إلى هذا الهاتف.',
+			'events.pay.operator' => 'المشغّل',
+			'events.pay.pay' => ({required Object amount}) => 'ادفع ${amount}',
+			'events.pay.waitingTitle' => 'أكّد على هاتفك',
+			'events.pay.waitingText' => ({required Object amount}) => 'يصل إلى هاتفك طلب بقيمة ${amount}. أدخل الرمز السري لمحفظتك لتأكيده.',
+			'events.pay.waitingSlow' => 'ما زال قيد الانتظار. سيُؤكَّد تسجيلك فور وصول الدفع، حتى لو أغلقت هذه النافذة.',
+			'events.pay.close' => 'إغلاق',
+			'events.pay.retry' => 'إعادة المحاولة',
+			'events.pay.done' => 'تم استلام الدفع: أنت مسجّل!',
+			'events.pay.failedTitle' => 'لم يكتمل الدفع',
+			'events.pay.paidNote' => 'التسجيل مدفوع. لإلغائه، تواصل مع المنظمين: سيعيدون إليك المبلغ.',
+			'events.pay.peopleLocked' => 'لم يعد ممكنًا تغيير عدد الأشخاص المدفوع عنهم.',
+			'events.pay.failures.insufficientBalance' => 'رصيد هذه المحفظة غير كافٍ.',
+			'events.pay.failures.payerNotFound' => 'لا يوجد لهذا الرقم حساب محفظة لدى هذا المشغّل.',
+			'events.pay.failures.limitReached' => 'بلغت هذه المحفظة حدّها.',
+			'events.pay.failures.notApproved' => 'لم يُؤكَّد الدفع: لم يُدخَل الرمز السري أو رُفض.',
+			'events.pay.failures.unavailable' => 'المشغّل غير متاح حاليًا. حاول لاحقًا.',
+			'events.pay.failures.generic' => 'فشل الدفع. حاول مجددًا أو استخدم رقمًا آخر.',
 			'notifications.title' => 'الإشعارات',
 			'notifications.channel' => 'إعلانات الجماعة',
 			'notifications.empty' => 'لا توجد إشعارات بعد',
@@ -4529,6 +4615,8 @@ extension on TranslationsAr {
 			'prayer.retreat.hints.hymn' => 'فتح الترانيم',
 			'prayer.session.point' => ({required Object n}) => 'النقطة ${n} من 15',
 			'prayer.session.remaining' => 'متبقية',
+			_ => null,
+		} ?? switch (path) {
 			'prayer.session.paused' => 'متوقّف مؤقتًا',
 			'prayer.session.inYourList' => ({required Object list}) => 'في قائمتك · ${list}',
 			'prayer.session.tomorrow' => 'وغدًا، الأشخاص التالون.',
@@ -4562,8 +4650,6 @@ extension on TranslationsAr {
 			'prayer.topics.all' => 'عرض الكل',
 			'prayer.topics.empty' => 'لا توجد طلبات صلاة حاليًا. سينشر القادة الطلبات القادمة هنا.',
 			'prayer.topics.categories.church' => 'الكنيسة',
-			_ => null,
-		} ?? switch (path) {
 			'prayer.topics.categories.nations' => 'الأمم',
 			'prayer.topics.categories.sick' => 'المرضى',
 			'prayer.topics.categories.event' => 'فعالية',
@@ -5043,6 +5129,8 @@ extension on TranslationsAr {
 			'biblePlan.catchUpShort' => 'استدراك',
 			'biblePlan.chaptersRead' => ({required Object read, required Object total}) => '${read} من ${total} أصحاحًا',
 			'biblePlan.late' => 'متأخر',
+			_ => null,
+		} ?? switch (path) {
 			'biblePlan.upcoming' => 'القادم',
 			'biblePlan.dayNumber' => ({required Object n}) => 'اليوم ${n}',
 			'biblePlan.finished' => 'اكتملت الخطة! قرأت كل شيء.',
@@ -5076,8 +5164,6 @@ extension on TranslationsAr {
 			'teachings.removeDownload' => 'أزل من الهاتف',
 			'teachings.back15' => 'رجوع 15 ثانية',
 			'teachings.forward15' => 'تقدّم 15 ثانية',
-			_ => null,
-		} ?? switch (path) {
 			'teachings.speed' => ({required Object speed}) => 'السرعة ${speed}',
 			'teachings.recordedOn' => ({required Object date}) => 'رسالة ${date}',
 			'teachings.moreSubtitle' => 'عظات وتعاليم للاستماع',

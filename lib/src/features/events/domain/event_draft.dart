@@ -32,6 +32,10 @@ abstract class EventDraft with _$EventDraft {
     @Default(false) bool asksLodging,
     @Default(false) bool asksDepartureCity,
     @Default('') String feeNote,
+
+    /// Per person, in whole XAF; null for a free event.
+    int? priceAmount,
+    @Default('XAF') String priceCurrency,
     @Default(EventStatus.draft) EventStatus status,
   }) = _EventDraft;
 
@@ -61,6 +65,8 @@ abstract class EventDraft with _$EventDraft {
     asksLodging: event.asksLodging,
     asksDepartureCity: event.asksDepartureCity,
     feeNote: event.feeNote,
+    priceAmount: event.price?.amount,
+    priceCurrency: event.price?.currency ?? 'XAF',
     status: event.status,
   );
 }

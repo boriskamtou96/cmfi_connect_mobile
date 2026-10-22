@@ -15,8 +15,13 @@ import '../../../../core/widgets/adaptive_dialogs.dart';
 import '../../../../core/widgets/app_button.dart';
 import '../../../../core/widgets/app_toast.dart';
 import '../../../../core/widgets/rolling_text.dart';
+import '../../../members/application/my_account.dart';
+import '../../../payments/domain/payment.dart';
+import '../../../payments/infrastructure/payments_api.dart';
+import '../../../payments/presentation/payment_waiting.dart';
 import '../../application/events_providers.dart';
 import '../../domain/event.dart';
+import '../../infrastructure/events_api.dart';
 import 'event_format.dart';
 
 /// Whether the event page shows the registration bar: not for a cancelled
@@ -88,6 +93,21 @@ class RegistrationBar extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
+          if (event.price case final price?
+              when state == RegistrationState.open) ...[
+            Text(
+              t.pay.perPerson(
+                price: formatMoney(
+                  price.amount,
+                  price.currency,
+                  Localizations.localeOf(context).toString(),
+                ),
+              ),
+              textAlign: TextAlign.center,
+              style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w700),
+            ),
+            const SizedBox(height: 2),
+          ],
           if (state == RegistrationState.open && placesLeft != null) ...[
             Text(
               t.placesLeft(n: placesLeft, count: context.count(placesLeft)),
@@ -172,6 +192,97 @@ class _RegistrationSheet extends HookConsumerWidget {
     final city = useTextEditingController(text: mine?.departureCity ?? '');
     final sending = useState(false);
     final controller = ref.read(eventDetailProvider(event.id).notifier);
+
+    // a paid event: paid by mobile money, then registered by the server
+    final price = event.price;
+    final paidAlready = mine?.paid ?? false;
+    final paying = price != null && !paidAlready;
+    final locale = Localizations.localeOf(context).toString();
+    final phone = useTextEditingController(
+      text: ref.read(myAccountProvider).value?.phoneNumber ?? '',
+    );
+    final phoneText = useValueListenable(phone).text;
+    final chosenOperator = useState<String?>(null);
+    final guessedOperator = useState<String?>(null);
+    final payment = useState<Payment?>(null);
+    final operators = paying
+        ? ref.watch(mobileMoneyOperatorsProvider(price.currency)).value
+        : null;
+
+    // the operator of the number, guessed as it is typed
+    useEffect(() {
+      if (!paying || phoneText.replaceAll(RegExp(r'\D'), '').length < 9) {
+        return null;
+      }
+      final timer = Timer(const Duration(milliseconds: 500), () async {
+        try {
+          final guess = await ref
+              .read(paymentsApiProvider)
+              .guessOperator(phoneText.trim());
+          if (context.mounted) {
+            guessedOperator.value = guess.provider;
+          }
+        } on Object {
+          // an unknown number: the server says it when paying
+        }
+      });
+      return timer.cancel;
+    }, [phoneText]);
+    final operator = chosenOperator.value ?? guessedOperator.value;
+
+    Future<void> pay() async {
+      final toast = ref.read(toasterProvider).of(context);
+      final messages = context.t;
+      sending.value = true;
+      try {
+        final started = await ref
+            .read(paymentsApiProvider)
+            .payForEvent(
+              event.id,
+              people: people.value,
+              needsLodging: lodging.value,
+              departureCity: city.text.trim(),
+              phoneNumber: phone.text.trim(),
+              provider: operator ?? '',
+            );
+        if (started.status == PaymentStatus.failed) {
+          toast.error(paymentFailureMessage(started.failureCode, messages));
+        } else {
+          payment.value = started;
+        }
+      } on Object catch (error) {
+        toast.error(userMessageFor(error, messages));
+      } finally {
+        if (context.mounted) {
+          sending.value = false;
+        }
+      }
+    }
+
+    // paid: the event comes back with the registration
+    Future<void> paid(Payment _) async {
+      final toast = ref.read(toasterProvider).of(context);
+      final navigator = Navigator.of(context);
+      final notifications = ref.read(localNotificationsProvider);
+      try {
+        await controller.replace(
+          await ref.read(eventsApiProvider).get(event.id),
+        );
+      } on Object {
+        // shown at the next opening of the event
+      }
+      navigator.pop();
+      toast.success(t.pay.done);
+      unawaited(notifications.requestPermission());
+    }
+
+    if (payment.value case final started?) {
+      return PaymentWaiting(
+        payment: started,
+        onCompleted: paid,
+        onRetry: () => payment.value = null,
+      );
+    }
 
     Future<void> submit() async {
       final toast = ref.read(toasterProvider).of(context);
@@ -271,7 +382,9 @@ class _RegistrationSheet extends HookConsumerWidget {
               ),
               IconButton.filledTonal(
                 tooltip: t.register.less,
-                onPressed: people.value > 1 ? () => people.value-- : null,
+                onPressed: people.value > 1 && !paidAlready
+                    ? () => people.value--
+                    : null,
                 icon: const Icon(AppIcons.remove),
               ),
               SizedBox(
@@ -290,7 +403,7 @@ class _RegistrationSheet extends HookConsumerWidget {
               ),
               IconButton.filledTonal(
                 tooltip: t.register.more,
-                onPressed: people.value < _maxPeople
+                onPressed: people.value < _maxPeople && !paidAlready
                     ? () => people.value++
                     : null,
                 icon: const Icon(AppIcons.add),
@@ -347,13 +460,103 @@ class _RegistrationSheet extends HookConsumerWidget {
               ),
             ),
           ],
+          if (paying) ...[
+            const SizedBox(height: AppSpacing.xl),
+            Text(
+              t.pay.title,
+              style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
+            ),
+            const SizedBox(height: AppSpacing.md),
+            TextField(
+              controller: phone,
+              keyboardType: TextInputType.phone,
+              autofillHints: const [AutofillHints.telephoneNumber],
+              textInputAction: TextInputAction.done,
+              decoration: InputDecoration(
+                labelText: t.pay.phone,
+                hintText: t.pay.phoneHint,
+                helperText: t.pay.phoneHelp,
+                helperMaxLines: 2,
+                prefixIcon: const Icon(AppIcons.phone),
+              ),
+            ),
+            if (operators != null && operators.isNotEmpty) ...[
+              const SizedBox(height: AppSpacing.md),
+              Text(
+                t.pay.operator,
+                style: TextStyle(fontSize: 13, color: scheme.onSurfaceVariant),
+              ),
+              const SizedBox(height: AppSpacing.xs),
+              Wrap(
+                spacing: AppSpacing.sm,
+                runSpacing: AppSpacing.sm,
+                children: [
+                  for (final country in operators)
+                    for (final candidate in country.operators)
+                      if (candidate.isOpen)
+                        ChoiceChip(
+                          label: Text(
+                            operators.length > 1
+                                ? '${candidate.name} · ${country.nameIn(locale.split('_').first)}'
+                                : candidate.name,
+                          ),
+                          selected: operator == candidate.provider,
+                          onSelected: (_) =>
+                              chosenOperator.value = candidate.provider,
+                        ),
+                ],
+              ),
+            ],
+            const SizedBox(height: AppSpacing.lg),
+            Row(
+              children: [
+                Expanded(
+                  child: Text(
+                    t.pay.total,
+                    style: TextStyle(
+                      fontSize: 15,
+                      color: scheme.onSurfaceVariant,
+                    ),
+                  ),
+                ),
+                Text(
+                  formatMoney(
+                    price.amount * people.value,
+                    price.currency,
+                    locale,
+                  ),
+                  style: const TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.w800,
+                  ),
+                ),
+              ],
+            ),
+          ],
+          if (paidAlready) ...[
+            const SizedBox(height: AppSpacing.lg),
+            Text(
+              t.pay.paidNote,
+              style: TextStyle(fontSize: 14, color: scheme.onSurfaceVariant),
+            ),
+          ],
           const SizedBox(height: AppSpacing.xl),
           AppButton(
-            label: mine == null ? t.register.confirm : t.register.update,
+            label: paying
+                ? t.pay.pay(
+                    amount: formatMoney(
+                      price.amount * people.value,
+                      price.currency,
+                      locale,
+                    ),
+                  )
+                : mine == null
+                ? t.register.confirm
+                : t.register.update,
             isLoading: sending.value,
-            onPressed: submit,
+            onPressed: paying ? pay : submit,
           ),
-          if (mine != null) ...[
+          if (mine != null && !paidAlready) ...[
             const SizedBox(height: AppSpacing.sm),
             TextButton(
               style: TextButton.styleFrom(foregroundColor: scheme.error),

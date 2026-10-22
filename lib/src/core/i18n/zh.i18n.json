@@ -38,7 +38,15 @@
     "ownerCannotLeave": "这个事项是你创建的：请删除它，而不是退出。",
     "tooManyPeople": "你的名单已满（最多 500 人）。",
     "avatarInvalid": "这张照片无法使用，请选择另一张。",
-    "reportsNotShared": "该成员不再分享其报告。"
+    "reportsNotShared": "该成员不再分享其报告。",
+    "invalidPhone": "无法识别此号码。请加上国家区号（+237…）。",
+    "providerUnavailable": "该运营商目前不接受此笔付款。",
+    "amountOutOfBounds": "此金额超出运营商可接受的范围。",
+    "alreadyPaid": "你的报名已付款。",
+    "paymentsDisabled": "移动钱包付款尚未开放。",
+    "paymentRequired": "此活动需付费：请用移动钱包支付报名费。",
+    "paidRegistration": "报名已付款：如需取消请联系组织者。",
+    "eventHasPayments": "已有成员付款：请先在管理网站为他们退款。"
   },
   "validation": {
     "required": "此项为必填",
@@ -926,12 +934,41 @@
       "photosSending": "正在上传照片（{done}/{total}）…",
       "photoDelete": "删除此照片",
       "photoDeleted": "照片已删除。",
-      "confirmDelete": "删除"
+      "confirmDelete": "删除",
+      "price": "每人价格（FCFA）",
+      "priceHint": "留空：免费。报名时用移动钱包支付。"
     },
     "upcomingCount(plural, param=n)": {
       "other": "{n} 个即将举行的活动"
     },
-    "slide": "第 {current} 个活动，共 {total} 个"
+    "slide": "第 {current} 个活动，共 {total} 个",
+    "pay": {
+      "title": "移动钱包付款",
+      "perPerson": "每人 {price}",
+      "total": "应付总额",
+      "phone": "移动钱包号码",
+      "phoneHint": "+237 6 70 00 00 00",
+      "phoneHelp": "请带上国家区号。付款请求会发送到这部手机。",
+      "operator": "运营商",
+      "pay": "支付 {amount}",
+      "waitingTitle": "请在手机上确认",
+      "waitingText": "一笔 {amount} 的付款请求正发送到你的手机。输入移动钱包 PIN 码即可确认。",
+      "waitingSlow": "仍在等待。付款一到账，你的报名就会确认，即使关闭此窗口也一样。",
+      "close": "关闭",
+      "retry": "重试",
+      "done": "已收到付款：你已报名！",
+      "failedTitle": "付款未成功",
+      "paidNote": "报名已付款。如需取消，请联系组织者，他们会为你退款。",
+      "peopleLocked": "已付款的人数不能再更改。",
+      "failures": {
+        "insufficientBalance": "该移动钱包余额不足。",
+        "payerNotFound": "该号码在此运营商没有移动钱包账户。",
+        "limitReached": "该移动钱包已达到限额。",
+        "notApproved": "付款未确认：未输入 PIN 码或被拒绝。",
+        "unavailable": "运营商暂时不可用，请稍后再试。",
+        "generic": "付款失败。请重试，或换一个号码。"
+      }
+    }
   },
   "notifications": {
     "title": "通知",

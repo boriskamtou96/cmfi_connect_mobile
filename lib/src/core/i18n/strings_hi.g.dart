@@ -146,6 +146,14 @@ class _Translations$errors$hi extends Translations$errors$fr {
 	@override String get tooManyPeople => 'तुम्हारी सूचियाँ भर गई हैं (अधिकतम 500 लोग)।';
 	@override String get avatarInvalid => 'यह फ़ोटो इस्तेमाल नहीं हो सकती। कोई दूसरी चुनें।';
 	@override String get reportsNotShared => 'यह सदस्य अब अपनी रिपोर्ट साझा नहीं करता।';
+	@override String get invalidPhone => 'यह नंबर पहचाना नहीं गया। देश का कोड जोड़ें (+237…)।';
+	@override String get providerUnavailable => 'यह ऑपरेटर अभी यह भुगतान स्वीकार नहीं करता।';
+	@override String get amountOutOfBounds => 'यह राशि ऑपरेटर की सीमा से अधिक है।';
+	@override String get alreadyPaid => 'आपके पंजीकरण का भुगतान पहले ही हो चुका है।';
+	@override String get paymentsDisabled => 'मोबाइल मनी भुगतान अभी उपलब्ध नहीं है।';
+	@override String get paymentRequired => 'यह कार्यक्रम सशुल्क है: मोबाइल मनी से पंजीकरण का भुगतान करें।';
+	@override String get paidRegistration => 'पंजीकरण का भुगतान हो चुका है: रद्द करने के लिए आयोजकों से संपर्क करें।';
+	@override String get eventHasPayments => 'सदस्यों ने भुगतान किया है: पहले एडमिन साइट से उनका पैसा लौटाएँ।';
 }
 
 // Path: validation
@@ -688,6 +696,7 @@ class _Translations$events$hi extends Translations$events$fr {
 		other: '${n} आने वाले कार्यक्रम',
 	);
 	@override String slide({required Object current, required Object total}) => 'कार्यक्रम ${current} / ${total}';
+	@override late final _Translations$events$pay$hi pay = _Translations$events$pay$hi._(_root);
 }
 
 // Path: notifications
@@ -2529,6 +2538,35 @@ class _Translations$events$admin$hi extends Translations$events$admin$fr {
 	@override String get photoDelete => 'यह फ़ोटो हटाओ';
 	@override String get photoDeleted => 'फ़ोटो हटा दी गई।';
 	@override String get confirmDelete => 'हटाओ';
+	@override String get price => 'प्रति व्यक्ति मूल्य (FCFA)';
+	@override String get priceHint => 'खाली: निःशुल्क। पंजीकरण के समय मोबाइल मनी से भुगतान।';
+}
+
+// Path: events.pay
+class _Translations$events$pay$hi extends Translations$events$pay$fr {
+	_Translations$events$pay$hi._(TranslationsHi root) : this._root = root, super.internal(root);
+
+	final TranslationsHi _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'मोबाइल मनी से भुगतान';
+	@override String perPerson({required Object price}) => 'प्रति व्यक्ति ${price}';
+	@override String get total => 'कुल भुगतान';
+	@override String get phone => 'मोबाइल मनी नंबर';
+	@override String get phoneHint => '+237 6 70 00 00 00';
+	@override String get phoneHelp => 'देश के कोड के साथ। भुगतान का अनुरोध इसी फ़ोन पर आएगा।';
+	@override String get operator => 'ऑपरेटर';
+	@override String pay({required Object amount}) => '${amount} का भुगतान करें';
+	@override String get waitingTitle => 'अपने फ़ोन पर पुष्टि करें';
+	@override String waitingText({required Object amount}) => '${amount} का अनुरोध आपके फ़ोन पर आ रहा है। पुष्टि के लिए अपना मोबाइल मनी पिन डालें।';
+	@override String get waitingSlow => 'अभी भी प्रतीक्षा है। भुगतान पहुँचते ही आपका पंजीकरण पक्का हो जाएगा, भले ही आप यह विंडो बंद कर दें।';
+	@override String get close => 'बंद करें';
+	@override String get retry => 'फिर कोशिश करें';
+	@override String get done => 'भुगतान मिल गया: आपका पंजीकरण हो गया!';
+	@override String get failedTitle => 'भुगतान पूरा नहीं हुआ';
+	@override String get paidNote => 'पंजीकरण का भुगतान हो चुका है। रद्द करने के लिए आयोजकों से संपर्क करें: वे पैसे लौटा देंगे।';
+	@override String get peopleLocked => 'जिन लोगों का भुगतान हुआ है, उनकी संख्या अब नहीं बदल सकती।';
+	@override late final _Translations$events$pay$failures$hi failures = _Translations$events$pay$failures$hi._(_root);
 }
 
 // Path: ministry.goals
@@ -2992,6 +3030,21 @@ class _Translations$reports$units$percent$hi extends Translations$reports$units$
 	@override String count({required Object value}) => '${value}%';
 }
 
+// Path: events.pay.failures
+class _Translations$events$pay$failures$hi extends Translations$events$pay$failures$fr {
+	_Translations$events$pay$failures$hi._(TranslationsHi root) : this._root = root, super.internal(root);
+
+	final TranslationsHi _root; // ignore: unused_field
+
+	// Translations
+	@override String get insufficientBalance => 'इस मोबाइल मनी खाते में पर्याप्त शेष राशि नहीं है।';
+	@override String get payerNotFound => 'इस नंबर का इस ऑपरेटर के पास मोबाइल मनी खाता नहीं है।';
+	@override String get limitReached => 'यह मोबाइल मनी खाता अपनी सीमा तक पहुँच गया है।';
+	@override String get notApproved => 'भुगतान की पुष्टि नहीं हुई: पिन नहीं डाला गया या अस्वीकार हुआ।';
+	@override String get unavailable => 'ऑपरेटर अभी उपलब्ध नहीं है। बाद में फिर कोशिश करें।';
+	@override String get generic => 'भुगतान विफल रहा। फिर कोशिश करें या कोई दूसरा नंबर इस्तेमाल करें।';
+}
+
 // Path: ministry.goals.crusade
 class _Translations$ministry$goals$crusade$hi extends Translations$ministry$goals$crusade$fr {
 	_Translations$ministry$goals$crusade$hi._(TranslationsHi root) : this._root = root, super.internal(root);
@@ -3236,6 +3289,14 @@ extension on TranslationsHi {
 			'errors.tooManyPeople' => 'तुम्हारी सूचियाँ भर गई हैं (अधिकतम 500 लोग)।',
 			'errors.avatarInvalid' => 'यह फ़ोटो इस्तेमाल नहीं हो सकती। कोई दूसरी चुनें।',
 			'errors.reportsNotShared' => 'यह सदस्य अब अपनी रिपोर्ट साझा नहीं करता।',
+			'errors.invalidPhone' => 'यह नंबर पहचाना नहीं गया। देश का कोड जोड़ें (+237…)।',
+			'errors.providerUnavailable' => 'यह ऑपरेटर अभी यह भुगतान स्वीकार नहीं करता।',
+			'errors.amountOutOfBounds' => 'यह राशि ऑपरेटर की सीमा से अधिक है।',
+			'errors.alreadyPaid' => 'आपके पंजीकरण का भुगतान पहले ही हो चुका है।',
+			'errors.paymentsDisabled' => 'मोबाइल मनी भुगतान अभी उपलब्ध नहीं है।',
+			'errors.paymentRequired' => 'यह कार्यक्रम सशुल्क है: मोबाइल मनी से पंजीकरण का भुगतान करें।',
+			'errors.paidRegistration' => 'पंजीकरण का भुगतान हो चुका है: रद्द करने के लिए आयोजकों से संपर्क करें।',
+			'errors.eventHasPayments' => 'सदस्यों ने भुगतान किया है: पहले एडमिन साइट से उनका पैसा लौटाएँ।',
 			'validation.required' => 'यह फ़ील्ड ज़रूरी है',
 			'validation.passwordTooShort' => 'कम से कम 6 कैरेक्टर',
 			'validation.invalidPhone' => 'फ़ोन नंबर सही नहीं है',
@@ -3705,6 +3766,8 @@ extension on TranslationsHi {
 			'members.usernameSaved' => ({required Object username}) => 'यूज़रनेम सेव हो गया: @${username}',
 			'members.deleteAccount.button' => 'मेरा खाता हटाओ',
 			'members.deleteAccount.title' => 'मेरा खाता हटाओ',
+			_ => null,
+		} ?? switch (path) {
 			'members.deleteAccount.intro' => 'यह स्थायी है। तुम्हारा खाता और उससे जुड़ा सब कुछ मिटा दिया जाएगा:',
 			'members.deleteAccount.itemProfile' => 'तुम्हारी प्रोफ़ाइल, फ़ोटो, यूज़रनेम और पासवर्ड',
 			'members.deleteAccount.itemReports' => 'तुम्हारी सारी रिपोर्ट, आइटम और लक्ष्य',
@@ -3713,8 +3776,6 @@ extension on TranslationsHi {
 			'members.deleteAccount.itemPrayer' => 'तुम्हारी प्रार्थना सूचियाँ, प्रार्थना-समय और लगातार प्रार्थना के विषय',
 			'members.deleteAccount.kept' => 'एडमिन के रूप में प्रकाशित किए गए कार्यक्रम, ख़बरें, फ़ोटो और प्रार्थना विषय समुदाय के लिए रहेंगे, तुम्हारे नाम के बिना।',
 			'members.deleteAccount.passwordHelp' => 'यह पक्का करने के लिए कि यह तुम ही हो।',
-			_ => null,
-		} ?? switch (path) {
 			'members.deleteAccount.confirm' => 'हमेशा के लिए हटाओ',
 			'members.deleteAccount.done' => 'तुम्हारा खाता हटा दिया गया है। परमेश्वर तुम्हें आशीष दे!',
 			'members.deleteAccount.wrongPassword' => 'पासवर्ड ग़लत है।',
@@ -3970,8 +4031,33 @@ extension on TranslationsHi {
 			'events.admin.photoDelete' => 'यह फ़ोटो हटाओ',
 			'events.admin.photoDeleted' => 'फ़ोटो हटा दी गई।',
 			'events.admin.confirmDelete' => 'हटाओ',
+			'events.admin.price' => 'प्रति व्यक्ति मूल्य (FCFA)',
+			'events.admin.priceHint' => 'खाली: निःशुल्क। पंजीकरण के समय मोबाइल मनी से भुगतान।',
 			'events.upcomingCount' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n, one: '${n} आने वाला कार्यक्रम', other: '${n} आने वाले कार्यक्रम', ), 
 			'events.slide' => ({required Object current, required Object total}) => 'कार्यक्रम ${current} / ${total}',
+			'events.pay.title' => 'मोबाइल मनी से भुगतान',
+			'events.pay.perPerson' => ({required Object price}) => 'प्रति व्यक्ति ${price}',
+			'events.pay.total' => 'कुल भुगतान',
+			'events.pay.phone' => 'मोबाइल मनी नंबर',
+			'events.pay.phoneHint' => '+237 6 70 00 00 00',
+			'events.pay.phoneHelp' => 'देश के कोड के साथ। भुगतान का अनुरोध इसी फ़ोन पर आएगा।',
+			'events.pay.operator' => 'ऑपरेटर',
+			'events.pay.pay' => ({required Object amount}) => '${amount} का भुगतान करें',
+			'events.pay.waitingTitle' => 'अपने फ़ोन पर पुष्टि करें',
+			'events.pay.waitingText' => ({required Object amount}) => '${amount} का अनुरोध आपके फ़ोन पर आ रहा है। पुष्टि के लिए अपना मोबाइल मनी पिन डालें।',
+			'events.pay.waitingSlow' => 'अभी भी प्रतीक्षा है। भुगतान पहुँचते ही आपका पंजीकरण पक्का हो जाएगा, भले ही आप यह विंडो बंद कर दें।',
+			'events.pay.close' => 'बंद करें',
+			'events.pay.retry' => 'फिर कोशिश करें',
+			'events.pay.done' => 'भुगतान मिल गया: आपका पंजीकरण हो गया!',
+			'events.pay.failedTitle' => 'भुगतान पूरा नहीं हुआ',
+			'events.pay.paidNote' => 'पंजीकरण का भुगतान हो चुका है। रद्द करने के लिए आयोजकों से संपर्क करें: वे पैसे लौटा देंगे।',
+			'events.pay.peopleLocked' => 'जिन लोगों का भुगतान हुआ है, उनकी संख्या अब नहीं बदल सकती।',
+			'events.pay.failures.insufficientBalance' => 'इस मोबाइल मनी खाते में पर्याप्त शेष राशि नहीं है।',
+			'events.pay.failures.payerNotFound' => 'इस नंबर का इस ऑपरेटर के पास मोबाइल मनी खाता नहीं है।',
+			'events.pay.failures.limitReached' => 'यह मोबाइल मनी खाता अपनी सीमा तक पहुँच गया है।',
+			'events.pay.failures.notApproved' => 'भुगतान की पुष्टि नहीं हुई: पिन नहीं डाला गया या अस्वीकार हुआ।',
+			'events.pay.failures.unavailable' => 'ऑपरेटर अभी उपलब्ध नहीं है। बाद में फिर कोशिश करें।',
+			'events.pay.failures.generic' => 'भुगतान विफल रहा। फिर कोशिश करें या कोई दूसरा नंबर इस्तेमाल करें।',
 			'notifications.title' => 'सूचनाएँ',
 			'notifications.channel' => 'समुदाय की घोषणाएँ',
 			'notifications.empty' => 'अभी कोई सूचना नहीं',
@@ -4194,6 +4280,8 @@ extension on TranslationsHi {
 			'prayer.retreat.hints.hymn' => 'भजन खोलो',
 			'prayer.session.point' => ({required Object n}) => '15 में से बिंदु ${n}',
 			'prayer.session.remaining' => 'बाकी',
+			_ => null,
+		} ?? switch (path) {
 			'prayer.session.paused' => 'रुका हुआ',
 			'prayer.session.inYourList' => ({required Object list}) => 'तुम्हारी सूची में · ${list}',
 			'prayer.session.tomorrow' => 'कल, अगले लोग।',
@@ -4227,8 +4315,6 @@ extension on TranslationsHi {
 			'prayer.topics.all' => 'सब देखो',
 			'prayer.topics.empty' => 'अभी कोई प्रार्थना विषय नहीं है। अगुवे अगले विषय यहीं प्रकाशित करेंगे।',
 			'prayer.topics.categories.church' => 'चर्च',
-			_ => null,
-		} ?? switch (path) {
 			'prayer.topics.categories.nations' => 'राष्ट्र',
 			'prayer.topics.categories.sick' => 'बीमार',
 			'prayer.topics.categories.event' => 'कार्यक्रम',
@@ -4708,6 +4794,8 @@ extension on TranslationsHi {
 			'biblePlan.catchUpShort' => 'पूरा करो',
 			'biblePlan.chaptersRead' => ({required Object total, required Object read}) => '${total} में से ${read} अध्याय',
 			'biblePlan.late' => 'पीछे छूटे',
+			_ => null,
+		} ?? switch (path) {
 			'biblePlan.upcoming' => 'आने वाले',
 			'biblePlan.dayNumber' => ({required Object n}) => 'दिन ${n}',
 			'biblePlan.finished' => 'योजना पूरी! तुमने सब पढ़ लिया।',
@@ -4741,8 +4829,6 @@ extension on TranslationsHi {
 			'teachings.removeDownload' => 'फ़ोन से हटाओ',
 			'teachings.back15' => '15 सेकंड पीछे',
 			'teachings.forward15' => '15 सेकंड आगे',
-			_ => null,
-		} ?? switch (path) {
 			'teachings.speed' => ({required Object speed}) => 'गति ${speed}',
 			'teachings.recordedOn' => ({required Object date}) => '${date} का संदेश',
 			'teachings.moreSubtitle' => 'सुनने के लिए प्रवचन और शिक्षाएँ',

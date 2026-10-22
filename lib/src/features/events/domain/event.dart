@@ -119,6 +119,19 @@ abstract class EventPhoto with _$EventPhoto {
       _$EventPhotoFromJson(json);
 }
 
+/// The price of a paid event, per person, paid by mobile money (in whole
+/// units: XAF has no cents).
+@freezed
+abstract class EventPrice with _$EventPrice {
+  const factory EventPrice({
+    required int amount,
+    @Default('XAF') String currency,
+  }) = _EventPrice;
+
+  factory EventPrice.fromJson(Map<String, dynamic> json) =>
+      _$EventPriceFromJson(json);
+}
+
 /// What the user answered when registering.
 @freezed
 abstract class MyRegistration with _$MyRegistration {
@@ -127,6 +140,10 @@ abstract class MyRegistration with _$MyRegistration {
     @Default(false) bool needsLodging,
     @Default('') String departureCity,
     DateTime? updatedAt,
+
+    /// Made by a payment: the people can't change, and only the organizers
+    /// undo it (with a refund).
+    @Default(false) bool paid,
   }) = _MyRegistration;
 
   factory MyRegistration.fromJson(Map<String, dynamic> json) =>
@@ -171,6 +188,9 @@ abstract class CommunityEvent with _$CommunityEvent {
     @Default(EventStatus.published)
     EventStatus status,
     @Default(RegistrationSummary()) RegistrationSummary registration,
+
+    /// Per person; null for a free event.
+    EventPrice? price,
 
     // ----- the whole event only -----
     @Default('') String themeVerse,

@@ -67,6 +67,8 @@ import 'package:cmfi_connect/src/features/reports/domain/report_summary.dart';
 import 'package:cmfi_connect/src/features/reports/infrastructure/activities_api.dart';
 import 'package:cmfi_connect/src/features/reports/infrastructure/report_sendings_api.dart';
 import 'package:cmfi_connect/src/features/reports/infrastructure/reports_api.dart';
+import 'package:cmfi_connect/src/features/souls/domain/soul.dart';
+import 'package:cmfi_connect/src/features/souls/infrastructure/souls_api.dart';
 import 'package:cmfi_connect/src/features/souls/infrastructure/souls_storage.dart';
 import 'package:cmfi_connect/src/features/teachings/application/teaching_player.dart';
 import 'package:cmfi_connect/src/features/teachings/domain/teaching.dart';
@@ -2867,6 +2869,38 @@ class FakeSoulsStorage implements SoulsStorage {
   @override
   Future<void> write(int accountId, String json) async =>
       saved[accountId] = json;
+}
+
+/// /v1/souls in memory: [offline] fails every call, like no network.
+class FakeSoulsApi implements SoulsApi {
+  final souls = <String, Soul>{};
+  var offline = false;
+  var saves = 0;
+
+  void _check() {
+    if (offline) {
+      throw const NetworkException();
+    }
+  }
+
+  @override
+  Future<List<Soul>> list() async {
+    _check();
+    return [...souls.values];
+  }
+
+  @override
+  Future<void> save(Soul soul) async {
+    _check();
+    saves++;
+    souls[soul.id] = Soul.fromJson(soul.toJson());
+  }
+
+  @override
+  Future<void> remove(String id) async {
+    _check();
+    souls.remove(id);
+  }
 }
 
 /// The rules of Firebase Remote Config: none unless the test gives some;

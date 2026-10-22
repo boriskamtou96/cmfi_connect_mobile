@@ -2147,7 +2147,7 @@
     "edit": "编辑",
     "delete": "删除",
     "deleteTitle": "删除 {name}？",
-    "deleteText": "相关备注将从手机中删除。",
+    "deleteText": "相关备注将被删除。",
     "deleted": "已删除",
     "nextContact": "下次联系",
     "plan": "设置提醒",
@@ -2173,7 +2173,7 @@
     "lockedTitle": "灵魂跟进已锁定",
     "unlock": "解锁",
     "unlockReason": "打开灵魂跟进",
-    "privacy": "这些信息只保存在你的手机上，绝不会上传。",
+    "privacy": "这些信息保存在你的账户中，仅供你本人查看：其他人都看不到，包括你的属灵带领者。",
     "reminderTitle": "灵魂跟进",
     "reminderBody(plural, param=n)": {
       "one": "今天要联系 {n} 人。",

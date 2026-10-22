@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:convert';
 
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -9,14 +10,18 @@ import '../../../core/storage/account_storage.dart';
 import '../../../core/storage/preferences.dart';
 import '../../../core/utils/date_extensions.dart';
 import '../domain/soul.dart';
+import '../infrastructure/souls_api.dart';
 import '../infrastructure/souls_storage.dart';
 
 part 'souls.g.dart';
 
 /// Suivi des âmes: the people the signed-in member follows, kept on the
-/// phone for this account (SoulsStorage). A day planned to contact someone
-/// brings a reminder at 9 o'clock that names nobody (it shows on a locked
-/// screen).
+/// server (SoulsApi) and on the phone for this account (SoulsStorage), to
+/// work offline: a change is written here at once and sent to the server,
+/// again later when it can't be now; the server's list then comes back. The
+/// souls an older version kept on the phone only are sent once. A day
+/// planned to contact someone brings a reminder at 9 o'clock that names
+/// nobody (it shows on a locked screen).
 @Riverpod(keepAlive: true)
 class Souls extends _$Souls {
   /// The payload of the reminders: opens the list.
@@ -25,6 +30,11 @@ class Souls extends _$Souls {
   static const _reminderMinutes = 9 * 60;
 
   int? _account;
+
+  /// Changed here, not on the server yet: to send, to delete there.
+  final _dirty = <String>{};
+  final _deleted = <String>{};
+  Future<void>? _syncing;
 
   @override
   Future<List<Soul>> build() async {
@@ -38,29 +48,119 @@ class Souls extends _$Souls {
     final account = await ref.read(accountStorageProvider).read();
     final id = _account = account?.id ?? 0;
     final raw = await ref.watch(soulsStorageProvider).read(id);
-    if (raw == null) {
-      return const [];
+    _dirty.clear();
+    _deleted.clear();
+    var souls = const <Soul>[];
+    if (raw != null) {
+      try {
+        switch (jsonDecode(raw)) {
+          // kept by an older version, on the phone only: all to send
+          case final List<dynamic> list:
+            souls = [
+              for (final json in list)
+                Soul.fromJson(json as Map<String, dynamic>),
+            ];
+            _dirty.addAll(souls.map((soul) => soul.id));
+          case final Map<String, dynamic> kept:
+            souls = [
+              for (final json in kept['souls'] as List<dynamic>? ?? const [])
+                Soul.fromJson(json as Map<String, dynamic>),
+            ];
+            _dirty.addAll([...?(kept['dirty'] as List<dynamic>?)].cast());
+            _deleted.addAll([...?(kept['deleted'] as List<dynamic>?)].cast());
+        }
+      } on Object {
+        souls = const [];
+      }
     }
-    try {
-      return [
-        for (final json in jsonDecode(raw) as List<dynamic>)
-          Soul.fromJson(json as Map<String, dynamic>),
-      ];
-    } on Object {
-      return const [];
-    }
+    // the server's list, once this one is shown
+    Future.microtask(sync);
+    return souls;
   }
 
   Future<void> _save(List<Soul> souls) async {
+    state = AsyncData(souls);
+    await _write();
+    await reschedule();
+  }
+
+  Future<void> _write() async {
     final account = _account;
     if (account == null) {
       return;
     }
-    state = AsyncData(souls);
     await ref
         .read(soulsStorageProvider)
-        .write(account, jsonEncode([for (final soul in souls) soul.toJson()]));
-    await reschedule();
+        .write(
+          account,
+          jsonEncode({
+            'souls': [
+              for (final soul in state.value ?? const <Soul>[]) soul.toJson(),
+            ],
+            'dirty': [..._dirty],
+            'deleted': [..._deleted],
+          }),
+        );
+  }
+
+  /// Sends what changed here, then takes the server's list (what couldn't be
+  /// sent stays as it is here). Offline: tried again later.
+  Future<void> sync() =>
+      _syncing ??= _sync().whenComplete(() => _syncing = null);
+
+  Future<void> _sync() async {
+    await future;
+    final account = _account;
+    if (account == null) {
+      return;
+    }
+    bool same() => ref.mounted && _account == account;
+    final api = ref.read(soulsApiProvider);
+    try {
+      for (final id in [..._dirty]) {
+        final sent = byId(id);
+        if (sent != null) {
+          await api.save(sent);
+        }
+        // changed again meanwhile: sent next time
+        if (byId(id) == sent) {
+          _dirty.remove(id);
+        }
+      }
+      for (final id in [..._deleted]) {
+        await api.remove(id);
+        _deleted.remove(id);
+      }
+      final server = await api.list();
+      if (!same()) {
+        return;
+      }
+      // what changed here meanwhile stays as it is here
+      final local = {
+        for (final soul in state.value ?? const <Soul>[]) soul.id: soul,
+      };
+      final kept = {
+        for (final soul in server)
+          if (!_deleted.contains(soul.id)) soul.id: soul,
+      };
+      for (final id in _dirty) {
+        if (local[id] case final soul?) {
+          kept[id] = soul;
+        }
+      }
+      state = AsyncData([
+        for (final id in _dirty)
+          if (!server.any((soul) => soul.id == id)) ?kept[id],
+        for (final soul in server) ?kept[soul.id],
+      ]);
+      await _write();
+      await reschedule();
+    } on Object {
+      // offline or refused: kept here, sent next time
+      if (same()) {
+        await _write();
+      }
+    }
   }
 
   Soul? byId(String id) {
@@ -88,7 +188,9 @@ class Souls extends _$Souls {
     if (soul.nextContact != null) {
       await ref.read(localNotificationsProvider).requestPermission();
     }
+    _dirty.add(added.id);
     await _save([added, ...current]);
+    unawaited(sync());
     return added;
   }
 
@@ -98,17 +200,22 @@ class Souls extends _$Souls {
     if (soul.nextContact != null && before?.nextContact == null) {
       await ref.read(localNotificationsProvider).requestPermission();
     }
+    _dirty.add(soul.id);
     await _save([
       for (final known in current) known.id == soul.id ? soul : known,
     ]);
+    unawaited(sync());
   }
 
   Future<void> remove(String id) async {
     final current = await future;
+    _dirty.remove(id);
+    _deleted.add(id);
     await _save([
       for (final soul in current)
         if (soul.id != id) soul,
     ]);
+    unawaited(sync());
   }
 
   Future<void> addNote(String id, String text) async {

@@ -2230,7 +2230,7 @@
     "edit": "Bearbeiten",
     "delete": "Löschen",
     "deleteTitle": "{name} löschen?",
-    "deleteText": "Die Notizen werden von deinem Handy gelöscht.",
+    "deleteText": "Die Notizen werden gelöscht.",
     "deleted": "Gelöscht",
     "nextContact": "Nächster Kontakt",
     "plan": "Erinnerung planen",
@@ -2256,7 +2256,7 @@
     "lockedTitle": "Deine Seelenbegleitung ist gesperrt",
     "unlock": "Entsperren",
     "unlockReason": "Öffne deine Seelenbegleitung",
-    "privacy": "Diese Angaben bleiben auf deinem Handy: Sie werden nie gesendet.",
+    "privacy": "Diese Angaben werden in deinem Konto gespeichert, nur für dich: niemand sonst sieht sie, nicht einmal deine Autoritäten.",
     "reminderTitle": "Seelenbegleitung",
     "reminderBody(plural, param=n)": {
       "one": "Heute {n} Person kontaktieren.",

@@ -1948,7 +1948,7 @@ class _Translations$souls$ar extends Translations$souls$fr {
 	@override String get edit => 'تعديل';
 	@override String get delete => 'احذف';
 	@override String deleteTitle({required Object name}) => 'حذف ${name}؟';
-	@override String get deleteText => 'ستُمحى ملاحظاته من هاتفك.';
+	@override String get deleteText => 'ستُمحى ملاحظاته.';
 	@override String get deleted => 'تم الحذف';
 	@override String get nextContact => 'التواصل القادم';
 	@override String get plan => 'حدّد تذكيرًا';
@@ -1966,7 +1966,7 @@ class _Translations$souls$ar extends Translations$souls$fr {
 	@override String get lockedTitle => 'متابعة النفوس مقفلة';
 	@override String get unlock => 'افتح القفل';
 	@override String get unlockReason => 'افتح متابعة النفوس';
-	@override String get privacy => 'تبقى هذه المعلومات على هاتفك: لا تُرسَل أبدًا.';
+	@override String get privacy => 'تُحفظ هذه المعلومات في حسابك، لك وحدك: لا يراها أحد غيرك، ولا حتى مرشدوك.';
 	@override String get reminderTitle => 'متابعة النفوس';
 	@override String reminderBody({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n,
 		one: 'شخص واحد للتواصل معه اليوم.',
@@ -5319,7 +5319,7 @@ extension on TranslationsAr {
 			'souls.edit' => 'تعديل',
 			'souls.delete' => 'احذف',
 			'souls.deleteTitle' => ({required Object name}) => 'حذف ${name}؟',
-			'souls.deleteText' => 'ستُمحى ملاحظاته من هاتفك.',
+			'souls.deleteText' => 'ستُمحى ملاحظاته.',
 			'souls.deleted' => 'تم الحذف',
 			'souls.nextContact' => 'التواصل القادم',
 			'souls.plan' => 'حدّد تذكيرًا',
@@ -5343,7 +5343,7 @@ extension on TranslationsAr {
 			'souls.lockedTitle' => 'متابعة النفوس مقفلة',
 			'souls.unlock' => 'افتح القفل',
 			'souls.unlockReason' => 'افتح متابعة النفوس',
-			'souls.privacy' => 'تبقى هذه المعلومات على هاتفك: لا تُرسَل أبدًا.',
+			'souls.privacy' => 'تُحفظ هذه المعلومات في حسابك، لك وحدك: لا يراها أحد غيرك، ولا حتى مرشدوك.',
 			'souls.reminderTitle' => 'متابعة النفوس',
 			'souls.reminderBody' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n, one: 'شخص واحد للتواصل معه اليوم.', other: '${n} أشخاص للتواصل معهم اليوم.', ), 
 			'souls.reminderChannel' => 'متابعة النفوس',

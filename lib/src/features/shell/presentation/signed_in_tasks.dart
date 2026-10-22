@@ -499,6 +499,8 @@ class SignedInTasks extends HookConsumerWidget {
         onResume: () {
           unawaited(pending.send());
           unawaited(ref.read(inboxProvider.notifier).refresh());
+          // Suivi des âmes changed offline, or on another phone
+          unawaited(ref.read(soulsProvider.notifier).sync());
           sendPrayer();
           // a new day: the reminders reach two weeks ahead again
           if (plannedOn.value != today()) {

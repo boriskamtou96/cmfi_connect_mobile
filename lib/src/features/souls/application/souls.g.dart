@@ -9,22 +9,31 @@ part of 'souls.dart';
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint, type=warning
 /// Suivi des âmes: the people the signed-in member follows, kept on the
-/// phone for this account (SoulsStorage). A day planned to contact someone
-/// brings a reminder at 9 o'clock that names nobody (it shows on a locked
-/// screen).
+/// server (SoulsApi) and on the phone for this account (SoulsStorage), to
+/// work offline: a change is written here at once and sent to the server,
+/// again later when it can't be now; the server's list then comes back. The
+/// souls an older version kept on the phone only are sent once. A day
+/// planned to contact someone brings a reminder at 9 o'clock that names
+/// nobody (it shows on a locked screen).
 
 @ProviderFor(Souls)
 final soulsProvider = SoulsProvider._();
 
 /// Suivi des âmes: the people the signed-in member follows, kept on the
-/// phone for this account (SoulsStorage). A day planned to contact someone
-/// brings a reminder at 9 o'clock that names nobody (it shows on a locked
-/// screen).
+/// server (SoulsApi) and on the phone for this account (SoulsStorage), to
+/// work offline: a change is written here at once and sent to the server,
+/// again later when it can't be now; the server's list then comes back. The
+/// souls an older version kept on the phone only are sent once. A day
+/// planned to contact someone brings a reminder at 9 o'clock that names
+/// nobody (it shows on a locked screen).
 final class SoulsProvider extends $AsyncNotifierProvider<Souls, List<Soul>> {
   /// Suivi des âmes: the people the signed-in member follows, kept on the
-  /// phone for this account (SoulsStorage). A day planned to contact someone
-  /// brings a reminder at 9 o'clock that names nobody (it shows on a locked
-  /// screen).
+  /// server (SoulsApi) and on the phone for this account (SoulsStorage), to
+  /// work offline: a change is written here at once and sent to the server,
+  /// again later when it can't be now; the server's list then comes back. The
+  /// souls an older version kept on the phone only are sent once. A day
+  /// planned to contact someone brings a reminder at 9 o'clock that names
+  /// nobody (it shows on a locked screen).
   SoulsProvider._()
     : super(
         from: null,
@@ -44,12 +53,15 @@ final class SoulsProvider extends $AsyncNotifierProvider<Souls, List<Soul>> {
   Souls create() => Souls();
 }
 
-String _$soulsHash() => r'c90f1d31b449e06ab64af3b42ed6a669beb1d293';
+String _$soulsHash() => r'357cedd186338610ecf42c849f75a701fd60a62e';
 
 /// Suivi des âmes: the people the signed-in member follows, kept on the
-/// phone for this account (SoulsStorage). A day planned to contact someone
-/// brings a reminder at 9 o'clock that names nobody (it shows on a locked
-/// screen).
+/// server (SoulsApi) and on the phone for this account (SoulsStorage), to
+/// work offline: a change is written here at once and sent to the server,
+/// again later when it can't be now; the server's list then comes back. The
+/// souls an older version kept on the phone only are sent once. A day
+/// planned to contact someone brings a reminder at 9 o'clock that names
+/// nobody (it shows on a locked screen).
 
 abstract class _$Souls extends $AsyncNotifier<List<Soul>> {
   FutureOr<List<Soul>> build();

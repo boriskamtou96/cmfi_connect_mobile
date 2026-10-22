@@ -1696,7 +1696,7 @@ class _Translations$souls$en extends Translations$souls$fr {
 	@override String get edit => 'Edit';
 	@override String get delete => 'Delete';
 	@override String deleteTitle({required Object name}) => 'Delete ${name}?';
-	@override String get deleteText => 'Their notes will be erased from your phone.';
+	@override String get deleteText => 'Their notes will be erased.';
 	@override String get deleted => 'Deleted';
 	@override String get nextContact => 'Next contact';
 	@override String get plan => 'Plan a reminder';
@@ -1714,7 +1714,7 @@ class _Translations$souls$en extends Translations$souls$fr {
 	@override String get lockedTitle => 'Your soul follow-up is locked';
 	@override String get unlock => 'Unlock';
 	@override String get unlockReason => 'Open your soul follow-up';
-	@override String get privacy => 'This information stays on your phone: it is never sent.';
+	@override String get privacy => 'This information is kept in your account, for you alone: nobody else sees it, not even your spiritual leaders.';
 	@override String get reminderTitle => 'Soul follow-up';
 	@override String reminderBody({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n,
 		one: '${n} person to contact today.',
@@ -4986,7 +4986,7 @@ extension on TranslationsEn {
 			'souls.edit' => 'Edit',
 			'souls.delete' => 'Delete',
 			'souls.deleteTitle' => ({required Object name}) => 'Delete ${name}?',
-			'souls.deleteText' => 'Their notes will be erased from your phone.',
+			'souls.deleteText' => 'Their notes will be erased.',
 			'souls.deleted' => 'Deleted',
 			'souls.nextContact' => 'Next contact',
 			'souls.plan' => 'Plan a reminder',
@@ -5010,7 +5010,7 @@ extension on TranslationsEn {
 			'souls.lockedTitle' => 'Your soul follow-up is locked',
 			'souls.unlock' => 'Unlock',
 			'souls.unlockReason' => 'Open your soul follow-up',
-			'souls.privacy' => 'This information stays on your phone: it is never sent.',
+			'souls.privacy' => 'This information is kept in your account, for you alone: nobody else sees it, not even your spiritual leaders.',
 			'souls.reminderTitle' => 'Soul follow-up',
 			'souls.reminderBody' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n, one: '${n} person to contact today.', other: '${n} people to contact today.', ), 
 			'souls.reminderChannel' => 'Soul follow-up',

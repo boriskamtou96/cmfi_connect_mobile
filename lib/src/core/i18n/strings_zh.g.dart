@@ -1632,7 +1632,7 @@ class _Translations$souls$zh extends Translations$souls$fr {
 	@override String get edit => '编辑';
 	@override String get delete => '删除';
 	@override String deleteTitle({required Object name}) => '删除 ${name}？';
-	@override String get deleteText => '相关备注将从手机中删除。';
+	@override String get deleteText => '相关备注将被删除。';
 	@override String get deleted => '已删除';
 	@override String get nextContact => '下次联系';
 	@override String get plan => '设置提醒';
@@ -1650,7 +1650,7 @@ class _Translations$souls$zh extends Translations$souls$fr {
 	@override String get lockedTitle => '灵魂跟进已锁定';
 	@override String get unlock => '解锁';
 	@override String get unlockReason => '打开灵魂跟进';
-	@override String get privacy => '这些信息只保存在你的手机上，绝不会上传。';
+	@override String get privacy => '这些信息保存在你的账户中，仅供你本人查看：其他人都看不到，包括你的属灵带领者。';
 	@override String get reminderTitle => '灵魂跟进';
 	@override String reminderBody({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n,
 		one: '今天要联系 ${n} 人。',
@@ -4901,7 +4901,7 @@ extension on TranslationsZh {
 			'souls.edit' => '编辑',
 			'souls.delete' => '删除',
 			'souls.deleteTitle' => ({required Object name}) => '删除 ${name}？',
-			'souls.deleteText' => '相关备注将从手机中删除。',
+			'souls.deleteText' => '相关备注将被删除。',
 			'souls.deleted' => '已删除',
 			'souls.nextContact' => '下次联系',
 			'souls.plan' => '设置提醒',
@@ -4925,7 +4925,7 @@ extension on TranslationsZh {
 			'souls.lockedTitle' => '灵魂跟进已锁定',
 			'souls.unlock' => '解锁',
 			'souls.unlockReason' => '打开灵魂跟进',
-			'souls.privacy' => '这些信息只保存在你的手机上，绝不会上传。',
+			'souls.privacy' => '这些信息保存在你的账户中，仅供你本人查看：其他人都看不到，包括你的属灵带领者。',
 			'souls.reminderTitle' => '灵魂跟进',
 			'souls.reminderBody' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n, one: '今天要联系 ${n} 人。', other: '今天要联系 ${n} 人。', ), 
 			'souls.reminderChannel' => '灵魂跟进',

@@ -53,6 +53,7 @@ import 'package:cmfi_connect/src/features/reports/domain/daily_report.dart';
 import 'package:cmfi_connect/src/features/reports/infrastructure/activities_api.dart';
 import 'package:cmfi_connect/src/features/reports/infrastructure/report_sendings_api.dart';
 import 'package:cmfi_connect/src/features/reports/infrastructure/reports_api.dart';
+import 'package:cmfi_connect/src/features/souls/infrastructure/souls_api.dart';
 import 'package:cmfi_connect/src/features/souls/infrastructure/souls_storage.dart';
 import 'package:cmfi_connect/src/features/teachings/application/teaching_player.dart';
 import 'package:cmfi_connect/src/features/teachings/infrastructure/teaching_files.dart';
@@ -112,6 +113,7 @@ class TestApp {
     required this.player,
     required this.teachingFiles,
     required this.soulsStorage,
+    required this.soulsApi,
     required this.voice,
     required this.reportSendingsApi,
     required this.lockScreen,
@@ -167,6 +169,7 @@ class TestApp {
   final FakeTeachingPlayer player;
   final FakeTeachingFiles teachingFiles;
   final FakeSoulsStorage soulsStorage;
+  final FakeSoulsApi soulsApi;
   final FakeVoiceReader voice;
   final FakeReportSendingsApi reportSendingsApi;
   final FakeLockScreenTimer lockScreen;
@@ -208,6 +211,7 @@ Future<TestApp> pumpApp(
   FakeTeachingsApi? teachingsApi,
   FakeTeachingFiles? teachingFiles,
   FakeSoulsStorage? soulsStorage,
+  FakeSoulsApi? soulsApi,
   FakePhoneVerification? phoneVerification,
   FakeStoreReview? storeReview,
   FakeAppShortcuts? shortcuts,
@@ -281,6 +285,7 @@ Future<TestApp> pumpApp(
   final player = FakeTeachingPlayer();
   final files = teachingFiles ?? FakeTeachingFiles();
   final souls = soulsStorage ?? FakeSoulsStorage();
+  final soulsServer = soulsApi ?? FakeSoulsApi();
   final voice = FakeVoiceReader();
   final lockScreen = FakeLockScreenTimer();
   final sendings = reportSendingsApi ?? FakeReportSendingsApi();
@@ -339,6 +344,7 @@ Future<TestApp> pumpApp(
       teachingPlayerProvider.overrideWithValue(player),
       teachingFilesProvider.overrideWithValue(files),
       soulsStorageProvider.overrideWithValue(souls),
+      soulsApiProvider.overrideWithValue(soulsServer),
       voiceReaderProvider.overrideWithValue(voice),
       lockScreenTimerProvider.overrideWithValue(lockScreen),
       reportSendingsApiProvider.overrideWithValue(sendings),
@@ -415,6 +421,7 @@ Future<TestApp> pumpApp(
     player: player,
     teachingFiles: files,
     soulsStorage: souls,
+    soulsApi: soulsServer,
     voice: voice,
     reportSendingsApi: sendings,
     lockScreen: lockScreen,

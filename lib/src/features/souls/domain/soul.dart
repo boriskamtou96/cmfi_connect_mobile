@@ -19,8 +19,9 @@ class SoulNote {
   Map<String, dynamic> toJson() => {'at': at.toIso8601String(), 'text': text};
 }
 
-/// A person the member evangelised and follows: kept on the phone only (in
-/// the Keychain / Keystore), never sent: it is about someone else.
+/// A person the member evangelised and follows: kept on the phone (in the
+/// Keychain / Keystore) and on the server for this member only: it is about
+/// someone else, nobody else sees it.
 @immutable
 class Soul {
   const Soul({

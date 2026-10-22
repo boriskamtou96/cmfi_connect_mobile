@@ -1695,7 +1695,7 @@ class _Translations$souls$es extends Translations$souls$fr {
 	@override String get edit => 'Editar';
 	@override String get delete => 'Eliminar';
 	@override String deleteTitle({required Object name}) => '¿Eliminar a ${name}?';
-	@override String get deleteText => 'Sus notas se borrarán de tu teléfono.';
+	@override String get deleteText => 'Sus notas se borrarán.';
 	@override String get deleted => 'Eliminado';
 	@override String get nextContact => 'Próximo contacto';
 	@override String get plan => 'Programar un recordatorio';
@@ -1713,7 +1713,7 @@ class _Translations$souls$es extends Translations$souls$fr {
 	@override String get lockedTitle => 'Tu seguimiento de almas está bloqueado';
 	@override String get unlock => 'Desbloquear';
 	@override String get unlockReason => 'Abre tu seguimiento de almas';
-	@override String get privacy => 'Esta información se queda en tu teléfono: nunca se envía.';
+	@override String get privacy => 'Esta información se guarda en tu cuenta, solo para ti: nadie más la ve, ni siquiera tus autoridades.';
 	@override String get reminderTitle => 'Seguimiento de almas';
 	@override String reminderBody({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('es'))(n,
 		one: '${n} persona por contactar hoy.',
@@ -4985,7 +4985,7 @@ extension on TranslationsEs {
 			'souls.edit' => 'Editar',
 			'souls.delete' => 'Eliminar',
 			'souls.deleteTitle' => ({required Object name}) => '¿Eliminar a ${name}?',
-			'souls.deleteText' => 'Sus notas se borrarán de tu teléfono.',
+			'souls.deleteText' => 'Sus notas se borrarán.',
 			'souls.deleted' => 'Eliminado',
 			'souls.nextContact' => 'Próximo contacto',
 			'souls.plan' => 'Programar un recordatorio',
@@ -5009,7 +5009,7 @@ extension on TranslationsEs {
 			'souls.lockedTitle' => 'Tu seguimiento de almas está bloqueado',
 			'souls.unlock' => 'Desbloquear',
 			'souls.unlockReason' => 'Abre tu seguimiento de almas',
-			'souls.privacy' => 'Esta información se queda en tu teléfono: nunca se envía.',
+			'souls.privacy' => 'Esta información se guarda en tu cuenta, solo para ti: nadie más la ve, ni siquiera tus autoridades.',
 			'souls.reminderTitle' => 'Seguimiento de almas',
 			'souls.reminderBody' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('es'))(n, one: '${n} persona por contactar hoy.', other: '${n} personas por contactar hoy.', ), 
 			'souls.reminderChannel' => 'Seguimiento de almas',

@@ -4,6 +4,7 @@ import 'package:cmfi_connect/src/core/i18n/strings.g.dart';
 import 'package:cmfi_connect/src/core/services/biometrics.dart';
 import 'package:cmfi_connect/src/core/services/local_notifications.dart';
 import 'package:cmfi_connect/src/core/utils/date_extensions.dart';
+import 'package:cmfi_connect/src/features/souls/application/souls.dart';
 import 'package:cmfi_connect/src/features/souls/domain/soul.dart';
 import 'package:cmfi_connect/src/features/souls/presentation/soul_screen.dart';
 import 'package:cmfi_connect/src/features/souls/presentation/souls_screen.dart';
@@ -38,6 +39,7 @@ void main() {
   Future<TestApp> openSouls(
     WidgetTester tester, {
     FakeSoulsStorage? storage,
+    FakeSoulsApi? server,
     FakeBiometrics? biometrics,
     Map<String, Object> preferences = const {},
   }) async {
@@ -46,6 +48,7 @@ void main() {
       token: 't',
       account: sampleAccount,
       soulsStorage: storage,
+      soulsApi: server,
       biometrics: biometrics,
       initialPreferences: preferences,
     );
@@ -112,7 +115,8 @@ void main() {
 
     // in the list, and as the soul of the day
     expect(find.text('Paul Mbarga'), findsWidgets);
-    final saved = jsonDecode(storage.saved[sampleAccount.id]!) as List;
+    final saved =
+        (jsonDecode(storage.saved[sampleAccount.id]!) as Map)['souls'] as List;
     expect(saved.single['stage'], 'received');
     expect(saved.single['notes'].single['text'], 'A prié au marché');
   });
@@ -139,9 +143,13 @@ void main() {
     await tester.pumpAndSettle();
     expect(find.text('Visite à la maison'), findsOneWidget);
 
-    final saved = jsonDecode(app.soulsStorage.saved[sampleAccount.id]!) as List;
+    final kept = jsonDecode(app.soulsStorage.saved[sampleAccount.id]!) as Map;
+    final saved = kept['souls'] as List;
     expect(saved.single['stage'], 'church');
     expect(saved.single['notes'], hasLength(2));
+    // on the server too
+    expect(app.soulsApi.souls['a1']!.stage, SoulStage.church);
+    expect(app.soulsApi.souls['a1']!.notes, hasLength(2));
   });
 
   testWidgets('to contact again: first in the list, a reminder without a '
@@ -209,5 +217,63 @@ void main() {
       'Prends un moment pour prier pour la personne du jour.',
     );
     expect(jsonDecode(app.preferences.getString('souls_prayer')!)['on'], true);
+  });
+
+  group('on the server', () {
+    testWidgets('the souls an older version kept on the phone are sent once', (
+      tester,
+    ) async {
+      final server = FakeSoulsApi();
+      final app = await openSouls(
+        tester,
+        storage: keeping([amina()]),
+        server: server,
+      );
+
+      expect(server.souls.keys, ['a1']);
+      expect(server.saves, 1);
+      final kept = jsonDecode(app.soulsStorage.saved[sampleAccount.id]!) as Map;
+      expect(kept['dirty'], isEmpty);
+
+      await app.container.read(soulsProvider.notifier).sync();
+      expect(server.saves, 1);
+    });
+
+    testWidgets('the list follows the account to another phone', (
+      tester,
+    ) async {
+      final server = FakeSoulsApi()..souls['a1'] = amina();
+      await openSouls(tester, server: server);
+
+      // in the list, and as the soul of the day
+      expect(find.text('Amina Ngono'), findsWidgets);
+    });
+
+    testWidgets('offline: kept on the phone, sent when back', (tester) async {
+      final server = FakeSoulsApi()..souls['a1'] = amina();
+      final app = await openSouls(tester, server: server);
+      server.offline = true;
+
+      final souls = app.container.read(soulsProvider.notifier);
+      await souls.save(amina(stage: SoulStage.baptized));
+      await tester.pumpAndSettle();
+      expect(server.souls['a1']!.stage, SoulStage.met);
+      final kept = jsonDecode(app.soulsStorage.saved[sampleAccount.id]!) as Map;
+      expect(kept['dirty'], ['a1']);
+      expect(souls.byId('a1')!.stage, SoulStage.baptized);
+
+      server.offline = false;
+      await souls.sync();
+      expect(server.souls['a1']!.stage, SoulStage.baptized);
+
+      server.offline = true;
+      await souls.remove('a1');
+      await tester.pumpAndSettle();
+      expect(server.souls, contains('a1'));
+      server.offline = false;
+      await souls.sync();
+      expect(server.souls, isEmpty);
+      expect(app.container.read(soulsProvider).value, isEmpty);
+    });
   });
 }

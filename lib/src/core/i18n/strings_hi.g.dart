@@ -1694,7 +1694,7 @@ class _Translations$souls$hi extends Translations$souls$fr {
 	@override String get edit => 'बदलो';
 	@override String get delete => 'मिटाओ';
 	@override String deleteTitle({required Object name}) => '${name} को मिटाएँ?';
-	@override String get deleteText => 'इनके नोट तुम्हारे फ़ोन से मिट जाएँगे।';
+	@override String get deleteText => 'इनके नोट मिट जाएँगे।';
 	@override String get deleted => 'मिटाया गया';
 	@override String get nextContact => 'अगला संपर्क';
 	@override String get plan => 'याद दिलाना तय करो';
@@ -1712,7 +1712,7 @@ class _Translations$souls$hi extends Translations$souls$fr {
 	@override String get lockedTitle => 'तुम्हारी आत्माओं की देखभाल लॉक है';
 	@override String get unlock => 'अनलॉक करो';
 	@override String get unlockReason => 'आत्माओं की देखभाल खोलो';
-	@override String get privacy => 'यह जानकारी तुम्हारे फ़ोन में ही रहती है: कभी भेजी नहीं जाती।';
+	@override String get privacy => 'यह जानकारी तुम्हारे खाते में सिर्फ़ तुम्हारे लिए रखी जाती है: कोई और इसे नहीं देखता, तुम्हारे आत्मिक अगुवे भी नहीं।';
 	@override String get reminderTitle => 'आत्माओं की देखभाल';
 	@override String reminderBody({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n,
 		one: 'आज ${n} व्यक्ति से संपर्क करना है।',
@@ -4984,7 +4984,7 @@ extension on TranslationsHi {
 			'souls.edit' => 'बदलो',
 			'souls.delete' => 'मिटाओ',
 			'souls.deleteTitle' => ({required Object name}) => '${name} को मिटाएँ?',
-			'souls.deleteText' => 'इनके नोट तुम्हारे फ़ोन से मिट जाएँगे।',
+			'souls.deleteText' => 'इनके नोट मिट जाएँगे।',
 			'souls.deleted' => 'मिटाया गया',
 			'souls.nextContact' => 'अगला संपर्क',
 			'souls.plan' => 'याद दिलाना तय करो',
@@ -5008,7 +5008,7 @@ extension on TranslationsHi {
 			'souls.lockedTitle' => 'तुम्हारी आत्माओं की देखभाल लॉक है',
 			'souls.unlock' => 'अनलॉक करो',
 			'souls.unlockReason' => 'आत्माओं की देखभाल खोलो',
-			'souls.privacy' => 'यह जानकारी तुम्हारे फ़ोन में ही रहती है: कभी भेजी नहीं जाती।',
+			'souls.privacy' => 'यह जानकारी तुम्हारे खाते में सिर्फ़ तुम्हारे लिए रखी जाती है: कोई और इसे नहीं देखता, तुम्हारे आत्मिक अगुवे भी नहीं।',
 			'souls.reminderTitle' => 'आत्माओं की देखभाल',
 			'souls.reminderBody' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n, one: 'आज ${n} व्यक्ति से संपर्क करना है।', other: 'आज ${n} लोगों से संपर्क करना है।', ), 
 			'souls.reminderChannel' => 'आत्माओं की देखभाल',

@@ -1695,7 +1695,7 @@ class _Translations$souls$de extends Translations$souls$fr {
 	@override String get edit => 'Bearbeiten';
 	@override String get delete => 'Löschen';
 	@override String deleteTitle({required Object name}) => '${name} löschen?';
-	@override String get deleteText => 'Die Notizen werden von deinem Handy gelöscht.';
+	@override String get deleteText => 'Die Notizen werden gelöscht.';
 	@override String get deleted => 'Gelöscht';
 	@override String get nextContact => 'Nächster Kontakt';
 	@override String get plan => 'Erinnerung planen';
@@ -1713,7 +1713,7 @@ class _Translations$souls$de extends Translations$souls$fr {
 	@override String get lockedTitle => 'Deine Seelenbegleitung ist gesperrt';
 	@override String get unlock => 'Entsperren';
 	@override String get unlockReason => 'Öffne deine Seelenbegleitung';
-	@override String get privacy => 'Diese Angaben bleiben auf deinem Handy: Sie werden nie gesendet.';
+	@override String get privacy => 'Diese Angaben werden in deinem Konto gespeichert, nur für dich: niemand sonst sieht sie, nicht einmal deine Autoritäten.';
 	@override String get reminderTitle => 'Seelenbegleitung';
 	@override String reminderBody({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('de'))(n,
 		one: 'Heute ${n} Person kontaktieren.',
@@ -4985,7 +4985,7 @@ extension on TranslationsDe {
 			'souls.edit' => 'Bearbeiten',
 			'souls.delete' => 'Löschen',
 			'souls.deleteTitle' => ({required Object name}) => '${name} löschen?',
-			'souls.deleteText' => 'Die Notizen werden von deinem Handy gelöscht.',
+			'souls.deleteText' => 'Die Notizen werden gelöscht.',
 			'souls.deleted' => 'Gelöscht',
 			'souls.nextContact' => 'Nächster Kontakt',
 			'souls.plan' => 'Erinnerung planen',
@@ -5009,7 +5009,7 @@ extension on TranslationsDe {
 			'souls.lockedTitle' => 'Deine Seelenbegleitung ist gesperrt',
 			'souls.unlock' => 'Entsperren',
 			'souls.unlockReason' => 'Öffne deine Seelenbegleitung',
-			'souls.privacy' => 'Diese Angaben bleiben auf deinem Handy: Sie werden nie gesendet.',
+			'souls.privacy' => 'Diese Angaben werden in deinem Konto gespeichert, nur für dich: niemand sonst sieht sie, nicht einmal deine Autoritäten.',
 			'souls.reminderTitle' => 'Seelenbegleitung',
 			'souls.reminderBody' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('de'))(n, one: 'Heute ${n} Person kontaktieren.', other: 'Heute ${n} Personen kontaktieren.', ), 
 			'souls.reminderChannel' => 'Seelenbegleitung',

@@ -3544,8 +3544,8 @@ class Translations$souls$fr {
 	/// fr: 'Supprimer {name} ?'
 	String deleteTitle({required Object name}) => 'Supprimer ${name} ?';
 
-	/// fr: 'Ses notes seront effacées de ton téléphone.'
-	String get deleteText => 'Ses notes seront effacées de ton téléphone.';
+	/// fr: 'Ses notes seront effacées.'
+	String get deleteText => 'Ses notes seront effacées.';
 
 	/// fr: 'Supprimé'
 	String get deleted => 'Supprimé';
@@ -3597,8 +3597,8 @@ class Translations$souls$fr {
 	/// fr: 'Ouvre ton suivi des âmes'
 	String get unlockReason => 'Ouvre ton suivi des âmes';
 
-	/// fr: 'Ces informations restent sur ton téléphone : elles ne sont jamais envoyées.'
-	String get privacy => 'Ces informations restent sur ton téléphone : elles ne sont jamais envoyées.';
+	/// fr: 'Ces informations sont gardées sur ton compte, pour toi seul : personne d'autre ne les voit, pas même tes autorités.'
+	String get privacy => 'Ces informations sont gardées sur ton compte, pour toi seul : personne d\'autre ne les voit, pas même tes autorités.';
 
 	/// fr: 'Suivi des âmes'
 	String get reminderTitle => 'Suivi des âmes';
@@ -8401,7 +8401,7 @@ extension on Translations {
 			'souls.edit' => 'Modifier',
 			'souls.delete' => 'Supprimer',
 			'souls.deleteTitle' => ({required Object name}) => 'Supprimer ${name} ?',
-			'souls.deleteText' => 'Ses notes seront effacées de ton téléphone.',
+			'souls.deleteText' => 'Ses notes seront effacées.',
 			'souls.deleted' => 'Supprimé',
 			'souls.nextContact' => 'Prochain contact',
 			'souls.plan' => 'Planifier un rappel',
@@ -8425,7 +8425,7 @@ extension on Translations {
 			'souls.lockedTitle' => 'Ton suivi des âmes est verrouillé',
 			'souls.unlock' => 'Déverrouiller',
 			'souls.unlockReason' => 'Ouvre ton suivi des âmes',
-			'souls.privacy' => 'Ces informations restent sur ton téléphone : elles ne sont jamais envoyées.',
+			'souls.privacy' => 'Ces informations sont gardées sur ton compte, pour toi seul : personne d\'autre ne les voit, pas même tes autorités.',
 			'souls.reminderTitle' => 'Suivi des âmes',
 			'souls.reminderBody' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('fr'))(n, one: '${n} personne à recontacter aujourd\'hui.', other: '${n} personnes à recontacter aujourd\'hui.', ), 
 			'souls.reminderChannel' => 'Suivi des âmes',

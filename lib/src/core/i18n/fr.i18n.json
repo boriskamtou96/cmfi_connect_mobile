@@ -2230,7 +2230,7 @@
     "edit": "Modifier",
     "delete": "Supprimer",
     "deleteTitle": "Supprimer {name} ?",
-    "deleteText": "Ses notes seront effacées de ton téléphone.",
+    "deleteText": "Ses notes seront effacées.",
     "deleted": "Supprimé",
     "nextContact": "Prochain contact",
     "plan": "Planifier un rappel",
@@ -2256,7 +2256,7 @@
     "lockedTitle": "Ton suivi des âmes est verrouillé",
     "unlock": "Déverrouiller",
     "unlockReason": "Ouvre ton suivi des âmes",
-    "privacy": "Ces informations restent sur ton téléphone : elles ne sont jamais envoyées.",
+    "privacy": "Ces informations sont gardées sur ton compte, pour toi seul : personne d'autre ne les voit, pas même tes autorités.",
     "reminderTitle": "Suivi des âmes",
     "reminderBody(plural, param=n)": {
       "one": "{n} personne à recontacter aujourd'hui.",

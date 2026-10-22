@@ -2230,7 +2230,7 @@
     "edit": "Editar",
     "delete": "Eliminar",
     "deleteTitle": "¿Eliminar a {name}?",
-    "deleteText": "Sus notas se borrarán de tu teléfono.",
+    "deleteText": "Sus notas se borrarán.",
     "deleted": "Eliminado",
     "nextContact": "Próximo contacto",
     "plan": "Programar un recordatorio",
@@ -2256,7 +2256,7 @@
     "lockedTitle": "Tu seguimiento de almas está bloqueado",
     "unlock": "Desbloquear",
     "unlockReason": "Abre tu seguimiento de almas",
-    "privacy": "Esta información se queda en tu teléfono: nunca se envía.",
+    "privacy": "Esta información se guarda en tu cuenta, solo para ti: nadie más la ve, ni siquiera tus autoridades.",
     "reminderTitle": "Seguimiento de almas",
     "reminderBody(plural, param=n)": {
       "one": "{n} persona por contactar hoy.",

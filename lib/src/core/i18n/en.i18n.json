@@ -2231,7 +2231,7 @@
     "edit": "Edit",
     "delete": "Delete",
     "deleteTitle": "Delete {name}?",
-    "deleteText": "Their notes will be erased from your phone.",
+    "deleteText": "Their notes will be erased.",
     "deleted": "Deleted",
     "nextContact": "Next contact",
     "plan": "Plan a reminder",
@@ -2257,7 +2257,7 @@
     "lockedTitle": "Your soul follow-up is locked",
     "unlock": "Unlock",
     "unlockReason": "Open your soul follow-up",
-    "privacy": "This information stays on your phone: it is never sent.",
+    "privacy": "This information is kept in your account, for you alone: nobody else sees it, not even your spiritual leaders.",
     "reminderTitle": "Soul follow-up",
     "reminderBody(plural, param=n)": {
       "one": "{n} person to contact today.",

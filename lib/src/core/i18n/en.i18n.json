@@ -993,7 +993,8 @@
         "limitReached": "This mobile money account has reached its limit.",
         "notApproved": "The payment was not approved: PIN not entered or refused.",
         "unavailable": "The operator is unavailable right now. Try again later.",
-        "generic": "The payment failed. Try again, or use another number."
+        "generic": "The payment failed. Try again, or use another number.",
+        "sandbox": "In test mode, only KPay test numbers are accepted: use 6 53 45 67 89, for example."
       },
       "later": "I'll pay later",
       "toPay": "To pay: {amount}",

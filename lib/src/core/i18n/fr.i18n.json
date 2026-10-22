@@ -992,7 +992,8 @@
         "limitReached": "La limite de ce compte mobile money est atteinte.",
         "notApproved": "Le paiement n'a pas été validé : code PIN non saisi ou refusé.",
         "unavailable": "L'opérateur est indisponible pour le moment. Réessaie plus tard.",
-        "generic": "Le paiement a échoué. Réessaie, ou utilise un autre numéro."
+        "generic": "Le paiement a échoué. Réessaie, ou utilise un autre numéro.",
+        "sandbox": "En mode test, seuls les numéros de test KPay sont acceptés : utilise par exemple le 6 53 45 67 89."
       },
       "later": "Je paierai plus tard",
       "toPay": "À payer : {amount}",

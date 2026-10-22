@@ -3052,6 +3052,7 @@ class _Translations$events$pay$failures$en extends Translations$events$pay$failu
 	@override String get notApproved => 'The payment was not approved: PIN not entered or refused.';
 	@override String get unavailable => 'The operator is unavailable right now. Try again later.';
 	@override String get generic => 'The payment failed. Try again, or use another number.';
+	@override String get sandbox => 'In test mode, only KPay test numbers are accepted: use 6 53 45 67 89, for example.';
 }
 
 // Path: ministry.goals.crusade
@@ -4068,6 +4069,7 @@ extension on TranslationsEn {
 			'events.pay.failures.notApproved' => 'The payment was not approved: PIN not entered or refused.',
 			'events.pay.failures.unavailable' => 'The operator is unavailable right now. Try again later.',
 			'events.pay.failures.generic' => 'The payment failed. Try again, or use another number.',
+			'events.pay.failures.sandbox' => 'In test mode, only KPay test numbers are accepted: use 6 53 45 67 89, for example.',
 			'events.pay.later' => 'I\'ll pay later',
 			'events.pay.toPay' => ({required Object amount}) => 'To pay: ${amount}',
 			'events.pay.payNow' => 'Pay',
@@ -4288,9 +4290,9 @@ extension on TranslationsEn {
 			'prayer.retreat.hints.assembly' => ({required Object name}) => 'Your assembly: ${name}',
 			'prayer.retreat.hints.assemblyMissing' => 'Add your assembly to your profile',
 			'prayer.retreat.hints.authorities' => ({required Object names}) => 'Your authorities: ${names}',
-			'prayer.retreat.hints.authoritiesMissing' => 'Add your spiritual authorities in More',
 			_ => null,
 		} ?? switch (path) {
+			'prayer.retreat.hints.authoritiesMissing' => 'Add your spiritual authorities in More',
 			'prayer.retreat.hints.list' => ({required Object list}) => 'My lists · ${list}',
 			'prayer.retreat.hints.listEmpty' => ({required Object list}) => 'Your "${list}" list is empty: add names',
 			'prayer.retreat.hints.nation' => ({required Object name}) => 'Today: ${name}',
@@ -4802,9 +4804,9 @@ extension on TranslationsEn {
 			'biblePlan.startsOn' => ({required Object date}) => 'The plan starts on ${date}.',
 			'biblePlan.start' => 'Start the plan',
 			'biblePlan.dayOf' => ({required Object day, required Object total}) => 'Day ${day} of ${total}',
-			'biblePlan.today' => 'Today\'s reading',
 			_ => null,
 		} ?? switch (path) {
+			'biblePlan.today' => 'Today\'s reading',
 			'biblePlan.todayDone' => 'Today\'s reading is done. Well done!',
 			'biblePlan.read' => 'Read',
 			'biblePlan.behind' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n, one: '${n} day behind', other: '${n} days behind', ), 

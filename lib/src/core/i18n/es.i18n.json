@@ -992,7 +992,8 @@
         "limitReached": "Esta cuenta de dinero móvil ha alcanzado su límite.",
         "notApproved": "El pago no se validó: PIN no introducido o rechazado.",
         "unavailable": "El operador no está disponible ahora. Inténtalo más tarde.",
-        "generic": "El pago falló. Inténtalo de nuevo o usa otro número."
+        "generic": "El pago falló. Inténtalo de nuevo o usa otro número.",
+        "sandbox": "En modo de prueba solo se aceptan los números de prueba de KPay: usa, por ejemplo, el 6 53 45 67 89."
       },
       "later": "Pagaré más tarde",
       "toPay": "Por pagar: {amount}",

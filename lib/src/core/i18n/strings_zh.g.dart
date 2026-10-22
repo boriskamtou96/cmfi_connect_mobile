@@ -2969,6 +2969,7 @@ class _Translations$events$pay$failures$zh extends Translations$events$pay$failu
 	@override String get notApproved => '付款未确认：未输入 PIN 码或被拒绝。';
 	@override String get unavailable => '运营商暂时不可用，请稍后再试。';
 	@override String get generic => '付款失败。请重试，或换一个号码。';
+	@override String get sandbox => '测试模式下只接受 KPay 测试号码：例如使用 6 53 45 67 89。';
 }
 
 // Path: ministry.goals.crusade
@@ -3983,6 +3984,7 @@ extension on TranslationsZh {
 			'events.pay.failures.notApproved' => '付款未确认：未输入 PIN 码或被拒绝。',
 			'events.pay.failures.unavailable' => '运营商暂时不可用，请稍后再试。',
 			'events.pay.failures.generic' => '付款失败。请重试，或换一个号码。',
+			'events.pay.failures.sandbox' => '测试模式下只接受 KPay 测试号码：例如使用 6 53 45 67 89。',
 			'events.pay.later' => '稍后付款',
 			'events.pay.toPay' => ({required Object amount}) => '待付：${amount}',
 			'events.pay.payNow' => '付款',
@@ -4203,9 +4205,9 @@ extension on TranslationsZh {
 			'prayer.retreat.hints.assembly' => ({required Object name}) => '你的聚会点：${name}',
 			'prayer.retreat.hints.assemblyMissing' => '在个人资料中添加你的聚会点',
 			'prayer.retreat.hints.authorities' => ({required Object names}) => '你的带领者：${names}',
-			'prayer.retreat.hints.authoritiesMissing' => '在「更多」中添加你的属灵带领者',
 			_ => null,
 		} ?? switch (path) {
+			'prayer.retreat.hints.authoritiesMissing' => '在「更多」中添加你的属灵带领者',
 			'prayer.retreat.hints.list' => ({required Object list}) => '我的名单 · ${list}',
 			'prayer.retreat.hints.listEmpty' => ({required Object list}) => '你的「${list}」名单是空的：添加一些名字吧',
 			'prayer.retreat.hints.nation' => ({required Object name}) => '今天：${name}',
@@ -4717,9 +4719,9 @@ extension on TranslationsZh {
 			'biblePlan.startsOn' => ({required Object date}) => '计划将于 ${date} 开始。',
 			'biblePlan.start' => '开始计划',
 			'biblePlan.dayOf' => ({required Object day, required Object total}) => '第 ${day} 天，共 ${total} 天',
-			'biblePlan.today' => '今日读经',
 			_ => null,
 		} ?? switch (path) {
+			'biblePlan.today' => '今日读经',
 			'biblePlan.todayDone' => '今日读经已完成，真棒！',
 			'biblePlan.read' => '阅读',
 			'biblePlan.behind' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n, other: '落后 ${n} 天', ), 

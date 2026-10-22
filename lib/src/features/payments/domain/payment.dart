@@ -106,3 +106,14 @@ String formatMoney(int amount, String currency, String locale) {
   };
   return '$number $unit';
 }
+
+/// The logo of an operator (assets/payments), null when there is none.
+String? operatorLogo(String provider) {
+  if (provider.startsWith('MTN_')) {
+    return 'assets/payments/mtn.png';
+  }
+  if (provider.startsWith('ORANGE_')) {
+    return 'assets/payments/orange.png';
+  }
+  return null;
+}

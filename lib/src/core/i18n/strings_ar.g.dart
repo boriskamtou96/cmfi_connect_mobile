@@ -3378,6 +3378,7 @@ class _Translations$events$pay$failures$ar extends Translations$events$pay$failu
 	@override String get notApproved => 'لم يُؤكَّد الدفع: لم يُدخَل الرمز السري أو رُفض.';
 	@override String get unavailable => 'المشغّل غير متاح حاليًا. حاول لاحقًا.';
 	@override String get generic => 'فشل الدفع. حاول مجددًا أو استخدم رقمًا آخر.';
+	@override String get sandbox => 'في وضع الاختبار، لا تُقبل إلا أرقام الاختبار الخاصة بـ KPay: استخدم مثلًا 6 53 45 67 89.';
 }
 
 // Path: ministry.goals.crusade
@@ -4401,6 +4402,7 @@ extension on TranslationsAr {
 			'events.pay.failures.notApproved' => 'لم يُؤكَّد الدفع: لم يُدخَل الرمز السري أو رُفض.',
 			'events.pay.failures.unavailable' => 'المشغّل غير متاح حاليًا. حاول لاحقًا.',
 			'events.pay.failures.generic' => 'فشل الدفع. حاول مجددًا أو استخدم رقمًا آخر.',
+			'events.pay.failures.sandbox' => 'في وضع الاختبار، لا تُقبل إلا أرقام الاختبار الخاصة بـ KPay: استخدم مثلًا 6 53 45 67 89.',
 			'events.pay.later' => 'سأدفع لاحقًا',
 			'events.pay.toPay' => ({required Object amount}) => 'المبلغ المستحق: ${amount}',
 			'events.pay.payNow' => 'ادفع',
@@ -4621,9 +4623,9 @@ extension on TranslationsAr {
 			'prayer.retreat.hints.assembly' => ({required Object name}) => 'جماعتك: ${name}',
 			'prayer.retreat.hints.assemblyMissing' => 'أضف جماعتك في ملفك الشخصي',
 			'prayer.retreat.hints.authorities' => ({required Object names}) => 'مرشدوك: ${names}',
-			'prayer.retreat.hints.authoritiesMissing' => 'أضف مرشديك الروحيين من «المزيد»',
 			_ => null,
 		} ?? switch (path) {
+			'prayer.retreat.hints.authoritiesMissing' => 'أضف مرشديك الروحيين من «المزيد»',
 			'prayer.retreat.hints.list' => ({required Object list}) => 'قوائمي · ${list}',
 			'prayer.retreat.hints.listEmpty' => ({required Object list}) => 'قائمتك «${list}» فارغة: أضف أسماء',
 			'prayer.retreat.hints.nation' => ({required Object name}) => 'اليوم: ${name}',
@@ -5135,9 +5137,9 @@ extension on TranslationsAr {
 			'biblePlan.startsOn' => ({required Object date}) => 'تبدأ الخطة في ${date}.',
 			'biblePlan.start' => 'ابدأ الخطة',
 			'biblePlan.dayOf' => ({required Object day, required Object total}) => 'اليوم ${day} من ${total}',
-			'biblePlan.today' => 'قراءة اليوم',
 			_ => null,
 		} ?? switch (path) {
+			'biblePlan.today' => 'قراءة اليوم',
 			'biblePlan.todayDone' => 'تمت قراءة اليوم. أحسنت!',
 			'biblePlan.read' => 'اقرأ',
 			'biblePlan.behind' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n, zero: 'تأخر ${n} يوم', one: 'تأخر يوم واحد', two: 'تأخر يومين', few: 'تأخر ${n} أيام', many: 'تأخر ${n} يومًا', other: 'تأخر ${n} يوم', ), 

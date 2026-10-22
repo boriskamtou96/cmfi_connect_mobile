@@ -19,6 +19,7 @@ import '../../../../core/widgets/rolling_text.dart';
 import '../../../members/application/my_account.dart';
 import '../../../payments/domain/payment.dart';
 import '../../../payments/infrastructure/payments_api.dart';
+import '../../../payments/presentation/operator_logo.dart';
 import '../../../payments/presentation/payment_waiting.dart';
 import '../../application/events_providers.dart';
 import '../../domain/event.dart';
@@ -541,14 +542,13 @@ class _RegistrationSheet extends HookConsumerWidget {
                   for (final country in operators)
                     for (final candidate in country.operators)
                       if (candidate.isOpen)
-                        ChoiceChip(
-                          label: Text(
-                            operators.length > 1
-                                ? '${candidate.name} · ${country.nameIn(locale.split('_').first)}'
-                                : candidate.name,
-                          ),
+                        OperatorChoice(
+                          provider: candidate.provider,
+                          label: operators.length > 1
+                              ? '${candidate.name} · ${country.nameIn(locale.split('_').first)}'
+                              : candidate.name,
                           selected: operator == candidate.provider,
-                          onSelected: (_) =>
+                          onTap: () =>
                               chosenOperator.value = candidate.provider,
                         ),
                 ],

@@ -2,6 +2,7 @@ import 'package:cmfi_connect/src/core/i18n/strings.g.dart';
 import 'package:cmfi_connect/src/core/network/app_exception.dart';
 import 'package:cmfi_connect/src/features/events/domain/event.dart';
 import 'package:cmfi_connect/src/features/payments/domain/payment.dart';
+import 'package:cmfi_connect/src/features/payments/presentation/operator_logo.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:intl/date_symbol_data_local.dart';
@@ -68,8 +69,8 @@ void main() {
     expect(find.text('${fcfa(5000)} par personne'), findsOneWidget);
     await fillPayment(tester);
     expect(find.text(fcfa(10000)), findsOneWidget);
-    final orange = tester.widget<ChoiceChip>(
-      find.widgetWithText(ChoiceChip, 'Orange'),
+    final orange = tester.widget<OperatorChoice>(
+      find.widgetWithText(OperatorChoice, 'Orange'),
     );
     expect(orange.selected, isTrue);
 
@@ -225,5 +226,28 @@ void main() {
     await tester.pumpAndSettle();
     expect(find.text('Tu es inscrit'), findsOneWidget);
     expect(app.toasts.errors, isEmpty);
+  });
+
+  testWidgets('with a sandbox key, a real number is said to be refused', (
+    tester,
+  ) async {
+    final payments = FakePaymentsApi()
+      ..startStatus = PaymentStatus.failed
+      ..startFailure = 'SANDBOX_TEST_NUMBER';
+    final app = await pumpApp(
+      tester,
+      token: 't',
+      eventsApi: paidEvents(),
+      paymentsApi: payments,
+    );
+    await openEvent(tester);
+    await fillPayment(tester);
+    await tapPay(tester);
+    await tester.pumpAndSettle();
+
+    expect(app.toasts.errors, [
+      'En mode test, seuls les numéros de test KPay sont acceptés : utilise '
+          'par exemple le 6 53 45 67 89.',
+    ]);
   });
 }

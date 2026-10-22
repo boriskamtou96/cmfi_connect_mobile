@@ -10,6 +10,7 @@ import '../../../core/theme/app_spacing.dart';
 import '../../../core/widgets/app_button.dart';
 import '../domain/payment.dart';
 import '../infrastructure/payments_api.dart';
+import 'operator_logo.dart';
 
 /// The member confirms the payment on their phone (their mobile money PIN):
 /// the payment is asked every [every] until it ends. [onCompleted] once paid;
@@ -101,9 +102,19 @@ class PaymentWaiting extends HookConsumerWidget {
           Center(
             child: failed
                 ? Icon(AppIcons.error, size: 56, color: scheme.error)
-                : const SizedBox.square(
-                    dimension: 56,
-                    child: CircularProgressIndicator(strokeWidth: 4),
+                // the operator asks for the PIN: its logo in the turning ring
+                : SizedBox.square(
+                    dimension: 76,
+                    child: Stack(
+                      alignment: Alignment.center,
+                      children: [
+                        const SizedBox.square(
+                          dimension: 76,
+                          child: CircularProgressIndicator(strokeWidth: 4),
+                        ),
+                        OperatorLogo(provider: payment.provider, size: 46),
+                      ],
+                    ),
                   ),
           ),
           const SizedBox(height: AppSpacing.xl),
@@ -153,6 +164,7 @@ String paymentFailureMessage(String code, Translations t) {
     'PAYMENT_NOT_APPROVED' ||
     'PAYER_NOT_APPROVED' ||
     'CANCELLED' => failures.notApproved,
+    'SANDBOX_TEST_NUMBER' => failures.sandbox,
     'PROVIDER_TEMPORARILY_UNAVAILABLE' ||
     'PAYMENTS_UNAVAILABLE' => failures.unavailable,
     _ => failures.generic,

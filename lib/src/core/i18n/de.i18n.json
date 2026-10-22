@@ -992,7 +992,8 @@
         "limitReached": "Dieses Mobile-Money-Konto hat sein Limit erreicht.",
         "notApproved": "Die Zahlung wurde nicht bestätigt: PIN nicht eingegeben oder abgelehnt.",
         "unavailable": "Der Anbieter ist gerade nicht verfügbar. Versuche es später erneut.",
-        "generic": "Die Zahlung ist fehlgeschlagen. Versuche es erneut oder nutze eine andere Nummer."
+        "generic": "Die Zahlung ist fehlgeschlagen. Versuche es erneut oder nutze eine andere Nummer.",
+        "sandbox": "Im Testmodus werden nur KPay-Testnummern akzeptiert: nutze zum Beispiel 6 53 45 67 89."
       },
       "later": "Ich bezahle später",
       "toPay": "Zu zahlen: {amount}",

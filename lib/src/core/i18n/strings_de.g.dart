@@ -3051,6 +3051,7 @@ class _Translations$events$pay$failures$de extends Translations$events$pay$failu
 	@override String get notApproved => 'Die Zahlung wurde nicht bestätigt: PIN nicht eingegeben oder abgelehnt.';
 	@override String get unavailable => 'Der Anbieter ist gerade nicht verfügbar. Versuche es später erneut.';
 	@override String get generic => 'Die Zahlung ist fehlgeschlagen. Versuche es erneut oder nutze eine andere Nummer.';
+	@override String get sandbox => 'Im Testmodus werden nur KPay-Testnummern akzeptiert: nutze zum Beispiel 6 53 45 67 89.';
 }
 
 // Path: ministry.goals.crusade
@@ -4067,6 +4068,7 @@ extension on TranslationsDe {
 			'events.pay.failures.notApproved' => 'Die Zahlung wurde nicht bestätigt: PIN nicht eingegeben oder abgelehnt.',
 			'events.pay.failures.unavailable' => 'Der Anbieter ist gerade nicht verfügbar. Versuche es später erneut.',
 			'events.pay.failures.generic' => 'Die Zahlung ist fehlgeschlagen. Versuche es erneut oder nutze eine andere Nummer.',
+			'events.pay.failures.sandbox' => 'Im Testmodus werden nur KPay-Testnummern akzeptiert: nutze zum Beispiel 6 53 45 67 89.',
 			'events.pay.later' => 'Ich bezahle später',
 			'events.pay.toPay' => ({required Object amount}) => 'Zu zahlen: ${amount}',
 			'events.pay.payNow' => 'Bezahlen',
@@ -4287,9 +4289,9 @@ extension on TranslationsDe {
 			'prayer.retreat.hints.assembly' => ({required Object name}) => 'Deine Gemeinde: ${name}',
 			'prayer.retreat.hints.assemblyMissing' => 'Füge deine Gemeinde in deinem Profil hinzu',
 			'prayer.retreat.hints.authorities' => ({required Object names}) => 'Deine Autoritäten: ${names}',
-			'prayer.retreat.hints.authoritiesMissing' => 'Füge deine geistlichen Autoritäten unter „Mehr“ hinzu',
 			_ => null,
 		} ?? switch (path) {
+			'prayer.retreat.hints.authoritiesMissing' => 'Füge deine geistlichen Autoritäten unter „Mehr“ hinzu',
 			'prayer.retreat.hints.list' => ({required Object list}) => 'Meine Listen · ${list}',
 			'prayer.retreat.hints.listEmpty' => ({required Object list}) => 'Deine Liste „${list}“ ist leer: Füge Namen hinzu',
 			'prayer.retreat.hints.nation' => ({required Object name}) => 'Heute: ${name}',
@@ -4801,9 +4803,9 @@ extension on TranslationsDe {
 			'biblePlan.startsOn' => ({required Object date}) => 'Der Plan beginnt am ${date}.',
 			'biblePlan.start' => 'Plan beginnen',
 			'biblePlan.dayOf' => ({required Object day, required Object total}) => 'Tag ${day} von ${total}',
-			'biblePlan.today' => 'Heutige Lesung',
 			_ => null,
 		} ?? switch (path) {
+			'biblePlan.today' => 'Heutige Lesung',
 			'biblePlan.todayDone' => 'Die heutige Lesung ist erledigt. Bravo!',
 			'biblePlan.read' => 'Lesen',
 			'biblePlan.behind' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('de'))(n, one: '${n} Tag im Rückstand', other: '${n} Tage im Rückstand', ), 

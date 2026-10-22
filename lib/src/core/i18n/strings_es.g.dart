@@ -3051,6 +3051,7 @@ class _Translations$events$pay$failures$es extends Translations$events$pay$failu
 	@override String get notApproved => 'El pago no se validó: PIN no introducido o rechazado.';
 	@override String get unavailable => 'El operador no está disponible ahora. Inténtalo más tarde.';
 	@override String get generic => 'El pago falló. Inténtalo de nuevo o usa otro número.';
+	@override String get sandbox => 'En modo de prueba solo se aceptan los números de prueba de KPay: usa, por ejemplo, el 6 53 45 67 89.';
 }
 
 // Path: ministry.goals.crusade
@@ -4067,6 +4068,7 @@ extension on TranslationsEs {
 			'events.pay.failures.notApproved' => 'El pago no se validó: PIN no introducido o rechazado.',
 			'events.pay.failures.unavailable' => 'El operador no está disponible ahora. Inténtalo más tarde.',
 			'events.pay.failures.generic' => 'El pago falló. Inténtalo de nuevo o usa otro número.',
+			'events.pay.failures.sandbox' => 'En modo de prueba solo se aceptan los números de prueba de KPay: usa, por ejemplo, el 6 53 45 67 89.',
 			'events.pay.later' => 'Pagaré más tarde',
 			'events.pay.toPay' => ({required Object amount}) => 'Por pagar: ${amount}',
 			'events.pay.payNow' => 'Pagar',
@@ -4287,9 +4289,9 @@ extension on TranslationsEs {
 			'prayer.retreat.hints.assembly' => ({required Object name}) => 'Tu asamblea: ${name}',
 			'prayer.retreat.hints.assemblyMissing' => 'Añade tu asamblea en tu perfil',
 			'prayer.retreat.hints.authorities' => ({required Object names}) => 'Tus autoridades: ${names}',
-			'prayer.retreat.hints.authoritiesMissing' => 'Añade tus autoridades espirituales en «Más»',
 			_ => null,
 		} ?? switch (path) {
+			'prayer.retreat.hints.authoritiesMissing' => 'Añade tus autoridades espirituales en «Más»',
 			'prayer.retreat.hints.list' => ({required Object list}) => 'Mis listas · ${list}',
 			'prayer.retreat.hints.listEmpty' => ({required Object list}) => 'Tu lista «${list}» está vacía: añade nombres',
 			'prayer.retreat.hints.nation' => ({required Object name}) => 'Hoy: ${name}',
@@ -4801,9 +4803,9 @@ extension on TranslationsEs {
 			'biblePlan.startsOn' => ({required Object date}) => 'El plan empieza el ${date}.',
 			'biblePlan.start' => 'Empezar el plan',
 			'biblePlan.dayOf' => ({required Object day, required Object total}) => 'Día ${day} de ${total}',
-			'biblePlan.today' => 'Lectura del día',
 			_ => null,
 		} ?? switch (path) {
+			'biblePlan.today' => 'Lectura del día',
 			'biblePlan.todayDone' => 'Lectura del día hecha. ¡Bravo!',
 			'biblePlan.read' => 'Leer',
 			'biblePlan.behind' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('es'))(n, one: '${n} día de retraso', other: '${n} días de retraso', ), 

@@ -967,7 +967,8 @@
         "limitReached": "该移动钱包已达到限额。",
         "notApproved": "付款未确认：未输入 PIN 码或被拒绝。",
         "unavailable": "运营商暂时不可用，请稍后再试。",
-        "generic": "付款失败。请重试，或换一个号码。"
+        "generic": "付款失败。请重试，或换一个号码。",
+        "sandbox": "测试模式下只接受 KPay 测试号码：例如使用 6 53 45 67 89。"
       },
       "later": "稍后付款",
       "toPay": "待付：{amount}",

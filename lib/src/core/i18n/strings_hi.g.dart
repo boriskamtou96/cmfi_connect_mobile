@@ -3050,6 +3050,7 @@ class _Translations$events$pay$failures$hi extends Translations$events$pay$failu
 	@override String get notApproved => 'भुगतान की पुष्टि नहीं हुई: पिन नहीं डाला गया या अस्वीकार हुआ।';
 	@override String get unavailable => 'ऑपरेटर अभी उपलब्ध नहीं है। बाद में फिर कोशिश करें।';
 	@override String get generic => 'भुगतान विफल रहा। फिर कोशिश करें या कोई दूसरा नंबर इस्तेमाल करें।';
+	@override String get sandbox => 'टेस्ट मोड में केवल KPay के टेस्ट नंबर स्वीकार होते हैं: उदाहरण के लिए 6 53 45 67 89 इस्तेमाल करें।';
 }
 
 // Path: ministry.goals.crusade
@@ -4066,6 +4067,7 @@ extension on TranslationsHi {
 			'events.pay.failures.notApproved' => 'भुगतान की पुष्टि नहीं हुई: पिन नहीं डाला गया या अस्वीकार हुआ।',
 			'events.pay.failures.unavailable' => 'ऑपरेटर अभी उपलब्ध नहीं है। बाद में फिर कोशिश करें।',
 			'events.pay.failures.generic' => 'भुगतान विफल रहा। फिर कोशिश करें या कोई दूसरा नंबर इस्तेमाल करें।',
+			'events.pay.failures.sandbox' => 'टेस्ट मोड में केवल KPay के टेस्ट नंबर स्वीकार होते हैं: उदाहरण के लिए 6 53 45 67 89 इस्तेमाल करें।',
 			'events.pay.later' => 'मैं बाद में भुगतान करूँगा',
 			'events.pay.toPay' => ({required Object amount}) => 'भुगतान बाकी: ${amount}',
 			'events.pay.payNow' => 'भुगतान करें',
@@ -4286,9 +4288,9 @@ extension on TranslationsHi {
 			'prayer.retreat.hints.assembly' => ({required Object name}) => 'तुम्हारी सभा: ${name}',
 			'prayer.retreat.hints.assemblyMissing' => 'अपनी प्रोफ़ाइल में अपनी सभा जोड़ो',
 			'prayer.retreat.hints.authorities' => ({required Object names}) => 'तुम्हारे अगुवे: ${names}',
-			'prayer.retreat.hints.authoritiesMissing' => '‘और’ में अपने आत्मिक अगुवे जोड़ो',
 			_ => null,
 		} ?? switch (path) {
+			'prayer.retreat.hints.authoritiesMissing' => '‘और’ में अपने आत्मिक अगुवे जोड़ो',
 			'prayer.retreat.hints.list' => ({required Object list}) => 'मेरी सूचियाँ · ${list}',
 			'prayer.retreat.hints.listEmpty' => ({required Object list}) => 'तुम्हारी “${list}” सूची ख़ाली है: नाम जोड़ो',
 			'prayer.retreat.hints.nation' => ({required Object name}) => 'आज: ${name}',
@@ -4800,9 +4802,9 @@ extension on TranslationsHi {
 			'biblePlan.startsOn' => ({required Object date}) => 'योजना ${date} को शुरू होगी।',
 			'biblePlan.start' => 'योजना शुरू करें',
 			'biblePlan.dayOf' => ({required Object day, required Object total}) => 'दिन ${day} / ${total}',
-			'biblePlan.today' => 'आज का पठन',
 			_ => null,
 		} ?? switch (path) {
+			'biblePlan.today' => 'आज का पठन',
 			'biblePlan.todayDone' => 'आज का पठन पूरा हुआ। शाबाश!',
 			'biblePlan.read' => 'पढ़ें',
 			'biblePlan.behind' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n, one: '${n} दिन पीछे', other: '${n} दिन पीछे', ), 

@@ -154,6 +154,9 @@ flutter:
     # stock photos of the photographic look (Unsplash licence, credits in
     # assets/photos/CREDITS.md), see core/widgets/photo_kit.dart
     - assets/photos/
+    # the logos of the mobile money operators (credits in
+    # assets/payments/CREDITS.md), see features/payments
+    - assets/payments/
 
   fonts:
     - family: Onest

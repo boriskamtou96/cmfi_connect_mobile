@@ -342,6 +342,15 @@ class MiniPlayer extends ConsumerWidget {
                           color: Colors.white,
                         ),
                       ),
+                    IconButton(
+                      tooltip: t.closePlayer,
+                      onPressed: () =>
+                          ref.read(nowPlayingProvider.notifier).close(),
+                      icon: const Icon(
+                        AppIcons.close,
+                        color: AppColors.onPrimaryMuted,
+                      ),
+                    ),
                   ],
                 ),
               ),

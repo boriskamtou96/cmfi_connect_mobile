@@ -53,7 +53,7 @@ final class NowPlayingProvider
   }
 }
 
-String _$nowPlayingHash() => r'44d22ed9213104ae55f6ce3eaa2e605824a65693';
+String _$nowPlayingHash() => r'3c04fca5d7cb35eb891c5e5bc6f86f7cdc25f5a7';
 
 /// The teaching heard now, for the screens (the mini player, the player),
 /// and what they ask: play one (from the file kept, else from the network,

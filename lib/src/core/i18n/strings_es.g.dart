@@ -1518,6 +1518,7 @@ class _Translations$teachings$es extends Translations$teachings$fr {
 	@override String speed({required Object speed}) => 'Velocidad ${speed}';
 	@override String recordedOn({required Object date}) => 'Mensaje del ${date}';
 	@override String get moreSubtitle => 'Predicaciones y enseñanzas para escuchar';
+	@override String get closePlayer => 'Cerrar el reproductor';
 }
 
 // Path: memorize
@@ -4680,6 +4681,7 @@ extension on TranslationsEs {
 			'teachings.speed' => ({required Object speed}) => 'Velocidad ${speed}',
 			'teachings.recordedOn' => ({required Object date}) => 'Mensaje del ${date}',
 			'teachings.moreSubtitle' => 'Predicaciones y enseñanzas para escuchar',
+			'teachings.closePlayer' => 'Cerrar el reproductor',
 			'memorize.title' => 'Memorización',
 			'memorize.subtitle' => 'Guarda la Palabra en tu corazón',
 			'memorize.toReview' => 'Por repasar',
@@ -4690,9 +4692,9 @@ extension on TranslationsEs {
 			'memorize.nextOn' => ({required Object date}) => 'Próximo repaso: ${date}.',
 			'memorize.tomorrow' => 'mañana',
 			'memorize.reminder' => 'Recordatorio de repaso',
-			'memorize.reminderAt' => 'Hora del recordatorio',
 			_ => null,
 		} ?? switch (path) {
+			'memorize.reminderAt' => 'Hora del recordatorio',
 			'memorize.myVerses' => 'Mis versículos',
 			'memorize.howToAdd' => 'Para añadir uno: en la Biblia, toca un versículo y luego el cerebro de la barra.',
 			'memorize.empty' => 'Aún no hay versículos para memorizar.',

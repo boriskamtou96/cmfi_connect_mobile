@@ -1767,6 +1767,7 @@ class _Translations$teachings$ar extends Translations$teachings$fr {
 	@override String speed({required Object speed}) => 'السرعة ${speed}';
 	@override String recordedOn({required Object date}) => 'رسالة ${date}';
 	@override String get moreSubtitle => 'عظات وتعاليم للاستماع';
+	@override String get closePlayer => 'إغلاق المشغّل';
 }
 
 // Path: memorize
@@ -5010,6 +5011,7 @@ extension on TranslationsAr {
 			'teachings.speed' => ({required Object speed}) => 'السرعة ${speed}',
 			'teachings.recordedOn' => ({required Object date}) => 'رسالة ${date}',
 			'teachings.moreSubtitle' => 'عظات وتعاليم للاستماع',
+			'teachings.closePlayer' => 'إغلاق المشغّل',
 			'memorize.title' => 'الحفظ',
 			'memorize.subtitle' => 'اخبأ الكلمة في قلبك',
 			'memorize.toReview' => 'للمراجعة',
@@ -5020,9 +5022,9 @@ extension on TranslationsAr {
 			'memorize.nextOn' => ({required Object date}) => 'المراجعة القادمة: ${date}.',
 			'memorize.tomorrow' => 'غدًا',
 			'memorize.reminder' => 'تذكير بالمراجعة',
-			'memorize.reminderAt' => 'وقت التذكير',
 			_ => null,
 		} ?? switch (path) {
+			'memorize.reminderAt' => 'وقت التذكير',
 			'memorize.myVerses' => 'آياتي',
 			'memorize.howToAdd' => 'لإضافة آية: في الكتاب المقدس، المس آية ثم أيقونة الدماغ في الشريط.',
 			'memorize.empty' => 'لا توجد آيات للحفظ حتى الآن.',

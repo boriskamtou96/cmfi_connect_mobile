@@ -3147,6 +3147,9 @@ class Translations$teachings$fr {
 
 	/// fr: 'Prédications et enseignements à écouter'
 	String get moreSubtitle => 'Prédications et enseignements à écouter';
+
+	/// fr: 'Fermer le lecteur'
+	String get closePlayer => 'Fermer le lecteur';
 }
 
 // Path: memorize
@@ -7912,6 +7915,7 @@ extension on Translations {
 			'teachings.speed' => ({required Object speed}) => 'Vitesse ${speed}',
 			'teachings.recordedOn' => ({required Object date}) => 'Message du ${date}',
 			'teachings.moreSubtitle' => 'Prédications et enseignements à écouter',
+			'teachings.closePlayer' => 'Fermer le lecteur',
 			'memorize.title' => 'Mémorisation',
 			'memorize.subtitle' => 'Cache la Parole dans ton cœur',
 			'memorize.toReview' => 'À réviser',
@@ -7922,9 +7926,9 @@ extension on Translations {
 			'memorize.nextOn' => ({required Object date}) => 'Prochaine révision : ${date}.',
 			'memorize.tomorrow' => 'demain',
 			'memorize.reminder' => 'Rappel des révisions',
-			'memorize.reminderAt' => 'Heure du rappel',
 			_ => null,
 		} ?? switch (path) {
+			'memorize.reminderAt' => 'Heure du rappel',
 			'memorize.myVerses' => 'Mes versets',
 			'memorize.howToAdd' => 'Pour en ajouter un : dans la Bible, touche un verset puis le cerveau de la barre.',
 			'memorize.empty' => 'Aucun verset à mémoriser pour l\'instant.',

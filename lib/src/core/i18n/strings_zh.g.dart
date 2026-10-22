@@ -1456,6 +1456,7 @@ class _Translations$teachings$zh extends Translations$teachings$fr {
 	@override String speed({required Object speed}) => '速度 ${speed}';
 	@override String recordedOn({required Object date}) => '${date} 的信息';
 	@override String get moreSubtitle => '可收听的讲道与教导';
+	@override String get closePlayer => '关闭播放器';
 }
 
 // Path: memorize
@@ -4597,6 +4598,7 @@ extension on TranslationsZh {
 			'teachings.speed' => ({required Object speed}) => '速度 ${speed}',
 			'teachings.recordedOn' => ({required Object date}) => '${date} 的信息',
 			'teachings.moreSubtitle' => '可收听的讲道与教导',
+			'teachings.closePlayer' => '关闭播放器',
 			'memorize.title' => '背经',
 			'memorize.subtitle' => '将神的话藏在心里',
 			'memorize.toReview' => '待复习',
@@ -4607,9 +4609,9 @@ extension on TranslationsZh {
 			'memorize.nextOn' => ({required Object date}) => '下次复习：${date}。',
 			'memorize.tomorrow' => '明天',
 			'memorize.reminder' => '复习提醒',
-			'memorize.reminderAt' => '提醒时间',
 			_ => null,
 		} ?? switch (path) {
+			'memorize.reminderAt' => '提醒时间',
 			'memorize.myVerses' => '我的经文',
 			'memorize.howToAdd' => '添加方法：在圣经中点一节经文，再点工具栏里的大脑图标。',
 			'memorize.empty' => '还没有要背的经文。',

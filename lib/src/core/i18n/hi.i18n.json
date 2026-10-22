@@ -2017,7 +2017,8 @@
     "forward15": "15 सेकंड आगे",
     "speed": "गति {speed}",
     "recordedOn": "{date} का संदेश",
-    "moreSubtitle": "सुनने के लिए प्रवचन और शिक्षाएँ"
+    "moreSubtitle": "सुनने के लिए प्रवचन और शिक्षाएँ",
+    "closePlayer": "प्लेयर बंद करें"
   },
   "memorize": {
     "title": "कंठस्थ करना",

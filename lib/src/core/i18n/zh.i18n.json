@@ -1936,7 +1936,8 @@
     "forward15": "前进 15 秒",
     "speed": "速度 {speed}",
     "recordedOn": "{date} 的信息",
-    "moreSubtitle": "可收听的讲道与教导"
+    "moreSubtitle": "可收听的讲道与教导",
+    "closePlayer": "关闭播放器"
   },
   "memorize": {
     "title": "背经",

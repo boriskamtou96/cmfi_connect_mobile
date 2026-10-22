@@ -2019,7 +2019,8 @@
     "forward15": "Forward 15 seconds",
     "speed": "Speed {speed}",
     "recordedOn": "Message of {date}",
-    "moreSubtitle": "Sermons and teachings to listen to"
+    "moreSubtitle": "Sermons and teachings to listen to",
+    "closePlayer": "Close the player"
   },
   "memorize": {
     "title": "Memorization",

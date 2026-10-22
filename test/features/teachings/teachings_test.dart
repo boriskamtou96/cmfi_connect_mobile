@@ -100,6 +100,12 @@ void main() {
     // the mini player at the foot of the list
     expect(find.byType(MiniPlayer), findsOneWidget);
     expect(find.byTooltip('Écouter'), findsOneWidget);
+
+    // the cross: the player goes away, the place is kept
+    await tester.tap(find.byTooltip('Fermer le lecteur'));
+    await tester.pumpAndSettle();
+    expect(app.player.snapshot.teaching, isNull);
+    expect(find.byTooltip('Écouter'), findsNothing);
   });
 
   testWidgets('started again where it stopped', (tester) async {

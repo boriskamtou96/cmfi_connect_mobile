@@ -1519,6 +1519,7 @@ class _Translations$teachings$en extends Translations$teachings$fr {
 	@override String speed({required Object speed}) => 'Speed ${speed}';
 	@override String recordedOn({required Object date}) => 'Message of ${date}';
 	@override String get moreSubtitle => 'Sermons and teachings to listen to';
+	@override String get closePlayer => 'Close the player';
 }
 
 // Path: memorize
@@ -4681,6 +4682,7 @@ extension on TranslationsEn {
 			'teachings.speed' => ({required Object speed}) => 'Speed ${speed}',
 			'teachings.recordedOn' => ({required Object date}) => 'Message of ${date}',
 			'teachings.moreSubtitle' => 'Sermons and teachings to listen to',
+			'teachings.closePlayer' => 'Close the player',
 			'memorize.title' => 'Memorization',
 			'memorize.subtitle' => 'Hide the Word in your heart',
 			'memorize.toReview' => 'To review',
@@ -4691,9 +4693,9 @@ extension on TranslationsEn {
 			'memorize.nextOn' => ({required Object date}) => 'Next review: ${date}.',
 			'memorize.tomorrow' => 'tomorrow',
 			'memorize.reminder' => 'Review reminder',
-			'memorize.reminderAt' => 'Reminder time',
 			_ => null,
 		} ?? switch (path) {
+			'memorize.reminderAt' => 'Reminder time',
 			'memorize.myVerses' => 'My verses',
 			'memorize.howToAdd' => 'To add one: in the Bible, tap a verse, then the brain in the bar.',
 			'memorize.empty' => 'No verse to memorize yet.',

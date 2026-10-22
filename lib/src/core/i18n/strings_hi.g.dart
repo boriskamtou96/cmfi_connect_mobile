@@ -1517,6 +1517,7 @@ class _Translations$teachings$hi extends Translations$teachings$fr {
 	@override String speed({required Object speed}) => 'गति ${speed}';
 	@override String recordedOn({required Object date}) => '${date} का संदेश';
 	@override String get moreSubtitle => 'सुनने के लिए प्रवचन और शिक्षाएँ';
+	@override String get closePlayer => 'प्लेयर बंद करें';
 }
 
 // Path: memorize
@@ -4679,6 +4680,7 @@ extension on TranslationsHi {
 			'teachings.speed' => ({required Object speed}) => 'गति ${speed}',
 			'teachings.recordedOn' => ({required Object date}) => '${date} का संदेश',
 			'teachings.moreSubtitle' => 'सुनने के लिए प्रवचन और शिक्षाएँ',
+			'teachings.closePlayer' => 'प्लेयर बंद करें',
 			'memorize.title' => 'कंठस्थ करना',
 			'memorize.subtitle' => 'वचन को अपने हृदय में रखो',
 			'memorize.toReview' => 'दोहराने को',
@@ -4689,9 +4691,9 @@ extension on TranslationsHi {
 			'memorize.nextOn' => ({required Object date}) => 'अगली दोहराई: ${date}।',
 			'memorize.tomorrow' => 'कल',
 			'memorize.reminder' => 'दोहराई की याद',
-			'memorize.reminderAt' => 'याद का समय',
 			_ => null,
 		} ?? switch (path) {
+			'memorize.reminderAt' => 'याद का समय',
 			'memorize.myVerses' => 'मेरे पद',
 			'memorize.howToAdd' => 'जोड़ने के लिए: बाइबल में कोई पद छुओ, फिर पट्टी में दिमाग़ का चिह्न।',
 			'memorize.empty' => 'अभी कंठस्थ करने को कोई पद नहीं।',

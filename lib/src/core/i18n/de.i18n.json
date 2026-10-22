@@ -2018,7 +2018,8 @@
     "forward15": "15 Sekunden vor",
     "speed": "Geschwindigkeit {speed}",
     "recordedOn": "Botschaft vom {date}",
-    "moreSubtitle": "Predigten und Lehren zum Anhören"
+    "moreSubtitle": "Predigten und Lehren zum Anhören",
+    "closePlayer": "Player schließen"
   },
   "memorize": {
     "title": "Auswendiglernen",

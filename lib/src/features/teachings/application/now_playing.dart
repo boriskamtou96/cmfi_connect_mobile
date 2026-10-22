@@ -113,4 +113,16 @@ class NowPlaying extends _$NowPlaying {
   }
 
   Future<void> stop() => ref.read(teachingPlayerProvider).stop();
+
+  /// The cross of the mini player: where it is kept, then the player
+  /// stops and goes away (the teaching resumes there next time).
+  Future<void> close() async {
+    final teaching = state.teaching;
+    if (teaching != null && state.position > Duration.zero) {
+      await ref
+          .read(teachingProgressProvider.notifier)
+          .save(teaching.id, state.position, state.duration);
+    }
+    await stop();
+  }
 }

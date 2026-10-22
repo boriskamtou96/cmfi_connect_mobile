@@ -2344,7 +2344,8 @@
     "forward15": "تقدّم 15 ثانية",
     "speed": "السرعة {speed}",
     "recordedOn": "رسالة {date}",
-    "moreSubtitle": "عظات وتعاليم للاستماع"
+    "moreSubtitle": "عظات وتعاليم للاستماع",
+    "closePlayer": "إغلاق المشغّل"
   },
   "memorize": {
     "title": "الحفظ",

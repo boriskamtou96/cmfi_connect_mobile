@@ -2018,7 +2018,8 @@
     "forward15": "Avanzar 15 segundos",
     "speed": "Velocidad {speed}",
     "recordedOn": "Mensaje del {date}",
-    "moreSubtitle": "Predicaciones y enseñanzas para escuchar"
+    "moreSubtitle": "Predicaciones y enseñanzas para escuchar",
+    "closePlayer": "Cerrar el reproductor"
   },
   "memorize": {
     "title": "Memorización",

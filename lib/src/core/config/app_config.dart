@@ -12,6 +12,7 @@ class AppConfig {
   static const _apiBaseUrlOverride = String.fromEnvironment('API_BASE_URL');
 
   // The public RevenueCat keys, from .env:
+
   // flutter run --flavor dev --dart-define-from-file=.env
   static const _revenueCatTestKey = String.fromEnvironment(
     'REVENUE_CAT_TEST_API_KEY',

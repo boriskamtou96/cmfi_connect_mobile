@@ -221,7 +221,14 @@
     "hideNumbers": "隐藏我的数字",
     "showNumbers": "显示我的数字",
     "numbersHidden": "已隐藏",
-    "daysShort": "{n} 天"
+    "daysShort": "{n} 天",
+    "prayTogether": "一起祷告",
+    "invitedBy": "{name} 邀请你祷告",
+    "soulsTitle": "需要再联系的人",
+    "listenTitle": "收听",
+    "soulsText(plural, param=n)": {
+      "other": "今天 {n} 人"
+    }
   },
   "reports": {
     "title": "每日汇报",

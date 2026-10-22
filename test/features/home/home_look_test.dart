@@ -1,6 +1,7 @@
 import 'package:cmfi_connect/src/core/i18n/strings.g.dart';
 import 'package:cmfi_connect/src/core/widgets/photo_kit.dart';
 import 'package:cmfi_connect/src/features/ministry/presentation/ministry_screen.dart';
+import 'package:cmfi_connect/src/features/teachings/presentation/teaching_player_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:intl/date_symbol_data_local.dart';
@@ -44,5 +45,18 @@ void main() {
     await tester.tap(find.text('Notre ministère'));
     await tester.pumpAndSettle();
     expect(find.byType(MinistryScreen), findsOneWidget);
+  });
+
+  testWidgets('« À écouter »: the latest teachings, a touch plays one', (
+    tester,
+  ) async {
+    final app = await pumpApp(tester, token: 't');
+    await scrollTo(tester, find.text('Le message de la croix'));
+    expect(find.text('À écouter'), findsOneWidget);
+
+    await tester.tap(find.text('Le message de la croix'));
+    await tester.pumpAndSettle();
+    expect(find.byType(TeachingPlayerScreen), findsOneWidget);
+    expect(app.player.snapshot.teaching?.id, 1);
   });
 }

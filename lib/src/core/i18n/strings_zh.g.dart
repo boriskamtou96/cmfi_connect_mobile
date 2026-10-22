@@ -263,6 +263,13 @@ class _Translations$home$zh extends Translations$home$fr {
 	@override String get showNumbers => '显示我的数字';
 	@override String get numbersHidden => '已隐藏';
 	@override String daysShort({required Object n}) => '${n} 天';
+	@override String get prayTogether => '一起祷告';
+	@override String invitedBy({required Object name}) => '${name} 邀请你祷告';
+	@override String get soulsTitle => '需要再联系的人';
+	@override String get listenTitle => '收听';
+	@override String soulsText({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n,
+		other: '今天 ${n} 人',
+	);
 }
 
 // Path: reports
@@ -3253,6 +3260,11 @@ extension on TranslationsZh {
 			'home.showNumbers' => '显示我的数字',
 			'home.numbersHidden' => '已隐藏',
 			'home.daysShort' => ({required Object n}) => '${n} 天',
+			'home.prayTogether' => '一起祷告',
+			'home.invitedBy' => ({required Object name}) => '${name} 邀请你祷告',
+			'home.soulsTitle' => '需要再联系的人',
+			'home.listenTitle' => '收听',
+			'home.soulsText' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n, other: '今天 ${n} 人', ), 
 			'reports.title' => '每日汇报',
 			'reports.myItems' => '我的项目',
 			'reports.tabs.today' => '今天',
@@ -3576,13 +3588,13 @@ extension on TranslationsZh {
 			'members.deleteAccount.itemPrayer' => '你的祷告名单、祷告记录和恒切祷告事项',
 			'members.deleteAccount.kept' => '你作为管理员发布的活动、动态、照片和代祷事项会继续留给团契，但不再显示你的名字。',
 			'members.deleteAccount.passwordHelp' => '用于确认是你本人。',
+			_ => null,
+		} ?? switch (path) {
 			'members.deleteAccount.confirm' => '永久删除',
 			'members.deleteAccount.done' => '你的账户已删除。愿神赐福给你！',
 			'members.deleteAccount.wrongPassword' => '密码错误。',
 			'members.deleteAccount.lastSuperadmin' => '你是唯一的超级管理员：删除账户前，请先把这个角色交给别人。',
 			'admin.title' => '团队与角色',
-			_ => null,
-		} ?? switch (path) {
 			'admin.intro' => '管理员负责管理整个团契共享的内容。只有超级管理员可以授予或收回角色。',
 			'admin.roleUser' => '成员',
 			'admin.roleAdmin' => '管理员',
@@ -4090,13 +4102,13 @@ extension on TranslationsZh {
 			'prayer.topics.all' => '查看全部',
 			'prayer.topics.empty' => '目前没有代祷事项。带领者会在这里发布新的事项。',
 			'prayer.topics.categories.church' => '教会',
+			_ => null,
+		} ?? switch (path) {
 			'prayer.topics.categories.nations' => '列国',
 			'prayer.topics.categories.sick' => '病人',
 			'prayer.topics.categories.event' => '活动',
 			'prayer.topics.categories.fasting' => '禁食',
 			'prayer.topics.categories.other' => '代祷',
-			_ => null,
-		} ?? switch (path) {
 			'prayer.topics.until' => ({required Object date}) => '至 ${date}',
 			'prayer.topics.archive' => '往期事项',
 			'prayer.topics.archiveEmpty' => '没有往期事项。',
@@ -4604,13 +4616,13 @@ extension on TranslationsZh {
 			'memorize.toReview' => '待复习',
 			'memorize.learning' => '学习中',
 			'memorize.known' => '已熟记',
+			_ => null,
+		} ?? switch (path) {
 			'memorize.reviewCount' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n, one: '复习 ${n} 节经文', other: '复习 ${n} 节经文', ), 
 			'memorize.nothingDue' => '今天没有要复习的。',
 			'memorize.nextOn' => ({required Object date}) => '下次复习：${date}。',
 			'memorize.tomorrow' => '明天',
 			'memorize.reminder' => '复习提醒',
-			_ => null,
-		} ?? switch (path) {
 			'memorize.reminderAt' => '提醒时间',
 			'memorize.myVerses' => '我的经文',
 			'memorize.howToAdd' => '添加方法：在圣经中点一节经文，再点工具栏里的大脑图标。',

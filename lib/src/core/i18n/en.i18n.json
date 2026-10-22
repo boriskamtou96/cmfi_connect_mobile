@@ -223,7 +223,15 @@
     "hideNumbers": "Hide my numbers",
     "showNumbers": "Show my numbers",
     "numbersHidden": "hidden",
-    "daysShort": "{n} d"
+    "daysShort": "{n} d",
+    "prayTogether": "Pray together",
+    "invitedBy": "{name} invites you to pray",
+    "soulsTitle": "Souls to contact again",
+    "listenTitle": "To listen",
+    "soulsText(plural, param=n)": {
+      "one": "{n} person today",
+      "other": "{n} people today"
+    }
   },
   "reports": {
     "title": "Daily report",

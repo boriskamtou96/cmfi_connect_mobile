@@ -223,7 +223,15 @@
     "hideNumbers": "Ocultar mis cifras",
     "showNumbers": "Mostrar mis cifras",
     "numbersHidden": "oculto",
-    "daysShort": "{n} d"
+    "daysShort": "{n} d",
+    "prayTogether": "Orar juntos",
+    "invitedBy": "{name} te invita a orar",
+    "soulsTitle": "Almas que volver a contactar",
+    "listenTitle": "Para escuchar",
+    "soulsText(plural, param=n)": {
+      "one": "{n} persona hoy",
+      "other": "{n} personas hoy"
+    }
   },
   "reports": {
     "title": "Informe diario",

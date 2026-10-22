@@ -265,6 +265,14 @@ class _Translations$home$es extends Translations$home$fr {
 	@override String get showNumbers => 'Mostrar mis cifras';
 	@override String get numbersHidden => 'oculto';
 	@override String daysShort({required Object n}) => '${n} d';
+	@override String get prayTogether => 'Orar juntos';
+	@override String invitedBy({required Object name}) => '${name} te invita a orar';
+	@override String get soulsTitle => 'Almas que volver a contactar';
+	@override String get listenTitle => 'Para escuchar';
+	@override String soulsText({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('es'))(n,
+		one: '${n} persona hoy',
+		other: '${n} personas hoy',
+	);
 }
 
 // Path: reports
@@ -3336,6 +3344,11 @@ extension on TranslationsEs {
 			'home.showNumbers' => 'Mostrar mis cifras',
 			'home.numbersHidden' => 'oculto',
 			'home.daysShort' => ({required Object n}) => '${n} d',
+			'home.prayTogether' => 'Orar juntos',
+			'home.invitedBy' => ({required Object name}) => '${name} te invita a orar',
+			'home.soulsTitle' => 'Almas que volver a contactar',
+			'home.listenTitle' => 'Para escuchar',
+			'home.soulsText' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('es'))(n, one: '${n} persona hoy', other: '${n} personas hoy', ), 
 			'reports.title' => 'Informe diario',
 			'reports.myItems' => 'Mis elementos',
 			'reports.tabs.today' => 'Hoy',
@@ -3659,13 +3672,13 @@ extension on TranslationsEs {
 			'members.deleteAccount.itemPrayer' => 'tus listas de oración, tus retiros y tus motivos de importunidad',
 			'members.deleteAccount.kept' => 'Los eventos, novedades, fotos y motivos de oración que publicaste como admin se quedan para la comunidad, sin tu nombre.',
 			'members.deleteAccount.passwordHelp' => 'Para confirmar que eres tú.',
+			_ => null,
+		} ?? switch (path) {
 			'members.deleteAccount.confirm' => 'Eliminar definitivamente',
 			'members.deleteAccount.done' => 'Tu cuenta ha sido eliminada. ¡Dios te bendiga!',
 			'members.deleteAccount.wrongPassword' => 'Contraseña incorrecta.',
 			'members.deleteAccount.lastSuperadmin' => 'Eres el único superadmin: da este rol a otra persona antes de eliminar tu cuenta.',
 			'admin.title' => 'Equipo y roles',
-			_ => null,
-		} ?? switch (path) {
 			'admin.intro' => 'Los admins gestionan lo que comparte toda la comunidad. Solo un superadmin da o quita un rol.',
 			'admin.roleUser' => 'Miembro',
 			'admin.roleAdmin' => 'Admin',
@@ -4173,13 +4186,13 @@ extension on TranslationsEs {
 			'prayer.topics.all' => 'Ver todo',
 			'prayer.topics.empty' => 'No hay motivos por ahora. Los líderes publicarán los próximos aquí.',
 			'prayer.topics.categories.church' => 'Iglesia',
+			_ => null,
+		} ?? switch (path) {
 			'prayer.topics.categories.nations' => 'Naciones',
 			'prayer.topics.categories.sick' => 'Enfermos',
 			'prayer.topics.categories.event' => 'Evento',
 			'prayer.topics.categories.fasting' => 'Ayuno',
 			'prayer.topics.categories.other' => 'Motivo',
-			_ => null,
-		} ?? switch (path) {
 			'prayer.topics.until' => ({required Object date}) => 'hasta el ${date}',
 			'prayer.topics.archive' => 'Motivos anteriores',
 			'prayer.topics.archiveEmpty' => 'No hay motivos anteriores.',
@@ -4687,13 +4700,13 @@ extension on TranslationsEs {
 			'memorize.toReview' => 'Por repasar',
 			'memorize.learning' => 'Aprendiendo',
 			'memorize.known' => 'Sabidos',
+			_ => null,
+		} ?? switch (path) {
 			'memorize.reviewCount' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('es'))(n, one: 'Repasar ${n} versículo', other: 'Repasar ${n} versículos', ), 
 			'memorize.nothingDue' => 'Nada que repasar hoy.',
 			'memorize.nextOn' => ({required Object date}) => 'Próximo repaso: ${date}.',
 			'memorize.tomorrow' => 'mañana',
 			'memorize.reminder' => 'Recordatorio de repaso',
-			_ => null,
-		} ?? switch (path) {
 			'memorize.reminderAt' => 'Hora del recordatorio',
 			'memorize.myVerses' => 'Mis versículos',
 			'memorize.howToAdd' => 'Para añadir uno: en la Biblia, toca un versículo y luego el cerebro de la barra.',

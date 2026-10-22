@@ -163,3 +163,53 @@ final class TeachingCategoriesProvider
 
 String _$teachingCategoriesHash() =>
     r'9aa0a40712cda02837dc2ade27eef7caf6e0c17a';
+
+/// The latest teachings, for « À écouter » on the home screen (its own
+/// list: the Enseignements page keeps loading its own); none without
+/// network.
+
+@ProviderFor(latestTeachings)
+final latestTeachingsProvider = LatestTeachingsProvider._();
+
+/// The latest teachings, for « À écouter » on the home screen (its own
+/// list: the Enseignements page keeps loading its own); none without
+/// network.
+
+final class LatestTeachingsProvider
+    extends
+        $FunctionalProvider<
+          AsyncValue<List<Teaching>>,
+          List<Teaching>,
+          FutureOr<List<Teaching>>
+        >
+    with $FutureModifier<List<Teaching>>, $FutureProvider<List<Teaching>> {
+  /// The latest teachings, for « À écouter » on the home screen (its own
+  /// list: the Enseignements page keeps loading its own); none without
+  /// network.
+  LatestTeachingsProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'latestTeachingsProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$latestTeachingsHash();
+
+  @$internal
+  @override
+  $FutureProviderElement<List<Teaching>> $createElement(
+    $ProviderPointer pointer,
+  ) => $FutureProviderElement(pointer);
+
+  @override
+  FutureOr<List<Teaching>> create(Ref ref) {
+    return latestTeachings(ref);
+  }
+}
+
+String _$latestTeachingsHash() => r'e06ae84ed9cbfd621ed3755843ebed3de1dd3c7e';

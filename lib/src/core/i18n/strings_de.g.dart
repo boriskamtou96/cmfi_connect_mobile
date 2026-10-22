@@ -265,6 +265,14 @@ class _Translations$home$de extends Translations$home$fr {
 	@override String get showNumbers => 'Meine Zahlen anzeigen';
 	@override String get numbersHidden => 'ausgeblendet';
 	@override String daysShort({required Object n}) => '${n} T';
+	@override String get prayTogether => 'Gemeinsam beten';
+	@override String invitedBy({required Object name}) => '${name} lädt dich zum Beten ein';
+	@override String get soulsTitle => 'Seelen wieder kontaktieren';
+	@override String get listenTitle => 'Zum Anhören';
+	@override String soulsText({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('de'))(n,
+		one: '${n} Person heute',
+		other: '${n} Personen heute',
+	);
 }
 
 // Path: reports
@@ -3336,6 +3344,11 @@ extension on TranslationsDe {
 			'home.showNumbers' => 'Meine Zahlen anzeigen',
 			'home.numbersHidden' => 'ausgeblendet',
 			'home.daysShort' => ({required Object n}) => '${n} T',
+			'home.prayTogether' => 'Gemeinsam beten',
+			'home.invitedBy' => ({required Object name}) => '${name} lädt dich zum Beten ein',
+			'home.soulsTitle' => 'Seelen wieder kontaktieren',
+			'home.listenTitle' => 'Zum Anhören',
+			'home.soulsText' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('de'))(n, one: '${n} Person heute', other: '${n} Personen heute', ), 
 			'reports.title' => 'Tagesbericht',
 			'reports.myItems' => 'Meine Elemente',
 			'reports.tabs.today' => 'Heute',
@@ -3659,13 +3672,13 @@ extension on TranslationsDe {
 			'members.deleteAccount.itemPrayer' => 'deine Gebetslisten, Gebetszeiten und beharrlichen Anliegen',
 			'members.deleteAccount.kept' => 'Veranstaltungen, Neuigkeiten, Fotos und Gebetsanliegen, die du als Admin veröffentlicht hast, bleiben für die Gemeinschaft – ohne deinen Namen.',
 			'members.deleteAccount.passwordHelp' => 'Damit wir sicher sind, dass du es bist.',
+			_ => null,
+		} ?? switch (path) {
 			'members.deleteAccount.confirm' => 'Endgültig löschen',
 			'members.deleteAccount.done' => 'Dein Konto wurde gelöscht. Gott segne dich!',
 			'members.deleteAccount.wrongPassword' => 'Falsches Passwort.',
 			'members.deleteAccount.lastSuperadmin' => 'Du bist der einzige Superadmin: Gib diese Rolle jemand anderem, bevor du dein Konto löschst.',
 			'admin.title' => 'Team und Rollen',
-			_ => null,
-		} ?? switch (path) {
 			'admin.intro' => 'Admins verwalten, was die ganze Gemeinschaft teilt. Nur ein Superadmin kann Rollen vergeben oder entziehen.',
 			'admin.roleUser' => 'Mitglied',
 			'admin.roleAdmin' => 'Admin',
@@ -4173,13 +4186,13 @@ extension on TranslationsDe {
 			'prayer.topics.all' => 'Alle ansehen',
 			'prayer.topics.empty' => 'Im Moment gibt es keine Anliegen. Die Verantwortlichen veröffentlichen die nächsten hier.',
 			'prayer.topics.categories.church' => 'Kirche',
+			_ => null,
+		} ?? switch (path) {
 			'prayer.topics.categories.nations' => 'Nationen',
 			'prayer.topics.categories.sick' => 'Kranke',
 			'prayer.topics.categories.event' => 'Veranstaltung',
 			'prayer.topics.categories.fasting' => 'Fasten',
 			'prayer.topics.categories.other' => 'Anliegen',
-			_ => null,
-		} ?? switch (path) {
 			'prayer.topics.until' => ({required Object date}) => 'bis ${date}',
 			'prayer.topics.archive' => 'Frühere Anliegen',
 			'prayer.topics.archiveEmpty' => 'Keine früheren Anliegen.',
@@ -4687,13 +4700,13 @@ extension on TranslationsDe {
 			'memorize.toReview' => 'Zu wiederholen',
 			'memorize.learning' => 'Am Lernen',
 			'memorize.known' => 'Gelernt',
+			_ => null,
+		} ?? switch (path) {
 			'memorize.reviewCount' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('de'))(n, one: '${n} Vers wiederholen', other: '${n} Verse wiederholen', ), 
 			'memorize.nothingDue' => 'Heute nichts zu wiederholen.',
 			'memorize.nextOn' => ({required Object date}) => 'Nächste Wiederholung: ${date}.',
 			'memorize.tomorrow' => 'morgen',
 			'memorize.reminder' => 'Erinnerung zum Wiederholen',
-			_ => null,
-		} ?? switch (path) {
 			'memorize.reminderAt' => 'Uhrzeit der Erinnerung',
 			'memorize.myVerses' => 'Meine Verse',
 			'memorize.howToAdd' => 'Zum Hinzufügen: Tippe in der Bibel auf einen Vers, dann auf das Gehirn in der Leiste.',

@@ -441,6 +441,24 @@ class Translations$home$fr {
 
 	/// fr: '{n} j'
 	String daysShort({required Object n}) => '${n} j';
+
+	/// fr: 'Prier ensemble'
+	String get prayTogether => 'Prier ensemble';
+
+	/// fr: '{name} t'invite à prier'
+	String invitedBy({required Object name}) => '${name} t\'invite à prier';
+
+	/// fr: 'Âmes à recontacter'
+	String get soulsTitle => 'Âmes à recontacter';
+
+	/// fr: 'À écouter'
+	String get listenTitle => 'À écouter';
+
+	/// fr: '(one) {{n} personne aujourd'hui} (other) {{n} personnes aujourd'hui}'
+	String soulsText({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('fr'))(n,
+		one: '${n} personne aujourd\'hui',
+		other: '${n} personnes aujourd\'hui',
+	);
 }
 
 // Path: reports
@@ -6570,6 +6588,11 @@ extension on Translations {
 			'home.showNumbers' => 'Afficher mes chiffres',
 			'home.numbersHidden' => 'masqué',
 			'home.daysShort' => ({required Object n}) => '${n} j',
+			'home.prayTogether' => 'Prier ensemble',
+			'home.invitedBy' => ({required Object name}) => '${name} t\'invite à prier',
+			'home.soulsTitle' => 'Âmes à recontacter',
+			'home.listenTitle' => 'À écouter',
+			'home.soulsText' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('fr'))(n, one: '${n} personne aujourd\'hui', other: '${n} personnes aujourd\'hui', ), 
 			'reports.title' => 'Compte rendu',
 			'reports.myItems' => 'Mes éléments',
 			'reports.tabs.today' => 'Aujourd\'hui',
@@ -6893,13 +6916,13 @@ extension on Translations {
 			'members.deleteAccount.itemPrayer' => 'tes listes de prière, tes retraites et tes sujets d\'importunité',
 			'members.deleteAccount.kept' => 'Les évènements, actualités, photos et sujets de prière que tu as publiés comme admin restent pour la communauté, sans ton nom.',
 			'members.deleteAccount.passwordHelp' => 'Pour confirmer que c\'est bien toi.',
+			_ => null,
+		} ?? switch (path) {
 			'members.deleteAccount.confirm' => 'Supprimer définitivement',
 			'members.deleteAccount.done' => 'Ton compte a été supprimé. Que Dieu te bénisse !',
 			'members.deleteAccount.wrongPassword' => 'Mot de passe incorrect.',
 			'members.deleteAccount.lastSuperadmin' => 'Tu es le seul superadmin : donne ce rôle à quelqu\'un d\'autre avant de supprimer ton compte.',
 			'admin.title' => 'Équipe et rôles',
-			_ => null,
-		} ?? switch (path) {
 			'admin.intro' => 'Les admins gèrent ce que toute la communauté partage. Seul un superadmin donne ou retire un rôle.',
 			'admin.roleUser' => 'Membre',
 			'admin.roleAdmin' => 'Admin',
@@ -7407,13 +7430,13 @@ extension on Translations {
 			'prayer.topics.all' => 'Tout voir',
 			'prayer.topics.empty' => 'Aucun sujet en ce moment. Les responsables publieront les prochains ici.',
 			'prayer.topics.categories.church' => 'Église',
+			_ => null,
+		} ?? switch (path) {
 			'prayer.topics.categories.nations' => 'Nations',
 			'prayer.topics.categories.sick' => 'Malades',
 			'prayer.topics.categories.event' => 'Évènement',
 			'prayer.topics.categories.fasting' => 'Jeûne',
 			'prayer.topics.categories.other' => 'Sujet',
-			_ => null,
-		} ?? switch (path) {
 			'prayer.topics.until' => ({required Object date}) => 'jusqu\'au ${date}',
 			'prayer.topics.archive' => 'Sujets passés',
 			'prayer.topics.archiveEmpty' => 'Aucun sujet passé.',
@@ -7921,13 +7944,13 @@ extension on Translations {
 			'memorize.toReview' => 'À réviser',
 			'memorize.learning' => 'En cours',
 			'memorize.known' => 'Sus',
+			_ => null,
+		} ?? switch (path) {
 			'memorize.reviewCount' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('fr'))(n, one: 'Réviser ${n} verset', other: 'Réviser ${n} versets', ), 
 			'memorize.nothingDue' => 'Rien à réviser aujourd\'hui.',
 			'memorize.nextOn' => ({required Object date}) => 'Prochaine révision : ${date}.',
 			'memorize.tomorrow' => 'demain',
 			'memorize.reminder' => 'Rappel des révisions',
-			_ => null,
-		} ?? switch (path) {
 			'memorize.reminderAt' => 'Heure du rappel',
 			'memorize.myVerses' => 'Mes versets',
 			'memorize.howToAdd' => 'Pour en ajouter un : dans la Bible, touche un verset puis le cerveau de la barre.',

@@ -223,7 +223,15 @@
     "hideNumbers": "मेरे आँकड़े छिपाएँ",
     "showNumbers": "मेरे आँकड़े दिखाएँ",
     "numbersHidden": "छिपा हुआ",
-    "daysShort": "{n} दिन"
+    "daysShort": "{n} दिन",
+    "prayTogether": "साथ मिलकर प्रार्थना",
+    "invitedBy": "{name} आपको प्रार्थना के लिए बुलाते हैं",
+    "soulsTitle": "फिर से संपर्क करने वाली आत्माएँ",
+    "listenTitle": "सुनने के लिए",
+    "soulsText(plural, param=n)": {
+      "one": "आज {n} व्यक्ति",
+      "other": "आज {n} लोग"
+    }
   },
   "reports": {
     "title": "दैनिक रिपोर्ट",

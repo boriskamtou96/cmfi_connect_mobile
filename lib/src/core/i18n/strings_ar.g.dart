@@ -273,6 +273,18 @@ class _Translations$home$ar extends Translations$home$fr {
 	@override String get showNumbers => 'إظهار أرقامي';
 	@override String get numbersHidden => 'مخفي';
 	@override String daysShort({required Object n}) => '${n} ي';
+	@override String get prayTogether => 'نصلّي معًا';
+	@override String invitedBy({required Object name}) => '${name} يدعوك إلى الصلاة';
+	@override String get soulsTitle => 'نفوس للتواصل معها';
+	@override String get listenTitle => 'للاستماع';
+	@override String soulsText({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n,
+		zero: 'لا أحد اليوم',
+		one: 'شخص واحد اليوم',
+		two: 'شخصان اليوم',
+		few: '${n} أشخاص اليوم',
+		many: '${n} شخصًا اليوم',
+		other: '${n} شخص اليوم',
+	);
 }
 
 // Path: reports
@@ -3666,6 +3678,11 @@ extension on TranslationsAr {
 			'home.showNumbers' => 'إظهار أرقامي',
 			'home.numbersHidden' => 'مخفي',
 			'home.daysShort' => ({required Object n}) => '${n} ي',
+			'home.prayTogether' => 'نصلّي معًا',
+			'home.invitedBy' => ({required Object name}) => '${name} يدعوك إلى الصلاة',
+			'home.soulsTitle' => 'نفوس للتواصل معها',
+			'home.listenTitle' => 'للاستماع',
+			'home.soulsText' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n, zero: 'لا أحد اليوم', one: 'شخص واحد اليوم', two: 'شخصان اليوم', few: '${n} أشخاص اليوم', many: '${n} شخصًا اليوم', other: '${n} شخص اليوم', ), 
 			'reports.title' => 'التقرير',
 			'reports.myItems' => 'عناصري',
 			'reports.tabs.today' => 'اليوم',
@@ -3989,13 +4006,13 @@ extension on TranslationsAr {
 			'members.deleteAccount.itemPrayer' => 'قوائم صلاتك وخلواتك وطلبات اللجاجة الخاصة بك',
 			'members.deleteAccount.kept' => 'تبقى الفعاليات والأخبار والصور وطلبات الصلاة التي نشرتها بصفتك مشرفًا للمجتمع، من دون اسمك.',
 			'members.deleteAccount.passwordHelp' => 'للتأكد من أنك أنت.',
+			_ => null,
+		} ?? switch (path) {
 			'members.deleteAccount.confirm' => 'حذف نهائي',
 			'members.deleteAccount.done' => 'تم حذف حسابك. باركك الله!',
 			'members.deleteAccount.wrongPassword' => 'كلمة المرور غير صحيحة.',
 			'members.deleteAccount.lastSuperadmin' => 'أنت المشرف العام الوحيد: امنح هذا الدور لشخص آخر قبل حذف حسابك.',
 			'admin.title' => 'الفريق والأدوار',
-			_ => null,
-		} ?? switch (path) {
 			'admin.intro' => 'يدير المشرفون ما يتشاركه المجتمع بأكمله. وحده المشرف العام يمنح دورًا أو يسحبه.',
 			'admin.roleUser' => 'عضو',
 			'admin.roleAdmin' => 'مشرف',
@@ -4503,13 +4520,13 @@ extension on TranslationsAr {
 			'prayer.topics.all' => 'عرض الكل',
 			'prayer.topics.empty' => 'لا توجد طلبات صلاة حاليًا. سينشر القادة الطلبات القادمة هنا.',
 			'prayer.topics.categories.church' => 'الكنيسة',
+			_ => null,
+		} ?? switch (path) {
 			'prayer.topics.categories.nations' => 'الأمم',
 			'prayer.topics.categories.sick' => 'المرضى',
 			'prayer.topics.categories.event' => 'فعالية',
 			'prayer.topics.categories.fasting' => 'صوم',
 			'prayer.topics.categories.other' => 'طلب',
-			_ => null,
-		} ?? switch (path) {
 			'prayer.topics.until' => ({required Object date}) => 'حتى ${date}',
 			'prayer.topics.archive' => 'الطلبات السابقة',
 			'prayer.topics.archiveEmpty' => 'لا توجد طلبات سابقة.',
@@ -5017,13 +5034,13 @@ extension on TranslationsAr {
 			'memorize.toReview' => 'للمراجعة',
 			'memorize.learning' => 'قيد الحفظ',
 			'memorize.known' => 'محفوظة',
+			_ => null,
+		} ?? switch (path) {
 			'memorize.reviewCount' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n, one: 'راجع آية واحدة', other: 'راجع ${n} آيات', ), 
 			'memorize.nothingDue' => 'لا شيء للمراجعة اليوم.',
 			'memorize.nextOn' => ({required Object date}) => 'المراجعة القادمة: ${date}.',
 			'memorize.tomorrow' => 'غدًا',
 			'memorize.reminder' => 'تذكير بالمراجعة',
-			_ => null,
-		} ?? switch (path) {
 			'memorize.reminderAt' => 'وقت التذكير',
 			'memorize.myVerses' => 'آياتي',
 			'memorize.howToAdd' => 'لإضافة آية: في الكتاب المقدس، المس آية ثم أيقونة الدماغ في الشريط.',

@@ -24,6 +24,7 @@ import '../../bible/application/bible_settings.dart';
 import '../../bible/application/memory_verses.dart';
 import '../../bible/domain/bible.dart';
 import '../../bible/domain/reading_plan.dart';
+import '../../disciples/application/received_reports.dart';
 import '../../events/application/events_providers.dart';
 import '../../events/domain/event.dart';
 import '../../events/infrastructure/events_api.dart';
@@ -34,7 +35,9 @@ import '../../members/presentation/widgets/member_avatar.dart';
 import '../../ministry/application/nations.dart';
 import '../../ministry/domain/ministry_lives.dart';
 import '../../notifications/application/inbox.dart';
+import '../../prayer/application/importunities.dart';
 import '../../prayer/application/retreats.dart';
+import '../../prayer/domain/prayer.dart';
 import '../../prayer/domain/retreat.dart';
 import '../../prayer/presentation/prayer_screen.dart';
 import '../../prayer/presentation/widgets/prayer_look.dart';
@@ -42,6 +45,12 @@ import '../../profile/application/current_profile.dart';
 import '../../reports/application/day_report_controller.dart';
 import '../../reports/application/report_goals.dart';
 import '../../reports/application/reports_providers.dart';
+import '../../souls/application/souls.dart';
+import '../../souls/domain/soul.dart';
+import '../../teachings/application/now_playing.dart';
+import '../../teachings/application/teachings.dart';
+import '../../teachings/domain/teaching.dart';
+import '../../teachings/presentation/widgets/teaching_widgets.dart';
 import '../../verses/presentation/verse_card.dart';
 import '../application/home_privacy.dart';
 import '../domain/week_story.dart';
@@ -143,6 +152,7 @@ class HomeScreen extends ConsumerWidget {
                             },
                           ),
                         ),
+                        const FadeSlideIn(index: 3, child: _Listen()),
                         const SizedBox(height: 30),
                         FadeSlideIn(
                           index: 3,
@@ -720,6 +730,22 @@ class _Resume extends ConsumerWidget {
     // the verses learnt by heart: those to review today
     ref.watch(memoryVersesProvider);
     final memory = ref.read(memoryVersesProvider.notifier).dueOn(day).length;
+    // praying together: an invitation first, else a topic under way
+    final importunities =
+        ref.watch(importunitiesProvider).value ?? const <Importunity>[];
+    final together =
+        importunities
+            .where((topic) => topic.isOpen && topic.isInvitation)
+            .firstOrNull ??
+        importunities
+            .where((topic) => topic.isOpen && !topic.isInvitation)
+            .firstOrNull;
+    // the people to contact again today (Suivi des âmes, on the phone)
+    final souls = (ref.watch(soulsProvider).value ?? const <Soul>[])
+        .where((soul) => soul.dueBy(day))
+        .length;
+    // the reports the disciples sent, not opened yet
+    final received = ref.watch(receivedReportsUnreadProvider);
     final version = ref.watch(bibleVersionProvider);
     final names = <String, String>{
       for (final BibleBook book
@@ -825,6 +851,73 @@ class _Resume extends ConsumerWidget {
                 onTap: () => context.router.push(const FastsRoute()),
               ),
             ],
+            if (together case final topic?) ...[
+              Divider(
+                height: 1,
+                indent: 74,
+                endIndent: 16,
+                color: scheme.outlineVariant,
+              ),
+              _Row(
+                leading: _Tile(
+                  color: prayer.soft,
+                  child: PhosphorIcon(
+                    AppIcons.importunityGoal,
+                    size: 22,
+                    color: prayer.onSoft,
+                  ),
+                ),
+                title: topic.isInvitation && topic.invitedBy != null
+                    ? t.home.invitedBy(name: topic.invitedBy!.firstName)
+                    : t.home.prayTogether,
+                text: topic.title,
+                onTap: () => context.router.push(
+                  ImportunityRoute(importunityId: topic.id),
+                ),
+              ),
+            ],
+            if (souls > 0) ...[
+              Divider(
+                height: 1,
+                indent: 74,
+                endIndent: 16,
+                color: scheme.outlineVariant,
+              ),
+              _Row(
+                leading: _Tile(
+                  color: prayer.soft,
+                  child: PhosphorIcon(
+                    AppIcons.soulsTile,
+                    size: 22,
+                    color: prayer.onSoft,
+                  ),
+                ),
+                title: t.home.soulsTitle,
+                text: t.home.soulsText(n: souls),
+                onTap: () => context.router.push(const SoulsRoute()),
+              ),
+            ],
+            if (received > 0) ...[
+              Divider(
+                height: 1,
+                indent: 74,
+                endIndent: 16,
+                color: scheme.outlineVariant,
+              ),
+              _Row(
+                leading: _Tile(
+                  color: AppModule.reports.tone(context).soft,
+                  child: PhosphorIcon(
+                    AppIcons.receivedReportsTile,
+                    size: 22,
+                    color: AppModule.reports.tone(context).onSoft,
+                  ),
+                ),
+                title: t.received.title,
+                text: t.received.unreadCount(n: received),
+                onTap: () => context.router.push(const ReceivedReportsRoute()),
+              ),
+            ],
             if (memory > 0) ...[
               Divider(
                 height: 1,
@@ -876,6 +969,89 @@ class _Resume extends ConsumerWidget {
             ),
           ],
         ),
+      ),
+    );
+  }
+}
+
+/// « À écouter »: the latest teachings, their covers in a row; a touch
+/// plays one and opens the player. Nothing without teachings (or network).
+class _Listen extends ConsumerWidget {
+  const _Listen();
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final t = context.t;
+    final scheme = Theme.of(context).colorScheme;
+    final teachings =
+        ref.watch(latestTeachingsProvider).value ?? const <Teaching>[];
+    if (teachings.isEmpty) {
+      return const SizedBox.shrink();
+    }
+
+    return Padding(
+      padding: const EdgeInsets.only(top: 30),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          _Title(
+            t.home.listenTitle,
+            action: t.home.seeAll,
+            onAction: () => context.router.push(const TeachingsRoute()),
+          ),
+          SizedBox(
+            height: 212,
+            child: ListView.separated(
+              scrollDirection: Axis.horizontal,
+              clipBehavior: Clip.none,
+              itemCount: teachings.length.clamp(0, 8),
+              separatorBuilder: (_, _) => const SizedBox(width: 12),
+              itemBuilder: (context, i) {
+                final teaching = teachings[i];
+                final duration = teaching.duration;
+                return SizedBox(
+                  width: 140,
+                  child: InkWell(
+                    borderRadius: BorderRadius.circular(AppRadius.lg),
+                    onTap: () {
+                      ref.read(nowPlayingProvider.notifier).listen(teaching);
+                      context.router.push(const TeachingPlayerRoute());
+                    },
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        TeachingCover(teaching: teaching, size: 140),
+                        const SizedBox(height: 8),
+                        Text(
+                          teaching.title,
+                          maxLines: 2,
+                          overflow: TextOverflow.ellipsis,
+                          style: const TextStyle(
+                            fontWeight: FontWeight.w700,
+                            height: 1.2,
+                          ),
+                        ),
+                        const SizedBox(height: 2),
+                        Text(
+                          [
+                            if (teaching.speaker.isNotEmpty) teaching.speaker,
+                            if (duration != null) formatClock(duration),
+                          ].join(' · '),
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                          style: TextStyle(
+                            fontSize: 12.5,
+                            color: scheme.onSurfaceVariant,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                );
+              },
+            ),
+          ),
+        ],
       ),
     );
   }

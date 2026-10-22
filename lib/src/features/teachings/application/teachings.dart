@@ -91,3 +91,16 @@ Future<List<TeachingCategory>> teachingCategories(Ref ref) async {
     return const [];
   }
 }
+
+/// The latest teachings, for « À écouter » on the home screen (its own
+/// list: the Enseignements page keeps loading its own); none without
+/// network.
+@riverpod
+Future<List<Teaching>> latestTeachings(Ref ref) async {
+  try {
+    final page = await ref.watch(teachingsApiProvider).list(size: 8);
+    return page.items;
+  } on Object {
+    return const [];
+  }
+}

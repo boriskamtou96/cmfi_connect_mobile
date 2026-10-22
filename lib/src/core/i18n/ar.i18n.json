@@ -231,7 +231,19 @@
     "hideNumbers": "إخفاء أرقامي",
     "showNumbers": "إظهار أرقامي",
     "numbersHidden": "مخفي",
-    "daysShort": "{n} ي"
+    "daysShort": "{n} ي",
+    "prayTogether": "نصلّي معًا",
+    "invitedBy": "{name} يدعوك إلى الصلاة",
+    "soulsTitle": "نفوس للتواصل معها",
+    "listenTitle": "للاستماع",
+    "soulsText(plural, param=n)": {
+      "zero": "لا أحد اليوم",
+      "one": "شخص واحد اليوم",
+      "two": "شخصان اليوم",
+      "few": "{n} أشخاص اليوم",
+      "many": "{n} شخصًا اليوم",
+      "other": "{n} شخص اليوم"
+    }
   },
   "reports": {
     "title": "التقرير",

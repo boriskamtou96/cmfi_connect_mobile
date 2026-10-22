@@ -174,8 +174,8 @@ void main() {
   ) async {
     await pumpApp(tester, token: 't');
     // the "Tout voir" of the community
-    await scrollTo(tester, find.text('Tout voir'));
-    await tester.tap(find.text('Tout voir'));
+    await scrollTo(tester, find.text('Tout voir').last);
+    await tester.tap(find.text('Tout voir').last);
     await tester.pumpAndSettle();
 
     expect(find.text('À LA UNE'), findsOneWidget);
@@ -204,7 +204,7 @@ void main() {
     expect(find.text('Retraite des jeunes'), findsOneWidget);
     // the third one is in "Tout voir"
     expect(find.text('Campagne d\'évangélisation'), findsNothing);
-    await tester.tap(find.text('Tout voir'));
+    await tester.tap(find.text('Tout voir').last);
     await tester.pumpAndSettle();
     expect(find.text('À LA UNE'), findsOneWidget);
   });
@@ -242,6 +242,8 @@ void main() {
         'Les rencontres de la communauté, leur programme et leurs actualités.',
       ),
       200,
+      // the page, not the row of teachings
+      scrollable: find.byType(Scrollable).first,
     );
     await tester.ensureVisible(
       find.text(

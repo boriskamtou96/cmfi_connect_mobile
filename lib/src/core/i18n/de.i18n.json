@@ -223,7 +223,15 @@
     "hideNumbers": "Meine Zahlen ausblenden",
     "showNumbers": "Meine Zahlen anzeigen",
     "numbersHidden": "ausgeblendet",
-    "daysShort": "{n} T"
+    "daysShort": "{n} T",
+    "prayTogether": "Gemeinsam beten",
+    "invitedBy": "{name} lädt dich zum Beten ein",
+    "soulsTitle": "Seelen wieder kontaktieren",
+    "listenTitle": "Zum Anhören",
+    "soulsText(plural, param=n)": {
+      "one": "{n} Person heute",
+      "other": "{n} Personen heute"
+    }
   },
   "reports": {
     "title": "Tagesbericht",

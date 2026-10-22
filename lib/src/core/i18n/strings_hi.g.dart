@@ -265,6 +265,14 @@ class _Translations$home$hi extends Translations$home$fr {
 	@override String get showNumbers => 'मेरे आँकड़े दिखाएँ';
 	@override String get numbersHidden => 'छिपा हुआ';
 	@override String daysShort({required Object n}) => '${n} दिन';
+	@override String get prayTogether => 'साथ मिलकर प्रार्थना';
+	@override String invitedBy({required Object name}) => '${name} आपको प्रार्थना के लिए बुलाते हैं';
+	@override String get soulsTitle => 'फिर से संपर्क करने वाली आत्माएँ';
+	@override String get listenTitle => 'सुनने के लिए';
+	@override String soulsText({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n,
+		one: 'आज ${n} व्यक्ति',
+		other: 'आज ${n} लोग',
+	);
 }
 
 // Path: reports
@@ -3335,6 +3343,11 @@ extension on TranslationsHi {
 			'home.showNumbers' => 'मेरे आँकड़े दिखाएँ',
 			'home.numbersHidden' => 'छिपा हुआ',
 			'home.daysShort' => ({required Object n}) => '${n} दिन',
+			'home.prayTogether' => 'साथ मिलकर प्रार्थना',
+			'home.invitedBy' => ({required Object name}) => '${name} आपको प्रार्थना के लिए बुलाते हैं',
+			'home.soulsTitle' => 'फिर से संपर्क करने वाली आत्माएँ',
+			'home.listenTitle' => 'सुनने के लिए',
+			'home.soulsText' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n, one: 'आज ${n} व्यक्ति', other: 'आज ${n} लोग', ), 
 			'reports.title' => 'दैनिक रिपोर्ट',
 			'reports.myItems' => 'मेरे आइटम',
 			'reports.tabs.today' => 'आज',
@@ -3658,13 +3671,13 @@ extension on TranslationsHi {
 			'members.deleteAccount.itemPrayer' => 'तुम्हारी प्रार्थना सूचियाँ, प्रार्थना-समय और लगातार प्रार्थना के विषय',
 			'members.deleteAccount.kept' => 'एडमिन के रूप में प्रकाशित किए गए कार्यक्रम, ख़बरें, फ़ोटो और प्रार्थना विषय समुदाय के लिए रहेंगे, तुम्हारे नाम के बिना।',
 			'members.deleteAccount.passwordHelp' => 'यह पक्का करने के लिए कि यह तुम ही हो।',
+			_ => null,
+		} ?? switch (path) {
 			'members.deleteAccount.confirm' => 'हमेशा के लिए हटाओ',
 			'members.deleteAccount.done' => 'तुम्हारा खाता हटा दिया गया है। परमेश्वर तुम्हें आशीष दे!',
 			'members.deleteAccount.wrongPassword' => 'पासवर्ड ग़लत है।',
 			'members.deleteAccount.lastSuperadmin' => 'तुम अकेले सुपरएडमिन हो: खाता हटाने से पहले यह भूमिका किसी और को दो।',
 			'admin.title' => 'टीम और भूमिकाएँ',
-			_ => null,
-		} ?? switch (path) {
 			'admin.intro' => 'एडमिन वह सब संभालते हैं जो पूरा समुदाय साझा करता है। भूमिका सिर्फ़ सुपरएडमिन ही दे या वापस ले सकते हैं।',
 			'admin.roleUser' => 'सदस्य',
 			'admin.roleAdmin' => 'एडमिन',
@@ -4172,13 +4185,13 @@ extension on TranslationsHi {
 			'prayer.topics.all' => 'सब देखो',
 			'prayer.topics.empty' => 'अभी कोई प्रार्थना विषय नहीं है। अगुवे अगले विषय यहीं प्रकाशित करेंगे।',
 			'prayer.topics.categories.church' => 'चर्च',
+			_ => null,
+		} ?? switch (path) {
 			'prayer.topics.categories.nations' => 'राष्ट्र',
 			'prayer.topics.categories.sick' => 'बीमार',
 			'prayer.topics.categories.event' => 'कार्यक्रम',
 			'prayer.topics.categories.fasting' => 'उपवास',
 			'prayer.topics.categories.other' => 'विषय',
-			_ => null,
-		} ?? switch (path) {
 			'prayer.topics.until' => ({required Object date}) => '${date} तक',
 			'prayer.topics.archive' => 'पिछले विषय',
 			'prayer.topics.archiveEmpty' => 'कोई पिछला विषय नहीं।',
@@ -4686,13 +4699,13 @@ extension on TranslationsHi {
 			'memorize.toReview' => 'दोहराने को',
 			'memorize.learning' => 'सीख रहे',
 			'memorize.known' => 'याद',
+			_ => null,
+		} ?? switch (path) {
 			'memorize.reviewCount' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n, one: '${n} पद दोहराओ', other: '${n} पद दोहराओ', ), 
 			'memorize.nothingDue' => 'आज दोहराने को कुछ नहीं।',
 			'memorize.nextOn' => ({required Object date}) => 'अगली दोहराई: ${date}।',
 			'memorize.tomorrow' => 'कल',
 			'memorize.reminder' => 'दोहराई की याद',
-			_ => null,
-		} ?? switch (path) {
 			'memorize.reminderAt' => 'याद का समय',
 			'memorize.myVerses' => 'मेरे पद',
 			'memorize.howToAdd' => 'जोड़ने के लिए: बाइबल में कोई पद छुओ, फिर पट्टी में दिमाग़ का चिह्न।',

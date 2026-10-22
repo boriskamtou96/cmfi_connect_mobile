@@ -235,6 +235,12 @@ class SignedInTasks extends HookConsumerWidget {
             if (context.mounted) {
               context.router.push(const ReportSendingRoute());
             }
+          // Premium offered by the admins: shown at once
+          case 'premium_gift':
+            unawaited(ref.read(premiumStoreProvider).refresh());
+            if (context.mounted) {
+              context.router.push(const PremiumRoute());
+            }
           case 'teaching' when context.mounted:
             context.router.push(const TeachingsRoute());
           case 'document' when context.mounted:
@@ -446,6 +452,8 @@ class SignedInTasks extends HookConsumerWidget {
             ref.invalidate(receivedReportsProvider);
           case 'report_reply':
             ref.invalidate(sentInAppProvider);
+          case 'premium_gift':
+            unawaited(ref.read(premiumStoreProvider).refresh());
         }
         // shown as when the app is closed: iOS does it, Android needs the app
         if (defaultTargetPlatform == TargetPlatform.android &&

@@ -2175,6 +2175,15 @@ class FakePremiumStore implements PremiumStore {
 
   @override
   Future<void> manage() async => managed++;
+
+  /// The times Premium was asked again (a gift arrived).
+  var refreshed = 0;
+
+  @override
+  Future<void> refresh() async {
+    refreshed++;
+    _changes.add(active);
+  }
 }
 
 /// The store's rating sheet: counts the requests, for the version [version].

@@ -81,6 +81,10 @@ abstract class PremiumStore {
   /// "Gérer mon abonnement": RevenueCat's Customer Center (cancel, ask for a
   /// refund, restore, change plan). Throws when it can't open.
   Future<void> manage();
+
+  /// Asks the server again, past the cache: Premium offered by the admins
+  /// (or bought on the website) shows at once.
+  Future<void> refresh();
 }
 
 class NoPremiumStore implements PremiumStore {
@@ -109,6 +113,9 @@ class NoPremiumStore implements PremiumStore {
 
   @override
   Future<void> manage() async {}
+
+  @override
+  Future<void> refresh() async {}
 }
 
 class RevenueCatStore implements PremiumStore {
@@ -251,6 +258,17 @@ class RevenueCatStore implements PremiumStore {
     await _configure();
     // what changed there comes back through the customer info listener
     await RevenueCatUI.presentCustomerCenter();
+  }
+
+  @override
+  Future<void> refresh() async {
+    await _configure();
+    try {
+      await Purchases.invalidateCustomerInfoCache();
+      _changes.add(_active(await Purchases.getCustomerInfo()));
+    } on PlatformException {
+      // offline: the next launch asks again
+    }
   }
 }
 

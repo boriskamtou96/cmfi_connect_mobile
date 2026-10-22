@@ -230,4 +230,19 @@ void main() {
       expect(container.read(premiumForEveryoneProvider), offered);
     }
   });
+
+  testWidgets('Premium offered by the admins: the push shows it at once', (
+    tester,
+  ) async {
+    final store = FakePremiumStore();
+    final app = await pumpApp(tester, token: 't', premium: store);
+
+    // given in RevenueCat by the server
+    store.active = true;
+    app.push.tapsController.add({'type': 'premium_gift', 'id': '3'});
+    await tester.pumpAndSettle();
+
+    expect(store.refreshed, 1);
+    expect(find.text('Tu as Premium'), findsOneWidget);
+  });
 }

@@ -18,12 +18,18 @@ String hymnFontFamily(HymnReaderSettings settings) =>
 /// A whole hymn as read: number, title, author, then verses and choruses. Under a
 /// [SelectionArea], the words copy as they are sung: a line break between the lines,
 /// a blank line between the parts, without the numbers and labels.
+///
+/// With [onLineTap], a tap on a line gives its place among the lines sung
+/// ([sungLines]); the places in [chosen] stand out, the others fade while
+/// some are chosen.
 class HymnView extends StatelessWidget {
   const HymnView({
     required this.hymn,
     required this.settings,
     required this.palette,
     this.bookTitle,
+    this.chosen = const {},
+    this.onLineTap,
     this.padding = const EdgeInsets.fromLTRB(
       AppSpacing.xl,
       AppSpacing.sm,
@@ -37,11 +43,21 @@ class HymnView extends StatelessWidget {
   final String? bookTitle;
   final HymnReaderSettings settings;
   final ReaderPalette palette;
+  final Set<int> chosen;
+  final ValueChanged<int>? onLineTap;
   final EdgeInsets padding;
 
   @override
   Widget build(BuildContext context) {
     final size = hymnBaseFontSize * settings.textScale;
+    final parts = sungParts(hymn, repeatChorus: settings.repeatChorus);
+    // the place of the first line of each part among the lines sung
+    final firsts = <int>[];
+    var count = 0;
+    for (final sung in parts) {
+      firsts.add(count);
+      count += sung.part.lines.length;
+    }
     final family = hymnFontFamily(settings);
     final serif = settings.usesSerif;
 
@@ -98,10 +114,7 @@ class HymnView extends StatelessWidget {
                   ),
                 ],
                 SizedBox(height: size * 1.2),
-                for (final sung in sungParts(
-                  hymn,
-                  repeatChorus: settings.repeatChorus,
-                ))
+                for (final (index, sung) in parts.indexed)
                   Padding(
                     padding: EdgeInsets.only(bottom: size * 1.1),
                     child: _PartView(
@@ -110,6 +123,9 @@ class HymnView extends StatelessWidget {
                       family: family,
                       serif: serif,
                       palette: palette,
+                      first: firsts[index],
+                      chosen: chosen,
+                      onLineTap: onLineTap,
                     ),
                   ),
               ],
@@ -128,6 +144,9 @@ class _PartView extends StatelessWidget {
     required this.family,
     required this.serif,
     required this.palette,
+    required this.first,
+    required this.chosen,
+    required this.onLineTap,
   });
 
   final SungPart sung;
@@ -135,6 +154,9 @@ class _PartView extends StatelessWidget {
   final String family;
   final bool serif;
   final ReaderPalette palette;
+  final int first;
+  final Set<int> chosen;
+  final ValueChanged<int>? onLineTap;
 
   @override
   Widget build(BuildContext context) {
@@ -159,7 +181,14 @@ class _PartView extends StatelessWidget {
           for (var i = 0; i < part.lines.length; i++)
             Padding(
               padding: EdgeInsets.only(top: i == 0 ? 0 : size * 0.32),
-              child: Text(part.lines[i], style: style),
+              child: _Line(
+                text: part.lines[i],
+                style: style,
+                palette: palette,
+                chosen: chosen.contains(first + i),
+                faded: chosen.isNotEmpty && !chosen.contains(first + i),
+                onTap: onLineTap == null ? null : () => onLineTap!(first + i),
+              ),
             ),
         ],
       ),
@@ -228,6 +257,55 @@ class _PartView extends StatelessWidget {
           const SizedBox(height: 4),
           lines,
         ],
+      ),
+    );
+  }
+}
+
+/// A line of the words: tapped to be chosen, marked when it is.
+class _Line extends StatelessWidget {
+  const _Line({
+    required this.text,
+    required this.style,
+    required this.palette,
+    required this.chosen,
+    required this.faded,
+    required this.onTap,
+  });
+
+  final String text;
+  final TextStyle style;
+  final ReaderPalette palette;
+  final bool chosen;
+  final bool faded;
+  final VoidCallback? onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    final line = AnimatedOpacity(
+      duration: const Duration(milliseconds: 150),
+      opacity: faded ? 0.55 : 1,
+      child: AnimatedContainer(
+        duration: const Duration(milliseconds: 150),
+        padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 1),
+        decoration: BoxDecoration(
+          color: chosen
+              ? palette.accent.withValues(alpha: 0.18)
+              : Colors.transparent,
+          borderRadius: BorderRadius.circular(8),
+        ),
+        child: Text(text, style: style),
+      ),
+    );
+    if (onTap == null) {
+      return line;
+    }
+    return Semantics(
+      selected: chosen,
+      child: GestureDetector(
+        behavior: HitTestBehavior.opaque,
+        onTap: onTap,
+        child: line,
       ),
     );
   }

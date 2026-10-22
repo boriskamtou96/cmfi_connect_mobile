@@ -62,3 +62,18 @@ String hymnAsText(Hymn hymn, {required String chorusLabel, String? bookTitle}) {
   }
   return buffer.toString().trimRight();
 }
+
+/// The lines sung, in order and one by one, as the reader shows them: the
+/// places of the lines a member chooses to share.
+List<String> sungLines(Hymn hymn, {required bool repeatChorus}) => [
+  for (final sung in sungParts(hymn, repeatChorus: repeatChorus))
+    ...sung.part.lines,
+];
+
+/// Lines of a hymn shared as text: between quotes, then where they come from
+/// ([reference]: "— Cantique 12, Grâce infinie") and the book.
+String excerptAsText(
+  List<String> lines, {
+  required String reference,
+  required String bookTitle,
+}) => '« ${lines.join('\n')} »\n\n$reference\n$bookTitle';

@@ -13,6 +13,7 @@ list(APPEND FLUTTER_PLUGIN_LIST
   flutter_secure_storage_windows
   flutter_timezone
   flutter_tts
+  gal
   local_auth_windows
   share_plus
   url_launcher_windows

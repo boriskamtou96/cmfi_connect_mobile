@@ -609,6 +609,9 @@ class _Translations$hymns$hi extends Translations$hymns$fr {
 	@override late final _Translations$hymns$reader$hi reader = _Translations$hymns$reader$hi._(_root);
 	@override late final _Translations$hymns$projection$hi projection = _Translations$hymns$projection$hi._(_root);
 	@override late final _Translations$hymns$pad$hi pad = _Translations$hymns$pad$hi._(_root);
+	@override String get changeBook => 'भजन-पुस्तक बदलो';
+	@override String get random => 'कोई भी';
+	@override late final _Translations$hymns$lyrics$hi lyrics = _Translations$hymns$lyrics$hi._(_root);
 }
 
 // Path: comingSoon
@@ -2356,6 +2359,7 @@ class _Translations$hymns$reader$hi extends Translations$hymns$reader$fr {
 	@override String get pinchHint => 'टेक्स्ट बड़ा या छोटा करने के लिए स्क्रीन पर दो उँगलियों से पिंच करो।';
 	@override String get notFound => 'यह भजन अब इस संग्रह में नहीं है।';
 	@override String get share => 'बोल शेयर करो';
+	@override String get shareLines => 'एक अंश साझा करो';
 }
 
 // Path: hymns.projection
@@ -2384,6 +2388,33 @@ class _Translations$hymns$pad$hi extends Translations$hymns$pad$fr {
 	@override String get erase => 'मिटाओ';
 	@override String notFound({required Object number}) => 'इस संग्रह में भजन नं. ${number} नहीं है';
 	@override String get placeholder => 'नंबर टाइप करो';
+}
+
+// Path: hymns.lyrics
+class _Translations$hymns$lyrics$hi extends Translations$hymns$lyrics$fr {
+	_Translations$hymns$lyrics$hi._(TranslationsHi root) : this._root = root, super.internal(root);
+
+	final TranslationsHi _root; // ignore: unused_field
+
+	// Translations
+	@override String get hint => 'जोड़ने के लिए किसी पंक्ति को छुओ';
+	@override String chosen({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n,
+		one: '${n} पंक्ति चुनी गई',
+		other: '${n} पंक्तियाँ चुनी गईं',
+	);
+	@override String get share => 'साझा करो';
+	@override String get clear => 'चयन हटाओ';
+	@override String get image => 'चित्र';
+	@override String get text => 'पाठ';
+	@override String get color => 'कार्ड का रंग';
+	@override String get save => 'सहेजो';
+	@override String get saved => 'चित्र तुम्हारी फ़ोटो में सहेजा गया';
+	@override String get saveDenied => 'चित्र सहेजने के लिए अपनी फ़ोटो तक पहुँच दो।';
+	@override String get saveFailed => 'चित्र सहेजा नहीं जा सका।';
+	@override String get shareImage => 'चित्र साझा करो';
+	@override String get shareText => 'पाठ साझा करो';
+	@override String get copy => 'कॉपी करो';
+	@override String reference({required Object number, required Object title}) => '— भजन ${number}, ${title}';
 }
 
 // Path: events.tabs
@@ -3878,6 +3909,7 @@ extension on TranslationsHi {
 			'hymns.reader.pinchHint' => 'टेक्स्ट बड़ा या छोटा करने के लिए स्क्रीन पर दो उँगलियों से पिंच करो।',
 			'hymns.reader.notFound' => 'यह भजन अब इस संग्रह में नहीं है।',
 			'hymns.reader.share' => 'बोल शेयर करो',
+			'hymns.reader.shareLines' => 'एक अंश साझा करो',
 			'hymns.projection.exit' => 'प्रोजेक्शन मोड से बाहर निकलो',
 			'hymns.projection.previous' => 'पिछला पद',
 			'hymns.projection.next' => 'अगला पद',
@@ -3888,6 +3920,23 @@ extension on TranslationsHi {
 			'hymns.pad.erase' => 'मिटाओ',
 			'hymns.pad.notFound' => ({required Object number}) => 'इस संग्रह में भजन नं. ${number} नहीं है',
 			'hymns.pad.placeholder' => 'नंबर टाइप करो',
+			'hymns.changeBook' => 'भजन-पुस्तक बदलो',
+			'hymns.random' => 'कोई भी',
+			'hymns.lyrics.hint' => 'जोड़ने के लिए किसी पंक्ति को छुओ',
+			'hymns.lyrics.chosen' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n, one: '${n} पंक्ति चुनी गई', other: '${n} पंक्तियाँ चुनी गईं', ), 
+			'hymns.lyrics.share' => 'साझा करो',
+			'hymns.lyrics.clear' => 'चयन हटाओ',
+			'hymns.lyrics.image' => 'चित्र',
+			'hymns.lyrics.text' => 'पाठ',
+			'hymns.lyrics.color' => 'कार्ड का रंग',
+			'hymns.lyrics.save' => 'सहेजो',
+			'hymns.lyrics.saved' => 'चित्र तुम्हारी फ़ोटो में सहेजा गया',
+			'hymns.lyrics.saveDenied' => 'चित्र सहेजने के लिए अपनी फ़ोटो तक पहुँच दो।',
+			'hymns.lyrics.saveFailed' => 'चित्र सहेजा नहीं जा सका।',
+			'hymns.lyrics.shareImage' => 'चित्र साझा करो',
+			'hymns.lyrics.shareText' => 'पाठ साझा करो',
+			'hymns.lyrics.copy' => 'कॉपी करो',
+			'hymns.lyrics.reference' => ({required Object number, required Object title}) => '— भजन ${number}, ${title}',
 			'comingSoon.badge' => 'जल्द आ रहा है',
 			'comingSoon.backHome' => 'होम पर वापस जाओ',
 			'events.title' => 'कार्यक्रम',
@@ -4296,6 +4345,8 @@ extension on TranslationsHi {
 			'prayer.hero.title' => '15 मिनट\nप्रभु के साथ',
 			'prayer.hero.preview.morning' => 'धन्यवाद दो, अपना दिन, अपना काम, अपना परिवार समर्पित करो…',
 			'prayer.hero.preview.noon' => 'तुम्हारी सभा, तुम्हारे अगुवे, तुम्हारी सूची के 5 लोग, राष्ट्र…',
+			_ => null,
+		} ?? switch (path) {
 			'prayer.hero.preview.evening' => 'तुम्हारा प्रार्थना-जीवन, तुम्हारी सेवकाई, तुम्हारे सहकर्मी…',
 			'prayer.hero.preview.night' => 'बीमार लोग, राष्ट्रों में सुसमाचार, रात की सुरक्षा…',
 			'prayer.hero.meta' => '15 बिंदु · हर एक 1 मिनट',
@@ -4314,8 +4365,6 @@ extension on TranslationsHi {
 			'prayer.routine.reminder' => ({required Object time}) => '${time} पर याद दिलाना',
 			'prayer.routine.later.morning' => 'सुबह · 15 मिनट',
 			'prayer.routine.later.noon' => 'दोपहर · 15 मिनट',
-			_ => null,
-		} ?? switch (path) {
 			'prayer.routine.later.evening' => 'शाम · 15 मिनट',
 			'prayer.routine.later.night' => 'रात · 15 मिनट',
 			'prayer.together' => 'साथ मिलकर प्रार्थना',
@@ -4810,6 +4859,8 @@ extension on TranslationsHi {
 			'seekFirst.privacyAndroid' => 'तुम्हारे चुने ऐप तुम्हारे फ़ोन में ही रहते हैं: CMFI Connect उन्हें कभी नहीं भेजता।',
 			'documents.title' => 'हमारे दस्तावेज़',
 			'documents.subtitle' => 'शिक्षाएँ, नियम, फ़ॉर्म…',
+			_ => null,
+		} ?? switch (path) {
 			'documents.moreSubtitle' => 'समुदाय का पुस्तकालय',
 			'documents.search' => 'दस्तावेज़ खोजें',
 			'documents.all' => 'सभी',
@@ -4828,8 +4879,6 @@ extension on TranslationsHi {
 			'biblePlan.months3' => '3 महीने',
 			'biblePlan.months6' => '6 महीने',
 			'biblePlan.year' => '1 साल',
-			_ => null,
-		} ?? switch (path) {
 			'biblePlan.custom' => 'अन्य',
 			'biblePlan.unitMonths' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n, one: 'महीना', other: 'महीने', ), 
 			'biblePlan.unitYear' => 'साल',

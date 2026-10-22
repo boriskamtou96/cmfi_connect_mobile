@@ -736,7 +736,8 @@
       "project": "Mode projection",
       "pinchHint": "Pince l'écran pour agrandir ou réduire le texte.",
       "notFound": "Ce cantique n'existe plus dans le recueil.",
-      "share": "Partager les paroles"
+      "share": "Partager les paroles",
+      "shareLines": "Partager un extrait"
     },
     "projection": {
       "exit": "Quitter le mode projection",
@@ -751,6 +752,28 @@
       "erase": "Effacer",
       "notFound": "Pas de cantique n° {number} dans ce recueil",
       "placeholder": "Tape un numéro"
+    },
+    "changeBook": "Changer de recueil",
+    "random": "Au hasard",
+    "lyrics": {
+      "hint": "Touche une ligne pour l'ajouter",
+      "chosen(plural, param=n)": {
+        "one": "{n} ligne choisie",
+        "other": "{n} lignes choisies"
+      },
+      "share": "Partager",
+      "clear": "Annuler la sélection",
+      "image": "Image",
+      "text": "Texte",
+      "color": "Couleur de la carte",
+      "save": "Enregistrer",
+      "saved": "Image enregistrée dans tes photos",
+      "saveDenied": "Autorise l'accès aux photos pour enregistrer l'image.",
+      "saveFailed": "Impossible d'enregistrer l'image.",
+      "shareImage": "Partager l'image",
+      "shareText": "Partager le texte",
+      "copy": "Copier",
+      "reference": "— Cantique {number}, {title}"
     }
   },
   "comingSoon": {

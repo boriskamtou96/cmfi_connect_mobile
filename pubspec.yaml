@@ -108,6 +108,7 @@ dependencies:
   flutter_tts: ^4.2.5
   firebase_remote_config: ^6.7.0
   in_app_update: ^4.2.5
+  gal: ^2.3.3
 
 dev_dependencies:
   flutter_test:

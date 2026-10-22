@@ -10,7 +10,8 @@ import 'highlighted_text.dart';
 
 /// A hymn in a list, like a track of an album: its number, title, a second
 /// line (first line, matching words, book), then the star and the [menu].
-/// [current] (the last one opened) takes the color of the hymns.
+/// [current] (the last one opened) takes the color of the hymns. With
+/// [numberColor], the number is big, in that color (the book's).
 class HymnTile extends StatelessWidget {
   const HymnTile({
     required this.hymn,
@@ -20,6 +21,8 @@ class HymnTile extends StatelessWidget {
     this.favorite = false,
     this.current = false,
     this.onToggleFavorite,
+    this.onLongPress,
+    this.numberColor,
     this.menu,
     super.key,
   });
@@ -35,6 +38,8 @@ class HymnTile extends StatelessWidget {
 
   /// Turns the star into a button.
   final VoidCallback? onToggleFavorite;
+  final VoidCallback? onLongPress;
+  final Color? numberColor;
   final Widget? menu;
 
   @override
@@ -60,6 +65,7 @@ class HymnTile extends StatelessWidget {
             excludeSemantics: true,
             child: InkWell(
               onTap: onTap,
+              onLongPress: onLongPress,
               child: Padding(
                 padding: const EdgeInsetsDirectional.fromSTEB(
                   AppSpacing.lg,
@@ -70,13 +76,16 @@ class HymnTile extends StatelessWidget {
                 child: Row(
                   children: [
                     SizedBox(
-                      width: 40,
+                      width: numberColor == null ? 40 : 52,
                       child: Text(
                         '${hymn.number}',
                         style: TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.w700,
-                          color: accent ?? scheme.onSurfaceVariant,
+                          fontSize: numberColor == null ? 16 : 21,
+                          fontWeight: numberColor == null
+                              ? FontWeight.w700
+                              : FontWeight.w800,
+                          color:
+                              numberColor ?? accent ?? scheme.onSurfaceVariant,
                           fontFeatures: const [FontFeature.tabularFigures()],
                         ),
                       ),

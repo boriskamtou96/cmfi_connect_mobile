@@ -736,7 +736,8 @@
       "project": "Projection mode",
       "pinchHint": "Pinch the screen to make the text bigger or smaller.",
       "notFound": "This hymn is no longer in the book.",
-      "share": "Share the lyrics"
+      "share": "Share the lyrics",
+      "shareLines": "Share an excerpt"
     },
     "projection": {
       "exit": "Leave projection mode",
@@ -751,6 +752,28 @@
       "erase": "Erase",
       "notFound": "No hymn No. {number} in this book",
       "placeholder": "Type a number"
+    },
+    "changeBook": "Change hymn book",
+    "random": "Random",
+    "lyrics": {
+      "hint": "Tap a line to add it",
+      "chosen(plural, param=n)": {
+        "one": "{n} line chosen",
+        "other": "{n} lines chosen"
+      },
+      "share": "Share",
+      "clear": "Clear the selection",
+      "image": "Image",
+      "text": "Text",
+      "color": "Card color",
+      "save": "Save",
+      "saved": "Image saved to your photos",
+      "saveDenied": "Allow access to your photos to save the image.",
+      "saveFailed": "The image couldn't be saved.",
+      "shareImage": "Share image",
+      "shareText": "Share text",
+      "copy": "Copy",
+      "reference": "— Hymn {number}, {title}"
     }
   },
   "comingSoon": {

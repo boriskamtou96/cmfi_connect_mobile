@@ -17,6 +17,7 @@ import 'package:cmfi_connect/src/core/services/lock_screen_timer.dart';
 import 'package:cmfi_connect/src/core/services/media_images.dart';
 import 'package:cmfi_connect/src/core/services/network_status.dart';
 import 'package:cmfi_connect/src/core/services/phone_verification.dart';
+import 'package:cmfi_connect/src/core/services/photo_saver.dart';
 import 'package:cmfi_connect/src/core/services/premium_store.dart';
 import 'package:cmfi_connect/src/core/services/push_messaging.dart';
 import 'package:cmfi_connect/src/core/services/screen_awake.dart';
@@ -84,6 +85,7 @@ class TestApp {
     required this.toasts,
     required this.adminApi,
     required this.share,
+    required this.photos,
     required this.network,
     required this.profileApi,
     required this.activitiesApi,
@@ -138,6 +140,7 @@ class TestApp {
   final FakeToaster toasts;
   final FakeAdminApi adminApi;
   final FakeShareService share;
+  final FakePhotoSaver photos;
   final FakeNetworkStatus network;
   final FakeProfileApi profileApi;
   final FakeActivitiesApi activitiesApi;
@@ -255,6 +258,7 @@ Future<TestApp> pumpApp(
   final toasts = FakeToaster();
   final admin = adminApi ?? FakeAdminApi();
   final share = FakeShareService();
+  final photos = FakePhotoSaver();
   final network = FakeNetworkStatus();
   final activitiesApi = FakeActivitiesApi(activities);
   // the day form lists the active items, like the API
@@ -310,6 +314,7 @@ Future<TestApp> pumpApp(
       toasterProvider.overrideWithValue(toasts),
       adminApiProvider.overrideWithValue(admin),
       shareServiceProvider.overrideWithValue(share),
+      photoSaverProvider.overrideWithValue(photos),
       networkStatusProvider.overrideWithValue(network),
       authApiProvider.overrideWithValue(auth),
       profileApiProvider.overrideWithValue(profileApi),
@@ -392,6 +397,7 @@ Future<TestApp> pumpApp(
     toasts: toasts,
     adminApi: admin,
     share: share,
+    photos: photos,
     network: network,
     profileApi: profileApi,
     activitiesApi: activitiesApi,

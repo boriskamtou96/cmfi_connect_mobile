@@ -609,6 +609,9 @@ class _Translations$hymns$de extends Translations$hymns$fr {
 	@override late final _Translations$hymns$reader$de reader = _Translations$hymns$reader$de._(_root);
 	@override late final _Translations$hymns$projection$de projection = _Translations$hymns$projection$de._(_root);
 	@override late final _Translations$hymns$pad$de pad = _Translations$hymns$pad$de._(_root);
+	@override String get changeBook => 'Liederbuch wechseln';
+	@override String get random => 'Zufällig';
+	@override late final _Translations$hymns$lyrics$de lyrics = _Translations$hymns$lyrics$de._(_root);
 }
 
 // Path: comingSoon
@@ -2357,6 +2360,7 @@ class _Translations$hymns$reader$de extends Translations$hymns$reader$fr {
 	@override String get pinchHint => 'Zieh mit zwei Fingern auf oder zu, um die Textgröße zu ändern.';
 	@override String get notFound => 'Dieses Lied gibt es im Liederbuch nicht mehr.';
 	@override String get share => 'Liedtext teilen';
+	@override String get shareLines => 'Einen Auszug teilen';
 }
 
 // Path: hymns.projection
@@ -2385,6 +2389,33 @@ class _Translations$hymns$pad$de extends Translations$hymns$pad$fr {
 	@override String get erase => 'Löschen';
 	@override String notFound({required Object number}) => 'Kein Lied Nr. ${number} in diesem Liederbuch';
 	@override String get placeholder => 'Nummer eingeben';
+}
+
+// Path: hymns.lyrics
+class _Translations$hymns$lyrics$de extends Translations$hymns$lyrics$fr {
+	_Translations$hymns$lyrics$de._(TranslationsDe root) : this._root = root, super.internal(root);
+
+	final TranslationsDe _root; // ignore: unused_field
+
+	// Translations
+	@override String get hint => 'Tippe auf eine Zeile, um sie hinzuzufügen';
+	@override String chosen({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('de'))(n,
+		one: '${n} Zeile ausgewählt',
+		other: '${n} Zeilen ausgewählt',
+	);
+	@override String get share => 'Teilen';
+	@override String get clear => 'Auswahl aufheben';
+	@override String get image => 'Bild';
+	@override String get text => 'Text';
+	@override String get color => 'Farbe der Karte';
+	@override String get save => 'Speichern';
+	@override String get saved => 'Bild in deinen Fotos gespeichert';
+	@override String get saveDenied => 'Erlaube den Zugriff auf deine Fotos, um das Bild zu speichern.';
+	@override String get saveFailed => 'Das Bild konnte nicht gespeichert werden.';
+	@override String get shareImage => 'Bild teilen';
+	@override String get shareText => 'Text teilen';
+	@override String get copy => 'Kopieren';
+	@override String reference({required Object number, required Object title}) => '— Lied ${number}, ${title}';
 }
 
 // Path: events.tabs
@@ -3879,6 +3910,7 @@ extension on TranslationsDe {
 			'hymns.reader.pinchHint' => 'Zieh mit zwei Fingern auf oder zu, um die Textgröße zu ändern.',
 			'hymns.reader.notFound' => 'Dieses Lied gibt es im Liederbuch nicht mehr.',
 			'hymns.reader.share' => 'Liedtext teilen',
+			'hymns.reader.shareLines' => 'Einen Auszug teilen',
 			'hymns.projection.exit' => 'Präsentationsmodus beenden',
 			'hymns.projection.previous' => 'Vorherige Strophe',
 			'hymns.projection.next' => 'Nächste Strophe',
@@ -3889,6 +3921,23 @@ extension on TranslationsDe {
 			'hymns.pad.erase' => 'Löschen',
 			'hymns.pad.notFound' => ({required Object number}) => 'Kein Lied Nr. ${number} in diesem Liederbuch',
 			'hymns.pad.placeholder' => 'Nummer eingeben',
+			'hymns.changeBook' => 'Liederbuch wechseln',
+			'hymns.random' => 'Zufällig',
+			'hymns.lyrics.hint' => 'Tippe auf eine Zeile, um sie hinzuzufügen',
+			'hymns.lyrics.chosen' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('de'))(n, one: '${n} Zeile ausgewählt', other: '${n} Zeilen ausgewählt', ), 
+			'hymns.lyrics.share' => 'Teilen',
+			'hymns.lyrics.clear' => 'Auswahl aufheben',
+			'hymns.lyrics.image' => 'Bild',
+			'hymns.lyrics.text' => 'Text',
+			'hymns.lyrics.color' => 'Farbe der Karte',
+			'hymns.lyrics.save' => 'Speichern',
+			'hymns.lyrics.saved' => 'Bild in deinen Fotos gespeichert',
+			'hymns.lyrics.saveDenied' => 'Erlaube den Zugriff auf deine Fotos, um das Bild zu speichern.',
+			'hymns.lyrics.saveFailed' => 'Das Bild konnte nicht gespeichert werden.',
+			'hymns.lyrics.shareImage' => 'Bild teilen',
+			'hymns.lyrics.shareText' => 'Text teilen',
+			'hymns.lyrics.copy' => 'Kopieren',
+			'hymns.lyrics.reference' => ({required Object number, required Object title}) => '— Lied ${number}, ${title}',
 			'comingSoon.badge' => 'Bald verfügbar',
 			'comingSoon.backHome' => 'Zurück zum Start',
 			'events.title' => 'Veranstaltungen',
@@ -4297,6 +4346,8 @@ extension on TranslationsDe {
 			'prayer.hero.title' => '15 Minuten\nmit dem Herrn',
 			'prayer.hero.preview.morning' => 'Sage Dank, weihe deinen Tag, deine Arbeit, deine Familie …',
 			'prayer.hero.preview.noon' => 'Deine Gemeinde, deine Leiter, 5 Menschen von deiner Liste, die Nationen …',
+			_ => null,
+		} ?? switch (path) {
 			'prayer.hero.preview.evening' => 'Dein Gebetsleben, dein Dienst, deine Mitarbeiter …',
 			'prayer.hero.preview.night' => 'Die Kranken, das Evangelium unter den Nationen, Schutz für die Nacht …',
 			'prayer.hero.meta' => '15 Punkte · je 1 Min.',
@@ -4315,8 +4366,6 @@ extension on TranslationsDe {
 			'prayer.routine.reminder' => ({required Object time}) => 'Erinnerung um ${time}',
 			'prayer.routine.later.morning' => 'Am Morgen · 15 Min.',
 			'prayer.routine.later.noon' => 'Am Mittag · 15 Min.',
-			_ => null,
-		} ?? switch (path) {
 			'prayer.routine.later.evening' => 'Am Abend · 15 Min.',
 			'prayer.routine.later.night' => 'In der Nacht · 15 Min.',
 			'prayer.together' => 'Gemeinsam beten',
@@ -4811,6 +4860,8 @@ extension on TranslationsDe {
 			'seekFirst.privacyAndroid' => 'Die Apps, die du wählst, bleiben auf deinem Handy: CMFI Connect sendet sie nie.',
 			'documents.title' => 'Unsere Dokumente',
 			'documents.subtitle' => 'Lehren, Regeln, Formulare…',
+			_ => null,
+		} ?? switch (path) {
 			'documents.moreSubtitle' => 'Die Bibliothek der Gemeinschaft',
 			'documents.search' => 'Ein Dokument suchen',
 			'documents.all' => 'Alle',
@@ -4829,8 +4880,6 @@ extension on TranslationsDe {
 			'biblePlan.months3' => '3 Monate',
 			'biblePlan.months6' => '6 Monate',
 			'biblePlan.year' => '1 Jahr',
-			_ => null,
-		} ?? switch (path) {
 			'biblePlan.custom' => 'Andere',
 			'biblePlan.unitMonths' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('de'))(n, one: 'Monat', other: 'Monate', ), 
 			'biblePlan.unitYear' => 'Jahr',

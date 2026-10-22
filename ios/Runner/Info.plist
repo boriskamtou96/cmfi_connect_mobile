@@ -80,6 +80,8 @@
 	<string>Pour te connecter avec Face ID, sans taper ton mot de passe.</string>
 	<key>NSSupportsLiveActivities</key>
 	<true/>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>Pour enregistrer dans tes photos l'image des paroles d'un cantique.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>Pour choisir ta photo de profil, ou l'affiche et les photos d'un évènement.</string>
 	<key>UIApplicationSupportsIndirectInputEvents</key>

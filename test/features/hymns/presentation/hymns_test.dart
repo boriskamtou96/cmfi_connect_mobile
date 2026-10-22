@@ -1,5 +1,7 @@
 import 'package:cmfi_connect/src/core/i18n/strings.g.dart';
 import 'package:cmfi_connect/src/features/hymns/application/hymn_reader_settings.dart';
+import 'package:cmfi_connect/src/features/hymns/presentation/widgets/hymn_view.dart';
+import 'package:cmfi_connect/src/features/hymns/presentation/widgets/lyrics_share_sheet.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -69,27 +71,14 @@ void main() {
     expect(find.text('A Toi la gloire'), findsOneWidget);
   });
 
-  testWidgets('swiping the covers changes the book', (tester) async {
-    final app = await openHymns(tester);
-
-    await tester.fling(
-      find.text('Rendons ministère au Seigneur').first,
-      const Offset(-300, 0),
-      1000,
-    );
-    await tester.pumpAndSettle();
-
-    expect(find.text('Christ the Victor'), findsWidgets);
-    expect(find.text("There's a Man on the Throne of God"), findsOneWidget);
-    expect(app.preferences.getString('hymn_book'), 'christ-the-victor');
-  });
-
-  testWidgets('the star of a hymn of the list adds it to the favorites', (
+  testWidgets('a long press on a hymn of the list adds it to the favorites', (
     tester,
   ) async {
     final app = await openHymns(tester);
 
-    await tester.tap(find.byTooltip('Ajouter aux favoris').at(1));
+    await tester.longPress(find.text('Saint, Saint, Saint'));
+    await tester.pumpAndSettle();
+    await tester.tap(find.text('Ajouter aux favoris'));
     await tester.pumpAndSettle();
     expect(app.toasts.messages, ['Ajouté aux favoris']);
 
@@ -115,7 +104,7 @@ void main() {
     );
     final app = await openHymns(tester);
 
-    await tester.tap(find.byTooltip("Plus d'options").first);
+    await tester.longPress(find.text('A Toi la gloire'));
     await tester.pumpAndSettle();
     await tester.tap(find.text('Copier les paroles'));
     await tester.pumpAndSettle();
@@ -255,7 +244,7 @@ void main() {
   testWidgets('the keypad opens a hymn by its number', (tester) async {
     await openHymns(tester);
 
-    await tester.tap(find.byTooltip('Aller à un numéro'));
+    await tester.tap(find.text('Aller à un numéro'));
     await tester.pumpAndSettle();
     // the keys are above the list, which has numbers too
     await tester.tap(find.text('9').last);
@@ -276,7 +265,7 @@ void main() {
   testWidgets('another book can be chosen, and is remembered', (tester) async {
     final app = await openHymns(tester);
 
-    await tester.tap(find.text('Rendons ministère au Seigneur, volume\u00A01'));
+    await tester.tap(find.text('Changer de recueil'));
     await tester.pumpAndSettle();
     // the cover of the book is behind the list
     await tester.tap(find.text('Christ the Victor').last);
@@ -364,5 +353,130 @@ void main() {
     await tester.tap(find.text('Cantique n° 2'));
     await tester.pumpAndSettle();
     expect(find.text('N° 2'), findsOneWidget);
+  });
+
+  testWidgets('« Au hasard » opens a hymn of the book', (tester) async {
+    await openHymns(tester);
+
+    await tester.tap(find.byTooltip('Au hasard'));
+    await tester.pumpAndSettle();
+
+    expect(find.byType(HymnView), findsOneWidget);
+    expect(find.textContaining('N° '), findsOneWidget);
+  });
+
+  group('lines shared', () {
+    // the lines of the hymn shown, in order (whatever their words)
+    Finder line(int index) => find
+        .descendant(
+          of: find.byType(HymnView),
+          matching: find.byType(GestureDetector),
+        )
+        .at(index);
+
+    Future<TestApp> chooseTwoLines(WidgetTester tester) async {
+      final app = await openHymns(tester);
+      await tester.tap(find.text('A Toi la gloire'));
+      await tester.pumpAndSettle();
+      await tester.tap(line(0));
+      await tester.pump();
+      await tester.tap(line(1));
+      await tester.pumpAndSettle();
+      return app;
+    }
+
+    testWidgets('as text: shared with the hymn and its link, or copied', (
+      tester,
+    ) async {
+      String? copied;
+      final messenger = tester.binding.defaultBinaryMessenger;
+      messenger.setMockMethodCallHandler(SystemChannels.platform, (call) async {
+        if (call.method == 'Clipboard.setData') {
+          copied = (call.arguments as Map)['text'] as String;
+        }
+        return null;
+      });
+      addTearDown(
+        () => messenger.setMockMethodCallHandler(SystemChannels.platform, null),
+      );
+      final app = await chooseTwoLines(tester);
+
+      expect(find.text('2 lignes choisies'), findsOneWidget);
+      await tester.tap(find.text('Partager'));
+      await tester.pumpAndSettle();
+      await tester.tap(find.text('Texte'));
+      await tester.pumpAndSettle();
+      await tester.tap(find.text('Partager le texte'));
+      await tester.pumpAndSettle();
+
+      final shared = app.share.texts.single;
+      expect(shared, startsWith('« '));
+      expect(shared.split(' »').first.split('\n'), hasLength(2));
+      expect(shared, contains('— Cantique 1, A Toi la gloire'));
+      expect(shared, contains('Rendons ministère au Seigneur'));
+      expect(shared, contains('hymns/'));
+
+      await tester.tap(find.text('Copier'));
+      await tester.pumpAndSettle();
+      expect(copied, shared);
+      expect(app.toasts.messages, contains('Paroles copiées'));
+    });
+
+    testWidgets('as an image: saved in the photos, or shared', (tester) async {
+      final app = await chooseTwoLines(tester);
+      await tester.tap(find.text('Partager'));
+      await tester.pumpAndSettle();
+      expect(find.byType(LyricsCard), findsOneWidget);
+
+      // another color, then the image made (outside the fake clock)
+      await tester.tap(find.bySemanticsLabel('Couleur de la carte 2'));
+      await tester.pump();
+      await tester.runAsync(() async {
+        await tester.tap(find.text('Enregistrer'));
+        await Future<void>.delayed(const Duration(seconds: 1));
+      });
+      await tester.pumpAndSettle();
+      expect(app.photos.saved.single.name, 'cantique-1.png');
+      expect(
+        app.toasts.messages,
+        contains('Image enregistrée dans tes photos'),
+      );
+
+      await tester.runAsync(() async {
+        await tester.tap(find.text("Partager l'image"));
+        await Future<void>.delayed(const Duration(seconds: 1));
+      });
+      await tester.pumpAndSettle();
+      expect(app.share.files.single.mimeType, 'image/png');
+
+      // the photos refused: said
+      app.photos.allowed = false;
+      await tester.runAsync(() async {
+        await tester.tap(find.text('Enregistrer'));
+        await Future<void>.delayed(const Duration(seconds: 1));
+      });
+      await tester.pumpAndSettle();
+      expect(
+        app.toasts.messages,
+        contains("Autorise l'accès aux photos pour enregistrer l'image."),
+      );
+    });
+
+    testWidgets('the cross stops choosing, another hymn starts afresh', (
+      tester,
+    ) async {
+      await chooseTwoLines(tester);
+
+      await tester.tap(find.byTooltip('Annuler la sélection'));
+      await tester.pumpAndSettle();
+      expect(find.text('2 lignes choisies'), findsNothing);
+
+      // from the menu: nothing chosen yet, the hint
+      await tester.tap(find.byTooltip("Plus d'options"));
+      await tester.pumpAndSettle();
+      await tester.tap(find.text('Partager un extrait'));
+      await tester.pumpAndSettle();
+      expect(find.text("Touche une ligne pour l'ajouter"), findsOneWidget);
+    });
   });
 }

@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -33,10 +35,10 @@ import 'widgets/number_pad_sheet.dart';
 
 enum _HymnsView { all, favorites, recent }
 
-/// Hymns tab, like an album: the books as covers side by side (swipe to change),
-/// the chosen one's name and the number pad, then its hymns, the favorites or
-/// the recent ones. The search opens in place of the title. Works offline: the
-/// books are on the phone.
+/// Hymns tab, like an open album: the chosen book on its color (cover, name,
+/// "Changer de recueil"), "Aller au numéro" and a hymn at random, then its
+/// hymns, the favorites or the recent ones. The search opens in place of the
+/// title. Works offline: the books are on the phone.
 @RoutePage()
 class HymnsScreen extends HookConsumerWidget {
   const HymnsScreen({super.key});
@@ -50,6 +52,7 @@ class HymnsScreen extends HookConsumerWidget {
     final query = useValueListenable(searchController).text;
     final searching = useState(false);
     final view = useState(_HymnsView.all);
+    final random = useMemoized(Random.new);
 
     void open(String bookCode, int number) {
       FocusScope.of(context).unfocus();
@@ -64,6 +67,14 @@ class HymnsScreen extends HookConsumerWidget {
       if (number != null && context.mounted) {
         open(book.code, number);
       }
+    }
+
+    void openRandom() {
+      if (book == null || book.hymns.isEmpty) {
+        return;
+      }
+      HapticFeedback.selectionClick();
+      open(book.code, book.hymns[random.nextInt(book.hymns.length)].number);
     }
 
     Future<void> refresh() async {
@@ -102,30 +113,36 @@ class HymnsScreen extends HookConsumerWidget {
                     onClose: closeSearch,
                     onOpen: open,
                   )
-                : RefreshIndicator.adaptive(
-                    onRefresh: refresh,
-                    child: CustomScrollView(
-                      slivers: [
-                        SliverToBoxAdapter(
-                          child: _Album(
+                : _OnBookColor(
+                    colors: bookCoverColors(
+                      books.indexWhere((other) => other.code == book.code),
+                    ),
+                    child: RefreshIndicator.adaptive(
+                      onRefresh: refresh,
+                      child: CustomScrollView(
+                        slivers: [
+                          SliverToBoxAdapter(
+                            child: _Album(
+                              book: book,
+                              books: books,
+                              view: view.value,
+                              onSearch: () => searching.value = true,
+                              onNumberPad: openNumberPad,
+                              onRandom: openRandom,
+                              onView: (value) => view.value = value,
+                            ),
+                          ),
+                          _ViewList(
+                            view: view.value,
                             book: book,
                             books: books,
-                            view: view.value,
-                            onSearch: () => searching.value = true,
-                            onNumberPad: openNumberPad,
-                            onView: (value) => view.value = value,
+                            onOpen: open,
                           ),
-                        ),
-                        _ViewList(
-                          view: view.value,
-                          book: book,
-                          books: books,
-                          onOpen: open,
-                        ),
-                        const SliverPadding(
-                          padding: EdgeInsets.only(bottom: AppSpacing.xl),
-                        ),
-                      ],
+                          const SliverPadding(
+                            padding: EdgeInsets.only(bottom: AppSpacing.xl),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
           ),
@@ -153,8 +170,40 @@ class HymnsScreen extends HookConsumerWidget {
   }
 }
 
-/// The top of the tab: the title and the search, the covers, the chosen book
-/// and its number pad, then the views. Tinted with the color of the book.
+/// Under the status bar, the color of the book stays while the list scrolls,
+/// with light icons.
+class _OnBookColor extends StatelessWidget {
+  const _OnBookColor({required this.colors, required this.child});
+
+  final List<Color> colors;
+  final Widget child;
+
+  @override
+  Widget build(BuildContext context) {
+    return AnnotatedRegion<SystemUiOverlayStyle>(
+      value: SystemUiOverlayStyle.light,
+      child: Stack(
+        children: [
+          Positioned.fill(child: child),
+          Positioned(
+            top: 0,
+            left: 0,
+            right: 0,
+            height: MediaQuery.paddingOf(context).top,
+            child: AnimatedContainer(
+              duration: AppMotion.of(context, AppMotion.medium),
+              color: colors.first,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+/// The top of the tab, on the color of the book: the title and the search,
+/// the cover with the book's name and "Changer de recueil", then "Aller au
+/// numéro" and a hymn at random. The views under it.
 class _Album extends ConsumerWidget {
   const _Album({
     required this.book,
@@ -162,6 +211,7 @@ class _Album extends ConsumerWidget {
     required this.view,
     required this.onSearch,
     required this.onNumberPad,
+    required this.onRandom,
     required this.onView,
   });
 
@@ -170,21 +220,17 @@ class _Album extends ConsumerWidget {
   final _HymnsView view;
   final VoidCallback onSearch;
   final VoidCallback onNumberPad;
+  final VoidCallback onRandom;
   final ValueChanged<_HymnsView> onView;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final t = context.t;
     final theme = Theme.of(context);
-    final scheme = theme.colorScheme;
-    final module = AppModule.hymns.tone(context);
-    final background = theme.scaffoldBackgroundColor;
     final colors = bookCoverColors(
       books.indexWhere((other) => other.code == book.code),
     );
-    final tint = theme.brightness == Brightness.dark
-        ? Color.lerp(colors.last, background, 0.2)!
-        : Color.lerp(colors.first, background, 0.72)!;
+    final canChoose = books.length > 1;
 
     Future<void> pickBook() async {
       final code = await showBookPicker(
@@ -197,232 +243,225 @@ class _Album extends ConsumerWidget {
       }
     }
 
-    return AnimatedContainer(
-      duration: AppMotion.of(context, AppMotion.medium),
-      decoration: BoxDecoration(
-        gradient: LinearGradient(
-          begin: Alignment.topCenter,
-          end: Alignment.bottomCenter,
-          colors: [tint, background],
-        ),
-      ),
-      padding: EdgeInsets.only(top: MediaQuery.paddingOf(context).top),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          Padding(
-            padding: const EdgeInsetsDirectional.fromSTEB(
-              20,
-              18,
-              AppSpacing.sm,
-              AppSpacing.sm,
-            ),
-            child: Row(
-              children: [
-                Expanded(
-                  child: Semantics(
-                    header: true,
-                    child: Text(
-                      t.nav.hymns,
-                      style: theme.textTheme.headlineSmall,
-                    ),
-                  ),
-                ),
-                IconButton(
-                  tooltip: MaterialLocalizations.of(context).searchFieldLabel,
-                  onPressed: onSearch,
-                  icon: const Icon(AppIcons.search, size: 26),
-                ),
-              ],
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        AnimatedContainer(
+          duration: AppMotion.of(context, AppMotion.medium),
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.topCenter,
+              end: Alignment.bottomRight,
+              colors: colors,
             ),
           ),
-          _BookCarousel(book: book, books: books),
-          Padding(
-            padding: const EdgeInsetsDirectional.fromSTEB(
-              AppSpacing.lg,
-              AppSpacing.lg,
-              AppSpacing.lg,
-              0,
-            ),
-            child: Row(
+          padding: EdgeInsets.only(top: MediaQuery.paddingOf(context).top),
+          child: IconTheme(
+            data: const IconThemeData(color: Colors.white),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                Expanded(
-                  child: Semantics(
-                    button: books.length > 1,
-                    label: '${t.hymns.chooseBook}: ${book.title}',
-                    excludeSemantics: true,
-                    child: InkWell(
-                      borderRadius: BorderRadius.circular(AppRadius.sm),
-                      onTap: books.length < 2 ? null : pickBook,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Row(
-                            children: [
-                              Flexible(
-                                child: Text(
-                                  // "volume 1" stays on one line
-                                  book.title.replaceFirstMapped(
-                                    RegExp(r' (\d+)$'),
-                                    (match) => '\u00A0${match[1]}',
-                                  ),
-                                  style: const TextStyle(
-                                    fontSize: 20,
-                                    fontWeight: FontWeight.w800,
-                                    letterSpacing: -0.3,
-                                    height: 1.2,
+                Padding(
+                  padding: const EdgeInsetsDirectional.fromSTEB(
+                    20,
+                    18,
+                    AppSpacing.sm,
+                    0,
+                  ),
+                  child: Row(
+                    children: [
+                      Expanded(
+                        child: Semantics(
+                          header: true,
+                          child: Text(
+                            t.nav.hymns,
+                            style: theme.textTheme.headlineSmall?.copyWith(
+                              color: Colors.white,
+                            ),
+                          ),
+                        ),
+                      ),
+                      IconButton(
+                        tooltip: MaterialLocalizations.of(
+                          context,
+                        ).searchFieldLabel,
+                        onPressed: onSearch,
+                        icon: const Icon(AppIcons.search, size: 26),
+                      ),
+                    ],
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsetsDirectional.fromSTEB(
+                    20,
+                    AppSpacing.lg,
+                    20,
+                    0,
+                  ),
+                  child: Row(
+                    children: [
+                      Semantics(
+                        image: true,
+                        label: book.title,
+                        excludeSemantics: true,
+                        child: GestureDetector(
+                          onTap: canChoose ? pickBook : null,
+                          child: DecoratedBox(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(12),
+                              boxShadow: const [
+                                BoxShadow(
+                                  color: Color(0x4D000000),
+                                  blurRadius: 24,
+                                  offset: Offset(0, 10),
+                                ),
+                              ],
+                            ),
+                            child: BookCover(
+                              book: book,
+                              colors: colors,
+                              size: 118,
+                            ),
+                          ),
+                        ),
+                      ),
+                      const SizedBox(width: AppSpacing.lg),
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              // "volume 1" stays on one line
+                              book.title.replaceFirstMapped(
+                                RegExp(r' (\d+)$'),
+                                (match) => '\u00A0${match[1]}',
+                              ),
+                              maxLines: 3,
+                              overflow: TextOverflow.ellipsis,
+                              style: const TextStyle(
+                                fontFamily: 'Lora',
+                                fontStyle: FontStyle.italic,
+                                fontSize: 21,
+                                height: 1.15,
+                                color: Colors.white,
+                              ),
+                            ),
+                            const SizedBox(height: 6),
+                            Text(
+                              t.hymns.count(n: book.hymns.length),
+                              style: TextStyle(
+                                fontSize: 13,
+                                fontWeight: FontWeight.w600,
+                                color: Colors.white.withValues(alpha: 0.85),
+                              ),
+                            ),
+                            if (canChoose) ...[
+                              const SizedBox(height: 10),
+                              Material(
+                                color: Colors.white.withValues(alpha: 0.18),
+                                shape: const StadiumBorder(),
+                                child: InkWell(
+                                  customBorder: const StadiumBorder(),
+                                  onTap: pickBook,
+                                  child: Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                      horizontal: 12,
+                                      vertical: 6,
+                                    ),
+                                    child: Row(
+                                      mainAxisSize: MainAxisSize.min,
+                                      children: [
+                                        Flexible(
+                                          child: Text(
+                                            t.hymns.changeBook,
+                                            overflow: TextOverflow.ellipsis,
+                                            style: const TextStyle(
+                                              fontSize: 13,
+                                              fontWeight: FontWeight.w700,
+                                              color: Colors.white,
+                                            ),
+                                          ),
+                                        ),
+                                        const SizedBox(width: 4),
+                                        const Icon(
+                                          AppIcons.chevronDown,
+                                          size: 14,
+                                        ),
+                                      ],
+                                    ),
                                   ),
                                 ),
                               ),
-                              if (books.length > 1) ...[
-                                const SizedBox(width: 4),
-                                Icon(
-                                  AppIcons.expand,
-                                  size: 18,
-                                  color: scheme.onSurfaceVariant,
-                                ),
-                              ],
                             ],
-                          ),
-                          const SizedBox(height: 2),
-                          Text(
-                            t.hymns.count(n: book.hymns.length),
-                            style: TextStyle(
-                              fontSize: 13.5,
-                              color: scheme.onSurfaceVariant,
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsetsDirectional.fromSTEB(20, 18, 20, 22),
+                  child: Row(
+                    children: [
+                      Expanded(
+                        child: FilledButton.icon(
+                          style: FilledButton.styleFrom(
+                            backgroundColor: Colors.white,
+                            foregroundColor: colors.last,
+                            minimumSize: const Size.fromHeight(50),
+                            textStyle: theme.textTheme.labelLarge?.copyWith(
+                              fontSize: 15,
+                              fontWeight: FontWeight.w800,
                             ),
                           ),
-                        ],
+                          onPressed: onNumberPad,
+                          icon: const Icon(AppIcons.numberPad),
+                          label: Text(t.hymns.openNumber),
+                        ),
                       ),
-                    ),
+                      const SizedBox(width: AppSpacing.sm),
+                      IconButton(
+                        tooltip: t.hymns.random,
+                        style: IconButton.styleFrom(
+                          fixedSize: const Size.square(50),
+                          backgroundColor: Colors.white.withValues(alpha: 0.18),
+                        ),
+                        onPressed: onRandom,
+                        icon: const Icon(AppIcons.shuffle, size: 22),
+                      ),
+                    ],
                   ),
-                ),
-                const SizedBox(width: AppSpacing.md),
-                // the number pad, like the play button of an album
-                IconButton.filled(
-                  tooltip: t.hymns.openNumber,
-                  style: IconButton.styleFrom(
-                    fixedSize: const Size.square(56),
-                    backgroundColor: module.color,
-                    foregroundColor: Colors.white,
-                  ),
-                  onPressed: onNumberPad,
-                  icon: const Icon(AppIcons.numberPad, size: 26),
                 ),
               ],
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsetsDirectional.fromSTEB(
-              AppSpacing.lg,
-              AppSpacing.md,
-              AppSpacing.lg,
-              AppSpacing.xs,
-            ),
-            // a long translation goes on two lines
-            child: Wrap(
-              spacing: AppSpacing.sm,
-              runSpacing: AppSpacing.sm,
-              children: [
-                for (final (index, label) in [
-                  t.hymns.tabs.all,
-                  t.hymns.tabs.favorites,
-                  t.hymns.tabs.recent,
-                ].indexed)
-                  _ViewChip(
-                    label: label,
-                    selected: view.index == index,
-                    onTap: () => onView(_HymnsView.values[index]),
-                  ),
-              ],
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-/// The books side by side: the chosen one in the middle, its neighbors peeking.
-/// Swiping chooses the book; tapping a neighbor brings it in.
-class _BookCarousel extends HookConsumerWidget {
-  const _BookCarousel({required this.book, required this.books});
-
-  final HymnBook book;
-  final List<HymnBook> books;
-
-  static const _size = 210.0;
-
-  @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final index = books.indexWhere((other) => other.code == book.code);
-    final controller = usePageController(
-      initialPage: index,
-      viewportFraction: 0.56,
-    );
-    final duration = AppMotion.of(context, AppMotion.medium);
-
-    // chosen elsewhere (the list of books): the covers follow
-    useEffect(() {
-      if (controller.hasClients && controller.page?.round() != index) {
-        controller.animateToPage(
-          index,
-          duration: duration,
-          curve: AppMotion.standard,
-        );
-      }
-      return null;
-    }, [index]);
-
-    if (books.length < 2) {
-      return Center(
-        child: BookCover(book: book, colors: bookCoverColors(0), size: _size),
-      );
-    }
-    return SizedBox(
-      height: _size,
-      child: PageView.builder(
-        controller: controller,
-        itemCount: books.length,
-        onPageChanged: (page) => ref
-            .read(selectedHymnBookCodeProvider.notifier)
-            .select(books[page].code),
-        itemBuilder: (context, page) => AnimatedBuilder(
-          animation: controller,
-          builder: (context, child) {
-            final position = controller.position.haveDimensions
-                ? controller.page ?? index.toDouble()
-                : index.toDouble();
-            final distance = (position - page).abs().clamp(0.0, 1.0);
-            return Opacity(
-              opacity: 1 - distance * 0.45,
-              child: Transform.scale(scale: 1 - distance * 0.14, child: child),
-            );
-          },
-          child: Semantics(
-            button: page != index,
-            selected: page == index,
-            label: books[page].title,
-            excludeSemantics: true,
-            child: GestureDetector(
-              onTap: page == index
-                  ? null
-                  : () => controller.animateToPage(
-                      page,
-                      duration: duration,
-                      curve: AppMotion.standard,
-                    ),
-              child: Center(
-                child: BookCover(
-                  book: books[page],
-                  colors: bookCoverColors(page),
-                  size: _size,
-                ),
-              ),
             ),
           ),
         ),
-      ),
+        Padding(
+          padding: const EdgeInsetsDirectional.fromSTEB(
+            AppSpacing.lg,
+            AppSpacing.lg,
+            AppSpacing.lg,
+            AppSpacing.xs,
+          ),
+          // a long translation goes on two lines
+          child: Wrap(
+            spacing: AppSpacing.sm,
+            runSpacing: AppSpacing.sm,
+            children: [
+              for (final (index, label) in [
+                t.hymns.tabs.all,
+                t.hymns.tabs.favorites,
+                t.hymns.tabs.recent,
+              ].indexed)
+                _ViewChip(
+                  label: label,
+                  selected: view.index == index,
+                  onTap: () => onView(_HymnsView.values[index]),
+                ),
+            ],
+          ),
+        ),
+      ],
     );
   }
 }
@@ -575,10 +614,10 @@ class _ViewList extends HookConsumerWidget {
   ];
 }
 
-enum _RowAction { project, share, copy }
+enum _RowAction { favorite, project, share, copy }
 
-/// A hymn of the list: the star adds it to the favorites, the menu projects,
-/// shares or copies its words without opening it.
+/// A hymn of the list, its number in the color of its book; a long press
+/// stars it, projects, shares or copies its words without opening it.
 class _HymnRow extends ConsumerWidget {
   const _HymnRow({
     required this.book,
@@ -601,6 +640,14 @@ class _HymnRow extends ConsumerWidget {
     final favorite = ref.watch(
       favoriteHymnsProvider.select((refs) => refs.contains(hymnRef)),
     );
+    final books = ref.watch(hymnLibraryProvider).value ?? const <HymnBook>[];
+    final colors = bookCoverColors(
+      books.indexWhere((other) => other.code == book.code).clamp(0, 99),
+    );
+    // the book's color, lighter on a dark page
+    final numberColor = Theme.of(context).brightness == Brightness.dark
+        ? Color.lerp(colors.first, Colors.white, 0.35)!
+        : colors.first;
 
     Future<void> toggleFavorite() async {
       HapticFeedback.lightImpact();
@@ -616,14 +663,48 @@ class _HymnRow extends ConsumerWidget {
     String words() =>
         hymnAsText(hymn, chorusLabel: t.hymns.chorus, bookTitle: book.title);
 
-    Future<void> act(_RowAction action, BuildContext anchor) async {
+    Future<void> act() async {
+      HapticFeedback.mediumImpact();
+      final box = context.findRenderObject() as RenderBox?;
+      final action = await showActionSheet<_RowAction>(
+        context,
+        title: hymn.title,
+        actions: [
+          AdaptiveAction(
+            value: _RowAction.favorite,
+            icon: favorite ? AppIcons.starFilled : AppIcons.star,
+            label: favorite
+                ? t.hymns.reader.removeFavorite
+                : t.hymns.reader.addFavorite,
+          ),
+          AdaptiveAction(
+            value: _RowAction.project,
+            icon: AppIcons.projection,
+            label: t.hymns.reader.project,
+          ),
+          AdaptiveAction(
+            value: _RowAction.share,
+            icon: AppIcons.share,
+            label: t.hymns.reader.share,
+          ),
+          AdaptiveAction(
+            value: _RowAction.copy,
+            icon: AppIcons.copy,
+            label: t.hymns.reader.copy,
+          ),
+        ],
+      );
+      if (action == null || !context.mounted) {
+        return;
+      }
       switch (action) {
+        case _RowAction.favorite:
+          await toggleFavorite();
         case _RowAction.project:
           await context.router.push(
             HymnProjectionRoute(bookCode: book.code, number: hymn.number),
           );
         case _RowAction.share:
-          final box = anchor.findRenderObject() as RenderBox?;
           await ref
               .read(shareServiceProvider)
               .shareText(
@@ -646,27 +727,9 @@ class _HymnRow extends ConsumerWidget {
       subtitle: subtitle,
       favorite: favorite,
       current: current,
+      numberColor: numberColor,
       onTap: () => onOpen(book.code, hymn.number),
-      onToggleFavorite: toggleFavorite,
-      menu: Builder(
-        builder: (anchor) => AdaptiveMenuButton<_RowAction>(
-          tooltip: t.hymns.reader.more,
-          title: hymn.title,
-          icon: Icon(
-            AppIcons.moreOptions,
-            color: Theme.of(context).colorScheme.onSurfaceVariant,
-          ),
-          onSelected: (action) => act(action, anchor),
-          actions: [
-            for (final (action, icon, label) in [
-              (_RowAction.project, AppIcons.projection, t.hymns.reader.project),
-              (_RowAction.share, AppIcons.share, t.hymns.reader.share),
-              (_RowAction.copy, AppIcons.copy, t.hymns.reader.copy),
-            ])
-              AdaptiveAction(value: action, icon: icon, label: label),
-          ],
-        ),
-      ),
+      onLongPress: act,
     );
   }
 }

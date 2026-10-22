@@ -598,6 +598,9 @@ class _Translations$hymns$zh extends Translations$hymns$fr {
 	@override late final _Translations$hymns$reader$zh reader = _Translations$hymns$reader$zh._(_root);
 	@override late final _Translations$hymns$projection$zh projection = _Translations$hymns$projection$zh._(_root);
 	@override late final _Translations$hymns$pad$zh pad = _Translations$hymns$pad$zh._(_root);
+	@override String get changeBook => '切换诗歌本';
+	@override String get random => '随机';
+	@override late final _Translations$hymns$lyrics$zh lyrics = _Translations$hymns$lyrics$zh._(_root);
 }
 
 // Path: comingSoon
@@ -2288,6 +2291,7 @@ class _Translations$hymns$reader$zh extends Translations$hymns$reader$fr {
 	@override String get pinchHint => '双指缩放屏幕，即可放大或缩小文字。';
 	@override String get notFound => '此诗歌已不在诗歌本中。';
 	@override String get share => '分享歌词';
+	@override String get shareLines => '分享片段';
 }
 
 // Path: hymns.projection
@@ -2316,6 +2320,33 @@ class _Translations$hymns$pad$zh extends Translations$hymns$pad$fr {
 	@override String get erase => '删除';
 	@override String notFound({required Object number}) => '此诗歌本中没有第 ${number} 首';
 	@override String get placeholder => '输入编号';
+}
+
+// Path: hymns.lyrics
+class _Translations$hymns$lyrics$zh extends Translations$hymns$lyrics$fr {
+	_Translations$hymns$lyrics$zh._(TranslationsZh root) : this._root = root, super.internal(root);
+
+	final TranslationsZh _root; // ignore: unused_field
+
+	// Translations
+	@override String get hint => '点按一行即可加入';
+	@override String chosen({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n,
+		one: '已选 ${n} 行',
+		other: '已选 ${n} 行',
+	);
+	@override String get share => '分享';
+	@override String get clear => '取消选择';
+	@override String get image => '图片';
+	@override String get text => '文字';
+	@override String get color => '卡片颜色';
+	@override String get save => '保存';
+	@override String get saved => '图片已保存到相册';
+	@override String get saveDenied => '请允许访问相册以保存图片。';
+	@override String get saveFailed => '无法保存图片。';
+	@override String get shareImage => '分享图片';
+	@override String get shareText => '分享文字';
+	@override String get copy => '复制';
+	@override String reference({required Object number, required Object title}) => '— 第 ${number} 首，${title}';
 }
 
 // Path: events.tabs
@@ -3795,6 +3826,7 @@ extension on TranslationsZh {
 			'hymns.reader.pinchHint' => '双指缩放屏幕，即可放大或缩小文字。',
 			'hymns.reader.notFound' => '此诗歌已不在诗歌本中。',
 			'hymns.reader.share' => '分享歌词',
+			'hymns.reader.shareLines' => '分享片段',
 			'hymns.projection.exit' => '退出投影模式',
 			'hymns.projection.previous' => '上一节',
 			'hymns.projection.next' => '下一节',
@@ -3805,6 +3837,23 @@ extension on TranslationsZh {
 			'hymns.pad.erase' => '删除',
 			'hymns.pad.notFound' => ({required Object number}) => '此诗歌本中没有第 ${number} 首',
 			'hymns.pad.placeholder' => '输入编号',
+			'hymns.changeBook' => '切换诗歌本',
+			'hymns.random' => '随机',
+			'hymns.lyrics.hint' => '点按一行即可加入',
+			'hymns.lyrics.chosen' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n, one: '已选 ${n} 行', other: '已选 ${n} 行', ), 
+			'hymns.lyrics.share' => '分享',
+			'hymns.lyrics.clear' => '取消选择',
+			'hymns.lyrics.image' => '图片',
+			'hymns.lyrics.text' => '文字',
+			'hymns.lyrics.color' => '卡片颜色',
+			'hymns.lyrics.save' => '保存',
+			'hymns.lyrics.saved' => '图片已保存到相册',
+			'hymns.lyrics.saveDenied' => '请允许访问相册以保存图片。',
+			'hymns.lyrics.saveFailed' => '无法保存图片。',
+			'hymns.lyrics.shareImage' => '分享图片',
+			'hymns.lyrics.shareText' => '分享文字',
+			'hymns.lyrics.copy' => '复制',
+			'hymns.lyrics.reference' => ({required Object number, required Object title}) => '— 第 ${number} 首，${title}',
 			'comingSoon.badge' => '即将推出',
 			'comingSoon.backHome' => '返回首页',
 			'events.title' => '活动',
@@ -4213,6 +4262,8 @@ extension on TranslationsZh {
 			'prayer.hero.title' => '15 分钟\n与主同在',
 			'prayer.hero.preview.morning' => '献上感恩，将你的一天、你的工作、你的家人奉献给主……',
 			'prayer.hero.preview.noon' => '你的聚会点、你的领袖、你名单上的 5 个人、列国……',
+			_ => null,
+		} ?? switch (path) {
 			'prayer.hero.preview.evening' => '你的祷告生活、你的事工、你的同工……',
 			'prayer.hero.preview.night' => '病人、福音传遍列国、夜间的保护……',
 			'prayer.hero.meta' => '15 个要点 · 每个 1 分钟',
@@ -4231,8 +4282,6 @@ extension on TranslationsZh {
 			'prayer.routine.reminder' => ({required Object time}) => '${time} 提醒',
 			'prayer.routine.later.morning' => '早上 · 15 分钟',
 			'prayer.routine.later.noon' => '中午 · 15 分钟',
-			_ => null,
-		} ?? switch (path) {
 			'prayer.routine.later.evening' => '傍晚 · 15 分钟',
 			'prayer.routine.later.night' => '夜里 · 15 分钟',
 			'prayer.together' => '一起祷告',
@@ -4727,6 +4776,8 @@ extension on TranslationsZh {
 			'seekFirst.privacyAndroid' => '你选择的应用只保存在手机上：CMFI Connect 绝不会上传。',
 			'documents.title' => '我们的文件',
 			'documents.subtitle' => '教导、规章、表格…',
+			_ => null,
+		} ?? switch (path) {
 			'documents.moreSubtitle' => '团契的资料库',
 			'documents.search' => '搜索文件',
 			'documents.all' => '全部',
@@ -4745,8 +4796,6 @@ extension on TranslationsZh {
 			'biblePlan.months3' => '3 个月',
 			'biblePlan.months6' => '6 个月',
 			'biblePlan.year' => '1 年',
-			_ => null,
-		} ?? switch (path) {
 			'biblePlan.custom' => '其他',
 			'biblePlan.unitMonths' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n, other: '个月', ), 
 			'biblePlan.unitYear' => '年',

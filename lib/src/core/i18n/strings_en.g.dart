@@ -609,6 +609,9 @@ class _Translations$hymns$en extends Translations$hymns$fr {
 	@override late final _Translations$hymns$reader$en reader = _Translations$hymns$reader$en._(_root);
 	@override late final _Translations$hymns$projection$en projection = _Translations$hymns$projection$en._(_root);
 	@override late final _Translations$hymns$pad$en pad = _Translations$hymns$pad$en._(_root);
+	@override String get changeBook => 'Change hymn book';
+	@override String get random => 'Random';
+	@override late final _Translations$hymns$lyrics$en lyrics = _Translations$hymns$lyrics$en._(_root);
 }
 
 // Path: comingSoon
@@ -2358,6 +2361,7 @@ class _Translations$hymns$reader$en extends Translations$hymns$reader$fr {
 	@override String get pinchHint => 'Pinch the screen to make the text bigger or smaller.';
 	@override String get notFound => 'This hymn is no longer in the book.';
 	@override String get share => 'Share the lyrics';
+	@override String get shareLines => 'Share an excerpt';
 }
 
 // Path: hymns.projection
@@ -2386,6 +2390,33 @@ class _Translations$hymns$pad$en extends Translations$hymns$pad$fr {
 	@override String get erase => 'Erase';
 	@override String notFound({required Object number}) => 'No hymn No. ${number} in this book';
 	@override String get placeholder => 'Type a number';
+}
+
+// Path: hymns.lyrics
+class _Translations$hymns$lyrics$en extends Translations$hymns$lyrics$fr {
+	_Translations$hymns$lyrics$en._(TranslationsEn root) : this._root = root, super.internal(root);
+
+	final TranslationsEn _root; // ignore: unused_field
+
+	// Translations
+	@override String get hint => 'Tap a line to add it';
+	@override String chosen({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n,
+		one: '${n} line chosen',
+		other: '${n} lines chosen',
+	);
+	@override String get share => 'Share';
+	@override String get clear => 'Clear the selection';
+	@override String get image => 'Image';
+	@override String get text => 'Text';
+	@override String get color => 'Card color';
+	@override String get save => 'Save';
+	@override String get saved => 'Image saved to your photos';
+	@override String get saveDenied => 'Allow access to your photos to save the image.';
+	@override String get saveFailed => 'The image couldn\'t be saved.';
+	@override String get shareImage => 'Share image';
+	@override String get shareText => 'Share text';
+	@override String get copy => 'Copy';
+	@override String reference({required Object number, required Object title}) => '— Hymn ${number}, ${title}';
 }
 
 // Path: events.tabs
@@ -3880,6 +3911,7 @@ extension on TranslationsEn {
 			'hymns.reader.pinchHint' => 'Pinch the screen to make the text bigger or smaller.',
 			'hymns.reader.notFound' => 'This hymn is no longer in the book.',
 			'hymns.reader.share' => 'Share the lyrics',
+			'hymns.reader.shareLines' => 'Share an excerpt',
 			'hymns.projection.exit' => 'Leave projection mode',
 			'hymns.projection.previous' => 'Previous stanza',
 			'hymns.projection.next' => 'Next stanza',
@@ -3890,6 +3922,23 @@ extension on TranslationsEn {
 			'hymns.pad.erase' => 'Erase',
 			'hymns.pad.notFound' => ({required Object number}) => 'No hymn No. ${number} in this book',
 			'hymns.pad.placeholder' => 'Type a number',
+			'hymns.changeBook' => 'Change hymn book',
+			'hymns.random' => 'Random',
+			'hymns.lyrics.hint' => 'Tap a line to add it',
+			'hymns.lyrics.chosen' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n, one: '${n} line chosen', other: '${n} lines chosen', ), 
+			'hymns.lyrics.share' => 'Share',
+			'hymns.lyrics.clear' => 'Clear the selection',
+			'hymns.lyrics.image' => 'Image',
+			'hymns.lyrics.text' => 'Text',
+			'hymns.lyrics.color' => 'Card color',
+			'hymns.lyrics.save' => 'Save',
+			'hymns.lyrics.saved' => 'Image saved to your photos',
+			'hymns.lyrics.saveDenied' => 'Allow access to your photos to save the image.',
+			'hymns.lyrics.saveFailed' => 'The image couldn\'t be saved.',
+			'hymns.lyrics.shareImage' => 'Share image',
+			'hymns.lyrics.shareText' => 'Share text',
+			'hymns.lyrics.copy' => 'Copy',
+			'hymns.lyrics.reference' => ({required Object number, required Object title}) => '— Hymn ${number}, ${title}',
 			'comingSoon.badge' => 'Coming soon',
 			'comingSoon.backHome' => 'Back to home',
 			'events.title' => 'Events',
@@ -4298,6 +4347,8 @@ extension on TranslationsEn {
 			'prayer.hero.title' => '15 minutes\nwith the Lord',
 			'prayer.hero.preview.morning' => 'Give thanks, consecrate your day, your work, your family…',
 			'prayer.hero.preview.noon' => 'Your assembly, your leaders, 5 people from your list, the nations…',
+			_ => null,
+		} ?? switch (path) {
 			'prayer.hero.preview.evening' => 'Your prayer life, your ministry, your fellow workers…',
 			'prayer.hero.preview.night' => 'The sick, the Gospel among the nations, protection for the night…',
 			'prayer.hero.meta' => '15 points · 1 min each',
@@ -4316,8 +4367,6 @@ extension on TranslationsEn {
 			'prayer.routine.reminder' => ({required Object time}) => 'Reminder at ${time}',
 			'prayer.routine.later.morning' => 'In the morning · 15 min',
 			'prayer.routine.later.noon' => 'At noon · 15 min',
-			_ => null,
-		} ?? switch (path) {
 			'prayer.routine.later.evening' => 'In the evening · 15 min',
 			'prayer.routine.later.night' => 'At night · 15 min',
 			'prayer.together' => 'Praying together',
@@ -4812,6 +4861,8 @@ extension on TranslationsEn {
 			'seekFirst.privacyAndroid' => 'The apps you choose stay on your phone: CMFI Connect never sends them.',
 			'documents.title' => 'Our documents',
 			'documents.subtitle' => 'Teachings, rules, forms…',
+			_ => null,
+		} ?? switch (path) {
 			'documents.moreSubtitle' => 'The library of the community',
 			'documents.search' => 'Search a document',
 			'documents.all' => 'All',
@@ -4830,8 +4881,6 @@ extension on TranslationsEn {
 			'biblePlan.months3' => '3 months',
 			'biblePlan.months6' => '6 months',
 			'biblePlan.year' => '1 year',
-			_ => null,
-		} ?? switch (path) {
 			'biblePlan.custom' => 'Other',
 			'biblePlan.unitMonths' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n, one: 'month', other: 'months', ), 
 			'biblePlan.unitYear' => 'year',

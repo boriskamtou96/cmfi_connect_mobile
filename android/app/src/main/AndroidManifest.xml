@@ -5,6 +5,8 @@
        the photo, the calendar and the files go through the system's pickers. -->
   <!-- the API, the Bible, the images -->
   <uses-permission android:name="android.permission.INTERNET"/>
+  <!-- the image of a hymn's words saved in the gallery (gal), before Android 10 -->
+  <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" android:maxSdkVersion="28"/>
   <!-- offline: the days kept on the phone leave when the network comes back
        (connectivity_plus) -->
   <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>

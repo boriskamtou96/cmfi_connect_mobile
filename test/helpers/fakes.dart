@@ -19,6 +19,7 @@ import 'package:cmfi_connect/src/core/services/lock_screen_timer.dart';
 import 'package:cmfi_connect/src/core/services/media_images.dart';
 import 'package:cmfi_connect/src/core/services/network_status.dart';
 import 'package:cmfi_connect/src/core/services/phone_verification.dart';
+import 'package:cmfi_connect/src/core/services/photo_saver.dart';
 import 'package:cmfi_connect/src/core/services/premium_store.dart';
 import 'package:cmfi_connect/src/core/services/push_messaging.dart';
 import 'package:cmfi_connect/src/core/services/screen_awake.dart';
@@ -842,6 +843,21 @@ class FakeShareService implements ShareService {
     String? subject,
     Rect? origin,
   }) async => files.add((name: name, mimeType: mimeType, bytes: bytes));
+}
+
+/// The phone's photos: [allowed] false is a member who refuses the access.
+class FakePhotoSaver implements PhotoSaver {
+  final saved = <({String name, Uint8List png})>[];
+  var allowed = true;
+
+  @override
+  Future<bool> save(Uint8List png, {required String name}) async {
+    if (!allowed) {
+      return false;
+    }
+    saved.add((name: name, png: png));
+    return true;
+  }
 }
 
 /// The network comes and goes when the test says so.

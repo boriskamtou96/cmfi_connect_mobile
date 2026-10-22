@@ -736,7 +736,8 @@
       "project": "Modo proyección",
       "pinchHint": "Pellizca la pantalla para agrandar o reducir el texto.",
       "notFound": "Este himno ya no está en el himnario.",
-      "share": "Compartir la letra"
+      "share": "Compartir la letra",
+      "shareLines": "Compartir un fragmento"
     },
     "projection": {
       "exit": "Salir del modo proyección",
@@ -751,6 +752,28 @@
       "erase": "Borrar",
       "notFound": "No hay himno n.º {number} en este himnario",
       "placeholder": "Escribe un número"
+    },
+    "changeBook": "Cambiar de himnario",
+    "random": "Al azar",
+    "lyrics": {
+      "hint": "Toca una línea para añadirla",
+      "chosen(plural, param=n)": {
+        "one": "{n} línea elegida",
+        "other": "{n} líneas elegidas"
+      },
+      "share": "Compartir",
+      "clear": "Anular la selección",
+      "image": "Imagen",
+      "text": "Texto",
+      "color": "Color de la tarjeta",
+      "save": "Guardar",
+      "saved": "Imagen guardada en tus fotos",
+      "saveDenied": "Permite el acceso a tus fotos para guardar la imagen.",
+      "saveFailed": "No se pudo guardar la imagen.",
+      "shareImage": "Compartir la imagen",
+      "shareText": "Compartir el texto",
+      "copy": "Copiar",
+      "reference": "— Himno {number}, {title}"
     }
   },
   "comingSoon": {

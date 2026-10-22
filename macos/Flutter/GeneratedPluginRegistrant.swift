@@ -20,6 +20,7 @@ import flutter_local_notifications
 import flutter_secure_storage_darwin
 import flutter_timezone
 import flutter_tts
+import gal
 import in_app_review
 import just_audio
 import local_auth_darwin
@@ -47,6 +48,7 @@ func RegisterGeneratedPlugins(registry: FlutterPluginRegistry) {
   FlutterSecureStorageDarwinPlugin.register(with: registry.registrar(forPlugin: "FlutterSecureStorageDarwinPlugin"))
   FlutterTimezonePlugin.register(with: registry.registrar(forPlugin: "FlutterTimezonePlugin"))
   FlutterTtsPlugin.register(with: registry.registrar(forPlugin: "FlutterTtsPlugin"))
+  GalPlugin.register(with: registry.registrar(forPlugin: "GalPlugin"))
   InAppReviewPlugin.register(with: registry.registrar(forPlugin: "InAppReviewPlugin"))
   JustAudioPlugin.register(with: registry.registrar(forPlugin: "JustAudioPlugin"))
   LocalAuthPlugin.register(with: registry.registrar(forPlugin: "LocalAuthPlugin"))

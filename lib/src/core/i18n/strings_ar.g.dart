@@ -652,6 +652,9 @@ class _Translations$hymns$ar extends Translations$hymns$fr {
 	@override late final _Translations$hymns$reader$ar reader = _Translations$hymns$reader$ar._(_root);
 	@override late final _Translations$hymns$projection$ar projection = _Translations$hymns$projection$ar._(_root);
 	@override late final _Translations$hymns$pad$ar pad = _Translations$hymns$pad$ar._(_root);
+	@override String get changeBook => 'تغيير كتاب الترانيم';
+	@override String get random => 'عشوائيًا';
+	@override late final _Translations$hymns$lyrics$ar lyrics = _Translations$hymns$lyrics$ar._(_root);
 }
 
 // Path: comingSoon
@@ -2634,6 +2637,7 @@ class _Translations$hymns$reader$ar extends Translations$hymns$reader$fr {
 	@override String get pinchHint => 'باعد إصبعيك أو قرّبهما على الشاشة لتكبير النص أو تصغيره.';
 	@override String get notFound => 'لم تعد هذه الترنيمة موجودة في الكتاب.';
 	@override String get share => 'مشاركة الكلمات';
+	@override String get shareLines => 'مشاركة مقطع';
 }
 
 // Path: hymns.projection
@@ -2662,6 +2666,33 @@ class _Translations$hymns$pad$ar extends Translations$hymns$pad$fr {
 	@override String get erase => 'مسح';
 	@override String notFound({required Object number}) => 'لا توجد ترنيمة رقم ${number} في هذا الكتاب';
 	@override String get placeholder => 'اكتب رقمًا';
+}
+
+// Path: hymns.lyrics
+class _Translations$hymns$lyrics$ar extends Translations$hymns$lyrics$fr {
+	_Translations$hymns$lyrics$ar._(TranslationsAr root) : this._root = root, super.internal(root);
+
+	final TranslationsAr _root; // ignore: unused_field
+
+	// Translations
+	@override String get hint => 'المس سطرًا لإضافته';
+	@override String chosen({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n,
+		one: 'تم اختيار سطر واحد',
+		other: 'تم اختيار ${n} أسطر',
+	);
+	@override String get share => 'مشاركة';
+	@override String get clear => 'إلغاء التحديد';
+	@override String get image => 'صورة';
+	@override String get text => 'نص';
+	@override String get color => 'لون البطاقة';
+	@override String get save => 'حفظ';
+	@override String get saved => 'تم حفظ الصورة في صورك';
+	@override String get saveDenied => 'اسمح بالوصول إلى صورك لحفظ الصورة.';
+	@override String get saveFailed => 'تعذّر حفظ الصورة.';
+	@override String get shareImage => 'مشاركة الصورة';
+	@override String get shareText => 'مشاركة النص';
+	@override String get copy => 'نسخ';
+	@override String reference({required Object number, required Object title}) => '— الترنيمة ${number}، ${title}';
 }
 
 // Path: events.tabs
@@ -4213,6 +4244,7 @@ extension on TranslationsAr {
 			'hymns.reader.pinchHint' => 'باعد إصبعيك أو قرّبهما على الشاشة لتكبير النص أو تصغيره.',
 			'hymns.reader.notFound' => 'لم تعد هذه الترنيمة موجودة في الكتاب.',
 			'hymns.reader.share' => 'مشاركة الكلمات',
+			'hymns.reader.shareLines' => 'مشاركة مقطع',
 			'hymns.projection.exit' => 'الخروج من وضع العرض',
 			'hymns.projection.previous' => 'المقطع السابق',
 			'hymns.projection.next' => 'المقطع التالي',
@@ -4223,6 +4255,23 @@ extension on TranslationsAr {
 			'hymns.pad.erase' => 'مسح',
 			'hymns.pad.notFound' => ({required Object number}) => 'لا توجد ترنيمة رقم ${number} في هذا الكتاب',
 			'hymns.pad.placeholder' => 'اكتب رقمًا',
+			'hymns.changeBook' => 'تغيير كتاب الترانيم',
+			'hymns.random' => 'عشوائيًا',
+			'hymns.lyrics.hint' => 'المس سطرًا لإضافته',
+			'hymns.lyrics.chosen' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n, one: 'تم اختيار سطر واحد', other: 'تم اختيار ${n} أسطر', ), 
+			'hymns.lyrics.share' => 'مشاركة',
+			'hymns.lyrics.clear' => 'إلغاء التحديد',
+			'hymns.lyrics.image' => 'صورة',
+			'hymns.lyrics.text' => 'نص',
+			'hymns.lyrics.color' => 'لون البطاقة',
+			'hymns.lyrics.save' => 'حفظ',
+			'hymns.lyrics.saved' => 'تم حفظ الصورة في صورك',
+			'hymns.lyrics.saveDenied' => 'اسمح بالوصول إلى صورك لحفظ الصورة.',
+			'hymns.lyrics.saveFailed' => 'تعذّر حفظ الصورة.',
+			'hymns.lyrics.shareImage' => 'مشاركة الصورة',
+			'hymns.lyrics.shareText' => 'مشاركة النص',
+			'hymns.lyrics.copy' => 'نسخ',
+			'hymns.lyrics.reference' => ({required Object number, required Object title}) => '— الترنيمة ${number}، ${title}',
 			'comingSoon.badge' => 'قريبًا',
 			'comingSoon.backHome' => 'العودة إلى الرئيسية',
 			'events.title' => 'الفعاليات',
@@ -4631,6 +4680,8 @@ extension on TranslationsAr {
 			'prayer.hero.title' => '15 دقيقة\nمع الرب',
 			'prayer.hero.preview.morning' => 'قدِّم الشكر، وكرِّس يومك وعملك وعائلتك…',
 			'prayer.hero.preview.noon' => 'جماعتك، وقادتك، و5 أشخاص من قائمتك، والأمم…',
+			_ => null,
+		} ?? switch (path) {
 			'prayer.hero.preview.evening' => 'حياة الصلاة لديك، وخدمتك، والعاملون معك في الخدمة…',
 			'prayer.hero.preview.night' => 'المرضى، والإنجيل في الأمم، والحماية أثناء الليل…',
 			'prayer.hero.meta' => '15 نقطة · دقيقة لكل نقطة',
@@ -4649,8 +4700,6 @@ extension on TranslationsAr {
 			'prayer.routine.reminder' => ({required Object time}) => 'تذكير في ${time}',
 			'prayer.routine.later.morning' => 'في الصباح · 15 دقيقة',
 			'prayer.routine.later.noon' => 'عند الظهر · 15 دقيقة',
-			_ => null,
-		} ?? switch (path) {
 			'prayer.routine.later.evening' => 'في المساء · 15 دقيقة',
 			'prayer.routine.later.night' => 'في الليل · 15 دقيقة',
 			'prayer.together' => 'نصلّي معًا',
@@ -5145,6 +5194,8 @@ extension on TranslationsAr {
 			'seekFirst.privacyAndroid' => 'تبقى التطبيقات التي تختارها على هاتفك: لا يرسلها CMFI Connect أبدًا.',
 			'documents.title' => 'مستنداتنا',
 			'documents.subtitle' => 'تعاليم، أنظمة، استمارات…',
+			_ => null,
+		} ?? switch (path) {
 			'documents.moreSubtitle' => 'مكتبة المجتمع',
 			'documents.search' => 'ابحث عن مستند',
 			'documents.all' => 'الكل',
@@ -5163,8 +5214,6 @@ extension on TranslationsAr {
 			'biblePlan.months3' => '3 أشهر',
 			'biblePlan.months6' => '6 أشهر',
 			'biblePlan.year' => 'سنة',
-			_ => null,
-		} ?? switch (path) {
 			'biblePlan.custom' => 'أخرى',
 			'biblePlan.unitMonths' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n, zero: 'شهر', one: 'شهر', two: 'شهران', few: 'أشهر', many: 'شهرًا', other: 'شهر', ), 
 			'biblePlan.unitYear' => 'سنة',

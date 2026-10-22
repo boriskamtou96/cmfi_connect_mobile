@@ -736,7 +736,8 @@
       "project": "Präsentationsmodus",
       "pinchHint": "Zieh mit zwei Fingern auf oder zu, um die Textgröße zu ändern.",
       "notFound": "Dieses Lied gibt es im Liederbuch nicht mehr.",
-      "share": "Liedtext teilen"
+      "share": "Liedtext teilen",
+      "shareLines": "Einen Auszug teilen"
     },
     "projection": {
       "exit": "Präsentationsmodus beenden",
@@ -751,6 +752,28 @@
       "erase": "Löschen",
       "notFound": "Kein Lied Nr. {number} in diesem Liederbuch",
       "placeholder": "Nummer eingeben"
+    },
+    "changeBook": "Liederbuch wechseln",
+    "random": "Zufällig",
+    "lyrics": {
+      "hint": "Tippe auf eine Zeile, um sie hinzuzufügen",
+      "chosen(plural, param=n)": {
+        "one": "{n} Zeile ausgewählt",
+        "other": "{n} Zeilen ausgewählt"
+      },
+      "share": "Teilen",
+      "clear": "Auswahl aufheben",
+      "image": "Bild",
+      "text": "Text",
+      "color": "Farbe der Karte",
+      "save": "Speichern",
+      "saved": "Bild in deinen Fotos gespeichert",
+      "saveDenied": "Erlaube den Zugriff auf deine Fotos, um das Bild zu speichern.",
+      "saveFailed": "Das Bild konnte nicht gespeichert werden.",
+      "shareImage": "Bild teilen",
+      "shareText": "Text teilen",
+      "copy": "Kopieren",
+      "reference": "— Lied {number}, {title}"
     }
   },
   "comingSoon": {

@@ -109,6 +109,8 @@ abstract final class AppIcons {
   static const projection = PhosphorIconsRegular.presentation;
   static const textSize = PhosphorIconsRegular.textAa;
   static const numberPad = PhosphorIconsRegular.dotsNine;
+  static const shuffle = PhosphorIconsBold.shuffle;
+  static const quote = PhosphorIconsRegular.quotes;
   static const erase = PhosphorIconsRegular.backspace;
   static const userAdd = PhosphorIconsRegular.userPlus;
   static const userRemove = PhosphorIconsRegular.userMinus;

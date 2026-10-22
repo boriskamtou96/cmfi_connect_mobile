@@ -717,7 +717,8 @@
       "project": "投影模式",
       "pinchHint": "双指缩放屏幕，即可放大或缩小文字。",
       "notFound": "此诗歌已不在诗歌本中。",
-      "share": "分享歌词"
+      "share": "分享歌词",
+      "shareLines": "分享片段"
     },
     "projection": {
       "exit": "退出投影模式",
@@ -732,6 +733,28 @@
       "erase": "删除",
       "notFound": "此诗歌本中没有第 {number} 首",
       "placeholder": "输入编号"
+    },
+    "changeBook": "切换诗歌本",
+    "random": "随机",
+    "lyrics": {
+      "hint": "点按一行即可加入",
+      "chosen(plural, param=n)": {
+        "one": "已选 {n} 行",
+        "other": "已选 {n} 行"
+      },
+      "share": "分享",
+      "clear": "取消选择",
+      "image": "图片",
+      "text": "文字",
+      "color": "卡片颜色",
+      "save": "保存",
+      "saved": "图片已保存到相册",
+      "saveDenied": "请允许访问相册以保存图片。",
+      "saveFailed": "无法保存图片。",
+      "shareImage": "分享图片",
+      "shareText": "分享文字",
+      "copy": "复制",
+      "reference": "— 第 {number} 首，{title}"
     }
   },
   "comingSoon": {

@@ -46,7 +46,8 @@
     "paymentsDisabled": "移动钱包付款尚未开放。",
     "paymentRequired": "此活动需付费：请用移动钱包支付报名费。",
     "paidRegistration": "报名已付款：如需取消请联系组织者。",
-    "eventHasPayments": "已有成员付款：请先在管理网站为他们退款。"
+    "eventHasPayments": "已有成员付款：请先在管理网站为他们退款。",
+    "peoplePaid": "已付款报名的人数不能再更改。"
   },
   "validation": {
     "required": "此项为必填",
@@ -967,7 +968,13 @@
         "notApproved": "付款未确认：未输入 PIN 码或被拒绝。",
         "unavailable": "运营商暂时不可用，请稍后再试。",
         "generic": "付款失败。请重试，或换一个号码。"
-      }
+      },
+      "later": "稍后付款",
+      "toPay": "待付：{amount}",
+      "payNow": "付款",
+      "unavailable": "移动钱包付款尚未开放：先报名，稍后再付款。",
+      "laterDone": "你已报名！记得在活动前支付 {amount}。",
+      "paidShort": "已付款"
     }
   },
   "notifications": {

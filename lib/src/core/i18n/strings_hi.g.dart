@@ -154,6 +154,7 @@ class _Translations$errors$hi extends Translations$errors$fr {
 	@override String get paymentRequired => 'यह कार्यक्रम सशुल्क है: मोबाइल मनी से पंजीकरण का भुगतान करें।';
 	@override String get paidRegistration => 'पंजीकरण का भुगतान हो चुका है: रद्द करने के लिए आयोजकों से संपर्क करें।';
 	@override String get eventHasPayments => 'सदस्यों ने भुगतान किया है: पहले एडमिन साइट से उनका पैसा लौटाएँ।';
+	@override String get peoplePaid => 'भुगतान किए गए पंजीकरण में लोगों की संख्या अब नहीं बदल सकती।';
 }
 
 // Path: validation
@@ -2567,6 +2568,12 @@ class _Translations$events$pay$hi extends Translations$events$pay$fr {
 	@override String get paidNote => 'पंजीकरण का भुगतान हो चुका है। रद्द करने के लिए आयोजकों से संपर्क करें: वे पैसे लौटा देंगे।';
 	@override String get peopleLocked => 'जिन लोगों का भुगतान हुआ है, उनकी संख्या अब नहीं बदल सकती।';
 	@override late final _Translations$events$pay$failures$hi failures = _Translations$events$pay$failures$hi._(_root);
+	@override String get later => 'मैं बाद में भुगतान करूँगा';
+	@override String toPay({required Object amount}) => 'भुगतान बाकी: ${amount}';
+	@override String get payNow => 'भुगतान करें';
+	@override String get unavailable => 'मोबाइल मनी भुगतान अभी उपलब्ध नहीं है: अभी पंजीकरण करें, भुगतान बाद में कर सकते हैं।';
+	@override String laterDone({required Object amount}) => 'आपका पंजीकरण हो गया! कार्यक्रम से पहले ${amount} का भुगतान करना याद रखें।';
+	@override String get paidShort => 'भुगतान हो गया';
 }
 
 // Path: ministry.goals
@@ -3297,6 +3304,7 @@ extension on TranslationsHi {
 			'errors.paymentRequired' => 'यह कार्यक्रम सशुल्क है: मोबाइल मनी से पंजीकरण का भुगतान करें।',
 			'errors.paidRegistration' => 'पंजीकरण का भुगतान हो चुका है: रद्द करने के लिए आयोजकों से संपर्क करें।',
 			'errors.eventHasPayments' => 'सदस्यों ने भुगतान किया है: पहले एडमिन साइट से उनका पैसा लौटाएँ।',
+			'errors.peoplePaid' => 'भुगतान किए गए पंजीकरण में लोगों की संख्या अब नहीं बदल सकती।',
 			'validation.required' => 'यह फ़ील्ड ज़रूरी है',
 			'validation.passwordTooShort' => 'कम से कम 6 कैरेक्टर',
 			'validation.invalidPhone' => 'फ़ोन नंबर सही नहीं है',
@@ -3765,9 +3773,9 @@ extension on TranslationsHi {
 			'members.usernameReserved' => 'यह यूज़रनेम आरक्षित है।',
 			'members.usernameSaved' => ({required Object username}) => 'यूज़रनेम सेव हो गया: @${username}',
 			'members.deleteAccount.button' => 'मेरा खाता हटाओ',
-			'members.deleteAccount.title' => 'मेरा खाता हटाओ',
 			_ => null,
 		} ?? switch (path) {
+			'members.deleteAccount.title' => 'मेरा खाता हटाओ',
 			'members.deleteAccount.intro' => 'यह स्थायी है। तुम्हारा खाता और उससे जुड़ा सब कुछ मिटा दिया जाएगा:',
 			'members.deleteAccount.itemProfile' => 'तुम्हारी प्रोफ़ाइल, फ़ोटो, यूज़रनेम और पासवर्ड',
 			'members.deleteAccount.itemReports' => 'तुम्हारी सारी रिपोर्ट, आइटम और लक्ष्य',
@@ -4058,6 +4066,12 @@ extension on TranslationsHi {
 			'events.pay.failures.notApproved' => 'भुगतान की पुष्टि नहीं हुई: पिन नहीं डाला गया या अस्वीकार हुआ।',
 			'events.pay.failures.unavailable' => 'ऑपरेटर अभी उपलब्ध नहीं है। बाद में फिर कोशिश करें।',
 			'events.pay.failures.generic' => 'भुगतान विफल रहा। फिर कोशिश करें या कोई दूसरा नंबर इस्तेमाल करें।',
+			'events.pay.later' => 'मैं बाद में भुगतान करूँगा',
+			'events.pay.toPay' => ({required Object amount}) => 'भुगतान बाकी: ${amount}',
+			'events.pay.payNow' => 'भुगतान करें',
+			'events.pay.unavailable' => 'मोबाइल मनी भुगतान अभी उपलब्ध नहीं है: अभी पंजीकरण करें, भुगतान बाद में कर सकते हैं।',
+			'events.pay.laterDone' => ({required Object amount}) => 'आपका पंजीकरण हो गया! कार्यक्रम से पहले ${amount} का भुगतान करना याद रखें।',
+			'events.pay.paidShort' => 'भुगतान हो गया',
 			'notifications.title' => 'सूचनाएँ',
 			'notifications.channel' => 'समुदाय की घोषणाएँ',
 			'notifications.empty' => 'अभी कोई सूचना नहीं',
@@ -4273,6 +4287,8 @@ extension on TranslationsHi {
 			'prayer.retreat.hints.assemblyMissing' => 'अपनी प्रोफ़ाइल में अपनी सभा जोड़ो',
 			'prayer.retreat.hints.authorities' => ({required Object names}) => 'तुम्हारे अगुवे: ${names}',
 			'prayer.retreat.hints.authoritiesMissing' => '‘और’ में अपने आत्मिक अगुवे जोड़ो',
+			_ => null,
+		} ?? switch (path) {
 			'prayer.retreat.hints.list' => ({required Object list}) => 'मेरी सूचियाँ · ${list}',
 			'prayer.retreat.hints.listEmpty' => ({required Object list}) => 'तुम्हारी “${list}” सूची ख़ाली है: नाम जोड़ो',
 			'prayer.retreat.hints.nation' => ({required Object name}) => 'आज: ${name}',
@@ -4280,8 +4296,6 @@ extension on TranslationsHi {
 			'prayer.retreat.hints.hymn' => 'भजन खोलो',
 			'prayer.session.point' => ({required Object n}) => '15 में से बिंदु ${n}',
 			'prayer.session.remaining' => 'बाकी',
-			_ => null,
-		} ?? switch (path) {
 			'prayer.session.paused' => 'रुका हुआ',
 			'prayer.session.inYourList' => ({required Object list}) => 'तुम्हारी सूची में · ${list}',
 			'prayer.session.tomorrow' => 'कल, अगले लोग।',
@@ -4787,6 +4801,8 @@ extension on TranslationsHi {
 			'biblePlan.start' => 'योजना शुरू करें',
 			'biblePlan.dayOf' => ({required Object day, required Object total}) => 'दिन ${day} / ${total}',
 			'biblePlan.today' => 'आज का पठन',
+			_ => null,
+		} ?? switch (path) {
 			'biblePlan.todayDone' => 'आज का पठन पूरा हुआ। शाबाश!',
 			'biblePlan.read' => 'पढ़ें',
 			'biblePlan.behind' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n, one: '${n} दिन पीछे', other: '${n} दिन पीछे', ), 
@@ -4794,8 +4810,6 @@ extension on TranslationsHi {
 			'biblePlan.catchUpShort' => 'पूरा करो',
 			'biblePlan.chaptersRead' => ({required Object total, required Object read}) => '${total} में से ${read} अध्याय',
 			'biblePlan.late' => 'पीछे छूटे',
-			_ => null,
-		} ?? switch (path) {
 			'biblePlan.upcoming' => 'आने वाले',
 			'biblePlan.dayNumber' => ({required Object n}) => 'दिन ${n}',
 			'biblePlan.finished' => 'योजना पूरी! तुमने सब पढ़ लिया।',

@@ -2925,19 +2925,26 @@ class FakePaymentsApi implements PaymentsApi {
   String startFailure = '';
   AppException? payError;
 
+  /// PAYMENTS_DISABLED: no mobile money on the server.
+  AppException? operatorsError;
+
   @override
-  Future<List<MobileMoneyCountry>> operators({String currency = 'XAF'}) async =>
-      const [
-        MobileMoneyCountry(
-          country: 'CMR',
-          names: {'fr': 'Cameroun'},
-          prefix: '237',
-          operators: [
-            MobileMoneyOperator(provider: 'MTN_MOMO_CMR', name: 'MTN'),
-            MobileMoneyOperator(provider: 'ORANGE_CMR', name: 'Orange'),
-          ],
-        ),
-      ];
+  Future<List<MobileMoneyCountry>> operators({String currency = 'XAF'}) async {
+    if (operatorsError != null) {
+      throw operatorsError!;
+    }
+    return const [
+      MobileMoneyCountry(
+        country: 'CMR',
+        names: {'fr': 'Cameroun'},
+        prefix: '237',
+        operators: [
+          MobileMoneyOperator(provider: 'MTN_MOMO_CMR', name: 'MTN'),
+          MobileMoneyOperator(provider: 'ORANGE_CMR', name: 'Orange'),
+        ],
+      ),
+    ];
+  }
 
   @override
   Future<OperatorGuess> guessOperator(String phoneNumber) async {

@@ -46,7 +46,8 @@
     "paymentsDisabled": "Le paiement mobile money n'est pas encore disponible.",
     "paymentRequired": "Cet évènement est payant : règle ton inscription par mobile money.",
     "paidRegistration": "Inscription payée : contacte les organisateurs pour l'annuler.",
-    "eventHasPayments": "Des membres ont payé : rembourse d'abord leurs paiements depuis le site d'administration."
+    "eventHasPayments": "Des membres ont payé : rembourse d'abord leurs paiements depuis le site d'administration.",
+    "peoplePaid": "Le nombre de personnes d'une inscription payée ne change plus."
   },
   "validation": {
     "required": "Ce champ est obligatoire",
@@ -992,7 +993,13 @@
         "notApproved": "Le paiement n'a pas été validé : code PIN non saisi ou refusé.",
         "unavailable": "L'opérateur est indisponible pour le moment. Réessaie plus tard.",
         "generic": "Le paiement a échoué. Réessaie, ou utilise un autre numéro."
-      }
+      },
+      "later": "Je paierai plus tard",
+      "toPay": "À payer : {amount}",
+      "payNow": "Payer",
+      "unavailable": "Le paiement mobile money n'est pas encore disponible : inscris-toi, tu pourras payer plus tard.",
+      "laterDone": "Tu es inscrit ! Pense à payer {amount} avant l'évènement.",
+      "paidShort": "payé"
     }
   },
   "notifications": {

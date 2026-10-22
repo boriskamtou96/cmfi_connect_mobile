@@ -92,7 +92,7 @@ void main() {
 
     expect(app.toasts.messages, ['Paiement reçu : tu es inscrit !']);
     expect(find.text('Tu es inscrit'), findsOneWidget);
-    expect(find.text('2 personnes'), findsOneWidget);
+    expect(find.text('2 personnes · payé'), findsOneWidget);
   });
 
   testWidgets('a failed payment says why, and can be tried again', (
@@ -170,5 +170,60 @@ void main() {
       ),
     );
     expect(more.onPressed, isNull);
+  });
+
+  testWidgets('one may register now and pay later', (tester) async {
+    final app = await pumpApp(tester, token: 't', eventsApi: paidEvents());
+    await openEvent(tester);
+    await fillPayment(tester);
+
+    final later = find.text('Je paierai plus tard');
+    await tester.ensureVisible(later);
+    await tester.pumpAndSettle();
+    await tester.tap(later);
+    await tester.pumpAndSettle();
+
+    expect(app.toasts.messages, [
+      "Tu es inscrit ! Pense à payer ${fcfa(10000)} avant l'évènement.",
+    ]);
+    expect(app.paymentsApi.started, isEmpty);
+    expect(find.text('À payer : ${fcfa(10000)}'), findsOneWidget);
+    // paid later from the same sheet
+    await tester.tap(find.text('Payer'));
+    await tester.pumpAndSettle();
+    expect(find.text('Payer ${fcfa(10000)}'), findsOneWidget);
+  });
+
+  testWidgets('without mobile money on the server, registering stays open', (
+    tester,
+  ) async {
+    final payments = FakePaymentsApi()
+      ..operatorsError = const ApiException(
+        status: 503,
+        code: 'PAYMENTS_DISABLED',
+        message: '',
+      );
+    final app = await pumpApp(
+      tester,
+      token: 't',
+      eventsApi: paidEvents(),
+      paymentsApi: payments,
+    );
+    await openEvent(tester);
+    await tester.tap(find.text('Je participe'));
+    await tester.pumpAndSettle();
+
+    expect(
+      find.textContaining("n'est pas encore disponible : inscris-toi"),
+      findsOneWidget,
+    );
+    expect(find.textContaining('Payer'), findsNothing);
+    final confirm = find.text('Confirmer mon inscription');
+    await tester.ensureVisible(confirm);
+    await tester.pumpAndSettle();
+    await tester.tap(confirm);
+    await tester.pumpAndSettle();
+    expect(find.text('Tu es inscrit'), findsOneWidget);
+    expect(app.toasts.errors, isEmpty);
   });
 }

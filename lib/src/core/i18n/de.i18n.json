@@ -46,7 +46,8 @@
     "paymentsDisabled": "Die Mobile-Money-Zahlung ist noch nicht verfügbar.",
     "paymentRequired": "Diese Veranstaltung ist kostenpflichtig: bezahle deine Anmeldung per Mobile Money.",
     "paidRegistration": "Bezahlte Anmeldung: wende dich zum Stornieren an die Veranstalter.",
-    "eventHasPayments": "Mitglieder haben bezahlt: erstatte zuerst ihre Zahlungen auf der Admin-Seite."
+    "eventHasPayments": "Mitglieder haben bezahlt: erstatte zuerst ihre Zahlungen auf der Admin-Seite.",
+    "peoplePaid": "Die Personenzahl einer bezahlten Anmeldung lässt sich nicht mehr ändern."
   },
   "validation": {
     "required": "Dieses Feld ist erforderlich",
@@ -992,7 +993,13 @@
         "notApproved": "Die Zahlung wurde nicht bestätigt: PIN nicht eingegeben oder abgelehnt.",
         "unavailable": "Der Anbieter ist gerade nicht verfügbar. Versuche es später erneut.",
         "generic": "Die Zahlung ist fehlgeschlagen. Versuche es erneut oder nutze eine andere Nummer."
-      }
+      },
+      "later": "Ich bezahle später",
+      "toPay": "Zu zahlen: {amount}",
+      "payNow": "Bezahlen",
+      "unavailable": "Die Mobile-Money-Zahlung ist noch nicht verfügbar: melde dich an, du kannst später bezahlen.",
+      "laterDone": "Du bist angemeldet! Denk daran, {amount} vor der Veranstaltung zu bezahlen.",
+      "paidShort": "bezahlt"
     }
   },
   "notifications": {

@@ -5,6 +5,7 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../../core/i18n/strings.g.dart';
+import '../../../../core/network/app_exception.dart';
 import '../../../../core/network/app_exception_message.dart';
 import '../../../../core/services/local_notifications.dart';
 import '../../../../core/theme/app_colors.dart';
@@ -71,12 +72,29 @@ class RegistrationBar extends StatelessWidget {
                     t.people(n: mine.people, count: context.count(mine.people)),
                     if (mine.needsLodging) t.register.lodgingShort,
                     if (mine.departureCity.isNotEmpty) mine.departureCity,
+                    if (mine.paid) t.pay.paidShort,
                   ].join(' · '),
                   style: TextStyle(
                     fontSize: 14,
                     color: scheme.onSurfaceVariant,
                   ),
                 ),
+                // registered, to pay later
+                if (event.price case final price? when !mine.paid)
+                  Text(
+                    t.pay.toPay(
+                      amount: formatMoney(
+                        price.amount * mine.people,
+                        price.currency,
+                        Localizations.localeOf(context).toString(),
+                      ),
+                    ),
+                    style: TextStyle(
+                      fontSize: 14,
+                      fontWeight: FontWeight.w700,
+                      color: scheme.error,
+                    ),
+                  ),
               ],
             ),
           ),
@@ -84,7 +102,11 @@ class RegistrationBar extends StatelessWidget {
             OutlinedButton(
               style: OutlinedButton.styleFrom(minimumSize: const Size(0, 44)),
               onPressed: () => showRegistrationSheet(context, event),
-              child: Text(t.register.edit),
+              child: Text(
+                event.price != null && !mine.paid
+                    ? t.pay.payNow
+                    : t.register.edit,
+              ),
             ),
         ],
       );
@@ -205,13 +227,20 @@ class _RegistrationSheet extends HookConsumerWidget {
     final chosenOperator = useState<String?>(null);
     final guessedOperator = useState<String?>(null);
     final payment = useState<Payment?>(null);
-    final operators = paying
-        ? ref.watch(mobileMoneyOperatorsProvider(price.currency)).value
+    final operatorsState = paying
+        ? ref.watch(mobileMoneyOperatorsProvider(price.currency))
         : null;
+    final operators = operatorsState?.value;
+    // mobile money switched off on the server: register now, pay later
+    final paymentsOff = switch (operatorsState?.error) {
+      ApiException(code: 'PAYMENTS_DISABLED') => true,
+      _ => false,
+    };
+    final canPay = paying && !paymentsOff;
 
     // the operator of the number, guessed as it is typed
     useEffect(() {
-      if (!paying || phoneText.replaceAll(RegExp(r'\D'), '').length < 9) {
+      if (!canPay || phoneText.replaceAll(RegExp(r'\D'), '').length < 9) {
         return null;
       }
       final timer = Timer(const Duration(milliseconds: 500), () async {
@@ -227,7 +256,7 @@ class _RegistrationSheet extends HookConsumerWidget {
         }
       });
       return timer.cancel;
-    }, [phoneText]);
+    }, [phoneText, canPay]);
     final operator = chosenOperator.value ?? guessedOperator.value;
 
     Future<void> pay() async {
@@ -297,7 +326,18 @@ class _RegistrationSheet extends HookConsumerWidget {
           departureCity: city.text,
         );
         navigator.pop();
-        toast.success(mine == null ? t.register.done : t.register.updated);
+        toast.success(switch (price) {
+          // registered without paying yet
+          final price? when mine == null => t.pay.laterDone(
+            amount: formatMoney(
+              price.amount * people.value,
+              price.currency,
+              locale,
+            ),
+          ),
+          _ when mine == null => t.register.done,
+          _ => t.register.updated,
+        });
         if (mine == null) {
           // the reminders of the day before need it
           unawaited(notifications.requestPermission());
@@ -460,7 +500,14 @@ class _RegistrationSheet extends HookConsumerWidget {
               ),
             ),
           ],
-          if (paying) ...[
+          if (paying && paymentsOff) ...[
+            const SizedBox(height: AppSpacing.lg),
+            Text(
+              t.pay.unavailable,
+              style: TextStyle(fontSize: 14, color: scheme.onSurfaceVariant),
+            ),
+          ],
+          if (canPay) ...[
             const SizedBox(height: AppSpacing.xl),
             Text(
               t.pay.title,
@@ -542,7 +589,7 @@ class _RegistrationSheet extends HookConsumerWidget {
           ],
           const SizedBox(height: AppSpacing.xl),
           AppButton(
-            label: paying
+            label: canPay
                 ? t.pay.pay(
                     amount: formatMoney(
                       price.amount * people.value,
@@ -554,8 +601,16 @@ class _RegistrationSheet extends HookConsumerWidget {
                 ? t.register.confirm
                 : t.register.update,
             isLoading: sending.value,
-            onPressed: paying ? pay : submit,
+            onPressed: canPay ? pay : submit,
           ),
+          // or registered now, paid later
+          if (canPay) ...[
+            const SizedBox(height: AppSpacing.sm),
+            OutlinedButton(
+              onPressed: sending.value ? null : submit,
+              child: Text(mine == null ? t.pay.later : t.register.update),
+            ),
+          ],
           if (mine != null && !paidAlready) ...[
             const SizedBox(height: AppSpacing.sm),
             TextButton(

@@ -154,6 +154,7 @@ class _Translations$errors$en extends Translations$errors$fr {
 	@override String get paymentRequired => 'This event is paid: pay your registration by mobile money.';
 	@override String get paidRegistration => 'Paid registration: contact the organizers to cancel it.';
 	@override String get eventHasPayments => 'Members have paid: refund their payments first from the admin site.';
+	@override String get peoplePaid => 'The number of people of a paid registration can no longer change.';
 }
 
 // Path: validation
@@ -2569,6 +2570,12 @@ class _Translations$events$pay$en extends Translations$events$pay$fr {
 	@override String get paidNote => 'Registration paid. To cancel it, contact the organizers: they will refund you.';
 	@override String get peopleLocked => 'The number of people paid for can no longer change.';
 	@override late final _Translations$events$pay$failures$en failures = _Translations$events$pay$failures$en._(_root);
+	@override String get later => 'I\'ll pay later';
+	@override String toPay({required Object amount}) => 'To pay: ${amount}';
+	@override String get payNow => 'Pay';
+	@override String get unavailable => 'Mobile money payment is not available yet: register now, you can pay later.';
+	@override String laterDone({required Object amount}) => 'You are registered! Remember to pay ${amount} before the event.';
+	@override String get paidShort => 'paid';
 }
 
 // Path: ministry.goals
@@ -3299,6 +3306,7 @@ extension on TranslationsEn {
 			'errors.paymentRequired' => 'This event is paid: pay your registration by mobile money.',
 			'errors.paidRegistration' => 'Paid registration: contact the organizers to cancel it.',
 			'errors.eventHasPayments' => 'Members have paid: refund their payments first from the admin site.',
+			'errors.peoplePaid' => 'The number of people of a paid registration can no longer change.',
 			'validation.required' => 'This field is required',
 			'validation.passwordTooShort' => 'At least 6 characters',
 			'validation.invalidPhone' => 'Invalid phone number',
@@ -3767,9 +3775,9 @@ extension on TranslationsEn {
 			'members.usernameReserved' => 'This username is reserved.',
 			'members.usernameSaved' => ({required Object username}) => 'Username saved: @${username}',
 			'members.deleteAccount.button' => 'Delete my account',
-			'members.deleteAccount.title' => 'Delete my account',
 			_ => null,
 		} ?? switch (path) {
+			'members.deleteAccount.title' => 'Delete my account',
 			'members.deleteAccount.intro' => 'This is permanent. Your account and everything linked to it will be erased:',
 			'members.deleteAccount.itemProfile' => 'your profile, photo, username and password',
 			'members.deleteAccount.itemReports' => 'all your reports, items and goals',
@@ -4060,6 +4068,12 @@ extension on TranslationsEn {
 			'events.pay.failures.notApproved' => 'The payment was not approved: PIN not entered or refused.',
 			'events.pay.failures.unavailable' => 'The operator is unavailable right now. Try again later.',
 			'events.pay.failures.generic' => 'The payment failed. Try again, or use another number.',
+			'events.pay.later' => 'I\'ll pay later',
+			'events.pay.toPay' => ({required Object amount}) => 'To pay: ${amount}',
+			'events.pay.payNow' => 'Pay',
+			'events.pay.unavailable' => 'Mobile money payment is not available yet: register now, you can pay later.',
+			'events.pay.laterDone' => ({required Object amount}) => 'You are registered! Remember to pay ${amount} before the event.',
+			'events.pay.paidShort' => 'paid',
 			'notifications.title' => 'Notifications',
 			'notifications.channel' => 'Community announcements',
 			'notifications.empty' => 'No notifications yet',
@@ -4275,6 +4289,8 @@ extension on TranslationsEn {
 			'prayer.retreat.hints.assemblyMissing' => 'Add your assembly to your profile',
 			'prayer.retreat.hints.authorities' => ({required Object names}) => 'Your authorities: ${names}',
 			'prayer.retreat.hints.authoritiesMissing' => 'Add your spiritual authorities in More',
+			_ => null,
+		} ?? switch (path) {
 			'prayer.retreat.hints.list' => ({required Object list}) => 'My lists · ${list}',
 			'prayer.retreat.hints.listEmpty' => ({required Object list}) => 'Your "${list}" list is empty: add names',
 			'prayer.retreat.hints.nation' => ({required Object name}) => 'Today: ${name}',
@@ -4282,8 +4298,6 @@ extension on TranslationsEn {
 			'prayer.retreat.hints.hymn' => 'Open the hymns',
 			'prayer.session.point' => ({required Object n}) => 'Point ${n} of 15',
 			'prayer.session.remaining' => 'left',
-			_ => null,
-		} ?? switch (path) {
 			'prayer.session.paused' => 'paused',
 			'prayer.session.inYourList' => ({required Object list}) => 'In your list · ${list}',
 			'prayer.session.tomorrow' => 'Tomorrow, the next ones.',
@@ -4789,6 +4803,8 @@ extension on TranslationsEn {
 			'biblePlan.start' => 'Start the plan',
 			'biblePlan.dayOf' => ({required Object day, required Object total}) => 'Day ${day} of ${total}',
 			'biblePlan.today' => 'Today\'s reading',
+			_ => null,
+		} ?? switch (path) {
 			'biblePlan.todayDone' => 'Today\'s reading is done. Well done!',
 			'biblePlan.read' => 'Read',
 			'biblePlan.behind' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n, one: '${n} day behind', other: '${n} days behind', ), 
@@ -4796,8 +4812,6 @@ extension on TranslationsEn {
 			'biblePlan.catchUpShort' => 'catch up',
 			'biblePlan.chaptersRead' => ({required Object read, required Object total}) => '${read} of ${total} chapters',
 			'biblePlan.late' => 'Late',
-			_ => null,
-		} ?? switch (path) {
 			'biblePlan.upcoming' => 'Coming up',
 			'biblePlan.dayNumber' => ({required Object n}) => 'Day ${n}',
 			'biblePlan.finished' => 'Plan finished! You read it all.',

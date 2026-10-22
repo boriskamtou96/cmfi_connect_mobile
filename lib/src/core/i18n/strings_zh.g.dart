@@ -154,6 +154,7 @@ class _Translations$errors$zh extends Translations$errors$fr {
 	@override String get paymentRequired => '此活动需付费：请用移动钱包支付报名费。';
 	@override String get paidRegistration => '报名已付款：如需取消请联系组织者。';
 	@override String get eventHasPayments => '已有成员付款：请先在管理网站为他们退款。';
+	@override String get peoplePaid => '已付款报名的人数不能再更改。';
 }
 
 // Path: validation
@@ -2498,6 +2499,12 @@ class _Translations$events$pay$zh extends Translations$events$pay$fr {
 	@override String get paidNote => '报名已付款。如需取消，请联系组织者，他们会为你退款。';
 	@override String get peopleLocked => '已付款的人数不能再更改。';
 	@override late final _Translations$events$pay$failures$zh failures = _Translations$events$pay$failures$zh._(_root);
+	@override String get later => '稍后付款';
+	@override String toPay({required Object amount}) => '待付：${amount}';
+	@override String get payNow => '付款';
+	@override String get unavailable => '移动钱包付款尚未开放：先报名，稍后再付款。';
+	@override String laterDone({required Object amount}) => '你已报名！记得在活动前支付 ${amount}。';
+	@override String get paidShort => '已付款';
 }
 
 // Path: ministry.goals
@@ -3214,6 +3221,7 @@ extension on TranslationsZh {
 			'errors.paymentRequired' => '此活动需付费：请用移动钱包支付报名费。',
 			'errors.paidRegistration' => '报名已付款：如需取消请联系组织者。',
 			'errors.eventHasPayments' => '已有成员付款：请先在管理网站为他们退款。',
+			'errors.peoplePaid' => '已付款报名的人数不能再更改。',
 			'validation.required' => '此项为必填',
 			'validation.passwordTooShort' => '至少 6 个字符',
 			'validation.invalidPhone' => '手机号无效',
@@ -3682,9 +3690,9 @@ extension on TranslationsZh {
 			'members.usernameReserved' => '该用户名已被保留。',
 			'members.usernameSaved' => ({required Object username}) => '用户名已保存：@${username}',
 			'members.deleteAccount.button' => '删除我的账户',
-			'members.deleteAccount.title' => '删除我的账户',
 			_ => null,
 		} ?? switch (path) {
+			'members.deleteAccount.title' => '删除我的账户',
 			'members.deleteAccount.intro' => '此操作无法撤销。你的账户及其相关的一切都将被删除：',
 			'members.deleteAccount.itemProfile' => '你的个人资料、头像、用户名和密码',
 			'members.deleteAccount.itemReports' => '你所有的汇报、项目和目标',
@@ -3975,6 +3983,12 @@ extension on TranslationsZh {
 			'events.pay.failures.notApproved' => '付款未确认：未输入 PIN 码或被拒绝。',
 			'events.pay.failures.unavailable' => '运营商暂时不可用，请稍后再试。',
 			'events.pay.failures.generic' => '付款失败。请重试，或换一个号码。',
+			'events.pay.later' => '稍后付款',
+			'events.pay.toPay' => ({required Object amount}) => '待付：${amount}',
+			'events.pay.payNow' => '付款',
+			'events.pay.unavailable' => '移动钱包付款尚未开放：先报名，稍后再付款。',
+			'events.pay.laterDone' => ({required Object amount}) => '你已报名！记得在活动前支付 ${amount}。',
+			'events.pay.paidShort' => '已付款',
 			'notifications.title' => '通知',
 			'notifications.channel' => '团契公告',
 			'notifications.empty' => '暂无通知',
@@ -4190,6 +4204,8 @@ extension on TranslationsZh {
 			'prayer.retreat.hints.assemblyMissing' => '在个人资料中添加你的聚会点',
 			'prayer.retreat.hints.authorities' => ({required Object names}) => '你的带领者：${names}',
 			'prayer.retreat.hints.authoritiesMissing' => '在「更多」中添加你的属灵带领者',
+			_ => null,
+		} ?? switch (path) {
 			'prayer.retreat.hints.list' => ({required Object list}) => '我的名单 · ${list}',
 			'prayer.retreat.hints.listEmpty' => ({required Object list}) => '你的「${list}」名单是空的：添加一些名字吧',
 			'prayer.retreat.hints.nation' => ({required Object name}) => '今天：${name}',
@@ -4197,8 +4213,6 @@ extension on TranslationsZh {
 			'prayer.retreat.hints.hymn' => '打开诗歌',
 			'prayer.session.point' => ({required Object n}) => '第 ${n} 点，共 15 点',
 			'prayer.session.remaining' => '剩余',
-			_ => null,
-		} ?? switch (path) {
 			'prayer.session.paused' => '已暂停',
 			'prayer.session.inYourList' => ({required Object list}) => '你的名单 · ${list}',
 			'prayer.session.tomorrow' => '明天为接下来的人祷告。',
@@ -4704,6 +4718,8 @@ extension on TranslationsZh {
 			'biblePlan.start' => '开始计划',
 			'biblePlan.dayOf' => ({required Object day, required Object total}) => '第 ${day} 天，共 ${total} 天',
 			'biblePlan.today' => '今日读经',
+			_ => null,
+		} ?? switch (path) {
 			'biblePlan.todayDone' => '今日读经已完成，真棒！',
 			'biblePlan.read' => '阅读',
 			'biblePlan.behind' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n, other: '落后 ${n} 天', ), 
@@ -4711,8 +4727,6 @@ extension on TranslationsZh {
 			'biblePlan.catchUpShort' => '补读',
 			'biblePlan.chaptersRead' => ({required Object read, required Object total}) => '已读 ${read} / ${total} 章',
 			'biblePlan.late' => '落后',
-			_ => null,
-		} ?? switch (path) {
 			'biblePlan.upcoming' => '接下来',
 			'biblePlan.dayNumber' => ({required Object n}) => '第 ${n} 天',
 			'biblePlan.finished' => '计划完成！你全部读完了。',

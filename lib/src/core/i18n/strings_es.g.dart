@@ -154,6 +154,7 @@ class _Translations$errors$es extends Translations$errors$fr {
 	@override String get paymentRequired => 'Este evento es de pago: paga tu inscripción con dinero móvil.';
 	@override String get paidRegistration => 'Inscripción pagada: contacta con los organizadores para anularla.';
 	@override String get eventHasPayments => 'Hay miembros que pagaron: primero reembolsa sus pagos desde el sitio de administración.';
+	@override String get peoplePaid => 'El número de personas de una inscripción pagada ya no puede cambiar.';
 }
 
 // Path: validation
@@ -2568,6 +2569,12 @@ class _Translations$events$pay$es extends Translations$events$pay$fr {
 	@override String get paidNote => 'Inscripción pagada. Para anularla, contacta con los organizadores: te devolverán el dinero.';
 	@override String get peopleLocked => 'El número de personas pagado ya no se puede cambiar.';
 	@override late final _Translations$events$pay$failures$es failures = _Translations$events$pay$failures$es._(_root);
+	@override String get later => 'Pagaré más tarde';
+	@override String toPay({required Object amount}) => 'Por pagar: ${amount}';
+	@override String get payNow => 'Pagar';
+	@override String get unavailable => 'El pago con dinero móvil aún no está disponible: inscríbete, podrás pagar más tarde.';
+	@override String laterDone({required Object amount}) => '¡Estás inscrito! Recuerda pagar ${amount} antes del evento.';
+	@override String get paidShort => 'pagado';
 }
 
 // Path: ministry.goals
@@ -3298,6 +3305,7 @@ extension on TranslationsEs {
 			'errors.paymentRequired' => 'Este evento es de pago: paga tu inscripción con dinero móvil.',
 			'errors.paidRegistration' => 'Inscripción pagada: contacta con los organizadores para anularla.',
 			'errors.eventHasPayments' => 'Hay miembros que pagaron: primero reembolsa sus pagos desde el sitio de administración.',
+			'errors.peoplePaid' => 'El número de personas de una inscripción pagada ya no puede cambiar.',
 			'validation.required' => 'Este campo es obligatorio',
 			'validation.passwordTooShort' => 'Al menos 6 caracteres',
 			'validation.invalidPhone' => 'Número de teléfono no válido',
@@ -3766,9 +3774,9 @@ extension on TranslationsEs {
 			'members.usernameReserved' => 'Este nombre de usuario está reservado.',
 			'members.usernameSaved' => ({required Object username}) => 'Nombre de usuario guardado: @${username}',
 			'members.deleteAccount.button' => 'Eliminar mi cuenta',
-			'members.deleteAccount.title' => 'Eliminar mi cuenta',
 			_ => null,
 		} ?? switch (path) {
+			'members.deleteAccount.title' => 'Eliminar mi cuenta',
 			'members.deleteAccount.intro' => 'Es definitivo. Tu cuenta y todo lo relacionado con ella se borrará:',
 			'members.deleteAccount.itemProfile' => 'tu perfil, tu foto, tu nombre de usuario y tu contraseña',
 			'members.deleteAccount.itemReports' => 'todos tus informes, tus elementos y tus objetivos',
@@ -4059,6 +4067,12 @@ extension on TranslationsEs {
 			'events.pay.failures.notApproved' => 'El pago no se validó: PIN no introducido o rechazado.',
 			'events.pay.failures.unavailable' => 'El operador no está disponible ahora. Inténtalo más tarde.',
 			'events.pay.failures.generic' => 'El pago falló. Inténtalo de nuevo o usa otro número.',
+			'events.pay.later' => 'Pagaré más tarde',
+			'events.pay.toPay' => ({required Object amount}) => 'Por pagar: ${amount}',
+			'events.pay.payNow' => 'Pagar',
+			'events.pay.unavailable' => 'El pago con dinero móvil aún no está disponible: inscríbete, podrás pagar más tarde.',
+			'events.pay.laterDone' => ({required Object amount}) => '¡Estás inscrito! Recuerda pagar ${amount} antes del evento.',
+			'events.pay.paidShort' => 'pagado',
 			'notifications.title' => 'Notificaciones',
 			'notifications.channel' => 'Anuncios de la comunidad',
 			'notifications.empty' => 'Aún no hay notificaciones',
@@ -4274,6 +4288,8 @@ extension on TranslationsEs {
 			'prayer.retreat.hints.assemblyMissing' => 'Añade tu asamblea en tu perfil',
 			'prayer.retreat.hints.authorities' => ({required Object names}) => 'Tus autoridades: ${names}',
 			'prayer.retreat.hints.authoritiesMissing' => 'Añade tus autoridades espirituales en «Más»',
+			_ => null,
+		} ?? switch (path) {
 			'prayer.retreat.hints.list' => ({required Object list}) => 'Mis listas · ${list}',
 			'prayer.retreat.hints.listEmpty' => ({required Object list}) => 'Tu lista «${list}» está vacía: añade nombres',
 			'prayer.retreat.hints.nation' => ({required Object name}) => 'Hoy: ${name}',
@@ -4281,8 +4297,6 @@ extension on TranslationsEs {
 			'prayer.retreat.hints.hymn' => 'Abrir los himnos',
 			'prayer.session.point' => ({required Object n}) => 'Punto ${n} de 15',
 			'prayer.session.remaining' => 'restantes',
-			_ => null,
-		} ?? switch (path) {
 			'prayer.session.paused' => 'en pausa',
 			'prayer.session.inYourList' => ({required Object list}) => 'En tu lista · ${list}',
 			'prayer.session.tomorrow' => 'Mañana, los siguientes.',
@@ -4788,6 +4802,8 @@ extension on TranslationsEs {
 			'biblePlan.start' => 'Empezar el plan',
 			'biblePlan.dayOf' => ({required Object day, required Object total}) => 'Día ${day} de ${total}',
 			'biblePlan.today' => 'Lectura del día',
+			_ => null,
+		} ?? switch (path) {
 			'biblePlan.todayDone' => 'Lectura del día hecha. ¡Bravo!',
 			'biblePlan.read' => 'Leer',
 			'biblePlan.behind' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('es'))(n, one: '${n} día de retraso', other: '${n} días de retraso', ), 
@@ -4795,8 +4811,6 @@ extension on TranslationsEs {
 			'biblePlan.catchUpShort' => 'ponerse al día',
 			'biblePlan.chaptersRead' => ({required Object read, required Object total}) => '${read} de ${total} capítulos',
 			'biblePlan.late' => 'Atrasados',
-			_ => null,
-		} ?? switch (path) {
 			'biblePlan.upcoming' => 'Próximos',
 			'biblePlan.dayNumber' => ({required Object n}) => 'Día ${n}',
 			'biblePlan.finished' => '¡Plan terminado! Lo leíste todo.',

@@ -46,7 +46,8 @@
     "paymentsDisabled": "Mobile money payment is not available yet.",
     "paymentRequired": "This event is paid: pay your registration by mobile money.",
     "paidRegistration": "Paid registration: contact the organizers to cancel it.",
-    "eventHasPayments": "Members have paid: refund their payments first from the admin site."
+    "eventHasPayments": "Members have paid: refund their payments first from the admin site.",
+    "peoplePaid": "The number of people of a paid registration can no longer change."
   },
   "validation": {
     "required": "This field is required",
@@ -993,7 +994,13 @@
         "notApproved": "The payment was not approved: PIN not entered or refused.",
         "unavailable": "The operator is unavailable right now. Try again later.",
         "generic": "The payment failed. Try again, or use another number."
-      }
+      },
+      "later": "I'll pay later",
+      "toPay": "To pay: {amount}",
+      "payNow": "Pay",
+      "unavailable": "Mobile money payment is not available yet: register now, you can pay later.",
+      "laterDone": "You are registered! Remember to pay {amount} before the event.",
+      "paidShort": "paid"
     }
   },
   "notifications": {

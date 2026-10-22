@@ -154,6 +154,7 @@ class _Translations$errors$de extends Translations$errors$fr {
 	@override String get paymentRequired => 'Diese Veranstaltung ist kostenpflichtig: bezahle deine Anmeldung per Mobile Money.';
 	@override String get paidRegistration => 'Bezahlte Anmeldung: wende dich zum Stornieren an die Veranstalter.';
 	@override String get eventHasPayments => 'Mitglieder haben bezahlt: erstatte zuerst ihre Zahlungen auf der Admin-Seite.';
+	@override String get peoplePaid => 'Die Personenzahl einer bezahlten Anmeldung lässt sich nicht mehr ändern.';
 }
 
 // Path: validation
@@ -2568,6 +2569,12 @@ class _Translations$events$pay$de extends Translations$events$pay$fr {
 	@override String get paidNote => 'Anmeldung bezahlt. Zum Stornieren wende dich an die Veranstalter: sie erstatten dir den Betrag.';
 	@override String get peopleLocked => 'Die bezahlte Personenzahl lässt sich nicht mehr ändern.';
 	@override late final _Translations$events$pay$failures$de failures = _Translations$events$pay$failures$de._(_root);
+	@override String get later => 'Ich bezahle später';
+	@override String toPay({required Object amount}) => 'Zu zahlen: ${amount}';
+	@override String get payNow => 'Bezahlen';
+	@override String get unavailable => 'Die Mobile-Money-Zahlung ist noch nicht verfügbar: melde dich an, du kannst später bezahlen.';
+	@override String laterDone({required Object amount}) => 'Du bist angemeldet! Denk daran, ${amount} vor der Veranstaltung zu bezahlen.';
+	@override String get paidShort => 'bezahlt';
 }
 
 // Path: ministry.goals
@@ -3298,6 +3305,7 @@ extension on TranslationsDe {
 			'errors.paymentRequired' => 'Diese Veranstaltung ist kostenpflichtig: bezahle deine Anmeldung per Mobile Money.',
 			'errors.paidRegistration' => 'Bezahlte Anmeldung: wende dich zum Stornieren an die Veranstalter.',
 			'errors.eventHasPayments' => 'Mitglieder haben bezahlt: erstatte zuerst ihre Zahlungen auf der Admin-Seite.',
+			'errors.peoplePaid' => 'Die Personenzahl einer bezahlten Anmeldung lässt sich nicht mehr ändern.',
 			'validation.required' => 'Dieses Feld ist erforderlich',
 			'validation.passwordTooShort' => 'Mindestens 6 Zeichen',
 			'validation.invalidPhone' => 'Ungültige Telefonnummer',
@@ -3766,9 +3774,9 @@ extension on TranslationsDe {
 			'members.usernameReserved' => 'Dieser Benutzername ist reserviert.',
 			'members.usernameSaved' => ({required Object username}) => 'Benutzername gespeichert: @${username}',
 			'members.deleteAccount.button' => 'Mein Konto löschen',
-			'members.deleteAccount.title' => 'Mein Konto löschen',
 			_ => null,
 		} ?? switch (path) {
+			'members.deleteAccount.title' => 'Mein Konto löschen',
 			'members.deleteAccount.intro' => 'Das ist endgültig. Dein Konto und alles, was dazugehört, wird gelöscht:',
 			'members.deleteAccount.itemProfile' => 'dein Profil, dein Profilbild, dein Benutzername und dein Passwort',
 			'members.deleteAccount.itemReports' => 'alle deine Tagesberichte, Elemente und Ziele',
@@ -4059,6 +4067,12 @@ extension on TranslationsDe {
 			'events.pay.failures.notApproved' => 'Die Zahlung wurde nicht bestätigt: PIN nicht eingegeben oder abgelehnt.',
 			'events.pay.failures.unavailable' => 'Der Anbieter ist gerade nicht verfügbar. Versuche es später erneut.',
 			'events.pay.failures.generic' => 'Die Zahlung ist fehlgeschlagen. Versuche es erneut oder nutze eine andere Nummer.',
+			'events.pay.later' => 'Ich bezahle später',
+			'events.pay.toPay' => ({required Object amount}) => 'Zu zahlen: ${amount}',
+			'events.pay.payNow' => 'Bezahlen',
+			'events.pay.unavailable' => 'Die Mobile-Money-Zahlung ist noch nicht verfügbar: melde dich an, du kannst später bezahlen.',
+			'events.pay.laterDone' => ({required Object amount}) => 'Du bist angemeldet! Denk daran, ${amount} vor der Veranstaltung zu bezahlen.',
+			'events.pay.paidShort' => 'bezahlt',
 			'notifications.title' => 'Mitteilungen',
 			'notifications.channel' => 'Ankündigungen der Gemeinschaft',
 			'notifications.empty' => 'Noch keine Mitteilungen',
@@ -4274,6 +4288,8 @@ extension on TranslationsDe {
 			'prayer.retreat.hints.assemblyMissing' => 'Füge deine Gemeinde in deinem Profil hinzu',
 			'prayer.retreat.hints.authorities' => ({required Object names}) => 'Deine Autoritäten: ${names}',
 			'prayer.retreat.hints.authoritiesMissing' => 'Füge deine geistlichen Autoritäten unter „Mehr“ hinzu',
+			_ => null,
+		} ?? switch (path) {
 			'prayer.retreat.hints.list' => ({required Object list}) => 'Meine Listen · ${list}',
 			'prayer.retreat.hints.listEmpty' => ({required Object list}) => 'Deine Liste „${list}“ ist leer: Füge Namen hinzu',
 			'prayer.retreat.hints.nation' => ({required Object name}) => 'Heute: ${name}',
@@ -4281,8 +4297,6 @@ extension on TranslationsDe {
 			'prayer.retreat.hints.hymn' => 'Lieder öffnen',
 			'prayer.session.point' => ({required Object n}) => 'Punkt ${n} von 15',
 			'prayer.session.remaining' => 'verbleibend',
-			_ => null,
-		} ?? switch (path) {
 			'prayer.session.paused' => 'pausiert',
 			'prayer.session.inYourList' => ({required Object list}) => 'Auf deiner Liste · ${list}',
 			'prayer.session.tomorrow' => 'Morgen die nächsten.',
@@ -4788,6 +4802,8 @@ extension on TranslationsDe {
 			'biblePlan.start' => 'Plan beginnen',
 			'biblePlan.dayOf' => ({required Object day, required Object total}) => 'Tag ${day} von ${total}',
 			'biblePlan.today' => 'Heutige Lesung',
+			_ => null,
+		} ?? switch (path) {
 			'biblePlan.todayDone' => 'Die heutige Lesung ist erledigt. Bravo!',
 			'biblePlan.read' => 'Lesen',
 			'biblePlan.behind' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('de'))(n, one: '${n} Tag im Rückstand', other: '${n} Tage im Rückstand', ), 
@@ -4795,8 +4811,6 @@ extension on TranslationsDe {
 			'biblePlan.catchUpShort' => 'nachholen',
 			'biblePlan.chaptersRead' => ({required Object read, required Object total}) => '${read} von ${total} Kapiteln',
 			'biblePlan.late' => 'Im Rückstand',
-			_ => null,
-		} ?? switch (path) {
 			'biblePlan.upcoming' => 'Als Nächstes',
 			'biblePlan.dayNumber' => ({required Object n}) => 'Tag ${n}',
 			'biblePlan.finished' => 'Plan abgeschlossen! Du hast alles gelesen.',

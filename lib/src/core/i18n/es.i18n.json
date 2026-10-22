@@ -46,7 +46,8 @@
     "paymentsDisabled": "El pago con dinero móvil aún no está disponible.",
     "paymentRequired": "Este evento es de pago: paga tu inscripción con dinero móvil.",
     "paidRegistration": "Inscripción pagada: contacta con los organizadores para anularla.",
-    "eventHasPayments": "Hay miembros que pagaron: primero reembolsa sus pagos desde el sitio de administración."
+    "eventHasPayments": "Hay miembros que pagaron: primero reembolsa sus pagos desde el sitio de administración.",
+    "peoplePaid": "El número de personas de una inscripción pagada ya no puede cambiar."
   },
   "validation": {
     "required": "Este campo es obligatorio",
@@ -992,7 +993,13 @@
         "notApproved": "El pago no se validó: PIN no introducido o rechazado.",
         "unavailable": "El operador no está disponible ahora. Inténtalo más tarde.",
         "generic": "El pago falló. Inténtalo de nuevo o usa otro número."
-      }
+      },
+      "later": "Pagaré más tarde",
+      "toPay": "Por pagar: {amount}",
+      "payNow": "Pagar",
+      "unavailable": "El pago con dinero móvil aún no está disponible: inscríbete, podrás pagar más tarde.",
+      "laterDone": "¡Estás inscrito! Recuerda pagar {amount} antes del evento.",
+      "paidShort": "pagado"
     }
   },
   "notifications": {

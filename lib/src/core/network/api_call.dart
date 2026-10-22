@@ -28,6 +28,9 @@ void _log(DioException e, AppException error, StackTrace stack) {
   switch (error) {
     case NetworkException():
       AppLog.info('no network: $where');
+    // a service switched off on the server (mobile money): not a crash
+    case ApiException(code: 'PAYMENTS_DISABLED'):
+      AppLog.info('disabled: $where');
     case ApiException(:final status) when status >= 500:
       AppLog.error(error, stack, reason: 'server error: $where');
     case UnknownException():

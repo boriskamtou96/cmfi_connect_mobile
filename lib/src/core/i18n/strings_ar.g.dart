@@ -154,6 +154,7 @@ class _Translations$errors$ar extends Translations$errors$fr {
 	@override String get paymentRequired => 'هذا الحدث مدفوع: ادفع تسجيلك عبر المحفظة الإلكترونية.';
 	@override String get paidRegistration => 'تسجيل مدفوع: تواصل مع المنظمين لإلغائه.';
 	@override String get eventHasPayments => 'دفع أعضاء رسومهم: أعِد مدفوعاتهم أولًا من موقع الإدارة.';
+	@override String get peoplePaid => 'لم يعد ممكنًا تغيير عدد الأشخاص في تسجيل مدفوع.';
 }
 
 // Path: validation
@@ -2849,6 +2850,12 @@ class _Translations$events$pay$ar extends Translations$events$pay$fr {
 	@override String get paidNote => 'التسجيل مدفوع. لإلغائه، تواصل مع المنظمين: سيعيدون إليك المبلغ.';
 	@override String get peopleLocked => 'لم يعد ممكنًا تغيير عدد الأشخاص المدفوع عنهم.';
 	@override late final _Translations$events$pay$failures$ar failures = _Translations$events$pay$failures$ar._(_root);
+	@override String get later => 'سأدفع لاحقًا';
+	@override String toPay({required Object amount}) => 'المبلغ المستحق: ${amount}';
+	@override String get payNow => 'ادفع';
+	@override String get unavailable => 'الدفع عبر المحفظة الإلكترونية غير متاح بعد: سجّل الآن، ويمكنك الدفع لاحقًا.';
+	@override String laterDone({required Object amount}) => 'أنت مسجّل! تذكّر دفع ${amount} قبل الحدث.';
+	@override String get paidShort => 'مدفوع';
 }
 
 // Path: ministry.goals
@@ -3632,6 +3639,7 @@ extension on TranslationsAr {
 			'errors.paymentRequired' => 'هذا الحدث مدفوع: ادفع تسجيلك عبر المحفظة الإلكترونية.',
 			'errors.paidRegistration' => 'تسجيل مدفوع: تواصل مع المنظمين لإلغائه.',
 			'errors.eventHasPayments' => 'دفع أعضاء رسومهم: أعِد مدفوعاتهم أولًا من موقع الإدارة.',
+			'errors.peoplePaid' => 'لم يعد ممكنًا تغيير عدد الأشخاص في تسجيل مدفوع.',
 			'validation.required' => 'هذا الحقل مطلوب',
 			'validation.passwordTooShort' => '6 أحرف على الأقل',
 			'validation.invalidPhone' => 'رقم هاتف غير صالح',
@@ -4100,9 +4108,9 @@ extension on TranslationsAr {
 			'members.usernameReserved' => 'اسم المستخدم هذا محجوز.',
 			'members.usernameSaved' => ({required Object username}) => 'تم حفظ اسم المستخدم: @${username}',
 			'members.deleteAccount.button' => 'حذف حسابي',
-			'members.deleteAccount.title' => 'حذف حسابي',
 			_ => null,
 		} ?? switch (path) {
+			'members.deleteAccount.title' => 'حذف حسابي',
 			'members.deleteAccount.intro' => 'هذا نهائي. سيتم مسح حسابك وكل ما يرتبط به:',
 			'members.deleteAccount.itemProfile' => 'ملفك الشخصي وصورتك واسم المستخدم وكلمة المرور',
 			'members.deleteAccount.itemReports' => 'جميع تقاريرك وعناصرك وأهدافك',
@@ -4393,6 +4401,12 @@ extension on TranslationsAr {
 			'events.pay.failures.notApproved' => 'لم يُؤكَّد الدفع: لم يُدخَل الرمز السري أو رُفض.',
 			'events.pay.failures.unavailable' => 'المشغّل غير متاح حاليًا. حاول لاحقًا.',
 			'events.pay.failures.generic' => 'فشل الدفع. حاول مجددًا أو استخدم رقمًا آخر.',
+			'events.pay.later' => 'سأدفع لاحقًا',
+			'events.pay.toPay' => ({required Object amount}) => 'المبلغ المستحق: ${amount}',
+			'events.pay.payNow' => 'ادفع',
+			'events.pay.unavailable' => 'الدفع عبر المحفظة الإلكترونية غير متاح بعد: سجّل الآن، ويمكنك الدفع لاحقًا.',
+			'events.pay.laterDone' => ({required Object amount}) => 'أنت مسجّل! تذكّر دفع ${amount} قبل الحدث.',
+			'events.pay.paidShort' => 'مدفوع',
 			'notifications.title' => 'الإشعارات',
 			'notifications.channel' => 'إعلانات الجماعة',
 			'notifications.empty' => 'لا توجد إشعارات بعد',
@@ -4608,6 +4622,8 @@ extension on TranslationsAr {
 			'prayer.retreat.hints.assemblyMissing' => 'أضف جماعتك في ملفك الشخصي',
 			'prayer.retreat.hints.authorities' => ({required Object names}) => 'مرشدوك: ${names}',
 			'prayer.retreat.hints.authoritiesMissing' => 'أضف مرشديك الروحيين من «المزيد»',
+			_ => null,
+		} ?? switch (path) {
 			'prayer.retreat.hints.list' => ({required Object list}) => 'قوائمي · ${list}',
 			'prayer.retreat.hints.listEmpty' => ({required Object list}) => 'قائمتك «${list}» فارغة: أضف أسماء',
 			'prayer.retreat.hints.nation' => ({required Object name}) => 'اليوم: ${name}',
@@ -4615,8 +4631,6 @@ extension on TranslationsAr {
 			'prayer.retreat.hints.hymn' => 'فتح الترانيم',
 			'prayer.session.point' => ({required Object n}) => 'النقطة ${n} من 15',
 			'prayer.session.remaining' => 'متبقية',
-			_ => null,
-		} ?? switch (path) {
 			'prayer.session.paused' => 'متوقّف مؤقتًا',
 			'prayer.session.inYourList' => ({required Object list}) => 'في قائمتك · ${list}',
 			'prayer.session.tomorrow' => 'وغدًا، الأشخاص التالون.',
@@ -5122,6 +5136,8 @@ extension on TranslationsAr {
 			'biblePlan.start' => 'ابدأ الخطة',
 			'biblePlan.dayOf' => ({required Object day, required Object total}) => 'اليوم ${day} من ${total}',
 			'biblePlan.today' => 'قراءة اليوم',
+			_ => null,
+		} ?? switch (path) {
 			'biblePlan.todayDone' => 'تمت قراءة اليوم. أحسنت!',
 			'biblePlan.read' => 'اقرأ',
 			'biblePlan.behind' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n, zero: 'تأخر ${n} يوم', one: 'تأخر يوم واحد', two: 'تأخر يومين', few: 'تأخر ${n} أيام', many: 'تأخر ${n} يومًا', other: 'تأخر ${n} يوم', ), 
@@ -5129,8 +5145,6 @@ extension on TranslationsAr {
 			'biblePlan.catchUpShort' => 'استدراك',
 			'biblePlan.chaptersRead' => ({required Object read, required Object total}) => '${read} من ${total} أصحاحًا',
 			'biblePlan.late' => 'متأخر',
-			_ => null,
-		} ?? switch (path) {
 			'biblePlan.upcoming' => 'القادم',
 			'biblePlan.dayNumber' => ({required Object n}) => 'اليوم ${n}',
 			'biblePlan.finished' => 'اكتملت الخطة! قرأت كل شيء.',

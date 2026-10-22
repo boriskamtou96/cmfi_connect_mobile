@@ -1000,11 +1000,11 @@
     "pill": "Premium",
     "subtitle": "在与神同行的路上走得更远，并支持这份事工。",
     "widgetTitle": "主屏幕小组件",
-    "widgetText": "无需打开应用，即可查看今天的报告和目标。",
+    "widgetText": "无需打开应用，在主屏幕查看今日报告和目标。",
     "statsTitle": "全年的目标",
-    "statsText": "年度总结和目标的进展，一周接一周。",
+    "statsText": "你的年度回顾，以及目标逐周的变化。",
     "supportTitle": "你在支持这份事工",
-    "supportText": "你的订阅让整个团契都能继续使用这个应用。",
+    "supportText": "你的订阅让应用和新功能为整个团契持续运转。",
     "annual": "按年",
     "lifetime": "终身",
     "monthly": "按月",
@@ -1031,9 +1031,9 @@
     "terms": "使用条款",
     "privacy": "隐私",
     "activeTitle": "你已拥有 Premium",
-    "activeText": "感谢你支持 CMFI Connect！小组件和年度总结已经开放。",
+    "activeText": "感谢支持 CMFI Connect！小组件、你的一年、年度回顾和离线教导已开启。",
     "staffText": "你是 CMFI Connect 团队的成员，Premium 免费为你开放。",
-    "moreSubtitle": "小组件、全年目标",
+    "moreSubtitle": "小组件、你的一年、离线教导",
     "moreActive": "已开启",
     "unlock": "用 Premium 解锁",
     "trialThen": "{trial}，之后 {price}",
@@ -1048,7 +1048,13 @@
     "lifetimeNote": "终身：一次付款，无需订阅，不会续费。",
     "manage": "管理我的订阅",
     "manageFailed": "无法打开订阅管理，请稍后再试。",
-    "crown": "高级版会员"
+    "crown": "高级版会员",
+    "offlineTitle": "离线收听教导",
+    "offlineText": "下载信息，随时随地收听，即使没有网络。",
+    "yearTitle": "“你与神同行的一年”",
+    "yearText": "你一年的故事：你的忠心、祷告时间、精彩时刻，可保存也可分享。",
+    "freeForAll": "圣经、祷告、退修、报告和诗歌对所有人始终免费。",
+    "includes": "Premium 包含"
   },
   "homeWidget": {
     "title": "今天",
@@ -2001,7 +2007,8 @@
     "speed": "速度 {speed}",
     "recordedOn": "{date} 的信息",
     "moreSubtitle": "可收听的讲道与教导",
-    "closePlayer": "关闭播放器"
+    "closePlayer": "关闭播放器",
+    "downloadPremium": "使用 Premium 下载"
   },
   "memorize": {
     "title": "背经",

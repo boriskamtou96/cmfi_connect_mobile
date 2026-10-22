@@ -736,11 +736,11 @@ class _Translations$premium$hi extends Translations$premium$fr {
 	@override String get pill => 'Premium';
 	@override String get subtitle => 'परमेश्वर के साथ अपनी चाल में आगे बढ़ो, और सेवकाई का साथ दो।';
 	@override String get widgetTitle => 'होम स्क्रीन विजेट';
-	@override String get widgetText => 'ऐप खोले बिना आज की रिपोर्ट और तुम्हारे लक्ष्य।';
+	@override String get widgetText => 'ऐप खोले बिना होम स्क्रीन पर आज की रिपोर्ट और आपके लक्ष्य।';
 	@override String get statsTitle => 'पूरे साल के तुम्हारे लक्ष्य';
-	@override String get statsText => 'साल का सारांश और तुम्हारे लक्ष्यों की प्रगति, हफ़्ते दर हफ़्ते।';
+	@override String get statsText => 'आपके साल का लेखा-जोखा और हफ़्ते-दर-हफ़्ते लक्ष्यों की प्रगति।';
 	@override String get supportTitle => 'तुम सेवकाई का साथ देते हो';
-	@override String get supportText => 'तुम्हारी सदस्यता पूरे समुदाय के लिए ऐप को चालू रखती है।';
+	@override String get supportText => 'आपकी सदस्यता पूरे समुदाय के लिए ऐप और उसकी नई सुविधाओं को चलाती है।';
 	@override String get annual => 'सालाना';
 	@override String get lifetime => 'आजीवन';
 	@override String get monthly => 'मासिक';
@@ -769,9 +769,9 @@ class _Translations$premium$hi extends Translations$premium$fr {
 	@override String get terms => 'उपयोग की शर्तें';
 	@override String get privacy => 'गोपनीयता';
 	@override String get activeTitle => 'तुम्हारे पास Premium है';
-	@override String get activeText => 'CMFI Connect का साथ देने के लिए धन्यवाद! विजेट और तुम्हारे सारांश का साल खुले हैं।';
+	@override String get activeText => 'CMFI Connect का साथ देने के लिए धन्यवाद! विजेट, आपका साल, लेखा-जोखा और ऑफ़लाइन शिक्षाएँ खुली हैं।';
 	@override String get staffText => 'तुम CMFI Connect टीम का हिस्सा हो, इसलिए Premium तुम्हें मुफ़्त मिला है।';
-	@override String get moreSubtitle => 'विजेट, पूरे साल के लक्ष्य';
+	@override String get moreSubtitle => 'विजेट, आपका साल, शिक्षाएँ ऑफ़लाइन';
 	@override String get moreActive => 'चालू';
 	@override String get unlock => 'Premium से खोलो';
 	@override String trialThen({required Object trial, required Object price}) => '${trial}, फिर ${price}';
@@ -787,6 +787,12 @@ class _Translations$premium$hi extends Translations$premium$fr {
 	@override String get manage => 'मेरी सदस्यता प्रबंधित करें';
 	@override String get manageFailed => 'सदस्यता प्रबंधन नहीं खुल रहा। बाद में फिर कोशिश करें।';
 	@override String get crown => 'प्रीमियम सदस्य';
+	@override String get offlineTitle => 'शिक्षाएँ ऑफ़लाइन';
+	@override String get offlineText => 'संदेश डाउनलोड करें और कहीं भी सुनें, बिना इंटरनेट के भी।';
+	@override String get yearTitle => '“परमेश्वर के साथ आपका साल”';
+	@override String get yearText => 'आपके साल की कहानी: आपकी विश्वासयोग्यता, प्रार्थना का समय, खास पल — सहेजने और बाँटने के लिए।';
+	@override String get freeForAll => 'बाइबल, प्रार्थना, रिट्रीट, रिपोर्ट और भजन सभी के लिए हमेशा मुफ़्त हैं।';
+	@override String get includes => 'Premium के साथ';
 }
 
 // Path: homeWidget
@@ -1543,6 +1549,7 @@ class _Translations$teachings$hi extends Translations$teachings$fr {
 	@override String recordedOn({required Object date}) => '${date} का संदेश';
 	@override String get moreSubtitle => 'सुनने के लिए प्रवचन और शिक्षाएँ';
 	@override String get closePlayer => 'प्लेयर बंद करें';
+	@override String get downloadPremium => 'Premium के साथ डाउनलोड करें';
 }
 
 // Path: memorize
@@ -4090,11 +4097,11 @@ extension on TranslationsHi {
 			'premium.pill' => 'Premium',
 			'premium.subtitle' => 'परमेश्वर के साथ अपनी चाल में आगे बढ़ो, और सेवकाई का साथ दो।',
 			'premium.widgetTitle' => 'होम स्क्रीन विजेट',
-			'premium.widgetText' => 'ऐप खोले बिना आज की रिपोर्ट और तुम्हारे लक्ष्य।',
+			'premium.widgetText' => 'ऐप खोले बिना होम स्क्रीन पर आज की रिपोर्ट और आपके लक्ष्य।',
 			'premium.statsTitle' => 'पूरे साल के तुम्हारे लक्ष्य',
-			'premium.statsText' => 'साल का सारांश और तुम्हारे लक्ष्यों की प्रगति, हफ़्ते दर हफ़्ते।',
+			'premium.statsText' => 'आपके साल का लेखा-जोखा और हफ़्ते-दर-हफ़्ते लक्ष्यों की प्रगति।',
 			'premium.supportTitle' => 'तुम सेवकाई का साथ देते हो',
-			'premium.supportText' => 'तुम्हारी सदस्यता पूरे समुदाय के लिए ऐप को चालू रखती है।',
+			'premium.supportText' => 'आपकी सदस्यता पूरे समुदाय के लिए ऐप और उसकी नई सुविधाओं को चलाती है।',
 			'premium.annual' => 'सालाना',
 			'premium.lifetime' => 'आजीवन',
 			'premium.monthly' => 'मासिक',
@@ -4117,9 +4124,9 @@ extension on TranslationsHi {
 			'premium.terms' => 'उपयोग की शर्तें',
 			'premium.privacy' => 'गोपनीयता',
 			'premium.activeTitle' => 'तुम्हारे पास Premium है',
-			'premium.activeText' => 'CMFI Connect का साथ देने के लिए धन्यवाद! विजेट और तुम्हारे सारांश का साल खुले हैं।',
+			'premium.activeText' => 'CMFI Connect का साथ देने के लिए धन्यवाद! विजेट, आपका साल, लेखा-जोखा और ऑफ़लाइन शिक्षाएँ खुली हैं।',
 			'premium.staffText' => 'तुम CMFI Connect टीम का हिस्सा हो, इसलिए Premium तुम्हें मुफ़्त मिला है।',
-			'premium.moreSubtitle' => 'विजेट, पूरे साल के लक्ष्य',
+			'premium.moreSubtitle' => 'विजेट, आपका साल, शिक्षाएँ ऑफ़लाइन',
 			'premium.moreActive' => 'चालू',
 			'premium.unlock' => 'Premium से खोलो',
 			'premium.trialThen' => ({required Object trial, required Object price}) => '${trial}, फिर ${price}',
@@ -4135,6 +4142,12 @@ extension on TranslationsHi {
 			'premium.manage' => 'मेरी सदस्यता प्रबंधित करें',
 			'premium.manageFailed' => 'सदस्यता प्रबंधन नहीं खुल रहा। बाद में फिर कोशिश करें।',
 			'premium.crown' => 'प्रीमियम सदस्य',
+			'premium.offlineTitle' => 'शिक्षाएँ ऑफ़लाइन',
+			'premium.offlineText' => 'संदेश डाउनलोड करें और कहीं भी सुनें, बिना इंटरनेट के भी।',
+			'premium.yearTitle' => '“परमेश्वर के साथ आपका साल”',
+			'premium.yearText' => 'आपके साल की कहानी: आपकी विश्वासयोग्यता, प्रार्थना का समय, खास पल — सहेजने और बाँटने के लिए।',
+			'premium.freeForAll' => 'बाइबल, प्रार्थना, रिट्रीट, रिपोर्ट और भजन सभी के लिए हमेशा मुफ़्त हैं।',
+			'premium.includes' => 'Premium के साथ',
 			'homeWidget.title' => 'आज',
 			'homeWidget.done' => 'हो गया',
 			'homeWidget.todo' => 'भरना बाकी',
@@ -4283,14 +4296,14 @@ extension on TranslationsHi {
 			'prayer.retreat.hours.evening' => 'दोपहर ढलने पर',
 			'prayer.retreat.hours.night' => 'सोने से पहले',
 			'prayer.retreat.reminderAt' => ({required Object time}) => 'रिमाइंडर ${time} पर',
+			_ => null,
+		} ?? switch (path) {
 			'prayer.retreat.intro' => '15 बिंदु, हर एक के लिए एक मिनट। एक हल्की आवाज़ तुम्हें अगले बिंदु पर ले जाती है।',
 			'prayer.retreat.done' => 'आज पूरा हुआ',
 			'prayer.retreat.start' => 'शुरू करो · 15 मिनट',
 			'prayer.retreat.selfPaced' => 'अपनी रफ़्तार से पढ़ो, बिना टाइमर के',
 			'prayer.retreat.hints.assembly' => ({required Object name}) => 'तुम्हारी सभा: ${name}',
 			'prayer.retreat.hints.assemblyMissing' => 'अपनी प्रोफ़ाइल में अपनी सभा जोड़ो',
-			_ => null,
-		} ?? switch (path) {
 			'prayer.retreat.hints.authorities' => ({required Object names}) => 'तुम्हारे अगुवे: ${names}',
 			'prayer.retreat.hints.authoritiesMissing' => '‘और’ में अपने आत्मिक अगुवे जोड़ो',
 			'prayer.retreat.hints.list' => ({required Object list}) => 'मेरी सूचियाँ · ${list}',
@@ -4797,14 +4810,14 @@ extension on TranslationsHi {
 			'biblePlan.reminder' => 'रोज़ का रिमाइंडर',
 			'biblePlan.reminderAt' => 'रिमाइंडर का समय',
 			'biblePlan.summary' => ({required Object days, required Object chapters, required Object perDay}) => '${days} दिनों में ${chapters} अध्याय, रोज़ लगभग ${perDay}',
+			_ => null,
+		} ?? switch (path) {
 			'biblePlan.chapterCount' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n, one: '${n} अध्याय', other: '${n} अध्याय', ), 
 			'biblePlan.inDays' => ({required Object days}) => '${days} में',
 			'biblePlan.perDayAbout' => ({required Object perDay}) => 'रोज़ लगभग ${perDay}',
 			'biblePlan.endsOn' => ({required Object date}) => '${date} को समाप्त',
 			'biblePlan.startsOn' => ({required Object date}) => 'योजना ${date} को शुरू होगी।',
 			'biblePlan.start' => 'योजना शुरू करें',
-			_ => null,
-		} ?? switch (path) {
 			'biblePlan.dayOf' => ({required Object day, required Object total}) => 'दिन ${day} / ${total}',
 			'biblePlan.today' => 'आज का पठन',
 			'biblePlan.todayDone' => 'आज का पठन पूरा हुआ। शाबाश!',
@@ -4851,6 +4864,7 @@ extension on TranslationsHi {
 			'teachings.recordedOn' => ({required Object date}) => '${date} का संदेश',
 			'teachings.moreSubtitle' => 'सुनने के लिए प्रवचन और शिक्षाएँ',
 			'teachings.closePlayer' => 'प्लेयर बंद करें',
+			'teachings.downloadPremium' => 'Premium के साथ डाउनलोड करें',
 			'memorize.title' => 'कंठस्थ करना',
 			'memorize.subtitle' => 'वचन को अपने हृदय में रखो',
 			'memorize.toReview' => 'दोहराने को',

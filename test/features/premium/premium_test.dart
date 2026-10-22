@@ -162,7 +162,7 @@ void main() {
     await openMore(tester);
     await tester.pumpAndSettle();
     await reach(tester, find.text('CMFI Connect Premium'));
-    expect(find.text('Widget, objectifs sur l\'année'), findsOneWidget);
+    expect(find.text('Widget, année, enseignements hors ligne'), findsOneWidget);
     await scrollToEnd(tester);
     await tester.tap(find.text('Se déconnecter'));
     await tester.pumpAndSettle();

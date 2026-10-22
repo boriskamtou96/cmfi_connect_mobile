@@ -23,10 +23,12 @@ void main() {
     FakeTeachingsApi? api,
     FakeTeachingFiles? files,
     Map<String, Object> preferences = const {},
+    bool premium = true,
   }) async {
     final app = await pumpApp(
       tester,
       token: 't',
+      premium: FakePremiumStore(active: premium),
       teachingsApi: api,
       teachingFiles: files,
       initialPreferences: preferences,
@@ -130,6 +132,18 @@ void main() {
     await tester.tap(find.byTooltip('Retour'));
     await tester.pumpAndSettle();
     expect(find.text('Écouté'), findsOneWidget);
+  });
+
+  testWidgets('without Premium, downloading opens the Premium page', (
+    tester,
+  ) async {
+    final files = FakeTeachingFiles();
+    await openTeachings(tester, files: files, premium: false);
+
+    await tester.tap(find.byTooltip('Télécharger avec Premium').first);
+    await tester.pumpAndSettle();
+    expect(files.kept, isEmpty);
+    expect(find.text('Les enseignements hors ligne'), findsOneWidget);
   });
 
   testWidgets('kept on the phone: played from the file, listed offline', (

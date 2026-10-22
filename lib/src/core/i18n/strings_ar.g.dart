@@ -810,11 +810,11 @@ class _Translations$premium$ar extends Translations$premium$fr {
 	@override String get pill => 'Premium';
 	@override String get subtitle => 'تقدّم أكثر في مسيرتك مع الله، وادعم العمل.';
 	@override String get widgetTitle => 'أداة الشاشة الرئيسية';
-	@override String get widgetText => 'تقرير يومك وأهدافك، دون فتح التطبيق.';
+	@override String get widgetText => 'تقرير يومك وأهدافك على الشاشة الرئيسية، دون فتح التطبيق.';
 	@override String get statsTitle => 'أهدافك على مدار السنة';
-	@override String get statsText => 'حصيلة السنة وتطوّر أهدافك، أسبوعًا بعد أسبوع.';
+	@override String get statsText => 'حصيلة سنتك وتطوّر أهدافك أسبوعًا بعد أسبوع.';
 	@override String get supportTitle => 'أنت تدعم العمل';
-	@override String get supportText => 'اشتراكك يُبقي التطبيق حيًّا للجماعة كلها.';
+	@override String get supportText => 'اشتراكك يُبقي التطبيق وجديده حيًّا للجماعة كلها.';
 	@override String get annual => 'سنوي';
 	@override String get lifetime => 'مدى الحياة';
 	@override String get monthly => 'شهري';
@@ -851,9 +851,9 @@ class _Translations$premium$ar extends Translations$premium$fr {
 	@override String get terms => 'شروط الاستخدام';
 	@override String get privacy => 'الخصوصية';
 	@override String get activeTitle => 'لديك Premium';
-	@override String get activeText => 'شكرًا لدعمك CMFI Connect! الأداة وسنة حصيلتك مفتوحتان.';
+	@override String get activeText => 'شكرًا لدعمك CMFI Connect! الأداة وسنتك وحصيلتك والتعاليم دون اتصال مفتوحة.';
 	@override String get staffText => 'Premium مقدَّم لك مجانًا لأنك من فريق CMFI Connect.';
-	@override String get moreSubtitle => 'الأداة، الأهداف على مدار السنة';
+	@override String get moreSubtitle => 'الأداة، سنتك، التعاليم دون اتصال';
 	@override String get moreActive => 'مفعّل';
 	@override String get unlock => 'افتح مع Premium';
 	@override String trialThen({required Object trial, required Object price}) => '${trial}، ثم ${price}';
@@ -869,6 +869,12 @@ class _Translations$premium$ar extends Translations$premium$fr {
 	@override String get manage => 'إدارة اشتراكي';
 	@override String get manageFailed => 'تعذّر فتح إدارة الاشتراك. حاول لاحقًا.';
 	@override String get crown => 'عضو بريميوم';
+	@override String get offlineTitle => 'التعاليم دون اتصال';
+	@override String get offlineText => 'نزّل الرسائل واستمع إليها في كل مكان، حتى دون اتصال.';
+	@override String get yearTitle => '«سنتك مع الله»';
+	@override String get yearText => 'قصة سنتك: أمانتك، وأوقات صلاتك، ولحظاتك المميزة، لتحتفظ بها وتشاركها.';
+	@override String get freeForAll => 'الكتاب المقدس والصلاة والخلوات والتقرير والترانيم تبقى مجانية للجميع.';
+	@override String get includes => 'مع Premium';
 }
 
 // Path: homeWidget
@@ -1797,6 +1803,7 @@ class _Translations$teachings$ar extends Translations$teachings$fr {
 	@override String recordedOn({required Object date}) => 'رسالة ${date}';
 	@override String get moreSubtitle => 'عظات وتعاليم للاستماع';
 	@override String get closePlayer => 'إغلاق المشغّل';
+	@override String get downloadPremium => 'التنزيل مع Premium';
 }
 
 // Path: memorize
@@ -4425,11 +4432,11 @@ extension on TranslationsAr {
 			'premium.pill' => 'Premium',
 			'premium.subtitle' => 'تقدّم أكثر في مسيرتك مع الله، وادعم العمل.',
 			'premium.widgetTitle' => 'أداة الشاشة الرئيسية',
-			'premium.widgetText' => 'تقرير يومك وأهدافك، دون فتح التطبيق.',
+			'premium.widgetText' => 'تقرير يومك وأهدافك على الشاشة الرئيسية، دون فتح التطبيق.',
 			'premium.statsTitle' => 'أهدافك على مدار السنة',
-			'premium.statsText' => 'حصيلة السنة وتطوّر أهدافك، أسبوعًا بعد أسبوع.',
+			'premium.statsText' => 'حصيلة سنتك وتطوّر أهدافك أسبوعًا بعد أسبوع.',
 			'premium.supportTitle' => 'أنت تدعم العمل',
-			'premium.supportText' => 'اشتراكك يُبقي التطبيق حيًّا للجماعة كلها.',
+			'premium.supportText' => 'اشتراكك يُبقي التطبيق وجديده حيًّا للجماعة كلها.',
 			'premium.annual' => 'سنوي',
 			'premium.lifetime' => 'مدى الحياة',
 			'premium.monthly' => 'شهري',
@@ -4452,9 +4459,9 @@ extension on TranslationsAr {
 			'premium.terms' => 'شروط الاستخدام',
 			'premium.privacy' => 'الخصوصية',
 			'premium.activeTitle' => 'لديك Premium',
-			'premium.activeText' => 'شكرًا لدعمك CMFI Connect! الأداة وسنة حصيلتك مفتوحتان.',
+			'premium.activeText' => 'شكرًا لدعمك CMFI Connect! الأداة وسنتك وحصيلتك والتعاليم دون اتصال مفتوحة.',
 			'premium.staffText' => 'Premium مقدَّم لك مجانًا لأنك من فريق CMFI Connect.',
-			'premium.moreSubtitle' => 'الأداة، الأهداف على مدار السنة',
+			'premium.moreSubtitle' => 'الأداة، سنتك، التعاليم دون اتصال',
 			'premium.moreActive' => 'مفعّل',
 			'premium.unlock' => 'افتح مع Premium',
 			'premium.trialThen' => ({required Object trial, required Object price}) => '${trial}، ثم ${price}',
@@ -4470,6 +4477,12 @@ extension on TranslationsAr {
 			'premium.manage' => 'إدارة اشتراكي',
 			'premium.manageFailed' => 'تعذّر فتح إدارة الاشتراك. حاول لاحقًا.',
 			'premium.crown' => 'عضو بريميوم',
+			'premium.offlineTitle' => 'التعاليم دون اتصال',
+			'premium.offlineText' => 'نزّل الرسائل واستمع إليها في كل مكان، حتى دون اتصال.',
+			'premium.yearTitle' => '«سنتك مع الله»',
+			'premium.yearText' => 'قصة سنتك: أمانتك، وأوقات صلاتك، ولحظاتك المميزة، لتحتفظ بها وتشاركها.',
+			'premium.freeForAll' => 'الكتاب المقدس والصلاة والخلوات والتقرير والترانيم تبقى مجانية للجميع.',
+			'premium.includes' => 'مع Premium',
 			'homeWidget.title' => 'اليوم',
 			'homeWidget.done' => 'تم',
 			'homeWidget.todo' => 'للتعبئة',
@@ -4618,14 +4631,14 @@ extension on TranslationsAr {
 			'prayer.retreat.hours.evening' => 'في آخر العصر',
 			'prayer.retreat.hours.night' => 'قبل النوم',
 			'prayer.retreat.reminderAt' => ({required Object time}) => 'تذكير الساعة ${time}',
+			_ => null,
+		} ?? switch (path) {
 			'prayer.retreat.intro' => '15 نقطة، دقيقة لكل نقطة. صوت هادئ ينقلك إلى النقطة التالية.',
 			'prayer.retreat.done' => 'تمّت اليوم',
 			'prayer.retreat.start' => 'ابدأ · 15 دقيقة',
 			'prayer.retreat.selfPaced' => 'القراءة على راحتي، دون مؤقّت',
 			'prayer.retreat.hints.assembly' => ({required Object name}) => 'جماعتك: ${name}',
 			'prayer.retreat.hints.assemblyMissing' => 'أضف جماعتك في ملفك الشخصي',
-			_ => null,
-		} ?? switch (path) {
 			'prayer.retreat.hints.authorities' => ({required Object names}) => 'مرشدوك: ${names}',
 			'prayer.retreat.hints.authoritiesMissing' => 'أضف مرشديك الروحيين من «المزيد»',
 			'prayer.retreat.hints.list' => ({required Object list}) => 'قوائمي · ${list}',
@@ -5132,14 +5145,14 @@ extension on TranslationsAr {
 			'biblePlan.reminder' => 'تذكير يومي',
 			'biblePlan.reminderAt' => 'وقت التذكير',
 			'biblePlan.summary' => ({required Object chapters, required Object days, required Object perDay}) => '${chapters} أصحاحًا في ${days} يومًا، نحو ${perDay} في اليوم',
+			_ => null,
+		} ?? switch (path) {
 			'biblePlan.chapterCount' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n, zero: '${n} أصحاح', one: 'أصحاح واحد', two: 'أصحاحان', few: '${n} أصحاحات', many: '${n} أصحاحًا', other: '${n} أصحاح', ), 
 			'biblePlan.inDays' => ({required Object days}) => 'في ${days}',
 			'biblePlan.perDayAbout' => ({required Object perDay}) => 'نحو ${perDay} في اليوم',
 			'biblePlan.endsOn' => ({required Object date}) => 'ينتهي في ${date}',
 			'biblePlan.startsOn' => ({required Object date}) => 'تبدأ الخطة في ${date}.',
 			'biblePlan.start' => 'ابدأ الخطة',
-			_ => null,
-		} ?? switch (path) {
 			'biblePlan.dayOf' => ({required Object day, required Object total}) => 'اليوم ${day} من ${total}',
 			'biblePlan.today' => 'قراءة اليوم',
 			'biblePlan.todayDone' => 'تمت قراءة اليوم. أحسنت!',
@@ -5186,6 +5199,7 @@ extension on TranslationsAr {
 			'teachings.recordedOn' => ({required Object date}) => 'رسالة ${date}',
 			'teachings.moreSubtitle' => 'عظات وتعاليم للاستماع',
 			'teachings.closePlayer' => 'إغلاق المشغّل',
+			'teachings.downloadPremium' => 'التنزيل مع Premium',
 			'memorize.title' => 'الحفظ',
 			'memorize.subtitle' => 'اخبأ الكلمة في قلبك',
 			'memorize.toReview' => 'للمراجعة',

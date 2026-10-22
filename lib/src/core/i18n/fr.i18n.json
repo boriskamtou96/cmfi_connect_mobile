@@ -1027,11 +1027,11 @@
     "pill": "Premium",
     "subtitle": "Va plus loin dans ta marche avec Dieu, et soutiens l'œuvre.",
     "widgetTitle": "Le widget de l'écran d'accueil",
-    "widgetText": "Ton compte rendu du jour et tes objectifs, sans ouvrir l'app.",
+    "widgetText": "Ton compte rendu du jour et tes objectifs sur l'écran d'accueil, sans ouvrir l'app.",
     "statsTitle": "Tes objectifs sur l'année",
-    "statsText": "Le bilan de l'année et l'évolution de tes objectifs, semaine après semaine.",
+    "statsText": "Ton bilan de l'année et l'évolution de tes objectifs, semaine après semaine.",
     "supportTitle": "Tu soutiens l'œuvre",
-    "supportText": "Ton abonnement fait vivre l'app pour toute la communauté.",
+    "supportText": "Ton abonnement fait vivre l'app et ses nouveautés pour toute la communauté.",
     "annual": "Annuel",
     "lifetime": "À vie",
     "monthly": "Mensuel",
@@ -1060,9 +1060,9 @@
     "terms": "Conditions d'utilisation",
     "privacy": "Confidentialité",
     "activeTitle": "Tu as Premium",
-    "activeText": "Merci de soutenir CMFI Connect ! Le widget et l'année de ton bilan sont ouverts.",
+    "activeText": "Merci de soutenir CMFI Connect ! Le widget, ton année, ton bilan et les enseignements hors ligne sont ouverts.",
     "staffText": "Premium t'est offert parce que tu fais partie de l'équipe de CMFI Connect.",
-    "moreSubtitle": "Widget, objectifs sur l'année",
+    "moreSubtitle": "Widget, année, enseignements hors ligne",
     "moreActive": "Actif",
     "unlock": "Débloquer avec Premium",
     "trialThen": "{trial}, puis {price}",
@@ -1077,7 +1077,13 @@
     "lifetimeNote": "À vie : un seul paiement, sans abonnement ni renouvellement.",
     "manage": "Gérer mon abonnement",
     "manageFailed": "La gestion de l'abonnement ne s'ouvre pas. Réessaie plus tard.",
-    "crown": "Membre Premium"
+    "crown": "Membre Premium",
+    "offlineTitle": "Les enseignements hors ligne",
+    "offlineText": "Télécharge les messages et écoute-les partout, même sans connexion.",
+    "yearTitle": "« Ton année avec Dieu »",
+    "yearText": "Ton récit de l'année : ta fidélité, tes temps de prière, tes moments forts, à garder et partager.",
+    "freeForAll": "La Bible, la prière, les retraites, le compte rendu et les cantiques restent gratuits pour tous.",
+    "includes": "Avec Premium"
   },
   "homeWidget": {
     "title": "Aujourd'hui",
@@ -2084,7 +2090,8 @@
     "speed": "Vitesse {speed}",
     "recordedOn": "Message du {date}",
     "moreSubtitle": "Prédications et enseignements à écouter",
-    "closePlayer": "Fermer le lecteur"
+    "closePlayer": "Fermer le lecteur",
+    "downloadPremium": "Télécharger avec Premium"
   },
   "memorize": {
     "title": "Mémorisation",

@@ -71,15 +71,19 @@ import '../features/teachings/presentation/teaching_player_screen.dart';
 import '../features/teachings/presentation/teachings_screen.dart';
 import 'auth_guard.dart';
 import 'fade_through_route.dart';
+import 'premium_guard.dart';
 
 part 'app_router.g.dart';
 part 'app_router.gr.dart';
 
 @AutoRouterConfig(replaceInRouteName: 'Screen,Route')
 class AppRouter extends RootStackRouter {
-  AppRouter({required this.authGuard});
+  AppRouter({required this.authGuard, required this.premiumGuard});
 
   final AuthGuard authGuard;
+
+  /// The pages Premium opens.
+  final PremiumGuard premiumGuard;
 
   // Pushed pages (items, authorities, sign-in forms…) slide like the platform,
   // with the iOS back swipe. The root flows reached with replaceAll (launch,
@@ -204,7 +208,7 @@ class AppRouter extends RootStackRouter {
     AutoRoute(
       path: '/year/:year',
       page: YearStoryRoute.page,
-      guards: [authGuard],
+      guards: [authGuard, premiumGuard],
       fullscreenDialog: true,
     ),
     AutoRoute(
@@ -378,7 +382,10 @@ Route<T> _churchFormRoute<T>(
 /// Raw: the router is a ChangeNotifier that Riverpod neither listens to nor disposes.
 @Riverpod(keepAlive: true)
 Raw<AppRouter> appRouter(Ref ref) {
-  final router = AppRouter(authGuard: AuthGuard(ref));
+  final router = AppRouter(
+    authGuard: AuthGuard(ref),
+    premiumGuard: PremiumGuard(ref),
+  );
   ref.onDispose(router.dispose);
   return router;
 }

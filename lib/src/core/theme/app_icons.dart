@@ -54,6 +54,7 @@ abstract final class AppIcons {
   static const homeWidgetTile = PhosphorIconsDuotone.squaresFour;
   static const progressTile = PhosphorIconsDuotone.chartLineUp;
   static const supportTile = PhosphorIconsDuotone.heart;
+  static const offlineTile = PhosphorIconsDuotone.cloudArrowDown;
   static const authoritiesTile = PhosphorIconsDuotone.usersThree;
   static const disciplesTile = PhosphorIconsDuotone.plant;
   static const receivedReportsTile = PhosphorIconsDuotone.tray;

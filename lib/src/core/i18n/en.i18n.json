@@ -1028,11 +1028,11 @@
     "pill": "Premium",
     "subtitle": "Go further in your walk with God, and support the work.",
     "widgetTitle": "The home-screen widget",
-    "widgetText": "Today's report and your goals, without opening the app.",
+    "widgetText": "Today's report and your goals on your home screen, without opening the app.",
     "statsTitle": "Your goals over the year",
-    "statsText": "The year summary and how your goals progress, week after week.",
+    "statsText": "Your year in review and how your goals grow, week after week.",
     "supportTitle": "You support the work",
-    "supportText": "Your subscription keeps the app going for the whole community.",
+    "supportText": "Your subscription keeps the app and its new features alive for the whole community.",
     "annual": "Yearly",
     "lifetime": "Lifetime",
     "monthly": "Monthly",
@@ -1061,9 +1061,9 @@
     "terms": "Terms of use",
     "privacy": "Privacy",
     "activeTitle": "You have Premium",
-    "activeText": "Thank you for supporting CMFI Connect! The widget and the year of your summary are open.",
+    "activeText": "Thank you for supporting CMFI Connect! The widget, your year, your review and offline teachings are open.",
     "staffText": "Premium is offered to you as a member of the CMFI Connect team.",
-    "moreSubtitle": "Widget, goals over the year",
+    "moreSubtitle": "Widget, your year, teachings offline",
     "moreActive": "Active",
     "unlock": "Unlock with Premium",
     "trialThen": "{trial}, then {price}",
@@ -1078,7 +1078,13 @@
     "lifetimeNote": "Lifetime: a single payment, no subscription, nothing renews.",
     "manage": "Manage my subscription",
     "manageFailed": "Subscription management won't open. Try again later.",
-    "crown": "Premium member"
+    "crown": "Premium member",
+    "offlineTitle": "Teachings offline",
+    "offlineText": "Download the messages and listen anywhere, even without a connection.",
+    "yearTitle": "“Your year with God”",
+    "yearText": "The story of your year: your faithfulness, your prayer time, your highlights, to keep and share.",
+    "freeForAll": "The Bible, prayer, retreats, the report and the hymns stay free for everyone.",
+    "includes": "With Premium"
   },
   "homeWidget": {
     "title": "Today",
@@ -2085,7 +2091,8 @@
     "speed": "Speed {speed}",
     "recordedOn": "Message of {date}",
     "moreSubtitle": "Sermons and teachings to listen to",
-    "closePlayer": "Close the player"
+    "closePlayer": "Close the player",
+    "downloadPremium": "Download with Premium"
   },
   "memorize": {
     "title": "Memorization",

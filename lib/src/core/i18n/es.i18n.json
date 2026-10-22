@@ -1027,11 +1027,11 @@
     "pill": "Premium",
     "subtitle": "Avanza en tu camino con Dios y apoya la obra.",
     "widgetTitle": "El widget de la pantalla de inicio",
-    "widgetText": "Tu informe del día y tus objetivos, sin abrir la app.",
+    "widgetText": "Tu informe del día y tus objetivos en la pantalla de inicio, sin abrir la app.",
     "statsTitle": "Tus objetivos durante el año",
-    "statsText": "El balance del año y la evolución de tus objetivos, semana tras semana.",
+    "statsText": "El balance de tu año y la evolución de tus objetivos, semana tras semana.",
     "supportTitle": "Apoyas la obra",
-    "supportText": "Tu suscripción mantiene la app para toda la comunidad.",
+    "supportText": "Tu suscripción mantiene viva la app y sus novedades para toda la comunidad.",
     "annual": "Anual",
     "lifetime": "De por vida",
     "monthly": "Mensual",
@@ -1060,9 +1060,9 @@
     "terms": "Condiciones de uso",
     "privacy": "Privacidad",
     "activeTitle": "Tienes Premium",
-    "activeText": "¡Gracias por apoyar CMFI Connect! El widget y el año de tu balance están abiertos.",
+    "activeText": "¡Gracias por apoyar CMFI Connect! El widget, tu año, tu balance y las enseñanzas sin conexión están abiertos.",
     "staffText": "Tienes Premium gratis porque formas parte del equipo de CMFI Connect.",
-    "moreSubtitle": "Widget, objetivos del año",
+    "moreSubtitle": "Widget, tu año, enseñanzas sin conexión",
     "moreActive": "Activo",
     "unlock": "Desbloquear con Premium",
     "trialThen": "{trial}, luego {price}",
@@ -1077,7 +1077,13 @@
     "lifetimeNote": "De por vida: un solo pago, sin suscripción ni renovación.",
     "manage": "Gestionar mi suscripción",
     "manageFailed": "La gestión de la suscripción no se abre. Inténtalo más tarde.",
-    "crown": "Miembro Premium"
+    "crown": "Miembro Premium",
+    "offlineTitle": "Enseñanzas sin conexión",
+    "offlineText": "Descarga los mensajes y escúchalos en cualquier lugar, incluso sin conexión.",
+    "yearTitle": "«Tu año con Dios»",
+    "yearText": "El relato de tu año: tu fidelidad, tu tiempo de oración, tus momentos fuertes, para guardar y compartir.",
+    "freeForAll": "La Biblia, la oración, los retiros, el informe y los cantos siguen siendo gratis para todos.",
+    "includes": "Con Premium"
   },
   "homeWidget": {
     "title": "Hoy",
@@ -2084,7 +2090,8 @@
     "speed": "Velocidad {speed}",
     "recordedOn": "Mensaje del {date}",
     "moreSubtitle": "Predicaciones y enseñanzas para escuchar",
-    "closePlayer": "Cerrar el reproductor"
+    "closePlayer": "Cerrar el reproductor",
+    "downloadPremium": "Descargar con Premium"
   },
   "memorize": {
     "title": "Memorización",

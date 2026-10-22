@@ -1027,11 +1027,11 @@
     "pill": "Premium",
     "subtitle": "Geh weiter auf deinem Weg mit Gott und unterstütze das Werk.",
     "widgetTitle": "Das Widget für den Startbildschirm",
-    "widgetText": "Dein Tagesbericht und deine Ziele, ohne die App zu öffnen.",
+    "widgetText": "Dein Tagesbericht und deine Ziele auf dem Startbildschirm, ohne die App zu öffnen.",
     "statsTitle": "Deine Ziele über das Jahr",
-    "statsText": "Die Jahresbilanz und die Entwicklung deiner Ziele, Woche für Woche.",
+    "statsText": "Deine Jahresbilanz und die Entwicklung deiner Ziele, Woche für Woche.",
     "supportTitle": "Du unterstützt das Werk",
-    "supportText": "Dein Abo hält die App für die ganze Gemeinschaft am Leben.",
+    "supportText": "Dein Abonnement hält die App und ihre Neuerungen für die ganze Gemeinschaft am Leben.",
     "annual": "Jährlich",
     "lifetime": "Lebenslang",
     "monthly": "Monatlich",
@@ -1060,9 +1060,9 @@
     "terms": "Nutzungsbedingungen",
     "privacy": "Datenschutz",
     "activeTitle": "Du hast Premium",
-    "activeText": "Danke, dass du CMFI Connect unterstützt! Das Widget und das Jahr deiner Bilanz sind offen.",
+    "activeText": "Danke, dass du CMFI Connect unterstützt! Widget, dein Jahr, deine Bilanz und die Lehren offline sind freigeschaltet.",
     "staffText": "Premium ist für dich kostenlos, weil du zum Team von CMFI Connect gehörst.",
-    "moreSubtitle": "Widget, Ziele über das Jahr",
+    "moreSubtitle": "Widget, dein Jahr, Lehren offline",
     "moreActive": "Aktiv",
     "unlock": "Mit Premium freischalten",
     "trialThen": "{trial}, danach {price}",
@@ -1077,7 +1077,13 @@
     "lifetimeNote": "Lebenslang: eine einzige Zahlung, kein Abo, keine Verlängerung.",
     "manage": "Mein Abo verwalten",
     "manageFailed": "Die Abo-Verwaltung öffnet sich nicht. Versuche es später noch einmal.",
-    "crown": "Premium-Mitglied"
+    "crown": "Premium-Mitglied",
+    "offlineTitle": "Lehren offline",
+    "offlineText": "Lade die Botschaften herunter und höre sie überall, auch ohne Verbindung.",
+    "yearTitle": "„Dein Jahr mit Gott“",
+    "yearText": "Die Geschichte deines Jahres: deine Treue, deine Gebetszeit, deine Höhepunkte – zum Behalten und Teilen.",
+    "freeForAll": "Die Bibel, das Gebet, die Rückzüge, der Bericht und die Lieder bleiben für alle kostenlos.",
+    "includes": "Mit Premium"
   },
   "homeWidget": {
     "title": "Heute",
@@ -2084,7 +2090,8 @@
     "speed": "Geschwindigkeit {speed}",
     "recordedOn": "Botschaft vom {date}",
     "moreSubtitle": "Predigten und Lehren zum Anhören",
-    "closePlayer": "Player schließen"
+    "closePlayer": "Player schließen",
+    "downloadPremium": "Mit Premium herunterladen"
   },
   "memorize": {
     "title": "Auswendiglernen",

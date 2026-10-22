@@ -7,6 +7,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import '../../../../core/i18n/strings.g.dart';
 import '../../../../core/network/app_exception_message.dart';
 import '../../../../core/services/media_images.dart';
+import '../../../../core/services/premium_store.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/theme/app_icons.dart';
 import '../../../../core/theme/app_spacing.dart';
@@ -200,8 +201,9 @@ class TeachingRow extends ConsumerWidget {
   }
 }
 
-/// Keeps [teaching] on the phone to listen without network; while it comes,
-/// the share downloaded (a tap stops it); once kept, a tap removes it.
+/// Keeps [teaching] on the phone to listen without network (Premium; without
+/// it, a tap opens the Premium page); while it comes, the share downloaded (a
+/// tap stops it); once kept, a tap removes it.
 class DownloadButton extends ConsumerWidget {
   const DownloadButton({required this.teaching, this.color, super.key});
 
@@ -215,6 +217,7 @@ class DownloadButton extends ConsumerWidget {
     final progress = downloads?.progress[teaching.id];
     final kept = downloads?.has(teaching.id) ?? false;
     final notifier = ref.read(teachingDownloadsProvider.notifier);
+    final premium = ref.watch(premiumProvider).value ?? false;
 
     Future<void> download() async {
       final toast = ref.read(toasterProvider).of(context);
@@ -247,6 +250,14 @@ class DownloadButton extends ConsumerWidget {
             color: color ?? AppColors.gold,
           ),
         ),
+      );
+    }
+    // kept before: still listened to, and removable
+    if (!kept && !premium) {
+      return IconButton(
+        tooltip: t.downloadPremium,
+        onPressed: () => context.router.push(const PremiumRoute()),
+        icon: Icon(AppIcons.downloadOffline, color: color),
       );
     }
     return IconButton(

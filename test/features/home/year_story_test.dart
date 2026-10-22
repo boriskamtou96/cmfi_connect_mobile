@@ -291,6 +291,7 @@ void main() {
       final app = await pumpApp(
         tester,
         token: 't',
+        premium: FakePremiumStore(active: true),
         reportDays: reportDays(prayer: prayer),
         prayerApi: FakePrayerApi()
           ..retreatList.addAll([
@@ -412,7 +413,11 @@ void main() {
     testWidgets('the year so far opens from Plus', (tester) async {
       final now = DateTime.now();
       final shown = latestStoryYear(now);
-      await pumpApp(tester, token: 't');
+      await pumpApp(
+        tester,
+        token: 't',
+        premium: FakePremiumStore(active: true),
+      );
       await openMore(tester);
 
       final row = find.text('Mon année avec Dieu');
@@ -434,6 +439,23 @@ void main() {
       expect(find.text('Ton année avec Dieu'), findsOneWidget);
     });
 
+    testWidgets('without Premium, the year opens the Premium page', (
+      tester,
+    ) async {
+      await pumpApp(tester, token: 't');
+      await openMore(tester);
+      final row = find.text('Mon année avec Dieu');
+      await tester.scrollUntilVisible(row, 200);
+      await tester.ensureVisible(row);
+      await tester.pumpAndSettle();
+
+      await tester.tap(row);
+      await tester.pumpAndSettle();
+      expect(find.text('Ton année avec Dieu'), findsNothing);
+      expect(find.text('« Ton année avec Dieu »'), findsOneWidget);
+      expect(find.text('Avec Premium'), findsOneWidget);
+    });
+
     testWidgets('the notification of 31 December is planned, and opens the '
         'year', (tester) async {
       final notifications = FakeLocalNotifications(
@@ -442,6 +464,7 @@ void main() {
       await pumpApp(
         tester,
         token: 't',
+        premium: FakePremiumStore(active: true),
         notifications: notifications,
         reportDays: reportDays(),
       );

@@ -28,10 +28,9 @@ import '../application/premium_plans.dart';
 const _onNight = Colors.white;
 const _onNightMuted = AppColors.onPrimaryMuted;
 
-/// The Premium subscription, on a starry night, on one screen (a little
-/// scroll at most on a small phone or with large text): Zoé in a golden
-/// light beside the name, what Premium opens in three lines, the plans two
-/// by two, what the stores ask to say, and the golden button fixed at the
+/// The Premium subscription, on a starry night: Zoé in a golden light
+/// beside the name, what Premium opens (one line each) and what stays free,
+/// the plans two by two, what the stores ask to say, and the golden button fixed at the
 /// bottom. A member who has Premium (or the team, who gets it with the role)
 /// sees it is on instead of the plans.
 @RoutePage()
@@ -121,10 +120,28 @@ class PremiumScreen extends HookConsumerWidget {
                           const SizedBox(height: AppSpacing.md),
                           FadeSlideIn(
                             index: 1,
-                            child: Row(
-                              crossAxisAlignment: CrossAxisAlignment.start,
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.stretch,
                               children: [
-                                for (final (i, (icon, title, text)) in [
+                                Text(
+                                  t.includes,
+                                  style: const TextStyle(
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w800,
+                                    color: _onNight,
+                                  ),
+                                ),
+                                for (final (icon, title, text) in [
+                                  (
+                                    AppIcons.offlineTile,
+                                    t.offlineTitle,
+                                    t.offlineText,
+                                  ),
+                                  (
+                                    AppIcons.yearStoryTile,
+                                    t.yearTitle,
+                                    t.yearText,
+                                  ),
                                   (
                                     AppIcons.homeWidgetTile,
                                     t.widgetTitle,
@@ -140,21 +157,41 @@ class PremiumScreen extends HookConsumerWidget {
                                     t.supportTitle,
                                     t.supportText,
                                   ),
-                                ].indexed) ...[
-                                  if (i > 0)
-                                    const SizedBox(width: AppSpacing.sm),
-                                  Expanded(
-                                    child: _Benefit(
-                                      icon: icon,
-                                      title: title,
-                                      text: text,
-                                    ),
+                                ]) ...[
+                                  const SizedBox(height: AppSpacing.md),
+                                  _Benefit(
+                                    icon: icon,
+                                    title: title,
+                                    text: text,
                                   ),
                                 ],
+                                const SizedBox(height: AppSpacing.md),
+                                // what stays free: what Premium is not
+                                Row(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    const Icon(
+                                      AppIcons.checkCircle,
+                                      size: 18,
+                                      color: _onNightMuted,
+                                    ),
+                                    const SizedBox(width: AppSpacing.sm),
+                                    Expanded(
+                                      child: Text(
+                                        t.freeForAll,
+                                        style: const TextStyle(
+                                          fontSize: 13,
+                                          height: 1.4,
+                                          color: _onNightMuted,
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
                               ],
                             ),
                           ),
-                          const SizedBox(height: AppSpacing.md),
+                          const SizedBox(height: AppSpacing.xl),
                           FadeSlideIn(
                             index: 4,
                             child: active
@@ -354,8 +391,8 @@ class _Hero extends StatelessWidget {
   }
 }
 
-/// What Premium opens, lit in gold: one of three side by side, its icon
-/// and its title (the sentence that explains it is read by screen readers).
+/// What Premium opens, lit in gold: its icon on a tile, its title and the
+/// sentence that says what it gives.
 class _Benefit extends StatelessWidget {
   const _Benefit({required this.icon, required this.title, required this.text});
 
@@ -365,31 +402,45 @@ class _Benefit extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Semantics(
-      label: '$title. $text',
-      excludeSemantics: true,
-      child: Column(
+    return MergeSemantics(
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Container(
-            width: 38,
-            height: 38,
+            width: 42,
+            height: 42,
             alignment: Alignment.center,
             decoration: BoxDecoration(
               color: Colors.white.withValues(alpha: 0.08),
               borderRadius: BorderRadius.circular(AppRadius.md),
               border: Border.all(color: AppColors.gold.withValues(alpha: 0.45)),
             ),
-            child: PhosphorIcon(icon, color: AppColors.goldLight, size: 21),
+            child: PhosphorIcon(icon, color: AppColors.goldLight, size: 22),
           ),
-          const SizedBox(height: 6),
-          Text(
-            title,
-            textAlign: TextAlign.center,
-            style: const TextStyle(
-              fontSize: 12.5,
-              height: 1.25,
-              fontWeight: FontWeight.w700,
-              color: _onNight,
+          const SizedBox(width: AppSpacing.md),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  title,
+                  style: const TextStyle(
+                    fontSize: 15,
+                    height: 1.3,
+                    fontWeight: FontWeight.w700,
+                    color: _onNight,
+                  ),
+                ),
+                const SizedBox(height: 2),
+                Text(
+                  text,
+                  style: const TextStyle(
+                    fontSize: 13.5,
+                    height: 1.4,
+                    color: _onNightMuted,
+                  ),
+                ),
+              ],
             ),
           ),
         ],

@@ -718,11 +718,11 @@ class _Translations$premium$zh extends Translations$premium$fr {
 	@override String get pill => 'Premium';
 	@override String get subtitle => '在与神同行的路上走得更远，并支持这份事工。';
 	@override String get widgetTitle => '主屏幕小组件';
-	@override String get widgetText => '无需打开应用，即可查看今天的报告和目标。';
+	@override String get widgetText => '无需打开应用，在主屏幕查看今日报告和目标。';
 	@override String get statsTitle => '全年的目标';
-	@override String get statsText => '年度总结和目标的进展，一周接一周。';
+	@override String get statsText => '你的年度回顾，以及目标逐周的变化。';
 	@override String get supportTitle => '你在支持这份事工';
-	@override String get supportText => '你的订阅让整个团契都能继续使用这个应用。';
+	@override String get supportText => '你的订阅让应用和新功能为整个团契持续运转。';
 	@override String get annual => '按年';
 	@override String get lifetime => '终身';
 	@override String get monthly => '按月';
@@ -749,9 +749,9 @@ class _Translations$premium$zh extends Translations$premium$fr {
 	@override String get terms => '使用条款';
 	@override String get privacy => '隐私';
 	@override String get activeTitle => '你已拥有 Premium';
-	@override String get activeText => '感谢你支持 CMFI Connect！小组件和年度总结已经开放。';
+	@override String get activeText => '感谢支持 CMFI Connect！小组件、你的一年、年度回顾和离线教导已开启。';
 	@override String get staffText => '你是 CMFI Connect 团队的成员，Premium 免费为你开放。';
-	@override String get moreSubtitle => '小组件、全年目标';
+	@override String get moreSubtitle => '小组件、你的一年、离线教导';
 	@override String get moreActive => '已开启';
 	@override String get unlock => '用 Premium 解锁';
 	@override String trialThen({required Object trial, required Object price}) => '${trial}，之后 ${price}';
@@ -767,6 +767,12 @@ class _Translations$premium$zh extends Translations$premium$fr {
 	@override String get manage => '管理我的订阅';
 	@override String get manageFailed => '无法打开订阅管理，请稍后再试。';
 	@override String get crown => '高级版会员';
+	@override String get offlineTitle => '离线收听教导';
+	@override String get offlineText => '下载信息，随时随地收听，即使没有网络。';
+	@override String get yearTitle => '“你与神同行的一年”';
+	@override String get yearText => '你一年的故事：你的忠心、祷告时间、精彩时刻，可保存也可分享。';
+	@override String get freeForAll => '圣经、祷告、退修、报告和诗歌对所有人始终免费。';
+	@override String get includes => 'Premium 包含';
 }
 
 // Path: homeWidget
@@ -1481,6 +1487,7 @@ class _Translations$teachings$zh extends Translations$teachings$fr {
 	@override String recordedOn({required Object date}) => '${date} 的信息';
 	@override String get moreSubtitle => '可收听的讲道与教导';
 	@override String get closePlayer => '关闭播放器';
+	@override String get downloadPremium => '使用 Premium 下载';
 }
 
 // Path: memorize
@@ -4007,11 +4014,11 @@ extension on TranslationsZh {
 			'premium.pill' => 'Premium',
 			'premium.subtitle' => '在与神同行的路上走得更远，并支持这份事工。',
 			'premium.widgetTitle' => '主屏幕小组件',
-			'premium.widgetText' => '无需打开应用，即可查看今天的报告和目标。',
+			'premium.widgetText' => '无需打开应用，在主屏幕查看今日报告和目标。',
 			'premium.statsTitle' => '全年的目标',
-			'premium.statsText' => '年度总结和目标的进展，一周接一周。',
+			'premium.statsText' => '你的年度回顾，以及目标逐周的变化。',
 			'premium.supportTitle' => '你在支持这份事工',
-			'premium.supportText' => '你的订阅让整个团契都能继续使用这个应用。',
+			'premium.supportText' => '你的订阅让应用和新功能为整个团契持续运转。',
 			'premium.annual' => '按年',
 			'premium.lifetime' => '终身',
 			'premium.monthly' => '按月',
@@ -4034,9 +4041,9 @@ extension on TranslationsZh {
 			'premium.terms' => '使用条款',
 			'premium.privacy' => '隐私',
 			'premium.activeTitle' => '你已拥有 Premium',
-			'premium.activeText' => '感谢你支持 CMFI Connect！小组件和年度总结已经开放。',
+			'premium.activeText' => '感谢支持 CMFI Connect！小组件、你的一年、年度回顾和离线教导已开启。',
 			'premium.staffText' => '你是 CMFI Connect 团队的成员，Premium 免费为你开放。',
-			'premium.moreSubtitle' => '小组件、全年目标',
+			'premium.moreSubtitle' => '小组件、你的一年、离线教导',
 			'premium.moreActive' => '已开启',
 			'premium.unlock' => '用 Premium 解锁',
 			'premium.trialThen' => ({required Object trial, required Object price}) => '${trial}，之后 ${price}',
@@ -4052,6 +4059,12 @@ extension on TranslationsZh {
 			'premium.manage' => '管理我的订阅',
 			'premium.manageFailed' => '无法打开订阅管理，请稍后再试。',
 			'premium.crown' => '高级版会员',
+			'premium.offlineTitle' => '离线收听教导',
+			'premium.offlineText' => '下载信息，随时随地收听，即使没有网络。',
+			'premium.yearTitle' => '“你与神同行的一年”',
+			'premium.yearText' => '你一年的故事：你的忠心、祷告时间、精彩时刻，可保存也可分享。',
+			'premium.freeForAll' => '圣经、祷告、退修、报告和诗歌对所有人始终免费。',
+			'premium.includes' => 'Premium 包含',
 			'homeWidget.title' => '今天',
 			'homeWidget.done' => '已完成',
 			'homeWidget.todo' => '待填写',
@@ -4200,14 +4213,14 @@ extension on TranslationsZh {
 			'prayer.retreat.hours.evening' => '下午晚些时候',
 			'prayer.retreat.hours.night' => '睡前',
 			'prayer.retreat.reminderAt' => ({required Object time}) => '${time} 提醒',
+			_ => null,
+		} ?? switch (path) {
 			'prayer.retreat.intro' => '15 个要点，每个一分钟。轻柔的提示音会带你进入下一个要点。',
 			'prayer.retreat.done' => '今天已完成',
 			'prayer.retreat.start' => '开始 · 15 分钟',
 			'prayer.retreat.selfPaced' => '按自己的节奏阅读，不计时',
 			'prayer.retreat.hints.assembly' => ({required Object name}) => '你的聚会点：${name}',
 			'prayer.retreat.hints.assemblyMissing' => '在个人资料中添加你的聚会点',
-			_ => null,
-		} ?? switch (path) {
 			'prayer.retreat.hints.authorities' => ({required Object names}) => '你的带领者：${names}',
 			'prayer.retreat.hints.authoritiesMissing' => '在「更多」中添加你的属灵带领者',
 			'prayer.retreat.hints.list' => ({required Object list}) => '我的名单 · ${list}',
@@ -4714,14 +4727,14 @@ extension on TranslationsZh {
 			'biblePlan.reminder' => '每日提醒',
 			'biblePlan.reminderAt' => '提醒时间',
 			'biblePlan.summary' => ({required Object days, required Object chapters, required Object perDay}) => '${days} 天读 ${chapters} 章，每天约 ${perDay} 章',
+			_ => null,
+		} ?? switch (path) {
 			'biblePlan.chapterCount' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n, other: '${n} 章', ), 
 			'biblePlan.inDays' => ({required Object days}) => '${days}读完',
 			'biblePlan.perDayAbout' => ({required Object perDay}) => '每天约 ${perDay} 章',
 			'biblePlan.endsOn' => ({required Object date}) => '${date} 结束',
 			'biblePlan.startsOn' => ({required Object date}) => '计划将于 ${date} 开始。',
 			'biblePlan.start' => '开始计划',
-			_ => null,
-		} ?? switch (path) {
 			'biblePlan.dayOf' => ({required Object day, required Object total}) => '第 ${day} 天，共 ${total} 天',
 			'biblePlan.today' => '今日读经',
 			'biblePlan.todayDone' => '今日读经已完成，真棒！',
@@ -4768,6 +4781,7 @@ extension on TranslationsZh {
 			'teachings.recordedOn' => ({required Object date}) => '${date} 的信息',
 			'teachings.moreSubtitle' => '可收听的讲道与教导',
 			'teachings.closePlayer' => '关闭播放器',
+			'teachings.downloadPremium' => '使用 Premium 下载',
 			'memorize.title' => '背经',
 			'memorize.subtitle' => '将神的话藏在心里',
 			'memorize.toReview' => '待复习',

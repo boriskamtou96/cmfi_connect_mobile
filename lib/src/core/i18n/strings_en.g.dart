@@ -737,11 +737,11 @@ class _Translations$premium$en extends Translations$premium$fr {
 	@override String get pill => 'Premium';
 	@override String get subtitle => 'Go further in your walk with God, and support the work.';
 	@override String get widgetTitle => 'The home-screen widget';
-	@override String get widgetText => 'Today\'s report and your goals, without opening the app.';
+	@override String get widgetText => 'Today\'s report and your goals on your home screen, without opening the app.';
 	@override String get statsTitle => 'Your goals over the year';
-	@override String get statsText => 'The year summary and how your goals progress, week after week.';
+	@override String get statsText => 'Your year in review and how your goals grow, week after week.';
 	@override String get supportTitle => 'You support the work';
-	@override String get supportText => 'Your subscription keeps the app going for the whole community.';
+	@override String get supportText => 'Your subscription keeps the app and its new features alive for the whole community.';
 	@override String get annual => 'Yearly';
 	@override String get lifetime => 'Lifetime';
 	@override String get monthly => 'Monthly';
@@ -770,9 +770,9 @@ class _Translations$premium$en extends Translations$premium$fr {
 	@override String get terms => 'Terms of use';
 	@override String get privacy => 'Privacy';
 	@override String get activeTitle => 'You have Premium';
-	@override String get activeText => 'Thank you for supporting CMFI Connect! The widget and the year of your summary are open.';
+	@override String get activeText => 'Thank you for supporting CMFI Connect! The widget, your year, your review and offline teachings are open.';
 	@override String get staffText => 'Premium is offered to you as a member of the CMFI Connect team.';
-	@override String get moreSubtitle => 'Widget, goals over the year';
+	@override String get moreSubtitle => 'Widget, your year, teachings offline';
 	@override String get moreActive => 'Active';
 	@override String get unlock => 'Unlock with Premium';
 	@override String trialThen({required Object trial, required Object price}) => '${trial}, then ${price}';
@@ -788,6 +788,12 @@ class _Translations$premium$en extends Translations$premium$fr {
 	@override String get manage => 'Manage my subscription';
 	@override String get manageFailed => 'Subscription management won\'t open. Try again later.';
 	@override String get crown => 'Premium member';
+	@override String get offlineTitle => 'Teachings offline';
+	@override String get offlineText => 'Download the messages and listen anywhere, even without a connection.';
+	@override String get yearTitle => '“Your year with God”';
+	@override String get yearText => 'The story of your year: your faithfulness, your prayer time, your highlights, to keep and share.';
+	@override String get freeForAll => 'The Bible, prayer, retreats, the report and the hymns stay free for everyone.';
+	@override String get includes => 'With Premium';
 }
 
 // Path: homeWidget
@@ -1545,6 +1551,7 @@ class _Translations$teachings$en extends Translations$teachings$fr {
 	@override String recordedOn({required Object date}) => 'Message of ${date}';
 	@override String get moreSubtitle => 'Sermons and teachings to listen to';
 	@override String get closePlayer => 'Close the player';
+	@override String get downloadPremium => 'Download with Premium';
 }
 
 // Path: memorize
@@ -4092,11 +4099,11 @@ extension on TranslationsEn {
 			'premium.pill' => 'Premium',
 			'premium.subtitle' => 'Go further in your walk with God, and support the work.',
 			'premium.widgetTitle' => 'The home-screen widget',
-			'premium.widgetText' => 'Today\'s report and your goals, without opening the app.',
+			'premium.widgetText' => 'Today\'s report and your goals on your home screen, without opening the app.',
 			'premium.statsTitle' => 'Your goals over the year',
-			'premium.statsText' => 'The year summary and how your goals progress, week after week.',
+			'premium.statsText' => 'Your year in review and how your goals grow, week after week.',
 			'premium.supportTitle' => 'You support the work',
-			'premium.supportText' => 'Your subscription keeps the app going for the whole community.',
+			'premium.supportText' => 'Your subscription keeps the app and its new features alive for the whole community.',
 			'premium.annual' => 'Yearly',
 			'premium.lifetime' => 'Lifetime',
 			'premium.monthly' => 'Monthly',
@@ -4119,9 +4126,9 @@ extension on TranslationsEn {
 			'premium.terms' => 'Terms of use',
 			'premium.privacy' => 'Privacy',
 			'premium.activeTitle' => 'You have Premium',
-			'premium.activeText' => 'Thank you for supporting CMFI Connect! The widget and the year of your summary are open.',
+			'premium.activeText' => 'Thank you for supporting CMFI Connect! The widget, your year, your review and offline teachings are open.',
 			'premium.staffText' => 'Premium is offered to you as a member of the CMFI Connect team.',
-			'premium.moreSubtitle' => 'Widget, goals over the year',
+			'premium.moreSubtitle' => 'Widget, your year, teachings offline',
 			'premium.moreActive' => 'Active',
 			'premium.unlock' => 'Unlock with Premium',
 			'premium.trialThen' => ({required Object trial, required Object price}) => '${trial}, then ${price}',
@@ -4137,6 +4144,12 @@ extension on TranslationsEn {
 			'premium.manage' => 'Manage my subscription',
 			'premium.manageFailed' => 'Subscription management won\'t open. Try again later.',
 			'premium.crown' => 'Premium member',
+			'premium.offlineTitle' => 'Teachings offline',
+			'premium.offlineText' => 'Download the messages and listen anywhere, even without a connection.',
+			'premium.yearTitle' => '“Your year with God”',
+			'premium.yearText' => 'The story of your year: your faithfulness, your prayer time, your highlights, to keep and share.',
+			'premium.freeForAll' => 'The Bible, prayer, retreats, the report and the hymns stay free for everyone.',
+			'premium.includes' => 'With Premium',
 			'homeWidget.title' => 'Today',
 			'homeWidget.done' => 'Done',
 			'homeWidget.todo' => 'To fill in',
@@ -4285,14 +4298,14 @@ extension on TranslationsEn {
 			'prayer.retreat.hours.evening' => 'Late afternoon',
 			'prayer.retreat.hours.night' => 'Before you sleep',
 			'prayer.retreat.reminderAt' => ({required Object time}) => 'reminder at ${time}',
+			_ => null,
+		} ?? switch (path) {
 			'prayer.retreat.intro' => '15 points, one minute each. A soft sound moves you to the next one.',
 			'prayer.retreat.done' => 'Done today',
 			'prayer.retreat.start' => 'Start · 15 min',
 			'prayer.retreat.selfPaced' => 'Read at my own pace, no timer',
 			'prayer.retreat.hints.assembly' => ({required Object name}) => 'Your assembly: ${name}',
 			'prayer.retreat.hints.assemblyMissing' => 'Add your assembly to your profile',
-			_ => null,
-		} ?? switch (path) {
 			'prayer.retreat.hints.authorities' => ({required Object names}) => 'Your authorities: ${names}',
 			'prayer.retreat.hints.authoritiesMissing' => 'Add your spiritual authorities in More',
 			'prayer.retreat.hints.list' => ({required Object list}) => 'My lists · ${list}',
@@ -4799,14 +4812,14 @@ extension on TranslationsEn {
 			'biblePlan.reminder' => 'Daily reminder',
 			'biblePlan.reminderAt' => 'Reminder time',
 			'biblePlan.summary' => ({required Object chapters, required Object days, required Object perDay}) => '${chapters} chapters in ${days} days, about ${perDay} a day',
+			_ => null,
+		} ?? switch (path) {
 			'biblePlan.chapterCount' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n, one: '${n} chapter', other: '${n} chapters', ), 
 			'biblePlan.inDays' => ({required Object days}) => 'in ${days}',
 			'biblePlan.perDayAbout' => ({required Object perDay}) => 'about ${perDay} a day',
 			'biblePlan.endsOn' => ({required Object date}) => 'Ends on ${date}',
 			'biblePlan.startsOn' => ({required Object date}) => 'The plan starts on ${date}.',
 			'biblePlan.start' => 'Start the plan',
-			_ => null,
-		} ?? switch (path) {
 			'biblePlan.dayOf' => ({required Object day, required Object total}) => 'Day ${day} of ${total}',
 			'biblePlan.today' => 'Today\'s reading',
 			'biblePlan.todayDone' => 'Today\'s reading is done. Well done!',
@@ -4853,6 +4866,7 @@ extension on TranslationsEn {
 			'teachings.recordedOn' => ({required Object date}) => 'Message of ${date}',
 			'teachings.moreSubtitle' => 'Sermons and teachings to listen to',
 			'teachings.closePlayer' => 'Close the player',
+			'teachings.downloadPremium' => 'Download with Premium',
 			'memorize.title' => 'Memorization',
 			'memorize.subtitle' => 'Hide the Word in your heart',
 			'memorize.toReview' => 'To review',

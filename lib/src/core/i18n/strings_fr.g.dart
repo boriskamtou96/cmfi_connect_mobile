@@ -245,6 +245,9 @@ class Translations$errors$fr {
 
 	/// fr: 'Le nombre de personnes d'une inscription payée ne change plus.'
 	String get peoplePaid => 'Le nombre de personnes d\'une inscription payée ne change plus.';
+
+	/// fr: 'Le paiement par carte n'est pas disponible pour le moment.'
+	String get cardsDisabled => 'Le paiement par carte n\'est pas disponible pour le moment.';
 }
 
 // Path: validation
@@ -5492,6 +5495,30 @@ class Translations$events$pay$fr {
 
 	/// fr: 'payé'
 	String get paidShort => 'payé';
+
+	/// fr: 'Comment veux-tu payer ?'
+	String get how => 'Comment veux-tu payer ?';
+
+	/// fr: 'Mobile Money'
+	String get methodMobile => 'Mobile Money';
+
+	/// fr: 'Carte bancaire'
+	String get methodCard => 'Carte bancaire';
+
+	/// fr: 'Tu paies sur la page sécurisée de KPay (Visa, Mastercard). La carte est débitée en dollars, après conversion.'
+	String get cardNote => 'Tu paies sur la page sécurisée de KPay (Visa, Mastercard). La carte est débitée en dollars, après conversion.';
+
+	/// fr: 'Payer {amount} par carte'
+	String payCard({required Object amount}) => 'Payer ${amount} par carte';
+
+	/// fr: 'Termine le paiement sur la page sécurisée'
+	String get waitingCardTitle => 'Termine le paiement sur la page sécurisée';
+
+	/// fr: 'Saisis ta carte sur la page KPay. Ton inscription se confirme ici dès que le paiement est reçu.'
+	String get waitingCardText => 'Saisis ta carte sur la page KPay. Ton inscription se confirme ici dès que le paiement est reçu.';
+
+	/// fr: 'Rouvrir la page de paiement'
+	String get reopen => 'Rouvrir la page de paiement';
 }
 
 // Path: ministry.goals
@@ -6703,6 +6730,7 @@ extension on Translations {
 			'errors.paidRegistration' => 'Inscription payée : contacte les organisateurs pour l\'annuler.',
 			'errors.eventHasPayments' => 'Des membres ont payé : rembourse d\'abord leurs paiements depuis le site d\'administration.',
 			'errors.peoplePaid' => 'Le nombre de personnes d\'une inscription payée ne change plus.',
+			'errors.cardsDisabled' => 'Le paiement par carte n\'est pas disponible pour le moment.',
 			'validation.required' => 'Ce champ est obligatoire',
 			'validation.passwordTooShort' => 'Au moins 6 caractères',
 			'validation.invalidPhone' => 'Numéro de téléphone invalide',
@@ -7170,9 +7198,9 @@ extension on Translations {
 			'members.usernameInvalid' => '3 à 30 caractères : lettres, chiffres, « . » et « _ », sans commencer ni finir par un signe.',
 			'members.usernameReserved' => 'Ce pseudo est réservé.',
 			'members.usernameSaved' => ({required Object username}) => 'Pseudo enregistré : @${username}',
-			'members.deleteAccount.button' => 'Supprimer mon compte',
 			_ => null,
 		} ?? switch (path) {
+			'members.deleteAccount.button' => 'Supprimer mon compte',
 			'members.deleteAccount.title' => 'Supprimer mon compte',
 			'members.deleteAccount.intro' => 'C\'est définitif. Ton compte et tout ce qui y est lié seront effacés :',
 			'members.deleteAccount.itemProfile' => 'ton profil, ta photo, ton pseudo et ton mot de passe',
@@ -7472,6 +7500,14 @@ extension on Translations {
 			'events.pay.unavailable' => 'Le paiement mobile money n\'est pas encore disponible : inscris-toi, tu pourras payer plus tard.',
 			'events.pay.laterDone' => ({required Object amount}) => 'Tu es inscrit ! Pense à payer ${amount} avant l\'évènement.',
 			'events.pay.paidShort' => 'payé',
+			'events.pay.how' => 'Comment veux-tu payer ?',
+			'events.pay.methodMobile' => 'Mobile Money',
+			'events.pay.methodCard' => 'Carte bancaire',
+			'events.pay.cardNote' => 'Tu paies sur la page sécurisée de KPay (Visa, Mastercard). La carte est débitée en dollars, après conversion.',
+			'events.pay.payCard' => ({required Object amount}) => 'Payer ${amount} par carte',
+			'events.pay.waitingCardTitle' => 'Termine le paiement sur la page sécurisée',
+			'events.pay.waitingCardText' => 'Saisis ta carte sur la page KPay. Ton inscription se confirme ici dès que le paiement est reçu.',
+			'events.pay.reopen' => 'Rouvrir la page de paiement',
 			'notifications.title' => 'Notifications',
 			'notifications.channel' => 'Annonces de la communauté',
 			'notifications.empty' => 'Aucune notification pour l\'instant',
@@ -7676,6 +7712,8 @@ extension on Translations {
 			'prayer.together' => 'Prier ensemble',
 			'prayer.reminders.title' => 'Rappels des retraites',
 			'prayer.reminders.intro' => 'Un rappel à l\'heure de chaque retraite, seulement si elle n\'est pas encore faite.',
+			_ => null,
+		} ?? switch (path) {
 			'prayer.reminders.off' => 'Désactivé',
 			'prayer.reminders.channel' => 'Retraites de prière',
 			'prayer.reminders.body' => '15 minutes avec le Seigneur.',
@@ -7685,8 +7723,6 @@ extension on Translations {
 			'prayer.retreat.hours.evening' => 'En fin d\'après-midi',
 			'prayer.retreat.hours.night' => 'Avant de dormir',
 			'prayer.retreat.reminderAt' => ({required Object time}) => 'rappel à ${time}',
-			_ => null,
-		} ?? switch (path) {
 			'prayer.retreat.intro' => '15 points, une minute chacun. Un son doux te fait passer au suivant.',
 			'prayer.retreat.done' => 'Faite aujourd\'hui',
 			'prayer.retreat.start' => 'Commencer · 15 min',
@@ -8190,6 +8226,8 @@ extension on Translations {
 			'biblePlan.scopes.newTestament' => 'Le Nouveau Testament',
 			'biblePlan.scopes.oldTestament' => 'L\'Ancien Testament',
 			'biblePlan.scopes.psalmsProverbs' => 'Psaumes et Proverbes',
+			_ => null,
+		} ?? switch (path) {
 			'biblePlan.chaptersShort' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('fr'))(n, one: '${n} ch.', other: '${n} ch.', ), 
 			'biblePlan.oldTestament' => 'Ancien Testament',
 			'biblePlan.newTestament' => 'Nouveau Testament',
@@ -8199,8 +8237,6 @@ extension on Translations {
 			'biblePlan.reminder' => 'Rappel chaque jour',
 			'biblePlan.reminderAt' => 'Heure du rappel',
 			'biblePlan.summary' => ({required Object chapters, required Object days, required Object perDay}) => '${chapters} chapitres en ${days} jours, environ ${perDay} par jour',
-			_ => null,
-		} ?? switch (path) {
 			'biblePlan.chapterCount' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('fr'))(n, one: '${n} chapitre', other: '${n} chapitres', ), 
 			'biblePlan.inDays' => ({required Object days}) => 'en ${days}',
 			'biblePlan.perDayAbout' => ({required Object perDay}) => 'environ ${perDay} par jour',

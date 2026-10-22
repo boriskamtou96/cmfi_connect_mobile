@@ -15,6 +15,7 @@ class OperatorLogo extends StatelessWidget {
   Widget build(BuildContext context) {
     final logo = operatorLogo(provider);
     final scheme = Theme.of(context).colorScheme;
+    final icon = provider == cardProvider ? AppIcons.card : AppIcons.phone;
     return ClipRRect(
       borderRadius: BorderRadius.circular(size * 0.24),
       child: SizedBox.square(
@@ -23,7 +24,7 @@ class OperatorLogo extends StatelessWidget {
             ? ColoredBox(
                 color: scheme.surfaceContainerHighest,
                 child: Icon(
-                  AppIcons.phone,
+                  icon,
                   size: size * 0.55,
                   color: scheme.onSurfaceVariant,
                 ),

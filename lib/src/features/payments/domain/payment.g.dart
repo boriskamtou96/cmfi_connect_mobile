@@ -25,6 +25,7 @@ _Payment _$PaymentFromJson(Map<String, dynamic> json) => _Payment(
   createdAt: json['created_at'] == null
       ? null
       : DateTime.parse(json['created_at'] as String),
+  gatewayUrl: json['gateway_url'] as String? ?? '',
 );
 
 Map<String, dynamic> _$PaymentToJson(_Payment instance) => <String, dynamic>{
@@ -38,6 +39,7 @@ Map<String, dynamic> _$PaymentToJson(_Payment instance) => <String, dynamic>{
   'event_id': ?instance.eventId,
   'people': instance.people,
   'created_at': ?instance.createdAt?.toIso8601String(),
+  'gateway_url': instance.gatewayUrl,
 };
 
 const _$PaymentStatusEnumMap = {
@@ -47,6 +49,24 @@ const _$PaymentStatusEnumMap = {
   PaymentStatus.refunding: 'refunding',
   PaymentStatus.refunded: 'refunded',
 };
+
+_PaymentOptions _$PaymentOptionsFromJson(Map<String, dynamic> json) =>
+    _PaymentOptions(
+      countries:
+          (json['countries'] as List<dynamic>?)
+              ?.map(
+                (e) => MobileMoneyCountry.fromJson(e as Map<String, dynamic>),
+              )
+              .toList() ??
+          const <MobileMoneyCountry>[],
+      cards: json['cards'] as bool? ?? false,
+    );
+
+Map<String, dynamic> _$PaymentOptionsToJson(_PaymentOptions instance) =>
+    <String, dynamic>{
+      'countries': instance.countries.map((e) => e.toJson()).toList(),
+      'cards': instance.cards,
+    };
 
 _MobileMoneyOperator _$MobileMoneyOperatorFromJson(Map<String, dynamic> json) =>
     _MobileMoneyOperator(

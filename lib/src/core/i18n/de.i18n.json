@@ -47,7 +47,8 @@
     "paymentRequired": "Diese Veranstaltung ist kostenpflichtig: bezahle deine Anmeldung per Mobile Money.",
     "paidRegistration": "Bezahlte Anmeldung: wende dich zum Stornieren an die Veranstalter.",
     "eventHasPayments": "Mitglieder haben bezahlt: erstatte zuerst ihre Zahlungen auf der Admin-Seite.",
-    "peoplePaid": "Die Personenzahl einer bezahlten Anmeldung lässt sich nicht mehr ändern."
+    "peoplePaid": "Die Personenzahl einer bezahlten Anmeldung lässt sich nicht mehr ändern.",
+    "cardsDisabled": "Kartenzahlung ist derzeit nicht verfügbar."
   },
   "validation": {
     "required": "Dieses Feld ist erforderlich",
@@ -1001,7 +1002,15 @@
       "payNow": "Bezahlen",
       "unavailable": "Die Mobile-Money-Zahlung ist noch nicht verfügbar: melde dich an, du kannst später bezahlen.",
       "laterDone": "Du bist angemeldet! Denk daran, {amount} vor der Veranstaltung zu bezahlen.",
-      "paidShort": "bezahlt"
+      "paidShort": "bezahlt",
+      "how": "Wie möchtest du bezahlen?",
+      "methodMobile": "Mobile Money",
+      "methodCard": "Bankkarte",
+      "cardNote": "Du bezahlst auf der sicheren KPay-Seite (Visa, Mastercard). Die Karte wird nach Umrechnung in Dollar belastet.",
+      "payCard": "{amount} mit Karte bezahlen",
+      "waitingCardTitle": "Schließe die Zahlung auf der sicheren Seite ab",
+      "waitingCardText": "Gib deine Karte auf der KPay-Seite ein. Deine Anmeldung wird hier bestätigt, sobald die Zahlung eingeht.",
+      "reopen": "Zahlungsseite erneut öffnen"
     }
   },
   "notifications": {

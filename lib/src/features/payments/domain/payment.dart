@@ -29,10 +29,44 @@ abstract class Payment with _$Payment {
     int? eventId,
     @Default(1) int people,
     DateTime? createdAt,
+
+    /// A card: KPay's page to open, given when the payment starts.
+    @Default('') String gatewayUrl,
   }) = _Payment;
+
+  const Payment._();
+
+  /// Paid by card on KPay's page (not a phone).
+  bool get byCard => provider == cardProvider;
 
   factory Payment.fromJson(Map<String, dynamic> json) =>
       _$PaymentFromJson(json);
+}
+
+/// The provider written on a payment by card.
+const cardProvider = 'CARD';
+
+/// How one pays: mobile money (a number and a PIN) or a card (KPay's page).
+enum PaymentMethod {
+  mobileMoney('mobile_money'),
+  card('card');
+
+  const PaymentMethod(this.code);
+
+  /// As the API writes it.
+  final String code;
+}
+
+/// What the server offers: the mobile money operators by country, and cards.
+@freezed
+abstract class PaymentOptions with _$PaymentOptions {
+  const factory PaymentOptions({
+    @Default(<MobileMoneyCountry>[]) List<MobileMoneyCountry> countries,
+    @Default(false) bool cards,
+  }) = _PaymentOptions;
+
+  factory PaymentOptions.fromJson(Map<String, dynamic> json) =>
+      _$PaymentOptionsFromJson(json);
 }
 
 /// A mobile money operator that takes payments in a currency.

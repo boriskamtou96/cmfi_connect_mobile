@@ -47,7 +47,8 @@
     "paymentRequired": "This event is paid: pay your registration by mobile money.",
     "paidRegistration": "Paid registration: contact the organizers to cancel it.",
     "eventHasPayments": "Members have paid: refund their payments first from the admin site.",
-    "peoplePaid": "The number of people of a paid registration can no longer change."
+    "peoplePaid": "The number of people of a paid registration can no longer change.",
+    "cardsDisabled": "Card payment is not available right now."
   },
   "validation": {
     "required": "This field is required",
@@ -1002,7 +1003,15 @@
       "payNow": "Pay",
       "unavailable": "Mobile money payment is not available yet: register now, you can pay later.",
       "laterDone": "You are registered! Remember to pay {amount} before the event.",
-      "paidShort": "paid"
+      "paidShort": "paid",
+      "how": "How do you want to pay?",
+      "methodMobile": "Mobile Money",
+      "methodCard": "Bank card",
+      "cardNote": "You pay on KPay's secure page (Visa, Mastercard). The card is charged in dollars, after conversion.",
+      "payCard": "Pay {amount} by card",
+      "waitingCardTitle": "Finish the payment on the secure page",
+      "waitingCardText": "Enter your card on the KPay page. Your registration is confirmed here as soon as the payment arrives.",
+      "reopen": "Reopen the payment page"
     }
   },
   "notifications": {

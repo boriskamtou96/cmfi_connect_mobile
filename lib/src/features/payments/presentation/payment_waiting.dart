@@ -5,6 +5,7 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../core/i18n/strings.g.dart';
+import '../../../core/services/link_launcher.dart';
 import '../../../core/theme/app_icons.dart';
 import '../../../core/theme/app_spacing.dart';
 import '../../../core/widgets/app_button.dart';
@@ -121,7 +122,11 @@ class PaymentWaiting extends HookConsumerWidget {
           Semantics(
             liveRegion: true,
             child: Text(
-              failed ? t.failedTitle : t.waitingTitle,
+              failed
+                  ? t.failedTitle
+                  : payment.byCard
+                  ? t.waitingCardTitle
+                  : t.waitingTitle,
               textAlign: TextAlign.center,
               style: Theme.of(context).textTheme.titleLarge,
             ),
@@ -132,6 +137,8 @@ class PaymentWaiting extends HookConsumerWidget {
                 ? paymentFailureMessage(current.value.failureCode, context.t)
                 : slow.value
                 ? t.waitingSlow
+                : payment.byCard
+                ? t.waitingCardText
                 : t.waitingText(amount: amount),
             textAlign: TextAlign.center,
             style: TextStyle(
@@ -143,6 +150,13 @@ class PaymentWaiting extends HookConsumerWidget {
           const SizedBox(height: AppSpacing.xl),
           if (failed)
             AppButton(label: t.retry, onPressed: onRetry)
+          else if (payment.gatewayUrl.isNotEmpty)
+            OutlinedButton(
+              onPressed: () => ref
+                  .read(linkLauncherProvider)
+                  .openInApp(Uri.parse(payment.gatewayUrl)),
+              child: Text(t.reopen),
+            )
           else if (slow.value)
             OutlinedButton(
               onPressed: () => Navigator.of(context).pop(),

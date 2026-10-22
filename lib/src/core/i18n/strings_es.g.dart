@@ -155,6 +155,7 @@ class _Translations$errors$es extends Translations$errors$fr {
 	@override String get paidRegistration => 'Inscripción pagada: contacta con los organizadores para anularla.';
 	@override String get eventHasPayments => 'Hay miembros que pagaron: primero reembolsa sus pagos desde el sitio de administración.';
 	@override String get peoplePaid => 'El número de personas de una inscripción pagada ya no puede cambiar.';
+	@override String get cardsDisabled => 'El pago con tarjeta no está disponible por ahora.';
 }
 
 // Path: validation
@@ -2583,6 +2584,14 @@ class _Translations$events$pay$es extends Translations$events$pay$fr {
 	@override String get unavailable => 'El pago con dinero móvil aún no está disponible: inscríbete, podrás pagar más tarde.';
 	@override String laterDone({required Object amount}) => '¡Estás inscrito! Recuerda pagar ${amount} antes del evento.';
 	@override String get paidShort => 'pagado';
+	@override String get how => '¿Cómo quieres pagar?';
+	@override String get methodMobile => 'Dinero móvil';
+	@override String get methodCard => 'Tarjeta bancaria';
+	@override String get cardNote => 'Pagas en la página segura de KPay (Visa, Mastercard). La tarjeta se cobra en dólares, tras la conversión.';
+	@override String payCard({required Object amount}) => 'Pagar ${amount} con tarjeta';
+	@override String get waitingCardTitle => 'Termina el pago en la página segura';
+	@override String get waitingCardText => 'Introduce tu tarjeta en la página de KPay. Tu inscripción se confirma aquí en cuanto llega el pago.';
+	@override String get reopen => 'Volver a abrir la página de pago';
 }
 
 // Path: ministry.goals
@@ -3315,6 +3324,7 @@ extension on TranslationsEs {
 			'errors.paidRegistration' => 'Inscripción pagada: contacta con los organizadores para anularla.',
 			'errors.eventHasPayments' => 'Hay miembros que pagaron: primero reembolsa sus pagos desde el sitio de administración.',
 			'errors.peoplePaid' => 'El número de personas de una inscripción pagada ya no puede cambiar.',
+			'errors.cardsDisabled' => 'El pago con tarjeta no está disponible por ahora.',
 			'validation.required' => 'Este campo es obligatorio',
 			'validation.passwordTooShort' => 'Al menos 6 caracteres',
 			'validation.invalidPhone' => 'Número de teléfono no válido',
@@ -3782,9 +3792,9 @@ extension on TranslationsEs {
 			'members.usernameInvalid' => 'De 3 a 30 caracteres: letras, números, «.» y «_», sin empezar ni terminar con un signo.',
 			'members.usernameReserved' => 'Este nombre de usuario está reservado.',
 			'members.usernameSaved' => ({required Object username}) => 'Nombre de usuario guardado: @${username}',
-			'members.deleteAccount.button' => 'Eliminar mi cuenta',
 			_ => null,
 		} ?? switch (path) {
+			'members.deleteAccount.button' => 'Eliminar mi cuenta',
 			'members.deleteAccount.title' => 'Eliminar mi cuenta',
 			'members.deleteAccount.intro' => 'Es definitivo. Tu cuenta y todo lo relacionado con ella se borrará:',
 			'members.deleteAccount.itemProfile' => 'tu perfil, tu foto, tu nombre de usuario y tu contraseña',
@@ -4084,6 +4094,14 @@ extension on TranslationsEs {
 			'events.pay.unavailable' => 'El pago con dinero móvil aún no está disponible: inscríbete, podrás pagar más tarde.',
 			'events.pay.laterDone' => ({required Object amount}) => '¡Estás inscrito! Recuerda pagar ${amount} antes del evento.',
 			'events.pay.paidShort' => 'pagado',
+			'events.pay.how' => '¿Cómo quieres pagar?',
+			'events.pay.methodMobile' => 'Dinero móvil',
+			'events.pay.methodCard' => 'Tarjeta bancaria',
+			'events.pay.cardNote' => 'Pagas en la página segura de KPay (Visa, Mastercard). La tarjeta se cobra en dólares, tras la conversión.',
+			'events.pay.payCard' => ({required Object amount}) => 'Pagar ${amount} con tarjeta',
+			'events.pay.waitingCardTitle' => 'Termina el pago en la página segura',
+			'events.pay.waitingCardText' => 'Introduce tu tarjeta en la página de KPay. Tu inscripción se confirma aquí en cuanto llega el pago.',
+			'events.pay.reopen' => 'Volver a abrir la página de pago',
 			'notifications.title' => 'Notificaciones',
 			'notifications.channel' => 'Anuncios de la comunidad',
 			'notifications.empty' => 'Aún no hay notificaciones',
@@ -4288,6 +4306,8 @@ extension on TranslationsEs {
 			'prayer.together' => 'Orar juntos',
 			'prayer.reminders.title' => 'Recordatorios de los retiros',
 			'prayer.reminders.intro' => 'Un recordatorio a la hora de cada retiro, solo si aún no lo has hecho.',
+			_ => null,
+		} ?? switch (path) {
 			'prayer.reminders.off' => 'Desactivado',
 			'prayer.reminders.channel' => 'Retiros de oración',
 			'prayer.reminders.body' => '15 minutos con el Señor.',
@@ -4297,8 +4317,6 @@ extension on TranslationsEs {
 			'prayer.retreat.hours.evening' => 'Al final de la tarde',
 			'prayer.retreat.hours.night' => 'Antes de dormir',
 			'prayer.retreat.reminderAt' => ({required Object time}) => 'recordatorio a las ${time}',
-			_ => null,
-		} ?? switch (path) {
 			'prayer.retreat.intro' => '15 puntos, un minuto cada uno. Un sonido suave te lleva al siguiente.',
 			'prayer.retreat.done' => 'Hecho hoy',
 			'prayer.retreat.start' => 'Empezar · 15 min',
@@ -4802,6 +4820,8 @@ extension on TranslationsEs {
 			'biblePlan.scopes.newTestament' => 'El Nuevo Testamento',
 			'biblePlan.scopes.oldTestament' => 'El Antiguo Testamento',
 			'biblePlan.scopes.psalmsProverbs' => 'Salmos y Proverbios',
+			_ => null,
+		} ?? switch (path) {
 			'biblePlan.chaptersShort' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('es'))(n, one: '${n} cap.', other: '${n} cap.', ), 
 			'biblePlan.oldTestament' => 'Antiguo Testamento',
 			'biblePlan.newTestament' => 'Nuevo Testamento',
@@ -4811,8 +4831,6 @@ extension on TranslationsEs {
 			'biblePlan.reminder' => 'Recordatorio diario',
 			'biblePlan.reminderAt' => 'Hora del recordatorio',
 			'biblePlan.summary' => ({required Object chapters, required Object days, required Object perDay}) => '${chapters} capítulos en ${days} días, unos ${perDay} al día',
-			_ => null,
-		} ?? switch (path) {
 			'biblePlan.chapterCount' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('es'))(n, one: '${n} capítulo', other: '${n} capítulos', ), 
 			'biblePlan.inDays' => ({required Object days}) => 'en ${days}',
 			'biblePlan.perDayAbout' => ({required Object perDay}) => 'unos ${perDay} al día',

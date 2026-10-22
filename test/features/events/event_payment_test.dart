@@ -81,6 +81,7 @@ void main() {
       people: 1,
       phoneNumber: '+237 6 90 00 00 01',
       provider: 'ORANGE_CMR',
+      method: PaymentMethod.mobileMoney,
     ));
     expect(find.text('Confirme sur ton téléphone'), findsOneWidget);
     // not registered while the member types their PIN
@@ -244,5 +245,45 @@ void main() {
       'En mode test, seuls les numéros de test KPay sont acceptés : utilise '
           'par exemple le 6 53 45 67 89.',
     ]);
+  });
+
+  testWidgets('by card: KPay secure page opens, the app waits behind it', (
+    tester,
+  ) async {
+    final payments = FakePaymentsApi()..cards = true;
+    final app = await pumpApp(
+      tester,
+      token: 't',
+      eventsApi: paidEvents(),
+      paymentsApi: payments,
+    );
+    await openEvent(tester);
+    await tester.tap(find.text('Je participe'));
+    await tester.pumpAndSettle();
+
+    await tester.tap(find.text('Carte bancaire'));
+    await tester.pumpAndSettle();
+    expect(find.widgetWithText(TextField, 'Numéro mobile money'), findsNothing);
+    final pay = find.text('Payer ${fcfa(5000)} par carte');
+    await tester.ensureVisible(pay);
+    await tester.pumpAndSettle();
+    await tester.tap(pay);
+    await tester.pump();
+    await tester.pump();
+
+    expect(payments.started.single.method, PaymentMethod.card);
+    expect(
+      app.links.opened.single.toString(),
+      'https://admin.kpay.site/pay/gw_1',
+    );
+    expect(
+      find.text('Termine le paiement sur la page sécurisée'),
+      findsOneWidget,
+    );
+
+    await payments.complete('pay-1');
+    await tester.pump(const Duration(seconds: 3));
+    await tester.pumpAndSettle();
+    expect(app.toasts.messages, ['Paiement reçu : tu es inscrit !']);
   });
 }

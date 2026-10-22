@@ -155,6 +155,7 @@ class _Translations$errors$en extends Translations$errors$fr {
 	@override String get paidRegistration => 'Paid registration: contact the organizers to cancel it.';
 	@override String get eventHasPayments => 'Members have paid: refund their payments first from the admin site.';
 	@override String get peoplePaid => 'The number of people of a paid registration can no longer change.';
+	@override String get cardsDisabled => 'Card payment is not available right now.';
 }
 
 // Path: validation
@@ -2584,6 +2585,14 @@ class _Translations$events$pay$en extends Translations$events$pay$fr {
 	@override String get unavailable => 'Mobile money payment is not available yet: register now, you can pay later.';
 	@override String laterDone({required Object amount}) => 'You are registered! Remember to pay ${amount} before the event.';
 	@override String get paidShort => 'paid';
+	@override String get how => 'How do you want to pay?';
+	@override String get methodMobile => 'Mobile Money';
+	@override String get methodCard => 'Bank card';
+	@override String get cardNote => 'You pay on KPay\'s secure page (Visa, Mastercard). The card is charged in dollars, after conversion.';
+	@override String payCard({required Object amount}) => 'Pay ${amount} by card';
+	@override String get waitingCardTitle => 'Finish the payment on the secure page';
+	@override String get waitingCardText => 'Enter your card on the KPay page. Your registration is confirmed here as soon as the payment arrives.';
+	@override String get reopen => 'Reopen the payment page';
 }
 
 // Path: ministry.goals
@@ -3316,6 +3325,7 @@ extension on TranslationsEn {
 			'errors.paidRegistration' => 'Paid registration: contact the organizers to cancel it.',
 			'errors.eventHasPayments' => 'Members have paid: refund their payments first from the admin site.',
 			'errors.peoplePaid' => 'The number of people of a paid registration can no longer change.',
+			'errors.cardsDisabled' => 'Card payment is not available right now.',
 			'validation.required' => 'This field is required',
 			'validation.passwordTooShort' => 'At least 6 characters',
 			'validation.invalidPhone' => 'Invalid phone number',
@@ -3783,9 +3793,9 @@ extension on TranslationsEn {
 			'members.usernameInvalid' => '3 to 30 characters: letters, digits, "." and "_", not starting or ending with a sign.',
 			'members.usernameReserved' => 'This username is reserved.',
 			'members.usernameSaved' => ({required Object username}) => 'Username saved: @${username}',
-			'members.deleteAccount.button' => 'Delete my account',
 			_ => null,
 		} ?? switch (path) {
+			'members.deleteAccount.button' => 'Delete my account',
 			'members.deleteAccount.title' => 'Delete my account',
 			'members.deleteAccount.intro' => 'This is permanent. Your account and everything linked to it will be erased:',
 			'members.deleteAccount.itemProfile' => 'your profile, photo, username and password',
@@ -4085,6 +4095,14 @@ extension on TranslationsEn {
 			'events.pay.unavailable' => 'Mobile money payment is not available yet: register now, you can pay later.',
 			'events.pay.laterDone' => ({required Object amount}) => 'You are registered! Remember to pay ${amount} before the event.',
 			'events.pay.paidShort' => 'paid',
+			'events.pay.how' => 'How do you want to pay?',
+			'events.pay.methodMobile' => 'Mobile Money',
+			'events.pay.methodCard' => 'Bank card',
+			'events.pay.cardNote' => 'You pay on KPay\'s secure page (Visa, Mastercard). The card is charged in dollars, after conversion.',
+			'events.pay.payCard' => ({required Object amount}) => 'Pay ${amount} by card',
+			'events.pay.waitingCardTitle' => 'Finish the payment on the secure page',
+			'events.pay.waitingCardText' => 'Enter your card on the KPay page. Your registration is confirmed here as soon as the payment arrives.',
+			'events.pay.reopen' => 'Reopen the payment page',
 			'notifications.title' => 'Notifications',
 			'notifications.channel' => 'Community announcements',
 			'notifications.empty' => 'No notifications yet',
@@ -4289,6 +4307,8 @@ extension on TranslationsEn {
 			'prayer.together' => 'Praying together',
 			'prayer.reminders.title' => 'Retreat reminders',
 			'prayer.reminders.intro' => 'A reminder at the time of each retreat, only if it isn\'t done yet.',
+			_ => null,
+		} ?? switch (path) {
 			'prayer.reminders.off' => 'Off',
 			'prayer.reminders.channel' => 'Prayer retreats',
 			'prayer.reminders.body' => '15 minutes with the Lord.',
@@ -4298,8 +4318,6 @@ extension on TranslationsEn {
 			'prayer.retreat.hours.evening' => 'Late afternoon',
 			'prayer.retreat.hours.night' => 'Before you sleep',
 			'prayer.retreat.reminderAt' => ({required Object time}) => 'reminder at ${time}',
-			_ => null,
-		} ?? switch (path) {
 			'prayer.retreat.intro' => '15 points, one minute each. A soft sound moves you to the next one.',
 			'prayer.retreat.done' => 'Done today',
 			'prayer.retreat.start' => 'Start · 15 min',
@@ -4803,6 +4821,8 @@ extension on TranslationsEn {
 			'biblePlan.scopes.newTestament' => 'The New Testament',
 			'biblePlan.scopes.oldTestament' => 'The Old Testament',
 			'biblePlan.scopes.psalmsProverbs' => 'Psalms and Proverbs',
+			_ => null,
+		} ?? switch (path) {
 			'biblePlan.chaptersShort' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n, one: '${n} ch.', other: '${n} ch.', ), 
 			'biblePlan.oldTestament' => 'Old Testament',
 			'biblePlan.newTestament' => 'New Testament',
@@ -4812,8 +4832,6 @@ extension on TranslationsEn {
 			'biblePlan.reminder' => 'Daily reminder',
 			'biblePlan.reminderAt' => 'Reminder time',
 			'biblePlan.summary' => ({required Object chapters, required Object days, required Object perDay}) => '${chapters} chapters in ${days} days, about ${perDay} a day',
-			_ => null,
-		} ?? switch (path) {
 			'biblePlan.chapterCount' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n, one: '${n} chapter', other: '${n} chapters', ), 
 			'biblePlan.inDays' => ({required Object days}) => 'in ${days}',
 			'biblePlan.perDayAbout' => ({required Object perDay}) => 'about ${perDay} a day',

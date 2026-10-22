@@ -155,6 +155,7 @@ class _Translations$errors$hi extends Translations$errors$fr {
 	@override String get paidRegistration => 'पंजीकरण का भुगतान हो चुका है: रद्द करने के लिए आयोजकों से संपर्क करें।';
 	@override String get eventHasPayments => 'सदस्यों ने भुगतान किया है: पहले एडमिन साइट से उनका पैसा लौटाएँ।';
 	@override String get peoplePaid => 'भुगतान किए गए पंजीकरण में लोगों की संख्या अब नहीं बदल सकती।';
+	@override String get cardsDisabled => 'कार्ड से भुगतान अभी उपलब्ध नहीं है।';
 }
 
 // Path: validation
@@ -2582,6 +2583,14 @@ class _Translations$events$pay$hi extends Translations$events$pay$fr {
 	@override String get unavailable => 'मोबाइल मनी भुगतान अभी उपलब्ध नहीं है: अभी पंजीकरण करें, भुगतान बाद में कर सकते हैं।';
 	@override String laterDone({required Object amount}) => 'आपका पंजीकरण हो गया! कार्यक्रम से पहले ${amount} का भुगतान करना याद रखें।';
 	@override String get paidShort => 'भुगतान हो गया';
+	@override String get how => 'आप कैसे भुगतान करना चाहते हैं?';
+	@override String get methodMobile => 'मोबाइल मनी';
+	@override String get methodCard => 'बैंक कार्ड';
+	@override String get cardNote => 'आप KPay के सुरक्षित पेज पर भुगतान करते हैं (Visa, Mastercard)। कार्ड से रूपांतरण के बाद डॉलर में राशि कटती है।';
+	@override String payCard({required Object amount}) => 'कार्ड से ${amount} का भुगतान करें';
+	@override String get waitingCardTitle => 'सुरक्षित पेज पर भुगतान पूरा करें';
+	@override String get waitingCardText => 'KPay पेज पर अपना कार्ड दर्ज करें। भुगतान पहुँचते ही आपका पंजीकरण यहाँ पक्का हो जाएगा।';
+	@override String get reopen => 'भुगतान पेज फिर से खोलें';
 }
 
 // Path: ministry.goals
@@ -3314,6 +3323,7 @@ extension on TranslationsHi {
 			'errors.paidRegistration' => 'पंजीकरण का भुगतान हो चुका है: रद्द करने के लिए आयोजकों से संपर्क करें।',
 			'errors.eventHasPayments' => 'सदस्यों ने भुगतान किया है: पहले एडमिन साइट से उनका पैसा लौटाएँ।',
 			'errors.peoplePaid' => 'भुगतान किए गए पंजीकरण में लोगों की संख्या अब नहीं बदल सकती।',
+			'errors.cardsDisabled' => 'कार्ड से भुगतान अभी उपलब्ध नहीं है।',
 			'validation.required' => 'यह फ़ील्ड ज़रूरी है',
 			'validation.passwordTooShort' => 'कम से कम 6 कैरेक्टर',
 			'validation.invalidPhone' => 'फ़ोन नंबर सही नहीं है',
@@ -3781,9 +3791,9 @@ extension on TranslationsHi {
 			'members.usernameInvalid' => '3 से 30 कैरेक्टर: अक्षर, अंक, “.” और “_”, पर शुरुआत या अंत में कोई चिह्न नहीं।',
 			'members.usernameReserved' => 'यह यूज़रनेम आरक्षित है।',
 			'members.usernameSaved' => ({required Object username}) => 'यूज़रनेम सेव हो गया: @${username}',
-			'members.deleteAccount.button' => 'मेरा खाता हटाओ',
 			_ => null,
 		} ?? switch (path) {
+			'members.deleteAccount.button' => 'मेरा खाता हटाओ',
 			'members.deleteAccount.title' => 'मेरा खाता हटाओ',
 			'members.deleteAccount.intro' => 'यह स्थायी है। तुम्हारा खाता और उससे जुड़ा सब कुछ मिटा दिया जाएगा:',
 			'members.deleteAccount.itemProfile' => 'तुम्हारी प्रोफ़ाइल, फ़ोटो, यूज़रनेम और पासवर्ड',
@@ -4083,6 +4093,14 @@ extension on TranslationsHi {
 			'events.pay.unavailable' => 'मोबाइल मनी भुगतान अभी उपलब्ध नहीं है: अभी पंजीकरण करें, भुगतान बाद में कर सकते हैं।',
 			'events.pay.laterDone' => ({required Object amount}) => 'आपका पंजीकरण हो गया! कार्यक्रम से पहले ${amount} का भुगतान करना याद रखें।',
 			'events.pay.paidShort' => 'भुगतान हो गया',
+			'events.pay.how' => 'आप कैसे भुगतान करना चाहते हैं?',
+			'events.pay.methodMobile' => 'मोबाइल मनी',
+			'events.pay.methodCard' => 'बैंक कार्ड',
+			'events.pay.cardNote' => 'आप KPay के सुरक्षित पेज पर भुगतान करते हैं (Visa, Mastercard)। कार्ड से रूपांतरण के बाद डॉलर में राशि कटती है।',
+			'events.pay.payCard' => ({required Object amount}) => 'कार्ड से ${amount} का भुगतान करें',
+			'events.pay.waitingCardTitle' => 'सुरक्षित पेज पर भुगतान पूरा करें',
+			'events.pay.waitingCardText' => 'KPay पेज पर अपना कार्ड दर्ज करें। भुगतान पहुँचते ही आपका पंजीकरण यहाँ पक्का हो जाएगा।',
+			'events.pay.reopen' => 'भुगतान पेज फिर से खोलें',
 			'notifications.title' => 'सूचनाएँ',
 			'notifications.channel' => 'समुदाय की घोषणाएँ',
 			'notifications.empty' => 'अभी कोई सूचना नहीं',
@@ -4287,6 +4305,8 @@ extension on TranslationsHi {
 			'prayer.together' => 'साथ मिलकर प्रार्थना',
 			'prayer.reminders.title' => 'प्रार्थना-समय के रिमाइंडर',
 			'prayer.reminders.intro' => 'हर प्रार्थना-समय पर एक रिमाइंडर, सिर्फ़ तब जब वह अभी पूरा न हुआ हो।',
+			_ => null,
+		} ?? switch (path) {
 			'prayer.reminders.off' => 'बंद',
 			'prayer.reminders.channel' => 'प्रार्थना-समय',
 			'prayer.reminders.body' => 'प्रभु के साथ 15 मिनट।',
@@ -4296,8 +4316,6 @@ extension on TranslationsHi {
 			'prayer.retreat.hours.evening' => 'दोपहर ढलने पर',
 			'prayer.retreat.hours.night' => 'सोने से पहले',
 			'prayer.retreat.reminderAt' => ({required Object time}) => 'रिमाइंडर ${time} पर',
-			_ => null,
-		} ?? switch (path) {
 			'prayer.retreat.intro' => '15 बिंदु, हर एक के लिए एक मिनट। एक हल्की आवाज़ तुम्हें अगले बिंदु पर ले जाती है।',
 			'prayer.retreat.done' => 'आज पूरा हुआ',
 			'prayer.retreat.start' => 'शुरू करो · 15 मिनट',
@@ -4801,6 +4819,8 @@ extension on TranslationsHi {
 			'biblePlan.scopes.newTestament' => 'नया नियम',
 			'biblePlan.scopes.oldTestament' => 'पुराना नियम',
 			'biblePlan.scopes.psalmsProverbs' => 'भजन संहिता और नीतिवचन',
+			_ => null,
+		} ?? switch (path) {
 			'biblePlan.chaptersShort' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n, one: '${n} अध्याय', other: '${n} अध्याय', ), 
 			'biblePlan.oldTestament' => 'पुराना नियम',
 			'biblePlan.newTestament' => 'नया नियम',
@@ -4810,8 +4830,6 @@ extension on TranslationsHi {
 			'biblePlan.reminder' => 'रोज़ का रिमाइंडर',
 			'biblePlan.reminderAt' => 'रिमाइंडर का समय',
 			'biblePlan.summary' => ({required Object days, required Object chapters, required Object perDay}) => '${days} दिनों में ${chapters} अध्याय, रोज़ लगभग ${perDay}',
-			_ => null,
-		} ?? switch (path) {
 			'biblePlan.chapterCount' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n, one: '${n} अध्याय', other: '${n} अध्याय', ), 
 			'biblePlan.inDays' => ({required Object days}) => '${days} में',
 			'biblePlan.perDayAbout' => ({required Object perDay}) => 'रोज़ लगभग ${perDay}',

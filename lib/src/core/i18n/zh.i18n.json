@@ -47,7 +47,8 @@
     "paymentRequired": "此活动需付费：请用移动钱包支付报名费。",
     "paidRegistration": "报名已付款：如需取消请联系组织者。",
     "eventHasPayments": "已有成员付款：请先在管理网站为他们退款。",
-    "peoplePaid": "已付款报名的人数不能再更改。"
+    "peoplePaid": "已付款报名的人数不能再更改。",
+    "cardsDisabled": "银行卡付款暂不可用。"
   },
   "validation": {
     "required": "此项为必填",
@@ -976,7 +977,15 @@
       "payNow": "付款",
       "unavailable": "移动钱包付款尚未开放：先报名，稍后再付款。",
       "laterDone": "你已报名！记得在活动前支付 {amount}。",
-      "paidShort": "已付款"
+      "paidShort": "已付款",
+      "how": "你想如何付款？",
+      "methodMobile": "移动钱包",
+      "methodCard": "银行卡",
+      "cardNote": "你将在 KPay 的安全页面付款（Visa、Mastercard）。银行卡按换算后的美元扣款。",
+      "payCard": "用银行卡支付 {amount}",
+      "waitingCardTitle": "请在安全页面完成付款",
+      "waitingCardText": "在 KPay 页面输入你的银行卡。付款一到账，你的报名就会在这里确认。",
+      "reopen": "重新打开付款页面"
     }
   },
   "notifications": {

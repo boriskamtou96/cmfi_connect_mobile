@@ -155,6 +155,7 @@ class _Translations$errors$zh extends Translations$errors$fr {
 	@override String get paidRegistration => '报名已付款：如需取消请联系组织者。';
 	@override String get eventHasPayments => '已有成员付款：请先在管理网站为他们退款。';
 	@override String get peoplePaid => '已付款报名的人数不能再更改。';
+	@override String get cardsDisabled => '银行卡付款暂不可用。';
 }
 
 // Path: validation
@@ -2513,6 +2514,14 @@ class _Translations$events$pay$zh extends Translations$events$pay$fr {
 	@override String get unavailable => '移动钱包付款尚未开放：先报名，稍后再付款。';
 	@override String laterDone({required Object amount}) => '你已报名！记得在活动前支付 ${amount}。';
 	@override String get paidShort => '已付款';
+	@override String get how => '你想如何付款？';
+	@override String get methodMobile => '移动钱包';
+	@override String get methodCard => '银行卡';
+	@override String get cardNote => '你将在 KPay 的安全页面付款（Visa、Mastercard）。银行卡按换算后的美元扣款。';
+	@override String payCard({required Object amount}) => '用银行卡支付 ${amount}';
+	@override String get waitingCardTitle => '请在安全页面完成付款';
+	@override String get waitingCardText => '在 KPay 页面输入你的银行卡。付款一到账，你的报名就会在这里确认。';
+	@override String get reopen => '重新打开付款页面';
 }
 
 // Path: ministry.goals
@@ -3231,6 +3240,7 @@ extension on TranslationsZh {
 			'errors.paidRegistration' => '报名已付款：如需取消请联系组织者。',
 			'errors.eventHasPayments' => '已有成员付款：请先在管理网站为他们退款。',
 			'errors.peoplePaid' => '已付款报名的人数不能再更改。',
+			'errors.cardsDisabled' => '银行卡付款暂不可用。',
 			'validation.required' => '此项为必填',
 			'validation.passwordTooShort' => '至少 6 个字符',
 			'validation.invalidPhone' => '手机号无效',
@@ -3698,9 +3708,9 @@ extension on TranslationsZh {
 			'members.usernameInvalid' => '3–30 个字符：字母、数字、「.」和「_」，不能以符号开头或结尾。',
 			'members.usernameReserved' => '该用户名已被保留。',
 			'members.usernameSaved' => ({required Object username}) => '用户名已保存：@${username}',
-			'members.deleteAccount.button' => '删除我的账户',
 			_ => null,
 		} ?? switch (path) {
+			'members.deleteAccount.button' => '删除我的账户',
 			'members.deleteAccount.title' => '删除我的账户',
 			'members.deleteAccount.intro' => '此操作无法撤销。你的账户及其相关的一切都将被删除：',
 			'members.deleteAccount.itemProfile' => '你的个人资料、头像、用户名和密码',
@@ -4000,6 +4010,14 @@ extension on TranslationsZh {
 			'events.pay.unavailable' => '移动钱包付款尚未开放：先报名，稍后再付款。',
 			'events.pay.laterDone' => ({required Object amount}) => '你已报名！记得在活动前支付 ${amount}。',
 			'events.pay.paidShort' => '已付款',
+			'events.pay.how' => '你想如何付款？',
+			'events.pay.methodMobile' => '移动钱包',
+			'events.pay.methodCard' => '银行卡',
+			'events.pay.cardNote' => '你将在 KPay 的安全页面付款（Visa、Mastercard）。银行卡按换算后的美元扣款。',
+			'events.pay.payCard' => ({required Object amount}) => '用银行卡支付 ${amount}',
+			'events.pay.waitingCardTitle' => '请在安全页面完成付款',
+			'events.pay.waitingCardText' => '在 KPay 页面输入你的银行卡。付款一到账，你的报名就会在这里确认。',
+			'events.pay.reopen' => '重新打开付款页面',
 			'notifications.title' => '通知',
 			'notifications.channel' => '团契公告',
 			'notifications.empty' => '暂无通知',
@@ -4204,6 +4222,8 @@ extension on TranslationsZh {
 			'prayer.together' => '一起祷告',
 			'prayer.reminders.title' => '祷告提醒',
 			'prayer.reminders.intro' => '在每次祷告的时间提醒你，仅在尚未完成时提醒。',
+			_ => null,
+		} ?? switch (path) {
 			'prayer.reminders.off' => '已关闭',
 			'prayer.reminders.channel' => '15 分钟祷告',
 			'prayer.reminders.body' => '与主同在 15 分钟。',
@@ -4213,8 +4233,6 @@ extension on TranslationsZh {
 			'prayer.retreat.hours.evening' => '下午晚些时候',
 			'prayer.retreat.hours.night' => '睡前',
 			'prayer.retreat.reminderAt' => ({required Object time}) => '${time} 提醒',
-			_ => null,
-		} ?? switch (path) {
 			'prayer.retreat.intro' => '15 个要点，每个一分钟。轻柔的提示音会带你进入下一个要点。',
 			'prayer.retreat.done' => '今天已完成',
 			'prayer.retreat.start' => '开始 · 15 分钟',
@@ -4718,6 +4736,8 @@ extension on TranslationsZh {
 			'biblePlan.scopes.newTestament' => '新约',
 			'biblePlan.scopes.oldTestament' => '旧约',
 			'biblePlan.scopes.psalmsProverbs' => '诗篇和箴言',
+			_ => null,
+		} ?? switch (path) {
 			'biblePlan.chaptersShort' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n, other: '${n} 章', ), 
 			'biblePlan.oldTestament' => '旧约',
 			'biblePlan.newTestament' => '新约',
@@ -4727,8 +4747,6 @@ extension on TranslationsZh {
 			'biblePlan.reminder' => '每日提醒',
 			'biblePlan.reminderAt' => '提醒时间',
 			'biblePlan.summary' => ({required Object days, required Object chapters, required Object perDay}) => '${days} 天读 ${chapters} 章，每天约 ${perDay} 章',
-			_ => null,
-		} ?? switch (path) {
 			'biblePlan.chapterCount' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n, other: '${n} 章', ), 
 			'biblePlan.inDays' => ({required Object days}) => '${days}读完',
 			'biblePlan.perDayAbout' => ({required Object perDay}) => '每天约 ${perDay} 章',

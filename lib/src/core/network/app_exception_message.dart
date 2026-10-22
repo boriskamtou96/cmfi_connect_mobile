@@ -22,6 +22,7 @@ String userMessageFor(Object error, Translations t) => switch (error) {
   ApiException(code: 'PAYMENT_REQUIRED') => t.errors.paymentRequired,
   ApiException(code: 'PAID_REGISTRATION') => t.errors.paidRegistration,
   ApiException(code: 'PEOPLE_PAID') => t.errors.peoplePaid,
+  ApiException(code: 'CARDS_DISABLED') => t.errors.cardsDisabled,
   ApiException(code: 'EVENT_HAS_PAYMENTS') => t.errors.eventHasPayments,
   ApiException(code: 'MEDIA_TOO_LARGE') => t.errors.mediaTooLarge,
   ApiException(code: 'MEDIA_UNSUPPORTED') => t.errors.mediaUnsupported,

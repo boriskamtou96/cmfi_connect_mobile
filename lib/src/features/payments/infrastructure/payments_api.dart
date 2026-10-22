@@ -15,18 +15,15 @@ class PaymentsApi {
 
   final Dio _dio;
 
-  /// The countries and operators taking [currency]. 503 PAYMENTS_DISABLED.
-  Future<List<MobileMoneyCountry>> operators({String currency = 'XAF'}) =>
+  /// The countries and operators taking [currency], and whether cards are
+  /// taken. 503 PAYMENTS_DISABLED.
+  Future<PaymentOptions> options({String currency = 'XAF'}) =>
       apiCall(() async {
         final response = await _dio.get<Map<String, dynamic>>(
           '/payments/providers',
           queryParameters: {'currency': currency},
         );
-        final content = response.content;
-        return [
-          for (final json in content['countries'] as List<dynamic>? ?? [])
-            MobileMoneyCountry.fromJson(json as Map<String, dynamic>),
-        ];
+        return PaymentOptions.fromJson(response.content);
       });
 
   /// The operator of [phoneNumber] (with its country code). 400 INVALID_PHONE.
@@ -38,16 +35,18 @@ class PaymentsApi {
     return OperatorGuess.fromJson(response.content);
   });
 
-  /// Asks the member's phone for the price of their registration; the
-  /// registration is made once paid. 409 EVENT_FULL, REGISTRATION_CLOSED,
-  /// ALREADY_PAID, PROVIDER_UNAVAILABLE, AMOUNT_OUT_OF_BOUNDS; 400
+  /// Asks the member's phone for the price of their registration, or opens
+  /// KPay's page for a card ([Payment.gatewayUrl]); the registration is made
+  /// once paid. 409 EVENT_FULL, REGISTRATION_CLOSED, ALREADY_PAID,
+  /// PROVIDER_UNAVAILABLE, AMOUNT_OUT_OF_BOUNDS, CARDS_DISABLED; 400
   /// INVALID_PHONE.
   Future<Payment> payForEvent(
     int eventId, {
     required int people,
     bool needsLodging = false,
     String departureCity = '',
-    required String phoneNumber,
+    PaymentMethod method = PaymentMethod.mobileMoney,
+    String phoneNumber = '',
     String provider = '',
   }) => apiCall(() async {
     final response = await _dio.post<Map<String, dynamic>>(
@@ -56,8 +55,11 @@ class PaymentsApi {
         'people': people,
         'needs_lodging': needsLodging,
         'departure_city': departureCity,
-        'phone_number': phoneNumber,
-        'provider': provider,
+        'method': method.code,
+        if (method == PaymentMethod.mobileMoney) ...{
+          'phone_number': phoneNumber,
+          'provider': provider,
+        },
       },
     );
     return Payment.fromJson(response.content);
@@ -72,9 +74,7 @@ class PaymentsApi {
 @riverpod
 PaymentsApi paymentsApi(Ref ref) => PaymentsApi(ref.watch(dioProvider));
 
-/// The operators taking [currency], asked once per sheet.
+/// The operators taking [currency], and cards, asked once per sheet.
 @riverpod
-Future<List<MobileMoneyCountry>> mobileMoneyOperators(
-  Ref ref,
-  String currency,
-) => ref.watch(paymentsApiProvider).operators(currency: currency);
+Future<PaymentOptions> paymentOptions(Ref ref, String currency) =>
+    ref.watch(paymentsApiProvider).options(currency: currency);

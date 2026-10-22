@@ -2917,7 +2917,15 @@ class FakePaymentsApi implements PaymentsApi {
   FakeEventsApi? events;
   final payments = <String, Payment>{};
   final started =
-      <({int eventId, int people, String phoneNumber, String provider})>[];
+      <
+        ({
+          int eventId,
+          int people,
+          String phoneNumber,
+          String provider,
+          PaymentMethod method,
+        })
+      >[];
   final guessed = <String>[];
 
   /// What a new payment answers at once (pending, or failed when refused).
@@ -2928,22 +2936,28 @@ class FakePaymentsApi implements PaymentsApi {
   /// PAYMENTS_DISABLED: no mobile money on the server.
   AppException? operatorsError;
 
+  /// Cards are offered.
+  bool cards = false;
+
   @override
-  Future<List<MobileMoneyCountry>> operators({String currency = 'XAF'}) async {
+  Future<PaymentOptions> options({String currency = 'XAF'}) async {
     if (operatorsError != null) {
       throw operatorsError!;
     }
-    return const [
-      MobileMoneyCountry(
-        country: 'CMR',
-        names: {'fr': 'Cameroun'},
-        prefix: '237',
-        operators: [
-          MobileMoneyOperator(provider: 'MTN_MOMO_CMR', name: 'MTN'),
-          MobileMoneyOperator(provider: 'ORANGE_CMR', name: 'Orange'),
-        ],
-      ),
-    ];
+    return PaymentOptions(
+      cards: cards,
+      countries: const [
+        MobileMoneyCountry(
+          country: 'CMR',
+          names: {'fr': 'Cameroun'},
+          prefix: '237',
+          operators: [
+            MobileMoneyOperator(provider: 'MTN_MOMO_CMR', name: 'MTN'),
+            MobileMoneyOperator(provider: 'ORANGE_CMR', name: 'Orange'),
+          ],
+        ),
+      ],
+    );
   }
 
   @override
@@ -2963,7 +2977,8 @@ class FakePaymentsApi implements PaymentsApi {
     required int people,
     bool needsLodging = false,
     String departureCity = '',
-    required String phoneNumber,
+    PaymentMethod method = PaymentMethod.mobileMoney,
+    String phoneNumber = '',
     String provider = '',
   }) async {
     if (payError != null) {
@@ -2974,6 +2989,7 @@ class FakePaymentsApi implements PaymentsApi {
       people: people,
       phoneNumber: phoneNumber,
       provider: provider,
+      method: method,
     ));
     final price = events?.events[eventId]?.price;
     final payment = Payment(
@@ -2982,9 +2998,12 @@ class FakePaymentsApi implements PaymentsApi {
       failureCode: startFailure,
       amount: (price?.amount ?? 0) * people,
       currency: price?.currency ?? 'XAF',
-      provider: provider,
+      provider: method == PaymentMethod.card ? cardProvider : provider,
       eventId: eventId,
       people: people,
+      gatewayUrl: method == PaymentMethod.card
+          ? 'https://admin.kpay.site/pay/gw_${payments.length + 1}'
+          : '',
     );
     _details[payment.id] = (needsLodging, departureCity);
     return payments[payment.id] = payment;

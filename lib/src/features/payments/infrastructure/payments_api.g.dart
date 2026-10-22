@@ -50,60 +50,58 @@ final class PaymentsApiProvider
 
 String _$paymentsApiHash() => r'f93b714ce7f1f9d08f8e00d992b2a47c95555128';
 
-/// The operators taking [currency], asked once per sheet.
+/// The operators taking [currency], and cards, asked once per sheet.
 
-@ProviderFor(mobileMoneyOperators)
-final mobileMoneyOperatorsProvider = MobileMoneyOperatorsFamily._();
+@ProviderFor(paymentOptions)
+final paymentOptionsProvider = PaymentOptionsFamily._();
 
-/// The operators taking [currency], asked once per sheet.
+/// The operators taking [currency], and cards, asked once per sheet.
 
-final class MobileMoneyOperatorsProvider
+final class PaymentOptionsProvider
     extends
         $FunctionalProvider<
-          AsyncValue<List<MobileMoneyCountry>>,
-          List<MobileMoneyCountry>,
-          FutureOr<List<MobileMoneyCountry>>
+          AsyncValue<PaymentOptions>,
+          PaymentOptions,
+          FutureOr<PaymentOptions>
         >
-    with
-        $FutureModifier<List<MobileMoneyCountry>>,
-        $FutureProvider<List<MobileMoneyCountry>> {
-  /// The operators taking [currency], asked once per sheet.
-  MobileMoneyOperatorsProvider._({
-    required MobileMoneyOperatorsFamily super.from,
+    with $FutureModifier<PaymentOptions>, $FutureProvider<PaymentOptions> {
+  /// The operators taking [currency], and cards, asked once per sheet.
+  PaymentOptionsProvider._({
+    required PaymentOptionsFamily super.from,
     required String super.argument,
   }) : super(
          retry: null,
-         name: r'mobileMoneyOperatorsProvider',
+         name: r'paymentOptionsProvider',
          isAutoDispose: true,
          dependencies: null,
          $allTransitiveDependencies: null,
        );
 
   @override
-  String debugGetCreateSourceHash() => _$mobileMoneyOperatorsHash();
+  String debugGetCreateSourceHash() => _$paymentOptionsHash();
 
   @override
   String toString() {
-    return r'mobileMoneyOperatorsProvider'
+    return r'paymentOptionsProvider'
         ''
         '($argument)';
   }
 
   @$internal
   @override
-  $FutureProviderElement<List<MobileMoneyCountry>> $createElement(
+  $FutureProviderElement<PaymentOptions> $createElement(
     $ProviderPointer pointer,
   ) => $FutureProviderElement(pointer);
 
   @override
-  FutureOr<List<MobileMoneyCountry>> create(Ref ref) {
+  FutureOr<PaymentOptions> create(Ref ref) {
     final argument = this.argument as String;
-    return mobileMoneyOperators(ref, argument);
+    return paymentOptions(ref, argument);
   }
 
   @override
   bool operator ==(Object other) {
-    return other is MobileMoneyOperatorsProvider && other.argument == argument;
+    return other is PaymentOptionsProvider && other.argument == argument;
   }
 
   @override
@@ -112,27 +110,26 @@ final class MobileMoneyOperatorsProvider
   }
 }
 
-String _$mobileMoneyOperatorsHash() =>
-    r'4467f2613eafa8353e894535e89c7e6eeb464473';
+String _$paymentOptionsHash() => r'4b1df801573b93d2d3c47fa6b07651057a0967cc';
 
-/// The operators taking [currency], asked once per sheet.
+/// The operators taking [currency], and cards, asked once per sheet.
 
-final class MobileMoneyOperatorsFamily extends $Family
-    with $FunctionalFamilyOverride<FutureOr<List<MobileMoneyCountry>>, String> {
-  MobileMoneyOperatorsFamily._()
+final class PaymentOptionsFamily extends $Family
+    with $FunctionalFamilyOverride<FutureOr<PaymentOptions>, String> {
+  PaymentOptionsFamily._()
     : super(
         retry: null,
-        name: r'mobileMoneyOperatorsProvider',
+        name: r'paymentOptionsProvider',
         dependencies: null,
         $allTransitiveDependencies: null,
         isAutoDispose: true,
       );
 
-  /// The operators taking [currency], asked once per sheet.
+  /// The operators taking [currency], and cards, asked once per sheet.
 
-  MobileMoneyOperatorsProvider call(String currency) =>
-      MobileMoneyOperatorsProvider._(argument: currency, from: this);
+  PaymentOptionsProvider call(String currency) =>
+      PaymentOptionsProvider._(argument: currency, from: this);
 
   @override
-  String toString() => r'mobileMoneyOperatorsProvider';
+  String toString() => r'paymentOptionsProvider';
 }

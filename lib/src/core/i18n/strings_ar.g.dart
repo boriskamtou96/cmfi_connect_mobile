@@ -155,6 +155,7 @@ class _Translations$errors$ar extends Translations$errors$fr {
 	@override String get paidRegistration => 'تسجيل مدفوع: تواصل مع المنظمين لإلغائه.';
 	@override String get eventHasPayments => 'دفع أعضاء رسومهم: أعِد مدفوعاتهم أولًا من موقع الإدارة.';
 	@override String get peoplePaid => 'لم يعد ممكنًا تغيير عدد الأشخاص في تسجيل مدفوع.';
+	@override String get cardsDisabled => 'الدفع بالبطاقة غير متاح حاليًا.';
 }
 
 // Path: validation
@@ -2864,6 +2865,14 @@ class _Translations$events$pay$ar extends Translations$events$pay$fr {
 	@override String get unavailable => 'الدفع عبر المحفظة الإلكترونية غير متاح بعد: سجّل الآن، ويمكنك الدفع لاحقًا.';
 	@override String laterDone({required Object amount}) => 'أنت مسجّل! تذكّر دفع ${amount} قبل الحدث.';
 	@override String get paidShort => 'مدفوع';
+	@override String get how => 'كيف تريد أن تدفع؟';
+	@override String get methodMobile => 'المحفظة الإلكترونية';
+	@override String get methodCard => 'البطاقة البنكية';
+	@override String get cardNote => 'تدفع على صفحة KPay الآمنة (Visa، Mastercard). تُخصم البطاقة بالدولار بعد التحويل.';
+	@override String payCard({required Object amount}) => 'ادفع ${amount} بالبطاقة';
+	@override String get waitingCardTitle => 'أكمل الدفع على الصفحة الآمنة';
+	@override String get waitingCardText => 'أدخل بطاقتك على صفحة KPay. يُؤكَّد تسجيلك هنا فور وصول الدفع.';
+	@override String get reopen => 'إعادة فتح صفحة الدفع';
 }
 
 // Path: ministry.goals
@@ -3649,6 +3658,7 @@ extension on TranslationsAr {
 			'errors.paidRegistration' => 'تسجيل مدفوع: تواصل مع المنظمين لإلغائه.',
 			'errors.eventHasPayments' => 'دفع أعضاء رسومهم: أعِد مدفوعاتهم أولًا من موقع الإدارة.',
 			'errors.peoplePaid' => 'لم يعد ممكنًا تغيير عدد الأشخاص في تسجيل مدفوع.',
+			'errors.cardsDisabled' => 'الدفع بالبطاقة غير متاح حاليًا.',
 			'validation.required' => 'هذا الحقل مطلوب',
 			'validation.passwordTooShort' => '6 أحرف على الأقل',
 			'validation.invalidPhone' => 'رقم هاتف غير صالح',
@@ -4116,9 +4126,9 @@ extension on TranslationsAr {
 			'members.usernameInvalid' => 'من 3 إلى 30 حرفًا: أحرف وأرقام و«.» و«_»، دون أن يبدأ أو ينتهي برمز.',
 			'members.usernameReserved' => 'اسم المستخدم هذا محجوز.',
 			'members.usernameSaved' => ({required Object username}) => 'تم حفظ اسم المستخدم: @${username}',
-			'members.deleteAccount.button' => 'حذف حسابي',
 			_ => null,
 		} ?? switch (path) {
+			'members.deleteAccount.button' => 'حذف حسابي',
 			'members.deleteAccount.title' => 'حذف حسابي',
 			'members.deleteAccount.intro' => 'هذا نهائي. سيتم مسح حسابك وكل ما يرتبط به:',
 			'members.deleteAccount.itemProfile' => 'ملفك الشخصي وصورتك واسم المستخدم وكلمة المرور',
@@ -4418,6 +4428,14 @@ extension on TranslationsAr {
 			'events.pay.unavailable' => 'الدفع عبر المحفظة الإلكترونية غير متاح بعد: سجّل الآن، ويمكنك الدفع لاحقًا.',
 			'events.pay.laterDone' => ({required Object amount}) => 'أنت مسجّل! تذكّر دفع ${amount} قبل الحدث.',
 			'events.pay.paidShort' => 'مدفوع',
+			'events.pay.how' => 'كيف تريد أن تدفع؟',
+			'events.pay.methodMobile' => 'المحفظة الإلكترونية',
+			'events.pay.methodCard' => 'البطاقة البنكية',
+			'events.pay.cardNote' => 'تدفع على صفحة KPay الآمنة (Visa، Mastercard). تُخصم البطاقة بالدولار بعد التحويل.',
+			'events.pay.payCard' => ({required Object amount}) => 'ادفع ${amount} بالبطاقة',
+			'events.pay.waitingCardTitle' => 'أكمل الدفع على الصفحة الآمنة',
+			'events.pay.waitingCardText' => 'أدخل بطاقتك على صفحة KPay. يُؤكَّد تسجيلك هنا فور وصول الدفع.',
+			'events.pay.reopen' => 'إعادة فتح صفحة الدفع',
 			'notifications.title' => 'الإشعارات',
 			'notifications.channel' => 'إعلانات الجماعة',
 			'notifications.empty' => 'لا توجد إشعارات بعد',
@@ -4622,6 +4640,8 @@ extension on TranslationsAr {
 			'prayer.together' => 'نصلّي معًا',
 			'prayer.reminders.title' => 'تذكيرات الخلوات',
 			'prayer.reminders.intro' => 'تذكير في موعد كل خلوة، فقط إذا لم تُتمَّها بعد.',
+			_ => null,
+		} ?? switch (path) {
 			'prayer.reminders.off' => 'معطّل',
 			'prayer.reminders.channel' => 'خلوات الصلاة',
 			'prayer.reminders.body' => '15 دقيقة مع الرب.',
@@ -4631,8 +4651,6 @@ extension on TranslationsAr {
 			'prayer.retreat.hours.evening' => 'في آخر العصر',
 			'prayer.retreat.hours.night' => 'قبل النوم',
 			'prayer.retreat.reminderAt' => ({required Object time}) => 'تذكير الساعة ${time}',
-			_ => null,
-		} ?? switch (path) {
 			'prayer.retreat.intro' => '15 نقطة، دقيقة لكل نقطة. صوت هادئ ينقلك إلى النقطة التالية.',
 			'prayer.retreat.done' => 'تمّت اليوم',
 			'prayer.retreat.start' => 'ابدأ · 15 دقيقة',
@@ -5136,6 +5154,8 @@ extension on TranslationsAr {
 			'biblePlan.scopes.newTestament' => 'العهد الجديد',
 			'biblePlan.scopes.oldTestament' => 'العهد القديم',
 			'biblePlan.scopes.psalmsProverbs' => 'المزامير والأمثال',
+			_ => null,
+		} ?? switch (path) {
 			'biblePlan.chaptersShort' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n, zero: '${n} أصحاح', one: 'أصحاح واحد', two: 'أصحاحان', few: '${n} أصحاحات', many: '${n} أصحاحًا', other: '${n} أصحاح', ), 
 			'biblePlan.oldTestament' => 'العهد القديم',
 			'biblePlan.newTestament' => 'العهد الجديد',
@@ -5145,8 +5165,6 @@ extension on TranslationsAr {
 			'biblePlan.reminder' => 'تذكير يومي',
 			'biblePlan.reminderAt' => 'وقت التذكير',
 			'biblePlan.summary' => ({required Object chapters, required Object days, required Object perDay}) => '${chapters} أصحاحًا في ${days} يومًا، نحو ${perDay} في اليوم',
-			_ => null,
-		} ?? switch (path) {
 			'biblePlan.chapterCount' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n, zero: '${n} أصحاح', one: 'أصحاح واحد', two: 'أصحاحان', few: '${n} أصحاحات', many: '${n} أصحاحًا', other: '${n} أصحاح', ), 
 			'biblePlan.inDays' => ({required Object days}) => 'في ${days}',
 			'biblePlan.perDayAbout' => ({required Object perDay}) => 'نحو ${perDay} في اليوم',

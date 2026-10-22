@@ -7,6 +7,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import '../../../../core/i18n/strings.g.dart';
 import '../../../../core/network/app_exception.dart';
 import '../../../../core/network/app_exception_message.dart';
+import '../../../../core/services/link_launcher.dart';
 import '../../../../core/services/local_notifications.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/theme/app_icons.dart';
@@ -236,12 +237,15 @@ class _RegistrationSheet extends HookConsumerWidget {
     final chosenOperator = useState<String?>(null);
     final guessedOperator = useState<String?>(null);
     final payment = useState<Payment?>(null);
-    final operatorsState = paying
-        ? ref.watch(mobileMoneyOperatorsProvider(price.currency))
+    final method = useState(PaymentMethod.mobileMoney);
+    final optionsState = paying
+        ? ref.watch(paymentOptionsProvider(price.currency))
         : null;
-    final operators = operatorsState?.value;
+    final operators = optionsState?.value?.countries;
+    final cards = optionsState?.value?.cards ?? false;
+    final byCard = cards && method.value == PaymentMethod.card;
     // mobile money switched off on the server: register now, pay later
-    final paymentsOff = switch (operatorsState?.error) {
+    final paymentsOff = switch (optionsState?.error) {
       ApiException(code: 'PAYMENTS_DISABLED') => true,
       _ => false,
     };
@@ -249,7 +253,9 @@ class _RegistrationSheet extends HookConsumerWidget {
 
     // the operator of the number, guessed as it is typed
     useEffect(() {
-      if (!canPay || phoneText.replaceAll(RegExp(r'\D'), '').length < 9) {
+      if (!canPay ||
+          byCard ||
+          phoneText.replaceAll(RegExp(r'\D'), '').length < 9) {
         return null;
       }
       final timer = Timer(const Duration(milliseconds: 500), () async {
@@ -265,7 +271,7 @@ class _RegistrationSheet extends HookConsumerWidget {
         }
       });
       return timer.cancel;
-    }, [phoneText, canPay]);
+    }, [phoneText, canPay, byCard]);
     final operator = chosenOperator.value ?? guessedOperator.value;
 
     Future<void> pay() async {
@@ -280,6 +286,7 @@ class _RegistrationSheet extends HookConsumerWidget {
               people: people,
               needsLodging: lodging.value,
               departureCity: city.text.trim(),
+              method: byCard ? PaymentMethod.card : PaymentMethod.mobileMoney,
               phoneNumber: phone.text.trim(),
               provider: operator ?? '',
             );
@@ -287,6 +294,14 @@ class _RegistrationSheet extends HookConsumerWidget {
           toast.error(paymentFailureMessage(started.failureCode, messages));
         } else {
           payment.value = started;
+          // a card: KPay's secure page, the app waits behind it
+          if (started.gatewayUrl.isNotEmpty) {
+            unawaited(
+              ref
+                  .read(linkLauncherProvider)
+                  .openInApp(Uri.parse(started.gatewayUrl)),
+            );
+          }
         }
       } on Object catch (error) {
         toast.error(userMessageFor(error, messages));
@@ -461,10 +476,43 @@ class _RegistrationSheet extends HookConsumerWidget {
           if (canPay) ...[
             const SizedBox(height: AppSpacing.xl),
             Text(
-              t.pay.title,
+              cards ? t.pay.how : t.pay.title,
               style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
             ),
             const SizedBox(height: AppSpacing.md),
+            if (cards) ...[
+              Row(
+                children: [
+                  for (final (choice, label, icon) in [
+                    (
+                      PaymentMethod.mobileMoney,
+                      t.pay.methodMobile,
+                      AppIcons.mobileMoney,
+                    ),
+                    (PaymentMethod.card, t.pay.methodCard, AppIcons.card),
+                  ]) ...[
+                    if (choice == PaymentMethod.card)
+                      const SizedBox(width: AppSpacing.sm),
+                    Expanded(
+                      child: _MethodChoice(
+                        label: label,
+                        icon: icon,
+                        selected: method.value == choice,
+                        onTap: () => method.value = choice,
+                      ),
+                    ),
+                  ],
+                ],
+              ),
+              const SizedBox(height: AppSpacing.md),
+            ],
+          ],
+          if (canPay && byCard)
+            Text(
+              t.pay.cardNote,
+              style: TextStyle(fontSize: 14, color: scheme.onSurfaceVariant),
+            ),
+          if (canPay && !byCard) ...[
             TextField(
               controller: phone,
               keyboardType: TextInputType.phone,
@@ -504,6 +552,8 @@ class _RegistrationSheet extends HookConsumerWidget {
                 ],
               ),
             ],
+          ],
+          if (canPay) ...[
             const SizedBox(height: AppSpacing.lg),
             Row(
               children: [
@@ -536,7 +586,7 @@ class _RegistrationSheet extends HookConsumerWidget {
           const SizedBox(height: AppSpacing.xl),
           AppButton(
             label: canPay
-                ? t.pay.pay(
+                ? (byCard ? t.pay.payCard : t.pay.pay)(
                     amount: formatMoney(
                       price.amount * people,
                       price.currency,
@@ -566,6 +616,66 @@ class _RegistrationSheet extends HookConsumerWidget {
             ),
           ],
         ],
+      ),
+    );
+  }
+}
+
+/// Mobile Money or a card, side by side; the chosen one outlined.
+class _MethodChoice extends StatelessWidget {
+  const _MethodChoice({
+    required this.label,
+    required this.icon,
+    required this.selected,
+    required this.onTap,
+  });
+
+  final String label;
+  final IconData icon;
+  final bool selected;
+  final VoidCallback onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    final scheme = Theme.of(context).colorScheme;
+    return Semantics(
+      button: true,
+      selected: selected,
+      child: Material(
+        color: selected ? scheme.primaryContainer : scheme.surface,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(14),
+          side: BorderSide(
+            color: selected ? scheme.primary : scheme.outlineVariant,
+            width: selected ? 2 : 1,
+          ),
+        ),
+        clipBehavior: Clip.antiAlias,
+        child: InkWell(
+          onTap: onTap,
+          child: Padding(
+            padding: const EdgeInsets.symmetric(vertical: 14, horizontal: 10),
+            child: Column(
+              children: [
+                Icon(
+                  icon,
+                  size: 26,
+                  color: selected ? scheme.primary : scheme.onSurfaceVariant,
+                ),
+                const SizedBox(height: 6),
+                Text(
+                  label,
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontSize: 14,
+                    fontWeight: selected ? FontWeight.w700 : FontWeight.w500,
+                    color: selected ? scheme.onPrimaryContainer : null,
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
       ),
     );
   }

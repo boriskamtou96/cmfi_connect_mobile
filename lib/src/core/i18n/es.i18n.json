@@ -47,7 +47,8 @@
     "paymentRequired": "Este evento es de pago: paga tu inscripción con dinero móvil.",
     "paidRegistration": "Inscripción pagada: contacta con los organizadores para anularla.",
     "eventHasPayments": "Hay miembros que pagaron: primero reembolsa sus pagos desde el sitio de administración.",
-    "peoplePaid": "El número de personas de una inscripción pagada ya no puede cambiar."
+    "peoplePaid": "El número de personas de una inscripción pagada ya no puede cambiar.",
+    "cardsDisabled": "El pago con tarjeta no está disponible por ahora."
   },
   "validation": {
     "required": "Este campo es obligatorio",
@@ -1001,7 +1002,15 @@
       "payNow": "Pagar",
       "unavailable": "El pago con dinero móvil aún no está disponible: inscríbete, podrás pagar más tarde.",
       "laterDone": "¡Estás inscrito! Recuerda pagar {amount} antes del evento.",
-      "paidShort": "pagado"
+      "paidShort": "pagado",
+      "how": "¿Cómo quieres pagar?",
+      "methodMobile": "Dinero móvil",
+      "methodCard": "Tarjeta bancaria",
+      "cardNote": "Pagas en la página segura de KPay (Visa, Mastercard). La tarjeta se cobra en dólares, tras la conversión.",
+      "payCard": "Pagar {amount} con tarjeta",
+      "waitingCardTitle": "Termina el pago en la página segura",
+      "waitingCardText": "Introduce tu tarjeta en la página de KPay. Tu inscripción se confirma aquí en cuanto llega el pago.",
+      "reopen": "Volver a abrir la página de pago"
     }
   },
   "notifications": {

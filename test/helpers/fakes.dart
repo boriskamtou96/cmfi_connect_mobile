@@ -469,8 +469,14 @@ class FakeReportsApi implements ReportsApi {
     tracksDuration: activity.tracksDuration,
   );
 
+  /// A slow network: each day arrives after it.
+  Duration dayDelay = Duration.zero;
+
   @override
   Future<DailyReport> getDay(DateTime date) async {
+    if (dayDelay > Duration.zero) {
+      await Future<void>.delayed(dayDelay);
+    }
     _online();
     final saved = days[date];
     final values = {

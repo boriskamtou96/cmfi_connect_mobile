@@ -2392,6 +2392,12 @@ class _Translations$reports$timer$ar extends Translations$reports$timer$fr {
 	@override String get replace => 'استبدال';
 	@override String get channel => 'المؤقت الجاري';
 	@override String get ongoingBody => 'اضغط للإيقاف المؤقت أو الإنهاء';
+	@override String get pickButton => 'تشغيل مؤقت';
+	@override String get pickTitle => 'ماذا تريد أن تقيس؟';
+	@override String get pickHint => 'عند الانتهاء، تُضاف الدقائق تلقائيًا إلى تقرير اليوم.';
+	@override String get pickEmpty => 'لا يُحسب أي عنصر من تقريرك بالوقت.';
+	@override String todayMinutes({required Object time}) => '${time} اليوم';
+	@override String get notYet => 'ليس بعد اليوم';
 }
 
 // Path: export.doc
@@ -3775,6 +3781,12 @@ extension on TranslationsAr {
 			'reports.timer.replace' => 'استبدال',
 			'reports.timer.channel' => 'المؤقت الجاري',
 			'reports.timer.ongoingBody' => 'اضغط للإيقاف المؤقت أو الإنهاء',
+			'reports.timer.pickButton' => 'تشغيل مؤقت',
+			'reports.timer.pickTitle' => 'ماذا تريد أن تقيس؟',
+			'reports.timer.pickHint' => 'عند الانتهاء، تُضاف الدقائق تلقائيًا إلى تقرير اليوم.',
+			'reports.timer.pickEmpty' => 'لا يُحسب أي عنصر من تقريرك بالوقت.',
+			'reports.timer.todayMinutes' => ({required Object time}) => '${time} اليوم',
+			'reports.timer.notYet' => 'ليس بعد اليوم',
 			'reminder.title' => 'تقريرك لهذا اليوم',
 			'reminder.body' => 'خصّص دقيقة لتسجّل قراءتك وصلاتك… قبل نهاية اليوم.',
 			'reminder.channel' => 'تذكير التقرير',
@@ -3980,14 +3992,14 @@ extension on TranslationsAr {
 			'members.deleteAccount.lastSuperadmin' => 'أنت المشرف العام الوحيد: امنح هذا الدور لشخص آخر قبل حذف حسابك.',
 			'admin.title' => 'الفريق والأدوار',
 			'admin.intro' => 'يدير المشرفون ما يتشاركه المجتمع بأكمله. وحده المشرف العام يمنح دورًا أو يسحبه.',
+			_ => null,
+		} ?? switch (path) {
 			'admin.roleUser' => 'عضو',
 			'admin.roleAdmin' => 'مشرف',
 			'admin.roleSuperadmin' => 'مشرف عام',
 			'admin.giveRole' => 'منح دور',
 			'admin.you' => 'أنت',
 			'admin.roleFor' => ({required Object username}) => 'دور @${username}',
-			_ => null,
-		} ?? switch (path) {
 			'admin.roleChanged' => ({required Object username, required Object role}) => '@${username}: ${role}',
 			'admin.memberUsername' => 'اسم مستخدم العضو',
 			'admin.empty' => 'لا يوجد مشرفون حتى الآن.',
@@ -4494,14 +4506,14 @@ extension on TranslationsAr {
 			'prayer.topics.categories.fasting' => 'صوم',
 			'prayer.topics.categories.other' => 'طلب',
 			'prayer.topics.until' => ({required Object date}) => 'حتى ${date}',
+			_ => null,
+		} ?? switch (path) {
 			'prayer.topics.archive' => 'الطلبات السابقة',
 			'prayer.topics.archiveEmpty' => 'لا توجد طلبات سابقة.',
 			'prayer.topics.current' => 'حاليًا',
 			'prayer.topics.documentSize' => ({required Object kb}) => '${kb} ك.ب',
 			'prayer.topics.download' => 'تنزيل ملف PDF',
 			'prayer.topics.noDocument' => 'لا يوجد ملف PDF',
-			_ => null,
-		} ?? switch (path) {
 			'prayer.topics.openDocument' => 'فتح ملف PDF',
 			'prayer.lists.title' => 'قوائم صلاتي',
 			'prayer.lists.private' => 'لك وحدك',
@@ -5008,14 +5020,14 @@ extension on TranslationsAr {
 			'memorize.reminder' => 'تذكير بالمراجعة',
 			'memorize.reminderAt' => 'وقت التذكير',
 			'memorize.myVerses' => 'آياتي',
+			_ => null,
+		} ?? switch (path) {
 			'memorize.howToAdd' => 'لإضافة آية: في الكتاب المقدس، المس آية ثم أيقونة الدماغ في الشريط.',
 			'memorize.empty' => 'لا توجد آيات للحفظ حتى الآن.',
 			'memorize.openBible' => 'افتح الكتاب المقدس',
 			'memorize.late' => 'متأخرة',
 			'memorize.today' => 'اليوم',
 			'memorize.dueIn' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n, one: 'بعد يوم', other: 'بعد ${n} أيام', ), 
-			_ => null,
-		} ?? switch (path) {
 			'memorize.stages.fresh' => 'جديدة',
 			'memorize.stages.learning' => 'قيد الحفظ',
 			'memorize.stages.known' => 'محفوظة',

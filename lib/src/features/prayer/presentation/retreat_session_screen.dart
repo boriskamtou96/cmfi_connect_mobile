@@ -8,6 +8,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../core/i18n/strings.g.dart';
 import '../../../core/network/app_exception_message.dart';
+import '../../../core/services/app_log.dart';
 import '../../../core/services/chime.dart';
 import '../../../core/services/screen_awake.dart';
 import '../../../core/services/voice_reader.dart';
@@ -644,9 +645,14 @@ class _RetreatDone extends HookConsumerWidget {
     // once: the retreat is counted, the report gets its minutes
     useEffect(() {
       Future<void> save() async {
-        await ref
-            .read(retreatLogProvider.notifier)
-            .markDone(moment, prayedFor: prayedFor);
+        try {
+          await ref
+              .read(retreatLogProvider.notifier)
+              .markDone(moment, prayedFor: prayedFor);
+        } on Object catch (error, stack) {
+          // its minutes still go to the report
+          AppLog.error(error, stack, reason: 'retreat not marked done');
+        }
         if (alreadyDone) {
           return;
         }

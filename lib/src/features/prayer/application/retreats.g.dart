@@ -498,23 +498,29 @@ final class RetreatsOfYearFamily extends $Family
 
 /// Adds the minutes of a retreat to "Prière seule" in today's report (and
 /// takes them back for "Annuler"). null when the report has no such item.
+/// Kept alive: the day may take a while to load, and nothing listens to
+/// this one (disposed meanwhile, the minutes were lost).
 
 @ProviderFor(RetreatReport)
 final retreatReportProvider = RetreatReportProvider._();
 
 /// Adds the minutes of a retreat to "Prière seule" in today's report (and
 /// takes them back for "Annuler"). null when the report has no such item.
+/// Kept alive: the day may take a while to load, and nothing listens to
+/// this one (disposed meanwhile, the minutes were lost).
 final class RetreatReportProvider
     extends $NotifierProvider<RetreatReport, void> {
   /// Adds the minutes of a retreat to "Prière seule" in today's report (and
   /// takes them back for "Annuler"). null when the report has no such item.
+  /// Kept alive: the day may take a while to load, and nothing listens to
+  /// this one (disposed meanwhile, the minutes were lost).
   RetreatReportProvider._()
     : super(
         from: null,
         argument: null,
         retry: null,
         name: r'retreatReportProvider',
-        isAutoDispose: true,
+        isAutoDispose: false,
         dependencies: null,
         $allTransitiveDependencies: null,
       );
@@ -535,10 +541,12 @@ final class RetreatReportProvider
   }
 }
 
-String _$retreatReportHash() => r'd94776cfeb9d24d64632217ddc700073593be8b3';
+String _$retreatReportHash() => r'ea3cef287fd5d4bd389b48d7e41de6dfcce00c87';
 
 /// Adds the minutes of a retreat to "Prière seule" in today's report (and
 /// takes them back for "Annuler"). null when the report has no such item.
+/// Kept alive: the day may take a while to load, and nothing listens to
+/// this one (disposed meanwhile, the minutes were lost).
 
 abstract class _$RetreatReport extends $Notifier<void> {
   void build();

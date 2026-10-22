@@ -4406,6 +4406,24 @@ class Translations$reports$timer$fr {
 
 	/// fr: 'Touche pour mettre en pause ou terminer'
 	String get ongoingBody => 'Touche pour mettre en pause ou terminer';
+
+	/// fr: 'Lancer un chrono'
+	String get pickButton => 'Lancer un chrono';
+
+	/// fr: 'Que veux-tu chronométrer ?'
+	String get pickTitle => 'Que veux-tu chronométrer ?';
+
+	/// fr: 'Quand tu termines, les minutes s'ajoutent toutes seules au compte rendu d'aujourd'hui.'
+	String get pickHint => 'Quand tu termines, les minutes s\'ajoutent toutes seules au compte rendu d\'aujourd\'hui.';
+
+	/// fr: 'Aucun élément de ton compte rendu ne se compte en temps.'
+	String get pickEmpty => 'Aucun élément de ton compte rendu ne se compte en temps.';
+
+	/// fr: '{time} aujourd'hui'
+	String todayMinutes({required Object time}) => '${time} aujourd\'hui';
+
+	/// fr: 'Pas encore aujourd'hui'
+	String get notYet => 'Pas encore aujourd\'hui';
 }
 
 // Path: export.doc
@@ -6663,6 +6681,12 @@ extension on Translations {
 			'reports.timer.replace' => 'Remplacer',
 			'reports.timer.channel' => 'Chrono en cours',
 			'reports.timer.ongoingBody' => 'Touche pour mettre en pause ou terminer',
+			'reports.timer.pickButton' => 'Lancer un chrono',
+			'reports.timer.pickTitle' => 'Que veux-tu chronométrer ?',
+			'reports.timer.pickHint' => 'Quand tu termines, les minutes s\'ajoutent toutes seules au compte rendu d\'aujourd\'hui.',
+			'reports.timer.pickEmpty' => 'Aucun élément de ton compte rendu ne se compte en temps.',
+			'reports.timer.todayMinutes' => ({required Object time}) => '${time} aujourd\'hui',
+			'reports.timer.notYet' => 'Pas encore aujourd\'hui',
 			'reminder.title' => 'Ton compte rendu du jour',
 			'reminder.body' => 'Prends une minute pour noter ta lecture, ta prière… avant la fin de la journée.',
 			'reminder.channel' => 'Rappel du compte rendu',
@@ -6868,14 +6892,14 @@ extension on Translations {
 			'members.deleteAccount.lastSuperadmin' => 'Tu es le seul superadmin : donne ce rôle à quelqu\'un d\'autre avant de supprimer ton compte.',
 			'admin.title' => 'Équipe et rôles',
 			'admin.intro' => 'Les admins gèrent ce que toute la communauté partage. Seul un superadmin donne ou retire un rôle.',
+			_ => null,
+		} ?? switch (path) {
 			'admin.roleUser' => 'Membre',
 			'admin.roleAdmin' => 'Admin',
 			'admin.roleSuperadmin' => 'Superadmin',
 			'admin.giveRole' => 'Donner un rôle',
 			'admin.you' => 'toi',
 			'admin.roleFor' => ({required Object username}) => 'Rôle de @${username}',
-			_ => null,
-		} ?? switch (path) {
 			'admin.roleChanged' => ({required Object username, required Object role}) => '@${username} : ${role}',
 			'admin.memberUsername' => 'Pseudo du membre',
 			'admin.empty' => 'Aucun admin pour l\'instant.',
@@ -7382,14 +7406,14 @@ extension on Translations {
 			'prayer.topics.categories.fasting' => 'Jeûne',
 			'prayer.topics.categories.other' => 'Sujet',
 			'prayer.topics.until' => ({required Object date}) => 'jusqu\'au ${date}',
+			_ => null,
+		} ?? switch (path) {
 			'prayer.topics.archive' => 'Sujets passés',
 			'prayer.topics.archiveEmpty' => 'Aucun sujet passé.',
 			'prayer.topics.current' => 'En ce moment',
 			'prayer.topics.documentSize' => ({required Object kb}) => '${kb} Ko',
 			'prayer.topics.download' => 'Télécharger le PDF',
 			'prayer.topics.noDocument' => 'Pas de PDF',
-			_ => null,
-		} ?? switch (path) {
 			'prayer.topics.openDocument' => 'Ouvrir le PDF',
 			'prayer.lists.title' => 'Mes listes de prière',
 			'prayer.lists.private' => 'Pour toi seul',
@@ -7896,14 +7920,14 @@ extension on Translations {
 			'memorize.reminder' => 'Rappel des révisions',
 			'memorize.reminderAt' => 'Heure du rappel',
 			'memorize.myVerses' => 'Mes versets',
+			_ => null,
+		} ?? switch (path) {
 			'memorize.howToAdd' => 'Pour en ajouter un : dans la Bible, touche un verset puis le cerveau de la barre.',
 			'memorize.empty' => 'Aucun verset à mémoriser pour l\'instant.',
 			'memorize.openBible' => 'Ouvrir la Bible',
 			'memorize.late' => 'En retard',
 			'memorize.today' => 'Aujourd\'hui',
 			'memorize.dueIn' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('fr'))(n, one: 'Dans ${n} jour', other: 'Dans ${n} jours', ), 
-			_ => null,
-		} ?? switch (path) {
 			'memorize.stages.fresh' => 'Nouveau',
 			'memorize.stages.learning' => 'En cours',
 			'memorize.stages.known' => 'Su',

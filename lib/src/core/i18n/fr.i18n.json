@@ -392,7 +392,13 @@
       "replaceText": "Un chrono tourne déjà pour « {item} ». Il s'arrêtera sans être compté.",
       "replace": "Remplacer",
       "channel": "Chrono en cours",
-      "ongoingBody": "Touche pour mettre en pause ou terminer"
+      "ongoingBody": "Touche pour mettre en pause ou terminer",
+      "pickButton": "Lancer un chrono",
+      "pickTitle": "Que veux-tu chronométrer ?",
+      "pickHint": "Quand tu termines, les minutes s'ajoutent toutes seules au compte rendu d'aujourd'hui.",
+      "pickEmpty": "Aucun élément de ton compte rendu ne se compte en temps.",
+      "todayMinutes": "{time} aujourd'hui",
+      "notYet": "Pas encore aujourd'hui"
     }
   },
   "reminder": {

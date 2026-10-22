@@ -392,7 +392,13 @@
       "replaceText": "A stopwatch is already running for \"{item}\". It will stop without being counted.",
       "replace": "Replace",
       "channel": "Running stopwatch",
-      "ongoingBody": "Tap to pause or finish"
+      "ongoingBody": "Tap to pause or finish",
+      "pickButton": "Start a stopwatch",
+      "pickTitle": "What do you want to time?",
+      "pickHint": "When you finish, the minutes are added to today's report by themselves.",
+      "pickEmpty": "None of the items of your report is counted in time.",
+      "todayMinutes": "{time} today",
+      "notYet": "Not yet today"
     }
   },
   "reminder": {

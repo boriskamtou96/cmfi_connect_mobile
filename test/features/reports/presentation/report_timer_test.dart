@@ -5,6 +5,7 @@ import 'package:cmfi_connect/src/core/utils/date_extensions.dart';
 import 'package:cmfi_connect/src/core/utils/stopwatch_clock.dart';
 import 'package:cmfi_connect/src/features/reports/application/report_timer.dart';
 import 'package:cmfi_connect/src/features/reports/presentation/widgets/timer_banner.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:intl/date_symbol_data_local.dart';
 
@@ -105,5 +106,44 @@ void main() {
       (entry) => entry.code == 'PS',
     );
     expect(entry.durationMinutes, 45);
+  });
+
+  testWidgets('the stopwatch apart: an item chosen, then its minutes saved', (
+    tester,
+  ) async {
+    final app = await pumpApp(tester, token: 't');
+    await tester.tap(find.text('Compte rendu').last);
+    await tester.pumpAndSettle();
+
+    await tester.tap(find.byTooltip('Lancer un chrono'));
+    await tester.pumpAndSettle();
+    expect(find.text('Que veux-tu chronométrer ?'), findsOneWidget);
+    // only the items counted in time
+    expect(find.text('Prière seule'), findsWidgets);
+    expect(
+      find.descendant(
+        of: find.byType(BottomSheet),
+        matching: find.text('Lecture biblique'),
+      ),
+      findsNothing,
+    );
+
+    await tester.tap(find.text('Prière seule').last);
+    await tester.pump(const Duration(milliseconds: 500));
+    await tester.pump(const Duration(milliseconds: 500));
+    expect(find.text('Que veux-tu chronométrer ?'), findsNothing);
+    expect(app.container.read(reportTimerProvider)?.code, 'PS');
+
+    // « Terminer »: in today's report, by itself
+    await app.container.read(reportTimerProvider.notifier).pause();
+    await tester.pumpAndSettle();
+    await tester.tap(find.text('Terminer'));
+    await tester.pumpAndSettle();
+    expect(
+      app.reportsApi.days[today()]!.entries
+          .firstWhere((entry) => entry.code == 'PS')
+          .durationMinutes,
+      1,
+    );
   });
 }

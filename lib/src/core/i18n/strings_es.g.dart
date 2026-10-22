@@ -2123,6 +2123,12 @@ class _Translations$reports$timer$es extends Translations$reports$timer$fr {
 	@override String get replace => 'Reemplazar';
 	@override String get channel => 'Cronómetro en marcha';
 	@override String get ongoingBody => 'Toca para pausar o terminar';
+	@override String get pickButton => 'Iniciar un cronómetro';
+	@override String get pickTitle => '¿Qué quieres cronometrar?';
+	@override String get pickHint => 'Al terminar, los minutos se suman solos al informe de hoy.';
+	@override String get pickEmpty => 'Ningún elemento de tu informe se cuenta en tiempo.';
+	@override String todayMinutes({required Object time}) => '${time} hoy';
+	@override String get notYet => 'Todavía no hoy';
 }
 
 // Path: export.doc
@@ -3445,6 +3451,12 @@ extension on TranslationsEs {
 			'reports.timer.replace' => 'Reemplazar',
 			'reports.timer.channel' => 'Cronómetro en marcha',
 			'reports.timer.ongoingBody' => 'Toca para pausar o terminar',
+			'reports.timer.pickButton' => 'Iniciar un cronómetro',
+			'reports.timer.pickTitle' => '¿Qué quieres cronometrar?',
+			'reports.timer.pickHint' => 'Al terminar, los minutos se suman solos al informe de hoy.',
+			'reports.timer.pickEmpty' => 'Ningún elemento de tu informe se cuenta en tiempo.',
+			'reports.timer.todayMinutes' => ({required Object time}) => '${time} hoy',
+			'reports.timer.notYet' => 'Todavía no hoy',
 			'reminder.title' => 'Tu informe del día',
 			'reminder.body' => 'Tómate un minuto para anotar tu lectura, tu oración… antes de que termine el día.',
 			'reminder.channel' => 'Recordatorio del informe',
@@ -3650,14 +3662,14 @@ extension on TranslationsEs {
 			'members.deleteAccount.lastSuperadmin' => 'Eres el único superadmin: da este rol a otra persona antes de eliminar tu cuenta.',
 			'admin.title' => 'Equipo y roles',
 			'admin.intro' => 'Los admins gestionan lo que comparte toda la comunidad. Solo un superadmin da o quita un rol.',
+			_ => null,
+		} ?? switch (path) {
 			'admin.roleUser' => 'Miembro',
 			'admin.roleAdmin' => 'Admin',
 			'admin.roleSuperadmin' => 'Superadmin',
 			'admin.giveRole' => 'Dar un rol',
 			'admin.you' => 'tú',
 			'admin.roleFor' => ({required Object username}) => 'Rol de @${username}',
-			_ => null,
-		} ?? switch (path) {
 			'admin.roleChanged' => ({required Object username, required Object role}) => '@${username}: ${role}',
 			'admin.memberUsername' => 'Nombre de usuario del miembro',
 			'admin.empty' => 'Aún no hay ningún admin.',
@@ -4164,14 +4176,14 @@ extension on TranslationsEs {
 			'prayer.topics.categories.fasting' => 'Ayuno',
 			'prayer.topics.categories.other' => 'Motivo',
 			'prayer.topics.until' => ({required Object date}) => 'hasta el ${date}',
+			_ => null,
+		} ?? switch (path) {
 			'prayer.topics.archive' => 'Motivos anteriores',
 			'prayer.topics.archiveEmpty' => 'No hay motivos anteriores.',
 			'prayer.topics.current' => 'En este momento',
 			'prayer.topics.documentSize' => ({required Object kb}) => '${kb} KB',
 			'prayer.topics.download' => 'Descargar el PDF',
 			'prayer.topics.noDocument' => 'Sin PDF',
-			_ => null,
-		} ?? switch (path) {
 			'prayer.topics.openDocument' => 'Abrir el PDF',
 			'prayer.lists.title' => 'Mis listas de oración',
 			'prayer.lists.private' => 'Solo para ti',
@@ -4678,14 +4690,14 @@ extension on TranslationsEs {
 			'memorize.reminder' => 'Recordatorio de repaso',
 			'memorize.reminderAt' => 'Hora del recordatorio',
 			'memorize.myVerses' => 'Mis versículos',
+			_ => null,
+		} ?? switch (path) {
 			'memorize.howToAdd' => 'Para añadir uno: en la Biblia, toca un versículo y luego el cerebro de la barra.',
 			'memorize.empty' => 'Aún no hay versículos para memorizar.',
 			'memorize.openBible' => 'Abrir la Biblia',
 			'memorize.late' => 'Atrasado',
 			'memorize.today' => 'Hoy',
 			'memorize.dueIn' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('es'))(n, one: 'En ${n} día', other: 'En ${n} días', ), 
-			_ => null,
-		} ?? switch (path) {
 			'memorize.stages.fresh' => 'Nuevo',
 			'memorize.stages.learning' => 'Aprendiendo',
 			'memorize.stages.known' => 'Sabido',

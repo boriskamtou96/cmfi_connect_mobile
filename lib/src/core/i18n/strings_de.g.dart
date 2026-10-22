@@ -2123,6 +2123,12 @@ class _Translations$reports$timer$de extends Translations$reports$timer$fr {
 	@override String get replace => 'Ersetzen';
 	@override String get channel => 'Laufende Stoppuhr';
 	@override String get ongoingBody => 'Tippen zum Pausieren oder Beenden';
+	@override String get pickButton => 'Stoppuhr starten';
+	@override String get pickTitle => 'Was möchtest du messen?';
+	@override String get pickHint => 'Wenn du fertig bist, werden die Minuten automatisch zum heutigen Bericht hinzugefügt.';
+	@override String get pickEmpty => 'Keiner deiner Berichtspunkte wird in Zeit gezählt.';
+	@override String todayMinutes({required Object time}) => '${time} heute';
+	@override String get notYet => 'Heute noch nicht';
 }
 
 // Path: export.doc
@@ -3445,6 +3451,12 @@ extension on TranslationsDe {
 			'reports.timer.replace' => 'Ersetzen',
 			'reports.timer.channel' => 'Laufende Stoppuhr',
 			'reports.timer.ongoingBody' => 'Tippen zum Pausieren oder Beenden',
+			'reports.timer.pickButton' => 'Stoppuhr starten',
+			'reports.timer.pickTitle' => 'Was möchtest du messen?',
+			'reports.timer.pickHint' => 'Wenn du fertig bist, werden die Minuten automatisch zum heutigen Bericht hinzugefügt.',
+			'reports.timer.pickEmpty' => 'Keiner deiner Berichtspunkte wird in Zeit gezählt.',
+			'reports.timer.todayMinutes' => ({required Object time}) => '${time} heute',
+			'reports.timer.notYet' => 'Heute noch nicht',
 			'reminder.title' => 'Dein Tagesbericht',
 			'reminder.body' => 'Nimm dir eine Minute, um deine Bibellese, dein Gebet … festzuhalten, bevor der Tag endet.',
 			'reminder.channel' => 'Erinnerung an den Tagesbericht',
@@ -3650,14 +3662,14 @@ extension on TranslationsDe {
 			'members.deleteAccount.lastSuperadmin' => 'Du bist der einzige Superadmin: Gib diese Rolle jemand anderem, bevor du dein Konto löschst.',
 			'admin.title' => 'Team und Rollen',
 			'admin.intro' => 'Admins verwalten, was die ganze Gemeinschaft teilt. Nur ein Superadmin kann Rollen vergeben oder entziehen.',
+			_ => null,
+		} ?? switch (path) {
 			'admin.roleUser' => 'Mitglied',
 			'admin.roleAdmin' => 'Admin',
 			'admin.roleSuperadmin' => 'Superadmin',
 			'admin.giveRole' => 'Rolle vergeben',
 			'admin.you' => 'du',
 			'admin.roleFor' => ({required Object username}) => 'Rolle von @${username}',
-			_ => null,
-		} ?? switch (path) {
 			'admin.roleChanged' => ({required Object username, required Object role}) => '@${username}: ${role}',
 			'admin.memberUsername' => 'Benutzername des Mitglieds',
 			'admin.empty' => 'Noch keine Admins.',
@@ -4164,14 +4176,14 @@ extension on TranslationsDe {
 			'prayer.topics.categories.fasting' => 'Fasten',
 			'prayer.topics.categories.other' => 'Anliegen',
 			'prayer.topics.until' => ({required Object date}) => 'bis ${date}',
+			_ => null,
+		} ?? switch (path) {
 			'prayer.topics.archive' => 'Frühere Anliegen',
 			'prayer.topics.archiveEmpty' => 'Keine früheren Anliegen.',
 			'prayer.topics.current' => 'Aktuell',
 			'prayer.topics.documentSize' => ({required Object kb}) => '${kb} KB',
 			'prayer.topics.download' => 'PDF herunterladen',
 			'prayer.topics.noDocument' => 'Kein PDF',
-			_ => null,
-		} ?? switch (path) {
 			'prayer.topics.openDocument' => 'PDF öffnen',
 			'prayer.lists.title' => 'Meine Gebetslisten',
 			'prayer.lists.private' => 'Nur für dich',
@@ -4678,14 +4690,14 @@ extension on TranslationsDe {
 			'memorize.reminder' => 'Erinnerung zum Wiederholen',
 			'memorize.reminderAt' => 'Uhrzeit der Erinnerung',
 			'memorize.myVerses' => 'Meine Verse',
+			_ => null,
+		} ?? switch (path) {
 			'memorize.howToAdd' => 'Zum Hinzufügen: Tippe in der Bibel auf einen Vers, dann auf das Gehirn in der Leiste.',
 			'memorize.empty' => 'Noch kein Vers zum Auswendiglernen.',
 			'memorize.openBible' => 'Bibel öffnen',
 			'memorize.late' => 'Überfällig',
 			'memorize.today' => 'Heute',
 			'memorize.dueIn' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('de'))(n, one: 'In ${n} Tag', other: 'In ${n} Tagen', ), 
-			_ => null,
-		} ?? switch (path) {
 			'memorize.stages.fresh' => 'Neu',
 			'memorize.stages.learning' => 'Am Lernen',
 			'memorize.stages.known' => 'Gelernt',

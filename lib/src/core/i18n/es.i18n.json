@@ -392,7 +392,13 @@
       "replaceText": "Ya hay un cronómetro para «{item}». Se detendrá sin contarse.",
       "replace": "Reemplazar",
       "channel": "Cronómetro en marcha",
-      "ongoingBody": "Toca para pausar o terminar"
+      "ongoingBody": "Toca para pausar o terminar",
+      "pickButton": "Iniciar un cronómetro",
+      "pickTitle": "¿Qué quieres cronometrar?",
+      "pickHint": "Al terminar, los minutos se suman solos al informe de hoy.",
+      "pickEmpty": "Ningún elemento de tu informe se cuenta en tiempo.",
+      "todayMinutes": "{time} hoy",
+      "notYet": "Todavía no hoy"
     }
   },
   "reminder": {

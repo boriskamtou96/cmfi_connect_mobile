@@ -12,7 +12,7 @@ import '../../authorities/application/authorities_controller.dart';
 import '../../authorities/domain/authority.dart';
 import '../../profile/application/current_profile.dart';
 import '../../profile/domain/profile.dart';
-import '../../reports/application/day_report_controller.dart';
+import '../../reports/application/report_counts.dart';
 import '../domain/prayer.dart';
 import '../domain/retreat.dart';
 import '../infrastructure/prayer_api.dart';
@@ -354,7 +354,9 @@ typedef ReportAddition = ({int added, int total});
 
 /// Adds the minutes of a retreat to "Prière seule" in today's report (and
 /// takes them back for "Annuler"). null when the report has no such item.
-@riverpod
+/// Kept alive: the day may take a while to load, and nothing listens to
+/// this one (disposed meanwhile, the minutes were lost).
+@Riverpod(keepAlive: true)
 class RetreatReport extends _$RetreatReport {
   /// The standard item of the solitary prayer.
   static const prayerCode = 'PS';
@@ -363,32 +365,12 @@ class RetreatReport extends _$RetreatReport {
   void build() {}
 
   Future<ReportAddition?> add(int minutes) async {
-    final day = today();
-    // keeps the day alive while it is read and saved
-    final subscription = ref.listen(
-      dayReportControllerProvider(day),
-      (_, _) {},
+    final total = await addMinutesToDayReportItem(
+      ref,
+      day: today(),
+      code: prayerCode,
+      minutes: minutes,
     );
-    try {
-      final draft = await ref.read(dayReportControllerProvider(day).future);
-      final entry = draft.entries
-          .where((entry) => entry.code == prayerCode && entry.tracksDuration)
-          .firstOrNull;
-      if (entry == null) {
-        return null;
-      }
-      final total = ((entry.durationMinutes ?? 0) + minutes).clamp(0, 24 * 60);
-      ref
-          .read(dayReportControllerProvider(day).notifier)
-          .updateEntry(
-            entry.activityTypeId,
-            quantity: entry.quantity,
-            durationMinutes: total == 0 ? null : total,
-          );
-      await ref.read(dayReportControllerProvider(day).notifier).save();
-      return (added: minutes, total: total);
-    } finally {
-      subscription.close();
-    }
+    return total == null ? null : (added: minutes, total: total);
   }
 }

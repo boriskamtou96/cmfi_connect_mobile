@@ -2122,6 +2122,12 @@ class _Translations$reports$timer$hi extends Translations$reports$timer$fr {
 	@override String get replace => 'बदलो';
 	@override String get channel => 'चल रही स्टॉपवॉच';
 	@override String get ongoingBody => 'रोकने या समाप्त करने के लिए टैप करें';
+	@override String get pickButton => 'स्टॉपवॉच शुरू करें';
+	@override String get pickTitle => 'आप किसका समय मापना चाहते हैं?';
+	@override String get pickHint => 'समाप्त करने पर मिनट अपने आप आज की रिपोर्ट में जुड़ जाते हैं।';
+	@override String get pickEmpty => 'आपकी रिपोर्ट का कोई भी तत्व समय में नहीं गिना जाता।';
+	@override String todayMinutes({required Object time}) => 'आज ${time}';
+	@override String get notYet => 'आज अभी नहीं';
 }
 
 // Path: export.doc
@@ -3444,6 +3450,12 @@ extension on TranslationsHi {
 			'reports.timer.replace' => 'बदलो',
 			'reports.timer.channel' => 'चल रही स्टॉपवॉच',
 			'reports.timer.ongoingBody' => 'रोकने या समाप्त करने के लिए टैप करें',
+			'reports.timer.pickButton' => 'स्टॉपवॉच शुरू करें',
+			'reports.timer.pickTitle' => 'आप किसका समय मापना चाहते हैं?',
+			'reports.timer.pickHint' => 'समाप्त करने पर मिनट अपने आप आज की रिपोर्ट में जुड़ जाते हैं।',
+			'reports.timer.pickEmpty' => 'आपकी रिपोर्ट का कोई भी तत्व समय में नहीं गिना जाता।',
+			'reports.timer.todayMinutes' => ({required Object time}) => 'आज ${time}',
+			'reports.timer.notYet' => 'आज अभी नहीं',
 			'reminder.title' => 'तुम्हारी आज की रिपोर्ट',
 			'reminder.body' => 'दिन ख़त्म होने से पहले एक मिनट निकालकर अपना बाइबल पठन, अपनी प्रार्थना… दर्ज करो।',
 			'reminder.channel' => 'रिपोर्ट रिमाइंडर',
@@ -3649,14 +3661,14 @@ extension on TranslationsHi {
 			'members.deleteAccount.lastSuperadmin' => 'तुम अकेले सुपरएडमिन हो: खाता हटाने से पहले यह भूमिका किसी और को दो।',
 			'admin.title' => 'टीम और भूमिकाएँ',
 			'admin.intro' => 'एडमिन वह सब संभालते हैं जो पूरा समुदाय साझा करता है। भूमिका सिर्फ़ सुपरएडमिन ही दे या वापस ले सकते हैं।',
+			_ => null,
+		} ?? switch (path) {
 			'admin.roleUser' => 'सदस्य',
 			'admin.roleAdmin' => 'एडमिन',
 			'admin.roleSuperadmin' => 'सुपरएडमिन',
 			'admin.giveRole' => 'भूमिका दो',
 			'admin.you' => 'तुम',
 			'admin.roleFor' => ({required Object username}) => '@${username} की भूमिका',
-			_ => null,
-		} ?? switch (path) {
 			'admin.roleChanged' => ({required Object username, required Object role}) => '@${username}: ${role}',
 			'admin.memberUsername' => 'सदस्य का यूज़रनेम',
 			'admin.empty' => 'अभी तक कोई एडमिन नहीं है।',
@@ -4163,14 +4175,14 @@ extension on TranslationsHi {
 			'prayer.topics.categories.fasting' => 'उपवास',
 			'prayer.topics.categories.other' => 'विषय',
 			'prayer.topics.until' => ({required Object date}) => '${date} तक',
+			_ => null,
+		} ?? switch (path) {
 			'prayer.topics.archive' => 'पिछले विषय',
 			'prayer.topics.archiveEmpty' => 'कोई पिछला विषय नहीं।',
 			'prayer.topics.current' => 'इस समय',
 			'prayer.topics.documentSize' => ({required Object kb}) => '${kb} KB',
 			'prayer.topics.download' => 'PDF डाउनलोड करो',
 			'prayer.topics.noDocument' => 'PDF नहीं है',
-			_ => null,
-		} ?? switch (path) {
 			'prayer.topics.openDocument' => 'PDF खोलो',
 			'prayer.lists.title' => 'मेरी प्रार्थना सूचियाँ',
 			'prayer.lists.private' => 'सिर्फ़ तुम्हारे लिए',
@@ -4677,14 +4689,14 @@ extension on TranslationsHi {
 			'memorize.reminder' => 'दोहराई की याद',
 			'memorize.reminderAt' => 'याद का समय',
 			'memorize.myVerses' => 'मेरे पद',
+			_ => null,
+		} ?? switch (path) {
 			'memorize.howToAdd' => 'जोड़ने के लिए: बाइबल में कोई पद छुओ, फिर पट्टी में दिमाग़ का चिह्न।',
 			'memorize.empty' => 'अभी कंठस्थ करने को कोई पद नहीं।',
 			'memorize.openBible' => 'बाइबल खोलो',
 			'memorize.late' => 'देर से',
 			'memorize.today' => 'आज',
 			'memorize.dueIn' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n, one: '${n} दिन में', other: '${n} दिन में', ), 
-			_ => null,
-		} ?? switch (path) {
 			'memorize.stages.fresh' => 'नया',
 			'memorize.stages.learning' => 'सीख रहे',
 			'memorize.stages.known' => 'याद',

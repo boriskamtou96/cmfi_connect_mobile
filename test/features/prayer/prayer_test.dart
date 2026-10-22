@@ -6,9 +6,11 @@ import 'package:cmfi_connect/src/core/i18n/strings.g.dart';
 import 'package:cmfi_connect/src/core/theme/app_icons.dart';
 import 'package:cmfi_connect/src/core/utils/date_extensions.dart';
 import 'package:cmfi_connect/src/features/prayer/application/importunities.dart';
+import 'package:cmfi_connect/src/features/prayer/application/retreats.dart';
 import 'package:cmfi_connect/src/features/prayer/domain/prayer.dart';
 import 'package:cmfi_connect/src/features/prayer/domain/retreat.dart';
 import 'package:cmfi_connect/src/features/prayer/presentation/prayer_screen.dart';
+import 'package:cmfi_connect/src/features/reports/application/day_report_controller.dart';
 import 'package:cmfi_connect/src/features/reports/application/report_timer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -296,6 +298,33 @@ void main() {
       expect(app.voice.stops, greaterThan(stops));
       expect(app.preferences.getBool('retreat_voice'), isFalse);
       expect(app.voice.spoken, hasLength(2));
+    });
+
+    testWidgets('a retreat\'s minutes reach the report on a slow network', (
+      tester,
+    ) async {
+      final app = await pumpApp(tester, token: 't');
+      app.reportsApi.dayDelay = const Duration(seconds: 2);
+      app.container.invalidate(dayReportControllerProvider(today()));
+
+      // nothing listens to it: it must last until the report is saved
+      ReportAddition? added;
+      unawaited(
+        app.container
+            .read(retreatReportProvider.notifier)
+            .add(15)
+            .then((value) => added = value),
+      );
+      for (var i = 0; i < 10; i++) {
+        await tester.pump(const Duration(seconds: 1));
+      }
+      expect(added?.total, 15);
+      expect(
+        app.reportsApi.saves.last.entries
+            .firstWhere((entry) => entry.code == 'PS')
+            .durationMinutes,
+        15,
+      );
     });
 
     testWidgets('the routine: the retreat made, the days prayed, the week', (

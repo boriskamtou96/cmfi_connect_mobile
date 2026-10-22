@@ -2124,6 +2124,12 @@ class _Translations$reports$timer$en extends Translations$reports$timer$fr {
 	@override String get replace => 'Replace';
 	@override String get channel => 'Running stopwatch';
 	@override String get ongoingBody => 'Tap to pause or finish';
+	@override String get pickButton => 'Start a stopwatch';
+	@override String get pickTitle => 'What do you want to time?';
+	@override String get pickHint => 'When you finish, the minutes are added to today\'s report by themselves.';
+	@override String get pickEmpty => 'None of the items of your report is counted in time.';
+	@override String todayMinutes({required Object time}) => '${time} today';
+	@override String get notYet => 'Not yet today';
 }
 
 // Path: export.doc
@@ -3446,6 +3452,12 @@ extension on TranslationsEn {
 			'reports.timer.replace' => 'Replace',
 			'reports.timer.channel' => 'Running stopwatch',
 			'reports.timer.ongoingBody' => 'Tap to pause or finish',
+			'reports.timer.pickButton' => 'Start a stopwatch',
+			'reports.timer.pickTitle' => 'What do you want to time?',
+			'reports.timer.pickHint' => 'When you finish, the minutes are added to today\'s report by themselves.',
+			'reports.timer.pickEmpty' => 'None of the items of your report is counted in time.',
+			'reports.timer.todayMinutes' => ({required Object time}) => '${time} today',
+			'reports.timer.notYet' => 'Not yet today',
 			'reminder.title' => 'Your daily report',
 			'reminder.body' => 'Take a minute to note your reading, your prayer… before the day ends.',
 			'reminder.channel' => 'Report reminder',
@@ -3651,14 +3663,14 @@ extension on TranslationsEn {
 			'members.deleteAccount.lastSuperadmin' => 'You are the only superadmin: give this role to someone else before deleting your account.',
 			'admin.title' => 'Team and roles',
 			'admin.intro' => 'Admins manage what the whole community shares. Only a superadmin gives or takes back a role.',
+			_ => null,
+		} ?? switch (path) {
 			'admin.roleUser' => 'Member',
 			'admin.roleAdmin' => 'Admin',
 			'admin.roleSuperadmin' => 'Superadmin',
 			'admin.giveRole' => 'Give a role',
 			'admin.you' => 'you',
 			'admin.roleFor' => ({required Object username}) => 'Role of @${username}',
-			_ => null,
-		} ?? switch (path) {
 			'admin.roleChanged' => ({required Object username, required Object role}) => '@${username}: ${role}',
 			'admin.memberUsername' => 'Member\'s username',
 			'admin.empty' => 'No admin yet.',
@@ -4165,14 +4177,14 @@ extension on TranslationsEn {
 			'prayer.topics.categories.fasting' => 'Fasting',
 			'prayer.topics.categories.other' => 'Topic',
 			'prayer.topics.until' => ({required Object date}) => 'until ${date}',
+			_ => null,
+		} ?? switch (path) {
 			'prayer.topics.documentSize' => ({required Object kb}) => '${kb} KB',
 			'prayer.topics.archive' => 'Past topics',
 			'prayer.topics.archiveEmpty' => 'No past topic.',
 			'prayer.topics.current' => 'At the moment',
 			'prayer.topics.download' => 'Download the PDF',
 			'prayer.topics.noDocument' => 'No PDF',
-			_ => null,
-		} ?? switch (path) {
 			'prayer.topics.openDocument' => 'Open the PDF',
 			'prayer.lists.title' => 'My prayer lists',
 			'prayer.lists.private' => 'Only for you',
@@ -4679,14 +4691,14 @@ extension on TranslationsEn {
 			'memorize.reminder' => 'Review reminder',
 			'memorize.reminderAt' => 'Reminder time',
 			'memorize.myVerses' => 'My verses',
+			_ => null,
+		} ?? switch (path) {
 			'memorize.howToAdd' => 'To add one: in the Bible, tap a verse, then the brain in the bar.',
 			'memorize.empty' => 'No verse to memorize yet.',
 			'memorize.openBible' => 'Open the Bible',
 			'memorize.late' => 'Late',
 			'memorize.today' => 'Today',
 			'memorize.dueIn' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n, one: 'In ${n} day', other: 'In ${n} days', ), 
-			_ => null,
-		} ?? switch (path) {
 			'memorize.stages.fresh' => 'New',
 			'memorize.stages.learning' => 'Learning',
 			'memorize.stages.known' => 'Known',

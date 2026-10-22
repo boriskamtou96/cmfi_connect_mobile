@@ -381,7 +381,13 @@
       "replaceText": "“{item}”已在计时，它将停止且不计入。",
       "replace": "替换",
       "channel": "正在计时",
-      "ongoingBody": "轻点以暂停或结束"
+      "ongoingBody": "轻点以暂停或结束",
+      "pickButton": "开始计时",
+      "pickTitle": "你想为哪一项计时？",
+      "pickHint": "结束后，分钟会自动加入今天的报告。",
+      "pickEmpty": "你的报告中没有按时间计算的项目。",
+      "todayMinutes": "今天 {time}",
+      "notYet": "今天还没有"
     }
   },
   "reminder": {

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../core/i18n/strings.g.dart';
+import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_icons.dart';
 import '../../../core/theme/app_motion.dart';
 import '../../../core/theme/app_spacing.dart';
@@ -13,8 +14,10 @@ import '../../../core/widgets/segmented_tabs.dart';
 import '../../../core/widgets/tab_page.dart';
 import '../../../routing/app_router.dart';
 import '../application/pending_reports.dart';
+import '../application/report_timer.dart';
 import '../application/reports_providers.dart';
 import 'widgets/history_view.dart';
+import 'widgets/stopwatch_picker.dart';
 import 'widgets/summary_view.dart';
 import 'widgets/today_view.dart';
 
@@ -31,6 +34,7 @@ class ReportsScreen extends ConsumerWidget {
     final pending = ref.watch(pendingReportsProvider);
     final day = ref.watch(selectedReportDayProvider) ?? today();
     final duration = AppMotion.of(context, AppMotion.medium);
+    final running = ref.watch(reportTimerProvider) != null;
 
     void openDay(DateTime date) {
       ref.read(selectedReportDayProvider.notifier).select(date);
@@ -62,6 +66,18 @@ class ReportsScreen extends ConsumerWidget {
     return TabPage(
       title: t.reports.title,
       actions: [
+        // the stopwatch apart: choose the item, its minutes are saved alone
+        IconButton.outlined(
+          tooltip: t.reports.timer.pickButton,
+          style: squareStyle,
+          onPressed: () => showStopwatchPicker(context),
+          icon: Icon(
+            running ? AppIcons.stopwatchActive : AppIcons.stopwatch,
+            size: 22,
+            color: running ? AppColors.gold : null,
+          ),
+        ),
+        const SizedBox(width: AppSpacing.sm),
         if (view == ReportsView.today) ...[
           IconButton.outlined(
             tooltip: t.reports.pickDay,

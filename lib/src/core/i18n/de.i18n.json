@@ -392,7 +392,13 @@
       "replaceText": "Für „{item}“ läuft schon eine Stoppuhr. Sie stoppt, ohne gezählt zu werden.",
       "replace": "Ersetzen",
       "channel": "Laufende Stoppuhr",
-      "ongoingBody": "Tippen zum Pausieren oder Beenden"
+      "ongoingBody": "Tippen zum Pausieren oder Beenden",
+      "pickButton": "Stoppuhr starten",
+      "pickTitle": "Was möchtest du messen?",
+      "pickHint": "Wenn du fertig bist, werden die Minuten automatisch zum heutigen Bericht hinzugefügt.",
+      "pickEmpty": "Keiner deiner Berichtspunkte wird in Zeit gezählt.",
+      "todayMinutes": "{time} heute",
+      "notYet": "Heute noch nicht"
     }
   },
   "reminder": {

@@ -2056,6 +2056,12 @@ class _Translations$reports$timer$zh extends Translations$reports$timer$fr {
 	@override String get replace => '替换';
 	@override String get channel => '正在计时';
 	@override String get ongoingBody => '轻点以暂停或结束';
+	@override String get pickButton => '开始计时';
+	@override String get pickTitle => '你想为哪一项计时？';
+	@override String get pickHint => '结束后，分钟会自动加入今天的报告。';
+	@override String get pickEmpty => '你的报告中没有按时间计算的项目。';
+	@override String todayMinutes({required Object time}) => '今天 ${time}';
+	@override String get notYet => '今天还没有';
 }
 
 // Path: export.doc
@@ -3362,6 +3368,12 @@ extension on TranslationsZh {
 			'reports.timer.replace' => '替换',
 			'reports.timer.channel' => '正在计时',
 			'reports.timer.ongoingBody' => '轻点以暂停或结束',
+			'reports.timer.pickButton' => '开始计时',
+			'reports.timer.pickTitle' => '你想为哪一项计时？',
+			'reports.timer.pickHint' => '结束后，分钟会自动加入今天的报告。',
+			'reports.timer.pickEmpty' => '你的报告中没有按时间计算的项目。',
+			'reports.timer.todayMinutes' => ({required Object time}) => '今天 ${time}',
+			'reports.timer.notYet' => '今天还没有',
 			'reminder.title' => '你的今日汇报',
 			'reminder.body' => '在今天结束前，花一分钟记下你的读经、祷告……',
 			'reminder.channel' => '汇报提醒',
@@ -3567,14 +3579,14 @@ extension on TranslationsZh {
 			'members.deleteAccount.lastSuperadmin' => '你是唯一的超级管理员：删除账户前，请先把这个角色交给别人。',
 			'admin.title' => '团队与角色',
 			'admin.intro' => '管理员负责管理整个团契共享的内容。只有超级管理员可以授予或收回角色。',
+			_ => null,
+		} ?? switch (path) {
 			'admin.roleUser' => '成员',
 			'admin.roleAdmin' => '管理员',
 			'admin.roleSuperadmin' => '超级管理员',
 			'admin.giveRole' => '授予角色',
 			'admin.you' => '你',
 			'admin.roleFor' => ({required Object username}) => '@${username} 的角色',
-			_ => null,
-		} ?? switch (path) {
 			'admin.roleChanged' => ({required Object username, required Object role}) => '@${username}：${role}',
 			'admin.memberUsername' => '成员的用户名',
 			'admin.empty' => '暂时还没有管理员。',
@@ -4081,14 +4093,14 @@ extension on TranslationsZh {
 			'prayer.topics.categories.fasting' => '禁食',
 			'prayer.topics.categories.other' => '代祷',
 			'prayer.topics.until' => ({required Object date}) => '至 ${date}',
+			_ => null,
+		} ?? switch (path) {
 			'prayer.topics.archive' => '往期事项',
 			'prayer.topics.archiveEmpty' => '没有往期事项。',
 			'prayer.topics.current' => '当前',
 			'prayer.topics.documentSize' => ({required Object kb}) => '${kb} KB',
 			'prayer.topics.download' => '下载 PDF',
 			'prayer.topics.noDocument' => '没有 PDF',
-			_ => null,
-		} ?? switch (path) {
 			'prayer.topics.openDocument' => '打开 PDF',
 			'prayer.lists.title' => '我的祷告名单',
 			'prayer.lists.private' => '仅你可见',
@@ -4595,14 +4607,14 @@ extension on TranslationsZh {
 			'memorize.reminder' => '复习提醒',
 			'memorize.reminderAt' => '提醒时间',
 			'memorize.myVerses' => '我的经文',
+			_ => null,
+		} ?? switch (path) {
 			'memorize.howToAdd' => '添加方法：在圣经中点一节经文，再点工具栏里的大脑图标。',
 			'memorize.empty' => '还没有要背的经文。',
 			'memorize.openBible' => '打开圣经',
 			'memorize.late' => '已逾期',
 			'memorize.today' => '今天',
 			'memorize.dueIn' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n, one: '${n} 天后', other: '${n} 天后', ), 
-			_ => null,
-		} ?? switch (path) {
 			'memorize.stages.fresh' => '新',
 			'memorize.stages.learning' => '学习中',
 			'memorize.stages.known' => '已熟记',

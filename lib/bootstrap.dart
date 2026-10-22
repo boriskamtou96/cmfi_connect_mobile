@@ -13,6 +13,7 @@ import 'src/core/i18n/strings.g.dart';
 import 'src/core/services/app_log.dart';
 import 'src/core/services/crash_reporting.dart';
 import 'src/core/storage/preferences.dart';
+import 'src/features/update/presentation/app_update_gate.dart';
 
 /// Everything that must happen before the first frame lives here.
 Future<void> bootstrap(Flavor flavor) async {
@@ -49,7 +50,10 @@ Future<void> bootstrap(Flavor flavor) async {
         flavorProvider.overrideWithValue(flavor),
         sharedPreferencesProvider.overrideWithValue(preferences),
       ],
-      child: TranslationProvider(child: DismissKeyboardApp(child: const App())),
+      child: TranslationProvider(
+        // a version no longer allowed shows only the update screen
+        child: DismissKeyboardApp(child: const AppUpdateGate(child: App())),
+      ),
     ),
   );
 }

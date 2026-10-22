@@ -83,6 +83,7 @@ class TranslationsEs extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _Translations$souls$es souls = _Translations$souls$es._(_root);
 	@override late final _Translations$fasts$es fasts = _Translations$fasts$es._(_root);
 	@override late final _Translations$received$es received = _Translations$received$es._(_root);
+	@override late final _Translations$update$es update = _Translations$update$es._(_root);
 }
 
 // Path: app
@@ -1794,6 +1795,28 @@ class _Translations$received$es extends Translations$received$fr {
 	@override String get hint => 'Escribe tu ánimo…';
 	@override String get send => 'Enviar';
 	@override String sent({required Object name}) => '${name} recibió tu palabra';
+}
+
+// Path: update
+class _Translations$update$es extends Translations$update$fr {
+	_Translations$update$es._(TranslationsEs root) : this._root = root, super.internal(root);
+
+	final TranslationsEs _root; // ignore: unused_field
+
+	// Translations
+	@override String get requiredTitle => 'Actualización necesaria';
+	@override String get requiredText => 'Esta versión de la aplicación ya no es compatible. Instala la nueva versión para continuar.';
+	@override String get availableTitle => 'Nueva versión disponible';
+	@override String availableText({required Object version}) => 'La versión ${version} está lista, con mejoras y correcciones.';
+	@override String get update => 'Actualizar';
+	@override String get later => 'Más tarde';
+	@override String versions({required Object installed, required Object target}) => 'Tu versión: ${installed} · Nueva: ${target}';
+	@override String get downloading => 'Descargando la actualización…';
+	@override String get readyTitle => 'La actualización está lista';
+	@override String get readyText => 'Reinicia la aplicación para instalarla. Si no, se instalará cuando salgas de ella.';
+	@override String get restart => 'Reiniciar';
+	@override String get failed => 'No se pudo abrir la tienda. Inténtalo más tarde.';
+	@override String moreButton({required Object version}) => 'Actualizar a la versión ${version}';
 }
 
 // Path: welcome.seek
@@ -4907,6 +4930,19 @@ extension on TranslationsEs {
 			'received.hint' => 'Escribe tu ánimo…',
 			'received.send' => 'Enviar',
 			'received.sent' => ({required Object name}) => '${name} recibió tu palabra',
+			'update.requiredTitle' => 'Actualización necesaria',
+			'update.requiredText' => 'Esta versión de la aplicación ya no es compatible. Instala la nueva versión para continuar.',
+			'update.availableTitle' => 'Nueva versión disponible',
+			'update.availableText' => ({required Object version}) => 'La versión ${version} está lista, con mejoras y correcciones.',
+			'update.update' => 'Actualizar',
+			'update.later' => 'Más tarde',
+			'update.versions' => ({required Object installed, required Object target}) => 'Tu versión: ${installed} · Nueva: ${target}',
+			'update.downloading' => 'Descargando la actualización…',
+			'update.readyTitle' => 'La actualización está lista',
+			'update.readyText' => 'Reinicia la aplicación para instalarla. Si no, se instalará cuando salgas de ella.',
+			'update.restart' => 'Reiniciar',
+			'update.failed' => 'No se pudo abrir la tienda. Inténtalo más tarde.',
+			'update.moreButton' => ({required Object version}) => 'Actualizar a la versión ${version}',
 			_ => null,
 		};
 	}

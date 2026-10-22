@@ -3,6 +3,7 @@ import 'package:cmfi_connect/src/core/config/flavor.dart';
 import 'package:cmfi_connect/src/core/i18n/strings.g.dart';
 import 'package:cmfi_connect/src/core/services/app_shield.dart';
 import 'package:cmfi_connect/src/core/services/app_shortcuts.dart';
+import 'package:cmfi_connect/src/core/services/app_update.dart';
 import 'package:cmfi_connect/src/core/services/biometrics.dart';
 import 'package:cmfi_connect/src/core/services/calendar_service.dart';
 import 'package:cmfi_connect/src/core/services/chime.dart';
@@ -55,6 +56,7 @@ import 'package:cmfi_connect/src/features/souls/infrastructure/souls_storage.dar
 import 'package:cmfi_connect/src/features/teachings/application/teaching_player.dart';
 import 'package:cmfi_connect/src/features/teachings/infrastructure/teaching_files.dart';
 import 'package:cmfi_connect/src/features/teachings/infrastructure/teachings_api.dart';
+import 'package:cmfi_connect/src/features/update/presentation/app_update_gate.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -112,6 +114,8 @@ class TestApp {
     required this.voice,
     required this.reportSendingsApi,
     required this.lockScreen,
+    required this.updateRules,
+    required this.installer,
   });
 
   final ProviderContainer container;
@@ -164,6 +168,10 @@ class TestApp {
   final FakeVoiceReader voice;
   final FakeReportSendingsApi reportSendingsApi;
   final FakeLockScreenTimer lockScreen;
+
+  /// The update rules of Firebase Remote Config, and the version installed.
+  final FakeUpdateRules updateRules;
+  final FakeAppInstaller installer;
 }
 
 Future<TestApp> pumpApp(
@@ -202,6 +210,8 @@ Future<TestApp> pumpApp(
   FakeDisciplesApi? disciplesApi,
   FakeReportSendingsApi? reportSendingsApi,
   FakeBibleApi? bibleApi,
+  FakeUpdateRules? updateRules,
+  FakeAppInstaller? installer,
   // the pictures picked for a profile photo, decoded beforehand
   PhotoDecoder? photoDecoder,
   // v1 offers Premium to everyone (premiumForEveryoneProvider); the tests
@@ -268,6 +278,8 @@ Future<TestApp> pumpApp(
   final voice = FakeVoiceReader();
   final lockScreen = FakeLockScreenTimer();
   final sendings = reportSendingsApi ?? FakeReportSendingsApi();
+  final rules = updateRules ?? FakeUpdateRules();
+  final appInstaller = installer ?? FakeAppInstaller();
 
   final container = ProviderContainer(
     overrides: [
@@ -324,6 +336,8 @@ Future<TestApp> pumpApp(
       lockScreenTimerProvider.overrideWithValue(lockScreen),
       reportSendingsApiProvider.overrideWithValue(sendings),
       crashReportingProvider.overrideWithValue(const NoCrashReporting()),
+      updateRulesSourceProvider.overrideWithValue(rules),
+      appInstallerProvider.overrideWithValue(appInstaller),
       phoneVerificationProvider.overrideWithValue(
         phoneVerification ?? FakePhoneVerification(),
       ),
@@ -340,7 +354,10 @@ Future<TestApp> pumpApp(
     UncontrolledProviderScope(
       container: container,
       child: TranslationProvider(
-        child: RepaintBoundary(key: screenKey, child: const App()),
+        child: RepaintBoundary(
+          key: screenKey,
+          child: const AppUpdateGate(child: App()),
+        ),
       ),
     ),
   );
@@ -393,6 +410,8 @@ Future<TestApp> pumpApp(
     voice: voice,
     reportSendingsApi: sendings,
     lockScreen: lockScreen,
+    updateRules: rules,
+    installer: appInstaller,
   );
 }
 

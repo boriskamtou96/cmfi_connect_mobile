@@ -83,6 +83,7 @@ class TranslationsDe extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _Translations$souls$de souls = _Translations$souls$de._(_root);
 	@override late final _Translations$fasts$de fasts = _Translations$fasts$de._(_root);
 	@override late final _Translations$received$de received = _Translations$received$de._(_root);
+	@override late final _Translations$update$de update = _Translations$update$de._(_root);
 }
 
 // Path: app
@@ -1794,6 +1795,28 @@ class _Translations$received$de extends Translations$received$fr {
 	@override String get hint => 'Schreib deine Ermutigung…';
 	@override String get send => 'Senden';
 	@override String sent({required Object name}) => '${name} hat dein Wort erhalten';
+}
+
+// Path: update
+class _Translations$update$de extends Translations$update$fr {
+	_Translations$update$de._(TranslationsDe root) : this._root = root, super.internal(root);
+
+	final TranslationsDe _root; // ignore: unused_field
+
+	// Translations
+	@override String get requiredTitle => 'Aktualisierung erforderlich';
+	@override String get requiredText => 'Diese Version der App wird nicht mehr unterstützt. Installiere die neue Version, um fortzufahren.';
+	@override String get availableTitle => 'Neue Version verfügbar';
+	@override String availableText({required Object version}) => 'Version ${version} ist bereit, mit Verbesserungen und Korrekturen.';
+	@override String get update => 'Aktualisieren';
+	@override String get later => 'Später';
+	@override String versions({required Object installed, required Object target}) => 'Deine Version: ${installed} · Neu: ${target}';
+	@override String get downloading => 'Das Update wird heruntergeladen…';
+	@override String get readyTitle => 'Das Update ist bereit';
+	@override String get readyText => 'Starte die App neu, um es zu installieren. Sonst wird es installiert, wenn du die App verlässt.';
+	@override String get restart => 'Neu starten';
+	@override String get failed => 'Der Store konnte nicht geöffnet werden. Versuche es später erneut.';
+	@override String moreButton({required Object version}) => 'Auf Version ${version} aktualisieren';
 }
 
 // Path: welcome.seek
@@ -4907,6 +4930,19 @@ extension on TranslationsDe {
 			'received.hint' => 'Schreib deine Ermutigung…',
 			'received.send' => 'Senden',
 			'received.sent' => ({required Object name}) => '${name} hat dein Wort erhalten',
+			'update.requiredTitle' => 'Aktualisierung erforderlich',
+			'update.requiredText' => 'Diese Version der App wird nicht mehr unterstützt. Installiere die neue Version, um fortzufahren.',
+			'update.availableTitle' => 'Neue Version verfügbar',
+			'update.availableText' => ({required Object version}) => 'Version ${version} ist bereit, mit Verbesserungen und Korrekturen.',
+			'update.update' => 'Aktualisieren',
+			'update.later' => 'Später',
+			'update.versions' => ({required Object installed, required Object target}) => 'Deine Version: ${installed} · Neu: ${target}',
+			'update.downloading' => 'Das Update wird heruntergeladen…',
+			'update.readyTitle' => 'Das Update ist bereit',
+			'update.readyText' => 'Starte die App neu, um es zu installieren. Sonst wird es installiert, wenn du die App verlässt.',
+			'update.restart' => 'Neu starten',
+			'update.failed' => 'Der Store konnte nicht geöffnet werden. Versuche es später erneut.',
+			'update.moreButton' => ({required Object version}) => 'Auf Version ${version} aktualisieren',
 			_ => null,
 		};
 	}

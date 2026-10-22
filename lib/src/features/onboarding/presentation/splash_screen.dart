@@ -7,6 +7,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../core/i18n/strings.g.dart';
 import '../../../core/services/app_log.dart';
+import '../../../core/services/app_update.dart';
 import '../../../core/session/session.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_motion.dart';
@@ -30,6 +31,14 @@ class SplashScreen extends HookConsumerWidget {
           // unreadable secure storage: ask to sign in again
           AppLog.error(error, stack, reason: 'session unreadable: sign in');
           status = SessionStatus.unauthenticated;
+        }
+        // a version no longer allowed: AppUpdateGate takes over from here
+        try {
+          await ref
+              .read(appUpdateProvider.future)
+              .timeout(const Duration(seconds: 2));
+        } on Object catch (error) {
+          AppLog.info('update status unknown at launch: $error');
         }
         if (!context.mounted) {
           return;

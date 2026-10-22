@@ -83,6 +83,7 @@ class TranslationsZh extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _Translations$souls$zh souls = _Translations$souls$zh._(_root);
 	@override late final _Translations$fasts$zh fasts = _Translations$fasts$zh._(_root);
 	@override late final _Translations$received$zh received = _Translations$received$zh._(_root);
+	@override late final _Translations$update$zh update = _Translations$update$zh._(_root);
 }
 
 // Path: app
@@ -1730,6 +1731,28 @@ class _Translations$received$zh extends Translations$received$fr {
 	@override String get hint => '写下你的鼓励…';
 	@override String get send => '发送';
 	@override String sent({required Object name}) => '${name}已收到你的话';
+}
+
+// Path: update
+class _Translations$update$zh extends Translations$update$fr {
+	_Translations$update$zh._(TranslationsZh root) : this._root = root, super.internal(root);
+
+	final TranslationsZh _root; // ignore: unused_field
+
+	// Translations
+	@override String get requiredTitle => '需要更新';
+	@override String get requiredText => '此版本的应用已不再受支持。请安装新版本以继续使用。';
+	@override String get availableTitle => '有新版本可用';
+	@override String availableText({required Object version}) => '版本 ${version} 已就绪，包含改进和修复。';
+	@override String get update => '更新';
+	@override String get later => '稍后';
+	@override String versions({required Object installed, required Object target}) => '你的版本：${installed} · 新版本：${target}';
+	@override String get downloading => '正在下载更新…';
+	@override String get readyTitle => '更新已就绪';
+	@override String get readyText => '重启应用即可安装。否则将在你离开应用时安装。';
+	@override String get restart => '重启';
+	@override String get failed => '无法打开应用商店，请稍后再试。';
+	@override String moreButton({required Object version}) => '更新到版本 ${version}';
 }
 
 // Path: welcome.seek
@@ -4823,6 +4846,19 @@ extension on TranslationsZh {
 			'received.hint' => '写下你的鼓励…',
 			'received.send' => '发送',
 			'received.sent' => ({required Object name}) => '${name}已收到你的话',
+			'update.requiredTitle' => '需要更新',
+			'update.requiredText' => '此版本的应用已不再受支持。请安装新版本以继续使用。',
+			'update.availableTitle' => '有新版本可用',
+			'update.availableText' => ({required Object version}) => '版本 ${version} 已就绪，包含改进和修复。',
+			'update.update' => '更新',
+			'update.later' => '稍后',
+			'update.versions' => ({required Object installed, required Object target}) => '你的版本：${installed} · 新版本：${target}',
+			'update.downloading' => '正在下载更新…',
+			'update.readyTitle' => '更新已就绪',
+			'update.readyText' => '重启应用即可安装。否则将在你离开应用时安装。',
+			'update.restart' => '重启',
+			'update.failed' => '无法打开应用商店，请稍后再试。',
+			'update.moreButton' => ({required Object version}) => '更新到版本 ${version}',
 			_ => null,
 		};
 	}

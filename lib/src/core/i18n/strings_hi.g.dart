@@ -83,6 +83,7 @@ class TranslationsHi extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _Translations$souls$hi souls = _Translations$souls$hi._(_root);
 	@override late final _Translations$fasts$hi fasts = _Translations$fasts$hi._(_root);
 	@override late final _Translations$received$hi received = _Translations$received$hi._(_root);
+	@override late final _Translations$update$hi update = _Translations$update$hi._(_root);
 }
 
 // Path: app
@@ -1793,6 +1794,28 @@ class _Translations$received$hi extends Translations$received$fr {
 	@override String get hint => 'अपना प्रोत्साहन लिखें…';
 	@override String get send => 'भेजें';
 	@override String sent({required Object name}) => '${name} को आपका संदेश मिल गया';
+}
+
+// Path: update
+class _Translations$update$hi extends Translations$update$fr {
+	_Translations$update$hi._(TranslationsHi root) : this._root = root, super.internal(root);
+
+	final TranslationsHi _root; // ignore: unused_field
+
+	// Translations
+	@override String get requiredTitle => 'अपडेट ज़रूरी है';
+	@override String get requiredText => 'ऐप का यह संस्करण अब समर्थित नहीं है। जारी रखने के लिए नया संस्करण इंस्टॉल करें।';
+	@override String get availableTitle => 'नया संस्करण उपलब्ध है';
+	@override String availableText({required Object version}) => 'संस्करण ${version} तैयार है, सुधारों और ठीक की गई गड़बड़ियों के साथ।';
+	@override String get update => 'अपडेट करें';
+	@override String get later => 'बाद में';
+	@override String versions({required Object installed, required Object target}) => 'आपका संस्करण: ${installed} · नया: ${target}';
+	@override String get downloading => 'अपडेट डाउनलोड हो रहा है…';
+	@override String get readyTitle => 'अपडेट तैयार है';
+	@override String get readyText => 'इसे इंस्टॉल करने के लिए ऐप फिर से शुरू करें। नहीं तो ऐप छोड़ने पर यह इंस्टॉल हो जाएगा।';
+	@override String get restart => 'फिर से शुरू करें';
+	@override String get failed => 'स्टोर नहीं खुल सका। बाद में फिर कोशिश करें।';
+	@override String moreButton({required Object version}) => 'संस्करण ${version} पर अपडेट करें';
 }
 
 // Path: welcome.seek
@@ -4906,6 +4929,19 @@ extension on TranslationsHi {
 			'received.hint' => 'अपना प्रोत्साहन लिखें…',
 			'received.send' => 'भेजें',
 			'received.sent' => ({required Object name}) => '${name} को आपका संदेश मिल गया',
+			'update.requiredTitle' => 'अपडेट ज़रूरी है',
+			'update.requiredText' => 'ऐप का यह संस्करण अब समर्थित नहीं है। जारी रखने के लिए नया संस्करण इंस्टॉल करें।',
+			'update.availableTitle' => 'नया संस्करण उपलब्ध है',
+			'update.availableText' => ({required Object version}) => 'संस्करण ${version} तैयार है, सुधारों और ठीक की गई गड़बड़ियों के साथ।',
+			'update.update' => 'अपडेट करें',
+			'update.later' => 'बाद में',
+			'update.versions' => ({required Object installed, required Object target}) => 'आपका संस्करण: ${installed} · नया: ${target}',
+			'update.downloading' => 'अपडेट डाउनलोड हो रहा है…',
+			'update.readyTitle' => 'अपडेट तैयार है',
+			'update.readyText' => 'इसे इंस्टॉल करने के लिए ऐप फिर से शुरू करें। नहीं तो ऐप छोड़ने पर यह इंस्टॉल हो जाएगा।',
+			'update.restart' => 'फिर से शुरू करें',
+			'update.failed' => 'स्टोर नहीं खुल सका। बाद में फिर कोशिश करें।',
+			'update.moreButton' => ({required Object version}) => 'संस्करण ${version} पर अपडेट करें',
 			_ => null,
 		};
 	}

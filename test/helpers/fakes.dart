@@ -5,6 +5,7 @@ import 'dart:typed_data';
 import 'package:cmfi_connect/src/core/network/app_exception.dart';
 import 'package:cmfi_connect/src/core/services/app_shield.dart';
 import 'package:cmfi_connect/src/core/services/app_shortcuts.dart';
+import 'package:cmfi_connect/src/core/services/app_update.dart';
 import 'package:cmfi_connect/src/core/services/biometrics.dart';
 import 'package:cmfi_connect/src/core/services/calendar_service.dart';
 import 'package:cmfi_connect/src/core/services/chime.dart';
@@ -2847,4 +2848,60 @@ class FakeSoulsStorage implements SoulsStorage {
   @override
   Future<void> write(int accountId, String json) async =>
       saved[accountId] = json;
+}
+
+/// The rules of Firebase Remote Config: none unless the test gives some;
+/// [publish] changes them the way the console does (real-time).
+class FakeUpdateRules implements UpdateRulesSource {
+  FakeUpdateRules([this.rules = UpdateRules.none]);
+
+  UpdateRules rules;
+  var refreshes = 0;
+  final _changes = StreamController<void>.broadcast();
+
+  void publish(UpdateRules next) {
+    rules = next;
+    _changes.add(null);
+  }
+
+  @override
+  Future<UpdateRules> read() async => rules;
+
+  @override
+  Future<void> refresh() async => refreshes++;
+
+  @override
+  Stream<void> get changes => _changes.stream;
+}
+
+/// The installed version (1.0.21, build 55) and the updates started.
+class FakeAppInstaller implements AppInstaller {
+  FakeAppInstaller({this.version = '1.0.21+55'});
+
+  String? version;
+
+  /// What [update] answers.
+  UpdateStart answer = UpdateStart.started;
+  final updates = <({bool required, String storeUrl})>[];
+  var installs = 0;
+  final downloads = StreamController<void>.broadcast();
+
+  @override
+  Future<AppVersion?> installed() async =>
+      version == null ? null : AppVersion.tryParse(version!);
+
+  @override
+  Future<UpdateStart> update({
+    required bool required,
+    String storeUrl = '',
+  }) async {
+    updates.add((required: required, storeUrl: storeUrl));
+    return answer;
+  }
+
+  @override
+  Stream<void> get downloaded => downloads.stream;
+
+  @override
+  Future<void> install() async => installs++;
 }

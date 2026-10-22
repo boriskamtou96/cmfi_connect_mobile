@@ -83,6 +83,7 @@ class TranslationsAr extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _Translations$souls$ar souls = _Translations$souls$ar._(_root);
 	@override late final _Translations$fasts$ar fasts = _Translations$fasts$ar._(_root);
 	@override late final _Translations$received$ar received = _Translations$received$ar._(_root);
+	@override late final _Translations$update$ar update = _Translations$update$ar._(_root);
 }
 
 // Path: app
@@ -2051,6 +2052,28 @@ class _Translations$received$ar extends Translations$received$fr {
 	@override String get hint => 'اكتب كلمة تشجيع…';
 	@override String get send => 'إرسال';
 	@override String sent({required Object name}) => 'وصلت كلمتك إلى ${name}';
+}
+
+// Path: update
+class _Translations$update$ar extends Translations$update$fr {
+	_Translations$update$ar._(TranslationsAr root) : this._root = root, super.internal(root);
+
+	final TranslationsAr _root; // ignore: unused_field
+
+	// Translations
+	@override String get requiredTitle => 'التحديث مطلوب';
+	@override String get requiredText => 'لم يعد هذا الإصدار من التطبيق مدعومًا. ثبّت الإصدار الجديد للمتابعة.';
+	@override String get availableTitle => 'إصدار جديد متاح';
+	@override String availableText({required Object version}) => 'الإصدار ${version} جاهز، مع تحسينات وإصلاحات.';
+	@override String get update => 'تحديث';
+	@override String get later => 'لاحقًا';
+	@override String versions({required Object installed, required Object target}) => 'إصدارك: ${installed} · الجديد: ${target}';
+	@override String get downloading => 'جارٍ تنزيل التحديث…';
+	@override String get readyTitle => 'التحديث جاهز';
+	@override String get readyText => 'أعد تشغيل التطبيق لتثبيته، وإلا فسيُثبَّت عند مغادرتك التطبيق.';
+	@override String get restart => 'إعادة التشغيل';
+	@override String get failed => 'تعذّر فتح المتجر. حاول لاحقًا.';
+	@override String moreButton({required Object version}) => 'التحديث إلى الإصدار ${version}';
 }
 
 // Path: welcome.seek
@@ -5241,6 +5264,19 @@ extension on TranslationsAr {
 			'received.hint' => 'اكتب كلمة تشجيع…',
 			'received.send' => 'إرسال',
 			'received.sent' => ({required Object name}) => 'وصلت كلمتك إلى ${name}',
+			'update.requiredTitle' => 'التحديث مطلوب',
+			'update.requiredText' => 'لم يعد هذا الإصدار من التطبيق مدعومًا. ثبّت الإصدار الجديد للمتابعة.',
+			'update.availableTitle' => 'إصدار جديد متاح',
+			'update.availableText' => ({required Object version}) => 'الإصدار ${version} جاهز، مع تحسينات وإصلاحات.',
+			'update.update' => 'تحديث',
+			'update.later' => 'لاحقًا',
+			'update.versions' => ({required Object installed, required Object target}) => 'إصدارك: ${installed} · الجديد: ${target}',
+			'update.downloading' => 'جارٍ تنزيل التحديث…',
+			'update.readyTitle' => 'التحديث جاهز',
+			'update.readyText' => 'أعد تشغيل التطبيق لتثبيته، وإلا فسيُثبَّت عند مغادرتك التطبيق.',
+			'update.restart' => 'إعادة التشغيل',
+			'update.failed' => 'تعذّر فتح المتجر. حاول لاحقًا.',
+			'update.moreButton' => ({required Object version}) => 'التحديث إلى الإصدار ${version}',
 			_ => null,
 		};
 	}

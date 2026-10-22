@@ -2196,5 +2196,20 @@
     "hint": "写下你的鼓励…",
     "send": "发送",
     "sent": "{name}已收到你的话"
+  },
+  "update": {
+    "requiredTitle": "需要更新",
+    "requiredText": "此版本的应用已不再受支持。请安装新版本以继续使用。",
+    "availableTitle": "有新版本可用",
+    "availableText": "版本 {version} 已就绪，包含改进和修复。",
+    "update": "更新",
+    "later": "稍后",
+    "versions": "你的版本：{installed} · 新版本：{target}",
+    "downloading": "正在下载更新…",
+    "readyTitle": "更新已就绪",
+    "readyText": "重启应用即可安装。否则将在你离开应用时安装。",
+    "restart": "重启",
+    "failed": "无法打开应用商店，请稍后再试。",
+    "moreButton": "更新到版本 {version}"
   }
 }

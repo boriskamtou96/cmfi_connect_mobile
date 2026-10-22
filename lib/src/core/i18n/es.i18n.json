@@ -2280,5 +2280,20 @@
     "hint": "Escribe tu ánimo…",
     "send": "Enviar",
     "sent": "{name} recibió tu palabra"
+  },
+  "update": {
+    "requiredTitle": "Actualización necesaria",
+    "requiredText": "Esta versión de la aplicación ya no es compatible. Instala la nueva versión para continuar.",
+    "availableTitle": "Nueva versión disponible",
+    "availableText": "La versión {version} está lista, con mejoras y correcciones.",
+    "update": "Actualizar",
+    "later": "Más tarde",
+    "versions": "Tu versión: {installed} · Nueva: {target}",
+    "downloading": "Descargando la actualización…",
+    "readyTitle": "La actualización está lista",
+    "readyText": "Reinicia la aplicación para instalarla. Si no, se instalará cuando salgas de ella.",
+    "restart": "Reiniciar",
+    "failed": "No se pudo abrir la tienda. Inténtalo más tarde.",
+    "moreButton": "Actualizar a la versión {version}"
   }
 }

@@ -85,6 +85,7 @@ class Translations with BaseTranslations<AppLocale, Translations> {
 	late final Translations$souls$fr souls = Translations$souls$fr.internal(_root);
 	late final Translations$fasts$fr fasts = Translations$fasts$fr.internal(_root);
 	late final Translations$received$fr received = Translations$received$fr.internal(_root);
+	late final Translations$update$fr update = Translations$update$fr.internal(_root);
 }
 
 // Path: app
@@ -3749,6 +3750,54 @@ class Translations$received$fr {
 
 	/// fr: '{name} a reçu ton mot'
 	String sent({required Object name}) => '${name} a reçu ton mot';
+}
+
+// Path: update
+class Translations$update$fr {
+	Translations$update$fr.internal(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// fr: 'Mise à jour nécessaire'
+	String get requiredTitle => 'Mise à jour nécessaire';
+
+	/// fr: 'Cette version de l'application n'est plus prise en charge. Installe la nouvelle version pour continuer.'
+	String get requiredText => 'Cette version de l\'application n\'est plus prise en charge. Installe la nouvelle version pour continuer.';
+
+	/// fr: 'Nouvelle version disponible'
+	String get availableTitle => 'Nouvelle version disponible';
+
+	/// fr: 'La version {version} est prête, avec des améliorations et des corrections.'
+	String availableText({required Object version}) => 'La version ${version} est prête, avec des améliorations et des corrections.';
+
+	/// fr: 'Mettre à jour'
+	String get update => 'Mettre à jour';
+
+	/// fr: 'Plus tard'
+	String get later => 'Plus tard';
+
+	/// fr: 'Ta version : {installed} · Nouvelle : {target}'
+	String versions({required Object installed, required Object target}) => 'Ta version : ${installed} · Nouvelle : ${target}';
+
+	/// fr: 'Téléchargement de la mise à jour…'
+	String get downloading => 'Téléchargement de la mise à jour…';
+
+	/// fr: 'La mise à jour est prête'
+	String get readyTitle => 'La mise à jour est prête';
+
+	/// fr: 'Redémarre l'application pour l'installer. Sinon, elle s'installera quand tu la quitteras.'
+	String get readyText => 'Redémarre l\'application pour l\'installer. Sinon, elle s\'installera quand tu la quitteras.';
+
+	/// fr: 'Redémarrer'
+	String get restart => 'Redémarrer';
+
+	/// fr: 'Impossible d'ouvrir le store. Réessaie plus tard.'
+	String get failed => 'Impossible d\'ouvrir le store. Réessaie plus tard.';
+
+	/// fr: 'Mettre à jour vers la version {version}'
+	String moreButton({required Object version}) => 'Mettre à jour vers la version ${version}';
 }
 
 // Path: welcome.seek
@@ -8169,6 +8218,19 @@ extension on Translations {
 			'received.hint' => 'Écris ton encouragement…',
 			'received.send' => 'Envoyer',
 			'received.sent' => ({required Object name}) => '${name} a reçu ton mot',
+			'update.requiredTitle' => 'Mise à jour nécessaire',
+			'update.requiredText' => 'Cette version de l\'application n\'est plus prise en charge. Installe la nouvelle version pour continuer.',
+			'update.availableTitle' => 'Nouvelle version disponible',
+			'update.availableText' => ({required Object version}) => 'La version ${version} est prête, avec des améliorations et des corrections.',
+			'update.update' => 'Mettre à jour',
+			'update.later' => 'Plus tard',
+			'update.versions' => ({required Object installed, required Object target}) => 'Ta version : ${installed} · Nouvelle : ${target}',
+			'update.downloading' => 'Téléchargement de la mise à jour…',
+			'update.readyTitle' => 'La mise à jour est prête',
+			'update.readyText' => 'Redémarre l\'application pour l\'installer. Sinon, elle s\'installera quand tu la quitteras.',
+			'update.restart' => 'Redémarrer',
+			'update.failed' => 'Impossible d\'ouvrir le store. Réessaie plus tard.',
+			'update.moreButton' => ({required Object version}) => 'Mettre à jour vers la version ${version}',
 			_ => null,
 		};
 	}

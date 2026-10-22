@@ -5,6 +5,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import '../../../core/i18n/strings.g.dart';
 import '../../../core/network/app_exception.dart';
 import '../../../core/network/app_exception_message.dart';
+import '../../../core/services/app_update.dart';
 import '../../../core/services/app_version.dart';
 import '../../../core/services/biometrics.dart';
 import '../../../core/services/premium_store.dart';
@@ -41,6 +42,7 @@ import '../../reports/application/report_sending.dart';
 import '../../reports/domain/report_sending.dart';
 import '../../reports/presentation/widgets/reminder_sheets.dart';
 import '../../seek_first/application/seek_first.dart';
+import '../../update/presentation/update_prompts.dart';
 import 'widgets/theme_sheet.dart';
 
 /// "Plus", opened from the photo at the top of the home screen: profile, the
@@ -825,7 +827,8 @@ class _Section extends StatelessWidget {
   }
 }
 
-/// At the very bottom: the name of the app, its version and the copyright.
+/// At the very bottom: the name of the app, its version and the copyright;
+/// above them, the update when a newer version is out.
 class _About extends ConsumerWidget {
   const _About();
 
@@ -834,6 +837,7 @@ class _About extends ConsumerWidget {
     final t = context.t;
     final muted = Theme.of(context).colorScheme.onSurfaceVariant;
     final version = ref.watch(appVersionProvider).value ?? '';
+    final update = ref.watch(appUpdateProvider).value;
 
     return Padding(
       padding: const EdgeInsets.fromLTRB(
@@ -844,6 +848,17 @@ class _About extends ConsumerWidget {
       ),
       child: Column(
         children: [
+          if (update case AppUpdateStatus(
+            need: UpdateNeed.optional,
+            :final target?,
+          )) ...[
+            FilledButton.tonalIcon(
+              onPressed: () => startUpdate(context, ref),
+              icon: const Icon(AppIcons.update),
+              label: Text(t.update.moreButton(version: '$target')),
+            ),
+            const SizedBox(height: AppSpacing.lg),
+          ],
           Text(
             t.app.name,
             style: TextStyle(fontWeight: FontWeight.w800, color: muted),

@@ -83,6 +83,7 @@ class TranslationsEn extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _Translations$souls$en souls = _Translations$souls$en._(_root);
 	@override late final _Translations$fasts$en fasts = _Translations$fasts$en._(_root);
 	@override late final _Translations$received$en received = _Translations$received$en._(_root);
+	@override late final _Translations$update$en update = _Translations$update$en._(_root);
 }
 
 // Path: app
@@ -1795,6 +1796,28 @@ class _Translations$received$en extends Translations$received$fr {
 	@override String get hint => 'Write your encouragement…';
 	@override String get send => 'Send';
 	@override String sent({required Object name}) => '${name} got your word';
+}
+
+// Path: update
+class _Translations$update$en extends Translations$update$fr {
+	_Translations$update$en._(TranslationsEn root) : this._root = root, super.internal(root);
+
+	final TranslationsEn _root; // ignore: unused_field
+
+	// Translations
+	@override String get requiredTitle => 'Update required';
+	@override String get requiredText => 'This version of the app is no longer supported. Install the new version to continue.';
+	@override String get availableTitle => 'New version available';
+	@override String availableText({required Object version}) => 'Version ${version} is ready, with improvements and fixes.';
+	@override String get update => 'Update';
+	@override String get later => 'Later';
+	@override String versions({required Object installed, required Object target}) => 'Your version: ${installed} · New: ${target}';
+	@override String get downloading => 'Downloading the update…';
+	@override String get readyTitle => 'The update is ready';
+	@override String get readyText => 'Restart the app to install it. Otherwise it will install when you leave the app.';
+	@override String get restart => 'Restart';
+	@override String get failed => 'The store could not be opened. Try again later.';
+	@override String moreButton({required Object version}) => 'Update to version ${version}';
 }
 
 // Path: welcome.seek
@@ -4908,6 +4931,19 @@ extension on TranslationsEn {
 			'received.hint' => 'Write your encouragement…',
 			'received.send' => 'Send',
 			'received.sent' => ({required Object name}) => '${name} got your word',
+			'update.requiredTitle' => 'Update required',
+			'update.requiredText' => 'This version of the app is no longer supported. Install the new version to continue.',
+			'update.availableTitle' => 'New version available',
+			'update.availableText' => ({required Object version}) => 'Version ${version} is ready, with improvements and fixes.',
+			'update.update' => 'Update',
+			'update.later' => 'Later',
+			'update.versions' => ({required Object installed, required Object target}) => 'Your version: ${installed} · New: ${target}',
+			'update.downloading' => 'Downloading the update…',
+			'update.readyTitle' => 'The update is ready',
+			'update.readyText' => 'Restart the app to install it. Otherwise it will install when you leave the app.',
+			'update.restart' => 'Restart',
+			'update.failed' => 'The store could not be opened. Try again later.',
+			'update.moreButton' => ({required Object version}) => 'Update to version ${version}',
 			_ => null,
 		};
 	}

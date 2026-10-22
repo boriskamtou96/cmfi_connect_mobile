@@ -2280,5 +2280,20 @@
     "hint": "Écris ton encouragement…",
     "send": "Envoyer",
     "sent": "{name} a reçu ton mot"
+  },
+  "update": {
+    "requiredTitle": "Mise à jour nécessaire",
+    "requiredText": "Cette version de l'application n'est plus prise en charge. Installe la nouvelle version pour continuer.",
+    "availableTitle": "Nouvelle version disponible",
+    "availableText": "La version {version} est prête, avec des améliorations et des corrections.",
+    "update": "Mettre à jour",
+    "later": "Plus tard",
+    "versions": "Ta version : {installed} · Nouvelle : {target}",
+    "downloading": "Téléchargement de la mise à jour…",
+    "readyTitle": "La mise à jour est prête",
+    "readyText": "Redémarre l'application pour l'installer. Sinon, elle s'installera quand tu la quitteras.",
+    "restart": "Redémarrer",
+    "failed": "Impossible d'ouvrir le store. Réessaie plus tard.",
+    "moreButton": "Mettre à jour vers la version {version}"
   }
 }

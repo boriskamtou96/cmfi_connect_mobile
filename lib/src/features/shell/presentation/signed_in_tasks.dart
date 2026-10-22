@@ -9,6 +9,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import '../../../core/i18n/strings.g.dart';
 import '../../../core/services/app_log.dart';
 import '../../../core/services/app_shortcuts.dart';
+import '../../../core/services/app_update.dart';
 import '../../../core/services/crash_reporting.dart';
 import '../../../core/services/deep_links.dart';
 import '../../../core/services/home_widgets.dart';
@@ -49,6 +50,7 @@ import '../../reports/domain/report_sending.dart';
 import '../../seek_first/application/seek_first.dart';
 import '../../souls/application/souls.dart';
 import '../../teachings/application/now_playing.dart';
+import '../../update/presentation/update_prompts.dart';
 import '../../verses/application/verse_of_the_day.dart';
 import '../../verses/domain/verse.dart';
 
@@ -59,7 +61,8 @@ import '../../verses/domain/verse.dart';
 /// it, one arriving while the app is open pops up. The shortcuts of the app
 /// icon are set (in the app language) and open what they say. A link
 /// (cmfi-connect.com/open?to=…) opens its event, hymn, prayer topic or
-/// Bible verse.
+/// Bible verse. A new version of the app is offered once (Firebase Remote
+/// Config), and the one Google Play downloaded is installed when asked.
 class SignedInTasks extends HookConsumerWidget {
   const SignedInTasks({required this.child, super.key});
 
@@ -481,6 +484,30 @@ class SignedInTasks extends HookConsumerWidget {
         unawaited(received.cancel());
         lifecycle.dispose();
         links.close();
+      };
+    }, const []);
+
+    // the new version, offered once; the one Google Play downloaded,
+    // installed when the user says so
+    useEffect(() {
+      void offer() => WidgetsBinding.instance.addPostFrameCallback((_) {
+        if (context.mounted) {
+          unawaited(offerUpdate(context, ref));
+        }
+      });
+      final status = ref.listenManual(appUpdateProvider, (_, next) {
+        if (next.hasValue) {
+          offer();
+        }
+      }, fireImmediately: true);
+      final downloads = ref.read(appInstallerProvider).downloaded.listen((_) {
+        if (context.mounted) {
+          unawaited(offerInstall(context, ref));
+        }
+      });
+      return () {
+        status.close();
+        unawaited(downloads.cancel());
       };
     }, const []);
 

@@ -2281,5 +2281,20 @@
     "hint": "Write your encouragement…",
     "send": "Send",
     "sent": "{name} got your word"
+  },
+  "update": {
+    "requiredTitle": "Update required",
+    "requiredText": "This version of the app is no longer supported. Install the new version to continue.",
+    "availableTitle": "New version available",
+    "availableText": "Version {version} is ready, with improvements and fixes.",
+    "update": "Update",
+    "later": "Later",
+    "versions": "Your version: {installed} · New: {target}",
+    "downloading": "Downloading the update…",
+    "readyTitle": "The update is ready",
+    "readyText": "Restart the app to install it. Otherwise it will install when you leave the app.",
+    "restart": "Restart",
+    "failed": "The store could not be opened. Try again later.",
+    "moreButton": "Update to version {version}"
   }
 }

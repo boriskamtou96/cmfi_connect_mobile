@@ -2280,5 +2280,20 @@
     "hint": "Schreib deine Ermutigung…",
     "send": "Senden",
     "sent": "{name} hat dein Wort erhalten"
+  },
+  "update": {
+    "requiredTitle": "Aktualisierung erforderlich",
+    "requiredText": "Diese Version der App wird nicht mehr unterstützt. Installiere die neue Version, um fortzufahren.",
+    "availableTitle": "Neue Version verfügbar",
+    "availableText": "Version {version} ist bereit, mit Verbesserungen und Korrekturen.",
+    "update": "Aktualisieren",
+    "later": "Später",
+    "versions": "Deine Version: {installed} · Neu: {target}",
+    "downloading": "Das Update wird heruntergeladen…",
+    "readyTitle": "Das Update ist bereit",
+    "readyText": "Starte die App neu, um es zu installieren. Sonst wird es installiert, wenn du die App verlässt.",
+    "restart": "Neu starten",
+    "failed": "Der Store konnte nicht geöffnet werden. Versuche es später erneut.",
+    "moreButton": "Auf Version {version} aktualisieren"
   }
 }

@@ -7,7 +7,7 @@ import '../domain/payment.dart';
 
 part 'payments_api.g.dart';
 
-/// Payments by mobile money (pawaPay, through /v1/payments): the operators,
+/// Payments by mobile money (KPay, through /v1/payments): the operators,
 /// the registration to a paid event, and following a payment while the member
 /// confirms it on their phone.
 class PaymentsApi {

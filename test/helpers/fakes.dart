@@ -2908,7 +2908,7 @@ class FakeAppInstaller implements AppInstaller {
   Future<void> install() async => installs++;
 }
 
-/// pawaPay through the server: a payment waits for the member's PIN until
+/// KPay through the server: a payment waits for the member's PIN until
 /// the test [complete]s or [fail]s it; completed, the member is registered
 /// (paid) in [events].
 class FakePaymentsApi implements PaymentsApi {

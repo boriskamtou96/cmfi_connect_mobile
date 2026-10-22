@@ -150,7 +150,9 @@ String paymentFailureMessage(String code, Translations t) {
     'INSUFFICIENT_BALANCE' => failures.insufficientBalance,
     'PAYER_NOT_FOUND' || 'INVALID_PHONE_NUMBER' => failures.payerNotFound,
     'PAYER_LIMIT_REACHED' || 'WALLET_LIMIT_REACHED' => failures.limitReached,
-    'PAYMENT_NOT_APPROVED' || 'PAYER_NOT_APPROVED' => failures.notApproved,
+    'PAYMENT_NOT_APPROVED' ||
+    'PAYER_NOT_APPROVED' ||
+    'CANCELLED' => failures.notApproved,
     'PROVIDER_TEMPORARILY_UNAVAILABLE' ||
     'PAYMENTS_UNAVAILABLE' => failures.unavailable,
     _ => failures.generic,

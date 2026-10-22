@@ -9,7 +9,7 @@ part 'payment.g.dart';
 /// refunding, refunded: the money goes back.
 enum PaymentStatus { pending, completed, failed, refunding, refunded }
 
-/// A payment by mobile money (pawaPay, through the server).
+/// A payment by mobile money (KPay, through the server).
 @freezed
 abstract class Payment with _$Payment {
   const factory Payment({

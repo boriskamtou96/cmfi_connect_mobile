@@ -24,11 +24,12 @@ enum DovePose {
 /// white, and a gold beak (the gold of the app's small victories).
 ///
 /// It faces left, like the logo's dove, and does not flip in right-to-left
-/// languages: it is an illustration. It never moves by itself; animate it
-/// from outside (`FadeSlideIn`, `AnimatedSwitcher` keyed on the pose…).
+/// languages: it is an illustration. She breathes, blinks and moves her
+/// wings by herself ([DoveMotion]); a change of pose can still be animated
+/// from outside (`AnimatedSwitcher` keyed on the pose…).
 /// Decorative by default: give a [semanticLabel] when it says something the
 /// text around it does not.
-class DoveMascot extends StatelessWidget {
+class DoveMascot extends StatefulWidget {
   const DoveMascot({
     this.pose = DovePose.joy,
     this.size = 120,
@@ -42,24 +43,136 @@ class DoveMascot extends StatelessWidget {
   /// What screen readers say; when null, the dove is left out of semantics.
   final String? semanticLabel;
 
+  /// Zoé breathes, blinks and moves her wings (22/10/2026). Off in the tests
+  /// (a never-ending animation never settles) and with « réduire les
+  /// animations »; never when she is small (an icon).
+  static bool lively = true;
+
+  /// One breath, the length of the loop.
+  static const period = Duration(milliseconds: 3600);
+
+  @override
+  State<DoveMascot> createState() => _DoveMascotState();
+}
+
+class _DoveMascotState extends State<DoveMascot>
+    with SingleTickerProviderStateMixin {
+  late final AnimationController _loop = AnimationController(
+    vsync: this,
+    duration: DoveMascot.period,
+  );
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    _play();
+  }
+
+  @override
+  void didUpdateWidget(DoveMascot oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    _play();
+  }
+
+  void _play() {
+    final alive =
+        DoveMascot.lively &&
+        widget.size >= 40 &&
+        !(MediaQuery.maybeDisableAnimationsOf(context) ?? false);
+    if (alive && !_loop.isAnimating) {
+      _loop.repeat();
+    } else if (!alive && _loop.isAnimating) {
+      _loop
+        ..stop()
+        ..value = 0;
+    }
+  }
+
+  @override
+  void dispose() {
+    _loop.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
-    final dove = CustomPaint(
-      size: Size.square(size),
-      painter: DovePainter(
-        pose: pose,
-        // the eye's glint, the cheeks and the feather lines vanish when small
-        details: size >= 40,
-        // 3 % of the size, thicker when small so the outline still reads
-        outline: size < 40 ? 6 : (size < 64 ? 4 : 3),
+    final size = widget.size;
+    final dove = AnimatedBuilder(
+      animation: _loop,
+      builder: (context, _) => CustomPaint(
+        size: Size.square(size),
+        painter: DovePainter(
+          pose: widget.pose,
+          // the eye's glint, the cheeks and the feather lines vanish when small
+          details: size >= 40,
+          // 3 % of the size, thicker when small so the outline still reads
+          outline: size < 40 ? 6 : (size < 64 ? 4 : 3),
+          motion: _loop.isAnimating
+              ? DoveMotion.at(widget.pose, _loop.value)
+              : const DoveMotion(),
+        ),
       ),
     );
-    final label = semanticLabel;
+    final label = widget.semanticLabel;
     if (label == null) {
       return ExcludeSemantics(child: dove);
     }
     return Semantics(label: label, image: true, child: dove);
   }
+}
+
+/// Where Zoé is in her breath: how far she rises ([bob], on the 100×100
+/// grid), her wings turned by [wing] degrees, her eye closing ([blink], 0 to
+/// 1), the sparkles twinkling ([twinkle], 0 to 1), the "z" rising ([drift]).
+@immutable
+class DoveMotion {
+  const DoveMotion({
+    this.bob = 0,
+    this.wing = 0,
+    this.blink = 0,
+    this.twinkle = 1,
+    this.drift = 0,
+  });
+
+  /// [pose] at [t] of the loop (0 to 1): a breath; a blink in joy; the wing
+  /// waving three times in cheer; both wings beating in celebrate; slow
+  /// sleep, the "z" rising, in rest.
+  factory DoveMotion.at(DovePose pose, double t) {
+    final phase = 2 * math.pi * t;
+    final blink = pose == DovePose.joy && t >= 0.70 && t <= 0.78
+        ? math.sin((t - 0.70) / 0.08 * math.pi)
+        : 0.0;
+    return DoveMotion(
+      bob: math.sin(phase) * (pose == DovePose.rest ? 0.8 : 1.4),
+      wing: switch (pose) {
+        DovePose.joy => math.sin(phase) * 3,
+        DovePose.cheer => math.sin(phase * 3) * 10,
+        DovePose.celebrate => math.sin(phase * 2) * 8,
+        DovePose.rest => math.sin(phase) * 1.5,
+      },
+      blink: blink,
+      twinkle: 0.5 + 0.5 * math.sin(phase * 2),
+      drift: t,
+    );
+  }
+
+  final double bob;
+  final double wing;
+  final double blink;
+  final double twinkle;
+  final double drift;
+
+  @override
+  bool operator ==(Object other) =>
+      other is DoveMotion &&
+      other.bob == bob &&
+      other.wing == wing &&
+      other.blink == blink &&
+      other.twinkle == twinkle &&
+      other.drift == drift;
+
+  @override
+  int get hashCode => Object.hash(bob, wing, blink, twinkle, drift);
 }
 
 /// Draws Zoé on a 100×100 grid stretched to the canvas. Also paints the
@@ -69,9 +182,13 @@ class DovePainter extends CustomPainter {
     this.pose = DovePose.joy,
     this.details = true,
     this.outline = 3,
+    this.motion = const DoveMotion(),
   });
 
   final DovePose pose;
+
+  /// Where she is in her breath (still by default: the brand images).
+  final DoveMotion motion;
 
   /// The eye's glint, the cheeks and the feather and motion lines.
   final bool details;
@@ -114,7 +231,9 @@ class DovePainter extends CustomPainter {
   void paint(Canvas canvas, Size size) {
     canvas.save();
     // Zoé is designed on a 100×100 grid, like the logo
-    canvas.scale(size.width / 100, size.height / 100);
+    canvas
+      ..scale(size.width / 100, size.height / 100)
+      ..translate(0, -motion.bob);
     // back to front: what sticks out from behind the body (beak, sprig, far
     // wing) comes first, so the body covers its root
     switch (pose) {
@@ -183,6 +302,26 @@ class DovePainter extends CustomPainter {
     if (details) {
       _line(canvas, path, _ink.withValues(alpha: opacity), 2);
     }
+  }
+
+  /// Draws [draw] (in the grid's axes) turned by [degrees] around [pivot].
+  void _around(
+    Canvas canvas,
+    Offset pivot,
+    double degrees,
+    void Function() draw,
+  ) {
+    if (degrees == 0) {
+      draw();
+      return;
+    }
+    canvas
+      ..save()
+      ..translate(pivot.dx, pivot.dy)
+      ..rotate(degrees * math.pi / 180)
+      ..translate(-pivot.dx, -pivot.dy);
+    draw();
+    canvas.restore();
   }
 
   /// Draws [draw] turned by [degrees] around [center], given in its own axes.
@@ -257,7 +396,14 @@ class DovePainter extends CustomPainter {
   }
 
   /// The folded wing: a leaf whose end splits into three feathers.
-  void _foldedWing(Canvas canvas) {
+  void _foldedWing(Canvas canvas) => _around(
+    canvas,
+    const Offset(38, 56),
+    motion.wing,
+    () => _drawFoldedWing(canvas),
+  );
+
+  void _drawFoldedWing(Canvas canvas) {
     _outlined(
       canvas,
       Path()
@@ -279,7 +425,14 @@ class DovePainter extends CustomPainter {
   }
 
   /// One wing raised to wave, with two motion lines.
-  void _wavingWing(Canvas canvas) {
+  void _wavingWing(Canvas canvas) => _around(
+    canvas,
+    const Offset(50, 60),
+    motion.wing,
+    () => _drawWavingWing(canvas),
+  );
+
+  void _drawWavingWing(Canvas canvas) {
     _outlined(
       canvas,
       Path()
@@ -311,7 +464,14 @@ class DovePainter extends CustomPainter {
   }
 
   /// The far wing of the celebration, behind the body and a shade darker.
-  void _farWing(Canvas canvas) {
+  void _farWing(Canvas canvas) => _around(
+    canvas,
+    const Offset(58, 50),
+    motion.wing * 0.8,
+    () => _drawFarWing(canvas),
+  );
+
+  void _drawFarWing(Canvas canvas) {
     _outlined(
       canvas,
       Path()
@@ -327,7 +487,14 @@ class DovePainter extends CustomPainter {
   }
 
   /// The near wing of the celebration, raised high like on the emblem.
-  void _raisedWing(Canvas canvas) {
+  void _raisedWing(Canvas canvas) => _around(
+    canvas,
+    const Offset(48, 59),
+    motion.wing,
+    () => _drawRaisedWing(canvas),
+  );
+
+  void _drawRaisedWing(Canvas canvas) {
     _outlined(
       canvas,
       Path()
@@ -355,11 +522,11 @@ class DovePainter extends CustomPainter {
       Rect.fromCenter(
         center: const Offset(33.5, 29.5),
         width: 6.2,
-        height: 7.4,
+        height: 7.4 * (1 - 0.85 * motion.blink),
       ),
       Paint()..color = _ink,
     );
-    if (details) {
+    if (details && motion.blink < 0.5) {
       canvas.drawCircle(const Offset(34.6, 28), 1.2, Paint()..color = _plume);
     }
   }
@@ -428,19 +595,23 @@ class DovePainter extends CustomPainter {
     }
   }
 
+  /// The stars grow and shrink in turn while she celebrates.
+  double get _shine => 0.75 + 0.25 * motion.twinkle;
+  double get _glow => 1 - 0.25 * motion.twinkle;
+
   /// Gold stars, confetti and dots around the celebration.
   void _sparkles(Canvas canvas) {
     canvas
       ..drawPath(
-        _star(const Offset(13, 12), 6, 7, 1, 1),
+        _star(const Offset(13, 12), 6 * _shine, 7 * _shine, 1, 1),
         Paint()..color = _gold,
       )
       ..drawPath(
-        _star(const Offset(94, 43), 4.4, 5, 0.8, 0.6),
+        _star(const Offset(94, 43), 4.4 * _glow, 5 * _glow, 0.8, 0.6),
         Paint()..color = _gold,
       )
       ..drawPath(
-        _star(const Offset(8, 66), 3.4, 4, 0.6, 0.6),
+        _star(const Offset(8, 66), 3.4 * _shine, 4 * _shine, 0.6, 0.6),
         Paint()..color = _paleGold,
       );
     for (final (center, degrees, color) in const [
@@ -486,6 +657,10 @@ class DovePainter extends CustomPainter {
 
   /// Two "z" rising from the dove, and a crescent moon.
   void _night(Canvas canvas) {
+    // the "z" rise slowly while she sleeps
+    canvas
+      ..save()
+      ..translate(motion.drift * 2, -motion.drift * 4);
     _line(
       canvas,
       Path()
@@ -506,6 +681,7 @@ class DovePainter extends CustomPainter {
       _sleep,
       2.6,
     );
+    canvas.restore();
     canvas.drawPath(
       Path()
         ..moveTo(90, 22)
@@ -529,5 +705,6 @@ class DovePainter extends CustomPainter {
   bool shouldRepaint(DovePainter oldDelegate) =>
       pose != oldDelegate.pose ||
       details != oldDelegate.details ||
-      outline != oldDelegate.outline;
+      outline != oldDelegate.outline ||
+      motion != oldDelegate.motion;
 }

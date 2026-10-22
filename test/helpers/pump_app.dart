@@ -28,6 +28,7 @@ import 'package:cmfi_connect/src/core/storage/preferences.dart';
 import 'package:cmfi_connect/src/core/storage/saved_login.dart';
 import 'package:cmfi_connect/src/core/storage/token_storage.dart';
 import 'package:cmfi_connect/src/core/widgets/app_toast.dart';
+import 'package:cmfi_connect/src/core/widgets/dove_mascot.dart';
 import 'package:cmfi_connect/src/features/admin/infrastructure/admin_api.dart';
 import 'package:cmfi_connect/src/features/auth/infrastructure/auth_api.dart';
 import 'package:cmfi_connect/src/features/authorities/infrastructure/authorities_api.dart';
@@ -213,6 +214,8 @@ Future<TestApp> pumpApp(
   GlobalKey? screenKey,
   Map<String, Object> initialPreferences = const {},
 }) async {
+  // Zoé breathes forever: still in the tests, so that they settle
+  DoveMascot.lively = false;
   SharedPreferences.setMockInitialValues({
     if (onboardingSeen) 'onboarding_seen': true,
     if (reminderOffered) 'reminder_offered': true,

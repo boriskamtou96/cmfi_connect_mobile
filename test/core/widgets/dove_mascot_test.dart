@@ -53,4 +53,44 @@ void main() {
       matchesSemantics(label: 'Bravo !', isImage: true),
     );
   });
+
+  group('alive', () {
+    tearDown(() => DoveMascot.lively = true);
+
+    test('she blinks in joy, waves in cheer, the z rise in rest', () {
+      expect(DoveMotion.at(DovePose.joy, 0.74).blink, greaterThan(0.9));
+      expect(DoveMotion.at(DovePose.joy, 0.3).blink, 0);
+      expect(DoveMotion.at(DovePose.cheer, 1 / 12).wing, closeTo(10, 0.01));
+      expect(DoveMotion.at(DovePose.rest, 0.5).drift, 0.5);
+    });
+
+    testWidgets('she moves by herself, still with less motion', (tester) async {
+      DoveMascot.lively = true;
+      DovePainter painter() =>
+          tester
+                  .widget<CustomPaint>(
+                    find.descendant(
+                      of: find.byType(DoveMascot),
+                      matching: find.byType(CustomPaint),
+                    ),
+                  )
+                  .painter!
+              as DovePainter;
+
+      await tester.pumpWidget(_alone(const DoveMascot(pose: DovePose.cheer)));
+      await tester.pump(const Duration(milliseconds: 300));
+      final first = painter().motion;
+      await tester.pump(const Duration(milliseconds: 400));
+      expect(painter().motion, isNot(first));
+
+      await tester.pumpWidget(
+        MediaQuery(
+          data: const MediaQueryData(disableAnimations: true),
+          child: _alone(const DoveMascot(pose: DovePose.cheer)),
+        ),
+      );
+      await tester.pump(const Duration(milliseconds: 400));
+      expect(painter().motion, const DoveMotion());
+    });
+  });
 }

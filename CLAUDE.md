@@ -356,7 +356,7 @@ Règles de dépendance :
 
 ## Mascotte
 
-- Zoé, la colombe du logo : `DoveMascot(pose:, size:)` (`core/widgets/dove_mascot.dart`), poses `joy`, `cheer`, `celebrate`, `rest` ; décorative sauf `semanticLabel`. Utilisée sur les états vides (notifications, membres bloqués), l'écran Premium, le widget et la fête des paliers de la série. `flutter test tool/brand_assets_test.dart --plain-name 'generate mascot images'` régénère `assets/brand/mascot_*.png`.
+- Zoé, la colombe du logo : `DoveMascot(pose:, size:)` (`core/widgets/dove_mascot.dart`), poses `joy`, `cheer`, `celebrate`, `rest` ; décorative sauf `semanticLabel`. Vivante depuis le 22/10/2026, sans paquet (Rive écarté : elle est dessinée en code) : elle respire, cligne des yeux (joy), salue de l'aile (cheer), bat des ailes avec les étoiles qui scintillent (celebrate), les « z » montent (rest) — `DoveMotion.at(pose, t)`, une boucle de 3,6 s ; immobile sous 40 px, avec « réduire les animations », et dans les tests (`DoveMascot.lively = false` dans `pumpApp`). Utilisée sur les états vides (notifications, membres bloqués), l'écran Premium, le widget et la fête des paliers de la série. `flutter test tool/brand_assets_test.dart --plain-name 'generate mascot images'` régénère `assets/brand/mascot_*.png`.
 
 ## Pseudo, rôles et autorités liées
 

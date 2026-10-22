@@ -1122,6 +1122,7 @@ class _Translations$bible$de extends Translations$bible$fr {
 	@override String crossReferencesOf({required Object passage}) => 'Querverweise · ${passage}';
 	@override String get noCrossReferences => 'Keine Querverweise zu dieser Stelle.';
 	@override String get crossReferencesSource => 'Quelle: OpenBible.info (CC-BY)';
+	@override String readOn({required Object site}) => 'Auf ${site} lesen (geschützter Text)';
 }
 
 // Path: profilePhoto
@@ -4462,6 +4463,7 @@ extension on TranslationsDe {
 			'bible.crossReferencesOf' => ({required Object passage}) => 'Querverweise · ${passage}',
 			'bible.noCrossReferences' => 'Keine Querverweise zu dieser Stelle.',
 			'bible.crossReferencesSource' => 'Quelle: OpenBible.info (CC-BY)',
+			'bible.readOn' => ({required Object site}) => 'Auf ${site} lesen (geschützter Text)',
 			'profilePhoto.title' => 'Profilbild',
 			'profilePhoto.add' => 'Profilbild hinzufügen',
 			'profilePhoto.change' => 'Profilbild ändern',
@@ -4699,9 +4701,9 @@ extension on TranslationsDe {
 			'memorize.subtitle' => 'Bewahre das Wort in deinem Herzen',
 			'memorize.toReview' => 'Zu wiederholen',
 			'memorize.learning' => 'Am Lernen',
-			'memorize.known' => 'Gelernt',
 			_ => null,
 		} ?? switch (path) {
+			'memorize.known' => 'Gelernt',
 			'memorize.reviewCount' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('de'))(n, one: '${n} Vers wiederholen', other: '${n} Verse wiederholen', ), 
 			'memorize.nothingDue' => 'Heute nichts zu wiederholen.',
 			'memorize.nextOn' => ({required Object date}) => 'Nächste Wiederholung: ${date}.',

@@ -3,6 +3,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../../core/i18n/strings.g.dart';
 import '../../../../core/network/app_exception_message.dart';
+import '../../../../core/services/link_launcher.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/theme/app_icons.dart';
 import '../../../../core/theme/app_spacing.dart';
@@ -10,6 +11,7 @@ import '../../../../core/theme/app_tones.dart';
 import '../../../../core/widgets/adaptive_dialogs.dart';
 import '../../../../core/widgets/app_toast.dart';
 import '../../application/bible_library.dart';
+import '../../application/bible_position.dart';
 import '../../application/bible_settings.dart';
 import '../../domain/bible_version.dart';
 
@@ -87,6 +89,18 @@ class _VersionsSheet extends ConsumerWidget {
                   Navigator.of(context).pop();
                 },
               ),
+
+            for (final bible in externalBibles)
+              if (bible.language == code)
+                _ExternalRow(
+                  bible: bible,
+                  onTap: () {
+                    final place = ref.read(biblePositionProvider);
+                    final url = bible.chapterUrl(place.book, place.chapter);
+                    Navigator.of(context).pop();
+                    ref.read(linkLauncherProvider).openInApp(url);
+                  },
+                ),
           ],
       ],
     );
@@ -169,6 +183,52 @@ class _VersionRow extends ConsumerWidget {
                 size: 18,
                 color: scheme.onSurfaceVariant,
               ),
+      ),
+    );
+  }
+}
+
+/// A Bible under copyright: read on its site, at the chapter of the reader
+/// (an arrow out instead of the check).
+class _ExternalRow extends StatelessWidget {
+  const _ExternalRow({required this.bible, required this.onTap});
+
+  final ExternalBible bible;
+  final VoidCallback onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    final scheme = Theme.of(context).colorScheme;
+    final tone = AppModule.bible.tone(context);
+    return ListTile(
+      contentPadding: const EdgeInsetsDirectional.fromSTEB(24, 2, 16, 2),
+      onTap: onTap,
+      leading: Container(
+        constraints: const BoxConstraints(minWidth: 52),
+        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 6),
+        decoration: BoxDecoration(
+          border: Border.all(color: tone.soft, width: 1.5),
+          borderRadius: BorderRadius.circular(AppRadius.sm),
+        ),
+        child: Text(
+          bible.abbreviation,
+          textAlign: TextAlign.center,
+          style: TextStyle(
+            fontSize: 13,
+            fontWeight: FontWeight.w800,
+            color: tone.onSoft,
+          ),
+        ),
+      ),
+      title: Text(
+        bible.name,
+        style: const TextStyle(fontWeight: FontWeight.w600),
+      ),
+      subtitle: Text(context.t.bible.readOn(site: bible.site)),
+      trailing: Icon(
+        AppIcons.external,
+        size: 18,
+        color: scheme.onSurfaceVariant,
       ),
     );
   }

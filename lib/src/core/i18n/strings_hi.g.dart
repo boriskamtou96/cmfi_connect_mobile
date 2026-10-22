@@ -1122,6 +1122,7 @@ class _Translations$bible$hi extends Translations$bible$fr {
 	@override String crossReferencesOf({required Object passage}) => 'संबंधित संदर्भ · ${passage}';
 	@override String get noCrossReferences => 'इस अंश के लिए कोई संबंधित संदर्भ नहीं।';
 	@override String get crossReferencesSource => 'स्रोत: OpenBible.info (CC-BY)';
+	@override String readOn({required Object site}) => '${site} पर पढ़ें (सुरक्षित पाठ)';
 }
 
 // Path: profilePhoto
@@ -4461,6 +4462,7 @@ extension on TranslationsHi {
 			'bible.crossReferencesOf' => ({required Object passage}) => 'संबंधित संदर्भ · ${passage}',
 			'bible.noCrossReferences' => 'इस अंश के लिए कोई संबंधित संदर्भ नहीं।',
 			'bible.crossReferencesSource' => 'स्रोत: OpenBible.info (CC-BY)',
+			'bible.readOn' => ({required Object site}) => '${site} पर पढ़ें (सुरक्षित पाठ)',
 			'profilePhoto.title' => 'प्रोफ़ाइल फ़ोटो',
 			'profilePhoto.add' => 'प्रोफ़ाइल फ़ोटो जोड़ें',
 			'profilePhoto.change' => 'प्रोफ़ाइल फ़ोटो बदलें',
@@ -4698,9 +4700,9 @@ extension on TranslationsHi {
 			'memorize.subtitle' => 'वचन को अपने हृदय में रखो',
 			'memorize.toReview' => 'दोहराने को',
 			'memorize.learning' => 'सीख रहे',
-			'memorize.known' => 'याद',
 			_ => null,
 		} ?? switch (path) {
+			'memorize.known' => 'याद',
 			'memorize.reviewCount' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n, one: '${n} पद दोहराओ', other: '${n} पद दोहराओ', ), 
 			'memorize.nothingDue' => 'आज दोहराने को कुछ नहीं।',
 			'memorize.nextOn' => ({required Object date}) => 'अगली दोहराई: ${date}।',

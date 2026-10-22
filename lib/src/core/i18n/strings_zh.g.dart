@@ -1092,6 +1092,7 @@ class _Translations$bible$zh extends Translations$bible$fr {
 	@override String crossReferencesOf({required Object passage}) => '串珠经文 · ${passage}';
 	@override String get noCrossReferences => '此段经文没有串珠。';
 	@override String get crossReferencesSource => '来源：OpenBible.info（CC-BY）';
+	@override String readOn({required Object site}) => '在 ${site} 上阅读（受版权保护）';
 }
 
 // Path: profilePhoto
@@ -4378,6 +4379,7 @@ extension on TranslationsZh {
 			'bible.crossReferencesOf' => ({required Object passage}) => '串珠经文 · ${passage}',
 			'bible.noCrossReferences' => '此段经文没有串珠。',
 			'bible.crossReferencesSource' => '来源：OpenBible.info（CC-BY）',
+			'bible.readOn' => ({required Object site}) => '在 ${site} 上阅读（受版权保护）',
 			'profilePhoto.title' => '头像',
 			'profilePhoto.add' => '添加头像',
 			'profilePhoto.change' => '更换头像',
@@ -4615,9 +4617,9 @@ extension on TranslationsZh {
 			'memorize.subtitle' => '将神的话藏在心里',
 			'memorize.toReview' => '待复习',
 			'memorize.learning' => '学习中',
-			'memorize.known' => '已熟记',
 			_ => null,
 		} ?? switch (path) {
+			'memorize.known' => '已熟记',
 			'memorize.reviewCount' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n, one: '复习 ${n} 节经文', other: '复习 ${n} 节经文', ), 
 			'memorize.nothingDue' => '今天没有要复习的。',
 			'memorize.nextOn' => ({required Object date}) => '下次复习：${date}。',

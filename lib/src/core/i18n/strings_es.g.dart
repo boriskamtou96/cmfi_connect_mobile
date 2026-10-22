@@ -1122,6 +1122,7 @@ class _Translations$bible$es extends Translations$bible$fr {
 	@override String crossReferencesOf({required Object passage}) => 'Referencias cruzadas · ${passage}';
 	@override String get noCrossReferences => 'Ninguna referencia cruzada para este pasaje.';
 	@override String get crossReferencesSource => 'Fuente: OpenBible.info (CC-BY)';
+	@override String readOn({required Object site}) => 'Se lee en ${site} (texto protegido)';
 }
 
 // Path: profilePhoto
@@ -4462,6 +4463,7 @@ extension on TranslationsEs {
 			'bible.crossReferencesOf' => ({required Object passage}) => 'Referencias cruzadas · ${passage}',
 			'bible.noCrossReferences' => 'Ninguna referencia cruzada para este pasaje.',
 			'bible.crossReferencesSource' => 'Fuente: OpenBible.info (CC-BY)',
+			'bible.readOn' => ({required Object site}) => 'Se lee en ${site} (texto protegido)',
 			'profilePhoto.title' => 'Foto de perfil',
 			'profilePhoto.add' => 'Añadir una foto de perfil',
 			'profilePhoto.change' => 'Cambiar la foto de perfil',
@@ -4699,9 +4701,9 @@ extension on TranslationsEs {
 			'memorize.subtitle' => 'Guarda la Palabra en tu corazón',
 			'memorize.toReview' => 'Por repasar',
 			'memorize.learning' => 'Aprendiendo',
-			'memorize.known' => 'Sabidos',
 			_ => null,
 		} ?? switch (path) {
+			'memorize.known' => 'Sabidos',
 			'memorize.reviewCount' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('es'))(n, one: 'Repasar ${n} versículo', other: 'Repasar ${n} versículos', ), 
 			'memorize.nothingDue' => 'Nada que repasar hoy.',
 			'memorize.nextOn' => ({required Object date}) => 'Próximo repaso: ${date}.',

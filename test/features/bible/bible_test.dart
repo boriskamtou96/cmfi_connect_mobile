@@ -306,6 +306,26 @@ void main() {
     );
   });
 
+  testWidgets('La Bible du Semeur: read on Bibleserver, at this chapter', (
+    tester,
+  ) async {
+    final app = await openBible(tester);
+
+    await tester.tap(find.text('LSG'));
+    await tester.pumpAndSettle();
+    expect(find.text('Se lit sur Bibleserver (texte protégé)'), findsOneWidget);
+    await tester.tap(find.text('La Bible du Semeur'));
+    await tester.pumpAndSettle();
+
+    // the chapter read (John 1), never copied in the app
+    expect(
+      app.links.opened.last,
+      Uri.parse('https://www.bibleserver.com/BDS/John1'),
+    );
+    // the version read stays (the default, Louis Segond)
+    expect(app.container.read(bibleSettingsControllerProvider).version, isNull);
+  });
+
   testWidgets('Mes versets: the verses kept, one opens, one goes', (
     tester,
   ) async {

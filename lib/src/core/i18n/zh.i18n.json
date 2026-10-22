@@ -1619,7 +1619,8 @@
     "crossReferences": "串珠经文",
     "crossReferencesOf": "串珠经文 · {passage}",
     "noCrossReferences": "此段经文没有串珠。",
-    "crossReferencesSource": "来源：OpenBible.info（CC-BY）"
+    "crossReferencesSource": "来源：OpenBible.info（CC-BY）",
+    "readOn": "在 {site} 上阅读（受版权保护）"
   },
   "profilePhoto": {
     "title": "头像",

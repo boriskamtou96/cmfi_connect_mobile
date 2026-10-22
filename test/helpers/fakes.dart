@@ -1506,6 +1506,9 @@ class FakeLinkLauncher implements LinkLauncher {
   }
 
   @override
+  Future<bool> openInApp(Uri uri) => open(uri);
+
+  @override
   Future<bool> call(String number) => open(Uri(scheme: 'tel', path: number));
 
   @override

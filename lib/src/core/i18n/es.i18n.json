@@ -1669,7 +1669,8 @@
     "crossReferences": "Referencias cruzadas",
     "crossReferencesOf": "Referencias cruzadas · {passage}",
     "noCrossReferences": "Ninguna referencia cruzada para este pasaje.",
-    "crossReferencesSource": "Fuente: OpenBible.info (CC-BY)"
+    "crossReferencesSource": "Fuente: OpenBible.info (CC-BY)",
+    "readOn": "Se lee en {site} (texto protegido)"
   },
   "profilePhoto": {
     "title": "Foto de perfil",

@@ -1244,6 +1244,7 @@ class _Translations$bible$ar extends Translations$bible$fr {
 	@override String crossReferencesOf({required Object passage}) => 'شواهد مرتبطة · ${passage}';
 	@override String get noCrossReferences => 'لا توجد شواهد مرتبطة لهذا المقطع.';
 	@override String get crossReferencesSource => 'المصدر: OpenBible.info (CC-BY)';
+	@override String readOn({required Object site}) => 'تُقرأ على ${site} (نص محمي)';
 }
 
 // Path: profilePhoto
@@ -4796,6 +4797,7 @@ extension on TranslationsAr {
 			'bible.crossReferencesOf' => ({required Object passage}) => 'شواهد مرتبطة · ${passage}',
 			'bible.noCrossReferences' => 'لا توجد شواهد مرتبطة لهذا المقطع.',
 			'bible.crossReferencesSource' => 'المصدر: OpenBible.info (CC-BY)',
+			'bible.readOn' => ({required Object site}) => 'تُقرأ على ${site} (نص محمي)',
 			'profilePhoto.title' => 'صورة الملف الشخصي',
 			'profilePhoto.add' => 'إضافة صورة للملف الشخصي',
 			'profilePhoto.change' => 'تغيير صورة الملف الشخصي',
@@ -5033,9 +5035,9 @@ extension on TranslationsAr {
 			'memorize.subtitle' => 'اخبأ الكلمة في قلبك',
 			'memorize.toReview' => 'للمراجعة',
 			'memorize.learning' => 'قيد الحفظ',
-			'memorize.known' => 'محفوظة',
 			_ => null,
 		} ?? switch (path) {
+			'memorize.known' => 'محفوظة',
 			'memorize.reviewCount' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n, one: 'راجع آية واحدة', other: 'راجع ${n} آيات', ), 
 			'memorize.nothingDue' => 'لا شيء للمراجعة اليوم.',
 			'memorize.nextOn' => ({required Object date}) => 'المراجعة القادمة: ${date}.',

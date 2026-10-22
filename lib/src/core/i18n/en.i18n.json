@@ -1670,7 +1670,8 @@
     "crossReferences": "Cross references",
     "crossReferencesOf": "Cross references · {passage}",
     "noCrossReferences": "No cross reference for this passage.",
-    "crossReferencesSource": "Source: OpenBible.info (CC-BY)"
+    "crossReferencesSource": "Source: OpenBible.info (CC-BY)",
+    "readOn": "Read on {site} (copyrighted text)"
   },
   "profilePhoto": {
     "title": "Profile photo",

@@ -17,6 +17,17 @@ class LinkLauncher {
     }
   }
 
+  /// A web page inside the app (Safari View Controller, Custom Tabs), the
+  /// way back at hand; the browser when that fails.
+  Future<bool> openInApp(Uri uri) async {
+    try {
+      return await launchUrl(uri, mode: LaunchMode.inAppBrowserView) ||
+          await open(uri);
+    } on Object {
+      return open(uri);
+    }
+  }
+
   /// The phone app, ready to call [number].
   Future<bool> call(String number) =>
       open(Uri(scheme: 'tel', path: number.replaceAll(' ', '')));

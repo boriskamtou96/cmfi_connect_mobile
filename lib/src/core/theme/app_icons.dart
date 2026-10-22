@@ -69,6 +69,7 @@ abstract final class AppIcons {
   static const chevronDown = PhosphorIconsRegular.caretDown;
   static const expand = PhosphorIconsRegular.caretUpDown;
   static const close = PhosphorIconsRegular.x;
+  static const external = PhosphorIconsRegular.arrowSquareOut;
   static const moreOptions = PhosphorIconsRegular.dotsThreeVertical;
 
   // Actions

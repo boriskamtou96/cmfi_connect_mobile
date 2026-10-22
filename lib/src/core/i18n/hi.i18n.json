@@ -1669,7 +1669,8 @@
     "crossReferences": "संबंधित संदर्भ",
     "crossReferencesOf": "संबंधित संदर्भ · {passage}",
     "noCrossReferences": "इस अंश के लिए कोई संबंधित संदर्भ नहीं।",
-    "crossReferencesSource": "स्रोत: OpenBible.info (CC-BY)"
+    "crossReferencesSource": "स्रोत: OpenBible.info (CC-BY)",
+    "readOn": "{site} पर पढ़ें (सुरक्षित पाठ)"
   },
   "profilePhoto": {
     "title": "प्रोफ़ाइल फ़ोटो",

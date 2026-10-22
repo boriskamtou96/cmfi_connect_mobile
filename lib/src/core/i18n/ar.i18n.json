@@ -1868,7 +1868,8 @@
     "crossReferences": "شواهد مرتبطة",
     "crossReferencesOf": "شواهد مرتبطة · {passage}",
     "noCrossReferences": "لا توجد شواهد مرتبطة لهذا المقطع.",
-    "crossReferencesSource": "المصدر: OpenBible.info (CC-BY)"
+    "crossReferencesSource": "المصدر: OpenBible.info (CC-BY)",
+    "readOn": "تُقرأ على {site} (نص محمي)"
   },
   "profilePhoto": {
     "title": "صورة الملف الشخصي",

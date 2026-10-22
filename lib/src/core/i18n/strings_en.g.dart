@@ -1123,6 +1123,7 @@ class _Translations$bible$en extends Translations$bible$fr {
 	@override String crossReferencesOf({required Object passage}) => 'Cross references · ${passage}';
 	@override String get noCrossReferences => 'No cross reference for this passage.';
 	@override String get crossReferencesSource => 'Source: OpenBible.info (CC-BY)';
+	@override String readOn({required Object site}) => 'Read on ${site} (copyrighted text)';
 }
 
 // Path: profilePhoto
@@ -4463,6 +4464,7 @@ extension on TranslationsEn {
 			'bible.crossReferencesOf' => ({required Object passage}) => 'Cross references · ${passage}',
 			'bible.noCrossReferences' => 'No cross reference for this passage.',
 			'bible.crossReferencesSource' => 'Source: OpenBible.info (CC-BY)',
+			'bible.readOn' => ({required Object site}) => 'Read on ${site} (copyrighted text)',
 			'profilePhoto.title' => 'Profile photo',
 			'profilePhoto.add' => 'Add a profile photo',
 			'profilePhoto.change' => 'Change the profile photo',
@@ -4700,9 +4702,9 @@ extension on TranslationsEn {
 			'memorize.subtitle' => 'Hide the Word in your heart',
 			'memorize.toReview' => 'To review',
 			'memorize.learning' => 'Learning',
-			'memorize.known' => 'Known',
 			_ => null,
 		} ?? switch (path) {
+			'memorize.known' => 'Known',
 			'memorize.reviewCount' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n, one: 'Review ${n} verse', other: 'Review ${n} verses', ), 
 			'memorize.nothingDue' => 'Nothing to review today.',
 			'memorize.nextOn' => ({required Object date}) => 'Next review: ${date}.',

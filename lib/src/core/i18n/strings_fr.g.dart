@@ -2322,6 +2322,9 @@ class Translations$bible$fr {
 
 	/// fr: 'Source : OpenBible.info (CC-BY)'
 	String get crossReferencesSource => 'Source : OpenBible.info (CC-BY)';
+
+	/// fr: 'Se lit sur {site} (texte protégé)'
+	String readOn({required Object site}) => 'Se lit sur ${site} (texte protégé)';
 }
 
 // Path: profilePhoto
@@ -7706,6 +7709,7 @@ extension on Translations {
 			'bible.crossReferencesOf' => ({required Object passage}) => 'Références croisées · ${passage}',
 			'bible.noCrossReferences' => 'Aucune référence croisée pour ce passage.',
 			'bible.crossReferencesSource' => 'Source : OpenBible.info (CC-BY)',
+			'bible.readOn' => ({required Object site}) => 'Se lit sur ${site} (texte protégé)',
 			'profilePhoto.title' => 'Photo de profil',
 			'profilePhoto.add' => 'Ajouter une photo de profil',
 			'profilePhoto.change' => 'Changer la photo de profil',
@@ -7943,9 +7947,9 @@ extension on Translations {
 			'memorize.subtitle' => 'Cache la Parole dans ton cœur',
 			'memorize.toReview' => 'À réviser',
 			'memorize.learning' => 'En cours',
-			'memorize.known' => 'Sus',
 			_ => null,
 		} ?? switch (path) {
+			'memorize.known' => 'Sus',
 			'memorize.reviewCount' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('fr'))(n, one: 'Réviser ${n} verset', other: 'Réviser ${n} versets', ), 
 			'memorize.nothingDue' => 'Rien à réviser aujourd\'hui.',
 			'memorize.nextOn' => ({required Object date}) => 'Prochaine révision : ${date}.',

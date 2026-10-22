@@ -9,7 +9,10 @@ import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_icons.dart';
 import '../../../core/theme/app_spacing.dart';
 import '../../../core/theme/app_tones.dart';
+import '../../../core/utils/date_extensions.dart';
 import '../../../core/utils/date_format.dart';
+import '../../../core/widgets/adaptive_pickers.dart';
+import '../../../core/widgets/app_toast.dart';
 import '../../../core/widgets/error_view.dart';
 import '../../../core/widgets/section_card.dart';
 import '../../../core/widgets/skeleton.dart';
@@ -24,7 +27,8 @@ import '../domain/disciple.dart';
 
 /// The reports a disciple sends the user, the newest day first: the items
 /// filled in with their values, the share of the goals and of the items. Never
-/// their note. 30 days at a time, up to 90.
+/// their note. 30 days at a time, up to 90, or the period picked with
+/// "Filtrer par date" (92 days at most).
 @RoutePage()
 class DiscipleReportsScreen extends HookConsumerWidget {
   const DiscipleReportsScreen({
@@ -46,15 +50,51 @@ class DiscipleReportsScreen extends HookConsumerWidget {
     final t = context.t.disciples;
     final scheme = Theme.of(context).colorScheme;
     final pages = useState(1);
-    final reports = ref.watch(
-      discipleReportsProvider(authorityId, pages: pages.value),
-    );
+    final range = useState<DateTimeRange?>(null);
+    final reports = switch (range.value) {
+      null => ref.watch(
+        discipleReportsProvider(authorityId, pages: pages.value),
+      ),
+      final range => ref.watch(
+        discipleReportsBetweenProvider(
+          authorityId,
+          from: range.start,
+          to: range.end,
+        ),
+      ),
+    };
     // the days already shown stay while older ones load
     final shown = useRef<DiscipleReports?>(null);
     if (reports.value case final value?) {
       shown.value = value;
     }
     final data = shown.value;
+    // filtered: the days of the period only, loading in their place
+    final days = range.value == null ? data?.days : reports.value?.days;
+
+    Future<void> pickDates() async {
+      final now = today();
+      final picked = await showAppDateRangePicker(
+        context,
+        firstDate: DateTime(2020),
+        lastDate: now,
+        initialDateRange: range.value,
+        helpText: t.filterPick,
+      );
+      if (picked == null) {
+        return;
+      }
+      if (picked.duration.inDays + 1 > maxDiscipleReportDays) {
+        if (context.mounted) {
+          ref.read(toasterProvider).of(context).error(t.filterTooLong);
+        }
+        return;
+      }
+      range.value = DateTimeRange(
+        start: picked.start.dateOnly,
+        end: picked.end.dateOnly,
+      );
+    }
 
     return SubPage(
       title: data?.member.fullName ?? name,
@@ -85,8 +125,16 @@ class DiscipleReportsScreen extends HookConsumerWidget {
           ),
           children: [
             _Header(reports: data),
-            const SizedBox(height: AppSpacing.lg),
-            if (data.days.isEmpty)
+            const SizedBox(height: AppSpacing.md),
+            _DateFilter(
+              range: range.value,
+              onPick: pickDates,
+              onClear: () => range.value = null,
+            ),
+            const SizedBox(height: AppSpacing.md),
+            if (days == null)
+              const LoadingCards(count: 3, height: 150)
+            else if (days.isEmpty)
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: AppSpacing.xl),
                 child: Text(
@@ -98,12 +146,14 @@ class DiscipleReportsScreen extends HookConsumerWidget {
                   ),
                 ),
               ),
-            for (final day in data.days) ...[
+            for (final day in days ?? const <DiscipleDay>[]) ...[
               _DayCard(day: day),
               const SizedBox(height: AppSpacing.md),
             ],
             // the older days loading: their cards, shimmering
-            if (reports.isLoading)
+            if (range.value != null)
+              const SizedBox.shrink()
+            else if (reports.isLoading)
               const Shimmer(
                 child: SkeletonBox(height: 150, radius: AppRadius.xl),
               )
@@ -156,6 +206,46 @@ class _Header extends StatelessWidget {
           ),
         ),
       ],
+    );
+  }
+}
+
+/// "Filtrer par date", or the period picked, to change or take off.
+class _DateFilter extends StatelessWidget {
+  const _DateFilter({
+    required this.range,
+    required this.onPick,
+    required this.onClear,
+  });
+
+  final DateTimeRange? range;
+  final VoidCallback onPick;
+  final VoidCallback onClear;
+
+  @override
+  Widget build(BuildContext context) {
+    final t = context.t.disciples;
+    return Align(
+      alignment: AlignmentDirectional.centerStart,
+      child: switch (range) {
+        null => ActionChip(
+          avatar: const Icon(AppIcons.dateRange, size: 18),
+          label: Text(t.filter),
+          onPressed: onPick,
+        ),
+        final range => InputChip(
+          avatar: const Icon(AppIcons.dateRange, size: 18),
+          label: Text(
+            '${context.formatDate(range.start, 'd MMM')} – '
+            '${context.formatDate(range.end, 'd MMM y')}',
+          ),
+          selected: true,
+          showCheckmark: false,
+          onPressed: onPick,
+          onDeleted: onClear,
+          deleteButtonTooltipMessage: t.filterClear,
+        ),
+      },
     );
   }
 }
@@ -255,7 +345,11 @@ class _DayCard extends ConsumerWidget {
                       ),
                       const SizedBox(width: AppSpacing.md),
                       Text(
-                        '0',
+                        MeasureFormat.zero(
+                          quantity: item.tracksQuantity,
+                          duration: item.tracksDuration,
+                          unit: texts.itemUnit(item.code, item.quantityUnit),
+                        ),
                         style: TextStyle(
                           fontSize: 14,
                           fontWeight: FontWeight.w700,

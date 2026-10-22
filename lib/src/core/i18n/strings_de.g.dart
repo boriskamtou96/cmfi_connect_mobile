@@ -1197,6 +1197,10 @@ class _Translations$disciples$de extends Translations$disciples$fr {
 	@override String get noReports => 'Kein Bericht in diesem Zeitraum.';
 	@override String get searchHint => 'Name oder Benutzername';
 	@override String noMatch({required Object search}) => 'Kein Jünger passt zu „${search}“.';
+	@override String get filter => 'Nach Datum filtern';
+	@override String get filterPick => 'Wähle einen Zeitraum';
+	@override String get filterTooLong => 'Wähle höchstens 92 Tage.';
+	@override String get filterClear => 'Filter entfernen';
 }
 
 // Path: weekStory
@@ -4683,6 +4687,10 @@ extension on TranslationsDe {
 			'disciples.noReports' => 'Kein Bericht in diesem Zeitraum.',
 			'disciples.searchHint' => 'Name oder Benutzername',
 			'disciples.noMatch' => ({required Object search}) => 'Kein Jünger passt zu „${search}“.',
+			'disciples.filter' => 'Nach Datum filtern',
+			'disciples.filterPick' => 'Wähle einen Zeitraum',
+			'disciples.filterTooLong' => 'Wähle höchstens 92 Tage.',
+			'disciples.filterClear' => 'Filter entfernen',
 			'weekStory.title' => 'Deine Woche mit Gott',
 			'weekStory.range' => ({required Object from, required Object to}) => '${from} bis ${to}',
 			'weekStory.intro' => 'Schau zurück auf das, was du diese Woche mit dem Herrn erlebt hast.',
@@ -4821,12 +4829,12 @@ extension on TranslationsDe {
 			'biblePlan.months3' => '3 Monate',
 			'biblePlan.months6' => '6 Monate',
 			'biblePlan.year' => '1 Jahr',
+			_ => null,
+		} ?? switch (path) {
 			'biblePlan.custom' => 'Andere',
 			'biblePlan.unitMonths' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('de'))(n, one: 'Monat', other: 'Monate', ), 
 			'biblePlan.unitYear' => 'Jahr',
 			'biblePlan.days' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('de'))(n, one: '${n} Tag', other: '${n} Tage', ), 
-			_ => null,
-		} ?? switch (path) {
 			'biblePlan.scope' => 'Was du liest',
 			'biblePlan.scopes.bible' => 'Die ganze Bibel',
 			'biblePlan.scopes.newTestament' => 'Das Neue Testament',

@@ -1323,6 +1323,10 @@ class _Translations$disciples$ar extends Translations$disciples$fr {
 	@override String get noReports => 'لا تقرير في هذه الفترة.';
 	@override String get searchHint => 'الاسم أو اسم المستخدم';
 	@override String noMatch({required Object search}) => 'لا يوجد تلميذ يطابق «${search}».';
+	@override String get filter => 'تصفية حسب التاريخ';
+	@override String get filterPick => 'اختر فترة';
+	@override String get filterTooLong => 'اختر 92 يومًا على الأكثر.';
+	@override String get filterClear => 'إزالة التصفية';
 }
 
 // Path: weekStory
@@ -5017,6 +5021,10 @@ extension on TranslationsAr {
 			'disciples.noReports' => 'لا تقرير في هذه الفترة.',
 			'disciples.searchHint' => 'الاسم أو اسم المستخدم',
 			'disciples.noMatch' => ({required Object search}) => 'لا يوجد تلميذ يطابق «${search}».',
+			'disciples.filter' => 'تصفية حسب التاريخ',
+			'disciples.filterPick' => 'اختر فترة',
+			'disciples.filterTooLong' => 'اختر 92 يومًا على الأكثر.',
+			'disciples.filterClear' => 'إزالة التصفية',
 			'weekStory.title' => 'أسبوعك مع الله',
 			'weekStory.range' => ({required Object from, required Object to}) => 'من ${from} إلى ${to}',
 			'weekStory.intro' => 'استعد ما عشته مع الرب هذا الأسبوع.',
@@ -5155,12 +5163,12 @@ extension on TranslationsAr {
 			'biblePlan.months3' => '3 أشهر',
 			'biblePlan.months6' => '6 أشهر',
 			'biblePlan.year' => 'سنة',
+			_ => null,
+		} ?? switch (path) {
 			'biblePlan.custom' => 'أخرى',
 			'biblePlan.unitMonths' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n, zero: 'شهر', one: 'شهر', two: 'شهران', few: 'أشهر', many: 'شهرًا', other: 'شهر', ), 
 			'biblePlan.unitYear' => 'سنة',
 			'biblePlan.days' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n, zero: '${n} يوم', one: 'يوم واحد', two: 'يومان', few: '${n} أيام', many: '${n} يومًا', other: '${n} يوم', ), 
-			_ => null,
-		} ?? switch (path) {
 			'biblePlan.scope' => 'ما تقرأه',
 			'biblePlan.scopes.bible' => 'الكتاب المقدس كله',
 			'biblePlan.scopes.newTestament' => 'العهد الجديد',

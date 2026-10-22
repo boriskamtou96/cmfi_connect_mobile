@@ -1196,6 +1196,10 @@ class _Translations$disciples$hi extends Translations$disciples$fr {
 	@override String get noReports => 'इस अवधि में कोई रिपोर्ट नहीं।';
 	@override String get searchHint => 'नाम या यूज़रनेम';
 	@override String noMatch({required Object search}) => '“${search}” से कोई शिष्य मेल नहीं खाता।';
+	@override String get filter => 'तारीख से छाँटें';
+	@override String get filterPick => 'समय-सीमा चुनो';
+	@override String get filterTooLong => 'ज़्यादा से ज़्यादा 92 दिन चुनो।';
+	@override String get filterClear => 'फ़िल्टर हटाओ';
 }
 
 // Path: weekStory
@@ -4682,6 +4686,10 @@ extension on TranslationsHi {
 			'disciples.noReports' => 'इस अवधि में कोई रिपोर्ट नहीं।',
 			'disciples.searchHint' => 'नाम या यूज़रनेम',
 			'disciples.noMatch' => ({required Object search}) => '“${search}” से कोई शिष्य मेल नहीं खाता।',
+			'disciples.filter' => 'तारीख से छाँटें',
+			'disciples.filterPick' => 'समय-सीमा चुनो',
+			'disciples.filterTooLong' => 'ज़्यादा से ज़्यादा 92 दिन चुनो।',
+			'disciples.filterClear' => 'फ़िल्टर हटाओ',
 			'weekStory.title' => 'परमेश्वर के साथ तुम्हारा हफ़्ता',
 			'weekStory.range' => ({required Object from, required Object to}) => '${from} से ${to} तक',
 			'weekStory.intro' => 'इस हफ़्ते प्रभु के साथ जो जिया, उसे फिर से देखो।',
@@ -4820,12 +4828,12 @@ extension on TranslationsHi {
 			'biblePlan.months3' => '3 महीने',
 			'biblePlan.months6' => '6 महीने',
 			'biblePlan.year' => '1 साल',
+			_ => null,
+		} ?? switch (path) {
 			'biblePlan.custom' => 'अन्य',
 			'biblePlan.unitMonths' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n, one: 'महीना', other: 'महीने', ), 
 			'biblePlan.unitYear' => 'साल',
 			'biblePlan.days' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n, one: '${n} दिन', other: '${n} दिन', ), 
-			_ => null,
-		} ?? switch (path) {
 			'biblePlan.scope' => 'तुम क्या पढ़ते हो',
 			'biblePlan.scopes.bible' => 'पूरी बाइबल',
 			'biblePlan.scopes.newTestament' => 'नया नियम',

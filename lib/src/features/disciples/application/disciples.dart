@@ -53,6 +53,9 @@ class DisciplesList extends _$DisciplesList {
   }
 }
 
+/// The longest period the server gives at once.
+const maxDiscipleReportDays = 92;
+
 /// How many days a page of a disciple's reports covers.
 const discipleReportsPage = 30;
 
@@ -77,3 +80,13 @@ Future<DiscipleReports> discipleReports(
         to: end,
       );
 }
+
+/// The reports of the disciple [authorityId] from [from] to [to] (92 days at
+/// most): the period picked with "Filtrer par date".
+@riverpod
+Future<DiscipleReports> discipleReportsBetween(
+  Ref ref,
+  int authorityId, {
+  required DateTime from,
+  required DateTime to,
+}) => ref.watch(disciplesApiProvider).reports(authorityId, from: from, to: to);

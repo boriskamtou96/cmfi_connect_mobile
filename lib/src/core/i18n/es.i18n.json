@@ -1778,7 +1778,11 @@
     "older": "Ver los 30 días anteriores",
     "noReports": "Ningún informe en este periodo.",
     "searchHint": "Nombre o usuario",
-    "noMatch": "Ningún discípulo coincide con «{search}»."
+    "noMatch": "Ningún discípulo coincide con «{search}».",
+    "filter": "Filtrar por fecha",
+    "filterPick": "Elige un periodo",
+    "filterTooLong": "Elige 92 días como máximo.",
+    "filterClear": "Quitar el filtro"
   },
   "weekStory": {
     "title": "Tu semana con Dios",

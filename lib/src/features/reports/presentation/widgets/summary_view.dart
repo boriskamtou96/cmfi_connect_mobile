@@ -264,9 +264,17 @@ class SummaryView extends HookConsumerWidget {
                           ),
                         ),
                       ),
-                      // not filled in: counts 0
+                      // not filled in: counts 0, with its unit
                       Text(
-                        '0',
+                        MeasureFormat.zero(
+                          quantity: item.tracksQuantity,
+                          duration: item.tracksDuration,
+                          unit: t.itemUnit(
+                            item.code,
+                            item.quantityUnit,
+                            standard: standardIds.contains(item.activityTypeId),
+                          ),
+                        ),
                         style: TextStyle(
                           color: Theme.of(context).colorScheme.onSurfaceVariant,
                         ),

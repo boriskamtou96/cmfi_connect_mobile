@@ -2500,6 +2500,18 @@ class Translations$disciples$fr {
 
 	/// fr: 'Aucun disciple ne correspond à « {search} ».'
 	String noMatch({required Object search}) => 'Aucun disciple ne correspond à « ${search} ».';
+
+	/// fr: 'Filtrer par date'
+	String get filter => 'Filtrer par date';
+
+	/// fr: 'Choisis une période'
+	String get filterPick => 'Choisis une période';
+
+	/// fr: 'Choisis 92 jours au plus.'
+	String get filterTooLong => 'Choisis 92 jours au plus.';
+
+	/// fr: 'Retirer le filtre'
+	String get filterClear => 'Retirer le filtre';
 }
 
 // Path: weekStory
@@ -8099,6 +8111,10 @@ extension on Translations {
 			'disciples.noReports' => 'Pas de compte rendu sur cette période.',
 			'disciples.searchHint' => 'Nom ou pseudo',
 			'disciples.noMatch' => ({required Object search}) => 'Aucun disciple ne correspond à « ${search} ».',
+			'disciples.filter' => 'Filtrer par date',
+			'disciples.filterPick' => 'Choisis une période',
+			'disciples.filterTooLong' => 'Choisis 92 jours au plus.',
+			'disciples.filterClear' => 'Retirer le filtre',
 			'weekStory.title' => 'Ta semaine avec Dieu',
 			'weekStory.range' => ({required Object from, required Object to}) => 'Du ${from} au ${to}',
 			'weekStory.intro' => 'Revois ce que tu as vécu avec le Seigneur cette semaine.',
@@ -8237,12 +8253,12 @@ extension on Translations {
 			'biblePlan.months3' => '3 mois',
 			'biblePlan.months6' => '6 mois',
 			'biblePlan.year' => '1 an',
+			_ => null,
+		} ?? switch (path) {
 			'biblePlan.custom' => 'Autre',
 			'biblePlan.unitMonths' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('fr'))(n, one: 'mois', other: 'mois', ), 
 			'biblePlan.unitYear' => 'an',
 			'biblePlan.days' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('fr'))(n, one: '${n} jour', other: '${n} jours', ), 
-			_ => null,
-		} ?? switch (path) {
 			'biblePlan.scope' => 'Ce que tu lis',
 			'biblePlan.scopes.bible' => 'Toute la Bible',
 			'biblePlan.scopes.newTestament' => 'Le Nouveau Testament',

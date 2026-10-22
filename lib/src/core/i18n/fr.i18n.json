@@ -1778,7 +1778,11 @@
     "older": "Voir les 30 jours précédents",
     "noReports": "Pas de compte rendu sur cette période.",
     "searchHint": "Nom ou pseudo",
-    "noMatch": "Aucun disciple ne correspond à « {search} »."
+    "noMatch": "Aucun disciple ne correspond à « {search} ».",
+    "filter": "Filtrer par date",
+    "filterPick": "Choisis une période",
+    "filterTooLong": "Choisis 92 jours au plus.",
+    "filterClear": "Retirer le filtre"
   },
   "weekStory": {
     "title": "Ta semaine avec Dieu",

@@ -1778,7 +1778,11 @@
     "older": "Die 30 Tage davor ansehen",
     "noReports": "Kein Bericht in diesem Zeitraum.",
     "searchHint": "Name oder Benutzername",
-    "noMatch": "Kein Jünger passt zu „{search}“."
+    "noMatch": "Kein Jünger passt zu „{search}“.",
+    "filter": "Nach Datum filtern",
+    "filterPick": "Wähle einen Zeitraum",
+    "filterTooLong": "Wähle höchstens 92 Tage.",
+    "filterClear": "Filter entfernen"
   },
   "weekStory": {
     "title": "Deine Woche mit Gott",

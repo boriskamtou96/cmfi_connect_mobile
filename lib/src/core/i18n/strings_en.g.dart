@@ -1198,6 +1198,10 @@ class _Translations$disciples$en extends Translations$disciples$fr {
 	@override String get noReports => 'No report over this period.';
 	@override String get searchHint => 'Name or username';
 	@override String noMatch({required Object search}) => 'No disciple matches “${search}”.';
+	@override String get filter => 'Filter by date';
+	@override String get filterPick => 'Pick a period';
+	@override String get filterTooLong => 'Pick 92 days at most.';
+	@override String get filterClear => 'Clear the filter';
 }
 
 // Path: weekStory
@@ -4684,6 +4688,10 @@ extension on TranslationsEn {
 			'disciples.noReports' => 'No report over this period.',
 			'disciples.searchHint' => 'Name or username',
 			'disciples.noMatch' => ({required Object search}) => 'No disciple matches “${search}”.',
+			'disciples.filter' => 'Filter by date',
+			'disciples.filterPick' => 'Pick a period',
+			'disciples.filterTooLong' => 'Pick 92 days at most.',
+			'disciples.filterClear' => 'Clear the filter',
 			'weekStory.title' => 'Your week with God',
 			'weekStory.range' => ({required Object from, required Object to}) => '${from} to ${to}',
 			'weekStory.intro' => 'Look back on what you lived with the Lord this week.',
@@ -4822,12 +4830,12 @@ extension on TranslationsEn {
 			'biblePlan.months3' => '3 months',
 			'biblePlan.months6' => '6 months',
 			'biblePlan.year' => '1 year',
+			_ => null,
+		} ?? switch (path) {
 			'biblePlan.custom' => 'Other',
 			'biblePlan.unitMonths' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n, one: 'month', other: 'months', ), 
 			'biblePlan.unitYear' => 'year',
 			'biblePlan.days' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n, one: '${n} day', other: '${n} days', ), 
-			_ => null,
-		} ?? switch (path) {
 			'biblePlan.scope' => 'What you read',
 			'biblePlan.scopes.bible' => 'The whole Bible',
 			'biblePlan.scopes.newTestament' => 'The New Testament',

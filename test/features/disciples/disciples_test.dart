@@ -310,6 +310,9 @@ void main() {
       expect(find.text('3 chapitres'), findsOneWidget);
       expect(find.text('Évangélisation au marché'), findsOneWidget);
       expect(find.text('45 min'), findsOneWidget);
+      // not filled in: 0, with what it measures
+      expect(find.text('Prière seule'), findsOneWidget);
+      expect(find.text('0 min'), findsOneWidget);
       // older than 30 days: not yet
       expect(find.text('1 sur 12 éléments · 8 %'), findsNothing);
 
@@ -328,6 +331,41 @@ void main() {
         scrollable: find.byType(Scrollable).first,
       );
       expect(find.text('1 sur 12 éléments · 8 %'), findsOneWidget);
+    });
+
+    testWidgets('filtered by date: the days of the period only, then all '
+        'again', (tester) async {
+      final app = await openDisciples(tester);
+      await tester.tap(find.text('Paul'));
+      await tester.pumpAndSettle();
+
+      String typed(DateTime day) =>
+          '${day.day.toString().padLeft(2, '0')}/'
+          '${day.month.toString().padLeft(2, '0')}/${day.year}';
+      await tester.tap(find.text('Filtrer par date'));
+      await tester.pumpAndSettle();
+      // the square glyphs of the test font overflow Material's own header of
+      // the picker (the export screen's picker does the same)
+      expect(tester.takeException(), isFlutterError);
+      await tester.tap(find.byIcon(Icons.edit_outlined));
+      await tester.pumpAndSettle();
+      await tester.enterText(find.byType(TextField).at(0), typed(daysAgo(45)));
+      await tester.enterText(find.byType(TextField).at(1), typed(daysAgo(35)));
+      await tester.tap(find.text('OK'));
+      await tester.pumpAndSettle();
+
+      expect(app.disciplesApi.ranges.last.from, daysAgo(45));
+      expect(app.disciplesApi.ranges.last.to, daysAgo(35));
+      expect(find.text('1 sur 12 éléments · 8 %'), findsOneWidget);
+      expect(find.text('8 sur 12 éléments · 67 %'), findsNothing);
+      expect(find.text('Voir les 30 jours précédents'), findsNothing);
+      // nothing filled that day: each item at 0 with its unit
+      expect(find.text('0 chapitre'), findsOneWidget);
+
+      await tester.tap(find.byTooltip('Retirer le filtre'));
+      await tester.pumpAndSettle();
+      expect(find.text('8 sur 12 éléments · 67 %'), findsOneWidget);
+      expect(find.text('Filtrer par date'), findsOneWidget);
     });
 
     testWidgets('a week sent in the app: new in Plus, opened, encouraged', (

@@ -214,3 +214,109 @@ final class DiscipleReportsFamily extends $Family
   @override
   String toString() => r'discipleReportsProvider';
 }
+
+/// The reports of the disciple [authorityId] from [from] to [to] (92 days at
+/// most): the period picked with "Filtrer par date".
+
+@ProviderFor(discipleReportsBetween)
+final discipleReportsBetweenProvider = DiscipleReportsBetweenFamily._();
+
+/// The reports of the disciple [authorityId] from [from] to [to] (92 days at
+/// most): the period picked with "Filtrer par date".
+
+final class DiscipleReportsBetweenProvider
+    extends
+        $FunctionalProvider<
+          AsyncValue<DiscipleReports>,
+          DiscipleReports,
+          FutureOr<DiscipleReports>
+        >
+    with $FutureModifier<DiscipleReports>, $FutureProvider<DiscipleReports> {
+  /// The reports of the disciple [authorityId] from [from] to [to] (92 days at
+  /// most): the period picked with "Filtrer par date".
+  DiscipleReportsBetweenProvider._({
+    required DiscipleReportsBetweenFamily super.from,
+    required (int, {DateTime from, DateTime to}) super.argument,
+  }) : super(
+         retry: null,
+         name: r'discipleReportsBetweenProvider',
+         isAutoDispose: true,
+         dependencies: null,
+         $allTransitiveDependencies: null,
+       );
+
+  @override
+  String debugGetCreateSourceHash() => _$discipleReportsBetweenHash();
+
+  @override
+  String toString() {
+    return r'discipleReportsBetweenProvider'
+        ''
+        '$argument';
+  }
+
+  @$internal
+  @override
+  $FutureProviderElement<DiscipleReports> $createElement(
+    $ProviderPointer pointer,
+  ) => $FutureProviderElement(pointer);
+
+  @override
+  FutureOr<DiscipleReports> create(Ref ref) {
+    final argument = this.argument as (int, {DateTime from, DateTime to});
+    return discipleReportsBetween(
+      ref,
+      argument.$1,
+      from: argument.from,
+      to: argument.to,
+    );
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return other is DiscipleReportsBetweenProvider &&
+        other.argument == argument;
+  }
+
+  @override
+  int get hashCode {
+    return argument.hashCode;
+  }
+}
+
+String _$discipleReportsBetweenHash() =>
+    r'f712b53ecab2f0c9dad70d7f94c2ed2736323fc9';
+
+/// The reports of the disciple [authorityId] from [from] to [to] (92 days at
+/// most): the period picked with "Filtrer par date".
+
+final class DiscipleReportsBetweenFamily extends $Family
+    with
+        $FunctionalFamilyOverride<
+          FutureOr<DiscipleReports>,
+          (int, {DateTime from, DateTime to})
+        > {
+  DiscipleReportsBetweenFamily._()
+    : super(
+        retry: null,
+        name: r'discipleReportsBetweenProvider',
+        dependencies: null,
+        $allTransitiveDependencies: null,
+        isAutoDispose: true,
+      );
+
+  /// The reports of the disciple [authorityId] from [from] to [to] (92 days at
+  /// most): the period picked with "Filtrer par date".
+
+  DiscipleReportsBetweenProvider call(
+    int authorityId, {
+    required DateTime from,
+    required DateTime to,
+  }) => DiscipleReportsBetweenProvider._(
+    argument: (authorityId, from: from, to: to),
+    from: this,
+  );
+
+  @override
+  String toString() => r'discipleReportsBetweenProvider';
+}

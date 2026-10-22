@@ -1779,7 +1779,11 @@
     "older": "See the previous 30 days",
     "noReports": "No report over this period.",
     "searchHint": "Name or username",
-    "noMatch": "No disciple matches “{search}”."
+    "noMatch": "No disciple matches “{search}”.",
+    "filter": "Filter by date",
+    "filterPick": "Pick a period",
+    "filterTooLong": "Pick 92 days at most.",
+    "filterClear": "Clear the filter"
   },
   "weekStory": {
     "title": "Your week with God",

@@ -1197,6 +1197,10 @@ class _Translations$disciples$es extends Translations$disciples$fr {
 	@override String get noReports => 'Ningún informe en este periodo.';
 	@override String get searchHint => 'Nombre o usuario';
 	@override String noMatch({required Object search}) => 'Ningún discípulo coincide con «${search}».';
+	@override String get filter => 'Filtrar por fecha';
+	@override String get filterPick => 'Elige un periodo';
+	@override String get filterTooLong => 'Elige 92 días como máximo.';
+	@override String get filterClear => 'Quitar el filtro';
 }
 
 // Path: weekStory
@@ -4683,6 +4687,10 @@ extension on TranslationsEs {
 			'disciples.noReports' => 'Ningún informe en este periodo.',
 			'disciples.searchHint' => 'Nombre o usuario',
 			'disciples.noMatch' => ({required Object search}) => 'Ningún discípulo coincide con «${search}».',
+			'disciples.filter' => 'Filtrar por fecha',
+			'disciples.filterPick' => 'Elige un periodo',
+			'disciples.filterTooLong' => 'Elige 92 días como máximo.',
+			'disciples.filterClear' => 'Quitar el filtro',
 			'weekStory.title' => 'Tu semana con Dios',
 			'weekStory.range' => ({required Object from, required Object to}) => 'Del ${from} al ${to}',
 			'weekStory.intro' => 'Repasa lo que viviste con el Señor esta semana.',
@@ -4821,12 +4829,12 @@ extension on TranslationsEs {
 			'biblePlan.months3' => '3 meses',
 			'biblePlan.months6' => '6 meses',
 			'biblePlan.year' => '1 año',
+			_ => null,
+		} ?? switch (path) {
 			'biblePlan.custom' => 'Otra',
 			'biblePlan.unitMonths' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('es'))(n, one: 'mes', other: 'meses', ), 
 			'biblePlan.unitYear' => 'año',
 			'biblePlan.days' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('es'))(n, one: '${n} día', other: '${n} días', ), 
-			_ => null,
-		} ?? switch (path) {
 			'biblePlan.scope' => 'Qué lees',
 			'biblePlan.scopes.bible' => 'Toda la Biblia',
 			'biblePlan.scopes.newTestament' => 'El Nuevo Testamento',

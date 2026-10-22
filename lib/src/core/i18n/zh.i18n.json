@@ -1727,7 +1727,11 @@
     "older": "查看之前的 30 天",
     "noReports": "这段时间没有报告。",
     "searchHint": "姓名或用户名",
-    "noMatch": "没有与“{search}”匹配的门徒。"
+    "noMatch": "没有与“{search}”匹配的门徒。",
+    "filter": "按日期筛选",
+    "filterPick": "选择时间段",
+    "filterTooLong": "最多选择 92 天。",
+    "filterClear": "清除筛选"
   },
   "weekStory": {
     "title": "你与神同在的一周",

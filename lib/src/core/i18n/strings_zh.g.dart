@@ -1166,6 +1166,10 @@ class _Translations$disciples$zh extends Translations$disciples$fr {
 	@override String get noReports => '这段时间没有报告。';
 	@override String get searchHint => '姓名或用户名';
 	@override String noMatch({required Object search}) => '没有与“${search}”匹配的门徒。';
+	@override String get filter => '按日期筛选';
+	@override String get filterPick => '选择时间段';
+	@override String get filterTooLong => '最多选择 92 天。';
+	@override String get filterClear => '清除筛选';
 }
 
 // Path: weekStory
@@ -4599,6 +4603,10 @@ extension on TranslationsZh {
 			'disciples.noReports' => '这段时间没有报告。',
 			'disciples.searchHint' => '姓名或用户名',
 			'disciples.noMatch' => ({required Object search}) => '没有与“${search}”匹配的门徒。',
+			'disciples.filter' => '按日期筛选',
+			'disciples.filterPick' => '选择时间段',
+			'disciples.filterTooLong' => '最多选择 92 天。',
+			'disciples.filterClear' => '清除筛选',
 			'weekStory.title' => '你与神同在的一周',
 			'weekStory.range' => ({required Object from, required Object to}) => '${from}至${to}',
 			'weekStory.intro' => '回顾这一周你与主同在的点滴。',
@@ -4737,12 +4745,12 @@ extension on TranslationsZh {
 			'biblePlan.months3' => '3 个月',
 			'biblePlan.months6' => '6 个月',
 			'biblePlan.year' => '1 年',
+			_ => null,
+		} ?? switch (path) {
 			'biblePlan.custom' => '其他',
 			'biblePlan.unitMonths' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n, other: '个月', ), 
 			'biblePlan.unitYear' => '年',
 			'biblePlan.days' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n, other: '${n} 天', ), 
-			_ => null,
-		} ?? switch (path) {
 			'biblePlan.scope' => '读什么',
 			'biblePlan.scopes.bible' => '整本圣经',
 			'biblePlan.scopes.newTestament' => '新约',

@@ -76,6 +76,21 @@ abstract final class MeasureFormat {
         : label;
   }
 
+  /// An item not filled in, with what it measures: "0 chapitre",
+  /// "0 fois · 0 min", "0 %"; "0" for an item without measure.
+  static String zero({
+    required bool quantity,
+    required bool duration,
+    ItemUnit? unit,
+  }) {
+    final value = MeasureFormat.value(
+      quantity: quantity ? 0 : null,
+      minutes: duration ? 0 : null,
+      unit: unit,
+    );
+    return value.isEmpty ? '0' : value;
+  }
+
   /// "10 chapitres", "2 h", "1 fois · 30 min". [withUnit] false gives "10", "1 · 30 min".
   static String value({
     int? quantity,

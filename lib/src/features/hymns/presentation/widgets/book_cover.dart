@@ -57,6 +57,12 @@ class BookCover extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final text = bookCoverText(book);
+    // an illustration of a set size: its words don't follow the phone's
+    // text size (they would run out of the cover)
+    return MediaQuery.withNoTextScaling(child: _cover(text));
+  }
+
+  Widget _cover(({String name, String label}) text) {
     return ClipRRect(
       borderRadius: BorderRadius.circular(size * 0.08),
       child: Container(

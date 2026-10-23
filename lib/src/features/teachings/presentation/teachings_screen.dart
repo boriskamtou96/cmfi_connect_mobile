@@ -61,6 +61,16 @@ class TeachingsScreen extends HookConsumerWidget {
 
     final body = switch (teachings) {
       _ when onlyKept => _List(items: keptMatching(), empty: t.noneDownloaded),
+      // without network: what is kept on the phone, before the list kept
+      // (its messages wouldn't play offline)
+      AsyncValue(error: _?) when kept.isNotEmpty => Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          _OfflineNote(text: t.offline),
+          const SizedBox(height: AppSpacing.md),
+          _List(items: keptMatching(), empty: t.none),
+        ],
+      ),
       AsyncValue(value: final state?) when state.items.isEmpty => _Message(
         text: search.isEmpty && category.value.isEmpty ? t.empty : t.none,
       ),
@@ -69,15 +79,6 @@ class TeachingsScreen extends HookConsumerWidget {
         hasMore: state.hasMore,
         loadingMore: state.loadingMore,
         onEnd: () => ref.read(provider.notifier).loadMore(),
-      ),
-      // without network: what is kept on the phone
-      AsyncValue(error: _?) when kept.isNotEmpty => Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          _OfflineNote(text: t.offline),
-          const SizedBox(height: AppSpacing.md),
-          _List(items: keptMatching(), empty: t.none),
-        ],
       ),
       AsyncValue(:final error?) => ErrorView(
         error: error,

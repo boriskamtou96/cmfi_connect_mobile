@@ -10,18 +10,21 @@ part of 'inbox.dart';
 // ignore_for_file: type=lint, type=warning
 /// The member's notifications, the latest first, and how many are not read
 /// (the badge of the bell). Kept alive: the home screen and Plus show the
-/// badge; refreshed when a push arrives.
+/// badge; refreshed when a push arrives. The first page kept on the phone
+/// shows at once ([FetchPolicy.cacheAndNetwork]), then the server's.
 
 @ProviderFor(Inbox)
 final inboxProvider = InboxProvider._();
 
 /// The member's notifications, the latest first, and how many are not read
 /// (the badge of the bell). Kept alive: the home screen and Plus show the
-/// badge; refreshed when a push arrives.
+/// badge; refreshed when a push arrives. The first page kept on the phone
+/// shows at once ([FetchPolicy.cacheAndNetwork]), then the server's.
 final class InboxProvider extends $AsyncNotifierProvider<Inbox, InboxState> {
   /// The member's notifications, the latest first, and how many are not read
   /// (the badge of the bell). Kept alive: the home screen and Plus show the
-  /// badge; refreshed when a push arrives.
+  /// badge; refreshed when a push arrives. The first page kept on the phone
+  /// shows at once ([FetchPolicy.cacheAndNetwork]), then the server's.
   InboxProvider._()
     : super(
         from: null,
@@ -41,11 +44,12 @@ final class InboxProvider extends $AsyncNotifierProvider<Inbox, InboxState> {
   Inbox create() => Inbox();
 }
 
-String _$inboxHash() => r'952405a2a9160600582c2c1fd077ead20775f4e1';
+String _$inboxHash() => r'1d092f44e9b2aa3065567b3d5a647c27369fe247';
 
 /// The member's notifications, the latest first, and how many are not read
 /// (the badge of the bell). Kept alive: the home screen and Plus show the
-/// badge; refreshed when a push arrives.
+/// badge; refreshed when a push arrives. The first page kept on the phone
+/// shows at once ([FetchPolicy.cacheAndNetwork]), then the server's.
 
 abstract class _$Inbox extends $AsyncNotifier<InboxState> {
   FutureOr<InboxState> build();

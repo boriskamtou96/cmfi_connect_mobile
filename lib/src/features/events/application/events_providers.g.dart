@@ -8,27 +8,21 @@ part of 'events_providers.dart';
 
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint, type=warning
-/// Upcoming or past events: from the server, or its last answer kept on the
-/// phone when there is no network.
+/// Upcoming or past events ([FetchPolicy.cacheAndNetwork]): the last list
+/// kept on the phone at once, then the server's; without network, the list
+/// kept stays.
 
-@ProviderFor(eventList)
+@ProviderFor(EventList)
 final eventListProvider = EventListFamily._();
 
-/// Upcoming or past events: from the server, or its last answer kept on the
-/// phone when there is no network.
-
+/// Upcoming or past events ([FetchPolicy.cacheAndNetwork]): the last list
+/// kept on the phone at once, then the server's; without network, the list
+/// kept stays.
 final class EventListProvider
-    extends
-        $FunctionalProvider<
-          AsyncValue<List<CommunityEvent>>,
-          List<CommunityEvent>,
-          FutureOr<List<CommunityEvent>>
-        >
-    with
-        $FutureModifier<List<CommunityEvent>>,
-        $FutureProvider<List<CommunityEvent>> {
-  /// Upcoming or past events: from the server, or its last answer kept on the
-  /// phone when there is no network.
+    extends $AsyncNotifierProvider<EventList, List<CommunityEvent>> {
+  /// Upcoming or past events ([FetchPolicy.cacheAndNetwork]): the last list
+  /// kept on the phone at once, then the server's; without network, the list
+  /// kept stays.
   EventListProvider._({
     required EventListFamily super.from,
     required EventPeriod super.argument,
@@ -52,15 +46,7 @@ final class EventListProvider
 
   @$internal
   @override
-  $FutureProviderElement<List<CommunityEvent>> $createElement(
-    $ProviderPointer pointer,
-  ) => $FutureProviderElement(pointer);
-
-  @override
-  FutureOr<List<CommunityEvent>> create(Ref ref) {
-    final argument = this.argument as EventPeriod;
-    return eventList(ref, argument);
-  }
+  EventList create() => EventList();
 
   @override
   bool operator ==(Object other) {
@@ -73,14 +59,21 @@ final class EventListProvider
   }
 }
 
-String _$eventListHash() => r'eb6ec39b1269b04785bdfa88959788dd13231d5c';
+String _$eventListHash() => r'153a340ba6f0adb615d3fd89774a130bbdcf5063';
 
-/// Upcoming or past events: from the server, or its last answer kept on the
-/// phone when there is no network.
+/// Upcoming or past events ([FetchPolicy.cacheAndNetwork]): the last list
+/// kept on the phone at once, then the server's; without network, the list
+/// kept stays.
 
 final class EventListFamily extends $Family
     with
-        $FunctionalFamilyOverride<FutureOr<List<CommunityEvent>>, EventPeriod> {
+        $ClassFamilyOverride<
+          EventList,
+          AsyncValue<List<CommunityEvent>>,
+          List<CommunityEvent>,
+          FutureOr<List<CommunityEvent>>,
+          EventPeriod
+        > {
   EventListFamily._()
     : super(
         retry: null,
@@ -90,14 +83,45 @@ final class EventListFamily extends $Family
         isAutoDispose: true,
       );
 
-  /// Upcoming or past events: from the server, or its last answer kept on the
-  /// phone when there is no network.
+  /// Upcoming or past events ([FetchPolicy.cacheAndNetwork]): the last list
+  /// kept on the phone at once, then the server's; without network, the list
+  /// kept stays.
 
   EventListProvider call(EventPeriod period) =>
       EventListProvider._(argument: period, from: this);
 
   @override
   String toString() => r'eventListProvider';
+}
+
+/// Upcoming or past events ([FetchPolicy.cacheAndNetwork]): the last list
+/// kept on the phone at once, then the server's; without network, the list
+/// kept stays.
+
+abstract class _$EventList extends $AsyncNotifier<List<CommunityEvent>> {
+  late final _$args = ref.$arg as EventPeriod;
+  EventPeriod get period => _$args;
+
+  FutureOr<List<CommunityEvent>> build(EventPeriod period);
+  @$mustCallSuper
+  @override
+  void runBuild() {
+    final ref =
+        this.ref
+            as $Ref<AsyncValue<List<CommunityEvent>>, List<CommunityEvent>>;
+    final element =
+        ref.element
+            as $ClassProviderElement<
+              AnyNotifier<
+                AsyncValue<List<CommunityEvent>>,
+                List<CommunityEvent>
+              >,
+              AsyncValue<List<CommunityEvent>>,
+              Object?,
+              Object?
+            >;
+    element.handleCreate(ref, () => build(_$args));
+  }
 }
 
 /// The event of the home card: the one going on, or the next one.
@@ -189,7 +213,7 @@ final class EventDetailProvider
   }
 }
 
-String _$eventDetailHash() => r'ed999983d9bb43e4b8f7fe8f466c100095b2f869';
+String _$eventDetailHash() => r'1a112e26223f57539d858f3d8d74104f3e28eb45';
 
 /// The whole event (program, news, photos, the user's registration).
 

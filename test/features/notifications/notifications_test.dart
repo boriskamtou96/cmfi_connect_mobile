@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:cmfi_connect/src/core/i18n/strings.g.dart';
 import 'package:cmfi_connect/src/core/services/local_notifications.dart';
 import 'package:cmfi_connect/src/core/theme/app_icons.dart';
@@ -196,5 +198,28 @@ void main() {
     app.push.tapsController.add({'type': 'prayer_topic', 'id': '5'});
     await tester.pumpAndSettle();
     expect(find.byType(PrayerTopicsScreen), findsOneWidget);
+  });
+
+  testWidgets('without network: the notifications kept on the phone', (
+    tester,
+  ) async {
+    final kept = sampleAnnouncement(id: 3, title: 'Jeûne de la semaine');
+    await pumpApp(
+      tester,
+      token: 't',
+      notificationsApi: FakeNotificationsApi(offline: true),
+      initialPreferences: {
+        'inbox_first_page': jsonEncode({
+          'items': [kept],
+          'unread': 1,
+          'total': 1,
+        }),
+      },
+    );
+
+    // the badge and the list, from the copy
+    expect(find.text('1'), findsOneWidget);
+    await openBell(tester);
+    expect(find.text('Jeûne de la semaine'), findsOneWidget);
   });
 }

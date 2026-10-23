@@ -1,7 +1,9 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
+import '../../../core/network/fetch_policy.dart';
 import '../domain/announcement.dart';
+import '../infrastructure/inbox_local_store.dart';
 import '../infrastructure/notifications_api.dart';
 
 part 'inbox.freezed.dart';
@@ -24,23 +26,44 @@ abstract class InboxState with _$InboxState {
 
 /// The member's notifications, the latest first, and how many are not read
 /// (the badge of the bell). Kept alive: the home screen and Plus show the
-/// badge; refreshed when a push arrives.
+/// badge; refreshed when a push arrives. The first page kept on the phone
+/// shows at once ([FetchPolicy.cacheAndNetwork]), then the server's.
 @Riverpod(keepAlive: true)
 class Inbox extends _$Inbox {
   static const pageSize = 20;
 
   @override
-  Future<InboxState> build() async {
-    final page = await ref.watch(notificationsApiProvider).list(size: pageSize);
-    return InboxState(
-      items: page.items,
-      unread: page.unread,
-      total: page.total,
+  Future<InboxState> build() => _firstPage(
+    FetchPolicy.cacheAndNetwork,
+    onFresh: (fresh) {
+      if (ref.mounted) {
+        state = AsyncData(fresh);
+      }
+    },
+  );
+
+  Future<InboxState> _firstPage(
+    FetchPolicy policy, {
+    void Function(InboxState fresh)? onFresh,
+  }) async {
+    InboxState of(AnnouncementPage page) =>
+        InboxState(items: page.items, unread: page.unread, total: page.total);
+    final store = ref.read(inboxLocalStoreProvider);
+    final page = await fetchWithPolicy<AnnouncementPage>(
+      policy: policy,
+      cached: store.read,
+      network: () => ref.read(notificationsApiProvider).list(size: pageSize),
+      save: store.save,
+      onFresh: onFresh == null ? null : (fresh) => onFresh(of(fresh)),
     );
+    return of(page);
   }
 
+  /// The server's first page (the one shown stays without network).
   Future<void> refresh() async {
-    final result = await AsyncValue.guard(build);
+    final result = await AsyncValue.guard(
+      () => _firstPage(FetchPolicy.networkOnly),
+    );
     if (ref.mounted && (result.hasValue || !state.hasValue)) {
       state = result;
     }

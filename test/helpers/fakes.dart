@@ -2093,20 +2093,28 @@ Announcement sampleAnnouncement({
 
 /// The member's notifications on the server; records the phones and reads.
 class FakeNotificationsApi implements NotificationsApi {
-  FakeNotificationsApi({List<Announcement>? items})
+  FakeNotificationsApi({List<Announcement>? items, this.offline = false})
     : items = items ?? [sampleAnnouncement()];
 
   final List<Announcement> items;
+
+  /// No network: the list fails as without one.
+  bool offline;
   final registered = <({String token, String platform, String language})>[];
   final unregistered = <String>[];
   final read = <int>[];
 
   @override
-  Future<AnnouncementPage> list({int page = 1, int size = 20}) async => (
-    items: items.skip((page - 1) * size).take(size).toList(),
-    unread: items.where((item) => !item.isRead).length,
-    total: items.length,
-  );
+  Future<AnnouncementPage> list({int page = 1, int size = 20}) async {
+    if (offline) {
+      throw const NetworkException();
+    }
+    return (
+      items: items.skip((page - 1) * size).take(size).toList(),
+      unread: items.where((item) => !item.isRead).length,
+      total: items.length,
+    );
+  }
 
   @override
   Future<Announcement> get(int id) async =>

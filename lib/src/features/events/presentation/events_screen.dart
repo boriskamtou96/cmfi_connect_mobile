@@ -39,12 +39,11 @@ class EventsScreen extends ConsumerWidget {
     void open(CommunityEvent event) =>
         context.router.push(EventRoute(eventId: event.id));
 
-    Future<void> refresh() async {
-      ref.invalidate(eventListProvider(EventPeriod.past));
-      await ref
-          .refresh(eventListProvider(EventPeriod.upcoming).future)
-          .then((_) {}, onError: (_) {});
-    }
+    // the server's lists, the ones shown stay without network
+    Future<void> refresh() => Future.wait([
+      for (final period in EventPeriod.values)
+        ref.read(eventListProvider(period).notifier).refresh(),
+    ]);
 
     return SubPage(
       title: t.title,

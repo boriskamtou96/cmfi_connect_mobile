@@ -18,6 +18,7 @@ import 'src/core/theme/app_motion.dart';
 import 'src/core/theme/app_theme.dart';
 import 'src/features/events/infrastructure/events_local_store.dart';
 import 'src/features/notifications/application/inbox.dart';
+import 'src/features/notifications/infrastructure/inbox_local_store.dart';
 import 'src/features/prayer/application/importunities.dart';
 import 'src/features/prayer/application/prayer_people.dart';
 import 'src/features/prayer/application/retreats.dart';
@@ -55,6 +56,7 @@ class App extends ConsumerWidget {
 
         unawaited(ref.read(reportsLocalStoreProvider).clear());
         unawaited(ref.read(eventsLocalStoreProvider).clear());
+        unawaited(ref.read(inboxLocalStoreProvider).clear());
         unawaited(ref.read(prayerLocalStoreProvider).clear());
         unawaited(ref.read(reportReminderProvider.notifier).cancelAll());
         unawaited(ref.read(reportSendingProvider.notifier).forget());

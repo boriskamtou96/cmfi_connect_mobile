@@ -1,6 +1,6 @@
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-import '../../../core/network/app_exception.dart';
+import '../../../core/network/fetch_policy.dart';
 import '../domain/event.dart';
 import '../infrastructure/events_api.dart';
 import '../infrastructure/events_local_store.dart';
@@ -8,24 +8,49 @@ import 'event_reminders.dart';
 
 part 'events_providers.g.dart';
 
-/// Upcoming or past events: from the server, or its last answer kept on the
-/// phone when there is no network.
+/// Upcoming or past events ([FetchPolicy.cacheAndNetwork]): the last list
+/// kept on the phone at once, then the server's; without network, the list
+/// kept stays.
 @riverpod
-Future<List<CommunityEvent>> eventList(Ref ref, EventPeriod period) async {
-  final store = ref.watch(eventsLocalStoreProvider);
-  try {
-    final events = await ref.watch(eventsApiProvider).list(period: period);
-    await store.saveList(period, events);
-    if (period == EventPeriod.upcoming) {
-      await ref.read(eventRemindersProvider).plan(events);
+class EventList extends _$EventList {
+  @override
+  Future<List<CommunityEvent>> build(EventPeriod period) => _fetch(
+    FetchPolicy.cacheAndNetwork,
+    onFresh: (fresh) {
+      if (ref.mounted) {
+        state = AsyncData(fresh);
+      }
+    },
+  );
+
+  /// Pulled down: the server's list (the one shown stays without network).
+  Future<void> refresh() async {
+    final result = await AsyncValue.guard(
+      () => _fetch(FetchPolicy.networkOnly),
+    );
+    if (ref.mounted && (result.hasValue || !state.hasValue)) {
+      state = result;
     }
-    return events;
-  } on NetworkException {
-    final cached = store.list(period);
-    if (cached == null) {
-      rethrow;
-    }
-    return cached;
+  }
+
+  Future<List<CommunityEvent>> _fetch(
+    FetchPolicy policy, {
+    void Function(List<CommunityEvent> fresh)? onFresh,
+  }) {
+    final store = ref.read(eventsLocalStoreProvider);
+    return fetchWithPolicy(
+      policy: policy,
+      cached: () => store.list(period),
+      network: () => ref.read(eventsApiProvider).list(period: period),
+      save: (events) async {
+        await store.saveList(period, events);
+        // the reminders follow the server's list
+        if (period == EventPeriod.upcoming) {
+          await ref.read(eventRemindersProvider).plan(events);
+        }
+      },
+      onFresh: onFresh,
+    );
   }
 }
 
@@ -46,20 +71,22 @@ Future<CommunityEvent?> nextEvent(Ref ref) async {
 /// The whole event (program, news, photos, the user's registration).
 @riverpod
 class EventDetail extends _$EventDetail {
+  // the event as last opened at once (the program on the spot, where the
+  // network is often poor), then the server's
   @override
-  Future<CommunityEvent> build(int id) async {
-    final store = ref.watch(eventsLocalStoreProvider);
-    try {
-      final event = await ref.watch(eventsApiProvider).get(id);
-      await store.saveEvent(event);
-      return event;
-    } on NetworkException {
-      final cached = store.event(id);
-      if (cached == null) {
-        rethrow;
-      }
-      return cached;
-    }
+  Future<CommunityEvent> build(int id) {
+    final store = ref.read(eventsLocalStoreProvider);
+    return fetchWithPolicy(
+      policy: FetchPolicy.cacheAndNetwork,
+      cached: () => store.event(id),
+      network: () => ref.read(eventsApiProvider).get(id),
+      save: store.saveEvent,
+      onFresh: (fresh) {
+        if (ref.mounted) {
+          state = AsyncData(fresh);
+        }
+      },
+    );
   }
 
   /// Registers the user, or changes their answers. Throws an AppException

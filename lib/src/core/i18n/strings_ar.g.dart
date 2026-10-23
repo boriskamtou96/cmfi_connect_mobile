@@ -297,6 +297,9 @@ class _Translations$home$ar extends Translations$home$fr {
 		many: '${n} شخصًا اليوم',
 		other: '${n} شخص اليوم',
 	);
+	@override String timeToday({required Object time}) => '${time} مع الله اليوم';
+	@override String get timeTodayNone => 'لم يُسجَّل بعد وقت مع الله اليوم';
+	@override String timeSpoken({required Object time}) => 'الوقت مع الله: ${time}';
 }
 
 // Path: reports
@@ -2429,6 +2432,7 @@ class _Translations$reports$summary$ar extends Translations$reports$summary$fr {
 	@override String get evolution => 'تطوّر أهدافك';
 	@override String get evolutionHint => 'أسبوعًا بعد أسبوع، خلال آخر 12 أسبوعًا.';
 	@override String get premiumYear => 'السنة وتطوّر أهدافك متاحان مع Premium.';
+	@override late final _Translations$reports$summary$time$ar time = _Translations$reports$summary$time$ar._(_root);
 }
 
 // Path: reports.standardItems
@@ -3443,6 +3447,18 @@ class _Translations$journey$grace$ar extends Translations$journey$grace$fr {
 	@override String get ok => 'شكرًا!';
 }
 
+// Path: reports.summary.time
+class _Translations$reports$summary$time$ar extends Translations$reports$summary$time$fr {
+	_Translations$reports$summary$time$ar._(TranslationsAr root) : this._root = root, super.internal(root);
+
+	final TranslationsAr _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'الوقت مع الله';
+	@override String perDay({required Object time}) => 'أي ${time} يوميًا في المتوسط';
+	@override String get none => 'لم يُسجَّل أي وقت في هذه الفترة.';
+}
+
 // Path: reports.units.chapters
 class _Translations$reports$units$chapters$ar extends Translations$reports$units$chapters$fr {
 	_Translations$reports$units$chapters$ar._(TranslationsAr root) : this._root = root, super.internal(root);
@@ -4112,6 +4128,9 @@ extension on TranslationsAr {
 			'home.soulsTitle' => 'نفوس للتواصل معها',
 			'home.listenTitle' => 'للاستماع',
 			'home.soulsText' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n, zero: 'لا أحد اليوم', one: 'شخص واحد اليوم', two: 'شخصان اليوم', few: '${n} أشخاص اليوم', many: '${n} شخصًا اليوم', other: '${n} شخص اليوم', ), 
+			'home.timeToday' => ({required Object time}) => '${time} مع الله اليوم',
+			'home.timeTodayNone' => 'لم يُسجَّل بعد وقت مع الله اليوم',
+			'home.timeSpoken' => ({required Object time}) => 'الوقت مع الله: ${time}',
 			'reports.title' => 'التقرير',
 			'reports.myItems' => 'عناصري',
 			'reports.tabs.today' => 'اليوم',
@@ -4178,6 +4197,9 @@ extension on TranslationsAr {
 			'reports.summary.evolution' => 'تطوّر أهدافك',
 			'reports.summary.evolutionHint' => 'أسبوعًا بعد أسبوع، خلال آخر 12 أسبوعًا.',
 			'reports.summary.premiumYear' => 'السنة وتطوّر أهدافك متاحان مع Premium.',
+			'reports.summary.time.title' => 'الوقت مع الله',
+			'reports.summary.time.perDay' => ({required Object time}) => 'أي ${time} يوميًا في المتوسط',
+			'reports.summary.time.none' => 'لم يُسجَّل أي وقت في هذه الفترة.',
 			'reports.noItems' => 'لا توجد عناصر لتعبئتها حاليًا.',
 			'reports.statusPending' => 'لم يُرسَل بعد',
 			'reports.savedOffline' => 'لا توجد شبكة: اليوم محفوظ على هاتفك وسيُرسَل في أقرب وقت ممكن.',
@@ -4419,14 +4441,14 @@ extension on TranslationsAr {
 			'authorities.makeMakerTitle' => ({required Object name}) => 'هل تجعل ${name} صانع التلاميذ الخاص بك؟',
 			'authorities.makeMakerText' => ({required Object name}) => 'سيتم إبلاغ ${name}.',
 			'authorities.makeMakerTextFormer' => ({required Object name, required Object former}) => 'سيتم إبلاغ ${name}. يبقى ${former} ضمن مرشديك.',
+			_ => null,
+		} ?? switch (path) {
 			'authorities.madeMaker' => ({required Object name}) => '${name} هو الآن صانع التلاميذ الخاص بك.',
 			'members.username' => 'اسم المستخدم',
 			'members.usernameHint' => 'firstname.lastname',
 			'members.usernameHelp' => 'بهذا الاسم سيجدك الأعضاء الآخرون.',
 			'members.usernameChecking' => 'جارٍ التحقق…',
 			'members.usernameFree' => ({required Object username}) => '@${username} متاح',
-			_ => null,
-		} ?? switch (path) {
 			'members.usernameCurrent' => 'هذا اسم المستخدم الحالي الخاص بك',
 			'members.usernameTaken' => 'اسم المستخدم هذا مأخوذ بالفعل.',
 			'members.usernameInvalid' => 'من 3 إلى 30 حرفًا: أحرف وأرقام و«.» و«_»، دون أن يبدأ أو ينتهي برمز.',
@@ -4933,14 +4955,14 @@ extension on TranslationsAr {
 			'prayer.moments.morning' => 'الصباح',
 			'prayer.moments.noon' => 'الظهر',
 			'prayer.moments.evening' => 'المساء',
+			_ => null,
+		} ?? switch (path) {
 			'prayer.moments.night' => 'الليل',
 			'prayer.retreatOf.morning' => 'خلوة الصباح',
 			'prayer.retreatOf.noon' => 'خلوة الظهر',
 			'prayer.retreatOf.evening' => 'خلوة المساء',
 			'prayer.retreatOf.night' => 'خلوة الليل',
 			'prayer.hero.now' => ({required Object retreat}) => '${retreat} · الآن',
-			_ => null,
-		} ?? switch (path) {
 			'prayer.hero.title' => '15 دقيقة\nمع الرب',
 			'prayer.hero.preview.morning' => 'قدِّم الشكر، وكرِّس يومك وعملك وعائلتك…',
 			'prayer.hero.preview.noon' => 'جماعتك، وقادتك، و5 أشخاص من قائمتك، والأمم…',
@@ -5447,14 +5469,14 @@ extension on TranslationsAr {
 			'seekFirst.shield.thisApp' => 'هذا التطبيق',
 			'seekFirst.shield.fill' => 'املأ تقريري',
 			'seekFirst.shield.pause' => ({required Object n}) => 'استراحة 5 دقائق (${n}/3)',
+			_ => null,
+		} ?? switch (path) {
 			'seekFirst.shield.notificationTitle' => 'اطلب الله أولًا',
 			'seekFirst.shield.notificationBody' => 'المس هنا لتملأ تقريرك.',
 			'seekFirst.shield.serviceBody' => 'تُغلق تطبيقاتك كل يوم حتى تقريرك.',
 			'seekFirst.permissionsAndroid' => 'لإغلاق تطبيقاتك، يحتاج CMFI Connect إلى إذنين تفعّلهما في الإعدادات التي ستُفتح: «الوصول إلى بيانات الاستخدام» (لمعرفة التطبيق المفتوح) و«الظهور فوق التطبيقات الأخرى» (لإظهار شاشة اطلب الله أولًا). لا يخرج شيء من هاتفك.',
 			'seekFirst.permissionsContinue' => 'متابعة',
 			'seekFirst.deniedAndroid' => 'بدون هذين الإذنين لا يستطيع CMFI Connect إغلاق التطبيقات. يمكنك تفعيلهما من الإعدادات › التطبيقات › الوصول الخاص.',
-			_ => null,
-		} ?? switch (path) {
 			'seekFirst.privacyAndroid' => 'تبقى التطبيقات التي تختارها على هاتفك: لا يرسلها CMFI Connect أبدًا.',
 			'documents.title' => 'مستنداتنا',
 			'documents.subtitle' => 'تعاليم، أنظمة، استمارات…',

@@ -285,6 +285,9 @@ class _Translations$home$hi extends Translations$home$fr {
 		one: 'आज ${n} व्यक्ति',
 		other: 'आज ${n} लोग',
 	);
+	@override String timeToday({required Object time}) => 'आज परमेश्वर के साथ ${time}';
+	@override String get timeTodayNone => 'आज अभी तक परमेश्वर के साथ का समय दर्ज नहीं हुआ';
+	@override String timeSpoken({required Object time}) => 'परमेश्वर के साथ समय: ${time}';
 }
 
 // Path: reports
@@ -2155,6 +2158,7 @@ class _Translations$reports$summary$hi extends Translations$reports$summary$fr {
 	@override String get evolution => 'तुम्हारे लक्ष्यों की प्रगति';
 	@override String get evolutionHint => 'हफ़्ते दर हफ़्ते, पिछले 12 हफ़्तों में।';
 	@override String get premiumYear => 'साल और तुम्हारे लक्ष्यों की प्रगति Premium के साथ आते हैं।';
+	@override late final _Translations$reports$summary$time$hi time = _Translations$reports$summary$time$hi._(_root);
 }
 
 // Path: reports.standardItems
@@ -3127,6 +3131,18 @@ class _Translations$journey$grace$hi extends Translations$journey$grace$fr {
 	@override String get ok => 'धन्यवाद!';
 }
 
+// Path: reports.summary.time
+class _Translations$reports$summary$time$hi extends Translations$reports$summary$time$fr {
+	_Translations$reports$summary$time$hi._(TranslationsHi root) : this._root = root, super.internal(root);
+
+	final TranslationsHi _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'परमेश्वर के साथ समय';
+	@override String perDay({required Object time}) => 'यानी औसतन रोज़ ${time}';
+	@override String get none => 'इस अवधि में कोई समय दर्ज नहीं हुआ।';
+}
+
 // Path: reports.units.chapters
 class _Translations$reports$units$chapters$hi extends Translations$reports$units$chapters$fr {
 	_Translations$reports$units$chapters$hi._(TranslationsHi root) : this._root = root, super.internal(root);
@@ -3777,6 +3793,9 @@ extension on TranslationsHi {
 			'home.soulsTitle' => 'फिर से संपर्क करने वाली आत्माएँ',
 			'home.listenTitle' => 'सुनने के लिए',
 			'home.soulsText' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n, one: 'आज ${n} व्यक्ति', other: 'आज ${n} लोग', ), 
+			'home.timeToday' => ({required Object time}) => 'आज परमेश्वर के साथ ${time}',
+			'home.timeTodayNone' => 'आज अभी तक परमेश्वर के साथ का समय दर्ज नहीं हुआ',
+			'home.timeSpoken' => ({required Object time}) => 'परमेश्वर के साथ समय: ${time}',
 			'reports.title' => 'दैनिक रिपोर्ट',
 			'reports.myItems' => 'मेरे आइटम',
 			'reports.tabs.today' => 'आज',
@@ -3843,6 +3862,9 @@ extension on TranslationsHi {
 			'reports.summary.evolution' => 'तुम्हारे लक्ष्यों की प्रगति',
 			'reports.summary.evolutionHint' => 'हफ़्ते दर हफ़्ते, पिछले 12 हफ़्तों में।',
 			'reports.summary.premiumYear' => 'साल और तुम्हारे लक्ष्यों की प्रगति Premium के साथ आते हैं।',
+			'reports.summary.time.title' => 'परमेश्वर के साथ समय',
+			'reports.summary.time.perDay' => ({required Object time}) => 'यानी औसतन रोज़ ${time}',
+			'reports.summary.time.none' => 'इस अवधि में कोई समय दर्ज नहीं हुआ।',
 			'reports.noItems' => 'अभी भरने के लिए कोई आइटम नहीं है।',
 			'reports.statusPending' => 'अभी भेजा नहीं गया',
 			'reports.savedOffline' => 'नेटवर्क नहीं है: यह दिन फ़ोन में सेव है और नेटवर्क मिलते ही भेज दिया जाएगा।',
@@ -4084,14 +4106,14 @@ extension on TranslationsHi {
 			'authorities.makeMakerTitle' => ({required Object name}) => '${name} को अपना चेला बनाने वाला बनाएँ?',
 			'authorities.makeMakerText' => ({required Object name}) => '${name} को सूचना दी जाएगी।',
 			'authorities.makeMakerTextFormer' => ({required Object name, required Object former}) => '${name} को सूचना दी जाएगी। ${former} तुम्हारे अधिकारियों में बने रहेंगे।',
+			_ => null,
+		} ?? switch (path) {
 			'authorities.madeMaker' => ({required Object name}) => '${name} अब तुम्हारे चेला बनाने वाले हैं।',
 			'members.username' => 'यूज़रनेम',
 			'members.usernameHint' => 'naam.surname',
 			'members.usernameHelp' => 'दूसरे सदस्य तुम्हें इसी नाम से ढूँढेंगे।',
 			'members.usernameChecking' => 'जाँच हो रही है…',
 			'members.usernameFree' => ({required Object username}) => '@${username} उपलब्ध है',
-			_ => null,
-		} ?? switch (path) {
 			'members.usernameCurrent' => 'यह तुम्हारा मौजूदा यूज़रनेम है',
 			'members.usernameTaken' => 'यह यूज़रनेम पहले से लिया जा चुका है।',
 			'members.usernameInvalid' => '3 से 30 कैरेक्टर: अक्षर, अंक, “.” और “_”, पर शुरुआत या अंत में कोई चिह्न नहीं।',
@@ -4598,14 +4620,14 @@ extension on TranslationsHi {
 			'prayer.moments.morning' => 'सुबह',
 			'prayer.moments.noon' => 'दोपहर',
 			'prayer.moments.evening' => 'शाम',
+			_ => null,
+		} ?? switch (path) {
 			'prayer.moments.night' => 'रात',
 			'prayer.retreatOf.morning' => 'सुबह का प्रार्थना-समय',
 			'prayer.retreatOf.noon' => 'दोपहर का प्रार्थना-समय',
 			'prayer.retreatOf.evening' => 'शाम का प्रार्थना-समय',
 			'prayer.retreatOf.night' => 'रात का प्रार्थना-समय',
 			'prayer.hero.now' => ({required Object retreat}) => '${retreat} · अभी',
-			_ => null,
-		} ?? switch (path) {
 			'prayer.hero.title' => '15 मिनट\nप्रभु के साथ',
 			'prayer.hero.preview.morning' => 'धन्यवाद दो, अपना दिन, अपना काम, अपना परिवार समर्पित करो…',
 			'prayer.hero.preview.noon' => 'तुम्हारी सभा, तुम्हारे अगुवे, तुम्हारी सूची के 5 लोग, राष्ट्र…',
@@ -5112,14 +5134,14 @@ extension on TranslationsHi {
 			'seekFirst.shield.thisApp' => 'यह ऐप',
 			'seekFirst.shield.fill' => 'मेरी रिपोर्ट भरें',
 			'seekFirst.shield.pause' => ({required Object n}) => '5 मिनट का विराम (${n}/3)',
+			_ => null,
+		} ?? switch (path) {
 			'seekFirst.shield.notificationTitle' => 'पहले परमेश्वर को खोजो',
 			'seekFirst.shield.notificationBody' => 'अपनी रिपोर्ट भरने के लिए यहाँ टैप करें।',
 			'seekFirst.shield.serviceBody' => 'तुम्हारे ऐप हर दिन तुम्हारी रिपोर्ट तक बंद रहते हैं।',
 			'seekFirst.permissionsAndroid' => 'तुम्हारे ऐप बंद करने के लिए CMFI Connect को दो अनुमतियाँ चाहिए, जो खुलने वाली सेटिंग्स में चालू करनी हैं: «उपयोग डेटा तक पहुँच» (कौन-सा ऐप खुला है) और «दूसरे ऐप्स के ऊपर दिखाएँ» (पहले परमेश्वर को खोजो स्क्रीन दिखाने के लिए)। कुछ भी तुम्हारे फ़ोन से बाहर नहीं जाता।',
 			'seekFirst.permissionsContinue' => 'आगे बढ़ो',
 			'seekFirst.deniedAndroid' => 'इन दो अनुमतियों के बिना CMFI Connect ऐप बंद नहीं कर सकता। तुम इन्हें सेटिंग्स › ऐप्स › विशेष पहुँच में चालू कर सकते हो।',
-			_ => null,
-		} ?? switch (path) {
 			'seekFirst.privacyAndroid' => 'तुम्हारे चुने ऐप तुम्हारे फ़ोन में ही रहते हैं: CMFI Connect उन्हें कभी नहीं भेजता।',
 			'documents.title' => 'हमारे दस्तावेज़',
 			'documents.subtitle' => 'शिक्षाएँ, नियम, फ़ॉर्म…',

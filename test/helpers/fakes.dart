@@ -574,6 +574,17 @@ class FakeReportsApi implements ReportsApi {
                   ),
                 )
                 .length,
+            totalQuantity: [
+              for (final day in inRange)
+                for (final entry in day.entries)
+                  if (entry.activityTypeId == activity.id) entry.quantity ?? 0,
+            ].fold(0, (sum, value) => sum + value),
+            totalMinutes: [
+              for (final day in inRange)
+                for (final entry in day.entries)
+                  if (entry.activityTypeId == activity.id)
+                    entry.durationMinutes ?? 0,
+            ].fold(0, (sum, value) => sum + value),
           ),
       ],
     );

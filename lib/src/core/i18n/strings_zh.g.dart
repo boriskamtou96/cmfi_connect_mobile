@@ -282,6 +282,9 @@ class _Translations$home$zh extends Translations$home$fr {
 	@override String soulsText({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n,
 		other: '今天 ${n} 人',
 	);
+	@override String timeToday({required Object time}) => '今天与神同在 ${time}';
+	@override String get timeTodayNone => '今天还没有记录与神同在的时间';
+	@override String timeSpoken({required Object time}) => '与神同在的时间：${time}';
 }
 
 // Path: reports
@@ -2088,6 +2091,7 @@ class _Translations$reports$summary$zh extends Translations$reports$summary$fr {
 	@override String get evolution => '目标的进展';
 	@override String get evolutionHint => '最近 12 周，一周接一周。';
 	@override String get premiumYear => '年度视图和目标进展随 Premium 提供。';
+	@override late final _Translations$reports$summary$time$zh time = _Translations$reports$summary$time$zh._(_root);
 }
 
 // Path: reports.standardItems
@@ -3049,6 +3053,18 @@ class _Translations$journey$grace$zh extends Translations$journey$grace$fr {
 	@override String get ok => '谢谢！';
 }
 
+// Path: reports.summary.time
+class _Translations$reports$summary$time$zh extends Translations$reports$summary$time$fr {
+	_Translations$reports$summary$time$zh._(TranslationsZh root) : this._root = root, super.internal(root);
+
+	final TranslationsZh _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => '与神同在的时间';
+	@override String perDay({required Object time}) => '平均每天 ${time}';
+	@override String get none => '这段时间没有记录任何时间。';
+}
+
 // Path: reports.units.chapters
 class _Translations$reports$units$chapters$zh extends Translations$reports$units$chapters$fr {
 	_Translations$reports$units$chapters$zh._(TranslationsZh root) : this._root = root, super.internal(root);
@@ -3694,6 +3710,9 @@ extension on TranslationsZh {
 			'home.soulsTitle' => '需要再联系的人',
 			'home.listenTitle' => '收听',
 			'home.soulsText' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n, other: '今天 ${n} 人', ), 
+			'home.timeToday' => ({required Object time}) => '今天与神同在 ${time}',
+			'home.timeTodayNone' => '今天还没有记录与神同在的时间',
+			'home.timeSpoken' => ({required Object time}) => '与神同在的时间：${time}',
 			'reports.title' => '每日汇报',
 			'reports.myItems' => '我的项目',
 			'reports.tabs.today' => '今天',
@@ -3760,6 +3779,9 @@ extension on TranslationsZh {
 			'reports.summary.evolution' => '目标的进展',
 			'reports.summary.evolutionHint' => '最近 12 周，一周接一周。',
 			'reports.summary.premiumYear' => '年度视图和目标进展随 Premium 提供。',
+			'reports.summary.time.title' => '与神同在的时间',
+			'reports.summary.time.perDay' => ({required Object time}) => '平均每天 ${time}',
+			'reports.summary.time.none' => '这段时间没有记录任何时间。',
 			'reports.noItems' => '暂时没有需要填写的项目。',
 			'reports.statusPending' => '尚未发送',
 			'reports.savedOffline' => '没有网络：当天汇报已保存在手机上，联网后会尽快发送。',
@@ -4001,14 +4023,14 @@ extension on TranslationsZh {
 			'authorities.makeMakerTitle' => ({required Object name}) => '将 ${name} 设为你的门训者？',
 			'authorities.makeMakerText' => ({required Object name}) => '${name} 会收到通知。',
 			'authorities.makeMakerTextFormer' => ({required Object name, required Object former}) => '${name} 会收到通知。${former} 仍是你的属灵权柄之一。',
+			_ => null,
+		} ?? switch (path) {
 			'authorities.madeMaker' => ({required Object name}) => '${name} 现在是你的门训者。',
 			'members.username' => '用户名',
 			'members.usernameHint' => 'zhang.san',
 			'members.usernameHelp' => '其他成员会通过它找到你。',
 			'members.usernameChecking' => '正在检查…',
 			'members.usernameFree' => ({required Object username}) => '@${username} 可以使用',
-			_ => null,
-		} ?? switch (path) {
 			'members.usernameCurrent' => '这是你当前的用户名',
 			'members.usernameTaken' => '该用户名已被占用。',
 			'members.usernameInvalid' => '3–30 个字符：字母、数字、「.」和「_」，不能以符号开头或结尾。',
@@ -4515,14 +4537,14 @@ extension on TranslationsZh {
 			'prayer.moments.morning' => '早晨',
 			'prayer.moments.noon' => '中午',
 			'prayer.moments.evening' => '傍晚',
+			_ => null,
+		} ?? switch (path) {
 			'prayer.moments.night' => '夜晚',
 			'prayer.retreatOf.morning' => '早晨祷告',
 			'prayer.retreatOf.noon' => '中午祷告',
 			'prayer.retreatOf.evening' => '傍晚祷告',
 			'prayer.retreatOf.night' => '夜晚祷告',
 			'prayer.hero.now' => ({required Object retreat}) => '${retreat} · 现在',
-			_ => null,
-		} ?? switch (path) {
 			'prayer.hero.title' => '15 分钟\n与主同在',
 			'prayer.hero.preview.morning' => '献上感恩，将你的一天、你的工作、你的家人奉献给主……',
 			'prayer.hero.preview.noon' => '你的聚会点、你的领袖、你名单上的 5 个人、列国……',
@@ -5029,14 +5051,14 @@ extension on TranslationsZh {
 			'seekFirst.shield.thisApp' => '此应用',
 			'seekFirst.shield.fill' => '填写我的汇报',
 			'seekFirst.shield.pause' => ({required Object n}) => '暂停 5 分钟（${n}/3）',
+			_ => null,
+		} ?? switch (path) {
 			'seekFirst.shield.notificationTitle' => '先求神',
 			'seekFirst.shield.notificationBody' => '轻点此处填写你的汇报。',
 			'seekFirst.shield.serviceBody' => '你的应用每天都会关闭，直到你填写报告。',
 			'seekFirst.permissionsAndroid' => '为了关闭你的应用，CMFI Connect 需要在即将打开的设置中开启两项权限：“使用情况访问权限”（知道哪个应用在前台）和“显示在其他应用上层”（显示“先求神”页面）。任何数据都不会离开你的手机。',
 			'seekFirst.permissionsContinue' => '继续',
 			'seekFirst.deniedAndroid' => '没有这两项权限，CMFI Connect 无法关闭应用。你可以在“设置 › 应用 › 特殊访问权限”中开启。',
-			_ => null,
-		} ?? switch (path) {
 			'seekFirst.privacyAndroid' => '你选择的应用只保存在手机上：CMFI Connect 绝不会上传。',
 			'documents.title' => '我们的文件',
 			'documents.subtitle' => '教导、规章、表格…',

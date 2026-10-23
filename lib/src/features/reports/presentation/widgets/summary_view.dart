@@ -35,6 +35,7 @@ import '../../domain/measure_format.dart';
 import '../../domain/report_export.dart';
 import '../../domain/report_goal.dart';
 import '../../domain/report_summary.dart';
+import '../../domain/time_with_god.dart';
 
 /// "Summary" view: regularity and totals per item over the week, month or year.
 class SummaryView extends HookConsumerWidget {
@@ -192,6 +193,13 @@ class SummaryView extends HookConsumerWidget {
           period: period,
           history: history,
         ),
+      ),
+      const SizedBox(height: 14),
+      // the time with God over the period, and what it was spent on
+      FadeSlideIn(
+        key: ValueKey(('time', period)),
+        index: 1,
+        child: _TimeCard(summary: summary, standardIds: standardIds),
       ),
       const SizedBox(height: 14),
       // the week, told as "Ta semaine avec Dieu"; the past ones too
@@ -511,6 +519,95 @@ class _PeriodPill extends StatelessWidget {
           ),
         ),
       ),
+    );
+  }
+}
+
+/// « Temps avec Dieu » over the period: the total, the mean of a day, then
+/// each item measured in minutes with its share.
+class _TimeCard extends StatelessWidget {
+  const _TimeCard({required this.summary, required this.standardIds});
+
+  final ReportSummary summary;
+  final Set<int> standardIds;
+
+  @override
+  Widget build(BuildContext context) {
+    final t = context.t;
+    final s = t.reports.summary.time;
+    final scheme = Theme.of(context).colorScheme;
+    final total = minutesOfItems(summary.items);
+    final items = [
+      for (final item in summary.items)
+        if (item.tracksDuration && item.totalMinutes > 0) item,
+    ]..sort((a, b) => b.totalMinutes.compareTo(a.totalMinutes));
+    final perDay = summary.daysInRange == 0
+        ? 0
+        : (total / summary.daysInRange).round();
+
+    return SectionCard(
+      header: s.title,
+      children: [
+        Padding(
+          padding: const EdgeInsets.fromLTRB(18, 4, 18, 18),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
+                children: [
+                  const Icon(AppIcons.stopwatch, color: AppColors.gold),
+                  const SizedBox(width: AppSpacing.sm),
+                  Text(
+                    total.toDurationLabel(),
+                    style: const TextStyle(
+                      fontSize: 30,
+                      fontWeight: FontWeight.w800,
+                      letterSpacing: -0.5,
+                    ),
+                  ),
+                ],
+              ),
+              const SizedBox(height: 4),
+              Text(
+                total == 0 ? s.none : s.perDay(time: perDay.toDurationLabel()),
+                style: TextStyle(fontSize: 14, color: scheme.onSurfaceVariant),
+              ),
+              for (final item in items) ...[
+                const SizedBox(height: AppSpacing.md),
+                Row(
+                  children: [
+                    Expanded(
+                      child: Text(
+                        t.itemLabel(item.code, item.label),
+                        style: const TextStyle(
+                          fontSize: 14,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                    ),
+                    Text(
+                      item.totalMinutes.toDurationLabel(),
+                      style: const TextStyle(
+                        fontSize: 14,
+                        fontWeight: FontWeight.w800,
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 6),
+                AnimatedProgressBar(
+                  value: item.totalMinutes / total,
+                  minHeight: 6,
+                  color: standardIds.contains(item.activityTypeId)
+                      ? AppColors.gold
+                      : AppTones.of(context).personal,
+                  backgroundColor: scheme.surfaceContainerHighest,
+                ),
+              ],
+            ],
+          ),
+        ),
+      ],
     );
   }
 }

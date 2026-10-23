@@ -238,7 +238,10 @@
     "listenTitle": "收听",
     "soulsText(plural, param=n)": {
       "other": "今天 {n} 人"
-    }
+    },
+    "timeToday": "今天与神同在 {time}",
+    "timeTodayNone": "今天还没有记录与神同在的时间",
+    "timeSpoken": "与神同在的时间：{time}"
   },
   "reports": {
     "title": "每日汇报",
@@ -325,7 +328,12 @@
       "goalsHint": "每一天都计算在内，空白的也算。今天填写后才计入。",
       "evolution": "目标的进展",
       "evolutionHint": "最近 12 周，一周接一周。",
-      "premiumYear": "年度视图和目标进展随 Premium 提供。"
+      "premiumYear": "年度视图和目标进展随 Premium 提供。",
+      "time": {
+        "title": "与神同在的时间",
+        "perDay": "平均每天 {time}",
+        "none": "这段时间没有记录任何时间。"
+      }
     },
     "noItems": "暂时没有需要填写的项目。",
     "statusPending": "尚未发送",

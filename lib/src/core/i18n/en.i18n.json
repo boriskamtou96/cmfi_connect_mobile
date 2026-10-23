@@ -241,7 +241,10 @@
     "soulsText(plural, param=n)": {
       "one": "{n} person today",
       "other": "{n} people today"
-    }
+    },
+    "timeToday": "{time} with God today",
+    "timeTodayNone": "No time with God noted today yet",
+    "timeSpoken": "Time with God: {time}"
   },
   "reports": {
     "title": "Daily report",
@@ -333,7 +336,12 @@
       "goalsHint": "Every day counts, even an empty one. Today counts once filled in.",
       "evolution": "How your goals progress",
       "evolutionHint": "Week after week, over the last 12.",
-      "premiumYear": "The year and the progress of your goals come with Premium."
+      "premiumYear": "The year and the progress of your goals come with Premium.",
+      "time": {
+        "title": "Time with God",
+        "perDay": "that is {time} a day on average",
+        "none": "No time noted over this period."
+      }
     },
     "noItems": "Nothing to fill in yet.",
     "statusPending": "Not sent yet",

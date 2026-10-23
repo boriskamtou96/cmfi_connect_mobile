@@ -241,7 +241,10 @@
     "soulsText(plural, param=n)": {
       "one": "{n} personne aujourd'hui",
       "other": "{n} personnes aujourd'hui"
-    }
+    },
+    "timeToday": "{time} avec Dieu aujourd'hui",
+    "timeTodayNone": "Pas encore de temps avec Dieu noté aujourd'hui",
+    "timeSpoken": "Temps avec Dieu : {time}"
   },
   "reports": {
     "title": "Compte rendu",
@@ -333,7 +336,12 @@
       "goalsHint": "Chaque jour compte, même vide. Aujourd'hui compte une fois rempli.",
       "evolution": "Évolution de tes objectifs",
       "evolutionHint": "Semaine après semaine, sur les 12 dernières.",
-      "premiumYear": "L'année et l'évolution de tes objectifs viennent avec Premium."
+      "premiumYear": "L'année et l'évolution de tes objectifs viennent avec Premium.",
+      "time": {
+        "title": "Temps avec Dieu",
+        "perDay": "soit {time} par jour en moyenne",
+        "none": "Aucun temps noté sur cette période."
+      }
     },
     "noItems": "Aucun élément à renseigner pour le moment.",
     "statusPending": "Pas encore envoyé",

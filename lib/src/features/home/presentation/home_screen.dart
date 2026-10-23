@@ -46,6 +46,7 @@ import '../../profile/application/current_profile.dart';
 import '../../reports/application/day_report_controller.dart';
 import '../../reports/application/report_goals.dart';
 import '../../reports/application/reports_providers.dart';
+import '../../reports/domain/time_with_god.dart';
 import '../../souls/application/souls.dart';
 import '../../souls/domain/soul.dart';
 import '../../teachings/application/now_playing.dart';
@@ -286,6 +287,8 @@ class _Summary extends ConsumerWidget {
     final draft = ref.watch(dayReportControllerProvider(now)).value;
     final filled = draft?.filledCount ?? 0;
     final total = draft?.entries.length ?? 0;
+    // the time with God of the day, from its report
+    final minutes = draft == null ? 0 : minutesOfEntries(draft.entries);
     final goals = ref.watch(goalsOfDayProvider(now));
     final retreats = ref.watch(retreatsTodayProvider).length;
     final streak = ref.watch(reportStreakProvider).value ?? 0;
@@ -494,7 +497,42 @@ class _Summary extends ConsumerWidget {
                   ),
                 ],
               ),
-              const SizedBox(height: 14),
+              const SizedBox(height: 12),
+              Semantics(
+                label: hidden
+                    ? t.home.timeSpoken(time: t.home.numbersHidden)
+                    : t.home.timeSpoken(time: minutes.toDurationLabel()),
+                excludeSemantics: true,
+                child: Row(
+                  children: [
+                    const Icon(
+                      AppIcons.stopwatch,
+                      size: 16,
+                      color: AppColors.goldLight,
+                    ),
+                    const SizedBox(width: 6),
+                    Expanded(
+                      child: Text(
+                        hidden
+                            ? t.home.timeToday(time: _masked)
+                            : minutes == 0
+                            ? t.home.timeTodayNone
+                            : t.home.timeToday(time: minutes.toDurationLabel()),
+                        style: TextStyle(
+                          fontSize: 13.5,
+                          fontWeight: minutes == 0 || hidden
+                              ? FontWeight.w500
+                              : FontWeight.w700,
+                          color: minutes == 0 || hidden
+                              ? _Night.muted
+                              : Colors.white,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              const SizedBox(height: 10),
               Semantics(
                 button: true,
                 label: t.home.weekTitle,

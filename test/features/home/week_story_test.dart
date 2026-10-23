@@ -302,6 +302,9 @@ void main() {
         'Semaine du ${DateFormat('d MMM', 'fr').format(monday)}',
       );
       await tester.scrollUntilVisible(past, 200);
+      // to the top, clear of the tabs below
+      await tester.ensureVisible(past);
+      await tester.pumpAndSettle();
       await tester.tap(past);
       for (var i = 0; i < 6; i++) {
         await tester.pump(const Duration(milliseconds: 100));

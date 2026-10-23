@@ -491,6 +491,15 @@ class Translations$home$fr {
 		one: '${n} personne aujourd\'hui',
 		other: '${n} personnes aujourd\'hui',
 	);
+
+	/// fr: '{time} avec Dieu aujourd'hui'
+	String timeToday({required Object time}) => '${time} avec Dieu aujourd\'hui';
+
+	/// fr: 'Pas encore de temps avec Dieu noté aujourd'hui'
+	String get timeTodayNone => 'Pas encore de temps avec Dieu noté aujourd\'hui';
+
+	/// fr: 'Temps avec Dieu : {time}'
+	String timeSpoken({required Object time}) => 'Temps avec Dieu : ${time}';
 }
 
 // Path: reports
@@ -4510,6 +4519,8 @@ class Translations$reports$summary$fr {
 
 	/// fr: 'L'année et l'évolution de tes objectifs viennent avec Premium.'
 	String get premiumYear => 'L\'année et l\'évolution de tes objectifs viennent avec Premium.';
+
+	late final Translations$reports$summary$time$fr time = Translations$reports$summary$time$fr.internal(_root);
 }
 
 // Path: reports.standardItems
@@ -6476,6 +6487,24 @@ class Translations$journey$grace$fr {
 	String get ok => 'Merci !';
 }
 
+// Path: reports.summary.time
+class Translations$reports$summary$time$fr {
+	Translations$reports$summary$time$fr.internal(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// fr: 'Temps avec Dieu'
+	String get title => 'Temps avec Dieu';
+
+	/// fr: 'soit {time} par jour en moyenne'
+	String perDay({required Object time}) => 'soit ${time} par jour en moyenne';
+
+	/// fr: 'Aucun temps noté sur cette période.'
+	String get none => 'Aucun temps noté sur cette période.';
+}
+
 // Path: reports.units.chapters
 class Translations$reports$units$chapters$fr {
 	Translations$reports$units$chapters$fr.internal(this._root);
@@ -7358,6 +7387,9 @@ extension on Translations {
 			'home.soulsTitle' => 'Âmes à recontacter',
 			'home.listenTitle' => 'À écouter',
 			'home.soulsText' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('fr'))(n, one: '${n} personne aujourd\'hui', other: '${n} personnes aujourd\'hui', ), 
+			'home.timeToday' => ({required Object time}) => '${time} avec Dieu aujourd\'hui',
+			'home.timeTodayNone' => 'Pas encore de temps avec Dieu noté aujourd\'hui',
+			'home.timeSpoken' => ({required Object time}) => 'Temps avec Dieu : ${time}',
 			'reports.title' => 'Compte rendu',
 			'reports.myItems' => 'Mes éléments',
 			'reports.tabs.today' => 'Aujourd\'hui',
@@ -7424,6 +7456,9 @@ extension on Translations {
 			'reports.summary.evolution' => 'Évolution de tes objectifs',
 			'reports.summary.evolutionHint' => 'Semaine après semaine, sur les 12 dernières.',
 			'reports.summary.premiumYear' => 'L\'année et l\'évolution de tes objectifs viennent avec Premium.',
+			'reports.summary.time.title' => 'Temps avec Dieu',
+			'reports.summary.time.perDay' => ({required Object time}) => 'soit ${time} par jour en moyenne',
+			'reports.summary.time.none' => 'Aucun temps noté sur cette période.',
 			'reports.noItems' => 'Aucun élément à renseigner pour le moment.',
 			'reports.statusPending' => 'Pas encore envoyé',
 			'reports.savedOffline' => 'Pas de réseau : la journée est gardée sur le téléphone et partira dès que possible.',
@@ -7665,14 +7700,14 @@ extension on Translations {
 			'authorities.makeMakerTitle' => ({required Object name}) => 'Faire de ${name} ton faiseur de disciples ?',
 			'authorities.makeMakerText' => ({required Object name}) => '${name} sera prévenu.',
 			'authorities.makeMakerTextFormer' => ({required Object name, required Object former}) => '${name} sera prévenu. ${former} reste parmi tes autorités.',
+			_ => null,
+		} ?? switch (path) {
 			'authorities.madeMaker' => ({required Object name}) => '${name} est maintenant ton faiseur de disciples.',
 			'members.username' => 'Pseudo',
 			'members.usernameHint' => 'prenom.nom',
 			'members.usernameHelp' => 'C\'est ainsi que les autres membres te trouveront.',
 			'members.usernameChecking' => 'Vérification…',
 			'members.usernameFree' => ({required Object username}) => '@${username} est libre',
-			_ => null,
-		} ?? switch (path) {
 			'members.usernameCurrent' => 'C\'est ton pseudo actuel',
 			'members.usernameTaken' => 'Ce pseudo est déjà pris.',
 			'members.usernameInvalid' => '3 à 30 caractères : lettres, chiffres, « . » et « _ », sans commencer ni finir par un signe.',
@@ -8179,14 +8214,14 @@ extension on Translations {
 			'prayer.moments.morning' => 'Matin',
 			'prayer.moments.noon' => 'Midi',
 			'prayer.moments.evening' => 'Soirée',
+			_ => null,
+		} ?? switch (path) {
 			'prayer.moments.night' => 'Nuit',
 			'prayer.retreatOf.morning' => 'Retraite du matin',
 			'prayer.retreatOf.noon' => 'Retraite de midi',
 			'prayer.retreatOf.evening' => 'Retraite du soir',
 			'prayer.retreatOf.night' => 'Retraite de la nuit',
 			'prayer.hero.now' => ({required Object retreat}) => '${retreat} · maintenant',
-			_ => null,
-		} ?? switch (path) {
 			'prayer.hero.title' => '15 minutes\navec le Seigneur',
 			'prayer.hero.preview.morning' => 'Rends grâce, consacre ta journée, ton travail, ta famille…',
 			'prayer.hero.preview.noon' => 'Ton assemblée, tes dirigeants, 5 personnes de ta liste, les nations…',
@@ -8693,14 +8728,14 @@ extension on Translations {
 			'seekFirst.shield.thisApp' => 'Cette app',
 			'seekFirst.shield.fill' => 'Remplir mon compte rendu',
 			'seekFirst.shield.pause' => ({required Object n}) => 'Pause de 5 min (${n}/3)',
+			_ => null,
+		} ?? switch (path) {
 			'seekFirst.shield.notificationTitle' => 'Cherche d\'abord Dieu',
 			'seekFirst.shield.notificationBody' => 'Touche ici pour remplir ton compte rendu.',
 			'seekFirst.shield.serviceBody' => 'Tes apps se ferment chaque jour jusqu\'à ton compte rendu.',
 			'seekFirst.permissionsAndroid' => 'Pour fermer tes apps, CMFI Connect a besoin de deux autorisations, à activer dans les réglages qui vont s\'ouvrir : « Accès aux données d\'utilisation » (savoir quelle app est ouverte) et « Afficher par-dessus les autres applis » (montrer l\'écran Cherche d\'abord Dieu). Rien ne quitte ton téléphone.',
 			'seekFirst.permissionsContinue' => 'Continuer',
 			'seekFirst.deniedAndroid' => 'Sans ces deux autorisations, CMFI Connect ne peut pas fermer d\'apps. Tu peux les activer dans Réglages › Applications › Accès spécial.',
-			_ => null,
-		} ?? switch (path) {
 			'seekFirst.privacyAndroid' => 'Les apps que tu choisis restent sur ton téléphone : CMFI Connect ne les envoie jamais.',
 			'documents.title' => 'Nos documents',
 			'documents.subtitle' => 'Enseignements, règlements, formulaires…',

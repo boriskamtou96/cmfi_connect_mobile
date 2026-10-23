@@ -285,6 +285,9 @@ class _Translations$home$en extends Translations$home$fr {
 		one: '${n} person today',
 		other: '${n} people today',
 	);
+	@override String timeToday({required Object time}) => '${time} with God today';
+	@override String get timeTodayNone => 'No time with God noted today yet';
+	@override String timeSpoken({required Object time}) => 'Time with God: ${time}';
 }
 
 // Path: reports
@@ -2157,6 +2160,7 @@ class _Translations$reports$summary$en extends Translations$reports$summary$fr {
 	@override String get evolution => 'How your goals progress';
 	@override String get evolutionHint => 'Week after week, over the last 12.';
 	@override String get premiumYear => 'The year and the progress of your goals come with Premium.';
+	@override late final _Translations$reports$summary$time$en time = _Translations$reports$summary$time$en._(_root);
 }
 
 // Path: reports.standardItems
@@ -3129,6 +3133,18 @@ class _Translations$journey$grace$en extends Translations$journey$grace$fr {
 	@override String get ok => 'Thank you!';
 }
 
+// Path: reports.summary.time
+class _Translations$reports$summary$time$en extends Translations$reports$summary$time$fr {
+	_Translations$reports$summary$time$en._(TranslationsEn root) : this._root = root, super.internal(root);
+
+	final TranslationsEn _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Time with God';
+	@override String perDay({required Object time}) => 'that is ${time} a day on average';
+	@override String get none => 'No time noted over this period.';
+}
+
 // Path: reports.units.chapters
 class _Translations$reports$units$chapters$en extends Translations$reports$units$chapters$fr {
 	_Translations$reports$units$chapters$en._(TranslationsEn root) : this._root = root, super.internal(root);
@@ -3779,6 +3795,9 @@ extension on TranslationsEn {
 			'home.soulsTitle' => 'Souls to contact again',
 			'home.listenTitle' => 'To listen',
 			'home.soulsText' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n, one: '${n} person today', other: '${n} people today', ), 
+			'home.timeToday' => ({required Object time}) => '${time} with God today',
+			'home.timeTodayNone' => 'No time with God noted today yet',
+			'home.timeSpoken' => ({required Object time}) => 'Time with God: ${time}',
 			'reports.title' => 'Daily report',
 			'reports.myItems' => 'My items',
 			'reports.tabs.today' => 'Today',
@@ -3845,6 +3864,9 @@ extension on TranslationsEn {
 			'reports.summary.evolution' => 'How your goals progress',
 			'reports.summary.evolutionHint' => 'Week after week, over the last 12.',
 			'reports.summary.premiumYear' => 'The year and the progress of your goals come with Premium.',
+			'reports.summary.time.title' => 'Time with God',
+			'reports.summary.time.perDay' => ({required Object time}) => 'that is ${time} a day on average',
+			'reports.summary.time.none' => 'No time noted over this period.',
 			'reports.noItems' => 'Nothing to fill in yet.',
 			'reports.statusPending' => 'Not sent yet',
 			'reports.savedOffline' => 'No network: the day is kept on your phone and will be sent as soon as possible.',
@@ -4086,14 +4108,14 @@ extension on TranslationsEn {
 			'authorities.makeMakerTitle' => ({required Object name}) => 'Make ${name} your disciple maker?',
 			'authorities.makeMakerText' => ({required Object name}) => '${name} will be told.',
 			'authorities.makeMakerTextFormer' => ({required Object name, required Object former}) => '${name} will be told. ${former} stays among your authorities.',
+			_ => null,
+		} ?? switch (path) {
 			'authorities.madeMaker' => ({required Object name}) => '${name} is now your disciple maker.',
 			'members.username' => 'Username',
 			'members.usernameHint' => 'firstname.lastname',
 			'members.usernameHelp' => 'This is how other members will find you.',
 			'members.usernameChecking' => 'Checking…',
 			'members.usernameFree' => ({required Object username}) => '@${username} is available',
-			_ => null,
-		} ?? switch (path) {
 			'members.usernameCurrent' => 'This is your current username',
 			'members.usernameTaken' => 'This username is already taken.',
 			'members.usernameInvalid' => '3 to 30 characters: letters, digits, "." and "_", not starting or ending with a sign.',
@@ -4600,14 +4622,14 @@ extension on TranslationsEn {
 			'prayer.moments.morning' => 'Morning',
 			'prayer.moments.noon' => 'Noon',
 			'prayer.moments.evening' => 'Evening',
+			_ => null,
+		} ?? switch (path) {
 			'prayer.moments.night' => 'Night',
 			'prayer.retreatOf.morning' => 'Morning retreat',
 			'prayer.retreatOf.noon' => 'Noon retreat',
 			'prayer.retreatOf.evening' => 'Evening retreat',
 			'prayer.retreatOf.night' => 'Night retreat',
 			'prayer.hero.now' => ({required Object retreat}) => '${retreat} · now',
-			_ => null,
-		} ?? switch (path) {
 			'prayer.hero.title' => '15 minutes\nwith the Lord',
 			'prayer.hero.preview.morning' => 'Give thanks, consecrate your day, your work, your family…',
 			'prayer.hero.preview.noon' => 'Your assembly, your leaders, 5 people from your list, the nations…',
@@ -5114,14 +5136,14 @@ extension on TranslationsEn {
 			'seekFirst.shield.thisApp' => 'This app',
 			'seekFirst.shield.fill' => 'Fill in my report',
 			'seekFirst.shield.pause' => ({required Object n}) => '5-min break (${n}/3)',
+			_ => null,
+		} ?? switch (path) {
 			'seekFirst.shield.notificationTitle' => 'Seek God first',
 			'seekFirst.shield.notificationBody' => 'Tap here to fill in your report.',
 			'seekFirst.shield.serviceBody' => 'Your apps close each day until your report.',
 			'seekFirst.permissionsAndroid' => 'To close your apps, CMFI Connect needs two permissions, to turn on in the settings that will open: "Usage access" (to know which app is open) and "Display over other apps" (to show the Seek God first screen). Nothing leaves your phone.',
 			'seekFirst.permissionsContinue' => 'Continue',
 			'seekFirst.deniedAndroid' => 'Without these two permissions, CMFI Connect can\'t close apps. You can turn them on in Settings › Apps › Special access.',
-			_ => null,
-		} ?? switch (path) {
 			'seekFirst.privacyAndroid' => 'The apps you choose stay on your phone: CMFI Connect never sends them.',
 			'documents.title' => 'Our documents',
 			'documents.subtitle' => 'Teachings, rules, forms…',

@@ -212,17 +212,65 @@ final class ReportHistoryFamily extends $Family
   String toString() => r'reportHistoryProvider';
 }
 
-/// Days in a row with a report, up to today (see [currentStreak]).
+/// The series of days with a report up to today, with its days of grace
+/// (see [streakWithGrace]).
+
+@ProviderFor(reportStreakDetail)
+final reportStreakDetailProvider = ReportStreakDetailProvider._();
+
+/// The series of days with a report up to today, with its days of grace
+/// (see [streakWithGrace]).
+
+final class ReportStreakDetailProvider
+    extends
+        $FunctionalProvider<
+          AsyncValue<StreakResult>,
+          StreakResult,
+          FutureOr<StreakResult>
+        >
+    with $FutureModifier<StreakResult>, $FutureProvider<StreakResult> {
+  /// The series of days with a report up to today, with its days of grace
+  /// (see [streakWithGrace]).
+  ReportStreakDetailProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'reportStreakDetailProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$reportStreakDetailHash();
+
+  @$internal
+  @override
+  $FutureProviderElement<StreakResult> $createElement(
+    $ProviderPointer pointer,
+  ) => $FutureProviderElement(pointer);
+
+  @override
+  FutureOr<StreakResult> create(Ref ref) {
+    return reportStreakDetail(ref);
+  }
+}
+
+String _$reportStreakDetailHash() =>
+    r'c350a65d5ed5ce8e80df71dd6a944e58c744f146';
+
+/// Days in a row with a report, up to today (see [streakWithGrace]).
 
 @ProviderFor(reportStreak)
 final reportStreakProvider = ReportStreakProvider._();
 
-/// Days in a row with a report, up to today (see [currentStreak]).
+/// Days in a row with a report, up to today (see [streakWithGrace]).
 
 final class ReportStreakProvider
     extends $FunctionalProvider<AsyncValue<int>, int, FutureOr<int>>
     with $FutureModifier<int>, $FutureProvider<int> {
-  /// Days in a row with a report, up to today (see [currentStreak]).
+  /// Days in a row with a report, up to today (see [streakWithGrace]).
   ReportStreakProvider._()
     : super(
         from: null,
@@ -248,7 +296,7 @@ final class ReportStreakProvider
   }
 }
 
-String _$reportStreakHash() => r'c4d3c3720310e6be54666ff637ee40b1f790adcc';
+String _$reportStreakHash() => r'4f42c822f2a05d57fdb1def90437d828c8abf88c';
 
 /// The dates that have a report in the week of [day] (Monday to Sunday).
 

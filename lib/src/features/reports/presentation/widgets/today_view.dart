@@ -22,6 +22,8 @@ import '../../../../core/widgets/motion.dart';
 import '../../../../core/widgets/rolling_text.dart';
 import '../../../../core/widgets/section_card.dart';
 import '../../../../core/widgets/skeleton.dart';
+import '../../../journey/application/journey_steps.dart';
+import '../../../journey/domain/journey_step.dart';
 import '../../application/day_report_controller.dart';
 import '../../application/report_goals.dart';
 import '../../application/report_item_texts.dart';
@@ -493,6 +495,10 @@ class SaveDayBar extends HookConsumerWidget {
         if (context.mounted && !ref.read(reportReminderProvider).offered) {
           await showReminderOffer(context, ref);
         }
+        // « Premier pas », after the other dialogs of a first save
+        await ref
+            .read(journeyStepsProvider.notifier)
+            .reach(JourneyStep.firstReport);
       } on Object catch (error) {
         toast.error(userMessageFor(error, t));
       }

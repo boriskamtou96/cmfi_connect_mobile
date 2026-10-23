@@ -2393,5 +2393,101 @@
     "restart": "Restart",
     "failed": "The store could not be opened. Try again later.",
     "moreButton": "Update to version {version}"
+  },
+  "journey": {
+    "title": "My steps",
+    "subtitle": "The steps of the way, for you only",
+    "count": "{n} of {total}",
+    "reachedOn": "Reached on {date}",
+    "toReach": "To reach",
+    "newStep": "New step",
+    "see": "See my steps",
+    "go": "Continue",
+    "groups": {
+      "faithfulness": "Faithfulness",
+      "prayer": "Prayer",
+      "word": "Word",
+      "souls": "Souls",
+      "together": "Together"
+    },
+    "steps": {
+      "firstReport": {
+        "title": "First step",
+        "text": "Save your first report."
+      },
+      "streak7": {
+        "title": "A faithful week",
+        "text": "7 days in a row with a report."
+      },
+      "streak30": {
+        "title": "A month with God",
+        "text": "30 days in a row with a report."
+      },
+      "streak100": {
+        "title": "A hundred days",
+        "text": "100 days in a row with a report."
+      },
+      "streak365": {
+        "title": "A whole year",
+        "text": "365 days in a row with a report."
+      },
+      "fullDay": {
+        "title": "Three steps",
+        "text": "Do the 3 steps of the day."
+      },
+      "sevenFullDays": {
+        "title": "Seven full days",
+        "text": "Do the 3 steps of the day seven times."
+      },
+      "fourRetreats": {
+        "title": "A day of prayer",
+        "text": "Do the 4 retreats on the same day."
+      },
+      "planDone": {
+        "title": "Plan completed",
+        "text": "Finish a Bible reading plan."
+      },
+      "lyricsShared": {
+        "title": "A song shared",
+        "text": "Share the words of a hymn."
+      },
+      "firstSoul": {
+        "title": "Sower",
+        "text": "Follow your first soul."
+      },
+      "tenSouls": {
+        "title": "Ten souls followed",
+        "text": "Follow 10 people in soul follow-up."
+      },
+      "soulBaptized": {
+        "title": "A soul baptized",
+        "text": "Someone you follow reaches baptism."
+      },
+      "firstSending": {
+        "title": "Accountable",
+        "text": "Send your report to an authority in the app."
+      },
+      "firstEncouragement": {
+        "title": "Encourager",
+        "text": "Send a word of encouragement to a disciple."
+      }
+    },
+    "daily": {
+      "title": "Your 3 steps of the day",
+      "progress": "{n} of 3",
+      "report": "Fill in my report",
+      "prayer": "Do a prayer retreat",
+      "word": "Read a chapter of the Bible",
+      "wordPlan": "Read the chapters of the plan",
+      "allDone": "All three steps are done. Have a good day with God!",
+      "done": "Done"
+    },
+    "grace": {
+      "day": "Day of grace",
+      "used": "Day of grace {day}: your streak goes on.",
+      "title": "A day of grace",
+      "text": "You didn't fill in {day}, but your streak goes on: each week, a day of grace protects it. Tomorrow is a new start.",
+      "ok": "Thank you!"
+    }
   }
 }

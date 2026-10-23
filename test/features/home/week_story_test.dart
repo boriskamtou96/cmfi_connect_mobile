@@ -75,7 +75,8 @@ void main() {
       expect(story.daysInWeek, 7);
       expect(story.daysFilled, 6);
       // Thursday to Sunday
-      expect(story.streak, 4);
+      // Wednesday missed is the day of grace of the week: 10 to 18
+      expect(story.streak, 8);
       expect(story.bestStreak, 9);
       expect(story.streakIsRecord, isFalse);
       expect([for (final item in story.items) item.code], ['LB', 'PS']);

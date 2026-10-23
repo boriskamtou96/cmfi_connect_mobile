@@ -69,12 +69,52 @@ void main() {
       expect(currentStreak(days, today), 4);
     });
 
-    test('a missed day ends it', () {
+    test('one missed day a week is a day of grace', () {
+      final result = streakWithGrace([
+        DateTime(2026, 10, 9),
+        DateTime(2026, 10, 7),
+        DateTime(2026, 10, 6),
+      ], today);
+      expect(result.days, 3);
+      expect(result.graced, {DateTime(2026, 10, 8)});
+      expect(result.since, DateTime(2026, 10, 6));
+    });
+
+    test('yesterday missed: the series waits for today', () {
+      // the 9th not filled yet, the 8th missed, the 7th filled
+      expect(currentStreak([DateTime(2026, 10, 7)], today), 1);
+    });
+
+    test('two days missed in a row end it', () {
       expect(
-        currentStreak([DateTime(2026, 10, 9), DateTime(2026, 10, 7)], today),
+        currentStreak([DateTime(2026, 10, 9), DateTime(2026, 10, 6)], today),
         1,
       );
-      expect(currentStreak([DateTime(2026, 10, 7)], today), 0);
+    });
+
+    test('a second missed day in the same week ends it', () {
+      // Monday 5 to Friday 9: the 6th and the 8th missed
+      final days = [
+        DateTime(2026, 10, 9),
+        DateTime(2026, 10, 7),
+        DateTime(2026, 10, 5),
+        DateTime(2026, 10, 4),
+      ];
+      expect(currentStreak(days, today), 2);
+    });
+
+    test('another week has its own day of grace', () {
+      // Sunday 4 missed (week of Sep 28), Thursday 8 missed (week of Oct 5)
+      final days = [
+        DateTime(2026, 10, 9),
+        DateTime(2026, 10, 7),
+        DateTime(2026, 10, 6),
+        DateTime(2026, 10, 5),
+        DateTime(2026, 10, 3),
+      ];
+      final result = streakWithGrace(days, today);
+      expect(result.days, 5);
+      expect(result.graced, {DateTime(2026, 10, 8), DateTime(2026, 10, 4)});
     });
 
     test('goes through the start of the month', () {

@@ -2392,5 +2392,101 @@
     "restart": "Redémarrer",
     "failed": "Impossible d'ouvrir le store. Réessaie plus tard.",
     "moreButton": "Mettre à jour vers la version {version}"
+  },
+  "journey": {
+    "title": "Mes étapes",
+    "subtitle": "Les étapes du chemin, pour toi seul",
+    "count": "{n} sur {total}",
+    "reachedOn": "Atteinte le {date}",
+    "toReach": "À atteindre",
+    "newStep": "Nouvelle étape",
+    "see": "Voir mes étapes",
+    "go": "Continuer",
+    "groups": {
+      "faithfulness": "Fidélité",
+      "prayer": "Prière",
+      "word": "Parole",
+      "souls": "Âmes",
+      "together": "Ensemble"
+    },
+    "steps": {
+      "firstReport": {
+        "title": "Premier pas",
+        "text": "Enregistrer ton premier compte rendu."
+      },
+      "streak7": {
+        "title": "Une semaine fidèle",
+        "text": "7 jours de suite avec un compte rendu."
+      },
+      "streak30": {
+        "title": "Un mois avec Dieu",
+        "text": "30 jours de suite avec un compte rendu."
+      },
+      "streak100": {
+        "title": "Cent jours",
+        "text": "100 jours de suite avec un compte rendu."
+      },
+      "streak365": {
+        "title": "Une année entière",
+        "text": "365 jours de suite avec un compte rendu."
+      },
+      "fullDay": {
+        "title": "Trois pas",
+        "text": "Faire les 3 pas du jour."
+      },
+      "sevenFullDays": {
+        "title": "Sept journées complètes",
+        "text": "Faire les 3 pas du jour sept fois."
+      },
+      "fourRetreats": {
+        "title": "Une journée de prière",
+        "text": "Faire les 4 retraites dans la même journée."
+      },
+      "planDone": {
+        "title": "Plan achevé",
+        "text": "Terminer un plan de lecture de la Bible."
+      },
+      "lyricsShared": {
+        "title": "Un chant partagé",
+        "text": "Partager les paroles d'un cantique."
+      },
+      "firstSoul": {
+        "title": "Semeur",
+        "text": "Suivre ta première âme."
+      },
+      "tenSouls": {
+        "title": "Dix âmes suivies",
+        "text": "Suivre 10 personnes dans le suivi des âmes."
+      },
+      "soulBaptized": {
+        "title": "Une âme baptisée",
+        "text": "Une personne que tu suis arrive au baptême."
+      },
+      "firstSending": {
+        "title": "Redevable",
+        "text": "Envoyer ton compte rendu à une autorité dans l'app."
+      },
+      "firstEncouragement": {
+        "title": "Encourageur",
+        "text": "Envoyer un mot d'encouragement à un disciple."
+      }
+    },
+    "daily": {
+      "title": "Tes 3 pas du jour",
+      "progress": "{n} sur 3",
+      "report": "Remplir mon compte rendu",
+      "prayer": "Faire une retraite de prière",
+      "word": "Lire un chapitre de la Bible",
+      "wordPlan": "Lire les chapitres du plan",
+      "allDone": "Les trois pas sont faits. Belle journée avec Dieu !",
+      "done": "Fait"
+    },
+    "grace": {
+      "day": "Jour de grâce",
+      "used": "Jour de grâce {day} : ta série continue.",
+      "title": "Un jour de grâce",
+      "text": "Tu n'as pas rempli {day}, mais ta série continue : chaque semaine, un jour de grâce la protège. Demain est un nouveau départ.",
+      "ok": "Merci !"
+    }
   }
 }

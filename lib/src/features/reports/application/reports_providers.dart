@@ -82,25 +82,31 @@ Future<List<DailyReport>> reportHistory(
     ..sort((a, b) => b.date.compareTo(a.date));
 }
 
-/// Days in a row with a report, up to today (see [currentStreak]).
+/// The series of days with a report up to today, with its days of grace
+/// (see [streakWithGrace]).
 @riverpod
-Future<int> reportStreak(Ref ref) async {
+Future<StreakResult> reportStreakDetail(Ref ref) async {
   final now = today();
   // a month is enough for most; a longer series looks a year back
+  late StreakResult result;
   for (final span in const [35, 366]) {
+    final from = DateTime(now.year, now.month, now.day - span + 1);
     final days = await ref.watch(
-      reportHistoryProvider(
-        from: DateTime(now.year, now.month, now.day - span + 1),
-        to: now,
-      ).future,
+      reportHistoryProvider(from: from, to: now).future,
     );
-    final streak = currentStreak([for (final day in days) day.date], now);
-    if (streak < span - 1) {
-      return streak;
+    result = streakWithGrace([for (final day in days) day.date], now);
+    // it ends inside the span: no need to look further back
+    if (result.since == null || result.since!.isAfter(from)) {
+      return result;
     }
   }
-  return 365;
+  return result;
 }
+
+/// Days in a row with a report, up to today (see [streakWithGrace]).
+@riverpod
+Future<int> reportStreak(Ref ref) async =>
+    (await ref.watch(reportStreakDetailProvider.future)).days;
 
 /// The dates that have a report in the week of [day] (Monday to Sunday).
 @riverpod

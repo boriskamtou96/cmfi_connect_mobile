@@ -57,6 +57,8 @@ abstract final class AppIcons {
   static const offlineTile = PhosphorIconsDuotone.cloudArrowDown;
   static const authoritiesTile = PhosphorIconsDuotone.usersThree;
   static const disciplesTile = PhosphorIconsDuotone.plant;
+  static const journeyTile = PhosphorIconsDuotone.footprints;
+  static const grace = PhosphorIconsFill.shieldCheck;
   static const receivedReportsTile = PhosphorIconsDuotone.tray;
   static const adminTile = PhosphorIconsDuotone.shieldCheck;
   static const hymnBookTile = PhosphorIconsDuotone.bookOpenText;

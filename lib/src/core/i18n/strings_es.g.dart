@@ -84,6 +84,7 @@ class TranslationsEs extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _Translations$fasts$es fasts = _Translations$fasts$es._(_root);
 	@override late final _Translations$received$es received = _Translations$received$es._(_root);
 	@override late final _Translations$update$es update = _Translations$update$es._(_root);
+	@override late final _Translations$journey$es journey = _Translations$journey$es._(_root);
 }
 
 // Path: app
@@ -1849,6 +1850,27 @@ class _Translations$update$es extends Translations$update$fr {
 	@override String moreButton({required Object version}) => 'Actualizar a la versión ${version}';
 }
 
+// Path: journey
+class _Translations$journey$es extends Translations$journey$fr {
+	_Translations$journey$es._(TranslationsEs root) : this._root = root, super.internal(root);
+
+	final TranslationsEs _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Mis etapas';
+	@override String get subtitle => 'Las etapas del camino, solo para ti';
+	@override String count({required Object n, required Object total}) => '${n} de ${total}';
+	@override String reachedOn({required Object date}) => 'Alcanzada el ${date}';
+	@override String get toReach => 'Por alcanzar';
+	@override String get newStep => 'Nueva etapa';
+	@override String get see => 'Ver mis etapas';
+	@override String get go => 'Continuar';
+	@override late final _Translations$journey$groups$es groups = _Translations$journey$groups$es._(_root);
+	@override late final _Translations$journey$steps$es steps = _Translations$journey$steps$es._(_root);
+	@override late final _Translations$journey$daily$es daily = _Translations$journey$daily$es._(_root);
+	@override late final _Translations$journey$grace$es grace = _Translations$journey$grace$es._(_root);
+}
+
 // Path: welcome.seek
 class _Translations$welcome$seek$es extends Translations$welcome$seek$fr {
 	_Translations$welcome$seek$es._(TranslationsEs root) : this._root = root, super.internal(root);
@@ -3037,6 +3059,75 @@ class _Translations$souls$csv$es extends Translations$souls$csv$fr {
 	@override String get notes => 'Notas';
 }
 
+// Path: journey.groups
+class _Translations$journey$groups$es extends Translations$journey$groups$fr {
+	_Translations$journey$groups$es._(TranslationsEs root) : this._root = root, super.internal(root);
+
+	final TranslationsEs _root; // ignore: unused_field
+
+	// Translations
+	@override String get faithfulness => 'Fidelidad';
+	@override String get prayer => 'Oración';
+	@override String get word => 'Palabra';
+	@override String get souls => 'Almas';
+	@override String get together => 'Juntos';
+}
+
+// Path: journey.steps
+class _Translations$journey$steps$es extends Translations$journey$steps$fr {
+	_Translations$journey$steps$es._(TranslationsEs root) : this._root = root, super.internal(root);
+
+	final TranslationsEs _root; // ignore: unused_field
+
+	// Translations
+	@override late final _Translations$journey$steps$firstReport$es firstReport = _Translations$journey$steps$firstReport$es._(_root);
+	@override late final _Translations$journey$steps$streak7$es streak7 = _Translations$journey$steps$streak7$es._(_root);
+	@override late final _Translations$journey$steps$streak30$es streak30 = _Translations$journey$steps$streak30$es._(_root);
+	@override late final _Translations$journey$steps$streak100$es streak100 = _Translations$journey$steps$streak100$es._(_root);
+	@override late final _Translations$journey$steps$streak365$es streak365 = _Translations$journey$steps$streak365$es._(_root);
+	@override late final _Translations$journey$steps$fullDay$es fullDay = _Translations$journey$steps$fullDay$es._(_root);
+	@override late final _Translations$journey$steps$sevenFullDays$es sevenFullDays = _Translations$journey$steps$sevenFullDays$es._(_root);
+	@override late final _Translations$journey$steps$fourRetreats$es fourRetreats = _Translations$journey$steps$fourRetreats$es._(_root);
+	@override late final _Translations$journey$steps$planDone$es planDone = _Translations$journey$steps$planDone$es._(_root);
+	@override late final _Translations$journey$steps$lyricsShared$es lyricsShared = _Translations$journey$steps$lyricsShared$es._(_root);
+	@override late final _Translations$journey$steps$firstSoul$es firstSoul = _Translations$journey$steps$firstSoul$es._(_root);
+	@override late final _Translations$journey$steps$tenSouls$es tenSouls = _Translations$journey$steps$tenSouls$es._(_root);
+	@override late final _Translations$journey$steps$soulBaptized$es soulBaptized = _Translations$journey$steps$soulBaptized$es._(_root);
+	@override late final _Translations$journey$steps$firstSending$es firstSending = _Translations$journey$steps$firstSending$es._(_root);
+	@override late final _Translations$journey$steps$firstEncouragement$es firstEncouragement = _Translations$journey$steps$firstEncouragement$es._(_root);
+}
+
+// Path: journey.daily
+class _Translations$journey$daily$es extends Translations$journey$daily$fr {
+	_Translations$journey$daily$es._(TranslationsEs root) : this._root = root, super.internal(root);
+
+	final TranslationsEs _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Tus 3 pasos del día';
+	@override String progress({required Object n}) => '${n} de 3';
+	@override String get report => 'Llenar mi informe';
+	@override String get prayer => 'Hacer un retiro de oración';
+	@override String get word => 'Leer un capítulo de la Biblia';
+	@override String get wordPlan => 'Leer los capítulos del plan';
+	@override String get allDone => 'Los tres pasos están hechos. ¡Buen día con Dios!';
+	@override String get done => 'Hecho';
+}
+
+// Path: journey.grace
+class _Translations$journey$grace$es extends Translations$journey$grace$fr {
+	_Translations$journey$grace$es._(TranslationsEs root) : this._root = root, super.internal(root);
+
+	final TranslationsEs _root; // ignore: unused_field
+
+	// Translations
+	@override String get day => 'Día de gracia';
+	@override String used({required Object day}) => 'Día de gracia ${day}: tu racha continúa.';
+	@override String get title => 'Un día de gracia';
+	@override String text({required Object day}) => 'No llenaste ${day}, pero tu racha continúa: cada semana, un día de gracia la protege. Mañana es un nuevo comienzo.';
+	@override String get ok => '¡Gracias!';
+}
+
 // Path: reports.units.chapters
 class _Translations$reports$units$chapters$es extends Translations$reports$units$chapters$fr {
 	_Translations$reports$units$chapters$es._(TranslationsEs root) : this._root = root, super.internal(root);
@@ -3313,6 +3404,171 @@ class _Translations$prayer$importunity$inviteSheet$es extends Translations$praye
 		one: '${n} invitación enviada',
 		other: '${n} invitaciones enviadas',
 	);
+}
+
+// Path: journey.steps.firstReport
+class _Translations$journey$steps$firstReport$es extends Translations$journey$steps$firstReport$fr {
+	_Translations$journey$steps$firstReport$es._(TranslationsEs root) : this._root = root, super.internal(root);
+
+	final TranslationsEs _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Primer paso';
+	@override String get text => 'Guardar tu primer informe.';
+}
+
+// Path: journey.steps.streak7
+class _Translations$journey$steps$streak7$es extends Translations$journey$steps$streak7$fr {
+	_Translations$journey$steps$streak7$es._(TranslationsEs root) : this._root = root, super.internal(root);
+
+	final TranslationsEs _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Una semana fiel';
+	@override String get text => '7 días seguidos con un informe.';
+}
+
+// Path: journey.steps.streak30
+class _Translations$journey$steps$streak30$es extends Translations$journey$steps$streak30$fr {
+	_Translations$journey$steps$streak30$es._(TranslationsEs root) : this._root = root, super.internal(root);
+
+	final TranslationsEs _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Un mes con Dios';
+	@override String get text => '30 días seguidos con un informe.';
+}
+
+// Path: journey.steps.streak100
+class _Translations$journey$steps$streak100$es extends Translations$journey$steps$streak100$fr {
+	_Translations$journey$steps$streak100$es._(TranslationsEs root) : this._root = root, super.internal(root);
+
+	final TranslationsEs _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Cien días';
+	@override String get text => '100 días seguidos con un informe.';
+}
+
+// Path: journey.steps.streak365
+class _Translations$journey$steps$streak365$es extends Translations$journey$steps$streak365$fr {
+	_Translations$journey$steps$streak365$es._(TranslationsEs root) : this._root = root, super.internal(root);
+
+	final TranslationsEs _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Un año entero';
+	@override String get text => '365 días seguidos con un informe.';
+}
+
+// Path: journey.steps.fullDay
+class _Translations$journey$steps$fullDay$es extends Translations$journey$steps$fullDay$fr {
+	_Translations$journey$steps$fullDay$es._(TranslationsEs root) : this._root = root, super.internal(root);
+
+	final TranslationsEs _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Tres pasos';
+	@override String get text => 'Dar los 3 pasos del día.';
+}
+
+// Path: journey.steps.sevenFullDays
+class _Translations$journey$steps$sevenFullDays$es extends Translations$journey$steps$sevenFullDays$fr {
+	_Translations$journey$steps$sevenFullDays$es._(TranslationsEs root) : this._root = root, super.internal(root);
+
+	final TranslationsEs _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Siete días completos';
+	@override String get text => 'Dar los 3 pasos del día siete veces.';
+}
+
+// Path: journey.steps.fourRetreats
+class _Translations$journey$steps$fourRetreats$es extends Translations$journey$steps$fourRetreats$fr {
+	_Translations$journey$steps$fourRetreats$es._(TranslationsEs root) : this._root = root, super.internal(root);
+
+	final TranslationsEs _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Un día de oración';
+	@override String get text => 'Hacer los 4 retiros el mismo día.';
+}
+
+// Path: journey.steps.planDone
+class _Translations$journey$steps$planDone$es extends Translations$journey$steps$planDone$fr {
+	_Translations$journey$steps$planDone$es._(TranslationsEs root) : this._root = root, super.internal(root);
+
+	final TranslationsEs _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Plan terminado';
+	@override String get text => 'Terminar un plan de lectura de la Biblia.';
+}
+
+// Path: journey.steps.lyricsShared
+class _Translations$journey$steps$lyricsShared$es extends Translations$journey$steps$lyricsShared$fr {
+	_Translations$journey$steps$lyricsShared$es._(TranslationsEs root) : this._root = root, super.internal(root);
+
+	final TranslationsEs _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Un canto compartido';
+	@override String get text => 'Compartir la letra de un himno.';
+}
+
+// Path: journey.steps.firstSoul
+class _Translations$journey$steps$firstSoul$es extends Translations$journey$steps$firstSoul$fr {
+	_Translations$journey$steps$firstSoul$es._(TranslationsEs root) : this._root = root, super.internal(root);
+
+	final TranslationsEs _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Sembrador';
+	@override String get text => 'Seguir a tu primera alma.';
+}
+
+// Path: journey.steps.tenSouls
+class _Translations$journey$steps$tenSouls$es extends Translations$journey$steps$tenSouls$fr {
+	_Translations$journey$steps$tenSouls$es._(TranslationsEs root) : this._root = root, super.internal(root);
+
+	final TranslationsEs _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Diez almas seguidas';
+	@override String get text => 'Seguir a 10 personas en el seguimiento de almas.';
+}
+
+// Path: journey.steps.soulBaptized
+class _Translations$journey$steps$soulBaptized$es extends Translations$journey$steps$soulBaptized$fr {
+	_Translations$journey$steps$soulBaptized$es._(TranslationsEs root) : this._root = root, super.internal(root);
+
+	final TranslationsEs _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Un alma bautizada';
+	@override String get text => 'Una persona que sigues llega al bautismo.';
+}
+
+// Path: journey.steps.firstSending
+class _Translations$journey$steps$firstSending$es extends Translations$journey$steps$firstSending$fr {
+	_Translations$journey$steps$firstSending$es._(TranslationsEs root) : this._root = root, super.internal(root);
+
+	final TranslationsEs _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Rendir cuentas';
+	@override String get text => 'Enviar tu informe a una autoridad en la app.';
+}
+
+// Path: journey.steps.firstEncouragement
+class _Translations$journey$steps$firstEncouragement$es extends Translations$journey$steps$firstEncouragement$fr {
+	_Translations$journey$steps$firstEncouragement$es._(TranslationsEs root) : this._root = root, super.internal(root);
+
+	final TranslationsEs _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Alentador';
+	@override String get text => 'Enviar una palabra de aliento a un discípulo.';
 }
 
 /// The flat map containing all translations for locale <es>.
@@ -5152,6 +5408,62 @@ extension on TranslationsEs {
 			'update.restart' => 'Reiniciar',
 			'update.failed' => 'No se pudo abrir la tienda. Inténtalo más tarde.',
 			'update.moreButton' => ({required Object version}) => 'Actualizar a la versión ${version}',
+			'journey.title' => 'Mis etapas',
+			'journey.subtitle' => 'Las etapas del camino, solo para ti',
+			'journey.count' => ({required Object n, required Object total}) => '${n} de ${total}',
+			'journey.reachedOn' => ({required Object date}) => 'Alcanzada el ${date}',
+			'journey.toReach' => 'Por alcanzar',
+			'journey.newStep' => 'Nueva etapa',
+			'journey.see' => 'Ver mis etapas',
+			'journey.go' => 'Continuar',
+			'journey.groups.faithfulness' => 'Fidelidad',
+			'journey.groups.prayer' => 'Oración',
+			'journey.groups.word' => 'Palabra',
+			'journey.groups.souls' => 'Almas',
+			'journey.groups.together' => 'Juntos',
+			'journey.steps.firstReport.title' => 'Primer paso',
+			'journey.steps.firstReport.text' => 'Guardar tu primer informe.',
+			'journey.steps.streak7.title' => 'Una semana fiel',
+			'journey.steps.streak7.text' => '7 días seguidos con un informe.',
+			'journey.steps.streak30.title' => 'Un mes con Dios',
+			'journey.steps.streak30.text' => '30 días seguidos con un informe.',
+			'journey.steps.streak100.title' => 'Cien días',
+			'journey.steps.streak100.text' => '100 días seguidos con un informe.',
+			'journey.steps.streak365.title' => 'Un año entero',
+			'journey.steps.streak365.text' => '365 días seguidos con un informe.',
+			'journey.steps.fullDay.title' => 'Tres pasos',
+			'journey.steps.fullDay.text' => 'Dar los 3 pasos del día.',
+			'journey.steps.sevenFullDays.title' => 'Siete días completos',
+			'journey.steps.sevenFullDays.text' => 'Dar los 3 pasos del día siete veces.',
+			'journey.steps.fourRetreats.title' => 'Un día de oración',
+			'journey.steps.fourRetreats.text' => 'Hacer los 4 retiros el mismo día.',
+			'journey.steps.planDone.title' => 'Plan terminado',
+			'journey.steps.planDone.text' => 'Terminar un plan de lectura de la Biblia.',
+			'journey.steps.lyricsShared.title' => 'Un canto compartido',
+			'journey.steps.lyricsShared.text' => 'Compartir la letra de un himno.',
+			'journey.steps.firstSoul.title' => 'Sembrador',
+			'journey.steps.firstSoul.text' => 'Seguir a tu primera alma.',
+			'journey.steps.tenSouls.title' => 'Diez almas seguidas',
+			'journey.steps.tenSouls.text' => 'Seguir a 10 personas en el seguimiento de almas.',
+			'journey.steps.soulBaptized.title' => 'Un alma bautizada',
+			'journey.steps.soulBaptized.text' => 'Una persona que sigues llega al bautismo.',
+			'journey.steps.firstSending.title' => 'Rendir cuentas',
+			'journey.steps.firstSending.text' => 'Enviar tu informe a una autoridad en la app.',
+			'journey.steps.firstEncouragement.title' => 'Alentador',
+			'journey.steps.firstEncouragement.text' => 'Enviar una palabra de aliento a un discípulo.',
+			'journey.daily.title' => 'Tus 3 pasos del día',
+			'journey.daily.progress' => ({required Object n}) => '${n} de 3',
+			'journey.daily.report' => 'Llenar mi informe',
+			'journey.daily.prayer' => 'Hacer un retiro de oración',
+			'journey.daily.word' => 'Leer un capítulo de la Biblia',
+			'journey.daily.wordPlan' => 'Leer los capítulos del plan',
+			'journey.daily.allDone' => 'Los tres pasos están hechos. ¡Buen día con Dios!',
+			'journey.daily.done' => 'Hecho',
+			'journey.grace.day' => 'Día de gracia',
+			'journey.grace.used' => ({required Object day}) => 'Día de gracia ${day}: tu racha continúa.',
+			'journey.grace.title' => 'Un día de gracia',
+			'journey.grace.text' => ({required Object day}) => 'No llenaste ${day}, pero tu racha continúa: cada semana, un día de gracia la protege. Mañana es un nuevo comienzo.',
+			'journey.grace.ok' => '¡Gracias!',
 			_ => null,
 		};
 	}

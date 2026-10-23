@@ -192,7 +192,8 @@ void main() {
 
     testWidgets('the home screen shows the days in a row', (tester) async {
       final app = await pumpApp(tester, token: 't');
-      for (final daysAgo in [1, 2, 3, 5]) {
+      // two days missed in a row (4 and 5 days ago): no day of grace
+      for (final daysAgo in [1, 2, 3, 6]) {
         seedDay(app, daysAgo);
       }
       app.container.invalidate(reportHistoryProvider);

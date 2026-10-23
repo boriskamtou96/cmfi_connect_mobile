@@ -943,6 +943,22 @@ class ItemsRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
+/// [JourneyScreen]
+class JourneyRoute extends PageRouteInfo<void> {
+  const JourneyRoute({List<PageRouteInfo>? children})
+    : super(JourneyRoute.name, initialChildren: children);
+
+  static const String name = 'JourneyRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const JourneyScreen();
+    },
+  );
+}
+
+/// generated route for
 /// [LeaderScreen]
 class LeaderRoute extends PageRouteInfo<void> {
   const LeaderRoute({List<PageRouteInfo>? children})

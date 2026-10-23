@@ -30,6 +30,8 @@ import '../../authorities/application/authorities_controller.dart';
 import '../../disciples/application/disciples.dart';
 import '../../disciples/application/received_reports.dart';
 import '../../home/domain/year_story.dart';
+import '../../journey/application/journey_steps.dart';
+import '../../journey/domain/journey_step.dart';
 import '../../members/application/my_account.dart';
 import '../../ministry/application/nations.dart';
 import '../../notifications/application/inbox.dart';
@@ -69,6 +71,8 @@ class MoreScreen extends ConsumerWidget {
         ? ref.watch(receivedReportsUnreadProvider)
         : 0;
     final unread = ref.watch(inboxProvider).value?.unread ?? 0;
+    // the steps of the journey reached
+    final steps = ref.watch(journeyStepsProvider).value?.length ?? 0;
     final premium = ref.watch(premiumProvider).value ?? false;
     // v1: Premium is offered to everyone, nothing leads to the paywall
     final premiumForEveryone = ref.watch(premiumForEveryoneProvider);
@@ -153,6 +157,28 @@ class MoreScreen extends ConsumerWidget {
               label: t.more.accompaniment,
               card: SectionCard(
                 children: [
+                  ListTile(
+                    leading: moduleIcon(
+                      AppIcons.journeyTile,
+                      AppModule.reports,
+                    ),
+                    title: Text(
+                      t.journey.title,
+                      style: const TextStyle(fontWeight: FontWeight.w600),
+                    ),
+                    subtitle: Text(
+                      t.journey.count(
+                        n: steps,
+                        total: JourneyStep.values.length,
+                      ),
+                      style: TextStyle(
+                        fontSize: 13,
+                        color: scheme.onSurfaceVariant,
+                      ),
+                    ),
+                    trailing: const Icon(AppIcons.chevronRight),
+                    onTap: () => context.router.push(const JourneyRoute()),
+                  ),
                   ListTile(
                     leading: moduleIcon(
                       AppIcons.authoritiesTile,

@@ -2392,5 +2392,101 @@
     "restart": "Reiniciar",
     "failed": "No se pudo abrir la tienda. Inténtalo más tarde.",
     "moreButton": "Actualizar a la versión {version}"
+  },
+  "journey": {
+    "title": "Mis etapas",
+    "subtitle": "Las etapas del camino, solo para ti",
+    "count": "{n} de {total}",
+    "reachedOn": "Alcanzada el {date}",
+    "toReach": "Por alcanzar",
+    "newStep": "Nueva etapa",
+    "see": "Ver mis etapas",
+    "go": "Continuar",
+    "groups": {
+      "faithfulness": "Fidelidad",
+      "prayer": "Oración",
+      "word": "Palabra",
+      "souls": "Almas",
+      "together": "Juntos"
+    },
+    "steps": {
+      "firstReport": {
+        "title": "Primer paso",
+        "text": "Guardar tu primer informe."
+      },
+      "streak7": {
+        "title": "Una semana fiel",
+        "text": "7 días seguidos con un informe."
+      },
+      "streak30": {
+        "title": "Un mes con Dios",
+        "text": "30 días seguidos con un informe."
+      },
+      "streak100": {
+        "title": "Cien días",
+        "text": "100 días seguidos con un informe."
+      },
+      "streak365": {
+        "title": "Un año entero",
+        "text": "365 días seguidos con un informe."
+      },
+      "fullDay": {
+        "title": "Tres pasos",
+        "text": "Dar los 3 pasos del día."
+      },
+      "sevenFullDays": {
+        "title": "Siete días completos",
+        "text": "Dar los 3 pasos del día siete veces."
+      },
+      "fourRetreats": {
+        "title": "Un día de oración",
+        "text": "Hacer los 4 retiros el mismo día."
+      },
+      "planDone": {
+        "title": "Plan terminado",
+        "text": "Terminar un plan de lectura de la Biblia."
+      },
+      "lyricsShared": {
+        "title": "Un canto compartido",
+        "text": "Compartir la letra de un himno."
+      },
+      "firstSoul": {
+        "title": "Sembrador",
+        "text": "Seguir a tu primera alma."
+      },
+      "tenSouls": {
+        "title": "Diez almas seguidas",
+        "text": "Seguir a 10 personas en el seguimiento de almas."
+      },
+      "soulBaptized": {
+        "title": "Un alma bautizada",
+        "text": "Una persona que sigues llega al bautismo."
+      },
+      "firstSending": {
+        "title": "Rendir cuentas",
+        "text": "Enviar tu informe a una autoridad en la app."
+      },
+      "firstEncouragement": {
+        "title": "Alentador",
+        "text": "Enviar una palabra de aliento a un discípulo."
+      }
+    },
+    "daily": {
+      "title": "Tus 3 pasos del día",
+      "progress": "{n} de 3",
+      "report": "Llenar mi informe",
+      "prayer": "Hacer un retiro de oración",
+      "word": "Leer un capítulo de la Biblia",
+      "wordPlan": "Leer los capítulos del plan",
+      "allDone": "Los tres pasos están hechos. ¡Buen día con Dios!",
+      "done": "Hecho"
+    },
+    "grace": {
+      "day": "Día de gracia",
+      "used": "Día de gracia {day}: tu racha continúa.",
+      "title": "Un día de gracia",
+      "text": "No llenaste {day}, pero tu racha continúa: cada semana, un día de gracia la protege. Mañana es un nuevo comienzo.",
+      "ok": "¡Gracias!"
+    }
   }
 }

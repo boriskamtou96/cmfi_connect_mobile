@@ -31,6 +31,7 @@ import '../../events/infrastructure/events_api.dart';
 import '../../fasts/application/fasts.dart';
 import '../../hymns/application/hymn_collections.dart';
 import '../../hymns/application/hymn_library.dart';
+import '../../journey/presentation/daily_steps_card.dart';
 import '../../members/presentation/widgets/member_avatar.dart';
 import '../../ministry/application/nations.dart';
 import '../../ministry/domain/ministry_lives.dart';
@@ -122,6 +123,14 @@ class HomeScreen extends ConsumerWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [
+                        // « Tes 3 pas du jour »
+                        const SizedBox(height: 20),
+                        FadeSlideIn(
+                          index: 1,
+                          child: DailyStepsCard(
+                            onReport: () => openReports(ReportsView.today),
+                          ),
+                        ),
                         // from 26 December to January: the year told
                         if (storyYearAt(DateTime.now()) case final year?) ...[
                           const SizedBox(height: 24),
@@ -280,6 +289,10 @@ class _Summary extends ConsumerWidget {
     final goals = ref.watch(goalsOfDayProvider(now));
     final retreats = ref.watch(retreatsTodayProvider).length;
     final streak = ref.watch(reportStreakProvider).value ?? 0;
+    // the days of grace that kept it
+    final graced =
+        ref.watch(reportStreakDetailProvider).value?.graced ??
+        const <DateTime>{};
     final reported =
         ref.watch(reportedDaysOfWeekProvider(now)).value ?? const <DateTime>{};
     final monday = now.startOfWeek;
@@ -502,6 +515,7 @@ class _Summary extends ConsumerWidget {
                                   (reported.contains(day) ||
                                       (day == now && filled > 0)),
                               future: day.isAfter(now),
+                              graced: !hidden && graced.contains(day),
                             ),
                           ),
                       ],
@@ -655,19 +669,22 @@ class _Stat extends StatelessWidget {
   );
 }
 
-/// A day of the week: gold with a check once the report is in.
+/// A day of the week: gold with a check once the report is in; a day of
+/// grace keeps a gold outline and a small shield.
 class _Day extends StatelessWidget {
   const _Day({
     required this.letter,
     required this.today,
     required this.done,
     required this.future,
+    this.graced = false,
   });
 
   final String letter;
   final bool today;
   final bool done;
   final bool future;
+  final bool graced;
 
   @override
   Widget build(BuildContext context) => Column(
@@ -689,12 +706,26 @@ class _Day extends StatelessWidget {
           color: done
               ? AppColors.goldLight
               : Colors.white.withValues(alpha: future ? 0.06 : 0.12),
-          border: today && !done
-              ? Border.all(color: AppColors.goldLight, width: 2)
+          border: (today && !done) || graced
+              ? Border.all(
+                  color: AppColors.goldLight.withValues(
+                    alpha: graced ? 0.6 : 1,
+                  ),
+                  width: graced ? 1.5 : 2,
+                )
               : null,
         ),
         child: done
             ? const Icon(AppIcons.check, size: 14, color: AppColors.primaryDeep)
+            : graced
+            ? Semantics(
+                label: context.t.journey.grace.day,
+                child: const Icon(
+                  AppIcons.grace,
+                  size: 13,
+                  color: AppColors.goldLight,
+                ),
+              )
             : null,
       ),
     ],

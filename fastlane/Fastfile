@@ -1,0 +1,218 @@
+# The lanes of CMFI Connect (see the README, « Publier une version »):
+#
+#   bundle exec fastlane test                     analyze and tests
+#   bundle exec fastlane bump type:patch          1.0.0+1 -> 1.0.1+2, commit, tag v1.0.1
+#   bundle exec fastlane ios beta                 TestFlight, with the notes
+#   bundle exec fastlane ios release              App Store Connect (not submitted)
+#   bundle exec fastlane android beta             Google Play, internal track
+#   bundle exec fastlane android beta track:production
+#
+# The same lanes run on the Mac and on GitHub Actions (.github/workflows):
+# pushing a tag v* publishes.
+
+require "tmpdir"
+
+default_platform(:ios)
+
+ROOT = File.expand_path("..", __dir__)
+PUBSPEC = File.join(ROOT, "pubspec.yaml")
+NOTES = File.join(ROOT, "store", "release_notes")
+
+# the app's languages, and their names on each store
+LANGUAGES = %w[fr en de es ar zh hi].freeze
+APP_STORE_LOCALES = {
+  "fr" => "fr-FR", "en" => "en-US", "de" => "de-DE", "es" => "es-ES",
+  "ar" => "ar-SA", "zh" => "zh-Hans", "hi" => "hi",
+}.freeze
+PLAY_LOCALES = {
+  "fr" => "fr-FR", "en" => "en-US", "de" => "de-DE", "es" => "es-ES",
+  "ar" => "ar", "zh" => "zh-CN", "hi" => "hi-IN",
+}.freeze
+
+# Google Play refuses longer notes
+PLAY_NOTES_LIMIT = 500
+
+# the iOS targets of the prod flavor and their identifiers
+IOS_TARGETS = {
+  "Runner" => "com.cmficonnect.app",
+  "TodayWidget" => "com.cmficonnect.app.TodayWidget",
+  "ShieldActions" => "com.cmficonnect.app.ShieldActions",
+  "ShieldConfig" => "com.cmficonnect.app.ShieldConfig",
+  "ShieldMonitor" => "com.cmficonnect.app.ShieldMonitor",
+}.freeze
+
+# ----- helpers --------------------------------------------------------------------
+
+# [major, minor, patch, build] of pubspec.yaml ("version: 1.0.0+1")
+def pubspec_version
+  match = File.read(PUBSPEC).match(/^version:\s*(\d+)\.(\d+)\.(\d+)\+(\d+)\s*$/)
+  UI.user_error!("pubspec.yaml : la ligne « version: x.y.z+n » est introuvable") unless match
+  match.captures.map(&:to_i)
+end
+
+# The notes of the version, by language (store/release_notes/<language>.txt):
+# all written, short enough for Google Play.
+def release_notes
+  LANGUAGES.to_h do |language|
+    path = File.join(NOTES, "#{language}.txt")
+    text = File.exist?(path) ? File.read(path).strip : ""
+    UI.user_error!("Notes de version manquantes : store/release_notes/#{language}.txt") if text.empty?
+    if text.length > PLAY_NOTES_LIMIT
+      UI.user_error!("store/release_notes/#{language}.txt : #{text.length} caractères, Google Play en accepte #{PLAY_NOTES_LIMIT}")
+    end
+    [language, text]
+  end
+end
+
+# Runs a command at the root of the project (flutter, git…).
+def at_root(command)
+  sh("cd #{ROOT.shellescape} && #{command}")
+end
+
+# The key of App Store Connect (ASC_KEY_ID, ASC_ISSUER_ID, ASC_KEY_P8 in
+# base64), for match, TestFlight and the App Store.
+def app_store_key
+  app_store_connect_api_key(
+    key_id: ENV.fetch("ASC_KEY_ID"),
+    issuer_id: ENV.fetch("ASC_ISSUER_ID"),
+    key_content: ENV.fetch("ASC_KEY_P8"),
+    is_key_content_base64: true,
+  )
+end
+
+# ----- every platform ----------------------------------------------------------------
+
+desc "Analyse et tests (comme le CI)"
+lane :test do
+  at_root("flutter analyze")
+  at_root("flutter test")
+end
+
+desc "Monte la version (type:patch|minor|major), le numéro de build +1, commit et tag"
+lane :bump do |options|
+  type = (options[:type] || "patch").to_s
+  major, minor, patch, build = pubspec_version
+  case type
+  when "major" then major, minor, patch = major + 1, 0, 0
+  when "minor" then minor, patch = minor + 1, 0
+  when "patch" then patch += 1
+  else UI.user_error!("type: patch, minor ou major (pas « #{type} »)")
+  end
+  name = "#{major}.#{minor}.#{patch}"
+  version = "#{name}+#{build + 1}"
+  # the notes of this version must be written before it is tagged
+  release_notes
+  if options[:dry_run]
+    UI.important("Essai : la version deviendrait #{version}, tag v#{name}")
+    next
+  end
+
+  File.write(PUBSPEC, File.read(PUBSPEC).sub(/^version:.*$/, "version: #{version}"))
+  git_commit(path: [PUBSPEC, NOTES], message: "release: bump version to #{version}")
+  add_git_tag(tag: "v#{name}")
+  UI.success("Version #{version}. Pour publier : git push && git push origin v#{name}")
+end
+
+# ----- iOS ---------------------------------------------------------------------------
+
+platform :ios do
+  desc "Construit l'app prod signée par match (l'.ipa dans build/ios)"
+  private_lane :build do
+    # on GitHub Actions, a keychain of its own
+    setup_ci if is_ci
+    key = app_store_key
+    match(api_key: key, readonly: is_ci)
+    # every target signed by its profile of match
+    IOS_TARGETS.each do |target, identifier|
+      update_code_signing_settings(
+        path: File.join(ROOT, "ios", "Runner.xcodeproj"),
+        use_automatic_signing: false,
+        targets: [target],
+        build_configurations: ["Release-prod"],
+        team_id: "8S3QJGW6FL",
+        code_sign_identity: "Apple Distribution",
+        profile_name: ENV.fetch("sigh_#{identifier}_appstore_profile-name"),
+      )
+    end
+    # Flutter writes its settings (version, .env), Xcode builds and signs
+    at_root("flutter build ios --release --flavor prod --dart-define-from-file=.env --config-only")
+    build_app(
+      workspace: File.join(ROOT, "ios", "Runner.xcworkspace"),
+      scheme: "prod",
+      configuration: "Release-prod",
+      export_method: "app-store",
+      output_directory: File.join(ROOT, "build", "ios"),
+      output_name: "CMFI Connect.ipa",
+      export_options: {
+        provisioningProfiles: IOS_TARGETS.values.to_h do |identifier|
+          [identifier, ENV.fetch("sigh_#{identifier}_appstore_profile-name")]
+        end,
+      },
+    )
+    key
+  end
+
+  desc "TestFlight, avec les notes de version dans chaque langue"
+  lane :beta do
+    notes = release_notes
+    key = build
+    upload_to_testflight(
+      api_key: key,
+      # « À tester », in each language (it waits for Apple to process the build)
+      localized_build_info: notes.to_h do |language, text|
+        [APP_STORE_LOCALES.fetch(language), { whats_new: text }]
+      end,
+      distribute_external: false,
+    )
+  end
+
+  desc "App Store Connect : le build et les notes de la version (sans l'envoyer à Apple)"
+  lane :release do
+    notes = release_notes
+    key = build
+    major, minor, patch, = pubspec_version
+    upload_to_app_store(
+      api_key: key,
+      app_version: "#{major}.#{minor}.#{patch}",
+      release_notes: notes.to_h do |language, text|
+        [APP_STORE_LOCALES.fetch(language), text]
+      end,
+      skip_screenshots: true,
+      skip_metadata: false,
+      submit_for_review: false,
+      force: true,
+      precheck_include_in_app_purchases: false,
+    )
+  end
+end
+
+# ----- Android -----------------------------------------------------------------------
+
+platform :android do
+  desc "Google Play : l'app prod sur une piste (track:internal par défaut), avec les notes"
+  lane :beta do |options|
+    notes = release_notes
+    track = (options[:track] || "internal").to_s
+    at_root("flutter build appbundle --release --flavor prod --dart-define-from-file=.env")
+    build = pubspec_version.last
+    # the notes, where supply reads them: <locale>/changelogs/<build>.txt
+    Dir.mktmpdir do |metadata|
+      notes.each do |language, text|
+        folder = File.join(metadata, PLAY_LOCALES.fetch(language), "changelogs")
+        FileUtils.mkdir_p(folder)
+        File.write(File.join(folder, "#{build}.txt"), text)
+      end
+      upload_to_play_store(
+        package_name: "com.cmficonnect.app",
+        track: track,
+        aab: File.join(ROOT, "build", "app", "outputs", "bundle", "prodRelease", "app-prod-release.aab"),
+        json_key_data: ENV.fetch("PLAY_JSON_KEY"),
+        metadata_path: metadata,
+        skip_upload_metadata: true,
+        skip_upload_images: true,
+        skip_upload_screenshots: true,
+        skip_upload_changelogs: false,
+      )
+    end
+  end
+end

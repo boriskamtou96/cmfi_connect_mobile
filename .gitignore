@@ -43,3 +43,11 @@ app.*.map.json
 /android/app/debug
 /android/app/profile
 /android/app/release
+
+# fastlane: its reports, and the keys written by the CI
+/fastlane/report.xml
+/fastlane/Preview.html
+/fastlane/test_output
+/android/app/upload-keystore.jks
+/vendor/bundle
+/.bundle

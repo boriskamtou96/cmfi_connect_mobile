@@ -1,0 +1,15 @@
+# fastlane match: the certificates and profiles of the App Store, encrypted
+# in a private git repository (MATCH_GIT_URL, MATCH_PASSWORD), the same on
+# every machine
+git_url(ENV.fetch("MATCH_GIT_URL", ""))
+storage_mode("git")
+type("appstore")
+team_id("8S3QJGW6FL")
+# the app, its widget and its three Screen Time extensions
+app_identifier([
+  "com.cmficonnect.app",
+  "com.cmficonnect.app.TodayWidget",
+  "com.cmficonnect.app.ShieldActions",
+  "com.cmficonnect.app.ShieldConfig",
+  "com.cmficonnect.app.ShieldMonitor",
+])

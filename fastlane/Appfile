@@ -1,0 +1,4 @@
+# Who the app belongs to, on both stores
+app_identifier("com.cmficonnect.app")
+team_id("8S3QJGW6FL")
+package_name("com.cmficonnect.app")

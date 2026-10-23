@@ -15,6 +15,8 @@ flutter run --flavor dev --dart-define-from-file=.env --dart-define=API_BASE_URL
 flutter run --flavor prod --release --dart-define-from-file=.env
 dart run build_runner watch --force-jit      # génération de code (le mode AOT échoue sur ce projet)
 flutter analyze && flutter test              # obligatoires avant de considérer une tâche finie
+flutter run --flavor dev -t lib/main_catalog.dart   # le catalogue de widgets (lib/catalog)
+bundle exec fastlane bump type:patch           # version + tag ; le tag v* publie (GitHub Actions, voir README)
 ```
 
 - Relancer la génération après toute modification de `@riverpod`, `@freezed`, `@RoutePage` ou d'un fichier `.i18n.json`. Les textes passent aussi par build_runner : ne pas lancer `dart run slang` à côté (ses fichiers `strings*.g.dart` font échouer build_runner avec « Asset already exists » ; dans ce cas, supprimer `lib/src/core/i18n/strings*.g.dart` et relancer).

@@ -1,0 +1,98 @@
+# A tag v* (made by `bundle exec fastlane bump`) publishes the version: the
+# tests first, then Google Play (internal track) and TestFlight, each with the
+# notes of store/release_notes. Can also be started by hand (Actions › Release).
+#
+# Secrets (Settings › Secrets and variables › Actions), see the README:
+#   DOT_ENV                     the .env of the app (public keys of RevenueCat…)
+#   ANDROID_KEYSTORE_BASE64     the upload key of Google Play (.jks), in base64
+#   ANDROID_KEY_PROPERTIES      the content of android/key.properties
+#                               (storeFile=upload-keystore.jks)
+#   PLAY_JSON_KEY               the JSON key of the Google Play service account
+#   ASC_KEY_ID, ASC_ISSUER_ID   the App Store Connect API key
+#   ASC_KEY_P8                  its .p8 file, in base64
+#   MATCH_GIT_URL               the private repository of match
+#   MATCH_PASSWORD              the passphrase of match
+#   MATCH_GIT_BASIC_AUTHORIZATION   base64 of "user:token" to read that repository
+name: Release
+
+on:
+  push:
+    tags: ['v*']
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: 3.38.9
+          channel: stable
+          cache: true
+      - run: flutter pub get
+      - run: flutter analyze
+      - run: flutter test
+
+  android:
+    needs: test
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 17
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: 3.38.9
+          channel: stable
+          cache: true
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 3.3
+          bundler-cache: true
+      - name: Secrets of the build
+        env:
+          DOT_ENV: ${{ secrets.DOT_ENV }}
+          ANDROID_KEYSTORE_BASE64: ${{ secrets.ANDROID_KEYSTORE_BASE64 }}
+          ANDROID_KEY_PROPERTIES: ${{ secrets.ANDROID_KEY_PROPERTIES }}
+        run: |
+          printf '%s\n' "$DOT_ENV" > .env
+          echo "$ANDROID_KEYSTORE_BASE64" | base64 --decode > android/app/upload-keystore.jks
+          printf '%s\n' "$ANDROID_KEY_PROPERTIES" > android/key.properties
+      - run: flutter pub get
+      - run: bundle exec fastlane android beta
+        env:
+          PLAY_JSON_KEY: ${{ secrets.PLAY_JSON_KEY }}
+
+  ios:
+    needs: test
+    runs-on: macos-15
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: 3.38.9
+          channel: stable
+          cache: true
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 3.3
+          bundler-cache: true
+      - name: Secrets of the build
+        env:
+          DOT_ENV: ${{ secrets.DOT_ENV }}
+        run: printf '%s\n' "$DOT_ENV" > .env
+      - run: flutter pub get
+      - run: bundle exec fastlane ios beta
+        env:
+          ASC_KEY_ID: ${{ secrets.ASC_KEY_ID }}
+          ASC_ISSUER_ID: ${{ secrets.ASC_ISSUER_ID }}
+          ASC_KEY_P8: ${{ secrets.ASC_KEY_P8 }}
+          MATCH_GIT_URL: ${{ secrets.MATCH_GIT_URL }}
+          MATCH_PASSWORD: ${{ secrets.MATCH_PASSWORD }}
+          MATCH_GIT_BASIC_AUTHORIZATION: ${{ secrets.MATCH_GIT_BASIC_AUTHORIZATION }}

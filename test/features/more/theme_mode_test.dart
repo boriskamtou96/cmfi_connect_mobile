@@ -22,10 +22,9 @@ void main() {
 
     expect(brightness(tester), Brightness.dark);
 
-    await openMore(tester);
+    await openSettings(tester);
     await tester.pumpAndSettle();
-    // the last row: the settings above it are then fully in view
-    await scrollToEnd(tester);
+    await scrollTo(tester, find.text('Apparence'));
     expect(find.text('Automatique'), findsOneWidget);
 
     await tester.tap(find.text('Apparence'));
@@ -36,7 +35,7 @@ void main() {
     expect(brightness(tester), Brightness.light);
     expect(app.preferences.getString('theme_mode'), 'light');
     // the brand colors switch with the theme
-    final context = tester.element(find.text('Plus').last);
+    final context = tester.element(find.text('Réglages').last);
     expect(AppTones.of(context), AppTones.light);
   });
 
@@ -50,9 +49,9 @@ void main() {
     );
     expect(brightness(tester), Brightness.dark);
 
-    await openMore(tester);
+    await openSettings(tester);
     await tester.pumpAndSettle();
-    await scrollToEnd(tester);
+    await scrollTo(tester, find.text('Apparence'));
     expect(find.text('Sombre'), findsOneWidget);
 
     await tester.tap(find.text('Apparence'));

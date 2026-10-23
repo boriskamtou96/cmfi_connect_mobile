@@ -88,17 +88,14 @@
     "sample": {
       "bibleReading": "قراءة الكتاب المقدس",
       "chapters": "10 إصحاحات",
-      "prayerAlone": "الصلاة الفردية",
       "hymn": "ترنيمة",
       "hymnNumber": "رقم 12",
-      "prayerOfTheDay": "طلب الصلاة لهذا اليوم",
-      "prayerTopic": "من أجل امتحانات شبابنا",
       "praying": "12 شخصًا يصلّون",
-      "iPray": "أصلّي",
       "retreat": "خلوة الشباب",
-      "announcement": "إعلان",
-      "announcementText": "تبدأ عبادة الأحد في الساعة 8:30 صباحًا."
+      "announcement": "إعلان"
     },
+    "next": "متابعة",
+    "skip": "تخطٍّ",
     "createAccount": "إنشاء حسابي",
     "haveAccount": "لديّ حساب بالفعل"
   },
@@ -210,7 +207,6 @@
   "home": {
     "greeting": "مرحبًا {name}",
     "greetingNoName": "مرحبًا",
-    "profile": "ملفي الشخصي",
     "progress": "{filled} من {total}",
     "progressLabel": "عناصر معبّأة",
     "goals": "الأهداف",
@@ -2830,5 +2826,32 @@
       "text": "لم تملأ تقرير {day}، لكن سلسلتك مستمرة: كل أسبوع يحميها يوم نعمة. غدًا بداية جديدة.",
       "ok": "شكرًا!"
     }
+  },
+  "menu": {
+    "open": "فتح القائمة",
+    "discover": "اكتشف",
+    "seeProfile": "عرض ملفي"
+  },
+  "me": {
+    "title": "ملفي",
+    "edit": "تعديل ملفي",
+    "journey": "مسيرتي",
+    "streak": "السلسلة",
+    "steps": "المراحل",
+    "timeMonth": "مع الله هذا الشهر",
+    "nextStep": "التالية: {name}",
+    "soulsDue": "{n} لإعادة التواصل",
+    "souls(plural, param=n)": {
+      "one": "شخص واحد",
+      "other": "{n} أشخاص"
+    }
+  },
+  "settings": {
+    "title": "الإعدادات",
+    "practice": "ممارستي",
+    "help": "المساعدة",
+    "contact": "تواصل معنا",
+    "privacy": "الخصوصية",
+    "terms": "شروط الاستخدام"
   }
 }

@@ -1193,22 +1193,6 @@ class MinistryRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [MoreScreen]
-class MoreRoute extends PageRouteInfo<void> {
-  const MoreRoute({List<PageRouteInfo>? children})
-    : super(MoreRoute.name, initialChildren: children);
-
-  static const String name = 'MoreRoute';
-
-  static PageInfo page = PageInfo(
-    name,
-    builder: (data) {
-      return const MoreScreen();
-    },
-  );
-}
-
-/// generated route for
 /// [NationsScreen]
 class NationsRoute extends PageRouteInfo<void> {
   const NationsRoute({List<PageRouteInfo>? children})
@@ -1450,6 +1434,22 @@ class PremiumRoute extends PageRouteInfo<void> {
     name,
     builder: (data) {
       return const PremiumScreen();
+    },
+  );
+}
+
+/// generated route for
+/// [ProfileScreen]
+class ProfileRoute extends PageRouteInfo<void> {
+  const ProfileRoute({List<PageRouteInfo>? children})
+    : super(ProfileRoute.name, initialChildren: children);
+
+  static const String name = 'ProfileRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const ProfileScreen();
     },
   );
 }
@@ -1702,6 +1702,22 @@ class SeekFirstRoute extends PageRouteInfo<void> {
     name,
     builder: (data) {
       return const SeekFirstScreen();
+    },
+  );
+}
+
+/// generated route for
+/// [SettingsScreen]
+class SettingsRoute extends PageRouteInfo<void> {
+  const SettingsRoute({List<PageRouteInfo>? children})
+    : super(SettingsRoute.name, initialChildren: children);
+
+  static const String name = 'SettingsRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const SettingsScreen();
     },
   );
 }

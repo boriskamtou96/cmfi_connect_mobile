@@ -107,6 +107,17 @@ abstract final class AppIcons {
   static const sendReport = PhosphorIconsRegular.paperPlaneTilt;
   static const sendReportTile = PhosphorIconsDuotone.paperPlaneTilt;
   static const settings = PhosphorIconsRegular.gearSix;
+  // the menu, the profile and the settings
+  static const menu = PhosphorIconsRegular.list;
+  static const reminderTile = PhosphorIconsDuotone.bellRinging;
+  static const appearanceTile = PhosphorIconsDuotone.moonStars;
+  static const languageTile = PhosphorIconsDuotone.translate;
+  static const blockedTile = PhosphorIconsDuotone.prohibit;
+  static const deleteAccountTile = PhosphorIconsDuotone.trash;
+  static const contactTile = PhosphorIconsDuotone.envelopeSimple;
+  static const privacyTile = PhosphorIconsDuotone.lockSimple;
+  static const termsTile = PhosphorIconsDuotone.fileText;
+  static const signOut = PhosphorIconsRegular.signOut;
   static const copy = PhosphorIconsRegular.copy;
   static const projection = PhosphorIconsRegular.presentation;
   static const textSize = PhosphorIconsRegular.textAa;

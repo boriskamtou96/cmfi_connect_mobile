@@ -49,6 +49,7 @@ void main() {
 
     await openMenu(tester);
     expect(find.text('Signaler'), findsOneWidget);
+    await scrollTo(tester, find.text('Bloquer Marc'));
     await tester.tap(find.text('Bloquer Marc'));
     await tester.pumpAndSettle();
     expect(find.text('Bloquer Marc ?'), findsOneWidget);
@@ -84,6 +85,7 @@ void main() {
       await openMenu(tester);
       expect(find.byType(CupertinoActionSheet), findsOneWidget);
       expect(find.text('Signaler'), findsOneWidget);
+      await scrollTo(tester, find.text('Bloquer Marc'));
       await tester.tap(find.text('Bloquer Marc'));
       await tester.pumpAndSettle();
 
@@ -108,6 +110,7 @@ void main() {
     await openPrayer(tester);
 
     await openMenu(tester);
+    await scrollTo(tester, find.text('Bloquer Marc'));
     await tester.tap(find.text('Bloquer Marc'));
     await tester.pumpAndSettle();
     await tester.tap(find.text('Annuler'));
@@ -116,6 +119,7 @@ void main() {
 
     api.offline = true;
     await openMenu(tester);
+    await scrollTo(tester, find.text('Bloquer Marc'));
     await tester.tap(find.text('Bloquer Marc'));
     await tester.pumpAndSettle();
     await tester.tap(find.text('Bloquer'));
@@ -136,6 +140,7 @@ void main() {
     await openPrayer(tester);
 
     await openMenu(tester);
+    await scrollTo(tester, find.text('Signaler'));
     await tester.tap(find.text('Signaler'));
     await tester.pumpAndSettle();
     expect(find.text('Signaler cette invitation'), findsOneWidget);
@@ -171,7 +176,7 @@ void main() {
     final api = FakePrayerApi()
       ..blockedList.add(sampleMembers['clarisse.nguele']!);
     final app = await pumpApp(tester, token: 't', prayerApi: api);
-    await openMore(tester);
+    await openSettings(tester);
     await tester.pumpAndSettle();
     await scrollToEnd(tester);
     await tester.tap(find.text('Membres bloqués'));

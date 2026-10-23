@@ -85,6 +85,9 @@ class TranslationsDe extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _Translations$received$de received = _Translations$received$de._(_root);
 	@override late final _Translations$update$de update = _Translations$update$de._(_root);
 	@override late final _Translations$journey$de journey = _Translations$journey$de._(_root);
+	@override late final _Translations$menu$de menu = _Translations$menu$de._(_root);
+	@override late final _Translations$me$de me = _Translations$me$de._(_root);
+	@override late final _Translations$settings$de settings = _Translations$settings$de._(_root);
 }
 
 // Path: app
@@ -189,6 +192,8 @@ class _Translations$welcome$de extends Translations$welcome$fr {
 		other: '${n} Tage mit Gott',
 	);
 	@override late final _Translations$welcome$sample$de sample = _Translations$welcome$sample$de._(_root);
+	@override String get next => 'Weiter';
+	@override String get skip => 'Überspringen';
 	@override String get createAccount => 'Konto erstellen';
 	@override String get haveAccount => 'Ich habe schon ein Konto';
 }
@@ -1874,6 +1879,54 @@ class _Translations$journey$de extends Translations$journey$fr {
 	@override late final _Translations$journey$grace$de grace = _Translations$journey$grace$de._(_root);
 }
 
+// Path: menu
+class _Translations$menu$de extends Translations$menu$fr {
+	_Translations$menu$de._(TranslationsDe root) : this._root = root, super.internal(root);
+
+	final TranslationsDe _root; // ignore: unused_field
+
+	// Translations
+	@override String get open => 'Menü öffnen';
+	@override String get discover => 'Entdecken';
+	@override String get seeProfile => 'Mein Profil ansehen';
+}
+
+// Path: me
+class _Translations$me$de extends Translations$me$fr {
+	_Translations$me$de._(TranslationsDe root) : this._root = root, super.internal(root);
+
+	final TranslationsDe _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Mein Profil';
+	@override String get edit => 'Mein Profil bearbeiten';
+	@override String get journey => 'Mein Weg';
+	@override String get streak => 'Serie';
+	@override String get steps => 'Etappen';
+	@override String get timeMonth => 'Mit Gott diesen Monat';
+	@override String nextStep({required Object name}) => 'nächste: ${name}';
+	@override String soulsDue({required Object n}) => '${n} erneut kontaktieren';
+	@override String souls({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('de'))(n,
+		one: '${n} Person',
+		other: '${n} Personen',
+	);
+}
+
+// Path: settings
+class _Translations$settings$de extends Translations$settings$fr {
+	_Translations$settings$de._(TranslationsDe root) : this._root = root, super.internal(root);
+
+	final TranslationsDe _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Einstellungen';
+	@override String get practice => 'Meine Praxis';
+	@override String get help => 'Hilfe';
+	@override String get contact => 'Kontakt';
+	@override String get privacy => 'Datenschutz';
+	@override String get terms => 'Nutzungsbedingungen';
+}
+
 // Path: welcome.seek
 class _Translations$welcome$seek$de extends Translations$welcome$seek$fr {
 	_Translations$welcome$seek$de._(TranslationsDe root) : this._root = root, super.internal(root);
@@ -1922,16 +1975,11 @@ class _Translations$welcome$sample$de extends Translations$welcome$sample$fr {
 	// Translations
 	@override String get bibleReading => 'Bibellese';
 	@override String get chapters => '10 Kap.';
-	@override String get prayerAlone => 'Persönliches Gebet';
 	@override String get hymn => 'Lied';
 	@override String get hymnNumber => 'Nr. 12';
-	@override String get prayerOfTheDay => 'Gebetsanliegen des Tages';
-	@override String get prayerTopic => 'Für die Prüfungen unserer Jugendlichen';
 	@override String get praying => '12 Personen beten';
-	@override String get iPray => 'Ich bete';
 	@override String get retreat => 'Jugendfreizeit';
 	@override String get announcement => 'Ankündigung';
-	@override String get announcementText => 'Der Gottesdienst am Sonntag beginnt um 8:30 Uhr.';
 }
 
 // Path: auth.login
@@ -3661,16 +3709,13 @@ extension on TranslationsDe {
 			'welcome.streak' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('de'))(n, one: '${n} Tag mit Gott', other: '${n} Tage mit Gott', ), 
 			'welcome.sample.bibleReading' => 'Bibellese',
 			'welcome.sample.chapters' => '10 Kap.',
-			'welcome.sample.prayerAlone' => 'Persönliches Gebet',
 			'welcome.sample.hymn' => 'Lied',
 			'welcome.sample.hymnNumber' => 'Nr. 12',
-			'welcome.sample.prayerOfTheDay' => 'Gebetsanliegen des Tages',
-			'welcome.sample.prayerTopic' => 'Für die Prüfungen unserer Jugendlichen',
 			'welcome.sample.praying' => '12 Personen beten',
-			'welcome.sample.iPray' => 'Ich bete',
 			'welcome.sample.retreat' => 'Jugendfreizeit',
 			'welcome.sample.announcement' => 'Ankündigung',
-			'welcome.sample.announcementText' => 'Der Gottesdienst am Sonntag beginnt um 8:30 Uhr.',
+			'welcome.next' => 'Weiter',
+			'welcome.skip' => 'Überspringen',
 			'welcome.createAccount' => 'Konto erstellen',
 			'welcome.haveAccount' => 'Ich habe schon ein Konto',
 			'auth.phone' => 'Telefon',
@@ -4107,11 +4152,11 @@ extension on TranslationsDe {
 			'authorities.makeMakerTitle' => ({required Object name}) => '${name} zu deinem Jüngermacher machen?',
 			'authorities.makeMakerText' => ({required Object name}) => '${name} wird benachrichtigt.',
 			'authorities.makeMakerTextFormer' => ({required Object name, required Object former}) => '${name} wird benachrichtigt. ${former} bleibt unter deinen Autoritäten.',
-			_ => null,
-		} ?? switch (path) {
 			'authorities.madeMaker' => ({required Object name}) => '${name} ist jetzt dein Jüngermacher.',
 			'members.username' => 'Benutzername',
 			'members.usernameHint' => 'vorname.nachname',
+			_ => null,
+		} ?? switch (path) {
 			'members.usernameHelp' => 'So finden dich die anderen Mitglieder.',
 			'members.usernameChecking' => 'Wird geprüft …',
 			'members.usernameFree' => ({required Object username}) => '@${username} ist verfügbar',
@@ -4621,11 +4666,11 @@ extension on TranslationsDe {
 			'prayer.moments.morning' => 'Morgen',
 			'prayer.moments.noon' => 'Mittag',
 			'prayer.moments.evening' => 'Abend',
-			_ => null,
-		} ?? switch (path) {
 			'prayer.moments.night' => 'Nacht',
 			'prayer.retreatOf.morning' => 'Gebetszeit am Morgen',
 			'prayer.retreatOf.noon' => 'Gebetszeit am Mittag',
+			_ => null,
+		} ?? switch (path) {
 			'prayer.retreatOf.evening' => 'Gebetszeit am Abend',
 			'prayer.retreatOf.night' => 'Gebetszeit zur Nacht',
 			'prayer.hero.now' => ({required Object retreat}) => '${retreat} · jetzt',
@@ -5135,11 +5180,11 @@ extension on TranslationsDe {
 			'seekFirst.shield.thisApp' => 'Diese App',
 			'seekFirst.shield.fill' => 'Meinen Bericht ausfüllen',
 			'seekFirst.shield.pause' => ({required Object n}) => '5 Min. Pause (${n}/3)',
-			_ => null,
-		} ?? switch (path) {
 			'seekFirst.shield.notificationTitle' => 'Suche zuerst Gott',
 			'seekFirst.shield.notificationBody' => 'Tippe hier, um deinen Bericht auszufüllen.',
 			'seekFirst.shield.serviceBody' => 'Deine Apps schließen sich jeden Tag bis zu deinem Bericht.',
+			_ => null,
+		} ?? switch (path) {
 			'seekFirst.permissionsAndroid' => 'Um deine Apps zu schließen, braucht CMFI Connect zwei Berechtigungen, die du in den gleich geöffneten Einstellungen einschaltest: „Zugriff auf Nutzungsdaten“ (welche App offen ist) und „Über anderen Apps einblenden“ (den Bildschirm Suche zuerst Gott zeigen). Nichts verlässt dein Handy.',
 			'seekFirst.permissionsContinue' => 'Weiter',
 			'seekFirst.deniedAndroid' => 'Ohne diese zwei Berechtigungen kann CMFI Connect keine Apps schließen. Du kannst sie unter Einstellungen › Apps › Spezieller Zugriff einschalten.',
@@ -5486,6 +5531,24 @@ extension on TranslationsDe {
 			'journey.grace.title' => 'Ein Tag der Gnade',
 			'journey.grace.text' => ({required Object day}) => 'Du hast ${day} nicht ausgefüllt, aber deine Serie geht weiter: Jede Woche schützt sie ein Tag der Gnade. Morgen ist ein neuer Anfang.',
 			'journey.grace.ok' => 'Danke!',
+			'menu.open' => 'Menü öffnen',
+			'menu.discover' => 'Entdecken',
+			'menu.seeProfile' => 'Mein Profil ansehen',
+			'me.title' => 'Mein Profil',
+			'me.edit' => 'Mein Profil bearbeiten',
+			'me.journey' => 'Mein Weg',
+			'me.streak' => 'Serie',
+			'me.steps' => 'Etappen',
+			'me.timeMonth' => 'Mit Gott diesen Monat',
+			'me.nextStep' => ({required Object name}) => 'nächste: ${name}',
+			'me.soulsDue' => ({required Object n}) => '${n} erneut kontaktieren',
+			'me.souls' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('de'))(n, one: '${n} Person', other: '${n} Personen', ), 
+			'settings.title' => 'Einstellungen',
+			'settings.practice' => 'Meine Praxis',
+			'settings.help' => 'Hilfe',
+			'settings.contact' => 'Kontakt',
+			'settings.privacy' => 'Datenschutz',
+			'settings.terms' => 'Nutzungsbedingungen',
 			_ => null,
 		};
 	}

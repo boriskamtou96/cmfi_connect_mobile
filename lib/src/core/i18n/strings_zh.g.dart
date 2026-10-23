@@ -85,6 +85,9 @@ class TranslationsZh extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _Translations$received$zh received = _Translations$received$zh._(_root);
 	@override late final _Translations$update$zh update = _Translations$update$zh._(_root);
 	@override late final _Translations$journey$zh journey = _Translations$journey$zh._(_root);
+	@override late final _Translations$menu$zh menu = _Translations$menu$zh._(_root);
+	@override late final _Translations$me$zh me = _Translations$me$zh._(_root);
+	@override late final _Translations$settings$zh settings = _Translations$settings$zh._(_root);
 }
 
 // Path: app
@@ -188,6 +191,8 @@ class _Translations$welcome$zh extends Translations$welcome$fr {
 		other: '与神同行 ${n} 天',
 	);
 	@override late final _Translations$welcome$sample$zh sample = _Translations$welcome$sample$zh._(_root);
+	@override String get next => '继续';
+	@override String get skip => '跳过';
 	@override String get createAccount => '创建账号';
 	@override String get haveAccount => '我已有账号';
 }
@@ -1810,6 +1815,54 @@ class _Translations$journey$zh extends Translations$journey$fr {
 	@override late final _Translations$journey$grace$zh grace = _Translations$journey$grace$zh._(_root);
 }
 
+// Path: menu
+class _Translations$menu$zh extends Translations$menu$fr {
+	_Translations$menu$zh._(TranslationsZh root) : this._root = root, super.internal(root);
+
+	final TranslationsZh _root; // ignore: unused_field
+
+	// Translations
+	@override String get open => '打开菜单';
+	@override String get discover => '探索';
+	@override String get seeProfile => '查看我的资料';
+}
+
+// Path: me
+class _Translations$me$zh extends Translations$me$fr {
+	_Translations$me$zh._(TranslationsZh root) : this._root = root, super.internal(root);
+
+	final TranslationsZh _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => '我的资料';
+	@override String get edit => '编辑我的资料';
+	@override String get journey => '我的旅程';
+	@override String get streak => '连续';
+	@override String get steps => '里程';
+	@override String get timeMonth => '本月与神同在';
+	@override String nextStep({required Object name}) => '下一个：${name}';
+	@override String soulsDue({required Object n}) => '${n} 人待再次联系';
+	@override String souls({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n,
+		one: '${n} 人',
+		other: '${n} 人',
+	);
+}
+
+// Path: settings
+class _Translations$settings$zh extends Translations$settings$fr {
+	_Translations$settings$zh._(TranslationsZh root) : this._root = root, super.internal(root);
+
+	final TranslationsZh _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => '设置';
+	@override String get practice => '我的操练';
+	@override String get help => '帮助';
+	@override String get contact => '联系我们';
+	@override String get privacy => '隐私';
+	@override String get terms => '使用条款';
+}
+
 // Path: welcome.seek
 class _Translations$welcome$seek$zh extends Translations$welcome$seek$fr {
 	_Translations$welcome$seek$zh._(TranslationsZh root) : this._root = root, super.internal(root);
@@ -1858,16 +1911,11 @@ class _Translations$welcome$sample$zh extends Translations$welcome$sample$fr {
 	// Translations
 	@override String get bibleReading => '读经';
 	@override String get chapters => '10 章';
-	@override String get prayerAlone => '个人祷告';
 	@override String get hymn => '诗歌';
 	@override String get hymnNumber => '第 12 首';
-	@override String get prayerOfTheDay => '今日代祷事项';
-	@override String get prayerTopic => '为青年们的考试祷告';
 	@override String get praying => '12 人正在祷告';
-	@override String get iPray => '我来祷告';
 	@override String get retreat => '青年退修会';
 	@override String get announcement => '通知';
-	@override String get announcementText => '主日崇拜早上 8:30 开始。';
 }
 
 // Path: auth.login
@@ -3577,16 +3625,13 @@ extension on TranslationsZh {
 			'welcome.streak' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n, other: '与神同行 ${n} 天', ), 
 			'welcome.sample.bibleReading' => '读经',
 			'welcome.sample.chapters' => '10 章',
-			'welcome.sample.prayerAlone' => '个人祷告',
 			'welcome.sample.hymn' => '诗歌',
 			'welcome.sample.hymnNumber' => '第 12 首',
-			'welcome.sample.prayerOfTheDay' => '今日代祷事项',
-			'welcome.sample.prayerTopic' => '为青年们的考试祷告',
 			'welcome.sample.praying' => '12 人正在祷告',
-			'welcome.sample.iPray' => '我来祷告',
 			'welcome.sample.retreat' => '青年退修会',
 			'welcome.sample.announcement' => '通知',
-			'welcome.sample.announcementText' => '主日崇拜早上 8:30 开始。',
+			'welcome.next' => '继续',
+			'welcome.skip' => '跳过',
 			'welcome.createAccount' => '创建账号',
 			'welcome.haveAccount' => '我已有账号',
 			'auth.phone' => '手机号',
@@ -4023,11 +4068,11 @@ extension on TranslationsZh {
 			'authorities.makeMakerTitle' => ({required Object name}) => '将 ${name} 设为你的门训者？',
 			'authorities.makeMakerText' => ({required Object name}) => '${name} 会收到通知。',
 			'authorities.makeMakerTextFormer' => ({required Object name, required Object former}) => '${name} 会收到通知。${former} 仍是你的属灵权柄之一。',
-			_ => null,
-		} ?? switch (path) {
 			'authorities.madeMaker' => ({required Object name}) => '${name} 现在是你的门训者。',
 			'members.username' => '用户名',
 			'members.usernameHint' => 'zhang.san',
+			_ => null,
+		} ?? switch (path) {
 			'members.usernameHelp' => '其他成员会通过它找到你。',
 			'members.usernameChecking' => '正在检查…',
 			'members.usernameFree' => ({required Object username}) => '@${username} 可以使用',
@@ -4537,11 +4582,11 @@ extension on TranslationsZh {
 			'prayer.moments.morning' => '早晨',
 			'prayer.moments.noon' => '中午',
 			'prayer.moments.evening' => '傍晚',
-			_ => null,
-		} ?? switch (path) {
 			'prayer.moments.night' => '夜晚',
 			'prayer.retreatOf.morning' => '早晨祷告',
 			'prayer.retreatOf.noon' => '中午祷告',
+			_ => null,
+		} ?? switch (path) {
 			'prayer.retreatOf.evening' => '傍晚祷告',
 			'prayer.retreatOf.night' => '夜晚祷告',
 			'prayer.hero.now' => ({required Object retreat}) => '${retreat} · 现在',
@@ -5051,11 +5096,11 @@ extension on TranslationsZh {
 			'seekFirst.shield.thisApp' => '此应用',
 			'seekFirst.shield.fill' => '填写我的汇报',
 			'seekFirst.shield.pause' => ({required Object n}) => '暂停 5 分钟（${n}/3）',
-			_ => null,
-		} ?? switch (path) {
 			'seekFirst.shield.notificationTitle' => '先求神',
 			'seekFirst.shield.notificationBody' => '轻点此处填写你的汇报。',
 			'seekFirst.shield.serviceBody' => '你的应用每天都会关闭，直到你填写报告。',
+			_ => null,
+		} ?? switch (path) {
 			'seekFirst.permissionsAndroid' => '为了关闭你的应用，CMFI Connect 需要在即将打开的设置中开启两项权限：“使用情况访问权限”（知道哪个应用在前台）和“显示在其他应用上层”（显示“先求神”页面）。任何数据都不会离开你的手机。',
 			'seekFirst.permissionsContinue' => '继续',
 			'seekFirst.deniedAndroid' => '没有这两项权限，CMFI Connect 无法关闭应用。你可以在“设置 › 应用 › 特殊访问权限”中开启。',
@@ -5402,6 +5447,24 @@ extension on TranslationsZh {
 			'journey.grace.title' => '恩典日',
 			'journey.grace.text' => ({required Object day}) => '你没有填写${day}的报告，但你的连续记录还在：每周都有一个恩典日保护它。明天是新的开始。',
 			'journey.grace.ok' => '谢谢！',
+			'menu.open' => '打开菜单',
+			'menu.discover' => '探索',
+			'menu.seeProfile' => '查看我的资料',
+			'me.title' => '我的资料',
+			'me.edit' => '编辑我的资料',
+			'me.journey' => '我的旅程',
+			'me.streak' => '连续',
+			'me.steps' => '里程',
+			'me.timeMonth' => '本月与神同在',
+			'me.nextStep' => ({required Object name}) => '下一个：${name}',
+			'me.soulsDue' => ({required Object n}) => '${n} 人待再次联系',
+			'me.souls' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n, one: '${n} 人', other: '${n} 人', ), 
+			'settings.title' => '设置',
+			'settings.practice' => '我的操练',
+			'settings.help' => '帮助',
+			'settings.contact' => '联系我们',
+			'settings.privacy' => '隐私',
+			'settings.terms' => '使用条款',
 			_ => null,
 		};
 	}

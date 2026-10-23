@@ -84,17 +84,14 @@
     "sample": {
       "bibleReading": "Bible reading",
       "chapters": "10 ch.",
-      "prayerAlone": "Prayer alone",
       "hymn": "Hymn",
       "hymnNumber": "No. 12",
-      "prayerOfTheDay": "Prayer topic of the day",
-      "prayerTopic": "For our young people's exams",
       "praying": "12 people are praying",
-      "iPray": "I pray",
       "retreat": "Youth retreat",
-      "announcement": "Announcement",
-      "announcementText": "Sunday service starts at 8:30 am."
+      "announcement": "Announcement"
     },
+    "next": "Continue",
+    "skip": "Skip",
     "createAccount": "Create my account",
     "haveAccount": "I already have an account"
   },
@@ -206,7 +203,6 @@
   "home": {
     "greeting": "Hello {name}",
     "greetingNoName": "Hello",
-    "profile": "My profile",
     "progress": "{filled} of {total}",
     "progressLabel": "items filled in",
     "goals": "goals",
@@ -2497,5 +2493,32 @@
       "text": "You didn't fill in {day}, but your streak goes on: each week, a day of grace protects it. Tomorrow is a new start.",
       "ok": "Thank you!"
     }
+  },
+  "menu": {
+    "open": "Open the menu",
+    "discover": "Discover",
+    "seeProfile": "See my profile"
+  },
+  "me": {
+    "title": "My profile",
+    "edit": "Edit my profile",
+    "journey": "My journey",
+    "streak": "Streak",
+    "steps": "Steps",
+    "timeMonth": "With God this month",
+    "nextStep": "next: {name}",
+    "soulsDue": "{n} to contact again",
+    "souls(plural, param=n)": {
+      "one": "{n} person",
+      "other": "{n} people"
+    }
+  },
+  "settings": {
+    "title": "Settings",
+    "practice": "My practice",
+    "help": "Help",
+    "contact": "Contact us",
+    "privacy": "Privacy",
+    "terms": "Terms of use"
   }
 }

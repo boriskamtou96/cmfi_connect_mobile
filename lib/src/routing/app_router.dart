@@ -41,7 +41,6 @@ import '../features/ministry/presentation/ministry_people_screen.dart';
 import '../features/ministry/presentation/ministry_screen.dart';
 import '../features/ministry/presentation/nations_screen.dart';
 import '../features/ministry/presentation/purpose_screen.dart';
-import '../features/more/presentation/more_screen.dart';
 import '../features/notifications/presentation/notification_screen.dart';
 import '../features/notifications/presentation/notifications_screen.dart';
 import '../features/onboarding/presentation/splash_screen.dart';
@@ -57,6 +56,7 @@ import '../features/prayer/presentation/retreat_session_screen.dart';
 import '../features/premium/presentation/premium_screen.dart';
 import '../features/profile/presentation/church_form_screen.dart';
 import '../features/profile/presentation/photo_crop_screen.dart';
+import '../features/profile/presentation/profile_screen.dart';
 import '../features/reports/presentation/export_screen.dart';
 import '../features/reports/presentation/items_screen.dart';
 import '../features/reports/presentation/new_item_screen.dart';
@@ -64,6 +64,7 @@ import '../features/reports/presentation/report_send_screen.dart';
 import '../features/reports/presentation/report_sending_screen.dart';
 import '../features/reports/presentation/reports_screen.dart';
 import '../features/seek_first/presentation/seek_first_screen.dart';
+import '../features/settings/presentation/settings_screen.dart';
 import '../features/shell/presentation/app_shell_screen.dart';
 import '../features/souls/presentation/soul_form_screen.dart';
 import '../features/souls/presentation/soul_screen.dart';
@@ -129,7 +130,8 @@ class AppRouter extends RootStackRouter {
       ],
     ),
     // Plus: opened from the photo at the top of the home screen
-    AutoRoute(path: '/more', page: MoreRoute.page, guards: [authGuard]),
+    AutoRoute(path: '/profile', page: ProfileRoute.page, guards: [authGuard]),
+    AutoRoute(path: '/settings', page: SettingsRoute.page, guards: [authGuard]),
     AutoRoute(
       path: '/bible/search',
       page: BibleSearchRoute.page,

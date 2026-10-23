@@ -34,7 +34,7 @@ void main() {
       expect(app.notificationsApi.registered.single.language, 'fr');
       expect(app.notifications.pushChannels, ['announcements']);
 
-      await openMore(tester);
+      await openSettings(tester);
       await tester.pumpAndSettle();
       await scrollToEnd(tester);
       await tester.tap(find.text('Se déconnecter'));

@@ -109,10 +109,12 @@ void main() {
       await tester.tap(find.text(tab).last);
       await tester.pumpAndSettle();
     }
-    // and Plus, from the photo of the home screen
+    // the menu, from the photo of the home screen, and the profile
     await tester.tap(find.text(AppLocale.ar.buildSync().nav.home).last);
     await tester.pumpAndSettle();
-    await tester.tap(find.byTooltip(AppLocale.ar.buildSync().home.profile));
+    await tester.tap(find.byTooltip(AppLocale.ar.buildSync().menu.open));
+    await tester.pumpAndSettle();
+    await tester.tap(find.text(AppLocale.ar.buildSync().menu.seeProfile));
     await tester.pumpAndSettle();
     expect(tester.takeException(), isNull);
   });
@@ -123,7 +125,9 @@ void main() {
     ) async {
       await LocaleSettings.setLocale(locale);
       await pumpApp(tester, token: 't');
-      await tester.tap(find.byTooltip(locale.buildSync().home.profile));
+      await tester.tap(find.byTooltip(locale.buildSync().menu.open));
+      await tester.pumpAndSettle();
+      await tester.tap(find.text(locale.buildSync().menu.seeProfile));
       await tester.pumpAndSettle();
       await tester.tap(find.byType(AppBackButton));
       await tester.pumpAndSettle();

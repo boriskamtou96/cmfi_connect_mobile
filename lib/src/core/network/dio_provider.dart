@@ -31,7 +31,7 @@ Dio dio(Ref ref) {
         compact: true,
         maxWidth: 100,
         // a whole Bible (7 MB) is not worth printing, and the passwords of
-        // the sign-in forms never are
+        // the sign-in forms never are@
         filter: (options, _) =>
             options.uri.host == Uri.parse(apiBaseUrl).host &&
             !_withPassword.any(options.uri.path.endsWith),

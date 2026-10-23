@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Android 11 and below (fullBackupContent). The preferences are backed up,
+     not the secure storage (the session token, the saved password, the souls
+     followed): its key stays in the Keystore of the phone, so a copy restored
+     on a reinstall or another phone can no longer be decrypted. -->
+<full-backup-content>
+  <exclude domain="sharedpref" path="FlutterSecureStorage.xml" />
+  <exclude domain="sharedpref" path="FlutterSecureKeyStorage.xml" />
+</full-backup-content>

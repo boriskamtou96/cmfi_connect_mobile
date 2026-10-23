@@ -15,7 +15,7 @@ void main() {
   setUp(() => LocaleSettings.setLocale(AppLocale.fr));
 
   Future<void> openSeekFirst(WidgetTester tester) async {
-    await openMore(tester);
+    await openSettings(tester);
     await tester.pumpAndSettle();
     await scrollTo(tester, find.text("Cherche d'abord Dieu"));
     await tester.tap(find.text("Cherche d'abord Dieu"));
@@ -127,7 +127,7 @@ void main() {
       initialPreferences: {'seek_first_enabled': true, 'seek_first_start': 360},
     );
     app.appShield.current = const ShieldSelection(apps: 2);
-    await openMore(tester);
+    await openSettings(tester);
     await tester.pumpAndSettle();
     await scrollToEnd(tester);
     await tester.tap(find.text('Se déconnecter'));
@@ -144,7 +144,7 @@ void main() {
       token: 't',
       appShield: FakeAppShield(supported: false),
     );
-    await openMore(tester);
+    await openSettings(tester);
     await tester.pumpAndSettle();
     await scrollToEnd(tester);
 

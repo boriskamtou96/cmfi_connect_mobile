@@ -65,7 +65,7 @@ void main() {
     expect(find.text('Bonjour Boris'), findsOneWidget);
 
     // signed out: the number and Face ID stay
-    await openMore(tester);
+    await openSettings(tester);
     await tester.pumpAndSettle();
     await scrollToEnd(tester);
     await tester.tap(find.text('Se déconnecter'));

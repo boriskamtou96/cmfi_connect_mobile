@@ -11,7 +11,7 @@ const welcomeTitle = "J'ai déjà un compte";
 
 /// Plus › Supprimer mon compte, then the password.
 Future<void> openAndConfirm(WidgetTester tester, String password) async {
-  await openMore(tester);
+  await openSettings(tester);
   await tester.pumpAndSettle();
   await scrollToEnd(tester);
   await tester.tap(find.text('Supprimer mon compte'));

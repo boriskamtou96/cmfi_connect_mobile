@@ -83,17 +83,14 @@
     "sample": {
       "bibleReading": "读经",
       "chapters": "10 章",
-      "prayerAlone": "个人祷告",
       "hymn": "诗歌",
       "hymnNumber": "第 12 首",
-      "prayerOfTheDay": "今日代祷事项",
-      "prayerTopic": "为青年们的考试祷告",
       "praying": "12 人正在祷告",
-      "iPray": "我来祷告",
       "retreat": "青年退修会",
-      "announcement": "通知",
-      "announcementText": "主日崇拜早上 8:30 开始。"
+      "announcement": "通知"
     },
+    "next": "继续",
+    "skip": "跳过",
     "createAccount": "创建账号",
     "haveAccount": "我已有账号"
   },
@@ -205,7 +202,6 @@
   "home": {
     "greeting": "你好，{name}",
     "greetingNoName": "你好",
-    "profile": "我的资料",
     "progress": "{filled}/{total}",
     "progressLabel": "项已填写",
     "goals": "目标",
@@ -2412,5 +2408,32 @@
       "text": "你没有填写{day}的报告，但你的连续记录还在：每周都有一个恩典日保护它。明天是新的开始。",
       "ok": "谢谢！"
     }
+  },
+  "menu": {
+    "open": "打开菜单",
+    "discover": "探索",
+    "seeProfile": "查看我的资料"
+  },
+  "me": {
+    "title": "我的资料",
+    "edit": "编辑我的资料",
+    "journey": "我的旅程",
+    "streak": "连续",
+    "steps": "里程",
+    "timeMonth": "本月与神同在",
+    "nextStep": "下一个：{name}",
+    "soulsDue": "{n} 人待再次联系",
+    "souls(plural, param=n)": {
+      "one": "{n} 人",
+      "other": "{n} 人"
+    }
+  },
+  "settings": {
+    "title": "设置",
+    "practice": "我的操练",
+    "help": "帮助",
+    "contact": "联系我们",
+    "privacy": "隐私",
+    "terms": "使用条款"
   }
 }

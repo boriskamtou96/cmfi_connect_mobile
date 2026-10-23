@@ -437,16 +437,15 @@ Future<TestApp> pumpApp(
   );
 }
 
-/// Scrolls the visible list to its end ("Se déconnecter" in Plus): a row only
+/// Scrolls the visible list to its end ("Se déconnecter" in Réglages): a row only
 /// half in view would be tapped through the tab bar.
 Future<void> scrollToEnd(WidgetTester tester) async {
   await tester.drag(find.byType(Scrollable).last, const Offset(0, -3000));
   await tester.pumpAndSettle();
 }
 
-/// Plus, from the photo at the top of the home screen (back to Accueil
-/// first).
-Future<void> openMore(WidgetTester tester) async {
+/// Back to Accueil, when the tab bar shows another tab.
+Future<void> _backHome(WidgetTester tester) async {
   final home = find.descendant(
     of: find.byType(NavigationBar),
     matching: find.text('Accueil'),
@@ -455,7 +454,27 @@ Future<void> openMore(WidgetTester tester) async {
     await tester.tap(home);
     await tester.pumpAndSettle();
   }
-  await tester.tap(find.byTooltip('Mon profil'));
+}
+
+/// The menu (the drawer), from the photo at the top of the home screen
+/// (back to Accueil first).
+Future<void> openMenu(WidgetTester tester) async {
+  await _backHome(tester);
+  await tester.tap(find.byTooltip('Ouvrir le menu'));
+  await tester.pumpAndSettle();
+}
+
+/// Mon profil, from the top of the menu.
+Future<void> openProfile(WidgetTester tester) async {
+  await openMenu(tester);
+  await tester.tap(find.text('Voir mon profil'));
+  await tester.pumpAndSettle();
+}
+
+/// Réglages, from the gear of Mon profil.
+Future<void> openSettings(WidgetTester tester) async {
+  await openProfile(tester);
+  await tester.tap(find.byTooltip('Réglages'));
   await tester.pumpAndSettle();
 }
 
@@ -477,7 +496,12 @@ Future<void> scrollTo(WidgetTester tester, Finder finder) async {
     return false;
   }
 
-  final list = find.byType(Scrollable).first;
+  // the list that holds it when it is built (the menu over the home
+  // screen), the first one otherwise
+  final holder = find.ancestor(of: finder, matching: find.byType(Scrollable));
+  final list = holder.evaluate().isNotEmpty
+      ? holder.first
+      : find.byType(Scrollable).first;
   for (var i = 0; i < 30 && !inView(); i++) {
     await tester.drag(list, const Offset(0, -200));
     await tester.pumpAndSettle();

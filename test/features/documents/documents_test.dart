@@ -13,7 +13,7 @@ void main() {
   setUp(() => LocaleSettings.setLocale(AppLocale.fr));
 
   Future<void> openDocuments(WidgetTester tester) async {
-    await openMore(tester);
+    await openMenu(tester);
     await tester.pumpAndSettle();
     await scrollTo(tester, find.text('Nos documents'));
     await tester.tap(find.text('Nos documents'));

@@ -101,7 +101,7 @@ void main() {
     tester,
   ) async {
     final app = await pumpApp(tester, token: 't');
-    await openMore(tester);
+    await openProfile(tester);
 
     // « Mes étapes » in Plus
     expect(find.text('Mes étapes'), findsOneWidget);

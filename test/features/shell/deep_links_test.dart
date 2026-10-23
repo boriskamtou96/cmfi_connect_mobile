@@ -142,7 +142,7 @@ void main() {
 
     testWidgets("Siri's link: today's report", (tester) async {
       final app = await pumpApp(tester, token: 't');
-      await openMore(tester);
+      await openProfile(tester);
 
       app.incomingLinks.add('cmficonnect://open?to=reports/today');
       await tester.pumpAndSettle();

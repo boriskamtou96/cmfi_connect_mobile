@@ -87,6 +87,9 @@ class Translations with BaseTranslations<AppLocale, Translations> {
 	late final Translations$received$fr received = Translations$received$fr.internal(_root);
 	late final Translations$update$fr update = Translations$update$fr.internal(_root);
 	late final Translations$journey$fr journey = Translations$journey$fr.internal(_root);
+	late final Translations$menu$fr menu = Translations$menu$fr.internal(_root);
+	late final Translations$me$fr me = Translations$me$fr.internal(_root);
+	late final Translations$settings$fr settings = Translations$settings$fr.internal(_root);
 }
 
 // Path: app
@@ -296,6 +299,12 @@ class Translations$welcome$fr {
 	);
 
 	late final Translations$welcome$sample$fr sample = Translations$welcome$sample$fr.internal(_root);
+
+	/// fr: 'Continuer'
+	String get next => 'Continuer';
+
+	/// fr: 'Passer'
+	String get skip => 'Passer';
 
 	/// fr: 'Créer mon compte'
 	String get createAccount => 'Créer mon compte';
@@ -3936,6 +3945,90 @@ class Translations$journey$fr {
 	late final Translations$journey$grace$fr grace = Translations$journey$grace$fr.internal(_root);
 }
 
+// Path: menu
+class Translations$menu$fr {
+	Translations$menu$fr.internal(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// fr: 'Ouvrir le menu'
+	String get open => 'Ouvrir le menu';
+
+	/// fr: 'Découvrir'
+	String get discover => 'Découvrir';
+
+	/// fr: 'Voir mon profil'
+	String get seeProfile => 'Voir mon profil';
+}
+
+// Path: me
+class Translations$me$fr {
+	Translations$me$fr.internal(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// fr: 'Mon profil'
+	String get title => 'Mon profil';
+
+	/// fr: 'Modifier mon profil'
+	String get edit => 'Modifier mon profil';
+
+	/// fr: 'Mon cheminement'
+	String get journey => 'Mon cheminement';
+
+	/// fr: 'Série'
+	String get streak => 'Série';
+
+	/// fr: 'Étapes'
+	String get steps => 'Étapes';
+
+	/// fr: 'Avec Dieu ce mois'
+	String get timeMonth => 'Avec Dieu ce mois';
+
+	/// fr: 'prochaine : {name}'
+	String nextStep({required Object name}) => 'prochaine : ${name}';
+
+	/// fr: '{n} à recontacter'
+	String soulsDue({required Object n}) => '${n} à recontacter';
+
+	/// fr: '(one) {{n} personne} (other) {{n} personnes}'
+	String souls({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('fr'))(n,
+		one: '${n} personne',
+		other: '${n} personnes',
+	);
+}
+
+// Path: settings
+class Translations$settings$fr {
+	Translations$settings$fr.internal(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// fr: 'Réglages'
+	String get title => 'Réglages';
+
+	/// fr: 'Ma pratique'
+	String get practice => 'Ma pratique';
+
+	/// fr: 'Aide'
+	String get help => 'Aide';
+
+	/// fr: 'Nous contacter'
+	String get contact => 'Nous contacter';
+
+	/// fr: 'Confidentialité'
+	String get privacy => 'Confidentialité';
+
+	/// fr: 'Conditions d'utilisation'
+	String get terms => 'Conditions d\'utilisation';
+}
+
 // Path: welcome.seek
 class Translations$welcome$seek$fr {
 	Translations$welcome$seek$fr.internal(this._root);
@@ -4013,35 +4106,20 @@ class Translations$welcome$sample$fr {
 	/// fr: '10 ch.'
 	String get chapters => '10 ch.';
 
-	/// fr: 'Prière seule'
-	String get prayerAlone => 'Prière seule';
-
 	/// fr: 'Cantique'
 	String get hymn => 'Cantique';
 
 	/// fr: 'N° 12'
 	String get hymnNumber => 'N° 12';
 
-	/// fr: 'Sujet de prière du jour'
-	String get prayerOfTheDay => 'Sujet de prière du jour';
-
-	/// fr: 'Pour les examens de nos jeunes'
-	String get prayerTopic => 'Pour les examens de nos jeunes';
-
 	/// fr: '12 personnes prient'
 	String get praying => '12 personnes prient';
-
-	/// fr: 'Je prie'
-	String get iPray => 'Je prie';
 
 	/// fr: 'Retraite des jeunes'
 	String get retreat => 'Retraite des jeunes';
 
 	/// fr: 'Annonce'
 	String get announcement => 'Annonce';
-
-	/// fr: 'Le culte de dimanche commence à 8 h 30.'
-	String get announcementText => 'Le culte de dimanche commence à 8 h 30.';
 }
 
 // Path: auth.login
@@ -7254,16 +7332,13 @@ extension on Translations {
 			'welcome.streak' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('fr'))(n, one: '${n} jour avec Dieu', other: '${n} jours avec Dieu', ), 
 			'welcome.sample.bibleReading' => 'Lecture biblique',
 			'welcome.sample.chapters' => '10 ch.',
-			'welcome.sample.prayerAlone' => 'Prière seule',
 			'welcome.sample.hymn' => 'Cantique',
 			'welcome.sample.hymnNumber' => 'N° 12',
-			'welcome.sample.prayerOfTheDay' => 'Sujet de prière du jour',
-			'welcome.sample.prayerTopic' => 'Pour les examens de nos jeunes',
 			'welcome.sample.praying' => '12 personnes prient',
-			'welcome.sample.iPray' => 'Je prie',
 			'welcome.sample.retreat' => 'Retraite des jeunes',
 			'welcome.sample.announcement' => 'Annonce',
-			'welcome.sample.announcementText' => 'Le culte de dimanche commence à 8 h 30.',
+			'welcome.next' => 'Continuer',
+			'welcome.skip' => 'Passer',
 			'welcome.createAccount' => 'Créer mon compte',
 			'welcome.haveAccount' => 'J\'ai déjà un compte',
 			'auth.phone' => 'Téléphone',
@@ -7700,11 +7775,11 @@ extension on Translations {
 			'authorities.makeMakerTitle' => ({required Object name}) => 'Faire de ${name} ton faiseur de disciples ?',
 			'authorities.makeMakerText' => ({required Object name}) => '${name} sera prévenu.',
 			'authorities.makeMakerTextFormer' => ({required Object name, required Object former}) => '${name} sera prévenu. ${former} reste parmi tes autorités.',
-			_ => null,
-		} ?? switch (path) {
 			'authorities.madeMaker' => ({required Object name}) => '${name} est maintenant ton faiseur de disciples.',
 			'members.username' => 'Pseudo',
 			'members.usernameHint' => 'prenom.nom',
+			_ => null,
+		} ?? switch (path) {
 			'members.usernameHelp' => 'C\'est ainsi que les autres membres te trouveront.',
 			'members.usernameChecking' => 'Vérification…',
 			'members.usernameFree' => ({required Object username}) => '@${username} est libre',
@@ -8214,11 +8289,11 @@ extension on Translations {
 			'prayer.moments.morning' => 'Matin',
 			'prayer.moments.noon' => 'Midi',
 			'prayer.moments.evening' => 'Soirée',
-			_ => null,
-		} ?? switch (path) {
 			'prayer.moments.night' => 'Nuit',
 			'prayer.retreatOf.morning' => 'Retraite du matin',
 			'prayer.retreatOf.noon' => 'Retraite de midi',
+			_ => null,
+		} ?? switch (path) {
 			'prayer.retreatOf.evening' => 'Retraite du soir',
 			'prayer.retreatOf.night' => 'Retraite de la nuit',
 			'prayer.hero.now' => ({required Object retreat}) => '${retreat} · maintenant',
@@ -8728,11 +8803,11 @@ extension on Translations {
 			'seekFirst.shield.thisApp' => 'Cette app',
 			'seekFirst.shield.fill' => 'Remplir mon compte rendu',
 			'seekFirst.shield.pause' => ({required Object n}) => 'Pause de 5 min (${n}/3)',
-			_ => null,
-		} ?? switch (path) {
 			'seekFirst.shield.notificationTitle' => 'Cherche d\'abord Dieu',
 			'seekFirst.shield.notificationBody' => 'Touche ici pour remplir ton compte rendu.',
 			'seekFirst.shield.serviceBody' => 'Tes apps se ferment chaque jour jusqu\'à ton compte rendu.',
+			_ => null,
+		} ?? switch (path) {
 			'seekFirst.permissionsAndroid' => 'Pour fermer tes apps, CMFI Connect a besoin de deux autorisations, à activer dans les réglages qui vont s\'ouvrir : « Accès aux données d\'utilisation » (savoir quelle app est ouverte) et « Afficher par-dessus les autres applis » (montrer l\'écran Cherche d\'abord Dieu). Rien ne quitte ton téléphone.',
 			'seekFirst.permissionsContinue' => 'Continuer',
 			'seekFirst.deniedAndroid' => 'Sans ces deux autorisations, CMFI Connect ne peut pas fermer d\'apps. Tu peux les activer dans Réglages › Applications › Accès spécial.',
@@ -9079,6 +9154,24 @@ extension on Translations {
 			'journey.grace.title' => 'Un jour de grâce',
 			'journey.grace.text' => ({required Object day}) => 'Tu n\'as pas rempli ${day}, mais ta série continue : chaque semaine, un jour de grâce la protège. Demain est un nouveau départ.',
 			'journey.grace.ok' => 'Merci !',
+			'menu.open' => 'Ouvrir le menu',
+			'menu.discover' => 'Découvrir',
+			'menu.seeProfile' => 'Voir mon profil',
+			'me.title' => 'Mon profil',
+			'me.edit' => 'Modifier mon profil',
+			'me.journey' => 'Mon cheminement',
+			'me.streak' => 'Série',
+			'me.steps' => 'Étapes',
+			'me.timeMonth' => 'Avec Dieu ce mois',
+			'me.nextStep' => ({required Object name}) => 'prochaine : ${name}',
+			'me.soulsDue' => ({required Object n}) => '${n} à recontacter',
+			'me.souls' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('fr'))(n, one: '${n} personne', other: '${n} personnes', ), 
+			'settings.title' => 'Réglages',
+			'settings.practice' => 'Ma pratique',
+			'settings.help' => 'Aide',
+			'settings.contact' => 'Nous contacter',
+			'settings.privacy' => 'Confidentialité',
+			'settings.terms' => 'Conditions d\'utilisation',
 			_ => null,
 		};
 	}

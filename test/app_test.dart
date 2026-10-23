@@ -281,7 +281,7 @@ void main() {
       (tester) async {
         final app = await pumpApp(tester, token: 'saved-token');
 
-        await openMore(tester);
+        await openSettings(tester);
         // last item of the tab, below the fold
         await scrollToEnd(tester);
         await tapText(tester, 'Se déconnecter');

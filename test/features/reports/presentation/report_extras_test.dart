@@ -116,7 +116,7 @@ void main() {
       await tester.pump(const Duration(seconds: 5));
       await tester.pumpAndSettle();
 
-      await openMore(tester);
+      await openSettings(tester);
       await tester.pumpAndSettle();
       await scrollToEnd(tester);
       await tester.tap(find.text('Se déconnecter'));
@@ -266,7 +266,7 @@ void main() {
       expect(app.notifications.planned.last.at.hour, 21);
       expect(app.notifications.planned.last.at.minute, 30);
 
-      await openMore(tester);
+      await openSettings(tester);
       await tester.pumpAndSettle();
       await scrollToEnd(tester);
       expect(find.text('21:30'), findsOneWidget);
@@ -287,7 +287,7 @@ void main() {
           token: 't',
           initialPreferences: {'reminder_enabled': true, 'reminder_time': 1290},
         );
-        await openMore(tester);
+        await openSettings(tester);
         await tester.pumpAndSettle();
         await scrollToEnd(tester);
         await tester.tap(find.text('Rappel du soir'));
@@ -341,10 +341,15 @@ void main() {
       final app = await pumpApp(tester, token: 't');
       seedDay(app, 0, chapters: 4);
       app.container.invalidate(reportHistoryProvider);
-      await openMore(tester);
+      // from the actions of the Compte rendu tab
+      await tester.tap(
+        find.descendant(
+          of: find.byType(NavigationBar),
+          matching: find.text('Compte rendu'),
+        ),
+      );
       await tester.pumpAndSettle();
-      await scrollTo(tester, find.text('Exporter mon compte rendu'));
-      await tester.tap(find.text('Exporter mon compte rendu'));
+      await tester.tap(find.byTooltip('Exporter mon compte rendu'));
       await tester.pumpAndSettle();
       return app;
     }

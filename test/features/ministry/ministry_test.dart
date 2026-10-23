@@ -62,8 +62,9 @@ void main() {
   });
 
   Future<void> openMinistry(WidgetTester tester) async {
-    await openMore(tester);
+    await openMenu(tester);
     await tester.pumpAndSettle();
+    await scrollTo(tester, find.text('Notre ministère'));
     await tester.tap(find.text('Notre ministère'));
     await tester.pumpAndSettle();
   }

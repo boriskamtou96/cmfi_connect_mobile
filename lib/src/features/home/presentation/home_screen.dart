@@ -47,6 +47,7 @@ import '../../reports/application/day_report_controller.dart';
 import '../../reports/application/report_goals.dart';
 import '../../reports/application/reports_providers.dart';
 import '../../reports/domain/time_with_god.dart';
+import '../../shell/presentation/app_drawer.dart';
 import '../../souls/application/souls.dart';
 import '../../souls/domain/soul.dart';
 import '../../teachings/application/now_playing.dart';
@@ -105,6 +106,8 @@ class HomeScreen extends ConsumerWidget {
       // the summary is night blue, under the status bar
       value: SystemUiOverlayStyle.light,
       child: Scaffold(
+        // ☰ or swiped from the edge: where to go
+        drawer: const AppDrawer(),
         body: Stack(
           children: [
             RefreshIndicator.adaptive(
@@ -336,6 +339,26 @@ class _Summary extends ConsumerWidget {
             children: [
               Row(
                 children: [
+                  // the photo opens the menu (23/10/2026: one button less in
+                  // the header); light on the night blue, crowned with Premium
+                  Tooltip(
+                    message: t.menu.open,
+                    child: InkResponse(
+                      onTap: () => Scaffold.of(context).openDrawer(),
+                      radius: 28,
+                      child: PremiumCrown(
+                        size: 42,
+                        child: MemberAvatar(
+                          initials: profile?.initials ?? '',
+                          photo: profile?.avatar,
+                          size: 42,
+                          background: Colors.white,
+                          foreground: AppColors.primary,
+                        ),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(width: AppSpacing.md),
                   Expanded(
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -376,26 +399,6 @@ class _Summary extends ConsumerWidget {
                   const IconTheme(
                     data: IconThemeData(color: Colors.white),
                     child: _Bell(),
-                  ),
-                  const SizedBox(width: AppSpacing.xs),
-                  Tooltip(
-                    message: t.home.profile,
-                    child: InkResponse(
-                      onTap: () => context.router.push(const MoreRoute()),
-                      radius: 28,
-                      // light on the night blue, in both modes; crowned
-                      // with Premium
-                      child: PremiumCrown(
-                        size: 42,
-                        child: MemberAvatar(
-                          initials: profile?.initials ?? '',
-                          photo: profile?.avatar,
-                          size: 42,
-                          background: Colors.white,
-                          foreground: AppColors.primary,
-                        ),
-                      ),
-                    ),
                   ),
                 ],
               ),

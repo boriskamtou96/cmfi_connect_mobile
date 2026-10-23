@@ -18,7 +18,6 @@ abstract final class StockPhotos {
   static const prayingHands = 'assets/photos/pray_hands.jpg';
   static const worship = 'assets/photos/worship_hands.jpg';
   static const womanWorshipping = 'assets/photos/woman_scarf.jpg';
-  static const joyful = 'assets/photos/woman_red.jpg';
   static const family = 'assets/photos/family_grass.jpg';
 
   /// Decorative faces (welcome and sign-in illustrations only).
@@ -355,84 +354,4 @@ class FaceStack extends StatelessWidget {
       ),
     );
   }
-}
-
-/// A rounded arch: a half circle over a rectangle with rounded corners.
-class ArchClipper extends CustomClipper<Path> {
-  const ArchClipper();
-
-  @override
-  Path getClip(Size size) {
-    final r = size.width / 2;
-    const corner = 28.0;
-    return Path()
-      ..moveTo(0, r)
-      ..arcToPoint(Offset(size.width, r), radius: Radius.circular(r))
-      ..lineTo(size.width, size.height - corner)
-      ..quadraticBezierTo(
-        size.width,
-        size.height,
-        size.width - corner,
-        size.height,
-      )
-      ..lineTo(corner, size.height)
-      ..quadraticBezierTo(0, size.height, 0, size.height - corner)
-      ..close();
-  }
-
-  @override
-  bool shouldReclip(covariant CustomClipper<Path> oldClipper) => false;
-}
-
-/// A photo in an arch, a coloured arch offset behind it.
-class ArchPhoto extends StatelessWidget {
-  const ArchPhoto({
-    required this.asset,
-    required this.backdrop,
-    this.alignment = Alignment.center,
-    this.width = 250,
-    this.height = 320,
-    super.key,
-  });
-
-  final String asset;
-  final Color backdrop;
-  final Alignment alignment;
-  final double width;
-  final double height;
-
-  @override
-  Widget build(BuildContext context) => SizedBox(
-    width: width + 16,
-    height: height + 10,
-    child: Stack(
-      children: [
-        // a decoration: physical, the same in both reading directions
-        Positioned(
-          left: 16,
-          top: 0,
-          width: width,
-          height: height,
-          child: ClipPath(
-            clipper: const ArchClipper(),
-            child: ColoredBox(color: backdrop),
-          ),
-        ),
-        Positioned(
-          left: 0,
-          top: 10,
-          width: width,
-          height: height,
-          child: ClipPath(
-            clipper: const ArchClipper(),
-            child: GradedPhoto(
-              asset,
-              alignment: alignment,
-              grade: PhotoGrade.warm,
-            ),
-          ),
-        ),
-      ],
-    ),
-  );
 }

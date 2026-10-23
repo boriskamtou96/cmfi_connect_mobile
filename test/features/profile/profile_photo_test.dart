@@ -123,7 +123,7 @@ void main() {
         findsNothing,
       );
 
-      await openMore(tester);
+      await openProfile(tester);
       await tester.tap(find.bySemanticsLabel('Ajouter une photo de profil'));
       await tester.pumpAndSettle();
       expect(find.text('Photo de profil'), findsOneWidget);
@@ -167,7 +167,7 @@ void main() {
       tester,
     ) async {
       final app = await pumpApp(tester, token: 't');
-      await openMore(tester);
+      await openProfile(tester);
 
       await tester.tap(find.bySemanticsLabel('Ajouter une photo de profil'));
       await tester.pumpAndSettle();
@@ -181,7 +181,7 @@ void main() {
 
     testWidgets('cancelled while cropping: nothing is sent', (tester) async {
       final app = await pumpWithPicture(tester);
-      await openMore(tester);
+      await openProfile(tester);
 
       await tester.tap(find.bySemanticsLabel('Ajouter une photo de profil'));
       await tester.pumpAndSettle();
@@ -200,7 +200,7 @@ void main() {
         token: 't',
         profile: FakeProfileApi.defaultProfile.copyWith(avatar: avatar),
       );
-      await openMore(tester);
+      await openProfile(tester);
 
       await tester.tap(find.bySemanticsLabel('Changer la photo de profil'));
       await tester.pumpAndSettle();
@@ -221,7 +221,7 @@ void main() {
         code: 'AVATAR_INVALID',
         message: '',
       );
-      await openMore(tester);
+      await openProfile(tester);
 
       await tester.tap(find.bySemanticsLabel('Ajouter une photo de profil'));
       await tester.pumpAndSettle();
@@ -242,8 +242,9 @@ void main() {
 
     testWidgets('changed from the profile form too', (tester) async {
       await pumpApp(tester, token: 't');
-      await openMore(tester);
-      await tester.tap(find.text('Boris Kamtou'));
+      await openProfile(tester);
+      await scrollTo(tester, find.text('Modifier mon profil'));
+      await tester.tap(find.text('Modifier mon profil'));
       await tester.pumpAndSettle();
 
       expect(

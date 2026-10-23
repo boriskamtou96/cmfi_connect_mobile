@@ -52,7 +52,7 @@ void main() {
       biometrics: biometrics,
       initialPreferences: preferences,
     );
-    await openMore(tester);
+    await openProfile(tester);
     await scrollTo(tester, find.text('Suivi des âmes'));
     await tester.tap(find.text('Suivi des âmes'));
     await tester.pumpAndSettle();

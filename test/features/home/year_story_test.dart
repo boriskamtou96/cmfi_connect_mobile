@@ -418,7 +418,7 @@ void main() {
         token: 't',
         premium: FakePremiumStore(active: true),
       );
-      await openMore(tester);
+      await openProfile(tester);
 
       final row = find.text('Mon année avec Dieu');
       await tester.scrollUntilVisible(row, 200);
@@ -443,7 +443,7 @@ void main() {
       tester,
     ) async {
       await pumpApp(tester, token: 't');
-      await openMore(tester);
+      await openProfile(tester);
       final row = find.text('Mon année avec Dieu');
       await tester.scrollUntilVisible(row, 200);
       await tester.ensureVisible(row);

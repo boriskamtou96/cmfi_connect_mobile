@@ -255,7 +255,7 @@ void main() {
           StreakMilestones.key: ['7', '30'],
         },
       );
-      await openMore(tester);
+      await openSettings(tester);
       await tester.pumpAndSettle();
       await scrollToEnd(tester);
       await tester.tap(find.text('Se déconnecter'));

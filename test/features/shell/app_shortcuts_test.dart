@@ -31,7 +31,7 @@ void main() {
     await LocaleSettings.setLocale(AppLocale.fr);
     await tester.pumpAndSettle();
 
-    await openMore(tester);
+    await openSettings(tester);
     await tester.pumpAndSettle();
     await scrollToEnd(tester);
     await tester.tap(find.text('Se déconnecter'));

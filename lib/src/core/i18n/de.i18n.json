@@ -84,17 +84,14 @@
     "sample": {
       "bibleReading": "Bibellese",
       "chapters": "10 Kap.",
-      "prayerAlone": "Persönliches Gebet",
       "hymn": "Lied",
       "hymnNumber": "Nr. 12",
-      "prayerOfTheDay": "Gebetsanliegen des Tages",
-      "prayerTopic": "Für die Prüfungen unserer Jugendlichen",
       "praying": "12 Personen beten",
-      "iPray": "Ich bete",
       "retreat": "Jugendfreizeit",
-      "announcement": "Ankündigung",
-      "announcementText": "Der Gottesdienst am Sonntag beginnt um 8:30 Uhr."
+      "announcement": "Ankündigung"
     },
+    "next": "Weiter",
+    "skip": "Überspringen",
     "createAccount": "Konto erstellen",
     "haveAccount": "Ich habe schon ein Konto"
   },
@@ -206,7 +203,6 @@
   "home": {
     "greeting": "Hallo {name}",
     "greetingNoName": "Hallo",
-    "profile": "Mein Profil",
     "progress": "{filled} von {total}",
     "progressLabel": "Elemente ausgefüllt",
     "goals": "Ziele",
@@ -2496,5 +2492,32 @@
       "text": "Du hast {day} nicht ausgefüllt, aber deine Serie geht weiter: Jede Woche schützt sie ein Tag der Gnade. Morgen ist ein neuer Anfang.",
       "ok": "Danke!"
     }
+  },
+  "menu": {
+    "open": "Menü öffnen",
+    "discover": "Entdecken",
+    "seeProfile": "Mein Profil ansehen"
+  },
+  "me": {
+    "title": "Mein Profil",
+    "edit": "Mein Profil bearbeiten",
+    "journey": "Mein Weg",
+    "streak": "Serie",
+    "steps": "Etappen",
+    "timeMonth": "Mit Gott diesen Monat",
+    "nextStep": "nächste: {name}",
+    "soulsDue": "{n} erneut kontaktieren",
+    "souls(plural, param=n)": {
+      "one": "{n} Person",
+      "other": "{n} Personen"
+    }
+  },
+  "settings": {
+    "title": "Einstellungen",
+    "practice": "Meine Praxis",
+    "help": "Hilfe",
+    "contact": "Kontakt",
+    "privacy": "Datenschutz",
+    "terms": "Nutzungsbedingungen"
   }
 }

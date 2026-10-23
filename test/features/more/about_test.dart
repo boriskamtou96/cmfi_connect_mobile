@@ -25,7 +25,7 @@ void main() {
     addTearDown(() => messenger.setMockMethodCallHandler(channel, null));
 
     await pumpApp(tester, token: 't');
-    await openMore(tester);
+    await openSettings(tester);
     await tester.pumpAndSettle();
     await scrollToEnd(tester);
 

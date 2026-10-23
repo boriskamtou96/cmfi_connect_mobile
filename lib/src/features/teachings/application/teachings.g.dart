@@ -11,7 +11,9 @@ part of 'teachings.dart';
 /// The teachings that answer [search] in [category] ('' for all), a page at
 /// a time: the first one at once, the next ones at the end of the list.
 /// Without a search, the first page kept on the phone shows at once
-/// ([FetchPolicy.cacheAndNetwork]); a search asks the server.
+/// ([FetchPolicy.cacheAndNetwork]); a search asks the server. Without
+/// network the copy gives way to the error: the screen then lists the
+/// messages downloaded, the only ones that play offline.
 
 @ProviderFor(Teachings)
 final teachingsProvider = TeachingsFamily._();
@@ -19,13 +21,17 @@ final teachingsProvider = TeachingsFamily._();
 /// The teachings that answer [search] in [category] ('' for all), a page at
 /// a time: the first one at once, the next ones at the end of the list.
 /// Without a search, the first page kept on the phone shows at once
-/// ([FetchPolicy.cacheAndNetwork]); a search asks the server.
+/// ([FetchPolicy.cacheAndNetwork]); a search asks the server. Without
+/// network the copy gives way to the error: the screen then lists the
+/// messages downloaded, the only ones that play offline.
 final class TeachingsProvider
     extends $AsyncNotifierProvider<Teachings, TeachingsState> {
   /// The teachings that answer [search] in [category] ('' for all), a page at
   /// a time: the first one at once, the next ones at the end of the list.
   /// Without a search, the first page kept on the phone shows at once
-  /// ([FetchPolicy.cacheAndNetwork]); a search asks the server.
+  /// ([FetchPolicy.cacheAndNetwork]); a search asks the server. Without
+  /// network the copy gives way to the error: the screen then lists the
+  /// messages downloaded, the only ones that play offline.
   TeachingsProvider._({
     required TeachingsFamily super.from,
     required (String, String) super.argument,
@@ -62,12 +68,14 @@ final class TeachingsProvider
   }
 }
 
-String _$teachingsHash() => r'f33268e2b9362549b3d3db5c4c223e5d95165541';
+String _$teachingsHash() => r'27011961166db8410c3cc49a11f6ffb5cf21f65a';
 
 /// The teachings that answer [search] in [category] ('' for all), a page at
 /// a time: the first one at once, the next ones at the end of the list.
 /// Without a search, the first page kept on the phone shows at once
-/// ([FetchPolicy.cacheAndNetwork]); a search asks the server.
+/// ([FetchPolicy.cacheAndNetwork]); a search asks the server. Without
+/// network the copy gives way to the error: the screen then lists the
+/// messages downloaded, the only ones that play offline.
 
 final class TeachingsFamily extends $Family
     with
@@ -90,7 +98,9 @@ final class TeachingsFamily extends $Family
   /// The teachings that answer [search] in [category] ('' for all), a page at
   /// a time: the first one at once, the next ones at the end of the list.
   /// Without a search, the first page kept on the phone shows at once
-  /// ([FetchPolicy.cacheAndNetwork]); a search asks the server.
+  /// ([FetchPolicy.cacheAndNetwork]); a search asks the server. Without
+  /// network the copy gives way to the error: the screen then lists the
+  /// messages downloaded, the only ones that play offline.
 
   TeachingsProvider call(String search, String category) =>
       TeachingsProvider._(argument: (search, category), from: this);
@@ -102,7 +112,9 @@ final class TeachingsFamily extends $Family
 /// The teachings that answer [search] in [category] ('' for all), a page at
 /// a time: the first one at once, the next ones at the end of the list.
 /// Without a search, the first page kept on the phone shows at once
-/// ([FetchPolicy.cacheAndNetwork]); a search asks the server.
+/// ([FetchPolicy.cacheAndNetwork]); a search asks the server. Without
+/// network the copy gives way to the error: the screen then lists the
+/// messages downloaded, the only ones that play offline.
 
 abstract class _$Teachings extends $AsyncNotifier<TeachingsState> {
   late final _$args = ref.$arg as (String, String);

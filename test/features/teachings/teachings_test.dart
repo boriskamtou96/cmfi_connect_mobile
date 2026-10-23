@@ -33,7 +33,7 @@ void main() {
       teachingFiles: files,
       initialPreferences: preferences,
     );
-    await openMore(tester);
+    await openMenu(tester);
     await scrollTo(tester, find.text('Enseignements'));
     await tester.tap(find.text('Enseignements'));
     await tester.pumpAndSettle();

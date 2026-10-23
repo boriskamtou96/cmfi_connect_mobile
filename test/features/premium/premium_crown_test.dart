@@ -19,7 +19,7 @@ void main() {
     expect(find.byIcon(AppIcons.premiumCrown), findsNWidgets(2));
     expect(find.bySemanticsLabel(RegExp('Membre Premium')), findsOneWidget);
 
-    await openMore(tester);
+    await openProfile(tester);
     expect(find.byIcon(AppIcons.premiumCrown), findsWidgets);
   });
 
@@ -27,7 +27,7 @@ void main() {
     await pumpApp(tester, token: 't');
 
     expect(find.byIcon(AppIcons.premiumCrown), findsNothing);
-    await openMore(tester);
+    await openProfile(tester);
     expect(find.byIcon(AppIcons.premiumCrown), findsNothing);
   });
 }

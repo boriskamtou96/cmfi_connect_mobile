@@ -37,7 +37,7 @@ void main() {
 
     expect(app.accountStorage.account?.firstName, 'Boris');
 
-    await openMore(tester);
+    await openSettings(tester);
     await scrollToEnd(tester);
     await tester.tap(find.text('Se déconnecter'));
     await tester.pumpAndSettle();
@@ -52,7 +52,7 @@ void main() {
 
     expect(find.text('Bonjour Boris'), findsOneWidget);
 
-    await openMore(tester);
+    await openProfile(tester);
     // the card shows the name and pseudo, no longer the phone
     expect(find.text('Boris Kamtou'), findsOneWidget);
   });
@@ -66,9 +66,10 @@ void main() {
       account: account,
       profile: incomplete,
     );
-    await openMore(tester);
+    await openProfile(tester);
 
-    await tester.tap(find.text('Boris Kamtou'));
+    await scrollTo(tester, find.text('Modifier mon profil'));
+    await tester.tap(find.text('Modifier mon profil'));
     await tester.pumpAndSettle();
     await tester.tap(find.widgetWithText(FilledButton, 'Enregistrer'));
     await tester.pumpAndSettle();
@@ -84,8 +85,9 @@ void main() {
     'no name anywhere: "Ajoute ton nom", then type it in the profile',
     (tester) async {
       final app = await pumpApp(tester, token: 't', profile: incomplete);
-      await openMore(tester);
+      await openProfile(tester);
 
+      await scrollTo(tester, find.text('Ajoute ton nom'));
       await tester.tap(find.text('Ajoute ton nom'));
       await tester.pumpAndSettle();
       final fields = find.byType(TextFormField);
@@ -108,10 +110,11 @@ void main() {
       account: account,
       profile: null,
     );
-    await openMore(tester);
+    await openProfile(tester);
 
     expect(find.text('Boris Kamtou'), findsOneWidget);
 
+    await scrollTo(tester, find.text('Boris Kamtou'));
     await tester.tap(find.text('Boris Kamtou'));
     await tester.pumpAndSettle();
     // first name, last name, pseudo, city, then the church (the country
@@ -140,8 +143,9 @@ void main() {
         city: 'Douala',
       ),
     );
-    await openMore(tester);
-    await tester.tap(find.text('Boris Kamtou'));
+    await openProfile(tester);
+    await scrollTo(tester, find.text('Modifier mon profil'));
+    await tester.tap(find.text('Modifier mon profil'));
     await tester.pumpAndSettle();
 
     final country = find.text('Cameroun');

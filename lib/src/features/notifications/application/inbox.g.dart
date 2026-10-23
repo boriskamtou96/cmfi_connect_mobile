@@ -44,7 +44,7 @@ final class InboxProvider extends $AsyncNotifierProvider<Inbox, InboxState> {
   Inbox create() => Inbox();
 }
 
-String _$inboxHash() => r'1d092f44e9b2aa3065567b3d5a647c27369fe247';
+String _$inboxHash() => r'2a7a832dd297d433bcee8c838ab5b0a146c5fce9';
 
 /// The member's notifications, the latest first, and how many are not read
 /// (the badge of the bell). Kept alive: the home screen and Plus show the

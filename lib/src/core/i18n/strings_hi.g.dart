@@ -85,6 +85,9 @@ class TranslationsHi extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _Translations$received$hi received = _Translations$received$hi._(_root);
 	@override late final _Translations$update$hi update = _Translations$update$hi._(_root);
 	@override late final _Translations$journey$hi journey = _Translations$journey$hi._(_root);
+	@override late final _Translations$menu$hi menu = _Translations$menu$hi._(_root);
+	@override late final _Translations$me$hi me = _Translations$me$hi._(_root);
+	@override late final _Translations$settings$hi settings = _Translations$settings$hi._(_root);
 }
 
 // Path: app
@@ -189,6 +192,8 @@ class _Translations$welcome$hi extends Translations$welcome$fr {
 		other: 'परमेश्वर के साथ ${n} दिन',
 	);
 	@override late final _Translations$welcome$sample$hi sample = _Translations$welcome$sample$hi._(_root);
+	@override String get next => 'आगे बढ़ें';
+	@override String get skip => 'छोड़ें';
 	@override String get createAccount => 'अकाउंट बनाओ';
 	@override String get haveAccount => 'मेरा अकाउंट पहले से है';
 }
@@ -1873,6 +1878,54 @@ class _Translations$journey$hi extends Translations$journey$fr {
 	@override late final _Translations$journey$grace$hi grace = _Translations$journey$grace$hi._(_root);
 }
 
+// Path: menu
+class _Translations$menu$hi extends Translations$menu$fr {
+	_Translations$menu$hi._(TranslationsHi root) : this._root = root, super.internal(root);
+
+	final TranslationsHi _root; // ignore: unused_field
+
+	// Translations
+	@override String get open => 'मेनू खोलो';
+	@override String get discover => 'खोजो';
+	@override String get seeProfile => 'मेरी प्रोफ़ाइल देखो';
+}
+
+// Path: me
+class _Translations$me$hi extends Translations$me$fr {
+	_Translations$me$hi._(TranslationsHi root) : this._root = root, super.internal(root);
+
+	final TranslationsHi _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'मेरी प्रोफ़ाइल';
+	@override String get edit => 'मेरी प्रोफ़ाइल बदलो';
+	@override String get journey => 'मेरी यात्रा';
+	@override String get streak => 'सिलसिला';
+	@override String get steps => 'पड़ाव';
+	@override String get timeMonth => 'इस महीने परमेश्वर के साथ';
+	@override String nextStep({required Object name}) => 'अगला: ${name}';
+	@override String soulsDue({required Object n}) => '${n} से फिर संपर्क करना है';
+	@override String souls({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n,
+		one: '${n} व्यक्ति',
+		other: '${n} व्यक्ति',
+	);
+}
+
+// Path: settings
+class _Translations$settings$hi extends Translations$settings$fr {
+	_Translations$settings$hi._(TranslationsHi root) : this._root = root, super.internal(root);
+
+	final TranslationsHi _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'सेटिंग्स';
+	@override String get practice => 'मेरा अभ्यास';
+	@override String get help => 'मदद';
+	@override String get contact => 'हमसे संपर्क करो';
+	@override String get privacy => 'गोपनीयता';
+	@override String get terms => 'उपयोग की शर्तें';
+}
+
 // Path: welcome.seek
 class _Translations$welcome$seek$hi extends Translations$welcome$seek$fr {
 	_Translations$welcome$seek$hi._(TranslationsHi root) : this._root = root, super.internal(root);
@@ -1921,16 +1974,11 @@ class _Translations$welcome$sample$hi extends Translations$welcome$sample$fr {
 	// Translations
 	@override String get bibleReading => 'बाइबल पठन';
 	@override String get chapters => '10 अध्याय';
-	@override String get prayerAlone => 'व्यक्तिगत प्रार्थना';
 	@override String get hymn => 'भजन';
 	@override String get hymnNumber => 'नं. 12';
-	@override String get prayerOfTheDay => 'आज का प्रार्थना विषय';
-	@override String get prayerTopic => 'हमारे युवाओं की परीक्षाओं के लिए';
 	@override String get praying => '12 लोग प्रार्थना कर रहे हैं';
-	@override String get iPray => 'प्रार्थना में शामिल हूँ';
 	@override String get retreat => 'युवा रिट्रीट';
 	@override String get announcement => 'घोषणा';
-	@override String get announcementText => 'रविवार की आराधना सुबह 8:30 बजे शुरू होगी।';
 }
 
 // Path: auth.login
@@ -3660,16 +3708,13 @@ extension on TranslationsHi {
 			'welcome.streak' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n, one: 'परमेश्वर के साथ ${n} दिन', other: 'परमेश्वर के साथ ${n} दिन', ), 
 			'welcome.sample.bibleReading' => 'बाइबल पठन',
 			'welcome.sample.chapters' => '10 अध्याय',
-			'welcome.sample.prayerAlone' => 'व्यक्तिगत प्रार्थना',
 			'welcome.sample.hymn' => 'भजन',
 			'welcome.sample.hymnNumber' => 'नं. 12',
-			'welcome.sample.prayerOfTheDay' => 'आज का प्रार्थना विषय',
-			'welcome.sample.prayerTopic' => 'हमारे युवाओं की परीक्षाओं के लिए',
 			'welcome.sample.praying' => '12 लोग प्रार्थना कर रहे हैं',
-			'welcome.sample.iPray' => 'प्रार्थना में शामिल हूँ',
 			'welcome.sample.retreat' => 'युवा रिट्रीट',
 			'welcome.sample.announcement' => 'घोषणा',
-			'welcome.sample.announcementText' => 'रविवार की आराधना सुबह 8:30 बजे शुरू होगी।',
+			'welcome.next' => 'आगे बढ़ें',
+			'welcome.skip' => 'छोड़ें',
 			'welcome.createAccount' => 'अकाउंट बनाओ',
 			'welcome.haveAccount' => 'मेरा अकाउंट पहले से है',
 			'auth.phone' => 'फ़ोन',
@@ -4106,11 +4151,11 @@ extension on TranslationsHi {
 			'authorities.makeMakerTitle' => ({required Object name}) => '${name} को अपना चेला बनाने वाला बनाएँ?',
 			'authorities.makeMakerText' => ({required Object name}) => '${name} को सूचना दी जाएगी।',
 			'authorities.makeMakerTextFormer' => ({required Object name, required Object former}) => '${name} को सूचना दी जाएगी। ${former} तुम्हारे अधिकारियों में बने रहेंगे।',
-			_ => null,
-		} ?? switch (path) {
 			'authorities.madeMaker' => ({required Object name}) => '${name} अब तुम्हारे चेला बनाने वाले हैं।',
 			'members.username' => 'यूज़रनेम',
 			'members.usernameHint' => 'naam.surname',
+			_ => null,
+		} ?? switch (path) {
 			'members.usernameHelp' => 'दूसरे सदस्य तुम्हें इसी नाम से ढूँढेंगे।',
 			'members.usernameChecking' => 'जाँच हो रही है…',
 			'members.usernameFree' => ({required Object username}) => '@${username} उपलब्ध है',
@@ -4620,11 +4665,11 @@ extension on TranslationsHi {
 			'prayer.moments.morning' => 'सुबह',
 			'prayer.moments.noon' => 'दोपहर',
 			'prayer.moments.evening' => 'शाम',
-			_ => null,
-		} ?? switch (path) {
 			'prayer.moments.night' => 'रात',
 			'prayer.retreatOf.morning' => 'सुबह का प्रार्थना-समय',
 			'prayer.retreatOf.noon' => 'दोपहर का प्रार्थना-समय',
+			_ => null,
+		} ?? switch (path) {
 			'prayer.retreatOf.evening' => 'शाम का प्रार्थना-समय',
 			'prayer.retreatOf.night' => 'रात का प्रार्थना-समय',
 			'prayer.hero.now' => ({required Object retreat}) => '${retreat} · अभी',
@@ -5134,11 +5179,11 @@ extension on TranslationsHi {
 			'seekFirst.shield.thisApp' => 'यह ऐप',
 			'seekFirst.shield.fill' => 'मेरी रिपोर्ट भरें',
 			'seekFirst.shield.pause' => ({required Object n}) => '5 मिनट का विराम (${n}/3)',
-			_ => null,
-		} ?? switch (path) {
 			'seekFirst.shield.notificationTitle' => 'पहले परमेश्वर को खोजो',
 			'seekFirst.shield.notificationBody' => 'अपनी रिपोर्ट भरने के लिए यहाँ टैप करें।',
 			'seekFirst.shield.serviceBody' => 'तुम्हारे ऐप हर दिन तुम्हारी रिपोर्ट तक बंद रहते हैं।',
+			_ => null,
+		} ?? switch (path) {
 			'seekFirst.permissionsAndroid' => 'तुम्हारे ऐप बंद करने के लिए CMFI Connect को दो अनुमतियाँ चाहिए, जो खुलने वाली सेटिंग्स में चालू करनी हैं: «उपयोग डेटा तक पहुँच» (कौन-सा ऐप खुला है) और «दूसरे ऐप्स के ऊपर दिखाएँ» (पहले परमेश्वर को खोजो स्क्रीन दिखाने के लिए)। कुछ भी तुम्हारे फ़ोन से बाहर नहीं जाता।',
 			'seekFirst.permissionsContinue' => 'आगे बढ़ो',
 			'seekFirst.deniedAndroid' => 'इन दो अनुमतियों के बिना CMFI Connect ऐप बंद नहीं कर सकता। तुम इन्हें सेटिंग्स › ऐप्स › विशेष पहुँच में चालू कर सकते हो।',
@@ -5485,6 +5530,24 @@ extension on TranslationsHi {
 			'journey.grace.title' => 'अनुग्रह का दिन',
 			'journey.grace.text' => ({required Object day}) => 'तुमने ${day} की रिपोर्ट नहीं भरी, पर तुम्हारा सिलसिला जारी है: हर सप्ताह एक अनुग्रह का दिन उसे बचाता है। कल एक नई शुरुआत है।',
 			'journey.grace.ok' => 'धन्यवाद!',
+			'menu.open' => 'मेनू खोलो',
+			'menu.discover' => 'खोजो',
+			'menu.seeProfile' => 'मेरी प्रोफ़ाइल देखो',
+			'me.title' => 'मेरी प्रोफ़ाइल',
+			'me.edit' => 'मेरी प्रोफ़ाइल बदलो',
+			'me.journey' => 'मेरी यात्रा',
+			'me.streak' => 'सिलसिला',
+			'me.steps' => 'पड़ाव',
+			'me.timeMonth' => 'इस महीने परमेश्वर के साथ',
+			'me.nextStep' => ({required Object name}) => 'अगला: ${name}',
+			'me.soulsDue' => ({required Object n}) => '${n} से फिर संपर्क करना है',
+			'me.souls' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n, one: '${n} व्यक्ति', other: '${n} व्यक्ति', ), 
+			'settings.title' => 'सेटिंग्स',
+			'settings.practice' => 'मेरा अभ्यास',
+			'settings.help' => 'मदद',
+			'settings.contact' => 'हमसे संपर्क करो',
+			'settings.privacy' => 'गोपनीयता',
+			'settings.terms' => 'उपयोग की शर्तें',
 			_ => null,
 		};
 	}

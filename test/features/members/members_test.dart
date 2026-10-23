@@ -19,9 +19,10 @@ void main() {
   }
 
   Future<void> openProfile(WidgetTester tester) async {
-    await openMore(tester);
+    await openProfile(tester);
     // the profile card opens the profile
-    await tester.tap(find.text('Boris Kamtou'));
+    await scrollTo(tester, find.text('Modifier mon profil'));
+    await tester.tap(find.text('Modifier mon profil'));
     await tester.pumpAndSettle();
   }
 
@@ -30,7 +31,7 @@ void main() {
 
   testWidgets('Plus shows the pseudo', (tester) async {
     await pumpApp(tester, token: 't');
-    await openMore(tester);
+    await openProfile(tester);
 
     expect(find.text('@boris.kamtou'), findsOneWidget);
   });
@@ -68,7 +69,7 @@ void main() {
 
   testWidgets('a member has no administration', (tester) async {
     await pumpApp(tester, token: 't');
-    await openMore(tester);
+    await openMenu(tester);
     await scrollToEnd(tester);
 
     expect(find.text('ADMINISTRATION'), findsNothing);
@@ -90,7 +91,7 @@ void main() {
         ),
       ]),
     );
-    await openMore(tester);
+    await openMenu(tester);
     await scrollTo(tester, find.text('Équipe et rôles'));
     expect(find.text('ADMINISTRATION'), findsOneWidget);
     await tester.tap(find.text('Équipe et rôles'));

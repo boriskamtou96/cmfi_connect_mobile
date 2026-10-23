@@ -143,7 +143,7 @@ void main() {
       );
       expect(find.text(offeredTitle), findsNothing);
 
-      await openMore(tester);
+      await openSettings(tester);
       await scrollToEnd(tester);
       await tester.tap(find.text('Mettre à jour vers la version 1.0.22'));
       await tester.pumpAndSettle();
@@ -179,7 +179,7 @@ void main() {
       );
       expect(find.text(offeredTitle), findsNothing);
 
-      await openMore(tester);
+      await openSettings(tester);
       await scrollToEnd(tester);
       expect(find.textContaining('Mettre à jour vers'), findsNothing);
     });

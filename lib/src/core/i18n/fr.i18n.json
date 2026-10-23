@@ -84,17 +84,14 @@
     "sample": {
       "bibleReading": "Lecture biblique",
       "chapters": "10 ch.",
-      "prayerAlone": "Prière seule",
       "hymn": "Cantique",
       "hymnNumber": "N° 12",
-      "prayerOfTheDay": "Sujet de prière du jour",
-      "prayerTopic": "Pour les examens de nos jeunes",
       "praying": "12 personnes prient",
-      "iPray": "Je prie",
       "retreat": "Retraite des jeunes",
-      "announcement": "Annonce",
-      "announcementText": "Le culte de dimanche commence à 8 h 30."
+      "announcement": "Annonce"
     },
+    "next": "Continuer",
+    "skip": "Passer",
     "createAccount": "Créer mon compte",
     "haveAccount": "J'ai déjà un compte"
   },
@@ -206,7 +203,6 @@
   "home": {
     "greeting": "Bonjour {name}",
     "greetingNoName": "Bonjour",
-    "profile": "Mon profil",
     "progress": "{filled} sur {total}",
     "progressLabel": "éléments renseignés",
     "goals": "objectifs",
@@ -2496,5 +2492,32 @@
       "text": "Tu n'as pas rempli {day}, mais ta série continue : chaque semaine, un jour de grâce la protège. Demain est un nouveau départ.",
       "ok": "Merci !"
     }
+  },
+  "menu": {
+    "open": "Ouvrir le menu",
+    "discover": "Découvrir",
+    "seeProfile": "Voir mon profil"
+  },
+  "me": {
+    "title": "Mon profil",
+    "edit": "Modifier mon profil",
+    "journey": "Mon cheminement",
+    "streak": "Série",
+    "steps": "Étapes",
+    "timeMonth": "Avec Dieu ce mois",
+    "nextStep": "prochaine : {name}",
+    "soulsDue": "{n} à recontacter",
+    "souls(plural, param=n)": {
+      "one": "{n} personne",
+      "other": "{n} personnes"
+    }
+  },
+  "settings": {
+    "title": "Réglages",
+    "practice": "Ma pratique",
+    "help": "Aide",
+    "contact": "Nous contacter",
+    "privacy": "Confidentialité",
+    "terms": "Conditions d'utilisation"
   }
 }

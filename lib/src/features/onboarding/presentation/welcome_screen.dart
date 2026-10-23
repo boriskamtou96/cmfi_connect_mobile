@@ -10,17 +10,16 @@ import '../../../core/theme/app_icons.dart';
 import '../../../core/theme/app_motion.dart';
 import '../../../core/theme/app_spacing.dart';
 import '../../../core/theme/app_theme.dart';
-import '../../../core/theme/app_tones.dart';
-import '../../../core/utils/date_extensions.dart';
 import '../../../core/widgets/cmfi_logo.dart';
 import '../../../core/widgets/photo_kit.dart';
 import '../../../routing/app_router.dart';
 
-/// Signed out: three pages to swipe, each a big headline with one word on a
-/// gold marker, a photo in an arch with stickers around it (what the app
-/// does: the streak, the report, a hymn, a prayer topic, the community),
-/// and the two buttons always under them: create an account, sign in.
-/// Cream in light mode, night blue in dark mode.
+/// Signed out: three pages to swipe (23/10/2026), each a photo of real
+/// people from the top to the middle, melting into the page, with two
+/// frosted tags of what the app does on it; under it a headline with its
+/// word in bold and one sentence. Fixed under the pages: the dots,
+/// « Continuer » (« Créer mon compte » on the last page) and « J'ai déjà un
+/// compte ». « Passer » jumps to the last page.
 ///
 /// The three pages are the presentation: shown until the user goes on
 /// (either button), then only the first one, without dots (after a
@@ -39,30 +38,37 @@ class WelcomeScreen extends HookConsumerWidget {
     final page = useState(0);
     final look = _WelcomeLook.of(context);
     final pages = [
-      (
+      _Slide(
+        photo: StockPhotos.reading,
+        alignment: Alignment.center,
         before: t.welcome.seek.before,
         marked: t.welcome.seek.marked,
         after: t.welcome.seek.after,
         text: t.welcome.seek.text,
-        illustration: const _SeekIllustration() as Widget,
+        tags: const _SeekTags(),
       ),
       if (!seen) ...[
-        (
+        _Slide(
+          photo: StockPhotos.worship,
+          alignment: const Alignment(0.1, 0),
           before: t.welcome.worship.before,
           marked: t.welcome.worship.marked,
           after: t.welcome.worship.after,
           text: t.welcome.worship.text,
-          illustration: const _WorshipIllustration() as Widget,
+          tags: const _WorshipTags(),
         ),
-        (
+        _Slide(
+          photo: StockPhotos.family,
+          alignment: const Alignment(0, -0.3),
           before: t.welcome.community.before,
           marked: t.welcome.community.marked,
           after: t.welcome.community.after,
           text: t.welcome.community.text,
-          illustration: const _CommunityIllustration() as Widget,
+          tags: const _CommunityTags(),
         ),
       ],
     ];
+    final last = page.value == pages.length - 1;
 
     Future<void> goOn(PageRouteInfo route) async {
       if (!seen) {
@@ -73,66 +79,71 @@ class WelcomeScreen extends HookConsumerWidget {
       }
     }
 
+    void turnTo(int index) => controller.animateToPage(
+      index,
+      duration: AppMotion.of(context, AppMotion.medium),
+      curve: Curves.easeOutCubic,
+    );
+
+    final top = MediaQuery.paddingOf(context).top;
+
     return Scaffold(
       backgroundColor: look.background,
-      body: SafeArea(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            Padding(
-              padding: const EdgeInsetsDirectional.fromSTEB(
-                AppSpacing.xl,
-                AppSpacing.sm,
-                AppSpacing.xl,
-                0,
-              ),
-              child: Row(
-                children: [
-                  CmfiLogo(size: 30, disc: dark),
-                  const SizedBox(width: AppSpacing.sm),
-                  CmfiWordmark(fontSize: 17, onDark: dark),
-                ],
-              ),
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          Expanded(
+            child: Stack(
+              children: [
+                PageView(
+                  controller: controller,
+                  onPageChanged: (index) => page.value = index,
+                  children: [for (final slide in pages) _Page(slide)],
+                ),
+                // the brand and « Passer », on the photo
+                PositionedDirectional(
+                  start: AppSpacing.xl,
+                  end: AppSpacing.md,
+                  top: top + AppSpacing.sm,
+                  child: Row(
+                    children: [
+                      const CmfiLogo(size: 30, disc: true),
+                      const SizedBox(width: AppSpacing.sm),
+                      const CmfiWordmark(fontSize: 17, onDark: true),
+                      const Spacer(),
+                      if (pages.length > 1)
+                        AnimatedOpacity(
+                          opacity: last ? 0 : 1,
+                          duration: AppMotion.of(context, AppMotion.fast),
+                          child: TextButton(
+                            onPressed: last
+                                ? null
+                                : () => turnTo(pages.length - 1),
+                            style: TextButton.styleFrom(
+                              foregroundColor: Colors.white,
+                              textStyle: const TextStyle(
+                                fontFamily: AppTheme.fontFamily,
+                                fontSize: 15,
+                                fontWeight: FontWeight.w700,
+                              ),
+                            ),
+                            child: Text(t.welcome.skip),
+                          ),
+                        ),
+                    ],
+                  ),
+                ),
+              ],
             ),
-            Expanded(
-              child: PageView(
-                controller: controller,
-                onPageChanged: (index) => page.value = index,
-                children: [
-                  for (final item in pages)
-                    _Page(
-                      before: item.before,
-                      marked: item.marked,
-                      after: item.after,
-                      illustration: item.illustration,
-                    ),
-                ],
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsetsDirectional.fromSTEB(
-                AppSpacing.xl,
-                AppSpacing.sm,
-                AppSpacing.xl,
-                AppSpacing.md,
-              ),
+          ),
+          SafeArea(
+            top: false,
+            minimum: const EdgeInsets.only(bottom: AppSpacing.sm),
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: AppSpacing.xl),
               child: Column(
                 children: [
-                  AnimatedSwitcher(
-                    duration: AppMotion.of(context, AppMotion.fast),
-                    child: Text(
-                      pages[page.value].text,
-                      key: ValueKey(page.value),
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        fontSize: 15,
-                        height: 1.4,
-                        color: look.body,
-                      ),
-                    ),
-                  ),
                   if (pages.length > 1) ...[
-                    const SizedBox(height: AppSpacing.lg),
                     Semantics(
                       label: t.welcome.step(
                         current: page.value + 1,
@@ -146,14 +157,14 @@ class WelcomeScreen extends HookConsumerWidget {
                               AnimatedContainer(
                                 duration: AppMotion.of(context, AppMotion.fast),
                                 margin: const EdgeInsets.symmetric(
-                                  horizontal: AppSpacing.xs,
+                                  horizontal: 3,
                                 ),
-                                width: i == page.value ? 26 : 8,
-                                height: 8,
+                                width: i == page.value ? 22 : 7,
+                                height: 7,
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(99),
                                   color: i == page.value
-                                      ? AppColors.gold
+                                      ? look.ink
                                       : look.ink.withValues(alpha: 0.18),
                                 ),
                               ),
@@ -161,12 +172,14 @@ class WelcomeScreen extends HookConsumerWidget {
                         ),
                       ),
                     ),
+                    const SizedBox(height: AppSpacing.lg),
                   ],
-                  const SizedBox(height: AppSpacing.lg + 2),
                   SizedBox(
                     width: double.infinity,
                     child: FilledButton(
-                      onPressed: () => goOn(const RegisterRoute()),
+                      onPressed: last
+                          ? () => goOn(const RegisterRoute())
+                          : () => turnTo(page.value + 1),
                       style: FilledButton.styleFrom(
                         backgroundColor: dark
                             ? AppColors.goldLight
@@ -182,7 +195,9 @@ class WelcomeScreen extends HookConsumerWidget {
                           fontWeight: FontWeight.w800,
                         ),
                       ),
-                      child: Text(t.welcome.createAccount),
+                      child: Text(
+                        last ? t.welcome.createAccount : t.welcome.next,
+                      ),
                     ),
                   ),
                   const SizedBox(height: AppSpacing.xs),
@@ -202,14 +217,14 @@ class WelcomeScreen extends HookConsumerWidget {
                 ],
               ),
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
 }
 
-/// The colours of the page: cream with night-blue words in light mode,
+/// The colours of the page: white with night-blue words in light mode,
 /// night blue with white words in dark mode.
 class _WelcomeLook {
   const _WelcomeLook({
@@ -223,12 +238,12 @@ class _WelcomeLook {
       ? const _WelcomeLook(
           background: AppColors.night,
           ink: Colors.white,
-          body: Color(0xCCFFFFFF),
+          body: Color(0xB3FFFFFF),
         )
       : const _WelcomeLook(
-          background: AppColors.cream,
+          background: Colors.white,
           ink: AppColors.primaryDeep,
-          body: Color(0xFF5B4A2E),
+          body: AppColors.muted,
         );
 
   final Color background;
@@ -236,77 +251,105 @@ class _WelcomeLook {
   final Color body;
 }
 
-/// A page: the headline, its word on a gold marker, then the illustration,
-/// scaled down on a small phone.
-class _Page extends StatelessWidget {
-  const _Page({
+/// What a page shows.
+class _Slide {
+  const _Slide({
+    required this.photo,
+    required this.alignment,
     required this.before,
     required this.marked,
     required this.after,
-    required this.illustration,
+    required this.text,
+    required this.tags,
   });
 
+  final String photo;
+  final Alignment alignment;
   final String before;
   final String marked;
   final String after;
-  final Widget illustration;
+  final String text;
+
+  /// The frosted tags over the photo, placed in the photo's box.
+  final Widget tags;
+}
+
+/// A page: the photo, darker at the top for the brand and melting into the
+/// page at the bottom, its tags, then the headline and the sentence.
+class _Page extends StatelessWidget {
+  const _Page(this.slide);
+
+  final _Slide slide;
 
   @override
   Widget build(BuildContext context) {
     final look = _WelcomeLook.of(context);
     final style = TextStyle(
-      fontSize: 36,
-      height: 1.12,
-      fontWeight: FontWeight.w800,
-      letterSpacing: -1.2,
+      fontSize: 30,
+      height: 1.15,
+      fontWeight: FontWeight.w400,
+      letterSpacing: -0.9,
       color: look.ink,
     );
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
+        Expanded(
+          child: Stack(
+            fit: StackFit.expand,
+            children: [
+              GradedPhoto(slide.photo, alignment: slide.alignment),
+              PhotoScrim(
+                colors: [
+                  Colors.black.withValues(alpha: 0.45),
+                  Colors.black.withValues(alpha: 0),
+                  look.background.withValues(alpha: 0),
+                  look.background,
+                ],
+                stops: const [0, 0.28, 0.72, 1],
+              ),
+              ExcludeSemantics(child: slide.tags),
+            ],
+          ),
+        ),
         Padding(
           padding: const EdgeInsetsDirectional.fromSTEB(
             AppSpacing.xl,
-            AppSpacing.lg + 2,
+            0,
             AppSpacing.xl,
-            AppSpacing.md,
+            AppSpacing.lg,
           ),
-          child: Semantics(
-            header: true,
-            label: '$before$marked$after',
-            child: ExcludeSemantics(
-              child: Text.rich(
-                TextSpan(
-                  children: [
-                    TextSpan(text: before),
-                    WidgetSpan(
-                      alignment: PlaceholderAlignment.baseline,
-                      baseline: TextBaseline.alphabetic,
-                      child: Container(
-                        padding: const EdgeInsets.symmetric(horizontal: 6),
-                        decoration: BoxDecoration(
-                          color: AppColors.goldLight,
-                          borderRadius: BorderRadius.circular(10),
+          child: Column(
+            children: [
+              Semantics(
+                header: true,
+                label: '${slide.before}${slide.marked}${slide.after}',
+                child: ExcludeSemantics(
+                  child: Text.rich(
+                    TextSpan(
+                      children: [
+                        TextSpan(text: slide.before),
+                        TextSpan(
+                          text: slide.marked,
+                          style: const TextStyle(fontWeight: FontWeight.w800),
                         ),
-                        child: Text(
-                          marked,
-                          style: style.copyWith(color: AppColors.primaryDeep),
-                        ),
-                      ),
+                        TextSpan(text: slide.after),
+                      ],
                     ),
-                    TextSpan(text: after),
-                  ],
+                    textAlign: TextAlign.center,
+                    style: style,
+                  ),
                 ),
-                style: style,
               ),
-            ),
-          ),
-        ),
-        Expanded(
-          child: ExcludeSemantics(
-            child: FittedBox(
-              child: SizedBox.fromSize(size: _canvas, child: illustration),
-            ),
+              const SizedBox(height: AppSpacing.sm + 2),
+              Text(
+                slide.text,
+                textAlign: TextAlign.center,
+                maxLines: 3,
+                overflow: TextOverflow.ellipsis,
+                style: TextStyle(fontSize: 15, height: 1.4, color: look.body),
+              ),
+            ],
           ),
         ),
       ],
@@ -314,319 +357,148 @@ class _Page extends StatelessWidget {
   }
 }
 
-/// The size the illustrations are drawn at (scaled to the room left).
-const _canvas = Size(360, 350);
+/// A frosted tag on a photo: a round icon and a few words.
+class _Tag extends StatelessWidget {
+  const _Tag({required this.icon, required this.text, required this.color});
 
-/// The arch in the middle of the canvas, the stickers around it.
-class _Illustration extends StatelessWidget {
-  const _Illustration({
-    required this.photo,
-    required this.alignment,
-    required this.backdrop,
-    required this.stickers,
-  });
-
-  final String photo;
-  final Alignment alignment;
-  final Color backdrop;
-  final List<Widget> stickers;
+  final IconData icon;
+  final String text;
+  final Color color;
 
   @override
-  Widget build(BuildContext context) => Stack(
-    clipBehavior: Clip.none,
-    children: [
-      Positioned(
-        left: (_canvas.width - 266) / 2,
-        top: 0,
-        child: ArchPhoto(
-          asset: photo,
-          alignment: alignment,
-          backdrop: backdrop,
+  Widget build(BuildContext context) => FrostedGlass(
+    radius: 99,
+    tint: Colors.white.withValues(alpha: 0.18),
+    padding: const EdgeInsetsDirectional.fromSTEB(6, 6, 14, 6),
+    child: Row(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Container(
+          width: 26,
+          height: 26,
+          decoration: BoxDecoration(shape: BoxShape.circle, color: color),
+          child: Icon(icon, size: 15, color: Colors.white),
         ),
-      ),
-      ...stickers,
-    ],
+        const SizedBox(width: 8),
+        Text(
+          text,
+          style: const TextStyle(
+            fontSize: 13.5,
+            fontWeight: FontWeight.w700,
+            color: Colors.white,
+          ),
+        ),
+      ],
+    ),
   );
 }
 
-class _SeekIllustration extends StatelessWidget {
-  const _SeekIllustration();
+/// The tags of a page, each placed as fractions of the photo's box (from
+/// its start and its top).
+class _Tags extends StatelessWidget {
+  const _Tags(this.tags);
+
+  final List<({double x, double y, Widget tag})> tags;
+
+  @override
+  Widget build(BuildContext context) => LayoutBuilder(
+    builder: (context, box) => Stack(
+      children: [
+        for (final item in tags)
+          PositionedDirectional(
+            start: box.maxWidth * item.x,
+            top: box.maxHeight * item.y,
+            child: item.tag,
+          ),
+      ],
+    ),
+  );
+}
+
+class _SeekTags extends StatelessWidget {
+  const _SeekTags();
 
   @override
   Widget build(BuildContext context) {
     final t = context.t;
     final s = t.welcome.sample;
-    return _Illustration(
-      photo: StockPhotos.joyful,
-      alignment: const Alignment(0, -0.5),
-      backdrop: AppColors.goldLight,
-      stickers: [
-        PositionedDirectional(
-          start: 4,
-          top: 24,
-          child: Sticker(
-            icon: AppIcons.streak,
-            text: t.welcome.streak(n: 24),
-            color: const Color(0xFFFF7A1A),
-            angle: -0.08,
-            big: true,
-          ),
+    return _Tags([
+      (
+        x: 0.06,
+        y: 0.30,
+        tag: _Tag(
+          icon: AppIcons.streak,
+          text: t.welcome.streak(n: 24),
+          color: const Color(0xFFFF7A1A),
         ),
-        PositionedDirectional(
-          end: 2,
-          top: 168,
-          child: _MiniCard(
-            angle: 0.05,
-            title: s.bibleReading,
-            meta: s.chapters,
-            icon: AppIcons.bible,
-            color: AppModule.bible.tone(context).color,
-          ),
+      ),
+      (
+        x: 0.42,
+        y: 0.56,
+        tag: _Tag(
+          icon: AppIcons.bible,
+          text: '${s.bibleReading} · ${s.chapters}',
+          color: AppColors.primary,
         ),
-        PositionedDirectional(
-          start: 6,
-          top: 262,
-          child: _MiniCard(
-            angle: -0.04,
-            title: s.prayerAlone,
-            meta: 45.toDurationLabel(),
-            icon: AppIcons.prayNow,
-            color: AppModule.prayer.tone(context).color,
-          ),
-        ),
-      ],
-    );
+      ),
+    ]);
   }
 }
 
-class _WorshipIllustration extends StatelessWidget {
-  const _WorshipIllustration();
+class _WorshipTags extends StatelessWidget {
+  const _WorshipTags();
 
   @override
   Widget build(BuildContext context) {
     final s = context.t.welcome.sample;
-    final prayer = AppModule.prayer.tone(context).color;
-    return _Illustration(
-      photo: StockPhotos.womanWorshipping,
-      alignment: const Alignment(0.05, 0),
-      backdrop: const Color(0xFFF4B8A0),
-      stickers: [
-        PositionedDirectional(
-          end: 2,
-          top: 28,
-          child: Sticker(
-            icon: AppIcons.hymn,
-            text: '${s.hymn} ${s.hymnNumber}',
-            color: AppModule.hymns.tone(context).color,
-            angle: 0.07,
-            big: true,
-          ),
+    return _Tags([
+      (
+        x: 0.50,
+        y: 0.24,
+        tag: _Tag(
+          icon: AppIcons.hymn,
+          text: '${s.hymn} ${s.hymnNumber}',
+          color: const Color(0xFF1DB954),
         ),
-        PositionedDirectional(
-          start: 2,
-          top: 214,
-          child: Transform.rotate(
-            angle: -0.04,
-            child: Container(
-              width: 214,
-              padding: const EdgeInsets.all(AppSpacing.md),
-              decoration: BoxDecoration(
-                // a printed card: white in both modes
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(18),
-                boxShadow: floatingShadow(1.2),
-              ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    s.prayerOfTheDay.toUpperCase(),
-                    style: TextStyle(
-                      fontSize: 10,
-                      fontWeight: FontWeight.w800,
-                      letterSpacing: 0.6,
-                      color: prayer,
-                    ),
-                  ),
-                  const SizedBox(height: 3),
-                  Text(
-                    s.prayerTopic,
-                    style: const TextStyle(
-                      fontSize: 14,
-                      fontWeight: FontWeight.w800,
-                      color: AppColors.ink,
-                    ),
-                  ),
-                  const SizedBox(height: AppSpacing.sm),
-                  Row(
-                    children: [
-                      FaceStack(
-                        faces: [
-                          for (final face in const [
-                            StockPhotos.manSmiling,
-                            StockPhotos.womanLaughing,
-                            StockPhotos.elder,
-                          ])
-                            CroppedFace(face, size: 18),
-                        ],
-                        ring: Colors.white,
-                        size: 22,
-                      ),
-                      const SizedBox(width: 6),
-                      Expanded(
-                        child: Text(
-                          s.praying,
-                          style: const TextStyle(
-                            fontSize: 11,
-                            color: AppColors.muted,
-                          ),
-                        ),
-                      ),
-                      Container(
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: 9,
-                          vertical: 4,
-                        ),
-                        decoration: ShapeDecoration(
-                          color: prayer,
-                          shape: const StadiumBorder(),
-                        ),
-                        child: Text(
-                          s.iPray,
-                          style: const TextStyle(
-                            fontSize: 11,
-                            fontWeight: FontWeight.w800,
-                            color: Colors.white,
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-            ),
-          ),
+      ),
+      (
+        x: 0.06,
+        y: 0.54,
+        tag: _Tag(
+          icon: AppIcons.prayNow,
+          text: s.praying,
+          color: AppColors.gold,
         ),
-      ],
-    );
+      ),
+    ]);
   }
 }
 
-class _CommunityIllustration extends StatelessWidget {
-  const _CommunityIllustration();
+class _CommunityTags extends StatelessWidget {
+  const _CommunityTags();
 
   @override
   Widget build(BuildContext context) {
     final s = context.t.welcome.sample;
-    return _Illustration(
-      photo: StockPhotos.family,
-      alignment: const Alignment(0, -0.3),
-      backdrop: const Color(0xFFBFE3C8),
-      stickers: [
-        PositionedDirectional(
-          start: 4,
-          top: 28,
-          child: Sticker(
-            icon: AppIcons.eventsTile,
-            text: s.retreat,
-            color: AppModule.events.tone(context).color,
-            angle: -0.07,
-            big: true,
-          ),
+    return _Tags([
+      (
+        x: 0.06,
+        y: 0.26,
+        tag: _Tag(
+          icon: AppIcons.eventsTile,
+          text: s.retreat,
+          color: const Color(0xFF7C5CFF),
         ),
-        PositionedDirectional(
-          end: 0,
-          top: 224,
-          child: _MiniCard(
-            angle: 0.05,
-            title: s.announcement,
-            meta: s.announcementText,
-            icon: AppIcons.announcements,
-            color: AppColors.gold,
-            width: 252,
-          ),
+      ),
+      (
+        x: 0.60,
+        y: 0.44,
+        tag: _Tag(
+          icon: AppIcons.announcements,
+          text: s.announcement,
+          color: AppColors.gold,
         ),
-      ],
-    );
+      ),
+    ]);
   }
-}
-
-/// A small white card of the illustration: an icon, two lines, a green
-/// check.
-class _MiniCard extends StatelessWidget {
-  const _MiniCard({
-    required this.angle,
-    required this.title,
-    required this.meta,
-    required this.icon,
-    required this.color,
-    this.width,
-  });
-
-  final double angle;
-  final String title;
-  final String meta;
-  final IconData icon;
-  final Color color;
-  final double? width;
-
-  @override
-  Widget build(BuildContext context) => Transform.rotate(
-    angle: angle,
-    child: Container(
-      width: width,
-      padding: const EdgeInsetsDirectional.fromSTEB(10, 10, 14, 10),
-      decoration: BoxDecoration(
-        // a printed card: white in both modes
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(18),
-        boxShadow: floatingShadow(1.2),
-      ),
-      child: Row(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Container(
-            width: 36,
-            height: 36,
-            decoration: BoxDecoration(
-              color: color.withValues(alpha: 0.14),
-              borderRadius: BorderRadius.circular(11),
-            ),
-            child: Icon(icon, size: 19, color: color),
-          ),
-          const SizedBox(width: 10),
-          Flexible(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Text(
-                  title,
-                  style: const TextStyle(
-                    fontSize: 13.5,
-                    fontWeight: FontWeight.w800,
-                    color: AppColors.ink,
-                  ),
-                ),
-                Text(
-                  meta,
-                  style: const TextStyle(fontSize: 12, color: AppColors.muted),
-                ),
-              ],
-            ),
-          ),
-          const SizedBox(width: AppSpacing.sm),
-          Container(
-            width: 22,
-            height: 22,
-            decoration: const BoxDecoration(
-              shape: BoxShape.circle,
-              color: Color(0xFF1FA36B),
-            ),
-            child: const Icon(AppIcons.check, size: 13, color: Colors.white),
-          ),
-        ],
-      ),
-    ),
-  );
 }

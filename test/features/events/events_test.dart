@@ -281,7 +281,7 @@ void main() {
         bytes: Uint8List.fromList([1, 2, 3]),
         name: 'affiche.jpg',
       ));
-      await openMore(tester);
+      await openMenu(tester);
       await tester.pumpAndSettle();
       // the row of the Administration section (Communauté has one too)
       await scrollTo(tester, find.text('ADMINISTRATION'));

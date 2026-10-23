@@ -11,12 +11,14 @@ import '../../../core/theme/app_spacing.dart';
 import '../../../core/theme/app_tones.dart';
 import '../../../core/widgets/dove_mascot.dart';
 import '../../../core/widgets/error_view.dart';
+import '../../../core/widgets/menu_tile.dart';
 import '../../../core/widgets/section_card.dart';
 import '../../../core/widgets/skeleton.dart';
 import '../../../core/widgets/sub_page.dart';
 import '../../../routing/app_router.dart';
 import '../../members/presentation/widgets/member_avatar.dart';
 import '../application/disciples.dart';
+import '../application/received_reports.dart';
 import '../domain/disciple.dart';
 
 /// Plus › Mes disciples: the members who chose the user as disciple maker or
@@ -83,11 +85,37 @@ class DisciplesScreen extends HookConsumerWidget {
       return SubPage(title: t.title, child: const _Empty());
     }
 
+    // the reports the disciples sent in the app (merged here from Plus)
+    final unread = ref.watch(receivedReportsUnreadProvider);
+    final receivedTile = Padding(
+      padding: const EdgeInsetsDirectional.fromSTEB(
+        AppSpacing.lg,
+        AppSpacing.sm,
+        AppSpacing.lg,
+        0,
+      ),
+      child: SectionCard(
+        children: [
+          MenuTile(
+            icon: AppIcons.receivedReportsTile,
+            title: context.t.received.title,
+            subtitle: unread > 0
+                ? context.t.received.unreadCount(n: unread)
+                : context.t.received.subtitle,
+            subtitleStrong: unread > 0,
+            trailing: unread > 0 ? MenuBadge(unread) : null,
+            onTap: () => context.router.push(const ReceivedReportsRoute()),
+          ),
+        ],
+      ),
+    );
+
     return SubPage(
       title: t.title,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
+          receivedTile,
           searchField,
           Expanded(
             child: switch (first) {

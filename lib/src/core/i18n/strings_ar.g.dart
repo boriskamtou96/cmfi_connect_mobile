@@ -85,6 +85,9 @@ class TranslationsAr extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _Translations$received$ar received = _Translations$received$ar._(_root);
 	@override late final _Translations$update$ar update = _Translations$update$ar._(_root);
 	@override late final _Translations$journey$ar journey = _Translations$journey$ar._(_root);
+	@override late final _Translations$menu$ar menu = _Translations$menu$ar._(_root);
+	@override late final _Translations$me$ar me = _Translations$me$ar._(_root);
+	@override late final _Translations$settings$ar settings = _Translations$settings$ar._(_root);
 }
 
 // Path: app
@@ -193,6 +196,8 @@ class _Translations$welcome$ar extends Translations$welcome$fr {
 		other: '${n} يوم مع الله',
 	);
 	@override late final _Translations$welcome$sample$ar sample = _Translations$welcome$sample$ar._(_root);
+	@override String get next => 'متابعة';
+	@override String get skip => 'تخطٍّ';
 	@override String get createAccount => 'إنشاء حسابي';
 	@override String get haveAccount => 'لديّ حساب بالفعل';
 }
@@ -2131,6 +2136,54 @@ class _Translations$journey$ar extends Translations$journey$fr {
 	@override late final _Translations$journey$grace$ar grace = _Translations$journey$grace$ar._(_root);
 }
 
+// Path: menu
+class _Translations$menu$ar extends Translations$menu$fr {
+	_Translations$menu$ar._(TranslationsAr root) : this._root = root, super.internal(root);
+
+	final TranslationsAr _root; // ignore: unused_field
+
+	// Translations
+	@override String get open => 'فتح القائمة';
+	@override String get discover => 'اكتشف';
+	@override String get seeProfile => 'عرض ملفي';
+}
+
+// Path: me
+class _Translations$me$ar extends Translations$me$fr {
+	_Translations$me$ar._(TranslationsAr root) : this._root = root, super.internal(root);
+
+	final TranslationsAr _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'ملفي';
+	@override String get edit => 'تعديل ملفي';
+	@override String get journey => 'مسيرتي';
+	@override String get streak => 'السلسلة';
+	@override String get steps => 'المراحل';
+	@override String get timeMonth => 'مع الله هذا الشهر';
+	@override String nextStep({required Object name}) => 'التالية: ${name}';
+	@override String soulsDue({required Object n}) => '${n} لإعادة التواصل';
+	@override String souls({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n,
+		one: 'شخص واحد',
+		other: '${n} أشخاص',
+	);
+}
+
+// Path: settings
+class _Translations$settings$ar extends Translations$settings$fr {
+	_Translations$settings$ar._(TranslationsAr root) : this._root = root, super.internal(root);
+
+	final TranslationsAr _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'الإعدادات';
+	@override String get practice => 'ممارستي';
+	@override String get help => 'المساعدة';
+	@override String get contact => 'تواصل معنا';
+	@override String get privacy => 'الخصوصية';
+	@override String get terms => 'شروط الاستخدام';
+}
+
 // Path: welcome.seek
 class _Translations$welcome$seek$ar extends Translations$welcome$seek$fr {
 	_Translations$welcome$seek$ar._(TranslationsAr root) : this._root = root, super.internal(root);
@@ -2179,16 +2232,11 @@ class _Translations$welcome$sample$ar extends Translations$welcome$sample$fr {
 	// Translations
 	@override String get bibleReading => 'قراءة الكتاب المقدس';
 	@override String get chapters => '10 إصحاحات';
-	@override String get prayerAlone => 'الصلاة الفردية';
 	@override String get hymn => 'ترنيمة';
 	@override String get hymnNumber => 'رقم 12';
-	@override String get prayerOfTheDay => 'طلب الصلاة لهذا اليوم';
-	@override String get prayerTopic => 'من أجل امتحانات شبابنا';
 	@override String get praying => '12 شخصًا يصلّون';
-	@override String get iPray => 'أصلّي';
 	@override String get retreat => 'خلوة الشباب';
 	@override String get announcement => 'إعلان';
-	@override String get announcementText => 'تبدأ عبادة الأحد في الساعة 8:30 صباحًا.';
 }
 
 // Path: auth.login
@@ -3995,16 +4043,13 @@ extension on TranslationsAr {
 			'welcome.streak' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n, zero: '${n} يوم مع الله', one: 'يوم واحد مع الله', two: 'يومان مع الله', few: '${n} أيام مع الله', many: '${n} يومًا مع الله', other: '${n} يوم مع الله', ), 
 			'welcome.sample.bibleReading' => 'قراءة الكتاب المقدس',
 			'welcome.sample.chapters' => '10 إصحاحات',
-			'welcome.sample.prayerAlone' => 'الصلاة الفردية',
 			'welcome.sample.hymn' => 'ترنيمة',
 			'welcome.sample.hymnNumber' => 'رقم 12',
-			'welcome.sample.prayerOfTheDay' => 'طلب الصلاة لهذا اليوم',
-			'welcome.sample.prayerTopic' => 'من أجل امتحانات شبابنا',
 			'welcome.sample.praying' => '12 شخصًا يصلّون',
-			'welcome.sample.iPray' => 'أصلّي',
 			'welcome.sample.retreat' => 'خلوة الشباب',
 			'welcome.sample.announcement' => 'إعلان',
-			'welcome.sample.announcementText' => 'تبدأ عبادة الأحد في الساعة 8:30 صباحًا.',
+			'welcome.next' => 'متابعة',
+			'welcome.skip' => 'تخطٍّ',
 			'welcome.createAccount' => 'إنشاء حسابي',
 			'welcome.haveAccount' => 'لديّ حساب بالفعل',
 			'auth.phone' => 'الهاتف',
@@ -4441,11 +4486,11 @@ extension on TranslationsAr {
 			'authorities.makeMakerTitle' => ({required Object name}) => 'هل تجعل ${name} صانع التلاميذ الخاص بك؟',
 			'authorities.makeMakerText' => ({required Object name}) => 'سيتم إبلاغ ${name}.',
 			'authorities.makeMakerTextFormer' => ({required Object name, required Object former}) => 'سيتم إبلاغ ${name}. يبقى ${former} ضمن مرشديك.',
-			_ => null,
-		} ?? switch (path) {
 			'authorities.madeMaker' => ({required Object name}) => '${name} هو الآن صانع التلاميذ الخاص بك.',
 			'members.username' => 'اسم المستخدم',
 			'members.usernameHint' => 'firstname.lastname',
+			_ => null,
+		} ?? switch (path) {
 			'members.usernameHelp' => 'بهذا الاسم سيجدك الأعضاء الآخرون.',
 			'members.usernameChecking' => 'جارٍ التحقق…',
 			'members.usernameFree' => ({required Object username}) => '@${username} متاح',
@@ -4955,11 +5000,11 @@ extension on TranslationsAr {
 			'prayer.moments.morning' => 'الصباح',
 			'prayer.moments.noon' => 'الظهر',
 			'prayer.moments.evening' => 'المساء',
-			_ => null,
-		} ?? switch (path) {
 			'prayer.moments.night' => 'الليل',
 			'prayer.retreatOf.morning' => 'خلوة الصباح',
 			'prayer.retreatOf.noon' => 'خلوة الظهر',
+			_ => null,
+		} ?? switch (path) {
 			'prayer.retreatOf.evening' => 'خلوة المساء',
 			'prayer.retreatOf.night' => 'خلوة الليل',
 			'prayer.hero.now' => ({required Object retreat}) => '${retreat} · الآن',
@@ -5469,11 +5514,11 @@ extension on TranslationsAr {
 			'seekFirst.shield.thisApp' => 'هذا التطبيق',
 			'seekFirst.shield.fill' => 'املأ تقريري',
 			'seekFirst.shield.pause' => ({required Object n}) => 'استراحة 5 دقائق (${n}/3)',
-			_ => null,
-		} ?? switch (path) {
 			'seekFirst.shield.notificationTitle' => 'اطلب الله أولًا',
 			'seekFirst.shield.notificationBody' => 'المس هنا لتملأ تقريرك.',
 			'seekFirst.shield.serviceBody' => 'تُغلق تطبيقاتك كل يوم حتى تقريرك.',
+			_ => null,
+		} ?? switch (path) {
 			'seekFirst.permissionsAndroid' => 'لإغلاق تطبيقاتك، يحتاج CMFI Connect إلى إذنين تفعّلهما في الإعدادات التي ستُفتح: «الوصول إلى بيانات الاستخدام» (لمعرفة التطبيق المفتوح) و«الظهور فوق التطبيقات الأخرى» (لإظهار شاشة اطلب الله أولًا). لا يخرج شيء من هاتفك.',
 			'seekFirst.permissionsContinue' => 'متابعة',
 			'seekFirst.deniedAndroid' => 'بدون هذين الإذنين لا يستطيع CMFI Connect إغلاق التطبيقات. يمكنك تفعيلهما من الإعدادات › التطبيقات › الوصول الخاص.',
@@ -5820,6 +5865,24 @@ extension on TranslationsAr {
 			'journey.grace.title' => 'يوم نعمة',
 			'journey.grace.text' => ({required Object day}) => 'لم تملأ تقرير ${day}، لكن سلسلتك مستمرة: كل أسبوع يحميها يوم نعمة. غدًا بداية جديدة.',
 			'journey.grace.ok' => 'شكرًا!',
+			'menu.open' => 'فتح القائمة',
+			'menu.discover' => 'اكتشف',
+			'menu.seeProfile' => 'عرض ملفي',
+			'me.title' => 'ملفي',
+			'me.edit' => 'تعديل ملفي',
+			'me.journey' => 'مسيرتي',
+			'me.streak' => 'السلسلة',
+			'me.steps' => 'المراحل',
+			'me.timeMonth' => 'مع الله هذا الشهر',
+			'me.nextStep' => ({required Object name}) => 'التالية: ${name}',
+			'me.soulsDue' => ({required Object n}) => '${n} لإعادة التواصل',
+			'me.souls' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n, one: 'شخص واحد', other: '${n} أشخاص', ), 
+			'settings.title' => 'الإعدادات',
+			'settings.practice' => 'ممارستي',
+			'settings.help' => 'المساعدة',
+			'settings.contact' => 'تواصل معنا',
+			'settings.privacy' => 'الخصوصية',
+			'settings.terms' => 'شروط الاستخدام',
 			_ => null,
 		};
 	}

@@ -85,6 +85,9 @@ class TranslationsEn extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _Translations$received$en received = _Translations$received$en._(_root);
 	@override late final _Translations$update$en update = _Translations$update$en._(_root);
 	@override late final _Translations$journey$en journey = _Translations$journey$en._(_root);
+	@override late final _Translations$menu$en menu = _Translations$menu$en._(_root);
+	@override late final _Translations$me$en me = _Translations$me$en._(_root);
+	@override late final _Translations$settings$en settings = _Translations$settings$en._(_root);
 }
 
 // Path: app
@@ -189,6 +192,8 @@ class _Translations$welcome$en extends Translations$welcome$fr {
 		other: '${n} days with God',
 	);
 	@override late final _Translations$welcome$sample$en sample = _Translations$welcome$sample$en._(_root);
+	@override String get next => 'Continue';
+	@override String get skip => 'Skip';
 	@override String get createAccount => 'Create my account';
 	@override String get haveAccount => 'I already have an account';
 }
@@ -1875,6 +1880,54 @@ class _Translations$journey$en extends Translations$journey$fr {
 	@override late final _Translations$journey$grace$en grace = _Translations$journey$grace$en._(_root);
 }
 
+// Path: menu
+class _Translations$menu$en extends Translations$menu$fr {
+	_Translations$menu$en._(TranslationsEn root) : this._root = root, super.internal(root);
+
+	final TranslationsEn _root; // ignore: unused_field
+
+	// Translations
+	@override String get open => 'Open the menu';
+	@override String get discover => 'Discover';
+	@override String get seeProfile => 'See my profile';
+}
+
+// Path: me
+class _Translations$me$en extends Translations$me$fr {
+	_Translations$me$en._(TranslationsEn root) : this._root = root, super.internal(root);
+
+	final TranslationsEn _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'My profile';
+	@override String get edit => 'Edit my profile';
+	@override String get journey => 'My journey';
+	@override String get streak => 'Streak';
+	@override String get steps => 'Steps';
+	@override String get timeMonth => 'With God this month';
+	@override String nextStep({required Object name}) => 'next: ${name}';
+	@override String soulsDue({required Object n}) => '${n} to contact again';
+	@override String souls({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n,
+		one: '${n} person',
+		other: '${n} people',
+	);
+}
+
+// Path: settings
+class _Translations$settings$en extends Translations$settings$fr {
+	_Translations$settings$en._(TranslationsEn root) : this._root = root, super.internal(root);
+
+	final TranslationsEn _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Settings';
+	@override String get practice => 'My practice';
+	@override String get help => 'Help';
+	@override String get contact => 'Contact us';
+	@override String get privacy => 'Privacy';
+	@override String get terms => 'Terms of use';
+}
+
 // Path: welcome.seek
 class _Translations$welcome$seek$en extends Translations$welcome$seek$fr {
 	_Translations$welcome$seek$en._(TranslationsEn root) : this._root = root, super.internal(root);
@@ -1923,16 +1976,11 @@ class _Translations$welcome$sample$en extends Translations$welcome$sample$fr {
 	// Translations
 	@override String get bibleReading => 'Bible reading';
 	@override String get chapters => '10 ch.';
-	@override String get prayerAlone => 'Prayer alone';
 	@override String get hymn => 'Hymn';
 	@override String get hymnNumber => 'No. 12';
-	@override String get prayerOfTheDay => 'Prayer topic of the day';
-	@override String get prayerTopic => 'For our young people\'s exams';
 	@override String get praying => '12 people are praying';
-	@override String get iPray => 'I pray';
 	@override String get retreat => 'Youth retreat';
 	@override String get announcement => 'Announcement';
-	@override String get announcementText => 'Sunday service starts at 8:30 am.';
 }
 
 // Path: auth.login
@@ -3662,16 +3710,13 @@ extension on TranslationsEn {
 			'welcome.streak' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n, one: '${n} day with God', other: '${n} days with God', ), 
 			'welcome.sample.bibleReading' => 'Bible reading',
 			'welcome.sample.chapters' => '10 ch.',
-			'welcome.sample.prayerAlone' => 'Prayer alone',
 			'welcome.sample.hymn' => 'Hymn',
 			'welcome.sample.hymnNumber' => 'No. 12',
-			'welcome.sample.prayerOfTheDay' => 'Prayer topic of the day',
-			'welcome.sample.prayerTopic' => 'For our young people\'s exams',
 			'welcome.sample.praying' => '12 people are praying',
-			'welcome.sample.iPray' => 'I pray',
 			'welcome.sample.retreat' => 'Youth retreat',
 			'welcome.sample.announcement' => 'Announcement',
-			'welcome.sample.announcementText' => 'Sunday service starts at 8:30 am.',
+			'welcome.next' => 'Continue',
+			'welcome.skip' => 'Skip',
 			'welcome.createAccount' => 'Create my account',
 			'welcome.haveAccount' => 'I already have an account',
 			'auth.phone' => 'Phone',
@@ -4108,11 +4153,11 @@ extension on TranslationsEn {
 			'authorities.makeMakerTitle' => ({required Object name}) => 'Make ${name} your disciple maker?',
 			'authorities.makeMakerText' => ({required Object name}) => '${name} will be told.',
 			'authorities.makeMakerTextFormer' => ({required Object name, required Object former}) => '${name} will be told. ${former} stays among your authorities.',
-			_ => null,
-		} ?? switch (path) {
 			'authorities.madeMaker' => ({required Object name}) => '${name} is now your disciple maker.',
 			'members.username' => 'Username',
 			'members.usernameHint' => 'firstname.lastname',
+			_ => null,
+		} ?? switch (path) {
 			'members.usernameHelp' => 'This is how other members will find you.',
 			'members.usernameChecking' => 'Checking…',
 			'members.usernameFree' => ({required Object username}) => '@${username} is available',
@@ -4622,11 +4667,11 @@ extension on TranslationsEn {
 			'prayer.moments.morning' => 'Morning',
 			'prayer.moments.noon' => 'Noon',
 			'prayer.moments.evening' => 'Evening',
-			_ => null,
-		} ?? switch (path) {
 			'prayer.moments.night' => 'Night',
 			'prayer.retreatOf.morning' => 'Morning retreat',
 			'prayer.retreatOf.noon' => 'Noon retreat',
+			_ => null,
+		} ?? switch (path) {
 			'prayer.retreatOf.evening' => 'Evening retreat',
 			'prayer.retreatOf.night' => 'Night retreat',
 			'prayer.hero.now' => ({required Object retreat}) => '${retreat} · now',
@@ -5136,11 +5181,11 @@ extension on TranslationsEn {
 			'seekFirst.shield.thisApp' => 'This app',
 			'seekFirst.shield.fill' => 'Fill in my report',
 			'seekFirst.shield.pause' => ({required Object n}) => '5-min break (${n}/3)',
-			_ => null,
-		} ?? switch (path) {
 			'seekFirst.shield.notificationTitle' => 'Seek God first',
 			'seekFirst.shield.notificationBody' => 'Tap here to fill in your report.',
 			'seekFirst.shield.serviceBody' => 'Your apps close each day until your report.',
+			_ => null,
+		} ?? switch (path) {
 			'seekFirst.permissionsAndroid' => 'To close your apps, CMFI Connect needs two permissions, to turn on in the settings that will open: "Usage access" (to know which app is open) and "Display over other apps" (to show the Seek God first screen). Nothing leaves your phone.',
 			'seekFirst.permissionsContinue' => 'Continue',
 			'seekFirst.deniedAndroid' => 'Without these two permissions, CMFI Connect can\'t close apps. You can turn them on in Settings › Apps › Special access.',
@@ -5487,6 +5532,24 @@ extension on TranslationsEn {
 			'journey.grace.title' => 'A day of grace',
 			'journey.grace.text' => ({required Object day}) => 'You didn\'t fill in ${day}, but your streak goes on: each week, a day of grace protects it. Tomorrow is a new start.',
 			'journey.grace.ok' => 'Thank you!',
+			'menu.open' => 'Open the menu',
+			'menu.discover' => 'Discover',
+			'menu.seeProfile' => 'See my profile',
+			'me.title' => 'My profile',
+			'me.edit' => 'Edit my profile',
+			'me.journey' => 'My journey',
+			'me.streak' => 'Streak',
+			'me.steps' => 'Steps',
+			'me.timeMonth' => 'With God this month',
+			'me.nextStep' => ({required Object name}) => 'next: ${name}',
+			'me.soulsDue' => ({required Object n}) => '${n} to contact again',
+			'me.souls' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n, one: '${n} person', other: '${n} people', ), 
+			'settings.title' => 'Settings',
+			'settings.practice' => 'My practice',
+			'settings.help' => 'Help',
+			'settings.contact' => 'Contact us',
+			'settings.privacy' => 'Privacy',
+			'settings.terms' => 'Terms of use',
 			_ => null,
 		};
 	}

@@ -32,6 +32,7 @@ import '../../home/application/week_story.dart';
 import '../../home/application/year_story.dart';
 import '../../home/domain/week_story.dart';
 import '../../home/domain/year_story.dart';
+import '../../journey/presentation/journey_watcher.dart';
 import '../../notifications/application/inbox.dart';
 import '../../notifications/application/push_registration.dart';
 import '../../prayer/application/importunities.dart';
@@ -543,6 +544,7 @@ class SignedInTasks extends HookConsumerWidget {
       };
     }, const []);
 
-    return child;
+    // the steps of the journey reached, celebrated
+    return JourneyWatcher(child: child);
   }
 }

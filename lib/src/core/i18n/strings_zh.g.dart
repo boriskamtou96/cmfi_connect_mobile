@@ -84,6 +84,7 @@ class TranslationsZh extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _Translations$fasts$zh fasts = _Translations$fasts$zh._(_root);
 	@override late final _Translations$received$zh received = _Translations$received$zh._(_root);
 	@override late final _Translations$update$zh update = _Translations$update$zh._(_root);
+	@override late final _Translations$journey$zh journey = _Translations$journey$zh._(_root);
 }
 
 // Path: app
@@ -1785,6 +1786,27 @@ class _Translations$update$zh extends Translations$update$fr {
 	@override String moreButton({required Object version}) => '更新到版本 ${version}';
 }
 
+// Path: journey
+class _Translations$journey$zh extends Translations$journey$fr {
+	_Translations$journey$zh._(TranslationsZh root) : this._root = root, super.internal(root);
+
+	final TranslationsZh _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => '我的里程';
+	@override String get subtitle => '道路上的每一步，只属于你';
+	@override String count({required Object n, required Object total}) => '${n} / ${total}';
+	@override String reachedOn({required Object date}) => '于 ${date} 达成';
+	@override String get toReach => '尚未达成';
+	@override String get newStep => '新的里程';
+	@override String get see => '查看我的里程';
+	@override String get go => '继续';
+	@override late final _Translations$journey$groups$zh groups = _Translations$journey$groups$zh._(_root);
+	@override late final _Translations$journey$steps$zh steps = _Translations$journey$steps$zh._(_root);
+	@override late final _Translations$journey$daily$zh daily = _Translations$journey$daily$zh._(_root);
+	@override late final _Translations$journey$grace$zh grace = _Translations$journey$grace$zh._(_root);
+}
+
 // Path: welcome.seek
 class _Translations$welcome$seek$zh extends Translations$welcome$seek$fr {
 	_Translations$welcome$seek$zh._(TranslationsZh root) : this._root = root, super.internal(root);
@@ -2955,6 +2977,75 @@ class _Translations$souls$csv$zh extends Translations$souls$csv$fr {
 	@override String get notes => '备注';
 }
 
+// Path: journey.groups
+class _Translations$journey$groups$zh extends Translations$journey$groups$fr {
+	_Translations$journey$groups$zh._(TranslationsZh root) : this._root = root, super.internal(root);
+
+	final TranslationsZh _root; // ignore: unused_field
+
+	// Translations
+	@override String get faithfulness => '忠心';
+	@override String get prayer => '祷告';
+	@override String get word => '话语';
+	@override String get souls => '灵魂';
+	@override String get together => '同行';
+}
+
+// Path: journey.steps
+class _Translations$journey$steps$zh extends Translations$journey$steps$fr {
+	_Translations$journey$steps$zh._(TranslationsZh root) : this._root = root, super.internal(root);
+
+	final TranslationsZh _root; // ignore: unused_field
+
+	// Translations
+	@override late final _Translations$journey$steps$firstReport$zh firstReport = _Translations$journey$steps$firstReport$zh._(_root);
+	@override late final _Translations$journey$steps$streak7$zh streak7 = _Translations$journey$steps$streak7$zh._(_root);
+	@override late final _Translations$journey$steps$streak30$zh streak30 = _Translations$journey$steps$streak30$zh._(_root);
+	@override late final _Translations$journey$steps$streak100$zh streak100 = _Translations$journey$steps$streak100$zh._(_root);
+	@override late final _Translations$journey$steps$streak365$zh streak365 = _Translations$journey$steps$streak365$zh._(_root);
+	@override late final _Translations$journey$steps$fullDay$zh fullDay = _Translations$journey$steps$fullDay$zh._(_root);
+	@override late final _Translations$journey$steps$sevenFullDays$zh sevenFullDays = _Translations$journey$steps$sevenFullDays$zh._(_root);
+	@override late final _Translations$journey$steps$fourRetreats$zh fourRetreats = _Translations$journey$steps$fourRetreats$zh._(_root);
+	@override late final _Translations$journey$steps$planDone$zh planDone = _Translations$journey$steps$planDone$zh._(_root);
+	@override late final _Translations$journey$steps$lyricsShared$zh lyricsShared = _Translations$journey$steps$lyricsShared$zh._(_root);
+	@override late final _Translations$journey$steps$firstSoul$zh firstSoul = _Translations$journey$steps$firstSoul$zh._(_root);
+	@override late final _Translations$journey$steps$tenSouls$zh tenSouls = _Translations$journey$steps$tenSouls$zh._(_root);
+	@override late final _Translations$journey$steps$soulBaptized$zh soulBaptized = _Translations$journey$steps$soulBaptized$zh._(_root);
+	@override late final _Translations$journey$steps$firstSending$zh firstSending = _Translations$journey$steps$firstSending$zh._(_root);
+	@override late final _Translations$journey$steps$firstEncouragement$zh firstEncouragement = _Translations$journey$steps$firstEncouragement$zh._(_root);
+}
+
+// Path: journey.daily
+class _Translations$journey$daily$zh extends Translations$journey$daily$fr {
+	_Translations$journey$daily$zh._(TranslationsZh root) : this._root = root, super.internal(root);
+
+	final TranslationsZh _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => '今日三步';
+	@override String progress({required Object n}) => '${n} / 3';
+	@override String get report => '填写我的报告';
+	@override String get prayer => '做一次退修祷告';
+	@override String get word => '读一章圣经';
+	@override String get wordPlan => '读计划中的章节';
+	@override String get allDone => '三步都完成了。愿你与神同度美好的一天！';
+	@override String get done => '已完成';
+}
+
+// Path: journey.grace
+class _Translations$journey$grace$zh extends Translations$journey$grace$fr {
+	_Translations$journey$grace$zh._(TranslationsZh root) : this._root = root, super.internal(root);
+
+	final TranslationsZh _root; // ignore: unused_field
+
+	// Translations
+	@override String get day => '恩典日';
+	@override String used({required Object day}) => '恩典日 ${day}：你的连续记录继续。';
+	@override String get title => '恩典日';
+	@override String text({required Object day}) => '你没有填写${day}的报告，但你的连续记录还在：每周都有一个恩典日保护它。明天是新的开始。';
+	@override String get ok => '谢谢！';
+}
+
 // Path: reports.units.chapters
 class _Translations$reports$units$chapters$zh extends Translations$reports$units$chapters$fr {
 	_Translations$reports$units$chapters$zh._(TranslationsZh root) : this._root = root, super.internal(root);
@@ -3226,6 +3317,171 @@ class _Translations$prayer$importunity$inviteSheet$zh extends Translations$praye
 		zero: '他们之前已被邀请过了。',
 		other: '已发送 ${n} 个邀请',
 	);
+}
+
+// Path: journey.steps.firstReport
+class _Translations$journey$steps$firstReport$zh extends Translations$journey$steps$firstReport$fr {
+	_Translations$journey$steps$firstReport$zh._(TranslationsZh root) : this._root = root, super.internal(root);
+
+	final TranslationsZh _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => '第一步';
+	@override String get text => '保存你的第一份报告。';
+}
+
+// Path: journey.steps.streak7
+class _Translations$journey$steps$streak7$zh extends Translations$journey$steps$streak7$fr {
+	_Translations$journey$steps$streak7$zh._(TranslationsZh root) : this._root = root, super.internal(root);
+
+	final TranslationsZh _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => '忠心的一周';
+	@override String get text => '连续 7 天提交报告。';
+}
+
+// Path: journey.steps.streak30
+class _Translations$journey$steps$streak30$zh extends Translations$journey$steps$streak30$fr {
+	_Translations$journey$steps$streak30$zh._(TranslationsZh root) : this._root = root, super.internal(root);
+
+	final TranslationsZh _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => '与神同行一个月';
+	@override String get text => '连续 30 天提交报告。';
+}
+
+// Path: journey.steps.streak100
+class _Translations$journey$steps$streak100$zh extends Translations$journey$steps$streak100$fr {
+	_Translations$journey$steps$streak100$zh._(TranslationsZh root) : this._root = root, super.internal(root);
+
+	final TranslationsZh _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => '一百天';
+	@override String get text => '连续 100 天提交报告。';
+}
+
+// Path: journey.steps.streak365
+class _Translations$journey$steps$streak365$zh extends Translations$journey$steps$streak365$fr {
+	_Translations$journey$steps$streak365$zh._(TranslationsZh root) : this._root = root, super.internal(root);
+
+	final TranslationsZh _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => '整整一年';
+	@override String get text => '连续 365 天提交报告。';
+}
+
+// Path: journey.steps.fullDay
+class _Translations$journey$steps$fullDay$zh extends Translations$journey$steps$fullDay$fr {
+	_Translations$journey$steps$fullDay$zh._(TranslationsZh root) : this._root = root, super.internal(root);
+
+	final TranslationsZh _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => '三步';
+	@override String get text => '完成今日三步。';
+}
+
+// Path: journey.steps.sevenFullDays
+class _Translations$journey$steps$sevenFullDays$zh extends Translations$journey$steps$sevenFullDays$fr {
+	_Translations$journey$steps$sevenFullDays$zh._(TranslationsZh root) : this._root = root, super.internal(root);
+
+	final TranslationsZh _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => '七个完整的日子';
+	@override String get text => '完成今日三步共七次。';
+}
+
+// Path: journey.steps.fourRetreats
+class _Translations$journey$steps$fourRetreats$zh extends Translations$journey$steps$fourRetreats$fr {
+	_Translations$journey$steps$fourRetreats$zh._(TranslationsZh root) : this._root = root, super.internal(root);
+
+	final TranslationsZh _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => '祷告的一天';
+	@override String get text => '在同一天完成 4 次退修祷告。';
+}
+
+// Path: journey.steps.planDone
+class _Translations$journey$steps$planDone$zh extends Translations$journey$steps$planDone$fr {
+	_Translations$journey$steps$planDone$zh._(TranslationsZh root) : this._root = root, super.internal(root);
+
+	final TranslationsZh _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => '计划完成';
+	@override String get text => '完成一个读经计划。';
+}
+
+// Path: journey.steps.lyricsShared
+class _Translations$journey$steps$lyricsShared$zh extends Translations$journey$steps$lyricsShared$fr {
+	_Translations$journey$steps$lyricsShared$zh._(TranslationsZh root) : this._root = root, super.internal(root);
+
+	final TranslationsZh _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => '分享一首诗歌';
+	@override String get text => '分享一首诗歌的歌词。';
+}
+
+// Path: journey.steps.firstSoul
+class _Translations$journey$steps$firstSoul$zh extends Translations$journey$steps$firstSoul$fr {
+	_Translations$journey$steps$firstSoul$zh._(TranslationsZh root) : this._root = root, super.internal(root);
+
+	final TranslationsZh _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => '撒种的人';
+	@override String get text => '跟进你的第一个灵魂。';
+}
+
+// Path: journey.steps.tenSouls
+class _Translations$journey$steps$tenSouls$zh extends Translations$journey$steps$tenSouls$fr {
+	_Translations$journey$steps$tenSouls$zh._(TranslationsZh root) : this._root = root, super.internal(root);
+
+	final TranslationsZh _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => '跟进十个灵魂';
+	@override String get text => '在灵魂跟进中跟进 10 个人。';
+}
+
+// Path: journey.steps.soulBaptized
+class _Translations$journey$steps$soulBaptized$zh extends Translations$journey$steps$soulBaptized$fr {
+	_Translations$journey$steps$soulBaptized$zh._(TranslationsZh root) : this._root = root, super.internal(root);
+
+	final TranslationsZh _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => '一个灵魂受洗';
+	@override String get text => '你跟进的人受洗了。';
+}
+
+// Path: journey.steps.firstSending
+class _Translations$journey$steps$firstSending$zh extends Translations$journey$steps$firstSending$fr {
+	_Translations$journey$steps$firstSending$zh._(TranslationsZh root) : this._root = root, super.internal(root);
+
+	final TranslationsZh _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => '交账';
+	@override String get text => '在应用中把报告发给属灵带领者。';
+}
+
+// Path: journey.steps.firstEncouragement
+class _Translations$journey$steps$firstEncouragement$zh extends Translations$journey$steps$firstEncouragement$fr {
+	_Translations$journey$steps$firstEncouragement$zh._(TranslationsZh root) : this._root = root, super.internal(root);
+
+	final TranslationsZh _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => '鼓励者';
+	@override String get text => '给门徒发送一句鼓励的话。';
 }
 
 /// The flat map containing all translations for locale <zh>.
@@ -5062,6 +5318,62 @@ extension on TranslationsZh {
 			'update.restart' => '重启',
 			'update.failed' => '无法打开应用商店，请稍后再试。',
 			'update.moreButton' => ({required Object version}) => '更新到版本 ${version}',
+			'journey.title' => '我的里程',
+			'journey.subtitle' => '道路上的每一步，只属于你',
+			'journey.count' => ({required Object n, required Object total}) => '${n} / ${total}',
+			'journey.reachedOn' => ({required Object date}) => '于 ${date} 达成',
+			'journey.toReach' => '尚未达成',
+			'journey.newStep' => '新的里程',
+			'journey.see' => '查看我的里程',
+			'journey.go' => '继续',
+			'journey.groups.faithfulness' => '忠心',
+			'journey.groups.prayer' => '祷告',
+			'journey.groups.word' => '话语',
+			'journey.groups.souls' => '灵魂',
+			'journey.groups.together' => '同行',
+			'journey.steps.firstReport.title' => '第一步',
+			'journey.steps.firstReport.text' => '保存你的第一份报告。',
+			'journey.steps.streak7.title' => '忠心的一周',
+			'journey.steps.streak7.text' => '连续 7 天提交报告。',
+			'journey.steps.streak30.title' => '与神同行一个月',
+			'journey.steps.streak30.text' => '连续 30 天提交报告。',
+			'journey.steps.streak100.title' => '一百天',
+			'journey.steps.streak100.text' => '连续 100 天提交报告。',
+			'journey.steps.streak365.title' => '整整一年',
+			'journey.steps.streak365.text' => '连续 365 天提交报告。',
+			'journey.steps.fullDay.title' => '三步',
+			'journey.steps.fullDay.text' => '完成今日三步。',
+			'journey.steps.sevenFullDays.title' => '七个完整的日子',
+			'journey.steps.sevenFullDays.text' => '完成今日三步共七次。',
+			'journey.steps.fourRetreats.title' => '祷告的一天',
+			'journey.steps.fourRetreats.text' => '在同一天完成 4 次退修祷告。',
+			'journey.steps.planDone.title' => '计划完成',
+			'journey.steps.planDone.text' => '完成一个读经计划。',
+			'journey.steps.lyricsShared.title' => '分享一首诗歌',
+			'journey.steps.lyricsShared.text' => '分享一首诗歌的歌词。',
+			'journey.steps.firstSoul.title' => '撒种的人',
+			'journey.steps.firstSoul.text' => '跟进你的第一个灵魂。',
+			'journey.steps.tenSouls.title' => '跟进十个灵魂',
+			'journey.steps.tenSouls.text' => '在灵魂跟进中跟进 10 个人。',
+			'journey.steps.soulBaptized.title' => '一个灵魂受洗',
+			'journey.steps.soulBaptized.text' => '你跟进的人受洗了。',
+			'journey.steps.firstSending.title' => '交账',
+			'journey.steps.firstSending.text' => '在应用中把报告发给属灵带领者。',
+			'journey.steps.firstEncouragement.title' => '鼓励者',
+			'journey.steps.firstEncouragement.text' => '给门徒发送一句鼓励的话。',
+			'journey.daily.title' => '今日三步',
+			'journey.daily.progress' => ({required Object n}) => '${n} / 3',
+			'journey.daily.report' => '填写我的报告',
+			'journey.daily.prayer' => '做一次退修祷告',
+			'journey.daily.word' => '读一章圣经',
+			'journey.daily.wordPlan' => '读计划中的章节',
+			'journey.daily.allDone' => '三步都完成了。愿你与神同度美好的一天！',
+			'journey.daily.done' => '已完成',
+			'journey.grace.day' => '恩典日',
+			'journey.grace.used' => ({required Object day}) => '恩典日 ${day}：你的连续记录继续。',
+			'journey.grace.title' => '恩典日',
+			'journey.grace.text' => ({required Object day}) => '你没有填写${day}的报告，但你的连续记录还在：每周都有一个恩典日保护它。明天是新的开始。',
+			'journey.grace.ok' => '谢谢！',
 			_ => null,
 		};
 	}

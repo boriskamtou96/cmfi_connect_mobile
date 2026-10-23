@@ -2305,5 +2305,101 @@
     "restart": "重启",
     "failed": "无法打开应用商店，请稍后再试。",
     "moreButton": "更新到版本 {version}"
+  },
+  "journey": {
+    "title": "我的里程",
+    "subtitle": "道路上的每一步，只属于你",
+    "count": "{n} / {total}",
+    "reachedOn": "于 {date} 达成",
+    "toReach": "尚未达成",
+    "newStep": "新的里程",
+    "see": "查看我的里程",
+    "go": "继续",
+    "groups": {
+      "faithfulness": "忠心",
+      "prayer": "祷告",
+      "word": "话语",
+      "souls": "灵魂",
+      "together": "同行"
+    },
+    "steps": {
+      "firstReport": {
+        "title": "第一步",
+        "text": "保存你的第一份报告。"
+      },
+      "streak7": {
+        "title": "忠心的一周",
+        "text": "连续 7 天提交报告。"
+      },
+      "streak30": {
+        "title": "与神同行一个月",
+        "text": "连续 30 天提交报告。"
+      },
+      "streak100": {
+        "title": "一百天",
+        "text": "连续 100 天提交报告。"
+      },
+      "streak365": {
+        "title": "整整一年",
+        "text": "连续 365 天提交报告。"
+      },
+      "fullDay": {
+        "title": "三步",
+        "text": "完成今日三步。"
+      },
+      "sevenFullDays": {
+        "title": "七个完整的日子",
+        "text": "完成今日三步共七次。"
+      },
+      "fourRetreats": {
+        "title": "祷告的一天",
+        "text": "在同一天完成 4 次退修祷告。"
+      },
+      "planDone": {
+        "title": "计划完成",
+        "text": "完成一个读经计划。"
+      },
+      "lyricsShared": {
+        "title": "分享一首诗歌",
+        "text": "分享一首诗歌的歌词。"
+      },
+      "firstSoul": {
+        "title": "撒种的人",
+        "text": "跟进你的第一个灵魂。"
+      },
+      "tenSouls": {
+        "title": "跟进十个灵魂",
+        "text": "在灵魂跟进中跟进 10 个人。"
+      },
+      "soulBaptized": {
+        "title": "一个灵魂受洗",
+        "text": "你跟进的人受洗了。"
+      },
+      "firstSending": {
+        "title": "交账",
+        "text": "在应用中把报告发给属灵带领者。"
+      },
+      "firstEncouragement": {
+        "title": "鼓励者",
+        "text": "给门徒发送一句鼓励的话。"
+      }
+    },
+    "daily": {
+      "title": "今日三步",
+      "progress": "{n} / 3",
+      "report": "填写我的报告",
+      "prayer": "做一次退修祷告",
+      "word": "读一章圣经",
+      "wordPlan": "读计划中的章节",
+      "allDone": "三步都完成了。愿你与神同度美好的一天！",
+      "done": "已完成"
+    },
+    "grace": {
+      "day": "恩典日",
+      "used": "恩典日 {day}：你的连续记录继续。",
+      "title": "恩典日",
+      "text": "你没有填写{day}的报告，但你的连续记录还在：每周都有一个恩典日保护它。明天是新的开始。",
+      "ok": "谢谢！"
+    }
   }
 }

@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:ui' as ui;
 
 import 'package:flutter/material.dart';
@@ -16,6 +17,8 @@ import '../../../../core/theme/app_spacing.dart';
 import '../../../../core/theme/app_tones.dart';
 import '../../../../core/widgets/app_toast.dart';
 import '../../../../core/widgets/cmfi_logo.dart';
+import '../../../journey/application/journey_steps.dart';
+import '../../../journey/domain/journey_step.dart';
 import '../../domain/hymn.dart';
 import '../../domain/hymn_text.dart';
 import 'book_cover.dart';
@@ -86,6 +89,11 @@ class _LyricsShareSheet extends HookConsumerWidget {
     );
     final fileName = 'cantique-${hymn.number}.png';
 
+    // « Un chant partagé »
+    void shared() => unawaited(
+      ref.read(journeyStepsProvider.notifier).reach(JourneyStep.lyricsShared),
+    );
+
     // the card as a story (9:16): on its color, darker
     Future<Uint8List?> image() async {
       final boundary =
@@ -128,6 +136,9 @@ class _LyricsShareSheet extends HookConsumerWidget {
             .read(photoSaverProvider)
             .save(png, name: fileName);
         saved ? toast.success(s.saved) : toast.error(s.saveDenied);
+        if (saved) {
+          shared();
+        }
       } on Object {
         toast.error(s.saveFailed);
       }
@@ -148,6 +159,7 @@ class _LyricsShareSheet extends HookConsumerWidget {
             subject: hymn.title,
             origin: where,
           );
+      shared();
     });
 
     Future<void> copy() async {
@@ -156,9 +168,12 @@ class _LyricsShareSheet extends HookConsumerWidget {
       toast.success(t.reader.copied);
     }
 
-    Future<void> shareText(BuildContext anchor) => ref
-        .read(shareServiceProvider)
-        .shareText(text, subject: hymn.title, origin: origin(anchor));
+    Future<void> shareText(BuildContext anchor) async {
+      await ref
+          .read(shareServiceProvider)
+          .shareText(text, subject: hymn.title, origin: origin(anchor));
+      shared();
+    }
 
     final buttonStyle = FilledButton.styleFrom(
       backgroundColor: module.color,

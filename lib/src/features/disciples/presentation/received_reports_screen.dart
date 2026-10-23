@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
@@ -18,6 +20,8 @@ import '../../../core/widgets/section_card.dart';
 import '../../../core/widgets/skeleton.dart';
 import '../../../core/widgets/sub_page.dart';
 import '../../../routing/app_router.dart';
+import '../../journey/application/journey_steps.dart';
+import '../../journey/domain/journey_step.dart';
 import '../../members/presentation/widgets/member_avatar.dart';
 import '../application/received_reports.dart';
 import '../domain/received_report.dart';
@@ -261,6 +265,11 @@ class _EncourageSheet extends HookConsumerWidget {
         await ref.read(receivedReportsProvider.notifier).reply(report, text);
         toast.success(t.sent(name: report.member.firstName));
         navigator.pop();
+        unawaited(
+          ref
+              .read(journeyStepsProvider.notifier)
+              .reach(JourneyStep.firstEncouragement),
+        );
       } on Object catch (error) {
         toast.error(userMessageFor(error, messages));
       } finally {

@@ -84,6 +84,7 @@ class TranslationsHi extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _Translations$fasts$hi fasts = _Translations$fasts$hi._(_root);
 	@override late final _Translations$received$hi received = _Translations$received$hi._(_root);
 	@override late final _Translations$update$hi update = _Translations$update$hi._(_root);
+	@override late final _Translations$journey$hi journey = _Translations$journey$hi._(_root);
 }
 
 // Path: app
@@ -1848,6 +1849,27 @@ class _Translations$update$hi extends Translations$update$fr {
 	@override String moreButton({required Object version}) => 'संस्करण ${version} पर अपडेट करें';
 }
 
+// Path: journey
+class _Translations$journey$hi extends Translations$journey$fr {
+	_Translations$journey$hi._(TranslationsHi root) : this._root = root, super.internal(root);
+
+	final TranslationsHi _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'मेरे पड़ाव';
+	@override String get subtitle => 'राह के पड़ाव, सिर्फ़ तुम्हारे लिए';
+	@override String count({required Object total, required Object n}) => '${total} में से ${n}';
+	@override String reachedOn({required Object date}) => '${date} को पूरा हुआ';
+	@override String get toReach => 'अभी बाक़ी';
+	@override String get newStep => 'नया पड़ाव';
+	@override String get see => 'मेरे पड़ाव देखो';
+	@override String get go => 'आगे बढ़ो';
+	@override late final _Translations$journey$groups$hi groups = _Translations$journey$groups$hi._(_root);
+	@override late final _Translations$journey$steps$hi steps = _Translations$journey$steps$hi._(_root);
+	@override late final _Translations$journey$daily$hi daily = _Translations$journey$daily$hi._(_root);
+	@override late final _Translations$journey$grace$hi grace = _Translations$journey$grace$hi._(_root);
+}
+
 // Path: welcome.seek
 class _Translations$welcome$seek$hi extends Translations$welcome$seek$fr {
 	_Translations$welcome$seek$hi._(TranslationsHi root) : this._root = root, super.internal(root);
@@ -3033,6 +3055,75 @@ class _Translations$souls$csv$hi extends Translations$souls$csv$fr {
 	@override String get notes => 'नोट';
 }
 
+// Path: journey.groups
+class _Translations$journey$groups$hi extends Translations$journey$groups$fr {
+	_Translations$journey$groups$hi._(TranslationsHi root) : this._root = root, super.internal(root);
+
+	final TranslationsHi _root; // ignore: unused_field
+
+	// Translations
+	@override String get faithfulness => 'विश्वासयोग्यता';
+	@override String get prayer => 'प्रार्थना';
+	@override String get word => 'वचन';
+	@override String get souls => 'आत्माएँ';
+	@override String get together => 'साथ मिलकर';
+}
+
+// Path: journey.steps
+class _Translations$journey$steps$hi extends Translations$journey$steps$fr {
+	_Translations$journey$steps$hi._(TranslationsHi root) : this._root = root, super.internal(root);
+
+	final TranslationsHi _root; // ignore: unused_field
+
+	// Translations
+	@override late final _Translations$journey$steps$firstReport$hi firstReport = _Translations$journey$steps$firstReport$hi._(_root);
+	@override late final _Translations$journey$steps$streak7$hi streak7 = _Translations$journey$steps$streak7$hi._(_root);
+	@override late final _Translations$journey$steps$streak30$hi streak30 = _Translations$journey$steps$streak30$hi._(_root);
+	@override late final _Translations$journey$steps$streak100$hi streak100 = _Translations$journey$steps$streak100$hi._(_root);
+	@override late final _Translations$journey$steps$streak365$hi streak365 = _Translations$journey$steps$streak365$hi._(_root);
+	@override late final _Translations$journey$steps$fullDay$hi fullDay = _Translations$journey$steps$fullDay$hi._(_root);
+	@override late final _Translations$journey$steps$sevenFullDays$hi sevenFullDays = _Translations$journey$steps$sevenFullDays$hi._(_root);
+	@override late final _Translations$journey$steps$fourRetreats$hi fourRetreats = _Translations$journey$steps$fourRetreats$hi._(_root);
+	@override late final _Translations$journey$steps$planDone$hi planDone = _Translations$journey$steps$planDone$hi._(_root);
+	@override late final _Translations$journey$steps$lyricsShared$hi lyricsShared = _Translations$journey$steps$lyricsShared$hi._(_root);
+	@override late final _Translations$journey$steps$firstSoul$hi firstSoul = _Translations$journey$steps$firstSoul$hi._(_root);
+	@override late final _Translations$journey$steps$tenSouls$hi tenSouls = _Translations$journey$steps$tenSouls$hi._(_root);
+	@override late final _Translations$journey$steps$soulBaptized$hi soulBaptized = _Translations$journey$steps$soulBaptized$hi._(_root);
+	@override late final _Translations$journey$steps$firstSending$hi firstSending = _Translations$journey$steps$firstSending$hi._(_root);
+	@override late final _Translations$journey$steps$firstEncouragement$hi firstEncouragement = _Translations$journey$steps$firstEncouragement$hi._(_root);
+}
+
+// Path: journey.daily
+class _Translations$journey$daily$hi extends Translations$journey$daily$fr {
+	_Translations$journey$daily$hi._(TranslationsHi root) : this._root = root, super.internal(root);
+
+	final TranslationsHi _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'आज के तुम्हारे 3 क़दम';
+	@override String progress({required Object n}) => '3 में से ${n}';
+	@override String get report => 'अपनी रिपोर्ट भरो';
+	@override String get prayer => 'एक प्रार्थना-समय करो';
+	@override String get word => 'बाइबल का एक अध्याय पढ़ो';
+	@override String get wordPlan => 'योजना के अध्याय पढ़ो';
+	@override String get allDone => 'तीनों क़दम पूरे हुए। परमेश्वर के साथ तुम्हारा दिन शुभ हो!';
+	@override String get done => 'पूरा';
+}
+
+// Path: journey.grace
+class _Translations$journey$grace$hi extends Translations$journey$grace$fr {
+	_Translations$journey$grace$hi._(TranslationsHi root) : this._root = root, super.internal(root);
+
+	final TranslationsHi _root; // ignore: unused_field
+
+	// Translations
+	@override String get day => 'अनुग्रह का दिन';
+	@override String used({required Object day}) => 'अनुग्रह का दिन ${day}: तुम्हारा सिलसिला जारी है।';
+	@override String get title => 'अनुग्रह का दिन';
+	@override String text({required Object day}) => 'तुमने ${day} की रिपोर्ट नहीं भरी, पर तुम्हारा सिलसिला जारी है: हर सप्ताह एक अनुग्रह का दिन उसे बचाता है। कल एक नई शुरुआत है।';
+	@override String get ok => 'धन्यवाद!';
+}
+
 // Path: reports.units.chapters
 class _Translations$reports$units$chapters$hi extends Translations$reports$units$chapters$fr {
 	_Translations$reports$units$chapters$hi._(TranslationsHi root) : this._root = root, super.internal(root);
@@ -3309,6 +3400,171 @@ class _Translations$prayer$importunity$inviteSheet$hi extends Translations$praye
 		one: '${n} न्योता भेजा गया',
 		other: '${n} न्योते भेजे गए',
 	);
+}
+
+// Path: journey.steps.firstReport
+class _Translations$journey$steps$firstReport$hi extends Translations$journey$steps$firstReport$fr {
+	_Translations$journey$steps$firstReport$hi._(TranslationsHi root) : this._root = root, super.internal(root);
+
+	final TranslationsHi _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'पहला क़दम';
+	@override String get text => 'अपनी पहली रिपोर्ट सहेजो।';
+}
+
+// Path: journey.steps.streak7
+class _Translations$journey$steps$streak7$hi extends Translations$journey$steps$streak7$fr {
+	_Translations$journey$steps$streak7$hi._(TranslationsHi root) : this._root = root, super.internal(root);
+
+	final TranslationsHi _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'एक विश्वासयोग्य सप्ताह';
+	@override String get text => 'लगातार 7 दिन रिपोर्ट।';
+}
+
+// Path: journey.steps.streak30
+class _Translations$journey$steps$streak30$hi extends Translations$journey$steps$streak30$fr {
+	_Translations$journey$steps$streak30$hi._(TranslationsHi root) : this._root = root, super.internal(root);
+
+	final TranslationsHi _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'परमेश्वर के साथ एक महीना';
+	@override String get text => 'लगातार 30 दिन रिपोर्ट।';
+}
+
+// Path: journey.steps.streak100
+class _Translations$journey$steps$streak100$hi extends Translations$journey$steps$streak100$fr {
+	_Translations$journey$steps$streak100$hi._(TranslationsHi root) : this._root = root, super.internal(root);
+
+	final TranslationsHi _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'सौ दिन';
+	@override String get text => 'लगातार 100 दिन रिपोर्ट।';
+}
+
+// Path: journey.steps.streak365
+class _Translations$journey$steps$streak365$hi extends Translations$journey$steps$streak365$fr {
+	_Translations$journey$steps$streak365$hi._(TranslationsHi root) : this._root = root, super.internal(root);
+
+	final TranslationsHi _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'पूरा एक साल';
+	@override String get text => 'लगातार 365 दिन रिपोर्ट।';
+}
+
+// Path: journey.steps.fullDay
+class _Translations$journey$steps$fullDay$hi extends Translations$journey$steps$fullDay$fr {
+	_Translations$journey$steps$fullDay$hi._(TranslationsHi root) : this._root = root, super.internal(root);
+
+	final TranslationsHi _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'तीन क़दम';
+	@override String get text => 'दिन के 3 क़दम पूरे करो।';
+}
+
+// Path: journey.steps.sevenFullDays
+class _Translations$journey$steps$sevenFullDays$hi extends Translations$journey$steps$sevenFullDays$fr {
+	_Translations$journey$steps$sevenFullDays$hi._(TranslationsHi root) : this._root = root, super.internal(root);
+
+	final TranslationsHi _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'सात पूरे दिन';
+	@override String get text => 'दिन के 3 क़दम सात बार पूरे करो।';
+}
+
+// Path: journey.steps.fourRetreats
+class _Translations$journey$steps$fourRetreats$hi extends Translations$journey$steps$fourRetreats$fr {
+	_Translations$journey$steps$fourRetreats$hi._(TranslationsHi root) : this._root = root, super.internal(root);
+
+	final TranslationsHi _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'प्रार्थना का दिन';
+	@override String get text => 'एक ही दिन में 4 प्रार्थना-समय पूरे करो।';
+}
+
+// Path: journey.steps.planDone
+class _Translations$journey$steps$planDone$hi extends Translations$journey$steps$planDone$fr {
+	_Translations$journey$steps$planDone$hi._(TranslationsHi root) : this._root = root, super.internal(root);
+
+	final TranslationsHi _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'योजना पूरी';
+	@override String get text => 'बाइबल पढ़ने की एक योजना पूरी करो।';
+}
+
+// Path: journey.steps.lyricsShared
+class _Translations$journey$steps$lyricsShared$hi extends Translations$journey$steps$lyricsShared$fr {
+	_Translations$journey$steps$lyricsShared$hi._(TranslationsHi root) : this._root = root, super.internal(root);
+
+	final TranslationsHi _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'एक भजन साझा';
+	@override String get text => 'किसी भजन के बोल साझा करो।';
+}
+
+// Path: journey.steps.firstSoul
+class _Translations$journey$steps$firstSoul$hi extends Translations$journey$steps$firstSoul$fr {
+	_Translations$journey$steps$firstSoul$hi._(TranslationsHi root) : this._root = root, super.internal(root);
+
+	final TranslationsHi _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'बोने वाला';
+	@override String get text => 'अपनी पहली आत्मा का साथ दो।';
+}
+
+// Path: journey.steps.tenSouls
+class _Translations$journey$steps$tenSouls$hi extends Translations$journey$steps$tenSouls$fr {
+	_Translations$journey$steps$tenSouls$hi._(TranslationsHi root) : this._root = root, super.internal(root);
+
+	final TranslationsHi _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'दस आत्माएँ';
+	@override String get text => 'आत्माओं की देखभाल में 10 लोगों का साथ दो।';
+}
+
+// Path: journey.steps.soulBaptized
+class _Translations$journey$steps$soulBaptized$hi extends Translations$journey$steps$soulBaptized$fr {
+	_Translations$journey$steps$soulBaptized$hi._(TranslationsHi root) : this._root = root, super.internal(root);
+
+	final TranslationsHi _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'एक आत्मा का बपतिस्मा';
+	@override String get text => 'जिसका तुम साथ देते हो, उसका बपतिस्मा हुआ।';
+}
+
+// Path: journey.steps.firstSending
+class _Translations$journey$steps$firstSending$hi extends Translations$journey$steps$firstSending$fr {
+	_Translations$journey$steps$firstSending$hi._(TranslationsHi root) : this._root = root, super.internal(root);
+
+	final TranslationsHi _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'जवाबदेही';
+	@override String get text => 'ऐप में अपनी रिपोर्ट किसी अगुवे को भेजो।';
+}
+
+// Path: journey.steps.firstEncouragement
+class _Translations$journey$steps$firstEncouragement$hi extends Translations$journey$steps$firstEncouragement$fr {
+	_Translations$journey$steps$firstEncouragement$hi._(TranslationsHi root) : this._root = root, super.internal(root);
+
+	final TranslationsHi _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'प्रोत्साहक';
+	@override String get text => 'किसी चेले को प्रोत्साहन का संदेश भेजो।';
 }
 
 /// The flat map containing all translations for locale <hi>.
@@ -5145,6 +5401,62 @@ extension on TranslationsHi {
 			'update.restart' => 'फिर से शुरू करें',
 			'update.failed' => 'स्टोर नहीं खुल सका। बाद में फिर कोशिश करें।',
 			'update.moreButton' => ({required Object version}) => 'संस्करण ${version} पर अपडेट करें',
+			'journey.title' => 'मेरे पड़ाव',
+			'journey.subtitle' => 'राह के पड़ाव, सिर्फ़ तुम्हारे लिए',
+			'journey.count' => ({required Object total, required Object n}) => '${total} में से ${n}',
+			'journey.reachedOn' => ({required Object date}) => '${date} को पूरा हुआ',
+			'journey.toReach' => 'अभी बाक़ी',
+			'journey.newStep' => 'नया पड़ाव',
+			'journey.see' => 'मेरे पड़ाव देखो',
+			'journey.go' => 'आगे बढ़ो',
+			'journey.groups.faithfulness' => 'विश्वासयोग्यता',
+			'journey.groups.prayer' => 'प्रार्थना',
+			'journey.groups.word' => 'वचन',
+			'journey.groups.souls' => 'आत्माएँ',
+			'journey.groups.together' => 'साथ मिलकर',
+			'journey.steps.firstReport.title' => 'पहला क़दम',
+			'journey.steps.firstReport.text' => 'अपनी पहली रिपोर्ट सहेजो।',
+			'journey.steps.streak7.title' => 'एक विश्वासयोग्य सप्ताह',
+			'journey.steps.streak7.text' => 'लगातार 7 दिन रिपोर्ट।',
+			'journey.steps.streak30.title' => 'परमेश्वर के साथ एक महीना',
+			'journey.steps.streak30.text' => 'लगातार 30 दिन रिपोर्ट।',
+			'journey.steps.streak100.title' => 'सौ दिन',
+			'journey.steps.streak100.text' => 'लगातार 100 दिन रिपोर्ट।',
+			'journey.steps.streak365.title' => 'पूरा एक साल',
+			'journey.steps.streak365.text' => 'लगातार 365 दिन रिपोर्ट।',
+			'journey.steps.fullDay.title' => 'तीन क़दम',
+			'journey.steps.fullDay.text' => 'दिन के 3 क़दम पूरे करो।',
+			'journey.steps.sevenFullDays.title' => 'सात पूरे दिन',
+			'journey.steps.sevenFullDays.text' => 'दिन के 3 क़दम सात बार पूरे करो।',
+			'journey.steps.fourRetreats.title' => 'प्रार्थना का दिन',
+			'journey.steps.fourRetreats.text' => 'एक ही दिन में 4 प्रार्थना-समय पूरे करो।',
+			'journey.steps.planDone.title' => 'योजना पूरी',
+			'journey.steps.planDone.text' => 'बाइबल पढ़ने की एक योजना पूरी करो।',
+			'journey.steps.lyricsShared.title' => 'एक भजन साझा',
+			'journey.steps.lyricsShared.text' => 'किसी भजन के बोल साझा करो।',
+			'journey.steps.firstSoul.title' => 'बोने वाला',
+			'journey.steps.firstSoul.text' => 'अपनी पहली आत्मा का साथ दो।',
+			'journey.steps.tenSouls.title' => 'दस आत्माएँ',
+			'journey.steps.tenSouls.text' => 'आत्माओं की देखभाल में 10 लोगों का साथ दो।',
+			'journey.steps.soulBaptized.title' => 'एक आत्मा का बपतिस्मा',
+			'journey.steps.soulBaptized.text' => 'जिसका तुम साथ देते हो, उसका बपतिस्मा हुआ।',
+			'journey.steps.firstSending.title' => 'जवाबदेही',
+			'journey.steps.firstSending.text' => 'ऐप में अपनी रिपोर्ट किसी अगुवे को भेजो।',
+			'journey.steps.firstEncouragement.title' => 'प्रोत्साहक',
+			'journey.steps.firstEncouragement.text' => 'किसी चेले को प्रोत्साहन का संदेश भेजो।',
+			'journey.daily.title' => 'आज के तुम्हारे 3 क़दम',
+			'journey.daily.progress' => ({required Object n}) => '3 में से ${n}',
+			'journey.daily.report' => 'अपनी रिपोर्ट भरो',
+			'journey.daily.prayer' => 'एक प्रार्थना-समय करो',
+			'journey.daily.word' => 'बाइबल का एक अध्याय पढ़ो',
+			'journey.daily.wordPlan' => 'योजना के अध्याय पढ़ो',
+			'journey.daily.allDone' => 'तीनों क़दम पूरे हुए। परमेश्वर के साथ तुम्हारा दिन शुभ हो!',
+			'journey.daily.done' => 'पूरा',
+			'journey.grace.day' => 'अनुग्रह का दिन',
+			'journey.grace.used' => ({required Object day}) => 'अनुग्रह का दिन ${day}: तुम्हारा सिलसिला जारी है।',
+			'journey.grace.title' => 'अनुग्रह का दिन',
+			'journey.grace.text' => ({required Object day}) => 'तुमने ${day} की रिपोर्ट नहीं भरी, पर तुम्हारा सिलसिला जारी है: हर सप्ताह एक अनुग्रह का दिन उसे बचाता है। कल एक नई शुरुआत है।',
+			'journey.grace.ok' => 'धन्यवाद!',
 			_ => null,
 		};
 	}

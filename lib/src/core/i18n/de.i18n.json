@@ -2389,5 +2389,101 @@
     "restart": "Neu starten",
     "failed": "Der Store konnte nicht geöffnet werden. Versuche es später erneut.",
     "moreButton": "Auf Version {version} aktualisieren"
+  },
+  "journey": {
+    "title": "Meine Etappen",
+    "subtitle": "Die Etappen des Weges, nur für dich",
+    "count": "{n} von {total}",
+    "reachedOn": "Erreicht am {date}",
+    "toReach": "Noch zu erreichen",
+    "newStep": "Neue Etappe",
+    "see": "Meine Etappen ansehen",
+    "go": "Weiter",
+    "groups": {
+      "faithfulness": "Treue",
+      "prayer": "Gebet",
+      "word": "Wort",
+      "souls": "Seelen",
+      "together": "Gemeinsam"
+    },
+    "steps": {
+      "firstReport": {
+        "title": "Erster Schritt",
+        "text": "Speichere deinen ersten Bericht."
+      },
+      "streak7": {
+        "title": "Eine treue Woche",
+        "text": "7 Tage in Folge mit einem Bericht."
+      },
+      "streak30": {
+        "title": "Ein Monat mit Gott",
+        "text": "30 Tage in Folge mit einem Bericht."
+      },
+      "streak100": {
+        "title": "Hundert Tage",
+        "text": "100 Tage in Folge mit einem Bericht."
+      },
+      "streak365": {
+        "title": "Ein ganzes Jahr",
+        "text": "365 Tage in Folge mit einem Bericht."
+      },
+      "fullDay": {
+        "title": "Drei Schritte",
+        "text": "Die 3 Schritte des Tages machen."
+      },
+      "sevenFullDays": {
+        "title": "Sieben volle Tage",
+        "text": "Die 3 Schritte des Tages siebenmal machen."
+      },
+      "fourRetreats": {
+        "title": "Ein Tag des Gebets",
+        "text": "Die 4 Gebetszeiten am selben Tag machen."
+      },
+      "planDone": {
+        "title": "Plan abgeschlossen",
+        "text": "Einen Bibelleseplan beenden."
+      },
+      "lyricsShared": {
+        "title": "Ein geteiltes Lied",
+        "text": "Den Text eines Liedes teilen."
+      },
+      "firstSoul": {
+        "title": "Sämann",
+        "text": "Deine erste Seele begleiten."
+      },
+      "tenSouls": {
+        "title": "Zehn begleitete Seelen",
+        "text": "10 Menschen in der Seelenbegleitung begleiten."
+      },
+      "soulBaptized": {
+        "title": "Eine getaufte Seele",
+        "text": "Ein Mensch, den du begleitest, lässt sich taufen."
+      },
+      "firstSending": {
+        "title": "Rechenschaft",
+        "text": "Deinen Bericht in der App an eine Autorität senden."
+      },
+      "firstEncouragement": {
+        "title": "Ermutiger",
+        "text": "Einem Jünger ein ermutigendes Wort senden."
+      }
+    },
+    "daily": {
+      "title": "Deine 3 Schritte des Tages",
+      "progress": "{n} von 3",
+      "report": "Meinen Bericht ausfüllen",
+      "prayer": "Eine Gebetszeit halten",
+      "word": "Ein Kapitel der Bibel lesen",
+      "wordPlan": "Die Kapitel des Plans lesen",
+      "allDone": "Die drei Schritte sind gemacht. Einen schönen Tag mit Gott!",
+      "done": "Erledigt"
+    },
+    "grace": {
+      "day": "Tag der Gnade",
+      "used": "Tag der Gnade {day}: deine Serie geht weiter.",
+      "title": "Ein Tag der Gnade",
+      "text": "Du hast {day} nicht ausgefüllt, aber deine Serie geht weiter: Jede Woche schützt sie ein Tag der Gnade. Morgen ist ein neuer Anfang.",
+      "ok": "Danke!"
+    }
   }
 }

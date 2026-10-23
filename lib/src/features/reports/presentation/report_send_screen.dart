@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
@@ -24,6 +26,8 @@ import '../../../core/widgets/sub_page.dart';
 import '../../../routing/app_router.dart';
 import '../../authorities/application/authorities_controller.dart';
 import '../../authorities/domain/authority.dart';
+import '../../journey/application/journey_steps.dart';
+import '../../journey/domain/journey_step.dart';
 import '../../members/presentation/widgets/member_avatar.dart';
 import '../../profile/application/current_profile.dart';
 import '../application/in_app_sendings.dart';
@@ -157,6 +161,11 @@ class ReportSendScreen extends HookConsumerWidget {
         sentTo.value = {...sentTo.value, authority.id};
         toast.success(s.inAppSent(name: authority.firstName));
         await recordSent(authority.fullName);
+        unawaited(
+          ref
+              .read(journeyStepsProvider.notifier)
+              .reach(JourneyStep.firstSending),
+        );
       } on Object catch (error) {
         toast.error(userMessageFor(error, t));
       } finally {

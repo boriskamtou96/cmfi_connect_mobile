@@ -34,6 +34,7 @@ import '../features/home/presentation/year_story_screen.dart';
 import '../features/hymns/presentation/hymn_projection_screen.dart';
 import '../features/hymns/presentation/hymn_reader_screen.dart';
 import '../features/hymns/presentation/hymns_screen.dart';
+import '../features/journey/presentation/journey_screen.dart';
 import '../features/members/presentation/delete_account_screen.dart';
 import '../features/ministry/presentation/life_screen.dart';
 import '../features/ministry/presentation/ministry_people_screen.dart';
@@ -139,6 +140,7 @@ class AppRouter extends RootStackRouter {
       page: BibleMarksRoute.page,
       guards: [authGuard],
     ),
+    AutoRoute(path: '/journey', page: JourneyRoute.page, guards: [authGuard]),
     AutoRoute(
       path: '/bible/plan',
       page: BiblePlanRoute.page,

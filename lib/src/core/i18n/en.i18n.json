@@ -737,7 +737,10 @@
       "pinchHint": "Pinch the screen to make the text bigger or smaller.",
       "notFound": "This hymn is no longer in the book.",
       "share": "Share the lyrics",
-      "shareLines": "Share an excerpt"
+      "shareLines": "Share an excerpt",
+      "themeBook": "Book",
+      "previous": "Previous hymn",
+      "next": "Next hymn"
     },
     "projection": {
       "exit": "Leave projection mode",

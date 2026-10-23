@@ -178,17 +178,21 @@ class _ReaderSettingsSheet extends ConsumerWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               for (final (theme, name) in [
+                (ReaderTheme.book, t.hymns.reader.themeBook),
                 (ReaderTheme.auto, t.hymns.reader.themeAuto),
                 (ReaderTheme.light, t.hymns.reader.themeLight),
                 (ReaderTheme.sepia, t.hymns.reader.themeSepia),
                 (ReaderTheme.dark, t.hymns.reader.themeDark),
               ])
-                ReaderThemeSwatch(
-                  theme: theme,
-                  name: name,
-                  selected: settings.theme == theme,
-                  onTap: () =>
-                      controller.update((s) => s.copyWith(theme: theme)),
+                // five side by side: each its share of the width
+                Expanded(
+                  child: ReaderThemeSwatch(
+                    theme: theme,
+                    name: name,
+                    selected: settings.theme == theme,
+                    onTap: () =>
+                        controller.update((s) => s.copyWith(theme: theme)),
+                  ),
                 ),
             ],
           ),

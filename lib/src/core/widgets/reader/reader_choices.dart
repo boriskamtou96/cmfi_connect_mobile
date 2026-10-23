@@ -50,7 +50,7 @@ class ReaderChoice extends StatelessWidget {
 }
 
 /// A background to read on, as a round sample; auto is half light, half
-/// dark.
+/// dark, book the teal of the hymns.
 class ReaderThemeSwatch extends StatelessWidget {
   const ReaderThemeSwatch({
     required this.theme,
@@ -95,9 +95,17 @@ class ReaderThemeSwatch extends StatelessWidget {
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
                   border: Border.all(color: scheme.outlineVariant),
-                  color: theme == ReaderTheme.auto ? null : palette.background,
-                  // auto: half light, half dark
-                  gradient: theme == ReaderTheme.auto
+                  color: theme == ReaderTheme.auto || theme == ReaderTheme.book
+                      ? null
+                      : palette.background,
+                  // auto: half light, half dark; book: the teal of the hymns
+                  gradient: theme == ReaderTheme.book
+                      ? const LinearGradient(
+                          colors: [Color(0xFF18A091), Color(0xFF0A4E48)],
+                          begin: Alignment.topLeft,
+                          end: Alignment.bottomRight,
+                        )
+                      : theme == ReaderTheme.auto
                       ? const LinearGradient(
                           colors: [
                             Colors.white,
@@ -119,7 +127,9 @@ class ReaderThemeSwatch extends StatelessWidget {
                           style: TextStyle(
                             fontFamily: 'Lora',
                             fontSize: 15,
-                            color: palette.text,
+                            color: theme == ReaderTheme.book
+                                ? Colors.white
+                                : palette.text,
                           ),
                         ),
                 ),
@@ -128,6 +138,9 @@ class ReaderThemeSwatch extends StatelessWidget {
             const SizedBox(height: 4),
             Text(
               name,
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+              textAlign: TextAlign.center,
               style: TextStyle(fontSize: 12.5, color: scheme.onSurfaceVariant),
             ),
           ],

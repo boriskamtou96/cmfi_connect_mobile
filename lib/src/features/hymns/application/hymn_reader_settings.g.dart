@@ -14,7 +14,7 @@ _HymnReaderSettings _$HymnReaderSettingsFromJson(Map<String, dynamic> json) =>
           HymnTypeface.auto,
       theme:
           $enumDecodeNullable(_$ReaderThemeEnumMap, json['theme']) ??
-          ReaderTheme.auto,
+          ReaderTheme.book,
       repeatChorus: json['repeat_chorus'] as bool? ?? false,
       keepScreenOn: json['keep_screen_on'] as bool? ?? true,
     );
@@ -39,6 +39,7 @@ const _$ReaderThemeEnumMap = {
   ReaderTheme.light: 'light',
   ReaderTheme.sepia: 'sepia',
   ReaderTheme.dark: 'dark',
+  ReaderTheme.book: 'book',
 };
 
 // **************************************************************************

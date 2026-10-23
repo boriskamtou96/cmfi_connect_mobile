@@ -2361,6 +2361,9 @@ class _Translations$hymns$reader$de extends Translations$hymns$reader$fr {
 	@override String get notFound => 'Dieses Lied gibt es im Liederbuch nicht mehr.';
 	@override String get share => 'Liedtext teilen';
 	@override String get shareLines => 'Einen Auszug teilen';
+	@override String get themeBook => 'Liederbuch';
+	@override String get previous => 'Vorheriges Lied';
+	@override String get next => 'Nächstes Lied';
 }
 
 // Path: hymns.projection
@@ -3911,6 +3914,9 @@ extension on TranslationsDe {
 			'hymns.reader.notFound' => 'Dieses Lied gibt es im Liederbuch nicht mehr.',
 			'hymns.reader.share' => 'Liedtext teilen',
 			'hymns.reader.shareLines' => 'Einen Auszug teilen',
+			'hymns.reader.themeBook' => 'Liederbuch',
+			'hymns.reader.previous' => 'Vorheriges Lied',
+			'hymns.reader.next' => 'Nächstes Lied',
 			'hymns.projection.exit' => 'Präsentationsmodus beenden',
 			'hymns.projection.previous' => 'Vorherige Strophe',
 			'hymns.projection.next' => 'Nächste Strophe',
@@ -4343,11 +4349,11 @@ extension on TranslationsDe {
 			'prayer.retreatOf.evening' => 'Gebetszeit am Abend',
 			'prayer.retreatOf.night' => 'Gebetszeit zur Nacht',
 			'prayer.hero.now' => ({required Object retreat}) => '${retreat} · jetzt',
+			_ => null,
+		} ?? switch (path) {
 			'prayer.hero.title' => '15 Minuten\nmit dem Herrn',
 			'prayer.hero.preview.morning' => 'Sage Dank, weihe deinen Tag, deine Arbeit, deine Familie …',
 			'prayer.hero.preview.noon' => 'Deine Gemeinde, deine Leiter, 5 Menschen von deiner Liste, die Nationen …',
-			_ => null,
-		} ?? switch (path) {
 			'prayer.hero.preview.evening' => 'Dein Gebetsleben, dein Dienst, deine Mitarbeiter …',
 			'prayer.hero.preview.night' => 'Die Kranken, das Evangelium unter den Nationen, Schutz für die Nacht …',
 			'prayer.hero.meta' => '15 Punkte · je 1 Min.',
@@ -4857,11 +4863,11 @@ extension on TranslationsDe {
 			'seekFirst.permissionsAndroid' => 'Um deine Apps zu schließen, braucht CMFI Connect zwei Berechtigungen, die du in den gleich geöffneten Einstellungen einschaltest: „Zugriff auf Nutzungsdaten“ (welche App offen ist) und „Über anderen Apps einblenden“ (den Bildschirm Suche zuerst Gott zeigen). Nichts verlässt dein Handy.',
 			'seekFirst.permissionsContinue' => 'Weiter',
 			'seekFirst.deniedAndroid' => 'Ohne diese zwei Berechtigungen kann CMFI Connect keine Apps schließen. Du kannst sie unter Einstellungen › Apps › Spezieller Zugriff einschalten.',
+			_ => null,
+		} ?? switch (path) {
 			'seekFirst.privacyAndroid' => 'Die Apps, die du wählst, bleiben auf deinem Handy: CMFI Connect sendet sie nie.',
 			'documents.title' => 'Unsere Dokumente',
 			'documents.subtitle' => 'Lehren, Regeln, Formulare…',
-			_ => null,
-		} ?? switch (path) {
 			'documents.moreSubtitle' => 'Die Bibliothek der Gemeinschaft',
 			'documents.search' => 'Ein Dokument suchen',
 			'documents.all' => 'Alle',

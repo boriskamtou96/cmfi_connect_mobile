@@ -2360,6 +2360,9 @@ class _Translations$hymns$reader$hi extends Translations$hymns$reader$fr {
 	@override String get notFound => 'यह भजन अब इस संग्रह में नहीं है।';
 	@override String get share => 'बोल शेयर करो';
 	@override String get shareLines => 'एक अंश साझा करो';
+	@override String get themeBook => 'पुस्तक';
+	@override String get previous => 'पिछला भजन';
+	@override String get next => 'अगला भजन';
 }
 
 // Path: hymns.projection
@@ -3910,6 +3913,9 @@ extension on TranslationsHi {
 			'hymns.reader.notFound' => 'यह भजन अब इस संग्रह में नहीं है।',
 			'hymns.reader.share' => 'बोल शेयर करो',
 			'hymns.reader.shareLines' => 'एक अंश साझा करो',
+			'hymns.reader.themeBook' => 'पुस्तक',
+			'hymns.reader.previous' => 'पिछला भजन',
+			'hymns.reader.next' => 'अगला भजन',
 			'hymns.projection.exit' => 'प्रोजेक्शन मोड से बाहर निकलो',
 			'hymns.projection.previous' => 'पिछला पद',
 			'hymns.projection.next' => 'अगला पद',
@@ -4342,11 +4348,11 @@ extension on TranslationsHi {
 			'prayer.retreatOf.evening' => 'शाम का प्रार्थना-समय',
 			'prayer.retreatOf.night' => 'रात का प्रार्थना-समय',
 			'prayer.hero.now' => ({required Object retreat}) => '${retreat} · अभी',
+			_ => null,
+		} ?? switch (path) {
 			'prayer.hero.title' => '15 मिनट\nप्रभु के साथ',
 			'prayer.hero.preview.morning' => 'धन्यवाद दो, अपना दिन, अपना काम, अपना परिवार समर्पित करो…',
 			'prayer.hero.preview.noon' => 'तुम्हारी सभा, तुम्हारे अगुवे, तुम्हारी सूची के 5 लोग, राष्ट्र…',
-			_ => null,
-		} ?? switch (path) {
 			'prayer.hero.preview.evening' => 'तुम्हारा प्रार्थना-जीवन, तुम्हारी सेवकाई, तुम्हारे सहकर्मी…',
 			'prayer.hero.preview.night' => 'बीमार लोग, राष्ट्रों में सुसमाचार, रात की सुरक्षा…',
 			'prayer.hero.meta' => '15 बिंदु · हर एक 1 मिनट',
@@ -4856,11 +4862,11 @@ extension on TranslationsHi {
 			'seekFirst.permissionsAndroid' => 'तुम्हारे ऐप बंद करने के लिए CMFI Connect को दो अनुमतियाँ चाहिए, जो खुलने वाली सेटिंग्स में चालू करनी हैं: «उपयोग डेटा तक पहुँच» (कौन-सा ऐप खुला है) और «दूसरे ऐप्स के ऊपर दिखाएँ» (पहले परमेश्वर को खोजो स्क्रीन दिखाने के लिए)। कुछ भी तुम्हारे फ़ोन से बाहर नहीं जाता।',
 			'seekFirst.permissionsContinue' => 'आगे बढ़ो',
 			'seekFirst.deniedAndroid' => 'इन दो अनुमतियों के बिना CMFI Connect ऐप बंद नहीं कर सकता। तुम इन्हें सेटिंग्स › ऐप्स › विशेष पहुँच में चालू कर सकते हो।',
+			_ => null,
+		} ?? switch (path) {
 			'seekFirst.privacyAndroid' => 'तुम्हारे चुने ऐप तुम्हारे फ़ोन में ही रहते हैं: CMFI Connect उन्हें कभी नहीं भेजता।',
 			'documents.title' => 'हमारे दस्तावेज़',
 			'documents.subtitle' => 'शिक्षाएँ, नियम, फ़ॉर्म…',
-			_ => null,
-		} ?? switch (path) {
 			'documents.moreSubtitle' => 'समुदाय का पुस्तकालय',
 			'documents.search' => 'दस्तावेज़ खोजें',
 			'documents.all' => 'सभी',

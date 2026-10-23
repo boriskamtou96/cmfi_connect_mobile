@@ -2292,6 +2292,9 @@ class _Translations$hymns$reader$zh extends Translations$hymns$reader$fr {
 	@override String get notFound => '此诗歌已不在诗歌本中。';
 	@override String get share => '分享歌词';
 	@override String get shareLines => '分享片段';
+	@override String get themeBook => '诗歌本';
+	@override String get previous => '上一首';
+	@override String get next => '下一首';
 }
 
 // Path: hymns.projection
@@ -3827,6 +3830,9 @@ extension on TranslationsZh {
 			'hymns.reader.notFound' => '此诗歌已不在诗歌本中。',
 			'hymns.reader.share' => '分享歌词',
 			'hymns.reader.shareLines' => '分享片段',
+			'hymns.reader.themeBook' => '诗歌本',
+			'hymns.reader.previous' => '上一首',
+			'hymns.reader.next' => '下一首',
 			'hymns.projection.exit' => '退出投影模式',
 			'hymns.projection.previous' => '上一节',
 			'hymns.projection.next' => '下一节',
@@ -4259,11 +4265,11 @@ extension on TranslationsZh {
 			'prayer.retreatOf.evening' => '傍晚祷告',
 			'prayer.retreatOf.night' => '夜晚祷告',
 			'prayer.hero.now' => ({required Object retreat}) => '${retreat} · 现在',
+			_ => null,
+		} ?? switch (path) {
 			'prayer.hero.title' => '15 分钟\n与主同在',
 			'prayer.hero.preview.morning' => '献上感恩，将你的一天、你的工作、你的家人奉献给主……',
 			'prayer.hero.preview.noon' => '你的聚会点、你的领袖、你名单上的 5 个人、列国……',
-			_ => null,
-		} ?? switch (path) {
 			'prayer.hero.preview.evening' => '你的祷告生活、你的事工、你的同工……',
 			'prayer.hero.preview.night' => '病人、福音传遍列国、夜间的保护……',
 			'prayer.hero.meta' => '15 个要点 · 每个 1 分钟',
@@ -4773,11 +4779,11 @@ extension on TranslationsZh {
 			'seekFirst.permissionsAndroid' => '为了关闭你的应用，CMFI Connect 需要在即将打开的设置中开启两项权限：“使用情况访问权限”（知道哪个应用在前台）和“显示在其他应用上层”（显示“先求神”页面）。任何数据都不会离开你的手机。',
 			'seekFirst.permissionsContinue' => '继续',
 			'seekFirst.deniedAndroid' => '没有这两项权限，CMFI Connect 无法关闭应用。你可以在“设置 › 应用 › 特殊访问权限”中开启。',
+			_ => null,
+		} ?? switch (path) {
 			'seekFirst.privacyAndroid' => '你选择的应用只保存在手机上：CMFI Connect 绝不会上传。',
 			'documents.title' => '我们的文件',
 			'documents.subtitle' => '教导、规章、表格…',
-			_ => null,
-		} ?? switch (path) {
 			'documents.moreSubtitle' => '团契的资料库',
 			'documents.search' => '搜索文件',
 			'documents.all' => '全部',

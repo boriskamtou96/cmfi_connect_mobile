@@ -13,7 +13,6 @@ import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_icons.dart';
 import '../../../core/theme/app_motion.dart';
 import '../../../core/theme/app_spacing.dart';
-import '../../../core/theme/app_theme.dart';
 import '../../../core/theme/app_tones.dart';
 import '../../../core/widgets/adaptive_menus.dart';
 import '../../../core/widgets/app_back_button.dart';
@@ -54,10 +53,15 @@ class HymnReaderScreen extends HookConsumerWidget {
     final t = context.t;
     final book = ref.watch(hymnBookProvider(bookCode));
     final settings = ref.watch(hymnReaderSettingsControllerProvider);
-    final palette = ReaderPalette.of(
-      settings.theme,
-      Theme.of(context).brightness,
+    // the color of the book (its cover's), or a page to read on
+    final books = ref.watch(hymnLibraryProvider).value ?? const <HymnBook>[];
+    final colors = bookCoverColors(
+      books.indexWhere((other) => other.code == bookCode).clamp(0, 99),
     );
+    final onBook = settings.theme == ReaderTheme.book;
+    final palette = onBook
+        ? ReaderPalette.onColor(colors.last)
+        : ReaderPalette.of(settings.theme, Theme.of(context).brightness);
     final settingsController = ref.read(
       hymnReaderSettingsControllerProvider.notifier,
     );
@@ -196,10 +200,16 @@ class HymnReaderScreen extends HookConsumerWidget {
     }
 
     final barColor = palette.text;
-    final smallerEnabled =
-        settings.textScale > HymnReaderSettings.minScale + 0.001;
-    final largerEnabled =
-        settings.textScale < HymnReaderSettings.maxScale - 0.001;
+    // the bottom of the page, under the bar of actions
+    final bottomColor = onBook
+        ? Color.lerp(colors.last, Colors.black, 0.25)!
+        : palette.background;
+
+    void go(int delta) => pageController.animateToPage(
+      current.value + delta,
+      duration: AppMotion.of(context, AppMotion.medium),
+      curve: AppMotion.standard,
+    );
 
     return AnnotatedRegion<SystemUiOverlayStyle>(
       value: palette.brightness == Brightness.dark
@@ -207,7 +217,22 @@ class HymnReaderScreen extends HookConsumerWidget {
           : SystemUiOverlayStyle.dark,
       child: AnimatedContainer(
         duration: AppMotion.of(context, AppMotion.medium),
-        color: palette.background,
+        // on the book: its color, lighter at the top, like a song's lyrics
+        decoration: BoxDecoration(
+          color: onBook ? null : palette.background,
+          gradient: onBook
+              ? LinearGradient(
+                  begin: Alignment.topCenter,
+                  end: Alignment.bottomCenter,
+                  colors: [
+                    Color.lerp(colors.first, colors.last, 0.3)!,
+                    colors.last,
+                    bottomColor,
+                  ],
+                  stops: const [0, 0.45, 1],
+                )
+              : null,
+        ),
         child: Scaffold(
           backgroundColor: Colors.transparent,
           body: SafeArea(
@@ -228,63 +253,36 @@ class HymnReaderScreen extends HookConsumerWidget {
                           tooltip: MaterialLocalizations.of(
                             context,
                           ).backButtonTooltip,
-                          icon: const Icon(AppIcons.back, size: 30),
+                          icon: const Icon(AppIcons.chevronDown, size: 26),
                           onPressed: () => context.router.maybePop(),
                         ),
+                        // the book above the number
                         Expanded(
-                          child: Text(
-                            t.hymns.number(number: hymn.number),
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                              fontSize: 17,
-                              fontWeight: FontWeight.w800,
-                              color: palette.text,
-                            ),
-                          ),
-                        ),
-                        _TextButton(
-                          label: 'A−',
-                          fontSize: 15,
-                          color: barColor,
-                          tooltip: t.hymns.reader.smaller,
-                          onPressed: smallerEnabled
-                              ? () => settingsController.zoom(-1)
-                              : null,
-                        ),
-                        _TextButton(
-                          label: 'A+',
-                          fontSize: 20,
-                          color: barColor,
-                          tooltip: t.hymns.reader.larger,
-                          onPressed: largerEnabled
-                              ? () => settingsController.zoom(1)
-                              : null,
-                        ),
-                        IconButton(
-                          tooltip: t.hymns.reader.display,
-                          icon: const Icon(AppIcons.textSize),
-                          onPressed: () => showReaderSettings(context),
-                        ),
-                        IconButton(
-                          tooltip: favorite
-                              ? t.hymns.reader.removeFavorite
-                              : t.hymns.reader.addFavorite,
-                          onPressed: toggleFavorite,
-                          icon: AnimatedSwitcher(
-                            duration: AppMotion.of(context, AppMotion.fast),
-                            transitionBuilder: (child, animation) =>
-                                ScaleTransition(
-                                  scale: CurvedAnimation(
-                                    parent: animation,
-                                    curve: AppMotion.pop,
-                                  ),
-                                  child: child,
+                          child: Column(
+                            children: [
+                              Text(
+                                book.title.toUpperCase(),
+                                maxLines: 1,
+                                overflow: TextOverflow.ellipsis,
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                  fontSize: 11,
+                                  fontWeight: FontWeight.w700,
+                                  letterSpacing: 1.4,
+                                  color: palette.muted,
                                 ),
-                            child: Icon(
-                              favorite ? AppIcons.starFilled : AppIcons.star,
-                              key: ValueKey(favorite),
-                              color: favorite ? AppColors.gold : barColor,
-                            ),
+                              ),
+                              const SizedBox(height: 2),
+                              Text(
+                                t.hymns.number(number: hymn.number),
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w800,
+                                  color: palette.text,
+                                ),
+                              ),
+                            ],
                           ),
                         ),
                         Builder(
@@ -364,24 +362,52 @@ class HymnReaderScreen extends HookConsumerWidget {
                                 enabled: !pinching.value,
                                 child: HymnView(
                                   hymn: book.hymns[index],
-                                  bookTitle: book.title,
                                   settings: settings,
                                   palette: palette,
+                                  strong: onBook,
                                   chosen: index == current.value
                                       ? chosen.value
                                       : const {},
                                   onLineTap: toggleLine,
+                                  padding: const EdgeInsets.fromLTRB(
+                                    AppSpacing.xl,
+                                    AppSpacing.md,
+                                    AppSpacing.xl,
+                                    140,
+                                  ),
                                 ),
                               ),
                             ),
                           ),
                         ),
                       ),
-                      // the lines chosen, to share
+                      // the words fade under the bar
+                      Positioned(
+                        left: 0,
+                        right: 0,
+                        bottom: 0,
+                        height: 120,
+                        child: IgnorePointer(
+                          child: DecoratedBox(
+                            decoration: BoxDecoration(
+                              gradient: LinearGradient(
+                                begin: Alignment.topCenter,
+                                end: Alignment.bottomCenter,
+                                colors: [
+                                  bottomColor.withValues(alpha: 0),
+                                  bottomColor,
+                                ],
+                                stops: const [0, 0.6],
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                      // the actions, or the lines chosen to share
                       PositionedDirectional(
-                        start: AppSpacing.lg,
-                        end: AppSpacing.lg,
-                        bottom: AppSpacing.lg,
+                        start: AppSpacing.md,
+                        end: AppSpacing.md,
+                        bottom: AppSpacing.md,
                         child: AnimatedSwitcher(
                           duration: AppMotion.of(context, AppMotion.fast),
                           child: choosing.value
@@ -390,7 +416,26 @@ class HymnReaderScreen extends HookConsumerWidget {
                                   onShare: shareChosen,
                                   onClear: stopChoosing,
                                 )
-                              : const SizedBox.shrink(),
+                              : _ActionBar(
+                                  palette: palette,
+                                  onBook: onBook,
+                                  favorite: favorite,
+                                  onPrevious: current.value > 0
+                                      ? () => go(-1)
+                                      : null,
+                                  onNext: current.value < book.hymns.length - 1
+                                      ? () => go(1)
+                                      : null,
+                                  onFavorite: toggleFavorite,
+                                  onDisplay: () => showReaderSettings(context),
+                                  onShare: () => choosing.value = true,
+                                  onProject: () => context.router.push(
+                                    HymnProjectionRoute(
+                                      bookCode: bookCode,
+                                      number: hymn.number,
+                                    ),
+                                  ),
+                                ),
                         ),
                       ),
                     ],
@@ -398,6 +443,107 @@ class HymnReaderScreen extends HookConsumerWidget {
                 ),
               ],
             ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+/// Under the words, floating: the hymn before, the star, the display, the
+/// lines to share, the projection, the hymn after.
+class _ActionBar extends StatelessWidget {
+  const _ActionBar({
+    required this.palette,
+    required this.onBook,
+    required this.favorite,
+    required this.onPrevious,
+    required this.onNext,
+    required this.onFavorite,
+    required this.onDisplay,
+    required this.onShare,
+    required this.onProject,
+  });
+
+  final ReaderPalette palette;
+  final bool onBook;
+  final bool favorite;
+  final VoidCallback? onPrevious;
+  final VoidCallback? onNext;
+  final VoidCallback onFavorite;
+  final VoidCallback onDisplay;
+  final VoidCallback onShare;
+  final VoidCallback onProject;
+
+  @override
+  Widget build(BuildContext context) {
+    final t = context.t.hymns.reader;
+    final color = palette.text;
+    return Material(
+      // a darker glass on the book, a soft card on a page
+      color: onBook
+          ? Colors.black.withValues(alpha: 0.26)
+          : Color.alphaBlend(
+              palette.text.withValues(alpha: 0.06),
+              palette.background,
+            ),
+      elevation: onBook ? 0 : 6,
+      shadowColor: Colors.black26,
+      borderRadius: BorderRadius.circular(AppRadius.xl),
+      child: IconTheme(
+        data: IconThemeData(color: color, size: 24),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 6),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              IconButton(
+                tooltip: t.previous,
+                onPressed: onPrevious,
+                disabledColor: color.withValues(alpha: 0.3),
+                icon: const Icon(AppIcons.previousHymn),
+              ),
+              IconButton(
+                tooltip: favorite ? t.removeFavorite : t.addFavorite,
+                onPressed: onFavorite,
+                icon: AnimatedSwitcher(
+                  duration: AppMotion.of(context, AppMotion.fast),
+                  transitionBuilder: (child, animation) => ScaleTransition(
+                    scale: CurvedAnimation(
+                      parent: animation,
+                      curve: AppMotion.pop,
+                    ),
+                    child: child,
+                  ),
+                  child: Icon(
+                    favorite ? AppIcons.starFilled : AppIcons.star,
+                    key: ValueKey(favorite),
+                    color: favorite ? AppColors.gold : color,
+                  ),
+                ),
+              ),
+              IconButton(
+                tooltip: t.display,
+                onPressed: onDisplay,
+                icon: const Icon(AppIcons.textSize),
+              ),
+              IconButton(
+                tooltip: t.shareLines,
+                onPressed: onShare,
+                icon: const Icon(AppIcons.share),
+              ),
+              IconButton(
+                tooltip: t.project,
+                onPressed: onProject,
+                icon: const Icon(AppIcons.projection),
+              ),
+              IconButton(
+                tooltip: t.next,
+                onPressed: onNext,
+                disabledColor: color.withValues(alpha: 0.3),
+                icon: const Icon(AppIcons.nextHymn),
+              ),
+            ],
           ),
         ),
       ),
@@ -479,40 +625,6 @@ class _ChosenBar extends StatelessWidget {
               label: Text(s.share),
             ),
           ],
-        ),
-      ),
-    );
-  }
-}
-
-/// "A−" / "A+": the text size buttons of the reading bar.
-class _TextButton extends StatelessWidget {
-  const _TextButton({
-    required this.label,
-    required this.fontSize,
-    required this.color,
-    required this.tooltip,
-    required this.onPressed,
-  });
-
-  final String label;
-  final double fontSize;
-  final Color color;
-  final String tooltip;
-  final VoidCallback? onPressed;
-
-  @override
-  Widget build(BuildContext context) {
-    return IconButton(
-      tooltip: tooltip,
-      onPressed: onPressed,
-      icon: Text(
-        label,
-        style: TextStyle(
-          fontFamily: AppTheme.fontFamily,
-          fontSize: fontSize,
-          fontWeight: FontWeight.w700,
-          color: onPressed == null ? color.withValues(alpha: 0.35) : color,
         ),
       ),
     );

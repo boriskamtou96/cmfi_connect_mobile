@@ -737,7 +737,10 @@
       "pinchHint": "Pellizca la pantalla para agrandar o reducir el texto.",
       "notFound": "Este himno ya no está en el himnario.",
       "share": "Compartir la letra",
-      "shareLines": "Compartir un fragmento"
+      "shareLines": "Compartir un fragmento",
+      "themeBook": "Himnario",
+      "previous": "Himno anterior",
+      "next": "Himno siguiente"
     },
     "projection": {
       "exit": "Salir del modo proyección",

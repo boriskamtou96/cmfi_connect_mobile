@@ -2638,6 +2638,9 @@ class _Translations$hymns$reader$ar extends Translations$hymns$reader$fr {
 	@override String get notFound => 'لم تعد هذه الترنيمة موجودة في الكتاب.';
 	@override String get share => 'مشاركة الكلمات';
 	@override String get shareLines => 'مشاركة مقطع';
+	@override String get themeBook => 'الكتاب';
+	@override String get previous => 'الترنيمة السابقة';
+	@override String get next => 'الترنيمة التالية';
 }
 
 // Path: hymns.projection
@@ -4245,6 +4248,9 @@ extension on TranslationsAr {
 			'hymns.reader.notFound' => 'لم تعد هذه الترنيمة موجودة في الكتاب.',
 			'hymns.reader.share' => 'مشاركة الكلمات',
 			'hymns.reader.shareLines' => 'مشاركة مقطع',
+			'hymns.reader.themeBook' => 'الكتاب',
+			'hymns.reader.previous' => 'الترنيمة السابقة',
+			'hymns.reader.next' => 'الترنيمة التالية',
 			'hymns.projection.exit' => 'الخروج من وضع العرض',
 			'hymns.projection.previous' => 'المقطع السابق',
 			'hymns.projection.next' => 'المقطع التالي',
@@ -4677,11 +4683,11 @@ extension on TranslationsAr {
 			'prayer.retreatOf.evening' => 'خلوة المساء',
 			'prayer.retreatOf.night' => 'خلوة الليل',
 			'prayer.hero.now' => ({required Object retreat}) => '${retreat} · الآن',
+			_ => null,
+		} ?? switch (path) {
 			'prayer.hero.title' => '15 دقيقة\nمع الرب',
 			'prayer.hero.preview.morning' => 'قدِّم الشكر، وكرِّس يومك وعملك وعائلتك…',
 			'prayer.hero.preview.noon' => 'جماعتك، وقادتك، و5 أشخاص من قائمتك، والأمم…',
-			_ => null,
-		} ?? switch (path) {
 			'prayer.hero.preview.evening' => 'حياة الصلاة لديك، وخدمتك، والعاملون معك في الخدمة…',
 			'prayer.hero.preview.night' => 'المرضى، والإنجيل في الأمم، والحماية أثناء الليل…',
 			'prayer.hero.meta' => '15 نقطة · دقيقة لكل نقطة',
@@ -5191,11 +5197,11 @@ extension on TranslationsAr {
 			'seekFirst.permissionsAndroid' => 'لإغلاق تطبيقاتك، يحتاج CMFI Connect إلى إذنين تفعّلهما في الإعدادات التي ستُفتح: «الوصول إلى بيانات الاستخدام» (لمعرفة التطبيق المفتوح) و«الظهور فوق التطبيقات الأخرى» (لإظهار شاشة اطلب الله أولًا). لا يخرج شيء من هاتفك.',
 			'seekFirst.permissionsContinue' => 'متابعة',
 			'seekFirst.deniedAndroid' => 'بدون هذين الإذنين لا يستطيع CMFI Connect إغلاق التطبيقات. يمكنك تفعيلهما من الإعدادات › التطبيقات › الوصول الخاص.',
+			_ => null,
+		} ?? switch (path) {
 			'seekFirst.privacyAndroid' => 'تبقى التطبيقات التي تختارها على هاتفك: لا يرسلها CMFI Connect أبدًا.',
 			'documents.title' => 'مستنداتنا',
 			'documents.subtitle' => 'تعاليم، أنظمة، استمارات…',
-			_ => null,
-		} ?? switch (path) {
 			'documents.moreSubtitle' => 'مكتبة المجتمع',
 			'documents.search' => 'ابحث عن مستند',
 			'documents.all' => 'الكل',

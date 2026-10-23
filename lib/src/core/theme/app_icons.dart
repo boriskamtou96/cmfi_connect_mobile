@@ -111,6 +111,8 @@ abstract final class AppIcons {
   static const numberPad = PhosphorIconsRegular.dotsNine;
   static const shuffle = PhosphorIconsBold.shuffle;
   static const quote = PhosphorIconsRegular.quotes;
+  static const previousHymn = PhosphorIconsBold.skipBack;
+  static const nextHymn = PhosphorIconsBold.skipForward;
   static const erase = PhosphorIconsRegular.backspace;
   static const userAdd = PhosphorIconsRegular.userPlus;
   static const userRemove = PhosphorIconsRegular.userMinus;

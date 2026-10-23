@@ -30,6 +30,7 @@ class HymnView extends StatelessWidget {
     this.bookTitle,
     this.chosen = const {},
     this.onLineTap,
+    this.strong = false,
     this.padding = const EdgeInsets.fromLTRB(
       AppSpacing.xl,
       AppSpacing.sm,
@@ -45,6 +46,9 @@ class HymnView extends StatelessWidget {
   final ReaderPalette palette;
   final Set<int> chosen;
   final ValueChanged<int>? onLineTap;
+
+  /// The words in bold, on the color of the book.
+  final bool strong;
   final EdgeInsets padding;
 
   @override
@@ -126,6 +130,7 @@ class HymnView extends StatelessWidget {
                       first: firsts[index],
                       chosen: chosen,
                       onLineTap: onLineTap,
+                      strong: strong && !serif,
                     ),
                   ),
               ],
@@ -147,6 +152,7 @@ class _PartView extends StatelessWidget {
     required this.first,
     required this.chosen,
     required this.onLineTap,
+    required this.strong,
   });
 
   final SungPart sung;
@@ -157,6 +163,7 @@ class _PartView extends StatelessWidget {
   final int first;
   final Set<int> chosen;
   final ValueChanged<int>? onLineTap;
+  final bool strong;
 
   @override
   Widget build(BuildContext context) {
@@ -168,6 +175,7 @@ class _PartView extends StatelessWidget {
       fontFamily: family,
       fontSize: size,
       height: 1.3,
+      fontWeight: strong ? FontWeight.w700 : null,
       fontStyle: isChorus && serif ? FontStyle.italic : FontStyle.normal,
       color: color,
     );
@@ -205,16 +213,28 @@ class _PartView extends StatelessWidget {
               width: gutter,
               child: part.label == null
                   ? null
-                  : Padding(
-                      padding: EdgeInsets.only(top: size * 0.2),
-                      child: SelectionContainer.disabled(
-                        child: Text(
-                          part.label!,
-                          style: TextStyle(
-                            fontFamily: AppTheme.fontFamily,
-                            fontSize: size * 0.72,
-                            fontWeight: FontWeight.w800,
-                            color: palette.accent,
+                  // the number in a small pill
+                  : Align(
+                      alignment: AlignmentDirectional.topStart,
+                      child: Container(
+                        margin: EdgeInsets.only(top: size * 0.18),
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 7,
+                          vertical: 2,
+                        ),
+                        decoration: BoxDecoration(
+                          color: palette.text.withValues(alpha: 0.12),
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                        child: SelectionContainer.disabled(
+                          child: Text(
+                            part.label!,
+                            style: TextStyle(
+                              fontFamily: AppTheme.fontFamily,
+                              fontSize: (size * 0.62).clamp(11.0, 18.0),
+                              fontWeight: FontWeight.w800,
+                              color: palette.accent,
+                            ),
                           ),
                         ),
                       ),
@@ -233,11 +253,17 @@ class _PartView extends StatelessWidget {
         t.hymns.chorus,
       if (part.repeat > 1) t.hymns.times(n: part.repeat),
     ].join(' ');
+    // the chorus in its own card, found at a glance while singing
     return Container(
-      margin: EdgeInsets.only(left: size * 0.55),
-      padding: EdgeInsets.only(left: size * 0.9),
+      padding: EdgeInsets.fromLTRB(
+        size * 0.8,
+        size * 0.7,
+        size * 0.8,
+        size * 0.8,
+      ),
       decoration: BoxDecoration(
-        border: Border(left: BorderSide(color: palette.chorusBar, width: 3)),
+        color: palette.text.withValues(alpha: sung.repeated ? 0.05 : 0.08),
+        borderRadius: BorderRadius.circular(16),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,

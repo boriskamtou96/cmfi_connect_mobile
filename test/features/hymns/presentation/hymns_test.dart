@@ -129,13 +129,38 @@ void main() {
     expect(find.text('REFRAIN ×2'), findsOneWidget);
     expect(app.screenAwake.on, isTrue);
 
-    await tester.tap(find.byTooltip('Agrandir le texte'));
+    // the size in « Affichage », from the bar under the words
+    await tester.tap(find.byTooltip('Affichage'));
+    await tester.pumpAndSettle();
+    final slider = find.byType(Slider);
+    await tester.tapAt(tester.getTopRight(slider) + const Offset(-20, 20));
     await tester.pumpAndSettle();
     expect(
       app.container.read(hymnReaderSettingsControllerProvider).textScale,
-      1.15,
+      greaterThan(1.0),
     );
-    expect(app.preferences.getString('hymn_reader'), contains('1.15'));
+    expect(app.preferences.getString('hymn_reader'), isNotNull);
+    await tester.tapAt(const Offset(20, 20));
+    await tester.pumpAndSettle();
+
+    // the hymn after, then back: none before the first
+    await tester.tap(find.byTooltip('Cantique suivant'));
+    await tester.pumpAndSettle();
+    expect(find.text('N° 2'), findsOneWidget);
+    await tester.tap(find.byTooltip('Cantique précédent'));
+    await tester.pumpAndSettle();
+    expect(find.text('N° 1'), findsOneWidget);
+    expect(
+      tester
+          .widget<IconButton>(
+            find.ancestor(
+              of: find.byTooltip('Cantique précédent'),
+              matching: find.byType(IconButton),
+            ),
+          )
+          .onPressed,
+      isNull,
+    );
 
     await tester.tap(find.byTooltip('Retour'));
     await tester.pumpAndSettle();

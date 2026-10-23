@@ -737,7 +737,10 @@
       "pinchHint": "Pince l'écran pour agrandir ou réduire le texte.",
       "notFound": "Ce cantique n'existe plus dans le recueil.",
       "share": "Partager les paroles",
-      "shareLines": "Partager un extrait"
+      "shareLines": "Partager un extrait",
+      "themeBook": "Recueil",
+      "previous": "Cantique précédent",
+      "next": "Cantique suivant"
     },
     "projection": {
       "exit": "Quitter le mode projection",

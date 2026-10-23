@@ -2362,6 +2362,9 @@ class _Translations$hymns$reader$en extends Translations$hymns$reader$fr {
 	@override String get notFound => 'This hymn is no longer in the book.';
 	@override String get share => 'Share the lyrics';
 	@override String get shareLines => 'Share an excerpt';
+	@override String get themeBook => 'Book';
+	@override String get previous => 'Previous hymn';
+	@override String get next => 'Next hymn';
 }
 
 // Path: hymns.projection
@@ -3912,6 +3915,9 @@ extension on TranslationsEn {
 			'hymns.reader.notFound' => 'This hymn is no longer in the book.',
 			'hymns.reader.share' => 'Share the lyrics',
 			'hymns.reader.shareLines' => 'Share an excerpt',
+			'hymns.reader.themeBook' => 'Book',
+			'hymns.reader.previous' => 'Previous hymn',
+			'hymns.reader.next' => 'Next hymn',
 			'hymns.projection.exit' => 'Leave projection mode',
 			'hymns.projection.previous' => 'Previous stanza',
 			'hymns.projection.next' => 'Next stanza',
@@ -4344,11 +4350,11 @@ extension on TranslationsEn {
 			'prayer.retreatOf.evening' => 'Evening retreat',
 			'prayer.retreatOf.night' => 'Night retreat',
 			'prayer.hero.now' => ({required Object retreat}) => '${retreat} · now',
+			_ => null,
+		} ?? switch (path) {
 			'prayer.hero.title' => '15 minutes\nwith the Lord',
 			'prayer.hero.preview.morning' => 'Give thanks, consecrate your day, your work, your family…',
 			'prayer.hero.preview.noon' => 'Your assembly, your leaders, 5 people from your list, the nations…',
-			_ => null,
-		} ?? switch (path) {
 			'prayer.hero.preview.evening' => 'Your prayer life, your ministry, your fellow workers…',
 			'prayer.hero.preview.night' => 'The sick, the Gospel among the nations, protection for the night…',
 			'prayer.hero.meta' => '15 points · 1 min each',
@@ -4858,11 +4864,11 @@ extension on TranslationsEn {
 			'seekFirst.permissionsAndroid' => 'To close your apps, CMFI Connect needs two permissions, to turn on in the settings that will open: "Usage access" (to know which app is open) and "Display over other apps" (to show the Seek God first screen). Nothing leaves your phone.',
 			'seekFirst.permissionsContinue' => 'Continue',
 			'seekFirst.deniedAndroid' => 'Without these two permissions, CMFI Connect can\'t close apps. You can turn them on in Settings › Apps › Special access.',
+			_ => null,
+		} ?? switch (path) {
 			'seekFirst.privacyAndroid' => 'The apps you choose stay on your phone: CMFI Connect never sends them.',
 			'documents.title' => 'Our documents',
 			'documents.subtitle' => 'Teachings, rules, forms…',
-			_ => null,
-		} ?? switch (path) {
 			'documents.moreSubtitle' => 'The library of the community',
 			'documents.search' => 'Search a document',
 			'documents.all' => 'All',

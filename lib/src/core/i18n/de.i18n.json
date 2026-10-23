@@ -737,7 +737,10 @@
       "pinchHint": "Zieh mit zwei Fingern auf oder zu, um die Textgröße zu ändern.",
       "notFound": "Dieses Lied gibt es im Liederbuch nicht mehr.",
       "share": "Liedtext teilen",
-      "shareLines": "Einen Auszug teilen"
+      "shareLines": "Einen Auszug teilen",
+      "themeBook": "Liederbuch",
+      "previous": "Vorheriges Lied",
+      "next": "Nächstes Lied"
     },
     "projection": {
       "exit": "Präsentationsmodus beenden",

@@ -718,7 +718,10 @@
       "pinchHint": "双指缩放屏幕，即可放大或缩小文字。",
       "notFound": "此诗歌已不在诗歌本中。",
       "share": "分享歌词",
-      "shareLines": "分享片段"
+      "shareLines": "分享片段",
+      "themeBook": "诗歌本",
+      "previous": "上一首",
+      "next": "下一首"
     },
     "projection": {
       "exit": "退出投影模式",

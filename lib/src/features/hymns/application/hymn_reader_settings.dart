@@ -21,7 +21,9 @@ abstract class HymnReaderSettings with _$HymnReaderSettings {
     /// 1 = normal size. From [minScale] to [maxScale].
     @Default(1.0) double textScale,
     @Default(HymnTypeface.auto) HymnTypeface typeface,
-    @Default(ReaderTheme.auto) ReaderTheme theme,
+
+    /// The color of the book, like a song's lyrics on its cover.
+    @Default(ReaderTheme.book) ReaderTheme theme,
 
     /// Show the chorus again after each verse.
     @Default(false) bool repeatChorus,

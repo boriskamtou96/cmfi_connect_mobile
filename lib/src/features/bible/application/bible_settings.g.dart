@@ -33,6 +33,7 @@ const _$ReaderThemeEnumMap = {
   ReaderTheme.light: 'light',
   ReaderTheme.sepia: 'sepia',
   ReaderTheme.dark: 'dark',
+  ReaderTheme.book: 'book',
 };
 
 // **************************************************************************

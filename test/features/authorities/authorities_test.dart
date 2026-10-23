@@ -271,4 +271,3 @@ void main() {
     expect(find.text('Mes autorités spirituelles'), findsWidgets);
   });
 }
-

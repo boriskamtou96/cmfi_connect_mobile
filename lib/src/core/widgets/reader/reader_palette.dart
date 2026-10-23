@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 
 import '../../theme/app_colors.dart';
 
-/// The background of a reading screen (hymns, Bible): auto follows the app.
-enum ReaderTheme { auto, light, sepia, dark }
+/// The background of a reading screen (hymns, Bible): auto follows the app;
+/// book is the color of the hymn book (the hymns only, like the lyrics of a
+/// song on its cover's color).
+enum ReaderTheme { auto, light, sepia, dark, book }
 
 /// Colors of a reading screen (hymns, Bible), for each background the user can
 /// pick.
@@ -23,8 +25,20 @@ class ReaderPalette {
         ReaderTheme.light => light,
         ReaderTheme.sepia => sepia,
         ReaderTheme.dark => dark,
-        ReaderTheme.auto => appBrightness == Brightness.dark ? dark : light,
+        // the Bible has no book color: it follows the app
+        ReaderTheme.auto ||
+        ReaderTheme.book => appBrightness == Brightness.dark ? dark : light,
       };
+
+  /// White words on a colored background (the hymn book's).
+  factory ReaderPalette.onColor(Color background) => ReaderPalette(
+    background: background,
+    text: Colors.white,
+    muted: Colors.white.withValues(alpha: 0.72),
+    accent: Colors.white,
+    chorusBar: Colors.white.withValues(alpha: 0.1),
+    brightness: Brightness.dark,
+  );
 
   /// The same background with another accent (the Bible's blue).
   ReaderPalette withAccent(Color light, Color dark) => ReaderPalette(

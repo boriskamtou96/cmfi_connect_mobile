@@ -16,7 +16,8 @@ T _$identity<T>(T value) => value;
 mixin _$HymnReaderSettings {
 
 /// 1 = normal size. From [minScale] to [maxScale].
- double get textScale; HymnTypeface get typeface; ReaderTheme get theme;/// Show the chorus again after each verse.
+ double get textScale; HymnTypeface get typeface;/// The color of the book, like a song's lyrics on its cover.
+ ReaderTheme get theme;/// Show the chorus again after each verse.
  bool get repeatChorus;/// Keep the screen on while a hymn is open.
  bool get keepScreenOn;
 /// Create a copy of HymnReaderSettings
@@ -216,12 +217,13 @@ return $default(_that.textScale,_that.typeface,_that.theme,_that.repeatChorus,_t
 @JsonSerializable()
 
 class _HymnReaderSettings extends HymnReaderSettings {
-  const _HymnReaderSettings({this.textScale = 1.0, this.typeface = HymnTypeface.auto, this.theme = ReaderTheme.auto, this.repeatChorus = false, this.keepScreenOn = true}): super._();
+  const _HymnReaderSettings({this.textScale = 1.0, this.typeface = HymnTypeface.auto, this.theme = ReaderTheme.book, this.repeatChorus = false, this.keepScreenOn = true}): super._();
   factory _HymnReaderSettings.fromJson(Map<String, dynamic> json) => _$HymnReaderSettingsFromJson(json);
 
 /// 1 = normal size. From [minScale] to [maxScale].
 @override@JsonKey() final  double textScale;
 @override@JsonKey() final  HymnTypeface typeface;
+/// The color of the book, like a song's lyrics on its cover.
 @override@JsonKey() final  ReaderTheme theme;
 /// Show the chorus again after each verse.
 @override@JsonKey() final  bool repeatChorus;

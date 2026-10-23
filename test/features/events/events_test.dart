@@ -283,11 +283,9 @@ void main() {
       ));
       await openMenu(tester);
       await tester.pumpAndSettle();
-      // the row of the Administration section (Communauté has one too)
-      await scrollTo(tester, find.text('ADMINISTRATION'));
-      await tester.ensureVisible(find.text('Évènements').last);
-      await tester.pumpAndSettle();
-      await tester.tap(find.text('Évènements').last);
+      // the row of the Administration section
+      await scrollTo(tester, inMenu('Gérer les évènements'));
+      await tester.tap(inMenu('Gérer les évènements'));
       await tester.pumpAndSettle();
 
       await tester.tap(find.text('Créer un évènement'));

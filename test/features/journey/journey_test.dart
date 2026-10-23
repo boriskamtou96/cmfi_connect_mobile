@@ -103,9 +103,9 @@ void main() {
     final app = await pumpApp(tester, token: 't');
     await openProfile(tester);
 
-    // « Mes étapes » in Plus
+    // « Mes étapes » in Mon profil, with the next one
     expect(find.text('Mes étapes'), findsOneWidget);
-    expect(find.text('0 sur 15'), findsOneWidget);
+    expect(find.textContaining('0 sur 15'), findsOneWidget);
 
     await app.container
         .read(journeyStepsProvider.notifier)

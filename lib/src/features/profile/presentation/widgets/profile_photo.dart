@@ -36,6 +36,8 @@ class ProfilePhotoButton extends HookConsumerWidget {
     final badge = size * 0.32;
 
     return Semantics(
+      // its own node: a button, wherever it sits (the head of the profile)
+      container: true,
       button: true,
       label: hasPhoto ? t.change : t.add,
       excludeSemantics: true,

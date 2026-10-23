@@ -256,7 +256,9 @@ void main() {
       expect(app.preferences.getBool('reminder_enabled'), isNot(true));
     });
 
-    testWidgets('turned off in Plus: nothing planned any more', (tester) async {
+    testWidgets('turned off in Réglages: nothing planned any more', (
+      tester,
+    ) async {
       final app = await pumpApp(
         tester,
         token: 't',
@@ -268,7 +270,7 @@ void main() {
 
       await openSettings(tester);
       await tester.pumpAndSettle();
-      await scrollToEnd(tester);
+      await scrollTo(tester, find.text('Rappel du soir'));
       expect(find.text('21:30'), findsOneWidget);
       await tester.tap(find.text('Rappel du soir'));
       await tester.pumpAndSettle();
@@ -289,7 +291,7 @@ void main() {
         );
         await openSettings(tester);
         await tester.pumpAndSettle();
-        await scrollToEnd(tester);
+        await scrollTo(tester, find.text('Rappel du soir'));
         await tester.tap(find.text('Rappel du soir'));
         await tester.pumpAndSettle();
         // the time row of the sheet (Plus shows it too, behind)
@@ -348,6 +350,9 @@ void main() {
           matching: find.text('Compte rendu'),
         ),
       );
+      await tester.pumpAndSettle();
+      // the export is offered in the Bilan (and the history)
+      await tester.tap(find.text('Bilan'));
       await tester.pumpAndSettle();
       await tester.tap(find.byTooltip('Exporter mon compte rendu'));
       await tester.pumpAndSettle();

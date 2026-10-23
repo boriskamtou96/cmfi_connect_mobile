@@ -254,7 +254,6 @@ class _Translations$home$hi extends Translations$home$fr {
 	// Translations
 	@override String greeting({required Object name}) => 'नमस्ते ${name}';
 	@override String get greetingNoName => 'नमस्ते';
-	@override String get profile => 'मेरी प्रोफ़ाइल';
 	@override String progress({required Object total, required Object filled}) => '${total} में से ${filled}';
 	@override String get progressLabel => 'आइटम भरे गए';
 	@override String get goals => 'लक्ष्य';
@@ -495,7 +494,7 @@ class _Translations$more$hi extends Translations$more$fr {
 	@override String get logoutAnyway => 'फिर भी लॉग आउट करो';
 	@override String get admin => 'प्रबंधन';
 	@override String get staff => 'टीम और भूमिकाएँ';
-	@override String get manageEvents => 'कार्यक्रम';
+	@override String get manageEvents => 'कार्यक्रम प्रबंधित करें';
 	@override String get disciples => 'मेरे शिष्य';
 	@override String version({required Object version}) => 'संस्करण ${version}';
 	@override String copyright({required Object year}) => '© ${year} Christian Missionary Fellowship International. सर्वाधिकार सुरक्षित।';
@@ -3808,7 +3807,6 @@ extension on TranslationsHi {
 			'nav.bible' => 'बाइबल',
 			'home.greeting' => ({required Object name}) => 'नमस्ते ${name}',
 			'home.greetingNoName' => 'नमस्ते',
-			'home.profile' => 'मेरी प्रोफ़ाइल',
 			'home.progress' => ({required Object total, required Object filled}) => '${total} में से ${filled}',
 			'home.progressLabel' => 'आइटम भरे गए',
 			'home.goals' => 'लक्ष्य',
@@ -4092,7 +4090,7 @@ extension on TranslationsHi {
 			'more.logoutAnyway' => 'फिर भी लॉग आउट करो',
 			'more.admin' => 'प्रबंधन',
 			'more.staff' => 'टीम और भूमिकाएँ',
-			'more.manageEvents' => 'कार्यक्रम',
+			'more.manageEvents' => 'कार्यक्रम प्रबंधित करें',
 			'more.disciples' => 'मेरे शिष्य',
 			'more.version' => ({required Object version}) => 'संस्करण ${version}',
 			'more.copyright' => ({required Object year}) => '© ${year} Christian Missionary Fellowship International. सर्वाधिकार सुरक्षित।',
@@ -4154,9 +4152,9 @@ extension on TranslationsHi {
 			'authorities.madeMaker' => ({required Object name}) => '${name} अब तुम्हारे चेला बनाने वाले हैं।',
 			'members.username' => 'यूज़रनेम',
 			'members.usernameHint' => 'naam.surname',
+			'members.usernameHelp' => 'दूसरे सदस्य तुम्हें इसी नाम से ढूँढेंगे।',
 			_ => null,
 		} ?? switch (path) {
-			'members.usernameHelp' => 'दूसरे सदस्य तुम्हें इसी नाम से ढूँढेंगे।',
 			'members.usernameChecking' => 'जाँच हो रही है…',
 			'members.usernameFree' => ({required Object username}) => '@${username} उपलब्ध है',
 			'members.usernameCurrent' => 'यह तुम्हारा मौजूदा यूज़रनेम है',
@@ -4668,9 +4666,9 @@ extension on TranslationsHi {
 			'prayer.moments.night' => 'रात',
 			'prayer.retreatOf.morning' => 'सुबह का प्रार्थना-समय',
 			'prayer.retreatOf.noon' => 'दोपहर का प्रार्थना-समय',
+			'prayer.retreatOf.evening' => 'शाम का प्रार्थना-समय',
 			_ => null,
 		} ?? switch (path) {
-			'prayer.retreatOf.evening' => 'शाम का प्रार्थना-समय',
 			'prayer.retreatOf.night' => 'रात का प्रार्थना-समय',
 			'prayer.hero.now' => ({required Object retreat}) => '${retreat} · अभी',
 			'prayer.hero.title' => '15 मिनट\nप्रभु के साथ',
@@ -5182,9 +5180,9 @@ extension on TranslationsHi {
 			'seekFirst.shield.notificationTitle' => 'पहले परमेश्वर को खोजो',
 			'seekFirst.shield.notificationBody' => 'अपनी रिपोर्ट भरने के लिए यहाँ टैप करें।',
 			'seekFirst.shield.serviceBody' => 'तुम्हारे ऐप हर दिन तुम्हारी रिपोर्ट तक बंद रहते हैं।',
+			'seekFirst.permissionsAndroid' => 'तुम्हारे ऐप बंद करने के लिए CMFI Connect को दो अनुमतियाँ चाहिए, जो खुलने वाली सेटिंग्स में चालू करनी हैं: «उपयोग डेटा तक पहुँच» (कौन-सा ऐप खुला है) और «दूसरे ऐप्स के ऊपर दिखाएँ» (पहले परमेश्वर को खोजो स्क्रीन दिखाने के लिए)। कुछ भी तुम्हारे फ़ोन से बाहर नहीं जाता।',
 			_ => null,
 		} ?? switch (path) {
-			'seekFirst.permissionsAndroid' => 'तुम्हारे ऐप बंद करने के लिए CMFI Connect को दो अनुमतियाँ चाहिए, जो खुलने वाली सेटिंग्स में चालू करनी हैं: «उपयोग डेटा तक पहुँच» (कौन-सा ऐप खुला है) और «दूसरे ऐप्स के ऊपर दिखाएँ» (पहले परमेश्वर को खोजो स्क्रीन दिखाने के लिए)। कुछ भी तुम्हारे फ़ोन से बाहर नहीं जाता।',
 			'seekFirst.permissionsContinue' => 'आगे बढ़ो',
 			'seekFirst.deniedAndroid' => 'इन दो अनुमतियों के बिना CMFI Connect ऐप बंद नहीं कर सकता। तुम इन्हें सेटिंग्स › ऐप्स › विशेष पहुँच में चालू कर सकते हो।',
 			'seekFirst.privacyAndroid' => 'तुम्हारे चुने ऐप तुम्हारे फ़ोन में ही रहते हैं: CMFI Connect उन्हें कभी नहीं भेजता।',

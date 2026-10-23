@@ -112,10 +112,9 @@ void main() {
     expect(find.bySemanticsLabel('CMFI Connect Premium'), findsNothing);
     expect(find.byIcon(AppIcons.premiumLock), findsNothing);
 
-    // no Premium row in Plus
+    // no Premium row in Réglages
     await openSettings(tester);
     await tester.pumpAndSettle();
-    await scrollToEnd(tester);
     expect(find.text('CMFI Connect Premium'), findsNothing);
     expect(find.text('Rappel du soir'), findsOneWidget);
     expect(app.premium.bought, isEmpty);

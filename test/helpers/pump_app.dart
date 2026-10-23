@@ -464,6 +464,10 @@ Future<void> openMenu(WidgetTester tester) async {
   await tester.pumpAndSettle();
 }
 
+/// [text] in the menu only (the home screen under it may say it too).
+Finder inMenu(String text) =>
+    find.descendant(of: find.byType(Drawer), matching: find.text(text));
+
 /// Mon profil, from the top of the menu.
 Future<void> openProfile(WidgetTester tester) async {
   await openMenu(tester);
@@ -496,9 +500,16 @@ Future<void> scrollTo(WidgetTester tester, Finder finder) async {
     return false;
   }
 
-  // the list that holds it when it is built (the menu over the home
-  // screen), the first one otherwise
-  final holder = find.ancestor(of: finder, matching: find.byType(Scrollable));
+  // the vertical list that holds it when it is built (the menu over the
+  // home screen), the first one otherwise
+  final holder = find.ancestor(
+    of: finder,
+    matching: find.byWidgetPredicate(
+      (widget) =>
+          widget is Scrollable &&
+          axisDirectionToAxis(widget.axisDirection) == Axis.vertical,
+    ),
+  );
   final list = holder.evaluate().isNotEmpty
       ? holder.first
       : find.byType(Scrollable).first;

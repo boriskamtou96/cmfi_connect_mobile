@@ -189,7 +189,7 @@ void main() {
 
       await tester.scrollUntilVisible(
         find.text('Membre N45'),
-        400,
+        200,
         scrollable: find.byType(Scrollable).last,
       );
       expect(app.disciplesApi.pages.last, (search: '', page: 3));
@@ -217,7 +217,7 @@ void main() {
       expect(find.text('Membre N1'), findsNothing);
       await tester.scrollUntilVisible(
         find.text('Membre N45'),
-        400,
+        200,
         scrollable: find.byType(Scrollable).last,
       );
       expect(find.text('Membre N45'), findsOneWidget);

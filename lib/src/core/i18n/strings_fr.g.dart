@@ -405,9 +405,6 @@ class Translations$home$fr {
 	/// fr: 'Bonjour'
 	String get greetingNoName => 'Bonjour';
 
-	/// fr: 'Mon profil'
-	String get profile => 'Mon profil';
-
 	/// fr: '{filled} sur {total}'
 	String progress({required Object filled, required Object total}) => '${filled} sur ${total}';
 
@@ -964,8 +961,8 @@ class Translations$more$fr {
 	/// fr: 'Équipe et rôles'
 	String get staff => 'Équipe et rôles';
 
-	/// fr: 'Évènements'
-	String get manageEvents => 'Évènements';
+	/// fr: 'Gérer les évènements'
+	String get manageEvents => 'Gérer les évènements';
 
 	/// fr: 'Mes disciples'
 	String get disciples => 'Mes disciples';
@@ -7432,7 +7429,6 @@ extension on Translations {
 			'nav.bible' => 'Bible',
 			'home.greeting' => ({required Object name}) => 'Bonjour ${name}',
 			'home.greetingNoName' => 'Bonjour',
-			'home.profile' => 'Mon profil',
 			'home.progress' => ({required Object filled, required Object total}) => '${filled} sur ${total}',
 			'home.progressLabel' => 'éléments renseignés',
 			'home.goals' => 'objectifs',
@@ -7716,7 +7712,7 @@ extension on Translations {
 			'more.logoutAnyway' => 'Me déconnecter',
 			'more.admin' => 'Administration',
 			'more.staff' => 'Équipe et rôles',
-			'more.manageEvents' => 'Évènements',
+			'more.manageEvents' => 'Gérer les évènements',
 			'more.disciples' => 'Mes disciples',
 			'more.version' => ({required Object version}) => 'Version ${version}',
 			'more.copyright' => ({required Object year}) => '© ${year} Communauté Missionnaire Chrétienne Internationale. Tous droits réservés.',
@@ -7778,9 +7774,9 @@ extension on Translations {
 			'authorities.madeMaker' => ({required Object name}) => '${name} est maintenant ton faiseur de disciples.',
 			'members.username' => 'Pseudo',
 			'members.usernameHint' => 'prenom.nom',
+			'members.usernameHelp' => 'C\'est ainsi que les autres membres te trouveront.',
 			_ => null,
 		} ?? switch (path) {
-			'members.usernameHelp' => 'C\'est ainsi que les autres membres te trouveront.',
 			'members.usernameChecking' => 'Vérification…',
 			'members.usernameFree' => ({required Object username}) => '@${username} est libre',
 			'members.usernameCurrent' => 'C\'est ton pseudo actuel',
@@ -8292,9 +8288,9 @@ extension on Translations {
 			'prayer.moments.night' => 'Nuit',
 			'prayer.retreatOf.morning' => 'Retraite du matin',
 			'prayer.retreatOf.noon' => 'Retraite de midi',
+			'prayer.retreatOf.evening' => 'Retraite du soir',
 			_ => null,
 		} ?? switch (path) {
-			'prayer.retreatOf.evening' => 'Retraite du soir',
 			'prayer.retreatOf.night' => 'Retraite de la nuit',
 			'prayer.hero.now' => ({required Object retreat}) => '${retreat} · maintenant',
 			'prayer.hero.title' => '15 minutes\navec le Seigneur',
@@ -8806,9 +8802,9 @@ extension on Translations {
 			'seekFirst.shield.notificationTitle' => 'Cherche d\'abord Dieu',
 			'seekFirst.shield.notificationBody' => 'Touche ici pour remplir ton compte rendu.',
 			'seekFirst.shield.serviceBody' => 'Tes apps se ferment chaque jour jusqu\'à ton compte rendu.',
+			'seekFirst.permissionsAndroid' => 'Pour fermer tes apps, CMFI Connect a besoin de deux autorisations, à activer dans les réglages qui vont s\'ouvrir : « Accès aux données d\'utilisation » (savoir quelle app est ouverte) et « Afficher par-dessus les autres applis » (montrer l\'écran Cherche d\'abord Dieu). Rien ne quitte ton téléphone.',
 			_ => null,
 		} ?? switch (path) {
-			'seekFirst.permissionsAndroid' => 'Pour fermer tes apps, CMFI Connect a besoin de deux autorisations, à activer dans les réglages qui vont s\'ouvrir : « Accès aux données d\'utilisation » (savoir quelle app est ouverte) et « Afficher par-dessus les autres applis » (montrer l\'écran Cherche d\'abord Dieu). Rien ne quitte ton téléphone.',
 			'seekFirst.permissionsContinue' => 'Continuer',
 			'seekFirst.deniedAndroid' => 'Sans ces deux autorisations, CMFI Connect ne peut pas fermer d\'apps. Tu peux les activer dans Réglages › Applications › Accès spécial.',
 			'seekFirst.privacyAndroid' => 'Les apps que tu choisis restent sur ton téléphone : CMFI Connect ne les envoie jamais.',

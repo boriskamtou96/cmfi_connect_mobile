@@ -258,7 +258,6 @@ class _Translations$home$ar extends Translations$home$fr {
 	// Translations
 	@override String greeting({required Object name}) => 'مرحبًا ${name}';
 	@override String get greetingNoName => 'مرحبًا';
-	@override String get profile => 'ملفي الشخصي';
 	@override String progress({required Object filled, required Object total}) => '${filled} من ${total}';
 	@override String get progressLabel => 'عناصر معبّأة';
 	@override String get goals => 'الأهداف';
@@ -527,7 +526,7 @@ class _Translations$more$ar extends Translations$more$fr {
 	@override String get logoutAnyway => 'تسجيل الخروج';
 	@override String get admin => 'الإدارة';
 	@override String get staff => 'الفريق والأدوار';
-	@override String get manageEvents => 'الفعاليات';
+	@override String get manageEvents => 'إدارة الفعاليات';
 	@override String get disciples => 'تلاميذي';
 	@override String version({required Object version}) => 'الإصدار ${version}';
 	@override String copyright({required Object year}) => '© ${year} Christian Missionary Fellowship International. جميع الحقوق محفوظة.';
@@ -4143,7 +4142,6 @@ extension on TranslationsAr {
 			'nav.bible' => 'الكتاب المقدس',
 			'home.greeting' => ({required Object name}) => 'مرحبًا ${name}',
 			'home.greetingNoName' => 'مرحبًا',
-			'home.profile' => 'ملفي الشخصي',
 			'home.progress' => ({required Object filled, required Object total}) => '${filled} من ${total}',
 			'home.progressLabel' => 'عناصر معبّأة',
 			'home.goals' => 'الأهداف',
@@ -4427,7 +4425,7 @@ extension on TranslationsAr {
 			'more.logoutAnyway' => 'تسجيل الخروج',
 			'more.admin' => 'الإدارة',
 			'more.staff' => 'الفريق والأدوار',
-			'more.manageEvents' => 'الفعاليات',
+			'more.manageEvents' => 'إدارة الفعاليات',
 			'more.disciples' => 'تلاميذي',
 			'more.version' => ({required Object version}) => 'الإصدار ${version}',
 			'more.copyright' => ({required Object year}) => '© ${year} Christian Missionary Fellowship International. جميع الحقوق محفوظة.',
@@ -4489,9 +4487,9 @@ extension on TranslationsAr {
 			'authorities.madeMaker' => ({required Object name}) => '${name} هو الآن صانع التلاميذ الخاص بك.',
 			'members.username' => 'اسم المستخدم',
 			'members.usernameHint' => 'firstname.lastname',
+			'members.usernameHelp' => 'بهذا الاسم سيجدك الأعضاء الآخرون.',
 			_ => null,
 		} ?? switch (path) {
-			'members.usernameHelp' => 'بهذا الاسم سيجدك الأعضاء الآخرون.',
 			'members.usernameChecking' => 'جارٍ التحقق…',
 			'members.usernameFree' => ({required Object username}) => '@${username} متاح',
 			'members.usernameCurrent' => 'هذا اسم المستخدم الحالي الخاص بك',
@@ -5003,9 +5001,9 @@ extension on TranslationsAr {
 			'prayer.moments.night' => 'الليل',
 			'prayer.retreatOf.morning' => 'خلوة الصباح',
 			'prayer.retreatOf.noon' => 'خلوة الظهر',
+			'prayer.retreatOf.evening' => 'خلوة المساء',
 			_ => null,
 		} ?? switch (path) {
-			'prayer.retreatOf.evening' => 'خلوة المساء',
 			'prayer.retreatOf.night' => 'خلوة الليل',
 			'prayer.hero.now' => ({required Object retreat}) => '${retreat} · الآن',
 			'prayer.hero.title' => '15 دقيقة\nمع الرب',
@@ -5517,9 +5515,9 @@ extension on TranslationsAr {
 			'seekFirst.shield.notificationTitle' => 'اطلب الله أولًا',
 			'seekFirst.shield.notificationBody' => 'المس هنا لتملأ تقريرك.',
 			'seekFirst.shield.serviceBody' => 'تُغلق تطبيقاتك كل يوم حتى تقريرك.',
+			'seekFirst.permissionsAndroid' => 'لإغلاق تطبيقاتك، يحتاج CMFI Connect إلى إذنين تفعّلهما في الإعدادات التي ستُفتح: «الوصول إلى بيانات الاستخدام» (لمعرفة التطبيق المفتوح) و«الظهور فوق التطبيقات الأخرى» (لإظهار شاشة اطلب الله أولًا). لا يخرج شيء من هاتفك.',
 			_ => null,
 		} ?? switch (path) {
-			'seekFirst.permissionsAndroid' => 'لإغلاق تطبيقاتك، يحتاج CMFI Connect إلى إذنين تفعّلهما في الإعدادات التي ستُفتح: «الوصول إلى بيانات الاستخدام» (لمعرفة التطبيق المفتوح) و«الظهور فوق التطبيقات الأخرى» (لإظهار شاشة اطلب الله أولًا). لا يخرج شيء من هاتفك.',
 			'seekFirst.permissionsContinue' => 'متابعة',
 			'seekFirst.deniedAndroid' => 'بدون هذين الإذنين لا يستطيع CMFI Connect إغلاق التطبيقات. يمكنك تفعيلهما من الإعدادات › التطبيقات › الوصول الخاص.',
 			'seekFirst.privacyAndroid' => 'تبقى التطبيقات التي تختارها على هاتفك: لا يرسلها CMFI Connect أبدًا.',

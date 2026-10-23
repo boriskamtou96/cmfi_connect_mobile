@@ -15,8 +15,8 @@ void main() {
   Future<void> openDocuments(WidgetTester tester) async {
     await openMenu(tester);
     await tester.pumpAndSettle();
-    await scrollTo(tester, find.text('Nos documents'));
-    await tester.tap(find.text('Nos documents'));
+    await scrollTo(tester, inMenu('Nos documents'));
+    await tester.tap(inMenu('Nos documents'));
     await tester.pumpAndSettle();
   }
 

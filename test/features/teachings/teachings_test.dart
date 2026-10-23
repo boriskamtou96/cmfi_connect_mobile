@@ -34,8 +34,8 @@ void main() {
       initialPreferences: preferences,
     );
     await openMenu(tester);
-    await scrollTo(tester, find.text('Enseignements'));
-    await tester.tap(find.text('Enseignements'));
+    await scrollTo(tester, inMenu('Enseignements'));
+    await tester.tap(inMenu('Enseignements'));
     await tester.pumpAndSettle();
     return app;
   }
@@ -171,8 +171,8 @@ void main() {
     await tester.pumpAndSettle();
     await tester.tap(find.byTooltip('Retour'));
     await tester.pumpAndSettle();
-    await scrollTo(tester, find.text('Enseignements'));
-    await tester.tap(find.text('Enseignements'));
+    await openMenu(tester);
+    await tester.tap(inMenu('Enseignements'));
     await tester.pumpAndSettle();
     expect(
       find.text('Sans réseau : voici les messages gardés sur ton téléphone.'),

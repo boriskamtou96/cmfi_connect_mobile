@@ -254,7 +254,6 @@ class _Translations$home$es extends Translations$home$fr {
 	// Translations
 	@override String greeting({required Object name}) => 'Hola, ${name}';
 	@override String get greetingNoName => 'Hola';
-	@override String get profile => 'Mi perfil';
 	@override String progress({required Object filled, required Object total}) => '${filled} de ${total}';
 	@override String get progressLabel => 'elementos completados';
 	@override String get goals => 'objetivos';
@@ -495,7 +494,7 @@ class _Translations$more$es extends Translations$more$fr {
 	@override String get logoutAnyway => 'Cerrar sesión';
 	@override String get admin => 'Administración';
 	@override String get staff => 'Equipo y roles';
-	@override String get manageEvents => 'Eventos';
+	@override String get manageEvents => 'Gestionar eventos';
 	@override String get disciples => 'Mis discípulos';
 	@override String version({required Object version}) => 'Versión ${version}';
 	@override String copyright({required Object year}) => '© ${year} Comunidad Misionera Cristiana Internacional. Todos los derechos reservados.';
@@ -3809,7 +3808,6 @@ extension on TranslationsEs {
 			'nav.bible' => 'Biblia',
 			'home.greeting' => ({required Object name}) => 'Hola, ${name}',
 			'home.greetingNoName' => 'Hola',
-			'home.profile' => 'Mi perfil',
 			'home.progress' => ({required Object filled, required Object total}) => '${filled} de ${total}',
 			'home.progressLabel' => 'elementos completados',
 			'home.goals' => 'objetivos',
@@ -4093,7 +4091,7 @@ extension on TranslationsEs {
 			'more.logoutAnyway' => 'Cerrar sesión',
 			'more.admin' => 'Administración',
 			'more.staff' => 'Equipo y roles',
-			'more.manageEvents' => 'Eventos',
+			'more.manageEvents' => 'Gestionar eventos',
 			'more.disciples' => 'Mis discípulos',
 			'more.version' => ({required Object version}) => 'Versión ${version}',
 			'more.copyright' => ({required Object year}) => '© ${year} Comunidad Misionera Cristiana Internacional. Todos los derechos reservados.',
@@ -4155,9 +4153,9 @@ extension on TranslationsEs {
 			'authorities.madeMaker' => ({required Object name}) => '${name} es ahora tu discipulador.',
 			'members.username' => 'Nombre de usuario',
 			'members.usernameHint' => 'nombre.apellido',
+			'members.usernameHelp' => 'Así te encontrarán los demás miembros.',
 			_ => null,
 		} ?? switch (path) {
-			'members.usernameHelp' => 'Así te encontrarán los demás miembros.',
 			'members.usernameChecking' => 'Comprobando…',
 			'members.usernameFree' => ({required Object username}) => '@${username} está disponible',
 			'members.usernameCurrent' => 'Es tu nombre de usuario actual',
@@ -4669,9 +4667,9 @@ extension on TranslationsEs {
 			'prayer.moments.night' => 'Noche',
 			'prayer.retreatOf.morning' => 'Retiro de la mañana',
 			'prayer.retreatOf.noon' => 'Retiro del mediodía',
+			'prayer.retreatOf.evening' => 'Retiro de la tarde',
 			_ => null,
 		} ?? switch (path) {
-			'prayer.retreatOf.evening' => 'Retiro de la tarde',
 			'prayer.retreatOf.night' => 'Retiro de la noche',
 			'prayer.hero.now' => ({required Object retreat}) => '${retreat} · ahora',
 			'prayer.hero.title' => '15 minutos\ncon el Señor',
@@ -5183,9 +5181,9 @@ extension on TranslationsEs {
 			'seekFirst.shield.notificationTitle' => 'Busca primero a Dios',
 			'seekFirst.shield.notificationBody' => 'Toca aquí para llenar tu informe.',
 			'seekFirst.shield.serviceBody' => 'Tus apps se cierran cada día hasta tu informe.',
+			'seekFirst.permissionsAndroid' => 'Para cerrar tus apps, CMFI Connect necesita dos permisos, que activarás en los ajustes que se van a abrir: «Acceso a datos de uso» (saber qué app está abierta) y «Mostrar sobre otras apps» (mostrar la pantalla Busca primero a Dios). Nada sale de tu teléfono.',
 			_ => null,
 		} ?? switch (path) {
-			'seekFirst.permissionsAndroid' => 'Para cerrar tus apps, CMFI Connect necesita dos permisos, que activarás en los ajustes que se van a abrir: «Acceso a datos de uso» (saber qué app está abierta) y «Mostrar sobre otras apps» (mostrar la pantalla Busca primero a Dios). Nada sale de tu teléfono.',
 			'seekFirst.permissionsContinue' => 'Continuar',
 			'seekFirst.deniedAndroid' => 'Sin estos dos permisos, CMFI Connect no puede cerrar apps. Puedes activarlos en Ajustes › Aplicaciones › Acceso especial.',
 			'seekFirst.privacyAndroid' => 'Las apps que eliges se quedan en tu teléfono: CMFI Connect nunca las envía.',

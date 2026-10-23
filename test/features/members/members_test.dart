@@ -18,7 +18,7 @@ void main() {
     await tester.pumpAndSettle();
   }
 
-  Future<void> openProfile(WidgetTester tester) async {
+  Future<void> openProfileForm(WidgetTester tester) async {
     await openProfile(tester);
     // the profile card opens the profile
     await scrollTo(tester, find.text('Modifier mon profil'));
@@ -29,16 +29,16 @@ void main() {
   // first name, last name, then the pseudo
   Finder pseudoField() => find.byType(TextFormField).at(2);
 
-  testWidgets('Plus shows the pseudo', (tester) async {
+  testWidgets('the profile shows the pseudo', (tester) async {
     await pumpApp(tester, token: 't');
     await openProfile(tester);
 
-    expect(find.text('@boris.kamtou'), findsOneWidget);
+    expect(find.textContaining('@boris.kamtou'), findsOneWidget);
   });
 
   testWidgets('the pseudo is changed from the profile', (tester) async {
     final app = await pumpApp(tester, token: 't');
-    await openProfile(tester);
+    await openProfileForm(tester);
     expect(find.text("C'est ton pseudo actuel"), findsOneWidget);
 
     await tester.enterText(pseudoField(), 'Boris.K');
@@ -54,7 +54,7 @@ void main() {
 
   testWidgets('a pseudo already taken is said, and not saved', (tester) async {
     final app = await pumpApp(tester, token: 't');
-    await openProfile(tester);
+    await openProfileForm(tester);
 
     await tester.enterText(pseudoField(), 'marc.tientcheu');
     await waitForCheck(tester);
@@ -72,7 +72,7 @@ void main() {
     await openMenu(tester);
     await scrollToEnd(tester);
 
-    expect(find.text('ADMINISTRATION'), findsNothing);
+    expect(inMenu('ADMINISTRATION'), findsNothing);
   });
 
   testWidgets('a superadmin sees the team and gives a role', (tester) async {
@@ -92,9 +92,9 @@ void main() {
       ]),
     );
     await openMenu(tester);
-    await scrollTo(tester, find.text('Équipe et rôles'));
-    expect(find.text('ADMINISTRATION'), findsOneWidget);
-    await tester.tap(find.text('Équipe et rôles'));
+    await scrollTo(tester, inMenu('Équipe et rôles'));
+    expect(inMenu('ADMINISTRATION'), findsOneWidget);
+    await tester.tap(inMenu('Équipe et rôles'));
     await tester.pumpAndSettle();
 
     expect(find.text('Boris Kamtou (toi)'), findsOneWidget);

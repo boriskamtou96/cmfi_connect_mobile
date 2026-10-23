@@ -12,7 +12,6 @@ import '../../../core/widgets/app_back_button.dart';
 import '../../../core/widgets/cmfi_logo.dart';
 import '../../../core/widgets/fade_slide_in.dart';
 import '../../../core/widgets/menu_tile.dart';
-import '../../../core/widgets/premium_crown.dart';
 import '../../../core/widgets/section_card.dart';
 import '../../../routing/app_router.dart';
 import '../../authorities/application/authorities_controller.dart';
@@ -289,20 +288,25 @@ class _Header extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: AppSpacing.sm),
-              const PremiumCrown(size: 96, child: ProfilePhotoButton()),
+              const ProfilePhotoButton(),
               const SizedBox(height: AppSpacing.md),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: AppSpacing.xl),
                 child: Column(
                   children: [
-                    Text(
-                      name,
-                      textAlign: TextAlign.center,
-                      style: const TextStyle(
-                        color: Colors.white,
-                        fontSize: 23,
-                        fontWeight: FontWeight.w800,
-                        letterSpacing: -0.4,
+                    // the name opens the form too (« Ajoute ton nom »)
+                    GestureDetector(
+                      onTap: () =>
+                          context.router.push(ChurchFormRoute(isEditing: true)),
+                      child: Text(
+                        name,
+                        textAlign: TextAlign.center,
+                        style: const TextStyle(
+                          color: Colors.white,
+                          fontSize: 23,
+                          fontWeight: FontWeight.w800,
+                          letterSpacing: -0.4,
+                        ),
                       ),
                     ),
                     if (details.isNotEmpty) ...[
@@ -355,18 +359,33 @@ class _Header extends StatelessWidget {
                   ],
                 ),
               ),
-              const SizedBox(height: 18),
+              const SizedBox(height: 16),
+              // one slim bar of three numbers (23/10/2026: the three tiles
+              // took too much room)
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: AppSpacing.lg),
-                child: IntrinsicHeight(
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    children: [
-                      for (final (i, stat) in stats.indexed) ...[
-                        if (i > 0) const SizedBox(width: 10),
-                        Expanded(child: _StatTile(stat: stat)),
+                child: Container(
+                  padding: const EdgeInsets.symmetric(vertical: 10),
+                  decoration: BoxDecoration(
+                    color: Colors.white.withValues(alpha: 0.1),
+                    borderRadius: BorderRadius.circular(AppRadius.lg),
+                  ),
+                  child: IntrinsicHeight(
+                    child: Row(
+                      children: [
+                        for (final (i, stat) in stats.indexed) ...[
+                          if (i > 0)
+                            VerticalDivider(
+                              width: 1,
+                              thickness: 1,
+                              indent: 4,
+                              endIndent: 4,
+                              color: Colors.white.withValues(alpha: 0.15),
+                            ),
+                          Expanded(child: _StatTile(stat: stat)),
+                        ],
                       ],
-                    ],
+                    ),
                   ),
                 ),
               ),
@@ -387,12 +406,8 @@ class _StatTile extends StatelessWidget {
   Widget build(BuildContext context) => Semantics(
     label: '${stat.label} : ${stat.value}',
     excludeSemantics: true,
-    child: Container(
-      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 12),
-      decoration: BoxDecoration(
-        color: Colors.white.withValues(alpha: 0.1),
-        borderRadius: BorderRadius.circular(AppRadius.lg),
-      ),
+    child: Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 6),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
@@ -403,19 +418,21 @@ class _StatTile extends StatelessWidget {
               maxLines: 1,
               style: TextStyle(
                 color: stat.gold ? AppColors.goldLight : Colors.white,
-                fontSize: 21,
+                fontSize: 17,
                 fontWeight: FontWeight.w800,
               ),
             ),
           ),
-          const SizedBox(height: 2),
-          Text(
-            stat.label,
-            textAlign: TextAlign.center,
-            style: TextStyle(
-              color: Colors.white.withValues(alpha: 0.75),
-              fontSize: 11.5,
-              fontWeight: FontWeight.w600,
+          FittedBox(
+            fit: BoxFit.scaleDown,
+            child: Text(
+              stat.label,
+              maxLines: 1,
+              style: TextStyle(
+                color: Colors.white.withValues(alpha: 0.7),
+                fontSize: 11,
+                fontWeight: FontWeight.w600,
+              ),
             ),
           ),
         ],

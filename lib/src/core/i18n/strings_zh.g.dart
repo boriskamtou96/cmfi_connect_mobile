@@ -253,7 +253,6 @@ class _Translations$home$zh extends Translations$home$fr {
 	// Translations
 	@override String greeting({required Object name}) => '你好，${name}';
 	@override String get greetingNoName => '你好';
-	@override String get profile => '我的资料';
 	@override String progress({required Object filled, required Object total}) => '${filled}/${total}';
 	@override String get progressLabel => '项已填写';
 	@override String get goals => '目标';
@@ -487,7 +486,7 @@ class _Translations$more$zh extends Translations$more$fr {
 	@override String get logoutAnyway => '仍然退出';
 	@override String get admin => '管理';
 	@override String get staff => '团队与角色';
-	@override String get manageEvents => '活动';
+	@override String get manageEvents => '管理活动';
 	@override String get disciples => '我的门徒';
 	@override String version({required Object version}) => '版本 ${version}';
 	@override String copyright({required Object year}) => '© ${year} Christian Missionary Fellowship International. 保留所有权利。';
@@ -3725,7 +3724,6 @@ extension on TranslationsZh {
 			'nav.bible' => '圣经',
 			'home.greeting' => ({required Object name}) => '你好，${name}',
 			'home.greetingNoName' => '你好',
-			'home.profile' => '我的资料',
 			'home.progress' => ({required Object filled, required Object total}) => '${filled}/${total}',
 			'home.progressLabel' => '项已填写',
 			'home.goals' => '目标',
@@ -4009,7 +4007,7 @@ extension on TranslationsZh {
 			'more.logoutAnyway' => '仍然退出',
 			'more.admin' => '管理',
 			'more.staff' => '团队与角色',
-			'more.manageEvents' => '活动',
+			'more.manageEvents' => '管理活动',
 			'more.disciples' => '我的门徒',
 			'more.version' => ({required Object version}) => '版本 ${version}',
 			'more.copyright' => ({required Object year}) => '© ${year} Christian Missionary Fellowship International. 保留所有权利。',
@@ -4071,9 +4069,9 @@ extension on TranslationsZh {
 			'authorities.madeMaker' => ({required Object name}) => '${name} 现在是你的门训者。',
 			'members.username' => '用户名',
 			'members.usernameHint' => 'zhang.san',
+			'members.usernameHelp' => '其他成员会通过它找到你。',
 			_ => null,
 		} ?? switch (path) {
-			'members.usernameHelp' => '其他成员会通过它找到你。',
 			'members.usernameChecking' => '正在检查…',
 			'members.usernameFree' => ({required Object username}) => '@${username} 可以使用',
 			'members.usernameCurrent' => '这是你当前的用户名',
@@ -4585,9 +4583,9 @@ extension on TranslationsZh {
 			'prayer.moments.night' => '夜晚',
 			'prayer.retreatOf.morning' => '早晨祷告',
 			'prayer.retreatOf.noon' => '中午祷告',
+			'prayer.retreatOf.evening' => '傍晚祷告',
 			_ => null,
 		} ?? switch (path) {
-			'prayer.retreatOf.evening' => '傍晚祷告',
 			'prayer.retreatOf.night' => '夜晚祷告',
 			'prayer.hero.now' => ({required Object retreat}) => '${retreat} · 现在',
 			'prayer.hero.title' => '15 分钟\n与主同在',
@@ -5099,9 +5097,9 @@ extension on TranslationsZh {
 			'seekFirst.shield.notificationTitle' => '先求神',
 			'seekFirst.shield.notificationBody' => '轻点此处填写你的汇报。',
 			'seekFirst.shield.serviceBody' => '你的应用每天都会关闭，直到你填写报告。',
+			'seekFirst.permissionsAndroid' => '为了关闭你的应用，CMFI Connect 需要在即将打开的设置中开启两项权限：“使用情况访问权限”（知道哪个应用在前台）和“显示在其他应用上层”（显示“先求神”页面）。任何数据都不会离开你的手机。',
 			_ => null,
 		} ?? switch (path) {
-			'seekFirst.permissionsAndroid' => '为了关闭你的应用，CMFI Connect 需要在即将打开的设置中开启两项权限：“使用情况访问权限”（知道哪个应用在前台）和“显示在其他应用上层”（显示“先求神”页面）。任何数据都不会离开你的手机。',
 			'seekFirst.permissionsContinue' => '继续',
 			'seekFirst.deniedAndroid' => '没有这两项权限，CMFI Connect 无法关闭应用。你可以在“设置 › 应用 › 特殊访问权限”中开启。',
 			'seekFirst.privacyAndroid' => '你选择的应用只保存在手机上：CMFI Connect 绝不会上传。',

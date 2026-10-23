@@ -254,7 +254,6 @@ class _Translations$home$de extends Translations$home$fr {
 	// Translations
 	@override String greeting({required Object name}) => 'Hallo ${name}';
 	@override String get greetingNoName => 'Hallo';
-	@override String get profile => 'Mein Profil';
 	@override String progress({required Object filled, required Object total}) => '${filled} von ${total}';
 	@override String get progressLabel => 'Elemente ausgefüllt';
 	@override String get goals => 'Ziele';
@@ -495,7 +494,7 @@ class _Translations$more$de extends Translations$more$fr {
 	@override String get logoutAnyway => 'Trotzdem abmelden';
 	@override String get admin => 'Verwaltung';
 	@override String get staff => 'Team und Rollen';
-	@override String get manageEvents => 'Veranstaltungen';
+	@override String get manageEvents => 'Veranstaltungen verwalten';
 	@override String get disciples => 'Meine Jünger';
 	@override String version({required Object version}) => 'Version ${version}';
 	@override String copyright({required Object year}) => '© ${year} Christian Missionary Fellowship International. Alle Rechte vorbehalten.';
@@ -3809,7 +3808,6 @@ extension on TranslationsDe {
 			'nav.bible' => 'Bibel',
 			'home.greeting' => ({required Object name}) => 'Hallo ${name}',
 			'home.greetingNoName' => 'Hallo',
-			'home.profile' => 'Mein Profil',
 			'home.progress' => ({required Object filled, required Object total}) => '${filled} von ${total}',
 			'home.progressLabel' => 'Elemente ausgefüllt',
 			'home.goals' => 'Ziele',
@@ -4093,7 +4091,7 @@ extension on TranslationsDe {
 			'more.logoutAnyway' => 'Trotzdem abmelden',
 			'more.admin' => 'Verwaltung',
 			'more.staff' => 'Team und Rollen',
-			'more.manageEvents' => 'Veranstaltungen',
+			'more.manageEvents' => 'Veranstaltungen verwalten',
 			'more.disciples' => 'Meine Jünger',
 			'more.version' => ({required Object version}) => 'Version ${version}',
 			'more.copyright' => ({required Object year}) => '© ${year} Christian Missionary Fellowship International. Alle Rechte vorbehalten.',
@@ -4155,9 +4153,9 @@ extension on TranslationsDe {
 			'authorities.madeMaker' => ({required Object name}) => '${name} ist jetzt dein Jüngermacher.',
 			'members.username' => 'Benutzername',
 			'members.usernameHint' => 'vorname.nachname',
+			'members.usernameHelp' => 'So finden dich die anderen Mitglieder.',
 			_ => null,
 		} ?? switch (path) {
-			'members.usernameHelp' => 'So finden dich die anderen Mitglieder.',
 			'members.usernameChecking' => 'Wird geprüft …',
 			'members.usernameFree' => ({required Object username}) => '@${username} ist verfügbar',
 			'members.usernameCurrent' => 'Das ist dein aktueller Benutzername',
@@ -4669,9 +4667,9 @@ extension on TranslationsDe {
 			'prayer.moments.night' => 'Nacht',
 			'prayer.retreatOf.morning' => 'Gebetszeit am Morgen',
 			'prayer.retreatOf.noon' => 'Gebetszeit am Mittag',
+			'prayer.retreatOf.evening' => 'Gebetszeit am Abend',
 			_ => null,
 		} ?? switch (path) {
-			'prayer.retreatOf.evening' => 'Gebetszeit am Abend',
 			'prayer.retreatOf.night' => 'Gebetszeit zur Nacht',
 			'prayer.hero.now' => ({required Object retreat}) => '${retreat} · jetzt',
 			'prayer.hero.title' => '15 Minuten\nmit dem Herrn',
@@ -5183,9 +5181,9 @@ extension on TranslationsDe {
 			'seekFirst.shield.notificationTitle' => 'Suche zuerst Gott',
 			'seekFirst.shield.notificationBody' => 'Tippe hier, um deinen Bericht auszufüllen.',
 			'seekFirst.shield.serviceBody' => 'Deine Apps schließen sich jeden Tag bis zu deinem Bericht.',
+			'seekFirst.permissionsAndroid' => 'Um deine Apps zu schließen, braucht CMFI Connect zwei Berechtigungen, die du in den gleich geöffneten Einstellungen einschaltest: „Zugriff auf Nutzungsdaten“ (welche App offen ist) und „Über anderen Apps einblenden“ (den Bildschirm Suche zuerst Gott zeigen). Nichts verlässt dein Handy.',
 			_ => null,
 		} ?? switch (path) {
-			'seekFirst.permissionsAndroid' => 'Um deine Apps zu schließen, braucht CMFI Connect zwei Berechtigungen, die du in den gleich geöffneten Einstellungen einschaltest: „Zugriff auf Nutzungsdaten“ (welche App offen ist) und „Über anderen Apps einblenden“ (den Bildschirm Suche zuerst Gott zeigen). Nichts verlässt dein Handy.',
 			'seekFirst.permissionsContinue' => 'Weiter',
 			'seekFirst.deniedAndroid' => 'Ohne diese zwei Berechtigungen kann CMFI Connect keine Apps schließen. Du kannst sie unter Einstellungen › Apps › Spezieller Zugriff einschalten.',
 			'seekFirst.privacyAndroid' => 'Die Apps, die du wählst, bleiben auf deinem Handy: CMFI Connect sendet sie nie.',

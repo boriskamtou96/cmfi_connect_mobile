@@ -9,6 +9,8 @@ Flutter 3.38 / Dart 3.10.
 
 ## Commandes
 
+Le `Makefile` les regroupe toutes (`make` liste les cibles : setup, gen, gen-clean, run, catalog, check, brand, screenshots, landing-screens, build-*, bump, ios-beta, android-beta, publish…) ; le garder à jour quand une commande change.
+
 ```bash
 flutter run --flavor dev --dart-define-from-file=.env                     # API locale (émulateur Android : 10.0.2.2, simulateur iOS : localhost)
 flutter run --flavor dev --dart-define-from-file=.env --dart-define=API_BASE_URL=http://<IP du Mac>:8080/v1   # vrai téléphone

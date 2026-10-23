@@ -4,6 +4,8 @@ App mobile Flutter des comptes rendus quotidiens. Elle consomme l'API Go `cmfi-c
 
 ## Démarrer
 
+Toutes les commandes ci-dessous sont aussi dans le `Makefile` : `make` les liste (`make setup`, `make run`, `make check`, `make catalog`, `make bump TYPE=minor`…).
+
 ```bash
 flutter pub get
 dart run build_runner build --force-jit

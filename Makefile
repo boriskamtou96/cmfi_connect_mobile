@@ -149,3 +149,8 @@ match-setup: ## Une fois : crée certificats et profils iOS dans le dépôt de m
 publish: ## Pousse le commit et le dernier tag : GitHub Actions publie la version
 	git push
 	git push origin $$(git describe --tags --abbrev=0)
+
+
+build-ios:
+	cd /Users/hardpro/cmfi-connect/cmfi_connect_mobile_free && 
+	flutter build ios --release --flavor prod --dart-define-from-file=.env && xcrun devicectl device install app --device 773DA0BA-00A9-5970-A4F4-E6E35513575A build/ios/iphoneos/Runner.app

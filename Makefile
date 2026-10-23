@@ -113,6 +113,9 @@ build-ipa: ## IPA prod pour l'App Store, signature automatique de Xcode (build/i
 build-dev-apk: ## APK dev, à installer pour des tests
 	$(FLUTTER) build apk --release --flavor dev $(DEFINES)
 
+build-prod-apk: ## APK prod, à installer pour des tests en prod
+	$(FLUTTER) clean;$(FLUTTER) pub get;$(FLUTTER) build apk --release --split-per-abi --flavor prod
+
 pods: ## Réinstalle les pods iOS
 	cd ios && pod install
 

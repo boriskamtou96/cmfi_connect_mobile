@@ -1,13 +1,16 @@
 // Generates the screenshots of the store pages: the real screens of the app,
-// filled with demo data, set in frames that follow one another (one sky, from
-// the night to the dawn, crossed by a golden path), and the feature graphic
-// of Google Play.
+// filled with demo data, set in bold frames (the color of each module, the
+// giant open ring of the mark, the headline with its gold words, the phone
+// running off the bottom), and the feature graphic of Google Play (the poster
+// of the icon). Also the screens of the landing page, in the 7 languages.
 //
 //   flutter test tool/store_screenshots_test.dart
 //
 // Writes store/screenshots/ios/fr (1290 × 2796, iPhone 6.9"),
-// store/screenshots/android/fr (1080 × 2160) and
-// store/screenshots/feature_graphic.png (1024 × 500).
+// store/screenshots/android/fr (1080 × 2160),
+// store/screenshots/feature_graphic.png (1024 × 500) and
+// build/landing_screens/<language>/<screen>.png (600 × 1298, to turn into
+// WebP for public/screens of the landing page).
 import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
@@ -405,6 +408,7 @@ class _Shot {
     required this.name,
     required this.eyebrow,
     required this.headline,
+    required this.colors,
     this.lightStatusBar = false,
     this.tilt = 0,
     this.headlineScale = 1,
@@ -412,6 +416,10 @@ class _Shot {
   });
 
   final String name;
+
+  /// The background, bold and flat like the stores' best pages: the color of
+  /// the module shown, lighter at the top.
+  final List<Color> colors;
   final String eyebrow;
   final _Words headline;
 
@@ -426,94 +434,6 @@ class _Shot {
 
   /// What comes out of the phone: a ring, a bubble, Zoé…
   final Widget Function(double u)? extra;
-}
-
-/// The sky of all the frames side by side: night blue, CMFI blue, the
-/// colours of the modules, back to the night; stars, and the golden path.
-class _PanoramaPainter extends CustomPainter {
-  _PanoramaPainter({required this.index, required this.count});
-
-  final int index;
-  final int count;
-
-  static const _stops = [
-    Color(0xFF061A33),
-    Color(0xFF0A4F92),
-    Color(0xFF13306E),
-    Color(0xFF0B5E66),
-    Color(0xFF3B2470),
-    Color(0xFF7A3418),
-    Color(0xFF071F3D),
-    Color(0xFF0A4E96),
-  ];
-
-  @override
-  void paint(Canvas canvas, Size size) {
-    final total = size.width * count;
-    final shift = -index * size.width;
-    canvas.save();
-    canvas.translate(shift, 0);
-    final all = Rect.fromLTWH(0, 0, total, size.height);
-    canvas.drawRect(
-      all,
-      Paint()
-        ..shader = ui.Gradient.linear(
-          all.centerLeft,
-          all.centerRight,
-          [for (var i = 0; i < count; i++) _stops[i % _stops.length]],
-          [for (var i = 0; i < count; i++) (i + 0.5) / count],
-        ),
-    );
-    // darker towards the bottom, a light at the top
-    canvas.drawRect(
-      all,
-      Paint()
-        ..shader = ui.Gradient.linear(
-          all.topCenter,
-          all.bottomCenter,
-          [
-            Colors.white.withValues(alpha: 0.06),
-            Colors.black.withValues(alpha: 0),
-            Colors.black.withValues(alpha: 0.35),
-          ],
-          [0, 0.45, 1],
-        ),
-    );
-
-    final u = size.width / 1290;
-    final random = math.Random(11);
-    final star = Paint();
-    for (var i = 0; i < 90 * count; i++) {
-      final x = random.nextDouble() * total;
-      final y = math.pow(random.nextDouble(), 1.6) * size.height * 0.9;
-      final bright = random.nextDouble();
-      star.color = (bright > 0.93 ? AppColors.goldLight : Colors.white)
-          .withValues(alpha: 0.15 + 0.55 * bright);
-      canvas.drawCircle(
-        Offset(x, y.toDouble()),
-        (1.2 + 2.6 * bright) * u,
-        star,
-      );
-    }
-
-    // the golden path, one curve through every frame
-    double pathY(double x) =>
-        size.height * (0.58 + 0.12 * math.sin(x / size.width * 1.7 + 0.8));
-    final glow = Paint()
-      ..color = AppColors.gold.withValues(alpha: 0.22)
-      ..maskFilter = MaskFilter.blur(BlurStyle.normal, 10 * u);
-    final dot = Paint()..color = AppColors.goldLight.withValues(alpha: 0.9);
-    for (var x = 0.0; x < total; x += 34 * u) {
-      final at = Offset(x, pathY(x));
-      canvas
-        ..drawCircle(at, 9 * u, glow)
-        ..drawCircle(at, 5 * u, dot);
-    }
-    canvas.restore();
-  }
-
-  @override
-  bool shouldRepaint(_PanoramaPainter old) => false;
 }
 
 /// An iPhone around a screen of the app: bezel, Dynamic Island, status bar.
@@ -653,27 +573,23 @@ Widget _bubble(
   child: child,
 );
 
+/// A frame of the stores (validated on 23/10/2026, after the new icon): the
+/// color of the module, the giant open ring of the mark, the headline big and
+/// on the left with its gold words, the phone large and running off the
+/// bottom, and what comes out of it.
 class _Frame extends StatelessWidget {
-  const _Frame({
-    required this.shot,
-    required this.screen,
-    required this.index,
-    required this.count,
-    required this.size,
-  });
+  const _Frame({required this.shot, required this.screen, required this.size});
 
   final _Shot shot;
   final ui.Image screen;
-  final int index;
-  final int count;
   final Size size;
 
   @override
   Widget build(BuildContext context) {
     final u = size.width / 1290;
     // taller frames (iPhone) give the headline more air
-    final top = size.height * (size.height / size.width > 2.1 ? 0.06 : 0.045);
-    final phoneWidth = size.width * 0.70;
+    final top = size.height * (size.height / size.width > 2.1 ? 0.07 : 0.05);
+    final phoneWidth = size.width * 0.80;
 
     return SizedBox.fromSize(
       size: size,
@@ -681,21 +597,37 @@ class _Frame extends StatelessWidget {
         clipBehavior: Clip.hardEdge,
         children: [
           Positioned.fill(
-            child: CustomPaint(
-              painter: _PanoramaPainter(index: index, count: count),
+            child: DecoratedBox(
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  begin: Alignment.topLeft,
+                  end: Alignment.bottomRight,
+                  colors: shot.colors,
+                ),
+              ),
+            ),
+          ),
+          // the open ring of the mark, giant and faint
+          Positioned(
+            right: -520 * u,
+            top: -260 * u,
+            child: BrandRing(
+              size: 1500 * u,
+              color: Colors.white.withValues(alpha: 0.08),
+              strokeWidth: 9,
             ),
           ),
           // a soft light behind the phone
           Positioned(
-            left: size.width * 0.05,
-            right: size.width * 0.05,
-            top: size.height * 0.30,
-            height: size.height * 0.55,
+            left: -200 * u,
+            right: -200 * u,
+            top: size.height * 0.34,
+            height: size.height * 0.7,
             child: DecoratedBox(
               decoration: BoxDecoration(
                 gradient: RadialGradient(
                   colors: [
-                    Colors.white.withValues(alpha: 0.16),
+                    Colors.white.withValues(alpha: 0.18),
                     Colors.white.withValues(alpha: 0),
                   ],
                 ),
@@ -703,23 +635,38 @@ class _Frame extends StatelessWidget {
             ),
           ),
           Positioned(
-            left: 90 * u,
-            right: 90 * u,
+            left: 96 * u,
+            right: 96 * u,
             top: top,
             child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  shot.eyebrow,
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    fontFamily: 'Onest',
-                    fontSize: 36 * u,
-                    fontWeight: FontWeight.w800,
-                    letterSpacing: 7 * u,
-                    color: AppColors.goldLight,
+                // the mark and the module, in a pill
+                Container(
+                  padding: EdgeInsets.fromLTRB(14 * u, 12 * u, 30 * u, 12 * u),
+                  decoration: BoxDecoration(
+                    color: Colors.white.withValues(alpha: 0.14),
+                    borderRadius: BorderRadius.circular(60 * u),
+                  ),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      CmfiLogo.onDark(size: 60 * u),
+                      SizedBox(width: 16 * u),
+                      Text(
+                        shot.eyebrow,
+                        style: TextStyle(
+                          fontFamily: 'Onest',
+                          fontSize: 32 * u,
+                          fontWeight: FontWeight.w800,
+                          letterSpacing: 4 * u,
+                          color: Colors.white,
+                        ),
+                      ),
+                    ],
                   ),
                 ),
-                SizedBox(height: 26 * u),
+                SizedBox(height: 40 * u),
                 Text.rich(
                   TextSpan(
                     children: [
@@ -731,20 +678,19 @@ class _Frame extends StatelessWidget {
                                   fontFamily: 'Lora',
                                   fontStyle: FontStyle.italic,
                                   fontWeight: FontWeight.w600,
-                                  fontSize: 122 * u * shot.headlineScale,
+                                  fontSize: 138 * u * shot.headlineScale,
                                   color: AppColors.goldLight,
                                 )
                               : null,
                         ),
                     ],
                   ),
-                  textAlign: TextAlign.center,
                   style: TextStyle(
                     fontFamily: 'Onest',
-                    fontSize: 112 * u * shot.headlineScale,
-                    height: 1.08,
+                    fontSize: 128 * u * shot.headlineScale,
+                    height: 1.02,
                     fontWeight: FontWeight.w800,
-                    letterSpacing: -1.5 * u,
+                    letterSpacing: -3 * u,
                     color: Colors.white,
                   ),
                 ),
@@ -753,7 +699,7 @@ class _Frame extends StatelessWidget {
           ),
           Positioned(
             left: (size.width - phoneWidth) / 2,
-            top: top + 420 * u,
+            top: top + 620 * u,
             child: Transform.rotate(
               angle: shot.tilt,
               child: _Phone(
@@ -775,6 +721,7 @@ class _Frame extends StatelessWidget {
 final _shots = <_Shot>[
   _Shot(
     name: '01_accueil',
+    colors: const [Color(0xFF0E4682), Color(0xFF061F40)],
     eyebrow: 'CMFI CONNECT',
     headline: const [('Grandis avec Dieu,\n', false), ('chaque jour', true)],
     extra: (u) => Positioned(
@@ -785,12 +732,13 @@ final _shots = <_Shot>[
   ),
   _Shot(
     name: '02_compte_rendu',
+    colors: const [Color(0xFF1A7BD0), Color(0xFF0A4E92)],
     eyebrow: 'COMPTE RENDU',
     headline: const [('Ton compte rendu\nen ', false), ('une minute', true)],
     tilt: -0.035,
     extra: (u) => Positioned(
       left: 50 * u,
-      top: 2290 * u,
+      top: 2080 * u,
       child: _bubble(
         u,
         child: Row(
@@ -828,6 +776,7 @@ final _shots = <_Shot>[
   ),
   _Shot(
     name: '03_bilan',
+    colors: const [Color(0xFF6B4FD0), Color(0xFF33206E)],
     eyebrow: 'BILAN',
     headline: const [
       ('Vois ta ', false),
@@ -863,17 +812,19 @@ final _shots = <_Shot>[
   ),
   const _Shot(
     name: '04_cantiques',
+    colors: [Color(0xFF18A091), Color(0xFF0A4E48)],
     eyebrow: 'CANTIQUES',
     headline: [('Tous les cantiques,\n', false), ('même hors ligne', true)],
   ),
   _Shot(
     name: '05_priere',
+    colors: const [Color(0xFF8E5BC2), Color(0xFF45226E)],
     eyebrow: 'PRIÈRE',
     headline: const [('15 minutes\n', false), ('avec le Seigneur', true)],
     tilt: -0.03,
     extra: (u) => Positioned(
       left: 40 * u,
-      top: 2290 * u,
+      top: 2080 * u,
       child: _bubble(
         u,
         child: Row(
@@ -901,6 +852,7 @@ final _shots = <_Shot>[
   ),
   _Shot(
     name: '06_evenements',
+    colors: const [Color(0xFFE0603A), Color(0xFF962E16)],
     eyebrow: 'ÉVÈNEMENTS',
     headline: const [
       ('Ne manque ', false),
@@ -911,7 +863,7 @@ final _shots = <_Shot>[
     tilt: 0.03,
     extra: (u) => Positioned(
       right: 40 * u,
-      top: 1500 * u,
+      top: 2050 * u,
       child: _bubble(
         u,
         child: Row(
@@ -939,12 +891,14 @@ final _shots = <_Shot>[
   ),
   const _Shot(
     name: '07_ministere',
+    colors: [Color(0xFF16305E), Color(0xFF050B1A)],
     eyebrow: 'NOTRE MINISTÈRE',
     headline: [('Présente dans\n', false), ('154 nations', true)],
     lightStatusBar: true,
   ),
   _Shot(
     name: '08_autorites',
+    colors: const [Color(0xFF2E9E62), Color(0xFF0F4A2E)],
     eyebrow: 'AUTORITÉS SPIRITUELLES',
     headline: const [('À tes autorités,\n', false), ('en un geste', true)],
     tilt: -0.03,
@@ -952,7 +906,7 @@ final _shots = <_Shot>[
       children: [
         Positioned(
           left: 40 * u,
-          top: 2290 * u,
+          top: 1900 * u,
           child: SizedBox(
             width: 760 * u,
             child: _bubble(
@@ -974,7 +928,7 @@ final _shots = <_Shot>[
         ),
         Positioned(
           right: 30 * u,
-          top: 2230 * u,
+          top: 1700 * u,
           child: DoveMascot(pose: DovePose.celebrate, size: 300 * u),
         ),
       ],
@@ -1019,6 +973,14 @@ final _scenes = <String, Future<void> Function(WidgetTester, TestApp)>{
     await tester.pumpAndSettle();
     await tester.tap(find.byTooltip('WhatsApp').first);
   },
+};
+
+/// The Mac's fonts of the scripts Onest doesn't draw, for the landing
+/// screens.
+const _scriptFonts = {
+  'ar': '/System/Library/Fonts/SFArabic.ttf',
+  'zh': '/System/Library/Fonts/Hiragino Sans GB.ttc',
+  'hi': '/System/Library/Fonts/Kohinoor.ttc',
 };
 
 // ----- writing -----------------------------------------------------------------------
@@ -1096,6 +1058,7 @@ void main() {
         'phosphor_flutter-2.1.0/lib/fonts';
     for (final (family, file) in [
       ('Regular', 'Phosphor'),
+      ('Bold', 'Phosphor-Bold'),
       ('Fill', 'Phosphor-Fill'),
       ('Duotone', 'Phosphor-Duotone'),
     ]) {
@@ -1114,7 +1077,7 @@ void main() {
   });
   setUp(() => LocaleSettings.setLocale(AppLocale.fr));
 
-  for (final (index, shot) in _shots.indexed) {
+  for (final shot in _shots) {
     testWidgets('store screenshot ${shot.name}', (tester) async {
       final (app, key) = await _pumpDemo(tester, posters);
       await _scenes[shot.name]!(tester, app);
@@ -1132,13 +1095,7 @@ void main() {
       ]) {
         await _render(
           tester,
-          _Frame(
-            shot: shot,
-            screen: screen,
-            index: index,
-            count: _shots.length,
-            size: size,
-          ),
+          _Frame(shot: shot, screen: screen, size: size),
           size,
           'store/screenshots/$folder/fr/${shot.name}.png',
         );
@@ -1146,67 +1103,114 @@ void main() {
     });
   }
 
+  // the poster of the icon (validated on 23/10/2026): the matte night, the
+  // glowing tile, the wordmark spaced out
   testWidgets('feature graphic', (tester) async {
     const size = Size(1024, 500);
+    const tile = 250.0;
     await _render(
       tester,
       SizedBox.fromSize(
         size: size,
         child: Stack(
           children: [
-            Positioned.fill(
-              child: CustomPaint(painter: _PanoramaPainter(index: 0, count: 1)),
-            ),
-            Positioned(
-              left: 64,
-              top: 92,
-              child: Row(
-                children: [
-                  const CmfiLogo.onDark(),
-                  const SizedBox(width: 28),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      const Text(
-                        'CMFI Connect',
-                        style: TextStyle(
-                          fontFamily: 'Onest',
-                          fontSize: 64,
-                          fontWeight: FontWeight.w800,
-                          color: Colors.white,
-                        ),
-                      ),
-                      Text(
-                        'Grandis avec Dieu, chaque jour',
-                        style: TextStyle(
-                          fontFamily: 'Lora',
-                          fontStyle: FontStyle.italic,
-                          fontSize: 34,
-                          color: AppColors.goldLight.withValues(alpha: 0.95),
-                        ),
-                      ),
+            const Positioned.fill(
+              child: DecoratedBox(
+                decoration: BoxDecoration(
+                  gradient: RadialGradient(
+                    center: Alignment(-0.6, -0.9),
+                    radius: 1.6,
+                    colors: [
+                      Color(0xFF1A2F5C),
+                      Color(0xFF0A1530),
+                      Color(0xFF03070F),
                     ],
+                    stops: [0, 0.45, 1],
                   ),
-                ],
+                ),
               ),
             ),
-            const Positioned(
-              left: 66,
-              bottom: 70,
-              child: Text(
-                'Compte rendu · Cantiques · Prière · Évènements',
-                style: TextStyle(
-                  fontFamily: 'Onest',
-                  fontSize: 24,
-                  fontWeight: FontWeight.w600,
-                  color: AppColors.onPrimaryMuted,
+            const Positioned.fill(
+              child: DecoratedBox(
+                decoration: BoxDecoration(
+                  gradient: RadialGradient(
+                    center: Alignment(0.9, 1),
+                    radius: 0.9,
+                    colors: [Color(0x8C0A5EA8), Color(0x000A5EA8)],
+                  ),
+                ),
+              ),
+            ),
+            Positioned(
+              left: 80,
+              top: (size.height - tile) / 2,
+              child: Container(
+                width: tile,
+                height: tile,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(tile * 0.225),
+                  boxShadow: [
+                    BoxShadow(
+                      color: const Color(0xFF7FC8F0).withValues(alpha: 0.45),
+                      blurRadius: 40,
+                    ),
+                  ],
+                ),
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(tile * 0.225),
+                  child: const CustomPaint(
+                    size: Size.square(tile),
+                    painter: AppIconPainter(),
+                  ),
                 ),
               ),
             ),
             const Positioned(
+              left: 380,
               right: 40,
-              bottom: 30,
-              child: DoveMascot(pose: DovePose.celebrate, size: 300),
+              top: 170,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  // one line, whatever the width
+                  FittedBox(
+                    fit: BoxFit.scaleDown,
+                    alignment: Alignment.centerLeft,
+                    child: Text(
+                      'CMFI CONNECT',
+                      maxLines: 1,
+                      style: TextStyle(
+                        fontFamily: 'Onest',
+                        fontSize: 56,
+                        fontWeight: FontWeight.w800,
+                        letterSpacing: 9,
+                        color: Colors.white,
+                      ),
+                    ),
+                  ),
+                  SizedBox(height: 14),
+                  Text(
+                    'GRANDIS AVEC DIEU, CHAQUE JOUR',
+                    style: TextStyle(
+                      fontFamily: 'Onest',
+                      fontSize: 21,
+                      fontWeight: FontWeight.w500,
+                      letterSpacing: 6,
+                      color: Color(0xFF9FB6D8),
+                    ),
+                  ),
+                  SizedBox(height: 34),
+                  Text(
+                    'Compte rendu · Cantiques · Prière · Bible',
+                    style: TextStyle(
+                      fontFamily: 'Onest',
+                      fontSize: 22,
+                      fontWeight: FontWeight.w600,
+                      color: AppColors.goldLight,
+                    ),
+                  ),
+                ],
+              ),
             ),
           ],
         ),
@@ -1215,4 +1219,37 @@ void main() {
       'store/screenshots/feature_graphic.png',
     );
   });
+
+  // the landing page: the screens that changed, bare, in every language
+  for (final locale in AppLocale.values) {
+    testWidgets('landing screens ${locale.languageCode}', (tester) async {
+      // Onest has no Arabic, Chinese or Devanagari letters: the Mac's font
+      // of the script, as the fallback the app names (run these one by one:
+      // a second one would not be used)
+      if (_scriptFonts[locale.languageCode] case final font?) {
+        await _loadFont('Noto Color Emoji', [font]);
+      }
+      await LocaleSettings.setLocale(locale);
+      final (app, key) = await _pumpDemo(tester, posters);
+      Future<void> save(String name) async {
+        final boundary =
+            key.currentContext!.findRenderObject()! as RenderRepaintBoundary;
+        await tester.runAsync(() async {
+          final image = await boundary.toImage(pixelRatio: 600 / 390);
+          final bytes = await image.toByteData(format: ui.ImageByteFormat.png);
+          File('build/landing_screens/${locale.languageCode}/$name.png')
+            ..createSync(recursive: true)
+            ..writeAsBytesSync(bytes!.buffer.asUint8List());
+        });
+      }
+
+      await save('home');
+      unawaited(_router(app).navigate(const ReportsRoute()));
+      await _settle(tester, posters);
+      await save('report');
+      unawaited(_router(app).navigate(const HymnsRoute()));
+      await _settle(tester, posters);
+      await save('hymns');
+    });
+  }
 }

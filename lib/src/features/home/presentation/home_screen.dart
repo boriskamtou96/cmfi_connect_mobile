@@ -575,6 +575,8 @@ class _Summary extends ConsumerWidget {
                     ),
                     textStyle: const TextStyle(
                       fontFamily: AppTheme.fontFamily,
+                      // the letters Onest lacks (Arabic, Chinese, Hindi)
+                      fontFamilyFallback: AppTheme.emojiFallback,
                       fontSize: 15.5,
                       fontWeight: FontWeight.w800,
                     ),

@@ -6,14 +6,14 @@ import 'package:flutter/material.dart';
 import '../i18n/strings.g.dart';
 import '../theme/app_colors.dart';
 
-/// The CMFI emblem, redrawn from the community's logo without its letters: the
-/// "C" around the globe, the cross standing on the open Bible, and the dove.
-/// Drawn in code so it stays sharp at every size; the same drawing is in SVG
-/// in the PDF export, the admin website and the landing page.
+/// The mark of CMFI Connect (validated on 23/10/2026): the open ring of the
+/// CMFI emblem around a gold cross, flat, like a modern app icon. Drawn in code
+/// so it stays sharp at every size; the same drawing is in SVG in the PDF
+/// export, the admin website, the landing page and the notification icon.
 class CmfiLogo extends StatelessWidget {
   const CmfiLogo({this.size = 96, this.disc = false, super.key});
 
-  /// On a white disc, for dark or coloured backgrounds (its blues would fade).
+  /// In its night medallion, for dark or coloured backgrounds.
   const CmfiLogo.onDark({double size = 96, Key? key})
     : this(size: size, disc: true, key: key);
 
@@ -27,234 +27,186 @@ class CmfiLogo extends StatelessWidget {
       image: true,
       child: CustomPaint(
         size: Size.square(size),
-        // the globe's grid, the lines of the book and the dove vanish when small
+        // the glowing edge of the medallion only when it can be seen
         painter: CmfiLogoPainter(disc: disc, details: size >= 40),
       ),
     );
   }
 }
 
+/// The mark on a 100 × 100 grid: the ring (blue on a light background), the
+/// cross in gold. [disc]: in the night medallion, the ring white, with a thin
+/// gold-to-blue edge when [details].
 class CmfiLogoPainter extends CustomPainter {
   const CmfiLogoPainter({this.disc = false, this.details = true});
 
   final bool disc;
   final bool details;
 
-  // The colours of the logo, the same in light and dark mode
-  static const _cDark = Color(0xFF0A4C92);
-  static const _cMiddle = Color(0xFF0B6CB8);
-  static const _cLight = Color(0xFF19A6E4);
-  static const _globeLight = Color(0xFFF4FBFF);
-  static const _globeMiddle = Color(0xFFBFE6F8);
-  static const _globeEdge = Color(0xFF7CCAEE);
-  static const _cross = Color(0xFF1A4FA0);
-  static const _cover = Color(0xFFD88E74);
-  static const _pageRight = Color(0xFFF3F8FC);
-  static const _spine = Color(0xFFC9A08C);
-  static const _textLine = Color(0xFF9DBCDD);
-  static const _doveBack = Color(0xFF8FD0F2);
-  static const _doveBody = Color(0xFF2E9BDA);
-  static const _doveFront = Color(0xFF45AEE6);
+  /// The night of the icon: lighter in the middle.
+  static const night = [
+    Color(0xFF0F2A52),
+    Color(0xFF081830),
+    Color(0xFF040B18),
+  ];
 
-  /// The globe, inside the "C".
-  static const _globe = Offset(55.16, 47.2);
-  static const _globeRadius = 35.0;
+  /// The glowing edge of the icon, from the gold of CMFI to the sky blue of the
+  /// emblem.
+  static const edge = [Color(0xFFF6D27A), Color(0xFF7FC8F0), Color(0xFF1F6FE0)];
+
+  static const _goldLight = [Color(0xFFFBE2A0), Color(0xFFE2A93B)];
+  static const _goldOnWhite = [Color(0xFFE8B348), Color(0xFFC08A1E)];
 
   @override
   void paint(Canvas canvas, Size size) {
-    canvas.save();
-    // The emblem is designed on a 100×100 grid
-    canvas.scale(size.width / 100, size.height / 100);
+    canvas
+      ..save()
+      ..scale(size.width / 100, size.height / 100);
     if (disc) {
       canvas.drawCircle(
         const Offset(50, 50),
         50,
-        Paint()..color = Colors.white,
+        Paint()
+          ..shader = ui.Gradient.radial(const Offset(50, 40), 62, night, const [
+            0,
+            0.6,
+            1,
+          ]),
       );
-      // smaller and centred, so the dove stays inside the disc
+      if (details) {
+        canvas.drawCircle(
+          const Offset(50, 50),
+          48.6,
+          Paint()
+            ..style = PaintingStyle.stroke
+            ..strokeWidth = 1.6
+            ..shader = ui.Gradient.linear(
+              const Offset(10, 10),
+              const Offset(90, 90),
+              edge,
+              const [0, 0.45, 1],
+            ),
+        );
+      }
+      // a little smaller, inside the medallion
       canvas
         ..translate(50, 50)
-        ..scale(0.72)
-        ..translate(-48.5, -50.8);
+        ..scale(0.92)
+        ..translate(-50, -50);
     }
-
-    // The "C": the space between two circles, open on the right
-    final c = Path()
-      ..moveTo(60.45, 7.01)
-      ..arcToPoint(
-        const Offset(89.34, 68.97),
-        radius: const Radius.circular(46),
-        largeArc: true,
-        clockwise: false,
-      )
-      ..arcToPoint(
-        const Offset(60.45, 7.01),
-        radius: const Radius.circular(40.53),
-        largeArc: true,
-      )
-      ..close();
-    canvas.drawPath(
-      c,
-      Paint()
-        ..shader = ui.Gradient.linear(
-          const Offset(10, 12),
-          const Offset(86, 88),
-          const [_cDark, _cMiddle, _cLight],
-          const [0, 0.55, 1],
-        ),
-    );
-
-    canvas.drawCircle(
-      _globe,
-      _globeRadius,
-      Paint()
-        ..shader = ui.Gradient.radial(
-          _globe.translate(-10, -13),
-          _globeRadius * 1.35,
-          const [_globeLight, _globeMiddle, _globeEdge],
-          const [0, 0.6, 1],
-        ),
-    );
-    if (details) {
-      _grid(canvas);
-    }
-
-    // The cross, standing on the Bible
-    final cross = Paint()..color = _cross;
-    canvas
-      ..drawRRect(
-        RRect.fromLTRBR(51.66, 10.5, 58.66, 62, const Radius.circular(1)),
-        cross,
-      )
-      ..drawRRect(
-        RRect.fromLTRBR(41.16, 22.5, 69.16, 29.5, const Radius.circular(1)),
-        cross,
-      );
-
-    _bible(canvas);
-    if (details) {
-      _dove(canvas);
-    }
+    paintMark(canvas, onDark: disc);
     canvas.restore();
   }
 
-  /// Two meridians and three parallels, in faint white.
-  void _grid(Canvas canvas) {
-    final line = Paint()
-      ..color = Colors.white.withValues(alpha: 0.7)
-      ..style = PaintingStyle.stroke
-      ..strokeWidth = 0.9;
-    for (final width in [_globeRadius * 0.84, _globeRadius * 1.6]) {
-      canvas.drawOval(
-        Rect.fromCenter(center: _globe, width: width, height: _globeRadius * 2),
-        line,
-      );
-    }
-    canvas.drawPath(
-      Path()
-        ..moveTo(20.16, 47.2)
-        ..quadraticBezierTo(55.16, 52.2, 90.16, 47.2)
-        ..moveTo(24.85, 29.7)
-        ..quadraticBezierTo(55.16, 33.7, 85.47, 29.7)
-        ..moveTo(24.85, 64.7)
-        ..quadraticBezierTo(55.16, 69.2, 85.47, 64.7),
-      line,
-    );
-  }
-
-  /// The open Bible: the cover, then a page on each side of the spine.
-  void _bible(Canvas canvas) {
-    canvas.drawPath(
-      Path()
-        ..moveTo(55.16, 64.5)
-        ..cubicTo(48.16, 61, 40.16, 60.5, 34.16, 61.5)
-        ..lineTo(34.16, 75)
-        ..cubicTo(41.16, 74, 49.16, 75, 55.16, 78.5)
-        ..cubicTo(61.16, 75, 69.16, 74, 76.16, 75)
-        ..lineTo(76.16, 61.5)
-        ..cubicTo(70.16, 60.5, 62.16, 61, 55.16, 64.5)
-        ..close(),
-      Paint()..color = _cover,
-    );
-    // the right page mirrors the left one around the spine
-    for (final (side, color) in [(-1.0, Colors.white), (1.0, _pageRight)]) {
-      double x(double dx) => 55.16 + side * dx;
-      canvas.drawPath(
-        Path()
-          ..moveTo(55.16, 62.5)
-          ..cubicTo(x(7), 59, x(14), 58.5, x(19.5), 59.5)
-          ..lineTo(x(19.5), 72.5)
-          ..cubicTo(x(13), 71.5, x(6), 72.5, 55.16, 76)
-          ..close(),
-        Paint()..color = color,
-      );
-      if (details) {
-        final text = Paint()
-          ..color = _textLine
-          ..style = PaintingStyle.stroke
-          ..strokeWidth = 0.7
-          ..strokeCap = StrokeCap.round;
-        for (final y in [63.2, 66.4, 69.6]) {
-          canvas.drawPath(
-            Path()
-              ..moveTo(x(16.5), y)
-              ..cubicTo(x(12), y - 0.6, x(7), y, x(3), y + 2),
-            text,
-          );
-        }
-      }
-    }
-    canvas.drawLine(
-      const Offset(55.16, 62.5),
-      const Offset(55.16, 76),
+  /// The ring and the cross alone, on the 100 × 100 grid: the ring white
+  /// [onDark], CMFI blue otherwise.
+  static void paintMark(Canvas canvas, {required bool onDark}) {
+    // open at the upper right, like the "C" of the emblem
+    canvas.drawArc(
+      Rect.fromCircle(center: const Offset(50, 50), radius: 26.2),
+      -38 * math.pi / 180,
+      (316 * math.pi) / 180,
+      false,
       Paint()
-        ..color = _spine
-        ..strokeWidth = 0.8,
+        ..color = onDark ? Colors.white : AppColors.primary
+        ..style = PaintingStyle.stroke
+        ..strokeWidth = 8.2
+        ..strokeCap = StrokeCap.round,
     );
-  }
-
-  /// The dove, upper right, flying towards the cross.
-  void _dove(Canvas canvas) {
+    final gold = Paint()
+      ..shader = ui.Gradient.linear(
+        const Offset(40, 35),
+        const Offset(60, 65),
+        onDark ? _goldLight : _goldOnWhite,
+      );
     canvas
-      ..save()
-      ..translate(80.5, 4.5)
-      ..drawPath(
-        Path()
-          ..moveTo(7.4, 9.2)
-          ..cubicTo(6.2, 5.6, 6.8, 2.4, 9.4, 0)
-          ..cubicTo(10.4, 3.2, 10.4, 6.4, 9.2, 9.4)
-          ..close(),
-        Paint()..color = _doveBack,
+      ..drawRRect(
+        RRect.fromLTRBR(46.5, 35.35, 53.5, 64.65, const Radius.circular(3.5)),
+        gold,
       )
-      ..drawPath(
-        Path()
-          ..moveTo(1.4, 10.6)
-          ..cubicTo(3.2, 8.4, 6.4, 7.6, 9.4, 8.4)
-          ..cubicTo(11.6, 9, 13.6, 10.4, 15, 12.4)
-          ..cubicTo(13.2, 12, 11.6, 12.2, 10.4, 13)
-          ..cubicTo(8, 14.8, 4.4, 14.4, 1.4, 10.6)
-          ..close()
-          // the beak
-          ..moveTo(1.4, 10.6)
-          ..lineTo(0, 10.9)
-          ..lineTo(1.6, 11.6)
-          ..close(),
-        Paint()..color = _doveBody,
-      )
-      ..drawPath(
-        Path()
-          ..moveTo(7, 10.2)
-          ..cubicTo(7.6, 6.4, 10, 3.2, 13.8, 1.4)
-          ..cubicTo(13.4, 5.2, 11.6, 8.6, 8.6, 10.8)
-          ..close(),
-        Paint()..color = _doveFront,
-      )
-      ..restore();
+      ..drawRRect(
+        RRect.fromLTRBR(40.45, 43.55, 59.55, 50.55, const Radius.circular(3.5)),
+        gold,
+      );
   }
 
   @override
   bool shouldRepaint(CmfiLogoPainter oldDelegate) =>
       disc != oldDelegate.disc || details != oldDelegate.details;
+}
+
+/// The app icon, a full square (the stores round its corners): the night
+/// tile, its glowing gold-to-blue edge, the mark in the middle with a soft
+/// light. [dev]: on the CMFI blue, to tell the test app apart.
+class AppIconPainter extends CustomPainter {
+  const AppIconPainter({this.dev = false});
+
+  final bool dev;
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    final full = size.width;
+    final square = Offset.zero & size;
+    canvas.drawRect(
+      square,
+      Paint()
+        ..shader = dev
+            ? ui.Gradient.linear(Offset.zero, Offset(full, full), const [
+                Color(0xFF1A7BD0),
+                AppColors.primaryDeep,
+              ])
+            : ui.Gradient.radial(
+                Offset(full / 2, full * 0.38),
+                full * 0.75,
+                CmfiLogoPainter.night,
+                const [0, 0.6, 1],
+              ),
+    );
+    // the glowing edge, as in the presentation
+    final frame = RRect.fromRectAndRadius(
+      square.deflate(full * 0.043),
+      Radius.circular(full * 0.195),
+    );
+    final edge = ui.Gradient.linear(
+      Offset.zero,
+      Offset(full, full),
+      CmfiLogoPainter.edge,
+      const [0, 0.45, 1],
+    );
+    canvas
+      ..drawRRect(
+        frame,
+        Paint()
+          ..style = PaintingStyle.stroke
+          ..strokeWidth = full * 0.022
+          ..shader = edge
+          ..maskFilter = MaskFilter.blur(BlurStyle.normal, full * 0.018),
+      )
+      ..drawRRect(
+        frame,
+        Paint()
+          ..style = PaintingStyle.stroke
+          ..strokeWidth = full * 0.01
+          ..shader = edge,
+      );
+    canvas
+      ..save()
+      ..scale(full / 100);
+    // a soft light behind the mark
+    canvas.saveLayer(
+      const Rect.fromLTWH(0, 0, 100, 100),
+      Paint()
+        ..color = Colors.white.withValues(alpha: 0.35)
+        ..imageFilter = ui.ImageFilter.blur(sigmaX: 4, sigmaY: 4),
+    );
+    CmfiLogoPainter.paintMark(canvas, onDark: true);
+    canvas.restore();
+    CmfiLogoPainter.paintMark(canvas, onDark: true);
+    canvas.restore();
+  }
+
+  @override
+  bool shouldRepaint(AppIconPainter oldDelegate) => dev != oldDelegate.dev;
 }
 
 /// "CMFI Connect" wordmark: the international name, in every language.

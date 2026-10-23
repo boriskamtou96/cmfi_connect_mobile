@@ -14,6 +14,7 @@ import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_icons.dart';
 import '../../../core/theme/app_motion.dart';
 import '../../../core/theme/app_spacing.dart';
+import '../../../core/theme/app_theme.dart';
 import '../../../core/theme/app_tones.dart';
 import '../../../core/widgets/adaptive_menus.dart';
 import '../../../core/widgets/app_toast.dart';
@@ -493,6 +494,8 @@ class _ViewChip extends StatelessWidget {
             duration: AppMotion.of(context, AppMotion.fast),
             style: TextStyle(
               fontFamily: Theme.of(context).textTheme.bodyMedium?.fontFamily,
+              // the letters Onest lacks (Arabic, Chinese, Hindi)
+              fontFamilyFallback: AppTheme.emojiFallback,
               fontSize: 14,
               fontWeight: FontWeight.w700,
               color: selected ? Colors.white : module.onSoft,

@@ -180,48 +180,19 @@ const _line = PdfColor.fromInt(0xFFDFE6EF);
 const _personal = PdfColor.fromInt(0xFF8A5A0F);
 const _personalSoft = PdfColor.fromInt(0xFFFBF1DC);
 
-/// The CMFI emblem (same drawing as CmfiLogoPainter, on its 100×100 grid).
+/// The mark of CMFI Connect (same drawing as CmfiLogoPainter.paintMark, on
+/// its 100×100 grid): the open ring in CMFI blue, the cross in gold.
 const _logo = '''
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
   <defs>
-    <linearGradient id="c" x1="10" y1="12" x2="86" y2="88" gradientUnits="userSpaceOnUse">
-      <stop offset="0" stop-color="#0A4C92"/><stop offset="0.55" stop-color="#0B6CB8"/><stop offset="1" stop-color="#19A6E4"/>
+    <linearGradient id="g" x1="40" y1="35" x2="60" y2="65" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#E8B348"/>
+      <stop offset="1" stop-color="#C08A1E"/>
     </linearGradient>
-    <radialGradient id="g" cx="45.16" cy="34.2" r="47.25" gradientUnits="userSpaceOnUse">
-      <stop offset="0" stop-color="#F4FBFF"/><stop offset="0.6" stop-color="#BFE6F8"/><stop offset="1" stop-color="#7CCAEE"/>
-    </radialGradient>
   </defs>
-  <path d="M60.45 7.01 A46.0 46.0 0 1 0 89.34 68.97 A40.53 40.53 0 1 1 60.45 7.01 Z" fill="url(#c)"/>
-  <circle cx="55.16" cy="47.2" r="35.0" fill="url(#g)"/>
-  <g fill="none" stroke="#fff" stroke-width="0.9" stroke-opacity="0.7">
-    <ellipse cx="55.16" cy="47.2" rx="14.70" ry="35.0"/>
-    <ellipse cx="55.16" cy="47.2" rx="28.00" ry="35.0"/>
-    <path d="M20.16 47.2 Q55.16 52.2 90.16 47.2 M24.85 29.70 Q55.16 33.7 85.47 29.70 M24.85 64.70 Q55.16 69.2 85.47 64.70"/>
-  </g>
-  <g fill="#1A4FA0">
-    <rect x="51.66" y="10.5" width="7" height="51.5" rx="1"/>
-    <rect x="41.16" y="22.5" width="28" height="7" rx="1"/>
-  </g>
-  <g>
-    <path d="M55.16 64.5 C48.16 61 40.16 60.5 34.16 61.5 V75 C41.16 74 49.16 75 55.16 78.5 C61.16 75 69.16 74 76.16 75 V61.5 C70.16 60.5 62.16 61 55.16 64.5 Z" fill="#D88E74"/>
-    <path d="M55.16 62.5 C48.16 59 41.16 58.5 35.66 59.5 V72.5 C42.16 71.5 49.16 72.5 55.16 76 Z" fill="#fff"/>
-    <path d="M55.16 62.5 C62.16 59 69.16 58.5 74.66 59.5 V72.5 C68.16 71.5 61.16 72.5 55.16 76 Z" fill="#F3F8FC"/>
-    <path d="M55.16 62.5 V76" stroke="#C9A08C" stroke-width="0.8"/>
-    <g stroke="#9DBCDD" stroke-width="0.7" fill="none" stroke-linecap="round">
-      <path d="M38.66 63.2 C43.16 62.6 48.16 63.2 52.16 65.2"/>
-      <path d="M38.66 66.4 C43.16 65.8 48.16 66.4 52.16 68.4"/>
-      <path d="M38.66 69.6 C43.16 69 48.16 69.6 52.16 71.6"/>
-      <path d="M71.66 63.2 C67.16 62.6 62.16 63.2 58.16 65.2"/>
-      <path d="M71.66 66.4 C67.16 65.8 62.16 66.4 58.16 68.4"/>
-      <path d="M71.66 69.6 C67.16 69 62.16 69.6 58.16 71.6"/>
-    </g>
-  </g>
-  <g transform="translate(80.5 4.5)">
-    <path d="M7.4 9.2 C6.2 5.6 6.8 2.4 9.4 0 C10.4 3.2 10.4 6.4 9.2 9.4 Z" fill="#8FD0F2"/>
-    <path d="M1.4 10.6 C3.2 8.4 6.4 7.6 9.4 8.4 C11.6 9 13.6 10.4 15 12.4 C13.2 12 11.6 12.2 10.4 13 C8 14.8 4.4 14.4 1.4 10.6 Z" fill="#2E9BDA"/>
-    <path d="M1.4 10.6 L0 10.9 L1.6 11.6 Z" fill="#2E9BDA"/>
-    <path d="M7 10.2 C7.6 6.4 10 3.2 13.8 1.4 C13.4 5.2 11.6 8.6 8.6 10.8 Z" fill="#45AEE6"/>
-  </g>
+  <path d="M70.65 33.87 A26.2 26.2 0 1 1 53.65 24.05" fill="none" stroke="#0A5EA8" stroke-width="8.2" stroke-linecap="round"/>
+  <rect x="46.5" y="35.35" width="7" height="29.3" rx="3.5" fill="url(#g)"/>
+  <rect x="40.45" y="43.55" width="19.1" height="7" rx="3.5" fill="url(#g)"/>
 </svg>''';
 
 /// An A4 document: who and when, regularity, totals per item, then each day.

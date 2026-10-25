@@ -2493,6 +2493,112 @@
       "ok": "Merci !"
     }
   },
+  "gamification": {
+    "tabs": {
+      "path": "Le chemin",
+      "cards": "Mes cartes"
+    },
+    "next": {
+      "title": "Ton prochain jalon",
+      "eyebrow": "Prochain jalon",
+      "family": "{done} sur {total}",
+      "allReached": "Tu as atteint tous les jalons ouverts. Le chemin continue, jour après jour.",
+      "cardsCount(plural, param=n)": {
+        "one": "{n} carte sur {total}",
+        "other": "{n} cartes sur {total}"
+      },
+      "remainingReports(plural, param=n)": {
+        "one": "Encore {n} compte rendu",
+        "other": "Encore {n} comptes rendus"
+      },
+      "remainingActions(plural, param=n)": {
+        "one": "Encore {n} pas",
+        "other": "Encore {n} pas"
+      },
+      "remainingDays(plural, param=n)": {
+        "one": "Encore {n} jour",
+        "other": "Encore {n} jours"
+      },
+      "remainingFullDays(plural, param=n)": {
+        "one": "Encore {n} journée pleine",
+        "other": "Encore {n} journées pleines"
+      },
+      "remainingRetreats(plural, param=n)": {
+        "one": "Encore {n} retraite",
+        "other": "Encore {n} retraites"
+      },
+      "remainingChapters(plural, param=n)": {
+        "one": "Encore {n} chapitre",
+        "other": "Encore {n} chapitres"
+      },
+      "remainingSouls(plural, param=n)": {
+        "one": "Encore {n} âme",
+        "other": "Encore {n} âmes"
+      }
+    },
+    "cap": {
+      "title": "Le cap de la semaine",
+      "intro": "Choisis un cap pour cette semaine. Il t'appartient, et il s'arrête avec la semaine, sans rien te retirer.",
+      "none": "Pas de cap cette semaine.",
+      "noneText": "C'est très bien aussi : tu peux en choisir un quand tu veux.",
+      "choose": "Choisir un cap",
+      "change": "Changer",
+      "progress": "{done} sur {target}",
+      "kept": "Cap tenu. Bravo !",
+      "missed": "{done} sur {target} : le cap s'arrête là, sans pénalité.",
+      "sheetTitle": "Ton cap de la semaine",
+      "sheetText": "Un seul engagement, choisi par toi. Tu pourras le changer, ou le laisser filer : rien ne t'est reproché.",
+      "skip": "Pas cette semaine",
+      "remainingReports(plural, param=n)": {
+        "one": "Encore {n} jour de compte rendu",
+        "other": "Encore {n} jours de compte rendu"
+      },
+      "remainingRetreats(plural, param=n)": {
+        "one": "Encore {n} retraite",
+        "other": "Encore {n} retraites"
+      },
+      "remainingChapters(plural, param=n)": {
+        "one": "Encore {n} chapitre",
+        "other": "Encore {n} chapitres"
+      },
+      "suggestReports(plural, param=n)": {
+        "one": "{n} jour de compte rendu",
+        "other": "{n} jours de compte rendu"
+      },
+      "suggestRetreats(plural, param=n)": {
+        "one": "{n} retraite",
+        "other": "{n} retraites"
+      },
+      "suggestChapters(plural, param=n)": {
+        "one": "{n} chapitre",
+        "other": "{n} chapitres"
+      }
+    },
+    "cards": {
+      "subtitle": "Les cartes des étapes que tu as atteintes, à garder ou à partager.",
+      "empty": "Ta première carte t'attend : elle arrive avec ton premier compte rendu.",
+      "locked": "À atteindre",
+      "lockedTitle": "Cette carte t'attend",
+      "lockedText": "Atteins « {name} » pour la recevoir.",
+      "pageTitle": "Ta carte",
+      "share": "Partager la carte",
+      "shareSubject": "Mon étape « {name} » sur CMFI Connect"
+    },
+    "collective": {
+      "title": "La marche du groupe",
+      "sharedThisWeek(plural, param=n)": {
+        "one": "{n} disciple sur {total} a partagé un compte rendu cette semaine",
+        "other": "{n} disciples sur {total} ont partagé un compte rendu cette semaine"
+      },
+      "empty": "Personne n'a encore partagé cette semaine. Chacun avance à son rythme.",
+      "reports(plural, param=n)": {
+        "one": "{n} compte rendu reçu cette semaine",
+        "other": "{n} comptes rendus reçus cette semaine"
+      },
+      "noDisciples": "Le chemin se marche aussi ensemble : quand tu accompagnes des disciples, leur marche de la semaine apparaîtra ici, sans nom.",
+      "anonymous": "Un total du groupe, sans nom et sans classement."
+    }
+  },
   "menu": {
     "open": "Ouvrir le menu",
     "discover": "Découvrir",

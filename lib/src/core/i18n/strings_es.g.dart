@@ -85,6 +85,7 @@ class TranslationsEs extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _Translations$received$es received = _Translations$received$es._(_root);
 	@override late final _Translations$update$es update = _Translations$update$es._(_root);
 	@override late final _Translations$journey$es journey = _Translations$journey$es._(_root);
+	@override late final _Translations$gamification$es gamification = _Translations$gamification$es._(_root);
 	@override late final _Translations$menu$es menu = _Translations$menu$es._(_root);
 	@override late final _Translations$me$es me = _Translations$me$es._(_root);
 	@override late final _Translations$settings$es settings = _Translations$settings$es._(_root);
@@ -1878,6 +1879,20 @@ class _Translations$journey$es extends Translations$journey$fr {
 	@override late final _Translations$journey$grace$es grace = _Translations$journey$grace$es._(_root);
 }
 
+// Path: gamification
+class _Translations$gamification$es extends Translations$gamification$fr {
+	_Translations$gamification$es._(TranslationsEs root) : this._root = root, super.internal(root);
+
+	final TranslationsEs _root; // ignore: unused_field
+
+	// Translations
+	@override late final _Translations$gamification$tabs$es tabs = _Translations$gamification$tabs$es._(_root);
+	@override late final _Translations$gamification$next$es next = _Translations$gamification$next$es._(_root);
+	@override late final _Translations$gamification$cap$es cap = _Translations$gamification$cap$es._(_root);
+	@override late final _Translations$gamification$cards$es cards = _Translations$gamification$cards$es._(_root);
+	@override late final _Translations$gamification$collective$es collective = _Translations$gamification$collective$es._(_root);
+}
+
 // Path: menu
 class _Translations$menu$es extends Translations$menu$fr {
 	_Translations$menu$es._(TranslationsEs root) : this._root = root, super.internal(root);
@@ -3177,6 +3192,145 @@ class _Translations$journey$grace$es extends Translations$journey$grace$fr {
 	@override String get title => 'Un día de gracia';
 	@override String text({required Object day}) => 'No llenaste ${day}, pero tu racha continúa: cada semana, un día de gracia la protege. Mañana es un nuevo comienzo.';
 	@override String get ok => '¡Gracias!';
+}
+
+// Path: gamification.tabs
+class _Translations$gamification$tabs$es extends Translations$gamification$tabs$fr {
+	_Translations$gamification$tabs$es._(TranslationsEs root) : this._root = root, super.internal(root);
+
+	final TranslationsEs _root; // ignore: unused_field
+
+	// Translations
+	@override String get path => 'El camino';
+	@override String get cards => 'Mis tarjetas';
+}
+
+// Path: gamification.next
+class _Translations$gamification$next$es extends Translations$gamification$next$fr {
+	_Translations$gamification$next$es._(TranslationsEs root) : this._root = root, super.internal(root);
+
+	final TranslationsEs _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Tu próximo hito';
+	@override String get eyebrow => 'Próximo hito';
+	@override String family({required Object done, required Object total}) => '${done} de ${total}';
+	@override String get allReached => 'Has alcanzado todos los hitos abiertos. El camino sigue, día tras día.';
+	@override String cardsCount({required num n, required Object total}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('es'))(n,
+		one: '${n} tarjeta de ${total}',
+		other: '${n} tarjetas de ${total}',
+	);
+	@override String remainingReports({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('es'))(n,
+		one: 'Te falta ${n} informe',
+		other: 'Te faltan ${n} informes',
+	);
+	@override String remainingActions({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('es'))(n,
+		one: 'Te falta ${n} paso',
+		other: 'Te faltan ${n} pasos',
+	);
+	@override String remainingDays({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('es'))(n,
+		one: 'Te falta ${n} día',
+		other: 'Te faltan ${n} días',
+	);
+	@override String remainingFullDays({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('es'))(n,
+		one: 'Te falta ${n} día completo',
+		other: 'Te faltan ${n} días completos',
+	);
+	@override String remainingRetreats({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('es'))(n,
+		one: 'Te falta ${n} retiro',
+		other: 'Te faltan ${n} retiros',
+	);
+	@override String remainingChapters({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('es'))(n,
+		one: 'Te falta ${n} capítulo',
+		other: 'Te faltan ${n} capítulos',
+	);
+	@override String remainingSouls({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('es'))(n,
+		one: 'Te falta ${n} alma',
+		other: 'Te faltan ${n} almas',
+	);
+}
+
+// Path: gamification.cap
+class _Translations$gamification$cap$es extends Translations$gamification$cap$fr {
+	_Translations$gamification$cap$es._(TranslationsEs root) : this._root = root, super.internal(root);
+
+	final TranslationsEs _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'La meta de la semana';
+	@override String get intro => 'Elige una meta para esta semana. Es tuya, y termina con la semana, sin quitarte nada.';
+	@override String get none => 'Sin meta esta semana.';
+	@override String get noneText => 'También está bien: puedes elegir una cuando quieras.';
+	@override String get choose => 'Elegir una meta';
+	@override String get change => 'Cambiar';
+	@override String progress({required Object done, required Object target}) => '${done} de ${target}';
+	@override String get kept => 'Meta cumplida. ¡Bien hecho!';
+	@override String missed({required Object done, required Object target}) => '${done} de ${target}: la meta termina aquí, sin penalización.';
+	@override String get sheetTitle => 'Tu meta de la semana';
+	@override String get sheetText => 'Un solo compromiso, elegido por ti. Puedes cambiarlo o dejarlo pasar: nada se te reprocha.';
+	@override String get skip => 'Esta semana no';
+	@override String remainingReports({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('es'))(n,
+		one: 'Te falta ${n} día de informe',
+		other: 'Te faltan ${n} días de informe',
+	);
+	@override String remainingRetreats({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('es'))(n,
+		one: 'Te falta ${n} retiro',
+		other: 'Te faltan ${n} retiros',
+	);
+	@override String remainingChapters({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('es'))(n,
+		one: 'Te falta ${n} capítulo',
+		other: 'Te faltan ${n} capítulos',
+	);
+	@override String suggestReports({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('es'))(n,
+		one: '${n} día de informe',
+		other: '${n} días de informe',
+	);
+	@override String suggestRetreats({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('es'))(n,
+		one: '${n} retiro',
+		other: '${n} retiros',
+	);
+	@override String suggestChapters({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('es'))(n,
+		one: '${n} capítulo',
+		other: '${n} capítulos',
+	);
+}
+
+// Path: gamification.cards
+class _Translations$gamification$cards$es extends Translations$gamification$cards$fr {
+	_Translations$gamification$cards$es._(TranslationsEs root) : this._root = root, super.internal(root);
+
+	final TranslationsEs _root; // ignore: unused_field
+
+	// Translations
+	@override String get subtitle => 'Las tarjetas de los hitos que has alcanzado, para guardar o compartir.';
+	@override String get empty => 'Tu primera tarjeta te espera: llega con tu primer informe.';
+	@override String get locked => 'Por alcanzar';
+	@override String get lockedTitle => 'Esta tarjeta te espera';
+	@override String lockedText({required Object name}) => 'Alcanza «${name}» para recibirla.';
+	@override String get pageTitle => 'Tu tarjeta';
+	@override String get share => 'Compartir la tarjeta';
+	@override String shareSubject({required Object name}) => 'Mi hito «${name}» en CMFI Connect';
+}
+
+// Path: gamification.collective
+class _Translations$gamification$collective$es extends Translations$gamification$collective$fr {
+	_Translations$gamification$collective$es._(TranslationsEs root) : this._root = root, super.internal(root);
+
+	final TranslationsEs _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'El caminar del grupo';
+	@override String sharedThisWeek({required num n, required Object total}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('es'))(n,
+		one: '${n} discípulo de ${total} compartió un informe esta semana',
+		other: '${n} discípulos de ${total} compartieron un informe esta semana',
+	);
+	@override String get empty => 'Nadie ha compartido todavía esta semana. Cada uno avanza a su ritmo.';
+	@override String reports({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('es'))(n,
+		one: '${n} informe recibido esta semana',
+		other: '${n} informes recibidos esta semana',
+	);
+	@override String get noDisciples => 'El camino también se anda juntos: cuando acompañas a discípulos, su caminar de la semana aparecerá aquí, sin nombres.';
+	@override String get anonymous => 'Un total del grupo, sin nombres ni clasificación.';
 }
 
 // Path: reports.summary.time
@@ -5529,6 +5683,52 @@ extension on TranslationsEs {
 			'journey.grace.title' => 'Un día de gracia',
 			'journey.grace.text' => ({required Object day}) => 'No llenaste ${day}, pero tu racha continúa: cada semana, un día de gracia la protege. Mañana es un nuevo comienzo.',
 			'journey.grace.ok' => '¡Gracias!',
+			'gamification.tabs.path' => 'El camino',
+			'gamification.tabs.cards' => 'Mis tarjetas',
+			'gamification.next.title' => 'Tu próximo hito',
+			'gamification.next.eyebrow' => 'Próximo hito',
+			'gamification.next.family' => ({required Object done, required Object total}) => '${done} de ${total}',
+			'gamification.next.allReached' => 'Has alcanzado todos los hitos abiertos. El camino sigue, día tras día.',
+			'gamification.next.cardsCount' => ({required num n, required Object total}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('es'))(n, one: '${n} tarjeta de ${total}', other: '${n} tarjetas de ${total}', ), 
+			'gamification.next.remainingReports' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('es'))(n, one: 'Te falta ${n} informe', other: 'Te faltan ${n} informes', ), 
+			'gamification.next.remainingActions' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('es'))(n, one: 'Te falta ${n} paso', other: 'Te faltan ${n} pasos', ), 
+			'gamification.next.remainingDays' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('es'))(n, one: 'Te falta ${n} día', other: 'Te faltan ${n} días', ), 
+			'gamification.next.remainingFullDays' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('es'))(n, one: 'Te falta ${n} día completo', other: 'Te faltan ${n} días completos', ), 
+			'gamification.next.remainingRetreats' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('es'))(n, one: 'Te falta ${n} retiro', other: 'Te faltan ${n} retiros', ), 
+			'gamification.next.remainingChapters' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('es'))(n, one: 'Te falta ${n} capítulo', other: 'Te faltan ${n} capítulos', ), 
+			'gamification.next.remainingSouls' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('es'))(n, one: 'Te falta ${n} alma', other: 'Te faltan ${n} almas', ), 
+			'gamification.cap.title' => 'La meta de la semana',
+			'gamification.cap.intro' => 'Elige una meta para esta semana. Es tuya, y termina con la semana, sin quitarte nada.',
+			'gamification.cap.none' => 'Sin meta esta semana.',
+			'gamification.cap.noneText' => 'También está bien: puedes elegir una cuando quieras.',
+			'gamification.cap.choose' => 'Elegir una meta',
+			'gamification.cap.change' => 'Cambiar',
+			'gamification.cap.progress' => ({required Object done, required Object target}) => '${done} de ${target}',
+			'gamification.cap.kept' => 'Meta cumplida. ¡Bien hecho!',
+			'gamification.cap.missed' => ({required Object done, required Object target}) => '${done} de ${target}: la meta termina aquí, sin penalización.',
+			'gamification.cap.sheetTitle' => 'Tu meta de la semana',
+			'gamification.cap.sheetText' => 'Un solo compromiso, elegido por ti. Puedes cambiarlo o dejarlo pasar: nada se te reprocha.',
+			'gamification.cap.skip' => 'Esta semana no',
+			'gamification.cap.remainingReports' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('es'))(n, one: 'Te falta ${n} día de informe', other: 'Te faltan ${n} días de informe', ), 
+			'gamification.cap.remainingRetreats' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('es'))(n, one: 'Te falta ${n} retiro', other: 'Te faltan ${n} retiros', ), 
+			'gamification.cap.remainingChapters' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('es'))(n, one: 'Te falta ${n} capítulo', other: 'Te faltan ${n} capítulos', ), 
+			'gamification.cap.suggestReports' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('es'))(n, one: '${n} día de informe', other: '${n} días de informe', ), 
+			'gamification.cap.suggestRetreats' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('es'))(n, one: '${n} retiro', other: '${n} retiros', ), 
+			'gamification.cap.suggestChapters' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('es'))(n, one: '${n} capítulo', other: '${n} capítulos', ), 
+			'gamification.cards.subtitle' => 'Las tarjetas de los hitos que has alcanzado, para guardar o compartir.',
+			'gamification.cards.empty' => 'Tu primera tarjeta te espera: llega con tu primer informe.',
+			'gamification.cards.locked' => 'Por alcanzar',
+			'gamification.cards.lockedTitle' => 'Esta tarjeta te espera',
+			'gamification.cards.lockedText' => ({required Object name}) => 'Alcanza «${name}» para recibirla.',
+			'gamification.cards.pageTitle' => 'Tu tarjeta',
+			'gamification.cards.share' => 'Compartir la tarjeta',
+			'gamification.cards.shareSubject' => ({required Object name}) => 'Mi hito «${name}» en CMFI Connect',
+			'gamification.collective.title' => 'El caminar del grupo',
+			'gamification.collective.sharedThisWeek' => ({required num n, required Object total}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('es'))(n, one: '${n} discípulo de ${total} compartió un informe esta semana', other: '${n} discípulos de ${total} compartieron un informe esta semana', ), 
+			'gamification.collective.empty' => 'Nadie ha compartido todavía esta semana. Cada uno avanza a su ritmo.',
+			'gamification.collective.reports' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('es'))(n, one: '${n} informe recibido esta semana', other: '${n} informes recibidos esta semana', ), 
+			'gamification.collective.noDisciples' => 'El camino también se anda juntos: cuando acompañas a discípulos, su caminar de la semana aparecerá aquí, sin nombres.',
+			'gamification.collective.anonymous' => 'Un total del grupo, sin nombres ni clasificación.',
 			'menu.open' => 'Abrir el menú',
 			'menu.discover' => 'Descubrir',
 			'menu.seeProfile' => 'Ver mi perfil',

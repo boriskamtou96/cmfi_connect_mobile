@@ -18,6 +18,7 @@ import '../../authorities/application/authorities_controller.dart';
 import '../../disciples/application/disciples.dart';
 import '../../disciples/application/received_reports.dart';
 import '../../home/domain/year_story.dart';
+import '../../journey/application/journey_progress.dart';
 import '../../journey/application/journey_steps.dart';
 import '../../journey/domain/journey_step.dart';
 import '../../journey/presentation/step_look.dart';
@@ -61,9 +62,7 @@ class ProfileScreen extends ConsumerWidget {
     final discipleMaker = authorities
         ?.where((authority) => authority.isDiscipleMaker)
         .firstOrNull;
-    final next = JourneyStep.values
-        .where((step) => !reached.containsKey(step))
-        .firstOrNull;
+    final next = ref.watch(nextJourneyStepProvider);
     // "Mon année avec Dieu": the year so far, or the one just ended
     final storyYear = latestStoryYear(DateTime.now());
     // an incomplete profile (no name on the server) invites to fill it in
@@ -123,7 +122,7 @@ class ProfileScreen extends ConsumerWidget {
                               total: JourneyStep.values.length,
                             ),
                             if (next != null)
-                              me.nextStep(name: stepTexts(t, next).title),
+                              me.nextStep(name: stepTexts(t, next.step).title),
                           ].join(' · '),
                           onTap: () =>
                               context.router.push(const JourneyRoute()),

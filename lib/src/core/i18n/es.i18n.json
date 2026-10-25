@@ -2493,6 +2493,112 @@
       "ok": "¡Gracias!"
     }
   },
+  "gamification": {
+    "tabs": {
+      "path": "El camino",
+      "cards": "Mis tarjetas"
+    },
+    "next": {
+      "title": "Tu próximo hito",
+      "eyebrow": "Próximo hito",
+      "family": "{done} de {total}",
+      "allReached": "Has alcanzado todos los hitos abiertos. El camino sigue, día tras día.",
+      "cardsCount(plural, param=n)": {
+        "one": "{n} tarjeta de {total}",
+        "other": "{n} tarjetas de {total}"
+      },
+      "remainingReports(plural, param=n)": {
+        "one": "Te falta {n} informe",
+        "other": "Te faltan {n} informes"
+      },
+      "remainingActions(plural, param=n)": {
+        "one": "Te falta {n} paso",
+        "other": "Te faltan {n} pasos"
+      },
+      "remainingDays(plural, param=n)": {
+        "one": "Te falta {n} día",
+        "other": "Te faltan {n} días"
+      },
+      "remainingFullDays(plural, param=n)": {
+        "one": "Te falta {n} día completo",
+        "other": "Te faltan {n} días completos"
+      },
+      "remainingRetreats(plural, param=n)": {
+        "one": "Te falta {n} retiro",
+        "other": "Te faltan {n} retiros"
+      },
+      "remainingChapters(plural, param=n)": {
+        "one": "Te falta {n} capítulo",
+        "other": "Te faltan {n} capítulos"
+      },
+      "remainingSouls(plural, param=n)": {
+        "one": "Te falta {n} alma",
+        "other": "Te faltan {n} almas"
+      }
+    },
+    "cap": {
+      "title": "La meta de la semana",
+      "intro": "Elige una meta para esta semana. Es tuya, y termina con la semana, sin quitarte nada.",
+      "none": "Sin meta esta semana.",
+      "noneText": "También está bien: puedes elegir una cuando quieras.",
+      "choose": "Elegir una meta",
+      "change": "Cambiar",
+      "progress": "{done} de {target}",
+      "kept": "Meta cumplida. ¡Bien hecho!",
+      "missed": "{done} de {target}: la meta termina aquí, sin penalización.",
+      "sheetTitle": "Tu meta de la semana",
+      "sheetText": "Un solo compromiso, elegido por ti. Puedes cambiarlo o dejarlo pasar: nada se te reprocha.",
+      "skip": "Esta semana no",
+      "remainingReports(plural, param=n)": {
+        "one": "Te falta {n} día de informe",
+        "other": "Te faltan {n} días de informe"
+      },
+      "remainingRetreats(plural, param=n)": {
+        "one": "Te falta {n} retiro",
+        "other": "Te faltan {n} retiros"
+      },
+      "remainingChapters(plural, param=n)": {
+        "one": "Te falta {n} capítulo",
+        "other": "Te faltan {n} capítulos"
+      },
+      "suggestReports(plural, param=n)": {
+        "one": "{n} día de informe",
+        "other": "{n} días de informe"
+      },
+      "suggestRetreats(plural, param=n)": {
+        "one": "{n} retiro",
+        "other": "{n} retiros"
+      },
+      "suggestChapters(plural, param=n)": {
+        "one": "{n} capítulo",
+        "other": "{n} capítulos"
+      }
+    },
+    "cards": {
+      "subtitle": "Las tarjetas de los hitos que has alcanzado, para guardar o compartir.",
+      "empty": "Tu primera tarjeta te espera: llega con tu primer informe.",
+      "locked": "Por alcanzar",
+      "lockedTitle": "Esta tarjeta te espera",
+      "lockedText": "Alcanza «{name}» para recibirla.",
+      "pageTitle": "Tu tarjeta",
+      "share": "Compartir la tarjeta",
+      "shareSubject": "Mi hito «{name}» en CMFI Connect"
+    },
+    "collective": {
+      "title": "El caminar del grupo",
+      "sharedThisWeek(plural, param=n)": {
+        "one": "{n} discípulo de {total} compartió un informe esta semana",
+        "other": "{n} discípulos de {total} compartieron un informe esta semana"
+      },
+      "empty": "Nadie ha compartido todavía esta semana. Cada uno avanza a su ritmo.",
+      "reports(plural, param=n)": {
+        "one": "{n} informe recibido esta semana",
+        "other": "{n} informes recibidos esta semana"
+      },
+      "noDisciples": "El camino también se anda juntos: cuando acompañas a discípulos, su caminar de la semana aparecerá aquí, sin nombres.",
+      "anonymous": "Un total del grupo, sin nombres ni clasificación."
+    }
+  },
   "menu": {
     "open": "Abrir el menú",
     "discover": "Descubrir",

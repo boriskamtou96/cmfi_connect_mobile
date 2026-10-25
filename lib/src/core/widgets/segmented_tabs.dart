@@ -46,7 +46,7 @@ class SegmentedTabs extends StatelessWidget {
                   color: scheme.surface,
                   elevation: 1,
                   shadowColor: Colors.black26,
-                  borderRadius: BorderRadius.circular(10),
+                  borderRadius: BorderRadius.circular(AppRadius.md),
                 ),
               ),
               Material(
@@ -59,10 +59,10 @@ class SegmentedTabs extends StatelessWidget {
                           selected: i == selectedIndex,
                           button: true,
                           child: InkWell(
-                            borderRadius: BorderRadius.circular(10),
+                            borderRadius: BorderRadius.circular(AppRadius.md),
                             onTap: () => onChanged(i),
                             child: SizedBox(
-                              height: 42,
+                              height: 48,
                               child: Center(
                                 child: AnimatedDefaultTextStyle(
                                   duration: duration,

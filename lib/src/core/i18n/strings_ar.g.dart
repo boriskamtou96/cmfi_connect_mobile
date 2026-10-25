@@ -85,6 +85,7 @@ class TranslationsAr extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _Translations$received$ar received = _Translations$received$ar._(_root);
 	@override late final _Translations$update$ar update = _Translations$update$ar._(_root);
 	@override late final _Translations$journey$ar journey = _Translations$journey$ar._(_root);
+	@override late final _Translations$gamification$ar gamification = _Translations$gamification$ar._(_root);
 	@override late final _Translations$menu$ar menu = _Translations$menu$ar._(_root);
 	@override late final _Translations$me$ar me = _Translations$me$ar._(_root);
 	@override late final _Translations$settings$ar settings = _Translations$settings$ar._(_root);
@@ -2135,6 +2136,20 @@ class _Translations$journey$ar extends Translations$journey$fr {
 	@override late final _Translations$journey$grace$ar grace = _Translations$journey$grace$ar._(_root);
 }
 
+// Path: gamification
+class _Translations$gamification$ar extends Translations$gamification$fr {
+	_Translations$gamification$ar._(TranslationsAr root) : this._root = root, super.internal(root);
+
+	final TranslationsAr _root; // ignore: unused_field
+
+	// Translations
+	@override late final _Translations$gamification$tabs$ar tabs = _Translations$gamification$tabs$ar._(_root);
+	@override late final _Translations$gamification$next$ar next = _Translations$gamification$next$ar._(_root);
+	@override late final _Translations$gamification$cap$ar cap = _Translations$gamification$cap$ar._(_root);
+	@override late final _Translations$gamification$cards$ar cards = _Translations$gamification$cards$ar._(_root);
+	@override late final _Translations$gamification$collective$ar collective = _Translations$gamification$collective$ar._(_root);
+}
+
 // Path: menu
 class _Translations$menu$ar extends Translations$menu$fr {
 	_Translations$menu$ar._(TranslationsAr root) : this._root = root, super.internal(root);
@@ -3492,6 +3507,209 @@ class _Translations$journey$grace$ar extends Translations$journey$grace$fr {
 	@override String get title => 'يوم نعمة';
 	@override String text({required Object day}) => 'لم تملأ تقرير ${day}، لكن سلسلتك مستمرة: كل أسبوع يحميها يوم نعمة. غدًا بداية جديدة.';
 	@override String get ok => 'شكرًا!';
+}
+
+// Path: gamification.tabs
+class _Translations$gamification$tabs$ar extends Translations$gamification$tabs$fr {
+	_Translations$gamification$tabs$ar._(TranslationsAr root) : this._root = root, super.internal(root);
+
+	final TranslationsAr _root; // ignore: unused_field
+
+	// Translations
+	@override String get path => 'الطريق';
+	@override String get cards => 'بطاقاتي';
+}
+
+// Path: gamification.next
+class _Translations$gamification$next$ar extends Translations$gamification$next$fr {
+	_Translations$gamification$next$ar._(TranslationsAr root) : this._root = root, super.internal(root);
+
+	final TranslationsAr _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'محطتك القادمة';
+	@override String get eyebrow => 'المحطة القادمة';
+	@override String family({required Object done, required Object total}) => '${done} من ${total}';
+	@override String get allReached => 'وصلت إلى كل المحطات المتاحة. الطريق مستمر، يومًا بعد يوم.';
+	@override String cardsCount({required num n, required Object total}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n,
+		zero: 'لا بطاقات من ${total}',
+		one: 'بطاقة واحدة من ${total}',
+		two: 'بطاقتان من ${total}',
+		few: '${n} بطاقات من ${total}',
+		many: '${n} بطاقة من ${total}',
+		other: '${n} بطاقة من ${total}',
+	);
+	@override String remainingReports({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n,
+		zero: 'لا تقارير متبقية',
+		one: 'بقي تقرير واحد',
+		two: 'بقي تقريران',
+		few: 'بقيت ${n} تقارير',
+		many: 'بقي ${n} تقريرًا',
+		other: 'بقي ${n} تقرير',
+	);
+	@override String remainingActions({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n,
+		zero: 'لا خطوات متبقية',
+		one: 'بقيت خطوة واحدة',
+		two: 'بقيت خطوتان',
+		few: 'بقيت ${n} خطوات',
+		many: 'بقيت ${n} خطوة',
+		other: 'بقيت ${n} خطوة',
+	);
+	@override String remainingDays({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n,
+		zero: 'لا أيام متبقية',
+		one: 'بقي يوم واحد',
+		two: 'بقي يومان',
+		few: 'بقيت ${n} أيام',
+		many: 'بقي ${n} يومًا',
+		other: 'بقي ${n} يوم',
+	);
+	@override String remainingFullDays({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n,
+		zero: 'لا أيام كاملة متبقية',
+		one: 'بقي يوم كامل واحد',
+		two: 'بقي يومان كاملان',
+		few: 'بقيت ${n} أيام كاملة',
+		many: 'بقي ${n} يومًا كاملًا',
+		other: 'بقي ${n} يوم كامل',
+	);
+	@override String remainingRetreats({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n,
+		zero: 'لا خلوات متبقية',
+		one: 'بقيت خلوة واحدة',
+		two: 'بقيت خلتان',
+		few: 'بقيت ${n} خلوات',
+		many: 'بقيت ${n} خلوة',
+		other: 'بقيت ${n} خلوة',
+	);
+	@override String remainingChapters({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n,
+		zero: 'لا إصحاحات متبقية',
+		one: 'بقي إصحاح واحد',
+		two: 'بقي إصحاحان',
+		few: 'بقيت ${n} إصحاحات',
+		many: 'بقي ${n} إصحاحًا',
+		other: 'بقي ${n} إصحاح',
+	);
+	@override String remainingSouls({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n,
+		zero: 'لا نفوس متبقية',
+		one: 'بقيت نفس واحدة',
+		two: 'بقيت نفسان',
+		few: 'بقيت ${n} نفوس',
+		many: 'بقيت ${n} نفسًا',
+		other: 'بقيت ${n} نفس',
+	);
+}
+
+// Path: gamification.cap
+class _Translations$gamification$cap$ar extends Translations$gamification$cap$fr {
+	_Translations$gamification$cap$ar._(TranslationsAr root) : this._root = root, super.internal(root);
+
+	final TranslationsAr _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'هدف الأسبوع';
+	@override String get intro => 'اختر هدفًا لهذا الأسبوع. هو لك، وينتهي مع الأسبوع، دون أن ينتزع منك شيئًا.';
+	@override String get none => 'لا هدف هذا الأسبوع.';
+	@override String get noneText => 'هذا حسن أيضًا: يمكنك اختيار هدف متى شئت.';
+	@override String get choose => 'اختر هدفًا';
+	@override String get change => 'تغيير';
+	@override String progress({required Object done, required Object target}) => '${done} من ${target}';
+	@override String get kept => 'تحقق الهدف. أحسنت!';
+	@override String missed({required Object done, required Object target}) => '${done} من ${target}: ينتهي الهدف هنا، دون عقوبة.';
+	@override String get sheetTitle => 'هدفك لهذا الأسبوع';
+	@override String get sheetText => 'التزام واحد، تختاره أنت. يمكنك تغييره أو تركه: لا لوم عليك.';
+	@override String get skip => 'ليس هذا الأسبوع';
+	@override String remainingReports({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n,
+		zero: 'لا أيام تقرير متبقية',
+		one: 'بقي يوم تقرير واحد',
+		two: 'بقي يومان للتقرير',
+		few: 'بقيت ${n} أيام تقرير',
+		many: 'بقي ${n} يوم تقرير',
+		other: 'بقي ${n} يوم تقرير',
+	);
+	@override String remainingRetreats({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n,
+		zero: 'لا خلوات متبقية',
+		one: 'بقيت خلوة واحدة',
+		two: 'بقيت خلتان',
+		few: 'بقيت ${n} خلوات',
+		many: 'بقيت ${n} خلوة',
+		other: 'بقيت ${n} خلوة',
+	);
+	@override String remainingChapters({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n,
+		zero: 'لا إصحاحات متبقية',
+		one: 'بقي إصحاح واحد',
+		two: 'بقي إصحاحان',
+		few: 'بقيت ${n} إصحاحات',
+		many: 'بقي ${n} إصحاحًا',
+		other: 'بقي ${n} إصحاح',
+	);
+	@override String suggestReports({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n,
+		zero: 'لا أيام تقرير',
+		one: 'يوم تقرير واحد',
+		two: 'يومان تقرير',
+		few: '${n} أيام تقرير',
+		many: '${n} يوم تقرير',
+		other: '${n} يوم تقرير',
+	);
+	@override String suggestRetreats({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n,
+		zero: 'لا خلوات',
+		one: 'خلوة واحدة',
+		two: 'خلوتان',
+		few: '${n} خلوات',
+		many: '${n} خلوة',
+		other: '${n} خلوة',
+	);
+	@override String suggestChapters({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n,
+		zero: 'لا إصحاحات',
+		one: 'إصحاح واحد',
+		two: 'إصحاحان',
+		few: '${n} إصحاحات',
+		many: '${n} إصحاحًا',
+		other: '${n} إصحاح',
+	);
+}
+
+// Path: gamification.cards
+class _Translations$gamification$cards$ar extends Translations$gamification$cards$fr {
+	_Translations$gamification$cards$ar._(TranslationsAr root) : this._root = root, super.internal(root);
+
+	final TranslationsAr _root; // ignore: unused_field
+
+	// Translations
+	@override String get subtitle => 'بطاقات المحطات التي وصلت إليها، لتحفظها أو تشاركها.';
+	@override String get empty => 'بطاقتك الأولى تنتظرك: تأتي مع تقريرك الأول.';
+	@override String get locked => 'لم تُبلَغ بعد';
+	@override String get lockedTitle => 'هذه البطاقة تنتظرك';
+	@override String lockedText({required Object name}) => 'ابلغ «${name}» لتحصل عليها.';
+	@override String get pageTitle => 'بطاقتك';
+	@override String get share => 'شارك البطاقة';
+	@override String shareSubject({required Object name}) => 'محطتي «${name}» على CMFI Connect';
+}
+
+// Path: gamification.collective
+class _Translations$gamification$collective$ar extends Translations$gamification$collective$fr {
+	_Translations$gamification$collective$ar._(TranslationsAr root) : this._root = root, super.internal(root);
+
+	final TranslationsAr _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'مسيرة المجموعة';
+	@override String sharedThisWeek({required num n, required Object total}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n,
+		zero: 'لم يشارك أحد من ${total} تقريرًا هذا الأسبوع',
+		one: 'شارك تلميذ واحد من ${total} تقريرًا هذا الأسبوع',
+		two: 'شارك تلميذان من ${total} تقريرًا هذا الأسبوع',
+		few: 'شارك ${n} تلاميذ من ${total} تقريرًا هذا الأسبوع',
+		many: 'شارك ${n} تلميذًا من ${total} تقريرًا هذا الأسبوع',
+		other: 'شارك ${n} تلميذ من ${total} تقريرًا هذا الأسبوع',
+	);
+	@override String get empty => 'لم يشارك أحد بعد هذا الأسبوع. كل واحد يتقدم على وتيرته.';
+	@override String reports({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n,
+		zero: 'لم يُستلم أي تقرير هذا الأسبوع',
+		one: 'استُلم تقرير واحد هذا الأسبوع',
+		two: 'استُلم تقريران هذا الأسبوع',
+		few: 'استُلمت ${n} تقارير هذا الأسبوع',
+		many: 'استُلم ${n} تقريرًا هذا الأسبوع',
+		other: 'استُلم ${n} تقرير هذا الأسبوع',
+	);
+	@override String get noDisciples => 'الطريق يُسار معًا أيضًا: عندما ترافق تلاميذ، ستظهر هنا مسيرتهم في الأسبوع، دون أسماء.';
+	@override String get anonymous => 'مجموع المجموعة، دون أسماء ودون ترتيب.';
 }
 
 // Path: reports.summary.time
@@ -5863,6 +6081,52 @@ extension on TranslationsAr {
 			'journey.grace.title' => 'يوم نعمة',
 			'journey.grace.text' => ({required Object day}) => 'لم تملأ تقرير ${day}، لكن سلسلتك مستمرة: كل أسبوع يحميها يوم نعمة. غدًا بداية جديدة.',
 			'journey.grace.ok' => 'شكرًا!',
+			'gamification.tabs.path' => 'الطريق',
+			'gamification.tabs.cards' => 'بطاقاتي',
+			'gamification.next.title' => 'محطتك القادمة',
+			'gamification.next.eyebrow' => 'المحطة القادمة',
+			'gamification.next.family' => ({required Object done, required Object total}) => '${done} من ${total}',
+			'gamification.next.allReached' => 'وصلت إلى كل المحطات المتاحة. الطريق مستمر، يومًا بعد يوم.',
+			'gamification.next.cardsCount' => ({required num n, required Object total}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n, zero: 'لا بطاقات من ${total}', one: 'بطاقة واحدة من ${total}', two: 'بطاقتان من ${total}', few: '${n} بطاقات من ${total}', many: '${n} بطاقة من ${total}', other: '${n} بطاقة من ${total}', ), 
+			'gamification.next.remainingReports' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n, zero: 'لا تقارير متبقية', one: 'بقي تقرير واحد', two: 'بقي تقريران', few: 'بقيت ${n} تقارير', many: 'بقي ${n} تقريرًا', other: 'بقي ${n} تقرير', ), 
+			'gamification.next.remainingActions' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n, zero: 'لا خطوات متبقية', one: 'بقيت خطوة واحدة', two: 'بقيت خطوتان', few: 'بقيت ${n} خطوات', many: 'بقيت ${n} خطوة', other: 'بقيت ${n} خطوة', ), 
+			'gamification.next.remainingDays' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n, zero: 'لا أيام متبقية', one: 'بقي يوم واحد', two: 'بقي يومان', few: 'بقيت ${n} أيام', many: 'بقي ${n} يومًا', other: 'بقي ${n} يوم', ), 
+			'gamification.next.remainingFullDays' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n, zero: 'لا أيام كاملة متبقية', one: 'بقي يوم كامل واحد', two: 'بقي يومان كاملان', few: 'بقيت ${n} أيام كاملة', many: 'بقي ${n} يومًا كاملًا', other: 'بقي ${n} يوم كامل', ), 
+			'gamification.next.remainingRetreats' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n, zero: 'لا خلوات متبقية', one: 'بقيت خلوة واحدة', two: 'بقيت خلتان', few: 'بقيت ${n} خلوات', many: 'بقيت ${n} خلوة', other: 'بقيت ${n} خلوة', ), 
+			'gamification.next.remainingChapters' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n, zero: 'لا إصحاحات متبقية', one: 'بقي إصحاح واحد', two: 'بقي إصحاحان', few: 'بقيت ${n} إصحاحات', many: 'بقي ${n} إصحاحًا', other: 'بقي ${n} إصحاح', ), 
+			'gamification.next.remainingSouls' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n, zero: 'لا نفوس متبقية', one: 'بقيت نفس واحدة', two: 'بقيت نفسان', few: 'بقيت ${n} نفوس', many: 'بقيت ${n} نفسًا', other: 'بقيت ${n} نفس', ), 
+			'gamification.cap.title' => 'هدف الأسبوع',
+			'gamification.cap.intro' => 'اختر هدفًا لهذا الأسبوع. هو لك، وينتهي مع الأسبوع، دون أن ينتزع منك شيئًا.',
+			'gamification.cap.none' => 'لا هدف هذا الأسبوع.',
+			'gamification.cap.noneText' => 'هذا حسن أيضًا: يمكنك اختيار هدف متى شئت.',
+			'gamification.cap.choose' => 'اختر هدفًا',
+			'gamification.cap.change' => 'تغيير',
+			'gamification.cap.progress' => ({required Object done, required Object target}) => '${done} من ${target}',
+			'gamification.cap.kept' => 'تحقق الهدف. أحسنت!',
+			'gamification.cap.missed' => ({required Object done, required Object target}) => '${done} من ${target}: ينتهي الهدف هنا، دون عقوبة.',
+			'gamification.cap.sheetTitle' => 'هدفك لهذا الأسبوع',
+			'gamification.cap.sheetText' => 'التزام واحد، تختاره أنت. يمكنك تغييره أو تركه: لا لوم عليك.',
+			'gamification.cap.skip' => 'ليس هذا الأسبوع',
+			'gamification.cap.remainingReports' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n, zero: 'لا أيام تقرير متبقية', one: 'بقي يوم تقرير واحد', two: 'بقي يومان للتقرير', few: 'بقيت ${n} أيام تقرير', many: 'بقي ${n} يوم تقرير', other: 'بقي ${n} يوم تقرير', ), 
+			'gamification.cap.remainingRetreats' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n, zero: 'لا خلوات متبقية', one: 'بقيت خلوة واحدة', two: 'بقيت خلتان', few: 'بقيت ${n} خلوات', many: 'بقيت ${n} خلوة', other: 'بقيت ${n} خلوة', ), 
+			'gamification.cap.remainingChapters' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n, zero: 'لا إصحاحات متبقية', one: 'بقي إصحاح واحد', two: 'بقي إصحاحان', few: 'بقيت ${n} إصحاحات', many: 'بقي ${n} إصحاحًا', other: 'بقي ${n} إصحاح', ), 
+			'gamification.cap.suggestReports' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n, zero: 'لا أيام تقرير', one: 'يوم تقرير واحد', two: 'يومان تقرير', few: '${n} أيام تقرير', many: '${n} يوم تقرير', other: '${n} يوم تقرير', ), 
+			'gamification.cap.suggestRetreats' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n, zero: 'لا خلوات', one: 'خلوة واحدة', two: 'خلوتان', few: '${n} خلوات', many: '${n} خلوة', other: '${n} خلوة', ), 
+			'gamification.cap.suggestChapters' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n, zero: 'لا إصحاحات', one: 'إصحاح واحد', two: 'إصحاحان', few: '${n} إصحاحات', many: '${n} إصحاحًا', other: '${n} إصحاح', ), 
+			'gamification.cards.subtitle' => 'بطاقات المحطات التي وصلت إليها، لتحفظها أو تشاركها.',
+			'gamification.cards.empty' => 'بطاقتك الأولى تنتظرك: تأتي مع تقريرك الأول.',
+			'gamification.cards.locked' => 'لم تُبلَغ بعد',
+			'gamification.cards.lockedTitle' => 'هذه البطاقة تنتظرك',
+			'gamification.cards.lockedText' => ({required Object name}) => 'ابلغ «${name}» لتحصل عليها.',
+			'gamification.cards.pageTitle' => 'بطاقتك',
+			'gamification.cards.share' => 'شارك البطاقة',
+			'gamification.cards.shareSubject' => ({required Object name}) => 'محطتي «${name}» على CMFI Connect',
+			'gamification.collective.title' => 'مسيرة المجموعة',
+			'gamification.collective.sharedThisWeek' => ({required num n, required Object total}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n, zero: 'لم يشارك أحد من ${total} تقريرًا هذا الأسبوع', one: 'شارك تلميذ واحد من ${total} تقريرًا هذا الأسبوع', two: 'شارك تلميذان من ${total} تقريرًا هذا الأسبوع', few: 'شارك ${n} تلاميذ من ${total} تقريرًا هذا الأسبوع', many: 'شارك ${n} تلميذًا من ${total} تقريرًا هذا الأسبوع', other: 'شارك ${n} تلميذ من ${total} تقريرًا هذا الأسبوع', ), 
+			'gamification.collective.empty' => 'لم يشارك أحد بعد هذا الأسبوع. كل واحد يتقدم على وتيرته.',
+			'gamification.collective.reports' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n, zero: 'لم يُستلم أي تقرير هذا الأسبوع', one: 'استُلم تقرير واحد هذا الأسبوع', two: 'استُلم تقريران هذا الأسبوع', few: 'استُلمت ${n} تقارير هذا الأسبوع', many: 'استُلم ${n} تقريرًا هذا الأسبوع', other: 'استُلم ${n} تقرير هذا الأسبوع', ), 
+			'gamification.collective.noDisciples' => 'الطريق يُسار معًا أيضًا: عندما ترافق تلاميذ، ستظهر هنا مسيرتهم في الأسبوع، دون أسماء.',
+			'gamification.collective.anonymous' => 'مجموع المجموعة، دون أسماء ودون ترتيب.',
 			'menu.open' => 'فتح القائمة',
 			'menu.discover' => 'اكتشف',
 			'menu.seeProfile' => 'عرض ملفي',

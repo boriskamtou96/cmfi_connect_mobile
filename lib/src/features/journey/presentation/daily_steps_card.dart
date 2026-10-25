@@ -6,9 +6,16 @@ import '../../../core/i18n/strings.g.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_icons.dart';
 import '../../../core/theme/app_spacing.dart';
+import '../../../core/utils/date_extensions.dart';
 import '../../../core/widgets/dove_mascot.dart';
 import '../../../routing/app_router.dart';
 import '../application/daily_steps.dart';
+import '../application/journey_progress.dart';
+import '../application/weekly_caps.dart';
+import '../domain/journey_progress.dart';
+import '../domain/weekly_cap.dart';
+import 'progress_texts.dart';
+import 'step_look.dart';
 
 /// « Tes 3 pas du jour » on Home: the report, a retreat, the Word, each
 /// checked once done and opening where it is done; Zoé rejoices when the
@@ -26,6 +33,10 @@ class DailyStepsCard extends ConsumerWidget {
     final scheme = theme.colorScheme;
     final dark = theme.brightness == Brightness.dark;
     final steps = ref.watch(dailyStepsProvider);
+    final week = today().startOfWeek;
+    final next = ref.watch(journeyOverviewProvider).next;
+    final cap = ref.watch(weeklyCapProvider(week));
+    final capProgress = ref.watch(weeklyCapProgressProvider(week)).value;
 
     final rows = [
       (
@@ -204,8 +215,119 @@ class DailyStepsCard extends ConsumerWidget {
             )
           else
             const SizedBox(height: 8),
+          if (next != null || cap != null)
+            _JourneyFooter(
+              next: next,
+              cap: cap,
+              capProgress: capProgress,
+              onTap: () => context.router.push(const JourneyRoute()),
+            ),
         ],
       ),
+    );
+  }
+}
+
+/// The line under « Tes 3 pas du jour »: the next step and, when one was
+/// chosen, the cap of the week. Both open « Mes étapes ».
+class _JourneyFooter extends StatelessWidget {
+  const _JourneyFooter({
+    required this.next,
+    required this.cap,
+    required this.capProgress,
+    required this.onTap,
+  });
+
+  final JourneyProgress? next;
+  final WeeklyCap? cap;
+  final WeeklyCapProgress? capProgress;
+  final VoidCallback onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    final t = context.t;
+    final scheme = Theme.of(context).colorScheme;
+    final next = this.next;
+    final cap = this.cap;
+    final title = next == null
+        ? t.gamification.cap.title
+        : stepTexts(t, next.step).title;
+    final parts = <String>[
+      if (next != null) journeyRemainingText(t, next),
+      if (cap != null && capProgress != null)
+        t.gamification.cap.progress(
+          done: capProgress!.done,
+          target: cap.target,
+        ),
+      if (next == null && cap != null) capGoalText(t, cap.kind, cap.target),
+    ];
+    final detail = parts.join(' · ');
+    final ratio = next?.ratio ?? capProgress?.ratio ?? 0;
+    final color = next == null
+        ? scheme.primary
+        : stepColors(next.step.group).last;
+
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Divider(height: 1, color: scheme.outlineVariant),
+        Semantics(
+          button: true,
+          label: detail.isEmpty ? title : '$title. $detail',
+          excludeSemantics: true,
+          child: InkWell(
+            onTap: onTap,
+            child: Padding(
+              padding: const EdgeInsetsDirectional.fromSTEB(18, 10, 14, 10),
+              child: Row(
+                children: [
+                  SizedBox.square(
+                    dimension: 22,
+                    child: CircularProgressIndicator(
+                      value: ratio,
+                      strokeWidth: 2.5,
+                      color: color,
+                      backgroundColor: scheme.surfaceContainerHighest,
+                    ),
+                  ),
+                  const SizedBox(width: AppSpacing.md),
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          title,
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                          style: const TextStyle(
+                            fontSize: 14,
+                            fontWeight: FontWeight.w700,
+                          ),
+                        ),
+                        if (detail.isNotEmpty)
+                          Text(
+                            detail,
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                            style: TextStyle(
+                              fontSize: 12.5,
+                              color: scheme.onSurfaceVariant,
+                            ),
+                          ),
+                      ],
+                    ),
+                  ),
+                  Icon(
+                    AppIcons.chevronRight,
+                    size: 18,
+                    color: scheme.onSurfaceVariant,
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ),
+      ],
     );
   }
 }

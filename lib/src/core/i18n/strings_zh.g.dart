@@ -85,6 +85,7 @@ class TranslationsZh extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _Translations$received$zh received = _Translations$received$zh._(_root);
 	@override late final _Translations$update$zh update = _Translations$update$zh._(_root);
 	@override late final _Translations$journey$zh journey = _Translations$journey$zh._(_root);
+	@override late final _Translations$gamification$zh gamification = _Translations$gamification$zh._(_root);
 	@override late final _Translations$menu$zh menu = _Translations$menu$zh._(_root);
 	@override late final _Translations$me$zh me = _Translations$me$zh._(_root);
 	@override late final _Translations$settings$zh settings = _Translations$settings$zh._(_root);
@@ -1814,6 +1815,20 @@ class _Translations$journey$zh extends Translations$journey$fr {
 	@override late final _Translations$journey$grace$zh grace = _Translations$journey$grace$zh._(_root);
 }
 
+// Path: gamification
+class _Translations$gamification$zh extends Translations$gamification$fr {
+	_Translations$gamification$zh._(TranslationsZh root) : this._root = root, super.internal(root);
+
+	final TranslationsZh _root; // ignore: unused_field
+
+	// Translations
+	@override late final _Translations$gamification$tabs$zh tabs = _Translations$gamification$tabs$zh._(_root);
+	@override late final _Translations$gamification$next$zh next = _Translations$gamification$next$zh._(_root);
+	@override late final _Translations$gamification$cap$zh cap = _Translations$gamification$cap$zh._(_root);
+	@override late final _Translations$gamification$cards$zh cards = _Translations$gamification$cards$zh._(_root);
+	@override late final _Translations$gamification$collective$zh collective = _Translations$gamification$collective$zh._(_root);
+}
+
 // Path: menu
 class _Translations$menu$zh extends Translations$menu$fr {
 	_Translations$menu$zh._(TranslationsZh root) : this._root = root, super.internal(root);
@@ -3098,6 +3113,129 @@ class _Translations$journey$grace$zh extends Translations$journey$grace$fr {
 	@override String get title => '恩典日';
 	@override String text({required Object day}) => '你没有填写${day}的报告，但你的连续记录还在：每周都有一个恩典日保护它。明天是新的开始。';
 	@override String get ok => '谢谢！';
+}
+
+// Path: gamification.tabs
+class _Translations$gamification$tabs$zh extends Translations$gamification$tabs$fr {
+	_Translations$gamification$tabs$zh._(TranslationsZh root) : this._root = root, super.internal(root);
+
+	final TranslationsZh _root; // ignore: unused_field
+
+	// Translations
+	@override String get path => '路程';
+	@override String get cards => '我的卡片';
+}
+
+// Path: gamification.next
+class _Translations$gamification$next$zh extends Translations$gamification$next$fr {
+	_Translations$gamification$next$zh._(TranslationsZh root) : this._root = root, super.internal(root);
+
+	final TranslationsZh _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => '你的下一个里程碑';
+	@override String get eyebrow => '下一个里程碑';
+	@override String family({required Object total, required Object done}) => '${total} 中的 ${done}';
+	@override String get allReached => '你已经到达所有可及的里程碑。路仍在继续，日复一日。';
+	@override String cardsCount({required num n, required Object total}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n,
+		other: '${total} 张中的 ${n} 张',
+	);
+	@override String remainingReports({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n,
+		other: '还差 ${n} 份报告',
+	);
+	@override String remainingActions({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n,
+		other: '还差 ${n} 步',
+	);
+	@override String remainingDays({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n,
+		other: '还差 ${n} 天',
+	);
+	@override String remainingFullDays({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n,
+		other: '还差 ${n} 个完整的日子',
+	);
+	@override String remainingRetreats({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n,
+		other: '还差 ${n} 次退修',
+	);
+	@override String remainingChapters({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n,
+		other: '还差 ${n} 章',
+	);
+	@override String remainingSouls({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n,
+		other: '还差 ${n} 个灵魂',
+	);
+}
+
+// Path: gamification.cap
+class _Translations$gamification$cap$zh extends Translations$gamification$cap$fr {
+	_Translations$gamification$cap$zh._(TranslationsZh root) : this._root = root, super.internal(root);
+
+	final TranslationsZh _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => '本周目标';
+	@override String get intro => '为这一周选一个目标。它属于你，随这一周结束，不会拿走你什么。';
+	@override String get none => '本周没有目标。';
+	@override String get noneText => '这样也很好：你想选的时候随时可以选。';
+	@override String get choose => '选择目标';
+	@override String get change => '更改';
+	@override String progress({required Object target, required Object done}) => '${target} 中的 ${done}';
+	@override String get kept => '目标达成。做得好！';
+	@override String missed({required Object target, required Object done}) => '${target} 中的 ${done}：目标到此结束，没有惩罚。';
+	@override String get sheetTitle => '你本周的目标';
+	@override String get sheetText => '只选一个承诺，由你决定。你可以更改，也可以放下：没有人责怪你。';
+	@override String get skip => '这周不了';
+	@override String remainingReports({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n,
+		other: '还差 ${n} 个报告日',
+	);
+	@override String remainingRetreats({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n,
+		other: '还差 ${n} 次退修',
+	);
+	@override String remainingChapters({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n,
+		other: '还差 ${n} 章',
+	);
+	@override String suggestReports({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n,
+		other: '${n} 个报告日',
+	);
+	@override String suggestRetreats({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n,
+		other: '${n} 次退修',
+	);
+	@override String suggestChapters({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n,
+		other: '${n} 章',
+	);
+}
+
+// Path: gamification.cards
+class _Translations$gamification$cards$zh extends Translations$gamification$cards$fr {
+	_Translations$gamification$cards$zh._(TranslationsZh root) : this._root = root, super.internal(root);
+
+	final TranslationsZh _root; // ignore: unused_field
+
+	// Translations
+	@override String get subtitle => '你已到达的里程碑卡片，可以收藏或分享。';
+	@override String get empty => '你的第一张卡片在等你：它会随你的第一份报告到来。';
+	@override String get locked => '尚未到达';
+	@override String get lockedTitle => '这张卡片在等你';
+	@override String lockedText({required Object name}) => '到达「${name}」即可获得。';
+	@override String get pageTitle => '你的卡片';
+	@override String get share => '分享卡片';
+	@override String shareSubject({required Object name}) => '我在 CMFI Connect 的里程碑「${name}」';
+}
+
+// Path: gamification.collective
+class _Translations$gamification$collective$zh extends Translations$gamification$collective$fr {
+	_Translations$gamification$collective$zh._(TranslationsZh root) : this._root = root, super.internal(root);
+
+	final TranslationsZh _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => '小组的行程';
+	@override String sharedThisWeek({required num n, required Object total}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n,
+		other: '本周 ${total} 位门徒中有 ${n} 位分享了报告',
+	);
+	@override String get empty => '这周还没有人分享。每个人都有自己的节奏。';
+	@override String reports({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n,
+		other: '本周收到 ${n} 份报告',
+	);
+	@override String get noDisciples => '路也可以一起走：当你陪伴门徒时，他们这一周的行程会显示在这里，不显示姓名。';
+	@override String get anonymous => '全组总数，不显示姓名，也不排名。';
 }
 
 // Path: reports.summary.time
@@ -5445,6 +5583,52 @@ extension on TranslationsZh {
 			'journey.grace.title' => '恩典日',
 			'journey.grace.text' => ({required Object day}) => '你没有填写${day}的报告，但你的连续记录还在：每周都有一个恩典日保护它。明天是新的开始。',
 			'journey.grace.ok' => '谢谢！',
+			'gamification.tabs.path' => '路程',
+			'gamification.tabs.cards' => '我的卡片',
+			'gamification.next.title' => '你的下一个里程碑',
+			'gamification.next.eyebrow' => '下一个里程碑',
+			'gamification.next.family' => ({required Object total, required Object done}) => '${total} 中的 ${done}',
+			'gamification.next.allReached' => '你已经到达所有可及的里程碑。路仍在继续，日复一日。',
+			'gamification.next.cardsCount' => ({required num n, required Object total}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n, other: '${total} 张中的 ${n} 张', ), 
+			'gamification.next.remainingReports' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n, other: '还差 ${n} 份报告', ), 
+			'gamification.next.remainingActions' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n, other: '还差 ${n} 步', ), 
+			'gamification.next.remainingDays' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n, other: '还差 ${n} 天', ), 
+			'gamification.next.remainingFullDays' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n, other: '还差 ${n} 个完整的日子', ), 
+			'gamification.next.remainingRetreats' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n, other: '还差 ${n} 次退修', ), 
+			'gamification.next.remainingChapters' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n, other: '还差 ${n} 章', ), 
+			'gamification.next.remainingSouls' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n, other: '还差 ${n} 个灵魂', ), 
+			'gamification.cap.title' => '本周目标',
+			'gamification.cap.intro' => '为这一周选一个目标。它属于你，随这一周结束，不会拿走你什么。',
+			'gamification.cap.none' => '本周没有目标。',
+			'gamification.cap.noneText' => '这样也很好：你想选的时候随时可以选。',
+			'gamification.cap.choose' => '选择目标',
+			'gamification.cap.change' => '更改',
+			'gamification.cap.progress' => ({required Object target, required Object done}) => '${target} 中的 ${done}',
+			'gamification.cap.kept' => '目标达成。做得好！',
+			'gamification.cap.missed' => ({required Object target, required Object done}) => '${target} 中的 ${done}：目标到此结束，没有惩罚。',
+			'gamification.cap.sheetTitle' => '你本周的目标',
+			'gamification.cap.sheetText' => '只选一个承诺，由你决定。你可以更改，也可以放下：没有人责怪你。',
+			'gamification.cap.skip' => '这周不了',
+			'gamification.cap.remainingReports' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n, other: '还差 ${n} 个报告日', ), 
+			'gamification.cap.remainingRetreats' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n, other: '还差 ${n} 次退修', ), 
+			'gamification.cap.remainingChapters' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n, other: '还差 ${n} 章', ), 
+			'gamification.cap.suggestReports' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n, other: '${n} 个报告日', ), 
+			'gamification.cap.suggestRetreats' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n, other: '${n} 次退修', ), 
+			'gamification.cap.suggestChapters' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n, other: '${n} 章', ), 
+			'gamification.cards.subtitle' => '你已到达的里程碑卡片，可以收藏或分享。',
+			'gamification.cards.empty' => '你的第一张卡片在等你：它会随你的第一份报告到来。',
+			'gamification.cards.locked' => '尚未到达',
+			'gamification.cards.lockedTitle' => '这张卡片在等你',
+			'gamification.cards.lockedText' => ({required Object name}) => '到达「${name}」即可获得。',
+			'gamification.cards.pageTitle' => '你的卡片',
+			'gamification.cards.share' => '分享卡片',
+			'gamification.cards.shareSubject' => ({required Object name}) => '我在 CMFI Connect 的里程碑「${name}」',
+			'gamification.collective.title' => '小组的行程',
+			'gamification.collective.sharedThisWeek' => ({required num n, required Object total}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n, other: '本周 ${total} 位门徒中有 ${n} 位分享了报告', ), 
+			'gamification.collective.empty' => '这周还没有人分享。每个人都有自己的节奏。',
+			'gamification.collective.reports' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n, other: '本周收到 ${n} 份报告', ), 
+			'gamification.collective.noDisciples' => '路也可以一起走：当你陪伴门徒时，他们这一周的行程会显示在这里，不显示姓名。',
+			'gamification.collective.anonymous' => '全组总数，不显示姓名，也不排名。',
 			'menu.open' => '打开菜单',
 			'menu.discover' => '探索',
 			'menu.seeProfile' => '查看我的资料',

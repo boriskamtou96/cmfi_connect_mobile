@@ -18,6 +18,7 @@ import '../../../../core/widgets/app_toast.dart';
 import '../../../../core/widgets/cmfi_logo.dart';
 import '../../../../core/widgets/dove_mascot.dart';
 import '../../../../core/widgets/motion.dart';
+import '../../../../core/widgets/night_sky.dart';
 
 /// 7, 30, 100 or 365 days in a row: Zoé celebrates in a burst of light, and
 /// the card of the streak can be shared as an image.
@@ -221,7 +222,7 @@ class StreakCard extends StatelessWidget {
               child: Stack(
                 children: [
                   const Positioned.fill(
-                    child: CustomPaint(painter: _NightSkyPainter()),
+                    child: CustomPaint(painter: NightSkyPainter()),
                   ),
                   Column(
                     children: [
@@ -313,35 +314,6 @@ class StreakCard extends StatelessWidget {
       ),
     );
   }
-}
-
-/// Small stars, a few golden ones near the top: the same sky each time.
-class _NightSkyPainter extends CustomPainter {
-  const _NightSkyPainter();
-
-  @override
-  void paint(Canvas canvas, Size size) {
-    final random = math.Random(11);
-    final paint = Paint();
-    for (var i = 0; i < 60; i++) {
-      final x = random.nextDouble() * size.width;
-      final y = random.nextDouble() * size.height;
-      final bright = random.nextDouble();
-      paint.color = Colors.white.withValues(alpha: 0.1 + 0.4 * bright);
-      canvas.drawCircle(Offset(x, y), 0.4 + 0.9 * bright, paint);
-    }
-    for (var i = 0; i < 8; i++) {
-      final x = random.nextDouble() * size.width;
-      final y = random.nextDouble() * size.height * 0.45;
-      paint.color = AppColors.goldLight.withValues(
-        alpha: 0.4 + 0.4 * random.nextDouble(),
-      );
-      canvas.drawCircle(Offset(x, y), 0.8 + random.nextDouble(), paint);
-    }
-  }
-
-  @override
-  bool shouldRepaint(_NightSkyPainter old) => false;
 }
 
 /// A short burst of light around Zoé: golden rays that open and fade, and

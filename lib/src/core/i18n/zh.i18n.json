@@ -2409,6 +2409,96 @@
       "ok": "谢谢！"
     }
   },
+  "gamification": {
+    "tabs": {
+      "path": "路程",
+      "cards": "我的卡片"
+    },
+    "next": {
+      "title": "你的下一个里程碑",
+      "eyebrow": "下一个里程碑",
+      "family": "{total} 中的 {done}",
+      "allReached": "你已经到达所有可及的里程碑。路仍在继续，日复一日。",
+      "cardsCount(plural, param=n)": {
+        "other": "{total} 张中的 {n} 张"
+      },
+      "remainingReports(plural, param=n)": {
+        "other": "还差 {n} 份报告"
+      },
+      "remainingActions(plural, param=n)": {
+        "other": "还差 {n} 步"
+      },
+      "remainingDays(plural, param=n)": {
+        "other": "还差 {n} 天"
+      },
+      "remainingFullDays(plural, param=n)": {
+        "other": "还差 {n} 个完整的日子"
+      },
+      "remainingRetreats(plural, param=n)": {
+        "other": "还差 {n} 次退修"
+      },
+      "remainingChapters(plural, param=n)": {
+        "other": "还差 {n} 章"
+      },
+      "remainingSouls(plural, param=n)": {
+        "other": "还差 {n} 个灵魂"
+      }
+    },
+    "cap": {
+      "title": "本周目标",
+      "intro": "为这一周选一个目标。它属于你，随这一周结束，不会拿走你什么。",
+      "none": "本周没有目标。",
+      "noneText": "这样也很好：你想选的时候随时可以选。",
+      "choose": "选择目标",
+      "change": "更改",
+      "progress": "{target} 中的 {done}",
+      "kept": "目标达成。做得好！",
+      "missed": "{target} 中的 {done}：目标到此结束，没有惩罚。",
+      "sheetTitle": "你本周的目标",
+      "sheetText": "只选一个承诺，由你决定。你可以更改，也可以放下：没有人责怪你。",
+      "skip": "这周不了",
+      "remainingReports(plural, param=n)": {
+        "other": "还差 {n} 个报告日"
+      },
+      "remainingRetreats(plural, param=n)": {
+        "other": "还差 {n} 次退修"
+      },
+      "remainingChapters(plural, param=n)": {
+        "other": "还差 {n} 章"
+      },
+      "suggestReports(plural, param=n)": {
+        "other": "{n} 个报告日"
+      },
+      "suggestRetreats(plural, param=n)": {
+        "other": "{n} 次退修"
+      },
+      "suggestChapters(plural, param=n)": {
+        "other": "{n} 章"
+      }
+    },
+    "cards": {
+      "subtitle": "你已到达的里程碑卡片，可以收藏或分享。",
+      "empty": "你的第一张卡片在等你：它会随你的第一份报告到来。",
+      "locked": "尚未到达",
+      "lockedTitle": "这张卡片在等你",
+      "lockedText": "到达「{name}」即可获得。",
+      "pageTitle": "你的卡片",
+      "share": "分享卡片",
+      "shareSubject": "我在 CMFI Connect 的里程碑「{name}」"
+    },
+    "collective": {
+      "title": "小组的行程",
+      "sharedThisWeek(plural, param=n)": {
+        "other": "本周 {total} 位门徒中有 {n} 位分享了报告"
+      },
+      "empty": "这周还没有人分享。每个人都有自己的节奏。",
+      "reports(plural, param=n)": {
+        "other": "本周收到 {n} 份报告"
+      },
+      "noDisciples": "路也可以一起走：当你陪伴门徒时，他们这一周的行程会显示在这里，不显示姓名。",
+      "anonymous": "全组总数，不显示姓名，也不排名。"
+    }
+  },
   "menu": {
     "open": "打开菜单",
     "discover": "探索",

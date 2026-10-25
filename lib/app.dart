@@ -17,6 +17,7 @@ import 'src/core/storage/preferences.dart';
 import 'src/core/theme/app_motion.dart';
 import 'src/core/theme/app_theme.dart';
 import 'src/features/events/infrastructure/events_local_store.dart';
+import 'src/features/journey/application/weekly_caps.dart';
 import 'src/features/notifications/application/inbox.dart';
 import 'src/features/notifications/infrastructure/inbox_local_store.dart';
 import 'src/features/prayer/application/importunities.dart';
@@ -64,6 +65,8 @@ class App extends ConsumerWidget {
         unawaited(ref.read(crashReportingProvider).identify(null));
         unawaited(ref.read(sentReportsProvider.notifier).forget());
         unawaited(ref.read(streakMilestonesProvider.notifier).clear());
+        unawaited(ref.read(weeklyCapsProvider.notifier).clear());
+        unawaited(ref.read(weeklyCapSkipsProvider.notifier).clear());
 
         unawaited(ref.read(appShortcutsProvider).clear());
         ref

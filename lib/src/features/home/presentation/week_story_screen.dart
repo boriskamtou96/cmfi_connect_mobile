@@ -12,6 +12,9 @@ import '../../../core/utils/date_extensions.dart';
 import '../../../core/utils/date_format.dart';
 import '../../../core/widgets/cmfi_logo.dart';
 import '../../../core/widgets/goal_ring.dart';
+import '../../journey/application/weekly_caps.dart';
+import '../../journey/presentation/progress_texts.dart';
+import '../../journey/presentation/weekly_cap_sheet.dart';
 import '../../prayer/domain/prayer.dart';
 import '../../prayer/presentation/widgets/prayer_look.dart';
 import '../../reports/application/report_item_texts.dart';
@@ -667,14 +670,14 @@ class _GoalsPage extends StatelessWidget {
   }
 }
 
-class _SummaryPage extends StatelessWidget {
+class _SummaryPage extends ConsumerWidget {
   const _SummaryPage({required this.story, required this.verse});
 
   final WeekStory story;
   final Verse? verse;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final t = context.t;
     final top = story.items.firstOrNull;
     final sunday = DateTime(
@@ -726,7 +729,9 @@ class _SummaryPage extends StatelessWidget {
           ),
           style: const TextStyle(fontSize: 16, color: _soft),
         ),
-        const SizedBox(height: 22),
+        const SizedBox(height: 14),
+        _CapReview(monday: story.monday),
+        const SizedBox(height: 18),
         Row(
           children: [
             stat(
@@ -790,6 +795,96 @@ class _SummaryPage extends StatelessWidget {
           ),
         ],
       ],
+    );
+  }
+}
+
+/// The cap of the week, at the end of « Ma semaine avec Dieu »: what was
+/// chosen, how far it went, or the invitation to choose one for this week.
+class _CapReview extends ConsumerWidget {
+  const _CapReview({required this.monday});
+
+  final DateTime monday;
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final t = context.t.gamification.cap;
+    final week = monday.startOfWeek;
+    final cap = ref.watch(weeklyCapProvider(week));
+    final progress = ref.watch(weeklyCapProgressProvider(week)).value;
+    final isCurrent = week == today().startOfWeek;
+
+    if (cap == null) {
+      if (!isCurrent) {
+        return const SizedBox.shrink();
+      }
+      return OutlinedButton.icon(
+        style: OutlinedButton.styleFrom(
+          foregroundColor: Colors.white,
+          side: BorderSide(color: Colors.white.withValues(alpha: 0.7)),
+          minimumSize: const Size.fromHeight(48),
+        ),
+        onPressed: () => showWeeklyCapSheet(context, week: week),
+        icon: const Icon(AppIcons.goal, size: 18),
+        label: Text(t.choose),
+      );
+    }
+
+    final reached = progress?.reached ?? false;
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
+      decoration: BoxDecoration(
+        color: Colors.white.withValues(alpha: 0.1),
+        borderRadius: BorderRadius.circular(16),
+        border: Border.all(
+          color: AppColors.gold.withValues(alpha: reached ? 0.65 : 0.35),
+        ),
+      ),
+      child: Row(
+        children: [
+          Icon(
+            reached ? AppIcons.checkCircleFilled : AppIcons.goal,
+            size: 20,
+            color: AppColors.goldLight,
+          ),
+          const SizedBox(width: 10),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  capGoalText(context.t, cap.kind, cap.target),
+                  style: const TextStyle(
+                    color: Colors.white,
+                    fontSize: 14,
+                    fontWeight: FontWeight.w700,
+                  ),
+                ),
+                const SizedBox(height: 1),
+                Text(
+                  reached
+                      ? t.kept
+                      : progress == null
+                      ? '…'
+                      : isCurrent
+                      ? t.progress(done: progress.done, target: cap.target)
+                      : t.missed(done: progress.done, target: cap.target),
+                  style: const TextStyle(fontSize: 12.5, color: _soft),
+                ),
+              ],
+            ),
+          ),
+          if (isCurrent)
+            TextButton(
+              style: TextButton.styleFrom(
+                foregroundColor: Colors.white,
+                minimumSize: const Size(48, 48),
+              ),
+              onPressed: () => showWeeklyCapSheet(context, week: week),
+              child: Text(t.change),
+            ),
+        ],
+      ),
     );
   }
 }

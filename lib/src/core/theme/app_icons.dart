@@ -86,6 +86,7 @@ abstract final class AppIcons {
   static const addCircle = PhosphorIconsRegular.plusCircle;
   static const remove = PhosphorIconsRegular.minus;
   static const search = PhosphorIconsRegular.magnifyingGlass;
+  static const retry = PhosphorIconsRegular.arrowClockwise;
   static const concordance = PhosphorIconsRegular.listMagnifyingGlass;
   static const share = PhosphorIconsRegular.export;
   static const verse = PhosphorIconsFill.bookOpenText;

@@ -2492,6 +2492,112 @@
       "ok": "धन्यवाद!"
     }
   },
+  "gamification": {
+    "tabs": {
+      "path": "रास्ता",
+      "cards": "मेरे कार्ड"
+    },
+    "next": {
+      "title": "तुम्हारा अगला पड़ाव",
+      "eyebrow": "अगला पड़ाव",
+      "family": "{total} में से {done}",
+      "allReached": "तुमने खुले सभी पड़ाव पूरे कर लिए। रास्ता चलता रहता है, दिन-ब-दिन।",
+      "cardsCount(plural, param=n)": {
+        "one": "{total} में से {n} कार्ड",
+        "other": "{total} में से {n} कार्ड"
+      },
+      "remainingReports(plural, param=n)": {
+        "one": "{n} रिपोर्ट बाकी",
+        "other": "{n} रिपोर्ट बाकी"
+      },
+      "remainingActions(plural, param=n)": {
+        "one": "{n} क़दम बाकी",
+        "other": "{n} क़दम बाकी"
+      },
+      "remainingDays(plural, param=n)": {
+        "one": "{n} दिन बाकी",
+        "other": "{n} दिन बाकी"
+      },
+      "remainingFullDays(plural, param=n)": {
+        "one": "{n} पूरा दिन बाकी",
+        "other": "{n} पूरे दिन बाकी"
+      },
+      "remainingRetreats(plural, param=n)": {
+        "one": "{n} प्रार्थना-समय बाकी",
+        "other": "{n} प्रार्थना-समय बाकी"
+      },
+      "remainingChapters(plural, param=n)": {
+        "one": "{n} अध्याय बाकी",
+        "other": "{n} अध्याय बाकी"
+      },
+      "remainingSouls(plural, param=n)": {
+        "one": "{n} आत्मा बाकी",
+        "other": "{n} आत्माएँ बाकी"
+      }
+    },
+    "cap": {
+      "title": "इस सप्ताह का लक्ष्य",
+      "intro": "इस सप्ताह के लिए एक लक्ष्य चुनो। यह तुम्हारा है, और सप्ताह के साथ ख़त्म होता है, बिना कुछ छीने।",
+      "none": "इस सप्ताह कोई लक्ष्य नहीं।",
+      "noneText": "यह भी ठीक है: जब चाहो, लक्ष्य चुन सकते हो।",
+      "choose": "लक्ष्य चुनो",
+      "change": "बदलो",
+      "progress": "{target} में से {done}",
+      "kept": "लक्ष्य पूरा। शाबाश!",
+      "missed": "{target} में से {done}: लक्ष्य यहीं ख़त्म, बिना किसी दंड के।",
+      "sheetTitle": "इस सप्ताह तुम्हारा लक्ष्य",
+      "sheetText": "एक ही वचन, तुम्हारा चुना हुआ। तुम इसे बदल सकते हो या छोड़ सकते हो: कोई उलाहना नहीं।",
+      "skip": "इस सप्ताह नहीं",
+      "remainingReports(plural, param=n)": {
+        "one": "{n} रिपोर्ट वाला दिन बाकी",
+        "other": "{n} रिपोर्ट वाले दिन बाकी"
+      },
+      "remainingRetreats(plural, param=n)": {
+        "one": "{n} प्रार्थना-समय बाकी",
+        "other": "{n} प्रार्थना-समय बाकी"
+      },
+      "remainingChapters(plural, param=n)": {
+        "one": "{n} अध्याय बाकी",
+        "other": "{n} अध्याय बाकी"
+      },
+      "suggestReports(plural, param=n)": {
+        "one": "{n} रिपोर्ट वाला दिन",
+        "other": "{n} रिपोर्ट वाले दिन"
+      },
+      "suggestRetreats(plural, param=n)": {
+        "one": "{n} प्रार्थना-समय",
+        "other": "{n} प्रार्थना-समय"
+      },
+      "suggestChapters(plural, param=n)": {
+        "one": "{n} अध्याय",
+        "other": "{n} अध्याय"
+      }
+    },
+    "cards": {
+      "subtitle": "जिन पड़ावों तक तुम पहुँचे, उनके कार्ड: सहेजने या साझा करने के लिए।",
+      "empty": "तुम्हारा पहला कार्ड इंतज़ार कर रहा है: वह तुम्हारी पहली रिपोर्ट के साथ आएगा।",
+      "locked": "अभी बाकी",
+      "lockedTitle": "यह कार्ड तुम्हारा इंतज़ार कर रहा है",
+      "lockedText": "इसे पाने के लिए «{name}» तक पहुँचो।",
+      "pageTitle": "तुम्हारा कार्ड",
+      "share": "कार्ड साझा करो",
+      "shareSubject": "CMFI Connect पर मेरा पड़ाव «{name}»"
+    },
+    "collective": {
+      "title": "समूह का सफ़र",
+      "sharedThisWeek(plural, param=n)": {
+        "one": "इस सप्ताह {total} में से {n} चेले ने रिपोर्ट साझा की",
+        "other": "इस सप्ताह {total} में से {n} चेलों ने रिपोर्ट साझा की"
+      },
+      "empty": "इस सप्ताह अभी किसी ने साझा नहीं किया। हर कोई अपनी गति से चलता है।",
+      "reports(plural, param=n)": {
+        "one": "इस सप्ताह {n} रिपोर्ट मिली",
+        "other": "इस सप्ताह {n} रिपोर्टें मिलीं"
+      },
+      "noDisciples": "रास्ता साथ मिलकर भी चला जाता है: जब तुम चेलों का साथ देते हो, उनका इस सप्ताह का सफ़र यहाँ दिखेगा, बिना नाम।",
+      "anonymous": "समूह का कुल, बिना नाम और बिना क्रम।"
+    }
+  },
   "menu": {
     "open": "मेनू खोलो",
     "discover": "खोजो",

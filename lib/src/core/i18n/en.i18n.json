@@ -2494,6 +2494,112 @@
       "ok": "Thank you!"
     }
   },
+  "gamification": {
+    "tabs": {
+      "path": "The path",
+      "cards": "My cards"
+    },
+    "next": {
+      "title": "Your next milestone",
+      "eyebrow": "Next milestone",
+      "family": "{done} of {total}",
+      "allReached": "You have reached every milestone open to you. The path goes on, day after day.",
+      "cardsCount(plural, param=n)": {
+        "one": "{n} card of {total}",
+        "other": "{n} cards of {total}"
+      },
+      "remainingReports(plural, param=n)": {
+        "one": "{n} report to go",
+        "other": "{n} reports to go"
+      },
+      "remainingActions(plural, param=n)": {
+        "one": "{n} step to go",
+        "other": "{n} steps to go"
+      },
+      "remainingDays(plural, param=n)": {
+        "one": "{n} day to go",
+        "other": "{n} days to go"
+      },
+      "remainingFullDays(plural, param=n)": {
+        "one": "{n} full day to go",
+        "other": "{n} full days to go"
+      },
+      "remainingRetreats(plural, param=n)": {
+        "one": "{n} retreat to go",
+        "other": "{n} retreats to go"
+      },
+      "remainingChapters(plural, param=n)": {
+        "one": "{n} chapter to go",
+        "other": "{n} chapters to go"
+      },
+      "remainingSouls(plural, param=n)": {
+        "one": "{n} soul to go",
+        "other": "{n} souls to go"
+      }
+    },
+    "cap": {
+      "title": "This week's goal",
+      "intro": "Pick a goal for the week. It is yours, and it ends with the week, without taking anything away.",
+      "none": "No goal this week.",
+      "noneText": "That is fine too: you can pick one whenever you like.",
+      "choose": "Pick a goal",
+      "change": "Change",
+      "progress": "{done} of {target}",
+      "kept": "Goal kept. Well done!",
+      "missed": "{done} of {target}: the goal ends here, with no penalty.",
+      "sheetTitle": "Your goal for the week",
+      "sheetText": "One commitment only, chosen by you. You can change it or let it go: nothing is held against you.",
+      "skip": "Not this week",
+      "remainingReports(plural, param=n)": {
+        "one": "{n} report day to go",
+        "other": "{n} report days to go"
+      },
+      "remainingRetreats(plural, param=n)": {
+        "one": "{n} retreat to go",
+        "other": "{n} retreats to go"
+      },
+      "remainingChapters(plural, param=n)": {
+        "one": "{n} chapter to go",
+        "other": "{n} chapters to go"
+      },
+      "suggestReports(plural, param=n)": {
+        "one": "{n} report day",
+        "other": "{n} report days"
+      },
+      "suggestRetreats(plural, param=n)": {
+        "one": "{n} retreat",
+        "other": "{n} retreats"
+      },
+      "suggestChapters(plural, param=n)": {
+        "one": "{n} chapter",
+        "other": "{n} chapters"
+      }
+    },
+    "cards": {
+      "subtitle": "The cards of the steps you have reached, to keep or to share.",
+      "empty": "Your first card is waiting: it comes with your first report.",
+      "locked": "To reach",
+      "lockedTitle": "This card is waiting for you",
+      "lockedText": "Reach “{name}” to receive it.",
+      "pageTitle": "Your card",
+      "share": "Share the card",
+      "shareSubject": "My step “{name}” on CMFI Connect"
+    },
+    "collective": {
+      "title": "The group's walk",
+      "sharedThisWeek(plural, param=n)": {
+        "one": "{n} disciple of {total} shared a report this week",
+        "other": "{n} disciples of {total} shared a report this week"
+      },
+      "empty": "No one has shared yet this week. Each one walks at their own pace.",
+      "reports(plural, param=n)": {
+        "one": "{n} report received this week",
+        "other": "{n} reports received this week"
+      },
+      "noDisciples": "The path is also walked together: when you accompany disciples, their walk of the week will appear here, without names.",
+      "anonymous": "A total for the group, without names and without a ranking."
+    }
+  },
   "menu": {
     "open": "Open the menu",
     "discover": "Discover",

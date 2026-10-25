@@ -2,6 +2,7 @@ import 'package:cmfi_connect/src/core/i18n/strings.g.dart';
 import 'package:cmfi_connect/src/core/network/app_exception.dart';
 import 'package:cmfi_connect/src/core/services/phone_verification.dart';
 import 'package:cmfi_connect/src/features/auth/presentation/forgot_password_screen.dart';
+import 'package:cmfi_connect/src/routing/app_router.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:intl/date_symbol_data_local.dart';
@@ -13,13 +14,21 @@ void main() {
   setUpAll(initializeDateFormatting);
   setUp(() => LocaleSettings.setLocale(AppLocale.fr));
 
-  Future<void> openForgotPassword(WidgetTester tester) async {
-    await tester.tap(find.text("J'ai déjà un compte"));
-    await tester.pumpAndSettle();
-    await tester.enterText(find.byType(TextFormField).at(0), '6 90 00 00 01');
-    await tester.tap(find.text('Mot de passe oublié ?'));
+  // The link is hidden on the login screen for now: the screen is opened
+  // directly, with the number it receives from the login screen.
+  Future<void> openForgotPassword(WidgetTester tester, TestApp app) async {
+    app.container
+        .read(appRouterProvider)
+        .push(ForgotPasswordRoute(phone: '6 90 00 00 01'));
     await tester.pumpAndSettle();
   }
+
+  testWidgets('the link stays hidden on the login screen', (tester) async {
+    await pumpApp(tester);
+    await tester.tap(find.text("J'ai déjà un compte"));
+    await tester.pumpAndSettle();
+    expect(find.text('Mot de passe oublié ?'), findsNothing);
+  });
 
   Future<void> tapButton(WidgetTester tester, String label) async {
     await tester.tap(find.widgetWithText(FilledButton, label));
@@ -31,9 +40,9 @@ void main() {
   ) async {
     final sms = FakePhoneVerification();
     final app = await pumpApp(tester, phoneVerification: sms);
-    await openForgotPassword(tester);
+    await openForgotPassword(tester, app);
 
-    // the number typed on the login screen is kept
+    // the number given by the login screen is kept
     expect(find.text('Mot de passe oublié'), findsOneWidget);
     expect(find.text('1 / 3'), findsOneWidget);
     await tester.tap(find.widgetWithText(FilledButton, 'Recevoir le code'));
@@ -84,7 +93,7 @@ void main() {
           message: 'User not found',
         ),
     );
-    await openForgotPassword(tester);
+    await openForgotPassword(tester, app);
     await tapButton(tester, 'Recevoir le code');
     await tester.enterText(find.byType(TextFormField), '123456');
     await tapButton(tester, 'Vérifier');
@@ -105,7 +114,7 @@ void main() {
         ),
       ),
     );
-    await openForgotPassword(tester);
+    await openForgotPassword(tester, app);
     await tapButton(tester, 'Recevoir le code');
 
     expect(app.toasts.messages, [

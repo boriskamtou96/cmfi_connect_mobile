@@ -6,7 +6,8 @@
 //
 //   flutter test tool/store_screenshots_test.dart
 //
-// Writes store/screenshots/ios/fr (1290 × 2796, iPhone 6.9"),
+// Writes store/screenshots/ios/fr (1320 × 2868, the iPhone 6.9" size App Store
+// Connect asks for first),
 // store/screenshots/android/fr (1080 × 2160),
 // store/screenshots/feature_graphic.png (1024 × 500) and
 // build/landing_screens/<language>/<screen>.png (600 × 1298, to turn into
@@ -1090,7 +1091,7 @@ void main() {
       }
 
       for (final (folder, size) in [
-        ('ios', const Size(1290, 2796)),
+        ('ios', const Size(1320, 2868)),
         ('android', const Size(1080, 2160)),
       ]) {
         await _render(

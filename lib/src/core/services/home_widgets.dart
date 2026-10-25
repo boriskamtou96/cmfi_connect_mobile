@@ -149,8 +149,8 @@ class NativeHomeWidgets implements HomeWidgets {
 
   /// Shared with the widget extension (Runner.entitlements, TodayWidget).
   String get _appGroup => switch (_flavor) {
-    Flavor.dev => 'group.com.cmficonnect.app.dev',
-    Flavor.prod => 'group.com.cmficonnect.app',
+    Flavor.dev => 'group.com.cmficonnect.mobile.dev',
+    Flavor.prod => 'group.com.cmficonnect.mobile',
   };
 
   Future<void> _init() => _ready ??= HomeWidget.setAppGroupId(_appGroup);

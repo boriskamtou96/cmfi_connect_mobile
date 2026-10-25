@@ -220,17 +220,9 @@ class LoginScreen extends HookConsumerWidget {
                                   ),
                                 ),
                               ],
-                              Align(
-                                alignment: AlignmentDirectional.centerEnd,
-                                child: TextButton(
-                                  onPressed: () => context.router.push(
-                                    ForgotPasswordRoute(
-                                      phone: phoneController.text,
-                                    ),
-                                  ),
-                                  child: Text(t.auth.forgot.link),
-                                ),
-                              ),
+                              // « Mot de passe oublié » reste masqué tant que
+                              // le parcours n'est pas ouvert (l'écran existe
+                              // déjà, pour le jour où il le sera).
                             ],
                           ),
                         ),

@@ -46,6 +46,9 @@ app.*.map.json
 
 # fastlane: its reports, and the keys written by the CI
 /fastlane/report.xml
+# the secrets of fastlane on this Mac (make asc-env), never committed
+/fastlane/.env
+*.p8
 /fastlane/Preview.html
 /fastlane/test_output
 /android/app/upload-keystore.jks

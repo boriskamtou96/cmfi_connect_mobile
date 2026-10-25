@@ -48,7 +48,7 @@
 				<key>CFBundleTypeRole</key>
 				<string>Editor</string>
 				<key>CFBundleURLName</key>
-				<string>com.cmficonnect.app.links</string>
+				<string>com.cmficonnect.mobile.links</string>
 				<key>CFBundleURLSchemes</key>
 				<array>
 					<string>cmficonnect</string>

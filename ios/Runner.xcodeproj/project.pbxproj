@@ -539,6 +539,7 @@
 				3B06AD1E1E4923F5004D2608 /* Thin Binary */,
 				3B71D59ADE50B1E15CD78739 /* [CP] Embed Pods Frameworks */,
 				B70F8F5850C0CBA2DF8371A5 /* [CP] Copy Pods Resources */,
+				91C81A40819C15898B855810 /* Upload dSYMs to Crashlytics */,
 			);
 			buildRules = (
 			);
@@ -761,6 +762,29 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		91C81A40819C15898B855810 /* Upload dSYMs to Crashlytics */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}",
+				"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}/Contents/Resources/DWARF/${PRODUCT_NAME}",
+				"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}/Contents/Info.plist",
+				"$(TARGET_BUILD_DIR)/$(EXECUTABLE_PATH)",
+			);
+			name = "Upload dSYMs to Crashlytics";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Crashlytics: the symbols of this build, so crash reports show readable\n# stack traces. Only builds with dSYMs (Release, Profile) and a flavor\n# (CRASHLYTICS_APP_ID: the Firebase iOS app of the flavor) send them.\nif [ \"${DEBUG_INFORMATION_FORMAT}\" != \"dwarf-with-dsym\" ] || [ -z \"${CRASHLYTICS_APP_ID}\" ]; then\n  exit 0\nfi\n\"${PODS_ROOT}/FirebaseCrashlytics/upload-symbols\" --build-phase -ai \"${CRASHLYTICS_APP_ID}\"\n";
 			showEnvVarsInLog = 0;
 		};
 		9740EEB61CF901F6004384FC /* Run Script */ = {
@@ -1000,7 +1024,7 @@
 					"$(PROJECT_DIR)/Flutter",
 				);
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = com.cmficonnect.app;
+				PRODUCT_BUNDLE_IDENTIFIER = com.cmficonnect.mobile;
 				SDKROOT = iphoneos;
 				SUPPORTED_PLATFORMS = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
@@ -1016,13 +1040,13 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = B3F510C39F3BB4D9B07BED5E /* TodayWidget.xcconfig */;
 			buildSettings = {
-				APP_GROUP_ID = group.com.cmficonnect.app.dev;
+				APP_GROUP_ID = group.com.cmficonnect.mobile.dev;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "";
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = "";
 				CLANG_ENABLE_OBJC_WEAK = NO;
 				CODE_SIGN_ENTITLEMENTS = ShieldActions/ShieldActions.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = UMF55ZKUY6;
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = ShieldActions/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
@@ -1033,7 +1057,7 @@
 				);
 				OTHER_LDFLAGS = "";
 				OTHER_SWIFT_FLAGS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = com.cmficonnect.app.dev.ShieldActions;
+				PRODUCT_BUNDLE_IDENTIFIER = com.cmficonnect.mobile.dev.ShieldActions;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
@@ -1047,9 +1071,10 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 89AECC4B22632262BD6930DA /* devProfile.xcconfig */;
 			buildSettings = {
-				APP_GROUP_ID = group.com.cmficonnect.app.dev;
+				APP_GROUP_ID = group.com.cmficonnect.mobile.dev;
 				CODE_SIGN_ENTITLEMENTS = Runner/Runner.entitlements;
-				DEVELOPMENT_TEAM = "";
+				CRASHLYTICS_APP_ID = "1:920730632543:ios:33bea93aa01934eedff6ea";
+				DEVELOPMENT_TEAM = UMF55ZKUY6;
 				FIREBASE_URL_SCHEME = "app-1-920730632543-ios-c229a0efa4fd34e0dff6ea";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -1059,12 +1084,13 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = B3F510C39F3BB4D9B07BED5E /* TodayWidget.xcconfig */;
 			buildSettings = {
-				APP_GROUP_ID = group.com.cmficonnect.app;
+				APP_GROUP_ID = group.com.cmficonnect.mobile;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "";
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = "";
 				CLANG_ENABLE_OBJC_WEAK = NO;
 				CODE_SIGN_ENTITLEMENTS = ShieldMonitor/ShieldMonitor.entitlements;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = UMF55ZKUY6;
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = ShieldMonitor/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
@@ -1075,7 +1101,7 @@
 				);
 				OTHER_LDFLAGS = "";
 				OTHER_SWIFT_FLAGS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = com.cmficonnect.app.ShieldMonitor;
+				PRODUCT_BUNDLE_IDENTIFIER = com.cmficonnect.mobile.ShieldMonitor;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
@@ -1146,7 +1172,7 @@
 					"$(PROJECT_DIR)/Flutter",
 				);
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = com.cmficonnect.app;
+				PRODUCT_BUNDLE_IDENTIFIER = com.cmficonnect.mobile;
 				SDKROOT = iphoneos;
 				SUPPORTED_PLATFORMS = iphoneos;
 				SWIFT_OBJC_BRIDGING_HEADER = "Runner/Runner-Bridging-Header.h";
@@ -1160,13 +1186,13 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = B3F510C39F3BB4D9B07BED5E /* TodayWidget.xcconfig */;
 			buildSettings = {
-				APP_GROUP_ID = group.com.cmficonnect.app;
+				APP_GROUP_ID = group.com.cmficonnect.mobile;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "";
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = "";
 				CLANG_ENABLE_OBJC_WEAK = NO;
 				CODE_SIGN_ENTITLEMENTS = ShieldMonitor/ShieldMonitor.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 8S3QJGW6FL;
+				DEVELOPMENT_TEAM = UMF55ZKUY6;
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = ShieldMonitor/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
@@ -1177,7 +1203,7 @@
 				);
 				OTHER_LDFLAGS = "";
 				OTHER_SWIFT_FLAGS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = com.cmficonnect.app.ShieldMonitor;
+				PRODUCT_BUNDLE_IDENTIFIER = com.cmficonnect.mobile.ShieldMonitor;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
@@ -1243,12 +1269,12 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 7AFA3C8E1D35360C0083082E /* Release.xcconfig */;
 			buildSettings = {
-				APP_GROUP_ID = group.com.cmficonnect.app;
+				APP_GROUP_ID = group.com.cmficonnect.mobile;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Runner/Runner.entitlements;
 				CURRENT_PROJECT_VERSION = "$(FLUTTER_BUILD_NUMBER)";
-				DEVELOPMENT_TEAM = 8S3QJGW6FL;
+				DEVELOPMENT_TEAM = UMF55ZKUY6;
 				ENABLE_BITCODE = NO;
 				FIREBASE_URL_SCHEME = "app-1-894070393803-ios-1828f664b9d079b37c844e";
 				INFOPLIST_FILE = Runner/Info.plist;
@@ -1256,7 +1282,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.cmficonnect.app;
+				PRODUCT_BUNDLE_IDENTIFIER = com.cmficonnect.mobile;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Runner/Runner-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
@@ -1324,7 +1350,7 @@
 					"$(PROJECT_DIR)/Flutter",
 				);
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = com.cmficonnect.app.dev;
+				PRODUCT_BUNDLE_IDENTIFIER = com.cmficonnect.mobile.dev;
 				SDKROOT = iphoneos;
 				SUPPORTED_PLATFORMS = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
@@ -1340,13 +1366,13 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = B3F510C39F3BB4D9B07BED5E /* TodayWidget.xcconfig */;
 			buildSettings = {
-				APP_GROUP_ID = group.com.cmficonnect.app.dev;
+				APP_GROUP_ID = group.com.cmficonnect.mobile.dev;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "";
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = "";
 				CLANG_ENABLE_OBJC_WEAK = NO;
 				CODE_SIGN_ENTITLEMENTS = ShieldConfig/ShieldConfig.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = UMF55ZKUY6;
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = ShieldConfig/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
@@ -1357,7 +1383,7 @@
 				);
 				OTHER_LDFLAGS = "";
 				OTHER_SWIFT_FLAGS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = com.cmficonnect.app.dev.ShieldConfig;
+				PRODUCT_BUNDLE_IDENTIFIER = com.cmficonnect.mobile.dev.ShieldConfig;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
@@ -1372,13 +1398,13 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = B3F510C39F3BB4D9B07BED5E /* TodayWidget.xcconfig */;
 			buildSettings = {
-				APP_GROUP_ID = group.com.cmficonnect.app.dev;
+				APP_GROUP_ID = group.com.cmficonnect.mobile.dev;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "";
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = "";
 				CLANG_ENABLE_OBJC_WEAK = NO;
 				CODE_SIGN_ENTITLEMENTS = ShieldMonitor/ShieldMonitor.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = UMF55ZKUY6;
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = ShieldMonitor/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
@@ -1389,7 +1415,7 @@
 				);
 				OTHER_LDFLAGS = "";
 				OTHER_SWIFT_FLAGS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = com.cmficonnect.app.dev.ShieldMonitor;
+				PRODUCT_BUNDLE_IDENTIFIER = com.cmficonnect.mobile.dev.ShieldMonitor;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
@@ -1403,13 +1429,13 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = B3F510C39F3BB4D9B07BED5E /* TodayWidget.xcconfig */;
 			buildSettings = {
-				APP_GROUP_ID = group.com.cmficonnect.app.dev;
+				APP_GROUP_ID = group.com.cmficonnect.mobile.dev;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "";
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = "";
 				CLANG_ENABLE_OBJC_WEAK = NO;
 				CODE_SIGN_ENTITLEMENTS = ShieldActions/ShieldActions.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = UMF55ZKUY6;
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = ShieldActions/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
@@ -1420,7 +1446,7 @@
 				);
 				OTHER_LDFLAGS = "";
 				OTHER_SWIFT_FLAGS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = com.cmficonnect.app.dev.ShieldActions;
+				PRODUCT_BUNDLE_IDENTIFIER = com.cmficonnect.mobile.dev.ShieldActions;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
@@ -1440,7 +1466,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.cmficonnect.app.RunnerTests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.cmficonnect.mobile.RunnerTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -1458,7 +1484,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.cmficonnect.app.RunnerTests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.cmficonnect.mobile.RunnerTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Runner.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Runner";
@@ -1474,7 +1500,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.cmficonnect.app.RunnerTests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.cmficonnect.mobile.RunnerTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Runner.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Runner";
@@ -1485,12 +1511,13 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = B3F510C39F3BB4D9B07BED5E /* TodayWidget.xcconfig */;
 			buildSettings = {
-				APP_GROUP_ID = group.com.cmficonnect.app;
+				APP_GROUP_ID = group.com.cmficonnect.mobile;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "";
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = "";
 				CLANG_ENABLE_OBJC_WEAK = NO;
 				CODE_SIGN_ENTITLEMENTS = ShieldConfig/ShieldConfig.entitlements;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = UMF55ZKUY6;
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = ShieldConfig/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
@@ -1501,7 +1528,7 @@
 				);
 				OTHER_LDFLAGS = "";
 				OTHER_SWIFT_FLAGS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = com.cmficonnect.app.ShieldConfig;
+				PRODUCT_BUNDLE_IDENTIFIER = com.cmficonnect.mobile.ShieldConfig;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
@@ -1516,9 +1543,10 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = B51EF3AA6695EFF7D6CE884C /* devRelease.xcconfig */;
 			buildSettings = {
-				APP_GROUP_ID = group.com.cmficonnect.app.dev;
+				APP_GROUP_ID = group.com.cmficonnect.mobile.dev;
 				CODE_SIGN_ENTITLEMENTS = Runner/Runner.entitlements;
-				DEVELOPMENT_TEAM = "";
+				CRASHLYTICS_APP_ID = "1:920730632543:ios:33bea93aa01934eedff6ea";
+				DEVELOPMENT_TEAM = UMF55ZKUY6;
 				FIREBASE_URL_SCHEME = "app-1-920730632543-ios-c229a0efa4fd34e0dff6ea";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -1584,7 +1612,7 @@
 					"$(PROJECT_DIR)/Flutter",
 				);
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = com.cmficonnect.app.dev;
+				PRODUCT_BUNDLE_IDENTIFIER = com.cmficonnect.mobile.dev;
 				SDKROOT = iphoneos;
 				SUPPORTED_PLATFORMS = iphoneos;
 				SWIFT_OBJC_BRIDGING_HEADER = "Runner/Runner-Bridging-Header.h";
@@ -1598,12 +1626,13 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = B3F510C39F3BB4D9B07BED5E /* TodayWidget.xcconfig */;
 			buildSettings = {
-				APP_GROUP_ID = group.com.cmficonnect.app;
+				APP_GROUP_ID = group.com.cmficonnect.mobile;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "";
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = "";
 				CLANG_ENABLE_OBJC_WEAK = NO;
 				CODE_SIGN_ENTITLEMENTS = ShieldActions/ShieldActions.entitlements;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = UMF55ZKUY6;
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = ShieldActions/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
@@ -1614,7 +1643,7 @@
 				);
 				OTHER_LDFLAGS = "";
 				OTHER_SWIFT_FLAGS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = com.cmficonnect.app.ShieldActions;
+				PRODUCT_BUNDLE_IDENTIFIER = com.cmficonnect.mobile.ShieldActions;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
@@ -1628,13 +1657,13 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = B3F510C39F3BB4D9B07BED5E /* TodayWidget.xcconfig */;
 			buildSettings = {
-				APP_GROUP_ID = group.com.cmficonnect.app;
+				APP_GROUP_ID = group.com.cmficonnect.mobile;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "";
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = "";
 				CLANG_ENABLE_OBJC_WEAK = NO;
 				CODE_SIGN_ENTITLEMENTS = ShieldConfig/ShieldConfig.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 8S3QJGW6FL;
+				DEVELOPMENT_TEAM = UMF55ZKUY6;
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = ShieldConfig/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
@@ -1645,7 +1674,7 @@
 				);
 				OTHER_LDFLAGS = "";
 				OTHER_SWIFT_FLAGS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = com.cmficonnect.app.ShieldConfig;
+				PRODUCT_BUNDLE_IDENTIFIER = com.cmficonnect.mobile.ShieldConfig;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
@@ -1659,9 +1688,10 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 1046AB9F4E61EC5D778C8472 /* prodDebug.xcconfig */;
 			buildSettings = {
-				APP_GROUP_ID = group.com.cmficonnect.app;
+				APP_GROUP_ID = group.com.cmficonnect.mobile;
 				CODE_SIGN_ENTITLEMENTS = Runner/Runner.entitlements;
-				DEVELOPMENT_TEAM = 8S3QJGW6FL;
+				CRASHLYTICS_APP_ID = "1:894070393803:ios:edb99959cafb353e7c844e";
+				DEVELOPMENT_TEAM = UMF55ZKUY6;
 				FIREBASE_URL_SCHEME = "app-1-894070393803-ios-1828f664b9d079b37c844e";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -1671,9 +1701,10 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 45CEEE66C16302C4A475591D /* devDebug.xcconfig */;
 			buildSettings = {
-				APP_GROUP_ID = group.com.cmficonnect.app.dev;
+				APP_GROUP_ID = group.com.cmficonnect.mobile.dev;
 				CODE_SIGN_ENTITLEMENTS = Runner/Runner.entitlements;
-				DEVELOPMENT_TEAM = "";
+				CRASHLYTICS_APP_ID = "1:920730632543:ios:33bea93aa01934eedff6ea";
+				DEVELOPMENT_TEAM = UMF55ZKUY6;
 				FIREBASE_URL_SCHEME = "app-1-920730632543-ios-c229a0efa4fd34e0dff6ea";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -1683,13 +1714,13 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = B3F510C39F3BB4D9B07BED5E /* TodayWidget.xcconfig */;
 			buildSettings = {
-				APP_GROUP_ID = group.com.cmficonnect.app.dev;
+				APP_GROUP_ID = group.com.cmficonnect.mobile.dev;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "";
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = "";
 				CLANG_ENABLE_OBJC_WEAK = NO;
 				CODE_SIGN_ENTITLEMENTS = ShieldMonitor/ShieldMonitor.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = UMF55ZKUY6;
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = ShieldMonitor/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
@@ -1700,7 +1731,7 @@
 				);
 				OTHER_LDFLAGS = "";
 				OTHER_SWIFT_FLAGS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = com.cmficonnect.app.dev.ShieldMonitor;
+				PRODUCT_BUNDLE_IDENTIFIER = com.cmficonnect.mobile.dev.ShieldMonitor;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
@@ -1715,13 +1746,13 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = B3F510C39F3BB4D9B07BED5E /* TodayWidget.xcconfig */;
 			buildSettings = {
-				APP_GROUP_ID = group.com.cmficonnect.app.dev;
+				APP_GROUP_ID = group.com.cmficonnect.mobile.dev;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "";
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = "";
 				CLANG_ENABLE_OBJC_WEAK = NO;
 				CODE_SIGN_ENTITLEMENTS = ShieldMonitor/ShieldMonitor.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = UMF55ZKUY6;
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = ShieldMonitor/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
@@ -1732,7 +1763,7 @@
 				);
 				OTHER_LDFLAGS = "";
 				OTHER_SWIFT_FLAGS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = com.cmficonnect.app.dev.ShieldMonitor;
+				PRODUCT_BUNDLE_IDENTIFIER = com.cmficonnect.mobile.dev.ShieldMonitor;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
@@ -1747,12 +1778,13 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = B3F510C39F3BB4D9B07BED5E /* TodayWidget.xcconfig */;
 			buildSettings = {
-				APP_GROUP_ID = group.com.cmficonnect.app;
+				APP_GROUP_ID = group.com.cmficonnect.mobile;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "";
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = "";
 				CLANG_ENABLE_OBJC_WEAK = NO;
 				CODE_SIGN_ENTITLEMENTS = ShieldActions/ShieldActions.entitlements;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = UMF55ZKUY6;
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = ShieldActions/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
@@ -1763,7 +1795,7 @@
 				);
 				OTHER_LDFLAGS = "";
 				OTHER_SWIFT_FLAGS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = com.cmficonnect.app.ShieldActions;
+				PRODUCT_BUNDLE_IDENTIFIER = com.cmficonnect.mobile.ShieldActions;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
@@ -1778,13 +1810,13 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = B3F510C39F3BB4D9B07BED5E /* TodayWidget.xcconfig */;
 			buildSettings = {
-				APP_GROUP_ID = group.com.cmficonnect.app.dev;
+				APP_GROUP_ID = group.com.cmficonnect.mobile.dev;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "";
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = "";
 				CLANG_ENABLE_OBJC_WEAK = NO;
 				CODE_SIGN_ENTITLEMENTS = TodayWidget/TodayWidget.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = UMF55ZKUY6;
 				FIREBASE_URL_SCHEME = "app-1-920730632543-ios-c229a0efa4fd34e0dff6ea";
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = TodayWidget/Info.plist;
@@ -1796,7 +1828,7 @@
 				);
 				OTHER_LDFLAGS = "";
 				OTHER_SWIFT_FLAGS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = com.cmficonnect.app.dev.TodayWidget;
+				PRODUCT_BUNDLE_IDENTIFIER = com.cmficonnect.mobile.dev.TodayWidget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
@@ -1810,13 +1842,13 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = B3F510C39F3BB4D9B07BED5E /* TodayWidget.xcconfig */;
 			buildSettings = {
-				APP_GROUP_ID = group.com.cmficonnect.app;
+				APP_GROUP_ID = group.com.cmficonnect.mobile;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "";
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = "";
 				CLANG_ENABLE_OBJC_WEAK = NO;
 				CODE_SIGN_ENTITLEMENTS = ShieldConfig/ShieldConfig.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 8S3QJGW6FL;
+				DEVELOPMENT_TEAM = UMF55ZKUY6;
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = ShieldConfig/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
@@ -1827,7 +1859,7 @@
 				);
 				OTHER_LDFLAGS = "";
 				OTHER_SWIFT_FLAGS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = com.cmficonnect.app.ShieldConfig;
+				PRODUCT_BUNDLE_IDENTIFIER = com.cmficonnect.mobile.ShieldConfig;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
@@ -1842,13 +1874,13 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = B3F510C39F3BB4D9B07BED5E /* TodayWidget.xcconfig */;
 			buildSettings = {
-				APP_GROUP_ID = group.com.cmficonnect.app;
+				APP_GROUP_ID = group.com.cmficonnect.mobile;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "";
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = "";
 				CLANG_ENABLE_OBJC_WEAK = NO;
 				CODE_SIGN_ENTITLEMENTS = ShieldActions/ShieldActions.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 8S3QJGW6FL;
+				DEVELOPMENT_TEAM = UMF55ZKUY6;
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = ShieldActions/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
@@ -1859,7 +1891,7 @@
 				);
 				OTHER_LDFLAGS = "";
 				OTHER_SWIFT_FLAGS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = com.cmficonnect.app.ShieldActions;
+				PRODUCT_BUNDLE_IDENTIFIER = com.cmficonnect.mobile.ShieldActions;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
@@ -1873,13 +1905,13 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = B3F510C39F3BB4D9B07BED5E /* TodayWidget.xcconfig */;
 			buildSettings = {
-				APP_GROUP_ID = group.com.cmficonnect.app;
+				APP_GROUP_ID = group.com.cmficonnect.mobile;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "";
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = "";
 				CLANG_ENABLE_OBJC_WEAK = NO;
 				CODE_SIGN_ENTITLEMENTS = ShieldActions/ShieldActions.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 8S3QJGW6FL;
+				DEVELOPMENT_TEAM = UMF55ZKUY6;
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = ShieldActions/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
@@ -1890,7 +1922,7 @@
 				);
 				OTHER_LDFLAGS = "";
 				OTHER_SWIFT_FLAGS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = com.cmficonnect.app.ShieldActions;
+				PRODUCT_BUNDLE_IDENTIFIER = com.cmficonnect.mobile.ShieldActions;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
@@ -1953,13 +1985,13 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = B3F510C39F3BB4D9B07BED5E /* TodayWidget.xcconfig */;
 			buildSettings = {
-				APP_GROUP_ID = group.com.cmficonnect.app;
+				APP_GROUP_ID = group.com.cmficonnect.mobile;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "";
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = "";
 				CLANG_ENABLE_OBJC_WEAK = NO;
 				CODE_SIGN_ENTITLEMENTS = TodayWidget/TodayWidget.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 8S3QJGW6FL;
+				DEVELOPMENT_TEAM = UMF55ZKUY6;
 				FIREBASE_URL_SCHEME = "app-1-894070393803-ios-1828f664b9d079b37c844e";
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = TodayWidget/Info.plist;
@@ -1971,7 +2003,7 @@
 				);
 				OTHER_LDFLAGS = "";
 				OTHER_SWIFT_FLAGS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = com.cmficonnect.app.TodayWidget;
+				PRODUCT_BUNDLE_IDENTIFIER = com.cmficonnect.mobile.TodayWidget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
@@ -2096,12 +2128,12 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 9740EEB21CF90195004384FC /* Debug.xcconfig */;
 			buildSettings = {
-				APP_GROUP_ID = group.com.cmficonnect.app;
+				APP_GROUP_ID = group.com.cmficonnect.mobile;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Runner/Runner.entitlements;
 				CURRENT_PROJECT_VERSION = "$(FLUTTER_BUILD_NUMBER)";
-				DEVELOPMENT_TEAM = 8S3QJGW6FL;
+				DEVELOPMENT_TEAM = UMF55ZKUY6;
 				ENABLE_BITCODE = NO;
 				FIREBASE_URL_SCHEME = "app-1-894070393803-ios-1828f664b9d079b37c844e";
 				INFOPLIST_FILE = Runner/Info.plist;
@@ -2109,7 +2141,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.cmficonnect.app;
+				PRODUCT_BUNDLE_IDENTIFIER = com.cmficonnect.mobile;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Runner/Runner-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -2122,12 +2154,12 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 7AFA3C8E1D35360C0083082E /* Release.xcconfig */;
 			buildSettings = {
-				APP_GROUP_ID = group.com.cmficonnect.app;
+				APP_GROUP_ID = group.com.cmficonnect.mobile;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Runner/Runner.entitlements;
 				CURRENT_PROJECT_VERSION = "$(FLUTTER_BUILD_NUMBER)";
-				DEVELOPMENT_TEAM = 8S3QJGW6FL;
+				DEVELOPMENT_TEAM = UMF55ZKUY6;
 				ENABLE_BITCODE = NO;
 				FIREBASE_URL_SCHEME = "app-1-894070393803-ios-1828f664b9d079b37c844e";
 				INFOPLIST_FILE = Runner/Info.plist;
@@ -2135,7 +2167,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.cmficonnect.app;
+				PRODUCT_BUNDLE_IDENTIFIER = com.cmficonnect.mobile;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Runner/Runner-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
@@ -2147,13 +2179,13 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = B3F510C39F3BB4D9B07BED5E /* TodayWidget.xcconfig */;
 			buildSettings = {
-				APP_GROUP_ID = group.com.cmficonnect.app;
+				APP_GROUP_ID = group.com.cmficonnect.mobile;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "";
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = "";
 				CLANG_ENABLE_OBJC_WEAK = NO;
 				CODE_SIGN_ENTITLEMENTS = TodayWidget/TodayWidget.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 8S3QJGW6FL;
+				DEVELOPMENT_TEAM = UMF55ZKUY6;
 				FIREBASE_URL_SCHEME = "app-1-894070393803-ios-1828f664b9d079b37c844e";
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = TodayWidget/Info.plist;
@@ -2165,7 +2197,7 @@
 				);
 				OTHER_LDFLAGS = "";
 				OTHER_SWIFT_FLAGS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = com.cmficonnect.app.TodayWidget;
+				PRODUCT_BUNDLE_IDENTIFIER = com.cmficonnect.mobile.TodayWidget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
@@ -2180,13 +2212,13 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = B3F510C39F3BB4D9B07BED5E /* TodayWidget.xcconfig */;
 			buildSettings = {
-				APP_GROUP_ID = group.com.cmficonnect.app;
+				APP_GROUP_ID = group.com.cmficonnect.mobile;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "";
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = "";
 				CLANG_ENABLE_OBJC_WEAK = NO;
 				CODE_SIGN_ENTITLEMENTS = ShieldMonitor/ShieldMonitor.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 8S3QJGW6FL;
+				DEVELOPMENT_TEAM = UMF55ZKUY6;
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = ShieldMonitor/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
@@ -2197,7 +2229,7 @@
 				);
 				OTHER_LDFLAGS = "";
 				OTHER_SWIFT_FLAGS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = com.cmficonnect.app.ShieldMonitor;
+				PRODUCT_BUNDLE_IDENTIFIER = com.cmficonnect.mobile.ShieldMonitor;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
@@ -2212,13 +2244,13 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = B3F510C39F3BB4D9B07BED5E /* TodayWidget.xcconfig */;
 			buildSettings = {
-				APP_GROUP_ID = group.com.cmficonnect.app.dev;
+				APP_GROUP_ID = group.com.cmficonnect.mobile.dev;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "";
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = "";
 				CLANG_ENABLE_OBJC_WEAK = NO;
 				CODE_SIGN_ENTITLEMENTS = ShieldConfig/ShieldConfig.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = UMF55ZKUY6;
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = ShieldConfig/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
@@ -2229,7 +2261,7 @@
 				);
 				OTHER_LDFLAGS = "";
 				OTHER_SWIFT_FLAGS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = com.cmficonnect.app.dev.ShieldConfig;
+				PRODUCT_BUNDLE_IDENTIFIER = com.cmficonnect.mobile.dev.ShieldConfig;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
@@ -2243,12 +2275,13 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = B3F510C39F3BB4D9B07BED5E /* TodayWidget.xcconfig */;
 			buildSettings = {
-				APP_GROUP_ID = group.com.cmficonnect.app;
+				APP_GROUP_ID = group.com.cmficonnect.mobile;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "";
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = "";
 				CLANG_ENABLE_OBJC_WEAK = NO;
 				CODE_SIGN_ENTITLEMENTS = TodayWidget/TodayWidget.entitlements;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = UMF55ZKUY6;
 				FIREBASE_URL_SCHEME = "app-1-894070393803-ios-1828f664b9d079b37c844e";
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = TodayWidget/Info.plist;
@@ -2260,7 +2293,7 @@
 				);
 				OTHER_LDFLAGS = "";
 				OTHER_SWIFT_FLAGS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = com.cmficonnect.app.TodayWidget;
+				PRODUCT_BUNDLE_IDENTIFIER = com.cmficonnect.mobile.TodayWidget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
@@ -2275,13 +2308,13 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = B3F510C39F3BB4D9B07BED5E /* TodayWidget.xcconfig */;
 			buildSettings = {
-				APP_GROUP_ID = group.com.cmficonnect.app;
+				APP_GROUP_ID = group.com.cmficonnect.mobile;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "";
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = "";
 				CLANG_ENABLE_OBJC_WEAK = NO;
 				CODE_SIGN_ENTITLEMENTS = ShieldActions/ShieldActions.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 8S3QJGW6FL;
+				DEVELOPMENT_TEAM = UMF55ZKUY6;
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = ShieldActions/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
@@ -2292,7 +2325,7 @@
 				);
 				OTHER_LDFLAGS = "";
 				OTHER_SWIFT_FLAGS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = com.cmficonnect.app.ShieldActions;
+				PRODUCT_BUNDLE_IDENTIFIER = com.cmficonnect.mobile.ShieldActions;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
@@ -2307,13 +2340,13 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = B3F510C39F3BB4D9B07BED5E /* TodayWidget.xcconfig */;
 			buildSettings = {
-				APP_GROUP_ID = group.com.cmficonnect.app.dev;
+				APP_GROUP_ID = group.com.cmficonnect.mobile.dev;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "";
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = "";
 				CLANG_ENABLE_OBJC_WEAK = NO;
 				CODE_SIGN_ENTITLEMENTS = TodayWidget/TodayWidget.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = UMF55ZKUY6;
 				FIREBASE_URL_SCHEME = "app-1-920730632543-ios-c229a0efa4fd34e0dff6ea";
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = TodayWidget/Info.plist;
@@ -2325,7 +2358,7 @@
 				);
 				OTHER_LDFLAGS = "";
 				OTHER_SWIFT_FLAGS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = com.cmficonnect.app.dev.TodayWidget;
+				PRODUCT_BUNDLE_IDENTIFIER = com.cmficonnect.mobile.dev.TodayWidget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
@@ -2340,12 +2373,13 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = B3F510C39F3BB4D9B07BED5E /* TodayWidget.xcconfig */;
 			buildSettings = {
-				APP_GROUP_ID = group.com.cmficonnect.app;
+				APP_GROUP_ID = group.com.cmficonnect.mobile;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "";
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = "";
 				CLANG_ENABLE_OBJC_WEAK = NO;
 				CODE_SIGN_ENTITLEMENTS = ShieldConfig/ShieldConfig.entitlements;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = UMF55ZKUY6;
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = ShieldConfig/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
@@ -2356,7 +2390,7 @@
 				);
 				OTHER_LDFLAGS = "";
 				OTHER_SWIFT_FLAGS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = com.cmficonnect.app.ShieldConfig;
+				PRODUCT_BUNDLE_IDENTIFIER = com.cmficonnect.mobile.ShieldConfig;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
@@ -2370,12 +2404,13 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = B3F510C39F3BB4D9B07BED5E /* TodayWidget.xcconfig */;
 			buildSettings = {
-				APP_GROUP_ID = group.com.cmficonnect.app;
+				APP_GROUP_ID = group.com.cmficonnect.mobile;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "";
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = "";
 				CLANG_ENABLE_OBJC_WEAK = NO;
 				CODE_SIGN_ENTITLEMENTS = TodayWidget/TodayWidget.entitlements;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = UMF55ZKUY6;
 				FIREBASE_URL_SCHEME = "app-1-894070393803-ios-1828f664b9d079b37c844e";
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = TodayWidget/Info.plist;
@@ -2387,7 +2422,7 @@
 				);
 				OTHER_LDFLAGS = "";
 				OTHER_SWIFT_FLAGS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = com.cmficonnect.app.TodayWidget;
+				PRODUCT_BUNDLE_IDENTIFIER = com.cmficonnect.mobile.TodayWidget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
@@ -2402,12 +2437,13 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = B3F510C39F3BB4D9B07BED5E /* TodayWidget.xcconfig */;
 			buildSettings = {
-				APP_GROUP_ID = group.com.cmficonnect.app;
+				APP_GROUP_ID = group.com.cmficonnect.mobile;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "";
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = "";
 				CLANG_ENABLE_OBJC_WEAK = NO;
 				CODE_SIGN_ENTITLEMENTS = ShieldMonitor/ShieldMonitor.entitlements;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = UMF55ZKUY6;
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = ShieldMonitor/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
@@ -2418,7 +2454,7 @@
 				);
 				OTHER_LDFLAGS = "";
 				OTHER_SWIFT_FLAGS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = com.cmficonnect.app.ShieldMonitor;
+				PRODUCT_BUNDLE_IDENTIFIER = com.cmficonnect.mobile.ShieldMonitor;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
@@ -2433,13 +2469,13 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = B3F510C39F3BB4D9B07BED5E /* TodayWidget.xcconfig */;
 			buildSettings = {
-				APP_GROUP_ID = group.com.cmficonnect.app.dev;
+				APP_GROUP_ID = group.com.cmficonnect.mobile.dev;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "";
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = "";
 				CLANG_ENABLE_OBJC_WEAK = NO;
 				CODE_SIGN_ENTITLEMENTS = TodayWidget/TodayWidget.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = UMF55ZKUY6;
 				FIREBASE_URL_SCHEME = "app-1-920730632543-ios-c229a0efa4fd34e0dff6ea";
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = TodayWidget/Info.plist;
@@ -2451,7 +2487,7 @@
 				);
 				OTHER_LDFLAGS = "";
 				OTHER_SWIFT_FLAGS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = com.cmficonnect.app.dev.TodayWidget;
+				PRODUCT_BUNDLE_IDENTIFIER = com.cmficonnect.mobile.dev.TodayWidget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
@@ -2466,12 +2502,13 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = B3F510C39F3BB4D9B07BED5E /* TodayWidget.xcconfig */;
 			buildSettings = {
-				APP_GROUP_ID = group.com.cmficonnect.app;
+				APP_GROUP_ID = group.com.cmficonnect.mobile;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "";
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = "";
 				CLANG_ENABLE_OBJC_WEAK = NO;
 				CODE_SIGN_ENTITLEMENTS = ShieldMonitor/ShieldMonitor.entitlements;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = UMF55ZKUY6;
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = ShieldMonitor/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
@@ -2482,7 +2519,7 @@
 				);
 				OTHER_LDFLAGS = "";
 				OTHER_SWIFT_FLAGS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = com.cmficonnect.app.ShieldMonitor;
+				PRODUCT_BUNDLE_IDENTIFIER = com.cmficonnect.mobile.ShieldMonitor;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
@@ -2496,13 +2533,13 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = B3F510C39F3BB4D9B07BED5E /* TodayWidget.xcconfig */;
 			buildSettings = {
-				APP_GROUP_ID = group.com.cmficonnect.app.dev;
+				APP_GROUP_ID = group.com.cmficonnect.mobile.dev;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "";
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = "";
 				CLANG_ENABLE_OBJC_WEAK = NO;
 				CODE_SIGN_ENTITLEMENTS = ShieldConfig/ShieldConfig.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = UMF55ZKUY6;
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = ShieldConfig/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
@@ -2513,7 +2550,7 @@
 				);
 				OTHER_LDFLAGS = "";
 				OTHER_SWIFT_FLAGS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = com.cmficonnect.app.dev.ShieldConfig;
+				PRODUCT_BUNDLE_IDENTIFIER = com.cmficonnect.mobile.dev.ShieldConfig;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
@@ -2528,13 +2565,13 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = B3F510C39F3BB4D9B07BED5E /* TodayWidget.xcconfig */;
 			buildSettings = {
-				APP_GROUP_ID = group.com.cmficonnect.app;
+				APP_GROUP_ID = group.com.cmficonnect.mobile;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "";
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = "";
 				CLANG_ENABLE_OBJC_WEAK = NO;
 				CODE_SIGN_ENTITLEMENTS = ShieldConfig/ShieldConfig.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 8S3QJGW6FL;
+				DEVELOPMENT_TEAM = UMF55ZKUY6;
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = ShieldConfig/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
@@ -2545,7 +2582,7 @@
 				);
 				OTHER_LDFLAGS = "";
 				OTHER_SWIFT_FLAGS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = com.cmficonnect.app.ShieldConfig;
+				PRODUCT_BUNDLE_IDENTIFIER = com.cmficonnect.mobile.ShieldConfig;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
@@ -2560,12 +2597,13 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = B3F510C39F3BB4D9B07BED5E /* TodayWidget.xcconfig */;
 			buildSettings = {
-				APP_GROUP_ID = group.com.cmficonnect.app;
+				APP_GROUP_ID = group.com.cmficonnect.mobile;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "";
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = "";
 				CLANG_ENABLE_OBJC_WEAK = NO;
 				CODE_SIGN_ENTITLEMENTS = ShieldConfig/ShieldConfig.entitlements;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = UMF55ZKUY6;
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = ShieldConfig/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
@@ -2576,7 +2614,7 @@
 				);
 				OTHER_LDFLAGS = "";
 				OTHER_SWIFT_FLAGS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = com.cmficonnect.app.ShieldConfig;
+				PRODUCT_BUNDLE_IDENTIFIER = com.cmficonnect.mobile.ShieldConfig;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
@@ -2591,13 +2629,13 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = B3F510C39F3BB4D9B07BED5E /* TodayWidget.xcconfig */;
 			buildSettings = {
-				APP_GROUP_ID = group.com.cmficonnect.app.dev;
+				APP_GROUP_ID = group.com.cmficonnect.mobile.dev;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "";
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = "";
 				CLANG_ENABLE_OBJC_WEAK = NO;
 				CODE_SIGN_ENTITLEMENTS = ShieldActions/ShieldActions.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = UMF55ZKUY6;
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = ShieldActions/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
@@ -2608,7 +2646,7 @@
 				);
 				OTHER_LDFLAGS = "";
 				OTHER_SWIFT_FLAGS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = com.cmficonnect.app.dev.ShieldActions;
+				PRODUCT_BUNDLE_IDENTIFIER = com.cmficonnect.mobile.dev.ShieldActions;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
@@ -2686,7 +2724,7 @@
 				);
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.cmficonnect.app;
+				PRODUCT_BUNDLE_IDENTIFIER = com.cmficonnect.mobile;
 				SDKROOT = iphoneos;
 				SWIFT_OBJC_BRIDGING_HEADER = "Runner/Runner-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
@@ -2698,9 +2736,10 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 44554DE6C2BC572F83925D57 /* prodRelease.xcconfig */;
 			buildSettings = {
-				APP_GROUP_ID = group.com.cmficonnect.app;
+				APP_GROUP_ID = group.com.cmficonnect.mobile;
 				CODE_SIGN_ENTITLEMENTS = Runner/Runner.entitlements;
-				DEVELOPMENT_TEAM = 8S3QJGW6FL;
+				CRASHLYTICS_APP_ID = "1:894070393803:ios:edb99959cafb353e7c844e";
+				DEVELOPMENT_TEAM = UMF55ZKUY6;
 				FIREBASE_URL_SCHEME = "app-1-894070393803-ios-1828f664b9d079b37c844e";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -2710,13 +2749,13 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = B3F510C39F3BB4D9B07BED5E /* TodayWidget.xcconfig */;
 			buildSettings = {
-				APP_GROUP_ID = group.com.cmficonnect.app;
+				APP_GROUP_ID = group.com.cmficonnect.mobile;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "";
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = "";
 				CLANG_ENABLE_OBJC_WEAK = NO;
 				CODE_SIGN_ENTITLEMENTS = TodayWidget/TodayWidget.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 8S3QJGW6FL;
+				DEVELOPMENT_TEAM = UMF55ZKUY6;
 				FIREBASE_URL_SCHEME = "app-1-894070393803-ios-1828f664b9d079b37c844e";
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = TodayWidget/Info.plist;
@@ -2728,7 +2767,7 @@
 				);
 				OTHER_LDFLAGS = "";
 				OTHER_SWIFT_FLAGS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = com.cmficonnect.app.TodayWidget;
+				PRODUCT_BUNDLE_IDENTIFIER = com.cmficonnect.mobile.TodayWidget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
@@ -2743,9 +2782,10 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 3BF3195AFF06027E153EDDFE /* prodProfile.xcconfig */;
 			buildSettings = {
-				APP_GROUP_ID = group.com.cmficonnect.app;
+				APP_GROUP_ID = group.com.cmficonnect.mobile;
 				CODE_SIGN_ENTITLEMENTS = Runner/Runner.entitlements;
-				DEVELOPMENT_TEAM = 8S3QJGW6FL;
+				CRASHLYTICS_APP_ID = "1:894070393803:ios:edb99959cafb353e7c844e";
+				DEVELOPMENT_TEAM = UMF55ZKUY6;
 				FIREBASE_URL_SCHEME = "app-1-894070393803-ios-1828f664b9d079b37c844e";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -2755,12 +2795,13 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = B3F510C39F3BB4D9B07BED5E /* TodayWidget.xcconfig */;
 			buildSettings = {
-				APP_GROUP_ID = group.com.cmficonnect.app;
+				APP_GROUP_ID = group.com.cmficonnect.mobile;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "";
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = "";
 				CLANG_ENABLE_OBJC_WEAK = NO;
 				CODE_SIGN_ENTITLEMENTS = ShieldActions/ShieldActions.entitlements;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = UMF55ZKUY6;
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = ShieldActions/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
@@ -2771,7 +2812,7 @@
 				);
 				OTHER_LDFLAGS = "";
 				OTHER_SWIFT_FLAGS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = com.cmficonnect.app.ShieldActions;
+				PRODUCT_BUNDLE_IDENTIFIER = com.cmficonnect.mobile.ShieldActions;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
@@ -2786,12 +2827,13 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = B3F510C39F3BB4D9B07BED5E /* TodayWidget.xcconfig */;
 			buildSettings = {
-				APP_GROUP_ID = group.com.cmficonnect.app;
+				APP_GROUP_ID = group.com.cmficonnect.mobile;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "";
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = "";
 				CLANG_ENABLE_OBJC_WEAK = NO;
 				CODE_SIGN_ENTITLEMENTS = TodayWidget/TodayWidget.entitlements;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = UMF55ZKUY6;
 				FIREBASE_URL_SCHEME = "app-1-894070393803-ios-1828f664b9d079b37c844e";
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = TodayWidget/Info.plist;
@@ -2803,7 +2845,7 @@
 				);
 				OTHER_LDFLAGS = "";
 				OTHER_SWIFT_FLAGS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = com.cmficonnect.app.TodayWidget;
+				PRODUCT_BUNDLE_IDENTIFIER = com.cmficonnect.mobile.TodayWidget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
@@ -2817,13 +2859,13 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = B3F510C39F3BB4D9B07BED5E /* TodayWidget.xcconfig */;
 			buildSettings = {
-				APP_GROUP_ID = group.com.cmficonnect.app;
+				APP_GROUP_ID = group.com.cmficonnect.mobile;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "";
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = "";
 				CLANG_ENABLE_OBJC_WEAK = NO;
 				CODE_SIGN_ENTITLEMENTS = ShieldMonitor/ShieldMonitor.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 8S3QJGW6FL;
+				DEVELOPMENT_TEAM = UMF55ZKUY6;
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = ShieldMonitor/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
@@ -2834,7 +2876,7 @@
 				);
 				OTHER_LDFLAGS = "";
 				OTHER_SWIFT_FLAGS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = com.cmficonnect.app.ShieldMonitor;
+				PRODUCT_BUNDLE_IDENTIFIER = com.cmficonnect.mobile.ShieldMonitor;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
@@ -2912,7 +2954,7 @@
 				);
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.cmficonnect.app.dev;
+				PRODUCT_BUNDLE_IDENTIFIER = com.cmficonnect.mobile.dev;
 				SDKROOT = iphoneos;
 				SWIFT_OBJC_BRIDGING_HEADER = "Runner/Runner-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;

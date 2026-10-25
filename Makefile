@@ -24,7 +24,7 @@ export LC_ALL := en_US.UTF-8
 .PHONY: help setup gen gen-clean watch run run-dev run-prod run-device catalog \
 	analyze test check format brand mascots screenshots landing-screens \
 	build-apk build-aab build-ipa build-dev-apk pods clean \
-	lanes bump bump-dry ios-beta ios-release android-beta match-setup publish
+	lanes bump bump-dry ios-beta ios-release android-beta match-setup asc-env publish
 
 help: ## Affiche cette aide
 	@grep -hE '^[a-zA-Z_-]+:.*?## ' $(MAKEFILE_LIST) | awk 'BEGIN {FS = ":.*?## "}; {printf "  \033[36m%-18s\033[0m %s\n", $$1, $$2}'
@@ -89,9 +89,14 @@ brand: ## Régénère icônes, icônes adaptatives et écran de lancement depuis
 mascots: ## Régénère les images de Zoé (widget de l'écran d'accueil)
 	$(FLUTTER) test tool/brand_assets_test.dart --plain-name 'generate mascot images'
 
-screenshots: ## Refait les captures des stores et l'image de mise en avant (store/screenshots)
+screenshots: ## Refait les captures des stores et l'image de mise en avant (store/screenshots), en JPEG sans transparence
 	$(FLUTTER) test tool/store_screenshots_test.dart --plain-name 'store screenshot'
 	$(FLUTTER) test tool/store_screenshots_test.dart --plain-name 'feature graphic'
+	@# Apple and Google refuse images with an alpha channel: JPEG has none
+	@for f in store/screenshots/ios/fr/*.png store/screenshots/android/fr/*.png store/screenshots/feature_graphic.png; do \
+		sips -s format jpeg -s formatOptions 95 "$$f" --out "$${f%.png}.jpg" >/dev/null && rm "$$f"; \
+	done
+	@echo "Captures prêtes : store/screenshots (JPEG)"
 
 landing-screens: ## Refait les écrans du site vitrine dans les 7 langues (build/landing_screens)
 	@# une langue à la fois : la police de l'arabe, du chinois et du hindi ne se mélange pas
@@ -143,8 +148,17 @@ ios-release: ## Envoie le build et les notes sur App Store Connect (sans soumett
 android-beta: ## Envoie sur Google Play (TRACK=internal par défaut)
 	$(FASTLANE) android beta track:$(TRACK)
 
-match-setup: ## Une fois : crée certificats et profils iOS dans le dépôt de match (MATCH_GIT_URL)
-	$(FASTLANE) match appstore
+match-setup: ## Une fois : crée certificat et profils iOS dans le dépôt de match (clé API et MATCH_* dans fastlane/.env)
+	$(FASTLANE) ios certificates
+
+asc-env: ## Écrit fastlane/.env depuis la clé API App Store Connect : make asc-env P8=… KEY_ID=… ISSUER=…
+	@test -n "$(P8)" -a -n "$(KEY_ID)" -a -n "$(ISSUER)" || { echo "Usage : make asc-env P8=~/AuthKey_XXXX.p8 KEY_ID=XXXX ISSUER=xxxx-…"; exit 1; }
+	@test -f "$(P8)" || { echo "Fichier introuvable : $(P8)"; exit 1; }
+	@touch fastlane/.env && chmod 600 fastlane/.env
+	@grep -v '^ASC_' fastlane/.env > fastlane/.env.tmp || true
+	@{ echo "ASC_KEY_ID=$(KEY_ID)"; echo "ASC_ISSUER_ID=$(ISSUER)"; printf "ASC_KEY_P8="; base64 -i "$(P8)" | tr -d '\n'; echo; cat fastlane/.env.tmp; } > fastlane/.env
+	@rm -f fastlane/.env.tmp
+	@echo "fastlane/.env écrit (ASC_KEY_ID, ASC_ISSUER_ID, ASC_KEY_P8). Ajoute MATCH_GIT_URL et MATCH_PASSWORD (voir fastlane/.env.example)."
 
 publish: ## Pousse le commit et le dernier tag : GitHub Actions publie la version
 	git push

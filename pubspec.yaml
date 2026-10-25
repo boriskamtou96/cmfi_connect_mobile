@@ -109,6 +109,7 @@ dependencies:
   firebase_remote_config: ^6.7.0
   in_app_update: ^4.2.5
   gal: ^2.3.3
+  rename: ^3.1.0
 
 dev_dependencies:
   flutter_test:
@@ -223,7 +224,7 @@ flavorizr:
       android:
         applicationId: 'com.cmficonnect.app.dev'
       ios:
-        bundleId: 'com.cmficonnect.app.dev'
+        bundleId: 'com.cmficonnect.mobile.dev'
 
     prod:
       app:
@@ -231,4 +232,4 @@ flavorizr:
       android:
         applicationId: 'com.cmficonnect.app'
       ios:
-        bundleId: 'com.cmficonnect.app'
+        bundleId: 'com.cmficonnect.mobile'

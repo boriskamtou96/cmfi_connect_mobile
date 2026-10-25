@@ -48,14 +48,14 @@ Voir le README de chacun (`npm run deploy`).
 
 ## 4. iPhone (App Store)
 
-Sur developer.apple.com (équipe `8S3QJGW6FL`) :
+Sur developer.apple.com (équipe `UMF55ZKUY6`, SPARKDJEMS GROUP SARL) :
 
-- [ ] **Identifiants** : `com.cmficonnect.app` et ses extensions `.TodayWidget`, `.ShieldMonitor`, `.ShieldConfig`, `.ShieldActions` (Xcode les crée à la première signature automatique), avec les capacités App Groups (`group.com.cmficonnect.app`), Push Notifications, Associated Domains, Family Controls.
+- [ ] **Identifiants** : `com.cmficonnect.mobile` et ses extensions `.TodayWidget`, `.ShieldMonitor`, `.ShieldConfig`, `.ShieldActions` (Xcode les crée à la première signature automatique), avec les capacités App Groups (`group.com.cmficonnect.mobile`), Push Notifications, Associated Domains, Family Controls.
 - [ ] **Family Controls (Distribution)** pour « Cherche d'abord Dieu » : demander l'accord sur https://developer.apple.com/contact/request/family-controls-distribution pour l'app **et** les trois extensions Shield. Sans cet accord, l'App Store refuse l'envoi. Compter quelques jours à quelques semaines.
 
 Dans App Store Connect :
 
-- [ ] **Créer l'app** : nom « CMFI Connect », identifiant `com.cmficonnect.app`, langue principale français.
+- [ ] **Créer l'app** : nom « CMFI Connect », identifiant `com.cmficonnect.mobile`, langue principale français.
 - [ ] **Fiche** : textes, mots-clés, catégorie, captures (déjà prêts : `store/fiche-stores.md` et `store/screenshots/ios/`).
 - [ ] **Confidentialité de l'app** (les « étiquettes ») : nom, téléphone, e-mail, photos, contenu (compte rendu, prière), historique d'achat, données de plantage, identifiant de l'appareil (push) ; tout lié au compte, rien pour la publicité ni le pistage. Le détail est dans `store/fiche-stores.md`.
 - [ ] **Classification par âge** (questionnaire) et **adresses** : confidentialité, assistance (https://cmfi-connect.com).

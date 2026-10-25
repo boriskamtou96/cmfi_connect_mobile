@@ -8,7 +8,7 @@ import WidgetKit
 
 private let appGroup =
   Bundle.main.object(forInfoDictionaryKey: "AppGroupId") as? String
-  ?? "group.com.cmficonnect.app"
+  ?? "group.com.cmficonnect.mobile"
 
 private let brandBlue = Color(red: 10 / 255, green: 94 / 255, blue: 168 / 255)
 private let mutedOnBlue = Color(red: 184 / 255, green: 214 / 255, blue: 242 / 255)

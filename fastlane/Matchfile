@@ -4,12 +4,12 @@
 git_url(ENV.fetch("MATCH_GIT_URL", ""))
 storage_mode("git")
 type("appstore")
-team_id("8S3QJGW6FL")
+team_id("UMF55ZKUY6")
 # the app, its widget and its three Screen Time extensions
 app_identifier([
-  "com.cmficonnect.app",
-  "com.cmficonnect.app.TodayWidget",
-  "com.cmficonnect.app.ShieldActions",
-  "com.cmficonnect.app.ShieldConfig",
-  "com.cmficonnect.app.ShieldMonitor",
+  "com.cmficonnect.mobile",
+  "com.cmficonnect.mobile.TodayWidget",
+  "com.cmficonnect.mobile.ShieldActions",
+  "com.cmficonnect.mobile.ShieldConfig",
+  "com.cmficonnect.mobile.ShieldMonitor",
 ])

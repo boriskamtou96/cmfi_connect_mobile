@@ -23,11 +23,11 @@ FirebaseOptions? firebaseOptionsFor(Flavor flavor) {
     ),
     (Flavor.dev, TargetPlatform.iOS) => const FirebaseOptions(
       apiKey: 'AIzaSyBu5Sbi6BKbSk9DBJQ5pRB_hZuNNzm-p9c',
-      appId: '1:920730632543:ios:c229a0efa4fd34e0dff6ea',
+      appId: '1:920730632543:ios:33bea93aa01934eedff6ea',
       messagingSenderId: '920730632543',
       projectId: 'cmfi-connect-dev',
       storageBucket: 'cmfi-connect-dev.firebasestorage.app',
-      iosBundleId: 'com.cmficonnect.app.dev',
+      iosBundleId: 'com.cmficonnect.mobile.dev',
     ),
     (Flavor.prod, TargetPlatform.android) => const FirebaseOptions(
       apiKey: 'AIzaSyCI3hPb1yybpslWcM2DziYjneM-KUsH7eY',
@@ -38,11 +38,11 @@ FirebaseOptions? firebaseOptionsFor(Flavor flavor) {
     ),
     (Flavor.prod, TargetPlatform.iOS) => const FirebaseOptions(
       apiKey: 'AIzaSyANwDnxZzAqlnLXCZnlo2vMqPW_3csvqlU',
-      appId: '1:894070393803:ios:1828f664b9d079b37c844e',
+      appId: '1:894070393803:ios:edb99959cafb353e7c844e',
       messagingSenderId: '894070393803',
       projectId: 'cmfi-connect',
       storageBucket: 'cmfi-connect.firebasestorage.app',
-      iosBundleId: 'com.cmficonnect.app',
+      iosBundleId: 'com.cmficonnect.mobile',
     ),
     _ => null,
   };

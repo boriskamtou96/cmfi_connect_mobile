@@ -8,7 +8,7 @@ import WidgetKit
 
 private let appGroup =
   Bundle.main.object(forInfoDictionaryKey: "AppGroupId") as? String
-  ?? "group.com.cmficonnect.app"
+  ?? "group.com.cmficonnect.mobile"
 
 private func dynamic(light: UInt32, dark: UInt32) -> Color {
   func color(_ hex: UInt32) -> UIColor {

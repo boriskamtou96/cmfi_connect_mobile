@@ -16,8 +16,8 @@ flutter run --flavor dev --dart-define-from-file=.env
 
 | Flavor | Nom de l'app | Identifiant | API |
 |---|---|---|---|
-| `dev` | CMFI Connect Dev | `com.cmficonnect.app.dev` | `http://10.0.2.2:8080/v1` (émulateur Android), `http://localhost:8080/v1` (simulateur iOS) |
-| `prod` | CMFI Connect | `com.cmficonnect.app` | `https://api.cmfi-connect.com/v1` (`lib/src/core/config/app_config.dart`) |
+| `dev` | CMFI Connect Dev | iOS `com.cmficonnect.mobile.dev`, Android `com.cmficonnect.app.dev` | `http://10.0.2.2:8080/v1` (émulateur Android), `http://localhost:8080/v1` (simulateur iOS) |
+| `prod` | CMFI Connect | iOS `com.cmficonnect.mobile`, Android `com.cmficonnect.app` | `https://api.cmfi-connect.com/v1` (`lib/src/core/config/app_config.dart`) |
 
 Sur un vrai téléphone, l'API locale se joint par l'adresse IP du Mac :
 

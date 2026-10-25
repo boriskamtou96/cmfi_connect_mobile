@@ -34,11 +34,11 @@ PLAY_NOTES_LIMIT = 500
 
 # the iOS targets of the prod flavor and their identifiers
 IOS_TARGETS = {
-  "Runner" => "com.cmficonnect.app",
-  "TodayWidget" => "com.cmficonnect.app.TodayWidget",
-  "ShieldActions" => "com.cmficonnect.app.ShieldActions",
-  "ShieldConfig" => "com.cmficonnect.app.ShieldConfig",
-  "ShieldMonitor" => "com.cmficonnect.app.ShieldMonitor",
+  "Runner" => "com.cmficonnect.mobile",
+  "TodayWidget" => "com.cmficonnect.mobile.TodayWidget",
+  "ShieldActions" => "com.cmficonnect.mobile.ShieldActions",
+  "ShieldConfig" => "com.cmficonnect.mobile.ShieldConfig",
+  "ShieldMonitor" => "com.cmficonnect.mobile.ShieldMonitor",
 }.freeze
 
 # ----- helpers --------------------------------------------------------------------
@@ -129,7 +129,7 @@ platform :ios do
         use_automatic_signing: false,
         targets: [target],
         build_configurations: ["Release-prod"],
-        team_id: "8S3QJGW6FL",
+        team_id: "UMF55ZKUY6",
         code_sign_identity: "Apple Distribution",
         profile_name: ENV.fetch("sigh_#{identifier}_appstore_profile-name"),
       )
@@ -150,6 +150,11 @@ platform :ios do
       },
     )
     key
+  end
+
+  desc "Une fois (puis à chaque nouvelle extension) : crée certificat et profils App Store dans le dépôt de match"
+  lane :certificates do
+    match(api_key: app_store_key, type: "appstore", readonly: false)
   end
 
   desc "TestFlight, avec les notes de version dans chaque langue"

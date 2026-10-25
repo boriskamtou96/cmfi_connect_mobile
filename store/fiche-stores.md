@@ -181,7 +181,7 @@ Domaine pris dans `lib/src/core/config/app_config.dart` (`siteUrl = https://cmfi
 
 | Usage | Français | Anglais |
 | --- | --- | --- |
-| Assistance (support, obligatoire chez Apple) | https://cmfi-connect.com/ (le pied de page donne le contact) | https://cmfi-connect.com/en/ |
+| Assistance (support, obligatoire chez Apple) | https://cmfi-connect.com/support | https://cmfi-connect.com/en/support |
 | Marketing (facultatif) | https://cmfi-connect.com/ | https://cmfi-connect.com/en/ |
 | Politique de confidentialité | https://cmfi-connect.com/privacy | https://cmfi-connect.com/en/privacy |
 | Conditions d'utilisation (EULA) | https://cmfi-connect.com/terms | https://cmfi-connect.com/en/terms |
@@ -189,7 +189,7 @@ Domaine pris dans `lib/src/core/config/app_config.dart` (`siteUrl = https://cmfi
 
 - *(v1.1)* Apple : pour les abonnements, mettre le lien des conditions dans la description (fait ci-dessus) ou dans le champ « Contrat de licence ». Le contrat standard d'Apple suffit ; nos conditions y renvoient.
 - Copyright (App Store) : `© 2026 Communauté Missionnaire Chrétienne Internationale`.
-- E-mail de contact public (Google Play) : `[e-mail de contact]`.
+- E-mail de contact public (Google Play) : `support@cmfi-connect.com` (l'aide) ; données personnelles : `contact@cmfi-connect.com`.
 
 ---
 
@@ -244,7 +244,6 @@ Note sur le contenu généré par les utilisateurs : répondre « Oui » est le 
 | Autorités : liées par pseudo, ou saisies à la main (nom, téléphone, e-mail d'un tiers) | Serveur | Oui | Hébergeur |
 | Inscriptions aux évènements (personnes, hébergement, ville de départ) | Serveur | Oui | Hébergeur |
 | Jeton FCM, plateforme, langue ; annonces reçues et lues | Serveur + Google (FCM) | Oui | Google |
-| Numéro vérifié par SMS (mot de passe oublié) | Google (Firebase Authentication) | Oui (numéro) | Google |
 | Rapports de plantage : erreur, version, modèle et système, identifiant d'installation, numéro de compte | Google (Crashlytics), 90 jours ; rien en debug | Oui (numéro de compte) | Google |
 | *(v1.1)* Achats Premium, état de l'abonnement, numéro de compte | RevenueCat, Apple, Google | Oui (numéro de compte) | RevenueCat, Apple, Google |
 | Photo de profil (facultative, prise ou choisie puis recadrée ; réenregistrée sans ses métadonnées), visible des autres membres | Serveur | Oui | Hébergeur |
@@ -266,7 +265,7 @@ Jamais collectés : position GPS, carnet d'adresses, calendrier (l'app ouvre seu
 | --- | --- | --- | --- |
 | Coordonnées | Nom | Oui | Prénom, nom. |
 | Coordonnées | Adresse e-mail | Oui | Facultative. |
-| Coordonnées | Numéro de téléphone | Oui | Identifiant de connexion ; vérifié par SMS pour le mot de passe oublié. |
+| Coordonnées | Numéro de téléphone | Oui | Identifiant de connexion. |
 | Coordonnées | Adresse postale, autres coordonnées | Non | |
 | Données sensibles | Croyances religieuses | Oui | Église, assemblée, comptes rendus, prière. Les comptes rendus (éléments et pourcentages, sans la note) sont visibles des autorités spirituelles membres que l'utilisateur choisit lui-même ; il peut l'arrêter. |
 | Localisation | Position approximative | Oui (par prudence) | Ville et pays du profil, tapés par l'utilisateur. L'app ne lit jamais la position du téléphone ; ne pas cocher « Position précise ». |
@@ -312,7 +311,7 @@ Réponses générales :
 | Informations financières | Historique des achats | *(v1.1)* Oui ; **non collecté en v1** | Facultatif | Fonctionnement de l'app, gestion du compte |
 | Informations financières | Infos de paiement, autres | Non | | |
 | Santé et remise en forme | | Non | | |
-| Messages | E-mails, SMS/MMS, autres messages | Non | | L'app ne lit pas les SMS ; le code est vérifié par Firebase. |
+| Messages | E-mails, SMS/MMS, autres messages | Non | | L'app ne lit pas les SMS. |
 | Photos et vidéos | Photos | Oui | Facultatif | Fonctionnement de l'app (photo de profil ; affiches et photos des admins) |
 | Fichiers audio, fichiers et documents | | Non | | Les exports sont créés sur le téléphone. |
 | Agenda | | Non | | |
@@ -360,7 +359,7 @@ REPORT AND BLOCK
 An invitation to pray for a topic (Prayer tab) has a menu with "Report" (reason and comment, sent to the community administrators, who handle reports in their back office) and "Block" (no more invitations from that member). Blocked members can be unblocked in More > "Blocked members".
 
 FORGOT PASSWORD (optional)
-On the sign-in screen, "Forgot your password?" sends an SMS code through Firebase Authentication. You can test it with [numéro de test Firebase] and the code [code de test], a Firebase test number linked to [the demo account / a second demo account]: please set the password back to [mot de passe de démo] afterwards.
+There is no self-service password reset in the app: a member who forgot their password writes to support@cmfi-connect.com, and an administrator resets it after checking the request (see https://cmfi-connect.com/en/support). Nothing to test there.
 
 NOTIFICATIONS AND PERMISSIONS
 - Notifications: evening reminder and event reminders are local; announcements are sent by the community leaders (Firebase Cloud Messaging).
@@ -374,9 +373,9 @@ Pour Google Play (Contenu de l'appli › Accès à l'application) : « Toutes ou
 
 Rappels techniques pour que l'examen se passe bien :
 
-- *(v1.1)* Les abonnements (mensuel, semestriel, annuel, dans un même groupe) doivent être créés dans App Store Connect et **soumis avec la première version** de l'app ; idem dans la Play Console. RevenueCat : entitlement `premium`, offering courante avec les paquets Monthly, Six Month et Annual, clés publiques dans `.env` (`REVENUE_CAT_APPLE_API_KEY`, `REVENUE_CAT_GOOGLE_API_KEY`), clé In-App Purchase d'Apple et compte de service Google ajoutés dans RevenueCat.
+- *(v1.1)* Les abonnements (mensuel, semestriel, annuel, dans un même groupe) doivent être créés dans App Store Connect et **soumis avec la première version** de l'app ; idem dans la Play Console. RevenueCat : entitlement `cmfi_connect_pro` (celui que lit l'app, `premium_store.dart`), offering courante avec les paquets Monthly, Six Month, Annual et Lifetime ; produits Apple `cmfi_premium_monthly`, `cmfi_premium_6months`, `cmfi_premium_annual` (groupe « CMFI Connect Premium ») et l'achat non consommable `cmfi_premium_lifetime`, clés publiques dans `.env` (`REVENUE_CAT_APPLE_API_KEY`, `REVENUE_CAT_GOOGLE_API_KEY`), clé In-App Purchase d'Apple et compte de service Google ajoutés dans RevenueCat.
 - *(v1.1)* L'essai gratuit (« 7 jours d'essai gratuit » prévu par l'écran Premium) n'existe que s'il est configuré sur chaque produit dans les stores. Durée : `[durée de l'essai, ou aucun]`.
-- Mot de passe oublié : activer la connexion « Téléphone » dans le projet Firebase `cmfi-connect` (prod), les empreintes SHA de l'app Android, la clé APNs, et le numéro de test (Authentication › Sign-in method › Phone › Numéros de test). Le serveur de production doit avoir la clé Firebase (`FIREBASE_CREDENTIALS_FILE`), sinon la réinitialisation répond « indisponible ». Le numéro de test doit être celui d'un compte existant.
+- Mot de passe oublié : retiré de l'app le 25/10/2026 (plus de SMS Firebase). Un administrateur réinitialise le mot de passe sur demande à `support@cmfi-connect.com` (page https://cmfi-connect.com/support). Plus besoin de numéro de test Firebase ni du forfait Blaze pour les SMS.
 - Le widget iOS est une extension (`ios/TodayWidget`) : il part avec l'app, rien à déclarer de plus.
 
 ---
@@ -385,9 +384,9 @@ Rappels techniques pour que l'examen se passe bien :
 
 Pages légales (site, `src/config.ts`) :
 
-- [ ] `address` : adresse postale de la CMCI.
-- [ ] `country` : pays dont la loi s'applique.
-- [ ] `contactEmail` : e-mail pour les données personnelles et le support.
+- [x] `address` : BP 6090.
+- [x] `country` : Cameroun.
+- [x] `contactEmail` : `contact@cmfi-connect.com` (données personnelles) ; `supportEmail` : `support@cmfi-connect.com` (aide, page `/support`).
 - [ ] `hosting` : hébergeur du serveur et pays des serveurs.
 - [ ] `url` du site (encore `https://cmfi-connect.example`) et domaine réellement en ligne ; confirmer `https://cmfi-connect.com` utilisé par l'app.
 - [ ] Faire relire les pages légales par une personne compétente en droit, notamment la base « activités légitimes d'une organisation religieuse » (article 9.2.d du RGPD, qui suppose un organisme à but non lucratif) et le droit du pays choisi.
@@ -395,7 +394,7 @@ Pages légales (site, `src/config.ts`) :
 Comptes et accès pour l'examen :
 
 - [ ] `[numéro de démo]` et `[mot de passe de démo]` : compte de rôle `user` en production, avec des données.
-- [ ] `[numéro de test Firebase]` et `[code de test]` pour le mot de passe oublié (et, de préférence, un second compte de démonstration pour ce test).
+- [x] ~~Numéro de test Firebase~~ : sans objet, « Mot de passe oublié » est retiré de l'app (réinitialisation par un administrateur).
 - [ ] Contact pendant l'examen : `[nom]`, `[e-mail]`, `[téléphone]`.
 
 Stores :
@@ -403,9 +402,10 @@ Stores :
 - [ ] Comptes développeur au nom de l'organisation (Apple et Google demandent un numéro D-U-N-S pour une organisation).
 - [ ] *(v1.1)* Contrat « Apps payantes » signé, coordonnées bancaires et fiscales (App Store Connect) ; profil de paiement (Play Console).
 - [ ] *(v1.1)* Prix des trois abonnements, `[durée de l'essai, ou aucun]`, nom du groupe d'abonnements et textes de chaque abonnement.
-- [x] Captures d'écran : iPhone 6,9 pouces et téléphone Android dans `store/screenshots/` (générées par `flutter test tool/store_screenshots_test.dart`), image de présentation Google Play `store/screenshots/feature_graphic.png`. Pas d'iPad (app iPhone seulement).
+- [x] Captures d'écran (JPEG sans transparence, `make screenshots`) : iPhone 6,9 pouces en 1320 × 2868 (`store/screenshots/ios/fr`, à déposer dans l'emplacement « iPhone 6,9 pouces » : Apple en tire les autres tailles) et téléphone Android en 1080 × 2160 (`store/screenshots/android/fr`), image de présentation Google Play `store/screenshots/feature_graphic.jpg` (1024 × 500). Pas d'iPad (app iPhone seulement).
 - [ ] Nom anglais officiel de la communauté (« Christian Missionary Fellowship International » ?) pour la description anglaise.
-- [ ] Droits sur les recueils de cantiques (Rendons ministère au Seigneur, Christ est vainqueur, Christ the Victor, Chants d'édification) : Apple demande si l'app contient du contenu de tiers et si l'on a les droits.
+- [x] Droits sur les recueils de cantiques (Rendons ministère au Seigneur, Christ est vainqueur, Christ the Victor, Chants d'édification) : fournis par la communauté CMCI, dont le propriétaire de l'app est membre (confirmé le 25/10/2026). À App Store Connect, répondre « Oui, je dispose des droits » pour le contenu de tiers ; garder par écrit l'accord de la communauté au cas où Apple le demande.
+- [x] Bibles : chargées depuis la Free Use Bible API (bible.helloao.org), dont les traductions sont libres d'utilisation. Vérifier que chaque version proposée y est bien marquée libre (domaine public ou licence ouverte) avant la soumission.
 
 Décisions et corrections avant la soumission (à confier à l'équipe de l'app) :
 

@@ -34,6 +34,14 @@ Monte la version (type:patch|minor|major), le numéro de build +1, commit et tag
 
 ## iOS
 
+### ios certificates
+
+```sh
+[bundle exec] fastlane ios certificates
+```
+
+Une fois (puis à chaque nouvelle extension) : crée certificat et profils App Store dans le dépôt de match
+
 ### ios beta
 
 ```sh
@@ -41,6 +49,14 @@ Monte la version (type:patch|minor|major), le numéro de build +1, commit et tag
 ```
 
 TestFlight, avec les notes de version dans chaque langue
+
+### ios metadata
+
+```sh
+[bundle exec] fastlane ios metadata
+```
+
+App Store Connect : la fiche dans les 7 langues (fastlane/metadata), les notes, le copyright et les catégories, sans build ni captures
 
 ### ios release
 

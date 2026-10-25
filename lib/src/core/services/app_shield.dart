@@ -207,11 +207,20 @@ Future<bool> _nativeShieldAvailable() async {
   }
 }
 
+/// Built without Screen Time on iOS (`--dart-define=SCREEN_TIME=false`, the
+/// store builds made before Apple grants Family Controls for distribution):
+/// the Shield extensions are left out, so « Cherche d'abord Dieu » is hidden.
+const _screenTimeOnIOS = bool.fromEnvironment(
+  'SCREEN_TIME',
+  defaultValue: true,
+);
+
 @Riverpod(keepAlive: true)
 Future<AppShield> appShield(Ref ref) async {
   if (kIsWeb ||
       (defaultTargetPlatform != TargetPlatform.iOS &&
-          defaultTargetPlatform != TargetPlatform.android)) {
+          defaultTargetPlatform != TargetPlatform.android) ||
+      (defaultTargetPlatform == TargetPlatform.iOS && !_screenTimeOnIOS)) {
     return const NoAppShield();
   }
   return await _nativeShieldAvailable()

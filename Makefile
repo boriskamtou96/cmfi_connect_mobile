@@ -24,7 +24,7 @@ export LC_ALL := en_US.UTF-8
 .PHONY: help setup gen gen-clean watch run run-dev run-prod run-device catalog \
 	analyze test check format brand mascots screenshots landing-screens \
 	build-apk build-aab build-ipa build-dev-apk pods clean \
-	lanes bump bump-dry ios-beta ios-release android-beta match-setup asc-env publish
+	lanes bump bump-dry ios-beta ios-metadata ios-release android-beta match-setup asc-env play-env ci-secrets publish
 
 help: ## Affiche cette aide
 	@grep -hE '^[a-zA-Z_-]+:.*?## ' $(MAKEFILE_LIST) | awk 'BEGIN {FS = ":.*?## "}; {printf "  \033[36m%-18s\033[0m %s\n", $$1, $$2}'
@@ -139,17 +139,39 @@ bump: ## Monte la version (TYPE=patch|minor|major), commit et tag
 bump-dry: ## Montre la prochaine version sans rien changer
 	$(FASTLANE) bump type:$(TYPE) dry_run:true
 
-ios-beta: ## Envoie sur TestFlight, avec les notes (clés App Store Connect et match)
-	$(FASTLANE) ios beta
+ios-beta: ## Envoie sur TestFlight, avec les notes ; SCREEN_TIME=true quand Apple accorde Family Controls
+	$(FASTLANE) ios beta $(if $(SCREEN_TIME),screen_time:$(SCREEN_TIME),)
 
-ios-release: ## Envoie le build et les notes sur App Store Connect (sans soumettre à Apple)
-	$(FASTLANE) ios release
+ios-metadata: ## Envoie la fiche App Store dans les 7 langues (fastlane/metadata), sans build
+	$(FASTLANE) ios metadata
+
+ios-release: ## Envoie le build et les notes sur App Store Connect (sans soumettre à Apple) ; SCREEN_TIME=true quand Apple accorde Family Controls
+	$(FASTLANE) ios release $(if $(SCREEN_TIME),screen_time:$(SCREEN_TIME),)
 
 android-beta: ## Envoie sur Google Play (TRACK=internal par défaut)
 	$(FASTLANE) android beta track:$(TRACK)
 
 match-setup: ## Une fois : crée certificat et profils iOS dans le dépôt de match (clé API et MATCH_* dans fastlane/.env)
 	$(FASTLANE) ios certificates
+
+play-env: ## Écrit PLAY_JSON_KEY dans fastlane/.env depuis la clé JSON du compte de service Google Play : make play-env JSON=…
+	@test -f "$(JSON)" || { echo "Usage : make play-env JSON=~/chemin/compte-de-service.json"; exit 1; }
+	@touch fastlane/.env && chmod 600 fastlane/.env
+	@grep -v '^PLAY_JSON_KEY=' fastlane/.env > fastlane/.env.tmp || true
+	@{ cat fastlane/.env.tmp; printf "PLAY_JSON_KEY="; python3 -c "import json,sys; print(json.dumps(json.load(open(sys.argv[1]))))" "$(JSON)"; } > fastlane/.env
+	@rm -f fastlane/.env.tmp
+	@echo "fastlane/.env : PLAY_JSON_KEY écrit (make android-beta peut publier sur Google Play)."
+
+ci-secrets: ## Envoie les secrets iOS de fastlane/.env dans GitHub Actions (gh connecté au compte du dépôt) ; CERTS_TOKEN=jeton GitHub lecture du dépôt de match
+	@test -f fastlane/.env || { echo "fastlane/.env manquant : make asc-env d'abord"; exit 1; }
+	@test -n "$(CERTS_TOKEN)" || { echo "Usage : make ci-secrets CERTS_TOKEN=<jeton GitHub en lecture sur le dépôt de certificats>"; exit 1; }
+	@for name in ASC_KEY_ID ASC_ISSUER_ID ASC_KEY_P8 MATCH_PASSWORD; do \
+		grep "^$$name=" fastlane/.env | cut -d= -f2- | tr -d '\n' | gh secret set $$name || exit 1; \
+	done
+	@# CI clones the certificates over HTTPS: the same repository, and "user:token" in base64
+	@grep '^MATCH_GIT_URL=' fastlane/.env | cut -d= -f2- | sed -E 's#^git@github.com:#https://github.com/#' | tr -d '\n' | gh secret set MATCH_GIT_URL
+	@printf '%s' "$$(gh api user --jq .login):$(CERTS_TOKEN)" | base64 | tr -d '\n' | gh secret set MATCH_GIT_BASIC_AUTHORIZATION
+	@echo "Secrets iOS envoyés : ASC_KEY_ID, ASC_ISSUER_ID, ASC_KEY_P8, MATCH_PASSWORD, MATCH_GIT_URL, MATCH_GIT_BASIC_AUTHORIZATION"
 
 asc-env: ## Écrit fastlane/.env depuis la clé API App Store Connect : make asc-env P8=… KEY_ID=… ISSUER=…
 	@test -n "$(P8)" -a -n "$(KEY_ID)" -a -n "$(ISSUER)" || { echo "Usage : make asc-env P8=~/AuthKey_XXXX.p8 KEY_ID=XXXX ISSUER=xxxx-…"; exit 1; }

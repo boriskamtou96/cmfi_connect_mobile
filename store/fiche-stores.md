@@ -10,6 +10,8 @@ Ce qui reste à fournir est entre [crochets] et regroupé dans la liste de contr
 
 ---
 
+> **App Store, dans les 7 langues :** `fastlane/metadata/<langue>/` (description, sous-titre, mots-clés, texte promotionnel, URLs), plus `copyright.txt` et les catégories ; envoyé par `make ios-metadata`. Les textes français et anglais ci-dessous en sont la source : après une modification ici, la reporter dans `fastlane/metadata`.
+
 ## 1. Identité de la fiche
 
 | Champ | Français | Anglais | Limite |

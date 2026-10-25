@@ -41,6 +41,13 @@ IOS_TARGETS = {
   "ShieldMonitor" => "com.cmficonnect.mobile.ShieldMonitor",
 }.freeze
 
+# Screen Time (« Cherche d'abord Dieu » on iOS): the 3 Shield extensions and
+# the Family Controls entitlement need Apple's approval for distribution. Until
+# it is granted, store builds leave them out (screen_time:false); then set this
+# to true, run `make match-setup` (the profiles get the entitlement) and build.
+SCREEN_TIME_DEFAULT = false
+SHIELD_TARGETS = %w[ShieldActions ShieldConfig ShieldMonitor].freeze
+
 # ----- helpers --------------------------------------------------------------------
 
 # [major, minor, patch, build] of pubspec.yaml ("version: 1.0.0+1")
@@ -64,9 +71,41 @@ def release_notes
   end
 end
 
-# Runs a command at the root of the project (flutter, git…).
+# Runs a command at the root of the project (flutter, git…), outside the Ruby
+# of `bundle exec`: CocoaPods, which Flutter calls, breaks inside it.
 def at_root(command)
-  sh("cd #{ROOT.shellescape} && #{command}")
+  Bundler.with_unbundled_env { sh("cd #{ROOT.shellescape} && #{command}") }
+end
+
+# The files a store build changes (signing, Screen Time, ATS): saved before,
+# put back after, whatever happens.
+STORE_BUILD_FILES = %w[
+  ios/Runner.xcodeproj/project.pbxproj
+  ios/Runner/Runner.entitlements
+  ios/Runner/Info.plist
+].freeze
+
+def keeping_project_files
+  saved = STORE_BUILD_FILES.to_h { |path| [path, File.binread(File.join(ROOT, path))] }
+  yield
+ensure
+  saved&.each { |path, content| File.binwrite(File.join(ROOT, path), content) }
+end
+
+# A build without Screen Time: the Shield extensions are no longer built nor
+# embedded, and the app no longer asks for Family Controls.
+def leave_out_screen_time
+  require "xcodeproj"
+  project = Xcodeproj::Project.open(File.join(ROOT, "ios", "Runner.xcodeproj"))
+  runner = project.targets.find { |target| target.name == "Runner" }
+  runner.dependencies.select { |dep| SHIELD_TARGETS.include?(dep.target&.name) }.each(&:remove_from_project)
+  runner.copy_files_build_phases.each do |phase|
+    phase.files.select { |file| SHIELD_TARGETS.any? { |name| file.display_name.to_s.start_with?(name) } }
+         .each { |file| phase.remove_build_file(file) }
+  end
+  project.save
+  sh("/usr/libexec/PlistBuddy -c 'Delete :com.apple.developer.family-controls' " \
+     "#{File.join(ROOT, 'ios/Runner/Runner.entitlements').shellescape} || true")
 end
 
 # The key of App Store Connect (ASC_KEY_ID, ASC_ISSUER_ID, ASC_KEY_P8 in
@@ -117,13 +156,29 @@ end
 
 platform :ios do
   desc "Construit l'app prod signée par match (l'.ipa dans build/ios)"
-  private_lane :build do
+  private_lane :build do |options|
+    screen_time = options.fetch(:screen_time, SCREEN_TIME_DEFAULT).to_s == "true"
+    targets = screen_time ? IOS_TARGETS : IOS_TARGETS.reject { |target, _| SHIELD_TARGETS.include?(target) }
     # on GitHub Actions, a keychain of its own
     setup_ci if is_ci
     key = app_store_key
     match(api_key: key, readonly: is_ci)
+    keeping_project_files do
+      leave_out_screen_time unless screen_time
+      # the store never needs plain HTTP (the local API of development does)
+      sh("/usr/libexec/PlistBuddy -c 'Delete :NSAppTransportSecurity:NSAllowsArbitraryLoads' " \
+         "#{File.join(ROOT, 'ios/Runner/Info.plist').shellescape} || true")
+      build_signed_app(targets: targets, screen_time: screen_time)
+    end
+    key
+  end
+
+  # Signs every target with its profile of match, then builds the .ipa.
+  private_lane :build_signed_app do |options|
+    targets = options[:targets]
+    screen_time = options[:screen_time]
     # every target signed by its profile of match
-    IOS_TARGETS.each do |target, identifier|
+    targets.each do |target, identifier|
       update_code_signing_settings(
         path: File.join(ROOT, "ios", "Runner.xcodeproj"),
         use_automatic_signing: false,
@@ -135,7 +190,8 @@ platform :ios do
       )
     end
     # Flutter writes its settings (version, .env), Xcode builds and signs
-    at_root("flutter build ios --release --flavor prod --dart-define-from-file=.env --config-only")
+    at_root("flutter build ios --release --flavor prod --dart-define-from-file=.env " \
+            "--dart-define=SCREEN_TIME=#{screen_time} --config-only")
     build_app(
       workspace: File.join(ROOT, "ios", "Runner.xcworkspace"),
       scheme: "prod",
@@ -144,12 +200,11 @@ platform :ios do
       output_directory: File.join(ROOT, "build", "ios"),
       output_name: "CMFI Connect.ipa",
       export_options: {
-        provisioningProfiles: IOS_TARGETS.values.to_h do |identifier|
+        provisioningProfiles: targets.values.to_h do |identifier|
           [identifier, ENV.fetch("sigh_#{identifier}_appstore_profile-name")]
         end,
       },
     )
-    key
   end
 
   desc "Une fois (puis à chaque nouvelle extension) : crée certificat et profils App Store dans le dépôt de match"
@@ -158,9 +213,9 @@ platform :ios do
   end
 
   desc "TestFlight, avec les notes de version dans chaque langue"
-  lane :beta do
+  lane :beta do |options|
     notes = release_notes
-    key = build
+    key = build(screen_time: options[:screen_time])
     upload_to_testflight(
       api_key: key,
       # « À tester », in each language (it waits for Apple to process the build)
@@ -171,10 +226,29 @@ platform :ios do
     )
   end
 
-  desc "App Store Connect : le build et les notes de la version (sans l'envoyer à Apple)"
-  lane :release do
+  desc "App Store Connect : la fiche dans les 7 langues (fastlane/metadata), les notes, le copyright et les catégories, sans build ni captures"
+  lane :metadata do
     notes = release_notes
-    key = build
+    major, minor, patch, = pubspec_version
+    upload_to_app_store(
+      api_key: app_store_key,
+      app_version: "#{major}.#{minor}.#{patch}",
+      metadata_path: File.join(__dir__, "metadata"),
+      release_notes: notes.to_h do |language, text|
+        [APP_STORE_LOCALES.fetch(language), text]
+      end,
+      skip_binary_upload: true,
+      skip_screenshots: true,
+      submit_for_review: false,
+      force: true,
+      run_precheck_before_submit: false,
+    )
+  end
+
+  desc "App Store Connect : le build et les notes de la version (sans l'envoyer à Apple)"
+  lane :release do |options|
+    notes = release_notes
+    key = build(screen_time: options[:screen_time])
     major, minor, patch, = pubspec_version
     upload_to_app_store(
       api_key: key,
@@ -182,6 +256,7 @@ platform :ios do
       release_notes: notes.to_h do |language, text|
         [APP_STORE_LOCALES.fetch(language), text]
       end,
+      metadata_path: File.join(__dir__, "metadata"),
       skip_screenshots: true,
       skip_metadata: false,
       submit_for_review: false,

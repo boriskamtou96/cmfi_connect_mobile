@@ -40,6 +40,8 @@ _LibraryDocument _$LibraryDocumentFromJson(Map<String, dynamic> json) =>
       title: json['title'] as String,
       description: json['description'] as String? ?? '',
       category: json['category'] as String? ?? '',
+      categoryId: (json['category_id'] as num?)?.toInt(),
+      categorySlug: json['category_slug'] as String? ?? '',
       file: LibraryFile.fromJson(json['file'] as Map<String, dynamic>),
       publishedAt: json['published_at'] == null
           ? null
@@ -52,15 +54,24 @@ Map<String, dynamic> _$LibraryDocumentToJson(_LibraryDocument instance) =>
       'title': instance.title,
       'description': instance.description,
       'category': instance.category,
+      'category_id': ?instance.categoryId,
+      'category_slug': instance.categorySlug,
       'file': instance.file.toJson(),
       'published_at': ?instance.publishedAt?.toIso8601String(),
     };
 
 _DocumentCategory _$DocumentCategoryFromJson(Map<String, dynamic> json) =>
     _DocumentCategory(
+      id: (json['id'] as num?)?.toInt() ?? 0,
       name: json['name'] as String,
+      slug: json['slug'] as String? ?? '',
       count: (json['count'] as num?)?.toInt() ?? 0,
     );
 
 Map<String, dynamic> _$DocumentCategoryToJson(_DocumentCategory instance) =>
-    <String, dynamic>{'name': instance.name, 'count': instance.count};
+    <String, dynamic>{
+      'id': instance.id,
+      'name': instance.name,
+      'slug': instance.slug,
+      'count': instance.count,
+    };

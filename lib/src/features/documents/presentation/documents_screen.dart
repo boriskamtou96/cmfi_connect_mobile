@@ -22,6 +22,7 @@ import '../../../core/widgets/error_view.dart';
 import '../../../core/widgets/section_card.dart';
 import '../../../core/widgets/skeleton.dart';
 import '../application/documents.dart';
+import '../domain/documents_query.dart';
 import '../domain/library_document.dart';
 import '../infrastructure/documents_api.dart';
 
@@ -39,7 +40,8 @@ String documentSize(BuildContext context, int bytes) {
 /// Plus › Communauté › Nos documents: the library of the community, the
 /// newest first; a search on their words, a chip per category, the next
 /// page at the end of the list. A tap opens a document (the phone's reader
-/// or the browser), the arrow keeps it on the phone.
+/// or the browser), the arrow keeps it on the phone. The bar is slim: the
+/// back arrow, the title and the search, without the tall night-blue header.
 @RoutePage()
 class DocumentsScreen extends HookConsumerWidget {
   const DocumentsScreen({super.key});
@@ -50,14 +52,16 @@ class DocumentsScreen extends HookConsumerWidget {
     final controller = useTextEditingController();
     final typed = useValueListenable(controller).text.trim();
     final search = useDebounced(typed, const Duration(milliseconds: 300)) ?? '';
-    final category = useState('');
-    final provider = documentsProvider(search, category.value);
+    // the category, kept apart from the typing
+    final chosen = useState(const DocumentsQuery());
+    final query = chosen.value.copyWith(search: search);
+    final provider = documentsProvider(query);
     final documents = ref.watch(provider);
     final categories = ref.watch(documentCategoriesProvider).value ?? const [];
 
     final Widget body = switch (documents) {
       AsyncValue(value: final state?) when state.items.isEmpty => _Message(
-        text: search.isEmpty && category.value.isEmpty ? t.empty : t.none,
+        text: query.narrowed ? t.none : t.empty,
       ),
       AsyncValue(value: final state?) => _List(
         state: state,
@@ -96,8 +100,10 @@ class DocumentsScreen extends HookConsumerWidget {
                   SliverToBoxAdapter(
                     child: _Chips(
                       categories: categories,
-                      selected: category.value,
-                      onSelect: (name) => category.value = name,
+                      selected: chosen.value.category,
+                      onSelect: (value) => chosen.value = chosen.value.copyWith(
+                        category: value,
+                      ),
                     ),
                   ),
                 if (documents.value case final state? when state.total > 0)
@@ -137,7 +143,8 @@ class DocumentsScreen extends HookConsumerWidget {
   }
 }
 
-/// Night blue, like Notre ministère: the title and the search.
+/// A slim bar on the light background: the back arrow, the title and the
+/// search below, without the tall night-blue header.
 class _Header extends StatelessWidget {
   const _Header({required this.controller});
 
@@ -146,92 +153,76 @@ class _Header extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final t = context.t.documents;
+    final scheme = Theme.of(context).colorScheme;
 
-    return Container(
-      decoration: const BoxDecoration(
-        color: AppColors.primaryDeep,
-        borderRadius: BorderRadius.vertical(
-          bottom: Radius.circular(AppRadius.xxl),
+    return SafeArea(
+      bottom: false,
+      child: Padding(
+        padding: const EdgeInsetsDirectional.fromSTEB(
+          AppSpacing.sm,
+          AppSpacing.xs,
+          AppSpacing.lg,
+          AppSpacing.sm,
         ),
-      ),
-      child: SafeArea(
-        bottom: false,
-        child: Padding(
-          padding: const EdgeInsets.fromLTRB(
-            AppSpacing.xs,
-            AppSpacing.xs,
-            AppSpacing.lg,
-            AppSpacing.xl,
-          ),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const IconTheme(
-                data: IconThemeData(color: Colors.white),
-                child: AppBackButton(),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+              children: [
+                const AppBackButton(),
+                Expanded(
+                  child: Semantics(
+                    header: true,
+                    child: Text(
+                      t.title,
+                      style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                        fontWeight: FontWeight.w800,
+                        color: scheme.onSurface,
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            Padding(
+              padding: const EdgeInsetsDirectional.only(
+                start: AppSpacing.sm,
+                end: AppSpacing.sm,
               ),
-              Padding(
-                padding: const EdgeInsetsDirectional.only(start: AppSpacing.md),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Semantics(
-                      header: true,
-                      child: Text(
-                        t.title,
-                        style: Theme.of(context).textTheme.headlineSmall
-                            ?.copyWith(color: Colors.white),
-                      ),
-                    ),
-                    const SizedBox(height: AppSpacing.xs),
-                    Text(
-                      t.subtitle,
-                      style: const TextStyle(
-                        fontFamily: 'Lora',
-                        fontStyle: FontStyle.italic,
-                        fontSize: 16,
-                        color: AppColors.goldLight,
-                      ),
-                    ),
-                    const SizedBox(height: AppSpacing.lg),
-                    TextField(
-                      controller: controller,
-                      textInputAction: TextInputAction.search,
-                      style: const TextStyle(color: AppColors.ink),
-                      decoration: InputDecoration(
-                        hintText: t.search,
-                        filled: true,
-                        fillColor: Colors.white,
-                        prefixIcon: const Icon(
-                          AppIcons.search,
-                          color: AppColors.muted,
-                        ),
-                        suffixIcon: ValueListenableBuilder(
-                          valueListenable: controller,
-                          builder: (context, value, _) => value.text.isEmpty
-                              ? const SizedBox.shrink()
-                              : IconButton(
-                                  tooltip: MaterialLocalizations.of(
-                                    context,
-                                  ).deleteButtonTooltip,
-                                  onPressed: controller.clear,
-                                  icon: const Icon(
-                                    AppIcons.close,
-                                    color: AppColors.muted,
-                                  ),
-                                ),
-                        ),
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(AppRadius.lg),
-                          borderSide: BorderSide.none,
-                        ),
-                      ),
-                    ),
-                  ],
+              child: TextField(
+                controller: controller,
+                textInputAction: TextInputAction.search,
+                decoration: InputDecoration(
+                  hintText: t.search,
+                  filled: true,
+                  fillColor: scheme.surface,
+                  prefixIcon: const Icon(
+                    AppIcons.search,
+                    color: AppColors.muted,
+                  ),
+                  suffixIcon: ValueListenableBuilder(
+                    valueListenable: controller,
+                    builder: (context, value, _) => value.text.isEmpty
+                        ? const SizedBox.shrink()
+                        : IconButton(
+                            tooltip: MaterialLocalizations.of(
+                              context,
+                            ).deleteButtonTooltip,
+                            onPressed: controller.clear,
+                            icon: const Icon(
+                              AppIcons.close,
+                              color: AppColors.muted,
+                            ),
+                          ),
+                  ),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(AppRadius.lg),
+                    borderSide: BorderSide.none,
+                  ),
                 ),
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );
@@ -281,7 +272,11 @@ class _Chips extends StatelessWidget {
       child: Row(
         children: [
           chip(t.all, ''),
-          for (final category in categories) chip(category.name, category.name),
+          for (final category in categories)
+            chip(
+              category.name,
+              category.slug.isEmpty ? category.name : category.slug,
+            ),
         ],
       ),
     );

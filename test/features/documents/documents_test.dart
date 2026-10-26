@@ -43,13 +43,14 @@ void main() {
   });
 
   testWidgets('the search and the category chips', (tester) async {
-    await pumpApp(tester, token: 't');
+    final app = await pumpApp(tester, token: 't');
     await openDocuments(tester);
 
     // accents left aside
     await search(tester, 'reglement');
     expect(find.text('1 document'), findsOneWidget);
     expect(find.text("Fiche d'inscription"), findsNothing);
+    expect(app.documentsApi.queriesAsked.last.search, 'reglement');
 
     await search(tester, 'rien de tel');
     expect(
@@ -58,8 +59,10 @@ void main() {
     );
 
     await search(tester, '');
+    // the chip carries the slug the server filters by
     await tester.tap(find.widgetWithText(ChoiceChip, 'Formulaires'));
     await tester.pumpAndSettle();
+    expect(app.documentsApi.queriesAsked.last.category, 'formulaires');
     expect(find.text("Fiche d'inscription"), findsOneWidget);
     expect(find.text('Règlement intérieur'), findsNothing);
     await tester.tap(find.widgetWithText(ChoiceChip, 'Tous'));

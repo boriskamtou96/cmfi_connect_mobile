@@ -5,6 +5,7 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../../../core/network/api_call.dart';
 import '../../../core/network/dio_provider.dart';
+import '../domain/documents_query.dart';
 import '../domain/library_document.dart';
 
 part 'documents_api.g.dart';
@@ -18,19 +19,18 @@ class DocumentsApi {
 
   final Dio _dio;
 
-  /// [search]: words of the title, the description or the category (case
-  /// and accents left aside); [category]: one of [categories], '' for all.
+  /// [query]: the words of the title, the description, the category or the
+  /// file's name (case and accents left aside), and a category's slug.
   Future<DocumentsPage> list({
-    String search = '',
-    String category = '',
+    DocumentsQuery query = const DocumentsQuery(),
     int page = 1,
     int size = 20,
   }) => apiCall(() async {
     final response = await _dio.get<Map<String, dynamic>>(
       '/documents',
       queryParameters: {
-        if (search.trim().isNotEmpty) 'search': search.trim(),
-        if (category.isNotEmpty) 'category': category,
+        if (query.search.trim().isNotEmpty) 'search': query.search.trim(),
+        if (query.category.isNotEmpty) 'category': query.category,
         'page': page,
         'size': size,
       },

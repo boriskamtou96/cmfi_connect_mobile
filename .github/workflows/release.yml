@@ -22,6 +22,9 @@ on:
 
 jobs:
   test:
+    # v1.0.0 marks the first release, built and sent by hand on 2026-10-25:
+    # nothing to publish again (the stores refuse a build number twice)
+    if: github.ref_name != 'v1.0.0'
     runs-on: ubuntu-latest
     timeout-minutes: 30
     steps:

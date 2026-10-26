@@ -1,6 +1,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
+import '../domain/documents_query.dart';
 import '../domain/library_document.dart';
 import '../infrastructure/documents_api.dart';
 
@@ -21,23 +22,23 @@ abstract class DocumentsState with _$DocumentsState {
   bool get hasMore => items.length < total;
 }
 
-/// The documents that answer [search] in [category] ('' for all), a page at
-/// a time: the first one at once, the next ones at the end of the list.
+/// The documents that answer [query], a page at a time: the first one at
+/// once, the next ones at the end of the list.
 @riverpod
 class Documents extends _$Documents {
   static const pageSize = 20;
 
   @override
-  Future<DocumentsState> build(String search, String category) async {
+  Future<DocumentsState> build(DocumentsQuery query) async {
     final page = await ref
         .watch(documentsApiProvider)
-        .list(search: search, category: category, size: pageSize);
+        .list(query: query, size: pageSize);
     return DocumentsState(items: page.items, total: page.total);
   }
 
   /// Pulled down: the first page again (the list stays without network).
   Future<void> refresh() async {
-    final result = await AsyncValue.guard(() => build(search, category));
+    final result = await AsyncValue.guard(() => build(query));
     if (ref.mounted && (result.hasValue || !state.hasValue)) {
       state = result;
     }
@@ -53,8 +54,7 @@ class Documents extends _$Documents {
       final next = await ref
           .read(documentsApiProvider)
           .list(
-            search: search,
-            category: category,
+            query: query,
             page: current.page + 1,
             size: pageSize,
           );

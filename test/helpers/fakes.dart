@@ -39,6 +39,7 @@ import 'package:cmfi_connect/src/features/authorities/infrastructure/authorities
 import 'package:cmfi_connect/src/features/disciples/domain/disciple.dart';
 import 'package:cmfi_connect/src/features/disciples/domain/received_report.dart';
 import 'package:cmfi_connect/src/features/disciples/infrastructure/disciples_api.dart';
+import 'package:cmfi_connect/src/features/documents/domain/documents_query.dart';
 import 'package:cmfi_connect/src/features/documents/domain/library_document.dart';
 import 'package:cmfi_connect/src/features/documents/infrastructure/documents_api.dart';
 import 'package:cmfi_connect/src/features/events/domain/event.dart';
@@ -2656,6 +2657,7 @@ class FakeDocumentsApi implements DocumentsApi {
   List<LibraryDocument> documents;
   bool offline;
   final pagesAsked = <int>[];
+  final queriesAsked = <DocumentsQuery>[];
 
   static const sampleDocuments = [
     LibraryDocument(
@@ -2663,6 +2665,8 @@ class FakeDocumentsApi implements DocumentsApi {
       title: 'Règlement intérieur',
       description: 'À lire par tous les responsables.',
       category: 'Règlements',
+      categoryId: 2,
+      categorySlug: 'reglements',
       file: LibraryFile(
         id: 11,
         url: '/v1/media/a.pdf',
@@ -2674,6 +2678,8 @@ class FakeDocumentsApi implements DocumentsApi {
       id: 2,
       title: "Fiche d'inscription",
       category: 'Formulaires',
+      categoryId: 1,
+      categorySlug: 'formulaires',
       file: LibraryFile(
         id: 12,
         url: '/v1/media/b.docx',
@@ -2690,10 +2696,19 @@ class FakeDocumentsApi implements DocumentsApi {
       .replaceAll(RegExp('[àâ]'), 'a')
       .replaceAll(RegExp('[îï]'), 'i');
 
+  /// A category's id and slug, as the server gives them.
+  static int _categoryId(String name) => switch (name) {
+    'Formulaires' => 1,
+    'Règlements' => 2,
+    _ => name.hashCode & 0x7fffffff,
+  };
+
+  static String _slug(String name) =>
+      _plain(name).replaceAll(RegExp('[^a-z0-9]+'), '-');
+
   @override
   Future<DocumentsPage> list({
-    String search = '',
-    String category = '',
+    DocumentsQuery query = const DocumentsQuery(),
     int page = 1,
     int size = 20,
   }) async {
@@ -2701,13 +2716,21 @@ class FakeDocumentsApi implements DocumentsApi {
       throw const NetworkException();
     }
     pagesAsked.add(page);
-    final words = _plain(search).split(' ').where((w) => w.isNotEmpty);
+    queriesAsked.add(query);
+    final words = query.search
+        .trim()
+        .toLowerCase()
+        .split(' ')
+        .where((w) => w.isNotEmpty);
     final kept = [
       for (final document in documents)
-        if ((category.isEmpty || document.category == category) &&
+        if ((query.category.isEmpty ||
+                document.categorySlug == query.category ||
+                document.category == query.category) &&
             words.every(
               _plain(
-                '${document.title} ${document.description} ${document.category}',
+                '${document.title} ${document.description} '
+                '${document.category} ${document.file.name}',
               ).contains,
             ))
           document,
@@ -2729,7 +2752,12 @@ class FakeDocumentsApi implements DocumentsApi {
     }
     return [
       for (final MapEntry(:key, :value) in counts.entries)
-        DocumentCategory(name: key, count: value),
+        DocumentCategory(
+          id: _categoryId(key),
+          name: key,
+          slug: _slug(key),
+          count: value,
+        ),
     ]..sort((a, b) => a.name.compareTo(b.name));
   }
 

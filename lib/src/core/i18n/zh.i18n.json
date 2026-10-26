@@ -2056,7 +2056,20 @@
     "recordedOn": "{date} 的信息",
     "moreSubtitle": "可收听的讲道与教导",
     "closePlayer": "关闭播放器",
-    "downloadPremium": "使用 Premium 下载"
+    "downloadPremium": "使用 Premium 下载",
+    "filters": "筛选",
+    "filtersTitle": "缩小列表",
+    "speakerLabel": "讲员",
+    "allSpeakers": "所有讲员",
+    "yearLabel": "年份",
+    "allYears": "所有年份",
+    "editionLabel": "届次",
+    "allEditions": "所有届次",
+    "dayLabel": "天",
+    "allDays": "所有天",
+    "dayChip(n)": "第 {n} 天",
+    "clearFilters": "全部清除",
+    "showResults": "显示"
   },
   "memorize": {
     "title": "背经",

@@ -17,13 +17,15 @@ import '../../../core/widgets/skeleton.dart';
 import '../application/teaching_library.dart';
 import '../application/teachings.dart';
 import '../domain/teaching.dart';
+import '../domain/teaching_query.dart';
 import 'widgets/teaching_widgets.dart';
 
 /// Plus › Communauté › Enseignements: the audio messages of the community,
 /// the newest first; a search on their words (the speaker's name too), a
-/// chip per category and « Téléchargés », the next page at the end of the
-/// list. Without network, the messages kept on the phone. The one heard now
-/// stays at the foot of the screen.
+/// chip per category, the advanced filters (speaker, year, annual edition,
+/// day of it) and « Téléchargés », the next page at the end of the list.
+/// Without network, the messages kept on the phone. The one heard now stays
+/// at the foot of the screen.
 @RoutePage()
 class TeachingsScreen extends HookConsumerWidget {
   const TeachingsScreen({super.key});
@@ -37,11 +39,19 @@ class TeachingsScreen extends HookConsumerWidget {
     final controller = useTextEditingController();
     final typed = useValueListenable(controller).text.trim();
     final search = useDebounced(typed, const Duration(milliseconds: 300)) ?? '';
-    final category = useState('');
-    final onlyKept = category.value == _downloaded;
-    final provider = teachingsProvider(search, onlyKept ? '' : category.value);
+    // the category and the advanced filters, kept apart from the typing
+    final chosen = useState(const TeachingQuery());
+    final onlyKept = chosen.value.category == _downloaded;
+    final query = chosen.value.copyWith(
+      search: search,
+      category: onlyKept ? '' : chosen.value.category,
+    );
+    final provider = teachingsProvider(query);
     final teachings = ref.watch(provider);
     final categories = ref.watch(teachingCategoriesProvider).value ?? const [];
+    final facets = ref
+        .watch(teachingFacetsProvider(chosen.value.edition))
+        .value;
     final kept = ref.watch(teachingDownloadsProvider).value?.kept ?? const {};
 
     // the messages kept, newest first, that answer the search
@@ -72,7 +82,7 @@ class TeachingsScreen extends HookConsumerWidget {
         ],
       ),
       AsyncValue(value: final state?) when state.items.isEmpty => _Message(
-        text: search.isEmpty && category.value.isEmpty ? t.empty : t.none,
+        text: query.narrowed ? t.none : t.empty,
       ),
       AsyncValue(value: final state?) => _List(
         items: state.items,
@@ -87,8 +97,23 @@ class TeachingsScreen extends HookConsumerWidget {
       _ => const LoadingList(count: 6, card: false),
     };
 
+    Future<void> openFilters() async {
+      final result = await showModalBottomSheet<TeachingQuery>(
+        context: context,
+        isScrollControlled: true,
+        useSafeArea: true,
+        showDragHandle: true,
+        builder: (_) => _FiltersSheet(initial: chosen.value),
+      );
+      if (result != null) {
+        chosen.value = result;
+      }
+    }
+
     return AnnotatedRegion<SystemUiOverlayStyle>(
-      value: SystemUiOverlayStyle.light,
+      value: Theme.of(context).brightness == Brightness.dark
+          ? SystemUiOverlayStyle.light
+          : SystemUiOverlayStyle.dark,
       child: Scaffold(
         bottomNavigationBar: const MiniPlayer(),
         body: NotificationListener<ScrollNotification>(
@@ -105,19 +130,48 @@ class TeachingsScreen extends HookConsumerWidget {
           child: RefreshIndicator.adaptive(
             onRefresh: () async {
               ref.invalidate(teachingCategoriesProvider);
+              ref.invalidate(teachingFacetsProvider);
               await ref.read(provider.notifier).refresh();
             },
             child: CustomScrollView(
               physics: const AlwaysScrollableScrollPhysics(),
               slivers: [
-                SliverToBoxAdapter(child: _Header(controller: controller)),
+                SliverToBoxAdapter(
+                  child: _Header(
+                    controller: controller,
+                    activeFilters: chosen.value.filterCount,
+                    onFilters: openFilters,
+                  ),
+                ),
                 if (categories.isNotEmpty || kept.isNotEmpty)
                   SliverToBoxAdapter(
                     child: _Chips(
                       categories: categories,
                       withDownloaded: kept.isNotEmpty,
-                      selected: category.value,
-                      onSelect: (name) => category.value = name,
+                      selected: chosen.value.category,
+                      onSelect: (value) =>
+                          chosen.value = chosen.value.copyWith(category: value),
+                    ),
+                  ),
+                if (chosen.value.edition != null &&
+                    (facets?.days.isNotEmpty ?? false))
+                  SliverToBoxAdapter(
+                    child: _Days(
+                      days: facets!.days,
+                      selected: chosen.value.day,
+                      onSelect: (day) =>
+                          chosen.value = chosen.value.copyWith(day: day),
+                    ),
+                  ),
+                if (chosen.value.speaker.isNotEmpty ||
+                    chosen.value.year != null ||
+                    chosen.value.edition != null ||
+                    chosen.value.day != null)
+                  SliverToBoxAdapter(
+                    child: _ActiveFilters(
+                      query: chosen.value,
+                      facets: facets,
+                      onChanged: (next) => chosen.value = next,
                     ),
                   ),
                 if (teachings.value case final state?
@@ -158,101 +212,104 @@ class TeachingsScreen extends HookConsumerWidget {
   }
 }
 
-/// Night blue, like Nos documents: the title and the search.
+/// A slim bar on the light background: the back arrow, the title and the
+/// filters; the search below, without the tall night-blue header.
 class _Header extends StatelessWidget {
-  const _Header({required this.controller});
+  const _Header({
+    required this.controller,
+    required this.activeFilters,
+    required this.onFilters,
+  });
 
   final TextEditingController controller;
+  final int activeFilters;
+  final VoidCallback onFilters;
 
   @override
   Widget build(BuildContext context) {
     final t = context.t.teachings;
+    final scheme = Theme.of(context).colorScheme;
 
-    return Container(
-      decoration: const BoxDecoration(
-        color: AppColors.primaryDeep,
-        borderRadius: BorderRadius.vertical(
-          bottom: Radius.circular(AppRadius.xxl),
+    return SafeArea(
+      bottom: false,
+      child: Padding(
+        padding: const EdgeInsetsDirectional.fromSTEB(
+          AppSpacing.sm,
+          AppSpacing.xs,
+          AppSpacing.lg,
+          AppSpacing.sm,
         ),
-      ),
-      child: SafeArea(
-        bottom: false,
-        child: Padding(
-          padding: const EdgeInsets.fromLTRB(
-            AppSpacing.xs,
-            AppSpacing.xs,
-            AppSpacing.lg,
-            AppSpacing.xl,
-          ),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const IconTheme(
-                data: IconThemeData(color: Colors.white),
-                child: AppBackButton(),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+              children: [
+                const AppBackButton(),
+                Expanded(
+                  child: Semantics(
+                    header: true,
+                    child: Text(
+                      t.title,
+                      style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                        fontWeight: FontWeight.w800,
+                        color: scheme.onSurface,
+                      ),
+                    ),
+                  ),
+                ),
+                IconButton(
+                  tooltip: t.filters,
+                  onPressed: onFilters,
+                  icon: Badge(
+                    isLabelVisible: activeFilters > 0,
+                    label: Text('$activeFilters'),
+                    child: Icon(
+                      AppIcons.items,
+                      color: activeFilters > 0 ? AppColors.primary : null,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            Padding(
+              padding: const EdgeInsetsDirectional.only(
+                start: AppSpacing.sm,
+                end: AppSpacing.sm,
               ),
-              Padding(
-                padding: const EdgeInsetsDirectional.only(start: AppSpacing.md),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Semantics(
-                      header: true,
-                      child: Text(
-                        t.title,
-                        style: Theme.of(context).textTheme.headlineSmall
-                            ?.copyWith(color: Colors.white),
-                      ),
-                    ),
-                    const SizedBox(height: AppSpacing.xs),
-                    Text(
-                      t.subtitle,
-                      style: const TextStyle(
-                        fontFamily: 'Lora',
-                        fontStyle: FontStyle.italic,
-                        fontSize: 16,
-                        color: AppColors.goldLight,
-                      ),
-                    ),
-                    const SizedBox(height: AppSpacing.lg),
-                    TextField(
-                      controller: controller,
-                      textInputAction: TextInputAction.search,
-                      style: const TextStyle(color: AppColors.ink),
-                      decoration: InputDecoration(
-                        hintText: t.search,
-                        filled: true,
-                        fillColor: Colors.white,
-                        prefixIcon: const Icon(
-                          AppIcons.search,
-                          color: AppColors.muted,
-                        ),
-                        suffixIcon: ValueListenableBuilder(
-                          valueListenable: controller,
-                          builder: (context, value, _) => value.text.isEmpty
-                              ? const SizedBox.shrink()
-                              : IconButton(
-                                  tooltip: MaterialLocalizations.of(
-                                    context,
-                                  ).deleteButtonTooltip,
-                                  onPressed: controller.clear,
-                                  icon: const Icon(
-                                    AppIcons.close,
-                                    color: AppColors.muted,
-                                  ),
-                                ),
-                        ),
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(AppRadius.lg),
-                          borderSide: BorderSide.none,
-                        ),
-                      ),
-                    ),
-                  ],
+              child: TextField(
+                controller: controller,
+                textInputAction: TextInputAction.search,
+                decoration: InputDecoration(
+                  hintText: t.search,
+                  filled: true,
+                  fillColor: scheme.surface,
+                  prefixIcon: const Icon(
+                    AppIcons.search,
+                    color: AppColors.muted,
+                  ),
+                  suffixIcon: ValueListenableBuilder(
+                    valueListenable: controller,
+                    builder: (context, value, _) => value.text.isEmpty
+                        ? const SizedBox.shrink()
+                        : IconButton(
+                            tooltip: MaterialLocalizations.of(
+                              context,
+                            ).deleteButtonTooltip,
+                            onPressed: controller.clear,
+                            icon: const Icon(
+                              AppIcons.close,
+                              color: AppColors.muted,
+                            ),
+                          ),
+                  ),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(AppRadius.lg),
+                    borderSide: BorderSide.none,
+                  ),
                 ),
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );
@@ -304,7 +361,7 @@ class _Chips extends StatelessWidget {
       scrollDirection: Axis.horizontal,
       padding: const EdgeInsetsDirectional.fromSTEB(
         AppSpacing.lg,
-        AppSpacing.lg,
+        AppSpacing.md,
         AppSpacing.lg,
         0,
       ),
@@ -317,8 +374,347 @@ class _Chips extends StatelessWidget {
               TeachingsScreen._downloaded,
               icon: AppIcons.downloaded,
             ),
-          for (final category in categories) chip(category.name, category.name),
+          for (final category in categories)
+            chip(
+              category.name,
+              category.slug.isEmpty ? category.name : category.slug,
+            ),
         ],
+      ),
+    );
+  }
+}
+
+/// The days of the edition chosen: « Tous les jours », then day 1, 2… with
+/// how many messages each (several may share a day).
+class _Days extends StatelessWidget {
+  const _Days({
+    required this.days,
+    required this.selected,
+    required this.onSelect,
+  });
+
+  final List<TeachingDayFacet> days;
+  final int? selected;
+  final ValueChanged<int?> onSelect;
+
+  @override
+  Widget build(BuildContext context) {
+    final t = context.t.teachings;
+    final tone = AppModule.reports.tone(context);
+
+    Widget chip(String label, int? value) => Padding(
+      padding: const EdgeInsetsDirectional.only(end: AppSpacing.sm),
+      child: ChoiceChip(
+        label: Text(label),
+        selected: selected == value,
+        onSelected: (_) => onSelect(value),
+        selectedColor: tone.soft,
+        labelStyle: TextStyle(
+          fontWeight: FontWeight.w700,
+          color: selected == value ? tone.onSoft : null,
+        ),
+        showCheckmark: false,
+      ),
+    );
+
+    return SingleChildScrollView(
+      scrollDirection: Axis.horizontal,
+      padding: const EdgeInsetsDirectional.fromSTEB(
+        AppSpacing.lg,
+        AppSpacing.sm,
+        AppSpacing.lg,
+        0,
+      ),
+      child: Row(
+        children: [
+          chip(t.allDays, null),
+          for (final day in days) chip(t.dayChip(n: day.day), day.day),
+        ],
+      ),
+    );
+  }
+}
+
+/// The advanced filters in force, each one removed by a tap; « Tout
+/// effacer » drops them all.
+class _ActiveFilters extends StatelessWidget {
+  const _ActiveFilters({
+    required this.query,
+    required this.facets,
+    required this.onChanged,
+  });
+
+  final TeachingQuery query;
+  final TeachingFacets? facets;
+  final ValueChanged<TeachingQuery> onChanged;
+
+  @override
+  Widget build(BuildContext context) {
+    final t = context.t.teachings;
+    final edition = query.edition == null
+        ? null
+        : facets?.editions.where((one) => one.id == query.edition).firstOrNull;
+
+    Widget chip(String label, VoidCallback onDeleted) => Padding(
+      padding: const EdgeInsetsDirectional.only(end: AppSpacing.sm),
+      child: InputChip(
+        label: Text(label),
+        onDeleted: onDeleted,
+        deleteIcon: const Icon(AppIcons.close, size: 16),
+      ),
+    );
+
+    return SingleChildScrollView(
+      scrollDirection: Axis.horizontal,
+      padding: const EdgeInsetsDirectional.fromSTEB(
+        AppSpacing.lg,
+        AppSpacing.sm,
+        AppSpacing.lg,
+        0,
+      ),
+      child: Row(
+        children: [
+          if (query.speaker.isNotEmpty)
+            chip(query.speaker, () => onChanged(query.copyWith(speaker: ''))),
+          if (query.year != null)
+            chip('${query.year}', () => onChanged(query.copyWith(year: null))),
+          if (query.edition != null)
+            chip(
+              edition?.title.isNotEmpty == true
+                  ? edition!.title
+                  : '${edition?.categoryName ?? ''} ${edition?.year ?? ''}'
+                        .trim(),
+              () => onChanged(query.copyWith(edition: null, day: null)),
+            ),
+          if (query.day != null)
+            chip(
+              t.dayChip(n: query.day!),
+              () => onChanged(query.copyWith(day: null)),
+            ),
+          TextButton(
+            onPressed: () => onChanged(query.withoutAdvanced),
+            child: Text(t.clearFilters),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+/// The bottom sheet of the advanced filters: a speaker, a year, an edition
+/// and, once an edition is chosen, one of its days.
+class _FiltersSheet extends HookConsumerWidget {
+  const _FiltersSheet({required this.initial});
+
+  final TeachingQuery initial;
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final t = context.t.teachings;
+    final draft = useState(initial);
+    // the speakers, the years and the editions never depend on the edition;
+    // only its days do (the lists stay while those load)
+    final base =
+        ref.watch(teachingFacetsProvider(null)).value ?? const TeachingFacets();
+    final days = draft.value.edition == null
+        ? const <TeachingDayFacet>[]
+        : ref.watch(teachingFacetsProvider(draft.value.edition)).value?.days ??
+              const <TeachingDayFacet>[];
+
+    /// "Théodore Andoseh (2)"; the name alone while the counts load.
+    String counted(String label, int? count) =>
+        count != null && count > 0 ? '$label ($count)' : label;
+
+    Widget dropdown<T>({
+      required String label,
+      required T value,
+      required List<DropdownMenuItem<T>> items,
+      required ValueChanged<T> onChanged,
+    }) => Padding(
+      padding: const EdgeInsets.only(bottom: AppSpacing.md),
+      child: DropdownButtonFormField<T>(
+        initialValue: value,
+        isExpanded: true,
+        decoration: InputDecoration(labelText: label),
+        items: items,
+        onChanged: (next) {
+          if (next != null) {
+            onChanged(next);
+          }
+        },
+      ),
+    );
+
+    // a value kept while the lists load, so the form never loses it
+    final speakerNames = [
+      for (final speaker in base.speakers) speaker.name,
+      if (draft.value.speaker.isNotEmpty &&
+          !base.speakers.any((one) => one.name == draft.value.speaker))
+        draft.value.speaker,
+    ];
+    final years = <int>[for (final year in base.years) year.year];
+    final chosenYear = draft.value.year;
+    if (chosenYear != null && !years.contains(chosenYear)) {
+      years.add(chosenYear);
+    }
+    final editions = <({int id, String title})>[
+      for (final edition in base.editions)
+        (
+          id: edition.id,
+          title: edition.title.isNotEmpty
+              ? edition.title
+              : '${edition.categoryName} ${edition.year}'.trim(),
+        ),
+    ];
+    final chosenEdition = draft.value.edition;
+    if (chosenEdition != null &&
+        !editions.any((one) => one.id == chosenEdition)) {
+      editions.add((
+        id: chosenEdition,
+        title: '${t.editionLabel} $chosenEdition',
+      ));
+    }
+    final dayNumbers = <int>[for (final day in days) day.day];
+    final chosenDay = draft.value.day;
+    if (chosenDay != null && !dayNumbers.contains(chosenDay)) {
+      dayNumbers.add(chosenDay);
+    }
+
+    return SizedBox(
+      width: MediaQuery.sizeOf(context).width,
+      child: SingleChildScrollView(
+        padding: EdgeInsetsDirectional.fromSTEB(
+          AppSpacing.xl,
+          0,
+          AppSpacing.xl,
+          AppSpacing.xl + MediaQuery.viewInsetsOf(context).bottom,
+        ),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            Text(
+              t.filtersTitle,
+              style: Theme.of(
+                context,
+              ).textTheme.titleLarge?.copyWith(fontWeight: FontWeight.w800),
+            ),
+            const SizedBox(height: AppSpacing.lg),
+            dropdown<String>(
+              label: t.speakerLabel,
+              value: draft.value.speaker,
+              items: [
+                DropdownMenuItem(value: '', child: Text(t.allSpeakers)),
+                for (final name in speakerNames)
+                  DropdownMenuItem(
+                    value: name,
+                    child: Text(
+                      counted(
+                        name,
+                        base.speakers
+                            .where((one) => one.name == name)
+                            .firstOrNull
+                            ?.count,
+                      ),
+                    ),
+                  ),
+              ],
+              onChanged: (value) =>
+                  draft.value = draft.value.copyWith(speaker: value),
+            ),
+            dropdown<String>(
+              label: t.yearLabel,
+              value: draft.value.year == null ? '' : '${draft.value.year}',
+              items: [
+                DropdownMenuItem(value: '', child: Text(t.allYears)),
+                for (final year in years)
+                  DropdownMenuItem(
+                    value: '$year',
+                    child: Text(
+                      counted(
+                        '$year',
+                        base.years
+                            .where((one) => one.year == year)
+                            .firstOrNull
+                            ?.count,
+                      ),
+                    ),
+                  ),
+              ],
+              onChanged: (value) => draft.value = draft.value.copyWith(
+                year: value.isEmpty ? null : int.tryParse(value),
+              ),
+            ),
+            dropdown<String>(
+              label: t.editionLabel,
+              value: draft.value.edition == null
+                  ? ''
+                  : '${draft.value.edition}',
+              items: [
+                DropdownMenuItem(value: '', child: Text(t.allEditions)),
+                for (final edition in editions)
+                  DropdownMenuItem(
+                    value: '${edition.id}',
+                    child: Text(edition.title),
+                  ),
+              ],
+              onChanged: (value) => draft.value = draft.value.copyWith(
+                edition: value.isEmpty ? null : int.tryParse(value),
+                // the day belongs to an edition
+                day: null,
+              ),
+            ),
+            if (draft.value.edition != null && dayNumbers.isNotEmpty)
+              dropdown<String>(
+                label: t.dayLabel,
+                value: draft.value.day == null ? '' : '${draft.value.day}',
+                items: [
+                  DropdownMenuItem(value: '', child: Text(t.allDays)),
+                  for (final day in dayNumbers)
+                    DropdownMenuItem(
+                      value: '$day',
+                      child: Text(
+                        counted(
+                          t.dayChip(n: day),
+                          days
+                              .where((one) => one.day == day)
+                              .firstOrNull
+                              ?.count,
+                        ),
+                      ),
+                    ),
+                ],
+                onChanged: (value) => draft.value = draft.value.copyWith(
+                  day: value.isEmpty ? null : int.tryParse(value),
+                ),
+              ),
+            const SizedBox(height: AppSpacing.sm),
+            Row(
+              children: [
+                Expanded(
+                  child: TextButton(
+                    onPressed: () => draft.value = draft.value.withoutAdvanced,
+                    child: Text(t.clearFilters),
+                  ),
+                ),
+                const SizedBox(width: AppSpacing.sm),
+                Expanded(
+                  child: FilledButton(
+                    style: FilledButton.styleFrom(
+                      minimumSize: const Size(0, 48),
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: AppSpacing.xl,
+                      ),
+                    ),
+                    onPressed: () => Navigator.of(context).pop(draft.value),
+                    child: Text(t.showResults),
+                  ),
+                ),
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }

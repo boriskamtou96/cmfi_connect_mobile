@@ -2139,7 +2139,20 @@
     "recordedOn": "Message du {date}",
     "moreSubtitle": "Prédications et enseignements à écouter",
     "closePlayer": "Fermer le lecteur",
-    "downloadPremium": "Télécharger avec Premium"
+    "downloadPremium": "Télécharger avec Premium",
+    "filters": "Filtres",
+    "filtersTitle": "Affiner la liste",
+    "speakerLabel": "Orateur",
+    "allSpeakers": "Tous les orateurs",
+    "yearLabel": "Année",
+    "allYears": "Toutes les années",
+    "editionLabel": "Édition",
+    "allEditions": "Toutes les éditions",
+    "dayLabel": "Jour",
+    "allDays": "Tous les jours",
+    "dayChip(n)": "Jour {n}",
+    "clearFilters": "Tout effacer",
+    "showResults": "Afficher"
   },
   "memorize": {
     "title": "Mémorisation",

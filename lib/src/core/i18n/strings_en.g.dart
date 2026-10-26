@@ -1574,6 +1574,19 @@ class _Translations$teachings$en extends Translations$teachings$fr {
 	@override String get moreSubtitle => 'Sermons and teachings to listen to';
 	@override String get closePlayer => 'Close the player';
 	@override String get downloadPremium => 'Download with Premium';
+	@override String get filters => 'Filters';
+	@override String get filtersTitle => 'Narrow the list';
+	@override String get speakerLabel => 'Speaker';
+	@override String get allSpeakers => 'All speakers';
+	@override String get yearLabel => 'Year';
+	@override String get allYears => 'All years';
+	@override String get editionLabel => 'Edition';
+	@override String get allEditions => 'All editions';
+	@override String get dayLabel => 'Day';
+	@override String get allDays => 'All days';
+	@override String dayChip({required Object n}) => 'Day ${n}';
+	@override String get clearFilters => 'Clear all';
+	@override String get showResults => 'Show';
 }
 
 // Path: memorize
@@ -5433,6 +5446,19 @@ extension on TranslationsEn {
 			'teachings.moreSubtitle' => 'Sermons and teachings to listen to',
 			'teachings.closePlayer' => 'Close the player',
 			'teachings.downloadPremium' => 'Download with Premium',
+			'teachings.filters' => 'Filters',
+			'teachings.filtersTitle' => 'Narrow the list',
+			'teachings.speakerLabel' => 'Speaker',
+			'teachings.allSpeakers' => 'All speakers',
+			'teachings.yearLabel' => 'Year',
+			'teachings.allYears' => 'All years',
+			'teachings.editionLabel' => 'Edition',
+			'teachings.allEditions' => 'All editions',
+			'teachings.dayLabel' => 'Day',
+			'teachings.allDays' => 'All days',
+			'teachings.dayChip' => ({required Object n}) => 'Day ${n}',
+			'teachings.clearFilters' => 'Clear all',
+			'teachings.showResults' => 'Show',
 			'memorize.title' => 'Memorization',
 			'memorize.subtitle' => 'Hide the Word in your heart',
 			'memorize.toReview' => 'To review',

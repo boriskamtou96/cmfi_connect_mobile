@@ -2469,7 +2469,20 @@
     "recordedOn": "رسالة {date}",
     "moreSubtitle": "عظات وتعاليم للاستماع",
     "closePlayer": "إغلاق المشغّل",
-    "downloadPremium": "التنزيل مع Premium"
+    "downloadPremium": "التنزيل مع Premium",
+    "filters": "عوامل التصفية",
+    "filtersTitle": "تضييق القائمة",
+    "speakerLabel": "المتحدث",
+    "allSpeakers": "كل المتحدثين",
+    "yearLabel": "السنة",
+    "allYears": "كل السنوات",
+    "editionLabel": "الإصدار",
+    "allEditions": "كل الإصدارات",
+    "dayLabel": "اليوم",
+    "allDays": "كل الأيام",
+    "dayChip(n)": "اليوم {n}",
+    "clearFilters": "مسح الكل",
+    "showResults": "عرض"
   },
   "memorize": {
     "title": "الحفظ",

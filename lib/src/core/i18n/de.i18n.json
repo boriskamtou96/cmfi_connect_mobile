@@ -2139,7 +2139,20 @@
     "recordedOn": "Botschaft vom {date}",
     "moreSubtitle": "Predigten und Lehren zum Anhören",
     "closePlayer": "Player schließen",
-    "downloadPremium": "Mit Premium herunterladen"
+    "downloadPremium": "Mit Premium herunterladen",
+    "filters": "Filter",
+    "filtersTitle": "Liste eingrenzen",
+    "speakerLabel": "Sprecher",
+    "allSpeakers": "Alle Sprecher",
+    "yearLabel": "Jahr",
+    "allYears": "Alle Jahre",
+    "editionLabel": "Ausgabe",
+    "allEditions": "Alle Ausgaben",
+    "dayLabel": "Tag",
+    "allDays": "Alle Tage",
+    "dayChip(n)": "Tag {n}",
+    "clearFilters": "Alles löschen",
+    "showResults": "Anzeigen"
   },
   "memorize": {
     "title": "Auswendiglernen",

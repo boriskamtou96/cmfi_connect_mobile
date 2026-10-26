@@ -1573,6 +1573,19 @@ class _Translations$teachings$es extends Translations$teachings$fr {
 	@override String get moreSubtitle => 'Predicaciones y enseñanzas para escuchar';
 	@override String get closePlayer => 'Cerrar el reproductor';
 	@override String get downloadPremium => 'Descargar con Premium';
+	@override String get filters => 'Filtros';
+	@override String get filtersTitle => 'Afinar la lista';
+	@override String get speakerLabel => 'Orador';
+	@override String get allSpeakers => 'Todos los oradores';
+	@override String get yearLabel => 'Año';
+	@override String get allYears => 'Todos los años';
+	@override String get editionLabel => 'Edición';
+	@override String get allEditions => 'Todas las ediciones';
+	@override String get dayLabel => 'Día';
+	@override String get allDays => 'Todos los días';
+	@override String dayChip({required Object n}) => 'Día ${n}';
+	@override String get clearFilters => 'Borrar todo';
+	@override String get showResults => 'Mostrar';
 }
 
 // Path: memorize
@@ -5432,6 +5445,19 @@ extension on TranslationsEs {
 			'teachings.moreSubtitle' => 'Predicaciones y enseñanzas para escuchar',
 			'teachings.closePlayer' => 'Cerrar el reproductor',
 			'teachings.downloadPremium' => 'Descargar con Premium',
+			'teachings.filters' => 'Filtros',
+			'teachings.filtersTitle' => 'Afinar la lista',
+			'teachings.speakerLabel' => 'Orador',
+			'teachings.allSpeakers' => 'Todos los oradores',
+			'teachings.yearLabel' => 'Año',
+			'teachings.allYears' => 'Todos los años',
+			'teachings.editionLabel' => 'Edición',
+			'teachings.allEditions' => 'Todas las ediciones',
+			'teachings.dayLabel' => 'Día',
+			'teachings.allDays' => 'Todos los días',
+			'teachings.dayChip' => ({required Object n}) => 'Día ${n}',
+			'teachings.clearFilters' => 'Borrar todo',
+			'teachings.showResults' => 'Mostrar',
 			'memorize.title' => 'Memorización',
 			'memorize.subtitle' => 'Guarda la Palabra en tu corazón',
 			'memorize.toReview' => 'Por repasar',

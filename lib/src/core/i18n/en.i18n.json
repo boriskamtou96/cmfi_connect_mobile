@@ -2140,7 +2140,20 @@
     "recordedOn": "Message of {date}",
     "moreSubtitle": "Sermons and teachings to listen to",
     "closePlayer": "Close the player",
-    "downloadPremium": "Download with Premium"
+    "downloadPremium": "Download with Premium",
+    "filters": "Filters",
+    "filtersTitle": "Narrow the list",
+    "speakerLabel": "Speaker",
+    "allSpeakers": "All speakers",
+    "yearLabel": "Year",
+    "allYears": "All years",
+    "editionLabel": "Edition",
+    "allEditions": "All editions",
+    "dayLabel": "Day",
+    "allDays": "All days",
+    "dayChip(n)": "Day {n}",
+    "clearFilters": "Clear all",
+    "showResults": "Show"
   },
   "memorize": {
     "title": "Memorization",

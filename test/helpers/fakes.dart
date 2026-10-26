@@ -73,6 +73,7 @@ import 'package:cmfi_connect/src/features/souls/infrastructure/souls_api.dart';
 import 'package:cmfi_connect/src/features/souls/infrastructure/souls_storage.dart';
 import 'package:cmfi_connect/src/features/teachings/application/teaching_player.dart';
 import 'package:cmfi_connect/src/features/teachings/domain/teaching.dart';
+import 'package:cmfi_connect/src/features/teachings/domain/teaching_query.dart';
 import 'package:cmfi_connect/src/features/teachings/infrastructure/teaching_files.dart';
 import 'package:cmfi_connect/src/features/teachings/infrastructure/teachings_api.dart';
 import 'package:dio/dio.dart' show CancelToken;
@@ -2777,20 +2778,36 @@ class FakeTeachingsApi implements TeachingsApi {
 
   @override
   Future<TeachingsPage> list({
-    String search = '',
-    String category = '',
+    TeachingQuery query = const TeachingQuery(),
     int page = 1,
     int size = 20,
   }) async {
     if (offline) {
       throw const NetworkException();
     }
-    final words = search.toLowerCase().split(' ').where((w) => w.isNotEmpty);
+    final words = query.search
+        .toLowerCase()
+        .split(' ')
+        .where((w) => w.isNotEmpty);
     final kept = [
       for (final teaching in teachings)
-        if ((category.isEmpty || teaching.category == category) &&
+        if ((query.category.isEmpty ||
+                teaching.category == query.category ||
+                teaching.categorySlug == query.category) &&
+            (query.speaker.isEmpty ||
+                teaching.speaker.toLowerCase().contains(
+                  query.speaker.toLowerCase(),
+                )) &&
+            (query.year == null || teaching.year == query.year) &&
+            (query.edition == null ||
+                teaching.edition?.id == query.edition) &&
+            (query.day == null || teaching.dayNumber == query.day) &&
             words.every(
-              '${teaching.title} ${teaching.speaker}'.toLowerCase().contains,
+              '${teaching.title} ${teaching.speaker} '
+                      '${teaching.description} ${teaching.category} '
+                      '${teaching.edition?.title ?? ''}'
+                  .toLowerCase()
+                  .contains,
             ))
           teaching,
     ];
@@ -2804,7 +2821,69 @@ class FakeTeachingsApi implements TeachingsApi {
       throw const NetworkException();
     }
     final names = {for (final t in teachings) t.category}..remove('');
-    return [for (final name in names) TeachingCategory(name: name, count: 1)];
+    return [
+      for (final name in names)
+        TeachingCategory(
+          name: name,
+          slug: teachings
+              .firstWhere((teaching) => teaching.category == name)
+              .categorySlug,
+          count: 1,
+        ),
+    ];
+  }
+
+  @override
+  Future<TeachingFacets> facets({int? editionId}) async {
+    if (offline) {
+      throw const NetworkException();
+    }
+    final speakers = <String, int>{};
+    final years = <int, int>{};
+    final editions = <int, TeachingEditionFacet>{};
+    final days = <int, int>{};
+    for (final teaching in teachings) {
+      if (teaching.speaker.isNotEmpty) {
+        speakers.update(
+          teaching.speaker,
+          (count) => count + 1,
+          ifAbsent: () => 1,
+        );
+      }
+      if (teaching.year case final year?) {
+        years.update(year, (count) => count + 1, ifAbsent: () => 1);
+      }
+      if (teaching.edition case final edition?) {
+        editions[edition.id] = TeachingEditionFacet(
+          id: edition.id,
+          year: edition.year,
+          title: edition.title,
+          count: (editions[edition.id]?.count ?? 0) + 1,
+        );
+      }
+      final day = teaching.dayNumber;
+      if (editionId != null &&
+          teaching.edition?.id == editionId &&
+          day != null) {
+        days.update(day, (count) => count + 1, ifAbsent: () => 1);
+      }
+    }
+    return TeachingFacets(
+      categories: await categories(),
+      speakers: [
+        for (final MapEntry(:key, :value) in speakers.entries)
+          TeachingSpeakerFacet(name: key, count: value),
+      ],
+      years: [
+        for (final MapEntry(:key, :value) in years.entries)
+          TeachingYearFacet(year: key, count: value),
+      ],
+      editions: editions.values.toList(),
+      days: [
+        for (final MapEntry(:key, :value) in days.entries)
+          TeachingDayFacet(day: key, count: value),
+      ],
+    );
   }
 }
 

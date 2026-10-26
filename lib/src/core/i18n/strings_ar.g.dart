@@ -1826,6 +1826,19 @@ class _Translations$teachings$ar extends Translations$teachings$fr {
 	@override String get moreSubtitle => 'عظات وتعاليم للاستماع';
 	@override String get closePlayer => 'إغلاق المشغّل';
 	@override String get downloadPremium => 'التنزيل مع Premium';
+	@override String get filters => 'عوامل التصفية';
+	@override String get filtersTitle => 'تضييق القائمة';
+	@override String get speakerLabel => 'المتحدث';
+	@override String get allSpeakers => 'كل المتحدثين';
+	@override String get yearLabel => 'السنة';
+	@override String get allYears => 'كل السنوات';
+	@override String get editionLabel => 'الإصدار';
+	@override String get allEditions => 'كل الإصدارات';
+	@override String get dayLabel => 'اليوم';
+	@override String get allDays => 'كل الأيام';
+	@override String dayChip({required Object n}) => 'اليوم ${n}';
+	@override String get clearFilters => 'مسح الكل';
+	@override String get showResults => 'عرض';
 }
 
 // Path: memorize
@@ -5830,6 +5843,19 @@ extension on TranslationsAr {
 			'teachings.moreSubtitle' => 'عظات وتعاليم للاستماع',
 			'teachings.closePlayer' => 'إغلاق المشغّل',
 			'teachings.downloadPremium' => 'التنزيل مع Premium',
+			'teachings.filters' => 'عوامل التصفية',
+			'teachings.filtersTitle' => 'تضييق القائمة',
+			'teachings.speakerLabel' => 'المتحدث',
+			'teachings.allSpeakers' => 'كل المتحدثين',
+			'teachings.yearLabel' => 'السنة',
+			'teachings.allYears' => 'كل السنوات',
+			'teachings.editionLabel' => 'الإصدار',
+			'teachings.allEditions' => 'كل الإصدارات',
+			'teachings.dayLabel' => 'اليوم',
+			'teachings.allDays' => 'كل الأيام',
+			'teachings.dayChip' => ({required Object n}) => 'اليوم ${n}',
+			'teachings.clearFilters' => 'مسح الكل',
+			'teachings.showResults' => 'عرض',
 			'memorize.title' => 'الحفظ',
 			'memorize.subtitle' => 'اخبأ الكلمة في قلبك',
 			'memorize.toReview' => 'للمراجعة',

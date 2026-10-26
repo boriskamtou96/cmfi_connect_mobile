@@ -203,4 +203,95 @@ void main() {
     await tester.pumpAndSettle();
     expect(app.player.snapshot.teaching, isNull);
   });
+
+  testWidgets('the advanced filters: a speaker, the edition and its first '
+      'day, then everything is cleared', (tester) async {
+    const crusade = TeachingEditionBrief(
+      id: 7,
+      title: 'Croisades de prière et de jeûne 2026',
+      year: 2026,
+    );
+    final api = FakeTeachingsApi(
+      teachings: const [
+        Teaching(
+          id: 11,
+          title: 'La sainteté',
+          speaker: 'Théodore Andoseh',
+          category: 'Croisades de prière et de jeûne',
+          categorySlug: 'croisades-de-priere-et-de-jeune',
+          year: 2026,
+          dayNumber: 1,
+          edition: crusade,
+          audio: TeachingAudio(id: 31, url: '/v1/media/saintete.mp3'),
+        ),
+        Teaching(
+          id: 12,
+          title: 'Le pardon',
+          speaker: 'Théodore Andoseh',
+          category: 'Croisades de prière et de jeûne',
+          categorySlug: 'croisades-de-priere-et-de-jeune',
+          year: 2026,
+          dayNumber: 1,
+          edition: crusade,
+          audio: TeachingAudio(id: 32, url: '/v1/media/pardon.mp3'),
+        ),
+        Teaching(
+          id: 13,
+          title: 'La mission',
+          speaker: 'Un autre orateur',
+          category: 'Croisades de prière et de jeûne',
+          categorySlug: 'croisades-de-priere-et-de-jeune',
+          year: 2026,
+          dayNumber: 2,
+          edition: crusade,
+          audio: TeachingAudio(id: 33, url: '/v1/media/mission.mp3'),
+        ),
+      ],
+    );
+    await openTeachings(tester, api: api);
+    expect(find.text('3 messages'), findsOneWidget);
+
+    await tester.tap(find.byTooltip('Filtres'));
+    await tester.pumpAndSettle();
+    expect(find.text('Affiner la liste'), findsOneWidget);
+
+    await tester.ensureVisible(find.byType(DropdownButtonFormField<String>).at(0));
+    await tester.pumpAndSettle();
+    await tester.tap(find.byType(DropdownButtonFormField<String>).at(0));
+    await tester.pumpAndSettle();
+    await tester.tap(find.text('Théodore Andoseh (2)').last);
+    await tester.pumpAndSettle();
+
+    await tester.ensureVisible(find.byType(DropdownButtonFormField<String>).at(2));
+    await tester.pumpAndSettle();
+    await tester.tap(find.byType(DropdownButtonFormField<String>).at(2));
+    await tester.pumpAndSettle();
+    await tester.tap(find.text('Croisades de prière et de jeûne 2026').last);
+    await tester.pumpAndSettle();
+
+    // the days of the edition: two messages on the first
+    await tester.ensureVisible(find.byType(DropdownButtonFormField<String>).at(3));
+    await tester.pumpAndSettle();
+    await tester.tap(find.byType(DropdownButtonFormField<String>).at(3));
+    await tester.pumpAndSettle();
+    await tester.tap(find.text('Jour 1 (2)').last);
+    await tester.pumpAndSettle();
+
+    await tester.ensureVisible(find.text('Afficher'));
+    await tester.pumpAndSettle();
+    await tester.tap(find.text('Afficher'));
+    await tester.pumpAndSettle();
+    expect(find.text('2 messages'), findsOneWidget);
+    expect(find.text('La sainteté'), findsOneWidget);
+    expect(find.text('Le pardon'), findsOneWidget);
+    expect(find.text('La mission'), findsNothing);
+
+    // the days stay as chips under the header
+    await tester.ensureVisible(find.text('Tout effacer'));
+    await tester.pumpAndSettle();
+    await tester.tap(find.text('Tout effacer'));
+    await tester.pumpAndSettle();
+    expect(find.text('3 messages'), findsOneWidget);
+    expect(find.text('La mission'), findsOneWidget);
+  });
 }

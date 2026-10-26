@@ -1510,6 +1510,19 @@ class _Translations$teachings$zh extends Translations$teachings$fr {
 	@override String get moreSubtitle => '可收听的讲道与教导';
 	@override String get closePlayer => '关闭播放器';
 	@override String get downloadPremium => '使用 Premium 下载';
+	@override String get filters => '筛选';
+	@override String get filtersTitle => '缩小列表';
+	@override String get speakerLabel => '讲员';
+	@override String get allSpeakers => '所有讲员';
+	@override String get yearLabel => '年份';
+	@override String get allYears => '所有年份';
+	@override String get editionLabel => '届次';
+	@override String get allEditions => '所有届次';
+	@override String get dayLabel => '天';
+	@override String get allDays => '所有天';
+	@override String dayChip({required Object n}) => '第 ${n} 天';
+	@override String get clearFilters => '全部清除';
+	@override String get showResults => '显示';
 }
 
 // Path: memorize
@@ -5332,6 +5345,19 @@ extension on TranslationsZh {
 			'teachings.moreSubtitle' => '可收听的讲道与教导',
 			'teachings.closePlayer' => '关闭播放器',
 			'teachings.downloadPremium' => '使用 Premium 下载',
+			'teachings.filters' => '筛选',
+			'teachings.filtersTitle' => '缩小列表',
+			'teachings.speakerLabel' => '讲员',
+			'teachings.allSpeakers' => '所有讲员',
+			'teachings.yearLabel' => '年份',
+			'teachings.allYears' => '所有年份',
+			'teachings.editionLabel' => '届次',
+			'teachings.allEditions' => '所有届次',
+			'teachings.dayLabel' => '天',
+			'teachings.allDays' => '所有天',
+			'teachings.dayChip' => ({required Object n}) => '第 ${n} 天',
+			'teachings.clearFilters' => '全部清除',
+			'teachings.showResults' => '显示',
 			'memorize.title' => '背经',
 			'memorize.subtitle' => '将神的话藏在心里',
 			'memorize.toReview' => '待复习',

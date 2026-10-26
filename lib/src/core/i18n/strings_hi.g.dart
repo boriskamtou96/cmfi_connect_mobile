@@ -1572,6 +1572,19 @@ class _Translations$teachings$hi extends Translations$teachings$fr {
 	@override String get moreSubtitle => 'सुनने के लिए प्रवचन और शिक्षाएँ';
 	@override String get closePlayer => 'प्लेयर बंद करें';
 	@override String get downloadPremium => 'Premium के साथ डाउनलोड करें';
+	@override String get filters => 'फ़िल्टर';
+	@override String get filtersTitle => 'सूची सीमित करें';
+	@override String get speakerLabel => 'वक्ता';
+	@override String get allSpeakers => 'सभी वक्ता';
+	@override String get yearLabel => 'वर्ष';
+	@override String get allYears => 'सभी वर्ष';
+	@override String get editionLabel => 'संस्करण';
+	@override String get allEditions => 'सभी संस्करण';
+	@override String get dayLabel => 'दिन';
+	@override String get allDays => 'सभी दिन';
+	@override String dayChip({required Object n}) => 'दिन ${n}';
+	@override String get clearFilters => 'सब हटाएँ';
+	@override String get showResults => 'दिखाएँ';
 }
 
 // Path: memorize
@@ -5431,6 +5444,19 @@ extension on TranslationsHi {
 			'teachings.moreSubtitle' => 'सुनने के लिए प्रवचन और शिक्षाएँ',
 			'teachings.closePlayer' => 'प्लेयर बंद करें',
 			'teachings.downloadPremium' => 'Premium के साथ डाउनलोड करें',
+			'teachings.filters' => 'फ़िल्टर',
+			'teachings.filtersTitle' => 'सूची सीमित करें',
+			'teachings.speakerLabel' => 'वक्ता',
+			'teachings.allSpeakers' => 'सभी वक्ता',
+			'teachings.yearLabel' => 'वर्ष',
+			'teachings.allYears' => 'सभी वर्ष',
+			'teachings.editionLabel' => 'संस्करण',
+			'teachings.allEditions' => 'सभी संस्करण',
+			'teachings.dayLabel' => 'दिन',
+			'teachings.allDays' => 'सभी दिन',
+			'teachings.dayChip' => ({required Object n}) => 'दिन ${n}',
+			'teachings.clearFilters' => 'सब हटाएँ',
+			'teachings.showResults' => 'दिखाएँ',
 			'memorize.title' => 'कंठस्थ करना',
 			'memorize.subtitle' => 'वचन को अपने हृदय में रखो',
 			'memorize.toReview' => 'दोहराने को',

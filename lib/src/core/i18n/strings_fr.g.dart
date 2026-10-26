@@ -3290,6 +3290,45 @@ class Translations$teachings$fr {
 
 	/// fr: 'Télécharger avec Premium'
 	String get downloadPremium => 'Télécharger avec Premium';
+
+	/// fr: 'Filtres'
+	String get filters => 'Filtres';
+
+	/// fr: 'Affiner la liste'
+	String get filtersTitle => 'Affiner la liste';
+
+	/// fr: 'Orateur'
+	String get speakerLabel => 'Orateur';
+
+	/// fr: 'Tous les orateurs'
+	String get allSpeakers => 'Tous les orateurs';
+
+	/// fr: 'Année'
+	String get yearLabel => 'Année';
+
+	/// fr: 'Toutes les années'
+	String get allYears => 'Toutes les années';
+
+	/// fr: 'Édition'
+	String get editionLabel => 'Édition';
+
+	/// fr: 'Toutes les éditions'
+	String get allEditions => 'Toutes les éditions';
+
+	/// fr: 'Jour'
+	String get dayLabel => 'Jour';
+
+	/// fr: 'Tous les jours'
+	String get allDays => 'Tous les jours';
+
+	/// fr: 'Jour {n}'
+	String dayChip({required Object n}) => 'Jour ${n}';
+
+	/// fr: 'Tout effacer'
+	String get clearFilters => 'Tout effacer';
+
+	/// fr: 'Afficher'
+	String get showResults => 'Afficher';
 }
 
 // Path: memorize
@@ -9145,6 +9184,19 @@ extension on Translations {
 			'teachings.moreSubtitle' => 'Prédications et enseignements à écouter',
 			'teachings.closePlayer' => 'Fermer le lecteur',
 			'teachings.downloadPremium' => 'Télécharger avec Premium',
+			'teachings.filters' => 'Filtres',
+			'teachings.filtersTitle' => 'Affiner la liste',
+			'teachings.speakerLabel' => 'Orateur',
+			'teachings.allSpeakers' => 'Tous les orateurs',
+			'teachings.yearLabel' => 'Année',
+			'teachings.allYears' => 'Toutes les années',
+			'teachings.editionLabel' => 'Édition',
+			'teachings.allEditions' => 'Toutes les éditions',
+			'teachings.dayLabel' => 'Jour',
+			'teachings.allDays' => 'Tous les jours',
+			'teachings.dayChip' => ({required Object n}) => 'Jour ${n}',
+			'teachings.clearFilters' => 'Tout effacer',
+			'teachings.showResults' => 'Afficher',
 			'memorize.title' => 'Mémorisation',
 			'memorize.subtitle' => 'Cache la Parole dans ton cœur',
 			'memorize.toReview' => 'À réviser',

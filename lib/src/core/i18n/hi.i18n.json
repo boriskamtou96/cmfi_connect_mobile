@@ -2138,7 +2138,20 @@
     "recordedOn": "{date} का संदेश",
     "moreSubtitle": "सुनने के लिए प्रवचन और शिक्षाएँ",
     "closePlayer": "प्लेयर बंद करें",
-    "downloadPremium": "Premium के साथ डाउनलोड करें"
+    "downloadPremium": "Premium के साथ डाउनलोड करें",
+    "filters": "फ़िल्टर",
+    "filtersTitle": "सूची सीमित करें",
+    "speakerLabel": "वक्ता",
+    "allSpeakers": "सभी वक्ता",
+    "yearLabel": "वर्ष",
+    "allYears": "सभी वर्ष",
+    "editionLabel": "संस्करण",
+    "allEditions": "सभी संस्करण",
+    "dayLabel": "दिन",
+    "allDays": "सभी दिन",
+    "dayChip(n)": "दिन {n}",
+    "clearFilters": "सब हटाएँ",
+    "showResults": "दिखाएँ"
   },
   "memorize": {
     "title": "कंठस्थ करना",

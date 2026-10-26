@@ -4,6 +4,7 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 import '../../../core/network/api_call.dart';
 import '../../../core/network/dio_provider.dart';
 import '../domain/teaching.dart';
+import '../domain/teaching_query.dart';
 
 part 'teachings_api.g.dart';
 
@@ -17,20 +18,22 @@ class TeachingsApi {
 
   final Dio _dio;
 
-  /// [search]: words of the title, the speaker, the description or the
-  /// category (case and accents left aside); [category]: one of
-  /// [categories], '' for all.
+  /// [query]: the words, the category, the speaker, the year, the edition
+  /// and the day (case and accents left aside on the server).
   Future<TeachingsPage> list({
-    String search = '',
-    String category = '',
+    TeachingQuery query = const TeachingQuery(),
     int page = 1,
     int size = 20,
   }) => apiCall(() async {
     final response = await _dio.get<Map<String, dynamic>>(
       '/teachings',
       queryParameters: {
-        if (search.trim().isNotEmpty) 'search': search.trim(),
-        if (category.isNotEmpty) 'category': category,
+        if (query.search.trim().isNotEmpty) 'search': query.search.trim(),
+        if (query.category.isNotEmpty) 'category': query.category,
+        if (query.speaker.isNotEmpty) 'speaker': query.speaker,
+        if (query.year != null) 'year': query.year,
+        if (query.edition != null) 'edition_id': query.edition,
+        if (query.day != null) 'day': query.day,
         'page': page,
         'size': size,
       },
@@ -53,6 +56,16 @@ class TeachingsApi {
       for (final json in response.contentList)
         TeachingCategory.fromJson(json as Map<String, dynamic>),
     ];
+  });
+
+  /// The speakers, the years, the editions, and the days of [editionId] when
+  /// one is chosen: what the filters offer.
+  Future<TeachingFacets> facets({int? editionId}) => apiCall(() async {
+    final response = await _dio.get<Map<String, dynamic>>(
+      '/teachings/facets',
+      queryParameters: {'edition_id': ?editionId},
+    );
+    return TeachingFacets.fromJson(response.content);
   });
 }
 

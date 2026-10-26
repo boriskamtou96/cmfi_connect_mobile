@@ -8,33 +8,33 @@ part of 'teachings.dart';
 
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint, type=warning
-/// The teachings that answer [search] in [category] ('' for all), a page at
-/// a time: the first one at once, the next ones at the end of the list.
-/// Without a search, the first page kept on the phone shows at once
-/// ([FetchPolicy.cacheAndNetwork]); a search asks the server. Without
-/// network the copy gives way to the error: the screen then lists the
-/// messages downloaded, the only ones that play offline.
+/// The teachings that answer [query], a page at a time: the first one at
+/// once, the next ones at the end of the list. Without a search nor the
+/// advanced filters, the first page kept on the phone shows at once
+/// ([FetchPolicy.cacheAndNetwork]); a search or a filter asks the server.
+/// Without network the copy gives way to the error: the screen then lists
+/// the messages downloaded, the only ones that play offline.
 
 @ProviderFor(Teachings)
 final teachingsProvider = TeachingsFamily._();
 
-/// The teachings that answer [search] in [category] ('' for all), a page at
-/// a time: the first one at once, the next ones at the end of the list.
-/// Without a search, the first page kept on the phone shows at once
-/// ([FetchPolicy.cacheAndNetwork]); a search asks the server. Without
-/// network the copy gives way to the error: the screen then lists the
-/// messages downloaded, the only ones that play offline.
+/// The teachings that answer [query], a page at a time: the first one at
+/// once, the next ones at the end of the list. Without a search nor the
+/// advanced filters, the first page kept on the phone shows at once
+/// ([FetchPolicy.cacheAndNetwork]); a search or a filter asks the server.
+/// Without network the copy gives way to the error: the screen then lists
+/// the messages downloaded, the only ones that play offline.
 final class TeachingsProvider
     extends $AsyncNotifierProvider<Teachings, TeachingsState> {
-  /// The teachings that answer [search] in [category] ('' for all), a page at
-  /// a time: the first one at once, the next ones at the end of the list.
-  /// Without a search, the first page kept on the phone shows at once
-  /// ([FetchPolicy.cacheAndNetwork]); a search asks the server. Without
-  /// network the copy gives way to the error: the screen then lists the
-  /// messages downloaded, the only ones that play offline.
+  /// The teachings that answer [query], a page at a time: the first one at
+  /// once, the next ones at the end of the list. Without a search nor the
+  /// advanced filters, the first page kept on the phone shows at once
+  /// ([FetchPolicy.cacheAndNetwork]); a search or a filter asks the server.
+  /// Without network the copy gives way to the error: the screen then lists
+  /// the messages downloaded, the only ones that play offline.
   TeachingsProvider._({
     required TeachingsFamily super.from,
-    required (String, String) super.argument,
+    required TeachingQuery super.argument,
   }) : super(
          retry: null,
          name: r'teachingsProvider',
@@ -50,7 +50,7 @@ final class TeachingsProvider
   String toString() {
     return r'teachingsProvider'
         ''
-        '$argument';
+        '($argument)';
   }
 
   @$internal
@@ -68,14 +68,14 @@ final class TeachingsProvider
   }
 }
 
-String _$teachingsHash() => r'27011961166db8410c3cc49a11f6ffb5cf21f65a';
+String _$teachingsHash() => r'f65d8e23e118c66d264b93f85089936121b26664';
 
-/// The teachings that answer [search] in [category] ('' for all), a page at
-/// a time: the first one at once, the next ones at the end of the list.
-/// Without a search, the first page kept on the phone shows at once
-/// ([FetchPolicy.cacheAndNetwork]); a search asks the server. Without
-/// network the copy gives way to the error: the screen then lists the
-/// messages downloaded, the only ones that play offline.
+/// The teachings that answer [query], a page at a time: the first one at
+/// once, the next ones at the end of the list. Without a search nor the
+/// advanced filters, the first page kept on the phone shows at once
+/// ([FetchPolicy.cacheAndNetwork]); a search or a filter asks the server.
+/// Without network the copy gives way to the error: the screen then lists
+/// the messages downloaded, the only ones that play offline.
 
 final class TeachingsFamily extends $Family
     with
@@ -84,7 +84,7 @@ final class TeachingsFamily extends $Family
           AsyncValue<TeachingsState>,
           TeachingsState,
           FutureOr<TeachingsState>,
-          (String, String)
+          TeachingQuery
         > {
   TeachingsFamily._()
     : super(
@@ -95,33 +95,32 @@ final class TeachingsFamily extends $Family
         isAutoDispose: true,
       );
 
-  /// The teachings that answer [search] in [category] ('' for all), a page at
-  /// a time: the first one at once, the next ones at the end of the list.
-  /// Without a search, the first page kept on the phone shows at once
-  /// ([FetchPolicy.cacheAndNetwork]); a search asks the server. Without
-  /// network the copy gives way to the error: the screen then lists the
-  /// messages downloaded, the only ones that play offline.
+  /// The teachings that answer [query], a page at a time: the first one at
+  /// once, the next ones at the end of the list. Without a search nor the
+  /// advanced filters, the first page kept on the phone shows at once
+  /// ([FetchPolicy.cacheAndNetwork]); a search or a filter asks the server.
+  /// Without network the copy gives way to the error: the screen then lists
+  /// the messages downloaded, the only ones that play offline.
 
-  TeachingsProvider call(String search, String category) =>
-      TeachingsProvider._(argument: (search, category), from: this);
+  TeachingsProvider call(TeachingQuery query) =>
+      TeachingsProvider._(argument: query, from: this);
 
   @override
   String toString() => r'teachingsProvider';
 }
 
-/// The teachings that answer [search] in [category] ('' for all), a page at
-/// a time: the first one at once, the next ones at the end of the list.
-/// Without a search, the first page kept on the phone shows at once
-/// ([FetchPolicy.cacheAndNetwork]); a search asks the server. Without
-/// network the copy gives way to the error: the screen then lists the
-/// messages downloaded, the only ones that play offline.
+/// The teachings that answer [query], a page at a time: the first one at
+/// once, the next ones at the end of the list. Without a search nor the
+/// advanced filters, the first page kept on the phone shows at once
+/// ([FetchPolicy.cacheAndNetwork]); a search or a filter asks the server.
+/// Without network the copy gives way to the error: the screen then lists
+/// the messages downloaded, the only ones that play offline.
 
 abstract class _$Teachings extends $AsyncNotifier<TeachingsState> {
-  late final _$args = ref.$arg as (String, String);
-  String get search => _$args.$1;
-  String get category => _$args.$2;
+  late final _$args = ref.$arg as TeachingQuery;
+  TeachingQuery get query => _$args;
 
-  FutureOr<TeachingsState> build(String search, String category);
+  FutureOr<TeachingsState> build(TeachingQuery query);
   @$mustCallSuper
   @override
   void runBuild() {
@@ -134,7 +133,7 @@ abstract class _$Teachings extends $AsyncNotifier<TeachingsState> {
               Object?,
               Object?
             >;
-    element.handleCreate(ref, () => build(_$args.$1, _$args.$2));
+    element.handleCreate(ref, () => build(_$args));
   }
 }
 
@@ -187,6 +186,95 @@ final class TeachingCategoriesProvider
 
 String _$teachingCategoriesHash() =>
     r'9aa0a40712cda02837dc2ade27eef7caf6e0c17a';
+
+/// The speakers, the years, the editions and the days of [editionId]: what
+/// the filters offer. Empty without network.
+
+@ProviderFor(teachingFacets)
+final teachingFacetsProvider = TeachingFacetsFamily._();
+
+/// The speakers, the years, the editions and the days of [editionId]: what
+/// the filters offer. Empty without network.
+
+final class TeachingFacetsProvider
+    extends
+        $FunctionalProvider<
+          AsyncValue<TeachingFacets>,
+          TeachingFacets,
+          FutureOr<TeachingFacets>
+        >
+    with $FutureModifier<TeachingFacets>, $FutureProvider<TeachingFacets> {
+  /// The speakers, the years, the editions and the days of [editionId]: what
+  /// the filters offer. Empty without network.
+  TeachingFacetsProvider._({
+    required TeachingFacetsFamily super.from,
+    required int? super.argument,
+  }) : super(
+         retry: null,
+         name: r'teachingFacetsProvider',
+         isAutoDispose: true,
+         dependencies: null,
+         $allTransitiveDependencies: null,
+       );
+
+  @override
+  String debugGetCreateSourceHash() => _$teachingFacetsHash();
+
+  @override
+  String toString() {
+    return r'teachingFacetsProvider'
+        ''
+        '($argument)';
+  }
+
+  @$internal
+  @override
+  $FutureProviderElement<TeachingFacets> $createElement(
+    $ProviderPointer pointer,
+  ) => $FutureProviderElement(pointer);
+
+  @override
+  FutureOr<TeachingFacets> create(Ref ref) {
+    final argument = this.argument as int?;
+    return teachingFacets(ref, argument);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return other is TeachingFacetsProvider && other.argument == argument;
+  }
+
+  @override
+  int get hashCode {
+    return argument.hashCode;
+  }
+}
+
+String _$teachingFacetsHash() => r'183b4c995db29dce348bd10b5f5a82177915d48c';
+
+/// The speakers, the years, the editions and the days of [editionId]: what
+/// the filters offer. Empty without network.
+
+final class TeachingFacetsFamily extends $Family
+    with $FunctionalFamilyOverride<FutureOr<TeachingFacets>, int?> {
+  TeachingFacetsFamily._()
+    : super(
+        retry: null,
+        name: r'teachingFacetsProvider',
+        dependencies: null,
+        $allTransitiveDependencies: null,
+        isAutoDispose: true,
+      );
+
+  /// The speakers, the years, the editions and the days of [editionId]: what
+  /// the filters offer. Empty without network.
+
+  TeachingFacetsProvider call(int? editionId) =>
+      TeachingFacetsProvider._(argument: editionId, from: this);
+
+  @override
+  String toString() => r'teachingFacetsProvider';
+}
 
 /// The latest teachings, for « À écouter » on the home screen (its own
 /// list: the Enseignements page keeps loading its own); none without

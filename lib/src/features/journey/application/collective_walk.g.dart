@@ -56,4 +56,4 @@ final class CollectiveWalkProvider
   }
 }
 
-String _$collectiveWalkHash() => r'f6175444105aaef3f0e13e4675ebec000be7b57a';
+String _$collectiveWalkHash() => r'b4e4ba0a49268a92fe0038e0fd05577244bbc914';

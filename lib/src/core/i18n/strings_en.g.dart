@@ -496,6 +496,7 @@ class _Translations$more$en extends Translations$more$fr {
 	@override String get admin => 'Administration';
 	@override String get staff => 'Team and roles';
 	@override String get manageEvents => 'Manage events';
+	@override String get manageDocuments => 'Manage documents';
 	@override String get disciples => 'My disciples';
 	@override String version({required Object version}) => 'Version ${version}';
 	@override String copyright({required Object year}) => '© ${year} Christian Missionary Fellowship International. All rights reserved.';
@@ -1453,11 +1454,13 @@ class _Translations$documents$en extends Translations$documents$fr {
 	@override String get word => 'Word';
 	@override String get open => 'Open the document';
 	@override String get download => 'Download';
+	@override String get share => 'Share';
 	@override String count({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n,
 		one: '${n} document',
 		other: '${n} documents',
 	);
 	@override String get more => 'Show more';
+	@override late final _Translations$documents$admin$en admin = _Translations$documents$admin$en._(_root);
 }
 
 // Path: biblePlan
@@ -1567,6 +1570,7 @@ class _Translations$teachings$en extends Translations$teachings$fr {
 	@override String get removed => 'Removed from the phone';
 	@override String get cancelDownload => 'Stop the download';
 	@override String get removeDownload => 'Remove from the phone';
+	@override String get share => 'Share';
 	@override String get back15 => 'Back 15 seconds';
 	@override String get forward15 => 'Forward 15 seconds';
 	@override String speed({required Object speed}) => 'Speed ${speed}';
@@ -1587,6 +1591,29 @@ class _Translations$teachings$en extends Translations$teachings$fr {
 	@override String dayChip({required Object n}) => 'Day ${n}';
 	@override String get clearFilters => 'Clear all';
 	@override String get showResults => 'Show';
+	@override String dayMessage({required Object day, required Object n}) => 'Day ${day}, message ${n}';
+	@override String minutes({required Object n}) => '${n} min';
+	@override String hoursMinutes({required Object h, required Object m}) => '${h} h ${m}';
+	@override String left({required Object time}) => '${time} left';
+	@override String get nowPlaying => 'Playing';
+	@override String get resume => 'Resume';
+	@override String get editions => 'Editions';
+	@override String get allOfCategory => 'All messages';
+	@override String daysCount({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n,
+		one: '${n} day',
+		other: '${n} days',
+	);
+	@override String andOthers({required num n, required Object name}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n,
+		one: '${name} and 1 other',
+		other: '${name} and ${n} others',
+	);
+	@override String showCount({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n,
+		one: 'Show ${n} message',
+		other: 'Show ${n} messages',
+	);
+	@override String get searchOpen => 'Search';
+	@override String get searchClose => 'Close the search';
+	@override String get dayAll => 'All';
 }
 
 // Path: memorize
@@ -3123,6 +3150,47 @@ class _Translations$seekFirst$shield$en extends Translations$seekFirst$shield$fr
 	@override String get serviceBody => 'Your apps close each day until your report.';
 }
 
+// Path: documents.admin
+class _Translations$documents$admin$en extends Translations$documents$admin$fr {
+	_Translations$documents$admin$en._(TranslationsEn root) : this._root = root, super.internal(root);
+
+	final TranslationsEn _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Manage documents';
+	@override String get manage => 'Manage documents';
+	@override String get create => 'New document';
+	@override String get edit => 'Edit document';
+	@override String get empty => 'No document yet. Tap « New document » to publish one.';
+	@override String get file => 'File';
+	@override String get pickFile => 'Choose a PDF or a Word file';
+	@override String get fileHint => 'From Files or your phone · 10 MB at most';
+	@override String get replace => 'Replace';
+	@override String get uploading => 'Sending the file…';
+	@override String get tooLarge => 'This file is too large (10 MB at most).';
+	@override String get fileRequired => 'Choose the document\'s file.';
+	@override String get general => 'The document';
+	@override String get titleField => 'Title';
+	@override String get titleHint => 'E.g.: Internal rules';
+	@override String get titleRequired => 'Give the document a title.';
+	@override String get description => 'Description (optional)';
+	@override String get category => 'Category';
+	@override String get noCategory => 'None';
+	@override String get newCategory => 'New category';
+	@override String get newCategoryHint => 'Category name';
+	@override String get visibility => 'Publishing';
+	@override String get published => 'Publish now';
+	@override String get publishedHint => 'Members see it in Our documents.';
+	@override String get notify => 'Notify the members';
+	@override String get notifyHint => 'A notification when it is first published.';
+	@override String get draft => 'Draft';
+	@override String get saved => 'Document saved';
+	@override String get deleted => 'Document deleted';
+	@override String get delete => 'Delete';
+	@override String get deleteTitle => 'Delete this document?';
+	@override String get deleteText => 'It disappears for every member. This cannot be undone.';
+}
+
 // Path: souls.csv
 class _Translations$souls$csv$en extends Translations$souls$csv$fr {
 	_Translations$souls$csv$en._(TranslationsEn root) : this._root = root, super.internal(root);
@@ -4260,6 +4328,7 @@ extension on TranslationsEn {
 			'more.admin' => 'Administration',
 			'more.staff' => 'Team and roles',
 			'more.manageEvents' => 'Manage events',
+			'more.manageDocuments' => 'Manage documents',
 			'more.disciples' => 'My disciples',
 			'more.version' => ({required Object version}) => 'Version ${version}',
 			'more.copyright' => ({required Object year}) => '© ${year} Christian Missionary Fellowship International. All rights reserved.',
@@ -4321,9 +4390,9 @@ extension on TranslationsEn {
 			'authorities.madeMaker' => ({required Object name}) => '${name} is now your disciple maker.',
 			'members.username' => 'Username',
 			'members.usernameHint' => 'firstname.lastname',
-			'members.usernameHelp' => 'This is how other members will find you.',
 			_ => null,
 		} ?? switch (path) {
+			'members.usernameHelp' => 'This is how other members will find you.',
 			'members.usernameChecking' => 'Checking…',
 			'members.usernameFree' => ({required Object username}) => '@${username} is available',
 			'members.usernameCurrent' => 'This is your current username',
@@ -4835,9 +4904,9 @@ extension on TranslationsEn {
 			'prayer.moments.night' => 'Night',
 			'prayer.retreatOf.morning' => 'Morning retreat',
 			'prayer.retreatOf.noon' => 'Noon retreat',
-			'prayer.retreatOf.evening' => 'Evening retreat',
 			_ => null,
 		} ?? switch (path) {
+			'prayer.retreatOf.evening' => 'Evening retreat',
 			'prayer.retreatOf.night' => 'Night retreat',
 			'prayer.hero.now' => ({required Object retreat}) => '${retreat} · now',
 			'prayer.hero.title' => '15 minutes\nwith the Lord',
@@ -5349,9 +5418,9 @@ extension on TranslationsEn {
 			'seekFirst.shield.notificationTitle' => 'Seek God first',
 			'seekFirst.shield.notificationBody' => 'Tap here to fill in your report.',
 			'seekFirst.shield.serviceBody' => 'Your apps close each day until your report.',
-			'seekFirst.permissionsAndroid' => 'To close your apps, CMFI Connect needs two permissions, to turn on in the settings that will open: "Usage access" (to know which app is open) and "Display over other apps" (to show the Seek God first screen). Nothing leaves your phone.',
 			_ => null,
 		} ?? switch (path) {
+			'seekFirst.permissionsAndroid' => 'To close your apps, CMFI Connect needs two permissions, to turn on in the settings that will open: "Usage access" (to know which app is open) and "Display over other apps" (to show the Seek God first screen). Nothing leaves your phone.',
 			'seekFirst.permissionsContinue' => 'Continue',
 			'seekFirst.deniedAndroid' => 'Without these two permissions, CMFI Connect can\'t close apps. You can turn them on in Settings › Apps › Special access.',
 			'seekFirst.privacyAndroid' => 'The apps you choose stay on your phone: CMFI Connect never sends them.',
@@ -5368,8 +5437,41 @@ extension on TranslationsEn {
 			'documents.word' => 'Word',
 			'documents.open' => 'Open the document',
 			'documents.download' => 'Download',
+			'documents.share' => 'Share',
 			'documents.count' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n, one: '${n} document', other: '${n} documents', ), 
 			'documents.more' => 'Show more',
+			'documents.admin.title' => 'Manage documents',
+			'documents.admin.manage' => 'Manage documents',
+			'documents.admin.create' => 'New document',
+			'documents.admin.edit' => 'Edit document',
+			'documents.admin.empty' => 'No document yet. Tap « New document » to publish one.',
+			'documents.admin.file' => 'File',
+			'documents.admin.pickFile' => 'Choose a PDF or a Word file',
+			'documents.admin.fileHint' => 'From Files or your phone · 10 MB at most',
+			'documents.admin.replace' => 'Replace',
+			'documents.admin.uploading' => 'Sending the file…',
+			'documents.admin.tooLarge' => 'This file is too large (10 MB at most).',
+			'documents.admin.fileRequired' => 'Choose the document\'s file.',
+			'documents.admin.general' => 'The document',
+			'documents.admin.titleField' => 'Title',
+			'documents.admin.titleHint' => 'E.g.: Internal rules',
+			'documents.admin.titleRequired' => 'Give the document a title.',
+			'documents.admin.description' => 'Description (optional)',
+			'documents.admin.category' => 'Category',
+			'documents.admin.noCategory' => 'None',
+			'documents.admin.newCategory' => 'New category',
+			'documents.admin.newCategoryHint' => 'Category name',
+			'documents.admin.visibility' => 'Publishing',
+			'documents.admin.published' => 'Publish now',
+			'documents.admin.publishedHint' => 'Members see it in Our documents.',
+			'documents.admin.notify' => 'Notify the members',
+			'documents.admin.notifyHint' => 'A notification when it is first published.',
+			'documents.admin.draft' => 'Draft',
+			'documents.admin.saved' => 'Document saved',
+			'documents.admin.deleted' => 'Document deleted',
+			'documents.admin.delete' => 'Delete',
+			'documents.admin.deleteTitle' => 'Delete this document?',
+			'documents.admin.deleteText' => 'It disappears for every member. This cannot be undone.',
 			'biblePlan.title' => 'Reading plan',
 			'biblePlan.duration' => 'Length',
 			'biblePlan.months3' => '3 months',
@@ -5439,6 +5541,7 @@ extension on TranslationsEn {
 			'teachings.removed' => 'Removed from the phone',
 			'teachings.cancelDownload' => 'Stop the download',
 			'teachings.removeDownload' => 'Remove from the phone',
+			'teachings.share' => 'Share',
 			'teachings.back15' => 'Back 15 seconds',
 			'teachings.forward15' => 'Forward 15 seconds',
 			'teachings.speed' => ({required Object speed}) => 'Speed ${speed}',
@@ -5459,6 +5562,20 @@ extension on TranslationsEn {
 			'teachings.dayChip' => ({required Object n}) => 'Day ${n}',
 			'teachings.clearFilters' => 'Clear all',
 			'teachings.showResults' => 'Show',
+			'teachings.dayMessage' => ({required Object day, required Object n}) => 'Day ${day}, message ${n}',
+			'teachings.minutes' => ({required Object n}) => '${n} min',
+			'teachings.hoursMinutes' => ({required Object h, required Object m}) => '${h} h ${m}',
+			'teachings.left' => ({required Object time}) => '${time} left',
+			'teachings.nowPlaying' => 'Playing',
+			'teachings.resume' => 'Resume',
+			'teachings.editions' => 'Editions',
+			'teachings.allOfCategory' => 'All messages',
+			'teachings.daysCount' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n, one: '${n} day', other: '${n} days', ), 
+			'teachings.andOthers' => ({required num n, required Object name}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n, one: '${name} and 1 other', other: '${name} and ${n} others', ), 
+			'teachings.showCount' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n, one: 'Show ${n} message', other: 'Show ${n} messages', ), 
+			'teachings.searchOpen' => 'Search',
+			'teachings.searchClose' => 'Close the search',
+			'teachings.dayAll' => 'All',
 			'memorize.title' => 'Memorization',
 			'memorize.subtitle' => 'Hide the Word in your heart',
 			'memorize.toReview' => 'To review',

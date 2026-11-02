@@ -43,6 +43,7 @@ _LibraryDocument _$LibraryDocumentFromJson(Map<String, dynamic> json) =>
       categoryId: (json['category_id'] as num?)?.toInt(),
       categorySlug: json['category_slug'] as String? ?? '',
       file: LibraryFile.fromJson(json['file'] as Map<String, dynamic>),
+      published: json['published'] as bool? ?? true,
       publishedAt: json['published_at'] == null
           ? null
           : DateTime.parse(json['published_at'] as String),
@@ -57,6 +58,7 @@ Map<String, dynamic> _$LibraryDocumentToJson(_LibraryDocument instance) =>
       'category_id': ?instance.categoryId,
       'category_slug': instance.categorySlug,
       'file': instance.file.toJson(),
+      'published': instance.published,
       'published_at': ?instance.publishedAt?.toIso8601String(),
     };
 

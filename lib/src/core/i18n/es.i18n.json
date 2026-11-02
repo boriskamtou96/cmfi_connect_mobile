@@ -574,6 +574,7 @@
     "admin": "Administración",
     "staff": "Equipo y roles",
     "manageEvents": "Gestionar eventos",
+    "manageDocuments": "Gestionar documentos",
     "disciples": "Mis discípulos",
     "version": "Versión {version}",
     "copyright": "© {year} Comunidad Misionera Cristiana Internacional. Todos los derechos reservados."
@@ -2033,11 +2034,46 @@
     "word": "Word",
     "open": "Abrir el documento",
     "download": "Descargar",
+    "share": "Compartir",
     "count(plural, param=n)": {
       "one": "{n} documento",
       "other": "{n} documentos"
     },
-    "more": "Ver más"
+    "more": "Ver más",
+    "admin": {
+      "title": "Gestionar documentos",
+      "manage": "Gestionar documentos",
+      "create": "Nuevo documento",
+      "edit": "Editar documento",
+      "empty": "Aún no hay documentos. Toca « Nuevo documento » para publicar uno.",
+      "file": "Archivo",
+      "pickFile": "Elegir un PDF o un Word",
+      "fileHint": "Desde Archivos o tu teléfono · 10 MB como máximo",
+      "replace": "Reemplazar",
+      "uploading": "Enviando el archivo…",
+      "tooLarge": "Este archivo es demasiado grande (10 MB como máximo).",
+      "fileRequired": "Elige el archivo del documento.",
+      "general": "El documento",
+      "titleField": "Título",
+      "titleHint": "Ej.: Reglamento interno",
+      "titleRequired": "Pon un título al documento.",
+      "description": "Descripción (opcional)",
+      "category": "Categoría",
+      "noCategory": "Ninguna",
+      "newCategory": "Nueva categoría",
+      "newCategoryHint": "Nombre de la categoría",
+      "visibility": "Publicación",
+      "published": "Publicar ahora",
+      "publishedHint": "Los miembros lo ven en Nuestros documentos.",
+      "notify": "Avisar a los miembros",
+      "notifyHint": "Una notificación en la primera publicación.",
+      "draft": "Borrador",
+      "saved": "Documento guardado",
+      "deleted": "Documento eliminado",
+      "delete": "Eliminar",
+      "deleteTitle": "¿Eliminar este documento?",
+      "deleteText": "Desaparece para todos los miembros. Es definitivo."
+    }
   },
   "biblePlan": {
     "title": "Plan de lectura",
@@ -2133,6 +2169,7 @@
     "removed": "Quitado del teléfono",
     "cancelDownload": "Detener la descarga",
     "removeDownload": "Quitar del teléfono",
+    "share": "Compartir",
     "back15": "Retroceder 15 segundos",
     "forward15": "Avanzar 15 segundos",
     "speed": "Velocidad {speed}",
@@ -2152,7 +2189,30 @@
     "allDays": "Todos los días",
     "dayChip(n)": "Día {n}",
     "clearFilters": "Borrar todo",
-    "showResults": "Mostrar"
+    "showResults": "Mostrar",
+    "dayMessage": "Día {day}, mensaje {n}",
+    "minutes": "{n} min",
+    "hoursMinutes": "{h} h {m}",
+    "left": "Quedan {time}",
+    "nowPlaying": "En curso",
+    "resume": "Reanudar",
+    "editions": "Ediciones",
+    "allOfCategory": "Todos los mensajes",
+    "daysCount(plural, param=n)": {
+      "one": "{n} día",
+      "other": "{n} días"
+    },
+    "andOthers(plural, param=n)": {
+      "one": "{name} y 1 más",
+      "other": "{name} y {n} más"
+    },
+    "showCount(plural, param=n)": {
+      "one": "Mostrar {n} mensaje",
+      "other": "Mostrar {n} mensajes"
+    },
+    "searchOpen": "Buscar",
+    "searchClose": "Cerrar la búsqueda",
+    "dayAll": "Todos"
   },
   "memorize": {
     "title": "Memorización",

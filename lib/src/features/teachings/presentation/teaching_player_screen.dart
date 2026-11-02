@@ -18,7 +18,8 @@ import 'widgets/teaching_widgets.dart';
 
 /// The teaching heard now, full screen and night blue: the cover, the
 /// title and the speaker, the bar to move in it, ±15 seconds, play / pause,
-/// the speed, keep it on the phone, and what the admins wrote about it.
+/// the speed, keep it on the phone, send it, and what the admins wrote
+/// about it.
 /// Listening goes on when it is closed (the mini player, the lock screen).
 @RoutePage()
 class TeachingPlayerScreen extends HookConsumerWidget {
@@ -56,12 +57,16 @@ class TeachingPlayerScreen extends HookConsumerWidget {
         body: SafeArea(
           child: Column(
             children: [
-              const Align(
-                alignment: AlignmentDirectional.centerStart,
-                child: IconTheme(
-                  data: IconThemeData(color: Colors.white),
-                  child: AppBackButton(),
-                ),
+              Row(
+                children: [
+                  const IconTheme(
+                    data: IconThemeData(color: Colors.white),
+                    child: AppBackButton(),
+                  ),
+                  const Spacer(),
+                  ShareTeachingButton(teaching: teaching, color: Colors.white),
+                  const SizedBox(width: AppSpacing.sm),
+                ],
               ),
               Expanded(
                 child: ListView(
@@ -80,7 +85,7 @@ class TeachingPlayerScreen extends HookConsumerWidget {
                     ),
                     const SizedBox(height: AppSpacing.xl),
                     Text(
-                      teaching.title,
+                      teachingTitle(context, teaching),
                       textAlign: TextAlign.center,
                       style: Theme.of(context).textTheme.titleLarge?.copyWith(
                         color: Colors.white,

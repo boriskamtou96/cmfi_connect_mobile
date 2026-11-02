@@ -496,6 +496,7 @@ class _Translations$more$hi extends Translations$more$fr {
 	@override String get admin => 'प्रबंधन';
 	@override String get staff => 'टीम और भूमिकाएँ';
 	@override String get manageEvents => 'कार्यक्रम प्रबंधित करें';
+	@override String get manageDocuments => 'दस्तावेज़ प्रबंधित करें';
 	@override String get disciples => 'मेरे शिष्य';
 	@override String version({required Object version}) => 'संस्करण ${version}';
 	@override String copyright({required Object year}) => '© ${year} Christian Missionary Fellowship International. सर्वाधिकार सुरक्षित।';
@@ -1451,11 +1452,13 @@ class _Translations$documents$hi extends Translations$documents$fr {
 	@override String get word => 'Word';
 	@override String get open => 'दस्तावेज़ खोलें';
 	@override String get download => 'डाउनलोड करें';
+	@override String get share => 'साझा करें';
 	@override String count({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n,
 		one: '${n} दस्तावेज़',
 		other: '${n} दस्तावेज़',
 	);
 	@override String get more => 'और देखें';
+	@override late final _Translations$documents$admin$hi admin = _Translations$documents$admin$hi._(_root);
 }
 
 // Path: biblePlan
@@ -1565,6 +1568,7 @@ class _Translations$teachings$hi extends Translations$teachings$fr {
 	@override String get removed => 'फ़ोन से हटाया गया';
 	@override String get cancelDownload => 'डाउनलोड रोको';
 	@override String get removeDownload => 'फ़ोन से हटाओ';
+	@override String get share => 'साझा करें';
 	@override String get back15 => '15 सेकंड पीछे';
 	@override String get forward15 => '15 सेकंड आगे';
 	@override String speed({required Object speed}) => 'गति ${speed}';
@@ -1585,6 +1589,29 @@ class _Translations$teachings$hi extends Translations$teachings$fr {
 	@override String dayChip({required Object n}) => 'दिन ${n}';
 	@override String get clearFilters => 'सब हटाएँ';
 	@override String get showResults => 'दिखाएँ';
+	@override String dayMessage({required Object day, required Object n}) => 'दिन ${day}, संदेश ${n}';
+	@override String minutes({required Object n}) => '${n} मिनट';
+	@override String hoursMinutes({required Object h, required Object m}) => '${h} घंटे ${m}';
+	@override String left({required Object time}) => '${time} बाकी';
+	@override String get nowPlaying => 'चल रहा है';
+	@override String get resume => 'फिर से शुरू करें';
+	@override String get editions => 'संस्करण';
+	@override String get allOfCategory => 'सभी संदेश';
+	@override String daysCount({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n,
+		one: '${n} दिन',
+		other: '${n} दिन',
+	);
+	@override String andOthers({required num n, required Object name}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n,
+		one: '${name} और 1 अन्य',
+		other: '${name} और ${n} अन्य',
+	);
+	@override String showCount({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n,
+		one: '${n} संदेश दिखाएँ',
+		other: '${n} संदेश दिखाएँ',
+	);
+	@override String get searchOpen => 'खोजें';
+	@override String get searchClose => 'खोज बंद करें';
+	@override String get dayAll => 'सभी';
 }
 
 // Path: memorize
@@ -3121,6 +3148,47 @@ class _Translations$seekFirst$shield$hi extends Translations$seekFirst$shield$fr
 	@override String get serviceBody => 'तुम्हारे ऐप हर दिन तुम्हारी रिपोर्ट तक बंद रहते हैं।';
 }
 
+// Path: documents.admin
+class _Translations$documents$admin$hi extends Translations$documents$admin$fr {
+	_Translations$documents$admin$hi._(TranslationsHi root) : this._root = root, super.internal(root);
+
+	final TranslationsHi _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'दस्तावेज़ प्रबंधित करें';
+	@override String get manage => 'दस्तावेज़ प्रबंधित करें';
+	@override String get create => 'नया दस्तावेज़';
+	@override String get edit => 'दस्तावेज़ संपादित करें';
+	@override String get empty => 'अभी कोई दस्तावेज़ नहीं। प्रकाशित करने के लिए « नया दस्तावेज़ » दबाएँ।';
+	@override String get file => 'फ़ाइल';
+	@override String get pickFile => 'PDF या Word फ़ाइल चुनें';
+	@override String get fileHint => 'फ़ाइलें या आपके फ़ोन से · अधिकतम 10 MB';
+	@override String get replace => 'बदलें';
+	@override String get uploading => 'फ़ाइल भेजी जा रही है…';
+	@override String get tooLarge => 'यह फ़ाइल बहुत बड़ी है (अधिकतम 10 MB)।';
+	@override String get fileRequired => 'दस्तावेज़ की फ़ाइल चुनें।';
+	@override String get general => 'दस्तावेज़';
+	@override String get titleField => 'शीर्षक';
+	@override String get titleHint => 'उदा.: आंतरिक नियम';
+	@override String get titleRequired => 'दस्तावेज़ को शीर्षक दें।';
+	@override String get description => 'विवरण (वैकल्पिक)';
+	@override String get category => 'श्रेणी';
+	@override String get noCategory => 'कोई नहीं';
+	@override String get newCategory => 'नई श्रेणी';
+	@override String get newCategoryHint => 'श्रेणी का नाम';
+	@override String get visibility => 'प्रकाशन';
+	@override String get published => 'अभी प्रकाशित करें';
+	@override String get publishedHint => 'सदस्य इसे हमारे दस्तावेज़ में देखते हैं।';
+	@override String get notify => 'सदस्यों को सूचित करें';
+	@override String get notifyHint => 'पहली बार प्रकाशित होने पर एक सूचना।';
+	@override String get draft => 'ड्राफ़्ट';
+	@override String get saved => 'दस्तावेज़ सहेजा गया';
+	@override String get deleted => 'दस्तावेज़ हटाया गया';
+	@override String get delete => 'हटाएँ';
+	@override String get deleteTitle => 'यह दस्तावेज़ हटाएँ?';
+	@override String get deleteText => 'यह सभी सदस्यों के लिए गायब हो जाएगा। इसे वापस नहीं किया जा सकता।';
+}
+
 // Path: souls.csv
 class _Translations$souls$csv$hi extends Translations$souls$csv$fr {
 	_Translations$souls$csv$hi._(TranslationsHi root) : this._root = root, super.internal(root);
@@ -4258,6 +4326,7 @@ extension on TranslationsHi {
 			'more.admin' => 'प्रबंधन',
 			'more.staff' => 'टीम और भूमिकाएँ',
 			'more.manageEvents' => 'कार्यक्रम प्रबंधित करें',
+			'more.manageDocuments' => 'दस्तावेज़ प्रबंधित करें',
 			'more.disciples' => 'मेरे शिष्य',
 			'more.version' => ({required Object version}) => 'संस्करण ${version}',
 			'more.copyright' => ({required Object year}) => '© ${year} Christian Missionary Fellowship International. सर्वाधिकार सुरक्षित।',
@@ -4319,9 +4388,9 @@ extension on TranslationsHi {
 			'authorities.madeMaker' => ({required Object name}) => '${name} अब तुम्हारे चेला बनाने वाले हैं।',
 			'members.username' => 'यूज़रनेम',
 			'members.usernameHint' => 'naam.surname',
-			'members.usernameHelp' => 'दूसरे सदस्य तुम्हें इसी नाम से ढूँढेंगे।',
 			_ => null,
 		} ?? switch (path) {
+			'members.usernameHelp' => 'दूसरे सदस्य तुम्हें इसी नाम से ढूँढेंगे।',
 			'members.usernameChecking' => 'जाँच हो रही है…',
 			'members.usernameFree' => ({required Object username}) => '@${username} उपलब्ध है',
 			'members.usernameCurrent' => 'यह तुम्हारा मौजूदा यूज़रनेम है',
@@ -4833,9 +4902,9 @@ extension on TranslationsHi {
 			'prayer.moments.night' => 'रात',
 			'prayer.retreatOf.morning' => 'सुबह का प्रार्थना-समय',
 			'prayer.retreatOf.noon' => 'दोपहर का प्रार्थना-समय',
-			'prayer.retreatOf.evening' => 'शाम का प्रार्थना-समय',
 			_ => null,
 		} ?? switch (path) {
+			'prayer.retreatOf.evening' => 'शाम का प्रार्थना-समय',
 			'prayer.retreatOf.night' => 'रात का प्रार्थना-समय',
 			'prayer.hero.now' => ({required Object retreat}) => '${retreat} · अभी',
 			'prayer.hero.title' => '15 मिनट\nप्रभु के साथ',
@@ -5347,9 +5416,9 @@ extension on TranslationsHi {
 			'seekFirst.shield.notificationTitle' => 'पहले परमेश्वर को खोजो',
 			'seekFirst.shield.notificationBody' => 'अपनी रिपोर्ट भरने के लिए यहाँ टैप करें।',
 			'seekFirst.shield.serviceBody' => 'तुम्हारे ऐप हर दिन तुम्हारी रिपोर्ट तक बंद रहते हैं।',
-			'seekFirst.permissionsAndroid' => 'तुम्हारे ऐप बंद करने के लिए CMFI Connect को दो अनुमतियाँ चाहिए, जो खुलने वाली सेटिंग्स में चालू करनी हैं: «उपयोग डेटा तक पहुँच» (कौन-सा ऐप खुला है) और «दूसरे ऐप्स के ऊपर दिखाएँ» (पहले परमेश्वर को खोजो स्क्रीन दिखाने के लिए)। कुछ भी तुम्हारे फ़ोन से बाहर नहीं जाता।',
 			_ => null,
 		} ?? switch (path) {
+			'seekFirst.permissionsAndroid' => 'तुम्हारे ऐप बंद करने के लिए CMFI Connect को दो अनुमतियाँ चाहिए, जो खुलने वाली सेटिंग्स में चालू करनी हैं: «उपयोग डेटा तक पहुँच» (कौन-सा ऐप खुला है) और «दूसरे ऐप्स के ऊपर दिखाएँ» (पहले परमेश्वर को खोजो स्क्रीन दिखाने के लिए)। कुछ भी तुम्हारे फ़ोन से बाहर नहीं जाता।',
 			'seekFirst.permissionsContinue' => 'आगे बढ़ो',
 			'seekFirst.deniedAndroid' => 'इन दो अनुमतियों के बिना CMFI Connect ऐप बंद नहीं कर सकता। तुम इन्हें सेटिंग्स › ऐप्स › विशेष पहुँच में चालू कर सकते हो।',
 			'seekFirst.privacyAndroid' => 'तुम्हारे चुने ऐप तुम्हारे फ़ोन में ही रहते हैं: CMFI Connect उन्हें कभी नहीं भेजता।',
@@ -5366,8 +5435,41 @@ extension on TranslationsHi {
 			'documents.word' => 'Word',
 			'documents.open' => 'दस्तावेज़ खोलें',
 			'documents.download' => 'डाउनलोड करें',
+			'documents.share' => 'साझा करें',
 			'documents.count' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n, one: '${n} दस्तावेज़', other: '${n} दस्तावेज़', ), 
 			'documents.more' => 'और देखें',
+			'documents.admin.title' => 'दस्तावेज़ प्रबंधित करें',
+			'documents.admin.manage' => 'दस्तावेज़ प्रबंधित करें',
+			'documents.admin.create' => 'नया दस्तावेज़',
+			'documents.admin.edit' => 'दस्तावेज़ संपादित करें',
+			'documents.admin.empty' => 'अभी कोई दस्तावेज़ नहीं। प्रकाशित करने के लिए « नया दस्तावेज़ » दबाएँ।',
+			'documents.admin.file' => 'फ़ाइल',
+			'documents.admin.pickFile' => 'PDF या Word फ़ाइल चुनें',
+			'documents.admin.fileHint' => 'फ़ाइलें या आपके फ़ोन से · अधिकतम 10 MB',
+			'documents.admin.replace' => 'बदलें',
+			'documents.admin.uploading' => 'फ़ाइल भेजी जा रही है…',
+			'documents.admin.tooLarge' => 'यह फ़ाइल बहुत बड़ी है (अधिकतम 10 MB)।',
+			'documents.admin.fileRequired' => 'दस्तावेज़ की फ़ाइल चुनें।',
+			'documents.admin.general' => 'दस्तावेज़',
+			'documents.admin.titleField' => 'शीर्षक',
+			'documents.admin.titleHint' => 'उदा.: आंतरिक नियम',
+			'documents.admin.titleRequired' => 'दस्तावेज़ को शीर्षक दें।',
+			'documents.admin.description' => 'विवरण (वैकल्पिक)',
+			'documents.admin.category' => 'श्रेणी',
+			'documents.admin.noCategory' => 'कोई नहीं',
+			'documents.admin.newCategory' => 'नई श्रेणी',
+			'documents.admin.newCategoryHint' => 'श्रेणी का नाम',
+			'documents.admin.visibility' => 'प्रकाशन',
+			'documents.admin.published' => 'अभी प्रकाशित करें',
+			'documents.admin.publishedHint' => 'सदस्य इसे हमारे दस्तावेज़ में देखते हैं।',
+			'documents.admin.notify' => 'सदस्यों को सूचित करें',
+			'documents.admin.notifyHint' => 'पहली बार प्रकाशित होने पर एक सूचना।',
+			'documents.admin.draft' => 'ड्राफ़्ट',
+			'documents.admin.saved' => 'दस्तावेज़ सहेजा गया',
+			'documents.admin.deleted' => 'दस्तावेज़ हटाया गया',
+			'documents.admin.delete' => 'हटाएँ',
+			'documents.admin.deleteTitle' => 'यह दस्तावेज़ हटाएँ?',
+			'documents.admin.deleteText' => 'यह सभी सदस्यों के लिए गायब हो जाएगा। इसे वापस नहीं किया जा सकता।',
 			'biblePlan.title' => 'पठन योजना',
 			'biblePlan.duration' => 'अवधि',
 			'biblePlan.months3' => '3 महीने',
@@ -5437,6 +5539,7 @@ extension on TranslationsHi {
 			'teachings.removed' => 'फ़ोन से हटाया गया',
 			'teachings.cancelDownload' => 'डाउनलोड रोको',
 			'teachings.removeDownload' => 'फ़ोन से हटाओ',
+			'teachings.share' => 'साझा करें',
 			'teachings.back15' => '15 सेकंड पीछे',
 			'teachings.forward15' => '15 सेकंड आगे',
 			'teachings.speed' => ({required Object speed}) => 'गति ${speed}',
@@ -5457,6 +5560,20 @@ extension on TranslationsHi {
 			'teachings.dayChip' => ({required Object n}) => 'दिन ${n}',
 			'teachings.clearFilters' => 'सब हटाएँ',
 			'teachings.showResults' => 'दिखाएँ',
+			'teachings.dayMessage' => ({required Object day, required Object n}) => 'दिन ${day}, संदेश ${n}',
+			'teachings.minutes' => ({required Object n}) => '${n} मिनट',
+			'teachings.hoursMinutes' => ({required Object h, required Object m}) => '${h} घंटे ${m}',
+			'teachings.left' => ({required Object time}) => '${time} बाकी',
+			'teachings.nowPlaying' => 'चल रहा है',
+			'teachings.resume' => 'फिर से शुरू करें',
+			'teachings.editions' => 'संस्करण',
+			'teachings.allOfCategory' => 'सभी संदेश',
+			'teachings.daysCount' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n, one: '${n} दिन', other: '${n} दिन', ), 
+			'teachings.andOthers' => ({required num n, required Object name}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n, one: '${name} और 1 अन्य', other: '${name} और ${n} अन्य', ), 
+			'teachings.showCount' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n, one: '${n} संदेश दिखाएँ', other: '${n} संदेश दिखाएँ', ), 
+			'teachings.searchOpen' => 'खोजें',
+			'teachings.searchClose' => 'खोज बंद करें',
+			'teachings.dayAll' => 'सभी',
 			'memorize.title' => 'कंठस्थ करना',
 			'memorize.subtitle' => 'वचन को अपने हृदय में रखो',
 			'memorize.toReview' => 'दोहराने को',

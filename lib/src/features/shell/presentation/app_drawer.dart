@@ -161,6 +161,12 @@ class AppDrawer extends ConsumerWidget {
                     trailing: const SizedBox.shrink(),
                     onTap: () => go(const AdminEventsRoute()),
                   ),
+                  MenuTile(
+                    icon: AppIcons.documentsTile,
+                    title: t.more.manageDocuments,
+                    trailing: const SizedBox.shrink(),
+                    onTap: () => go(const AdminDocumentsRoute()),
+                  ),
                 ],
                 const Padding(
                   padding: EdgeInsets.symmetric(vertical: AppSpacing.sm),

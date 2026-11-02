@@ -296,7 +296,8 @@ mixin _$LibraryDocument {
 /// that don't know [categoryId] yet.
  String get category;/// The category chosen by the admins; null when none.
  int? get categoryId;/// "formulaires": the category in the addresses of the API.
- String get categorySlug; LibraryFile get file; DateTime? get publishedAt;
+ String get categorySlug; LibraryFile get file;/// false for a draft: only the admins see it (Gérer les documents).
+ bool get published; DateTime? get publishedAt;
 /// Create a copy of LibraryDocument
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -309,16 +310,16 @@ $LibraryDocumentCopyWith<LibraryDocument> get copyWith => _$LibraryDocumentCopyW
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is LibraryDocument&&(identical(other.id, id) || other.id == id)&&(identical(other.title, title) || other.title == title)&&(identical(other.description, description) || other.description == description)&&(identical(other.category, category) || other.category == category)&&(identical(other.categoryId, categoryId) || other.categoryId == categoryId)&&(identical(other.categorySlug, categorySlug) || other.categorySlug == categorySlug)&&(identical(other.file, file) || other.file == file)&&(identical(other.publishedAt, publishedAt) || other.publishedAt == publishedAt));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is LibraryDocument&&(identical(other.id, id) || other.id == id)&&(identical(other.title, title) || other.title == title)&&(identical(other.description, description) || other.description == description)&&(identical(other.category, category) || other.category == category)&&(identical(other.categoryId, categoryId) || other.categoryId == categoryId)&&(identical(other.categorySlug, categorySlug) || other.categorySlug == categorySlug)&&(identical(other.file, file) || other.file == file)&&(identical(other.published, published) || other.published == published)&&(identical(other.publishedAt, publishedAt) || other.publishedAt == publishedAt));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,id,title,description,category,categoryId,categorySlug,file,publishedAt);
+int get hashCode => Object.hash(runtimeType,id,title,description,category,categoryId,categorySlug,file,published,publishedAt);
 
 @override
 String toString() {
-  return 'LibraryDocument(id: $id, title: $title, description: $description, category: $category, categoryId: $categoryId, categorySlug: $categorySlug, file: $file, publishedAt: $publishedAt)';
+  return 'LibraryDocument(id: $id, title: $title, description: $description, category: $category, categoryId: $categoryId, categorySlug: $categorySlug, file: $file, published: $published, publishedAt: $publishedAt)';
 }
 
 
@@ -329,7 +330,7 @@ abstract mixin class $LibraryDocumentCopyWith<$Res>  {
   factory $LibraryDocumentCopyWith(LibraryDocument value, $Res Function(LibraryDocument) _then) = _$LibraryDocumentCopyWithImpl;
 @useResult
 $Res call({
- int id, String title, String description, String category, int? categoryId, String categorySlug, LibraryFile file, DateTime? publishedAt
+ int id, String title, String description, String category, int? categoryId, String categorySlug, LibraryFile file, bool published, DateTime? publishedAt
 });
 
 
@@ -346,7 +347,7 @@ class _$LibraryDocumentCopyWithImpl<$Res>
 
 /// Create a copy of LibraryDocument
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? title = null,Object? description = null,Object? category = null,Object? categoryId = freezed,Object? categorySlug = null,Object? file = null,Object? publishedAt = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? title = null,Object? description = null,Object? category = null,Object? categoryId = freezed,Object? categorySlug = null,Object? file = null,Object? published = null,Object? publishedAt = freezed,}) {
   return _then(_self.copyWith(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as int,title: null == title ? _self.title : title // ignore: cast_nullable_to_non_nullable
@@ -355,7 +356,8 @@ as String,category: null == category ? _self.category : category // ignore: cast
 as String,categoryId: freezed == categoryId ? _self.categoryId : categoryId // ignore: cast_nullable_to_non_nullable
 as int?,categorySlug: null == categorySlug ? _self.categorySlug : categorySlug // ignore: cast_nullable_to_non_nullable
 as String,file: null == file ? _self.file : file // ignore: cast_nullable_to_non_nullable
-as LibraryFile,publishedAt: freezed == publishedAt ? _self.publishedAt : publishedAt // ignore: cast_nullable_to_non_nullable
+as LibraryFile,published: null == published ? _self.published : published // ignore: cast_nullable_to_non_nullable
+as bool,publishedAt: freezed == publishedAt ? _self.publishedAt : publishedAt // ignore: cast_nullable_to_non_nullable
 as DateTime?,
   ));
 }
@@ -450,10 +452,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( int id,  String title,  String description,  String category,  int? categoryId,  String categorySlug,  LibraryFile file,  DateTime? publishedAt)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( int id,  String title,  String description,  String category,  int? categoryId,  String categorySlug,  LibraryFile file,  bool published,  DateTime? publishedAt)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _LibraryDocument() when $default != null:
-return $default(_that.id,_that.title,_that.description,_that.category,_that.categoryId,_that.categorySlug,_that.file,_that.publishedAt);case _:
+return $default(_that.id,_that.title,_that.description,_that.category,_that.categoryId,_that.categorySlug,_that.file,_that.published,_that.publishedAt);case _:
   return orElse();
 
 }
@@ -471,10 +473,10 @@ return $default(_that.id,_that.title,_that.description,_that.category,_that.cate
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( int id,  String title,  String description,  String category,  int? categoryId,  String categorySlug,  LibraryFile file,  DateTime? publishedAt)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( int id,  String title,  String description,  String category,  int? categoryId,  String categorySlug,  LibraryFile file,  bool published,  DateTime? publishedAt)  $default,) {final _that = this;
 switch (_that) {
 case _LibraryDocument():
-return $default(_that.id,_that.title,_that.description,_that.category,_that.categoryId,_that.categorySlug,_that.file,_that.publishedAt);case _:
+return $default(_that.id,_that.title,_that.description,_that.category,_that.categoryId,_that.categorySlug,_that.file,_that.published,_that.publishedAt);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -491,10 +493,10 @@ return $default(_that.id,_that.title,_that.description,_that.category,_that.cate
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( int id,  String title,  String description,  String category,  int? categoryId,  String categorySlug,  LibraryFile file,  DateTime? publishedAt)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( int id,  String title,  String description,  String category,  int? categoryId,  String categorySlug,  LibraryFile file,  bool published,  DateTime? publishedAt)?  $default,) {final _that = this;
 switch (_that) {
 case _LibraryDocument() when $default != null:
-return $default(_that.id,_that.title,_that.description,_that.category,_that.categoryId,_that.categorySlug,_that.file,_that.publishedAt);case _:
+return $default(_that.id,_that.title,_that.description,_that.category,_that.categoryId,_that.categorySlug,_that.file,_that.published,_that.publishedAt);case _:
   return null;
 
 }
@@ -506,7 +508,7 @@ return $default(_that.id,_that.title,_that.description,_that.category,_that.cate
 @JsonSerializable()
 
 class _LibraryDocument implements LibraryDocument {
-  const _LibraryDocument({required this.id, required this.title, this.description = '', this.category = '', this.categoryId, this.categorySlug = '', required this.file, this.publishedAt});
+  const _LibraryDocument({required this.id, required this.title, this.description = '', this.category = '', this.categoryId, this.categorySlug = '', required this.file, this.published = true, this.publishedAt});
   factory _LibraryDocument.fromJson(Map<String, dynamic> json) => _$LibraryDocumentFromJson(json);
 
 @override final  int id;
@@ -520,6 +522,8 @@ class _LibraryDocument implements LibraryDocument {
 /// "formulaires": the category in the addresses of the API.
 @override@JsonKey() final  String categorySlug;
 @override final  LibraryFile file;
+/// false for a draft: only the admins see it (Gérer les documents).
+@override@JsonKey() final  bool published;
 @override final  DateTime? publishedAt;
 
 /// Create a copy of LibraryDocument
@@ -535,16 +539,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _LibraryDocument&&(identical(other.id, id) || other.id == id)&&(identical(other.title, title) || other.title == title)&&(identical(other.description, description) || other.description == description)&&(identical(other.category, category) || other.category == category)&&(identical(other.categoryId, categoryId) || other.categoryId == categoryId)&&(identical(other.categorySlug, categorySlug) || other.categorySlug == categorySlug)&&(identical(other.file, file) || other.file == file)&&(identical(other.publishedAt, publishedAt) || other.publishedAt == publishedAt));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _LibraryDocument&&(identical(other.id, id) || other.id == id)&&(identical(other.title, title) || other.title == title)&&(identical(other.description, description) || other.description == description)&&(identical(other.category, category) || other.category == category)&&(identical(other.categoryId, categoryId) || other.categoryId == categoryId)&&(identical(other.categorySlug, categorySlug) || other.categorySlug == categorySlug)&&(identical(other.file, file) || other.file == file)&&(identical(other.published, published) || other.published == published)&&(identical(other.publishedAt, publishedAt) || other.publishedAt == publishedAt));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,id,title,description,category,categoryId,categorySlug,file,publishedAt);
+int get hashCode => Object.hash(runtimeType,id,title,description,category,categoryId,categorySlug,file,published,publishedAt);
 
 @override
 String toString() {
-  return 'LibraryDocument(id: $id, title: $title, description: $description, category: $category, categoryId: $categoryId, categorySlug: $categorySlug, file: $file, publishedAt: $publishedAt)';
+  return 'LibraryDocument(id: $id, title: $title, description: $description, category: $category, categoryId: $categoryId, categorySlug: $categorySlug, file: $file, published: $published, publishedAt: $publishedAt)';
 }
 
 
@@ -555,7 +559,7 @@ abstract mixin class _$LibraryDocumentCopyWith<$Res> implements $LibraryDocument
   factory _$LibraryDocumentCopyWith(_LibraryDocument value, $Res Function(_LibraryDocument) _then) = __$LibraryDocumentCopyWithImpl;
 @override @useResult
 $Res call({
- int id, String title, String description, String category, int? categoryId, String categorySlug, LibraryFile file, DateTime? publishedAt
+ int id, String title, String description, String category, int? categoryId, String categorySlug, LibraryFile file, bool published, DateTime? publishedAt
 });
 
 
@@ -572,7 +576,7 @@ class __$LibraryDocumentCopyWithImpl<$Res>
 
 /// Create a copy of LibraryDocument
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? title = null,Object? description = null,Object? category = null,Object? categoryId = freezed,Object? categorySlug = null,Object? file = null,Object? publishedAt = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? title = null,Object? description = null,Object? category = null,Object? categoryId = freezed,Object? categorySlug = null,Object? file = null,Object? published = null,Object? publishedAt = freezed,}) {
   return _then(_LibraryDocument(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as int,title: null == title ? _self.title : title // ignore: cast_nullable_to_non_nullable
@@ -581,7 +585,8 @@ as String,category: null == category ? _self.category : category // ignore: cast
 as String,categoryId: freezed == categoryId ? _self.categoryId : categoryId // ignore: cast_nullable_to_non_nullable
 as int?,categorySlug: null == categorySlug ? _self.categorySlug : categorySlug // ignore: cast_nullable_to_non_nullable
 as String,file: null == file ? _self.file : file // ignore: cast_nullable_to_non_nullable
-as LibraryFile,publishedAt: freezed == publishedAt ? _self.publishedAt : publishedAt // ignore: cast_nullable_to_non_nullable
+as LibraryFile,published: null == published ? _self.published : published // ignore: cast_nullable_to_non_nullable
+as bool,publishedAt: freezed == publishedAt ? _self.publishedAt : publishedAt // ignore: cast_nullable_to_non_nullable
 as DateTime?,
   ));
 }

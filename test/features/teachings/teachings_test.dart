@@ -55,7 +55,8 @@ void main() {
     expect(find.text('2 messages'), findsOneWidget);
     expect(find.text('Le message de la croix'), findsOneWidget);
     expect(find.textContaining('Pr Zacharias Tanee Fomum'), findsOneWidget);
-    expect(find.textContaining('52:05'), findsOneWidget);
+    // a length to read, not a clock
+    expect(find.text('53 min'), findsOneWidget);
 
     // the chips scroll sideways
     await tester.ensureVisible(find.text('Vie chrétienne'));
@@ -68,7 +69,14 @@ void main() {
     await tester.ensureVisible(find.text('Tous'));
     await tester.pumpAndSettle();
     await tester.tap(find.text('Tous'));
+    await tester.pumpAndSettle();
+    // the field comes with the magnifier
+    expect(find.byType(TextField), findsNothing);
+    await tester.tap(find.byTooltip('Rechercher'));
+    await tester.pumpAndSettle();
     await tester.enterText(find.byType(TextField), 'fomum');
+    // the field rebuilt, then the wait of the typing
+    await tester.pump();
     await tester.pump(const Duration(milliseconds: 400));
     await tester.pumpAndSettle();
     expect(find.text('1 message'), findsOneWidget);
@@ -132,6 +140,52 @@ void main() {
     await tester.tap(find.byTooltip('Retour'));
     await tester.pumpAndSettle();
     expect(find.text('Écouté'), findsOneWidget);
+  });
+
+  testWidgets('the player shares the audio, downloaded first when not kept', (
+    tester,
+  ) async {
+    final app = await openTeachings(tester);
+
+    await tester.tap(find.text('Le message de la croix'));
+    await tester.pumpAndSettle();
+    await tester.tap(find.byTooltip('Partager'));
+    await tester.pumpAndSettle();
+    final shared = app.share.paths.single;
+    expect(shared.path, '/tmp/shared_teachings/1.mp3');
+    expect(
+      shared.name,
+      'Le message de la croix – Pr Zacharias Tanee Fomum.mp3',
+    );
+    expect(shared.mimeType, 'audio/mpeg');
+  });
+
+  testWidgets('kept on the phone: the file kept is shared', (tester) async {
+    final files = FakeTeachingFiles()..kept.add(1);
+    final app = await openTeachings(tester, files: files);
+
+    await tester.tap(find.text('Le message de la croix'));
+    await tester.pumpAndSettle();
+    await tester.tap(find.byTooltip('Partager'));
+    await tester.pumpAndSettle();
+    expect(app.share.paths.single.path, '/tmp/teachings/1.mp3');
+  });
+
+  testWidgets('without network, sharing says why', (tester) async {
+    final files = FakeTeachingFiles()..fail = true;
+    final app = await openTeachings(tester, files: files);
+
+    await tester.tap(find.text('Le message de la croix'));
+    await tester.pumpAndSettle();
+    await tester.tap(find.byTooltip('Partager'));
+    await tester.pumpAndSettle();
+    expect(app.share.paths, isEmpty);
+    expect(
+      app.toasts.messages,
+      contains('Pas de connexion à internet. Vérifie ton réseau et réessaie.'),
+    );
+    // the arrow is back
+    expect(find.byTooltip('Partager'), findsOneWidget);
   });
 
   testWidgets('without Premium, downloading opens the Premium page', (
@@ -254,44 +308,174 @@ void main() {
     await tester.tap(find.byTooltip('Filtres'));
     await tester.pumpAndSettle();
     expect(find.text('Affiner la liste'), findsOneWidget);
+    // all in sight: the speakers with their initials, the editions
+    expect(find.text('TA'), findsOneWidget);
+    expect(find.text('Afficher 3 messages'), findsOneWidget);
 
-    await tester.ensureVisible(find.byType(DropdownButtonFormField<String>).at(0));
+    // in the sheet, over the list
+    await tester.tap(find.text('Théodore Andoseh').last);
     await tester.pumpAndSettle();
-    await tester.tap(find.byType(DropdownButtonFormField<String>).at(0));
+    expect(find.text('Afficher 2 messages'), findsOneWidget);
+    await tester.tap(find.text('Croisades de prière et de jeûne').last);
     await tester.pumpAndSettle();
-    await tester.tap(find.text('Théodore Andoseh (2)').last);
-    await tester.pumpAndSettle();
-
-    await tester.ensureVisible(find.byType(DropdownButtonFormField<String>).at(2));
-    await tester.pumpAndSettle();
-    await tester.tap(find.byType(DropdownButtonFormField<String>).at(2));
-    await tester.pumpAndSettle();
-    await tester.tap(find.text('Croisades de prière et de jeûne 2026').last);
-    await tester.pumpAndSettle();
-
     // the days of the edition: two messages on the first
-    await tester.ensureVisible(find.byType(DropdownButtonFormField<String>).at(3));
+    await tester.ensureVisible(find.text('Jour 1'));
     await tester.pumpAndSettle();
-    await tester.tap(find.byType(DropdownButtonFormField<String>).at(3));
+    await tester.tap(find.text('Jour 1'));
     await tester.pumpAndSettle();
-    await tester.tap(find.text('Jour 1 (2)').last);
+    await tester.tap(find.text('Afficher 2 messages'));
     await tester.pumpAndSettle();
 
-    await tester.ensureVisible(find.text('Afficher'));
-    await tester.pumpAndSettle();
-    await tester.tap(find.text('Afficher'));
-    await tester.pumpAndSettle();
-    expect(find.text('2 messages'), findsOneWidget);
+    // the edition as a season: its card, its days as tabs
+    expect(find.text('Croisades de prière et de jeûne 2026'), findsOneWidget);
+    // the speaker of the season, and the filter's chip
+    expect(find.text('Théodore Andoseh'), findsNWidgets(2));
     expect(find.text('La sainteté'), findsOneWidget);
     expect(find.text('Le pardon'), findsOneWidget);
     expect(find.text('La mission'), findsNothing);
 
-    // the days stay as chips under the header
+    // the speaker stays as a chip; « Tout effacer » lets everything go
     await tester.ensureVisible(find.text('Tout effacer'));
     await tester.pumpAndSettle();
     await tester.tap(find.text('Tout effacer'));
     await tester.pumpAndSettle();
     expect(find.text('3 messages'), findsOneWidget);
     expect(find.text('La mission'), findsOneWidget);
+  });
+
+  testWidgets('a category with messages outside its editions lists them all', (
+    tester,
+  ) async {
+    const crusade = TeachingEditionBrief(
+      id: 7,
+      title: 'Croisades de prière et de jeûne 2026',
+      year: 2026,
+    );
+    await openTeachings(
+      tester,
+      api: FakeTeachingsApi(
+        teachings: const [
+          Teaching(
+            id: 1,
+            title: 'Dans l\'édition',
+            category: 'Croisades',
+            categorySlug: 'croisades',
+            year: 2026,
+            dayNumber: 1,
+            edition: crusade,
+            audio: TeachingAudio(id: 11, url: '/v1/media/1.mp3'),
+          ),
+          Teaching(
+            id: 2,
+            title: 'Hors édition',
+            category: 'Croisades',
+            categorySlug: 'croisades',
+            audio: TeachingAudio(id: 12, url: '/v1/media/2.mp3'),
+          ),
+        ],
+      ),
+    );
+
+    await tester.tap(find.text('Croisades'));
+    await tester.pumpAndSettle();
+    // no season card: nothing left out
+    expect(find.text('Croisades de prière et de jeûne 2026'), findsNothing);
+    expect(find.text('2 messages'), findsOneWidget);
+    expect(find.text('Hors édition'), findsOneWidget);
+  });
+
+  testWidgets('a category with editions opens its latest one, like a season', (
+    tester,
+  ) async {
+    const crusade2025 = TeachingEditionBrief(
+      id: 6,
+      title: 'Croisades de prière et de jeûne 2025',
+      year: 2025,
+    );
+    const crusade2026 = TeachingEditionBrief(
+      id: 7,
+      title: 'Croisades de prière et de jeûne 2026',
+      year: 2026,
+    );
+    Teaching message(
+      int id,
+      String title,
+      TeachingEditionBrief edition,
+      int day,
+    ) => Teaching(
+      id: id,
+      title: title,
+      speaker: 'Théodore Andoseh',
+      category: 'Croisades de prière et de jeûne',
+      categorySlug: 'croisades',
+      year: edition.year,
+      dayNumber: day,
+      edition: edition,
+      durationSeconds: 1044,
+      audio: TeachingAudio(id: 100 + id, url: '/v1/media/$id.mp3'),
+    );
+    final app = await openTeachings(
+      tester,
+      api: FakeTeachingsApi(
+        teachings: [
+          message(
+            1,
+            'Jour 1_1 croisade de prière et de jeûne 2026',
+            crusade2026,
+            1,
+          ),
+          message(
+            2,
+            'Jour 1_2 croisade de prière et de jeûne 2026',
+            crusade2026,
+            1,
+          ),
+          message(3, 'La prière qui persévère', crusade2026, 2),
+          message(4, 'Jour 1_1 croisade 2025', crusade2025, 1),
+        ],
+      ),
+    );
+
+    await tester.tap(find.text('Croisades de prière et de jeûne'));
+    await tester.pumpAndSettle();
+    // the latest edition, its messages under the names they mean
+    expect(find.text('Croisades de prière et de jeûne 2026'), findsOneWidget);
+    expect(find.text('Jour 1, message 1'), findsOneWidget);
+    expect(find.text('Jour 1, message 2'), findsOneWidget);
+    expect(find.text('La prière qui persévère'), findsOneWidget);
+    expect(find.text('Jour 1_1 croisade 2025'), findsNothing);
+    expect(find.text('3 messages · 2 jours · 53 min'), findsOneWidget);
+
+    // its days as tabs
+    await tester.tap(find.text('Jour 2'));
+    await tester.pumpAndSettle();
+    expect(find.text('Jour 1, message 1'), findsNothing);
+    expect(find.text('La prière qui persévère'), findsOneWidget);
+    await tester.tap(find.text('Tous').last);
+    await tester.pumpAndSettle();
+
+    // « Écouter » plays the first message not heard
+    await tester.tap(find.text('Écouter'));
+    await tester.pumpAndSettle();
+    expect(app.player.opened.single.teaching.id, 1);
+    await tester.tap(find.byTooltip('Retour'));
+    await tester.pumpAndSettle();
+
+    // the other editions
+    await tester.tap(find.text('Éditions'));
+    await tester.pumpAndSettle();
+    await tester.tap(find.text('Croisades de prière et de jeûne 2025'));
+    await tester.pumpAndSettle();
+    // the one of 2025 in the list, the one of 2026 in the mini player: both
+    // under the name they mean
+    expect(find.text('Jour 1, message 1'), findsNWidgets(2));
+    expect(
+      find.descendant(
+        of: find.byType(MiniPlayer),
+        matching: find.text('Jour 1, message 1'),
+      ),
+      findsOneWidget,
+    );
+    expect(find.text('La prière qui persévère'), findsNothing);
   });
 }

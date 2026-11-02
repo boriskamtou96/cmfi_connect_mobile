@@ -11,6 +11,7 @@ import 'package:cmfi_connect/src/core/services/calendar_service.dart';
 import 'package:cmfi_connect/src/core/services/chime.dart';
 import 'package:cmfi_connect/src/core/services/crash_reporting.dart';
 import 'package:cmfi_connect/src/core/services/deep_links.dart';
+import 'package:cmfi_connect/src/core/services/document_picking.dart';
 import 'package:cmfi_connect/src/core/services/home_widgets.dart';
 import 'package:cmfi_connect/src/core/services/image_picking.dart';
 import 'package:cmfi_connect/src/core/services/link_launcher.dart';
@@ -39,6 +40,7 @@ import 'package:cmfi_connect/src/features/authorities/infrastructure/authorities
 import 'package:cmfi_connect/src/features/disciples/domain/disciple.dart';
 import 'package:cmfi_connect/src/features/disciples/domain/received_report.dart';
 import 'package:cmfi_connect/src/features/disciples/infrastructure/disciples_api.dart';
+import 'package:cmfi_connect/src/features/documents/domain/document_draft.dart';
 import 'package:cmfi_connect/src/features/documents/domain/documents_query.dart';
 import 'package:cmfi_connect/src/features/documents/domain/library_document.dart';
 import 'package:cmfi_connect/src/features/documents/infrastructure/documents_api.dart';
@@ -856,6 +858,17 @@ class FakeShareService implements ShareService {
     String? subject,
     Rect? origin,
   }) async => files.add((name: name, mimeType: mimeType, bytes: bytes));
+
+  final paths = <({String path, String name, String mimeType})>[];
+
+  @override
+  Future<void> sharePath(
+    String path, {
+    required String name,
+    required String mimeType,
+    String? subject,
+    Rect? origin,
+  }) async => paths.add((path: path, name: name, mimeType: mimeType));
 }
 
 /// The phone's photos: [allowed] false is a member who refuses the access.
@@ -2765,6 +2778,114 @@ class FakeDocumentsApi implements DocumentsApi {
   @override
   Future<Uint8List> file(String url) async =>
       Uint8List.fromList(const [37, 80, 68, 70]);
+
+  // ----- admins -----
+
+  /// What the admins sent: the files, then the documents saved.
+  final uploaded = <String>[];
+  final saved = <({int? id, DocumentDraft draft})>[];
+  final deleted = <int>[];
+
+  @override
+  Future<DocumentsPage> adminList({int page = 1, int size = 100}) async {
+    if (offline) {
+      throw const NetworkException();
+    }
+    return (items: documents, total: documents.length);
+  }
+
+  @override
+  Future<List<DocumentCategory>> adminCategories() => categories();
+
+  @override
+  Future<LibraryFile> upload(
+    Uint8List bytes, {
+    required String filename,
+  }) async {
+    uploaded.add(filename);
+    return LibraryFile(
+      id: 900 + uploaded.length,
+      url: '/v1/media/new.pdf',
+      name: filename,
+      kind: filename.endsWith('.pdf') ? DocumentKind.pdf : DocumentKind.word,
+      sizeBytes: bytes.length,
+    );
+  }
+
+  LibraryDocument _apply(int id, DocumentDraft draft, LibraryFile file) {
+    final category =
+        documents
+            .where((one) => one.categoryId == draft.categoryId)
+            .firstOrNull
+            ?.category ??
+        draft.newCategory;
+    return LibraryDocument(
+      id: id,
+      title: draft.title,
+      description: draft.description,
+      category: draft.categoryId == null && draft.newCategory.isEmpty
+          ? ''
+          : category,
+      categoryId: draft.categoryId,
+      categorySlug: _slug(category),
+      file: file,
+      published: draft.published,
+    );
+  }
+
+  @override
+  Future<LibraryDocument> create(DocumentDraft draft) async {
+    saved.add((id: null, draft: draft));
+    final document = _apply(
+      100 + documents.length,
+      draft,
+      LibraryFile(
+        id: draft.fileId,
+        url: '/v1/media/new.pdf',
+        name: draft.fileName,
+      ),
+    );
+    documents = [document, ...documents];
+    return document;
+  }
+
+  @override
+  Future<LibraryDocument> update(int id, DocumentDraft draft) async {
+    saved.add((id: id, draft: draft));
+    final old = documents.firstWhere((one) => one.id == id);
+    final document = _apply(
+      id,
+      draft,
+      draft.fileId == old.file.id
+          ? old.file
+          : LibraryFile(
+              id: draft.fileId,
+              url: '/v1/media/new.pdf',
+              name: draft.fileName,
+            ),
+    );
+    documents = [for (final one in documents) one.id == id ? document : one];
+    return document;
+  }
+
+  @override
+  Future<void> delete(int id) async {
+    deleted.add(id);
+    documents = [
+      for (final one in documents)
+        if (one.id != id) one,
+    ];
+  }
+}
+
+/// The files "chosen" on the phone: [next], one per pick; none, the admin
+/// gave up.
+class FakeDocumentPicking implements DocumentPicking {
+  final next = <PickedDocument>[];
+
+  @override
+  Future<PickedDocument?> pickOne() async =>
+      next.isEmpty ? null : next.removeAt(0);
 }
 
 /// Enseignements: two messages, the newest first.
@@ -2856,7 +2977,9 @@ class FakeTeachingsApi implements TeachingsApi {
           slug: teachings
               .firstWhere((teaching) => teaching.category == name)
               .categorySlug,
-          count: 1,
+          count: teachings
+              .where((teaching) => teaching.category == name)
+              .length,
         ),
     ];
   }
@@ -2884,6 +3007,8 @@ class FakeTeachingsApi implements TeachingsApi {
       if (teaching.edition case final edition?) {
         editions[edition.id] = TeachingEditionFacet(
           id: edition.id,
+          categoryName: teaching.category,
+          categorySlug: teaching.categorySlug,
           year: edition.year,
           title: edition.title,
           count: (editions[edition.id]?.count ?? 0) + 1,
@@ -2999,6 +3124,25 @@ class FakeTeachingFiles implements TeachingFiles {
 
   @override
   Future<void> delete(Teaching teaching) async => kept.remove(teaching.id);
+
+  @override
+  Future<File> forSharing(
+    Teaching teaching,
+    String url, {
+    required void Function(double progress) onProgress,
+    CancelToken? cancel,
+  }) async {
+    if (await fileOf(teaching) case final file?) {
+      return file;
+    }
+    if (fail) {
+      throw const NetworkException();
+    }
+    onProgress(0.5);
+    return File(
+      '/tmp/shared_teachings/${teaching.id}.${teaching.audio.format.name}',
+    );
+  }
 }
 
 /// The Keychain of Suivi des âmes, in memory.

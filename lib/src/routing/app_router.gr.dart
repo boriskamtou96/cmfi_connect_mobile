@@ -11,6 +11,22 @@
 part of 'app_router.dart';
 
 /// generated route for
+/// [AdminDocumentsScreen]
+class AdminDocumentsRoute extends PageRouteInfo<void> {
+  const AdminDocumentsRoute({List<PageRouteInfo>? children})
+    : super(AdminDocumentsRoute.name, initialChildren: children);
+
+  static const String name = 'AdminDocumentsRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const AdminDocumentsScreen();
+    },
+  );
+}
+
+/// generated route for
 /// [AdminEventsScreen]
 class AdminEventsRoute extends PageRouteInfo<void> {
   const AdminEventsRoute({List<PageRouteInfo>? children})
@@ -368,6 +384,55 @@ class DisciplesRoute extends PageRouteInfo<void> {
       return const DisciplesScreen();
     },
   );
+}
+
+/// generated route for
+/// [DocumentFormScreen]
+class DocumentFormRoute extends PageRouteInfo<DocumentFormRouteArgs> {
+  DocumentFormRoute({
+    LibraryDocument? document,
+    Key? key,
+    List<PageRouteInfo>? children,
+  }) : super(
+         DocumentFormRoute.name,
+         args: DocumentFormRouteArgs(document: document, key: key),
+         initialChildren: children,
+       );
+
+  static const String name = 'DocumentFormRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      final args = data.argsAs<DocumentFormRouteArgs>(
+        orElse: () => const DocumentFormRouteArgs(),
+      );
+      return DocumentFormScreen(document: args.document, key: args.key);
+    },
+  );
+}
+
+class DocumentFormRouteArgs {
+  const DocumentFormRouteArgs({this.document, this.key});
+
+  final LibraryDocument? document;
+
+  final Key? key;
+
+  @override
+  String toString() {
+    return 'DocumentFormRouteArgs{document: $document, key: $key}';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (other is! DocumentFormRouteArgs) return false;
+    return document == other.document && key == other.key;
+  }
+
+  @override
+  int get hashCode => document.hashCode ^ key.hashCode;
 }
 
 /// generated route for

@@ -496,6 +496,7 @@ class _Translations$more$de extends Translations$more$fr {
 	@override String get admin => 'Verwaltung';
 	@override String get staff => 'Team und Rollen';
 	@override String get manageEvents => 'Veranstaltungen verwalten';
+	@override String get manageDocuments => 'Dokumente verwalten';
 	@override String get disciples => 'Meine Jünger';
 	@override String version({required Object version}) => 'Version ${version}';
 	@override String copyright({required Object year}) => '© ${year} Christian Missionary Fellowship International. Alle Rechte vorbehalten.';
@@ -1452,11 +1453,13 @@ class _Translations$documents$de extends Translations$documents$fr {
 	@override String get word => 'Word';
 	@override String get open => 'Das Dokument öffnen';
 	@override String get download => 'Herunterladen';
+	@override String get share => 'Teilen';
 	@override String count({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('de'))(n,
 		one: '${n} Dokument',
 		other: '${n} Dokumente',
 	);
 	@override String get more => 'Mehr anzeigen';
+	@override late final _Translations$documents$admin$de admin = _Translations$documents$admin$de._(_root);
 }
 
 // Path: biblePlan
@@ -1566,6 +1569,7 @@ class _Translations$teachings$de extends Translations$teachings$fr {
 	@override String get removed => 'Vom Handy entfernt';
 	@override String get cancelDownload => 'Download abbrechen';
 	@override String get removeDownload => 'Vom Handy entfernen';
+	@override String get share => 'Teilen';
 	@override String get back15 => '15 Sekunden zurück';
 	@override String get forward15 => '15 Sekunden vor';
 	@override String speed({required Object speed}) => 'Geschwindigkeit ${speed}';
@@ -1586,6 +1590,29 @@ class _Translations$teachings$de extends Translations$teachings$fr {
 	@override String dayChip({required Object n}) => 'Tag ${n}';
 	@override String get clearFilters => 'Alles löschen';
 	@override String get showResults => 'Anzeigen';
+	@override String dayMessage({required Object day, required Object n}) => 'Tag ${day}, Botschaft ${n}';
+	@override String minutes({required Object n}) => '${n} Min.';
+	@override String hoursMinutes({required Object h, required Object m}) => '${h} Std. ${m}';
+	@override String left({required Object time}) => 'Noch ${time}';
+	@override String get nowPlaying => 'Läuft';
+	@override String get resume => 'Fortsetzen';
+	@override String get editions => 'Ausgaben';
+	@override String get allOfCategory => 'Alle Botschaften';
+	@override String daysCount({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('de'))(n,
+		one: '${n} Tag',
+		other: '${n} Tage',
+	);
+	@override String andOthers({required num n, required Object name}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('de'))(n,
+		one: '${name} und 1 weiterer',
+		other: '${name} und ${n} weitere',
+	);
+	@override String showCount({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('de'))(n,
+		one: '${n} Botschaft anzeigen',
+		other: '${n} Botschaften anzeigen',
+	);
+	@override String get searchOpen => 'Suchen';
+	@override String get searchClose => 'Suche schließen';
+	@override String get dayAll => 'Alle';
 }
 
 // Path: memorize
@@ -3122,6 +3149,47 @@ class _Translations$seekFirst$shield$de extends Translations$seekFirst$shield$fr
 	@override String get serviceBody => 'Deine Apps schließen sich jeden Tag bis zu deinem Bericht.';
 }
 
+// Path: documents.admin
+class _Translations$documents$admin$de extends Translations$documents$admin$fr {
+	_Translations$documents$admin$de._(TranslationsDe root) : this._root = root, super.internal(root);
+
+	final TranslationsDe _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Dokumente verwalten';
+	@override String get manage => 'Dokumente verwalten';
+	@override String get create => 'Neues Dokument';
+	@override String get edit => 'Dokument bearbeiten';
+	@override String get empty => 'Noch kein Dokument. Tippe auf « Neues Dokument », um eines zu veröffentlichen.';
+	@override String get file => 'Datei';
+	@override String get pickFile => 'PDF- oder Word-Datei wählen';
+	@override String get fileHint => 'Aus Dateien oder deinem Telefon · höchstens 10 MB';
+	@override String get replace => 'Ersetzen';
+	@override String get uploading => 'Datei wird gesendet…';
+	@override String get tooLarge => 'Diese Datei ist zu groß (höchstens 10 MB).';
+	@override String get fileRequired => 'Wähle die Datei des Dokuments.';
+	@override String get general => 'Das Dokument';
+	@override String get titleField => 'Titel';
+	@override String get titleHint => 'z. B.: Hausordnung';
+	@override String get titleRequired => 'Gib dem Dokument einen Titel.';
+	@override String get description => 'Beschreibung (optional)';
+	@override String get category => 'Kategorie';
+	@override String get noCategory => 'Keine';
+	@override String get newCategory => 'Neue Kategorie';
+	@override String get newCategoryHint => 'Name der Kategorie';
+	@override String get visibility => 'Veröffentlichung';
+	@override String get published => 'Jetzt veröffentlichen';
+	@override String get publishedHint => 'Die Mitglieder sehen es in Unsere Dokumente.';
+	@override String get notify => 'Mitglieder benachrichtigen';
+	@override String get notifyHint => 'Eine Benachrichtigung bei der ersten Veröffentlichung.';
+	@override String get draft => 'Entwurf';
+	@override String get saved => 'Dokument gespeichert';
+	@override String get deleted => 'Dokument gelöscht';
+	@override String get delete => 'Löschen';
+	@override String get deleteTitle => 'Dieses Dokument löschen?';
+	@override String get deleteText => 'Es verschwindet für alle Mitglieder. Das ist endgültig.';
+}
+
 // Path: souls.csv
 class _Translations$souls$csv$de extends Translations$souls$csv$fr {
 	_Translations$souls$csv$de._(TranslationsDe root) : this._root = root, super.internal(root);
@@ -4259,6 +4327,7 @@ extension on TranslationsDe {
 			'more.admin' => 'Verwaltung',
 			'more.staff' => 'Team und Rollen',
 			'more.manageEvents' => 'Veranstaltungen verwalten',
+			'more.manageDocuments' => 'Dokumente verwalten',
 			'more.disciples' => 'Meine Jünger',
 			'more.version' => ({required Object version}) => 'Version ${version}',
 			'more.copyright' => ({required Object year}) => '© ${year} Christian Missionary Fellowship International. Alle Rechte vorbehalten.',
@@ -4320,9 +4389,9 @@ extension on TranslationsDe {
 			'authorities.madeMaker' => ({required Object name}) => '${name} ist jetzt dein Jüngermacher.',
 			'members.username' => 'Benutzername',
 			'members.usernameHint' => 'vorname.nachname',
-			'members.usernameHelp' => 'So finden dich die anderen Mitglieder.',
 			_ => null,
 		} ?? switch (path) {
+			'members.usernameHelp' => 'So finden dich die anderen Mitglieder.',
 			'members.usernameChecking' => 'Wird geprüft …',
 			'members.usernameFree' => ({required Object username}) => '@${username} ist verfügbar',
 			'members.usernameCurrent' => 'Das ist dein aktueller Benutzername',
@@ -4834,9 +4903,9 @@ extension on TranslationsDe {
 			'prayer.moments.night' => 'Nacht',
 			'prayer.retreatOf.morning' => 'Gebetszeit am Morgen',
 			'prayer.retreatOf.noon' => 'Gebetszeit am Mittag',
-			'prayer.retreatOf.evening' => 'Gebetszeit am Abend',
 			_ => null,
 		} ?? switch (path) {
+			'prayer.retreatOf.evening' => 'Gebetszeit am Abend',
 			'prayer.retreatOf.night' => 'Gebetszeit zur Nacht',
 			'prayer.hero.now' => ({required Object retreat}) => '${retreat} · jetzt',
 			'prayer.hero.title' => '15 Minuten\nmit dem Herrn',
@@ -5348,9 +5417,9 @@ extension on TranslationsDe {
 			'seekFirst.shield.notificationTitle' => 'Suche zuerst Gott',
 			'seekFirst.shield.notificationBody' => 'Tippe hier, um deinen Bericht auszufüllen.',
 			'seekFirst.shield.serviceBody' => 'Deine Apps schließen sich jeden Tag bis zu deinem Bericht.',
-			'seekFirst.permissionsAndroid' => 'Um deine Apps zu schließen, braucht CMFI Connect zwei Berechtigungen, die du in den gleich geöffneten Einstellungen einschaltest: „Zugriff auf Nutzungsdaten“ (welche App offen ist) und „Über anderen Apps einblenden“ (den Bildschirm Suche zuerst Gott zeigen). Nichts verlässt dein Handy.',
 			_ => null,
 		} ?? switch (path) {
+			'seekFirst.permissionsAndroid' => 'Um deine Apps zu schließen, braucht CMFI Connect zwei Berechtigungen, die du in den gleich geöffneten Einstellungen einschaltest: „Zugriff auf Nutzungsdaten“ (welche App offen ist) und „Über anderen Apps einblenden“ (den Bildschirm Suche zuerst Gott zeigen). Nichts verlässt dein Handy.',
 			'seekFirst.permissionsContinue' => 'Weiter',
 			'seekFirst.deniedAndroid' => 'Ohne diese zwei Berechtigungen kann CMFI Connect keine Apps schließen. Du kannst sie unter Einstellungen › Apps › Spezieller Zugriff einschalten.',
 			'seekFirst.privacyAndroid' => 'Die Apps, die du wählst, bleiben auf deinem Handy: CMFI Connect sendet sie nie.',
@@ -5367,8 +5436,41 @@ extension on TranslationsDe {
 			'documents.word' => 'Word',
 			'documents.open' => 'Das Dokument öffnen',
 			'documents.download' => 'Herunterladen',
+			'documents.share' => 'Teilen',
 			'documents.count' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('de'))(n, one: '${n} Dokument', other: '${n} Dokumente', ), 
 			'documents.more' => 'Mehr anzeigen',
+			'documents.admin.title' => 'Dokumente verwalten',
+			'documents.admin.manage' => 'Dokumente verwalten',
+			'documents.admin.create' => 'Neues Dokument',
+			'documents.admin.edit' => 'Dokument bearbeiten',
+			'documents.admin.empty' => 'Noch kein Dokument. Tippe auf « Neues Dokument », um eines zu veröffentlichen.',
+			'documents.admin.file' => 'Datei',
+			'documents.admin.pickFile' => 'PDF- oder Word-Datei wählen',
+			'documents.admin.fileHint' => 'Aus Dateien oder deinem Telefon · höchstens 10 MB',
+			'documents.admin.replace' => 'Ersetzen',
+			'documents.admin.uploading' => 'Datei wird gesendet…',
+			'documents.admin.tooLarge' => 'Diese Datei ist zu groß (höchstens 10 MB).',
+			'documents.admin.fileRequired' => 'Wähle die Datei des Dokuments.',
+			'documents.admin.general' => 'Das Dokument',
+			'documents.admin.titleField' => 'Titel',
+			'documents.admin.titleHint' => 'z. B.: Hausordnung',
+			'documents.admin.titleRequired' => 'Gib dem Dokument einen Titel.',
+			'documents.admin.description' => 'Beschreibung (optional)',
+			'documents.admin.category' => 'Kategorie',
+			'documents.admin.noCategory' => 'Keine',
+			'documents.admin.newCategory' => 'Neue Kategorie',
+			'documents.admin.newCategoryHint' => 'Name der Kategorie',
+			'documents.admin.visibility' => 'Veröffentlichung',
+			'documents.admin.published' => 'Jetzt veröffentlichen',
+			'documents.admin.publishedHint' => 'Die Mitglieder sehen es in Unsere Dokumente.',
+			'documents.admin.notify' => 'Mitglieder benachrichtigen',
+			'documents.admin.notifyHint' => 'Eine Benachrichtigung bei der ersten Veröffentlichung.',
+			'documents.admin.draft' => 'Entwurf',
+			'documents.admin.saved' => 'Dokument gespeichert',
+			'documents.admin.deleted' => 'Dokument gelöscht',
+			'documents.admin.delete' => 'Löschen',
+			'documents.admin.deleteTitle' => 'Dieses Dokument löschen?',
+			'documents.admin.deleteText' => 'Es verschwindet für alle Mitglieder. Das ist endgültig.',
 			'biblePlan.title' => 'Leseplan',
 			'biblePlan.duration' => 'Dauer',
 			'biblePlan.months3' => '3 Monate',
@@ -5438,6 +5540,7 @@ extension on TranslationsDe {
 			'teachings.removed' => 'Vom Handy entfernt',
 			'teachings.cancelDownload' => 'Download abbrechen',
 			'teachings.removeDownload' => 'Vom Handy entfernen',
+			'teachings.share' => 'Teilen',
 			'teachings.back15' => '15 Sekunden zurück',
 			'teachings.forward15' => '15 Sekunden vor',
 			'teachings.speed' => ({required Object speed}) => 'Geschwindigkeit ${speed}',
@@ -5458,6 +5561,20 @@ extension on TranslationsDe {
 			'teachings.dayChip' => ({required Object n}) => 'Tag ${n}',
 			'teachings.clearFilters' => 'Alles löschen',
 			'teachings.showResults' => 'Anzeigen',
+			'teachings.dayMessage' => ({required Object day, required Object n}) => 'Tag ${day}, Botschaft ${n}',
+			'teachings.minutes' => ({required Object n}) => '${n} Min.',
+			'teachings.hoursMinutes' => ({required Object h, required Object m}) => '${h} Std. ${m}',
+			'teachings.left' => ({required Object time}) => 'Noch ${time}',
+			'teachings.nowPlaying' => 'Läuft',
+			'teachings.resume' => 'Fortsetzen',
+			'teachings.editions' => 'Ausgaben',
+			'teachings.allOfCategory' => 'Alle Botschaften',
+			'teachings.daysCount' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('de'))(n, one: '${n} Tag', other: '${n} Tage', ), 
+			'teachings.andOthers' => ({required num n, required Object name}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('de'))(n, one: '${name} und 1 weiterer', other: '${name} und ${n} weitere', ), 
+			'teachings.showCount' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('de'))(n, one: '${n} Botschaft anzeigen', other: '${n} Botschaften anzeigen', ), 
+			'teachings.searchOpen' => 'Suchen',
+			'teachings.searchClose' => 'Suche schließen',
+			'teachings.dayAll' => 'Alle',
 			'memorize.title' => 'Auswendiglernen',
 			'memorize.subtitle' => 'Bewahre das Wort in deinem Herzen',
 			'memorize.toReview' => 'Zu wiederholen',

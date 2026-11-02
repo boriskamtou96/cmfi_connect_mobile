@@ -53,11 +53,7 @@ class Documents extends _$Documents {
     try {
       final next = await ref
           .read(documentsApiProvider)
-          .list(
-            query: query,
-            page: current.page + 1,
-            size: pageSize,
-          );
+          .list(query: query, page: current.page + 1, size: pageSize);
       if (ref.mounted) {
         state = AsyncData(
           current.copyWith(

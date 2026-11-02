@@ -488,6 +488,7 @@ class _Translations$more$zh extends Translations$more$fr {
 	@override String get admin => '管理';
 	@override String get staff => '团队与角色';
 	@override String get manageEvents => '管理活动';
+	@override String get manageDocuments => '管理文件';
 	@override String get disciples => '我的门徒';
 	@override String version({required Object version}) => '版本 ${version}';
 	@override String copyright({required Object year}) => '© ${year} Christian Missionary Fellowship International. 保留所有权利。';
@@ -1395,10 +1396,12 @@ class _Translations$documents$zh extends Translations$documents$fr {
 	@override String get word => 'Word';
 	@override String get open => '打开文件';
 	@override String get download => '下载';
+	@override String get share => '分享';
 	@override String count({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n,
 		other: '${n} 个文件',
 	);
 	@override String get more => '查看更多';
+	@override late final _Translations$documents$admin$zh admin = _Translations$documents$admin$zh._(_root);
 }
 
 // Path: biblePlan
@@ -1503,6 +1506,7 @@ class _Translations$teachings$zh extends Translations$teachings$fr {
 	@override String get removed => '已从手机移除';
 	@override String get cancelDownload => '停止下载';
 	@override String get removeDownload => '从手机移除';
+	@override String get share => '分享';
 	@override String get back15 => '后退 15 秒';
 	@override String get forward15 => '前进 15 秒';
 	@override String speed({required Object speed}) => '速度 ${speed}';
@@ -1523,6 +1527,29 @@ class _Translations$teachings$zh extends Translations$teachings$fr {
 	@override String dayChip({required Object n}) => '第 ${n} 天';
 	@override String get clearFilters => '全部清除';
 	@override String get showResults => '显示';
+	@override String dayMessage({required Object day, required Object n}) => '第 ${day} 天，第 ${n} 篇';
+	@override String minutes({required Object n}) => '${n} 分钟';
+	@override String hoursMinutes({required Object h, required Object m}) => '${h} 小时 ${m} 分';
+	@override String left({required Object time}) => '剩余 ${time}';
+	@override String get nowPlaying => '正在播放';
+	@override String get resume => '继续收听';
+	@override String get editions => '届次';
+	@override String get allOfCategory => '全部信息';
+	@override String daysCount({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n,
+		one: '${n} 天',
+		other: '${n} 天',
+	);
+	@override String andOthers({required num n, required Object name}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n,
+		one: '${name} 等 2 人',
+		other: '${name} 等 ${n} 人',
+	);
+	@override String showCount({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n,
+		one: '显示 ${n} 篇信息',
+		other: '显示 ${n} 篇信息',
+	);
+	@override String get searchOpen => '搜索';
+	@override String get searchClose => '关闭搜索';
+	@override String get dayAll => '全部';
 }
 
 // Path: memorize
@@ -3043,6 +3070,47 @@ class _Translations$seekFirst$shield$zh extends Translations$seekFirst$shield$fr
 	@override String get serviceBody => '你的应用每天都会关闭，直到你填写报告。';
 }
 
+// Path: documents.admin
+class _Translations$documents$admin$zh extends Translations$documents$admin$fr {
+	_Translations$documents$admin$zh._(TranslationsZh root) : this._root = root, super.internal(root);
+
+	final TranslationsZh _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => '管理文件';
+	@override String get manage => '管理文件';
+	@override String get create => '新建文件';
+	@override String get edit => '编辑文件';
+	@override String get empty => '还没有文件。点按「新建文件」发布一份。';
+	@override String get file => '文件';
+	@override String get pickFile => '选择 PDF 或 Word 文件';
+	@override String get fileHint => '来自“文件”或你的手机 · 最大 10 MB';
+	@override String get replace => '替换';
+	@override String get uploading => '正在发送文件…';
+	@override String get tooLarge => '文件太大（最大 10 MB）。';
+	@override String get fileRequired => '请选择文件。';
+	@override String get general => '文件信息';
+	@override String get titleField => '标题';
+	@override String get titleHint => '例如：内部规章';
+	@override String get titleRequired => '请为文件填写标题。';
+	@override String get description => '描述（可选）';
+	@override String get category => '类别';
+	@override String get noCategory => '无';
+	@override String get newCategory => '新类别';
+	@override String get newCategoryHint => '类别名称';
+	@override String get visibility => '发布';
+	@override String get published => '立即发布';
+	@override String get publishedHint => '成员可在“我们的文件”中看到。';
+	@override String get notify => '通知成员';
+	@override String get notifyHint => '首次发布时发送通知。';
+	@override String get draft => '草稿';
+	@override String get saved => '文件已保存';
+	@override String get deleted => '文件已删除';
+	@override String get delete => '删除';
+	@override String get deleteTitle => '删除此文件？';
+	@override String get deleteText => '所有成员都将看不到它。此操作无法撤销。';
+}
+
 // Path: souls.csv
 class _Translations$souls$csv$zh extends Translations$souls$csv$fr {
 	_Translations$souls$csv$zh._(TranslationsZh root) : this._root = root, super.internal(root);
@@ -4159,6 +4227,7 @@ extension on TranslationsZh {
 			'more.admin' => '管理',
 			'more.staff' => '团队与角色',
 			'more.manageEvents' => '管理活动',
+			'more.manageDocuments' => '管理文件',
 			'more.disciples' => '我的门徒',
 			'more.version' => ({required Object version}) => '版本 ${version}',
 			'more.copyright' => ({required Object year}) => '© ${year} Christian Missionary Fellowship International. 保留所有权利。',
@@ -4220,9 +4289,9 @@ extension on TranslationsZh {
 			'authorities.madeMaker' => ({required Object name}) => '${name} 现在是你的门训者。',
 			'members.username' => '用户名',
 			'members.usernameHint' => 'zhang.san',
-			'members.usernameHelp' => '其他成员会通过它找到你。',
 			_ => null,
 		} ?? switch (path) {
+			'members.usernameHelp' => '其他成员会通过它找到你。',
 			'members.usernameChecking' => '正在检查…',
 			'members.usernameFree' => ({required Object username}) => '@${username} 可以使用',
 			'members.usernameCurrent' => '这是你当前的用户名',
@@ -4734,9 +4803,9 @@ extension on TranslationsZh {
 			'prayer.moments.night' => '夜晚',
 			'prayer.retreatOf.morning' => '早晨祷告',
 			'prayer.retreatOf.noon' => '中午祷告',
-			'prayer.retreatOf.evening' => '傍晚祷告',
 			_ => null,
 		} ?? switch (path) {
+			'prayer.retreatOf.evening' => '傍晚祷告',
 			'prayer.retreatOf.night' => '夜晚祷告',
 			'prayer.hero.now' => ({required Object retreat}) => '${retreat} · 现在',
 			'prayer.hero.title' => '15 分钟\n与主同在',
@@ -5248,9 +5317,9 @@ extension on TranslationsZh {
 			'seekFirst.shield.notificationTitle' => '先求神',
 			'seekFirst.shield.notificationBody' => '轻点此处填写你的汇报。',
 			'seekFirst.shield.serviceBody' => '你的应用每天都会关闭，直到你填写报告。',
-			'seekFirst.permissionsAndroid' => '为了关闭你的应用，CMFI Connect 需要在即将打开的设置中开启两项权限：“使用情况访问权限”（知道哪个应用在前台）和“显示在其他应用上层”（显示“先求神”页面）。任何数据都不会离开你的手机。',
 			_ => null,
 		} ?? switch (path) {
+			'seekFirst.permissionsAndroid' => '为了关闭你的应用，CMFI Connect 需要在即将打开的设置中开启两项权限：“使用情况访问权限”（知道哪个应用在前台）和“显示在其他应用上层”（显示“先求神”页面）。任何数据都不会离开你的手机。',
 			'seekFirst.permissionsContinue' => '继续',
 			'seekFirst.deniedAndroid' => '没有这两项权限，CMFI Connect 无法关闭应用。你可以在“设置 › 应用 › 特殊访问权限”中开启。',
 			'seekFirst.privacyAndroid' => '你选择的应用只保存在手机上：CMFI Connect 绝不会上传。',
@@ -5267,8 +5336,41 @@ extension on TranslationsZh {
 			'documents.word' => 'Word',
 			'documents.open' => '打开文件',
 			'documents.download' => '下载',
+			'documents.share' => '分享',
 			'documents.count' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n, other: '${n} 个文件', ), 
 			'documents.more' => '查看更多',
+			'documents.admin.title' => '管理文件',
+			'documents.admin.manage' => '管理文件',
+			'documents.admin.create' => '新建文件',
+			'documents.admin.edit' => '编辑文件',
+			'documents.admin.empty' => '还没有文件。点按「新建文件」发布一份。',
+			'documents.admin.file' => '文件',
+			'documents.admin.pickFile' => '选择 PDF 或 Word 文件',
+			'documents.admin.fileHint' => '来自“文件”或你的手机 · 最大 10 MB',
+			'documents.admin.replace' => '替换',
+			'documents.admin.uploading' => '正在发送文件…',
+			'documents.admin.tooLarge' => '文件太大（最大 10 MB）。',
+			'documents.admin.fileRequired' => '请选择文件。',
+			'documents.admin.general' => '文件信息',
+			'documents.admin.titleField' => '标题',
+			'documents.admin.titleHint' => '例如：内部规章',
+			'documents.admin.titleRequired' => '请为文件填写标题。',
+			'documents.admin.description' => '描述（可选）',
+			'documents.admin.category' => '类别',
+			'documents.admin.noCategory' => '无',
+			'documents.admin.newCategory' => '新类别',
+			'documents.admin.newCategoryHint' => '类别名称',
+			'documents.admin.visibility' => '发布',
+			'documents.admin.published' => '立即发布',
+			'documents.admin.publishedHint' => '成员可在“我们的文件”中看到。',
+			'documents.admin.notify' => '通知成员',
+			'documents.admin.notifyHint' => '首次发布时发送通知。',
+			'documents.admin.draft' => '草稿',
+			'documents.admin.saved' => '文件已保存',
+			'documents.admin.deleted' => '文件已删除',
+			'documents.admin.delete' => '删除',
+			'documents.admin.deleteTitle' => '删除此文件？',
+			'documents.admin.deleteText' => '所有成员都将看不到它。此操作无法撤销。',
 			'biblePlan.title' => '读经计划',
 			'biblePlan.duration' => '时长',
 			'biblePlan.months3' => '3 个月',
@@ -5338,6 +5440,7 @@ extension on TranslationsZh {
 			'teachings.removed' => '已从手机移除',
 			'teachings.cancelDownload' => '停止下载',
 			'teachings.removeDownload' => '从手机移除',
+			'teachings.share' => '分享',
 			'teachings.back15' => '后退 15 秒',
 			'teachings.forward15' => '前进 15 秒',
 			'teachings.speed' => ({required Object speed}) => '速度 ${speed}',
@@ -5358,6 +5461,20 @@ extension on TranslationsZh {
 			'teachings.dayChip' => ({required Object n}) => '第 ${n} 天',
 			'teachings.clearFilters' => '全部清除',
 			'teachings.showResults' => '显示',
+			'teachings.dayMessage' => ({required Object day, required Object n}) => '第 ${day} 天，第 ${n} 篇',
+			'teachings.minutes' => ({required Object n}) => '${n} 分钟',
+			'teachings.hoursMinutes' => ({required Object h, required Object m}) => '${h} 小时 ${m} 分',
+			'teachings.left' => ({required Object time}) => '剩余 ${time}',
+			'teachings.nowPlaying' => '正在播放',
+			'teachings.resume' => '继续收听',
+			'teachings.editions' => '届次',
+			'teachings.allOfCategory' => '全部信息',
+			'teachings.daysCount' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n, one: '${n} 天', other: '${n} 天', ), 
+			'teachings.andOthers' => ({required num n, required Object name}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n, one: '${name} 等 2 人', other: '${name} 等 ${n} 人', ), 
+			'teachings.showCount' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n, one: '显示 ${n} 篇信息', other: '显示 ${n} 篇信息', ), 
+			'teachings.searchOpen' => '搜索',
+			'teachings.searchClose' => '关闭搜索',
+			'teachings.dayAll' => '全部',
 			'memorize.title' => '背经',
 			'memorize.subtitle' => '将神的话藏在心里',
 			'memorize.toReview' => '待复习',

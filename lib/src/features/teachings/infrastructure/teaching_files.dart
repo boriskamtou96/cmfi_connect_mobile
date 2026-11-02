@@ -24,6 +24,16 @@ abstract class TeachingFiles {
   });
 
   Future<void> delete(Teaching teaching);
+
+  /// The file to send [teaching] with: the one kept on the phone, else a
+  /// copy downloaded in the cache, which the system empties; [onProgress]
+  /// from 0 to 1.
+  Future<File> forSharing(
+    Teaching teaching,
+    String url, {
+    required void Function(double progress) onProgress,
+    CancelToken? cancel,
+  });
 }
 
 class DeviceTeachingFiles implements TeachingFiles {
@@ -52,8 +62,24 @@ class DeviceTeachingFiles implements TeachingFiles {
     required void Function(double progress) onProgress,
     CancelToken? cancel,
   }) async {
-    final file = await _file(teaching);
-    // written beside, then renamed: never half a file under its name
+    await _fetch(
+      teaching,
+      url,
+      await _file(teaching),
+      onProgress: onProgress,
+      cancel: cancel,
+    );
+  }
+
+  /// [url] into [file]: written beside, then renamed, never half a file
+  /// under its name.
+  Future<void> _fetch(
+    Teaching teaching,
+    String url,
+    File file, {
+    required void Function(double progress) onProgress,
+    CancelToken? cancel,
+  }) async {
     final part = File('${file.path}.part');
     try {
       await _dio.download(
@@ -73,6 +99,29 @@ class DeviceTeachingFiles implements TeachingFiles {
         await part.delete();
       }
     }
+  }
+
+  @override
+  Future<File> forSharing(
+    Teaching teaching,
+    String url, {
+    required void Function(double progress) onProgress,
+    CancelToken? cancel,
+  }) async {
+    if (await fileOf(teaching) case final kept?) {
+      return kept;
+    }
+    final folder = Directory(
+      '${(await getTemporaryDirectory()).path}/shared_teachings',
+    );
+    await folder.create(recursive: true);
+    final file = File(
+      '${folder.path}/${teaching.id}.${teaching.audio.format.name}',
+    );
+    if (!await file.exists()) {
+      await _fetch(teaching, url, file, onProgress: onProgress, cancel: cancel);
+    }
+    return file;
   }
 
   @override

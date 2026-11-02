@@ -21,11 +21,12 @@ import '../domain/teaching_query.dart';
 import 'widgets/teaching_widgets.dart';
 
 /// Plus › Communauté › Enseignements: the audio messages of the community,
-/// the newest first; a search on their words (the speaker's name too), a
-/// chip per category, the advanced filters (speaker, year, annual edition,
-/// day of it) and « Téléchargés », the next page at the end of the list.
-/// Without network, the messages kept on the phone. The one heard now stays
-/// at the foot of the screen.
+/// like the episodes of a podcast. A chip per category (its latest edition
+/// opens, as a season: its card, « Reprendre », its days as tabs), «
+/// Téléchargés », the search behind the magnifier, the advanced filters
+/// (speaker, year, edition, day) in a sheet, the next page at the end of
+/// the list. Without network, the messages kept on the phone. The one heard
+/// now stays at the foot of the screen.
 @RoutePage()
 class TeachingsScreen extends HookConsumerWidget {
   const TeachingsScreen({super.key});
@@ -39,6 +40,7 @@ class TeachingsScreen extends HookConsumerWidget {
     final controller = useTextEditingController();
     final typed = useValueListenable(controller).text.trim();
     final search = useDebounced(typed, const Duration(milliseconds: 300)) ?? '';
+    final searching = useState(false);
     // the category and the advanced filters, kept apart from the typing
     final chosen = useState(const TeachingQuery());
     final onlyKept = chosen.value.category == _downloaded;
@@ -49,10 +51,16 @@ class TeachingsScreen extends HookConsumerWidget {
     final provider = teachingsProvider(query);
     final teachings = ref.watch(provider);
     final categories = ref.watch(teachingCategoriesProvider).value ?? const [];
+    final base = ref.watch(teachingFacetsProvider(null)).value;
     final facets = ref
         .watch(teachingFacetsProvider(chosen.value.edition))
         .value;
     final kept = ref.watch(teachingDownloadsProvider).value?.kept ?? const {};
+    final edition = chosen.value.edition == null || onlyKept
+        ? null
+        : base?.editions
+              .where((one) => one.id == chosen.value.edition)
+              .firstOrNull;
 
     // the messages kept, newest first, that answer the search
     List<Teaching> keptMatching() {
@@ -67,6 +75,34 @@ class TeachingsScreen extends HookConsumerWidget {
           ))
             teaching,
       ];
+    }
+
+    /// The editions of a category, the latest first.
+    List<TeachingEditionFacet> editionsOf(String category) => [
+      for (final one in base?.editions ?? const <TeachingEditionFacet>[])
+        if (category.isNotEmpty &&
+            (one.categorySlug == category || one.categoryName == category))
+          one,
+    ]..sort((a, b) => b.year != a.year ? b.year - a.year : b.id - a.id);
+
+    // a category whose messages all belong to editions opens the latest
+    // one, like a season; otherwise all its messages, none left out
+    void selectCategory(String value) {
+      final editions = value == _downloaded
+          ? const <TeachingEditionFacet>[]
+          : editionsOf(value);
+      final category = categories
+          .where((one) => one.slug == value || one.name == value)
+          .firstOrNull;
+      final covered =
+          category != null &&
+          editions.fold(0, (sum, one) => sum + one.count) >= category.count;
+      final latest = covered ? editions.firstOrNull : null;
+      chosen.value = chosen.value.copyWith(
+        category: value,
+        edition: latest?.id,
+        day: null,
+      );
     }
 
     final body = switch (teachings) {
@@ -86,6 +122,7 @@ class TeachingsScreen extends HookConsumerWidget {
       ),
       AsyncValue(value: final state?) => _List(
         items: state.items,
+        inEdition: edition != null,
         hasMore: state.hasMore,
         loadingMore: state.loadingMore,
         onEnd: () => ref.read(provider.notifier).loadMore(),
@@ -103,12 +140,44 @@ class TeachingsScreen extends HookConsumerWidget {
         isScrollControlled: true,
         useSafeArea: true,
         showDragHandle: true,
-        builder: (_) => _FiltersSheet(initial: chosen.value),
+        builder: (_) => _FiltersSheet(
+          initial: onlyKept
+              ? chosen.value.copyWith(category: '')
+              : chosen.value,
+          search: search,
+        ),
       );
       if (result != null) {
         chosen.value = result;
       }
     }
+
+    Future<void> switchEdition(TeachingEditionFacet current) async {
+      final category = current.categorySlug.isNotEmpty
+          ? current.categorySlug
+          : current.categoryName;
+      final editions = category.isEmpty
+          ? base?.editions ?? const <TeachingEditionFacet>[]
+          : editionsOf(category);
+      final picked = await showModalBottomSheet<({int? id})>(
+        context: context,
+        useSafeArea: true,
+        showDragHandle: true,
+        builder: (_) => _EditionsSheet(editions: editions, current: current.id),
+      );
+      if (picked != null) {
+        chosen.value = chosen.value.copyWith(edition: picked.id, day: null);
+      }
+    }
+
+    final shown = teachings.value;
+    // the edition and its day are in sight on the card and its tabs
+    final advanced = [
+      chosen.value.speaker.isNotEmpty,
+      chosen.value.year != null,
+      edition == null && chosen.value.edition != null,
+      edition == null && chosen.value.day != null,
+    ].where((on) => on).length;
 
     return AnnotatedRegion<SystemUiOverlayStyle>(
       value: Theme.of(context).brightness == Brightness.dark
@@ -139,7 +208,16 @@ class TeachingsScreen extends HookConsumerWidget {
                 SliverToBoxAdapter(
                   child: _Header(
                     controller: controller,
-                    activeFilters: chosen.value.filterCount,
+                    searching: searching.value || typed.isNotEmpty,
+                    onSearch: () {
+                      if (searching.value || typed.isNotEmpty) {
+                        controller.clear();
+                        searching.value = false;
+                      } else {
+                        searching.value = true;
+                      }
+                    },
+                    activeFilters: advanced,
                     onFilters: openFilters,
                   ),
                 ),
@@ -149,12 +227,20 @@ class TeachingsScreen extends HookConsumerWidget {
                       categories: categories,
                       withDownloaded: kept.isNotEmpty,
                       selected: chosen.value.category,
-                      onSelect: (value) =>
-                          chosen.value = chosen.value.copyWith(category: value),
+                      onSelect: selectCategory,
                     ),
                   ),
-                if (chosen.value.edition != null &&
-                    (facets?.days.isNotEmpty ?? false))
+                if (edition != null)
+                  SliverToBoxAdapter(
+                    child: _EditionCard(
+                      edition: edition,
+                      items: shown?.items ?? const [],
+                      complete: shown != null && !shown.hasMore,
+                      days: facets?.days.length ?? 0,
+                      onEditions: () => switchEdition(edition),
+                    ),
+                  ),
+                if (edition != null && (facets?.days.length ?? 0) > 1)
                   SliverToBoxAdapter(
                     child: _Days(
                       days: facets!.days,
@@ -164,18 +250,17 @@ class TeachingsScreen extends HookConsumerWidget {
                     ),
                   ),
                 if (chosen.value.speaker.isNotEmpty ||
-                    chosen.value.year != null ||
-                    chosen.value.edition != null ||
-                    chosen.value.day != null)
+                    chosen.value.year != null)
                   SliverToBoxAdapter(
                     child: _ActiveFilters(
                       query: chosen.value,
-                      facets: facets,
                       onChanged: (next) => chosen.value = next,
                     ),
                   ),
-                if (teachings.value case final state?
-                    when state.total > 0 && !onlyKept)
+                if (shown != null &&
+                    shown.total > 0 &&
+                    !onlyKept &&
+                    edition == null)
                   SliverToBoxAdapter(
                     child: Padding(
                       padding: const EdgeInsetsDirectional.fromSTEB(
@@ -185,7 +270,7 @@ class TeachingsScreen extends HookConsumerWidget {
                         AppSpacing.xs,
                       ),
                       child: Text(
-                        t.count(n: state.total),
+                        t.count(n: shown.total),
                         style: TextStyle(
                           fontSize: 13,
                           fontWeight: FontWeight.w700,
@@ -212,16 +297,21 @@ class TeachingsScreen extends HookConsumerWidget {
   }
 }
 
-/// A slim bar on the light background: the back arrow, the title and the
-/// filters; the search below, without the tall night-blue header.
+/// A slim bar on the light background: the back arrow, the title, the
+/// magnifier and the filters (their number on them); the search field
+/// below once the magnifier is touched.
 class _Header extends StatelessWidget {
   const _Header({
     required this.controller,
+    required this.searching,
+    required this.onSearch,
     required this.activeFilters,
     required this.onFilters,
   });
 
   final TextEditingController controller;
+  final bool searching;
+  final VoidCallback onSearch;
   final int activeFilters;
   final VoidCallback onFilters;
 
@@ -236,8 +326,8 @@ class _Header extends StatelessWidget {
         padding: const EdgeInsetsDirectional.fromSTEB(
           AppSpacing.sm,
           AppSpacing.xs,
-          AppSpacing.lg,
           AppSpacing.sm,
+          0,
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -258,6 +348,11 @@ class _Header extends StatelessWidget {
                   ),
                 ),
                 IconButton(
+                  tooltip: searching ? t.searchClose : t.searchOpen,
+                  onPressed: onSearch,
+                  icon: Icon(searching ? AppIcons.close : AppIcons.search),
+                ),
+                IconButton(
                   tooltip: t.filters,
                   onPressed: onFilters,
                   icon: Badge(
@@ -271,43 +366,37 @@ class _Header extends StatelessWidget {
                 ),
               ],
             ),
-            Padding(
-              padding: const EdgeInsetsDirectional.only(
-                start: AppSpacing.sm,
-                end: AppSpacing.sm,
-              ),
-              child: TextField(
-                controller: controller,
-                textInputAction: TextInputAction.search,
-                decoration: InputDecoration(
-                  hintText: t.search,
-                  filled: true,
-                  fillColor: scheme.surface,
-                  prefixIcon: const Icon(
-                    AppIcons.search,
-                    color: AppColors.muted,
-                  ),
-                  suffixIcon: ValueListenableBuilder(
-                    valueListenable: controller,
-                    builder: (context, value, _) => value.text.isEmpty
-                        ? const SizedBox.shrink()
-                        : IconButton(
-                            tooltip: MaterialLocalizations.of(
-                              context,
-                            ).deleteButtonTooltip,
-                            onPressed: controller.clear,
-                            icon: const Icon(
-                              AppIcons.close,
-                              color: AppColors.muted,
-                            ),
+            AnimatedSize(
+              duration: const Duration(milliseconds: 200),
+              curve: Curves.easeOut,
+              child: !searching
+                  ? const SizedBox(width: double.infinity)
+                  : Padding(
+                      padding: const EdgeInsetsDirectional.fromSTEB(
+                        AppSpacing.sm,
+                        0,
+                        AppSpacing.sm,
+                        AppSpacing.xs,
+                      ),
+                      child: TextField(
+                        controller: controller,
+                        autofocus: true,
+                        textInputAction: TextInputAction.search,
+                        decoration: InputDecoration(
+                          hintText: t.search,
+                          filled: true,
+                          fillColor: scheme.surface,
+                          prefixIcon: const Icon(
+                            AppIcons.search,
+                            color: AppColors.muted,
                           ),
-                  ),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(AppRadius.lg),
-                    borderSide: BorderSide.none,
-                  ),
-                ),
-              ),
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(AppRadius.lg),
+                            borderSide: BorderSide.none,
+                          ),
+                        ),
+                      ),
+                    ),
             ),
           ],
         ),
@@ -361,23 +450,23 @@ class _Chips extends StatelessWidget {
       scrollDirection: Axis.horizontal,
       padding: const EdgeInsetsDirectional.fromSTEB(
         AppSpacing.lg,
-        AppSpacing.md,
+        AppSpacing.sm,
         AppSpacing.lg,
         0,
       ),
       child: Row(
         children: [
           chip(t.all, ''),
+          for (final category in categories)
+            chip(
+              category.name,
+              category.slug.isEmpty ? category.name : category.slug,
+            ),
           if (withDownloaded)
             chip(
               t.downloadedChip,
               TeachingsScreen._downloaded,
               icon: AppIcons.downloaded,
-            ),
-          for (final category in categories)
-            chip(
-              category.name,
-              category.slug.isEmpty ? category.name : category.slug,
             ),
         ],
       ),
@@ -385,8 +474,358 @@ class _Chips extends StatelessWidget {
   }
 }
 
-/// The days of the edition chosen: « Tous les jours », then day 1, 2… with
-/// how many messages each (several may share a day).
+/// "Croisade de prière et de jeûne 2026": the edition as a podcast's
+/// season, in night blue: its cover, the speaker, how many messages, days
+/// and hours, « Reprendre » (the first message not heard yet) and the other
+/// editions.
+class _EditionCard extends ConsumerWidget {
+  const _EditionCard({
+    required this.edition,
+    required this.items,
+    required this.complete,
+    required this.days,
+    required this.onEditions,
+  });
+
+  final TeachingEditionFacet edition;
+
+  /// The messages of the list, in the order of the days.
+  final List<Teaching> items;
+
+  /// Whether [items] hold the whole edition (its total length is known).
+  final bool complete;
+  final int days;
+  final VoidCallback onEditions;
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final t = context.t.teachings;
+    ref.watch(teachingProgressProvider);
+    final progress = ref.read(teachingProgressProvider.notifier);
+    final title = edition.title.isNotEmpty
+        ? edition.title
+        : '${edition.categoryName} ${edition.year}'.trim();
+
+    // the speaker heard most, and how many others
+    final speakers = <String, int>{};
+    for (final teaching in items) {
+      if (teaching.speaker.isNotEmpty) {
+        speakers.update(teaching.speaker, (n) => n + 1, ifAbsent: () => 1);
+      }
+    }
+    final ranked = speakers.keys.toList()
+      ..sort((a, b) => speakers[b]! - speakers[a]!);
+    final speaker = switch (ranked.length) {
+      0 => '',
+      1 => ranked.first,
+      _ => t.andOthers(n: ranked.length - 1, name: ranked.first),
+    };
+
+    final length = items.fold(
+      Duration.zero,
+      (sum, teaching) => sum + (teaching.duration ?? Duration.zero),
+    );
+    final facts = [
+      t.count(n: edition.count),
+      if (days > 1) t.daysCount(n: days),
+      if (complete && length > Duration.zero) durationLabel(context, length),
+    ].join(' · ');
+
+    final begun = items.any((one) => progress.fraction(one.id) > 0);
+    final next =
+        items.where((one) => !progress.finished(one.id)).firstOrNull ??
+        items.firstOrNull;
+    final cover = items.where((one) => one.cover != null).firstOrNull;
+
+    return Container(
+      margin: const EdgeInsetsDirectional.fromSTEB(
+        AppSpacing.lg,
+        AppSpacing.md,
+        AppSpacing.lg,
+        0,
+      ),
+      padding: const EdgeInsets.all(AppSpacing.lg),
+      decoration: BoxDecoration(
+        color: AppColors.night,
+        borderRadius: BorderRadius.circular(AppRadius.xl),
+      ),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          if (cover != null)
+            TeachingCover(teaching: cover, size: 92)
+          else
+            _SeasonArt(
+              kind: edition.categoryName,
+              year: edition.year,
+              size: 92,
+            ),
+          const SizedBox(width: 14),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  title,
+                  maxLines: 3,
+                  overflow: TextOverflow.ellipsis,
+                  style: const TextStyle(
+                    color: Colors.white,
+                    fontSize: 17,
+                    height: 1.2,
+                    fontWeight: FontWeight.w800,
+                  ),
+                ),
+                if (speaker.isNotEmpty)
+                  Padding(
+                    padding: const EdgeInsets.only(top: 3),
+                    child: Text(
+                      speaker,
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                      style: const TextStyle(
+                        fontFamily: 'Lora',
+                        fontStyle: FontStyle.italic,
+                        fontSize: 14,
+                        color: AppColors.goldLight,
+                      ),
+                    ),
+                  ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 6),
+                  child: Text(
+                    facts,
+                    style: const TextStyle(
+                      fontSize: 12.5,
+                      color: AppColors.onPrimaryMuted,
+                    ),
+                  ),
+                ),
+                const SizedBox(height: AppSpacing.md),
+                Wrap(
+                  spacing: AppSpacing.sm,
+                  runSpacing: AppSpacing.sm,
+                  children: [
+                    if (next != null)
+                      _CardPill(
+                        icon: AppIcons.play,
+                        label: begun ? t.resume : t.play,
+                        gold: true,
+                        onTap: () => openTeaching(context, ref, next),
+                      ),
+                    _CardPill(
+                      icon: AppIcons.chevronDown,
+                      label: t.editions,
+                      trailing: true,
+                      onTap: onEditions,
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+/// The cover of an edition without one: night blue, the kind of it in small
+/// capitals and the year in gold.
+class _SeasonArt extends StatelessWidget {
+  const _SeasonArt({
+    required this.kind,
+    required this.year,
+    required this.size,
+  });
+
+  final String kind;
+  final int year;
+  final double size;
+
+  @override
+  Widget build(BuildContext context) => Container(
+    width: size,
+    height: size,
+    padding: EdgeInsets.all(size * 0.11),
+    decoration: BoxDecoration(
+      borderRadius: BorderRadius.circular(size * 0.17),
+      gradient: const LinearGradient(
+        begin: Alignment.topLeft,
+        end: Alignment.bottomRight,
+        colors: [AppColors.primary, AppColors.primaryDeep],
+      ),
+      border: Border.all(color: AppColors.goldLight.withValues(alpha: 0.35)),
+    ),
+    child: Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      mainAxisAlignment: MainAxisAlignment.end,
+      children: [
+        if (kind.isNotEmpty)
+          // its share of the cover, the year always whole
+          Flexible(
+            child: Text(
+              kind.toUpperCase(),
+              maxLines: 2,
+              overflow: TextOverflow.ellipsis,
+              style: TextStyle(
+                fontSize: size * 0.085,
+                height: 1.15,
+                fontWeight: FontWeight.w700,
+                letterSpacing: 0.6,
+                color: AppColors.onPrimaryMuted,
+              ),
+            ),
+          ),
+        if (year > 0)
+          Text(
+            '$year',
+            style: TextStyle(
+              fontSize: size * 0.28,
+              height: 1.1,
+              fontWeight: FontWeight.w800,
+              color: AppColors.goldLight,
+            ),
+          ),
+      ],
+    ),
+  );
+}
+
+/// « ▶ Reprendre » in gold, « Éditions ▾ » in a veil of white.
+class _CardPill extends StatelessWidget {
+  const _CardPill({
+    required this.icon,
+    required this.label,
+    required this.onTap,
+    this.gold = false,
+    this.trailing = false,
+  });
+
+  final IconData icon;
+  final String label;
+  final VoidCallback onTap;
+  final bool gold;
+
+  /// The icon after the label (a chevron), not before.
+  final bool trailing;
+
+  @override
+  Widget build(BuildContext context) {
+    final color = gold ? AppColors.night : Colors.white;
+    final glyph = Icon(icon, size: 14, color: color);
+    return Material(
+      color: gold ? AppColors.goldLight : Colors.white.withValues(alpha: 0.12),
+      shape: const StadiumBorder(),
+      child: InkWell(
+        customBorder: const StadiumBorder(),
+        onTap: onTap,
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 13, vertical: 8),
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              if (!trailing) ...[glyph, const SizedBox(width: 6)],
+              Text(
+                label,
+                style: TextStyle(
+                  color: color,
+                  fontSize: 13.5,
+                  fontWeight: FontWeight.w700,
+                ),
+              ),
+              if (trailing) ...[const SizedBox(width: 4), glyph],
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+/// The editions of the category, the latest first, and all its messages.
+class _EditionsSheet extends StatelessWidget {
+  const _EditionsSheet({required this.editions, required this.current});
+
+  final List<TeachingEditionFacet> editions;
+  final int current;
+
+  @override
+  Widget build(BuildContext context) {
+    final t = context.t.teachings;
+    final scheme = Theme.of(context).colorScheme;
+
+    Widget row({
+      required Widget leading,
+      required String title,
+      String subtitle = '',
+      required bool selected,
+      required VoidCallback onTap,
+    }) => ListTile(
+      contentPadding: const EdgeInsets.symmetric(horizontal: AppSpacing.xl),
+      leading: leading,
+      title: Text(title, style: const TextStyle(fontWeight: FontWeight.w700)),
+      subtitle: subtitle.isEmpty ? null : Text(subtitle),
+      trailing: selected
+          ? const Icon(AppIcons.check, color: AppColors.primary)
+          : null,
+      onTap: onTap,
+    );
+
+    return SafeArea(
+      child: SingleChildScrollView(
+        padding: const EdgeInsets.only(bottom: AppSpacing.lg),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            Padding(
+              padding: const EdgeInsets.fromLTRB(
+                AppSpacing.xl,
+                0,
+                AppSpacing.xl,
+                AppSpacing.sm,
+              ),
+              child: Text(
+                t.editions,
+                style: Theme.of(
+                  context,
+                ).textTheme.titleLarge?.copyWith(fontWeight: FontWeight.w800),
+              ),
+            ),
+            for (final edition in editions)
+              row(
+                leading: _SeasonArt(kind: '', year: edition.year, size: 40),
+                title: edition.title.isNotEmpty
+                    ? edition.title
+                    : '${edition.categoryName} ${edition.year}'.trim(),
+                subtitle: t.count(n: edition.count),
+                selected: edition.id == current,
+                onTap: () => Navigator.of(context).pop((id: edition.id)),
+              ),
+            row(
+              leading: Container(
+                width: 40,
+                height: 40,
+                decoration: BoxDecoration(
+                  color: scheme.surfaceContainerHighest,
+                  borderRadius: BorderRadius.circular(8),
+                ),
+                child: const Icon(AppIcons.teachingsTile),
+              ),
+              title: t.allOfCategory,
+              selected: false,
+              onTap: () => Navigator.of(context).pop((id: null)),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+/// The days of the edition as tabs: « Tous », then day 1, 2…; the one
+/// chosen in ink.
 class _Days extends StatelessWidget {
   const _Days({
     required this.days,
@@ -401,60 +840,93 @@ class _Days extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final t = context.t.teachings;
-    final tone = AppModule.reports.tone(context);
-
-    Widget chip(String label, int? value) => Padding(
-      padding: const EdgeInsetsDirectional.only(end: AppSpacing.sm),
-      child: ChoiceChip(
-        label: Text(label),
-        selected: selected == value,
-        onSelected: (_) => onSelect(value),
-        selectedColor: tone.soft,
-        labelStyle: TextStyle(
-          fontWeight: FontWeight.w700,
-          color: selected == value ? tone.onSoft : null,
-        ),
-        showCheckmark: false,
-      ),
-    );
 
     return SingleChildScrollView(
       scrollDirection: Axis.horizontal,
       padding: const EdgeInsetsDirectional.fromSTEB(
         AppSpacing.lg,
-        AppSpacing.sm,
+        AppSpacing.md,
         AppSpacing.lg,
         0,
       ),
       child: Row(
         children: [
-          chip(t.allDays, null),
-          for (final day in days) chip(t.dayChip(n: day.day), day.day),
+          _Pill(
+            label: t.dayAll,
+            selected: selected == null,
+            onTap: () => onSelect(null),
+          ),
+          for (final day in days)
+            _Pill(
+              label: t.dayChip(n: day.day),
+              selected: selected == day.day,
+              onTap: () => onSelect(day.day),
+            ),
         ],
       ),
     );
   }
 }
 
-/// The advanced filters in force, each one removed by a tap; « Tout
-/// effacer » drops them all.
-class _ActiveFilters extends StatelessWidget {
-  const _ActiveFilters({
-    required this.query,
-    required this.facets,
-    required this.onChanged,
+/// A round tab: ink when chosen, white with a fine line otherwise.
+class _Pill extends StatelessWidget {
+  const _Pill({
+    required this.label,
+    required this.selected,
+    required this.onTap,
   });
 
+  final String label;
+  final bool selected;
+  final VoidCallback onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    final scheme = Theme.of(context).colorScheme;
+    return Padding(
+      padding: const EdgeInsetsDirectional.only(end: AppSpacing.sm),
+      child: Semantics(
+        selected: selected,
+        button: true,
+        child: Material(
+          color: selected ? scheme.onSurface : scheme.surface,
+          shape: StadiumBorder(
+            side: BorderSide(
+              color: selected ? scheme.onSurface : scheme.outlineVariant,
+            ),
+          ),
+          child: InkWell(
+            customBorder: const StadiumBorder(),
+            onTap: onTap,
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 8),
+              child: Text(
+                label,
+                style: TextStyle(
+                  fontSize: 14,
+                  fontWeight: FontWeight.w700,
+                  color: selected ? scheme.surface : scheme.onSurfaceVariant,
+                ),
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+/// The speaker and the year in force (the edition and its day have their
+/// card and tabs), each removed by a tap; « Tout effacer » drops them all.
+class _ActiveFilters extends StatelessWidget {
+  const _ActiveFilters({required this.query, required this.onChanged});
+
   final TeachingQuery query;
-  final TeachingFacets? facets;
   final ValueChanged<TeachingQuery> onChanged;
 
   @override
   Widget build(BuildContext context) {
     final t = context.t.teachings;
-    final edition = query.edition == null
-        ? null
-        : facets?.editions.where((one) => one.id == query.edition).firstOrNull;
 
     Widget chip(String label, VoidCallback onDeleted) => Padding(
       padding: const EdgeInsetsDirectional.only(end: AppSpacing.sm),
@@ -479,19 +951,6 @@ class _ActiveFilters extends StatelessWidget {
             chip(query.speaker, () => onChanged(query.copyWith(speaker: ''))),
           if (query.year != null)
             chip('${query.year}', () => onChanged(query.copyWith(year: null))),
-          if (query.edition != null)
-            chip(
-              edition?.title.isNotEmpty == true
-                  ? edition!.title
-                  : '${edition?.categoryName ?? ''} ${edition?.year ?? ''}'
-                        .trim(),
-              () => onChanged(query.copyWith(edition: null, day: null)),
-            ),
-          if (query.day != null)
-            chip(
-              t.dayChip(n: query.day!),
-              () => onChanged(query.copyWith(day: null)),
-            ),
           TextButton(
             onPressed: () => onChanged(query.withoutAdvanced),
             child: Text(t.clearFilters),
@@ -502,16 +961,41 @@ class _ActiveFilters extends StatelessWidget {
   }
 }
 
-/// The bottom sheet of the advanced filters: a speaker, a year, an edition
-/// and, once an edition is chosen, one of its days.
+/// "ZF" for "Pr Zacharias Tanee Fomum": the first and the last name, the
+/// titles left aside.
+String _initials(String name) {
+  const titles = {'pr', 'pasteur', 'dr', 'rév', 'rev', 'frère', 'sœur'};
+  final words = [
+    for (final word in name.split(RegExp(r'\s+')))
+      if (word.isNotEmpty &&
+          !titles.contains(word.toLowerCase().replaceAll('.', '')))
+        word,
+  ];
+  if (words.isEmpty) {
+    return '';
+  }
+  final first = words.first.characters.first;
+  return words.length == 1
+      ? first.toUpperCase()
+      : '$first${words.last.characters.first}'.toUpperCase();
+}
+
+/// The bottom sheet of the advanced filters, all in sight: the speakers
+/// with their initials, the years, the editions as small covers and, once
+/// one is chosen, its days; a tap chooses, a second one lets go. The button
+/// says how many messages it will show.
 class _FiltersSheet extends HookConsumerWidget {
-  const _FiltersSheet({required this.initial});
+  const _FiltersSheet({required this.initial, required this.search});
 
   final TeachingQuery initial;
+
+  /// The words typed, for the number on the button.
+  final String search;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final t = context.t.teachings;
+    final scheme = Theme.of(context).colorScheme;
     final draft = useState(initial);
     // the speakers, the years and the editions never depend on the edition;
     // only its days do (the lists stay while those load)
@@ -521,199 +1005,392 @@ class _FiltersSheet extends HookConsumerWidget {
         ? const <TeachingDayFacet>[]
         : ref.watch(teachingFacetsProvider(draft.value.edition)).value?.days ??
               const <TeachingDayFacet>[];
+    final total = ref
+        .watch(teachingsProvider(draft.value.copyWith(search: search)))
+        .value
+        ?.total;
 
-    /// "Théodore Andoseh (2)"; the name alone while the counts load.
-    String counted(String label, int? count) =>
-        count != null && count > 0 ? '$label ($count)' : label;
+    // a value kept while the lists load, so the sheet never loses it
+    final speakers = [
+      ...base.speakers,
+      if (draft.value.speaker.isNotEmpty &&
+          !base.speakers.any((one) => one.name == draft.value.speaker))
+        TeachingSpeakerFacet(name: draft.value.speaker),
+    ];
+    final years = [
+      ...base.years,
+      if (draft.value.year case final year?
+          when !base.years.any((one) => one.year == year))
+        TeachingYearFacet(year: year),
+    ];
 
-    Widget dropdown<T>({
-      required String label,
-      required T value,
-      required List<DropdownMenuItem<T>> items,
-      required ValueChanged<T> onChanged,
-    }) => Padding(
-      padding: const EdgeInsets.only(bottom: AppSpacing.md),
-      child: DropdownButtonFormField<T>(
-        initialValue: value,
-        isExpanded: true,
-        decoration: InputDecoration(labelText: label),
-        items: items,
-        onChanged: (next) {
-          if (next != null) {
-            onChanged(next);
-          }
-        },
+    Widget label(String text) => Padding(
+      padding: const EdgeInsets.only(top: AppSpacing.lg, bottom: AppSpacing.sm),
+      child: Text(
+        text.toUpperCase(),
+        style: TextStyle(
+          fontSize: 12.5,
+          fontWeight: FontWeight.w800,
+          letterSpacing: 0.6,
+          color: scheme.onSurfaceVariant,
+        ),
       ),
     );
 
-    // a value kept while the lists load, so the form never loses it
-    final speakerNames = [
-      for (final speaker in base.speakers) speaker.name,
-      if (draft.value.speaker.isNotEmpty &&
-          !base.speakers.any((one) => one.name == draft.value.speaker))
-        draft.value.speaker,
-    ];
-    final years = <int>[for (final year in base.years) year.year];
-    final chosenYear = draft.value.year;
-    if (chosenYear != null && !years.contains(chosenYear)) {
-      years.add(chosenYear);
-    }
-    final editions = <({int id, String title})>[
-      for (final edition in base.editions)
-        (
-          id: edition.id,
-          title: edition.title.isNotEmpty
-              ? edition.title
-              : '${edition.categoryName} ${edition.year}'.trim(),
-        ),
-    ];
-    final chosenEdition = draft.value.edition;
-    if (chosenEdition != null &&
-        !editions.any((one) => one.id == chosenEdition)) {
-      editions.add((
-        id: chosenEdition,
-        title: '${t.editionLabel} $chosenEdition',
-      ));
-    }
-    final dayNumbers = <int>[for (final day in days) day.day];
-    final chosenDay = draft.value.day;
-    if (chosenDay != null && !dayNumbers.contains(chosenDay)) {
-      dayNumbers.add(chosenDay);
-    }
-
     return SizedBox(
       width: MediaQuery.sizeOf(context).width,
-      child: SingleChildScrollView(
-        padding: EdgeInsetsDirectional.fromSTEB(
-          AppSpacing.xl,
-          0,
-          AppSpacing.xl,
-          AppSpacing.xl + MediaQuery.viewInsetsOf(context).bottom,
-        ),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            Text(
-              t.filtersTitle,
-              style: Theme.of(
-                context,
-              ).textTheme.titleLarge?.copyWith(fontWeight: FontWeight.w800),
-            ),
-            const SizedBox(height: AppSpacing.lg),
-            dropdown<String>(
-              label: t.speakerLabel,
-              value: draft.value.speaker,
-              items: [
-                DropdownMenuItem(value: '', child: Text(t.allSpeakers)),
-                for (final name in speakerNames)
-                  DropdownMenuItem(
-                    value: name,
-                    child: Text(
-                      counted(
-                        name,
-                        base.speakers
-                            .where((one) => one.name == name)
-                            .firstOrNull
-                            ?.count,
-                      ),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          Flexible(
+            child: SingleChildScrollView(
+              padding: const EdgeInsetsDirectional.fromSTEB(
+                AppSpacing.xl,
+                0,
+                AppSpacing.xl,
+                AppSpacing.lg,
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    t.filtersTitle,
+                    style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                      fontWeight: FontWeight.w800,
                     ),
                   ),
-              ],
-              onChanged: (value) =>
-                  draft.value = draft.value.copyWith(speaker: value),
-            ),
-            dropdown<String>(
-              label: t.yearLabel,
-              value: draft.value.year == null ? '' : '${draft.value.year}',
-              items: [
-                DropdownMenuItem(value: '', child: Text(t.allYears)),
-                for (final year in years)
-                  DropdownMenuItem(
-                    value: '$year',
-                    child: Text(
-                      counted(
-                        '$year',
-                        base.years
-                            .where((one) => one.year == year)
-                            .firstOrNull
-                            ?.count,
+                  if (speakers.isNotEmpty) ...[
+                    label(t.speakerLabel),
+                    Wrap(
+                      spacing: AppSpacing.sm,
+                      runSpacing: AppSpacing.sm,
+                      children: [
+                        for (final speaker in speakers)
+                          _FilterChoice(
+                            label: speaker.name,
+                            count: speaker.count,
+                            initials: _initials(speaker.name),
+                            selected: draft.value.speaker == speaker.name,
+                            onTap: () => draft.value = draft.value.copyWith(
+                              speaker: draft.value.speaker == speaker.name
+                                  ? ''
+                                  : speaker.name,
+                            ),
+                          ),
+                      ],
+                    ),
+                  ],
+                  if (years.isNotEmpty) ...[
+                    label(t.yearLabel),
+                    Wrap(
+                      spacing: AppSpacing.sm,
+                      runSpacing: AppSpacing.sm,
+                      children: [
+                        for (final year in years)
+                          _FilterChoice(
+                            label: '${year.year}',
+                            selected: draft.value.year == year.year,
+                            onTap: () => draft.value = draft.value.copyWith(
+                              year: draft.value.year == year.year
+                                  ? null
+                                  : year.year,
+                            ),
+                          ),
+                      ],
+                    ),
+                  ],
+                  if (base.editions.isNotEmpty) ...[
+                    label(t.editionLabel),
+                    SizedBox(
+                      height: 150,
+                      child: ListView.separated(
+                        scrollDirection: Axis.horizontal,
+                        clipBehavior: Clip.none,
+                        itemCount: base.editions.length,
+                        separatorBuilder: (_, _) =>
+                            const SizedBox(width: AppSpacing.sm),
+                        itemBuilder: (context, index) {
+                          final edition = base.editions[index];
+                          final selected = draft.value.edition == edition.id;
+                          return _EditionChoice(
+                            edition: edition,
+                            selected: selected,
+                            onTap: () => draft.value = draft.value.copyWith(
+                              edition: selected ? null : edition.id,
+                              // the day belongs to an edition, the edition
+                              // to its category
+                              day: null,
+                              category: selected
+                                  ? null
+                                  : edition.categorySlug.isNotEmpty
+                                  ? edition.categorySlug
+                                  : null,
+                            ),
+                          );
+                        },
                       ),
                     ),
-                  ),
-              ],
-              onChanged: (value) => draft.value = draft.value.copyWith(
-                year: value.isEmpty ? null : int.tryParse(value),
+                  ],
+                  if (draft.value.edition != null && days.isNotEmpty) ...[
+                    label(t.dayLabel),
+                    Wrap(
+                      spacing: AppSpacing.sm,
+                      runSpacing: AppSpacing.sm,
+                      children: [
+                        for (final day in days)
+                          _FilterChoice(
+                            label: t.dayChip(n: day.day),
+                            count: day.count,
+                            selected: draft.value.day == day.day,
+                            onTap: () => draft.value = draft.value.copyWith(
+                              day: draft.value.day == day.day ? null : day.day,
+                            ),
+                          ),
+                      ],
+                    ),
+                  ],
+                ],
               ),
             ),
-            dropdown<String>(
-              label: t.editionLabel,
-              value: draft.value.edition == null
-                  ? ''
-                  : '${draft.value.edition}',
-              items: [
-                DropdownMenuItem(value: '', child: Text(t.allEditions)),
-                for (final edition in editions)
-                  DropdownMenuItem(
-                    value: '${edition.id}',
-                    child: Text(edition.title),
-                  ),
-              ],
-              onChanged: (value) => draft.value = draft.value.copyWith(
-                edition: value.isEmpty ? null : int.tryParse(value),
-                // the day belongs to an edition
-                day: null,
-              ),
+          ),
+          DecoratedBox(
+            decoration: BoxDecoration(
+              border: Border(top: BorderSide(color: scheme.outlineVariant)),
             ),
-            if (draft.value.edition != null && dayNumbers.isNotEmpty)
-              dropdown<String>(
-                label: t.dayLabel,
-                value: draft.value.day == null ? '' : '${draft.value.day}',
-                items: [
-                  DropdownMenuItem(value: '', child: Text(t.allDays)),
-                  for (final day in dayNumbers)
-                    DropdownMenuItem(
-                      value: '$day',
+            child: SafeArea(
+              top: false,
+              child: Padding(
+                padding: const EdgeInsets.fromLTRB(
+                  AppSpacing.lg,
+                  AppSpacing.md,
+                  AppSpacing.xl,
+                  AppSpacing.md,
+                ),
+                child: Row(
+                  children: [
+                    TextButton(
+                      onPressed: () =>
+                          draft.value = draft.value.withoutAdvanced,
                       child: Text(
-                        counted(
-                          t.dayChip(n: day),
-                          days
-                              .where((one) => one.day == day)
-                              .firstOrNull
-                              ?.count,
+                        t.clearFilters,
+                        style: const TextStyle(
+                          decoration: TextDecoration.underline,
+                          fontWeight: FontWeight.w700,
                         ),
                       ),
                     ),
-                ],
-                onChanged: (value) => draft.value = draft.value.copyWith(
-                  day: value.isEmpty ? null : int.tryParse(value),
-                ),
-              ),
-            const SizedBox(height: AppSpacing.sm),
-            Row(
-              children: [
-                Expanded(
-                  child: TextButton(
-                    onPressed: () => draft.value = draft.value.withoutAdvanced,
-                    child: Text(t.clearFilters),
-                  ),
-                ),
-                const SizedBox(width: AppSpacing.sm),
-                Expanded(
-                  child: FilledButton(
-                    style: FilledButton.styleFrom(
-                      minimumSize: const Size(0, 48),
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: AppSpacing.xl,
+                    const SizedBox(width: AppSpacing.sm),
+                    Expanded(
+                      child: FilledButton(
+                        style: FilledButton.styleFrom(
+                          minimumSize: const Size(0, 52),
+                        ),
+                        onPressed: () => Navigator.of(context).pop(draft.value),
+                        child: Text(
+                          total == null ? t.showResults : t.showCount(n: total),
+                        ),
                       ),
                     ),
-                    onPressed: () => Navigator.of(context).pop(draft.value),
-                    child: Text(t.showResults),
+                  ],
+                ),
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+/// A choice of the filters: a pill, the initials of a speaker before his
+/// name, how many messages after it.
+class _FilterChoice extends StatelessWidget {
+  const _FilterChoice({
+    required this.label,
+    required this.selected,
+    required this.onTap,
+    this.count = 0,
+    this.initials = '',
+  });
+
+  final String label;
+  final bool selected;
+  final VoidCallback onTap;
+  final int count;
+  final String initials;
+
+  @override
+  Widget build(BuildContext context) {
+    final scheme = Theme.of(context).colorScheme;
+    final tone = AppModule.reports.tone(context);
+    final ink = selected ? tone.onSoft : scheme.onSurface;
+
+    return Semantics(
+      selected: selected,
+      button: true,
+      child: Material(
+        color: selected ? tone.soft : scheme.surface,
+        shape: StadiumBorder(
+          side: BorderSide(
+            width: 1.5,
+            color: selected ? tone.onSoft : scheme.outlineVariant,
+          ),
+        ),
+        child: InkWell(
+          customBorder: const StadiumBorder(),
+          onTap: onTap,
+          child: Padding(
+            padding: EdgeInsetsDirectional.fromSTEB(
+              initials.isEmpty ? 14 : 6,
+              6,
+              14,
+              6,
+            ),
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                if (initials.isNotEmpty) ...[
+                  Container(
+                    width: 28,
+                    height: 28,
+                    alignment: Alignment.center,
+                    decoration: const BoxDecoration(
+                      color: AppColors.night,
+                      shape: BoxShape.circle,
+                    ),
+                    child: Text(
+                      initials,
+                      style: const TextStyle(
+                        fontSize: 11.5,
+                        fontWeight: FontWeight.w800,
+                        color: AppColors.goldLight,
+                      ),
+                    ),
+                  ),
+                  const SizedBox(width: 8),
+                ],
+                Padding(
+                  padding: EdgeInsets.symmetric(
+                    vertical: initials.isEmpty ? 3 : 0,
+                  ),
+                  child: Text(
+                    label,
+                    style: TextStyle(
+                      fontSize: 14,
+                      fontWeight: FontWeight.w700,
+                      color: ink,
+                    ),
+                  ),
+                ),
+                if (count > 0) ...[
+                  const SizedBox(width: 6),
+                  Text(
+                    '$count',
+                    style: TextStyle(
+                      fontSize: 12.5,
+                      fontWeight: FontWeight.w600,
+                      color: scheme.onSurfaceVariant,
+                    ),
+                  ),
+                ],
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+/// An edition of the filters: its small cover with the year, its name and
+/// how many messages.
+class _EditionChoice extends StatelessWidget {
+  const _EditionChoice({
+    required this.edition,
+    required this.selected,
+    required this.onTap,
+  });
+
+  final TeachingEditionFacet edition;
+  final bool selected;
+  final VoidCallback onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    final t = context.t.teachings;
+    final scheme = Theme.of(context).colorScheme;
+    final tone = AppModule.reports.tone(context);
+    final name = edition.categoryName.isNotEmpty
+        ? edition.categoryName
+        : edition.title;
+
+    return Semantics(
+      selected: selected,
+      button: true,
+      child: Material(
+        color: selected ? tone.soft : scheme.surface,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(AppRadius.lg),
+          side: BorderSide(
+            width: 1.5,
+            color: selected ? tone.onSoft : scheme.outlineVariant,
+          ),
+        ),
+        child: InkWell(
+          borderRadius: BorderRadius.circular(AppRadius.lg),
+          onTap: onTap,
+          child: Container(
+            width: 150,
+            padding: const EdgeInsets.all(10),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Container(
+                  height: 56,
+                  width: double.infinity,
+                  alignment: AlignmentDirectional.bottomStart,
+                  padding: const EdgeInsets.all(8),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10),
+                    gradient: const LinearGradient(
+                      begin: Alignment.topLeft,
+                      end: Alignment.bottomRight,
+                      colors: [AppColors.primary, AppColors.night],
+                    ),
+                  ),
+                  child: Text(
+                    edition.year > 0 ? '${edition.year}' : '',
+                    style: const TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.w800,
+                      color: AppColors.goldLight,
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 8),
+                Text(
+                  name,
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
+                  style: TextStyle(
+                    fontSize: 13,
+                    height: 1.25,
+                    fontWeight: FontWeight.w700,
+                    color: selected ? tone.onSoft : scheme.onSurface,
+                  ),
+                ),
+                const Spacer(),
+                Text(
+                  t.count(n: edition.count),
+                  style: TextStyle(
+                    fontSize: 12,
+                    color: scheme.onSurfaceVariant,
                   ),
                 ),
               ],
             ),
-          ],
+          ),
         ),
       ),
     );
@@ -723,6 +1400,7 @@ class _FiltersSheet extends HookConsumerWidget {
 class _List extends StatelessWidget {
   const _List({
     required this.items,
+    this.inEdition = false,
     this.empty,
     this.hasMore = false,
     this.loadingMore = false,
@@ -730,6 +1408,7 @@ class _List extends StatelessWidget {
   });
 
   final List<Teaching> items;
+  final bool inEdition;
   final String? empty;
   final bool hasMore;
   final bool loadingMore;
@@ -745,7 +1424,8 @@ class _List extends StatelessWidget {
       children: [
         SectionCard(
           children: [
-            for (final teaching in items) TeachingRow(teaching: teaching),
+            for (final teaching in items)
+              TeachingRow(teaching: teaching, inEdition: inEdition),
           ],
         ),
         if (hasMore)

@@ -15,11 +15,10 @@ class DocumentsQuery {
   bool get narrowed => search.isNotEmpty || category.isNotEmpty;
 
   /// The same query with some fields changed.
-  DocumentsQuery copyWith({String? search, String? category}) =>
-      DocumentsQuery(
-        search: search ?? this.search,
-        category: category ?? this.category,
-      );
+  DocumentsQuery copyWith({String? search, String? category}) => DocumentsQuery(
+    search: search ?? this.search,
+    category: category ?? this.category,
+  );
 
   @override
   bool operator ==(Object other) =>

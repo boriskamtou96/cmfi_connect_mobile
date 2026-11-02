@@ -21,6 +21,8 @@ import '../../../core/widgets/app_toast.dart';
 import '../../../core/widgets/error_view.dart';
 import '../../../core/widgets/section_card.dart';
 import '../../../core/widgets/skeleton.dart';
+import '../../../routing/app_router.dart';
+import '../../members/application/my_account.dart';
 import '../application/documents.dart';
 import '../domain/documents_query.dart';
 import '../domain/library_document.dart';
@@ -40,8 +42,9 @@ String documentSize(BuildContext context, int bytes) {
 /// Plus › Communauté › Nos documents: the library of the community, the
 /// newest first; a search on their words, a chip per category, the next
 /// page at the end of the list. A tap opens a document (the phone's reader
-/// or the browser), the arrow keeps it on the phone. The bar is slim: the
-/// back arrow, the title and the search, without the tall night-blue header.
+/// or the browser), the arrow sends it or keeps it on the phone. The bar is
+/// slim: the back arrow, the title and the search, without the tall
+/// night-blue header.
 @RoutePage()
 class DocumentsScreen extends HookConsumerWidget {
   const DocumentsScreen({super.key});
@@ -58,6 +61,7 @@ class DocumentsScreen extends HookConsumerWidget {
     final provider = documentsProvider(query);
     final documents = ref.watch(provider);
     final categories = ref.watch(documentCategoriesProvider).value ?? const [];
+    final isAdmin = ref.watch(myAccountProvider).value?.isAdmin ?? false;
 
     final Widget body = switch (documents) {
       AsyncValue(value: final state?) when state.items.isEmpty => _Message(
@@ -95,15 +99,22 @@ class DocumentsScreen extends HookConsumerWidget {
             child: CustomScrollView(
               physics: const AlwaysScrollableScrollPhysics(),
               slivers: [
-                SliverToBoxAdapter(child: _Header(controller: controller)),
+                SliverToBoxAdapter(
+                  child: _Header(
+                    controller: controller,
+                    // the admins publish from here too
+                    onManage: isAdmin
+                        ? () => context.router.push(const AdminDocumentsRoute())
+                        : null,
+                  ),
+                ),
                 if (categories.isNotEmpty)
                   SliverToBoxAdapter(
                     child: _Chips(
                       categories: categories,
                       selected: chosen.value.category,
-                      onSelect: (value) => chosen.value = chosen.value.copyWith(
-                        category: value,
-                      ),
+                      onSelect: (value) =>
+                          chosen.value = chosen.value.copyWith(category: value),
                     ),
                   ),
                 if (documents.value case final state? when state.total > 0)
@@ -146,9 +157,12 @@ class DocumentsScreen extends HookConsumerWidget {
 /// A slim bar on the light background: the back arrow, the title and the
 /// search below, without the tall night-blue header.
 class _Header extends StatelessWidget {
-  const _Header({required this.controller});
+  const _Header({required this.controller, this.onManage});
 
   final TextEditingController controller;
+
+  /// Gérer les documents, for the admins; null for the members.
+  final VoidCallback? onManage;
 
   @override
   Widget build(BuildContext context) {
@@ -182,6 +196,12 @@ class _Header extends StatelessWidget {
                     ),
                   ),
                 ),
+                if (onManage case final manage?)
+                  IconButton(
+                    tooltip: t.admin.manage,
+                    onPressed: manage,
+                    icon: const Icon(AppIcons.edit),
+                  ),
               ],
             ),
             Padding(
@@ -346,8 +366,9 @@ class _Message extends StatelessWidget {
 }
 
 /// A document: a PDF (burgundy) or Word (blue) tile, the title, the
-/// category, the size and the date. A tap opens it, the arrow keeps it on
-/// the phone (on iPhone, "Enregistrer dans Fichiers").
+/// category, the size and the date. A tap opens it, the arrow sends the
+/// file (WhatsApp, mail…) or keeps it on the phone (on iPhone, "Enregistrer
+/// dans Fichiers").
 class DocumentRow extends HookConsumerWidget {
   const DocumentRow({required this.document, super.key});
 
@@ -371,7 +392,7 @@ class DocumentRow extends HookConsumerWidget {
       }
     }
 
-    Future<void> download(BuildContext anchor) async {
+    Future<void> share(BuildContext anchor) async {
       final toast = ref.read(toasterProvider).of(context);
       final messages = context.t;
       final box = anchor.findRenderObject() as RenderBox?;
@@ -477,11 +498,11 @@ class DocumentRow extends HookConsumerWidget {
             ),
             Builder(
               builder: (anchor) => IconButton(
-                tooltip: t.download,
-                onPressed: busy.value ? null : () => download(anchor),
+                tooltip: t.share,
+                onPressed: busy.value ? null : () => share(anchor),
                 icon: busy.value
                     ? AppSpinner(size: 20, color: tone.onSoft)
-                    : Icon(AppIcons.download, color: tone.onSoft),
+                    : Icon(AppIcons.share, color: tone.onSoft),
               ),
             ),
           ],

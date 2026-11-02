@@ -145,8 +145,12 @@ class AudioServicePlayer implements TeachingPlayer {
       return;
     }
     final handler = await _ready!;
-    await handler.stop();
-    _emit(const PlayerSnapshot());
+    try {
+      await handler.stop();
+    } finally {
+      // the mini player goes away even if the system answered badly
+      _emit(const PlayerSnapshot());
+    }
   }
 
   Future<void> dispose() async {
@@ -162,7 +166,12 @@ class AudioServicePlayer implements TeachingPlayer {
 /// the notification, and its buttons (play, pause, ±15 s, the bar).
 class _Handler extends BaseAudioHandler with SeekHandler {
   _Handler(this._player) {
-    _player.playbackEventStream.map(_state).pipe(playbackState);
+    // listened, not piped: a pipe holds playbackState for itself
+    // (addStream), and stop() could no longer say « stopped » to the system
+    _player.playbackEventStream.listen(
+      (event) => playbackState.add(_state(event)),
+      onError: playbackState.addError,
+    );
   }
 
   final AudioPlayer _player;

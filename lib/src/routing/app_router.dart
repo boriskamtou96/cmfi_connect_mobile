@@ -20,6 +20,9 @@ import '../features/bible/presentation/memory_screen.dart';
 import '../features/disciples/presentation/disciple_reports_screen.dart';
 import '../features/disciples/presentation/disciples_screen.dart';
 import '../features/disciples/presentation/received_reports_screen.dart';
+import '../features/documents/domain/library_document.dart';
+import '../features/documents/presentation/admin/admin_documents_screen.dart';
+import '../features/documents/presentation/admin/document_form_screen.dart';
 import '../features/documents/presentation/documents_screen.dart';
 import '../features/events/presentation/admin/admin_events_screen.dart';
 import '../features/events/presentation/admin/event_form_screen.dart';
@@ -365,6 +368,17 @@ class AppRouter extends RootStackRouter {
     AutoRoute(
       path: '/admin/events/:eventId/registrations',
       page: EventRegistrantsRoute.page,
+      guards: [authGuard],
+    ),
+    AutoRoute(
+      path: '/admin/documents',
+      page: AdminDocumentsRoute.page,
+      guards: [authGuard],
+    ),
+    // the document travels with the route: no address of its own
+    AutoRoute(
+      path: '/admin/documents/form',
+      page: DocumentFormRoute.page,
       guards: [authGuard],
     ),
   ];

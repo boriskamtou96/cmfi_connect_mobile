@@ -9,6 +9,7 @@ import 'package:cmfi_connect/src/core/services/calendar_service.dart';
 import 'package:cmfi_connect/src/core/services/chime.dart';
 import 'package:cmfi_connect/src/core/services/crash_reporting.dart';
 import 'package:cmfi_connect/src/core/services/deep_links.dart';
+import 'package:cmfi_connect/src/core/services/document_picking.dart';
 import 'package:cmfi_connect/src/core/services/home_widgets.dart';
 import 'package:cmfi_connect/src/core/services/image_picking.dart';
 import 'package:cmfi_connect/src/core/services/link_launcher.dart';
@@ -94,6 +95,7 @@ class TestApp {
     required this.calendar,
     required this.links,
     required this.picker,
+    required this.documentPicker,
     required this.prayerApi,
     required this.chime,
     required this.push,
@@ -149,6 +151,7 @@ class TestApp {
   final FakeCalendarService calendar;
   final FakeLinkLauncher links;
   final FakeImagePicking picker;
+  final FakeDocumentPicking documentPicker;
   final FakePrayerApi prayerApi;
   final FakePushMessaging push;
   final FakeNotificationsApi notificationsApi;
@@ -268,6 +271,7 @@ Future<TestApp> pumpApp(
   final calendar = FakeCalendarService();
   final links = FakeLinkLauncher();
   final picker = FakeImagePicking();
+  final documentPicker = FakeDocumentPicking();
   final prayer = prayerApi ?? FakePrayerApi();
   final chime = FakeChime();
   final pushMessaging = push ?? FakePushMessaging();
@@ -325,6 +329,7 @@ Future<TestApp> pumpApp(
       calendarServiceProvider.overrideWithValue(calendar),
       linkLauncherProvider.overrideWithValue(links),
       imagePickingProvider.overrideWithValue(picker),
+      documentPickingProvider.overrideWithValue(documentPicker),
       prayerApiProvider.overrideWithValue(prayer),
       chimeProvider.overrideWithValue(chime),
       pushMessagingProvider.overrideWithValue(pushMessaging),
@@ -406,6 +411,7 @@ Future<TestApp> pumpApp(
     calendar: calendar,
     links: links,
     picker: picker,
+    documentPicker: documentPicker,
     prayerApi: prayer,
     chime: chime,
     push: pushMessaging,

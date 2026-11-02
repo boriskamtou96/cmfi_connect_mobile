@@ -45,6 +45,9 @@ abstract class LibraryDocument with _$LibraryDocument {
     @Default('') String categorySlug,
 
     required LibraryFile file,
+
+    /// false for a draft: only the admins see it (Gérer les documents).
+    @Default(true) bool published,
     DateTime? publishedAt,
   }) = _LibraryDocument;
 

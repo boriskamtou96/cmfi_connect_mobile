@@ -574,6 +574,7 @@
     "admin": "Administration",
     "staff": "Team and roles",
     "manageEvents": "Manage events",
+    "manageDocuments": "Manage documents",
     "disciples": "My disciples",
     "version": "Version {version}",
     "copyright": "© {year} Christian Missionary Fellowship International. All rights reserved."
@@ -2034,11 +2035,46 @@
     "word": "Word",
     "open": "Open the document",
     "download": "Download",
+    "share": "Share",
     "count(plural, param=n)": {
       "one": "{n} document",
       "other": "{n} documents"
     },
-    "more": "Show more"
+    "more": "Show more",
+    "admin": {
+      "title": "Manage documents",
+      "manage": "Manage documents",
+      "create": "New document",
+      "edit": "Edit document",
+      "empty": "No document yet. Tap « New document » to publish one.",
+      "file": "File",
+      "pickFile": "Choose a PDF or a Word file",
+      "fileHint": "From Files or your phone · 10 MB at most",
+      "replace": "Replace",
+      "uploading": "Sending the file…",
+      "tooLarge": "This file is too large (10 MB at most).",
+      "fileRequired": "Choose the document's file.",
+      "general": "The document",
+      "titleField": "Title",
+      "titleHint": "E.g.: Internal rules",
+      "titleRequired": "Give the document a title.",
+      "description": "Description (optional)",
+      "category": "Category",
+      "noCategory": "None",
+      "newCategory": "New category",
+      "newCategoryHint": "Category name",
+      "visibility": "Publishing",
+      "published": "Publish now",
+      "publishedHint": "Members see it in Our documents.",
+      "notify": "Notify the members",
+      "notifyHint": "A notification when it is first published.",
+      "draft": "Draft",
+      "saved": "Document saved",
+      "deleted": "Document deleted",
+      "delete": "Delete",
+      "deleteTitle": "Delete this document?",
+      "deleteText": "It disappears for every member. This cannot be undone."
+    }
   },
   "biblePlan": {
     "title": "Reading plan",
@@ -2134,6 +2170,7 @@
     "removed": "Removed from the phone",
     "cancelDownload": "Stop the download",
     "removeDownload": "Remove from the phone",
+    "share": "Share",
     "back15": "Back 15 seconds",
     "forward15": "Forward 15 seconds",
     "speed": "Speed {speed}",
@@ -2153,7 +2190,30 @@
     "allDays": "All days",
     "dayChip(n)": "Day {n}",
     "clearFilters": "Clear all",
-    "showResults": "Show"
+    "showResults": "Show",
+    "dayMessage": "Day {day}, message {n}",
+    "minutes": "{n} min",
+    "hoursMinutes": "{h} h {m}",
+    "left": "{time} left",
+    "nowPlaying": "Playing",
+    "resume": "Resume",
+    "editions": "Editions",
+    "allOfCategory": "All messages",
+    "daysCount(plural, param=n)": {
+      "one": "{n} day",
+      "other": "{n} days"
+    },
+    "andOthers(plural, param=n)": {
+      "one": "{name} and 1 other",
+      "other": "{name} and {n} others"
+    },
+    "showCount(plural, param=n)": {
+      "one": "Show {n} message",
+      "other": "Show {n} messages"
+    },
+    "searchOpen": "Search",
+    "searchClose": "Close the search",
+    "dayAll": "All"
   },
   "memorize": {
     "title": "Memorization",

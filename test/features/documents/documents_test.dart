@@ -127,14 +127,19 @@ void main() {
     expect(find.text('Règlement intérieur'), findsOneWidget);
   });
 
-  testWidgets('the arrow keeps the file on the phone, with its name', (
+  testWidgets('the arrow shares the file, with its name and its type', (
     tester,
   ) async {
     final app = await pumpApp(tester, token: 't');
     await openDocuments(tester);
 
-    await tester.tap(find.byTooltip('Télécharger').last);
+    await tester.tap(find.byTooltip('Partager').last);
     await tester.pumpAndSettle();
-    expect(app.share.files.single.name, 'Inscription.docx');
+    final shared = app.share.files.single;
+    expect(shared.name, 'Inscription.docx');
+    expect(
+      shared.mimeType,
+      'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+    );
   });
 }

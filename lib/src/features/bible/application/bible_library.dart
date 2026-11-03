@@ -1,9 +1,12 @@
+import 'dart:async';
 import 'dart:convert';
 
 import 'package:flutter/foundation.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../domain/bible.dart';
+import '../domain/bible_version.dart';
+import '../infrastructure/api_bible.dart';
 import '../infrastructure/bible_api.dart';
 import '../infrastructure/bible_storage.dart';
 
@@ -11,6 +14,13 @@ part 'bible_library.g.dart';
 
 const _complete = 'complete.json';
 const _books = 'books.json';
+
+/// The api.bible id of [version] when it is a Bible under licence, else
+/// null.
+String? _licensed(String version) =>
+    (bibleVersionOf(version) ??
+            (version == semeurVersion.id ? semeurVersion : null))
+        ?.apiBibleId;
 
 /// The whole of [version] once downloaded (read off the main thread), or
 /// null.
@@ -41,6 +51,10 @@ BibleText _parseText(String raw) {
 /// phone, or the API (then kept).
 @Riverpod(keepAlive: true)
 Future<List<BibleBook>> bibleBooks(Ref ref, String version) async {
+  // a Bible under licence: from api.bible, kept in memory only
+  if (_licensed(version) case final bibleId?) {
+    return ref.watch(apiBibleProvider).books(bibleId);
+  }
   final text = await ref.watch(bibleTextProvider(version).future);
   if (text != null) {
     return text.books;
@@ -71,6 +85,20 @@ Future<BibleChapter> bibleChapter(
   String book,
   int number,
 ) async {
+  // a Bible under licence: read with the network, never written on the
+  // phone, and each chapter shown counted by api.bible
+  if (_licensed(version) case final bibleId?) {
+    final api = ref.watch(apiBibleProvider);
+    final read = await api.chapter(bibleId, book, number);
+    if (read.fums case final token?) {
+      unawaited(api.viewed([token]));
+    }
+    return BibleChapter.fromJson(
+      book,
+      read.chapter,
+      copyright: read.copyright.isEmpty ? null : read.copyright,
+    );
+  }
   final text = await ref.watch(bibleTextProvider(version).future);
   if (text?.chapter(book, number) case final chapter?) {
     return chapter;
@@ -104,6 +132,10 @@ class BibleDownload extends _$BibleDownload {
   );
 
   Future<void> download() async {
+    // its licence keeps a Bible under licence off the phone
+    if (_licensed(version) != null) {
+      return;
+    }
     state = const AsyncData((downloaded: false, progress: 0));
     try {
       final bytes = await ref

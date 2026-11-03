@@ -101,22 +101,30 @@ class BibleChapter {
     required this.bookId,
     required this.number,
     required this.items,
+    this.copyright,
   });
 
   /// From the "chapter" object of the API: {number, content: [...]}.
-  factory BibleChapter.fromJson(String bookId, Map<String, dynamic> json) =>
-      BibleChapter(
-        bookId: bookId,
-        number: json['number'] as int,
-        items: [
-          for (final item in json['content'] as List<dynamic>)
-            ?_item(item as Map<String, dynamic>),
-        ],
-      );
+  factory BibleChapter.fromJson(
+    String bookId,
+    Map<String, dynamic> json, {
+    String? copyright,
+  }) => BibleChapter(
+    bookId: bookId,
+    number: json['number'] as int,
+    items: [
+      for (final item in json['content'] as List<dynamic>)
+        ?_item(item as Map<String, dynamic>),
+    ],
+    copyright: copyright,
+  );
 
   final String bookId;
   final int number;
   final List<BibleItem> items;
+
+  /// The notice its publisher gives with it (a Bible under licence).
+  final String? copyright;
 
   List<BibleVerse> get verses => [
     for (final item in items)

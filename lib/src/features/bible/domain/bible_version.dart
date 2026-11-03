@@ -1,6 +1,8 @@
+import '../../../core/config/app_config.dart';
+
 /// A Bible the app offers, from the Free Use Bible API (bible.helloao.org):
 /// public domain texts, or under a free licence that only asks for
-/// [attribution].
+/// [attribution]. Or a Bible under licence from api.bible ([apiBibleId]).
 class BibleVersion {
   const BibleVersion({
     required this.id,
@@ -10,6 +12,7 @@ class BibleVersion {
     required this.megabytes,
     this.rtl = false,
     this.attribution,
+    this.apiBibleId,
   });
 
   /// The API's id ("fra_lsg").
@@ -28,7 +31,28 @@ class BibleVersion {
 
   /// To show with the text when the licence asks for it.
   final String? attribution;
+
+  /// Its id on api.bible: a Bible under licence, read with the network and
+  /// never kept on the phone (no download, no search in the text).
+  final String? apiBibleId;
+
+  bool get online => apiBibleId != null;
 }
+
+/// La Bible du Semeur (© Biblica), through api.bible: among the versions
+/// once [AppConfig.semeurInApp]; its notice as Biblica writes it.
+const semeurVersion = BibleVersion(
+  id: 'fra_bds',
+  abbreviation: 'BDS',
+  name: 'La Bible du Semeur',
+  language: 'fr',
+  megabytes: 0,
+  apiBibleId: AppConfig.semeurBibleId,
+  attribution:
+      'Texte biblique de la Bible du Semeur®. Copyright © 1992, 1999, 2015 '
+      'Biblica, Inc.® Utilisé avec permission. Tous droits réservés '
+      'mondialement.',
+);
 
 /// The versions, the default of each language first: the same Bible as the
 /// verse of the day, so a verse opens on the words the user just read.
@@ -54,6 +78,7 @@ const bibleVersions = [
     language: 'fr',
     megabytes: 6,
   ),
+  if (AppConfig.semeurInApp) semeurVersion,
   BibleVersion(
     id: 'ENGWEBP',
     abbreviation: 'WEB',
@@ -169,12 +194,14 @@ class ExternalBible {
 }
 
 const externalBibles = [
-  ExternalBible(
-    abbreviation: 'BDS',
-    name: 'La Bible du Semeur',
-    language: 'fr',
-    site: 'Bibleserver',
-  ),
+  // read in the app instead once its licence is there
+  if (!AppConfig.semeurInApp)
+    ExternalBible(
+      abbreviation: 'BDS',
+      name: 'La Bible du Semeur',
+      language: 'fr',
+      site: 'Bibleserver',
+    ),
 ];
 
 /// The books as Bibleserver reads them, by their USFM code.

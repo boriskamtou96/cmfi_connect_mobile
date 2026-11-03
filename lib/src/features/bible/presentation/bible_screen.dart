@@ -693,7 +693,8 @@ class _TopBar extends ConsumerWidget {
                   icon: AppIcons.concordance,
                   label: t.bible.concordance,
                 ),
-                if (!downloaded)
+                // a Bible under licence is read with the network only
+                if (!downloaded && !version.online)
                   AdaptiveAction(
                     value: _MenuAction.download,
                     icon: AppIcons.downloadOffline,
@@ -765,6 +766,7 @@ class _ChapterPage extends ConsumerWidget {
         onFocused: onFocused,
         footer: _ChapterFooter(
           version: version,
+          copyright: chapter.copyright,
           place: place,
           books: books,
           palette: palette,
@@ -792,6 +794,7 @@ class _ChapterPage extends ConsumerWidget {
 class _ChapterFooter extends HookConsumerWidget {
   const _ChapterFooter({
     required this.version,
+    required this.copyright,
     required this.place,
     required this.books,
     required this.palette,
@@ -800,6 +803,9 @@ class _ChapterFooter extends HookConsumerWidget {
   });
 
   final BibleVersion version;
+
+  /// The notice the publisher sends with the chapter (a Bible under licence).
+  final String? copyright;
   final BibleRef place;
   final List<BibleBook> books;
   final ReaderPalette palette;
@@ -919,7 +925,7 @@ class _ChapterFooter extends HookConsumerWidget {
               ),
             ],
           ),
-          if (version.attribution case final credit?)
+          if (copyright ?? version.attribution case final credit?)
             Padding(
               padding: const EdgeInsets.only(top: AppSpacing.sm),
               child: Text(credit, textAlign: TextAlign.center, style: muted),
@@ -970,11 +976,14 @@ class _ChapterError extends ConsumerWidget {
               style: OutlinedButton.styleFrom(foregroundColor: palette.accent),
               child: Text(t.common.retry),
             ),
-            TextButton(
-              onPressed: downloading ? null : () => showBibleVersions(context),
-              style: TextButton.styleFrom(foregroundColor: palette.accent),
-              child: Text(t.bible.download),
-            ),
+            if (!version.online)
+              TextButton(
+                onPressed: downloading
+                    ? null
+                    : () => showBibleVersions(context),
+                style: TextButton.styleFrom(foregroundColor: palette.accent),
+                child: Text(t.bible.download),
+              ),
           ],
         ),
       ),

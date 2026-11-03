@@ -2426,6 +2426,18 @@ class Translations$bible$fr {
 
 	/// fr: 'Arrêter la lecture'
 	String get stopListening => 'Arrêter la lecture';
+
+	/// fr: 'Lecture en ligne'
+	String get online => 'Lecture en ligne';
+
+	/// fr: 'Une Bible sous licence : elle se lit avec le réseau et n'est pas gardée sur le téléphone.'
+	String get onlineHelp => 'Une Bible sous licence : elle se lit avec le réseau et n\'est pas gardée sur le téléphone.';
+
+	/// fr: 'On ne peut pas chercher des mots dans cette Bible. Tape un passage : « Jean 3:16 », ou choisis une autre version.'
+	String get searchOnline => 'On ne peut pas chercher des mots dans cette Bible. Tape un passage : « Jean 3:16 », ou choisis une autre version.';
+
+	/// fr: 'La concordance n'est pas disponible pour cette Bible : choisis une autre version.'
+	String get concordanceOnline => 'La concordance n\'est pas disponible pour cette Bible : choisis une autre version.';
 }
 
 // Path: profilePhoto
@@ -8904,6 +8916,10 @@ extension on Translations {
 			'bible.listen' => 'Écouter ce chapitre',
 			'bible.listeningAt' => ({required Object place, required Object verse}) => '${place} · verset ${verse}',
 			'bible.stopListening' => 'Arrêter la lecture',
+			'bible.online' => 'Lecture en ligne',
+			'bible.onlineHelp' => 'Une Bible sous licence : elle se lit avec le réseau et n\'est pas gardée sur le téléphone.',
+			'bible.searchOnline' => 'On ne peut pas chercher des mots dans cette Bible. Tape un passage : « Jean 3:16 », ou choisis une autre version.',
+			'bible.concordanceOnline' => 'La concordance n\'est pas disponible pour cette Bible : choisis une autre version.',
 			'profilePhoto.title' => 'Photo de profil',
 			'profilePhoto.add' => 'Ajouter une photo de profil',
 			'profilePhoto.change' => 'Changer la photo de profil',
@@ -9045,12 +9061,12 @@ extension on Translations {
 			'seekFirst.shield.thisApp' => 'Cette app',
 			'seekFirst.shield.fill' => 'Remplir mon compte rendu',
 			'seekFirst.shield.pause' => ({required Object n}) => 'Pause de 5 min (${n}/3)',
+			_ => null,
+		} ?? switch (path) {
 			'seekFirst.shield.notificationTitle' => 'Cherche d\'abord Dieu',
 			'seekFirst.shield.notificationBody' => 'Touche ici pour remplir ton compte rendu.',
 			'seekFirst.shield.serviceBody' => 'Tes apps se ferment chaque jour jusqu\'à ton compte rendu.',
 			'seekFirst.permissionsAndroid' => 'Pour fermer tes apps, CMFI Connect a besoin de deux autorisations, à activer dans les réglages qui vont s\'ouvrir : « Accès aux données d\'utilisation » (savoir quelle app est ouverte) et « Afficher par-dessus les autres applis » (montrer l\'écran Cherche d\'abord Dieu). Rien ne quitte ton téléphone.',
-			_ => null,
-		} ?? switch (path) {
 			'seekFirst.permissionsContinue' => 'Continuer',
 			'seekFirst.deniedAndroid' => 'Sans ces deux autorisations, CMFI Connect ne peut pas fermer d\'apps. Tu peux les activer dans Réglages › Applications › Accès spécial.',
 			'seekFirst.privacyAndroid' => 'Les apps que tu choisis restent sur ton téléphone : CMFI Connect ne les envoie jamais.',

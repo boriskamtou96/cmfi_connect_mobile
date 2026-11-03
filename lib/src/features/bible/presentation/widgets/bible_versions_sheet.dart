@@ -60,7 +60,10 @@ class _VersionsSheet extends ConsumerWidget {
           ),
           child: Text(t.bible.versions, style: theme.textTheme.titleLarge),
         ),
-        _DownloadCard(version: current),
+        if (current.online)
+          _OnlineCard(version: current)
+        else
+          _DownloadCard(version: current),
         for (final code in languages)
           if (bibleVersions.where((version) => version.language == code)
               case final versions when versions.isNotEmpty) ...[
@@ -362,6 +365,74 @@ class _DownloadCard extends ConsumerWidget {
                 ),
                 icon: const Icon(AppIcons.downloadOffline),
               ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+/// A Bible under licence (La Bible du Semeur): read with the network, never
+/// kept on the phone; its notice under it.
+class _OnlineCard extends StatelessWidget {
+  const _OnlineCard({required this.version});
+
+  final BibleVersion version;
+
+  @override
+  Widget build(BuildContext context) {
+    final t = context.t;
+    final scheme = Theme.of(context).colorScheme;
+    final tone = AppModule.bible.tone(context);
+
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: AppSpacing.lg),
+      child: Container(
+        padding: const EdgeInsets.fromLTRB(16, 14, 16, 14),
+        decoration: BoxDecoration(
+          color: tone.soft,
+          borderRadius: BorderRadius.circular(AppRadius.lg),
+        ),
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Icon(AppIcons.mediaInternet, color: tone.onSoft, size: 28),
+            const SizedBox(width: AppSpacing.md),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    t.bible.online,
+                    style: TextStyle(
+                      fontSize: 15,
+                      fontWeight: FontWeight.w800,
+                      color: tone.onSoft,
+                    ),
+                  ),
+                  const SizedBox(height: 2),
+                  Text(
+                    t.bible.onlineHelp,
+                    style: TextStyle(
+                      fontSize: 12.5,
+                      height: 1.3,
+                      color: scheme.onSurfaceVariant,
+                    ),
+                  ),
+                  if (version.attribution case final credit?)
+                    Padding(
+                      padding: const EdgeInsets.only(top: 4),
+                      child: Text(
+                        credit,
+                        style: TextStyle(
+                          fontSize: 11,
+                          color: scheme.onSurfaceVariant,
+                        ),
+                      ),
+                    ),
+                ],
+              ),
+            ),
           ],
         ),
       ),

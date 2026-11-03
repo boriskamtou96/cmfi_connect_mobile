@@ -1162,6 +1162,10 @@ class _Translations$bible$hi extends Translations$bible$fr {
 	@override String get listen => 'यह अध्याय सुनें';
 	@override String listeningAt({required Object place, required Object verse}) => '${place} · पद ${verse}';
 	@override String get stopListening => 'पढ़ना बंद करें';
+	@override String get online => 'ऑनलाइन पढ़ें';
+	@override String get onlineHelp => 'लाइसेंस वाली बाइबल: यह इंटरनेट से पढ़ी जाती है और फ़ोन पर सहेजी नहीं जाती।';
+	@override String get searchOnline => 'इस बाइबल में शब्द नहीं खोजे जा सकते। कोई अंश लिखें: “यूहन्ना 3:16”, या कोई दूसरा अनुवाद चुनें।';
+	@override String get concordanceOnline => 'इस बाइबल के लिए शब्दानुक्रमणिका उपलब्ध नहीं है: कोई दूसरा अनुवाद चुनें।';
 }
 
 // Path: profilePhoto
@@ -5190,6 +5194,10 @@ extension on TranslationsHi {
 			'bible.listen' => 'यह अध्याय सुनें',
 			'bible.listeningAt' => ({required Object place, required Object verse}) => '${place} · पद ${verse}',
 			'bible.stopListening' => 'पढ़ना बंद करें',
+			'bible.online' => 'ऑनलाइन पढ़ें',
+			'bible.onlineHelp' => 'लाइसेंस वाली बाइबल: यह इंटरनेट से पढ़ी जाती है और फ़ोन पर सहेजी नहीं जाती।',
+			'bible.searchOnline' => 'इस बाइबल में शब्द नहीं खोजे जा सकते। कोई अंश लिखें: “यूहन्ना 3:16”, या कोई दूसरा अनुवाद चुनें।',
+			'bible.concordanceOnline' => 'इस बाइबल के लिए शब्दानुक्रमणिका उपलब्ध नहीं है: कोई दूसरा अनुवाद चुनें।',
 			'profilePhoto.title' => 'प्रोफ़ाइल फ़ोटो',
 			'profilePhoto.add' => 'प्रोफ़ाइल फ़ोटो जोड़ें',
 			'profilePhoto.change' => 'प्रोफ़ाइल फ़ोटो बदलें',
@@ -5331,12 +5339,12 @@ extension on TranslationsHi {
 			'seekFirst.shield.thisApp' => 'यह ऐप',
 			'seekFirst.shield.fill' => 'मेरी रिपोर्ट भरें',
 			'seekFirst.shield.pause' => ({required Object n}) => '5 मिनट का विराम (${n}/3)',
+			_ => null,
+		} ?? switch (path) {
 			'seekFirst.shield.notificationTitle' => 'पहले परमेश्वर को खोजो',
 			'seekFirst.shield.notificationBody' => 'अपनी रिपोर्ट भरने के लिए यहाँ टैप करें।',
 			'seekFirst.shield.serviceBody' => 'तुम्हारे ऐप हर दिन तुम्हारी रिपोर्ट तक बंद रहते हैं।',
 			'seekFirst.permissionsAndroid' => 'तुम्हारे ऐप बंद करने के लिए CMFI Connect को दो अनुमतियाँ चाहिए, जो खुलने वाली सेटिंग्स में चालू करनी हैं: «उपयोग डेटा तक पहुँच» (कौन-सा ऐप खुला है) और «दूसरे ऐप्स के ऊपर दिखाएँ» (पहले परमेश्वर को खोजो स्क्रीन दिखाने के लिए)। कुछ भी तुम्हारे फ़ोन से बाहर नहीं जाता।',
-			_ => null,
-		} ?? switch (path) {
 			'seekFirst.permissionsContinue' => 'आगे बढ़ो',
 			'seekFirst.deniedAndroid' => 'इन दो अनुमतियों के बिना CMFI Connect ऐप बंद नहीं कर सकता। तुम इन्हें सेटिंग्स › ऐप्स › विशेष पहुँच में चालू कर सकते हो।',
 			'seekFirst.privacyAndroid' => 'तुम्हारे चुने ऐप तुम्हारे फ़ोन में ही रहते हैं: CMFI Connect उन्हें कभी नहीं भेजता।',

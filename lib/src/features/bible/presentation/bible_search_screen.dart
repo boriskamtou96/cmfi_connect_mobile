@@ -91,6 +91,7 @@ class BibleSearchScreen extends HookConsumerWidget {
                   found: found,
                   query: query,
                   books: books,
+                  online: version.online,
                   onOpen: open,
                 ),
                 AsyncError(:final error) => ErrorView(error: error),
@@ -162,12 +163,16 @@ class _Results extends StatelessWidget {
     required this.found,
     required this.query,
     required this.books,
+    required this.online,
     required this.onOpen,
   });
 
   final BibleSearch found;
   final String query;
   final List<BibleBook> books;
+
+  /// A Bible under licence: its words can't be searched, only a passage.
+  final bool online;
   final ValueChanged<BibleRef> onOpen;
 
   @override
@@ -181,6 +186,8 @@ class _Results extends StatelessWidget {
     if (reference == null && verses.isEmpty) {
       return found.downloaded
           ? _Tip(text: t.bible.searchNone)
+          : online
+          ? _Tip(text: t.bible.searchOnline)
           : _Tip(
               text: t.bible.searchNeedsDownload,
               action: FilledButton.icon(

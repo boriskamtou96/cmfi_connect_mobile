@@ -1162,6 +1162,10 @@ class _Translations$bible$es extends Translations$bible$fr {
 	@override String get listen => 'Escuchar este capítulo';
 	@override String listeningAt({required Object place, required Object verse}) => '${place} · versículo ${verse}';
 	@override String get stopListening => 'Detener la lectura';
+	@override String get online => 'Lectura en línea';
+	@override String get onlineHelp => 'Una Biblia con licencia: se lee con conexión y no se guarda en el teléfono.';
+	@override String get searchOnline => 'No se pueden buscar palabras en esta Biblia. Escribe un pasaje: «Juan 3:16», o elige otra versión.';
+	@override String get concordanceOnline => 'La concordancia no está disponible para esta Biblia: elige otra versión.';
 }
 
 // Path: profilePhoto
@@ -5191,6 +5195,10 @@ extension on TranslationsEs {
 			'bible.listen' => 'Escuchar este capítulo',
 			'bible.listeningAt' => ({required Object place, required Object verse}) => '${place} · versículo ${verse}',
 			'bible.stopListening' => 'Detener la lectura',
+			'bible.online' => 'Lectura en línea',
+			'bible.onlineHelp' => 'Una Biblia con licencia: se lee con conexión y no se guarda en el teléfono.',
+			'bible.searchOnline' => 'No se pueden buscar palabras en esta Biblia. Escribe un pasaje: «Juan 3:16», o elige otra versión.',
+			'bible.concordanceOnline' => 'La concordancia no está disponible para esta Biblia: elige otra versión.',
 			'profilePhoto.title' => 'Foto de perfil',
 			'profilePhoto.add' => 'Añadir una foto de perfil',
 			'profilePhoto.change' => 'Cambiar la foto de perfil',
@@ -5332,12 +5340,12 @@ extension on TranslationsEs {
 			'seekFirst.shield.thisApp' => 'Esta app',
 			'seekFirst.shield.fill' => 'Llenar mi informe',
 			'seekFirst.shield.pause' => ({required Object n}) => 'Pausa de 5 min (${n}/3)',
+			_ => null,
+		} ?? switch (path) {
 			'seekFirst.shield.notificationTitle' => 'Busca primero a Dios',
 			'seekFirst.shield.notificationBody' => 'Toca aquí para llenar tu informe.',
 			'seekFirst.shield.serviceBody' => 'Tus apps se cierran cada día hasta tu informe.',
 			'seekFirst.permissionsAndroid' => 'Para cerrar tus apps, CMFI Connect necesita dos permisos, que activarás en los ajustes que se van a abrir: «Acceso a datos de uso» (saber qué app está abierta) y «Mostrar sobre otras apps» (mostrar la pantalla Busca primero a Dios). Nada sale de tu teléfono.',
-			_ => null,
-		} ?? switch (path) {
 			'seekFirst.permissionsContinue' => 'Continuar',
 			'seekFirst.deniedAndroid' => 'Sin estos dos permisos, CMFI Connect no puede cerrar apps. Puedes activarlos en Ajustes › Aplicaciones › Acceso especial.',
 			'seekFirst.privacyAndroid' => 'Las apps que eliges se quedan en tu teléfono: CMFI Connect nunca las envía.',

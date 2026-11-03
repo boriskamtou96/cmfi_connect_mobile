@@ -26,6 +26,13 @@ class AppConfig {
 
   static const siteUrl = 'https://cmfi-connect.com';
 
+  // La Bible du Semeur in the app, through api.bible, once Biblica's licence
+  // is given: the key and the id of the Bible in .env (API_BIBLE_KEY,
+  // API_BIBLE_SEMEUR_ID). Without them it stays read on Bibleserver.
+  static const apiBibleKey = String.fromEnvironment('API_BIBLE_KEY');
+  static const semeurBibleId = String.fromEnvironment('API_BIBLE_SEMEUR_ID');
+  static const semeurInApp = apiBibleKey != '' && semeurBibleId != '';
+
   factory AppConfig.forFlavor(Flavor flavor) {
     final revenueCatKey = _revenueCatKeyFor(flavor);
     if (_apiBaseUrlOverride.isNotEmpty) {

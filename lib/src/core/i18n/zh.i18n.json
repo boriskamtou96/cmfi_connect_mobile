@@ -1729,7 +1729,9 @@
     "online": "在线阅读",
     "onlineHelp": "获授权的圣经：需联网阅读，不会保存在手机上。",
     "searchOnline": "无法在这本圣经中搜索词语。请输入经文出处：“约翰福音 3:16”，或选择其他译本。",
-    "concordanceOnline": "这本圣经没有经文汇编：请选择其他译本。"
+    "concordanceOnline": "这本圣经没有经文汇编：请选择其他译本。",
+    "note": "注释",
+    "noteOpen": "查看注释"
   },
   "profilePhoto": {
     "title": "头像",

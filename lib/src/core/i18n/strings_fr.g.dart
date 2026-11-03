@@ -2438,6 +2438,12 @@ class Translations$bible$fr {
 
 	/// fr: 'La concordance n'est pas disponible pour cette Bible : choisis une autre version.'
 	String get concordanceOnline => 'La concordance n\'est pas disponible pour cette Bible : choisis une autre version.';
+
+	/// fr: 'Note'
+	String get note => 'Note';
+
+	/// fr: 'Voir la note'
+	String get noteOpen => 'Voir la note';
 }
 
 // Path: profilePhoto
@@ -8920,6 +8926,8 @@ extension on Translations {
 			'bible.onlineHelp' => 'Une Bible sous licence : elle se lit avec le réseau et n\'est pas gardée sur le téléphone.',
 			'bible.searchOnline' => 'On ne peut pas chercher des mots dans cette Bible. Tape un passage : « Jean 3:16 », ou choisis une autre version.',
 			'bible.concordanceOnline' => 'La concordance n\'est pas disponible pour cette Bible : choisis une autre version.',
+			'bible.note' => 'Note',
+			'bible.noteOpen' => 'Voir la note',
 			'profilePhoto.title' => 'Photo de profil',
 			'profilePhoto.add' => 'Ajouter une photo de profil',
 			'profilePhoto.change' => 'Changer la photo de profil',
@@ -9059,10 +9067,10 @@ extension on Translations {
 			'seekFirst.shield.title' => 'Cherche d\'abord Dieu',
 			'seekFirst.shield.subtitle' => ({required Object app}) => '${app} reste fermée jusqu\'à ton compte rendu d\'aujourd\'hui.',
 			'seekFirst.shield.thisApp' => 'Cette app',
-			'seekFirst.shield.fill' => 'Remplir mon compte rendu',
-			'seekFirst.shield.pause' => ({required Object n}) => 'Pause de 5 min (${n}/3)',
 			_ => null,
 		} ?? switch (path) {
+			'seekFirst.shield.fill' => 'Remplir mon compte rendu',
+			'seekFirst.shield.pause' => ({required Object n}) => 'Pause de 5 min (${n}/3)',
 			'seekFirst.shield.notificationTitle' => 'Cherche d\'abord Dieu',
 			'seekFirst.shield.notificationBody' => 'Touche ici pour remplir ton compte rendu.',
 			'seekFirst.shield.serviceBody' => 'Tes apps se ferment chaque jour jusqu\'à ton compte rendu.',

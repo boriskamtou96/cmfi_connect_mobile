@@ -1288,6 +1288,8 @@ class _Translations$bible$ar extends Translations$bible$fr {
 	@override String get onlineHelp => 'كتاب مقدس مرخّص: يُقرأ بالاتصال بالإنترنت ولا يُحفظ على الهاتف.';
 	@override String get searchOnline => 'لا يمكن البحث عن الكلمات في هذا الكتاب المقدس. اكتب مقطعًا: «يوحنا 3:16»، أو اختر ترجمة أخرى.';
 	@override String get concordanceOnline => 'الفهرس غير متاح لهذا الكتاب المقدس: اختر ترجمة أخرى.';
+	@override String get note => 'ملاحظة';
+	@override String get noteOpen => 'عرض الملاحظة';
 }
 
 // Path: profilePhoto
@@ -5597,6 +5599,8 @@ extension on TranslationsAr {
 			'bible.onlineHelp' => 'كتاب مقدس مرخّص: يُقرأ بالاتصال بالإنترنت ولا يُحفظ على الهاتف.',
 			'bible.searchOnline' => 'لا يمكن البحث عن الكلمات في هذا الكتاب المقدس. اكتب مقطعًا: «يوحنا 3:16»، أو اختر ترجمة أخرى.',
 			'bible.concordanceOnline' => 'الفهرس غير متاح لهذا الكتاب المقدس: اختر ترجمة أخرى.',
+			'bible.note' => 'ملاحظة',
+			'bible.noteOpen' => 'عرض الملاحظة',
 			'profilePhoto.title' => 'صورة الملف الشخصي',
 			'profilePhoto.add' => 'إضافة صورة للملف الشخصي',
 			'profilePhoto.change' => 'تغيير صورة الملف الشخصي',
@@ -5736,10 +5740,10 @@ extension on TranslationsAr {
 			'seekFirst.shield.title' => 'اطلب الله أولًا',
 			'seekFirst.shield.subtitle' => ({required Object app}) => 'يبقى ${app} مغلقًا حتى تقرير اليوم.',
 			'seekFirst.shield.thisApp' => 'هذا التطبيق',
-			'seekFirst.shield.fill' => 'املأ تقريري',
-			'seekFirst.shield.pause' => ({required Object n}) => 'استراحة 5 دقائق (${n}/3)',
 			_ => null,
 		} ?? switch (path) {
+			'seekFirst.shield.fill' => 'املأ تقريري',
+			'seekFirst.shield.pause' => ({required Object n}) => 'استراحة 5 دقائق (${n}/3)',
 			'seekFirst.shield.notificationTitle' => 'اطلب الله أولًا',
 			'seekFirst.shield.notificationBody' => 'المس هنا لتملأ تقريرك.',
 			'seekFirst.shield.serviceBody' => 'تُغلق تطبيقاتك كل يوم حتى تقريرك.',

@@ -1166,6 +1166,8 @@ class _Translations$bible$es extends Translations$bible$fr {
 	@override String get onlineHelp => 'Una Biblia con licencia: se lee con conexión y no se guarda en el teléfono.';
 	@override String get searchOnline => 'No se pueden buscar palabras en esta Biblia. Escribe un pasaje: «Juan 3:16», o elige otra versión.';
 	@override String get concordanceOnline => 'La concordancia no está disponible para esta Biblia: elige otra versión.';
+	@override String get note => 'Nota';
+	@override String get noteOpen => 'Ver la nota';
 }
 
 // Path: profilePhoto
@@ -5199,6 +5201,8 @@ extension on TranslationsEs {
 			'bible.onlineHelp' => 'Una Biblia con licencia: se lee con conexión y no se guarda en el teléfono.',
 			'bible.searchOnline' => 'No se pueden buscar palabras en esta Biblia. Escribe un pasaje: «Juan 3:16», o elige otra versión.',
 			'bible.concordanceOnline' => 'La concordancia no está disponible para esta Biblia: elige otra versión.',
+			'bible.note' => 'Nota',
+			'bible.noteOpen' => 'Ver la nota',
 			'profilePhoto.title' => 'Foto de perfil',
 			'profilePhoto.add' => 'Añadir una foto de perfil',
 			'profilePhoto.change' => 'Cambiar la foto de perfil',
@@ -5338,10 +5342,10 @@ extension on TranslationsEs {
 			'seekFirst.shield.title' => 'Busca primero a Dios',
 			'seekFirst.shield.subtitle' => ({required Object app}) => '${app} sigue cerrada hasta tu informe de hoy.',
 			'seekFirst.shield.thisApp' => 'Esta app',
-			'seekFirst.shield.fill' => 'Llenar mi informe',
-			'seekFirst.shield.pause' => ({required Object n}) => 'Pausa de 5 min (${n}/3)',
 			_ => null,
 		} ?? switch (path) {
+			'seekFirst.shield.fill' => 'Llenar mi informe',
+			'seekFirst.shield.pause' => ({required Object n}) => 'Pausa de 5 min (${n}/3)',
 			'seekFirst.shield.notificationTitle' => 'Busca primero a Dios',
 			'seekFirst.shield.notificationBody' => 'Toca aquí para llenar tu informe.',
 			'seekFirst.shield.serviceBody' => 'Tus apps se cierran cada día hasta tu informe.',

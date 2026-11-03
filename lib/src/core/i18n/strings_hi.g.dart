@@ -1166,6 +1166,8 @@ class _Translations$bible$hi extends Translations$bible$fr {
 	@override String get onlineHelp => 'लाइसेंस वाली बाइबल: यह इंटरनेट से पढ़ी जाती है और फ़ोन पर सहेजी नहीं जाती।';
 	@override String get searchOnline => 'इस बाइबल में शब्द नहीं खोजे जा सकते। कोई अंश लिखें: “यूहन्ना 3:16”, या कोई दूसरा अनुवाद चुनें।';
 	@override String get concordanceOnline => 'इस बाइबल के लिए शब्दानुक्रमणिका उपलब्ध नहीं है: कोई दूसरा अनुवाद चुनें।';
+	@override String get note => 'टिप्पणी';
+	@override String get noteOpen => 'टिप्पणी देखें';
 }
 
 // Path: profilePhoto
@@ -5198,6 +5200,8 @@ extension on TranslationsHi {
 			'bible.onlineHelp' => 'लाइसेंस वाली बाइबल: यह इंटरनेट से पढ़ी जाती है और फ़ोन पर सहेजी नहीं जाती।',
 			'bible.searchOnline' => 'इस बाइबल में शब्द नहीं खोजे जा सकते। कोई अंश लिखें: “यूहन्ना 3:16”, या कोई दूसरा अनुवाद चुनें।',
 			'bible.concordanceOnline' => 'इस बाइबल के लिए शब्दानुक्रमणिका उपलब्ध नहीं है: कोई दूसरा अनुवाद चुनें।',
+			'bible.note' => 'टिप्पणी',
+			'bible.noteOpen' => 'टिप्पणी देखें',
 			'profilePhoto.title' => 'प्रोफ़ाइल फ़ोटो',
 			'profilePhoto.add' => 'प्रोफ़ाइल फ़ोटो जोड़ें',
 			'profilePhoto.change' => 'प्रोफ़ाइल फ़ोटो बदलें',
@@ -5337,10 +5341,10 @@ extension on TranslationsHi {
 			'seekFirst.shield.title' => 'पहले परमेश्वर को खोजो',
 			'seekFirst.shield.subtitle' => ({required Object app}) => 'आज की रिपोर्ट तक ${app} बंद रहेगा।',
 			'seekFirst.shield.thisApp' => 'यह ऐप',
-			'seekFirst.shield.fill' => 'मेरी रिपोर्ट भरें',
-			'seekFirst.shield.pause' => ({required Object n}) => '5 मिनट का विराम (${n}/3)',
 			_ => null,
 		} ?? switch (path) {
+			'seekFirst.shield.fill' => 'मेरी रिपोर्ट भरें',
+			'seekFirst.shield.pause' => ({required Object n}) => '5 मिनट का विराम (${n}/3)',
 			'seekFirst.shield.notificationTitle' => 'पहले परमेश्वर को खोजो',
 			'seekFirst.shield.notificationBody' => 'अपनी रिपोर्ट भरने के लिए यहाँ टैप करें।',
 			'seekFirst.shield.serviceBody' => 'तुम्हारे ऐप हर दिन तुम्हारी रिपोर्ट तक बंद रहते हैं।',

@@ -52,17 +52,23 @@ String _bookName(Map<String, dynamic> json) {
       .join(' ');
 }
 
-/// A piece of a verse: words (said by Jesus, or not), or a line break of a
-/// poem.
+/// A piece of a verse: words (said by Jesus, or not), a line break of a
+/// poem, or a note of the translators (shown as a mark to tap).
 class BibleSegment {
-  const BibleSegment(this.text, {this.jesus = false});
+  const BibleSegment(this.text, {this.jesus = false}) : note = null;
 
-  const BibleSegment.lineBreak() : text = '\n', jesus = false;
+  const BibleSegment.lineBreak() : text = '\n', jesus = false, note = null;
+
+  const BibleSegment.note(String this.note) : text = '', jesus = false;
 
   final String text;
   final bool jesus;
 
+  /// The text of a note; null for words.
+  final String? note;
+
   bool get isBreak => text == '\n';
+  bool get isNote => note != null;
 }
 
 /// What a chapter is made of, in order.
@@ -149,11 +155,15 @@ BibleItem? _item(Map<String, dynamic> json) => switch (json['type']) {
   _ => null,
 };
 
-/// A string, {text, wordsOfJesus?, poem?}, {lineBreak: true}; a note
-/// ({noteId}) is left out.
+/// A string, {text, wordsOfJesus?, poem?}, {lineBreak: true}, a note given
+/// with its text ({note}); a note given only by its id ({noteId}) is left
+/// out.
 BibleSegment? _segment(Object? part) => switch (part) {
   final String text => BibleSegment(text),
   {'lineBreak': true} => const BibleSegment.lineBreak(),
+  {'note': final String note} when note.trim().isNotEmpty => BibleSegment.note(
+    note.trim(),
+  ),
   {'text': final String text} => BibleSegment(
     text,
     jesus: (part as Map)['wordsOfJesus'] == true,
@@ -167,6 +177,13 @@ BibleSegment? _segment(Object? part) => switch (part) {
 List<BibleSegment> _tidy(List<BibleSegment> parts) {
   final tidy = <BibleSegment>[];
   for (final part in parts) {
+    // a note sits right after the word it is on
+    if (part.isNote) {
+      if (tidy.isNotEmpty) {
+        tidy.add(part);
+      }
+      continue;
+    }
     if (part.isBreak) {
       if (tidy.isNotEmpty && !tidy.last.isBreak) {
         tidy.add(part);
@@ -177,9 +194,11 @@ List<BibleSegment> _tidy(List<BibleSegment> parts) {
     if (text.isEmpty) {
       continue;
     }
-    final before = tidy.lastOrNull;
+    final before = tidy.lastWhere(
+      (piece) => !piece.isNote,
+      orElse: () => const BibleSegment.lineBreak(),
+    );
     final spaced =
-        before != null &&
         !before.isBreak &&
         !_isCjk(before.text.runes.last) &&
         !_isCjk(text.runes.first);

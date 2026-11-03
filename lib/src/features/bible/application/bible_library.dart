@@ -1,4 +1,3 @@
-import 'dart:async';
 import 'dart:convert';
 
 import 'package:flutter/foundation.dart';
@@ -6,21 +5,21 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../domain/bible.dart';
 import '../domain/bible_version.dart';
-import '../infrastructure/api_bible.dart';
 import '../infrastructure/bible_api.dart';
 import '../infrastructure/bible_storage.dart';
+import '../infrastructure/youversion_bible.dart';
 
 part 'bible_library.g.dart';
 
 const _complete = 'complete.json';
 const _books = 'books.json';
 
-/// The api.bible id of [version] when it is a Bible under licence, else
-/// null.
-String? _licensed(String version) =>
+/// The YouVersion Platform id of [version] when it is a Bible under
+/// licence, else null.
+int? _licensed(String version) =>
     (bibleVersionOf(version) ??
             (version == semeurVersion.id ? semeurVersion : null))
-        ?.apiBibleId;
+        ?.youversionId;
 
 /// The whole of [version] once downloaded (read off the main thread), or
 /// null.
@@ -51,9 +50,9 @@ BibleText _parseText(String raw) {
 /// phone, or the API (then kept).
 @Riverpod(keepAlive: true)
 Future<List<BibleBook>> bibleBooks(Ref ref, String version) async {
-  // a Bible under licence: from api.bible, kept in memory only
+  // a Bible under licence: from the YouVersion Platform, kept in memory only
   if (_licensed(version) case final bibleId?) {
-    return ref.watch(apiBibleProvider).books(bibleId);
+    return ref.watch(youVersionBibleProvider).books(bibleId);
   }
   final text = await ref.watch(bibleTextProvider(version).future);
   if (text != null) {
@@ -86,13 +85,11 @@ Future<BibleChapter> bibleChapter(
   int number,
 ) async {
   // a Bible under licence: read with the network, never written on the
-  // phone, and each chapter shown counted by api.bible
+  // phone (the platform counts the readings for its publisher)
   if (_licensed(version) case final bibleId?) {
-    final api = ref.watch(apiBibleProvider);
-    final read = await api.chapter(bibleId, book, number);
-    if (read.fums case final token?) {
-      unawaited(api.viewed([token]));
-    }
+    final read = await ref
+        .watch(youVersionBibleProvider)
+        .chapter(bibleId, book, number);
     return BibleChapter.fromJson(
       book,
       read.chapter,

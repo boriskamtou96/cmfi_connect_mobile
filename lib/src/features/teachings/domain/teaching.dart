@@ -124,10 +124,8 @@ abstract class TeachingSpeakerFacet with _$TeachingSpeakerFacet {
 
 @freezed
 abstract class TeachingYearFacet with _$TeachingYearFacet {
-  const factory TeachingYearFacet({
-    required int year,
-    @Default(0) int count,
-  }) = _TeachingYearFacet;
+  const factory TeachingYearFacet({required int year, @Default(0) int count}) =
+      _TeachingYearFacet;
 
   factory TeachingYearFacet.fromJson(Map<String, dynamic> json) =>
       _$TeachingYearFacetFromJson(json);
@@ -135,10 +133,8 @@ abstract class TeachingYearFacet with _$TeachingYearFacet {
 
 @freezed
 abstract class TeachingDayFacet with _$TeachingDayFacet {
-  const factory TeachingDayFacet({
-    required int day,
-    @Default(0) int count,
-  }) = _TeachingDayFacet;
+  const factory TeachingDayFacet({required int day, @Default(0) int count}) =
+      _TeachingDayFacet;
 
   factory TeachingDayFacet.fromJson(Map<String, dynamic> json) =>
       _$TeachingDayFacetFromJson(json);

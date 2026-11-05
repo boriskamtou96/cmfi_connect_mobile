@@ -48,4 +48,4 @@ final class BibleStorageProvider
   }
 }
 
-String _$bibleStorageHash() => r'195c9279059df90dda701d1d3f9e18907100351a';
+String _$bibleStorageHash() => r'bac17fb8fca32dac7515d18222a0643ee963f38f';

@@ -45,7 +45,11 @@ class TeachingQuery {
   /// Whether the first page may be kept on the phone: an untouched list, or
   /// one category.
   bool get keepable =>
-      search.isEmpty && speaker.isEmpty && year == null && edition == null && day == null;
+      search.isEmpty &&
+      speaker.isEmpty &&
+      year == null &&
+      edition == null &&
+      day == null;
 
   /// How many filters narrow the list.
   int get filterCount => [

@@ -741,31 +741,9 @@ class _Translations$premium$zh extends Translations$premium$fr {
 	@override String get statsTitle => '全年的目标';
 	@override String get statsText => '你的年度回顾，以及目标逐周的变化。';
 	@override String get supportTitle => '你在支持这份事工';
-	@override String get supportText => '你的订阅让应用和新功能为整个团契持续运转。';
-	@override String get annual => '按年';
-	@override String get lifetime => '终身';
-	@override String get monthly => '按月';
-	@override String perYear({required Object price}) => '${price} / 年';
-	@override String once({required Object price}) => '${price} 一次性';
-	@override String perMonth({required Object price}) => '${price} / 月';
-	@override String annualPerMonth({required Object price}) => '相当于每月 ${price}';
-	@override String get best => '最划算';
-	@override String trialDays({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n,
-		other: '免费试用 ${n} 天',
-	);
-	@override String trialMonths({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n,
-		other: '免费试用 ${n} 个月',
-	);
-	@override String get subscribe => '订阅';
-	@override String get startTrial => '开始免费试用';
-	@override String get restore => '恢复购买';
-	@override String get restored => 'Premium 已在这部手机上恢复';
-	@override String get nothingToRestore => '此账户没有 Premium 购买记录';
-	@override String get thanks => '谢谢你！Premium 已开启。';
-	@override String get failed => '购买未完成，请稍后再试。';
-	@override String get unavailable => '暂时无法获取订阅方案。';
-	@override String renews({required Object store}) => '订阅会自动续订。你可以随时在 ${store} 账户设置中取消。';
-	@override String get terms => '使用条款';
+	@override String get supportText => '你的支持让应用及其新功能为整个团体持续运作。';
+	@override String get unavailable => 'Premium 即将登陆应用。';
+	@override late final _Translations$premium$onSite$zh onSite = _Translations$premium$onSite$zh._(_root);
 	@override String get privacy => '隐私';
 	@override String get activeTitle => '你已拥有 Premium';
 	@override String get activeText => '感谢支持 CMFI Connect！小组件、你的一年、年度回顾和离线教导已开启。';
@@ -773,18 +751,7 @@ class _Translations$premium$zh extends Translations$premium$fr {
 	@override String get moreSubtitle => '小组件、你的一年、离线教导';
 	@override String get moreActive => '已开启';
 	@override String get unlock => '用 Premium 解锁';
-	@override String trialThen({required Object trial, required Object price}) => '${trial}，之后 ${price}';
-	@override String savePercent({required Object percent}) => '−${percent}';
-	@override String get choose => '选择你的方案';
-	@override String get cancelAnytime => '无需承诺，随时可取消';
-	@override String get restoreShort => '恢复购买';
 	@override String get termsShort => '条款';
-	@override String get semiannual => '半年';
-	@override String perSemester({required Object price}) => '${price} / 6 个月';
-	@override String get buyLifetime => '终身购买';
-	@override String get lifetimeNote => '终身：一次付款，无需订阅，不会续费。';
-	@override String get manage => '管理我的订阅';
-	@override String get manageFailed => '无法打开订阅管理，请稍后再试。';
 	@override String get crown => '高级版会员';
 	@override String get offlineTitle => '离线收听教导';
 	@override String get offlineText => '下载信息，随时随地收听，即使没有网络。';
@@ -2695,6 +2662,19 @@ class _Translations$events$pay$zh extends Translations$events$pay$fr {
 	@override String get waitingCardTitle => '请在安全页面完成付款';
 	@override String get waitingCardText => '在 Wajub 页面输入你的银行卡。付款一到账，你的报名就会在这里确认。';
 	@override String get reopen => '重新打开付款页面';
+}
+
+// Path: premium.onSite
+class _Translations$premium$onSite$zh extends Translations$premium$onSite$fr {
+	_Translations$premium$onSite$zh._(TranslationsZh root) : this._root = root, super.internal(root);
+
+	final TranslationsZh _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => '在网站上开通 Premium';
+	@override String get text => '在 cmfi-connect.com 用你的账户登录，通过移动支付（MTN、Orange）付款。一次性付款，不会自动续订。';
+	@override String get note => '之后 Premium 会自动出现在这里，你的所有手机都可使用。';
+	@override String get button => '前往 cmfi-connect.com';
 }
 
 // Path: ministry.goals
@@ -4648,27 +4628,12 @@ extension on TranslationsZh {
 			'premium.statsTitle' => '全年的目标',
 			'premium.statsText' => '你的年度回顾，以及目标逐周的变化。',
 			'premium.supportTitle' => '你在支持这份事工',
-			'premium.supportText' => '你的订阅让应用和新功能为整个团契持续运转。',
-			'premium.annual' => '按年',
-			'premium.lifetime' => '终身',
-			'premium.monthly' => '按月',
-			'premium.perYear' => ({required Object price}) => '${price} / 年',
-			'premium.once' => ({required Object price}) => '${price} 一次性',
-			'premium.perMonth' => ({required Object price}) => '${price} / 月',
-			'premium.annualPerMonth' => ({required Object price}) => '相当于每月 ${price}',
-			'premium.best' => '最划算',
-			'premium.trialDays' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n, other: '免费试用 ${n} 天', ), 
-			'premium.trialMonths' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n, other: '免费试用 ${n} 个月', ), 
-			'premium.subscribe' => '订阅',
-			'premium.startTrial' => '开始免费试用',
-			'premium.restore' => '恢复购买',
-			'premium.restored' => 'Premium 已在这部手机上恢复',
-			'premium.nothingToRestore' => '此账户没有 Premium 购买记录',
-			'premium.thanks' => '谢谢你！Premium 已开启。',
-			'premium.failed' => '购买未完成，请稍后再试。',
-			'premium.unavailable' => '暂时无法获取订阅方案。',
-			'premium.renews' => ({required Object store}) => '订阅会自动续订。你可以随时在 ${store} 账户设置中取消。',
-			'premium.terms' => '使用条款',
+			'premium.supportText' => '你的支持让应用及其新功能为整个团体持续运作。',
+			'premium.unavailable' => 'Premium 即将登陆应用。',
+			'premium.onSite.title' => '在网站上开通 Premium',
+			'premium.onSite.text' => '在 cmfi-connect.com 用你的账户登录，通过移动支付（MTN、Orange）付款。一次性付款，不会自动续订。',
+			'premium.onSite.note' => '之后 Premium 会自动出现在这里，你的所有手机都可使用。',
+			'premium.onSite.button' => '前往 cmfi-connect.com',
 			'premium.privacy' => '隐私',
 			'premium.activeTitle' => '你已拥有 Premium',
 			'premium.activeText' => '感谢支持 CMFI Connect！小组件、你的一年、年度回顾和离线教导已开启。',
@@ -4676,18 +4641,7 @@ extension on TranslationsZh {
 			'premium.moreSubtitle' => '小组件、你的一年、离线教导',
 			'premium.moreActive' => '已开启',
 			'premium.unlock' => '用 Premium 解锁',
-			'premium.trialThen' => ({required Object trial, required Object price}) => '${trial}，之后 ${price}',
-			'premium.savePercent' => ({required Object percent}) => '−${percent}',
-			'premium.choose' => '选择你的方案',
-			'premium.cancelAnytime' => '无需承诺，随时可取消',
-			'premium.restoreShort' => '恢复购买',
 			'premium.termsShort' => '条款',
-			'premium.semiannual' => '半年',
-			'premium.perSemester' => ({required Object price}) => '${price} / 6 个月',
-			'premium.buyLifetime' => '终身购买',
-			'premium.lifetimeNote' => '终身：一次付款，无需订阅，不会续费。',
-			'premium.manage' => '管理我的订阅',
-			'premium.manageFailed' => '无法打开订阅管理，请稍后再试。',
 			'premium.crown' => '高级版会员',
 			'premium.offlineTitle' => '离线收听教导',
 			'premium.offlineText' => '下载信息，随时随地收听，即使没有网络。',
@@ -4805,8 +4759,6 @@ extension on TranslationsZh {
 			'prayer.moments.night' => '夜晚',
 			'prayer.retreatOf.morning' => '早晨祷告',
 			'prayer.retreatOf.noon' => '中午祷告',
-			_ => null,
-		} ?? switch (path) {
 			'prayer.retreatOf.evening' => '傍晚祷告',
 			'prayer.retreatOf.night' => '夜晚祷告',
 			'prayer.hero.now' => ({required Object retreat}) => '${retreat} · 现在',
@@ -4833,6 +4785,8 @@ extension on TranslationsZh {
 			'prayer.routine.later.noon' => '中午 · 15 分钟',
 			'prayer.routine.later.evening' => '傍晚 · 15 分钟',
 			'prayer.routine.later.night' => '夜里 · 15 分钟',
+			_ => null,
+		} ?? switch (path) {
 			'prayer.together' => '一起祷告',
 			'prayer.reminders.title' => '祷告提醒',
 			'prayer.reminders.intro' => '在每次祷告的时间提醒你，仅在尚未完成时提醒。',
@@ -5319,8 +5273,6 @@ extension on TranslationsZh {
 			'seekFirst.shield.fill' => '填写我的汇报',
 			'seekFirst.shield.pause' => ({required Object n}) => '暂停 5 分钟（${n}/3）',
 			'seekFirst.shield.notificationTitle' => '先求神',
-			_ => null,
-		} ?? switch (path) {
 			'seekFirst.shield.notificationBody' => '轻点此处填写你的汇报。',
 			'seekFirst.shield.serviceBody' => '你的应用每天都会关闭，直到你填写报告。',
 			'seekFirst.permissionsAndroid' => '为了关闭你的应用，CMFI Connect 需要在即将打开的设置中开启两项权限：“使用情况访问权限”（知道哪个应用在前台）和“显示在其他应用上层”（显示“先求神”页面）。任何数据都不会离开你的手机。',
@@ -5347,6 +5299,8 @@ extension on TranslationsZh {
 			'documents.admin.manage' => '管理文件',
 			'documents.admin.create' => '新建文件',
 			'documents.admin.edit' => '编辑文件',
+			_ => null,
+		} ?? switch (path) {
 			'documents.admin.empty' => '还没有文件。点按「新建文件」发布一份。',
 			'documents.admin.file' => '文件',
 			'documents.admin.pickFile' => '选择 PDF 或 Word 文件',

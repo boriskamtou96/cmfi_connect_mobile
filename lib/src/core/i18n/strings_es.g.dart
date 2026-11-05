@@ -759,33 +759,9 @@ class _Translations$premium$es extends Translations$premium$fr {
 	@override String get statsTitle => 'Tus objetivos durante el año';
 	@override String get statsText => 'El balance de tu año y la evolución de tus objetivos, semana tras semana.';
 	@override String get supportTitle => 'Apoyas la obra';
-	@override String get supportText => 'Tu suscripción mantiene viva la app y sus novedades para toda la comunidad.';
-	@override String get annual => 'Anual';
-	@override String get lifetime => 'De por vida';
-	@override String get monthly => 'Mensual';
-	@override String perYear({required Object price}) => '${price} / año';
-	@override String once({required Object price}) => '${price} una vez';
-	@override String perMonth({required Object price}) => '${price} / mes';
-	@override String annualPerMonth({required Object price}) => 'es decir, ${price} al mes';
-	@override String get best => 'La más ventajosa';
-	@override String trialDays({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('es'))(n,
-		one: '${n} día de prueba gratis',
-		other: '${n} días de prueba gratis',
-	);
-	@override String trialMonths({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('es'))(n,
-		one: '${n} mes de prueba gratis',
-		other: '${n} meses de prueba gratis',
-	);
-	@override String get subscribe => 'Suscribirme';
-	@override String get startTrial => 'Empezar la prueba gratis';
-	@override String get restore => 'Restaurar compras';
-	@override String get restored => 'Premium vuelve a estar en este teléfono';
-	@override String get nothingToRestore => 'No hay compras Premium para esta cuenta';
-	@override String get thanks => '¡Gracias! Premium está activado.';
-	@override String get failed => 'La compra no se completó. Inténtalo de nuevo en un momento.';
-	@override String get unavailable => 'Las ofertas no están disponibles por ahora.';
-	@override String renews({required Object store}) => 'La suscripción se renueva automáticamente. Puedes cancelarla cuando quieras en los ajustes de tu cuenta de ${store}.';
-	@override String get terms => 'Condiciones de uso';
+	@override String get supportText => 'Tu apoyo mantiene viva la app y sus novedades para toda la comunidad.';
+	@override String get unavailable => 'Premium llega pronto a la app.';
+	@override late final _Translations$premium$onSite$es onSite = _Translations$premium$onSite$es._(_root);
 	@override String get privacy => 'Privacidad';
 	@override String get activeTitle => 'Tienes Premium';
 	@override String get activeText => '¡Gracias por apoyar CMFI Connect! El widget, tu año, tu balance y las enseñanzas sin conexión están abiertos.';
@@ -793,18 +769,7 @@ class _Translations$premium$es extends Translations$premium$fr {
 	@override String get moreSubtitle => 'Widget, tu año, enseñanzas sin conexión';
 	@override String get moreActive => 'Activo';
 	@override String get unlock => 'Desbloquear con Premium';
-	@override String trialThen({required Object trial, required Object price}) => '${trial}, luego ${price}';
-	@override String savePercent({required Object percent}) => '−${percent}';
-	@override String get choose => 'Elige tu plan';
-	@override String get cancelAnytime => 'Sin compromiso, cancela cuando quieras';
-	@override String get restoreShort => 'Restaurar';
 	@override String get termsShort => 'Condiciones';
-	@override String get semiannual => 'Semestral';
-	@override String perSemester({required Object price}) => '${price} / 6 meses';
-	@override String get buyLifetime => 'Comprar de por vida';
-	@override String get lifetimeNote => 'De por vida: un solo pago, sin suscripción ni renovación.';
-	@override String get manage => 'Gestionar mi suscripción';
-	@override String get manageFailed => 'La gestión de la suscripción no se abre. Inténtalo más tarde.';
 	@override String get crown => 'Miembro Premium';
 	@override String get offlineTitle => 'Enseñanzas sin conexión';
 	@override String get offlineText => 'Descarga los mensajes y escúchalos en cualquier lugar, incluso sin conexión.';
@@ -2765,6 +2730,19 @@ class _Translations$events$pay$es extends Translations$events$pay$fr {
 	@override String get waitingCardTitle => 'Termina el pago en la página segura';
 	@override String get waitingCardText => 'Introduce tu tarjeta en la página de Wajub. Tu inscripción se confirma aquí en cuanto llega el pago.';
 	@override String get reopen => 'Volver a abrir la página de pago';
+}
+
+// Path: premium.onSite
+class _Translations$premium$onSite$es extends Translations$premium$onSite$fr {
+	_Translations$premium$onSite$es._(TranslationsEs root) : this._root = root, super.internal(root);
+
+	final TranslationsEs _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Activa Premium en el sitio';
+	@override String get text => 'En cmfi-connect.com, inicia sesión con tu cuenta y paga por mobile money (MTN, Orange). Un solo pago, nada se renueva solo.';
+	@override String get note => 'Premium aparece luego aquí solo, en todos tus teléfonos.';
+	@override String get button => 'Continuar en cmfi-connect.com';
 }
 
 // Path: ministry.goals
@@ -4748,27 +4726,12 @@ extension on TranslationsEs {
 			'premium.statsTitle' => 'Tus objetivos durante el año',
 			'premium.statsText' => 'El balance de tu año y la evolución de tus objetivos, semana tras semana.',
 			'premium.supportTitle' => 'Apoyas la obra',
-			'premium.supportText' => 'Tu suscripción mantiene viva la app y sus novedades para toda la comunidad.',
-			'premium.annual' => 'Anual',
-			'premium.lifetime' => 'De por vida',
-			'premium.monthly' => 'Mensual',
-			'premium.perYear' => ({required Object price}) => '${price} / año',
-			'premium.once' => ({required Object price}) => '${price} una vez',
-			'premium.perMonth' => ({required Object price}) => '${price} / mes',
-			'premium.annualPerMonth' => ({required Object price}) => 'es decir, ${price} al mes',
-			'premium.best' => 'La más ventajosa',
-			'premium.trialDays' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('es'))(n, one: '${n} día de prueba gratis', other: '${n} días de prueba gratis', ), 
-			'premium.trialMonths' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('es'))(n, one: '${n} mes de prueba gratis', other: '${n} meses de prueba gratis', ), 
-			'premium.subscribe' => 'Suscribirme',
-			'premium.startTrial' => 'Empezar la prueba gratis',
-			'premium.restore' => 'Restaurar compras',
-			'premium.restored' => 'Premium vuelve a estar en este teléfono',
-			'premium.nothingToRestore' => 'No hay compras Premium para esta cuenta',
-			'premium.thanks' => '¡Gracias! Premium está activado.',
-			'premium.failed' => 'La compra no se completó. Inténtalo de nuevo en un momento.',
-			'premium.unavailable' => 'Las ofertas no están disponibles por ahora.',
-			'premium.renews' => ({required Object store}) => 'La suscripción se renueva automáticamente. Puedes cancelarla cuando quieras en los ajustes de tu cuenta de ${store}.',
-			'premium.terms' => 'Condiciones de uso',
+			'premium.supportText' => 'Tu apoyo mantiene viva la app y sus novedades para toda la comunidad.',
+			'premium.unavailable' => 'Premium llega pronto a la app.',
+			'premium.onSite.title' => 'Activa Premium en el sitio',
+			'premium.onSite.text' => 'En cmfi-connect.com, inicia sesión con tu cuenta y paga por mobile money (MTN, Orange). Un solo pago, nada se renueva solo.',
+			'premium.onSite.note' => 'Premium aparece luego aquí solo, en todos tus teléfonos.',
+			'premium.onSite.button' => 'Continuar en cmfi-connect.com',
 			'premium.privacy' => 'Privacidad',
 			'premium.activeTitle' => 'Tienes Premium',
 			'premium.activeText' => '¡Gracias por apoyar CMFI Connect! El widget, tu año, tu balance y las enseñanzas sin conexión están abiertos.',
@@ -4776,18 +4739,7 @@ extension on TranslationsEs {
 			'premium.moreSubtitle' => 'Widget, tu año, enseñanzas sin conexión',
 			'premium.moreActive' => 'Activo',
 			'premium.unlock' => 'Desbloquear con Premium',
-			'premium.trialThen' => ({required Object trial, required Object price}) => '${trial}, luego ${price}',
-			'premium.savePercent' => ({required Object percent}) => '−${percent}',
-			'premium.choose' => 'Elige tu plan',
-			'premium.cancelAnytime' => 'Sin compromiso, cancela cuando quieras',
-			'premium.restoreShort' => 'Restaurar',
 			'premium.termsShort' => 'Condiciones',
-			'premium.semiannual' => 'Semestral',
-			'premium.perSemester' => ({required Object price}) => '${price} / 6 meses',
-			'premium.buyLifetime' => 'Comprar de por vida',
-			'premium.lifetimeNote' => 'De por vida: un solo pago, sin suscripción ni renovación.',
-			'premium.manage' => 'Gestionar mi suscripción',
-			'premium.manageFailed' => 'La gestión de la suscripción no se abre. Inténtalo más tarde.',
 			'premium.crown' => 'Miembro Premium',
 			'premium.offlineTitle' => 'Enseñanzas sin conexión',
 			'premium.offlineText' => 'Descarga los mensajes y escúchalos en cualquier lugar, incluso sin conexión.',
@@ -4905,8 +4857,6 @@ extension on TranslationsEs {
 			'prayer.moments.night' => 'Noche',
 			'prayer.retreatOf.morning' => 'Retiro de la mañana',
 			'prayer.retreatOf.noon' => 'Retiro del mediodía',
-			_ => null,
-		} ?? switch (path) {
 			'prayer.retreatOf.evening' => 'Retiro de la tarde',
 			'prayer.retreatOf.night' => 'Retiro de la noche',
 			'prayer.hero.now' => ({required Object retreat}) => '${retreat} · ahora',
@@ -4933,6 +4883,8 @@ extension on TranslationsEs {
 			'prayer.routine.later.noon' => 'Al mediodía · 15 min',
 			'prayer.routine.later.evening' => 'Por la tarde · 15 min',
 			'prayer.routine.later.night' => 'Por la noche · 15 min',
+			_ => null,
+		} ?? switch (path) {
 			'prayer.together' => 'Orar juntos',
 			'prayer.reminders.title' => 'Recordatorios de los retiros',
 			'prayer.reminders.intro' => 'Un recordatorio a la hora de cada retiro, solo si aún no lo has hecho.',
@@ -5419,8 +5371,6 @@ extension on TranslationsEs {
 			'seekFirst.shield.fill' => 'Llenar mi informe',
 			'seekFirst.shield.pause' => ({required Object n}) => 'Pausa de 5 min (${n}/3)',
 			'seekFirst.shield.notificationTitle' => 'Busca primero a Dios',
-			_ => null,
-		} ?? switch (path) {
 			'seekFirst.shield.notificationBody' => 'Toca aquí para llenar tu informe.',
 			'seekFirst.shield.serviceBody' => 'Tus apps se cierran cada día hasta tu informe.',
 			'seekFirst.permissionsAndroid' => 'Para cerrar tus apps, CMFI Connect necesita dos permisos, que activarás en los ajustes que se van a abrir: «Acceso a datos de uso» (saber qué app está abierta) y «Mostrar sobre otras apps» (mostrar la pantalla Busca primero a Dios). Nada sale de tu teléfono.',
@@ -5447,6 +5397,8 @@ extension on TranslationsEs {
 			'documents.admin.manage' => 'Gestionar documentos',
 			'documents.admin.create' => 'Nuevo documento',
 			'documents.admin.edit' => 'Editar documento',
+			_ => null,
+		} ?? switch (path) {
 			'documents.admin.empty' => 'Aún no hay documentos. Toca « Nuevo documento » para publicar uno.',
 			'documents.admin.file' => 'Archivo',
 			'documents.admin.pickFile' => 'Elegir un PDF o un Word',

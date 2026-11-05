@@ -2162,43 +2162,13 @@ class FakeNotificationsApi implements NotificationsApi {
 
 /// The store of the Premium subscription: two plans, nothing really paid.
 class FakePremiumStore implements PremiumStore {
-  FakePremiumStore({this.active = false, this.restorable = false});
+  FakePremiumStore({this.active = false});
 
+  /// What the server says (bought on the site, offered).
   bool active;
-
-  /// Restoring finds a purchase made elsewhere.
-  bool restorable;
   final loggedIn = <String>[];
   var loggedOut = false;
-  final bought = <PremiumPeriod>[];
-
-  /// The times the Customer Center opened.
-  var managed = 0;
   final _changes = StreamController<bool>.broadcast();
-
-  static const monthly = PremiumPlan(
-    period: PremiumPeriod.monthly,
-    price: '2,99 €',
-    amount: 2.99,
-  );
-  static const semiannual = PremiumPlan(
-    period: PremiumPeriod.semiannual,
-    price: '14,99 €',
-    amount: 14.99,
-    pricePerMonth: '2,50 €',
-  );
-  static const annual = PremiumPlan(
-    period: PremiumPeriod.annual,
-    price: '24,99 €',
-    amount: 24.99,
-    pricePerMonth: '2,08 €',
-    trialDays: 7,
-  );
-  static const lifetime = PremiumPlan(
-    period: PremiumPeriod.lifetime,
-    price: '49,99 €',
-    amount: 49.99,
-  );
 
   @override
   Future<void> logIn(String userId) async => loggedIn.add(userId);
@@ -2212,31 +2182,7 @@ class FakePremiumStore implements PremiumStore {
   @override
   Stream<bool> get changes => _changes.stream;
 
-  @override
-  Future<List<PremiumPlan>> plans() async => const [
-    monthly,
-    semiannual,
-    annual,
-    lifetime,
-  ];
-
-  @override
-  Future<bool> buy(PremiumPlan plan) async {
-    bought.add(plan.period);
-    active = true;
-    return true;
-  }
-
-  @override
-  Future<bool> restore() async {
-    active = active || restorable;
-    return active;
-  }
-
-  @override
-  Future<void> manage() async => managed++;
-
-  /// The times Premium was asked again (a gift arrived).
+  /// The times Premium was asked again (back from the site, a gift).
   var refreshed = 0;
 
   @override
@@ -2948,8 +2894,7 @@ class FakeTeachingsApi implements TeachingsApi {
                   query.speaker.toLowerCase(),
                 )) &&
             (query.year == null || teaching.year == query.year) &&
-            (query.edition == null ||
-                teaching.edition?.id == query.edition) &&
+            (query.edition == null || teaching.edition?.id == query.edition) &&
             (query.day == null || teaching.dayNumber == query.day) &&
             words.every(
               '${teaching.title} ${teaching.speaker} '

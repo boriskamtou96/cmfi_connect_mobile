@@ -61,9 +61,8 @@ class Teachings extends _$Teachings {
     final page = await fetchWithPolicy<TeachingsPage>(
       policy: policy,
       cached: () => store.read(query.category),
-      network: () => ref
-          .read(teachingsApiProvider)
-          .list(query: query, size: pageSize),
+      network: () =>
+          ref.read(teachingsApiProvider).list(query: query, size: pageSize),
       // a search and the advanced filters are not kept
       save: (page) async {
         if (query.keepable) {
@@ -95,11 +94,7 @@ class Teachings extends _$Teachings {
     try {
       final next = await ref
           .read(teachingsApiProvider)
-          .list(
-            query: query,
-            page: current.page + 1,
-            size: pageSize,
-          );
+          .list(query: query, page: current.page + 1, size: pageSize);
       if (ref.mounted) {
         state = AsyncData(
           current.copyWith(

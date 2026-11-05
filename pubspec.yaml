@@ -82,7 +82,6 @@ dependencies:
   phone_numbers_parser: ^9.0.28
 
   # Premium (RevenueCat)
-  purchases_flutter: ^10.16.0
 
   # Notifications sent by the admins (Firebase Cloud Messaging)
   firebase_core: ^4.15.0
@@ -96,7 +95,6 @@ dependencies:
   # Shortcuts on the app icon (long press): today's report, hymns, retreat
   quick_actions: ^1.1.1
   app_links: ^7.0.0
-  purchases_ui_flutter: ^10.16.0
   local_auth: ^3.0.2
   # Enseignements: audio messages streamed or kept offline, played on with
   # the screen locked (controls on the lock screen and in the notification)

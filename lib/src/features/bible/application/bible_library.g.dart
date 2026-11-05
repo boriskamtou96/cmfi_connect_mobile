@@ -159,7 +159,7 @@ final class BibleBooksProvider
   }
 }
 
-String _$bibleBooksHash() => r'67585ec48de53967cc59a65a55a1ba8c1ba01f7c';
+String _$bibleBooksHash() => r'0cbca8e581e78b92ffbd115d19170c2ffd8862c5';
 
 /// The books of [version]: from the downloaded Bible, the list kept on the
 /// phone, or the API (then kept).
@@ -248,7 +248,7 @@ final class BibleChapterProvider
   }
 }
 
-String _$bibleChapterHash() => r'2710239add4478904177d5af18ba0be04abd92e4';
+String _$bibleChapterHash() => r'caf6a58b63d14a78713a98ddea94304413505a5c';
 
 /// A chapter of [version]: from the downloaded Bible, the copy kept when it
 /// was read, or the API (then kept: it reads again without network).
@@ -326,7 +326,7 @@ final class BibleDownloadProvider
   }
 }
 
-String _$bibleDownloadHash() => r'fe2bfc99290760a6c23cb15b10c104fb6f645e89';
+String _$bibleDownloadHash() => r'bafdf4eb4dd403f719ded7e7baa837b2972d7014';
 
 /// The whole of a version on the phone (about 7 MB): to read and search
 /// without network.

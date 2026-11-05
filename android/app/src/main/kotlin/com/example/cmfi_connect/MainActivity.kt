@@ -5,9 +5,9 @@ import com.ryanheise.audioservice.AudioServiceFragmentActivity
 import io.flutter.embedding.engine.FlutterEngine
 import io.flutter.plugin.common.MethodChannel
 
-// a FragmentActivity: the Customer Center of RevenueCat (purchases_ui_flutter)
-// needs one; audio_service's: the Enseignements keep playing in the background
-// on the same Flutter engine
+// a FragmentActivity: the fingerprint sign-in (local_auth) needs one;
+// audio_service's: the Enseignements keep playing in the background on the
+// same Flutter engine
 class MainActivity : AudioServiceFragmentActivity() {
     // Cherche d'abord Dieu: the apps closed until the day's report
     // (SeekFirstChannel.kt, as AppShield.swift on iPhone)

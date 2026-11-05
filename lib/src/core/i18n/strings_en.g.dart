@@ -760,33 +760,9 @@ class _Translations$premium$en extends Translations$premium$fr {
 	@override String get statsTitle => 'Your goals over the year';
 	@override String get statsText => 'Your year in review and how your goals grow, week after week.';
 	@override String get supportTitle => 'You support the work';
-	@override String get supportText => 'Your subscription keeps the app and its new features alive for the whole community.';
-	@override String get annual => 'Yearly';
-	@override String get lifetime => 'Lifetime';
-	@override String get monthly => 'Monthly';
-	@override String perYear({required Object price}) => '${price} / year';
-	@override String once({required Object price}) => '${price} once';
-	@override String perMonth({required Object price}) => '${price} / month';
-	@override String annualPerMonth({required Object price}) => 'that\'s ${price} a month';
-	@override String get best => 'Best value';
-	@override String trialDays({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n,
-		one: '${n}-day free trial',
-		other: '${n}-day free trial',
-	);
-	@override String trialMonths({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n,
-		one: '${n}-month free trial',
-		other: '${n}-month free trial',
-	);
-	@override String get subscribe => 'Subscribe';
-	@override String get startTrial => 'Start the free trial';
-	@override String get restore => 'Restore purchases';
-	@override String get restored => 'Premium is back on this phone';
-	@override String get nothingToRestore => 'No Premium purchase for this account';
-	@override String get thanks => 'Thank you! Premium is on.';
-	@override String get failed => 'The purchase didn\'t go through. Try again in a moment.';
-	@override String get unavailable => 'The offers aren\'t available right now.';
-	@override String renews({required Object store}) => 'The subscription renews automatically. You can cancel it anytime in your ${store} account settings.';
-	@override String get terms => 'Terms of use';
+	@override String get supportText => 'Your support keeps the app and its new features going for the whole community.';
+	@override String get unavailable => 'Premium is coming soon to the app.';
+	@override late final _Translations$premium$onSite$en onSite = _Translations$premium$onSite$en._(_root);
 	@override String get privacy => 'Privacy';
 	@override String get activeTitle => 'You have Premium';
 	@override String get activeText => 'Thank you for supporting CMFI Connect! The widget, your year, your review and offline teachings are open.';
@@ -794,18 +770,7 @@ class _Translations$premium$en extends Translations$premium$fr {
 	@override String get moreSubtitle => 'Widget, your year, teachings offline';
 	@override String get moreActive => 'Active';
 	@override String get unlock => 'Unlock with Premium';
-	@override String trialThen({required Object trial, required Object price}) => '${trial}, then ${price}';
-	@override String savePercent({required Object percent}) => '−${percent}';
-	@override String get choose => 'Choose your plan';
-	@override String get cancelAnytime => 'No commitment, cancel anytime';
-	@override String get restoreShort => 'Restore';
 	@override String get termsShort => 'Terms';
-	@override String get semiannual => '6 months';
-	@override String perSemester({required Object price}) => '${price} / 6 months';
-	@override String get buyLifetime => 'Buy for life';
-	@override String get lifetimeNote => 'Lifetime: a single payment, no subscription, nothing renews.';
-	@override String get manage => 'Manage my subscription';
-	@override String get manageFailed => 'Subscription management won\'t open. Try again later.';
 	@override String get crown => 'Premium member';
 	@override String get offlineTitle => 'Teachings offline';
 	@override String get offlineText => 'Download the messages and listen anywhere, even without a connection.';
@@ -2766,6 +2731,19 @@ class _Translations$events$pay$en extends Translations$events$pay$fr {
 	@override String get waitingCardTitle => 'Finish the payment on the secure page';
 	@override String get waitingCardText => 'Enter your card on the Wajub page. Your registration is confirmed here as soon as the payment arrives.';
 	@override String get reopen => 'Reopen the payment page';
+}
+
+// Path: premium.onSite
+class _Translations$premium$onSite$en extends Translations$premium$onSite$fr {
+	_Translations$premium$onSite$en._(TranslationsEn root) : this._root = root, super.internal(root);
+
+	final TranslationsEn _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Activate Premium on the website';
+	@override String get text => 'On cmfi-connect.com, sign in with your account and pay by mobile money (MTN, Orange). One payment, nothing renews on its own.';
+	@override String get note => 'Premium then shows up here on its own, on all your phones.';
+	@override String get button => 'Continue on cmfi-connect.com';
 }
 
 // Path: ministry.goals
@@ -4749,27 +4727,12 @@ extension on TranslationsEn {
 			'premium.statsTitle' => 'Your goals over the year',
 			'premium.statsText' => 'Your year in review and how your goals grow, week after week.',
 			'premium.supportTitle' => 'You support the work',
-			'premium.supportText' => 'Your subscription keeps the app and its new features alive for the whole community.',
-			'premium.annual' => 'Yearly',
-			'premium.lifetime' => 'Lifetime',
-			'premium.monthly' => 'Monthly',
-			'premium.perYear' => ({required Object price}) => '${price} / year',
-			'premium.once' => ({required Object price}) => '${price} once',
-			'premium.perMonth' => ({required Object price}) => '${price} / month',
-			'premium.annualPerMonth' => ({required Object price}) => 'that\'s ${price} a month',
-			'premium.best' => 'Best value',
-			'premium.trialDays' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n, one: '${n}-day free trial', other: '${n}-day free trial', ), 
-			'premium.trialMonths' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n, one: '${n}-month free trial', other: '${n}-month free trial', ), 
-			'premium.subscribe' => 'Subscribe',
-			'premium.startTrial' => 'Start the free trial',
-			'premium.restore' => 'Restore purchases',
-			'premium.restored' => 'Premium is back on this phone',
-			'premium.nothingToRestore' => 'No Premium purchase for this account',
-			'premium.thanks' => 'Thank you! Premium is on.',
-			'premium.failed' => 'The purchase didn\'t go through. Try again in a moment.',
-			'premium.unavailable' => 'The offers aren\'t available right now.',
-			'premium.renews' => ({required Object store}) => 'The subscription renews automatically. You can cancel it anytime in your ${store} account settings.',
-			'premium.terms' => 'Terms of use',
+			'premium.supportText' => 'Your support keeps the app and its new features going for the whole community.',
+			'premium.unavailable' => 'Premium is coming soon to the app.',
+			'premium.onSite.title' => 'Activate Premium on the website',
+			'premium.onSite.text' => 'On cmfi-connect.com, sign in with your account and pay by mobile money (MTN, Orange). One payment, nothing renews on its own.',
+			'premium.onSite.note' => 'Premium then shows up here on its own, on all your phones.',
+			'premium.onSite.button' => 'Continue on cmfi-connect.com',
 			'premium.privacy' => 'Privacy',
 			'premium.activeTitle' => 'You have Premium',
 			'premium.activeText' => 'Thank you for supporting CMFI Connect! The widget, your year, your review and offline teachings are open.',
@@ -4777,18 +4740,7 @@ extension on TranslationsEn {
 			'premium.moreSubtitle' => 'Widget, your year, teachings offline',
 			'premium.moreActive' => 'Active',
 			'premium.unlock' => 'Unlock with Premium',
-			'premium.trialThen' => ({required Object trial, required Object price}) => '${trial}, then ${price}',
-			'premium.savePercent' => ({required Object percent}) => '−${percent}',
-			'premium.choose' => 'Choose your plan',
-			'premium.cancelAnytime' => 'No commitment, cancel anytime',
-			'premium.restoreShort' => 'Restore',
 			'premium.termsShort' => 'Terms',
-			'premium.semiannual' => '6 months',
-			'premium.perSemester' => ({required Object price}) => '${price} / 6 months',
-			'premium.buyLifetime' => 'Buy for life',
-			'premium.lifetimeNote' => 'Lifetime: a single payment, no subscription, nothing renews.',
-			'premium.manage' => 'Manage my subscription',
-			'premium.manageFailed' => 'Subscription management won\'t open. Try again later.',
 			'premium.crown' => 'Premium member',
 			'premium.offlineTitle' => 'Teachings offline',
 			'premium.offlineText' => 'Download the messages and listen anywhere, even without a connection.',
@@ -4906,8 +4858,6 @@ extension on TranslationsEn {
 			'prayer.moments.night' => 'Night',
 			'prayer.retreatOf.morning' => 'Morning retreat',
 			'prayer.retreatOf.noon' => 'Noon retreat',
-			_ => null,
-		} ?? switch (path) {
 			'prayer.retreatOf.evening' => 'Evening retreat',
 			'prayer.retreatOf.night' => 'Night retreat',
 			'prayer.hero.now' => ({required Object retreat}) => '${retreat} · now',
@@ -4934,6 +4884,8 @@ extension on TranslationsEn {
 			'prayer.routine.later.noon' => 'At noon · 15 min',
 			'prayer.routine.later.evening' => 'In the evening · 15 min',
 			'prayer.routine.later.night' => 'At night · 15 min',
+			_ => null,
+		} ?? switch (path) {
 			'prayer.together' => 'Praying together',
 			'prayer.reminders.title' => 'Retreat reminders',
 			'prayer.reminders.intro' => 'A reminder at the time of each retreat, only if it isn\'t done yet.',
@@ -5420,8 +5372,6 @@ extension on TranslationsEn {
 			'seekFirst.shield.fill' => 'Fill in my report',
 			'seekFirst.shield.pause' => ({required Object n}) => '5-min break (${n}/3)',
 			'seekFirst.shield.notificationTitle' => 'Seek God first',
-			_ => null,
-		} ?? switch (path) {
 			'seekFirst.shield.notificationBody' => 'Tap here to fill in your report.',
 			'seekFirst.shield.serviceBody' => 'Your apps close each day until your report.',
 			'seekFirst.permissionsAndroid' => 'To close your apps, CMFI Connect needs two permissions, to turn on in the settings that will open: "Usage access" (to know which app is open) and "Display over other apps" (to show the Seek God first screen). Nothing leaves your phone.',
@@ -5448,6 +5398,8 @@ extension on TranslationsEn {
 			'documents.admin.manage' => 'Manage documents',
 			'documents.admin.create' => 'New document',
 			'documents.admin.edit' => 'Edit document',
+			_ => null,
+		} ?? switch (path) {
 			'documents.admin.empty' => 'No document yet. Tap « New document » to publish one.',
 			'documents.admin.file' => 'File',
 			'documents.admin.pickFile' => 'Choose a PDF or a Word file',

@@ -833,41 +833,9 @@ class _Translations$premium$ar extends Translations$premium$fr {
 	@override String get statsTitle => 'أهدافك على مدار السنة';
 	@override String get statsText => 'حصيلة سنتك وتطوّر أهدافك أسبوعًا بعد أسبوع.';
 	@override String get supportTitle => 'أنت تدعم العمل';
-	@override String get supportText => 'اشتراكك يُبقي التطبيق وجديده حيًّا للجماعة كلها.';
-	@override String get annual => 'سنوي';
-	@override String get lifetime => 'مدى الحياة';
-	@override String get monthly => 'شهري';
-	@override String perYear({required Object price}) => '${price} / سنة';
-	@override String once({required Object price}) => '${price} مرة واحدة';
-	@override String perMonth({required Object price}) => '${price} / شهر';
-	@override String annualPerMonth({required Object price}) => 'أي ${price} شهريًا';
-	@override String get best => 'الأوفر';
-	@override String trialDays({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n,
-		zero: 'تجربة مجانية',
-		one: 'يوم واحد تجربة مجانية',
-		two: 'يومان تجربة مجانية',
-		few: '${n} أيام تجربة مجانية',
-		many: '${n} يومًا تجربة مجانية',
-		other: '${n} يوم تجربة مجانية',
-	);
-	@override String trialMonths({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n,
-		zero: 'تجربة مجانية',
-		one: 'شهر واحد تجربة مجانية',
-		two: 'شهران تجربة مجانية',
-		few: '${n} أشهر تجربة مجانية',
-		many: '${n} شهرًا تجربة مجانية',
-		other: '${n} شهر تجربة مجانية',
-	);
-	@override String get subscribe => 'اشترك';
-	@override String get startTrial => 'ابدأ التجربة المجانية';
-	@override String get restore => 'استعادة المشتريات';
-	@override String get restored => 'عاد Premium إلى هذا الهاتف';
-	@override String get nothingToRestore => 'لا يوجد شراء Premium لهذا الحساب';
-	@override String get thanks => 'شكرًا! تم تفعيل Premium.';
-	@override String get failed => 'لم تكتمل عملية الشراء. أعد المحاولة بعد قليل.';
-	@override String get unavailable => 'العروض غير متاحة حاليًا.';
-	@override String renews({required Object store}) => 'يتجدد الاشتراك تلقائيًا. يمكنك إلغاؤه متى شئت من إعدادات حسابك في ${store}.';
-	@override String get terms => 'شروط الاستخدام';
+	@override String get supportText => 'دعمك يُبقي التطبيق وميزاته الجديدة حيّة للجماعة كلّها.';
+	@override String get unavailable => 'Premium قادم قريبًا إلى التطبيق.';
+	@override late final _Translations$premium$onSite$ar onSite = _Translations$premium$onSite$ar._(_root);
 	@override String get privacy => 'الخصوصية';
 	@override String get activeTitle => 'لديك Premium';
 	@override String get activeText => 'شكرًا لدعمك CMFI Connect! الأداة وسنتك وحصيلتك والتعاليم دون اتصال مفتوحة.';
@@ -875,18 +843,7 @@ class _Translations$premium$ar extends Translations$premium$fr {
 	@override String get moreSubtitle => 'الأداة، سنتك، التعاليم دون اتصال';
 	@override String get moreActive => 'مفعّل';
 	@override String get unlock => 'افتح مع Premium';
-	@override String trialThen({required Object trial, required Object price}) => '${trial}، ثم ${price}';
-	@override String savePercent({required Object percent}) => '−${percent}';
-	@override String get choose => 'اختر عرضك';
-	@override String get cancelAnytime => 'بلا التزام، يمكن الإلغاء في أي وقت';
-	@override String get restoreShort => 'استعادة';
 	@override String get termsShort => 'الشروط';
-	@override String get semiannual => 'نصف سنوي';
-	@override String perSemester({required Object price}) => '${price} / 6 أشهر';
-	@override String get buyLifetime => 'اشترِ مدى الحياة';
-	@override String get lifetimeNote => 'مدى الحياة: دفعة واحدة، بلا اشتراك ولا تجديد.';
-	@override String get manage => 'إدارة اشتراكي';
-	@override String get manageFailed => 'تعذّر فتح إدارة الاشتراك. حاول لاحقًا.';
 	@override String get crown => 'عضو بريميوم';
 	@override String get offlineTitle => 'التعاليم دون اتصال';
 	@override String get offlineText => 'نزّل الرسائل واستمع إليها في كل مكان، حتى دون اتصال.';
@@ -3048,6 +3005,19 @@ class _Translations$events$pay$ar extends Translations$events$pay$fr {
 	@override String get reopen => 'إعادة فتح صفحة الدفع';
 }
 
+// Path: premium.onSite
+class _Translations$premium$onSite$ar extends Translations$premium$onSite$fr {
+	_Translations$premium$onSite$ar._(TranslationsAr root) : this._root = root, super.internal(root);
+
+	final TranslationsAr _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'فعِّل Premium على الموقع';
+	@override String get text => 'على cmfi-connect.com، سجّل الدخول بحسابك وادفع عبر الهاتف المحمول (MTN، Orange). دفعة واحدة، ولا يتجدّد شيء تلقائيًا.';
+	@override String get note => 'يظهر Premium بعد ذلك هنا تلقائيًا، على كل هواتفك.';
+	@override String get button => 'المتابعة على cmfi-connect.com';
+}
+
 // Path: ministry.goals
 class _Translations$ministry$goals$ar extends Translations$ministry$goals$fr {
 	_Translations$ministry$goals$ar._(TranslationsAr root) : this._root = root, super.internal(root);
@@ -5146,27 +5116,12 @@ extension on TranslationsAr {
 			'premium.statsTitle' => 'أهدافك على مدار السنة',
 			'premium.statsText' => 'حصيلة سنتك وتطوّر أهدافك أسبوعًا بعد أسبوع.',
 			'premium.supportTitle' => 'أنت تدعم العمل',
-			'premium.supportText' => 'اشتراكك يُبقي التطبيق وجديده حيًّا للجماعة كلها.',
-			'premium.annual' => 'سنوي',
-			'premium.lifetime' => 'مدى الحياة',
-			'premium.monthly' => 'شهري',
-			'premium.perYear' => ({required Object price}) => '${price} / سنة',
-			'premium.once' => ({required Object price}) => '${price} مرة واحدة',
-			'premium.perMonth' => ({required Object price}) => '${price} / شهر',
-			'premium.annualPerMonth' => ({required Object price}) => 'أي ${price} شهريًا',
-			'premium.best' => 'الأوفر',
-			'premium.trialDays' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n, zero: 'تجربة مجانية', one: 'يوم واحد تجربة مجانية', two: 'يومان تجربة مجانية', few: '${n} أيام تجربة مجانية', many: '${n} يومًا تجربة مجانية', other: '${n} يوم تجربة مجانية', ), 
-			'premium.trialMonths' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n, zero: 'تجربة مجانية', one: 'شهر واحد تجربة مجانية', two: 'شهران تجربة مجانية', few: '${n} أشهر تجربة مجانية', many: '${n} شهرًا تجربة مجانية', other: '${n} شهر تجربة مجانية', ), 
-			'premium.subscribe' => 'اشترك',
-			'premium.startTrial' => 'ابدأ التجربة المجانية',
-			'premium.restore' => 'استعادة المشتريات',
-			'premium.restored' => 'عاد Premium إلى هذا الهاتف',
-			'premium.nothingToRestore' => 'لا يوجد شراء Premium لهذا الحساب',
-			'premium.thanks' => 'شكرًا! تم تفعيل Premium.',
-			'premium.failed' => 'لم تكتمل عملية الشراء. أعد المحاولة بعد قليل.',
-			'premium.unavailable' => 'العروض غير متاحة حاليًا.',
-			'premium.renews' => ({required Object store}) => 'يتجدد الاشتراك تلقائيًا. يمكنك إلغاؤه متى شئت من إعدادات حسابك في ${store}.',
-			'premium.terms' => 'شروط الاستخدام',
+			'premium.supportText' => 'دعمك يُبقي التطبيق وميزاته الجديدة حيّة للجماعة كلّها.',
+			'premium.unavailable' => 'Premium قادم قريبًا إلى التطبيق.',
+			'premium.onSite.title' => 'فعِّل Premium على الموقع',
+			'premium.onSite.text' => 'على cmfi-connect.com، سجّل الدخول بحسابك وادفع عبر الهاتف المحمول (MTN، Orange). دفعة واحدة، ولا يتجدّد شيء تلقائيًا.',
+			'premium.onSite.note' => 'يظهر Premium بعد ذلك هنا تلقائيًا، على كل هواتفك.',
+			'premium.onSite.button' => 'المتابعة على cmfi-connect.com',
 			'premium.privacy' => 'الخصوصية',
 			'premium.activeTitle' => 'لديك Premium',
 			'premium.activeText' => 'شكرًا لدعمك CMFI Connect! الأداة وسنتك وحصيلتك والتعاليم دون اتصال مفتوحة.',
@@ -5174,18 +5129,7 @@ extension on TranslationsAr {
 			'premium.moreSubtitle' => 'الأداة، سنتك، التعاليم دون اتصال',
 			'premium.moreActive' => 'مفعّل',
 			'premium.unlock' => 'افتح مع Premium',
-			'premium.trialThen' => ({required Object trial, required Object price}) => '${trial}، ثم ${price}',
-			'premium.savePercent' => ({required Object percent}) => '−${percent}',
-			'premium.choose' => 'اختر عرضك',
-			'premium.cancelAnytime' => 'بلا التزام، يمكن الإلغاء في أي وقت',
-			'premium.restoreShort' => 'استعادة',
 			'premium.termsShort' => 'الشروط',
-			'premium.semiannual' => 'نصف سنوي',
-			'premium.perSemester' => ({required Object price}) => '${price} / 6 أشهر',
-			'premium.buyLifetime' => 'اشترِ مدى الحياة',
-			'premium.lifetimeNote' => 'مدى الحياة: دفعة واحدة، بلا اشتراك ولا تجديد.',
-			'premium.manage' => 'إدارة اشتراكي',
-			'premium.manageFailed' => 'تعذّر فتح إدارة الاشتراك. حاول لاحقًا.',
 			'premium.crown' => 'عضو بريميوم',
 			'premium.offlineTitle' => 'التعاليم دون اتصال',
 			'premium.offlineText' => 'نزّل الرسائل واستمع إليها في كل مكان، حتى دون اتصال.',
@@ -5303,8 +5247,6 @@ extension on TranslationsAr {
 			'prayer.moments.night' => 'الليل',
 			'prayer.retreatOf.morning' => 'خلوة الصباح',
 			'prayer.retreatOf.noon' => 'خلوة الظهر',
-			_ => null,
-		} ?? switch (path) {
 			'prayer.retreatOf.evening' => 'خلوة المساء',
 			'prayer.retreatOf.night' => 'خلوة الليل',
 			'prayer.hero.now' => ({required Object retreat}) => '${retreat} · الآن',
@@ -5331,6 +5273,8 @@ extension on TranslationsAr {
 			'prayer.routine.later.noon' => 'عند الظهر · 15 دقيقة',
 			'prayer.routine.later.evening' => 'في المساء · 15 دقيقة',
 			'prayer.routine.later.night' => 'في الليل · 15 دقيقة',
+			_ => null,
+		} ?? switch (path) {
 			'prayer.together' => 'نصلّي معًا',
 			'prayer.reminders.title' => 'تذكيرات الخلوات',
 			'prayer.reminders.intro' => 'تذكير في موعد كل خلوة، فقط إذا لم تُتمَّها بعد.',
@@ -5817,8 +5761,6 @@ extension on TranslationsAr {
 			'seekFirst.shield.fill' => 'املأ تقريري',
 			'seekFirst.shield.pause' => ({required Object n}) => 'استراحة 5 دقائق (${n}/3)',
 			'seekFirst.shield.notificationTitle' => 'اطلب الله أولًا',
-			_ => null,
-		} ?? switch (path) {
 			'seekFirst.shield.notificationBody' => 'المس هنا لتملأ تقريرك.',
 			'seekFirst.shield.serviceBody' => 'تُغلق تطبيقاتك كل يوم حتى تقريرك.',
 			'seekFirst.permissionsAndroid' => 'لإغلاق تطبيقاتك، يحتاج CMFI Connect إلى إذنين تفعّلهما في الإعدادات التي ستُفتح: «الوصول إلى بيانات الاستخدام» (لمعرفة التطبيق المفتوح) و«الظهور فوق التطبيقات الأخرى» (لإظهار شاشة اطلب الله أولًا). لا يخرج شيء من هاتفك.',
@@ -5845,6 +5787,8 @@ extension on TranslationsAr {
 			'documents.admin.manage' => 'إدارة المستندات',
 			'documents.admin.create' => 'مستند جديد',
 			'documents.admin.edit' => 'تعديل المستند',
+			_ => null,
+		} ?? switch (path) {
 			'documents.admin.empty' => 'لا توجد مستندات بعد. المس « مستند جديد » لنشر واحد.',
 			'documents.admin.file' => 'الملف',
 			'documents.admin.pickFile' => 'اختر ملف PDF أو Word',

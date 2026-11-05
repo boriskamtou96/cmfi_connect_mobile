@@ -1523,74 +1523,13 @@ class Translations$premium$fr {
 	/// fr: 'Tu soutiens l'œuvre'
 	String get supportTitle => 'Tu soutiens l\'œuvre';
 
-	/// fr: 'Ton abonnement fait vivre l'app et ses nouveautés pour toute la communauté.'
-	String get supportText => 'Ton abonnement fait vivre l\'app et ses nouveautés pour toute la communauté.';
+	/// fr: 'Ton soutien fait vivre l'app et ses nouveautés pour toute la communauté.'
+	String get supportText => 'Ton soutien fait vivre l\'app et ses nouveautés pour toute la communauté.';
 
-	/// fr: 'Annuel'
-	String get annual => 'Annuel';
+	/// fr: 'Premium arrive bientôt dans l'app.'
+	String get unavailable => 'Premium arrive bientôt dans l\'app.';
 
-	/// fr: 'À vie'
-	String get lifetime => 'À vie';
-
-	/// fr: 'Mensuel'
-	String get monthly => 'Mensuel';
-
-	/// fr: '{price} / an'
-	String perYear({required Object price}) => '${price} / an';
-
-	/// fr: '{price} une fois'
-	String once({required Object price}) => '${price} une fois';
-
-	/// fr: '{price} / mois'
-	String perMonth({required Object price}) => '${price} / mois';
-
-	/// fr: 'soit {price} par mois'
-	String annualPerMonth({required Object price}) => 'soit ${price} par mois';
-
-	/// fr: 'Le plus avantageux'
-	String get best => 'Le plus avantageux';
-
-	/// fr: '(one) {{n} jour d'essai gratuit} (other) {{n} jours d'essai gratuit}'
-	String trialDays({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('fr'))(n,
-		one: '${n} jour d\'essai gratuit',
-		other: '${n} jours d\'essai gratuit',
-	);
-
-	/// fr: '(one) {{n} mois d'essai gratuit} (other) {{n} mois d'essai gratuit}'
-	String trialMonths({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('fr'))(n,
-		one: '${n} mois d\'essai gratuit',
-		other: '${n} mois d\'essai gratuit',
-	);
-
-	/// fr: 'S'abonner'
-	String get subscribe => 'S\'abonner';
-
-	/// fr: 'Commencer l'essai gratuit'
-	String get startTrial => 'Commencer l\'essai gratuit';
-
-	/// fr: 'Restaurer mes achats'
-	String get restore => 'Restaurer mes achats';
-
-	/// fr: 'Premium est de retour sur ce téléphone'
-	String get restored => 'Premium est de retour sur ce téléphone';
-
-	/// fr: 'Aucun achat Premium pour ce compte'
-	String get nothingToRestore => 'Aucun achat Premium pour ce compte';
-
-	/// fr: 'Merci ! Premium est activé.'
-	String get thanks => 'Merci ! Premium est activé.';
-
-	/// fr: 'L'achat n'a pas abouti. Réessaie dans un instant.'
-	String get failed => 'L\'achat n\'a pas abouti. Réessaie dans un instant.';
-
-	/// fr: 'Les offres ne sont pas disponibles pour l'instant.'
-	String get unavailable => 'Les offres ne sont pas disponibles pour l\'instant.';
-
-	/// fr: 'L'abonnement se renouvelle automatiquement. Tu peux l'annuler quand tu veux dans les réglages de ton compte {store}.'
-	String renews({required Object store}) => 'L\'abonnement se renouvelle automatiquement. Tu peux l\'annuler quand tu veux dans les réglages de ton compte ${store}.';
-
-	/// fr: 'Conditions d'utilisation'
-	String get terms => 'Conditions d\'utilisation';
+	late final Translations$premium$onSite$fr onSite = Translations$premium$onSite$fr.internal(_root);
 
 	/// fr: 'Confidentialité'
 	String get privacy => 'Confidentialité';
@@ -1613,41 +1552,8 @@ class Translations$premium$fr {
 	/// fr: 'Débloquer avec Premium'
 	String get unlock => 'Débloquer avec Premium';
 
-	/// fr: '{trial}, puis {price}'
-	String trialThen({required Object trial, required Object price}) => '${trial}, puis ${price}';
-
-	/// fr: '−{percent}'
-	String savePercent({required Object percent}) => '−${percent}';
-
-	/// fr: 'Choisis ton offre'
-	String get choose => 'Choisis ton offre';
-
-	/// fr: 'Sans engagement, annulable à tout moment'
-	String get cancelAnytime => 'Sans engagement, annulable à tout moment';
-
-	/// fr: 'Restaurer'
-	String get restoreShort => 'Restaurer';
-
 	/// fr: 'Conditions'
 	String get termsShort => 'Conditions';
-
-	/// fr: 'Semestriel'
-	String get semiannual => 'Semestriel';
-
-	/// fr: '{price} / 6 mois'
-	String perSemester({required Object price}) => '${price} / 6 mois';
-
-	/// fr: 'Acheter à vie'
-	String get buyLifetime => 'Acheter à vie';
-
-	/// fr: 'À vie : un seul paiement, sans abonnement ni renouvellement.'
-	String get lifetimeNote => 'À vie : un seul paiement, sans abonnement ni renouvellement.';
-
-	/// fr: 'Gérer mon abonnement'
-	String get manage => 'Gérer mon abonnement';
-
-	/// fr: 'La gestion de l'abonnement ne s'ouvre pas. Réessaie plus tard.'
-	String get manageFailed => 'La gestion de l\'abonnement ne s\'ouvre pas. Réessaie plus tard.';
 
 	/// fr: 'Membre Premium'
 	String get crown => 'Membre Premium';
@@ -5872,6 +5778,27 @@ class Translations$events$pay$fr {
 	String get reopen => 'Rouvrir la page de paiement';
 }
 
+// Path: premium.onSite
+class Translations$premium$onSite$fr {
+	Translations$premium$onSite$fr.internal(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// fr: 'Active Premium sur le site'
+	String get title => 'Active Premium sur le site';
+
+	/// fr: 'Sur cmfi-connect.com, connecte-toi avec ton compte et paie par mobile money (MTN, Orange). Un seul paiement, rien ne se renouvelle tout seul.'
+	String get text => 'Sur cmfi-connect.com, connecte-toi avec ton compte et paie par mobile money (MTN, Orange). Un seul paiement, rien ne se renouvelle tout seul.';
+
+	/// fr: 'Premium arrive ensuite ici tout seul, sur tous tes téléphones.'
+	String get note => 'Premium arrive ensuite ici tout seul, sur tous tes téléphones.';
+
+	/// fr: 'Continuer sur cmfi-connect.com'
+	String get button => 'Continuer sur cmfi-connect.com';
+}
+
 // Path: ministry.goals
 class Translations$ministry$goals$fr {
 	Translations$ministry$goals$fr.internal(this._root);
@@ -8590,27 +8517,12 @@ extension on Translations {
 			'premium.statsTitle' => 'Tes objectifs sur l\'année',
 			'premium.statsText' => 'Ton bilan de l\'année et l\'évolution de tes objectifs, semaine après semaine.',
 			'premium.supportTitle' => 'Tu soutiens l\'œuvre',
-			'premium.supportText' => 'Ton abonnement fait vivre l\'app et ses nouveautés pour toute la communauté.',
-			'premium.annual' => 'Annuel',
-			'premium.lifetime' => 'À vie',
-			'premium.monthly' => 'Mensuel',
-			'premium.perYear' => ({required Object price}) => '${price} / an',
-			'premium.once' => ({required Object price}) => '${price} une fois',
-			'premium.perMonth' => ({required Object price}) => '${price} / mois',
-			'premium.annualPerMonth' => ({required Object price}) => 'soit ${price} par mois',
-			'premium.best' => 'Le plus avantageux',
-			'premium.trialDays' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('fr'))(n, one: '${n} jour d\'essai gratuit', other: '${n} jours d\'essai gratuit', ), 
-			'premium.trialMonths' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('fr'))(n, one: '${n} mois d\'essai gratuit', other: '${n} mois d\'essai gratuit', ), 
-			'premium.subscribe' => 'S\'abonner',
-			'premium.startTrial' => 'Commencer l\'essai gratuit',
-			'premium.restore' => 'Restaurer mes achats',
-			'premium.restored' => 'Premium est de retour sur ce téléphone',
-			'premium.nothingToRestore' => 'Aucun achat Premium pour ce compte',
-			'premium.thanks' => 'Merci ! Premium est activé.',
-			'premium.failed' => 'L\'achat n\'a pas abouti. Réessaie dans un instant.',
-			'premium.unavailable' => 'Les offres ne sont pas disponibles pour l\'instant.',
-			'premium.renews' => ({required Object store}) => 'L\'abonnement se renouvelle automatiquement. Tu peux l\'annuler quand tu veux dans les réglages de ton compte ${store}.',
-			'premium.terms' => 'Conditions d\'utilisation',
+			'premium.supportText' => 'Ton soutien fait vivre l\'app et ses nouveautés pour toute la communauté.',
+			'premium.unavailable' => 'Premium arrive bientôt dans l\'app.',
+			'premium.onSite.title' => 'Active Premium sur le site',
+			'premium.onSite.text' => 'Sur cmfi-connect.com, connecte-toi avec ton compte et paie par mobile money (MTN, Orange). Un seul paiement, rien ne se renouvelle tout seul.',
+			'premium.onSite.note' => 'Premium arrive ensuite ici tout seul, sur tous tes téléphones.',
+			'premium.onSite.button' => 'Continuer sur cmfi-connect.com',
 			'premium.privacy' => 'Confidentialité',
 			'premium.activeTitle' => 'Tu as Premium',
 			'premium.activeText' => 'Merci de soutenir CMFI Connect ! Le widget, ton année, ton bilan et les enseignements hors ligne sont ouverts.',
@@ -8618,18 +8530,7 @@ extension on Translations {
 			'premium.moreSubtitle' => 'Widget, année, enseignements hors ligne',
 			'premium.moreActive' => 'Actif',
 			'premium.unlock' => 'Débloquer avec Premium',
-			'premium.trialThen' => ({required Object trial, required Object price}) => '${trial}, puis ${price}',
-			'premium.savePercent' => ({required Object percent}) => '−${percent}',
-			'premium.choose' => 'Choisis ton offre',
-			'premium.cancelAnytime' => 'Sans engagement, annulable à tout moment',
-			'premium.restoreShort' => 'Restaurer',
 			'premium.termsShort' => 'Conditions',
-			'premium.semiannual' => 'Semestriel',
-			'premium.perSemester' => ({required Object price}) => '${price} / 6 mois',
-			'premium.buyLifetime' => 'Acheter à vie',
-			'premium.lifetimeNote' => 'À vie : un seul paiement, sans abonnement ni renouvellement.',
-			'premium.manage' => 'Gérer mon abonnement',
-			'premium.manageFailed' => 'La gestion de l\'abonnement ne s\'ouvre pas. Réessaie plus tard.',
 			'premium.crown' => 'Membre Premium',
 			'premium.offlineTitle' => 'Les enseignements hors ligne',
 			'premium.offlineText' => 'Télécharge les messages et écoute-les partout, même sans connexion.',
@@ -8747,8 +8648,6 @@ extension on Translations {
 			'prayer.moments.night' => 'Nuit',
 			'prayer.retreatOf.morning' => 'Retraite du matin',
 			'prayer.retreatOf.noon' => 'Retraite de midi',
-			_ => null,
-		} ?? switch (path) {
 			'prayer.retreatOf.evening' => 'Retraite du soir',
 			'prayer.retreatOf.night' => 'Retraite de la nuit',
 			'prayer.hero.now' => ({required Object retreat}) => '${retreat} · maintenant',
@@ -8775,6 +8674,8 @@ extension on Translations {
 			'prayer.routine.later.noon' => 'À midi · 15 min',
 			'prayer.routine.later.evening' => 'En soirée · 15 min',
 			'prayer.routine.later.night' => 'La nuit · 15 min',
+			_ => null,
+		} ?? switch (path) {
 			'prayer.together' => 'Prier ensemble',
 			'prayer.reminders.title' => 'Rappels des retraites',
 			'prayer.reminders.intro' => 'Un rappel à l\'heure de chaque retraite, seulement si elle n\'est pas encore faite.',
@@ -9261,8 +9162,6 @@ extension on Translations {
 			'seekFirst.shield.fill' => 'Remplir mon compte rendu',
 			'seekFirst.shield.pause' => ({required Object n}) => 'Pause de 5 min (${n}/3)',
 			'seekFirst.shield.notificationTitle' => 'Cherche d\'abord Dieu',
-			_ => null,
-		} ?? switch (path) {
 			'seekFirst.shield.notificationBody' => 'Touche ici pour remplir ton compte rendu.',
 			'seekFirst.shield.serviceBody' => 'Tes apps se ferment chaque jour jusqu\'à ton compte rendu.',
 			'seekFirst.permissionsAndroid' => 'Pour fermer tes apps, CMFI Connect a besoin de deux autorisations, à activer dans les réglages qui vont s\'ouvrir : « Accès aux données d\'utilisation » (savoir quelle app est ouverte) et « Afficher par-dessus les autres applis » (montrer l\'écran Cherche d\'abord Dieu). Rien ne quitte ton téléphone.',
@@ -9289,6 +9188,8 @@ extension on Translations {
 			'documents.admin.manage' => 'Gérer les documents',
 			'documents.admin.create' => 'Nouveau document',
 			'documents.admin.edit' => 'Modifier le document',
+			_ => null,
+		} ?? switch (path) {
 			'documents.admin.empty' => 'Aucun document pour l\'instant. Touche « Nouveau document » pour en publier un.',
 			'documents.admin.file' => 'Fichier',
 			'documents.admin.pickFile' => 'Choisir un PDF ou un Word',

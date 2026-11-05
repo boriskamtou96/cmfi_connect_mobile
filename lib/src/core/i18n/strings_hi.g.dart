@@ -759,33 +759,9 @@ class _Translations$premium$hi extends Translations$premium$fr {
 	@override String get statsTitle => 'पूरे साल के तुम्हारे लक्ष्य';
 	@override String get statsText => 'आपके साल का लेखा-जोखा और हफ़्ते-दर-हफ़्ते लक्ष्यों की प्रगति।';
 	@override String get supportTitle => 'तुम सेवकाई का साथ देते हो';
-	@override String get supportText => 'आपकी सदस्यता पूरे समुदाय के लिए ऐप और उसकी नई सुविधाओं को चलाती है।';
-	@override String get annual => 'सालाना';
-	@override String get lifetime => 'आजीवन';
-	@override String get monthly => 'मासिक';
-	@override String perYear({required Object price}) => '${price} / साल';
-	@override String once({required Object price}) => '${price} एक बार';
-	@override String perMonth({required Object price}) => '${price} / महीना';
-	@override String annualPerMonth({required Object price}) => 'यानी ${price} प्रति महीना';
-	@override String get best => 'सबसे फ़ायदेमंद';
-	@override String trialDays({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n,
-		one: '${n} दिन मुफ़्त आज़माओ',
-		other: '${n} दिन मुफ़्त आज़माओ',
-	);
-	@override String trialMonths({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n,
-		one: '${n} महीना मुफ़्त आज़माओ',
-		other: '${n} महीने मुफ़्त आज़माओ',
-	);
-	@override String get subscribe => 'सदस्यता लो';
-	@override String get startTrial => 'मुफ़्त आज़माना शुरू करो';
-	@override String get restore => 'ख़रीदारी वापस लाओ';
-	@override String get restored => 'Premium इस फ़ोन पर वापस आ गया';
-	@override String get nothingToRestore => 'इस खाते के लिए कोई Premium ख़रीदारी नहीं';
-	@override String get thanks => 'धन्यवाद! Premium चालू है।';
-	@override String get failed => 'ख़रीदारी पूरी नहीं हुई। थोड़ी देर में फिर कोशिश करो।';
-	@override String get unavailable => 'अभी ऑफ़र उपलब्ध नहीं हैं।';
-	@override String renews({required Object store}) => 'सदस्यता अपने आप नवीनीकृत होती है। तुम इसे कभी भी अपने ${store} खाते की सेटिंग में रद्द कर सकते हो।';
-	@override String get terms => 'उपयोग की शर्तें';
+	@override String get supportText => 'तुम्हारा सहयोग पूरे समुदाय के लिए ऐप और उसकी नई सुविधाओं को चलाए रखता है।';
+	@override String get unavailable => 'Premium जल्द ही ऐप में आ रहा है।';
+	@override late final _Translations$premium$onSite$hi onSite = _Translations$premium$onSite$hi._(_root);
 	@override String get privacy => 'गोपनीयता';
 	@override String get activeTitle => 'तुम्हारे पास Premium है';
 	@override String get activeText => 'CMFI Connect का साथ देने के लिए धन्यवाद! विजेट, आपका साल, लेखा-जोखा और ऑफ़लाइन शिक्षाएँ खुली हैं।';
@@ -793,18 +769,7 @@ class _Translations$premium$hi extends Translations$premium$fr {
 	@override String get moreSubtitle => 'विजेट, आपका साल, शिक्षाएँ ऑफ़लाइन';
 	@override String get moreActive => 'चालू';
 	@override String get unlock => 'Premium से खोलो';
-	@override String trialThen({required Object trial, required Object price}) => '${trial}, फिर ${price}';
-	@override String savePercent({required Object percent}) => '−${percent}';
-	@override String get choose => 'अपना प्लान चुनो';
-	@override String get cancelAnytime => 'कोई बंधन नहीं, कभी भी रद्द करो';
-	@override String get restoreShort => 'बहाल करें';
 	@override String get termsShort => 'शर्तें';
-	@override String get semiannual => 'छमाही';
-	@override String perSemester({required Object price}) => '${price} / 6 महीने';
-	@override String get buyLifetime => 'आजीवन खरीदें';
-	@override String get lifetimeNote => 'आजीवन: एक ही भुगतान, कोई सदस्यता नहीं, कोई नवीनीकरण नहीं।';
-	@override String get manage => 'मेरी सदस्यता प्रबंधित करें';
-	@override String get manageFailed => 'सदस्यता प्रबंधन नहीं खुल रहा। बाद में फिर कोशिश करें।';
 	@override String get crown => 'प्रीमियम सदस्य';
 	@override String get offlineTitle => 'शिक्षाएँ ऑफ़लाइन';
 	@override String get offlineText => 'संदेश डाउनलोड करें और कहीं भी सुनें, बिना इंटरनेट के भी।';
@@ -2764,6 +2729,19 @@ class _Translations$events$pay$hi extends Translations$events$pay$fr {
 	@override String get waitingCardTitle => 'सुरक्षित पेज पर भुगतान पूरा करें';
 	@override String get waitingCardText => 'Wajub पेज पर अपना कार्ड दर्ज करें। भुगतान पहुँचते ही आपका पंजीकरण यहाँ पक्का हो जाएगा।';
 	@override String get reopen => 'भुगतान पेज फिर से खोलें';
+}
+
+// Path: premium.onSite
+class _Translations$premium$onSite$hi extends Translations$premium$onSite$fr {
+	_Translations$premium$onSite$hi._(TranslationsHi root) : this._root = root, super.internal(root);
+
+	final TranslationsHi _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'साइट पर Premium चालू करें';
+	@override String get text => 'cmfi-connect.com पर अपने खाते से लॉग इन करें और मोबाइल मनी (MTN, Orange) से भुगतान करें। एक बार का भुगतान, कुछ भी अपने आप नवीनीकृत नहीं होता।';
+	@override String get note => 'इसके बाद Premium यहाँ अपने आप आ जाएगा, आपके सभी फ़ोन पर।';
+	@override String get button => 'cmfi-connect.com पर जारी रखें';
 }
 
 // Path: ministry.goals
@@ -4747,27 +4725,12 @@ extension on TranslationsHi {
 			'premium.statsTitle' => 'पूरे साल के तुम्हारे लक्ष्य',
 			'premium.statsText' => 'आपके साल का लेखा-जोखा और हफ़्ते-दर-हफ़्ते लक्ष्यों की प्रगति।',
 			'premium.supportTitle' => 'तुम सेवकाई का साथ देते हो',
-			'premium.supportText' => 'आपकी सदस्यता पूरे समुदाय के लिए ऐप और उसकी नई सुविधाओं को चलाती है।',
-			'premium.annual' => 'सालाना',
-			'premium.lifetime' => 'आजीवन',
-			'premium.monthly' => 'मासिक',
-			'premium.perYear' => ({required Object price}) => '${price} / साल',
-			'premium.once' => ({required Object price}) => '${price} एक बार',
-			'premium.perMonth' => ({required Object price}) => '${price} / महीना',
-			'premium.annualPerMonth' => ({required Object price}) => 'यानी ${price} प्रति महीना',
-			'premium.best' => 'सबसे फ़ायदेमंद',
-			'premium.trialDays' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n, one: '${n} दिन मुफ़्त आज़माओ', other: '${n} दिन मुफ़्त आज़माओ', ), 
-			'premium.trialMonths' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n, one: '${n} महीना मुफ़्त आज़माओ', other: '${n} महीने मुफ़्त आज़माओ', ), 
-			'premium.subscribe' => 'सदस्यता लो',
-			'premium.startTrial' => 'मुफ़्त आज़माना शुरू करो',
-			'premium.restore' => 'ख़रीदारी वापस लाओ',
-			'premium.restored' => 'Premium इस फ़ोन पर वापस आ गया',
-			'premium.nothingToRestore' => 'इस खाते के लिए कोई Premium ख़रीदारी नहीं',
-			'premium.thanks' => 'धन्यवाद! Premium चालू है।',
-			'premium.failed' => 'ख़रीदारी पूरी नहीं हुई। थोड़ी देर में फिर कोशिश करो।',
-			'premium.unavailable' => 'अभी ऑफ़र उपलब्ध नहीं हैं।',
-			'premium.renews' => ({required Object store}) => 'सदस्यता अपने आप नवीनीकृत होती है। तुम इसे कभी भी अपने ${store} खाते की सेटिंग में रद्द कर सकते हो।',
-			'premium.terms' => 'उपयोग की शर्तें',
+			'premium.supportText' => 'तुम्हारा सहयोग पूरे समुदाय के लिए ऐप और उसकी नई सुविधाओं को चलाए रखता है।',
+			'premium.unavailable' => 'Premium जल्द ही ऐप में आ रहा है।',
+			'premium.onSite.title' => 'साइट पर Premium चालू करें',
+			'premium.onSite.text' => 'cmfi-connect.com पर अपने खाते से लॉग इन करें और मोबाइल मनी (MTN, Orange) से भुगतान करें। एक बार का भुगतान, कुछ भी अपने आप नवीनीकृत नहीं होता।',
+			'premium.onSite.note' => 'इसके बाद Premium यहाँ अपने आप आ जाएगा, आपके सभी फ़ोन पर।',
+			'premium.onSite.button' => 'cmfi-connect.com पर जारी रखें',
 			'premium.privacy' => 'गोपनीयता',
 			'premium.activeTitle' => 'तुम्हारे पास Premium है',
 			'premium.activeText' => 'CMFI Connect का साथ देने के लिए धन्यवाद! विजेट, आपका साल, लेखा-जोखा और ऑफ़लाइन शिक्षाएँ खुली हैं।',
@@ -4775,18 +4738,7 @@ extension on TranslationsHi {
 			'premium.moreSubtitle' => 'विजेट, आपका साल, शिक्षाएँ ऑफ़लाइन',
 			'premium.moreActive' => 'चालू',
 			'premium.unlock' => 'Premium से खोलो',
-			'premium.trialThen' => ({required Object trial, required Object price}) => '${trial}, फिर ${price}',
-			'premium.savePercent' => ({required Object percent}) => '−${percent}',
-			'premium.choose' => 'अपना प्लान चुनो',
-			'premium.cancelAnytime' => 'कोई बंधन नहीं, कभी भी रद्द करो',
-			'premium.restoreShort' => 'बहाल करें',
 			'premium.termsShort' => 'शर्तें',
-			'premium.semiannual' => 'छमाही',
-			'premium.perSemester' => ({required Object price}) => '${price} / 6 महीने',
-			'premium.buyLifetime' => 'आजीवन खरीदें',
-			'premium.lifetimeNote' => 'आजीवन: एक ही भुगतान, कोई सदस्यता नहीं, कोई नवीनीकरण नहीं।',
-			'premium.manage' => 'मेरी सदस्यता प्रबंधित करें',
-			'premium.manageFailed' => 'सदस्यता प्रबंधन नहीं खुल रहा। बाद में फिर कोशिश करें।',
 			'premium.crown' => 'प्रीमियम सदस्य',
 			'premium.offlineTitle' => 'शिक्षाएँ ऑफ़लाइन',
 			'premium.offlineText' => 'संदेश डाउनलोड करें और कहीं भी सुनें, बिना इंटरनेट के भी।',
@@ -4904,8 +4856,6 @@ extension on TranslationsHi {
 			'prayer.moments.night' => 'रात',
 			'prayer.retreatOf.morning' => 'सुबह का प्रार्थना-समय',
 			'prayer.retreatOf.noon' => 'दोपहर का प्रार्थना-समय',
-			_ => null,
-		} ?? switch (path) {
 			'prayer.retreatOf.evening' => 'शाम का प्रार्थना-समय',
 			'prayer.retreatOf.night' => 'रात का प्रार्थना-समय',
 			'prayer.hero.now' => ({required Object retreat}) => '${retreat} · अभी',
@@ -4932,6 +4882,8 @@ extension on TranslationsHi {
 			'prayer.routine.later.noon' => 'दोपहर · 15 मिनट',
 			'prayer.routine.later.evening' => 'शाम · 15 मिनट',
 			'prayer.routine.later.night' => 'रात · 15 मिनट',
+			_ => null,
+		} ?? switch (path) {
 			'prayer.together' => 'साथ मिलकर प्रार्थना',
 			'prayer.reminders.title' => 'प्रार्थना-समय के रिमाइंडर',
 			'prayer.reminders.intro' => 'हर प्रार्थना-समय पर एक रिमाइंडर, सिर्फ़ तब जब वह अभी पूरा न हुआ हो।',
@@ -5418,8 +5370,6 @@ extension on TranslationsHi {
 			'seekFirst.shield.fill' => 'मेरी रिपोर्ट भरें',
 			'seekFirst.shield.pause' => ({required Object n}) => '5 मिनट का विराम (${n}/3)',
 			'seekFirst.shield.notificationTitle' => 'पहले परमेश्वर को खोजो',
-			_ => null,
-		} ?? switch (path) {
 			'seekFirst.shield.notificationBody' => 'अपनी रिपोर्ट भरने के लिए यहाँ टैप करें।',
 			'seekFirst.shield.serviceBody' => 'तुम्हारे ऐप हर दिन तुम्हारी रिपोर्ट तक बंद रहते हैं।',
 			'seekFirst.permissionsAndroid' => 'तुम्हारे ऐप बंद करने के लिए CMFI Connect को दो अनुमतियाँ चाहिए, जो खुलने वाली सेटिंग्स में चालू करनी हैं: «उपयोग डेटा तक पहुँच» (कौन-सा ऐप खुला है) और «दूसरे ऐप्स के ऊपर दिखाएँ» (पहले परमेश्वर को खोजो स्क्रीन दिखाने के लिए)। कुछ भी तुम्हारे फ़ोन से बाहर नहीं जाता।',
@@ -5446,6 +5396,8 @@ extension on TranslationsHi {
 			'documents.admin.manage' => 'दस्तावेज़ प्रबंधित करें',
 			'documents.admin.create' => 'नया दस्तावेज़',
 			'documents.admin.edit' => 'दस्तावेज़ संपादित करें',
+			_ => null,
+		} ?? switch (path) {
 			'documents.admin.empty' => 'अभी कोई दस्तावेज़ नहीं। प्रकाशित करने के लिए « नया दस्तावेज़ » दबाएँ।',
 			'documents.admin.file' => 'फ़ाइल',
 			'documents.admin.pickFile' => 'PDF या Word फ़ाइल चुनें',

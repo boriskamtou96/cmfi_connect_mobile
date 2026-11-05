@@ -50,13 +50,14 @@ BibleText _parseText(String raw) {
 /// phone, or the API (then kept).
 @Riverpod(keepAlive: true)
 Future<List<BibleBook>> bibleBooks(Ref ref, String version) async {
-  // a Bible under licence: from the YouVersion Platform, kept in memory only
-  if (_licensed(version) case final bibleId?) {
-    return ref.watch(youVersionBibleProvider).books(bibleId);
-  }
   final text = await ref.watch(bibleTextProvider(version).future);
   if (text != null) {
     return text.books;
+  }
+  // a Bible under licence not downloaded: from the YouVersion Platform, kept
+  // in memory only
+  if (_licensed(version) case final bibleId?) {
+    return ref.watch(youVersionBibleProvider).books(bibleId);
   }
   final storage = ref.watch(bibleStorageProvider);
   final kept = await storage.read(version, _books);
@@ -84,8 +85,12 @@ Future<BibleChapter> bibleChapter(
   String book,
   int number,
 ) async {
-  // a Bible under licence: read with the network, never written on the
-  // phone (the platform counts the readings for its publisher)
+  final text = await ref.watch(bibleTextProvider(version).future);
+  if (text?.chapter(book, number) case final chapter?) {
+    return chapter;
+  }
+  // a Bible under licence not downloaded: read with the network, never
+  // written on the phone a chapter at a time
   if (_licensed(version) case final bibleId?) {
     final read = await ref
         .watch(youVersionBibleProvider)
@@ -95,10 +100,6 @@ Future<BibleChapter> bibleChapter(
       read.chapter,
       copyright: read.copyright.isEmpty ? null : read.copyright,
     );
-  }
-  final text = await ref.watch(bibleTextProvider(version).future);
-  if (text?.chapter(book, number) case final chapter?) {
-    return chapter;
   }
   final storage = ref.watch(bibleStorageProvider);
   final name = '$book.$number.json';
@@ -129,25 +130,28 @@ class BibleDownload extends _$BibleDownload {
   );
 
   Future<void> download() async {
-    // its licence keeps a Bible under licence off the phone
-    if (_licensed(version) != null) {
-      return;
-    }
     state = const AsyncData((downloaded: false, progress: 0));
+    void progress(int received, int total) {
+      if (total > 0 && ref.mounted) {
+        state = AsyncData((downloaded: false, progress: received / total));
+      }
+    }
+
     try {
-      final bytes = await ref
-          .read(bibleApiProvider)
-          .complete(
-            version,
-            onProgress: (received, total) {
-              if (total > 0 && ref.mounted) {
-                state = AsyncData((
-                  downloaded: false,
-                  progress: received / total,
-                ));
-              }
-            },
-          );
+      // a Bible under licence: its chapters one after the other
+      final bytes = switch (_licensed(version)) {
+        final bibleId? => utf8.encode(
+          jsonEncode(
+            await ref
+                .read(youVersionBibleProvider)
+                .complete(bibleId, onProgress: progress),
+          ),
+        ),
+        null =>
+          await ref
+              .read(bibleApiProvider)
+              .complete(version, onProgress: progress),
+      };
       await ref.read(bibleStorageProvider).write(version, _complete, bytes);
       ref
         ..invalidate(bibleTextProvider(version))

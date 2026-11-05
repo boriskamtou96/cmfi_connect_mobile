@@ -694,8 +694,7 @@ class _TopBar extends ConsumerWidget {
                   icon: AppIcons.concordance,
                   label: t.bible.concordance,
                 ),
-                // a Bible under licence is read with the network only
-                if (!downloaded && !version.online)
+                if (!downloaded)
                   AdaptiveAction(
                     value: _MenuAction.download,
                     icon: AppIcons.downloadOffline,
@@ -988,14 +987,11 @@ class _ChapterError extends ConsumerWidget {
               style: OutlinedButton.styleFrom(foregroundColor: palette.accent),
               child: Text(t.common.retry),
             ),
-            if (!version.online)
-              TextButton(
-                onPressed: downloading
-                    ? null
-                    : () => showBibleVersions(context),
-                style: TextButton.styleFrom(foregroundColor: palette.accent),
-                child: Text(t.bible.download),
-              ),
+            TextButton(
+              onPressed: downloading ? null : () => showBibleVersions(context),
+              style: TextButton.styleFrom(foregroundColor: palette.accent),
+              child: Text(t.bible.download),
+            ),
           ],
         ),
       ),

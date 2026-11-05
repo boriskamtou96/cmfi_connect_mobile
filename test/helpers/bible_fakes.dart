@@ -206,4 +206,8 @@ class FakeBibleStorage implements BibleStorage {
   @override
   Future<void> remove(String version, String name) async =>
       files.remove('$version/$name');
+
+  @override
+  Future<void> removeAll(String version) async =>
+      files.removeWhere((path, _) => path.startsWith('$version/'));
 }

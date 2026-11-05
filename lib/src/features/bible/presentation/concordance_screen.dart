@@ -110,9 +110,6 @@ class ConcordanceScreen extends HookConsumerWidget {
               child: switch (result) {
                 null => _Tip(text: t.bible.concordanceTip),
                 AsyncValue(hasValue: true, :final value) => switch (value) {
-                  null when version.online => _Tip(
-                    text: t.bible.concordanceOnline,
-                  ),
                   null => _Tip(
                     text: t.bible.concordanceNeedsDownload,
                     download: true,

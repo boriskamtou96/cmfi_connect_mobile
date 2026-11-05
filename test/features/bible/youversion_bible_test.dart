@@ -33,6 +33,28 @@ class FakeYouVersionBible implements YouVersionBible {
       copyright: 'La Bible du Semeur® © Biblica',
     );
   }
+
+  @override
+  Future<Map<String, dynamic>> complete(
+    int bibleId, {
+    void Function(int done, int total)? onProgress,
+  }) async {
+    final books = await this.books(bibleId);
+    final whole = {
+      'books': [
+        for (final book in books)
+          {
+            ...book.toJson(),
+            'chapters': [
+              for (var number = 1; number <= book.chapters; number++)
+                {'chapter': (await chapter(bibleId, book.id, number)).chapter},
+            ],
+          },
+      ],
+    };
+    onProgress?.call(1, 1);
+    return whole;
+  }
 }
 
 void main() {
@@ -95,6 +117,24 @@ void main() {
       expect(chapter.verse(2)!.segments.any((part) => part.isBreak), isFalse);
     });
 
+    test(
+      'no space added where the source has none (a note before a comma)',
+      () {
+        final verse = BibleChapter.fromJson(
+          'JHN',
+          youVersionChapter(
+            1,
+            '<div><div class="p"><span class="yv-v" v="4"></span>'
+            '<span class="yv-vlbl">4</span>En lui était la vie'
+            '<span class="yv-n f"><span class="ft">une note</span></span>'
+            ', et la suite.</div></div>',
+          ),
+        ).verse(4)!;
+        expect(verse.text, 'En lui était la vie, et la suite.');
+        expect(verse.segments.last.text, ', et la suite.');
+      },
+    );
+
     test("a psalm's title that is its first verse stays a verse", () {
       final chapter = BibleChapter.fromJson(
         'PSA',
@@ -146,16 +186,33 @@ void main() {
       },
     );
 
-    test('its books from the platform; no download', () async {
+    test('its books from the platform until it is downloaded', () async {
       expect(
         await container.read(bibleBooksProvider(semeurVersion.id).future),
         sampleBibleBooks,
       );
+      expect(storage.files, isEmpty);
+    });
+
+    test('downloaded whole, then read without the platform', () async {
       await container
           .read(bibleDownloadProvider(semeurVersion.id).notifier)
           .download();
+
+      // the whole Bible, from the platform, kept as one file
+      expect(storage.files.keys, ['fra_bds/complete.json']);
       expect(free.downloads, isEmpty);
-      expect(storage.files, isEmpty);
+      expect(container.read(bibleDownloadProvider(semeurVersion.id)).value, (
+        downloaded: true,
+        progress: null,
+      ));
+
+      platform.asked.clear();
+      final chapter = await container.read(
+        bibleChapterProvider(semeurVersion.id, 'JHN', 3).future,
+      );
+      expect(chapter.verse(16)!.text, 'Un verset pour essayer.');
+      expect(platform.asked, isEmpty);
     });
 
     test('a free version still reads as before, and is kept', () async {

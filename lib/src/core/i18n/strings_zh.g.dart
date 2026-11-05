@@ -1132,10 +1132,6 @@ class _Translations$bible$zh extends Translations$bible$fr {
 	@override String get listen => '收听本章';
 	@override String listeningAt({required Object place, required Object verse}) => '${place} · 第 ${verse} 节';
 	@override String get stopListening => '停止朗读';
-	@override String get online => '在线阅读';
-	@override String get onlineHelp => '获授权的圣经：需联网阅读，不会保存在手机上。';
-	@override String get searchOnline => '无法在这本圣经中搜索词语。请输入经文出处：“约翰福音 3:16”，或选择其他译本。';
-	@override String get concordanceOnline => '这本圣经没有经文汇编：请选择其他译本。';
 	@override String get note => '注释';
 	@override String get noteOpen => '查看注释';
 }
@@ -5097,10 +5093,6 @@ extension on TranslationsZh {
 			'bible.listen' => '收听本章',
 			'bible.listeningAt' => ({required Object place, required Object verse}) => '${place} · 第 ${verse} 节',
 			'bible.stopListening' => '停止朗读',
-			'bible.online' => '在线阅读',
-			'bible.onlineHelp' => '获授权的圣经：需联网阅读，不会保存在手机上。',
-			'bible.searchOnline' => '无法在这本圣经中搜索词语。请输入经文出处：“约翰福音 3:16”，或选择其他译本。',
-			'bible.concordanceOnline' => '这本圣经没有经文汇编：请选择其他译本。',
 			'bible.note' => '注释',
 			'bible.noteOpen' => '查看注释',
 			'profilePhoto.title' => '头像',
@@ -5242,12 +5234,12 @@ extension on TranslationsZh {
 			'seekFirst.shield.title' => '先求神',
 			'seekFirst.shield.subtitle' => ({required Object app}) => '在完成今天的汇报之前，${app} 保持关闭。',
 			'seekFirst.shield.thisApp' => '此应用',
-			_ => null,
-		} ?? switch (path) {
 			'seekFirst.shield.fill' => '填写我的汇报',
 			'seekFirst.shield.pause' => ({required Object n}) => '暂停 5 分钟（${n}/3）',
 			'seekFirst.shield.notificationTitle' => '先求神',
 			'seekFirst.shield.notificationBody' => '轻点此处填写你的汇报。',
+			_ => null,
+		} ?? switch (path) {
 			'seekFirst.shield.serviceBody' => '你的应用每天都会关闭，直到你填写报告。',
 			'seekFirst.permissionsAndroid' => '为了关闭你的应用，CMFI Connect 需要在即将打开的设置中开启两项权限：“使用情况访问权限”（知道哪个应用在前台）和“显示在其他应用上层”（显示“先求神”页面）。任何数据都不会离开你的手机。',
 			'seekFirst.permissionsContinue' => '继续',

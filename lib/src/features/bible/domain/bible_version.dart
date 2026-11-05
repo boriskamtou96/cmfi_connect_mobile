@@ -34,8 +34,9 @@ class BibleVersion {
   final String? attribution;
 
   /// Its id on the YouVersion Platform: a Bible under licence, read with the
-  /// network and never kept on the phone (no download, no search in the
-  /// text), its notes and a link to its publisher shown with it.
+  /// network or downloaded whole (its licence allows it in a mobile app, in
+  /// the app's own storage), the chapters read never kept one by one; its
+  /// notes and a link to its publisher shown with it.
   final int? youversionId;
 
   bool get online => youversionId != null;
@@ -49,7 +50,7 @@ const semeurVersion = BibleVersion(
   abbreviation: 'BDS',
   name: 'La Bible du Semeur',
   language: 'fr',
-  megabytes: 0,
+  megabytes: 9,
   youversionId: 21,
   attribution:
       'La Bible du Semeur® Texte copyright © 1992, 1999, 2015 Biblica, Inc.® '

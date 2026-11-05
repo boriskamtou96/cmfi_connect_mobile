@@ -1776,10 +1776,6 @@
     "listen": "Écouter ce chapitre",
     "listeningAt": "{place} · verset {verse}",
     "stopListening": "Arrêter la lecture",
-    "online": "Lecture en ligne",
-    "onlineHelp": "Une Bible sous licence : elle se lit avec le réseau et n'est pas gardée sur le téléphone.",
-    "searchOnline": "On ne peut pas chercher des mots dans cette Bible. Tape un passage : « Jean 3:16 », ou choisis une autre version.",
-    "concordanceOnline": "La concordance n'est pas disponible pour cette Bible : choisis une autre version.",
     "note": "Note",
     "noteOpen": "Voir la note"
   },

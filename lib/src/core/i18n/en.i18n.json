@@ -1777,10 +1777,6 @@
     "listen": "Listen to this chapter",
     "listeningAt": "{place} · verse {verse}",
     "stopListening": "Stop reading",
-    "online": "Read online",
-    "onlineHelp": "A licensed Bible: it is read with a connection and isn't kept on the phone.",
-    "searchOnline": "Words can't be searched in this Bible. Type a passage: “John 3:16”, or choose another version.",
-    "concordanceOnline": "The concordance isn't available for this Bible: choose another version.",
     "note": "Note",
     "noteOpen": "Show the note"
   },

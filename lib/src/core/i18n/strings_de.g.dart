@@ -1162,10 +1162,6 @@ class _Translations$bible$de extends Translations$bible$fr {
 	@override String get listen => 'Dieses Kapitel anhören';
 	@override String listeningAt({required Object place, required Object verse}) => '${place} · Vers ${verse}';
 	@override String get stopListening => 'Vorlesen beenden';
-	@override String get online => 'Online lesen';
-	@override String get onlineHelp => 'Eine lizenzierte Bibel: Sie wird mit Internetverbindung gelesen und nicht auf dem Telefon gespeichert.';
-	@override String get searchOnline => 'In dieser Bibel kann nicht nach Wörtern gesucht werden. Gib eine Stelle ein: „Johannes 3:16“, oder wähle eine andere Übersetzung.';
-	@override String get concordanceOnline => 'Die Konkordanz ist für diese Bibel nicht verfügbar: Wähle eine andere Übersetzung.';
 	@override String get note => 'Anmerkung';
 	@override String get noteOpen => 'Anmerkung anzeigen';
 }
@@ -5197,10 +5193,6 @@ extension on TranslationsDe {
 			'bible.listen' => 'Dieses Kapitel anhören',
 			'bible.listeningAt' => ({required Object place, required Object verse}) => '${place} · Vers ${verse}',
 			'bible.stopListening' => 'Vorlesen beenden',
-			'bible.online' => 'Online lesen',
-			'bible.onlineHelp' => 'Eine lizenzierte Bibel: Sie wird mit Internetverbindung gelesen und nicht auf dem Telefon gespeichert.',
-			'bible.searchOnline' => 'In dieser Bibel kann nicht nach Wörtern gesucht werden. Gib eine Stelle ein: „Johannes 3:16“, oder wähle eine andere Übersetzung.',
-			'bible.concordanceOnline' => 'Die Konkordanz ist für diese Bibel nicht verfügbar: Wähle eine andere Übersetzung.',
 			'bible.note' => 'Anmerkung',
 			'bible.noteOpen' => 'Anmerkung anzeigen',
 			'profilePhoto.title' => 'Profilbild',
@@ -5342,12 +5334,12 @@ extension on TranslationsDe {
 			'seekFirst.shield.title' => 'Suche zuerst Gott',
 			'seekFirst.shield.subtitle' => ({required Object app}) => '${app} bleibt bis zu deinem heutigen Bericht geschlossen.',
 			'seekFirst.shield.thisApp' => 'Diese App',
-			_ => null,
-		} ?? switch (path) {
 			'seekFirst.shield.fill' => 'Meinen Bericht ausfüllen',
 			'seekFirst.shield.pause' => ({required Object n}) => '5 Min. Pause (${n}/3)',
 			'seekFirst.shield.notificationTitle' => 'Suche zuerst Gott',
 			'seekFirst.shield.notificationBody' => 'Tippe hier, um deinen Bericht auszufüllen.',
+			_ => null,
+		} ?? switch (path) {
 			'seekFirst.shield.serviceBody' => 'Deine Apps schließen sich jeden Tag bis zu deinem Bericht.',
 			'seekFirst.permissionsAndroid' => 'Um deine Apps zu schließen, braucht CMFI Connect zwei Berechtigungen, die du in den gleich geöffneten Einstellungen einschaltest: „Zugriff auf Nutzungsdaten“ (welche App offen ist) und „Über anderen Apps einblenden“ (den Bildschirm Suche zuerst Gott zeigen). Nichts verlässt dein Handy.',
 			'seekFirst.permissionsContinue' => 'Weiter',

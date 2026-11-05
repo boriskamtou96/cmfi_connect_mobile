@@ -1284,10 +1284,6 @@ class _Translations$bible$ar extends Translations$bible$fr {
 	@override String get listen => 'استمع إلى هذا الأصحاح';
 	@override String listeningAt({required Object place, required Object verse}) => '${place} · الآية ${verse}';
 	@override String get stopListening => 'إيقاف القراءة';
-	@override String get online => 'القراءة عبر الإنترنت';
-	@override String get onlineHelp => 'كتاب مقدس مرخّص: يُقرأ بالاتصال بالإنترنت ولا يُحفظ على الهاتف.';
-	@override String get searchOnline => 'لا يمكن البحث عن الكلمات في هذا الكتاب المقدس. اكتب مقطعًا: «يوحنا 3:16»، أو اختر ترجمة أخرى.';
-	@override String get concordanceOnline => 'الفهرس غير متاح لهذا الكتاب المقدس: اختر ترجمة أخرى.';
 	@override String get note => 'ملاحظة';
 	@override String get noteOpen => 'عرض الملاحظة';
 }
@@ -5595,10 +5591,6 @@ extension on TranslationsAr {
 			'bible.listen' => 'استمع إلى هذا الأصحاح',
 			'bible.listeningAt' => ({required Object place, required Object verse}) => '${place} · الآية ${verse}',
 			'bible.stopListening' => 'إيقاف القراءة',
-			'bible.online' => 'القراءة عبر الإنترنت',
-			'bible.onlineHelp' => 'كتاب مقدس مرخّص: يُقرأ بالاتصال بالإنترنت ولا يُحفظ على الهاتف.',
-			'bible.searchOnline' => 'لا يمكن البحث عن الكلمات في هذا الكتاب المقدس. اكتب مقطعًا: «يوحنا 3:16»، أو اختر ترجمة أخرى.',
-			'bible.concordanceOnline' => 'الفهرس غير متاح لهذا الكتاب المقدس: اختر ترجمة أخرى.',
 			'bible.note' => 'ملاحظة',
 			'bible.noteOpen' => 'عرض الملاحظة',
 			'profilePhoto.title' => 'صورة الملف الشخصي',
@@ -5740,12 +5732,12 @@ extension on TranslationsAr {
 			'seekFirst.shield.title' => 'اطلب الله أولًا',
 			'seekFirst.shield.subtitle' => ({required Object app}) => 'يبقى ${app} مغلقًا حتى تقرير اليوم.',
 			'seekFirst.shield.thisApp' => 'هذا التطبيق',
-			_ => null,
-		} ?? switch (path) {
 			'seekFirst.shield.fill' => 'املأ تقريري',
 			'seekFirst.shield.pause' => ({required Object n}) => 'استراحة 5 دقائق (${n}/3)',
 			'seekFirst.shield.notificationTitle' => 'اطلب الله أولًا',
 			'seekFirst.shield.notificationBody' => 'المس هنا لتملأ تقريرك.',
+			_ => null,
+		} ?? switch (path) {
 			'seekFirst.shield.serviceBody' => 'تُغلق تطبيقاتك كل يوم حتى تقريرك.',
 			'seekFirst.permissionsAndroid' => 'لإغلاق تطبيقاتك، يحتاج CMFI Connect إلى إذنين تفعّلهما في الإعدادات التي ستُفتح: «الوصول إلى بيانات الاستخدام» (لمعرفة التطبيق المفتوح) و«الظهور فوق التطبيقات الأخرى» (لإظهار شاشة اطلب الله أولًا). لا يخرج شيء من هاتفك.',
 			'seekFirst.permissionsContinue' => 'متابعة',

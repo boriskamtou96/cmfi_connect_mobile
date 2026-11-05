@@ -68,6 +68,48 @@ class YouVersionBible {
     );
   });
 
+  /// The whole of [bibleId], a chapter after the other (a few at a time), in
+  /// the shape of the Free Use Bible API's complete.json: to keep in the
+  /// app's storage and read without network.
+  Future<Map<String, dynamic>> complete(
+    int bibleId, {
+    void Function(int done, int total)? onProgress,
+  }) async {
+    final books = await this.books(bibleId);
+    final total = books.fold(0, (sum, book) => sum + book.chapters);
+    final read = <String, Map<String, dynamic>>{};
+    final queue = [
+      for (final book in books)
+        for (var number = 1; number <= book.chapters; number++)
+          (book: book.id, number: number),
+    ];
+    var next = 0;
+    Future<void> worker() async {
+      while (next < queue.length) {
+        final place = queue[next++];
+        final chapter = await this.chapter(bibleId, place.book, place.number);
+        read['${place.book}.${place.number}'] = chapter.chapter;
+        onProgress?.call(read.length, total);
+      }
+    }
+
+    await Future.wait([for (var i = 0; i < 4; i++) worker()]);
+    return {
+      'translation': {'id': 'youversion_$bibleId'},
+      'books': [
+        for (final book in books)
+          {
+            ...book.toJson(),
+            'commonName': book.name,
+            'chapters': [
+              for (var number = 1; number <= book.chapters; number++)
+                {'chapter': read['${book.id}.$number']},
+            ],
+          },
+      ],
+    };
+  }
+
   /// The copyright of [bibleId] as its publisher gives it (asked once).
   Future<String> _notice(int bibleId) =>
       _notices[bibleId] ??= apiCall(() async {
@@ -89,6 +131,9 @@ Map<String, dynamic> youVersionChapter(int number, String html) {
   final content = <Map<String, dynamic>>[];
   final verses = <int, List<Object>>{};
   int? current;
+  // the words just before, as written: a space between two pieces only
+  // where the source has one
+  String? before;
 
   // what the paragraph read so far holds: verse marks, words, notes
   var pieces = <({int? verse, String? words, bool jesus, String? note})>[];
@@ -122,6 +167,7 @@ Map<String, dynamic> youVersionChapter(int number, String html) {
       for (final piece in pieces) {
         if (piece.verse case final verse?) {
           current = verse;
+          before = null;
           verses.putIfAbsent(verse, () {
             final parts = <Object>[];
             content.add({'type': 'verse', 'number': verse, 'content': parts});
@@ -136,14 +182,23 @@ Map<String, dynamic> youVersionChapter(int number, String html) {
         }
         if (first && piece.words != null && piece.words!.trim().isNotEmpty) {
           parts.add({'lineBreak': true});
+          before = null;
           first = false;
         }
         if (piece.note case final note?) {
           parts.add({'note': note});
-        } else if (piece.words case final words?) {
-          parts.add(
-            piece.jesus ? {'text': words, 'wordsOfJesus': true} : words,
-          );
+        } else if (piece.words case final words? when words.trim().isNotEmpty) {
+          final last = before;
+          final joined =
+              last != null &&
+              !_space.hasMatch(last[last.length - 1]) &&
+              !_space.hasMatch(words[0]);
+          parts.add({
+            'text': words,
+            if (piece.jesus) 'wordsOfJesus': true,
+            if (joined) 'joined': true,
+          });
+          before = words;
         }
       }
     }
@@ -224,6 +279,8 @@ Map<String, dynamic> youVersionChapter(int number, String html) {
   }
   return {'number': number, 'content': content};
 }
+
+final _space = RegExp(r'\s');
 
 String _entities(String text) => text
     .replaceAll('&nbsp;', ' ')

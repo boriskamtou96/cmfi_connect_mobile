@@ -55,17 +55,29 @@ String _bookName(Map<String, dynamic> json) {
 /// A piece of a verse: words (said by Jesus, or not), a line break of a
 /// poem, or a note of the translators (shown as a mark to tap).
 class BibleSegment {
-  const BibleSegment(this.text, {this.jesus = false}) : note = null;
+  const BibleSegment(this.text, {this.jesus = false, this.joined = false})
+    : note = null;
 
-  const BibleSegment.lineBreak() : text = '\n', jesus = false, note = null;
+  const BibleSegment.lineBreak()
+    : text = '\n',
+      jesus = false,
+      joined = false,
+      note = null;
 
-  const BibleSegment.note(String this.note) : text = '', jesus = false;
+  const BibleSegment.note(String this.note)
+    : text = '',
+      jesus = false,
+      joined = false;
 
   final String text;
   final bool jesus;
 
   /// The text of a note; null for words.
   final String? note;
+
+  /// Read right after the words before it, without a space (the source
+  /// writes none: "vie" then ", et" around a note).
+  final bool joined;
 
   bool get isBreak => text == '\n';
   bool get isNote => note != null;
@@ -167,6 +179,7 @@ BibleSegment? _segment(Object? part) => switch (part) {
   {'text': final String text} => BibleSegment(
     text,
     jesus: (part as Map)['wordsOfJesus'] == true,
+    joined: part['joined'] == true,
   ),
   _ => null,
 };
@@ -199,6 +212,7 @@ List<BibleSegment> _tidy(List<BibleSegment> parts) {
       orElse: () => const BibleSegment.lineBreak(),
     );
     final spaced =
+        !part.joined &&
         !before.isBreak &&
         !_isCjk(before.text.runes.last) &&
         !_isCjk(text.runes.first);

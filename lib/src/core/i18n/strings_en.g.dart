@@ -1163,10 +1163,6 @@ class _Translations$bible$en extends Translations$bible$fr {
 	@override String get listen => 'Listen to this chapter';
 	@override String listeningAt({required Object place, required Object verse}) => '${place} · verse ${verse}';
 	@override String get stopListening => 'Stop reading';
-	@override String get online => 'Read online';
-	@override String get onlineHelp => 'A licensed Bible: it is read with a connection and isn\'t kept on the phone.';
-	@override String get searchOnline => 'Words can\'t be searched in this Bible. Type a passage: “John 3:16”, or choose another version.';
-	@override String get concordanceOnline => 'The concordance isn\'t available for this Bible: choose another version.';
 	@override String get note => 'Note';
 	@override String get noteOpen => 'Show the note';
 }
@@ -5198,10 +5194,6 @@ extension on TranslationsEn {
 			'bible.listen' => 'Listen to this chapter',
 			'bible.listeningAt' => ({required Object place, required Object verse}) => '${place} · verse ${verse}',
 			'bible.stopListening' => 'Stop reading',
-			'bible.online' => 'Read online',
-			'bible.onlineHelp' => 'A licensed Bible: it is read with a connection and isn\'t kept on the phone.',
-			'bible.searchOnline' => 'Words can\'t be searched in this Bible. Type a passage: “John 3:16”, or choose another version.',
-			'bible.concordanceOnline' => 'The concordance isn\'t available for this Bible: choose another version.',
 			'bible.note' => 'Note',
 			'bible.noteOpen' => 'Show the note',
 			'profilePhoto.title' => 'Profile photo',
@@ -5343,12 +5335,12 @@ extension on TranslationsEn {
 			'seekFirst.shield.title' => 'Seek God first',
 			'seekFirst.shield.subtitle' => ({required Object app}) => '${app} stays closed until today\'s report.',
 			'seekFirst.shield.thisApp' => 'This app',
-			_ => null,
-		} ?? switch (path) {
 			'seekFirst.shield.fill' => 'Fill in my report',
 			'seekFirst.shield.pause' => ({required Object n}) => '5-min break (${n}/3)',
 			'seekFirst.shield.notificationTitle' => 'Seek God first',
 			'seekFirst.shield.notificationBody' => 'Tap here to fill in your report.',
+			_ => null,
+		} ?? switch (path) {
 			'seekFirst.shield.serviceBody' => 'Your apps close each day until your report.',
 			'seekFirst.permissionsAndroid' => 'To close your apps, CMFI Connect needs two permissions, to turn on in the settings that will open: "Usage access" (to know which app is open) and "Display over other apps" (to show the Seek God first screen). Nothing leaves your phone.',
 			'seekFirst.permissionsContinue' => 'Continue',

@@ -1776,10 +1776,6 @@
     "listen": "Escuchar este capítulo",
     "listeningAt": "{place} · versículo {verse}",
     "stopListening": "Detener la lectura",
-    "online": "Lectura en línea",
-    "onlineHelp": "Una Biblia con licencia: se lee con conexión y no se guarda en el teléfono.",
-    "searchOnline": "No se pueden buscar palabras en esta Biblia. Escribe un pasaje: «Juan 3:16», o elige otra versión.",
-    "concordanceOnline": "La concordancia no está disponible para esta Biblia: elige otra versión.",
     "note": "Nota",
     "noteOpen": "Ver la nota"
   },

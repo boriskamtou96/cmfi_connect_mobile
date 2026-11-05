@@ -1776,10 +1776,6 @@
     "listen": "Dieses Kapitel anhören",
     "listeningAt": "{place} · Vers {verse}",
     "stopListening": "Vorlesen beenden",
-    "online": "Online lesen",
-    "onlineHelp": "Eine lizenzierte Bibel: Sie wird mit Internetverbindung gelesen und nicht auf dem Telefon gespeichert.",
-    "searchOnline": "In dieser Bibel kann nicht nach Wörtern gesucht werden. Gib eine Stelle ein: „Johannes 3:16“, oder wähle eine andere Übersetzung.",
-    "concordanceOnline": "Die Konkordanz ist für diese Bibel nicht verfügbar: Wähle eine andere Übersetzung.",
     "note": "Anmerkung",
     "noteOpen": "Anmerkung anzeigen"
   },

@@ -9,7 +9,7 @@ part 'payment.g.dart';
 /// refunding, refunded: the money goes back.
 enum PaymentStatus { pending, completed, failed, refunding, refunded }
 
-/// A payment by mobile money (KPay, through the server).
+/// A payment by mobile money (Wajub, through the server).
 @freezed
 abstract class Payment with _$Payment {
   const factory Payment({
@@ -30,13 +30,13 @@ abstract class Payment with _$Payment {
     @Default(1) int people,
     DateTime? createdAt,
 
-    /// A card: KPay's page to open, given when the payment starts.
+    /// A card: Wajub's page to open, given when the payment starts.
     @Default('') String gatewayUrl,
   }) = _Payment;
 
   const Payment._();
 
-  /// Paid by card on KPay's page (not a phone).
+  /// Paid by card on Wajub's page (not a phone).
   bool get byCard => provider == cardProvider;
 
   factory Payment.fromJson(Map<String, dynamic> json) =>
@@ -46,7 +46,7 @@ abstract class Payment with _$Payment {
 /// The provider written on a payment by card.
 const cardProvider = 'CARD';
 
-/// How one pays: mobile money (a number and a PIN) or a card (KPay's page).
+/// How one pays: mobile money (a number and a PIN) or a card (Wajub's page).
 enum PaymentMethod {
   mobileMoney('mobile_money'),
   card('card');

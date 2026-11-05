@@ -17,7 +17,7 @@ mixin _$Payment {
 
  String get id; String get purpose;@JsonKey(unknownEnumValue: PaymentStatus.pending) PaymentStatus get status;/// Why it failed (INSUFFICIENT_BALANCE…), or ''.
  String get failureCode; int get amount; String get currency;/// MTN_MOMO_CMR, ORANGE_CMR…
- String get provider; int? get eventId; int get people; DateTime? get createdAt;/// A card: KPay's page to open, given when the payment starts.
+ String get provider; int? get eventId; int get people; DateTime? get createdAt;/// A card: Wajub's page to open, given when the payment starts.
  String get gatewayUrl;
 /// Create a copy of Payment
 /// with the given fields replaced by the non-null parameter values.
@@ -237,7 +237,7 @@ class _Payment extends Payment {
 @override final  int? eventId;
 @override@JsonKey() final  int people;
 @override final  DateTime? createdAt;
-/// A card: KPay's page to open, given when the payment starts.
+/// A card: Wajub's page to open, given when the payment starts.
 @override@JsonKey() final  String gatewayUrl;
 
 /// Create a copy of Payment

@@ -242,12 +242,12 @@ void main() {
     await tester.pumpAndSettle();
 
     expect(app.toasts.errors, [
-      'En mode test, seuls les numéros de test KPay sont acceptés : utilise '
-          'par exemple le 6 53 45 67 89.',
+      'En mode test, seuls les numéros de test Wajub sont acceptés : utilise '
+          'par exemple le 6 70 00 00 00.',
     ]);
   });
 
-  testWidgets('by card: KPay secure page opens, the app waits behind it', (
+  testWidgets('by card: Wajub secure page opens, the app waits behind it', (
     tester,
   ) async {
     final payments = FakePaymentsApi()..cards = true;
@@ -274,7 +274,7 @@ void main() {
     expect(payments.started.single.method, PaymentMethod.card);
     expect(
       app.links.opened.single.toString(),
-      'https://admin.kpay.site/pay/gw_1',
+      'https://pay.wajub.com/gw_1',
     );
     expect(
       find.text('Termine le paiement sur la page sécurisée'),

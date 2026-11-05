@@ -1006,7 +1006,7 @@
         "notApproved": "付款未确认：未输入 PIN 码或被拒绝。",
         "unavailable": "运营商暂时不可用，请稍后再试。",
         "generic": "付款失败。请重试，或换一个号码。",
-        "sandbox": "测试模式下只接受 KPay 测试号码：例如使用 6 53 45 67 89。"
+        "sandbox": "测试模式下只接受 Wajub 测试号码：例如使用 6 70 00 00 00。"
       },
       "later": "稍后付款",
       "toPay": "待付：{amount}",
@@ -1017,10 +1017,10 @@
       "how": "你想如何付款？",
       "methodMobile": "移动钱包",
       "methodCard": "银行卡",
-      "cardNote": "你将在 KPay 的安全页面付款（Visa、Mastercard）。银行卡按换算后的美元扣款。",
+      "cardNote": "你将在 Wajub 的安全页面付款（Visa、Mastercard）。",
       "payCard": "用银行卡支付 {amount}",
       "waitingCardTitle": "请在安全页面完成付款",
-      "waitingCardText": "在 KPay 页面输入你的银行卡。付款一到账，你的报名就会在这里确认。",
+      "waitingCardText": "在 Wajub 页面输入你的银行卡。付款一到账，你的报名就会在这里确认。",
       "reopen": "重新打开付款页面"
     }
   },

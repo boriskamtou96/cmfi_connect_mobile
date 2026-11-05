@@ -3041,10 +3041,10 @@ class _Translations$events$pay$ar extends Translations$events$pay$fr {
 	@override String get how => 'كيف تريد أن تدفع؟';
 	@override String get methodMobile => 'المحفظة الإلكترونية';
 	@override String get methodCard => 'البطاقة البنكية';
-	@override String get cardNote => 'تدفع على صفحة KPay الآمنة (Visa، Mastercard). تُخصم البطاقة بالدولار بعد التحويل.';
+	@override String get cardNote => 'تدفع على صفحة Wajub الآمنة (Visa، Mastercard).';
 	@override String payCard({required Object amount}) => 'ادفع ${amount} بالبطاقة';
 	@override String get waitingCardTitle => 'أكمل الدفع على الصفحة الآمنة';
-	@override String get waitingCardText => 'أدخل بطاقتك على صفحة KPay. يُؤكَّد تسجيلك هنا فور وصول الدفع.';
+	@override String get waitingCardText => 'أدخل بطاقتك على صفحة Wajub. يُؤكَّد تسجيلك هنا فور وصول الدفع.';
 	@override String get reopen => 'إعادة فتح صفحة الدفع';
 }
 
@@ -3893,7 +3893,7 @@ class _Translations$events$pay$failures$ar extends Translations$events$pay$failu
 	@override String get notApproved => 'لم يُؤكَّد الدفع: لم يُدخَل الرمز السري أو رُفض.';
 	@override String get unavailable => 'المشغّل غير متاح حاليًا. حاول لاحقًا.';
 	@override String get generic => 'فشل الدفع. حاول مجددًا أو استخدم رقمًا آخر.';
-	@override String get sandbox => 'في وضع الاختبار، لا تُقبل إلا أرقام الاختبار الخاصة بـ KPay: استخدم مثلًا 6 53 45 67 89.';
+	@override String get sandbox => 'في وضع الاختبار، لا تُقبل إلا أرقام الاختبار الخاصة بـ Wajub: استخدم مثلًا 6 70 00 00 00.';
 }
 
 // Path: ministry.goals.crusade
@@ -5113,7 +5113,7 @@ extension on TranslationsAr {
 			'events.pay.failures.notApproved' => 'لم يُؤكَّد الدفع: لم يُدخَل الرمز السري أو رُفض.',
 			'events.pay.failures.unavailable' => 'المشغّل غير متاح حاليًا. حاول لاحقًا.',
 			'events.pay.failures.generic' => 'فشل الدفع. حاول مجددًا أو استخدم رقمًا آخر.',
-			'events.pay.failures.sandbox' => 'في وضع الاختبار، لا تُقبل إلا أرقام الاختبار الخاصة بـ KPay: استخدم مثلًا 6 53 45 67 89.',
+			'events.pay.failures.sandbox' => 'في وضع الاختبار، لا تُقبل إلا أرقام الاختبار الخاصة بـ Wajub: استخدم مثلًا 6 70 00 00 00.',
 			'events.pay.later' => 'سأدفع لاحقًا',
 			'events.pay.toPay' => ({required Object amount}) => 'المبلغ المستحق: ${amount}',
 			'events.pay.payNow' => 'ادفع',
@@ -5123,10 +5123,10 @@ extension on TranslationsAr {
 			'events.pay.how' => 'كيف تريد أن تدفع؟',
 			'events.pay.methodMobile' => 'المحفظة الإلكترونية',
 			'events.pay.methodCard' => 'البطاقة البنكية',
-			'events.pay.cardNote' => 'تدفع على صفحة KPay الآمنة (Visa، Mastercard). تُخصم البطاقة بالدولار بعد التحويل.',
+			'events.pay.cardNote' => 'تدفع على صفحة Wajub الآمنة (Visa، Mastercard).',
 			'events.pay.payCard' => ({required Object amount}) => 'ادفع ${amount} بالبطاقة',
 			'events.pay.waitingCardTitle' => 'أكمل الدفع على الصفحة الآمنة',
-			'events.pay.waitingCardText' => 'أدخل بطاقتك على صفحة KPay. يُؤكَّد تسجيلك هنا فور وصول الدفع.',
+			'events.pay.waitingCardText' => 'أدخل بطاقتك على صفحة Wajub. يُؤكَّد تسجيلك هنا فور وصول الدفع.',
 			'events.pay.reopen' => 'إعادة فتح صفحة الدفع',
 			'notifications.title' => 'الإشعارات',
 			'notifications.channel' => 'إعلانات الجماعة',

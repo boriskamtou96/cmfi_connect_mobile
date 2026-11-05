@@ -1032,7 +1032,7 @@
         "notApproved": "The payment was not approved: PIN not entered or refused.",
         "unavailable": "The operator is unavailable right now. Try again later.",
         "generic": "The payment failed. Try again, or use another number.",
-        "sandbox": "In test mode, only KPay test numbers are accepted: use 6 53 45 67 89, for example."
+        "sandbox": "In test mode, only Wajub test numbers are accepted: use 6 70 00 00 00, for example."
       },
       "later": "I'll pay later",
       "toPay": "To pay: {amount}",
@@ -1043,10 +1043,10 @@
       "how": "How do you want to pay?",
       "methodMobile": "Mobile Money",
       "methodCard": "Bank card",
-      "cardNote": "You pay on KPay's secure page (Visa, Mastercard). The card is charged in dollars, after conversion.",
+      "cardNote": "You pay on Wajub's secure page (Visa, Mastercard).",
       "payCard": "Pay {amount} by card",
       "waitingCardTitle": "Finish the payment on the secure page",
-      "waitingCardText": "Enter your card on the KPay page. Your registration is confirmed here as soon as the payment arrives.",
+      "waitingCardText": "Enter your card on the Wajub page. Your registration is confirmed here as soon as the payment arrives.",
       "reopen": "Reopen the payment page"
     }
   },

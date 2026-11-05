@@ -1031,7 +1031,7 @@
         "notApproved": "Die Zahlung wurde nicht bestätigt: PIN nicht eingegeben oder abgelehnt.",
         "unavailable": "Der Anbieter ist gerade nicht verfügbar. Versuche es später erneut.",
         "generic": "Die Zahlung ist fehlgeschlagen. Versuche es erneut oder nutze eine andere Nummer.",
-        "sandbox": "Im Testmodus werden nur KPay-Testnummern akzeptiert: nutze zum Beispiel 6 53 45 67 89."
+        "sandbox": "Im Testmodus werden nur Wajub-Testnummern akzeptiert: nutze zum Beispiel 6 70 00 00 00."
       },
       "later": "Ich bezahle später",
       "toPay": "Zu zahlen: {amount}",
@@ -1042,10 +1042,10 @@
       "how": "Wie möchtest du bezahlen?",
       "methodMobile": "Mobile Money",
       "methodCard": "Bankkarte",
-      "cardNote": "Du bezahlst auf der sicheren KPay-Seite (Visa, Mastercard). Die Karte wird nach Umrechnung in Dollar belastet.",
+      "cardNote": "Du bezahlst auf der sicheren Wajub-Seite (Visa, Mastercard).",
       "payCard": "{amount} mit Karte bezahlen",
       "waitingCardTitle": "Schließe die Zahlung auf der sicheren Seite ab",
-      "waitingCardText": "Gib deine Karte auf der KPay-Seite ein. Deine Anmeldung wird hier bestätigt, sobald die Zahlung eingeht.",
+      "waitingCardText": "Gib deine Karte auf der Wajub-Seite ein. Deine Anmeldung wird hier bestätigt, sobald die Zahlung eingeht.",
       "reopen": "Zahlungsseite erneut öffnen"
     }
   },

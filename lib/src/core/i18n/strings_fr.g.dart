@@ -5856,8 +5856,8 @@ class Translations$events$pay$fr {
 	/// fr: 'Carte bancaire'
 	String get methodCard => 'Carte bancaire';
 
-	/// fr: 'Tu paies sur la page sécurisée de KPay (Visa, Mastercard). La carte est débitée en dollars, après conversion.'
-	String get cardNote => 'Tu paies sur la page sécurisée de KPay (Visa, Mastercard). La carte est débitée en dollars, après conversion.';
+	/// fr: 'Tu paies sur la page sécurisée de Wajub (Visa, Mastercard).'
+	String get cardNote => 'Tu paies sur la page sécurisée de Wajub (Visa, Mastercard).';
 
 	/// fr: 'Payer {amount} par carte'
 	String payCard({required Object amount}) => 'Payer ${amount} par carte';
@@ -5865,8 +5865,8 @@ class Translations$events$pay$fr {
 	/// fr: 'Termine le paiement sur la page sécurisée'
 	String get waitingCardTitle => 'Termine le paiement sur la page sécurisée';
 
-	/// fr: 'Saisis ta carte sur la page KPay. Ton inscription se confirme ici dès que le paiement est reçu.'
-	String get waitingCardText => 'Saisis ta carte sur la page KPay. Ton inscription se confirme ici dès que le paiement est reçu.';
+	/// fr: 'Saisis ta carte sur la page Wajub. Ton inscription se confirme ici dès que le paiement est reçu.'
+	String get waitingCardText => 'Saisis ta carte sur la page Wajub. Ton inscription se confirme ici dès que le paiement est reçu.';
 
 	/// fr: 'Rouvrir la page de paiement'
 	String get reopen => 'Rouvrir la page de paiement';
@@ -7157,8 +7157,8 @@ class Translations$events$pay$failures$fr {
 	/// fr: 'Le paiement a échoué. Réessaie, ou utilise un autre numéro.'
 	String get generic => 'Le paiement a échoué. Réessaie, ou utilise un autre numéro.';
 
-	/// fr: 'En mode test, seuls les numéros de test KPay sont acceptés : utilise par exemple le 6 53 45 67 89.'
-	String get sandbox => 'En mode test, seuls les numéros de test KPay sont acceptés : utilise par exemple le 6 53 45 67 89.';
+	/// fr: 'En mode test, seuls les numéros de test Wajub sont acceptés : utilise par exemple le 6 70 00 00 00.'
+	String get sandbox => 'En mode test, seuls les numéros de test Wajub sont acceptés : utilise par exemple le 6 70 00 00 00.';
 }
 
 // Path: ministry.goals.crusade
@@ -8557,7 +8557,7 @@ extension on Translations {
 			'events.pay.failures.notApproved' => 'Le paiement n\'a pas été validé : code PIN non saisi ou refusé.',
 			'events.pay.failures.unavailable' => 'L\'opérateur est indisponible pour le moment. Réessaie plus tard.',
 			'events.pay.failures.generic' => 'Le paiement a échoué. Réessaie, ou utilise un autre numéro.',
-			'events.pay.failures.sandbox' => 'En mode test, seuls les numéros de test KPay sont acceptés : utilise par exemple le 6 53 45 67 89.',
+			'events.pay.failures.sandbox' => 'En mode test, seuls les numéros de test Wajub sont acceptés : utilise par exemple le 6 70 00 00 00.',
 			'events.pay.later' => 'Je paierai plus tard',
 			'events.pay.toPay' => ({required Object amount}) => 'À payer : ${amount}',
 			'events.pay.payNow' => 'Payer',
@@ -8567,10 +8567,10 @@ extension on Translations {
 			'events.pay.how' => 'Comment veux-tu payer ?',
 			'events.pay.methodMobile' => 'Mobile Money',
 			'events.pay.methodCard' => 'Carte bancaire',
-			'events.pay.cardNote' => 'Tu paies sur la page sécurisée de KPay (Visa, Mastercard). La carte est débitée en dollars, après conversion.',
+			'events.pay.cardNote' => 'Tu paies sur la page sécurisée de Wajub (Visa, Mastercard).',
 			'events.pay.payCard' => ({required Object amount}) => 'Payer ${amount} par carte',
 			'events.pay.waitingCardTitle' => 'Termine le paiement sur la page sécurisée',
-			'events.pay.waitingCardText' => 'Saisis ta carte sur la page KPay. Ton inscription se confirme ici dès que le paiement est reçu.',
+			'events.pay.waitingCardText' => 'Saisis ta carte sur la page Wajub. Ton inscription se confirme ici dès que le paiement est reçu.',
 			'events.pay.reopen' => 'Rouvrir la page de paiement',
 			'notifications.title' => 'Notifications',
 			'notifications.channel' => 'Annonces de la communauté',

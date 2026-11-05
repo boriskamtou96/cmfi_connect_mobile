@@ -2760,10 +2760,10 @@ class _Translations$events$pay$de extends Translations$events$pay$fr {
 	@override String get how => 'Wie möchtest du bezahlen?';
 	@override String get methodMobile => 'Mobile Money';
 	@override String get methodCard => 'Bankkarte';
-	@override String get cardNote => 'Du bezahlst auf der sicheren KPay-Seite (Visa, Mastercard). Die Karte wird nach Umrechnung in Dollar belastet.';
+	@override String get cardNote => 'Du bezahlst auf der sicheren Wajub-Seite (Visa, Mastercard).';
 	@override String payCard({required Object amount}) => '${amount} mit Karte bezahlen';
 	@override String get waitingCardTitle => 'Schließe die Zahlung auf der sicheren Seite ab';
-	@override String get waitingCardText => 'Gib deine Karte auf der KPay-Seite ein. Deine Anmeldung wird hier bestätigt, sobald die Zahlung eingeht.';
+	@override String get waitingCardText => 'Gib deine Karte auf der Wajub-Seite ein. Deine Anmeldung wird hier bestätigt, sobald die Zahlung eingeht.';
 	@override String get reopen => 'Zahlungsseite erneut öffnen';
 }
 
@@ -3502,7 +3502,7 @@ class _Translations$events$pay$failures$de extends Translations$events$pay$failu
 	@override String get notApproved => 'Die Zahlung wurde nicht bestätigt: PIN nicht eingegeben oder abgelehnt.';
 	@override String get unavailable => 'Der Anbieter ist gerade nicht verfügbar. Versuche es später erneut.';
 	@override String get generic => 'Die Zahlung ist fehlgeschlagen. Versuche es erneut oder nutze eine andere Nummer.';
-	@override String get sandbox => 'Im Testmodus werden nur KPay-Testnummern akzeptiert: nutze zum Beispiel 6 53 45 67 89.';
+	@override String get sandbox => 'Im Testmodus werden nur Wajub-Testnummern akzeptiert: nutze zum Beispiel 6 70 00 00 00.';
 }
 
 // Path: ministry.goals.crusade
@@ -4715,7 +4715,7 @@ extension on TranslationsDe {
 			'events.pay.failures.notApproved' => 'Die Zahlung wurde nicht bestätigt: PIN nicht eingegeben oder abgelehnt.',
 			'events.pay.failures.unavailable' => 'Der Anbieter ist gerade nicht verfügbar. Versuche es später erneut.',
 			'events.pay.failures.generic' => 'Die Zahlung ist fehlgeschlagen. Versuche es erneut oder nutze eine andere Nummer.',
-			'events.pay.failures.sandbox' => 'Im Testmodus werden nur KPay-Testnummern akzeptiert: nutze zum Beispiel 6 53 45 67 89.',
+			'events.pay.failures.sandbox' => 'Im Testmodus werden nur Wajub-Testnummern akzeptiert: nutze zum Beispiel 6 70 00 00 00.',
 			'events.pay.later' => 'Ich bezahle später',
 			'events.pay.toPay' => ({required Object amount}) => 'Zu zahlen: ${amount}',
 			'events.pay.payNow' => 'Bezahlen',
@@ -4725,10 +4725,10 @@ extension on TranslationsDe {
 			'events.pay.how' => 'Wie möchtest du bezahlen?',
 			'events.pay.methodMobile' => 'Mobile Money',
 			'events.pay.methodCard' => 'Bankkarte',
-			'events.pay.cardNote' => 'Du bezahlst auf der sicheren KPay-Seite (Visa, Mastercard). Die Karte wird nach Umrechnung in Dollar belastet.',
+			'events.pay.cardNote' => 'Du bezahlst auf der sicheren Wajub-Seite (Visa, Mastercard).',
 			'events.pay.payCard' => ({required Object amount}) => '${amount} mit Karte bezahlen',
 			'events.pay.waitingCardTitle' => 'Schließe die Zahlung auf der sicheren Seite ab',
-			'events.pay.waitingCardText' => 'Gib deine Karte auf der KPay-Seite ein. Deine Anmeldung wird hier bestätigt, sobald die Zahlung eingeht.',
+			'events.pay.waitingCardText' => 'Gib deine Karte auf der Wajub-Seite ein. Deine Anmeldung wird hier bestätigt, sobald die Zahlung eingeht.',
 			'events.pay.reopen' => 'Zahlungsseite erneut öffnen',
 			'notifications.title' => 'Mitteilungen',
 			'notifications.channel' => 'Ankündigungen der Gemeinschaft',

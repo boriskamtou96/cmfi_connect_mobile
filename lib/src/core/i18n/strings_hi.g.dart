@@ -2759,10 +2759,10 @@ class _Translations$events$pay$hi extends Translations$events$pay$fr {
 	@override String get how => 'आप कैसे भुगतान करना चाहते हैं?';
 	@override String get methodMobile => 'मोबाइल मनी';
 	@override String get methodCard => 'बैंक कार्ड';
-	@override String get cardNote => 'आप KPay के सुरक्षित पेज पर भुगतान करते हैं (Visa, Mastercard)। कार्ड से रूपांतरण के बाद डॉलर में राशि कटती है।';
+	@override String get cardNote => 'आप Wajub के सुरक्षित पेज पर भुगतान करते हैं (Visa, Mastercard)।';
 	@override String payCard({required Object amount}) => 'कार्ड से ${amount} का भुगतान करें';
 	@override String get waitingCardTitle => 'सुरक्षित पेज पर भुगतान पूरा करें';
-	@override String get waitingCardText => 'KPay पेज पर अपना कार्ड दर्ज करें। भुगतान पहुँचते ही आपका पंजीकरण यहाँ पक्का हो जाएगा।';
+	@override String get waitingCardText => 'Wajub पेज पर अपना कार्ड दर्ज करें। भुगतान पहुँचते ही आपका पंजीकरण यहाँ पक्का हो जाएगा।';
 	@override String get reopen => 'भुगतान पेज फिर से खोलें';
 }
 
@@ -3501,7 +3501,7 @@ class _Translations$events$pay$failures$hi extends Translations$events$pay$failu
 	@override String get notApproved => 'भुगतान की पुष्टि नहीं हुई: पिन नहीं डाला गया या अस्वीकार हुआ।';
 	@override String get unavailable => 'ऑपरेटर अभी उपलब्ध नहीं है। बाद में फिर कोशिश करें।';
 	@override String get generic => 'भुगतान विफल रहा। फिर कोशिश करें या कोई दूसरा नंबर इस्तेमाल करें।';
-	@override String get sandbox => 'टेस्ट मोड में केवल KPay के टेस्ट नंबर स्वीकार होते हैं: उदाहरण के लिए 6 53 45 67 89 इस्तेमाल करें।';
+	@override String get sandbox => 'टेस्ट मोड में केवल Wajub के टेस्ट नंबर स्वीकार होते हैं: उदाहरण के लिए 6 70 00 00 00 इस्तेमाल करें।';
 }
 
 // Path: ministry.goals.crusade
@@ -4714,7 +4714,7 @@ extension on TranslationsHi {
 			'events.pay.failures.notApproved' => 'भुगतान की पुष्टि नहीं हुई: पिन नहीं डाला गया या अस्वीकार हुआ।',
 			'events.pay.failures.unavailable' => 'ऑपरेटर अभी उपलब्ध नहीं है। बाद में फिर कोशिश करें।',
 			'events.pay.failures.generic' => 'भुगतान विफल रहा। फिर कोशिश करें या कोई दूसरा नंबर इस्तेमाल करें।',
-			'events.pay.failures.sandbox' => 'टेस्ट मोड में केवल KPay के टेस्ट नंबर स्वीकार होते हैं: उदाहरण के लिए 6 53 45 67 89 इस्तेमाल करें।',
+			'events.pay.failures.sandbox' => 'टेस्ट मोड में केवल Wajub के टेस्ट नंबर स्वीकार होते हैं: उदाहरण के लिए 6 70 00 00 00 इस्तेमाल करें।',
 			'events.pay.later' => 'मैं बाद में भुगतान करूँगा',
 			'events.pay.toPay' => ({required Object amount}) => 'भुगतान बाकी: ${amount}',
 			'events.pay.payNow' => 'भुगतान करें',
@@ -4724,10 +4724,10 @@ extension on TranslationsHi {
 			'events.pay.how' => 'आप कैसे भुगतान करना चाहते हैं?',
 			'events.pay.methodMobile' => 'मोबाइल मनी',
 			'events.pay.methodCard' => 'बैंक कार्ड',
-			'events.pay.cardNote' => 'आप KPay के सुरक्षित पेज पर भुगतान करते हैं (Visa, Mastercard)। कार्ड से रूपांतरण के बाद डॉलर में राशि कटती है।',
+			'events.pay.cardNote' => 'आप Wajub के सुरक्षित पेज पर भुगतान करते हैं (Visa, Mastercard)।',
 			'events.pay.payCard' => ({required Object amount}) => 'कार्ड से ${amount} का भुगतान करें',
 			'events.pay.waitingCardTitle' => 'सुरक्षित पेज पर भुगतान पूरा करें',
-			'events.pay.waitingCardText' => 'KPay पेज पर अपना कार्ड दर्ज करें। भुगतान पहुँचते ही आपका पंजीकरण यहाँ पक्का हो जाएगा।',
+			'events.pay.waitingCardText' => 'Wajub पेज पर अपना कार्ड दर्ज करें। भुगतान पहुँचते ही आपका पंजीकरण यहाँ पक्का हो जाएगा।',
 			'events.pay.reopen' => 'भुगतान पेज फिर से खोलें',
 			'notifications.title' => 'सूचनाएँ',
 			'notifications.channel' => 'समुदाय की घोषणाएँ',

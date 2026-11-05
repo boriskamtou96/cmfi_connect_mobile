@@ -3245,7 +3245,7 @@ class FakeAppInstaller implements AppInstaller {
   Future<void> install() async => installs++;
 }
 
-/// KPay through the server: a payment waits for the member's PIN until
+/// Wajub through the server: a payment waits for the member's PIN until
 /// the test [complete]s or [fail]s it; completed, the member is registered
 /// (paid) in [events].
 class FakePaymentsApi implements PaymentsApi {
@@ -3339,7 +3339,7 @@ class FakePaymentsApi implements PaymentsApi {
       eventId: eventId,
       people: people,
       gatewayUrl: method == PaymentMethod.card
-          ? 'https://admin.kpay.site/pay/gw_${payments.length + 1}'
+          ? 'https://pay.wajub.com/gw_${payments.length + 1}'
           : '',
     );
     _details[payment.id] = (needsLodging, departureCity);

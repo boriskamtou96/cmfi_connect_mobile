@@ -184,7 +184,7 @@ class TestApp {
   final FakeUpdateRules updateRules;
   final FakeAppInstaller installer;
 
-  /// The mobile money payments (KPay through the server).
+  /// The mobile money payments (Wajub through the server).
   final FakePaymentsApi paymentsApi;
 }
 

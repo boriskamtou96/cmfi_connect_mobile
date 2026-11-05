@@ -2761,10 +2761,10 @@ class _Translations$events$pay$en extends Translations$events$pay$fr {
 	@override String get how => 'How do you want to pay?';
 	@override String get methodMobile => 'Mobile Money';
 	@override String get methodCard => 'Bank card';
-	@override String get cardNote => 'You pay on KPay\'s secure page (Visa, Mastercard). The card is charged in dollars, after conversion.';
+	@override String get cardNote => 'You pay on Wajub\'s secure page (Visa, Mastercard).';
 	@override String payCard({required Object amount}) => 'Pay ${amount} by card';
 	@override String get waitingCardTitle => 'Finish the payment on the secure page';
-	@override String get waitingCardText => 'Enter your card on the KPay page. Your registration is confirmed here as soon as the payment arrives.';
+	@override String get waitingCardText => 'Enter your card on the Wajub page. Your registration is confirmed here as soon as the payment arrives.';
 	@override String get reopen => 'Reopen the payment page';
 }
 
@@ -3503,7 +3503,7 @@ class _Translations$events$pay$failures$en extends Translations$events$pay$failu
 	@override String get notApproved => 'The payment was not approved: PIN not entered or refused.';
 	@override String get unavailable => 'The operator is unavailable right now. Try again later.';
 	@override String get generic => 'The payment failed. Try again, or use another number.';
-	@override String get sandbox => 'In test mode, only KPay test numbers are accepted: use 6 53 45 67 89, for example.';
+	@override String get sandbox => 'In test mode, only Wajub test numbers are accepted: use 6 70 00 00 00, for example.';
 }
 
 // Path: ministry.goals.crusade
@@ -4716,7 +4716,7 @@ extension on TranslationsEn {
 			'events.pay.failures.notApproved' => 'The payment was not approved: PIN not entered or refused.',
 			'events.pay.failures.unavailable' => 'The operator is unavailable right now. Try again later.',
 			'events.pay.failures.generic' => 'The payment failed. Try again, or use another number.',
-			'events.pay.failures.sandbox' => 'In test mode, only KPay test numbers are accepted: use 6 53 45 67 89, for example.',
+			'events.pay.failures.sandbox' => 'In test mode, only Wajub test numbers are accepted: use 6 70 00 00 00, for example.',
 			'events.pay.later' => 'I\'ll pay later',
 			'events.pay.toPay' => ({required Object amount}) => 'To pay: ${amount}',
 			'events.pay.payNow' => 'Pay',
@@ -4726,10 +4726,10 @@ extension on TranslationsEn {
 			'events.pay.how' => 'How do you want to pay?',
 			'events.pay.methodMobile' => 'Mobile Money',
 			'events.pay.methodCard' => 'Bank card',
-			'events.pay.cardNote' => 'You pay on KPay\'s secure page (Visa, Mastercard). The card is charged in dollars, after conversion.',
+			'events.pay.cardNote' => 'You pay on Wajub\'s secure page (Visa, Mastercard).',
 			'events.pay.payCard' => ({required Object amount}) => 'Pay ${amount} by card',
 			'events.pay.waitingCardTitle' => 'Finish the payment on the secure page',
-			'events.pay.waitingCardText' => 'Enter your card on the KPay page. Your registration is confirmed here as soon as the payment arrives.',
+			'events.pay.waitingCardText' => 'Enter your card on the Wajub page. Your registration is confirmed here as soon as the payment arrives.',
 			'events.pay.reopen' => 'Reopen the payment page',
 			'notifications.title' => 'Notifications',
 			'notifications.channel' => 'Community announcements',

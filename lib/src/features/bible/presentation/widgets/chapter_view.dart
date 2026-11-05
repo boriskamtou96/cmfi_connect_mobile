@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
+import '../../../../core/i18n/strings.g.dart';
 import '../../../../core/theme/app_icons.dart';
 import '../../../../core/theme/app_motion.dart';
 import '../../../../core/theme/app_theme.dart';
@@ -292,12 +293,22 @@ class _VerseLine extends StatelessWidget {
                       ),
                     ),
                     for (final segment in verse.segments)
-                      TextSpan(
-                        text: segment.text,
-                        style: segment.jesus && jesus != null
-                            ? TextStyle(color: jesus)
-                            : null,
-                      ),
+                      if (segment.note case final note?)
+                        WidgetSpan(
+                          alignment: PlaceholderAlignment.top,
+                          child: _NoteMark(
+                            note: note,
+                            size: size,
+                            palette: palette,
+                          ),
+                        )
+                      else
+                        TextSpan(
+                          text: segment.text,
+                          style: segment.jesus && jesus != null
+                              ? TextStyle(color: jesus)
+                              : null,
+                        ),
                     if (bookmarked)
                       WidgetSpan(
                         alignment: PlaceholderAlignment.middle,
@@ -316,6 +327,67 @@ class _VerseLine extends StatelessWidget {
               ),
             ),
           ],
+        ),
+      ),
+    );
+  }
+}
+
+/// A note of the translators, after the word it is on: a small mark to tap,
+/// the note in a sheet.
+class _NoteMark extends StatelessWidget {
+  const _NoteMark({
+    required this.note,
+    required this.size,
+    required this.palette,
+  });
+
+  final String note;
+  final double size;
+  final ReaderPalette palette;
+
+  @override
+  Widget build(BuildContext context) {
+    final t = context.t;
+    return Semantics(
+      button: true,
+      label: t.bible.noteOpen,
+      child: GestureDetector(
+        behavior: HitTestBehavior.opaque,
+        onTap: () => showModalBottomSheet<void>(
+          context: context,
+          showDragHandle: true,
+          builder: (sheet) => SafeArea(
+            child: Padding(
+              padding: const EdgeInsets.fromLTRB(24, 0, 24, 24),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    sheet.t.bible.note,
+                    style: Theme.of(sheet).textTheme.titleMedium,
+                  ),
+                  const SizedBox(height: 8),
+                  Text(note, style: const TextStyle(fontSize: 16, height: 1.5)),
+                ],
+              ),
+            ),
+          ),
+        ),
+        // big enough to tap, small in the line
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 3),
+          child: Text(
+            '*',
+            style: TextStyle(
+              fontFamily: AppTheme.fontFamily,
+              fontSize: size * 0.7,
+              fontWeight: FontWeight.w800,
+              color: palette.accent,
+              height: 1,
+            ),
+          ),
         ),
       ),
     );

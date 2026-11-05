@@ -1776,7 +1776,9 @@
     "readOn": "{site} पर पढ़ें (सुरक्षित पाठ)",
     "listen": "यह अध्याय सुनें",
     "listeningAt": "{place} · पद {verse}",
-    "stopListening": "पढ़ना बंद करें"
+    "stopListening": "पढ़ना बंद करें",
+    "note": "टिप्पणी",
+    "noteOpen": "टिप्पणी देखें"
   },
   "profilePhoto": {
     "title": "प्रोफ़ाइल फ़ोटो",

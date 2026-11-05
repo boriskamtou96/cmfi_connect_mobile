@@ -26,6 +26,14 @@ class AppConfig {
 
   static const siteUrl = 'https://cmfi-connect.com';
 
+  // La Bible du Semeur in the app, through the YouVersion Platform (Biblica's
+  // channel), once Biblica's licence covers the app: the app key of the
+  // platform and the switch in .env (YOUVERSION_APP_KEY, BIBLE_SEMEUR=on).
+  // Without them it stays read on Bibleserver.
+  static const youversionAppKey = String.fromEnvironment('YOUVERSION_APP_KEY');
+  static const semeurInApp =
+      youversionAppKey != '' && String.fromEnvironment('BIBLE_SEMEUR') == 'on';
+
   factory AppConfig.forFlavor(Flavor flavor) {
     final revenueCatKey = _revenueCatKeyFor(flavor);
     if (_apiBaseUrlOverride.isNotEmpty) {

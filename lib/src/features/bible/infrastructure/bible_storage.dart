@@ -1,7 +1,11 @@
+import 'dart:async';
 import 'dart:io';
 
 import 'package:path_provider/path_provider.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
+
+import '../../../core/config/app_config.dart';
+import '../domain/bible_version.dart';
 
 part 'bible_storage.g.dart';
 
@@ -51,8 +55,22 @@ class BibleStorage {
       await file.delete();
     }
   }
+
+  /// Everything kept of [version].
+  Future<void> removeAll(String version) async {
+    final directory = Directory('${(await _directory()).path}/bible/$version');
+    if (directory.existsSync()) {
+      await directory.delete(recursive: true);
+    }
+  }
 }
 
 @Riverpod(keepAlive: true)
-BibleStorage bibleStorage(Ref ref) =>
-    BibleStorage(directory: getApplicationSupportDirectory);
+BibleStorage bibleStorage(Ref ref) {
+  final storage = BibleStorage(directory: getApplicationSupportDirectory);
+  // La Bible du Semeur turned off (its licence over): its copy goes
+  if (!AppConfig.semeurInApp) {
+    unawaited(storage.removeAll(semeurVersion.id));
+  }
+  return storage;
+}

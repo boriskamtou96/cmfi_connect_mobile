@@ -1776,7 +1776,9 @@
     "readOn": "Auf {site} lesen (geschützter Text)",
     "listen": "Dieses Kapitel anhören",
     "listeningAt": "{place} · Vers {verse}",
-    "stopListening": "Vorlesen beenden"
+    "stopListening": "Vorlesen beenden",
+    "note": "Anmerkung",
+    "noteOpen": "Anmerkung anzeigen"
   },
   "profilePhoto": {
     "title": "Profilbild",

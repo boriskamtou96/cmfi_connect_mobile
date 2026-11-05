@@ -1726,7 +1726,9 @@
     "readOn": "在 {site} 上阅读（受版权保护）",
     "listen": "收听本章",
     "listeningAt": "{place} · 第 {verse} 节",
-    "stopListening": "停止朗读"
+    "stopListening": "停止朗读",
+    "note": "注释",
+    "noteOpen": "查看注释"
   },
   "profilePhoto": {
     "title": "头像",

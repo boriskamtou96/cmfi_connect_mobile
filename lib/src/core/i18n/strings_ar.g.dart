@@ -1285,6 +1285,8 @@ class _Translations$bible$ar extends Translations$bible$fr {
 	@override String get listen => 'استمع إلى هذا الأصحاح';
 	@override String listeningAt({required Object place, required Object verse}) => '${place} · الآية ${verse}';
 	@override String get stopListening => 'إيقاف القراءة';
+	@override String get note => 'ملاحظة';
+	@override String get noteOpen => 'عرض الملاحظة';
 }
 
 // Path: profilePhoto
@@ -5671,6 +5673,8 @@ extension on TranslationsAr {
 			'bible.listen' => 'استمع إلى هذا الأصحاح',
 			'bible.listeningAt' => ({required Object place, required Object verse}) => '${place} · الآية ${verse}',
 			'bible.stopListening' => 'إيقاف القراءة',
+			'bible.note' => 'ملاحظة',
+			'bible.noteOpen' => 'عرض الملاحظة',
 			'profilePhoto.title' => 'صورة الملف الشخصي',
 			'profilePhoto.add' => 'إضافة صورة للملف الشخصي',
 			'profilePhoto.change' => 'تغيير صورة الملف الشخصي',
@@ -5813,10 +5817,10 @@ extension on TranslationsAr {
 			'seekFirst.shield.fill' => 'املأ تقريري',
 			'seekFirst.shield.pause' => ({required Object n}) => 'استراحة 5 دقائق (${n}/3)',
 			'seekFirst.shield.notificationTitle' => 'اطلب الله أولًا',
-			'seekFirst.shield.notificationBody' => 'المس هنا لتملأ تقريرك.',
-			'seekFirst.shield.serviceBody' => 'تُغلق تطبيقاتك كل يوم حتى تقريرك.',
 			_ => null,
 		} ?? switch (path) {
+			'seekFirst.shield.notificationBody' => 'المس هنا لتملأ تقريرك.',
+			'seekFirst.shield.serviceBody' => 'تُغلق تطبيقاتك كل يوم حتى تقريرك.',
 			'seekFirst.permissionsAndroid' => 'لإغلاق تطبيقاتك، يحتاج CMFI Connect إلى إذنين تفعّلهما في الإعدادات التي ستُفتح: «الوصول إلى بيانات الاستخدام» (لمعرفة التطبيق المفتوح) و«الظهور فوق التطبيقات الأخرى» (لإظهار شاشة اطلب الله أولًا). لا يخرج شيء من هاتفك.',
 			'seekFirst.permissionsContinue' => 'متابعة',
 			'seekFirst.deniedAndroid' => 'بدون هذين الإذنين لا يستطيع CMFI Connect إغلاق التطبيقات. يمكنك تفعيلهما من الإعدادات › التطبيقات › الوصول الخاص.',

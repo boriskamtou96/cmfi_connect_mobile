@@ -1163,6 +1163,8 @@ class _Translations$bible$es extends Translations$bible$fr {
 	@override String get listen => 'Escuchar este capítulo';
 	@override String listeningAt({required Object place, required Object verse}) => '${place} · versículo ${verse}';
 	@override String get stopListening => 'Detener la lectura';
+	@override String get note => 'Nota';
+	@override String get noteOpen => 'Ver la nota';
 }
 
 // Path: profilePhoto
@@ -5273,6 +5275,8 @@ extension on TranslationsEs {
 			'bible.listen' => 'Escuchar este capítulo',
 			'bible.listeningAt' => ({required Object place, required Object verse}) => '${place} · versículo ${verse}',
 			'bible.stopListening' => 'Detener la lectura',
+			'bible.note' => 'Nota',
+			'bible.noteOpen' => 'Ver la nota',
 			'profilePhoto.title' => 'Foto de perfil',
 			'profilePhoto.add' => 'Añadir una foto de perfil',
 			'profilePhoto.change' => 'Cambiar la foto de perfil',
@@ -5415,10 +5419,10 @@ extension on TranslationsEs {
 			'seekFirst.shield.fill' => 'Llenar mi informe',
 			'seekFirst.shield.pause' => ({required Object n}) => 'Pausa de 5 min (${n}/3)',
 			'seekFirst.shield.notificationTitle' => 'Busca primero a Dios',
-			'seekFirst.shield.notificationBody' => 'Toca aquí para llenar tu informe.',
-			'seekFirst.shield.serviceBody' => 'Tus apps se cierran cada día hasta tu informe.',
 			_ => null,
 		} ?? switch (path) {
+			'seekFirst.shield.notificationBody' => 'Toca aquí para llenar tu informe.',
+			'seekFirst.shield.serviceBody' => 'Tus apps se cierran cada día hasta tu informe.',
 			'seekFirst.permissionsAndroid' => 'Para cerrar tus apps, CMFI Connect necesita dos permisos, que activarás en los ajustes que se van a abrir: «Acceso a datos de uso» (saber qué app está abierta) y «Mostrar sobre otras apps» (mostrar la pantalla Busca primero a Dios). Nada sale de tu teléfono.',
 			'seekFirst.permissionsContinue' => 'Continuar',
 			'seekFirst.deniedAndroid' => 'Sin estos dos permisos, CMFI Connect no puede cerrar apps. Puedes activarlos en Ajustes › Aplicaciones › Acceso especial.',

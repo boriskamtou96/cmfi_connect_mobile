@@ -4,13 +4,22 @@ import 'package:flutter/foundation.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../domain/bible.dart';
+import '../domain/bible_version.dart';
 import '../infrastructure/bible_api.dart';
 import '../infrastructure/bible_storage.dart';
+import '../infrastructure/youversion_bible.dart';
 
 part 'bible_library.g.dart';
 
 const _complete = 'complete.json';
 const _books = 'books.json';
+
+/// The YouVersion Platform id of [version] when it is a Bible under
+/// licence, else null.
+int? _licensed(String version) =>
+    (bibleVersionOf(version) ??
+            (version == semeurVersion.id ? semeurVersion : null))
+        ?.youversionId;
 
 /// The whole of [version] once downloaded (read off the main thread), or
 /// null.
@@ -45,6 +54,11 @@ Future<List<BibleBook>> bibleBooks(Ref ref, String version) async {
   if (text != null) {
     return text.books;
   }
+  // a Bible under licence not downloaded: from the YouVersion Platform, kept
+  // in memory only
+  if (_licensed(version) case final bibleId?) {
+    return ref.watch(youVersionBibleProvider).books(bibleId);
+  }
   final storage = ref.watch(bibleStorageProvider);
   final kept = await storage.read(version, _books);
   if (kept != null) {
@@ -74,6 +88,18 @@ Future<BibleChapter> bibleChapter(
   final text = await ref.watch(bibleTextProvider(version).future);
   if (text?.chapter(book, number) case final chapter?) {
     return chapter;
+  }
+  // a Bible under licence not downloaded: read with the network, never
+  // written on the phone a chapter at a time
+  if (_licensed(version) case final bibleId?) {
+    final read = await ref
+        .watch(youVersionBibleProvider)
+        .chapter(bibleId, book, number);
+    return BibleChapter.fromJson(
+      book,
+      read.chapter,
+      copyright: read.copyright.isEmpty ? null : read.copyright,
+    );
   }
   final storage = ref.watch(bibleStorageProvider);
   final name = '$book.$number.json';
@@ -105,20 +131,27 @@ class BibleDownload extends _$BibleDownload {
 
   Future<void> download() async {
     state = const AsyncData((downloaded: false, progress: 0));
+    void progress(int received, int total) {
+      if (total > 0 && ref.mounted) {
+        state = AsyncData((downloaded: false, progress: received / total));
+      }
+    }
+
     try {
-      final bytes = await ref
-          .read(bibleApiProvider)
-          .complete(
-            version,
-            onProgress: (received, total) {
-              if (total > 0 && ref.mounted) {
-                state = AsyncData((
-                  downloaded: false,
-                  progress: received / total,
-                ));
-              }
-            },
-          );
+      // a Bible under licence: its chapters one after the other
+      final bytes = switch (_licensed(version)) {
+        final bibleId? => utf8.encode(
+          jsonEncode(
+            await ref
+                .read(youVersionBibleProvider)
+                .complete(bibleId, onProgress: progress),
+          ),
+        ),
+        null =>
+          await ref
+              .read(bibleApiProvider)
+              .complete(version, onProgress: progress),
+      };
       await ref.read(bibleStorageProvider).write(version, _complete, bytes);
       ref
         ..invalidate(bibleTextProvider(version))

@@ -1133,6 +1133,8 @@ class _Translations$bible$zh extends Translations$bible$fr {
 	@override String get listen => '收听本章';
 	@override String listeningAt({required Object place, required Object verse}) => '${place} · 第 ${verse} 节';
 	@override String get stopListening => '停止朗读';
+	@override String get note => '注释';
+	@override String get noteOpen => '查看注释';
 }
 
 // Path: profilePhoto
@@ -5173,6 +5175,8 @@ extension on TranslationsZh {
 			'bible.listen' => '收听本章',
 			'bible.listeningAt' => ({required Object place, required Object verse}) => '${place} · 第 ${verse} 节',
 			'bible.stopListening' => '停止朗读',
+			'bible.note' => '注释',
+			'bible.noteOpen' => '查看注释',
 			'profilePhoto.title' => '头像',
 			'profilePhoto.add' => '添加头像',
 			'profilePhoto.change' => '更换头像',
@@ -5315,10 +5319,10 @@ extension on TranslationsZh {
 			'seekFirst.shield.fill' => '填写我的汇报',
 			'seekFirst.shield.pause' => ({required Object n}) => '暂停 5 分钟（${n}/3）',
 			'seekFirst.shield.notificationTitle' => '先求神',
-			'seekFirst.shield.notificationBody' => '轻点此处填写你的汇报。',
-			'seekFirst.shield.serviceBody' => '你的应用每天都会关闭，直到你填写报告。',
 			_ => null,
 		} ?? switch (path) {
+			'seekFirst.shield.notificationBody' => '轻点此处填写你的汇报。',
+			'seekFirst.shield.serviceBody' => '你的应用每天都会关闭，直到你填写报告。',
 			'seekFirst.permissionsAndroid' => '为了关闭你的应用，CMFI Connect 需要在即将打开的设置中开启两项权限：“使用情况访问权限”（知道哪个应用在前台）和“显示在其他应用上层”（显示“先求神”页面）。任何数据都不会离开你的手机。',
 			'seekFirst.permissionsContinue' => '继续',
 			'seekFirst.deniedAndroid' => '没有这两项权限，CMFI Connect 无法关闭应用。你可以在“设置 › 应用 › 特殊访问权限”中开启。',

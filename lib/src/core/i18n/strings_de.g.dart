@@ -1163,6 +1163,8 @@ class _Translations$bible$de extends Translations$bible$fr {
 	@override String get listen => 'Dieses Kapitel anhören';
 	@override String listeningAt({required Object place, required Object verse}) => '${place} · Vers ${verse}';
 	@override String get stopListening => 'Vorlesen beenden';
+	@override String get note => 'Anmerkung';
+	@override String get noteOpen => 'Anmerkung anzeigen';
 }
 
 // Path: profilePhoto
@@ -5273,6 +5275,8 @@ extension on TranslationsDe {
 			'bible.listen' => 'Dieses Kapitel anhören',
 			'bible.listeningAt' => ({required Object place, required Object verse}) => '${place} · Vers ${verse}',
 			'bible.stopListening' => 'Vorlesen beenden',
+			'bible.note' => 'Anmerkung',
+			'bible.noteOpen' => 'Anmerkung anzeigen',
 			'profilePhoto.title' => 'Profilbild',
 			'profilePhoto.add' => 'Profilbild hinzufügen',
 			'profilePhoto.change' => 'Profilbild ändern',
@@ -5415,10 +5419,10 @@ extension on TranslationsDe {
 			'seekFirst.shield.fill' => 'Meinen Bericht ausfüllen',
 			'seekFirst.shield.pause' => ({required Object n}) => '5 Min. Pause (${n}/3)',
 			'seekFirst.shield.notificationTitle' => 'Suche zuerst Gott',
-			'seekFirst.shield.notificationBody' => 'Tippe hier, um deinen Bericht auszufüllen.',
-			'seekFirst.shield.serviceBody' => 'Deine Apps schließen sich jeden Tag bis zu deinem Bericht.',
 			_ => null,
 		} ?? switch (path) {
+			'seekFirst.shield.notificationBody' => 'Tippe hier, um deinen Bericht auszufüllen.',
+			'seekFirst.shield.serviceBody' => 'Deine Apps schließen sich jeden Tag bis zu deinem Bericht.',
 			'seekFirst.permissionsAndroid' => 'Um deine Apps zu schließen, braucht CMFI Connect zwei Berechtigungen, die du in den gleich geöffneten Einstellungen einschaltest: „Zugriff auf Nutzungsdaten“ (welche App offen ist) und „Über anderen Apps einblenden“ (den Bildschirm Suche zuerst Gott zeigen). Nichts verlässt dein Handy.',
 			'seekFirst.permissionsContinue' => 'Weiter',
 			'seekFirst.deniedAndroid' => 'Ohne diese zwei Berechtigungen kann CMFI Connect keine Apps schließen. Du kannst sie unter Einstellungen › Apps › Spezieller Zugriff einschalten.',

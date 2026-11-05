@@ -11,6 +11,7 @@ import '../../../core/i18n/strings.g.dart';
 import '../../../core/network/app_exception.dart';
 import '../../../core/network/app_exception_message.dart';
 import '../../../core/services/deep_links.dart';
+import '../../../core/services/link_launcher.dart';
 import '../../../core/services/screen_awake.dart';
 import '../../../core/services/share_service.dart';
 import '../../../core/storage/preferences.dart';
@@ -765,6 +766,7 @@ class _ChapterPage extends ConsumerWidget {
         onFocused: onFocused,
         footer: _ChapterFooter(
           version: version,
+          copyright: chapter.copyright,
           place: place,
           books: books,
           palette: palette,
@@ -792,6 +794,7 @@ class _ChapterPage extends ConsumerWidget {
 class _ChapterFooter extends HookConsumerWidget {
   const _ChapterFooter({
     required this.version,
+    required this.copyright,
     required this.place,
     required this.books,
     required this.palette,
@@ -800,6 +803,9 @@ class _ChapterFooter extends HookConsumerWidget {
   });
 
   final BibleVersion version;
+
+  /// The notice the publisher sends with the chapter (a Bible under licence).
+  final String? copyright;
   final BibleRef place;
   final List<BibleBook> books;
   final ReaderPalette palette;
@@ -919,10 +925,21 @@ class _ChapterFooter extends HookConsumerWidget {
               ),
             ],
           ),
-          if (version.attribution case final credit?)
+          if (copyright ?? version.attribution case final credit?)
             Padding(
               padding: const EdgeInsets.only(top: AppSpacing.sm),
               child: Text(credit, textAlign: TextAlign.center, style: muted),
+            ),
+          // its licence asks for a link to the publisher under every chapter
+          if (version.online)
+            Center(
+              child: TextButton(
+                onPressed: () => ref
+                    .read(linkLauncherProvider)
+                    .openInApp(Uri.https('www.biblica.com')),
+                style: TextButton.styleFrom(foregroundColor: palette.accent),
+                child: const Text('Biblica.com'),
+              ),
             ),
         ],
       ),

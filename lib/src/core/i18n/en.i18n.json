@@ -1777,7 +1777,9 @@
     "readOn": "Read on {site} (copyrighted text)",
     "listen": "Listen to this chapter",
     "listeningAt": "{place} · verse {verse}",
-    "stopListening": "Stop reading"
+    "stopListening": "Stop reading",
+    "note": "Note",
+    "noteOpen": "Show the note"
   },
   "profilePhoto": {
     "title": "Profile photo",

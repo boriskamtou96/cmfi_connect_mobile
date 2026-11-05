@@ -168,6 +168,7 @@ class _Results extends StatelessWidget {
   final BibleSearch found;
   final String query;
   final List<BibleBook> books;
+
   final ValueChanged<BibleRef> onOpen;
 
   @override

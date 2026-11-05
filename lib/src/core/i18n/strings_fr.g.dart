@@ -2429,6 +2429,12 @@ class Translations$bible$fr {
 
 	/// fr: 'Arrêter la lecture'
 	String get stopListening => 'Arrêter la lecture';
+
+	/// fr: 'Note'
+	String get note => 'Note';
+
+	/// fr: 'Voir la note'
+	String get noteOpen => 'Voir la note';
 }
 
 // Path: profilePhoto
@@ -9111,6 +9117,8 @@ extension on Translations {
 			'bible.listen' => 'Écouter ce chapitre',
 			'bible.listeningAt' => ({required Object place, required Object verse}) => '${place} · verset ${verse}',
 			'bible.stopListening' => 'Arrêter la lecture',
+			'bible.note' => 'Note',
+			'bible.noteOpen' => 'Voir la note',
 			'profilePhoto.title' => 'Photo de profil',
 			'profilePhoto.add' => 'Ajouter une photo de profil',
 			'profilePhoto.change' => 'Changer la photo de profil',
@@ -9253,10 +9261,10 @@ extension on Translations {
 			'seekFirst.shield.fill' => 'Remplir mon compte rendu',
 			'seekFirst.shield.pause' => ({required Object n}) => 'Pause de 5 min (${n}/3)',
 			'seekFirst.shield.notificationTitle' => 'Cherche d\'abord Dieu',
-			'seekFirst.shield.notificationBody' => 'Touche ici pour remplir ton compte rendu.',
-			'seekFirst.shield.serviceBody' => 'Tes apps se ferment chaque jour jusqu\'à ton compte rendu.',
 			_ => null,
 		} ?? switch (path) {
+			'seekFirst.shield.notificationBody' => 'Touche ici pour remplir ton compte rendu.',
+			'seekFirst.shield.serviceBody' => 'Tes apps se ferment chaque jour jusqu\'à ton compte rendu.',
 			'seekFirst.permissionsAndroid' => 'Pour fermer tes apps, CMFI Connect a besoin de deux autorisations, à activer dans les réglages qui vont s\'ouvrir : « Accès aux données d\'utilisation » (savoir quelle app est ouverte) et « Afficher par-dessus les autres applis » (montrer l\'écran Cherche d\'abord Dieu). Rien ne quitte ton téléphone.',
 			'seekFirst.permissionsContinue' => 'Continuer',
 			'seekFirst.deniedAndroid' => 'Sans ces deux autorisations, CMFI Connect ne peut pas fermer d\'apps. Tu peux les activer dans Réglages › Applications › Accès spécial.',

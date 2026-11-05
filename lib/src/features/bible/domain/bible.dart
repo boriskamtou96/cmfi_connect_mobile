@@ -52,17 +52,35 @@ String _bookName(Map<String, dynamic> json) {
       .join(' ');
 }
 
-/// A piece of a verse: words (said by Jesus, or not), or a line break of a
-/// poem.
+/// A piece of a verse: words (said by Jesus, or not), a line break of a
+/// poem, or a note of the translators (shown as a mark to tap).
 class BibleSegment {
-  const BibleSegment(this.text, {this.jesus = false});
+  const BibleSegment(this.text, {this.jesus = false, this.joined = false})
+    : note = null;
 
-  const BibleSegment.lineBreak() : text = '\n', jesus = false;
+  const BibleSegment.lineBreak()
+    : text = '\n',
+      jesus = false,
+      joined = false,
+      note = null;
+
+  const BibleSegment.note(String this.note)
+    : text = '',
+      jesus = false,
+      joined = false;
 
   final String text;
   final bool jesus;
 
+  /// The text of a note; null for words.
+  final String? note;
+
+  /// Read right after the words before it, without a space (the source
+  /// writes none: "vie" then ", et" around a note).
+  final bool joined;
+
   bool get isBreak => text == '\n';
+  bool get isNote => note != null;
 }
 
 /// What a chapter is made of, in order.
@@ -101,22 +119,30 @@ class BibleChapter {
     required this.bookId,
     required this.number,
     required this.items,
+    this.copyright,
   });
 
   /// From the "chapter" object of the API: {number, content: [...]}.
-  factory BibleChapter.fromJson(String bookId, Map<String, dynamic> json) =>
-      BibleChapter(
-        bookId: bookId,
-        number: json['number'] as int,
-        items: [
-          for (final item in json['content'] as List<dynamic>)
-            ?_item(item as Map<String, dynamic>),
-        ],
-      );
+  factory BibleChapter.fromJson(
+    String bookId,
+    Map<String, dynamic> json, {
+    String? copyright,
+  }) => BibleChapter(
+    bookId: bookId,
+    number: json['number'] as int,
+    items: [
+      for (final item in json['content'] as List<dynamic>)
+        ?_item(item as Map<String, dynamic>),
+    ],
+    copyright: copyright,
+  );
 
   final String bookId;
   final int number;
   final List<BibleItem> items;
+
+  /// The notice its publisher gives with it (a Bible under licence).
+  final String? copyright;
 
   List<BibleVerse> get verses => [
     for (final item in items)
@@ -141,14 +167,19 @@ BibleItem? _item(Map<String, dynamic> json) => switch (json['type']) {
   _ => null,
 };
 
-/// A string, {text, wordsOfJesus?, poem?}, {lineBreak: true}; a note
-/// ({noteId}) is left out.
+/// A string, {text, wordsOfJesus?, poem?}, {lineBreak: true}, a note given
+/// with its text ({note}); a note given only by its id ({noteId}) is left
+/// out.
 BibleSegment? _segment(Object? part) => switch (part) {
   final String text => BibleSegment(text),
   {'lineBreak': true} => const BibleSegment.lineBreak(),
+  {'note': final String note} when note.trim().isNotEmpty => BibleSegment.note(
+    note.trim(),
+  ),
   {'text': final String text} => BibleSegment(
     text,
     jesus: (part as Map)['wordsOfJesus'] == true,
+    joined: part['joined'] == true,
   ),
   _ => null,
 };
@@ -159,6 +190,13 @@ BibleSegment? _segment(Object? part) => switch (part) {
 List<BibleSegment> _tidy(List<BibleSegment> parts) {
   final tidy = <BibleSegment>[];
   for (final part in parts) {
+    // a note sits right after the word it is on
+    if (part.isNote) {
+      if (tidy.isNotEmpty) {
+        tidy.add(part);
+      }
+      continue;
+    }
     if (part.isBreak) {
       if (tidy.isNotEmpty && !tidy.last.isBreak) {
         tidy.add(part);
@@ -169,9 +207,12 @@ List<BibleSegment> _tidy(List<BibleSegment> parts) {
     if (text.isEmpty) {
       continue;
     }
-    final before = tidy.lastOrNull;
+    final before = tidy.lastWhere(
+      (piece) => !piece.isNote,
+      orElse: () => const BibleSegment.lineBreak(),
+    );
     final spaced =
-        before != null &&
+        !part.joined &&
         !before.isBreak &&
         !_isCjk(before.text.runes.last) &&
         !_isCjk(text.runes.first);

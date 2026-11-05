@@ -1975,7 +1975,9 @@
     "readOn": "تُقرأ على {site} (نص محمي)",
     "listen": "استمع إلى هذا الأصحاح",
     "listeningAt": "{place} · الآية {verse}",
-    "stopListening": "إيقاف القراءة"
+    "stopListening": "إيقاف القراءة",
+    "note": "ملاحظة",
+    "noteOpen": "عرض الملاحظة"
   },
   "profilePhoto": {
     "title": "صورة الملف الشخصي",

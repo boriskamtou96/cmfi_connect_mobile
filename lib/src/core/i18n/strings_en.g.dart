@@ -1164,6 +1164,8 @@ class _Translations$bible$en extends Translations$bible$fr {
 	@override String get listen => 'Listen to this chapter';
 	@override String listeningAt({required Object place, required Object verse}) => '${place} · verse ${verse}';
 	@override String get stopListening => 'Stop reading';
+	@override String get note => 'Note';
+	@override String get noteOpen => 'Show the note';
 }
 
 // Path: profilePhoto
@@ -5274,6 +5276,8 @@ extension on TranslationsEn {
 			'bible.listen' => 'Listen to this chapter',
 			'bible.listeningAt' => ({required Object place, required Object verse}) => '${place} · verse ${verse}',
 			'bible.stopListening' => 'Stop reading',
+			'bible.note' => 'Note',
+			'bible.noteOpen' => 'Show the note',
 			'profilePhoto.title' => 'Profile photo',
 			'profilePhoto.add' => 'Add a profile photo',
 			'profilePhoto.change' => 'Change the profile photo',
@@ -5416,10 +5420,10 @@ extension on TranslationsEn {
 			'seekFirst.shield.fill' => 'Fill in my report',
 			'seekFirst.shield.pause' => ({required Object n}) => '5-min break (${n}/3)',
 			'seekFirst.shield.notificationTitle' => 'Seek God first',
-			'seekFirst.shield.notificationBody' => 'Tap here to fill in your report.',
-			'seekFirst.shield.serviceBody' => 'Your apps close each day until your report.',
 			_ => null,
 		} ?? switch (path) {
+			'seekFirst.shield.notificationBody' => 'Tap here to fill in your report.',
+			'seekFirst.shield.serviceBody' => 'Your apps close each day until your report.',
 			'seekFirst.permissionsAndroid' => 'To close your apps, CMFI Connect needs two permissions, to turn on in the settings that will open: "Usage access" (to know which app is open) and "Display over other apps" (to show the Seek God first screen). Nothing leaves your phone.',
 			'seekFirst.permissionsContinue' => 'Continue',
 			'seekFirst.deniedAndroid' => 'Without these two permissions, CMFI Connect can\'t close apps. You can turn them on in Settings › Apps › Special access.',

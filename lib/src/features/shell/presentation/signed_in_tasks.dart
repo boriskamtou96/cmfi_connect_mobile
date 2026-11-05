@@ -42,6 +42,7 @@ import '../../prayer/application/retreats.dart';
 import '../../prayer/domain/prayer.dart';
 import '../../prayer/presentation/prayer_screen.dart';
 import '../../prayer/presentation/widgets/topic_row.dart';
+import '../../premium/application/premium_end.dart';
 import '../../reports/application/in_app_sendings.dart';
 import '../../reports/application/pending_reports.dart';
 import '../../reports/application/report_reminder.dart';
@@ -131,6 +132,25 @@ class SignedInTasks extends HookConsumerWidget {
       return subscription.close;
     }, const []);
 
+    // Premium bought on the site doesn't renew: told 7 days and 1 day before
+    // its end (the team has it with the role: nothing to tell)
+    useEffect(() {
+      final subscription = ref.listenManual(premiumProvider, (_, next) {
+        if (!next.hasValue) {
+          return;
+        }
+        final staff = ref.read(premiumIsOfferedProvider).value ?? false;
+        unawaited(
+          planPremiumEnd(
+            ref.read(localNotificationsProvider),
+            until: staff ? null : ref.read(premiumStoreProvider).until,
+            now: DateTime.now(),
+          ),
+        );
+      }, fireImmediately: true);
+      return subscription.close;
+    }, const []);
+
     useEffect(() {
       final pending = ref.read(pendingReportsProvider.notifier);
       final reminder = ref.read(reportReminderProvider.notifier);
@@ -194,6 +214,8 @@ class SignedInTasks extends HookConsumerWidget {
           context.router.push(const SoulsRoute());
         } else if (payload == Fasts.payload && context.mounted) {
           context.router.push(const FastsRoute());
+        } else if (payload == premiumEndPayload && context.mounted) {
+          context.router.push(const PremiumRoute());
         } else if (week != null && context.mounted) {
           context.router.push(WeekStoryRoute(monday: week.toApiDate()));
         } else if (year != null && context.mounted) {

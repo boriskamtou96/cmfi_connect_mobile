@@ -2166,6 +2166,9 @@ class FakePremiumStore implements PremiumStore {
 
   /// What the server says (bought on the site, offered).
   bool active;
+
+  @override
+  DateTime? until;
   final loggedIn = <String>[];
   var loggedOut = false;
   final _changes = StreamController<bool>.broadcast();

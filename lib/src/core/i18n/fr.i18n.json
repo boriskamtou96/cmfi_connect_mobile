@@ -1098,7 +1098,21 @@
     "yearTitle": "« Ton année avec Dieu »",
     "yearText": "Ton récit de l'année : ta fidélité, tes temps de prière, tes moments forts, à garder et partager.",
     "freeForAll": "La Bible, la prière, les retraites, le compte rendu et les cantiques restent gratuits pour tous.",
-    "includes": "Avec Premium"
+    "includes": "Avec Premium",
+    "end": {
+      "channel": "Fin de Premium",
+      "weekTitle": "Ton Premium se termine bientôt",
+      "weekBody": "Il reste 7 jours, jusqu'au {date}. Prolonge-le pour garder ton année et ton widget.",
+      "dayTitle": "Ton Premium se termine demain",
+      "dayBody": "Prolonge-le maintenant pour ne rien perdre : la nouvelle période s'ajoute à la fin."
+    },
+    "nudge": {
+      "title": "Garde la trace de ta marche",
+      "text": "Ton année avec Dieu, l'évolution de tes objectifs et le widget de l'écran d'accueil.",
+      "action": "Découvrir Premium",
+      "close": "Masquer"
+    },
+    "preview": "Aperçu de tes objectifs avec Premium"
   },
   "homeWidget": {
     "title": "Aujourd'hui",

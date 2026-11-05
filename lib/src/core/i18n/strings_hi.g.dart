@@ -777,6 +777,9 @@ class _Translations$premium$hi extends Translations$premium$fr {
 	@override String get yearText => 'आपके साल की कहानी: आपकी विश्वासयोग्यता, प्रार्थना का समय, खास पल — सहेजने और बाँटने के लिए।';
 	@override String get freeForAll => 'बाइबल, प्रार्थना, रिट्रीट, रिपोर्ट और भजन सभी के लिए हमेशा मुफ़्त हैं।';
 	@override String get includes => 'Premium के साथ';
+	@override late final _Translations$premium$end$hi end = _Translations$premium$end$hi._(_root);
+	@override late final _Translations$premium$nudge$hi nudge = _Translations$premium$nudge$hi._(_root);
+	@override String get preview => 'Premium के साथ तुम्हारे लक्ष्यों की झलक';
 }
 
 // Path: homeWidget
@@ -2742,6 +2745,33 @@ class _Translations$premium$onSite$hi extends Translations$premium$onSite$fr {
 	@override String get text => 'cmfi-connect.com पर अपने खाते से लॉग इन करें और मोबाइल मनी (MTN, Orange) से भुगतान करें। एक बार का भुगतान, कुछ भी अपने आप नवीनीकृत नहीं होता।';
 	@override String get note => 'इसके बाद Premium यहाँ अपने आप आ जाएगा, आपके सभी फ़ोन पर।';
 	@override String get button => 'cmfi-connect.com पर जारी रखें';
+}
+
+// Path: premium.end
+class _Translations$premium$end$hi extends Translations$premium$end$fr {
+	_Translations$premium$end$hi._(TranslationsHi root) : this._root = root, super.internal(root);
+
+	final TranslationsHi _root; // ignore: unused_field
+
+	// Translations
+	@override String get channel => 'Premium की समाप्ति';
+	@override String get weekTitle => 'तुम्हारा Premium जल्द ख़त्म होगा';
+	@override String weekBody({required Object date}) => '7 दिन बाक़ी हैं, ${date} तक। अपना साल और विजेट बनाए रखने के लिए इसे आगे बढ़ाओ।';
+	@override String get dayTitle => 'तुम्हारा Premium कल ख़त्म होगा';
+	@override String get dayBody => 'कुछ भी न खोने के लिए इसे अभी आगे बढ़ाओ: नई अवधि आख़िर में जुड़ जाती है।';
+}
+
+// Path: premium.nudge
+class _Translations$premium$nudge$hi extends Translations$premium$nudge$fr {
+	_Translations$premium$nudge$hi._(TranslationsHi root) : this._root = root, super.internal(root);
+
+	final TranslationsHi _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'अपनी यात्रा का हिसाब रखो';
+	@override String get text => 'परमेश्वर के साथ तुम्हारा साल, तुम्हारे लक्ष्यों की प्रगति और होम स्क्रीन विजेट।';
+	@override String get action => 'Premium देखो';
+	@override String get close => 'छिपाओ';
 }
 
 // Path: ministry.goals
@@ -4746,6 +4776,16 @@ extension on TranslationsHi {
 			'premium.yearText' => 'आपके साल की कहानी: आपकी विश्वासयोग्यता, प्रार्थना का समय, खास पल — सहेजने और बाँटने के लिए।',
 			'premium.freeForAll' => 'बाइबल, प्रार्थना, रिट्रीट, रिपोर्ट और भजन सभी के लिए हमेशा मुफ़्त हैं।',
 			'premium.includes' => 'Premium के साथ',
+			'premium.end.channel' => 'Premium की समाप्ति',
+			'premium.end.weekTitle' => 'तुम्हारा Premium जल्द ख़त्म होगा',
+			'premium.end.weekBody' => ({required Object date}) => '7 दिन बाक़ी हैं, ${date} तक। अपना साल और विजेट बनाए रखने के लिए इसे आगे बढ़ाओ।',
+			'premium.end.dayTitle' => 'तुम्हारा Premium कल ख़त्म होगा',
+			'premium.end.dayBody' => 'कुछ भी न खोने के लिए इसे अभी आगे बढ़ाओ: नई अवधि आख़िर में जुड़ जाती है।',
+			'premium.nudge.title' => 'अपनी यात्रा का हिसाब रखो',
+			'premium.nudge.text' => 'परमेश्वर के साथ तुम्हारा साल, तुम्हारे लक्ष्यों की प्रगति और होम स्क्रीन विजेट।',
+			'premium.nudge.action' => 'Premium देखो',
+			'premium.nudge.close' => 'छिपाओ',
+			'premium.preview' => 'Premium के साथ तुम्हारे लक्ष्यों की झलक',
 			'homeWidget.title' => 'आज',
 			'homeWidget.done' => 'हो गया',
 			'homeWidget.todo' => 'भरना बाकी',
@@ -4872,6 +4912,8 @@ extension on TranslationsHi {
 			'prayer.today.week' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n, zero: 'इस हफ़्ते कोई प्रार्थना-समय नहीं', one: 'इस हफ़्ते ${n} प्रार्थना-समय', other: 'इस हफ़्ते ${n} प्रार्थना-समय', ), 
 			'prayer.routine.title' => 'आज की तुम्हारी दिनचर्या',
 			'prayer.routine.count' => ({required Object done}) => '4 में से ${done}',
+			_ => null,
+		} ?? switch (path) {
 			'prayer.routine.days' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n, one: '7 में से ${n} दिन', other: '7 में से ${n} दिन', ), 
 			'prayer.routine.week' => ({required Object time}) => 'इस सप्ताह ${time}',
 			'prayer.routine.done' => 'हो गई · 15 मिनट',
@@ -4882,8 +4924,6 @@ extension on TranslationsHi {
 			'prayer.routine.later.noon' => 'दोपहर · 15 मिनट',
 			'prayer.routine.later.evening' => 'शाम · 15 मिनट',
 			'prayer.routine.later.night' => 'रात · 15 मिनट',
-			_ => null,
-		} ?? switch (path) {
 			'prayer.together' => 'साथ मिलकर प्रार्थना',
 			'prayer.reminders.title' => 'प्रार्थना-समय के रिमाइंडर',
 			'prayer.reminders.intro' => 'हर प्रार्थना-समय पर एक रिमाइंडर, सिर्फ़ तब जब वह अभी पूरा न हुआ हो।',
@@ -5386,6 +5426,8 @@ extension on TranslationsHi {
 			'documents.sizeKb' => ({required Object n}) => '${n} KB',
 			'documents.sizeMb' => ({required Object n}) => '${n} MB',
 			'documents.pdf' => 'PDF',
+			_ => null,
+		} ?? switch (path) {
 			'documents.word' => 'Word',
 			'documents.open' => 'दस्तावेज़ खोलें',
 			'documents.download' => 'डाउनलोड करें',
@@ -5396,8 +5438,6 @@ extension on TranslationsHi {
 			'documents.admin.manage' => 'दस्तावेज़ प्रबंधित करें',
 			'documents.admin.create' => 'नया दस्तावेज़',
 			'documents.admin.edit' => 'दस्तावेज़ संपादित करें',
-			_ => null,
-		} ?? switch (path) {
 			'documents.admin.empty' => 'अभी कोई दस्तावेज़ नहीं। प्रकाशित करने के लिए « नया दस्तावेज़ » दबाएँ।',
 			'documents.admin.file' => 'फ़ाइल',
 			'documents.admin.pickFile' => 'PDF या Word फ़ाइल चुनें',

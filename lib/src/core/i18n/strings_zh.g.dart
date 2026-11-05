@@ -759,6 +759,9 @@ class _Translations$premium$zh extends Translations$premium$fr {
 	@override String get yearText => '你一年的故事：你的忠心、祷告时间、精彩时刻，可保存也可分享。';
 	@override String get freeForAll => '圣经、祷告、退修、报告和诗歌对所有人始终免费。';
 	@override String get includes => 'Premium 包含';
+	@override late final _Translations$premium$end$zh end = _Translations$premium$end$zh._(_root);
+	@override late final _Translations$premium$nudge$zh nudge = _Translations$premium$nudge$zh._(_root);
+	@override String get preview => 'Premium 中你的目标预览';
 }
 
 // Path: homeWidget
@@ -2675,6 +2678,33 @@ class _Translations$premium$onSite$zh extends Translations$premium$onSite$fr {
 	@override String get text => '在 cmfi-connect.com 用你的账户登录，通过移动支付（MTN、Orange）付款。一次性付款，不会自动续订。';
 	@override String get note => '之后 Premium 会自动出现在这里，你的所有手机都可使用。';
 	@override String get button => '前往 cmfi-connect.com';
+}
+
+// Path: premium.end
+class _Translations$premium$end$zh extends Translations$premium$end$fr {
+	_Translations$premium$end$zh._(TranslationsZh root) : this._root = root, super.internal(root);
+
+	final TranslationsZh _root; // ignore: unused_field
+
+	// Translations
+	@override String get channel => 'Premium 到期';
+	@override String get weekTitle => '你的 Premium 即将到期';
+	@override String weekBody({required Object date}) => '还剩 7 天，到 ${date} 为止。续期即可保留你的年度回顾和小组件。';
+	@override String get dayTitle => '你的 Premium 明天到期';
+	@override String get dayBody => '现在续期，什么都不会丢失：新的时段会接在后面。';
+}
+
+// Path: premium.nudge
+class _Translations$premium$nudge$zh extends Translations$premium$nudge$fr {
+	_Translations$premium$nudge$zh._(TranslationsZh root) : this._root = root, super.internal(root);
+
+	final TranslationsZh _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => '记录你的属灵历程';
+	@override String get text => '你与神同行的一年、目标的进展，以及主屏幕小组件。';
+	@override String get action => '了解 Premium';
+	@override String get close => '隐藏';
 }
 
 // Path: ministry.goals
@@ -4649,6 +4679,16 @@ extension on TranslationsZh {
 			'premium.yearText' => '你一年的故事：你的忠心、祷告时间、精彩时刻，可保存也可分享。',
 			'premium.freeForAll' => '圣经、祷告、退修、报告和诗歌对所有人始终免费。',
 			'premium.includes' => 'Premium 包含',
+			'premium.end.channel' => 'Premium 到期',
+			'premium.end.weekTitle' => '你的 Premium 即将到期',
+			'premium.end.weekBody' => ({required Object date}) => '还剩 7 天，到 ${date} 为止。续期即可保留你的年度回顾和小组件。',
+			'premium.end.dayTitle' => '你的 Premium 明天到期',
+			'premium.end.dayBody' => '现在续期，什么都不会丢失：新的时段会接在后面。',
+			'premium.nudge.title' => '记录你的属灵历程',
+			'premium.nudge.text' => '你与神同行的一年、目标的进展，以及主屏幕小组件。',
+			'premium.nudge.action' => '了解 Premium',
+			'premium.nudge.close' => '隐藏',
+			'premium.preview' => 'Premium 中你的目标预览',
 			'homeWidget.title' => '今天',
 			'homeWidget.done' => '已完成',
 			'homeWidget.todo' => '待填写',
@@ -4775,6 +4815,8 @@ extension on TranslationsZh {
 			'prayer.today.week' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n, zero: '本周还没有完成祷告', other: '本周完成了 ${n} 次祷告', ), 
 			'prayer.routine.title' => '你今天的祷告安排',
 			'prayer.routine.count' => ({required Object done}) => '${done} / 4',
+			_ => null,
+		} ?? switch (path) {
 			'prayer.routine.days' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n, other: '7 天中有 ${n} 天', ), 
 			'prayer.routine.week' => ({required Object time}) => '本周 ${time}',
 			'prayer.routine.done' => '已完成 · 15 分钟',
@@ -4785,8 +4827,6 @@ extension on TranslationsZh {
 			'prayer.routine.later.noon' => '中午 · 15 分钟',
 			'prayer.routine.later.evening' => '傍晚 · 15 分钟',
 			'prayer.routine.later.night' => '夜里 · 15 分钟',
-			_ => null,
-		} ?? switch (path) {
 			'prayer.together' => '一起祷告',
 			'prayer.reminders.title' => '祷告提醒',
 			'prayer.reminders.intro' => '在每次祷告的时间提醒你，仅在尚未完成时提醒。',
@@ -5289,6 +5329,8 @@ extension on TranslationsZh {
 			'documents.sizeKb' => ({required Object n}) => '${n} KB',
 			'documents.sizeMb' => ({required Object n}) => '${n} MB',
 			'documents.pdf' => 'PDF',
+			_ => null,
+		} ?? switch (path) {
 			'documents.word' => 'Word',
 			'documents.open' => '打开文件',
 			'documents.download' => '下载',
@@ -5299,8 +5341,6 @@ extension on TranslationsZh {
 			'documents.admin.manage' => '管理文件',
 			'documents.admin.create' => '新建文件',
 			'documents.admin.edit' => '编辑文件',
-			_ => null,
-		} ?? switch (path) {
 			'documents.admin.empty' => '还没有文件。点按「新建文件」发布一份。',
 			'documents.admin.file' => '文件',
 			'documents.admin.pickFile' => '选择 PDF 或 Word 文件',

@@ -1071,7 +1071,21 @@
     "yearTitle": "“你与神同行的一年”",
     "yearText": "你一年的故事：你的忠心、祷告时间、精彩时刻，可保存也可分享。",
     "freeForAll": "圣经、祷告、退修、报告和诗歌对所有人始终免费。",
-    "includes": "Premium 包含"
+    "includes": "Premium 包含",
+    "end": {
+      "channel": "Premium 到期",
+      "weekTitle": "你的 Premium 即将到期",
+      "weekBody": "还剩 7 天，到 {date} 为止。续期即可保留你的年度回顾和小组件。",
+      "dayTitle": "你的 Premium 明天到期",
+      "dayBody": "现在续期，什么都不会丢失：新的时段会接在后面。"
+    },
+    "nudge": {
+      "title": "记录你的属灵历程",
+      "text": "你与神同行的一年、目标的进展，以及主屏幕小组件。",
+      "action": "了解 Premium",
+      "close": "隐藏"
+    },
+    "preview": "Premium 中你的目标预览"
   },
   "homeWidget": {
     "title": "今天",

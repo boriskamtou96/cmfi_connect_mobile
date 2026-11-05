@@ -21,6 +21,10 @@ abstract class PremiumStore {
   Future<void> logOut();
   Future<bool> isActive();
 
+  /// When the Premium bought or offered ends, as last known; null without
+  /// one, or for life.
+  DateTime? get until;
+
   /// Premium starts or ends (bought on the site, offered, over).
   Stream<bool> get changes;
 
@@ -37,6 +41,10 @@ class ServerPremiumStore implements PremiumStore {
 
   /// The last answer, kept for when the network is gone.
   var _active = false;
+  DateTime? _until;
+
+  @override
+  DateTime? get until => _until;
 
   @override
   Future<void> logIn(String userId) => refresh();
@@ -44,6 +52,7 @@ class ServerPremiumStore implements PremiumStore {
   @override
   Future<void> logOut() async {
     _active = false;
+    _until = null;
     _changes.add(false);
   }
 
@@ -53,9 +62,9 @@ class ServerPremiumStore implements PremiumStore {
       final response = await _dio.get<Map<String, dynamic>>('/premium/status');
       final status = response.content;
       final until = DateTime.tryParse('${status['until'] ?? ''}');
-      _active =
-          status['lifetime'] == true ||
-          (until != null && until.isAfter(DateTime.now()));
+      final lifetime = status['lifetime'] == true;
+      _until = lifetime ? null : until?.toLocal();
+      _active = lifetime || (until != null && until.isAfter(DateTime.now()));
     } on DioException {
       // offline: what was known
     }

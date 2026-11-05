@@ -4,6 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../core/i18n/strings.g.dart';
+import '../../../core/services/premium_store.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_icons.dart';
 import '../../../core/theme/app_spacing.dart';
@@ -42,6 +43,7 @@ import '../../prayer/domain/prayer.dart';
 import '../../prayer/domain/retreat.dart';
 import '../../prayer/presentation/prayer_screen.dart';
 import '../../prayer/presentation/widgets/prayer_look.dart';
+import '../../premium/application/premium_nudge.dart';
 import '../../profile/application/current_profile.dart';
 import '../../reports/application/day_report_controller.dart';
 import '../../reports/application/report_goals.dart';
@@ -135,6 +137,9 @@ class HomeScreen extends ConsumerWidget {
                             onReport: () => openReports(ReportsView.today),
                           ),
                         ),
+                        // a member who keeps their report, without Premium:
+                        // what it opens, once a month at most
+                        const _PremiumNudge(),
                         // from 26 December to January: the year told
                         if (storyYearAt(DateTime.now()) case final year?) ...[
                           const SizedBox(height: 24),
@@ -1619,6 +1624,106 @@ class _YearStoryCard extends StatelessWidget {
                 ),
               ),
             ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+/// Premium, on the home screen of a member who keeps their report (a week
+/// in a row) and doesn't have it: what it opens, and the Premium page. Hidden
+/// by its ×, it stays away 30 days.
+class _PremiumNudge extends ConsumerWidget {
+  const _PremiumNudge();
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final t = context.t.premium;
+    final shown = showPremiumNudge(
+      // while unknown: not shown
+      premium: ref.watch(premiumProvider).value ?? true,
+      streak: ref.watch(reportStreakProvider).value ?? 0,
+      hidden: ref.watch(premiumNudgeHiddenProvider),
+      now: DateTime.now(),
+    );
+    if (!shown) {
+      return const SizedBox.shrink();
+    }
+    return Padding(
+      padding: const EdgeInsets.only(top: 24),
+      child: FadeSlideIn(
+        index: 1,
+        child: Container(
+          clipBehavior: Clip.antiAlias,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(AppRadius.xl + 4),
+            color: AppColors.primaryDeep,
+            border: Border.all(color: AppColors.gold.withValues(alpha: 0.6)),
+          ),
+          child: Material(
+            type: MaterialType.transparency,
+            child: InkWell(
+              onTap: () => context.router.push(const PremiumRoute()),
+              child: Padding(
+                padding: const EdgeInsetsDirectional.fromSTEB(18, 14, 6, 16),
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const Padding(
+                      padding: EdgeInsets.only(top: 4),
+                      child: Icon(
+                        AppIcons.premiumCrown,
+                        color: AppColors.gold,
+                        size: 26,
+                      ),
+                    ),
+                    const SizedBox(width: 12),
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            t.nudge.title,
+                            style: const TextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeight.w800,
+                              color: Colors.white,
+                            ),
+                          ),
+                          const SizedBox(height: 4),
+                          Text(
+                            t.nudge.text,
+                            style: const TextStyle(
+                              fontSize: 13,
+                              height: 1.35,
+                              color: AppColors.onPrimaryMuted,
+                            ),
+                          ),
+                          const SizedBox(height: 10),
+                          Text(
+                            t.nudge.action,
+                            style: const TextStyle(
+                              fontSize: 13.5,
+                              fontWeight: FontWeight.w800,
+                              color: AppColors.goldLight,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    IconButton(
+                      tooltip: t.nudge.close,
+                      color: AppColors.onPrimaryMuted,
+                      onPressed: () => ref
+                          .read(premiumNudgeHiddenProvider.notifier)
+                          .hide(DateTime.now()),
+                      icon: const Icon(AppIcons.close, size: 20),
+                    ),
+                  ],
+                ),
+              ),
+            ),
           ),
         ),
       ),

@@ -777,6 +777,9 @@ class _Translations$premium$es extends Translations$premium$fr {
 	@override String get yearText => 'El relato de tu año: tu fidelidad, tu tiempo de oración, tus momentos fuertes, para guardar y compartir.';
 	@override String get freeForAll => 'La Biblia, la oración, los retiros, el informe y los cantos siguen siendo gratis para todos.';
 	@override String get includes => 'Con Premium';
+	@override late final _Translations$premium$end$es end = _Translations$premium$end$es._(_root);
+	@override late final _Translations$premium$nudge$es nudge = _Translations$premium$nudge$es._(_root);
+	@override String get preview => 'Vista previa de tus objetivos con Premium';
 }
 
 // Path: homeWidget
@@ -2743,6 +2746,33 @@ class _Translations$premium$onSite$es extends Translations$premium$onSite$fr {
 	@override String get text => 'En cmfi-connect.com, inicia sesión con tu cuenta y paga por mobile money (MTN, Orange). Un solo pago, nada se renueva solo.';
 	@override String get note => 'Premium aparece luego aquí solo, en todos tus teléfonos.';
 	@override String get button => 'Continuar en cmfi-connect.com';
+}
+
+// Path: premium.end
+class _Translations$premium$end$es extends Translations$premium$end$fr {
+	_Translations$premium$end$es._(TranslationsEs root) : this._root = root, super.internal(root);
+
+	final TranslationsEs _root; // ignore: unused_field
+
+	// Translations
+	@override String get channel => 'Fin de Premium';
+	@override String get weekTitle => 'Tu Premium termina pronto';
+	@override String weekBody({required Object date}) => 'Quedan 7 días, hasta el ${date}. Prolóngalo para conservar tu año y tu widget.';
+	@override String get dayTitle => 'Tu Premium termina mañana';
+	@override String get dayBody => 'Prolóngalo ahora para no perder nada: el nuevo período se suma al final.';
+}
+
+// Path: premium.nudge
+class _Translations$premium$nudge$es extends Translations$premium$nudge$fr {
+	_Translations$premium$nudge$es._(TranslationsEs root) : this._root = root, super.internal(root);
+
+	final TranslationsEs _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Guarda el rastro de tu camino';
+	@override String get text => 'Tu año con Dios, la evolución de tus objetivos y el widget de la pantalla de inicio.';
+	@override String get action => 'Descubrir Premium';
+	@override String get close => 'Ocultar';
 }
 
 // Path: ministry.goals
@@ -4747,6 +4777,16 @@ extension on TranslationsEs {
 			'premium.yearText' => 'El relato de tu año: tu fidelidad, tu tiempo de oración, tus momentos fuertes, para guardar y compartir.',
 			'premium.freeForAll' => 'La Biblia, la oración, los retiros, el informe y los cantos siguen siendo gratis para todos.',
 			'premium.includes' => 'Con Premium',
+			'premium.end.channel' => 'Fin de Premium',
+			'premium.end.weekTitle' => 'Tu Premium termina pronto',
+			'premium.end.weekBody' => ({required Object date}) => 'Quedan 7 días, hasta el ${date}. Prolóngalo para conservar tu año y tu widget.',
+			'premium.end.dayTitle' => 'Tu Premium termina mañana',
+			'premium.end.dayBody' => 'Prolóngalo ahora para no perder nada: el nuevo período se suma al final.',
+			'premium.nudge.title' => 'Guarda el rastro de tu camino',
+			'premium.nudge.text' => 'Tu año con Dios, la evolución de tus objetivos y el widget de la pantalla de inicio.',
+			'premium.nudge.action' => 'Descubrir Premium',
+			'premium.nudge.close' => 'Ocultar',
+			'premium.preview' => 'Vista previa de tus objetivos con Premium',
 			'homeWidget.title' => 'Hoy',
 			'homeWidget.done' => 'Hecho',
 			'homeWidget.todo' => 'Por rellenar',
@@ -4873,6 +4913,8 @@ extension on TranslationsEs {
 			'prayer.today.week' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('es'))(n, zero: 'Ningún retiro esta semana', one: '${n} retiro esta semana', other: '${n} retiros esta semana', ), 
 			'prayer.routine.title' => 'Tu rutina del día',
 			'prayer.routine.count' => ({required Object done}) => '${done} de 4',
+			_ => null,
+		} ?? switch (path) {
 			'prayer.routine.days' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('es'))(n, one: '${n} día de 7', other: '${n} días de 7', ), 
 			'prayer.routine.week' => ({required Object time}) => '${time} esta semana',
 			'prayer.routine.done' => 'Hecha · 15 min',
@@ -4883,8 +4925,6 @@ extension on TranslationsEs {
 			'prayer.routine.later.noon' => 'Al mediodía · 15 min',
 			'prayer.routine.later.evening' => 'Por la tarde · 15 min',
 			'prayer.routine.later.night' => 'Por la noche · 15 min',
-			_ => null,
-		} ?? switch (path) {
 			'prayer.together' => 'Orar juntos',
 			'prayer.reminders.title' => 'Recordatorios de los retiros',
 			'prayer.reminders.intro' => 'Un recordatorio a la hora de cada retiro, solo si aún no lo has hecho.',
@@ -5387,6 +5427,8 @@ extension on TranslationsEs {
 			'documents.sizeKb' => ({required Object n}) => '${n} KB',
 			'documents.sizeMb' => ({required Object n}) => '${n} MB',
 			'documents.pdf' => 'PDF',
+			_ => null,
+		} ?? switch (path) {
 			'documents.word' => 'Word',
 			'documents.open' => 'Abrir el documento',
 			'documents.download' => 'Descargar',
@@ -5397,8 +5439,6 @@ extension on TranslationsEs {
 			'documents.admin.manage' => 'Gestionar documentos',
 			'documents.admin.create' => 'Nuevo documento',
 			'documents.admin.edit' => 'Editar documento',
-			_ => null,
-		} ?? switch (path) {
 			'documents.admin.empty' => 'Aún no hay documentos. Toca « Nuevo documento » para publicar uno.',
 			'documents.admin.file' => 'Archivo',
 			'documents.admin.pickFile' => 'Elegir un PDF o un Word',

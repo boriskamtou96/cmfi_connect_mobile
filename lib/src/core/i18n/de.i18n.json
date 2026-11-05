@@ -1098,7 +1098,21 @@
     "yearTitle": "„Dein Jahr mit Gott“",
     "yearText": "Die Geschichte deines Jahres: deine Treue, deine Gebetszeit, deine Höhepunkte – zum Behalten und Teilen.",
     "freeForAll": "Die Bibel, das Gebet, die Rückzüge, der Bericht und die Lieder bleiben für alle kostenlos.",
-    "includes": "Mit Premium"
+    "includes": "Mit Premium",
+    "end": {
+      "channel": "Ende von Premium",
+      "weekTitle": "Dein Premium endet bald",
+      "weekBody": "Noch 7 Tage, bis zum {date}. Verlängere es, um dein Jahr und dein Widget zu behalten.",
+      "dayTitle": "Dein Premium endet morgen",
+      "dayBody": "Verlängere es jetzt, damit nichts verloren geht: Der neue Zeitraum kommt ans Ende."
+    },
+    "nudge": {
+      "title": "Behalte deinen Weg im Blick",
+      "text": "Dein Jahr mit Gott, die Entwicklung deiner Ziele und das Widget für den Startbildschirm.",
+      "action": "Premium entdecken",
+      "close": "Ausblenden"
+    },
+    "preview": "Vorschau deiner Ziele mit Premium"
   },
   "homeWidget": {
     "title": "Heute",

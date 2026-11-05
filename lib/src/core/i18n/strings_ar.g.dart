@@ -851,6 +851,9 @@ class _Translations$premium$ar extends Translations$premium$fr {
 	@override String get yearText => 'قصة سنتك: أمانتك، وأوقات صلاتك، ولحظاتك المميزة، لتحتفظ بها وتشاركها.';
 	@override String get freeForAll => 'الكتاب المقدس والصلاة والخلوات والتقرير والترانيم تبقى مجانية للجميع.';
 	@override String get includes => 'مع Premium';
+	@override late final _Translations$premium$end$ar end = _Translations$premium$end$ar._(_root);
+	@override late final _Translations$premium$nudge$ar nudge = _Translations$premium$nudge$ar._(_root);
+	@override String get preview => 'معاينة أهدافك مع Premium';
 }
 
 // Path: homeWidget
@@ -3018,6 +3021,33 @@ class _Translations$premium$onSite$ar extends Translations$premium$onSite$fr {
 	@override String get button => 'المتابعة على cmfi-connect.com';
 }
 
+// Path: premium.end
+class _Translations$premium$end$ar extends Translations$premium$end$fr {
+	_Translations$premium$end$ar._(TranslationsAr root) : this._root = root, super.internal(root);
+
+	final TranslationsAr _root; // ignore: unused_field
+
+	// Translations
+	@override String get channel => 'انتهاء Premium';
+	@override String get weekTitle => 'ينتهي Premium قريبًا';
+	@override String weekBody({required Object date}) => 'بقيت 7 أيام، حتى ${date}. مدِّده لتحتفظ بسنتك وأداتك.';
+	@override String get dayTitle => 'ينتهي Premium غدًا';
+	@override String get dayBody => 'مدِّده الآن حتى لا تفقد شيئًا: تُضاف الفترة الجديدة إلى النهاية.';
+}
+
+// Path: premium.nudge
+class _Translations$premium$nudge$ar extends Translations$premium$nudge$fr {
+	_Translations$premium$nudge$ar._(TranslationsAr root) : this._root = root, super.internal(root);
+
+	final TranslationsAr _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'احتفظ بأثر مسيرتك';
+	@override String get text => 'سنتك مع الله، وتطوّر أهدافك، وأداة الشاشة الرئيسية.';
+	@override String get action => 'اكتشف Premium';
+	@override String get close => 'إخفاء';
+}
+
 // Path: ministry.goals
 class _Translations$ministry$goals$ar extends Translations$ministry$goals$fr {
 	_Translations$ministry$goals$ar._(TranslationsAr root) : this._root = root, super.internal(root);
@@ -5137,6 +5167,16 @@ extension on TranslationsAr {
 			'premium.yearText' => 'قصة سنتك: أمانتك، وأوقات صلاتك، ولحظاتك المميزة، لتحتفظ بها وتشاركها.',
 			'premium.freeForAll' => 'الكتاب المقدس والصلاة والخلوات والتقرير والترانيم تبقى مجانية للجميع.',
 			'premium.includes' => 'مع Premium',
+			'premium.end.channel' => 'انتهاء Premium',
+			'premium.end.weekTitle' => 'ينتهي Premium قريبًا',
+			'premium.end.weekBody' => ({required Object date}) => 'بقيت 7 أيام، حتى ${date}. مدِّده لتحتفظ بسنتك وأداتك.',
+			'premium.end.dayTitle' => 'ينتهي Premium غدًا',
+			'premium.end.dayBody' => 'مدِّده الآن حتى لا تفقد شيئًا: تُضاف الفترة الجديدة إلى النهاية.',
+			'premium.nudge.title' => 'احتفظ بأثر مسيرتك',
+			'premium.nudge.text' => 'سنتك مع الله، وتطوّر أهدافك، وأداة الشاشة الرئيسية.',
+			'premium.nudge.action' => 'اكتشف Premium',
+			'premium.nudge.close' => 'إخفاء',
+			'premium.preview' => 'معاينة أهدافك مع Premium',
 			'homeWidget.title' => 'اليوم',
 			'homeWidget.done' => 'تم',
 			'homeWidget.todo' => 'للتعبئة',
@@ -5263,6 +5303,8 @@ extension on TranslationsAr {
 			'prayer.today.week' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n, zero: 'لا خلوات هذا الأسبوع', one: 'خلوة واحدة هذا الأسبوع', two: 'خلوتان هذا الأسبوع', few: '${n} خلوات هذا الأسبوع', many: '${n} خلوة هذا الأسبوع', other: '${n} خلوة هذا الأسبوع', ), 
 			'prayer.routine.title' => 'روتينك اليومي',
 			'prayer.routine.count' => ({required Object done}) => '${done} من 4',
+			_ => null,
+		} ?? switch (path) {
 			'prayer.routine.days' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n, zero: '${n} يوم من 7', one: 'يوم واحد من 7', two: 'يومان من 7', few: '${n} أيام من 7', many: '${n} يومًا من 7', other: '${n} يوم من 7', ), 
 			'prayer.routine.week' => ({required Object time}) => '${time} هذا الأسبوع',
 			'prayer.routine.done' => 'تمّت · 15 دقيقة',
@@ -5273,8 +5315,6 @@ extension on TranslationsAr {
 			'prayer.routine.later.noon' => 'عند الظهر · 15 دقيقة',
 			'prayer.routine.later.evening' => 'في المساء · 15 دقيقة',
 			'prayer.routine.later.night' => 'في الليل · 15 دقيقة',
-			_ => null,
-		} ?? switch (path) {
 			'prayer.together' => 'نصلّي معًا',
 			'prayer.reminders.title' => 'تذكيرات الخلوات',
 			'prayer.reminders.intro' => 'تذكير في موعد كل خلوة، فقط إذا لم تُتمَّها بعد.',
@@ -5777,6 +5817,8 @@ extension on TranslationsAr {
 			'documents.sizeKb' => ({required Object n}) => '${n} ك.ب',
 			'documents.sizeMb' => ({required Object n}) => '${n} م.ب',
 			'documents.pdf' => 'PDF',
+			_ => null,
+		} ?? switch (path) {
 			'documents.word' => 'Word',
 			'documents.open' => 'افتح المستند',
 			'documents.download' => 'تنزيل',
@@ -5787,8 +5829,6 @@ extension on TranslationsAr {
 			'documents.admin.manage' => 'إدارة المستندات',
 			'documents.admin.create' => 'مستند جديد',
 			'documents.admin.edit' => 'تعديل المستند',
-			_ => null,
-		} ?? switch (path) {
 			'documents.admin.empty' => 'لا توجد مستندات بعد. المس « مستند جديد » لنشر واحد.',
 			'documents.admin.file' => 'الملف',
 			'documents.admin.pickFile' => 'اختر ملف PDF أو Word',

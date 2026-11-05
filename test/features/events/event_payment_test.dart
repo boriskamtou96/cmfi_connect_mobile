@@ -272,10 +272,7 @@ void main() {
     await tester.pump();
 
     expect(payments.started.single.method, PaymentMethod.card);
-    expect(
-      app.links.opened.single.toString(),
-      'https://pay.wajub.com/gw_1',
-    );
+    expect(app.links.opened.single.toString(), 'https://pay.wajub.com/gw_1');
     expect(
       find.text('Termine le paiement sur la page sécurisée'),
       findsOneWidget,

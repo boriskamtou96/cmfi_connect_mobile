@@ -273,7 +273,10 @@ enum NotificationGroup {
   fasts(firstId: 9000, channelId: 'fasts'),
 
   /// "Ton année avec Dieu", on 31 December in the evening.
-  yearStory(firstId: 10000, channelId: 'year_story');
+  yearStory(firstId: 10000, channelId: 'year_story'),
+
+  /// Premium ends in 7 days, then tomorrow (bought on the site, offered).
+  premiumEnd(firstId: 11000, channelId: 'premium_end');
 
   const NotificationGroup({required this.firstId, required this.channelId});
 

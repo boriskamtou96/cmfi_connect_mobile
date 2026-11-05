@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
@@ -740,7 +742,20 @@ class _EvolutionCard extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final t = context.t;
     final scheme = Theme.of(context).colorScheme;
-    final weeks = premium ? ref.watch(goalsEvolutionProvider()).value : null;
+    // without Premium too: shown blurred, a glimpse of what it opens
+    final weeks = ref.watch(goalsEvolutionProvider()).value;
+    Widget bars(List<GoalsWeek> weeks) => _Bars(
+      values: [for (final week in weeks) ((week.progress ?? 0) * 100).round()],
+      labels: [
+        for (final (i, week) in weeks.indexed)
+          // the first, the middle and the last weeks are enough
+          i == 0 || i == weeks.length ~/ 2 || i == weeks.length - 1
+              ? context.formatDate(week.monday, 'd/M')
+              : '',
+      ],
+      color: scheme.primary,
+      scale: 100,
+    );
 
     return Container(
       padding: const EdgeInsets.all(AppSpacing.lg),
@@ -780,29 +795,33 @@ class _EvolutionCard extends ConsumerWidget {
           ),
           const SizedBox(height: AppSpacing.md),
           if (!premium)
-            Align(
-              alignment: AlignmentDirectional.centerStart,
-              child: OutlinedButton.icon(
-                onPressed: () => context.router.push(const PremiumRoute()),
-                icon: const Icon(AppIcons.premiumLock, size: 16),
-                label: Text(t.premium.unlock),
-              ),
+            _PremiumPreview(
+              label: t.premium.preview,
+              onUnlock: () => context.router.push(const PremiumRoute()),
+              child: weeks != null && weeks.isNotEmpty
+                  ? bars(weeks)
+                  : _Bars(
+                      values: const [
+                        30,
+                        42,
+                        38,
+                        55,
+                        50,
+                        64,
+                        58,
+                        70,
+                        66,
+                        78,
+                        74,
+                        85,
+                      ],
+                      labels: List.filled(12, ''),
+                      color: scheme.primary,
+                      scale: 100,
+                    ),
             )
           else if (weeks != null)
-            _Bars(
-              values: [
-                for (final week in weeks) ((week.progress ?? 0) * 100).round(),
-              ],
-              labels: [
-                for (final (i, week) in weeks.indexed)
-                  // the first, the middle and the last weeks are enough
-                  i == 0 || i == weeks.length ~/ 2 || i == weeks.length - 1
-                      ? context.formatDate(week.monday, 'd/M')
-                      : '',
-              ],
-              color: scheme.primary,
-              scale: 100,
-            )
+            bars(weeks)
           else
             // the 12 weeks, as bars
             Shimmer(
@@ -1120,6 +1139,51 @@ class _ItemCard extends StatelessWidget {
       values: values,
       labels: labels,
       max: values.fold(0, (max, value) => value > max ? value : max),
+    );
+  }
+}
+
+/// What Premium opens, seen blurred behind its button: a glimpse with the
+/// member's own figures instead of a padlock.
+class _PremiumPreview extends StatelessWidget {
+  const _PremiumPreview({
+    required this.label,
+    required this.onUnlock,
+    required this.child,
+  });
+
+  /// Said by the screen readers for the blurred part.
+  final String label;
+  final VoidCallback onUnlock;
+  final Widget child;
+
+  @override
+  Widget build(BuildContext context) {
+    return Stack(
+      alignment: Alignment.center,
+      children: [
+        Semantics(
+          label: label,
+          excludeSemantics: true,
+          child: ExcludeFocus(
+            child: IgnorePointer(
+              child: ImageFiltered(
+                imageFilter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
+                child: Opacity(opacity: 0.85, child: child),
+              ),
+            ),
+          ),
+        ),
+        FilledButton.icon(
+          onPressed: onUnlock,
+          style: FilledButton.styleFrom(
+            backgroundColor: AppColors.gold,
+            foregroundColor: AppColors.ink,
+          ),
+          icon: const Icon(AppIcons.premiumLock, size: 16),
+          label: Text(context.t.premium.unlock),
+        ),
+      ],
     );
   }
 }

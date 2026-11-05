@@ -778,6 +778,9 @@ class _Translations$premium$en extends Translations$premium$fr {
 	@override String get yearText => 'The story of your year: your faithfulness, your prayer time, your highlights, to keep and share.';
 	@override String get freeForAll => 'The Bible, prayer, retreats, the report and the hymns stay free for everyone.';
 	@override String get includes => 'With Premium';
+	@override late final _Translations$premium$end$en end = _Translations$premium$end$en._(_root);
+	@override late final _Translations$premium$nudge$en nudge = _Translations$premium$nudge$en._(_root);
+	@override String get preview => 'Preview of your goals with Premium';
 }
 
 // Path: homeWidget
@@ -2744,6 +2747,33 @@ class _Translations$premium$onSite$en extends Translations$premium$onSite$fr {
 	@override String get text => 'On cmfi-connect.com, sign in with your account and pay by mobile money (MTN, Orange). One payment, nothing renews on its own.';
 	@override String get note => 'Premium then shows up here on its own, on all your phones.';
 	@override String get button => 'Continue on cmfi-connect.com';
+}
+
+// Path: premium.end
+class _Translations$premium$end$en extends Translations$premium$end$fr {
+	_Translations$premium$end$en._(TranslationsEn root) : this._root = root, super.internal(root);
+
+	final TranslationsEn _root; // ignore: unused_field
+
+	// Translations
+	@override String get channel => 'End of Premium';
+	@override String get weekTitle => 'Your Premium ends soon';
+	@override String weekBody({required Object date}) => '7 days left, until ${date}. Extend it to keep your year and your widget.';
+	@override String get dayTitle => 'Your Premium ends tomorrow';
+	@override String get dayBody => 'Extend it now so you lose nothing: the new period is added at the end.';
+}
+
+// Path: premium.nudge
+class _Translations$premium$nudge$en extends Translations$premium$nudge$fr {
+	_Translations$premium$nudge$en._(TranslationsEn root) : this._root = root, super.internal(root);
+
+	final TranslationsEn _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Keep track of your walk';
+	@override String get text => 'Your year with God, how your goals progress and the home-screen widget.';
+	@override String get action => 'Discover Premium';
+	@override String get close => 'Hide';
 }
 
 // Path: ministry.goals
@@ -4748,6 +4778,16 @@ extension on TranslationsEn {
 			'premium.yearText' => 'The story of your year: your faithfulness, your prayer time, your highlights, to keep and share.',
 			'premium.freeForAll' => 'The Bible, prayer, retreats, the report and the hymns stay free for everyone.',
 			'premium.includes' => 'With Premium',
+			'premium.end.channel' => 'End of Premium',
+			'premium.end.weekTitle' => 'Your Premium ends soon',
+			'premium.end.weekBody' => ({required Object date}) => '7 days left, until ${date}. Extend it to keep your year and your widget.',
+			'premium.end.dayTitle' => 'Your Premium ends tomorrow',
+			'premium.end.dayBody' => 'Extend it now so you lose nothing: the new period is added at the end.',
+			'premium.nudge.title' => 'Keep track of your walk',
+			'premium.nudge.text' => 'Your year with God, how your goals progress and the home-screen widget.',
+			'premium.nudge.action' => 'Discover Premium',
+			'premium.nudge.close' => 'Hide',
+			'premium.preview' => 'Preview of your goals with Premium',
 			'homeWidget.title' => 'Today',
 			'homeWidget.done' => 'Done',
 			'homeWidget.todo' => 'To fill in',
@@ -4874,6 +4914,8 @@ extension on TranslationsEn {
 			'prayer.today.week' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n, zero: 'No retreat this week', one: '${n} retreat this week', other: '${n} retreats this week', ), 
 			'prayer.routine.title' => 'Your daily routine',
 			'prayer.routine.count' => ({required Object done}) => '${done} of 4',
+			_ => null,
+		} ?? switch (path) {
 			'prayer.routine.days' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n, one: '${n} day out of 7', other: '${n} days out of 7', ), 
 			'prayer.routine.week' => ({required Object time}) => '${time} this week',
 			'prayer.routine.done' => 'Done · 15 min',
@@ -4884,8 +4926,6 @@ extension on TranslationsEn {
 			'prayer.routine.later.noon' => 'At noon · 15 min',
 			'prayer.routine.later.evening' => 'In the evening · 15 min',
 			'prayer.routine.later.night' => 'At night · 15 min',
-			_ => null,
-		} ?? switch (path) {
 			'prayer.together' => 'Praying together',
 			'prayer.reminders.title' => 'Retreat reminders',
 			'prayer.reminders.intro' => 'A reminder at the time of each retreat, only if it isn\'t done yet.',
@@ -5388,6 +5428,8 @@ extension on TranslationsEn {
 			'documents.sizeKb' => ({required Object n}) => '${n} KB',
 			'documents.sizeMb' => ({required Object n}) => '${n} MB',
 			'documents.pdf' => 'PDF',
+			_ => null,
+		} ?? switch (path) {
 			'documents.word' => 'Word',
 			'documents.open' => 'Open the document',
 			'documents.download' => 'Download',
@@ -5398,8 +5440,6 @@ extension on TranslationsEn {
 			'documents.admin.manage' => 'Manage documents',
 			'documents.admin.create' => 'New document',
 			'documents.admin.edit' => 'Edit document',
-			_ => null,
-		} ?? switch (path) {
 			'documents.admin.empty' => 'No document yet. Tap « New document » to publish one.',
 			'documents.admin.file' => 'File',
 			'documents.admin.pickFile' => 'Choose a PDF or a Word file',

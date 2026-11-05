@@ -1099,7 +1099,21 @@
     "yearTitle": "“Your year with God”",
     "yearText": "The story of your year: your faithfulness, your prayer time, your highlights, to keep and share.",
     "freeForAll": "The Bible, prayer, retreats, the report and the hymns stay free for everyone.",
-    "includes": "With Premium"
+    "includes": "With Premium",
+    "end": {
+      "channel": "End of Premium",
+      "weekTitle": "Your Premium ends soon",
+      "weekBody": "7 days left, until {date}. Extend it to keep your year and your widget.",
+      "dayTitle": "Your Premium ends tomorrow",
+      "dayBody": "Extend it now so you lose nothing: the new period is added at the end."
+    },
+    "nudge": {
+      "title": "Keep track of your walk",
+      "text": "Your year with God, how your goals progress and the home-screen widget.",
+      "action": "Discover Premium",
+      "close": "Hide"
+    },
+    "preview": "Preview of your goals with Premium"
   },
   "homeWidget": {
     "title": "Today",

@@ -5,6 +5,8 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../../../core/network/api_call.dart';
 import '../../../core/network/dio_provider.dart';
+import '../domain/document_draft.dart';
+import '../domain/documents_query.dart';
 import '../domain/library_document.dart';
 
 part 'documents_api.g.dart';
@@ -18,19 +20,18 @@ class DocumentsApi {
 
   final Dio _dio;
 
-  /// [search]: words of the title, the description or the category (case
-  /// and accents left aside); [category]: one of [categories], '' for all.
+  /// [query]: the words of the title, the description, the category or the
+  /// file's name (case and accents left aside), and a category's slug.
   Future<DocumentsPage> list({
-    String search = '',
-    String category = '',
+    DocumentsQuery query = const DocumentsQuery(),
     int page = 1,
     int size = 20,
   }) => apiCall(() async {
     final response = await _dio.get<Map<String, dynamic>>(
       '/documents',
       queryParameters: {
-        if (search.trim().isNotEmpty) 'search': search.trim(),
-        if (category.isNotEmpty) 'category': category,
+        if (query.search.trim().isNotEmpty) 'search': query.search.trim(),
+        if (query.category.isNotEmpty) 'category': query.category,
         'page': page,
         'size': size,
       },
@@ -62,6 +63,81 @@ class DocumentsApi {
       options: Options(responseType: ResponseType.bytes),
     );
     return Uint8List.fromList(response.data!);
+  });
+
+  // ----- admins -----
+
+  /// Every document, the drafts after the published ones.
+  Future<DocumentsPage> adminList({int page = 1, int size = 100}) =>
+      apiCall(() async {
+        final response = await _dio.get<Map<String, dynamic>>(
+          '/admin/documents',
+          queryParameters: {'page': page, 'size': size},
+        );
+        final meta = response.data!['meta'] as Map<String, dynamic>?;
+        return (
+          items: [
+            for (final json in response.contentList)
+              LibraryDocument.fromJson(json as Map<String, dynamic>),
+          ],
+          total: meta?['total'] as int? ?? 0,
+        );
+      });
+
+  /// The categories the admins made, archived ones left aside, with how many
+  /// documents each holds (drafts too).
+  Future<List<DocumentCategory>> adminCategories() => apiCall(() async {
+    final response = await _dio.get<Map<String, dynamic>>(
+      '/admin/document-categories',
+    );
+    return [
+      for (final json in response.contentList.cast<Map<String, dynamic>>())
+        if (json['archived'] != true)
+          DocumentCategory(
+            id: json['id'] as int? ?? 0,
+            name: json['name'] as String? ?? '',
+            slug: json['slug'] as String? ?? '',
+            count: json['document_count'] as int? ?? 0,
+          ),
+    ];
+  });
+
+  /// Sends a PDF or a Word file (10 MB at most), before the document that
+  /// lists it. 413 MEDIA_TOO_LARGE, 415 MEDIA_UNSUPPORTED.
+  Future<LibraryFile> upload(Uint8List bytes, {required String filename}) =>
+      apiCall(() async {
+        final response = await _dio.post<Map<String, dynamic>>(
+          '/admin/documents/files',
+          data: FormData.fromMap({
+            'file': MultipartFile.fromBytes(bytes, filename: filename),
+          }),
+          options: Options(
+            contentType: Headers.multipartFormDataContentType,
+            sendTimeout: const Duration(minutes: 3),
+          ),
+        );
+        return LibraryFile.fromJson(response.content);
+      });
+
+  Future<LibraryDocument> create(DocumentDraft draft) => apiCall(() async {
+    final response = await _dio.post<Map<String, dynamic>>(
+      '/admin/documents',
+      data: draft.toJson(),
+    );
+    return LibraryDocument.fromJson(response.content);
+  });
+
+  Future<LibraryDocument> update(int id, DocumentDraft draft) =>
+      apiCall(() async {
+        final response = await _dio.put<Map<String, dynamic>>(
+          '/admin/documents/$id',
+          data: draft.toJson(),
+        );
+        return LibraryDocument.fromJson(response.content);
+      });
+
+  Future<void> delete(int id) => apiCall(() async {
+    await _dio.delete<void>('/admin/documents/$id');
   });
 }
 

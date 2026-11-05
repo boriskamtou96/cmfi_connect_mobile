@@ -43,13 +43,14 @@ void main() {
   });
 
   testWidgets('the search and the category chips', (tester) async {
-    await pumpApp(tester, token: 't');
+    final app = await pumpApp(tester, token: 't');
     await openDocuments(tester);
 
     // accents left aside
     await search(tester, 'reglement');
     expect(find.text('1 document'), findsOneWidget);
     expect(find.text("Fiche d'inscription"), findsNothing);
+    expect(app.documentsApi.queriesAsked.last.search, 'reglement');
 
     await search(tester, 'rien de tel');
     expect(
@@ -58,8 +59,10 @@ void main() {
     );
 
     await search(tester, '');
+    // the chip carries the slug the server filters by
     await tester.tap(find.widgetWithText(ChoiceChip, 'Formulaires'));
     await tester.pumpAndSettle();
+    expect(app.documentsApi.queriesAsked.last.category, 'formulaires');
     expect(find.text("Fiche d'inscription"), findsOneWidget);
     expect(find.text('Règlement intérieur'), findsNothing);
     await tester.tap(find.widgetWithText(ChoiceChip, 'Tous'));
@@ -124,14 +127,19 @@ void main() {
     expect(find.text('Règlement intérieur'), findsOneWidget);
   });
 
-  testWidgets('the arrow keeps the file on the phone, with its name', (
+  testWidgets('the arrow shares the file, with its name and its type', (
     tester,
   ) async {
     final app = await pumpApp(tester, token: 't');
     await openDocuments(tester);
 
-    await tester.tap(find.byTooltip('Télécharger').last);
+    await tester.tap(find.byTooltip('Partager').last);
     await tester.pumpAndSettle();
-    expect(app.share.files.single.name, 'Inscription.docx');
+    final shared = app.share.files.single;
+    expect(shared.name, 'Inscription.docx');
+    expect(
+      shared.mimeType,
+      'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+    );
   });
 }

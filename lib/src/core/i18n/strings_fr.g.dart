@@ -965,6 +965,9 @@ class Translations$more$fr {
 	/// fr: 'Gérer les évènements'
 	String get manageEvents => 'Gérer les évènements';
 
+	/// fr: 'Gérer les documents'
+	String get manageDocuments => 'Gérer les documents';
+
 	/// fr: 'Mes disciples'
 	String get disciples => 'Mes disciples';
 
@@ -3024,6 +3027,9 @@ class Translations$documents$fr {
 	/// fr: 'Télécharger'
 	String get download => 'Télécharger';
 
+	/// fr: 'Partager'
+	String get share => 'Partager';
+
 	/// fr: '(one) {{n} document} (other) {{n} documents}'
 	String count({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('fr'))(n,
 		one: '${n} document',
@@ -3032,6 +3038,8 @@ class Translations$documents$fr {
 
 	/// fr: 'Voir plus'
 	String get more => 'Voir plus';
+
+	late final Translations$documents$admin$fr admin = Translations$documents$admin$fr.internal(_root);
 }
 
 // Path: biblePlan
@@ -3270,6 +3278,9 @@ class Translations$teachings$fr {
 	/// fr: 'Retirer du téléphone'
 	String get removeDownload => 'Retirer du téléphone';
 
+	/// fr: 'Partager'
+	String get share => 'Partager';
+
 	/// fr: 'Reculer de 15 secondes'
 	String get back15 => 'Reculer de 15 secondes';
 
@@ -3290,6 +3301,96 @@ class Translations$teachings$fr {
 
 	/// fr: 'Télécharger avec Premium'
 	String get downloadPremium => 'Télécharger avec Premium';
+
+	/// fr: 'Filtres'
+	String get filters => 'Filtres';
+
+	/// fr: 'Affiner la liste'
+	String get filtersTitle => 'Affiner la liste';
+
+	/// fr: 'Orateur'
+	String get speakerLabel => 'Orateur';
+
+	/// fr: 'Tous les orateurs'
+	String get allSpeakers => 'Tous les orateurs';
+
+	/// fr: 'Année'
+	String get yearLabel => 'Année';
+
+	/// fr: 'Toutes les années'
+	String get allYears => 'Toutes les années';
+
+	/// fr: 'Édition'
+	String get editionLabel => 'Édition';
+
+	/// fr: 'Toutes les éditions'
+	String get allEditions => 'Toutes les éditions';
+
+	/// fr: 'Jour'
+	String get dayLabel => 'Jour';
+
+	/// fr: 'Tous les jours'
+	String get allDays => 'Tous les jours';
+
+	/// fr: 'Jour {n}'
+	String dayChip({required Object n}) => 'Jour ${n}';
+
+	/// fr: 'Tout effacer'
+	String get clearFilters => 'Tout effacer';
+
+	/// fr: 'Afficher'
+	String get showResults => 'Afficher';
+
+	/// fr: 'Jour {day}, message {n}'
+	String dayMessage({required Object day, required Object n}) => 'Jour ${day}, message ${n}';
+
+	/// fr: '{n} min'
+	String minutes({required Object n}) => '${n} min';
+
+	/// fr: '{h} h {m}'
+	String hoursMinutes({required Object h, required Object m}) => '${h} h ${m}';
+
+	/// fr: 'Reste {time}'
+	String left({required Object time}) => 'Reste ${time}';
+
+	/// fr: 'En cours'
+	String get nowPlaying => 'En cours';
+
+	/// fr: 'Reprendre'
+	String get resume => 'Reprendre';
+
+	/// fr: 'Éditions'
+	String get editions => 'Éditions';
+
+	/// fr: 'Tous les messages'
+	String get allOfCategory => 'Tous les messages';
+
+	/// fr: '(one) {{n} jour} (other) {{n} jours}'
+	String daysCount({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('fr'))(n,
+		one: '${n} jour',
+		other: '${n} jours',
+	);
+
+	/// fr: '(one) {{name} et 1 autre} (other) {{name} et {n} autres}'
+	String andOthers({required num n, required Object name}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('fr'))(n,
+		one: '${name} et 1 autre',
+		other: '${name} et ${n} autres',
+	);
+
+	/// fr: '(one) {Afficher {n} message} (other) {Afficher {n} messages}'
+	String showCount({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('fr'))(n,
+		one: 'Afficher ${n} message',
+		other: 'Afficher ${n} messages',
+	);
+
+	/// fr: 'Rechercher'
+	String get searchOpen => 'Rechercher';
+
+	/// fr: 'Fermer la recherche'
+	String get searchClose => 'Fermer la recherche';
+
+	/// fr: 'Tous'
+	String get dayAll => 'Tous';
 }
 
 // Path: memorize
@@ -6442,6 +6543,111 @@ class Translations$seekFirst$shield$fr {
 	String get serviceBody => 'Tes apps se ferment chaque jour jusqu\'à ton compte rendu.';
 }
 
+// Path: documents.admin
+class Translations$documents$admin$fr {
+	Translations$documents$admin$fr.internal(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// fr: 'Gérer les documents'
+	String get title => 'Gérer les documents';
+
+	/// fr: 'Gérer les documents'
+	String get manage => 'Gérer les documents';
+
+	/// fr: 'Nouveau document'
+	String get create => 'Nouveau document';
+
+	/// fr: 'Modifier le document'
+	String get edit => 'Modifier le document';
+
+	/// fr: 'Aucun document pour l'instant. Touche « Nouveau document » pour en publier un.'
+	String get empty => 'Aucun document pour l\'instant. Touche « Nouveau document » pour en publier un.';
+
+	/// fr: 'Fichier'
+	String get file => 'Fichier';
+
+	/// fr: 'Choisir un PDF ou un Word'
+	String get pickFile => 'Choisir un PDF ou un Word';
+
+	/// fr: 'Depuis Fichiers ou ton téléphone · 10 Mo au plus'
+	String get fileHint => 'Depuis Fichiers ou ton téléphone · 10 Mo au plus';
+
+	/// fr: 'Remplacer'
+	String get replace => 'Remplacer';
+
+	/// fr: 'Envoi du fichier…'
+	String get uploading => 'Envoi du fichier…';
+
+	/// fr: 'Ce fichier est trop lourd (10 Mo au plus).'
+	String get tooLarge => 'Ce fichier est trop lourd (10 Mo au plus).';
+
+	/// fr: 'Choisis le fichier du document.'
+	String get fileRequired => 'Choisis le fichier du document.';
+
+	/// fr: 'Le document'
+	String get general => 'Le document';
+
+	/// fr: 'Titre'
+	String get titleField => 'Titre';
+
+	/// fr: 'Ex. : Règlement intérieur'
+	String get titleHint => 'Ex. : Règlement intérieur';
+
+	/// fr: 'Donne un titre au document.'
+	String get titleRequired => 'Donne un titre au document.';
+
+	/// fr: 'Description (facultative)'
+	String get description => 'Description (facultative)';
+
+	/// fr: 'Catégorie'
+	String get category => 'Catégorie';
+
+	/// fr: 'Aucune'
+	String get noCategory => 'Aucune';
+
+	/// fr: 'Nouvelle catégorie'
+	String get newCategory => 'Nouvelle catégorie';
+
+	/// fr: 'Nom de la catégorie'
+	String get newCategoryHint => 'Nom de la catégorie';
+
+	/// fr: 'Publication'
+	String get visibility => 'Publication';
+
+	/// fr: 'Publier maintenant'
+	String get published => 'Publier maintenant';
+
+	/// fr: 'Les membres le voient dans Nos documents.'
+	String get publishedHint => 'Les membres le voient dans Nos documents.';
+
+	/// fr: 'Prévenir les membres'
+	String get notify => 'Prévenir les membres';
+
+	/// fr: 'Une notification à la première publication.'
+	String get notifyHint => 'Une notification à la première publication.';
+
+	/// fr: 'Brouillon'
+	String get draft => 'Brouillon';
+
+	/// fr: 'Document enregistré'
+	String get saved => 'Document enregistré';
+
+	/// fr: 'Document supprimé'
+	String get deleted => 'Document supprimé';
+
+	/// fr: 'Supprimer'
+	String get delete => 'Supprimer';
+
+	/// fr: 'Supprimer ce document ?'
+	String get deleteTitle => 'Supprimer ce document ?';
+
+	/// fr: 'Il disparaît pour tous les membres. Cette action est définitive.'
+	String get deleteText => 'Il disparaît pour tous les membres. Cette action est définitive.';
+}
+
 // Path: souls.csv
 class Translations$souls$csv$fr {
 	Translations$souls$csv$fr.internal(this._root);
@@ -7959,6 +8165,7 @@ extension on Translations {
 			'more.admin' => 'Administration',
 			'more.staff' => 'Équipe et rôles',
 			'more.manageEvents' => 'Gérer les évènements',
+			'more.manageDocuments' => 'Gérer les documents',
 			'more.disciples' => 'Mes disciples',
 			'more.version' => ({required Object version}) => 'Version ${version}',
 			'more.copyright' => ({required Object year}) => '© ${year} Communauté Missionnaire Chrétienne Internationale. Tous droits réservés.',
@@ -8020,9 +8227,9 @@ extension on Translations {
 			'authorities.madeMaker' => ({required Object name}) => '${name} est maintenant ton faiseur de disciples.',
 			'members.username' => 'Pseudo',
 			'members.usernameHint' => 'prenom.nom',
-			'members.usernameHelp' => 'C\'est ainsi que les autres membres te trouveront.',
 			_ => null,
 		} ?? switch (path) {
+			'members.usernameHelp' => 'C\'est ainsi que les autres membres te trouveront.',
 			'members.usernameChecking' => 'Vérification…',
 			'members.usernameFree' => ({required Object username}) => '@${username} est libre',
 			'members.usernameCurrent' => 'C\'est ton pseudo actuel',
@@ -8534,9 +8741,9 @@ extension on Translations {
 			'prayer.moments.night' => 'Nuit',
 			'prayer.retreatOf.morning' => 'Retraite du matin',
 			'prayer.retreatOf.noon' => 'Retraite de midi',
-			'prayer.retreatOf.evening' => 'Retraite du soir',
 			_ => null,
 		} ?? switch (path) {
+			'prayer.retreatOf.evening' => 'Retraite du soir',
 			'prayer.retreatOf.night' => 'Retraite de la nuit',
 			'prayer.hero.now' => ({required Object retreat}) => '${retreat} · maintenant',
 			'prayer.hero.title' => '15 minutes\navec le Seigneur',
@@ -9048,9 +9255,9 @@ extension on Translations {
 			'seekFirst.shield.notificationTitle' => 'Cherche d\'abord Dieu',
 			'seekFirst.shield.notificationBody' => 'Touche ici pour remplir ton compte rendu.',
 			'seekFirst.shield.serviceBody' => 'Tes apps se ferment chaque jour jusqu\'à ton compte rendu.',
-			'seekFirst.permissionsAndroid' => 'Pour fermer tes apps, CMFI Connect a besoin de deux autorisations, à activer dans les réglages qui vont s\'ouvrir : « Accès aux données d\'utilisation » (savoir quelle app est ouverte) et « Afficher par-dessus les autres applis » (montrer l\'écran Cherche d\'abord Dieu). Rien ne quitte ton téléphone.',
 			_ => null,
 		} ?? switch (path) {
+			'seekFirst.permissionsAndroid' => 'Pour fermer tes apps, CMFI Connect a besoin de deux autorisations, à activer dans les réglages qui vont s\'ouvrir : « Accès aux données d\'utilisation » (savoir quelle app est ouverte) et « Afficher par-dessus les autres applis » (montrer l\'écran Cherche d\'abord Dieu). Rien ne quitte ton téléphone.',
 			'seekFirst.permissionsContinue' => 'Continuer',
 			'seekFirst.deniedAndroid' => 'Sans ces deux autorisations, CMFI Connect ne peut pas fermer d\'apps. Tu peux les activer dans Réglages › Applications › Accès spécial.',
 			'seekFirst.privacyAndroid' => 'Les apps que tu choisis restent sur ton téléphone : CMFI Connect ne les envoie jamais.',
@@ -9067,8 +9274,41 @@ extension on Translations {
 			'documents.word' => 'Word',
 			'documents.open' => 'Ouvrir le document',
 			'documents.download' => 'Télécharger',
+			'documents.share' => 'Partager',
 			'documents.count' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('fr'))(n, one: '${n} document', other: '${n} documents', ), 
 			'documents.more' => 'Voir plus',
+			'documents.admin.title' => 'Gérer les documents',
+			'documents.admin.manage' => 'Gérer les documents',
+			'documents.admin.create' => 'Nouveau document',
+			'documents.admin.edit' => 'Modifier le document',
+			'documents.admin.empty' => 'Aucun document pour l\'instant. Touche « Nouveau document » pour en publier un.',
+			'documents.admin.file' => 'Fichier',
+			'documents.admin.pickFile' => 'Choisir un PDF ou un Word',
+			'documents.admin.fileHint' => 'Depuis Fichiers ou ton téléphone · 10 Mo au plus',
+			'documents.admin.replace' => 'Remplacer',
+			'documents.admin.uploading' => 'Envoi du fichier…',
+			'documents.admin.tooLarge' => 'Ce fichier est trop lourd (10 Mo au plus).',
+			'documents.admin.fileRequired' => 'Choisis le fichier du document.',
+			'documents.admin.general' => 'Le document',
+			'documents.admin.titleField' => 'Titre',
+			'documents.admin.titleHint' => 'Ex. : Règlement intérieur',
+			'documents.admin.titleRequired' => 'Donne un titre au document.',
+			'documents.admin.description' => 'Description (facultative)',
+			'documents.admin.category' => 'Catégorie',
+			'documents.admin.noCategory' => 'Aucune',
+			'documents.admin.newCategory' => 'Nouvelle catégorie',
+			'documents.admin.newCategoryHint' => 'Nom de la catégorie',
+			'documents.admin.visibility' => 'Publication',
+			'documents.admin.published' => 'Publier maintenant',
+			'documents.admin.publishedHint' => 'Les membres le voient dans Nos documents.',
+			'documents.admin.notify' => 'Prévenir les membres',
+			'documents.admin.notifyHint' => 'Une notification à la première publication.',
+			'documents.admin.draft' => 'Brouillon',
+			'documents.admin.saved' => 'Document enregistré',
+			'documents.admin.deleted' => 'Document supprimé',
+			'documents.admin.delete' => 'Supprimer',
+			'documents.admin.deleteTitle' => 'Supprimer ce document ?',
+			'documents.admin.deleteText' => 'Il disparaît pour tous les membres. Cette action est définitive.',
 			'biblePlan.title' => 'Plan de lecture',
 			'biblePlan.duration' => 'Durée',
 			'biblePlan.months3' => '3 mois',
@@ -9138,6 +9378,7 @@ extension on Translations {
 			'teachings.removed' => 'Retiré du téléphone',
 			'teachings.cancelDownload' => 'Arrêter le téléchargement',
 			'teachings.removeDownload' => 'Retirer du téléphone',
+			'teachings.share' => 'Partager',
 			'teachings.back15' => 'Reculer de 15 secondes',
 			'teachings.forward15' => 'Avancer de 15 secondes',
 			'teachings.speed' => ({required Object speed}) => 'Vitesse ${speed}',
@@ -9145,6 +9386,33 @@ extension on Translations {
 			'teachings.moreSubtitle' => 'Prédications et enseignements à écouter',
 			'teachings.closePlayer' => 'Fermer le lecteur',
 			'teachings.downloadPremium' => 'Télécharger avec Premium',
+			'teachings.filters' => 'Filtres',
+			'teachings.filtersTitle' => 'Affiner la liste',
+			'teachings.speakerLabel' => 'Orateur',
+			'teachings.allSpeakers' => 'Tous les orateurs',
+			'teachings.yearLabel' => 'Année',
+			'teachings.allYears' => 'Toutes les années',
+			'teachings.editionLabel' => 'Édition',
+			'teachings.allEditions' => 'Toutes les éditions',
+			'teachings.dayLabel' => 'Jour',
+			'teachings.allDays' => 'Tous les jours',
+			'teachings.dayChip' => ({required Object n}) => 'Jour ${n}',
+			'teachings.clearFilters' => 'Tout effacer',
+			'teachings.showResults' => 'Afficher',
+			'teachings.dayMessage' => ({required Object day, required Object n}) => 'Jour ${day}, message ${n}',
+			'teachings.minutes' => ({required Object n}) => '${n} min',
+			'teachings.hoursMinutes' => ({required Object h, required Object m}) => '${h} h ${m}',
+			'teachings.left' => ({required Object time}) => 'Reste ${time}',
+			'teachings.nowPlaying' => 'En cours',
+			'teachings.resume' => 'Reprendre',
+			'teachings.editions' => 'Éditions',
+			'teachings.allOfCategory' => 'Tous les messages',
+			'teachings.daysCount' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('fr'))(n, one: '${n} jour', other: '${n} jours', ), 
+			'teachings.andOthers' => ({required num n, required Object name}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('fr'))(n, one: '${name} et 1 autre', other: '${name} et ${n} autres', ), 
+			'teachings.showCount' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('fr'))(n, one: 'Afficher ${n} message', other: 'Afficher ${n} messages', ), 
+			'teachings.searchOpen' => 'Rechercher',
+			'teachings.searchClose' => 'Fermer la recherche',
+			'teachings.dayAll' => 'Tous',
 			'memorize.title' => 'Mémorisation',
 			'memorize.subtitle' => 'Cache la Parole dans ton cœur',
 			'memorize.toReview' => 'À réviser',

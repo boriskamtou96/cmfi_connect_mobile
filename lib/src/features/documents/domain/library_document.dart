@@ -34,9 +34,20 @@ abstract class LibraryDocument with _$LibraryDocument {
     required String title,
     @Default('') String description,
 
-    /// "Enseignements", "Formulaires"…; '' when none.
+    /// "Enseignements", "Formulaires"…; '' when none. Kept for the versions
+    /// that don't know [categoryId] yet.
     @Default('') String category,
+
+    /// The category chosen by the admins; null when none.
+    int? categoryId,
+
+    /// "formulaires": the category in the addresses of the API.
+    @Default('') String categorySlug,
+
     required LibraryFile file,
+
+    /// false for a draft: only the admins see it (Gérer les documents).
+    @Default(true) bool published,
     DateTime? publishedAt,
   }) = _LibraryDocument;
 
@@ -48,7 +59,9 @@ abstract class LibraryDocument with _$LibraryDocument {
 @freezed
 abstract class DocumentCategory with _$DocumentCategory {
   const factory DocumentCategory({
+    @Default(0) int id,
     required String name,
+    @Default('') String slug,
     @Default(0) int count,
   }) = _DocumentCategory;
 

@@ -8,21 +8,21 @@ part of 'documents.dart';
 
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint, type=warning
-/// The documents that answer [search] in [category] ('' for all), a page at
-/// a time: the first one at once, the next ones at the end of the list.
+/// The documents that answer [query], a page at a time: the first one at
+/// once, the next ones at the end of the list.
 
 @ProviderFor(Documents)
 final documentsProvider = DocumentsFamily._();
 
-/// The documents that answer [search] in [category] ('' for all), a page at
-/// a time: the first one at once, the next ones at the end of the list.
+/// The documents that answer [query], a page at a time: the first one at
+/// once, the next ones at the end of the list.
 final class DocumentsProvider
     extends $AsyncNotifierProvider<Documents, DocumentsState> {
-  /// The documents that answer [search] in [category] ('' for all), a page at
-  /// a time: the first one at once, the next ones at the end of the list.
+  /// The documents that answer [query], a page at a time: the first one at
+  /// once, the next ones at the end of the list.
   DocumentsProvider._({
     required DocumentsFamily super.from,
-    required (String, String) super.argument,
+    required DocumentsQuery super.argument,
   }) : super(
          retry: null,
          name: r'documentsProvider',
@@ -38,7 +38,7 @@ final class DocumentsProvider
   String toString() {
     return r'documentsProvider'
         ''
-        '$argument';
+        '($argument)';
   }
 
   @$internal
@@ -56,10 +56,10 @@ final class DocumentsProvider
   }
 }
 
-String _$documentsHash() => r'42182e2fdb078a62688d2a908967aaa856072906';
+String _$documentsHash() => r'2567fde6bacf114c095d551a70d3985ada61ee9f';
 
-/// The documents that answer [search] in [category] ('' for all), a page at
-/// a time: the first one at once, the next ones at the end of the list.
+/// The documents that answer [query], a page at a time: the first one at
+/// once, the next ones at the end of the list.
 
 final class DocumentsFamily extends $Family
     with
@@ -68,7 +68,7 @@ final class DocumentsFamily extends $Family
           AsyncValue<DocumentsState>,
           DocumentsState,
           FutureOr<DocumentsState>,
-          (String, String)
+          DocumentsQuery
         > {
   DocumentsFamily._()
     : super(
@@ -79,25 +79,24 @@ final class DocumentsFamily extends $Family
         isAutoDispose: true,
       );
 
-  /// The documents that answer [search] in [category] ('' for all), a page at
-  /// a time: the first one at once, the next ones at the end of the list.
+  /// The documents that answer [query], a page at a time: the first one at
+  /// once, the next ones at the end of the list.
 
-  DocumentsProvider call(String search, String category) =>
-      DocumentsProvider._(argument: (search, category), from: this);
+  DocumentsProvider call(DocumentsQuery query) =>
+      DocumentsProvider._(argument: query, from: this);
 
   @override
   String toString() => r'documentsProvider';
 }
 
-/// The documents that answer [search] in [category] ('' for all), a page at
-/// a time: the first one at once, the next ones at the end of the list.
+/// The documents that answer [query], a page at a time: the first one at
+/// once, the next ones at the end of the list.
 
 abstract class _$Documents extends $AsyncNotifier<DocumentsState> {
-  late final _$args = ref.$arg as (String, String);
-  String get search => _$args.$1;
-  String get category => _$args.$2;
+  late final _$args = ref.$arg as DocumentsQuery;
+  DocumentsQuery get query => _$args;
 
-  FutureOr<DocumentsState> build(String search, String category);
+  FutureOr<DocumentsState> build(DocumentsQuery query);
   @$mustCallSuper
   @override
   void runBuild() {
@@ -110,7 +109,7 @@ abstract class _$Documents extends $AsyncNotifier<DocumentsState> {
               Object?,
               Object?
             >;
-    element.handleCreate(ref, () => build(_$args.$1, _$args.$2));
+    element.handleCreate(ref, () => build(_$args));
   }
 }
 

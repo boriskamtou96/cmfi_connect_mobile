@@ -31,6 +31,23 @@ class ShareService {
       sharePositionOrigin: origin,
     ),
   );
+
+  /// A file already on the phone (an audio teaching: too big to hold in
+  /// memory), sent under [name].
+  Future<void> sharePath(
+    String path, {
+    required String name,
+    required String mimeType,
+    String? subject,
+    Rect? origin,
+  }) => SharePlus.instance.share(
+    ShareParams(
+      files: [XFile(path, name: name, mimeType: mimeType)],
+      fileNameOverrides: [name],
+      subject: subject,
+      sharePositionOrigin: origin,
+    ),
+  );
 }
 
 @Riverpod(keepAlive: true)

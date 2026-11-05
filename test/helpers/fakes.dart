@@ -11,6 +11,7 @@ import 'package:cmfi_connect/src/core/services/calendar_service.dart';
 import 'package:cmfi_connect/src/core/services/chime.dart';
 import 'package:cmfi_connect/src/core/services/crash_reporting.dart';
 import 'package:cmfi_connect/src/core/services/deep_links.dart';
+import 'package:cmfi_connect/src/core/services/document_picking.dart';
 import 'package:cmfi_connect/src/core/services/home_widgets.dart';
 import 'package:cmfi_connect/src/core/services/image_picking.dart';
 import 'package:cmfi_connect/src/core/services/link_launcher.dart';
@@ -39,6 +40,8 @@ import 'package:cmfi_connect/src/features/authorities/infrastructure/authorities
 import 'package:cmfi_connect/src/features/disciples/domain/disciple.dart';
 import 'package:cmfi_connect/src/features/disciples/domain/received_report.dart';
 import 'package:cmfi_connect/src/features/disciples/infrastructure/disciples_api.dart';
+import 'package:cmfi_connect/src/features/documents/domain/document_draft.dart';
+import 'package:cmfi_connect/src/features/documents/domain/documents_query.dart';
 import 'package:cmfi_connect/src/features/documents/domain/library_document.dart';
 import 'package:cmfi_connect/src/features/documents/infrastructure/documents_api.dart';
 import 'package:cmfi_connect/src/features/events/domain/event.dart';
@@ -73,6 +76,7 @@ import 'package:cmfi_connect/src/features/souls/infrastructure/souls_api.dart';
 import 'package:cmfi_connect/src/features/souls/infrastructure/souls_storage.dart';
 import 'package:cmfi_connect/src/features/teachings/application/teaching_player.dart';
 import 'package:cmfi_connect/src/features/teachings/domain/teaching.dart';
+import 'package:cmfi_connect/src/features/teachings/domain/teaching_query.dart';
 import 'package:cmfi_connect/src/features/teachings/infrastructure/teaching_files.dart';
 import 'package:cmfi_connect/src/features/teachings/infrastructure/teachings_api.dart';
 import 'package:dio/dio.dart' show CancelToken;
@@ -854,6 +858,17 @@ class FakeShareService implements ShareService {
     String? subject,
     Rect? origin,
   }) async => files.add((name: name, mimeType: mimeType, bytes: bytes));
+
+  final paths = <({String path, String name, String mimeType})>[];
+
+  @override
+  Future<void> sharePath(
+    String path, {
+    required String name,
+    required String mimeType,
+    String? subject,
+    Rect? origin,
+  }) async => paths.add((path: path, name: name, mimeType: mimeType));
 }
 
 /// The phone's photos: [allowed] false is a member who refuses the access.
@@ -2656,6 +2671,7 @@ class FakeDocumentsApi implements DocumentsApi {
   List<LibraryDocument> documents;
   bool offline;
   final pagesAsked = <int>[];
+  final queriesAsked = <DocumentsQuery>[];
 
   static const sampleDocuments = [
     LibraryDocument(
@@ -2663,6 +2679,8 @@ class FakeDocumentsApi implements DocumentsApi {
       title: 'Règlement intérieur',
       description: 'À lire par tous les responsables.',
       category: 'Règlements',
+      categoryId: 2,
+      categorySlug: 'reglements',
       file: LibraryFile(
         id: 11,
         url: '/v1/media/a.pdf',
@@ -2674,6 +2692,8 @@ class FakeDocumentsApi implements DocumentsApi {
       id: 2,
       title: "Fiche d'inscription",
       category: 'Formulaires',
+      categoryId: 1,
+      categorySlug: 'formulaires',
       file: LibraryFile(
         id: 12,
         url: '/v1/media/b.docx',
@@ -2690,10 +2710,19 @@ class FakeDocumentsApi implements DocumentsApi {
       .replaceAll(RegExp('[àâ]'), 'a')
       .replaceAll(RegExp('[îï]'), 'i');
 
+  /// A category's id and slug, as the server gives them.
+  static int _categoryId(String name) => switch (name) {
+    'Formulaires' => 1,
+    'Règlements' => 2,
+    _ => name.hashCode & 0x7fffffff,
+  };
+
+  static String _slug(String name) =>
+      _plain(name).replaceAll(RegExp('[^a-z0-9]+'), '-');
+
   @override
   Future<DocumentsPage> list({
-    String search = '',
-    String category = '',
+    DocumentsQuery query = const DocumentsQuery(),
     int page = 1,
     int size = 20,
   }) async {
@@ -2701,13 +2730,21 @@ class FakeDocumentsApi implements DocumentsApi {
       throw const NetworkException();
     }
     pagesAsked.add(page);
-    final words = _plain(search).split(' ').where((w) => w.isNotEmpty);
+    queriesAsked.add(query);
+    final words = query.search
+        .trim()
+        .toLowerCase()
+        .split(' ')
+        .where((w) => w.isNotEmpty);
     final kept = [
       for (final document in documents)
-        if ((category.isEmpty || document.category == category) &&
+        if ((query.category.isEmpty ||
+                document.categorySlug == query.category ||
+                document.category == query.category) &&
             words.every(
               _plain(
-                '${document.title} ${document.description} ${document.category}',
+                '${document.title} ${document.description} '
+                '${document.category} ${document.file.name}',
               ).contains,
             ))
           document,
@@ -2729,13 +2766,126 @@ class FakeDocumentsApi implements DocumentsApi {
     }
     return [
       for (final MapEntry(:key, :value) in counts.entries)
-        DocumentCategory(name: key, count: value),
+        DocumentCategory(
+          id: _categoryId(key),
+          name: key,
+          slug: _slug(key),
+          count: value,
+        ),
     ]..sort((a, b) => a.name.compareTo(b.name));
   }
 
   @override
   Future<Uint8List> file(String url) async =>
       Uint8List.fromList(const [37, 80, 68, 70]);
+
+  // ----- admins -----
+
+  /// What the admins sent: the files, then the documents saved.
+  final uploaded = <String>[];
+  final saved = <({int? id, DocumentDraft draft})>[];
+  final deleted = <int>[];
+
+  @override
+  Future<DocumentsPage> adminList({int page = 1, int size = 100}) async {
+    if (offline) {
+      throw const NetworkException();
+    }
+    return (items: documents, total: documents.length);
+  }
+
+  @override
+  Future<List<DocumentCategory>> adminCategories() => categories();
+
+  @override
+  Future<LibraryFile> upload(
+    Uint8List bytes, {
+    required String filename,
+  }) async {
+    uploaded.add(filename);
+    return LibraryFile(
+      id: 900 + uploaded.length,
+      url: '/v1/media/new.pdf',
+      name: filename,
+      kind: filename.endsWith('.pdf') ? DocumentKind.pdf : DocumentKind.word,
+      sizeBytes: bytes.length,
+    );
+  }
+
+  LibraryDocument _apply(int id, DocumentDraft draft, LibraryFile file) {
+    final category =
+        documents
+            .where((one) => one.categoryId == draft.categoryId)
+            .firstOrNull
+            ?.category ??
+        draft.newCategory;
+    return LibraryDocument(
+      id: id,
+      title: draft.title,
+      description: draft.description,
+      category: draft.categoryId == null && draft.newCategory.isEmpty
+          ? ''
+          : category,
+      categoryId: draft.categoryId,
+      categorySlug: _slug(category),
+      file: file,
+      published: draft.published,
+    );
+  }
+
+  @override
+  Future<LibraryDocument> create(DocumentDraft draft) async {
+    saved.add((id: null, draft: draft));
+    final document = _apply(
+      100 + documents.length,
+      draft,
+      LibraryFile(
+        id: draft.fileId,
+        url: '/v1/media/new.pdf',
+        name: draft.fileName,
+      ),
+    );
+    documents = [document, ...documents];
+    return document;
+  }
+
+  @override
+  Future<LibraryDocument> update(int id, DocumentDraft draft) async {
+    saved.add((id: id, draft: draft));
+    final old = documents.firstWhere((one) => one.id == id);
+    final document = _apply(
+      id,
+      draft,
+      draft.fileId == old.file.id
+          ? old.file
+          : LibraryFile(
+              id: draft.fileId,
+              url: '/v1/media/new.pdf',
+              name: draft.fileName,
+            ),
+    );
+    documents = [for (final one in documents) one.id == id ? document : one];
+    return document;
+  }
+
+  @override
+  Future<void> delete(int id) async {
+    deleted.add(id);
+    documents = [
+      for (final one in documents)
+        if (one.id != id) one,
+    ];
+  }
+}
+
+/// The files "chosen" on the phone: [next], one per pick; none, the admin
+/// gave up.
+class FakeDocumentPicking implements DocumentPicking {
+  final next = <PickedDocument>[];
+
+  @override
+  Future<PickedDocument?> pickOne() async =>
+      next.isEmpty ? null : next.removeAt(0);
 }
 
 /// Enseignements: two messages, the newest first.
@@ -2777,20 +2927,36 @@ class FakeTeachingsApi implements TeachingsApi {
 
   @override
   Future<TeachingsPage> list({
-    String search = '',
-    String category = '',
+    TeachingQuery query = const TeachingQuery(),
     int page = 1,
     int size = 20,
   }) async {
     if (offline) {
       throw const NetworkException();
     }
-    final words = search.toLowerCase().split(' ').where((w) => w.isNotEmpty);
+    final words = query.search
+        .toLowerCase()
+        .split(' ')
+        .where((w) => w.isNotEmpty);
     final kept = [
       for (final teaching in teachings)
-        if ((category.isEmpty || teaching.category == category) &&
+        if ((query.category.isEmpty ||
+                teaching.category == query.category ||
+                teaching.categorySlug == query.category) &&
+            (query.speaker.isEmpty ||
+                teaching.speaker.toLowerCase().contains(
+                  query.speaker.toLowerCase(),
+                )) &&
+            (query.year == null || teaching.year == query.year) &&
+            (query.edition == null ||
+                teaching.edition?.id == query.edition) &&
+            (query.day == null || teaching.dayNumber == query.day) &&
             words.every(
-              '${teaching.title} ${teaching.speaker}'.toLowerCase().contains,
+              '${teaching.title} ${teaching.speaker} '
+                      '${teaching.description} ${teaching.category} '
+                      '${teaching.edition?.title ?? ''}'
+                  .toLowerCase()
+                  .contains,
             ))
           teaching,
     ];
@@ -2804,7 +2970,73 @@ class FakeTeachingsApi implements TeachingsApi {
       throw const NetworkException();
     }
     final names = {for (final t in teachings) t.category}..remove('');
-    return [for (final name in names) TeachingCategory(name: name, count: 1)];
+    return [
+      for (final name in names)
+        TeachingCategory(
+          name: name,
+          slug: teachings
+              .firstWhere((teaching) => teaching.category == name)
+              .categorySlug,
+          count: teachings
+              .where((teaching) => teaching.category == name)
+              .length,
+        ),
+    ];
+  }
+
+  @override
+  Future<TeachingFacets> facets({int? editionId}) async {
+    if (offline) {
+      throw const NetworkException();
+    }
+    final speakers = <String, int>{};
+    final years = <int, int>{};
+    final editions = <int, TeachingEditionFacet>{};
+    final days = <int, int>{};
+    for (final teaching in teachings) {
+      if (teaching.speaker.isNotEmpty) {
+        speakers.update(
+          teaching.speaker,
+          (count) => count + 1,
+          ifAbsent: () => 1,
+        );
+      }
+      if (teaching.year case final year?) {
+        years.update(year, (count) => count + 1, ifAbsent: () => 1);
+      }
+      if (teaching.edition case final edition?) {
+        editions[edition.id] = TeachingEditionFacet(
+          id: edition.id,
+          categoryName: teaching.category,
+          categorySlug: teaching.categorySlug,
+          year: edition.year,
+          title: edition.title,
+          count: (editions[edition.id]?.count ?? 0) + 1,
+        );
+      }
+      final day = teaching.dayNumber;
+      if (editionId != null &&
+          teaching.edition?.id == editionId &&
+          day != null) {
+        days.update(day, (count) => count + 1, ifAbsent: () => 1);
+      }
+    }
+    return TeachingFacets(
+      categories: await categories(),
+      speakers: [
+        for (final MapEntry(:key, :value) in speakers.entries)
+          TeachingSpeakerFacet(name: key, count: value),
+      ],
+      years: [
+        for (final MapEntry(:key, :value) in years.entries)
+          TeachingYearFacet(year: key, count: value),
+      ],
+      editions: editions.values.toList(),
+      days: [
+        for (final MapEntry(:key, :value) in days.entries)
+          TeachingDayFacet(day: key, count: value),
+      ],
+    );
   }
 }
 
@@ -2892,6 +3124,25 @@ class FakeTeachingFiles implements TeachingFiles {
 
   @override
   Future<void> delete(Teaching teaching) async => kept.remove(teaching.id);
+
+  @override
+  Future<File> forSharing(
+    Teaching teaching,
+    String url, {
+    required void Function(double progress) onProgress,
+    CancelToken? cancel,
+  }) async {
+    if (await fileOf(teaching) case final file?) {
+      return file;
+    }
+    if (fail) {
+      throw const NetworkException();
+    }
+    onProgress(0.5);
+    return File(
+      '/tmp/shared_teachings/${teaching.id}.${teaching.audio.format.name}',
+    );
+  }
 }
 
 /// The Keychain of Suivi des âmes, in memory.

@@ -4,6 +4,7 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 import '../../../core/network/app_exception.dart';
 import '../../../core/network/fetch_policy.dart';
 import '../domain/teaching.dart';
+import '../domain/teaching_query.dart';
 import '../infrastructure/teachings_api.dart';
 import '../infrastructure/teachings_local_store.dart';
 
@@ -24,19 +25,19 @@ abstract class TeachingsState with _$TeachingsState {
   bool get hasMore => items.length < total;
 }
 
-/// The teachings that answer [search] in [category] ('' for all), a page at
-/// a time: the first one at once, the next ones at the end of the list.
-/// Without a search, the first page kept on the phone shows at once
-/// ([FetchPolicy.cacheAndNetwork]); a search asks the server. Without
-/// network the copy gives way to the error: the screen then lists the
-/// messages downloaded, the only ones that play offline.
+/// The teachings that answer [query], a page at a time: the first one at
+/// once, the next ones at the end of the list. Without a search nor the
+/// advanced filters, the first page kept on the phone shows at once
+/// ([FetchPolicy.cacheAndNetwork]); a search or a filter asks the server.
+/// Without network the copy gives way to the error: the screen then lists
+/// the messages downloaded, the only ones that play offline.
 @riverpod
 class Teachings extends _$Teachings {
   static const pageSize = 20;
 
   @override
-  Future<TeachingsState> build(String search, String category) => _firstPage(
-    search.isEmpty ? FetchPolicy.cacheAndNetwork : FetchPolicy.networkOnly,
+  Future<TeachingsState> build(TeachingQuery query) => _firstPage(
+    query.keepable ? FetchPolicy.cacheAndNetwork : FetchPolicy.networkOnly,
     onFresh: (fresh) {
       if (ref.mounted) {
         state = AsyncData(fresh);
@@ -59,14 +60,14 @@ class Teachings extends _$Teachings {
     final store = ref.read(teachingsLocalStoreProvider);
     final page = await fetchWithPolicy<TeachingsPage>(
       policy: policy,
-      cached: () => store.read(category),
+      cached: () => store.read(query.category),
       network: () => ref
           .read(teachingsApiProvider)
-          .list(search: search, category: category, size: pageSize),
-      // a search is not kept
+          .list(query: query, size: pageSize),
+      // a search and the advanced filters are not kept
       save: (page) async {
-        if (search.isEmpty) {
-          await store.save(category, page);
+        if (query.keepable) {
+          await store.save(query.category, page);
         }
       },
       onFresh: onFresh == null ? null : (fresh) => onFresh(of(fresh)),
@@ -95,8 +96,7 @@ class Teachings extends _$Teachings {
       final next = await ref
           .read(teachingsApiProvider)
           .list(
-            search: search,
-            category: category,
+            query: query,
             page: current.page + 1,
             size: pageSize,
           );
@@ -131,6 +131,17 @@ Future<List<TeachingCategory>> teachingCategories(Ref ref) async {
     return await ref.watch(teachingsApiProvider).categories();
   } on Object {
     return const [];
+  }
+}
+
+/// The speakers, the years, the editions and the days of [editionId]: what
+/// the filters offer. Empty without network.
+@riverpod
+Future<TeachingFacets> teachingFacets(Ref ref, int? editionId) async {
+  try {
+    return await ref.watch(teachingsApiProvider).facets(editionId: editionId);
+  } on Object {
+    return const TeachingFacets();
   }
 }
 

@@ -528,6 +528,7 @@ class _Translations$more$ar extends Translations$more$fr {
 	@override String get admin => 'الإدارة';
 	@override String get staff => 'الفريق والأدوار';
 	@override String get manageEvents => 'إدارة الفعاليات';
+	@override String get manageDocuments => 'إدارة المستندات';
 	@override String get disciples => 'تلاميذي';
 	@override String version({required Object version}) => 'الإصدار ${version}';
 	@override String copyright({required Object year}) => '© ${year} Christian Missionary Fellowship International. جميع الحقوق محفوظة.';
@@ -1681,6 +1682,7 @@ class _Translations$documents$ar extends Translations$documents$fr {
 	@override String get word => 'Word';
 	@override String get open => 'افتح المستند';
 	@override String get download => 'تنزيل';
+	@override String get share => 'مشاركة';
 	@override String count({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n,
 		zero: '${n} مستند',
 		one: 'مستند واحد',
@@ -1690,6 +1692,7 @@ class _Translations$documents$ar extends Translations$documents$fr {
 		other: '${n} مستند',
 	);
 	@override String get more => 'عرض المزيد';
+	@override late final _Translations$documents$admin$ar admin = _Translations$documents$admin$ar._(_root);
 }
 
 // Path: biblePlan
@@ -1819,6 +1822,7 @@ class _Translations$teachings$ar extends Translations$teachings$fr {
 	@override String get removed => 'أُزيل من الهاتف';
 	@override String get cancelDownload => 'أوقف التحميل';
 	@override String get removeDownload => 'أزل من الهاتف';
+	@override String get share => 'مشاركة';
 	@override String get back15 => 'رجوع 15 ثانية';
 	@override String get forward15 => 'تقدّم 15 ثانية';
 	@override String speed({required Object speed}) => 'السرعة ${speed}';
@@ -1826,6 +1830,42 @@ class _Translations$teachings$ar extends Translations$teachings$fr {
 	@override String get moreSubtitle => 'عظات وتعاليم للاستماع';
 	@override String get closePlayer => 'إغلاق المشغّل';
 	@override String get downloadPremium => 'التنزيل مع Premium';
+	@override String get filters => 'عوامل التصفية';
+	@override String get filtersTitle => 'تضييق القائمة';
+	@override String get speakerLabel => 'المتحدث';
+	@override String get allSpeakers => 'كل المتحدثين';
+	@override String get yearLabel => 'السنة';
+	@override String get allYears => 'كل السنوات';
+	@override String get editionLabel => 'الإصدار';
+	@override String get allEditions => 'كل الإصدارات';
+	@override String get dayLabel => 'اليوم';
+	@override String get allDays => 'كل الأيام';
+	@override String dayChip({required Object n}) => 'اليوم ${n}';
+	@override String get clearFilters => 'مسح الكل';
+	@override String get showResults => 'عرض';
+	@override String dayMessage({required Object day, required Object n}) => 'اليوم ${day}، الرسالة ${n}';
+	@override String minutes({required Object n}) => '${n} د';
+	@override String hoursMinutes({required Object h, required Object m}) => '${h} س ${m}';
+	@override String left({required Object time}) => 'متبقٍ ${time}';
+	@override String get nowPlaying => 'قيد التشغيل';
+	@override String get resume => 'متابعة';
+	@override String get editions => 'الدورات';
+	@override String get allOfCategory => 'كل الرسائل';
+	@override String daysCount({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n,
+		one: 'يوم واحد',
+		other: '${n} أيام',
+	);
+	@override String andOthers({required num n, required Object name}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n,
+		one: '${name} وآخر',
+		other: '${name} و${n} آخرون',
+	);
+	@override String showCount({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n,
+		one: 'عرض رسالة واحدة',
+		other: 'عرض ${n} رسائل',
+	);
+	@override String get searchOpen => 'بحث';
+	@override String get searchClose => 'إغلاق البحث';
+	@override String get dayAll => 'الكل';
 }
 
 // Path: memorize
@@ -3424,6 +3464,47 @@ class _Translations$seekFirst$shield$ar extends Translations$seekFirst$shield$fr
 	@override String get serviceBody => 'تُغلق تطبيقاتك كل يوم حتى تقريرك.';
 }
 
+// Path: documents.admin
+class _Translations$documents$admin$ar extends Translations$documents$admin$fr {
+	_Translations$documents$admin$ar._(TranslationsAr root) : this._root = root, super.internal(root);
+
+	final TranslationsAr _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'إدارة المستندات';
+	@override String get manage => 'إدارة المستندات';
+	@override String get create => 'مستند جديد';
+	@override String get edit => 'تعديل المستند';
+	@override String get empty => 'لا توجد مستندات بعد. المس « مستند جديد » لنشر واحد.';
+	@override String get file => 'الملف';
+	@override String get pickFile => 'اختر ملف PDF أو Word';
+	@override String get fileHint => 'من الملفات أو من هاتفك · 10 ميغابايت كحد أقصى';
+	@override String get replace => 'استبدال';
+	@override String get uploading => 'جارٍ إرسال الملف…';
+	@override String get tooLarge => 'هذا الملف كبير جدًا (10 ميغابايت كحد أقصى).';
+	@override String get fileRequired => 'اختر ملف المستند.';
+	@override String get general => 'المستند';
+	@override String get titleField => 'العنوان';
+	@override String get titleHint => 'مثال: النظام الداخلي';
+	@override String get titleRequired => 'أعطِ المستند عنوانًا.';
+	@override String get description => 'الوصف (اختياري)';
+	@override String get category => 'الفئة';
+	@override String get noCategory => 'بلا';
+	@override String get newCategory => 'فئة جديدة';
+	@override String get newCategoryHint => 'اسم الفئة';
+	@override String get visibility => 'النشر';
+	@override String get published => 'انشر الآن';
+	@override String get publishedHint => 'يراه الأعضاء في مستنداتنا.';
+	@override String get notify => 'إعلام الأعضاء';
+	@override String get notifyHint => 'إشعار عند النشر لأول مرة.';
+	@override String get draft => 'مسودة';
+	@override String get saved => 'تم حفظ المستند';
+	@override String get deleted => 'تم حذف المستند';
+	@override String get delete => 'حذف';
+	@override String get deleteTitle => 'حذف هذا المستند؟';
+	@override String get deleteText => 'سيختفي لدى جميع الأعضاء. لا يمكن التراجع.';
+}
+
 // Path: souls.csv
 class _Translations$souls$csv$ar extends Translations$souls$csv$fr {
 	_Translations$souls$csv$ar._(TranslationsAr root) : this._root = root, super.internal(root);
@@ -4644,6 +4725,7 @@ extension on TranslationsAr {
 			'more.admin' => 'الإدارة',
 			'more.staff' => 'الفريق والأدوار',
 			'more.manageEvents' => 'إدارة الفعاليات',
+			'more.manageDocuments' => 'إدارة المستندات',
 			'more.disciples' => 'تلاميذي',
 			'more.version' => ({required Object version}) => 'الإصدار ${version}',
 			'more.copyright' => ({required Object year}) => '© ${year} Christian Missionary Fellowship International. جميع الحقوق محفوظة.',
@@ -4705,9 +4787,9 @@ extension on TranslationsAr {
 			'authorities.madeMaker' => ({required Object name}) => '${name} هو الآن صانع التلاميذ الخاص بك.',
 			'members.username' => 'اسم المستخدم',
 			'members.usernameHint' => 'firstname.lastname',
-			'members.usernameHelp' => 'بهذا الاسم سيجدك الأعضاء الآخرون.',
 			_ => null,
 		} ?? switch (path) {
+			'members.usernameHelp' => 'بهذا الاسم سيجدك الأعضاء الآخرون.',
 			'members.usernameChecking' => 'جارٍ التحقق…',
 			'members.usernameFree' => ({required Object username}) => '@${username} متاح',
 			'members.usernameCurrent' => 'هذا اسم المستخدم الحالي الخاص بك',
@@ -5219,9 +5301,9 @@ extension on TranslationsAr {
 			'prayer.moments.night' => 'الليل',
 			'prayer.retreatOf.morning' => 'خلوة الصباح',
 			'prayer.retreatOf.noon' => 'خلوة الظهر',
-			'prayer.retreatOf.evening' => 'خلوة المساء',
 			_ => null,
 		} ?? switch (path) {
+			'prayer.retreatOf.evening' => 'خلوة المساء',
 			'prayer.retreatOf.night' => 'خلوة الليل',
 			'prayer.hero.now' => ({required Object retreat}) => '${retreat} · الآن',
 			'prayer.hero.title' => '15 دقيقة\nمع الرب',
@@ -5733,9 +5815,9 @@ extension on TranslationsAr {
 			'seekFirst.shield.notificationTitle' => 'اطلب الله أولًا',
 			'seekFirst.shield.notificationBody' => 'المس هنا لتملأ تقريرك.',
 			'seekFirst.shield.serviceBody' => 'تُغلق تطبيقاتك كل يوم حتى تقريرك.',
-			'seekFirst.permissionsAndroid' => 'لإغلاق تطبيقاتك، يحتاج CMFI Connect إلى إذنين تفعّلهما في الإعدادات التي ستُفتح: «الوصول إلى بيانات الاستخدام» (لمعرفة التطبيق المفتوح) و«الظهور فوق التطبيقات الأخرى» (لإظهار شاشة اطلب الله أولًا). لا يخرج شيء من هاتفك.',
 			_ => null,
 		} ?? switch (path) {
+			'seekFirst.permissionsAndroid' => 'لإغلاق تطبيقاتك، يحتاج CMFI Connect إلى إذنين تفعّلهما في الإعدادات التي ستُفتح: «الوصول إلى بيانات الاستخدام» (لمعرفة التطبيق المفتوح) و«الظهور فوق التطبيقات الأخرى» (لإظهار شاشة اطلب الله أولًا). لا يخرج شيء من هاتفك.',
 			'seekFirst.permissionsContinue' => 'متابعة',
 			'seekFirst.deniedAndroid' => 'بدون هذين الإذنين لا يستطيع CMFI Connect إغلاق التطبيقات. يمكنك تفعيلهما من الإعدادات › التطبيقات › الوصول الخاص.',
 			'seekFirst.privacyAndroid' => 'تبقى التطبيقات التي تختارها على هاتفك: لا يرسلها CMFI Connect أبدًا.',
@@ -5752,8 +5834,41 @@ extension on TranslationsAr {
 			'documents.word' => 'Word',
 			'documents.open' => 'افتح المستند',
 			'documents.download' => 'تنزيل',
+			'documents.share' => 'مشاركة',
 			'documents.count' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n, zero: '${n} مستند', one: 'مستند واحد', two: 'مستندان', few: '${n} مستندات', many: '${n} مستندًا', other: '${n} مستند', ), 
 			'documents.more' => 'عرض المزيد',
+			'documents.admin.title' => 'إدارة المستندات',
+			'documents.admin.manage' => 'إدارة المستندات',
+			'documents.admin.create' => 'مستند جديد',
+			'documents.admin.edit' => 'تعديل المستند',
+			'documents.admin.empty' => 'لا توجد مستندات بعد. المس « مستند جديد » لنشر واحد.',
+			'documents.admin.file' => 'الملف',
+			'documents.admin.pickFile' => 'اختر ملف PDF أو Word',
+			'documents.admin.fileHint' => 'من الملفات أو من هاتفك · 10 ميغابايت كحد أقصى',
+			'documents.admin.replace' => 'استبدال',
+			'documents.admin.uploading' => 'جارٍ إرسال الملف…',
+			'documents.admin.tooLarge' => 'هذا الملف كبير جدًا (10 ميغابايت كحد أقصى).',
+			'documents.admin.fileRequired' => 'اختر ملف المستند.',
+			'documents.admin.general' => 'المستند',
+			'documents.admin.titleField' => 'العنوان',
+			'documents.admin.titleHint' => 'مثال: النظام الداخلي',
+			'documents.admin.titleRequired' => 'أعطِ المستند عنوانًا.',
+			'documents.admin.description' => 'الوصف (اختياري)',
+			'documents.admin.category' => 'الفئة',
+			'documents.admin.noCategory' => 'بلا',
+			'documents.admin.newCategory' => 'فئة جديدة',
+			'documents.admin.newCategoryHint' => 'اسم الفئة',
+			'documents.admin.visibility' => 'النشر',
+			'documents.admin.published' => 'انشر الآن',
+			'documents.admin.publishedHint' => 'يراه الأعضاء في مستنداتنا.',
+			'documents.admin.notify' => 'إعلام الأعضاء',
+			'documents.admin.notifyHint' => 'إشعار عند النشر لأول مرة.',
+			'documents.admin.draft' => 'مسودة',
+			'documents.admin.saved' => 'تم حفظ المستند',
+			'documents.admin.deleted' => 'تم حذف المستند',
+			'documents.admin.delete' => 'حذف',
+			'documents.admin.deleteTitle' => 'حذف هذا المستند؟',
+			'documents.admin.deleteText' => 'سيختفي لدى جميع الأعضاء. لا يمكن التراجع.',
 			'biblePlan.title' => 'خطة القراءة',
 			'biblePlan.duration' => 'المدة',
 			'biblePlan.months3' => '3 أشهر',
@@ -5823,6 +5938,7 @@ extension on TranslationsAr {
 			'teachings.removed' => 'أُزيل من الهاتف',
 			'teachings.cancelDownload' => 'أوقف التحميل',
 			'teachings.removeDownload' => 'أزل من الهاتف',
+			'teachings.share' => 'مشاركة',
 			'teachings.back15' => 'رجوع 15 ثانية',
 			'teachings.forward15' => 'تقدّم 15 ثانية',
 			'teachings.speed' => ({required Object speed}) => 'السرعة ${speed}',
@@ -5830,6 +5946,33 @@ extension on TranslationsAr {
 			'teachings.moreSubtitle' => 'عظات وتعاليم للاستماع',
 			'teachings.closePlayer' => 'إغلاق المشغّل',
 			'teachings.downloadPremium' => 'التنزيل مع Premium',
+			'teachings.filters' => 'عوامل التصفية',
+			'teachings.filtersTitle' => 'تضييق القائمة',
+			'teachings.speakerLabel' => 'المتحدث',
+			'teachings.allSpeakers' => 'كل المتحدثين',
+			'teachings.yearLabel' => 'السنة',
+			'teachings.allYears' => 'كل السنوات',
+			'teachings.editionLabel' => 'الإصدار',
+			'teachings.allEditions' => 'كل الإصدارات',
+			'teachings.dayLabel' => 'اليوم',
+			'teachings.allDays' => 'كل الأيام',
+			'teachings.dayChip' => ({required Object n}) => 'اليوم ${n}',
+			'teachings.clearFilters' => 'مسح الكل',
+			'teachings.showResults' => 'عرض',
+			'teachings.dayMessage' => ({required Object day, required Object n}) => 'اليوم ${day}، الرسالة ${n}',
+			'teachings.minutes' => ({required Object n}) => '${n} د',
+			'teachings.hoursMinutes' => ({required Object h, required Object m}) => '${h} س ${m}',
+			'teachings.left' => ({required Object time}) => 'متبقٍ ${time}',
+			'teachings.nowPlaying' => 'قيد التشغيل',
+			'teachings.resume' => 'متابعة',
+			'teachings.editions' => 'الدورات',
+			'teachings.allOfCategory' => 'كل الرسائل',
+			'teachings.daysCount' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n, one: 'يوم واحد', other: '${n} أيام', ), 
+			'teachings.andOthers' => ({required num n, required Object name}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n, one: '${name} وآخر', other: '${name} و${n} آخرون', ), 
+			'teachings.showCount' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n, one: 'عرض رسالة واحدة', other: 'عرض ${n} رسائل', ), 
+			'teachings.searchOpen' => 'بحث',
+			'teachings.searchClose' => 'إغلاق البحث',
+			'teachings.dayAll' => 'الكل',
 			'memorize.title' => 'الحفظ',
 			'memorize.subtitle' => 'اخبأ الكلمة في قلبك',
 			'memorize.toReview' => 'للمراجعة',

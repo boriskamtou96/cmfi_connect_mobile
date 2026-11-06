@@ -277,7 +277,8 @@ void main() {
 
   group('sign out', () {
     testWidgets(
-      '"Se déconnecter" in the More tab goes back to the welcome screen',
+      '"Se déconnecter" in the More tab opens the login, the welcome screen '
+      'behind it',
       (tester) async {
         final app = await pumpApp(tester, token: 'saved-token');
 
@@ -286,23 +287,26 @@ void main() {
         await scrollToEnd(tester);
         await tapText(tester, 'Se déconnecter');
 
-        expect(find.text(welcomeButton), findsOneWidget);
+        expect(find.text('Content de te revoir'), findsOneWidget);
         expect(app.storage.token, isNull);
-      },
-    );
 
-    testWidgets(
-      'a 401 elsewhere in the app signs out and returns to the welcome screen',
-      (tester) async {
-        final app = await pumpApp(tester, token: 'expired-token');
-        expect(find.text('Bonjour Boris'), findsOneWidget);
-
-        // what AuthInterceptor does when an authenticated request gets a 401
-        await app.container.read(sessionProvider.notifier).signOut();
+        await tester.tap(find.byTooltip('Retour'));
         await tester.pumpAndSettle();
-
         expect(find.text(welcomeButton), findsOneWidget);
       },
     );
+
+    testWidgets('a 401 elsewhere in the app signs out and opens the login', (
+      tester,
+    ) async {
+      final app = await pumpApp(tester, token: 'expired-token');
+      expect(find.text('Bonjour Boris'), findsOneWidget);
+
+      // what AuthInterceptor does when an authenticated request gets a 401
+      await app.container.read(sessionProvider.notifier).signOut();
+      await tester.pumpAndSettle();
+
+      expect(find.text('Content de te revoir'), findsOneWidget);
+    });
   });
 }

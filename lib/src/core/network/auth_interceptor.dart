@@ -45,7 +45,7 @@ class AuthInterceptor extends Interceptor {
     if (err.response?.statusCode == 401 &&
         hadToken &&
         code != 'INVALID_CREDENTIALS') {
-      // the router guard sends the user back to the login screen
+      // App listens to the session and opens the login screen
       AppLog.info('session expired (401): signed out');
       await _ref.read(sessionProvider.notifier).signOut();
     }

@@ -9,8 +9,7 @@ import '../../notifications/application/push_registration.dart';
 import '../../reports/application/pending_reports.dart';
 
 /// Signs out, from Réglages or the menu: days saved offline would be lost,
-/// so it asks first. App listens to the session and goes back to the
-/// welcome screen.
+/// so it asks first. App listens to the session and opens the login screen.
 Future<void> signOut(BuildContext context, WidgetRef ref) async {
   final t = context.t;
   final pending = ref.read(pendingReportsProvider).length;

@@ -64,14 +64,13 @@ void main() {
     expect(app.savedLogin.savedPassword, 'Secret123');
     expect(find.text('Bonjour Boris'), findsOneWidget);
 
-    // signed out: the number and Face ID stay
+    // signed out, straight on the login: the number and Face ID stay
     await openSettings(tester);
     await tester.pumpAndSettle();
     await scrollToEnd(tester);
     await tester.tap(find.text('Se déconnecter'));
     await tester.pumpAndSettle();
     app.authApi.loggedInWith = null;
-    await openLogin(tester);
 
     await tester.tap(find.text('Se connecter avec ton visage'));
     await tester.pumpAndSettle();

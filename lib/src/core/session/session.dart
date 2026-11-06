@@ -25,11 +25,18 @@ class Session extends _$Session {
     state = const AsyncData(SessionStatus.authenticated);
   }
 
-  Future<void> signOut() async {
+  /// After it, App opens the login screen; [accountDeleted]: the welcome
+  /// screen, there is no account to sign in to any more.
+  Future<void> signOut({bool accountDeleted = false}) async {
+    _accountDeleted = accountDeleted;
     await ref.read(tokenStorageProvider).delete();
     await ref.read(accountStorageProvider).delete();
     state = const AsyncData(SessionStatus.unauthenticated);
   }
+
+  /// Whether the last sign-out came with the account's deletion.
+  bool get accountDeleted => _accountDeleted;
+  var _accountDeleted = false;
 }
 
 /// The signed-in account saved at login. null when signed out, or when the

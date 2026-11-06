@@ -53,7 +53,12 @@ class App extends ConsumerWidget {
     ref.listen(sessionProvider, (previous, next) {
       if (previous?.value == SessionStatus.authenticated &&
           next.value == SessionStatus.unauthenticated) {
-        router.replaceAll([const WelcomeRoute()]);
+        // back to the login, the welcome screen behind it (its back arrow)
+        router.replaceAll([
+          const WelcomeRoute(),
+          if (!ref.read(sessionProvider.notifier).accountDeleted)
+            const LoginRoute(),
+        ]);
 
         unawaited(ref.read(reportsLocalStoreProvider).clear());
         unawaited(ref.read(eventsLocalStoreProvider).clear());

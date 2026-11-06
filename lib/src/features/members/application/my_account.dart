@@ -40,13 +40,13 @@ class MyAccount extends _$MyAccount {
   }
 
   /// Deletes the account on the server, then signs out: App goes back to the
-  /// welcome screen and forgets what the phone kept. Throws an AppException
+  /// welcome screen, not to the login, and forgets what the phone kept. Throws an AppException
   /// (INVALID_CREDENTIALS, LAST_SUPERADMIN…), the account stays then.
   Future<void> deleteAccount(String password) async {
     final session = ref.read(sessionProvider.notifier);
     await ref.read(membersApiProvider).deleteAccount(password: password);
     // the number and the password kept for Face ID go with the account
     await ref.read(savedLoginProvider.notifier).forget();
-    await session.signOut();
+    await session.signOut(accountDeleted: true);
   }
 }

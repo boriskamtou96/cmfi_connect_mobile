@@ -4,9 +4,9 @@ import 'package:cmfi_connect/src/core/i18n/strings.g.dart';
 import 'package:cmfi_connect/src/core/services/app_shield.dart';
 import 'package:cmfi_connect/src/core/services/app_shortcuts.dart';
 import 'package:cmfi_connect/src/core/services/app_update.dart';
+import 'package:cmfi_connect/src/core/services/background_music.dart';
 import 'package:cmfi_connect/src/core/services/biometrics.dart';
 import 'package:cmfi_connect/src/core/services/calendar_service.dart';
-import 'package:cmfi_connect/src/core/services/chime.dart';
 import 'package:cmfi_connect/src/core/services/crash_reporting.dart';
 import 'package:cmfi_connect/src/core/services/deep_links.dart';
 import 'package:cmfi_connect/src/core/services/document_picking.dart';
@@ -97,7 +97,7 @@ class TestApp {
     required this.picker,
     required this.documentPicker,
     required this.prayerApi,
-    required this.chime,
+    required this.music,
     required this.push,
     required this.notificationsApi,
     required this.premium,
@@ -158,7 +158,7 @@ class TestApp {
   final FakePremiumStore premium;
   final FakeHomeWidgets homeWidgets;
   final FakeMinistryApi ministryApi;
-  final FakeChime chime;
+  final FakeBackgroundMusic music;
   final FakeStoreReview storeReview;
   final FakeAppShortcuts shortcuts;
 
@@ -273,7 +273,7 @@ Future<TestApp> pumpApp(
   final picker = FakeImagePicking();
   final documentPicker = FakeDocumentPicking();
   final prayer = prayerApi ?? FakePrayerApi();
-  final chime = FakeChime();
+  final music = FakeBackgroundMusic();
   final pushMessaging = push ?? FakePushMessaging();
   final notificationsApi0 = notificationsApi ?? FakeNotificationsApi();
   final premiumStore = premium ?? FakePremiumStore();
@@ -331,7 +331,7 @@ Future<TestApp> pumpApp(
       imagePickingProvider.overrideWithValue(picker),
       documentPickingProvider.overrideWithValue(documentPicker),
       prayerApiProvider.overrideWithValue(prayer),
-      chimeProvider.overrideWithValue(chime),
+      backgroundMusicProvider.overrideWithValue(music),
       pushMessagingProvider.overrideWithValue(pushMessaging),
       notificationsApiProvider.overrideWithValue(notificationsApi0),
       premiumStoreProvider.overrideWithValue(premiumStore),
@@ -413,7 +413,7 @@ Future<TestApp> pumpApp(
     picker: picker,
     documentPicker: documentPicker,
     prayerApi: prayer,
-    chime: chime,
+    music: music,
     push: pushMessaging,
     notificationsApi: notificationsApi0,
     premium: premiumStore,

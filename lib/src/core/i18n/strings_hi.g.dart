@@ -2888,7 +2888,7 @@ class _Translations$prayer$retreat$hi extends Translations$prayer$retreat$fr {
 		'night': 'सोने से पहले',
 	};
 	@override String reminderAt({required Object time}) => 'रिमाइंडर ${time} पर';
-	@override String get intro => '15 बिंदु, हर एक के लिए एक मिनट। एक हल्की आवाज़ तुम्हें अगले बिंदु पर ले जाती है।';
+	@override String get intro => '15 बिंदु, हर एक के लिए एक मिनट, चाहो तो हल्के संगीत के साथ।';
 	@override String get done => 'आज पूरा हुआ';
 	@override String get start => 'शुरू करो · 15 मिनट';
 	@override String get selfPaced => 'अपनी रफ़्तार से पढ़ो, बिना टाइमर के';
@@ -2907,13 +2907,11 @@ class _Translations$prayer$session$hi extends Translations$prayer$session$fr {
 	@override String get paused => 'रुका हुआ';
 	@override String inYourList({required Object list}) => 'तुम्हारी सूची में · ${list}';
 	@override String get tomorrow => 'कल, अगले लोग।';
-	@override String get footer => 'स्क्रीन चालू · हर मिनट एक हल्की आवाज़';
+	@override String get footer => 'स्क्रीन चालू · हर बिंदु के लिए एक मिनट';
 	@override String get previous => 'पिछला बिंदु';
 	@override String get next => 'अगला बिंदु';
 	@override String get pause => 'रोको';
 	@override String get resume => 'फिर शुरू करो';
-	@override String get soundOn => 'आवाज़ चालू';
-	@override String get soundOff => 'आवाज़ बंद';
 	@override String get finish => 'प्रार्थना-समय पूरा करो';
 	@override String get quitTitle => 'प्रार्थना-समय रोकना है?';
 	@override String get quitText => 'यह तुम्हारे दिन में नहीं गिना जाएगा।';
@@ -2921,6 +2919,8 @@ class _Translations$prayer$session$hi extends Translations$prayer$session$fr {
 	@override String get keepPraying => 'प्रार्थना जारी रखो';
 	@override String get voiceOff => 'ज़ोर से पढ़ो';
 	@override String get voiceOn => 'ज़ोर से पढ़ना चालू है';
+	@override String get musicOff => 'पृष्ठभूमि संगीत';
+	@override String get musicOn => 'पृष्ठभूमि संगीत चालू है';
 }
 
 // Path: prayer.done
@@ -4936,7 +4936,7 @@ extension on TranslationsHi {
 			'prayer.retreat.hours.evening' => 'दोपहर ढलने पर',
 			'prayer.retreat.hours.night' => 'सोने से पहले',
 			'prayer.retreat.reminderAt' => ({required Object time}) => 'रिमाइंडर ${time} पर',
-			'prayer.retreat.intro' => '15 बिंदु, हर एक के लिए एक मिनट। एक हल्की आवाज़ तुम्हें अगले बिंदु पर ले जाती है।',
+			'prayer.retreat.intro' => '15 बिंदु, हर एक के लिए एक मिनट, चाहो तो हल्के संगीत के साथ।',
 			'prayer.retreat.done' => 'आज पूरा हुआ',
 			'prayer.retreat.start' => 'शुरू करो · 15 मिनट',
 			'prayer.retreat.selfPaced' => 'अपनी रफ़्तार से पढ़ो, बिना टाइमर के',
@@ -4954,13 +4954,11 @@ extension on TranslationsHi {
 			'prayer.session.paused' => 'रुका हुआ',
 			'prayer.session.inYourList' => ({required Object list}) => 'तुम्हारी सूची में · ${list}',
 			'prayer.session.tomorrow' => 'कल, अगले लोग।',
-			'prayer.session.footer' => 'स्क्रीन चालू · हर मिनट एक हल्की आवाज़',
+			'prayer.session.footer' => 'स्क्रीन चालू · हर बिंदु के लिए एक मिनट',
 			'prayer.session.previous' => 'पिछला बिंदु',
 			'prayer.session.next' => 'अगला बिंदु',
 			'prayer.session.pause' => 'रोको',
 			'prayer.session.resume' => 'फिर शुरू करो',
-			'prayer.session.soundOn' => 'आवाज़ चालू',
-			'prayer.session.soundOff' => 'आवाज़ बंद',
 			'prayer.session.finish' => 'प्रार्थना-समय पूरा करो',
 			'prayer.session.quitTitle' => 'प्रार्थना-समय रोकना है?',
 			'prayer.session.quitText' => 'यह तुम्हारे दिन में नहीं गिना जाएगा।',
@@ -4968,6 +4966,8 @@ extension on TranslationsHi {
 			'prayer.session.keepPraying' => 'प्रार्थना जारी रखो',
 			'prayer.session.voiceOff' => 'ज़ोर से पढ़ो',
 			'prayer.session.voiceOn' => 'ज़ोर से पढ़ना चालू है',
+			'prayer.session.musicOff' => 'पृष्ठभूमि संगीत',
+			'prayer.session.musicOn' => 'पृष्ठभूमि संगीत चालू है',
 			'prayer.done.title' => ({required Object retreat}) => '${retreat} पूरा हुआ',
 			'prayer.done.text' => 'प्रभु के साथ 15 मिनट।\nउसने तुम्हारी हर प्रार्थना सुनी है।',
 			'prayer.done.report' => 'तुम्हारी रिपोर्ट में जोड़ दिया गया',

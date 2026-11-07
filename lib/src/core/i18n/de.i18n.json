@@ -1330,7 +1330,7 @@
         "night": "Vor dem Schlafengehen"
       },
       "reminderAt": "Erinnerung um {time}",
-      "intro": "15 Punkte, je eine Minute. Ein sanfter Ton führt dich zum nächsten.",
+      "intro": "15 Punkte, je eine Minute, auf Wunsch mit sanfter Musik.",
       "done": "Heute erledigt",
       "start": "Beginnen · 15 Min.",
       "selfPaced": "In meinem Tempo lesen, ohne Timer",
@@ -1352,20 +1352,20 @@
       "paused": "pausiert",
       "inYourList": "Auf deiner Liste · {list}",
       "tomorrow": "Morgen die nächsten.",
-      "footer": "Bildschirm bleibt an · ein sanfter Ton jede Minute",
+      "footer": "Bildschirm bleibt an · eine Minute pro Punkt",
       "previous": "Vorheriger Punkt",
       "next": "Nächster Punkt",
       "pause": "Pause",
       "resume": "Fortsetzen",
-      "soundOn": "Ton an",
-      "soundOff": "Ton aus",
       "finish": "Gebetszeit beenden",
       "quitTitle": "Gebetszeit abbrechen?",
       "quitText": "Sie wird für deinen Tag nicht gezählt.",
       "quit": "Abbrechen",
       "keepPraying": "Weiterbeten",
       "voiceOff": "Vorlesen",
-      "voiceOn": "Vorlesen ist an"
+      "voiceOn": "Vorlesen ist an",
+      "musicOff": "Hintergrundmusik",
+      "musicOn": "Hintergrundmusik ist an"
     },
     "done": {
       "title": "{retreat} beendet",

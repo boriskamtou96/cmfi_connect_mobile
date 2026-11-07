@@ -6,9 +6,9 @@ import 'package:cmfi_connect/src/core/network/app_exception.dart';
 import 'package:cmfi_connect/src/core/services/app_shield.dart';
 import 'package:cmfi_connect/src/core/services/app_shortcuts.dart';
 import 'package:cmfi_connect/src/core/services/app_update.dart';
+import 'package:cmfi_connect/src/core/services/background_music.dart';
 import 'package:cmfi_connect/src/core/services/biometrics.dart';
 import 'package:cmfi_connect/src/core/services/calendar_service.dart';
-import 'package:cmfi_connect/src/core/services/chime.dart';
 import 'package:cmfi_connect/src/core/services/crash_reporting.dart';
 import 'package:cmfi_connect/src/core/services/deep_links.dart';
 import 'package:cmfi_connect/src/core/services/document_picking.dart';
@@ -1955,12 +1955,26 @@ class FakePrayerApi implements PrayerApi {
   }
 }
 
-/// The sound between two points: counted, not played.
-class FakeChime implements Chime {
-  var played = 0;
+/// The piano behind a retreat: whether it plays, and how loud.
+class FakeBackgroundMusic implements BackgroundMusic {
+  var playing = false;
+  var quieted = false;
+  var stopped = 0;
 
   @override
-  Future<void> play() async => played++;
+  Future<void> play() async => playing = true;
+
+  @override
+  Future<void> pause() async => playing = false;
+
+  @override
+  Future<void> stop() async {
+    playing = false;
+    stopped++;
+  }
+
+  @override
+  Future<void> quiet({required bool on}) async => quieted = on;
 
   @override
   Future<void> dispose() async {}
@@ -2009,6 +2023,12 @@ class FakeVoiceReader implements VoiceReader {
 
   @override
   Future<void> stop() async => stops++;
+
+  /// Whether the sound stays on after a reading (music behind the voice).
+  var soundKept = false;
+
+  @override
+  Future<void> keepSoundOn({required bool on}) async => soundKept = on;
 }
 
 /// The report sent in the app: who it can go to ([receivers], authority

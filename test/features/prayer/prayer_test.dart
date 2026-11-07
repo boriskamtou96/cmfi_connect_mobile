@@ -366,9 +366,7 @@ void main() {
       );
     });
 
-    testWidgets('guided: a minute per point, a soft sound to the next', (
-      tester,
-    ) async {
+    testWidgets('guided: a minute per point, then the next', (tester) async {
       final app = await pumpApp(tester, token: 't');
       await openPrayer(tester);
       await scrollToMiddle(tester, find.text('Commencer'));
@@ -384,7 +382,6 @@ void main() {
       await tester.pump(const Duration(seconds: 30));
       await tester.pump(const Duration(milliseconds: 500));
       expect(find.text('Point 2 sur 15'), findsOneWidget);
-      expect(app.chime.played, 1);
 
       // a pause stops the clock
       await tester.tap(find.bySemanticsLabel('Pause'));
@@ -402,6 +399,46 @@ void main() {
       await tester.pumpAndSettle();
       expect(app.prayerApi.retreatList, isEmpty);
       expect(find.text('Ta routine du jour'), findsOneWidget);
+    });
+
+    testWidgets('the music behind: off at first, kept once turned on, '
+        'quiet in a pause, lower under the voice, gone when left', (
+      tester,
+    ) async {
+      final app = await pumpApp(tester, token: 't');
+      await openPrayer(tester);
+      await scrollToMiddle(tester, find.text('Commencer'));
+      await tester.tap(find.text('Commencer'));
+      await tester.pump();
+      await tester.pump(const Duration(milliseconds: 500));
+      expect(app.music.playing, isFalse);
+
+      await tester.tap(find.byTooltip('Musique de fond'));
+      await tester.pump();
+      expect(app.music.playing, isTrue);
+      expect(app.voice.soundKept, isTrue);
+      expect(find.byTooltip('Musique de fond activée'), findsOneWidget);
+      expect(app.preferences.getBool('retreat_music'), isTrue);
+
+      await tester.tap(find.bySemanticsLabel('Pause'));
+      await tester.pump();
+      expect(app.music.playing, isFalse);
+      await tester.tap(find.bySemanticsLabel('Reprendre'));
+      await tester.pump();
+      expect(app.music.playing, isTrue);
+
+      await tester.tap(find.byTooltip('Lire à voix haute'));
+      await tester.pump();
+      expect(app.music.quieted, isTrue);
+
+      await tester.tap(find.byTooltip('Fermer'));
+      await tester.pump();
+      await tester.pump(const Duration(milliseconds: 500));
+      await tester.tap(find.text('Arrêter'));
+      await tester.pumpAndSettle();
+      expect(app.music.playing, isFalse);
+      expect(app.music.stopped, 1);
+      expect(app.voice.soundKept, isFalse);
     });
 
     testWidgets('a topic of the community: its PDF opens, and downloads', (

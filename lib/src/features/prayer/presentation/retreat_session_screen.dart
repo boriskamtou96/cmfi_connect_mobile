@@ -9,7 +9,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import '../../../core/i18n/strings.g.dart';
 import '../../../core/network/app_exception_message.dart';
 import '../../../core/services/app_log.dart';
-import '../../../core/services/chime.dart';
+import '../../../core/services/background_music.dart';
 import '../../../core/services/screen_awake.dart';
 import '../../../core/services/voice_reader.dart';
 import '../../../core/storage/preferences.dart';
@@ -29,9 +29,10 @@ import '../domain/retreat.dart';
 import 'retreat_screen.dart';
 import 'widgets/prayer_look.dart';
 
-/// A retreat prayed point by point: one minute each when [timed] (a soft
-/// sound moves to the next one), at the user's pace otherwise. The end adds
-/// the retreat to the day and its minutes to the report.
+/// A retreat prayed point by point: one minute each when [timed] (a light
+/// vibration at the next one), at the user's pace otherwise, soft piano
+/// behind it if the user wants. The end adds the retreat to the day and its
+/// minutes to the report.
 @RoutePage()
 class RetreatSessionScreen extends HookConsumerWidget {
   const RetreatSessionScreen({
@@ -44,10 +45,12 @@ class RetreatSessionScreen extends HookConsumerWidget {
   final bool timed;
 
   static const secondsPerPoint = 60;
-  static const _soundKey = 'retreat_sound';
 
   /// Each point read aloud (key `retreat_voice`, off until turned on).
   static const voiceKey = 'retreat_voice';
+
+  /// Piano behind the prayer (key `retreat_music`, off until turned on).
+  static const musicKey = 'retreat_music';
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -59,8 +62,9 @@ class RetreatSessionScreen extends HookConsumerWidget {
     final paused = useState(false);
     final finished = useState(false);
     final preferences = ref.read(sharedPreferencesProvider);
-    final sound = useState(preferences.getBool(_soundKey) ?? true);
     final voice = useState(preferences.getBool(voiceKey) ?? false);
+    final music = useState(preferences.getBool(musicKey) ?? false);
+    final backgroundMusic = ref.read(backgroundMusicProvider);
     final reader = ref.read(voiceReaderProvider);
     // a retreat made again today doesn't add its minutes twice
     final alreadyDone = useMemoized(
@@ -84,16 +88,13 @@ class RetreatSessionScreen extends HookConsumerWidget {
       unawaited(HapticFeedback.mediumImpact());
     }
 
-    void goTo(int next, {bool chime = false}) {
+    void goTo(int next) {
       if (next >= retreatPoints || points.isNotEmpty && next >= points.length) {
         finish();
         return;
       }
       index.value = next.clamp(0, retreatPoints - 1);
       remaining.value = secondsPerPoint;
-      if (chime && sound.value) {
-        unawaited(ref.read(chimeProvider).play());
-      }
       unawaited(HapticFeedback.selectionClick());
     }
 
@@ -105,11 +106,31 @@ class RetreatSessionScreen extends HookConsumerWidget {
         if (remaining.value > 1) {
           remaining.value--;
         } else {
-          goTo(index.value + 1, chime: true);
+          goTo(index.value + 1);
         }
       });
       return timer.cancel;
     }, [timed, paused.value, finished.value, plan.value == null]);
+
+    // the music: while praying, quiet during a pause, gone at the end
+    final playing =
+        music.value && !paused.value && !finished.value && plan.value != null;
+    useEffect(() {
+      unawaited(reader.keepSoundOn(on: playing));
+      unawaited(playing ? backgroundMusic.play() : backgroundMusic.pause());
+      return null;
+    }, [playing]);
+    useEffect(() {
+      unawaited(backgroundMusic.quiet(on: voice.value));
+      return null;
+    }, [voice.value]);
+    useEffect(
+      () => () {
+        unawaited(backgroundMusic.stop());
+        unawaited(reader.keepSoundOn(on: false));
+      },
+      const [],
+    );
 
     if (finished.value) {
       return _RetreatDone(
@@ -243,18 +264,18 @@ class RetreatSessionScreen extends HookConsumerWidget {
                           ),
                         ),
                         IconButton(
-                          tooltip: sound.value
-                              ? t.prayer.session.soundOn
-                              : t.prayer.session.soundOff,
+                          tooltip: music.value
+                              ? t.prayer.session.musicOn
+                              : t.prayer.session.musicOff,
                           onPressed: () {
-                            sound.value = !sound.value;
+                            music.value = !music.value;
                             unawaited(
-                              preferences.setBool(_soundKey, sound.value),
+                              preferences.setBool(musicKey, music.value),
                             );
                           },
                           icon: Icon(
-                            sound.value ? AppIcons.soundOn : AppIcons.soundOff,
-                            color: Colors.white,
+                            music.value ? AppIcons.musicOn : AppIcons.musicOff,
+                            color: music.value ? accent : Colors.white,
                             size: 24,
                           ),
                         ),

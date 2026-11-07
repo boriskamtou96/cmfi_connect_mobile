@@ -2889,7 +2889,7 @@ class _Translations$prayer$retreat$de extends Translations$prayer$retreat$fr {
 		'night': 'Vor dem Schlafengehen',
 	};
 	@override String reminderAt({required Object time}) => 'Erinnerung um ${time}';
-	@override String get intro => '15 Punkte, je eine Minute. Ein sanfter Ton führt dich zum nächsten.';
+	@override String get intro => '15 Punkte, je eine Minute, auf Wunsch mit sanfter Musik.';
 	@override String get done => 'Heute erledigt';
 	@override String get start => 'Beginnen · 15 Min.';
 	@override String get selfPaced => 'In meinem Tempo lesen, ohne Timer';
@@ -2908,13 +2908,11 @@ class _Translations$prayer$session$de extends Translations$prayer$session$fr {
 	@override String get paused => 'pausiert';
 	@override String inYourList({required Object list}) => 'Auf deiner Liste · ${list}';
 	@override String get tomorrow => 'Morgen die nächsten.';
-	@override String get footer => 'Bildschirm bleibt an · ein sanfter Ton jede Minute';
+	@override String get footer => 'Bildschirm bleibt an · eine Minute pro Punkt';
 	@override String get previous => 'Vorheriger Punkt';
 	@override String get next => 'Nächster Punkt';
 	@override String get pause => 'Pause';
 	@override String get resume => 'Fortsetzen';
-	@override String get soundOn => 'Ton an';
-	@override String get soundOff => 'Ton aus';
 	@override String get finish => 'Gebetszeit beenden';
 	@override String get quitTitle => 'Gebetszeit abbrechen?';
 	@override String get quitText => 'Sie wird für deinen Tag nicht gezählt.';
@@ -2922,6 +2920,8 @@ class _Translations$prayer$session$de extends Translations$prayer$session$fr {
 	@override String get keepPraying => 'Weiterbeten';
 	@override String get voiceOff => 'Vorlesen';
 	@override String get voiceOn => 'Vorlesen ist an';
+	@override String get musicOff => 'Hintergrundmusik';
+	@override String get musicOn => 'Hintergrundmusik ist an';
 }
 
 // Path: prayer.done
@@ -4937,7 +4937,7 @@ extension on TranslationsDe {
 			'prayer.retreat.hours.evening' => 'Am späten Nachmittag',
 			'prayer.retreat.hours.night' => 'Vor dem Schlafengehen',
 			'prayer.retreat.reminderAt' => ({required Object time}) => 'Erinnerung um ${time}',
-			'prayer.retreat.intro' => '15 Punkte, je eine Minute. Ein sanfter Ton führt dich zum nächsten.',
+			'prayer.retreat.intro' => '15 Punkte, je eine Minute, auf Wunsch mit sanfter Musik.',
 			'prayer.retreat.done' => 'Heute erledigt',
 			'prayer.retreat.start' => 'Beginnen · 15 Min.',
 			'prayer.retreat.selfPaced' => 'In meinem Tempo lesen, ohne Timer',
@@ -4955,13 +4955,11 @@ extension on TranslationsDe {
 			'prayer.session.paused' => 'pausiert',
 			'prayer.session.inYourList' => ({required Object list}) => 'Auf deiner Liste · ${list}',
 			'prayer.session.tomorrow' => 'Morgen die nächsten.',
-			'prayer.session.footer' => 'Bildschirm bleibt an · ein sanfter Ton jede Minute',
+			'prayer.session.footer' => 'Bildschirm bleibt an · eine Minute pro Punkt',
 			'prayer.session.previous' => 'Vorheriger Punkt',
 			'prayer.session.next' => 'Nächster Punkt',
 			'prayer.session.pause' => 'Pause',
 			'prayer.session.resume' => 'Fortsetzen',
-			'prayer.session.soundOn' => 'Ton an',
-			'prayer.session.soundOff' => 'Ton aus',
 			'prayer.session.finish' => 'Gebetszeit beenden',
 			'prayer.session.quitTitle' => 'Gebetszeit abbrechen?',
 			'prayer.session.quitText' => 'Sie wird für deinen Tag nicht gezählt.',
@@ -4969,6 +4967,8 @@ extension on TranslationsDe {
 			'prayer.session.keepPraying' => 'Weiterbeten',
 			'prayer.session.voiceOff' => 'Vorlesen',
 			'prayer.session.voiceOn' => 'Vorlesen ist an',
+			'prayer.session.musicOff' => 'Hintergrundmusik',
+			'prayer.session.musicOn' => 'Hintergrundmusik ist an',
 			'prayer.done.title' => ({required Object retreat}) => '${retreat} beendet',
 			'prayer.done.text' => '15 Minuten mit dem Herrn.\nEr hat jedes deiner Gebete gehört.',
 			'prayer.done.report' => 'Zu deinem Bericht hinzugefügt',

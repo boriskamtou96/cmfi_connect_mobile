@@ -2819,7 +2819,7 @@ class _Translations$prayer$retreat$zh extends Translations$prayer$retreat$fr {
 		'night': '睡前',
 	};
 	@override String reminderAt({required Object time}) => '${time} 提醒';
-	@override String get intro => '15 个要点，每个一分钟。轻柔的提示音会带你进入下一个要点。';
+	@override String get intro => '15 个要点，每个一分钟，可选轻柔的背景音乐。';
 	@override String get done => '今天已完成';
 	@override String get start => '开始 · 15 分钟';
 	@override String get selfPaced => '按自己的节奏阅读，不计时';
@@ -2838,13 +2838,11 @@ class _Translations$prayer$session$zh extends Translations$prayer$session$fr {
 	@override String get paused => '已暂停';
 	@override String inYourList({required Object list}) => '你的名单 · ${list}';
 	@override String get tomorrow => '明天为接下来的人祷告。';
-	@override String get footer => '屏幕常亮 · 每分钟一声轻柔提示音';
+	@override String get footer => '屏幕常亮 · 每个要点一分钟';
 	@override String get previous => '上一个要点';
 	@override String get next => '下一个要点';
 	@override String get pause => '暂停';
 	@override String get resume => '继续';
-	@override String get soundOn => '声音已开启';
-	@override String get soundOff => '已静音';
 	@override String get finish => '完成祷告';
 	@override String get quitTitle => '要停止这次祷告吗？';
 	@override String get quitText => '这次祷告不会计入你今天的汇报。';
@@ -2852,6 +2850,8 @@ class _Translations$prayer$session$zh extends Translations$prayer$session$fr {
 	@override String get keepPraying => '继续祷告';
 	@override String get voiceOff => '朗读';
 	@override String get voiceOn => '朗读已开启';
+	@override String get musicOff => '背景音乐';
+	@override String get musicOn => '背景音乐已开启';
 }
 
 // Path: prayer.done
@@ -4839,7 +4839,7 @@ extension on TranslationsZh {
 			'prayer.retreat.hours.evening' => '下午晚些时候',
 			'prayer.retreat.hours.night' => '睡前',
 			'prayer.retreat.reminderAt' => ({required Object time}) => '${time} 提醒',
-			'prayer.retreat.intro' => '15 个要点，每个一分钟。轻柔的提示音会带你进入下一个要点。',
+			'prayer.retreat.intro' => '15 个要点，每个一分钟，可选轻柔的背景音乐。',
 			'prayer.retreat.done' => '今天已完成',
 			'prayer.retreat.start' => '开始 · 15 分钟',
 			'prayer.retreat.selfPaced' => '按自己的节奏阅读，不计时',
@@ -4857,13 +4857,11 @@ extension on TranslationsZh {
 			'prayer.session.paused' => '已暂停',
 			'prayer.session.inYourList' => ({required Object list}) => '你的名单 · ${list}',
 			'prayer.session.tomorrow' => '明天为接下来的人祷告。',
-			'prayer.session.footer' => '屏幕常亮 · 每分钟一声轻柔提示音',
+			'prayer.session.footer' => '屏幕常亮 · 每个要点一分钟',
 			'prayer.session.previous' => '上一个要点',
 			'prayer.session.next' => '下一个要点',
 			'prayer.session.pause' => '暂停',
 			'prayer.session.resume' => '继续',
-			'prayer.session.soundOn' => '声音已开启',
-			'prayer.session.soundOff' => '已静音',
 			'prayer.session.finish' => '完成祷告',
 			'prayer.session.quitTitle' => '要停止这次祷告吗？',
 			'prayer.session.quitText' => '这次祷告不会计入你今天的汇报。',
@@ -4871,6 +4869,8 @@ extension on TranslationsZh {
 			'prayer.session.keepPraying' => '继续祷告',
 			'prayer.session.voiceOff' => '朗读',
 			'prayer.session.voiceOn' => '朗读已开启',
+			'prayer.session.musicOff' => '背景音乐',
+			'prayer.session.musicOn' => '背景音乐已开启',
 			'prayer.done.title' => ({required Object retreat}) => '${retreat}已完成',
 			'prayer.done.text' => '与主同在 15 分钟。\n他听见了你的每一个祷告。',
 			'prayer.done.report' => '已添加到你的汇报',

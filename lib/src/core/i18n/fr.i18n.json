@@ -1330,7 +1330,7 @@
         "night": "Avant de dormir"
       },
       "reminderAt": "rappel à {time}",
-      "intro": "15 points, une minute chacun. Un son doux te fait passer au suivant.",
+      "intro": "15 points, une minute chacun, avec une musique douce si tu veux.",
       "done": "Faite aujourd'hui",
       "start": "Commencer · 15 min",
       "selfPaced": "Lire à mon rythme, sans minuteur",
@@ -1352,20 +1352,20 @@
       "paused": "en pause",
       "inYourList": "Dans ta liste · {list}",
       "tomorrow": "Demain, les suivants.",
-      "footer": "Écran allumé · un son doux à chaque minute",
+      "footer": "Écran allumé · une minute par point",
       "previous": "Point précédent",
       "next": "Point suivant",
       "pause": "Pause",
       "resume": "Reprendre",
-      "soundOn": "Son activé",
-      "soundOff": "Son coupé",
       "finish": "Terminer la retraite",
       "quitTitle": "Arrêter la retraite ?",
       "quitText": "Elle ne sera pas comptée dans ta journée.",
       "quit": "Arrêter",
       "keepPraying": "Continuer",
       "voiceOff": "Lire à voix haute",
-      "voiceOn": "Lecture à voix haute activée"
+      "voiceOn": "Lecture à voix haute activée",
+      "musicOff": "Musique de fond",
+      "musicOn": "Musique de fond activée"
     },
     "done": {
       "title": "{retreat} terminée",

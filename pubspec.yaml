@@ -142,7 +142,8 @@ flutter:
   assets:
     - assets/hymns/
     - assets/prayer/
-    - assets/sounds/
+    # piano behind a retreat (Pixabay Content License, see background_music.dart)
+    - assets/sounds/music/
     # Our ministry: the nations (copy of GET /v1/ministry/nations) and the land
     # of the globe (Natural Earth, public domain: see features/ministry/application/land.dart)
     - assets/ministry/

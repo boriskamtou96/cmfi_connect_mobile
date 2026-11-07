@@ -6014,8 +6014,8 @@ class Translations$prayer$retreat$fr {
 	/// fr: 'rappel à {time}'
 	String reminderAt({required Object time}) => 'rappel à ${time}';
 
-	/// fr: '15 points, une minute chacun. Un son doux te fait passer au suivant.'
-	String get intro => '15 points, une minute chacun. Un son doux te fait passer au suivant.';
+	/// fr: '15 points, une minute chacun, avec une musique douce si tu veux.'
+	String get intro => '15 points, une minute chacun, avec une musique douce si tu veux.';
 
 	/// fr: 'Faite aujourd'hui'
 	String get done => 'Faite aujourd\'hui';
@@ -6052,8 +6052,8 @@ class Translations$prayer$session$fr {
 	/// fr: 'Demain, les suivants.'
 	String get tomorrow => 'Demain, les suivants.';
 
-	/// fr: 'Écran allumé · un son doux à chaque minute'
-	String get footer => 'Écran allumé · un son doux à chaque minute';
+	/// fr: 'Écran allumé · une minute par point'
+	String get footer => 'Écran allumé · une minute par point';
 
 	/// fr: 'Point précédent'
 	String get previous => 'Point précédent';
@@ -6066,12 +6066,6 @@ class Translations$prayer$session$fr {
 
 	/// fr: 'Reprendre'
 	String get resume => 'Reprendre';
-
-	/// fr: 'Son activé'
-	String get soundOn => 'Son activé';
-
-	/// fr: 'Son coupé'
-	String get soundOff => 'Son coupé';
 
 	/// fr: 'Terminer la retraite'
 	String get finish => 'Terminer la retraite';
@@ -6093,6 +6087,12 @@ class Translations$prayer$session$fr {
 
 	/// fr: 'Lecture à voix haute activée'
 	String get voiceOn => 'Lecture à voix haute activée';
+
+	/// fr: 'Musique de fond'
+	String get musicOff => 'Musique de fond';
+
+	/// fr: 'Musique de fond activée'
+	String get musicOn => 'Musique de fond activée';
 }
 
 // Path: prayer.done
@@ -8749,7 +8749,7 @@ extension on Translations {
 			'prayer.retreat.hours.evening' => 'En fin d\'après-midi',
 			'prayer.retreat.hours.night' => 'Avant de dormir',
 			'prayer.retreat.reminderAt' => ({required Object time}) => 'rappel à ${time}',
-			'prayer.retreat.intro' => '15 points, une minute chacun. Un son doux te fait passer au suivant.',
+			'prayer.retreat.intro' => '15 points, une minute chacun, avec une musique douce si tu veux.',
 			'prayer.retreat.done' => 'Faite aujourd\'hui',
 			'prayer.retreat.start' => 'Commencer · 15 min',
 			'prayer.retreat.selfPaced' => 'Lire à mon rythme, sans minuteur',
@@ -8767,13 +8767,11 @@ extension on Translations {
 			'prayer.session.paused' => 'en pause',
 			'prayer.session.inYourList' => ({required Object list}) => 'Dans ta liste · ${list}',
 			'prayer.session.tomorrow' => 'Demain, les suivants.',
-			'prayer.session.footer' => 'Écran allumé · un son doux à chaque minute',
+			'prayer.session.footer' => 'Écran allumé · une minute par point',
 			'prayer.session.previous' => 'Point précédent',
 			'prayer.session.next' => 'Point suivant',
 			'prayer.session.pause' => 'Pause',
 			'prayer.session.resume' => 'Reprendre',
-			'prayer.session.soundOn' => 'Son activé',
-			'prayer.session.soundOff' => 'Son coupé',
 			'prayer.session.finish' => 'Terminer la retraite',
 			'prayer.session.quitTitle' => 'Arrêter la retraite ?',
 			'prayer.session.quitText' => 'Elle ne sera pas comptée dans ta journée.',
@@ -8781,6 +8779,8 @@ extension on Translations {
 			'prayer.session.keepPraying' => 'Continuer',
 			'prayer.session.voiceOff' => 'Lire à voix haute',
 			'prayer.session.voiceOn' => 'Lecture à voix haute activée',
+			'prayer.session.musicOff' => 'Musique de fond',
+			'prayer.session.musicOn' => 'Musique de fond activée',
 			'prayer.done.title' => ({required Object retreat}) => '${retreat} terminée',
 			'prayer.done.text' => '15 minutes avec le Seigneur.\nIl a entendu chacune de tes prières.',
 			'prayer.done.report' => 'Ajouté à ton compte rendu',

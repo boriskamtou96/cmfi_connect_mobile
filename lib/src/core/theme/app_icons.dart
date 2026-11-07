@@ -199,8 +199,8 @@ abstract final class AppIcons {
   static const pause = PhosphorIconsFill.pause;
   static const previous = PhosphorIconsFill.skipBack;
   static const next = PhosphorIconsFill.skipForward;
-  static const soundOn = PhosphorIconsRegular.speakerHigh;
-  static const soundOff = PhosphorIconsRegular.speakerSlash;
+  static const musicOn = PhosphorIconsFill.musicNotesSimple;
+  static const musicOff = PhosphorIconsRegular.musicNotesSimple;
   static const done = PhosphorIconsFill.checkFat;
   static const private = PhosphorIconsRegular.lockSimple;
   static const premiumLock = PhosphorIconsFill.lockSimple;

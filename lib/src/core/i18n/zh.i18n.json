@@ -1298,7 +1298,7 @@
         "night": "睡前"
       },
       "reminderAt": "{time} 提醒",
-      "intro": "15 个要点，每个一分钟。轻柔的提示音会带你进入下一个要点。",
+      "intro": "15 个要点，每个一分钟，可选轻柔的背景音乐。",
       "done": "今天已完成",
       "start": "开始 · 15 分钟",
       "selfPaced": "按自己的节奏阅读，不计时",
@@ -1320,20 +1320,20 @@
       "paused": "已暂停",
       "inYourList": "你的名单 · {list}",
       "tomorrow": "明天为接下来的人祷告。",
-      "footer": "屏幕常亮 · 每分钟一声轻柔提示音",
+      "footer": "屏幕常亮 · 每个要点一分钟",
       "previous": "上一个要点",
       "next": "下一个要点",
       "pause": "暂停",
       "resume": "继续",
-      "soundOn": "声音已开启",
-      "soundOff": "已静音",
       "finish": "完成祷告",
       "quitTitle": "要停止这次祷告吗？",
       "quitText": "这次祷告不会计入你今天的汇报。",
       "quit": "停止",
       "keepPraying": "继续祷告",
       "voiceOff": "朗读",
-      "voiceOn": "朗读已开启"
+      "voiceOn": "朗读已开启",
+      "musicOff": "背景音乐",
+      "musicOn": "背景音乐已开启"
     },
     "done": {
       "title": "{retreat}已完成",

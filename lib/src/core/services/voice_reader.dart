@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter_tts/flutter_tts.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
@@ -15,6 +16,11 @@ abstract class VoiceReader {
   Future<void> speakToEnd(String text, String language);
 
   Future<void> stop();
+
+  /// While music plays behind the voice (a retreat): the sound of the app
+  /// stays on after each reading. Otherwise iOS hands the sound back to the
+  /// other apps when the voice is done, and the music would stop with it.
+  Future<void> keepSoundOn({required bool on});
 }
 
 class DeviceVoiceReader implements VoiceReader {
@@ -67,6 +73,18 @@ class DeviceVoiceReader implements VoiceReader {
       await _tts.stop();
     } on Object {
       // nothing was being read
+    }
+  }
+
+  @override
+  Future<void> keepSoundOn({required bool on}) async {
+    if (defaultTargetPlatform != TargetPlatform.iOS) {
+      return;
+    }
+    try {
+      await _tts.autoStopSharedSession(!on);
+    } on Object {
+      // the music may stop after a reading: it comes back with the next play
     }
   }
 }

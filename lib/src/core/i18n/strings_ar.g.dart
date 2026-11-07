@@ -3169,7 +3169,7 @@ class _Translations$prayer$retreat$ar extends Translations$prayer$retreat$fr {
 		'night': 'قبل النوم',
 	};
 	@override String reminderAt({required Object time}) => 'تذكير الساعة ${time}';
-	@override String get intro => '15 نقطة، دقيقة لكل نقطة. صوت هادئ ينقلك إلى النقطة التالية.';
+	@override String get intro => '15 نقطة، دقيقة لكل نقطة، مع موسيقى هادئة إن أردت.';
 	@override String get done => 'تمّت اليوم';
 	@override String get start => 'ابدأ · 15 دقيقة';
 	@override String get selfPaced => 'القراءة على راحتي، دون مؤقّت';
@@ -3188,13 +3188,11 @@ class _Translations$prayer$session$ar extends Translations$prayer$session$fr {
 	@override String get paused => 'متوقّف مؤقتًا';
 	@override String inYourList({required Object list}) => 'في قائمتك · ${list}';
 	@override String get tomorrow => 'وغدًا، الأشخاص التالون.';
-	@override String get footer => 'الشاشة مضاءة · صوت هادئ كل دقيقة';
+	@override String get footer => 'الشاشة مضاءة · دقيقة لكل نقطة';
 	@override String get previous => 'النقطة السابقة';
 	@override String get next => 'النقطة التالية';
 	@override String get pause => 'إيقاف مؤقت';
 	@override String get resume => 'استئناف';
-	@override String get soundOn => 'الصوت مفعّل';
-	@override String get soundOff => 'الصوت مكتوم';
 	@override String get finish => 'إنهاء الخلوة';
 	@override String get quitTitle => 'إيقاف الخلوة؟';
 	@override String get quitText => 'لن تُحتسب في يومك.';
@@ -3202,6 +3200,8 @@ class _Translations$prayer$session$ar extends Translations$prayer$session$fr {
 	@override String get keepPraying => 'متابعة الصلاة';
 	@override String get voiceOff => 'اقرأ بصوت عالٍ';
 	@override String get voiceOn => 'القراءة بصوت عالٍ مفعّلة';
+	@override String get musicOff => 'موسيقى في الخلفية';
+	@override String get musicOn => 'الموسيقى في الخلفية مفعّلة';
 }
 
 // Path: prayer.done
@@ -5327,7 +5327,7 @@ extension on TranslationsAr {
 			'prayer.retreat.hours.evening' => 'في آخر العصر',
 			'prayer.retreat.hours.night' => 'قبل النوم',
 			'prayer.retreat.reminderAt' => ({required Object time}) => 'تذكير الساعة ${time}',
-			'prayer.retreat.intro' => '15 نقطة، دقيقة لكل نقطة. صوت هادئ ينقلك إلى النقطة التالية.',
+			'prayer.retreat.intro' => '15 نقطة، دقيقة لكل نقطة، مع موسيقى هادئة إن أردت.',
 			'prayer.retreat.done' => 'تمّت اليوم',
 			'prayer.retreat.start' => 'ابدأ · 15 دقيقة',
 			'prayer.retreat.selfPaced' => 'القراءة على راحتي، دون مؤقّت',
@@ -5345,13 +5345,11 @@ extension on TranslationsAr {
 			'prayer.session.paused' => 'متوقّف مؤقتًا',
 			'prayer.session.inYourList' => ({required Object list}) => 'في قائمتك · ${list}',
 			'prayer.session.tomorrow' => 'وغدًا، الأشخاص التالون.',
-			'prayer.session.footer' => 'الشاشة مضاءة · صوت هادئ كل دقيقة',
+			'prayer.session.footer' => 'الشاشة مضاءة · دقيقة لكل نقطة',
 			'prayer.session.previous' => 'النقطة السابقة',
 			'prayer.session.next' => 'النقطة التالية',
 			'prayer.session.pause' => 'إيقاف مؤقت',
 			'prayer.session.resume' => 'استئناف',
-			'prayer.session.soundOn' => 'الصوت مفعّل',
-			'prayer.session.soundOff' => 'الصوت مكتوم',
 			'prayer.session.finish' => 'إنهاء الخلوة',
 			'prayer.session.quitTitle' => 'إيقاف الخلوة؟',
 			'prayer.session.quitText' => 'لن تُحتسب في يومك.',
@@ -5359,6 +5357,8 @@ extension on TranslationsAr {
 			'prayer.session.keepPraying' => 'متابعة الصلاة',
 			'prayer.session.voiceOff' => 'اقرأ بصوت عالٍ',
 			'prayer.session.voiceOn' => 'القراءة بصوت عالٍ مفعّلة',
+			'prayer.session.musicOff' => 'موسيقى في الخلفية',
+			'prayer.session.musicOn' => 'الموسيقى في الخلفية مفعّلة',
 			'prayer.done.title' => ({required Object retreat}) => 'اكتملت ${retreat}',
 			'prayer.done.text' => '15 دقيقة مع الرب.\nلقد سمع كل صلاة من صلواتك.',
 			'prayer.done.report' => 'تمت الإضافة إلى تقريرك',

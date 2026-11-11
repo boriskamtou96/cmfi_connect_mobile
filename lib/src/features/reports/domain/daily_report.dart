@@ -18,6 +18,9 @@ abstract class ReportEntry with _$ReportEntry {
     @Default(false) bool tracksDuration,
     int? quantity,
     int? durationMinutes,
+
+    /// The book read that day: Lecture de la littérature chrétienne only.
+    EntryBook? book,
   }) = _ReportEntry;
 
   const ReportEntry._();
@@ -26,6 +29,25 @@ abstract class ReportEntry with _$ReportEntry {
       _$ReportEntryFromJson(json);
 
   bool get isFilled => quantity != null || durationMinutes != null;
+}
+
+/// The book named by an LLC entry. [pageReached] (history only): the page
+/// reached in it that day, the pages of every day up to this one.
+@freezed
+abstract class EntryBook with _$EntryBook {
+  const factory EntryBook({
+    required int id,
+    required String title,
+    @Default('') String author,
+    required int totalPages,
+
+    /// Its cover, found for its title and author ('' when none: drawn).
+    @Default('') String coverUrl,
+    int? pageReached,
+  }) = _EntryBook;
+
+  factory EntryBook.fromJson(Map<String, dynamic> json) =>
+      _$EntryBookFromJson(json);
 }
 
 /// A day: the form of GET/PUT /reports/:date, or a day of GET /reports/?from&to.

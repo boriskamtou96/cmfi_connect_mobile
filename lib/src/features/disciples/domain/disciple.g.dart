@@ -75,6 +75,7 @@ _DiscipleReports _$DiscipleReportsFromJson(Map<String, dynamic> json) =>
               ?.map((e) => DiscipleDay.fromJson(e as Map<String, dynamic>))
               .toList() ??
           const <DiscipleDay>[],
+      booksFinished: (json['books_finished'] as num?)?.toInt() ?? 0,
     );
 
 Map<String, dynamic> _$DiscipleReportsToJson(_DiscipleReports instance) =>
@@ -84,6 +85,7 @@ Map<String, dynamic> _$DiscipleReportsToJson(_DiscipleReports instance) =>
       'is_disciple_maker': instance.isDiscipleMaker,
       'total_items': instance.totalItems,
       'days': instance.days.map((e) => e.toJson()).toList(),
+      'books_finished': instance.booksFinished,
     };
 
 _DiscipleDay _$DiscipleDayFromJson(Map<String, dynamic> json) => _DiscipleDay(
@@ -117,6 +119,9 @@ _DiscipleEntry _$DiscipleEntryFromJson(Map<String, dynamic> json) =>
       quantityUnit: json['quantity_unit'] as String?,
       quantity: (json['quantity'] as num?)?.toInt(),
       durationMinutes: (json['duration_minutes'] as num?)?.toInt(),
+      book: json['book'] == null
+          ? null
+          : EntryBook.fromJson(json['book'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$DiscipleEntryToJson(_DiscipleEntry instance) =>
@@ -127,4 +132,5 @@ Map<String, dynamic> _$DiscipleEntryToJson(_DiscipleEntry instance) =>
       'quantity_unit': ?instance.quantityUnit,
       'quantity': ?instance.quantity,
       'duration_minutes': ?instance.durationMinutes,
+      'book': ?instance.book?.toJson(),
     };

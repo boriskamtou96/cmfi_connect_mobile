@@ -2684,5 +2684,75 @@
     "contact": "Contáctanos",
     "privacy": "Privacidad",
     "terms": "Condiciones de uso"
+  },
+  "reading": {
+    "title": "Mis lecturas",
+    "moreSubtitle": "Los libros que lees, página tras página",
+    "moreCount(plural, param=n)": {
+      "one": "{n} libro en curso",
+      "other": "{n} libros en curso"
+    },
+    "add": "Añadir un libro",
+    "reading": "En curso",
+    "finished": "Terminados",
+    "setAside": "Dejados de lado",
+    "empty": "Ningún libro por ahora",
+    "emptyText": "Añade el libro que lees: las páginas de tu informe lo harán avanzar.",
+    "page": "Página {page} de {total}",
+    "finishedOn": "Terminado el {date}",
+    "monthBooks(plural, param=n)": {
+      "one": "libro en {month}",
+      "other": "libros en {month}"
+    },
+    "inYear": "en {year}",
+    "pagesRead": "páginas leídas",
+    "chart": "Libros terminados cada mes de {year}",
+    "chartMonth(plural, param=n)": {
+      "one": "{month}: {n} libro",
+      "other": "{month}: {n} libros"
+    },
+    "pick": "¿Qué libro lees?",
+    "mine": "Mis libros en curso",
+    "choose": "Elegir el libro leído",
+    "change": "Cambiar",
+    "current": "Libro en curso",
+    "readUpTo": "Ya leído hasta la página {page}",
+    "willReach": "Pasas a la página {page} de {total}",
+    "searchHint": "Título o autor",
+    "searchUnavailable": "La búsqueda no responde por ahora. Escribe el libro a mano.",
+    "noResult": "Ningún libro encontrado. Escríbelo a mano.",
+    "manual": "¿No lo encuentras? Escribe título, autor y páginas",
+    "fieldTitle": "Título",
+    "fieldAuthor": "Autor",
+    "fieldPages": "Número de páginas",
+    "titleRequired": "Indica el título.",
+    "pagesRequired": "Indica el número de páginas (1 a 20 000).",
+    "pages(plural, param=n)": {
+      "one": "{n} página",
+      "other": "{n} páginas"
+    },
+    "pagesUnknown": "páginas por indicar",
+    "added": "«{title}» añadido a tus lecturas",
+    "finishedQuestion": "¿Terminaste este libro?",
+    "finishedText": "Llegaste a la página {page} de {total}.",
+    "finishedYes": "Sí, lo terminé",
+    "finishedNo": "Todavía no, sigo",
+    "finishedToast": "¡Bravo, libro terminado!",
+    "monthCount(plural, param=n)": {
+      "one": "Tu primer libro de {month}",
+      "other": "Tu {n}.º libro de {month}"
+    },
+    "markFinished": "Marcar como terminado",
+    "readAgain": "Retomarlo",
+    "putAside": "Dejar de lado",
+    "remove": "Quitar de mis lecturas",
+    "removeTitle": "¿Quitar este libro?",
+    "removeText": "«{title}» sale de tus lecturas. Las páginas de tus informes se quedan.",
+    "booksFinished(plural, param=n)": {
+      "zero": "Ningún libro terminado en el período",
+      "one": "{n} libro terminado en el período",
+      "other": "{n} libros terminados en el período"
+    },
+    "bookOf": "Libro: {title}"
   }
 }

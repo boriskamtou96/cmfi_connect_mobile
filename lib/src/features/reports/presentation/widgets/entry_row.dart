@@ -60,6 +60,7 @@ class EntryRow extends StatelessWidget {
       button: true,
       label: [
         if (entry.isFilled) '$label, $value' else t.reports.add(label: label),
+        if (entry.book case final book?) t.reading.bookOf(title: book.title),
         ?goalText,
       ].join(', '),
       excludeSemantics: true,
@@ -140,6 +141,28 @@ class EntryRow extends StatelessWidget {
                             color: accent,
                             backgroundColor: scheme.outlineVariant,
                           ),
+                        ),
+                      ],
+                      // Lecture de la littérature chrétienne: the book read
+                      if (entry.book case final book?) ...[
+                        const SizedBox(height: 3),
+                        Row(
+                          children: [
+                            Icon(AppIcons.book, size: 13, color: accent),
+                            const SizedBox(width: 4),
+                            Flexible(
+                              child: Text(
+                                book.title,
+                                maxLines: 1,
+                                overflow: TextOverflow.ellipsis,
+                                style: TextStyle(
+                                  fontSize: 12,
+                                  fontWeight: FontWeight.w600,
+                                  color: accent,
+                                ),
+                              ),
+                            ),
+                          ],
                         ),
                       ],
                     ],

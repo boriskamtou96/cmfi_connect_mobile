@@ -3,6 +3,7 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../../core/i18n/strings.g.dart';
+import '../../../../core/network/app_exception.dart';
 import '../../../../core/network/app_exception_message.dart';
 import '../../../../core/services/store_review.dart';
 import '../../../../core/theme/app_icons.dart';
@@ -25,6 +26,7 @@ import '../../../../core/widgets/skeleton.dart';
 import '../../../journey/application/journey_steps.dart';
 import '../../../journey/domain/journey_step.dart';
 import '../../application/day_report_controller.dart';
+import '../../application/reading_books.dart';
 import '../../application/report_goals.dart';
 import '../../application/report_item_texts.dart';
 import '../../application/report_reminder.dart';
@@ -32,9 +34,11 @@ import '../../application/report_timer.dart';
 import '../../application/reports_providers.dart';
 import '../../application/streak_milestones.dart';
 import '../../domain/daily_report.dart';
+import '../../domain/reading_book.dart';
 import '../../domain/report_goal.dart';
 import '../../domain/report_streak.dart';
 import '../new_item_screen.dart';
+import '../reading/book_sheets.dart';
 import 'entry_row.dart';
 import 'entry_sheet.dart';
 import 'reminder_sheets.dart';
@@ -75,6 +79,7 @@ class TodayView extends ConsumerWidget {
             ? () => startTimer(entry)
             : null,
         timerRunning: running?.activityTypeId == entry.activityTypeId,
+        withBook: true,
         caption: goal == null
             ? null
             : t.items.goal(
@@ -91,7 +96,14 @@ class TodayView extends ConsumerWidget {
               entry.activityTypeId,
               quantity: values.quantity,
               durationMinutes: values.durationMinutes,
+              book: values.book,
             );
+        if ((values.book, values.quantity) case (
+          final book?,
+          final pages?,
+        ) when context.mounted) {
+          await askBookFinished(context, ref, entry, book, pages, day: day);
+        }
       }
     }
 
@@ -553,5 +565,57 @@ class SaveDayBar extends HookConsumerWidget {
         ),
       ),
     );
+  }
+}
+
+/// The pages of the day reach the end of the book being read: « Tu as fini
+/// ce livre ? », and a yes marks it finished on the report's [day].
+Future<void> askBookFinished(
+  BuildContext context,
+  WidgetRef ref,
+  ReportEntry entry,
+  EntryBook book,
+  int pages, {
+  required DateTime day,
+}) async {
+  ReadingBook? shelfBook;
+  for (final other
+      in ref.read(readingBooksProvider).value ?? const <ReadingBook>[]) {
+    if (other.id == book.id) {
+      shelfBook = other;
+    }
+  }
+  if (shelfBook == null || !shelfBook.isReading) {
+    return;
+  }
+  // the shelf counts this day as saved already
+  final before =
+      shelfBook.pagesRead -
+      (entry.book?.id == book.id ? entry.quantity ?? 0 : 0);
+  final reached = before + pages;
+  if (reached < shelfBook.totalPages) {
+    return;
+  }
+
+  final stats = ref.read(readingStatsProvider(day.year)).value;
+  final toast = ref.read(toasterProvider).of(context);
+  final texts = context.t;
+  final finished = await showBookFinishedSheet(
+    context,
+    book: shelfBook,
+    pageReached: shelfBook.totalPages,
+    monthCount: (stats?.booksIn(day.month) ?? 0) + 1,
+    month: day,
+  );
+  if (!finished) {
+    return;
+  }
+  try {
+    await ref
+        .read(readingBooksProvider.notifier)
+        .setStatus(book.id, ReadingStatus.finished, finishedOn: day);
+    toast.success(texts.reading.finishedToast);
+  } on AppException catch (error) {
+    toast.error(userMessageFor(error, texts));
   }
 }

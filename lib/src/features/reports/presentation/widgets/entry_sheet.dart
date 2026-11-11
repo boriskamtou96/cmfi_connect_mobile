@@ -1,9 +1,11 @@
 import 'dart:async';
+import 'dart:math' as math;
 
 import 'package:flutter/gestures.dart' show kTouchSlop;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../../core/i18n/strings.g.dart';
 import '../../../../core/theme/app_icons.dart';
@@ -14,18 +16,25 @@ import '../../../../core/utils/date_extensions.dart';
 import '../../../../core/widgets/adaptive_pickers.dart';
 import '../../../../core/widgets/code_chip.dart';
 import '../../../../core/widgets/rolling_text.dart';
+import '../../application/reading_books.dart';
 import '../../application/report_item_texts.dart';
 import '../../domain/daily_report.dart';
+import '../../domain/reading_book.dart';
+import '../../domain/standard_item.dart';
+import '../reading/book_cover.dart';
+import '../reading/book_sheets.dart';
 
 /// What the sheet answers: the new values, or null values to clear the item.
-typedef EntryValues = ({int? quantity, int? durationMinutes});
+/// [book]: the book read (Lecture de la littérature chrétienne only).
+typedef EntryValues = ({int? quantity, int? durationMinutes, EntryBook? book});
 
 /// Opens the input sheet of one item. null when closed without validating.
 /// Also sets a daily goal: [caption] under the title, [clearLabel] for the
 /// button that empties it. An item counted in time can also take its
 /// duration from a start and an end; with [onStartTimer] (today's report),
 /// « Démarrer le chrono » closes the sheet and starts it ([timerRunning]:
-/// it runs already for this item).
+/// it runs already for this item). [withBook]: a report's Lecture de la
+/// littérature chrétienne names the book read (not a goal).
 Future<EntryValues?> showEntrySheet(
   BuildContext context, {
   required ReportEntry entry,
@@ -34,6 +43,7 @@ Future<EntryValues?> showEntrySheet(
   String? clearLabel,
   VoidCallback? onStartTimer,
   bool timerRunning = false,
+  bool withBook = false,
 }) => showModalBottomSheet<EntryValues>(
   context: context,
   isScrollControlled: true,
@@ -45,10 +55,11 @@ Future<EntryValues?> showEntrySheet(
     clearLabel: clearLabel,
     onStartTimer: onStartTimer,
     timerRunning: timerRunning,
+    withBook: withBook,
   ),
 );
 
-class EntrySheet extends HookWidget {
+class EntrySheet extends HookConsumerWidget {
   const EntrySheet({
     required this.entry,
     required this.personal,
@@ -56,6 +67,7 @@ class EntrySheet extends HookWidget {
     this.clearLabel,
     this.onStartTimer,
     this.timerRunning = false,
+    this.withBook = false,
     super.key,
   });
 
@@ -65,6 +77,7 @@ class EntrySheet extends HookWidget {
   final String? clearLabel;
   final VoidCallback? onStartTimer;
   final bool timerRunning;
+  final bool withBook;
 
   // limits of the API
   static const maxQuantity = 100000;
@@ -72,7 +85,7 @@ class EntrySheet extends HookWidget {
   static const durationPresets = [15, 30, 45, 60, 90, 120];
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final t = context.t;
     final scheme = Theme.of(context).colorScheme;
     final quantityController = useTextEditingController(
@@ -99,6 +112,40 @@ class EntrySheet extends HookWidget {
     );
 
     int? quantity() => int.tryParse(quantityController.text);
+
+    // Lecture de la littérature chrétienne names the book read: the one of
+    // the day, else (a day not filled in yet) the book being read
+    final booksItem =
+        withBook &&
+        !personal &&
+        entry.code == StandardItem.christianLiterature.code;
+    final chosenBook = useState<EntryBook?>(entry.book);
+    final bookChosen = useState(entry.book != null || entry.isFilled);
+    final shelf = booksItem
+        ? ref.watch(readingBooksProvider).value ?? const <ReadingBook>[]
+        : const <ReadingBook>[];
+    final current = booksItem ? ref.watch(currentBookProvider) : null;
+    final book = bookChosen.value ? chosenBook.value : current?.asEntry;
+    ReadingBook? shelfBook;
+    for (final other in shelf) {
+      if (other.id == book?.id) {
+        shelfBook = other;
+      }
+    }
+    // the pages read before today: the shelf counts this day as saved
+    final readBefore = math.max(
+      0,
+      (shelfBook?.pagesRead ?? 0) -
+          (entry.book?.id == book?.id ? entry.quantity ?? 0 : 0),
+    );
+
+    Future<void> changeBook() async {
+      final picked = await showBookPicker(context, selectedId: book?.id);
+      if (picked != null) {
+        chosenBook.value = picked.asEntry;
+        bookChosen.value = true;
+      }
+    }
 
     void setQuantity(int value) {
       final clamped = value.clamp(0, maxQuantity);
@@ -156,6 +203,7 @@ class EntrySheet extends HookWidget {
       durationMinutes: entry.tracksDuration && (minutes.value ?? 0) > 0
           ? minutes.value
           : null,
+      book: booksItem ? book : null,
     ));
 
     final sectionTitle = TextStyle(
@@ -209,6 +257,15 @@ class EntrySheet extends HookWidget {
                     ),
                   ),
                 ],
+              ),
+            ],
+            if (booksItem) ...[
+              const SizedBox(height: 18),
+              _BookChoice(
+                book: book,
+                coverUrl: shelfBook?.coverUrl ?? book?.coverUrl ?? '',
+                readBefore: readBefore,
+                onChange: changeBook,
               ),
             ],
             if (entry.tracksQuantity) ...[
@@ -282,6 +339,24 @@ class EntrySheet extends HookWidget {
                   ],
                 ),
               ),
+              if (book != null) ...[
+                const SizedBox(height: AppSpacing.sm),
+                Text(
+                  t.reading.willReach(
+                    page: math.min(
+                      readBefore + (quantity() ?? 0),
+                      book.totalPages,
+                    ),
+                    total: book.totalPages,
+                  ),
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontSize: 13.5,
+                    fontWeight: FontWeight.w600,
+                    color: scheme.primary,
+                  ),
+                ),
+              ],
             ],
             if (entry.tracksDuration) ...[
               const SizedBox(height: 22),
@@ -369,15 +444,18 @@ class EntrySheet extends HookWidget {
                   ),
                 ),
               ],
-              const SizedBox(height: AppSpacing.xs),
-              Center(
-                child: TextButton.icon(
-                  onPressed: pickSpan,
-                  icon: const Icon(AppIcons.time, size: 18),
-                  label: Text(t.reports.timer.startEnd),
+              // a book takes the room: no start and end for the LLC item
+              if (!booksItem) ...[
+                const SizedBox(height: AppSpacing.xs),
+                Center(
+                  child: TextButton.icon(
+                    onPressed: pickSpan,
+                    icon: const Icon(AppIcons.time, size: 18),
+                    label: Text(t.reports.timer.startEnd),
+                  ),
                 ),
-              ),
-              if (span.value case final text?) ...[
+              ],
+              if (span.value case final text? when !booksItem) ...[
                 const SizedBox(height: AppSpacing.xs),
                 Text(
                   text,
@@ -404,6 +482,7 @@ class EntrySheet extends HookWidget {
                       ? () => Navigator.of(context).pop<EntryValues>((
                           quantity: null,
                           durationMinutes: null,
+                          book: null,
                         ))
                       : null,
                   child: Text(clearLabel ?? t.reports.sheet.clear),
@@ -630,6 +709,89 @@ class _RepeatButton extends HookWidget {
           excludeSemantics: true,
           child: Text(label),
         ),
+      ),
+    );
+  }
+}
+
+/// The book of a Lecture de la littérature chrétienne entry, and « Changer »;
+/// « Choisir le livre lu » without one.
+class _BookChoice extends StatelessWidget {
+  const _BookChoice({
+    required this.book,
+    required this.coverUrl,
+    required this.readBefore,
+    required this.onChange,
+  });
+
+  final EntryBook? book;
+  final String coverUrl;
+
+  /// The pages read in it before this day.
+  final int readBefore;
+  final VoidCallback onChange;
+
+  @override
+  Widget build(BuildContext context) {
+    final t = context.t.reading;
+    final scheme = Theme.of(context).colorScheme;
+    final book = this.book;
+
+    if (book == null) {
+      return OutlinedButton.icon(
+        style: OutlinedButton.styleFrom(minimumSize: const Size.fromHeight(50)),
+        onPressed: onChange,
+        icon: const Icon(AppIcons.book),
+        label: Text(t.choose),
+      );
+    }
+
+    return Container(
+      padding: const EdgeInsets.all(12),
+      decoration: BoxDecoration(
+        color: scheme.surfaceContainerLow,
+        borderRadius: BorderRadius.circular(18),
+      ),
+      child: Row(
+        children: [
+          BookCover(title: book.title, coverUrl: coverUrl, width: 42),
+          const SizedBox(width: AppSpacing.md),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  t.current,
+                  style: TextStyle(
+                    fontSize: 12.5,
+                    fontWeight: FontWeight.w700,
+                    color: scheme.onSurfaceVariant,
+                  ),
+                ),
+                Text(
+                  book.title,
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
+                  style: const TextStyle(
+                    fontSize: 15.5,
+                    fontWeight: FontWeight.w700,
+                  ),
+                ),
+                Text(
+                  [
+                    if (book.author.isNotEmpty) book.author,
+                    t.readUpTo(page: math.min(readBefore, book.totalPages)),
+                  ].join(' · '),
+                  style: TextStyle(
+                    fontSize: 13,
+                    color: scheme.onSurfaceVariant,
+                  ),
+                ),
+              ],
+            ),
+          ),
+          TextButton(onPressed: onChange, child: Text(t.change)),
+        ],
       ),
     );
   }

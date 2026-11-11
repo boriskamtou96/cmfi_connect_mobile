@@ -2586,5 +2586,68 @@
     "contact": "联系我们",
     "privacy": "隐私",
     "terms": "使用条款"
+  },
+  "reading": {
+    "title": "我的阅读",
+    "moreSubtitle": "你在读的书，一页又一页",
+    "moreCount(plural, param=n)": {
+      "other": "{n} 本书在读"
+    },
+    "add": "添加书籍",
+    "reading": "在读",
+    "finished": "已读完",
+    "setAside": "已搁置",
+    "empty": "暂时没有书",
+    "emptyText": "添加你正在读的书：汇报中的页数会推动它的进度。",
+    "page": "第 {page} 页，共 {total} 页",
+    "finishedOn": "{date} 读完",
+    "monthBooks(plural, param=n)": {
+      "other": "本书（{month}）"
+    },
+    "inYear": "{year} 年",
+    "pagesRead": "已读页数",
+    "chart": "{year} 年每月读完的书",
+    "chartMonth(plural, param=n)": {
+      "other": "{month}：{n} 本书"
+    },
+    "pick": "你在读哪本书？",
+    "mine": "我在读的书",
+    "choose": "选择所读的书",
+    "change": "更换",
+    "current": "在读的书",
+    "readUpTo": "已读到第 {page} 页",
+    "willReach": "你将读到第 {page} 页，共 {total} 页",
+    "searchHint": "书名或作者",
+    "searchUnavailable": "搜索暂时没有响应。请手动输入书籍。",
+    "noResult": "没有找到书。请手动输入。",
+    "manual": "没找到？输入书名、作者和页数",
+    "fieldTitle": "书名",
+    "fieldAuthor": "作者",
+    "fieldPages": "页数",
+    "titleRequired": "请填写书名。",
+    "pagesRequired": "请填写页数（1 到 20 000）。",
+    "pages(plural, param=n)": {
+      "other": "{n} 页"
+    },
+    "pagesUnknown": "页数待填",
+    "added": "《{title}》已加入你的阅读",
+    "finishedQuestion": "你读完这本书了吗？",
+    "finishedText": "你已读到第 {page} 页，共 {total} 页。",
+    "finishedYes": "是的，我读完了",
+    "finishedNo": "还没有，继续读",
+    "finishedToast": "太好了，读完一本书！",
+    "monthCount(plural, param=n)": {
+      "other": "你在{month}读完的第 {n} 本书"
+    },
+    "markFinished": "标记为已读完",
+    "readAgain": "重新开始读",
+    "putAside": "搁置",
+    "remove": "从我的阅读中移除",
+    "removeTitle": "移除这本书？",
+    "removeText": "《{title}》将离开你的阅读。你汇报中的页数会保留。",
+    "booksFinished(plural, param=n)": {
+      "other": "本期间读完 {n} 本书"
+    },
+    "bookOf": "书籍：{title}"
   }
 }

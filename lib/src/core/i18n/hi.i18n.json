@@ -2683,5 +2683,75 @@
     "contact": "हमसे संपर्क करो",
     "privacy": "गोपनीयता",
     "terms": "उपयोग की शर्तें"
+  },
+  "reading": {
+    "title": "मेरा पठन",
+    "moreSubtitle": "जो किताबें तुम पढ़ते हो, पन्ना दर पन्ना",
+    "moreCount(plural, param=n)": {
+      "one": "{n} किताब पढ़ी जा रही है",
+      "other": "{n} किताबें पढ़ी जा रही हैं"
+    },
+    "add": "किताब जोड़ें",
+    "reading": "पढ़ी जा रही",
+    "finished": "पूरी हुईं",
+    "setAside": "अलग रखी गईं",
+    "empty": "अभी कोई किताब नहीं",
+    "emptyText": "जो किताब तुम पढ़ रहे हो उसे जोड़ो: तुम्हारी रिपोर्ट के पन्ने उसे आगे बढ़ाएँगे।",
+    "page": "पन्ना {page} / {total}",
+    "finishedOn": "{date} को पूरी हुई",
+    "monthBooks(plural, param=n)": {
+      "one": "{month} में किताब",
+      "other": "{month} में किताबें"
+    },
+    "inYear": "{year} में",
+    "pagesRead": "पढ़े गए पन्ने",
+    "chart": "{year} के हर महीने पूरी हुई किताबें",
+    "chartMonth(plural, param=n)": {
+      "one": "{month}: {n} किताब",
+      "other": "{month}: {n} किताबें"
+    },
+    "pick": "तुम कौन सी किताब पढ़ रहे हो?",
+    "mine": "मेरी चालू किताबें",
+    "choose": "पढ़ी गई किताब चुनें",
+    "change": "बदलें",
+    "current": "चालू किताब",
+    "readUpTo": "पन्ना {page} तक पढ़ चुके",
+    "willReach": "तुम पन्ना {page} / {total} पर पहुँचोगे",
+    "searchHint": "शीर्षक या लेखक",
+    "searchUnavailable": "खोज अभी जवाब नहीं दे रही। किताब हाथ से लिखो।",
+    "noResult": "कोई किताब नहीं मिली। उसे हाथ से लिखो।",
+    "manual": "नहीं मिली? शीर्षक, लेखक और पन्ने लिखो",
+    "fieldTitle": "शीर्षक",
+    "fieldAuthor": "लेखक",
+    "fieldPages": "पन्नों की संख्या",
+    "titleRequired": "शीर्षक बताओ।",
+    "pagesRequired": "पन्नों की संख्या बताओ (1 से 20 000)।",
+    "pages(plural, param=n)": {
+      "one": "{n} पन्ना",
+      "other": "{n} पन्ने"
+    },
+    "pagesUnknown": "पन्ने बताने हैं",
+    "added": "“{title}” तुम्हारे पठन में जोड़ी गई",
+    "finishedQuestion": "क्या तुमने यह किताब पूरी कर ली?",
+    "finishedText": "तुम पन्ना {page} / {total} तक पहुँच गए।",
+    "finishedYes": "हाँ, मैंने पूरी कर ली",
+    "finishedNo": "अभी नहीं, पढ़ता रहूँगा",
+    "finishedToast": "शाबाश, किताब पूरी हुई!",
+    "monthCount(plural, param=n)": {
+      "one": "{month} की तुम्हारी पहली किताब",
+      "other": "{month} की तुम्हारी {n}वीं किताब"
+    },
+    "markFinished": "पूरी हुई चिह्नित करें",
+    "readAgain": "फिर से शुरू करें",
+    "putAside": "अलग रखें",
+    "remove": "मेरे पठन से हटाएँ",
+    "removeTitle": "यह किताब हटाएँ?",
+    "removeText": "“{title}” तुम्हारे पठन से हट जाएगी। तुम्हारी रिपोर्टों के पन्ने बने रहेंगे।",
+    "booksFinished(plural, param=n)": {
+      "zero": "इस अवधि में कोई किताब पूरी नहीं हुई",
+      "one": "इस अवधि में {n} किताब पूरी हुई",
+      "other": "इस अवधि में {n} किताबें पूरी हुईं"
+    },
+    "bookOf": "किताब: {title}"
   }
 }

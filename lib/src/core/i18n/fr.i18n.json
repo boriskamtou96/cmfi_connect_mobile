@@ -2684,5 +2684,75 @@
     "contact": "Nous contacter",
     "privacy": "Confidentialité",
     "terms": "Conditions d'utilisation"
+  },
+  "reading": {
+    "title": "Mes lectures",
+    "moreSubtitle": "Les livres que tu lis, page après page",
+    "moreCount(plural, param=n)": {
+      "one": "{n} livre en cours",
+      "other": "{n} livres en cours"
+    },
+    "add": "Ajouter un livre",
+    "reading": "En cours",
+    "finished": "Terminés",
+    "setAside": "Mis de côté",
+    "empty": "Aucun livre pour l'instant",
+    "emptyText": "Ajoute le livre que tu lis : les pages de ton compte rendu le feront avancer.",
+    "page": "Page {page} sur {total}",
+    "finishedOn": "Fini le {date}",
+    "monthBooks(plural, param=n)": {
+      "one": "livre en {month}",
+      "other": "livres en {month}"
+    },
+    "inYear": "en {year}",
+    "pagesRead": "pages lues",
+    "chart": "Livres terminés chaque mois de {year}",
+    "chartMonth(plural, param=n)": {
+      "one": "{month} : {n} livre",
+      "other": "{month} : {n} livres"
+    },
+    "pick": "Quel livre lis-tu ?",
+    "mine": "Mes livres en cours",
+    "choose": "Choisir le livre lu",
+    "change": "Changer",
+    "current": "Livre en cours",
+    "readUpTo": "Déjà lu jusqu'à la page {page}",
+    "willReach": "Tu passes à la page {page} sur {total}",
+    "searchHint": "Titre ou auteur",
+    "searchUnavailable": "La recherche ne répond pas pour l'instant. Saisis le livre à la main.",
+    "noResult": "Aucun livre trouvé. Saisis-le à la main.",
+    "manual": "Pas trouvé ? Saisir titre, auteur et pages",
+    "fieldTitle": "Titre",
+    "fieldAuthor": "Auteur",
+    "fieldPages": "Nombre de pages",
+    "titleRequired": "Indique le titre.",
+    "pagesRequired": "Indique le nombre de pages (1 à 20 000).",
+    "pages(plural, param=n)": {
+      "one": "{n} page",
+      "other": "{n} pages"
+    },
+    "pagesUnknown": "pages à indiquer",
+    "added": "« {title} » ajouté à tes lectures",
+    "finishedQuestion": "Tu as fini ce livre ?",
+    "finishedText": "Tu as atteint la page {page} sur {total}.",
+    "finishedYes": "Oui, je l'ai terminé",
+    "finishedNo": "Pas encore, je continue",
+    "finishedToast": "Bravo, livre terminé !",
+    "monthCount(plural, param=n)": {
+      "one": "Ton premier livre de {month}",
+      "other": "Ton {n}e livre de {month}"
+    },
+    "markFinished": "Marquer comme terminé",
+    "readAgain": "Le reprendre",
+    "putAside": "Mettre de côté",
+    "remove": "Retirer de mes lectures",
+    "removeTitle": "Retirer ce livre ?",
+    "removeText": "« {title} » quitte tes lectures. Les pages de tes comptes rendus restent.",
+    "booksFinished(plural, param=n)": {
+      "zero": "Aucun livre terminé sur la période",
+      "one": "{n} livre terminé sur la période",
+      "other": "{n} livres terminés sur la période"
+    },
+    "bookOf": "Livre : {title}"
   }
 }

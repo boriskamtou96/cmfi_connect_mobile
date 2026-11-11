@@ -2,6 +2,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 
 import '../../../core/network/json_converters.dart';
 import '../../members/domain/member.dart';
+import '../../reports/domain/daily_report.dart';
 
 part 'disciple.freezed.dart';
 part 'disciple.g.dart';
@@ -75,6 +76,9 @@ abstract class DiscipleReports with _$DiscipleReports {
     /// The items they have now (standard and their own).
     @Default(0) int totalItems,
     @Default(<DiscipleDay>[]) List<DiscipleDay> days,
+
+    /// The books they finished in the period (Mes lectures).
+    @Default(0) int booksFinished,
   }) = _DiscipleReports;
 
   factory DiscipleReports.fromJson(Map<String, dynamic> json) =>
@@ -110,6 +114,10 @@ abstract class DiscipleEntry with _$DiscipleEntry {
     String? quantityUnit,
     int? quantity,
     int? durationMinutes,
+
+    /// The book read that day (Lecture de la littérature chrétienne), with
+    /// the page reached in it.
+    EntryBook? book,
   }) = _DiscipleEntry;
 
   factory DiscipleEntry.fromJson(Map<String, dynamic> json) =>

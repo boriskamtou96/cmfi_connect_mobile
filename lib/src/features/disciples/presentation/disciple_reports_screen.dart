@@ -21,7 +21,9 @@ import '../../members/presentation/widgets/member_avatar.dart';
 import '../../reports/application/report_item_texts.dart';
 import '../../reports/application/reports_providers.dart';
 import '../../reports/domain/activity_type.dart';
+import '../../reports/domain/daily_report.dart';
 import '../../reports/domain/measure_format.dart';
+import '../../reports/presentation/reading/book_cover.dart';
 import '../application/disciples.dart';
 import '../domain/disciple.dart';
 
@@ -197,10 +199,22 @@ class _Header extends StatelessWidget {
                 style: TextStyle(fontSize: 14, color: scheme.onSurfaceVariant),
               ),
               const SizedBox(height: 6),
-              StatusPill(
-                reports.isDiscipleMaker ? t.roleMaker : t.roleAuthority,
-                background: reports.isDiscipleMaker ? tones.personalSoft : null,
-                foreground: reports.isDiscipleMaker ? tones.personal : null,
+              Wrap(
+                spacing: 6,
+                runSpacing: 6,
+                children: [
+                  StatusPill(
+                    reports.isDiscipleMaker ? t.roleMaker : t.roleAuthority,
+                    background: reports.isDiscipleMaker
+                        ? tones.personalSoft
+                        : null,
+                    foreground: reports.isDiscipleMaker ? tones.personal : null,
+                  ),
+                  // the books they finished in the period shown
+                  StatusPill(
+                    context.t.reading.booksFinished(n: reports.booksFinished),
+                  ),
+                ],
               ),
             ],
           ),
@@ -309,7 +323,7 @@ class _DayCard extends ConsumerWidget {
               ),
               if (day.entries.isNotEmpty) ...[
                 const SizedBox(height: AppSpacing.md),
-                for (final entry in day.entries)
+                for (final entry in day.entries) ...[
                   Padding(
                     padding: const EdgeInsets.symmetric(vertical: 5),
                     child: Row(
@@ -325,6 +339,8 @@ class _DayCard extends ConsumerWidget {
                       ],
                     ),
                   ),
+                  if (entry.book case final book?) _EntryBookLine(book: book),
+                ],
               ],
               // not filled in: 0
               for (final item in empty)
@@ -388,6 +404,60 @@ class _Value extends StatelessWidget {
     return Text(
       value,
       style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w700),
+    );
+  }
+}
+
+/// The book read that day: its title, author and the page reached.
+class _EntryBookLine extends StatelessWidget {
+  const _EntryBookLine({required this.book});
+
+  final EntryBook book;
+
+  @override
+  Widget build(BuildContext context) {
+    final t = context.t.reading;
+    final scheme = Theme.of(context).colorScheme;
+    final page = book.pageReached;
+
+    return Container(
+      margin: const EdgeInsets.only(bottom: 6),
+      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 8),
+      decoration: BoxDecoration(
+        color: scheme.surfaceContainerLow,
+        borderRadius: BorderRadius.circular(12),
+      ),
+      child: Row(
+        children: [
+          BookCover(title: book.title, coverUrl: book.coverUrl, width: 26),
+          const SizedBox(width: 10),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  book.title,
+                  style: const TextStyle(
+                    fontSize: 13.5,
+                    fontWeight: FontWeight.w700,
+                  ),
+                ),
+                Text(
+                  [
+                    if (book.author.isNotEmpty) book.author,
+                    if (page != null)
+                      t.page(page: page, total: book.totalPages),
+                  ].join(' · '),
+                  style: TextStyle(
+                    fontSize: 12.5,
+                    color: scheme.onSurfaceVariant,
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
     );
   }
 }

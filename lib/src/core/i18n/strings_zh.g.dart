@@ -89,6 +89,7 @@ class TranslationsZh extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _Translations$menu$zh menu = _Translations$menu$zh._(_root);
 	@override late final _Translations$me$zh me = _Translations$me$zh._(_root);
 	@override late final _Translations$settings$zh settings = _Translations$settings$zh._(_root);
+	@override late final _Translations$reading$zh reading = _Translations$reading$zh._(_root);
 }
 
 // Path: app
@@ -1887,6 +1888,76 @@ class _Translations$settings$zh extends Translations$settings$fr {
 	@override String get contact => '联系我们';
 	@override String get privacy => '隐私';
 	@override String get terms => '使用条款';
+}
+
+// Path: reading
+class _Translations$reading$zh extends Translations$reading$fr {
+	_Translations$reading$zh._(TranslationsZh root) : this._root = root, super.internal(root);
+
+	final TranslationsZh _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => '我的阅读';
+	@override String get moreSubtitle => '你在读的书，一页又一页';
+	@override String moreCount({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n,
+		other: '${n} 本书在读',
+	);
+	@override String get add => '添加书籍';
+	@override String get reading => '在读';
+	@override String get finished => '已读完';
+	@override String get setAside => '已搁置';
+	@override String get empty => '暂时没有书';
+	@override String get emptyText => '添加你正在读的书：汇报中的页数会推动它的进度。';
+	@override String page({required Object page, required Object total}) => '第 ${page} 页，共 ${total} 页';
+	@override String finishedOn({required Object date}) => '${date} 读完';
+	@override String monthBooks({required num n, required Object month}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n,
+		other: '本书（${month}）',
+	);
+	@override String inYear({required Object year}) => '${year} 年';
+	@override String get pagesRead => '已读页数';
+	@override String chart({required Object year}) => '${year} 年每月读完的书';
+	@override String chartMonth({required num n, required Object month}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n,
+		other: '${month}：${n} 本书',
+	);
+	@override String get pick => '你在读哪本书？';
+	@override String get mine => '我在读的书';
+	@override String get choose => '选择所读的书';
+	@override String get change => '更换';
+	@override String get current => '在读的书';
+	@override String readUpTo({required Object page}) => '已读到第 ${page} 页';
+	@override String willReach({required Object page, required Object total}) => '你将读到第 ${page} 页，共 ${total} 页';
+	@override String get searchHint => '书名或作者';
+	@override String get searchUnavailable => '搜索暂时没有响应。请手动输入书籍。';
+	@override String get noResult => '没有找到书。请手动输入。';
+	@override String get manual => '没找到？输入书名、作者和页数';
+	@override String get fieldTitle => '书名';
+	@override String get fieldAuthor => '作者';
+	@override String get fieldPages => '页数';
+	@override String get titleRequired => '请填写书名。';
+	@override String get pagesRequired => '请填写页数（1 到 20 000）。';
+	@override String pages({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n,
+		other: '${n} 页',
+	);
+	@override String get pagesUnknown => '页数待填';
+	@override String added({required Object title}) => '《${title}》已加入你的阅读';
+	@override String get finishedQuestion => '你读完这本书了吗？';
+	@override String finishedText({required Object page, required Object total}) => '你已读到第 ${page} 页，共 ${total} 页。';
+	@override String get finishedYes => '是的，我读完了';
+	@override String get finishedNo => '还没有，继续读';
+	@override String get finishedToast => '太好了，读完一本书！';
+	@override String monthCount({required num n, required Object month}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n,
+		other: '你在${month}读完的第 ${n} 本书',
+	);
+	@override String get markFinished => '标记为已读完';
+	@override String get readAgain => '重新开始读';
+	@override String get putAside => '搁置';
+	@override String get remove => '从我的阅读中移除';
+	@override String get removeTitle => '移除这本书？';
+	@override String removeText({required Object title}) => '《${title}》将离开你的阅读。你汇报中的页数会保留。';
+	@override String booksFinished({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n,
+		other: '本期间读完 ${n} 本书',
+	);
+	@override String bookOf({required Object title}) => '书籍：${title}';
 }
 
 // Path: welcome.seek
@@ -5788,6 +5859,55 @@ extension on TranslationsZh {
 			'settings.contact' => '联系我们',
 			'settings.privacy' => '隐私',
 			'settings.terms' => '使用条款',
+			'reading.title' => '我的阅读',
+			'reading.moreSubtitle' => '你在读的书，一页又一页',
+			'reading.moreCount' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n, other: '${n} 本书在读', ), 
+			'reading.add' => '添加书籍',
+			'reading.reading' => '在读',
+			'reading.finished' => '已读完',
+			'reading.setAside' => '已搁置',
+			'reading.empty' => '暂时没有书',
+			'reading.emptyText' => '添加你正在读的书：汇报中的页数会推动它的进度。',
+			'reading.page' => ({required Object page, required Object total}) => '第 ${page} 页，共 ${total} 页',
+			'reading.finishedOn' => ({required Object date}) => '${date} 读完',
+			'reading.monthBooks' => ({required num n, required Object month}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n, other: '本书（${month}）', ), 
+			'reading.inYear' => ({required Object year}) => '${year} 年',
+			'reading.pagesRead' => '已读页数',
+			'reading.chart' => ({required Object year}) => '${year} 年每月读完的书',
+			'reading.chartMonth' => ({required num n, required Object month}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n, other: '${month}：${n} 本书', ), 
+			'reading.pick' => '你在读哪本书？',
+			'reading.mine' => '我在读的书',
+			'reading.choose' => '选择所读的书',
+			'reading.change' => '更换',
+			'reading.current' => '在读的书',
+			'reading.readUpTo' => ({required Object page}) => '已读到第 ${page} 页',
+			'reading.willReach' => ({required Object page, required Object total}) => '你将读到第 ${page} 页，共 ${total} 页',
+			'reading.searchHint' => '书名或作者',
+			'reading.searchUnavailable' => '搜索暂时没有响应。请手动输入书籍。',
+			'reading.noResult' => '没有找到书。请手动输入。',
+			'reading.manual' => '没找到？输入书名、作者和页数',
+			'reading.fieldTitle' => '书名',
+			'reading.fieldAuthor' => '作者',
+			'reading.fieldPages' => '页数',
+			'reading.titleRequired' => '请填写书名。',
+			'reading.pagesRequired' => '请填写页数（1 到 20 000）。',
+			'reading.pages' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n, other: '${n} 页', ), 
+			'reading.pagesUnknown' => '页数待填',
+			'reading.added' => ({required Object title}) => '《${title}》已加入你的阅读',
+			'reading.finishedQuestion' => '你读完这本书了吗？',
+			'reading.finishedText' => ({required Object page, required Object total}) => '你已读到第 ${page} 页，共 ${total} 页。',
+			'reading.finishedYes' => '是的，我读完了',
+			'reading.finishedNo' => '还没有，继续读',
+			'reading.finishedToast' => '太好了，读完一本书！',
+			'reading.monthCount' => ({required num n, required Object month}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n, other: '你在${month}读完的第 ${n} 本书', ), 
+			'reading.markFinished' => '标记为已读完',
+			'reading.readAgain' => '重新开始读',
+			'reading.putAside' => '搁置',
+			'reading.remove' => '从我的阅读中移除',
+			'reading.removeTitle' => '移除这本书？',
+			'reading.removeText' => ({required Object title}) => '《${title}》将离开你的阅读。你汇报中的页数会保留。',
+			'reading.booksFinished' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n, other: '本期间读完 ${n} 本书', ), 
+			'reading.bookOf' => ({required Object title}) => '书籍：${title}',
 			_ => null,
 		};
 	}

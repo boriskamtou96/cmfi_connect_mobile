@@ -89,6 +89,7 @@ class TranslationsHi extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _Translations$menu$hi menu = _Translations$menu$hi._(_root);
 	@override late final _Translations$me$hi me = _Translations$me$hi._(_root);
 	@override late final _Translations$settings$hi settings = _Translations$settings$hi._(_root);
+	@override late final _Translations$reading$hi reading = _Translations$reading$hi._(_root);
 }
 
 // Path: app
@@ -1948,6 +1949,83 @@ class _Translations$settings$hi extends Translations$settings$fr {
 	@override String get contact => 'हमसे संपर्क करो';
 	@override String get privacy => 'गोपनीयता';
 	@override String get terms => 'उपयोग की शर्तें';
+}
+
+// Path: reading
+class _Translations$reading$hi extends Translations$reading$fr {
+	_Translations$reading$hi._(TranslationsHi root) : this._root = root, super.internal(root);
+
+	final TranslationsHi _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'मेरा पठन';
+	@override String get moreSubtitle => 'जो किताबें तुम पढ़ते हो, पन्ना दर पन्ना';
+	@override String moreCount({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n,
+		one: '${n} किताब पढ़ी जा रही है',
+		other: '${n} किताबें पढ़ी जा रही हैं',
+	);
+	@override String get add => 'किताब जोड़ें';
+	@override String get reading => 'पढ़ी जा रही';
+	@override String get finished => 'पूरी हुईं';
+	@override String get setAside => 'अलग रखी गईं';
+	@override String get empty => 'अभी कोई किताब नहीं';
+	@override String get emptyText => 'जो किताब तुम पढ़ रहे हो उसे जोड़ो: तुम्हारी रिपोर्ट के पन्ने उसे आगे बढ़ाएँगे।';
+	@override String page({required Object page, required Object total}) => 'पन्ना ${page} / ${total}';
+	@override String finishedOn({required Object date}) => '${date} को पूरी हुई';
+	@override String monthBooks({required num n, required Object month}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n,
+		one: '${month} में किताब',
+		other: '${month} में किताबें',
+	);
+	@override String inYear({required Object year}) => '${year} में';
+	@override String get pagesRead => 'पढ़े गए पन्ने';
+	@override String chart({required Object year}) => '${year} के हर महीने पूरी हुई किताबें';
+	@override String chartMonth({required num n, required Object month}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n,
+		one: '${month}: ${n} किताब',
+		other: '${month}: ${n} किताबें',
+	);
+	@override String get pick => 'तुम कौन सी किताब पढ़ रहे हो?';
+	@override String get mine => 'मेरी चालू किताबें';
+	@override String get choose => 'पढ़ी गई किताब चुनें';
+	@override String get change => 'बदलें';
+	@override String get current => 'चालू किताब';
+	@override String readUpTo({required Object page}) => 'पन्ना ${page} तक पढ़ चुके';
+	@override String willReach({required Object page, required Object total}) => 'तुम पन्ना ${page} / ${total} पर पहुँचोगे';
+	@override String get searchHint => 'शीर्षक या लेखक';
+	@override String get searchUnavailable => 'खोज अभी जवाब नहीं दे रही। किताब हाथ से लिखो।';
+	@override String get noResult => 'कोई किताब नहीं मिली। उसे हाथ से लिखो।';
+	@override String get manual => 'नहीं मिली? शीर्षक, लेखक और पन्ने लिखो';
+	@override String get fieldTitle => 'शीर्षक';
+	@override String get fieldAuthor => 'लेखक';
+	@override String get fieldPages => 'पन्नों की संख्या';
+	@override String get titleRequired => 'शीर्षक बताओ।';
+	@override String get pagesRequired => 'पन्नों की संख्या बताओ (1 से 20 000)।';
+	@override String pages({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n,
+		one: '${n} पन्ना',
+		other: '${n} पन्ने',
+	);
+	@override String get pagesUnknown => 'पन्ने बताने हैं';
+	@override String added({required Object title}) => '“${title}” तुम्हारे पठन में जोड़ी गई';
+	@override String get finishedQuestion => 'क्या तुमने यह किताब पूरी कर ली?';
+	@override String finishedText({required Object page, required Object total}) => 'तुम पन्ना ${page} / ${total} तक पहुँच गए।';
+	@override String get finishedYes => 'हाँ, मैंने पूरी कर ली';
+	@override String get finishedNo => 'अभी नहीं, पढ़ता रहूँगा';
+	@override String get finishedToast => 'शाबाश, किताब पूरी हुई!';
+	@override String monthCount({required num n, required Object month}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n,
+		one: '${month} की तुम्हारी पहली किताब',
+		other: '${month} की तुम्हारी ${n}वीं किताब',
+	);
+	@override String get markFinished => 'पूरी हुई चिह्नित करें';
+	@override String get readAgain => 'फिर से शुरू करें';
+	@override String get putAside => 'अलग रखें';
+	@override String get remove => 'मेरे पठन से हटाएँ';
+	@override String get removeTitle => 'यह किताब हटाएँ?';
+	@override String removeText({required Object title}) => '“${title}” तुम्हारे पठन से हट जाएगी। तुम्हारी रिपोर्टों के पन्ने बने रहेंगे।';
+	@override String booksFinished({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n,
+		zero: 'इस अवधि में कोई किताब पूरी नहीं हुई',
+		one: 'इस अवधि में ${n} किताब पूरी हुई',
+		other: 'इस अवधि में ${n} किताबें पूरी हुईं',
+	);
+	@override String bookOf({required Object title}) => 'किताब: ${title}';
 }
 
 // Path: welcome.seek
@@ -5885,6 +5963,55 @@ extension on TranslationsHi {
 			'settings.contact' => 'हमसे संपर्क करो',
 			'settings.privacy' => 'गोपनीयता',
 			'settings.terms' => 'उपयोग की शर्तें',
+			'reading.title' => 'मेरा पठन',
+			'reading.moreSubtitle' => 'जो किताबें तुम पढ़ते हो, पन्ना दर पन्ना',
+			'reading.moreCount' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n, one: '${n} किताब पढ़ी जा रही है', other: '${n} किताबें पढ़ी जा रही हैं', ), 
+			'reading.add' => 'किताब जोड़ें',
+			'reading.reading' => 'पढ़ी जा रही',
+			'reading.finished' => 'पूरी हुईं',
+			'reading.setAside' => 'अलग रखी गईं',
+			'reading.empty' => 'अभी कोई किताब नहीं',
+			'reading.emptyText' => 'जो किताब तुम पढ़ रहे हो उसे जोड़ो: तुम्हारी रिपोर्ट के पन्ने उसे आगे बढ़ाएँगे।',
+			'reading.page' => ({required Object page, required Object total}) => 'पन्ना ${page} / ${total}',
+			'reading.finishedOn' => ({required Object date}) => '${date} को पूरी हुई',
+			'reading.monthBooks' => ({required num n, required Object month}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n, one: '${month} में किताब', other: '${month} में किताबें', ), 
+			'reading.inYear' => ({required Object year}) => '${year} में',
+			'reading.pagesRead' => 'पढ़े गए पन्ने',
+			'reading.chart' => ({required Object year}) => '${year} के हर महीने पूरी हुई किताबें',
+			'reading.chartMonth' => ({required num n, required Object month}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n, one: '${month}: ${n} किताब', other: '${month}: ${n} किताबें', ), 
+			'reading.pick' => 'तुम कौन सी किताब पढ़ रहे हो?',
+			'reading.mine' => 'मेरी चालू किताबें',
+			'reading.choose' => 'पढ़ी गई किताब चुनें',
+			'reading.change' => 'बदलें',
+			'reading.current' => 'चालू किताब',
+			'reading.readUpTo' => ({required Object page}) => 'पन्ना ${page} तक पढ़ चुके',
+			'reading.willReach' => ({required Object page, required Object total}) => 'तुम पन्ना ${page} / ${total} पर पहुँचोगे',
+			'reading.searchHint' => 'शीर्षक या लेखक',
+			'reading.searchUnavailable' => 'खोज अभी जवाब नहीं दे रही। किताब हाथ से लिखो।',
+			'reading.noResult' => 'कोई किताब नहीं मिली। उसे हाथ से लिखो।',
+			'reading.manual' => 'नहीं मिली? शीर्षक, लेखक और पन्ने लिखो',
+			'reading.fieldTitle' => 'शीर्षक',
+			'reading.fieldAuthor' => 'लेखक',
+			'reading.fieldPages' => 'पन्नों की संख्या',
+			'reading.titleRequired' => 'शीर्षक बताओ।',
+			'reading.pagesRequired' => 'पन्नों की संख्या बताओ (1 से 20 000)।',
+			'reading.pages' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n, one: '${n} पन्ना', other: '${n} पन्ने', ), 
+			'reading.pagesUnknown' => 'पन्ने बताने हैं',
+			'reading.added' => ({required Object title}) => '“${title}” तुम्हारे पठन में जोड़ी गई',
+			'reading.finishedQuestion' => 'क्या तुमने यह किताब पूरी कर ली?',
+			'reading.finishedText' => ({required Object page, required Object total}) => 'तुम पन्ना ${page} / ${total} तक पहुँच गए।',
+			'reading.finishedYes' => 'हाँ, मैंने पूरी कर ली',
+			'reading.finishedNo' => 'अभी नहीं, पढ़ता रहूँगा',
+			'reading.finishedToast' => 'शाबाश, किताब पूरी हुई!',
+			'reading.monthCount' => ({required num n, required Object month}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n, one: '${month} की तुम्हारी पहली किताब', other: '${month} की तुम्हारी ${n}वीं किताब', ), 
+			'reading.markFinished' => 'पूरी हुई चिह्नित करें',
+			'reading.readAgain' => 'फिर से शुरू करें',
+			'reading.putAside' => 'अलग रखें',
+			'reading.remove' => 'मेरे पठन से हटाएँ',
+			'reading.removeTitle' => 'यह किताब हटाएँ?',
+			'reading.removeText' => ({required Object title}) => '“${title}” तुम्हारे पठन से हट जाएगी। तुम्हारी रिपोर्टों के पन्ने बने रहेंगे।',
+			'reading.booksFinished' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n, zero: 'इस अवधि में कोई किताब पूरी नहीं हुई', one: 'इस अवधि में ${n} किताब पूरी हुई', other: 'इस अवधि में ${n} किताबें पूरी हुईं', ), 
+			'reading.bookOf' => ({required Object title}) => 'किताब: ${title}',
 			_ => null,
 		};
 	}

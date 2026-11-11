@@ -11,6 +11,7 @@ import '../domain/report_goal.dart';
 import '../infrastructure/reports_api.dart';
 import '../infrastructure/reports_local_store.dart';
 import 'pending_reports.dart';
+import 'reading_books.dart';
 import 'report_goals.dart';
 import 'report_reminder.dart';
 import 'reports_providers.dart';
@@ -107,6 +108,7 @@ class DayReportController extends _$DayReportController {
             entry.copyWith(
               quantity: old.quantity,
               durationMinutes: old.durationMinutes,
+              book: old.book,
             )
           else
             entry,
@@ -114,7 +116,14 @@ class DayReportController extends _$DayReportController {
     );
   }
 
-  void updateEntry(int activityTypeId, {int? quantity, int? durationMinutes}) {
+  /// [book]: the book read (Lecture de la littérature chrétienne), null to
+  /// name none; cleared with the item.
+  void updateEntry(
+    int activityTypeId, {
+    int? quantity,
+    int? durationMinutes,
+    EntryBook? book,
+  }) {
     _change(
       (draft) => draft.copyWith(
         entries: [
@@ -123,6 +132,7 @@ class DayReportController extends _$DayReportController {
               entry.copyWith(
                 quantity: quantity,
                 durationMinutes: durationMinutes,
+                book: quantity == null && durationMinutes == null ? null : book,
               )
             else
               entry,
@@ -165,10 +175,13 @@ class DayReportController extends _$DayReportController {
       }
       state = AsyncData(_toDraft(saved, draft.standardIds));
       _saved();
-      // history, week and summary now include this day
+      // history, week and summary now include this day, and the books its
+      // pages moved
       ref
         ..invalidate(reportHistoryProvider)
-        ..invalidate(reportSummaryProvider);
+        ..invalidate(reportSummaryProvider)
+        ..invalidate(readingBooksProvider)
+        ..invalidate(readingStatsProvider);
       // the network is back: the days kept offline can go too
       await pending.send();
       return SaveOutcome.sent;

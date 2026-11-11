@@ -638,7 +638,8 @@ as int?,
 mixin _$DiscipleReports {
 
  int get authorityId; MemberCard get member; bool get isDiscipleMaker;/// The items they have now (standard and their own).
- int get totalItems; List<DiscipleDay> get days;
+ int get totalItems; List<DiscipleDay> get days;/// The books they finished in the period (Mes lectures).
+ int get booksFinished;
 /// Create a copy of DiscipleReports
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -651,16 +652,16 @@ $DiscipleReportsCopyWith<DiscipleReports> get copyWith => _$DiscipleReportsCopyW
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is DiscipleReports&&(identical(other.authorityId, authorityId) || other.authorityId == authorityId)&&(identical(other.member, member) || other.member == member)&&(identical(other.isDiscipleMaker, isDiscipleMaker) || other.isDiscipleMaker == isDiscipleMaker)&&(identical(other.totalItems, totalItems) || other.totalItems == totalItems)&&const DeepCollectionEquality().equals(other.days, days));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is DiscipleReports&&(identical(other.authorityId, authorityId) || other.authorityId == authorityId)&&(identical(other.member, member) || other.member == member)&&(identical(other.isDiscipleMaker, isDiscipleMaker) || other.isDiscipleMaker == isDiscipleMaker)&&(identical(other.totalItems, totalItems) || other.totalItems == totalItems)&&const DeepCollectionEquality().equals(other.days, days)&&(identical(other.booksFinished, booksFinished) || other.booksFinished == booksFinished));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,authorityId,member,isDiscipleMaker,totalItems,const DeepCollectionEquality().hash(days));
+int get hashCode => Object.hash(runtimeType,authorityId,member,isDiscipleMaker,totalItems,const DeepCollectionEquality().hash(days),booksFinished);
 
 @override
 String toString() {
-  return 'DiscipleReports(authorityId: $authorityId, member: $member, isDiscipleMaker: $isDiscipleMaker, totalItems: $totalItems, days: $days)';
+  return 'DiscipleReports(authorityId: $authorityId, member: $member, isDiscipleMaker: $isDiscipleMaker, totalItems: $totalItems, days: $days, booksFinished: $booksFinished)';
 }
 
 
@@ -671,7 +672,7 @@ abstract mixin class $DiscipleReportsCopyWith<$Res>  {
   factory $DiscipleReportsCopyWith(DiscipleReports value, $Res Function(DiscipleReports) _then) = _$DiscipleReportsCopyWithImpl;
 @useResult
 $Res call({
- int authorityId, MemberCard member, bool isDiscipleMaker, int totalItems, List<DiscipleDay> days
+ int authorityId, MemberCard member, bool isDiscipleMaker, int totalItems, List<DiscipleDay> days, int booksFinished
 });
 
 
@@ -688,14 +689,15 @@ class _$DiscipleReportsCopyWithImpl<$Res>
 
 /// Create a copy of DiscipleReports
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? authorityId = null,Object? member = null,Object? isDiscipleMaker = null,Object? totalItems = null,Object? days = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? authorityId = null,Object? member = null,Object? isDiscipleMaker = null,Object? totalItems = null,Object? days = null,Object? booksFinished = null,}) {
   return _then(_self.copyWith(
 authorityId: null == authorityId ? _self.authorityId : authorityId // ignore: cast_nullable_to_non_nullable
 as int,member: null == member ? _self.member : member // ignore: cast_nullable_to_non_nullable
 as MemberCard,isDiscipleMaker: null == isDiscipleMaker ? _self.isDiscipleMaker : isDiscipleMaker // ignore: cast_nullable_to_non_nullable
 as bool,totalItems: null == totalItems ? _self.totalItems : totalItems // ignore: cast_nullable_to_non_nullable
 as int,days: null == days ? _self.days : days // ignore: cast_nullable_to_non_nullable
-as List<DiscipleDay>,
+as List<DiscipleDay>,booksFinished: null == booksFinished ? _self.booksFinished : booksFinished // ignore: cast_nullable_to_non_nullable
+as int,
   ));
 }
 /// Create a copy of DiscipleReports
@@ -789,10 +791,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( int authorityId,  MemberCard member,  bool isDiscipleMaker,  int totalItems,  List<DiscipleDay> days)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( int authorityId,  MemberCard member,  bool isDiscipleMaker,  int totalItems,  List<DiscipleDay> days,  int booksFinished)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _DiscipleReports() when $default != null:
-return $default(_that.authorityId,_that.member,_that.isDiscipleMaker,_that.totalItems,_that.days);case _:
+return $default(_that.authorityId,_that.member,_that.isDiscipleMaker,_that.totalItems,_that.days,_that.booksFinished);case _:
   return orElse();
 
 }
@@ -810,10 +812,10 @@ return $default(_that.authorityId,_that.member,_that.isDiscipleMaker,_that.total
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( int authorityId,  MemberCard member,  bool isDiscipleMaker,  int totalItems,  List<DiscipleDay> days)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( int authorityId,  MemberCard member,  bool isDiscipleMaker,  int totalItems,  List<DiscipleDay> days,  int booksFinished)  $default,) {final _that = this;
 switch (_that) {
 case _DiscipleReports():
-return $default(_that.authorityId,_that.member,_that.isDiscipleMaker,_that.totalItems,_that.days);case _:
+return $default(_that.authorityId,_that.member,_that.isDiscipleMaker,_that.totalItems,_that.days,_that.booksFinished);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -830,10 +832,10 @@ return $default(_that.authorityId,_that.member,_that.isDiscipleMaker,_that.total
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( int authorityId,  MemberCard member,  bool isDiscipleMaker,  int totalItems,  List<DiscipleDay> days)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( int authorityId,  MemberCard member,  bool isDiscipleMaker,  int totalItems,  List<DiscipleDay> days,  int booksFinished)?  $default,) {final _that = this;
 switch (_that) {
 case _DiscipleReports() when $default != null:
-return $default(_that.authorityId,_that.member,_that.isDiscipleMaker,_that.totalItems,_that.days);case _:
+return $default(_that.authorityId,_that.member,_that.isDiscipleMaker,_that.totalItems,_that.days,_that.booksFinished);case _:
   return null;
 
 }
@@ -845,7 +847,7 @@ return $default(_that.authorityId,_that.member,_that.isDiscipleMaker,_that.total
 @JsonSerializable()
 
 class _DiscipleReports implements DiscipleReports {
-  const _DiscipleReports({required this.authorityId, required this.member, this.isDiscipleMaker = true, this.totalItems = 0, final  List<DiscipleDay> days = const <DiscipleDay>[]}): _days = days;
+  const _DiscipleReports({required this.authorityId, required this.member, this.isDiscipleMaker = true, this.totalItems = 0, final  List<DiscipleDay> days = const <DiscipleDay>[], this.booksFinished = 0}): _days = days;
   factory _DiscipleReports.fromJson(Map<String, dynamic> json) => _$DiscipleReportsFromJson(json);
 
 @override final  int authorityId;
@@ -860,6 +862,8 @@ class _DiscipleReports implements DiscipleReports {
   return EqualUnmodifiableListView(_days);
 }
 
+/// The books they finished in the period (Mes lectures).
+@override@JsonKey() final  int booksFinished;
 
 /// Create a copy of DiscipleReports
 /// with the given fields replaced by the non-null parameter values.
@@ -874,16 +878,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _DiscipleReports&&(identical(other.authorityId, authorityId) || other.authorityId == authorityId)&&(identical(other.member, member) || other.member == member)&&(identical(other.isDiscipleMaker, isDiscipleMaker) || other.isDiscipleMaker == isDiscipleMaker)&&(identical(other.totalItems, totalItems) || other.totalItems == totalItems)&&const DeepCollectionEquality().equals(other._days, _days));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _DiscipleReports&&(identical(other.authorityId, authorityId) || other.authorityId == authorityId)&&(identical(other.member, member) || other.member == member)&&(identical(other.isDiscipleMaker, isDiscipleMaker) || other.isDiscipleMaker == isDiscipleMaker)&&(identical(other.totalItems, totalItems) || other.totalItems == totalItems)&&const DeepCollectionEquality().equals(other._days, _days)&&(identical(other.booksFinished, booksFinished) || other.booksFinished == booksFinished));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,authorityId,member,isDiscipleMaker,totalItems,const DeepCollectionEquality().hash(_days));
+int get hashCode => Object.hash(runtimeType,authorityId,member,isDiscipleMaker,totalItems,const DeepCollectionEquality().hash(_days),booksFinished);
 
 @override
 String toString() {
-  return 'DiscipleReports(authorityId: $authorityId, member: $member, isDiscipleMaker: $isDiscipleMaker, totalItems: $totalItems, days: $days)';
+  return 'DiscipleReports(authorityId: $authorityId, member: $member, isDiscipleMaker: $isDiscipleMaker, totalItems: $totalItems, days: $days, booksFinished: $booksFinished)';
 }
 
 
@@ -894,7 +898,7 @@ abstract mixin class _$DiscipleReportsCopyWith<$Res> implements $DiscipleReports
   factory _$DiscipleReportsCopyWith(_DiscipleReports value, $Res Function(_DiscipleReports) _then) = __$DiscipleReportsCopyWithImpl;
 @override @useResult
 $Res call({
- int authorityId, MemberCard member, bool isDiscipleMaker, int totalItems, List<DiscipleDay> days
+ int authorityId, MemberCard member, bool isDiscipleMaker, int totalItems, List<DiscipleDay> days, int booksFinished
 });
 
 
@@ -911,14 +915,15 @@ class __$DiscipleReportsCopyWithImpl<$Res>
 
 /// Create a copy of DiscipleReports
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? authorityId = null,Object? member = null,Object? isDiscipleMaker = null,Object? totalItems = null,Object? days = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? authorityId = null,Object? member = null,Object? isDiscipleMaker = null,Object? totalItems = null,Object? days = null,Object? booksFinished = null,}) {
   return _then(_DiscipleReports(
 authorityId: null == authorityId ? _self.authorityId : authorityId // ignore: cast_nullable_to_non_nullable
 as int,member: null == member ? _self.member : member // ignore: cast_nullable_to_non_nullable
 as MemberCard,isDiscipleMaker: null == isDiscipleMaker ? _self.isDiscipleMaker : isDiscipleMaker // ignore: cast_nullable_to_non_nullable
 as bool,totalItems: null == totalItems ? _self.totalItems : totalItems // ignore: cast_nullable_to_non_nullable
 as int,days: null == days ? _self._days : days // ignore: cast_nullable_to_non_nullable
-as List<DiscipleDay>,
+as List<DiscipleDay>,booksFinished: null == booksFinished ? _self.booksFinished : booksFinished // ignore: cast_nullable_to_non_nullable
+as int,
   ));
 }
 
@@ -1224,7 +1229,9 @@ as List<DiscipleEntry>,
 /// @nodoc
 mixin _$DiscipleEntry {
 
- int get activityTypeId; String get code; String get label; String? get quantityUnit; int? get quantity; int? get durationMinutes;
+ int get activityTypeId; String get code; String get label; String? get quantityUnit; int? get quantity; int? get durationMinutes;/// The book read that day (Lecture de la littérature chrétienne), with
+/// the page reached in it.
+ EntryBook? get book;
 /// Create a copy of DiscipleEntry
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -1237,16 +1244,16 @@ $DiscipleEntryCopyWith<DiscipleEntry> get copyWith => _$DiscipleEntryCopyWithImp
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is DiscipleEntry&&(identical(other.activityTypeId, activityTypeId) || other.activityTypeId == activityTypeId)&&(identical(other.code, code) || other.code == code)&&(identical(other.label, label) || other.label == label)&&(identical(other.quantityUnit, quantityUnit) || other.quantityUnit == quantityUnit)&&(identical(other.quantity, quantity) || other.quantity == quantity)&&(identical(other.durationMinutes, durationMinutes) || other.durationMinutes == durationMinutes));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is DiscipleEntry&&(identical(other.activityTypeId, activityTypeId) || other.activityTypeId == activityTypeId)&&(identical(other.code, code) || other.code == code)&&(identical(other.label, label) || other.label == label)&&(identical(other.quantityUnit, quantityUnit) || other.quantityUnit == quantityUnit)&&(identical(other.quantity, quantity) || other.quantity == quantity)&&(identical(other.durationMinutes, durationMinutes) || other.durationMinutes == durationMinutes)&&(identical(other.book, book) || other.book == book));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,activityTypeId,code,label,quantityUnit,quantity,durationMinutes);
+int get hashCode => Object.hash(runtimeType,activityTypeId,code,label,quantityUnit,quantity,durationMinutes,book);
 
 @override
 String toString() {
-  return 'DiscipleEntry(activityTypeId: $activityTypeId, code: $code, label: $label, quantityUnit: $quantityUnit, quantity: $quantity, durationMinutes: $durationMinutes)';
+  return 'DiscipleEntry(activityTypeId: $activityTypeId, code: $code, label: $label, quantityUnit: $quantityUnit, quantity: $quantity, durationMinutes: $durationMinutes, book: $book)';
 }
 
 
@@ -1257,11 +1264,11 @@ abstract mixin class $DiscipleEntryCopyWith<$Res>  {
   factory $DiscipleEntryCopyWith(DiscipleEntry value, $Res Function(DiscipleEntry) _then) = _$DiscipleEntryCopyWithImpl;
 @useResult
 $Res call({
- int activityTypeId, String code, String label, String? quantityUnit, int? quantity, int? durationMinutes
+ int activityTypeId, String code, String label, String? quantityUnit, int? quantity, int? durationMinutes, EntryBook? book
 });
 
 
-
+$EntryBookCopyWith<$Res>? get book;
 
 }
 /// @nodoc
@@ -1274,7 +1281,7 @@ class _$DiscipleEntryCopyWithImpl<$Res>
 
 /// Create a copy of DiscipleEntry
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? activityTypeId = null,Object? code = null,Object? label = null,Object? quantityUnit = freezed,Object? quantity = freezed,Object? durationMinutes = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? activityTypeId = null,Object? code = null,Object? label = null,Object? quantityUnit = freezed,Object? quantity = freezed,Object? durationMinutes = freezed,Object? book = freezed,}) {
   return _then(_self.copyWith(
 activityTypeId: null == activityTypeId ? _self.activityTypeId : activityTypeId // ignore: cast_nullable_to_non_nullable
 as int,code: null == code ? _self.code : code // ignore: cast_nullable_to_non_nullable
@@ -1282,10 +1289,23 @@ as String,label: null == label ? _self.label : label // ignore: cast_nullable_to
 as String,quantityUnit: freezed == quantityUnit ? _self.quantityUnit : quantityUnit // ignore: cast_nullable_to_non_nullable
 as String?,quantity: freezed == quantity ? _self.quantity : quantity // ignore: cast_nullable_to_non_nullable
 as int?,durationMinutes: freezed == durationMinutes ? _self.durationMinutes : durationMinutes // ignore: cast_nullable_to_non_nullable
-as int?,
+as int?,book: freezed == book ? _self.book : book // ignore: cast_nullable_to_non_nullable
+as EntryBook?,
   ));
 }
+/// Create a copy of DiscipleEntry
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$EntryBookCopyWith<$Res>? get book {
+    if (_self.book == null) {
+    return null;
+  }
 
+  return $EntryBookCopyWith<$Res>(_self.book!, (value) {
+    return _then(_self.copyWith(book: value));
+  });
+}
 }
 
 
@@ -1367,10 +1387,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( int activityTypeId,  String code,  String label,  String? quantityUnit,  int? quantity,  int? durationMinutes)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( int activityTypeId,  String code,  String label,  String? quantityUnit,  int? quantity,  int? durationMinutes,  EntryBook? book)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _DiscipleEntry() when $default != null:
-return $default(_that.activityTypeId,_that.code,_that.label,_that.quantityUnit,_that.quantity,_that.durationMinutes);case _:
+return $default(_that.activityTypeId,_that.code,_that.label,_that.quantityUnit,_that.quantity,_that.durationMinutes,_that.book);case _:
   return orElse();
 
 }
@@ -1388,10 +1408,10 @@ return $default(_that.activityTypeId,_that.code,_that.label,_that.quantityUnit,_
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( int activityTypeId,  String code,  String label,  String? quantityUnit,  int? quantity,  int? durationMinutes)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( int activityTypeId,  String code,  String label,  String? quantityUnit,  int? quantity,  int? durationMinutes,  EntryBook? book)  $default,) {final _that = this;
 switch (_that) {
 case _DiscipleEntry():
-return $default(_that.activityTypeId,_that.code,_that.label,_that.quantityUnit,_that.quantity,_that.durationMinutes);case _:
+return $default(_that.activityTypeId,_that.code,_that.label,_that.quantityUnit,_that.quantity,_that.durationMinutes,_that.book);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -1408,10 +1428,10 @@ return $default(_that.activityTypeId,_that.code,_that.label,_that.quantityUnit,_
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( int activityTypeId,  String code,  String label,  String? quantityUnit,  int? quantity,  int? durationMinutes)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( int activityTypeId,  String code,  String label,  String? quantityUnit,  int? quantity,  int? durationMinutes,  EntryBook? book)?  $default,) {final _that = this;
 switch (_that) {
 case _DiscipleEntry() when $default != null:
-return $default(_that.activityTypeId,_that.code,_that.label,_that.quantityUnit,_that.quantity,_that.durationMinutes);case _:
+return $default(_that.activityTypeId,_that.code,_that.label,_that.quantityUnit,_that.quantity,_that.durationMinutes,_that.book);case _:
   return null;
 
 }
@@ -1423,7 +1443,7 @@ return $default(_that.activityTypeId,_that.code,_that.label,_that.quantityUnit,_
 @JsonSerializable()
 
 class _DiscipleEntry implements DiscipleEntry {
-  const _DiscipleEntry({required this.activityTypeId, required this.code, required this.label, this.quantityUnit, this.quantity, this.durationMinutes});
+  const _DiscipleEntry({required this.activityTypeId, required this.code, required this.label, this.quantityUnit, this.quantity, this.durationMinutes, this.book});
   factory _DiscipleEntry.fromJson(Map<String, dynamic> json) => _$DiscipleEntryFromJson(json);
 
 @override final  int activityTypeId;
@@ -1432,6 +1452,9 @@ class _DiscipleEntry implements DiscipleEntry {
 @override final  String? quantityUnit;
 @override final  int? quantity;
 @override final  int? durationMinutes;
+/// The book read that day (Lecture de la littérature chrétienne), with
+/// the page reached in it.
+@override final  EntryBook? book;
 
 /// Create a copy of DiscipleEntry
 /// with the given fields replaced by the non-null parameter values.
@@ -1446,16 +1469,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _DiscipleEntry&&(identical(other.activityTypeId, activityTypeId) || other.activityTypeId == activityTypeId)&&(identical(other.code, code) || other.code == code)&&(identical(other.label, label) || other.label == label)&&(identical(other.quantityUnit, quantityUnit) || other.quantityUnit == quantityUnit)&&(identical(other.quantity, quantity) || other.quantity == quantity)&&(identical(other.durationMinutes, durationMinutes) || other.durationMinutes == durationMinutes));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _DiscipleEntry&&(identical(other.activityTypeId, activityTypeId) || other.activityTypeId == activityTypeId)&&(identical(other.code, code) || other.code == code)&&(identical(other.label, label) || other.label == label)&&(identical(other.quantityUnit, quantityUnit) || other.quantityUnit == quantityUnit)&&(identical(other.quantity, quantity) || other.quantity == quantity)&&(identical(other.durationMinutes, durationMinutes) || other.durationMinutes == durationMinutes)&&(identical(other.book, book) || other.book == book));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,activityTypeId,code,label,quantityUnit,quantity,durationMinutes);
+int get hashCode => Object.hash(runtimeType,activityTypeId,code,label,quantityUnit,quantity,durationMinutes,book);
 
 @override
 String toString() {
-  return 'DiscipleEntry(activityTypeId: $activityTypeId, code: $code, label: $label, quantityUnit: $quantityUnit, quantity: $quantity, durationMinutes: $durationMinutes)';
+  return 'DiscipleEntry(activityTypeId: $activityTypeId, code: $code, label: $label, quantityUnit: $quantityUnit, quantity: $quantity, durationMinutes: $durationMinutes, book: $book)';
 }
 
 
@@ -1466,11 +1489,11 @@ abstract mixin class _$DiscipleEntryCopyWith<$Res> implements $DiscipleEntryCopy
   factory _$DiscipleEntryCopyWith(_DiscipleEntry value, $Res Function(_DiscipleEntry) _then) = __$DiscipleEntryCopyWithImpl;
 @override @useResult
 $Res call({
- int activityTypeId, String code, String label, String? quantityUnit, int? quantity, int? durationMinutes
+ int activityTypeId, String code, String label, String? quantityUnit, int? quantity, int? durationMinutes, EntryBook? book
 });
 
 
-
+@override $EntryBookCopyWith<$Res>? get book;
 
 }
 /// @nodoc
@@ -1483,7 +1506,7 @@ class __$DiscipleEntryCopyWithImpl<$Res>
 
 /// Create a copy of DiscipleEntry
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? activityTypeId = null,Object? code = null,Object? label = null,Object? quantityUnit = freezed,Object? quantity = freezed,Object? durationMinutes = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? activityTypeId = null,Object? code = null,Object? label = null,Object? quantityUnit = freezed,Object? quantity = freezed,Object? durationMinutes = freezed,Object? book = freezed,}) {
   return _then(_DiscipleEntry(
 activityTypeId: null == activityTypeId ? _self.activityTypeId : activityTypeId // ignore: cast_nullable_to_non_nullable
 as int,code: null == code ? _self.code : code // ignore: cast_nullable_to_non_nullable
@@ -1491,11 +1514,24 @@ as String,label: null == label ? _self.label : label // ignore: cast_nullable_to
 as String,quantityUnit: freezed == quantityUnit ? _self.quantityUnit : quantityUnit // ignore: cast_nullable_to_non_nullable
 as String?,quantity: freezed == quantity ? _self.quantity : quantity // ignore: cast_nullable_to_non_nullable
 as int?,durationMinutes: freezed == durationMinutes ? _self.durationMinutes : durationMinutes // ignore: cast_nullable_to_non_nullable
-as int?,
+as int?,book: freezed == book ? _self.book : book // ignore: cast_nullable_to_non_nullable
+as EntryBook?,
   ));
 }
 
+/// Create a copy of DiscipleEntry
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$EntryBookCopyWith<$Res>? get book {
+    if (_self.book == null) {
+    return null;
+  }
 
+  return $EntryBookCopyWith<$Res>(_self.book!, (value) {
+    return _then(_self.copyWith(book: value));
+  });
+}
 }
 
 // dart format on

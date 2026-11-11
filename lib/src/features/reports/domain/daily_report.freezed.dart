@@ -15,7 +15,8 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$ReportEntry {
 
- int get activityTypeId; String get code; String get label; bool get tracksQuantity; String? get quantityUnit; bool get tracksDuration; int? get quantity; int? get durationMinutes;
+ int get activityTypeId; String get code; String get label; bool get tracksQuantity; String? get quantityUnit; bool get tracksDuration; int? get quantity; int? get durationMinutes;/// The book read that day: Lecture de la littérature chrétienne only.
+ EntryBook? get book;
 /// Create a copy of ReportEntry
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -28,16 +29,16 @@ $ReportEntryCopyWith<ReportEntry> get copyWith => _$ReportEntryCopyWithImpl<Repo
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is ReportEntry&&(identical(other.activityTypeId, activityTypeId) || other.activityTypeId == activityTypeId)&&(identical(other.code, code) || other.code == code)&&(identical(other.label, label) || other.label == label)&&(identical(other.tracksQuantity, tracksQuantity) || other.tracksQuantity == tracksQuantity)&&(identical(other.quantityUnit, quantityUnit) || other.quantityUnit == quantityUnit)&&(identical(other.tracksDuration, tracksDuration) || other.tracksDuration == tracksDuration)&&(identical(other.quantity, quantity) || other.quantity == quantity)&&(identical(other.durationMinutes, durationMinutes) || other.durationMinutes == durationMinutes));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is ReportEntry&&(identical(other.activityTypeId, activityTypeId) || other.activityTypeId == activityTypeId)&&(identical(other.code, code) || other.code == code)&&(identical(other.label, label) || other.label == label)&&(identical(other.tracksQuantity, tracksQuantity) || other.tracksQuantity == tracksQuantity)&&(identical(other.quantityUnit, quantityUnit) || other.quantityUnit == quantityUnit)&&(identical(other.tracksDuration, tracksDuration) || other.tracksDuration == tracksDuration)&&(identical(other.quantity, quantity) || other.quantity == quantity)&&(identical(other.durationMinutes, durationMinutes) || other.durationMinutes == durationMinutes)&&(identical(other.book, book) || other.book == book));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,activityTypeId,code,label,tracksQuantity,quantityUnit,tracksDuration,quantity,durationMinutes);
+int get hashCode => Object.hash(runtimeType,activityTypeId,code,label,tracksQuantity,quantityUnit,tracksDuration,quantity,durationMinutes,book);
 
 @override
 String toString() {
-  return 'ReportEntry(activityTypeId: $activityTypeId, code: $code, label: $label, tracksQuantity: $tracksQuantity, quantityUnit: $quantityUnit, tracksDuration: $tracksDuration, quantity: $quantity, durationMinutes: $durationMinutes)';
+  return 'ReportEntry(activityTypeId: $activityTypeId, code: $code, label: $label, tracksQuantity: $tracksQuantity, quantityUnit: $quantityUnit, tracksDuration: $tracksDuration, quantity: $quantity, durationMinutes: $durationMinutes, book: $book)';
 }
 
 
@@ -48,11 +49,11 @@ abstract mixin class $ReportEntryCopyWith<$Res>  {
   factory $ReportEntryCopyWith(ReportEntry value, $Res Function(ReportEntry) _then) = _$ReportEntryCopyWithImpl;
 @useResult
 $Res call({
- int activityTypeId, String code, String label, bool tracksQuantity, String? quantityUnit, bool tracksDuration, int? quantity, int? durationMinutes
+ int activityTypeId, String code, String label, bool tracksQuantity, String? quantityUnit, bool tracksDuration, int? quantity, int? durationMinutes, EntryBook? book
 });
 
 
-
+$EntryBookCopyWith<$Res>? get book;
 
 }
 /// @nodoc
@@ -65,7 +66,7 @@ class _$ReportEntryCopyWithImpl<$Res>
 
 /// Create a copy of ReportEntry
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? activityTypeId = null,Object? code = null,Object? label = null,Object? tracksQuantity = null,Object? quantityUnit = freezed,Object? tracksDuration = null,Object? quantity = freezed,Object? durationMinutes = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? activityTypeId = null,Object? code = null,Object? label = null,Object? tracksQuantity = null,Object? quantityUnit = freezed,Object? tracksDuration = null,Object? quantity = freezed,Object? durationMinutes = freezed,Object? book = freezed,}) {
   return _then(_self.copyWith(
 activityTypeId: null == activityTypeId ? _self.activityTypeId : activityTypeId // ignore: cast_nullable_to_non_nullable
 as int,code: null == code ? _self.code : code // ignore: cast_nullable_to_non_nullable
@@ -75,10 +76,23 @@ as bool,quantityUnit: freezed == quantityUnit ? _self.quantityUnit : quantityUni
 as String?,tracksDuration: null == tracksDuration ? _self.tracksDuration : tracksDuration // ignore: cast_nullable_to_non_nullable
 as bool,quantity: freezed == quantity ? _self.quantity : quantity // ignore: cast_nullable_to_non_nullable
 as int?,durationMinutes: freezed == durationMinutes ? _self.durationMinutes : durationMinutes // ignore: cast_nullable_to_non_nullable
-as int?,
+as int?,book: freezed == book ? _self.book : book // ignore: cast_nullable_to_non_nullable
+as EntryBook?,
   ));
 }
+/// Create a copy of ReportEntry
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$EntryBookCopyWith<$Res>? get book {
+    if (_self.book == null) {
+    return null;
+  }
 
+  return $EntryBookCopyWith<$Res>(_self.book!, (value) {
+    return _then(_self.copyWith(book: value));
+  });
+}
 }
 
 
@@ -160,10 +174,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( int activityTypeId,  String code,  String label,  bool tracksQuantity,  String? quantityUnit,  bool tracksDuration,  int? quantity,  int? durationMinutes)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( int activityTypeId,  String code,  String label,  bool tracksQuantity,  String? quantityUnit,  bool tracksDuration,  int? quantity,  int? durationMinutes,  EntryBook? book)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _ReportEntry() when $default != null:
-return $default(_that.activityTypeId,_that.code,_that.label,_that.tracksQuantity,_that.quantityUnit,_that.tracksDuration,_that.quantity,_that.durationMinutes);case _:
+return $default(_that.activityTypeId,_that.code,_that.label,_that.tracksQuantity,_that.quantityUnit,_that.tracksDuration,_that.quantity,_that.durationMinutes,_that.book);case _:
   return orElse();
 
 }
@@ -181,10 +195,10 @@ return $default(_that.activityTypeId,_that.code,_that.label,_that.tracksQuantity
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( int activityTypeId,  String code,  String label,  bool tracksQuantity,  String? quantityUnit,  bool tracksDuration,  int? quantity,  int? durationMinutes)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( int activityTypeId,  String code,  String label,  bool tracksQuantity,  String? quantityUnit,  bool tracksDuration,  int? quantity,  int? durationMinutes,  EntryBook? book)  $default,) {final _that = this;
 switch (_that) {
 case _ReportEntry():
-return $default(_that.activityTypeId,_that.code,_that.label,_that.tracksQuantity,_that.quantityUnit,_that.tracksDuration,_that.quantity,_that.durationMinutes);case _:
+return $default(_that.activityTypeId,_that.code,_that.label,_that.tracksQuantity,_that.quantityUnit,_that.tracksDuration,_that.quantity,_that.durationMinutes,_that.book);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -201,10 +215,10 @@ return $default(_that.activityTypeId,_that.code,_that.label,_that.tracksQuantity
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( int activityTypeId,  String code,  String label,  bool tracksQuantity,  String? quantityUnit,  bool tracksDuration,  int? quantity,  int? durationMinutes)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( int activityTypeId,  String code,  String label,  bool tracksQuantity,  String? quantityUnit,  bool tracksDuration,  int? quantity,  int? durationMinutes,  EntryBook? book)?  $default,) {final _that = this;
 switch (_that) {
 case _ReportEntry() when $default != null:
-return $default(_that.activityTypeId,_that.code,_that.label,_that.tracksQuantity,_that.quantityUnit,_that.tracksDuration,_that.quantity,_that.durationMinutes);case _:
+return $default(_that.activityTypeId,_that.code,_that.label,_that.tracksQuantity,_that.quantityUnit,_that.tracksDuration,_that.quantity,_that.durationMinutes,_that.book);case _:
   return null;
 
 }
@@ -216,7 +230,7 @@ return $default(_that.activityTypeId,_that.code,_that.label,_that.tracksQuantity
 @JsonSerializable()
 
 class _ReportEntry extends ReportEntry {
-  const _ReportEntry({required this.activityTypeId, required this.code, required this.label, this.tracksQuantity = false, this.quantityUnit, this.tracksDuration = false, this.quantity, this.durationMinutes}): super._();
+  const _ReportEntry({required this.activityTypeId, required this.code, required this.label, this.tracksQuantity = false, this.quantityUnit, this.tracksDuration = false, this.quantity, this.durationMinutes, this.book}): super._();
   factory _ReportEntry.fromJson(Map<String, dynamic> json) => _$ReportEntryFromJson(json);
 
 @override final  int activityTypeId;
@@ -227,6 +241,8 @@ class _ReportEntry extends ReportEntry {
 @override@JsonKey() final  bool tracksDuration;
 @override final  int? quantity;
 @override final  int? durationMinutes;
+/// The book read that day: Lecture de la littérature chrétienne only.
+@override final  EntryBook? book;
 
 /// Create a copy of ReportEntry
 /// with the given fields replaced by the non-null parameter values.
@@ -241,16 +257,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _ReportEntry&&(identical(other.activityTypeId, activityTypeId) || other.activityTypeId == activityTypeId)&&(identical(other.code, code) || other.code == code)&&(identical(other.label, label) || other.label == label)&&(identical(other.tracksQuantity, tracksQuantity) || other.tracksQuantity == tracksQuantity)&&(identical(other.quantityUnit, quantityUnit) || other.quantityUnit == quantityUnit)&&(identical(other.tracksDuration, tracksDuration) || other.tracksDuration == tracksDuration)&&(identical(other.quantity, quantity) || other.quantity == quantity)&&(identical(other.durationMinutes, durationMinutes) || other.durationMinutes == durationMinutes));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _ReportEntry&&(identical(other.activityTypeId, activityTypeId) || other.activityTypeId == activityTypeId)&&(identical(other.code, code) || other.code == code)&&(identical(other.label, label) || other.label == label)&&(identical(other.tracksQuantity, tracksQuantity) || other.tracksQuantity == tracksQuantity)&&(identical(other.quantityUnit, quantityUnit) || other.quantityUnit == quantityUnit)&&(identical(other.tracksDuration, tracksDuration) || other.tracksDuration == tracksDuration)&&(identical(other.quantity, quantity) || other.quantity == quantity)&&(identical(other.durationMinutes, durationMinutes) || other.durationMinutes == durationMinutes)&&(identical(other.book, book) || other.book == book));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,activityTypeId,code,label,tracksQuantity,quantityUnit,tracksDuration,quantity,durationMinutes);
+int get hashCode => Object.hash(runtimeType,activityTypeId,code,label,tracksQuantity,quantityUnit,tracksDuration,quantity,durationMinutes,book);
 
 @override
 String toString() {
-  return 'ReportEntry(activityTypeId: $activityTypeId, code: $code, label: $label, tracksQuantity: $tracksQuantity, quantityUnit: $quantityUnit, tracksDuration: $tracksDuration, quantity: $quantity, durationMinutes: $durationMinutes)';
+  return 'ReportEntry(activityTypeId: $activityTypeId, code: $code, label: $label, tracksQuantity: $tracksQuantity, quantityUnit: $quantityUnit, tracksDuration: $tracksDuration, quantity: $quantity, durationMinutes: $durationMinutes, book: $book)';
 }
 
 
@@ -261,11 +277,11 @@ abstract mixin class _$ReportEntryCopyWith<$Res> implements $ReportEntryCopyWith
   factory _$ReportEntryCopyWith(_ReportEntry value, $Res Function(_ReportEntry) _then) = __$ReportEntryCopyWithImpl;
 @override @useResult
 $Res call({
- int activityTypeId, String code, String label, bool tracksQuantity, String? quantityUnit, bool tracksDuration, int? quantity, int? durationMinutes
+ int activityTypeId, String code, String label, bool tracksQuantity, String? quantityUnit, bool tracksDuration, int? quantity, int? durationMinutes, EntryBook? book
 });
 
 
-
+@override $EntryBookCopyWith<$Res>? get book;
 
 }
 /// @nodoc
@@ -278,7 +294,7 @@ class __$ReportEntryCopyWithImpl<$Res>
 
 /// Create a copy of ReportEntry
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? activityTypeId = null,Object? code = null,Object? label = null,Object? tracksQuantity = null,Object? quantityUnit = freezed,Object? tracksDuration = null,Object? quantity = freezed,Object? durationMinutes = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? activityTypeId = null,Object? code = null,Object? label = null,Object? tracksQuantity = null,Object? quantityUnit = freezed,Object? tracksDuration = null,Object? quantity = freezed,Object? durationMinutes = freezed,Object? book = freezed,}) {
   return _then(_ReportEntry(
 activityTypeId: null == activityTypeId ? _self.activityTypeId : activityTypeId // ignore: cast_nullable_to_non_nullable
 as int,code: null == code ? _self.code : code // ignore: cast_nullable_to_non_nullable
@@ -288,6 +304,299 @@ as bool,quantityUnit: freezed == quantityUnit ? _self.quantityUnit : quantityUni
 as String?,tracksDuration: null == tracksDuration ? _self.tracksDuration : tracksDuration // ignore: cast_nullable_to_non_nullable
 as bool,quantity: freezed == quantity ? _self.quantity : quantity // ignore: cast_nullable_to_non_nullable
 as int?,durationMinutes: freezed == durationMinutes ? _self.durationMinutes : durationMinutes // ignore: cast_nullable_to_non_nullable
+as int?,book: freezed == book ? _self.book : book // ignore: cast_nullable_to_non_nullable
+as EntryBook?,
+  ));
+}
+
+/// Create a copy of ReportEntry
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$EntryBookCopyWith<$Res>? get book {
+    if (_self.book == null) {
+    return null;
+  }
+
+  return $EntryBookCopyWith<$Res>(_self.book!, (value) {
+    return _then(_self.copyWith(book: value));
+  });
+}
+}
+
+
+/// @nodoc
+mixin _$EntryBook {
+
+ int get id; String get title; String get author; int get totalPages;/// Its cover, found for its title and author ('' when none: drawn).
+ String get coverUrl; int? get pageReached;
+/// Create a copy of EntryBook
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$EntryBookCopyWith<EntryBook> get copyWith => _$EntryBookCopyWithImpl<EntryBook>(this as EntryBook, _$identity);
+
+  /// Serializes this EntryBook to a JSON map.
+  Map<String, dynamic> toJson();
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is EntryBook&&(identical(other.id, id) || other.id == id)&&(identical(other.title, title) || other.title == title)&&(identical(other.author, author) || other.author == author)&&(identical(other.totalPages, totalPages) || other.totalPages == totalPages)&&(identical(other.coverUrl, coverUrl) || other.coverUrl == coverUrl)&&(identical(other.pageReached, pageReached) || other.pageReached == pageReached));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,id,title,author,totalPages,coverUrl,pageReached);
+
+@override
+String toString() {
+  return 'EntryBook(id: $id, title: $title, author: $author, totalPages: $totalPages, coverUrl: $coverUrl, pageReached: $pageReached)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class $EntryBookCopyWith<$Res>  {
+  factory $EntryBookCopyWith(EntryBook value, $Res Function(EntryBook) _then) = _$EntryBookCopyWithImpl;
+@useResult
+$Res call({
+ int id, String title, String author, int totalPages, String coverUrl, int? pageReached
+});
+
+
+
+
+}
+/// @nodoc
+class _$EntryBookCopyWithImpl<$Res>
+    implements $EntryBookCopyWith<$Res> {
+  _$EntryBookCopyWithImpl(this._self, this._then);
+
+  final EntryBook _self;
+  final $Res Function(EntryBook) _then;
+
+/// Create a copy of EntryBook
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? title = null,Object? author = null,Object? totalPages = null,Object? coverUrl = null,Object? pageReached = freezed,}) {
+  return _then(_self.copyWith(
+id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
+as int,title: null == title ? _self.title : title // ignore: cast_nullable_to_non_nullable
+as String,author: null == author ? _self.author : author // ignore: cast_nullable_to_non_nullable
+as String,totalPages: null == totalPages ? _self.totalPages : totalPages // ignore: cast_nullable_to_non_nullable
+as int,coverUrl: null == coverUrl ? _self.coverUrl : coverUrl // ignore: cast_nullable_to_non_nullable
+as String,pageReached: freezed == pageReached ? _self.pageReached : pageReached // ignore: cast_nullable_to_non_nullable
+as int?,
+  ));
+}
+
+}
+
+
+/// Adds pattern-matching-related methods to [EntryBook].
+extension EntryBookPatterns on EntryBook {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _EntryBook value)?  $default,{required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _EntryBook() when $default != null:
+return $default(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _EntryBook value)  $default,){
+final _that = this;
+switch (_that) {
+case _EntryBook():
+return $default(_that);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _EntryBook value)?  $default,){
+final _that = this;
+switch (_that) {
+case _EntryBook() when $default != null:
+return $default(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( int id,  String title,  String author,  int totalPages,  String coverUrl,  int? pageReached)?  $default,{required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _EntryBook() when $default != null:
+return $default(_that.id,_that.title,_that.author,_that.totalPages,_that.coverUrl,_that.pageReached);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( int id,  String title,  String author,  int totalPages,  String coverUrl,  int? pageReached)  $default,) {final _that = this;
+switch (_that) {
+case _EntryBook():
+return $default(_that.id,_that.title,_that.author,_that.totalPages,_that.coverUrl,_that.pageReached);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( int id,  String title,  String author,  int totalPages,  String coverUrl,  int? pageReached)?  $default,) {final _that = this;
+switch (_that) {
+case _EntryBook() when $default != null:
+return $default(_that.id,_that.title,_that.author,_that.totalPages,_that.coverUrl,_that.pageReached);case _:
+  return null;
+
+}
+}
+
+}
+
+/// @nodoc
+@JsonSerializable()
+
+class _EntryBook implements EntryBook {
+  const _EntryBook({required this.id, required this.title, this.author = '', required this.totalPages, this.coverUrl = '', this.pageReached});
+  factory _EntryBook.fromJson(Map<String, dynamic> json) => _$EntryBookFromJson(json);
+
+@override final  int id;
+@override final  String title;
+@override@JsonKey() final  String author;
+@override final  int totalPages;
+/// Its cover, found for its title and author ('' when none: drawn).
+@override@JsonKey() final  String coverUrl;
+@override final  int? pageReached;
+
+/// Create a copy of EntryBook
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$EntryBookCopyWith<_EntryBook> get copyWith => __$EntryBookCopyWithImpl<_EntryBook>(this, _$identity);
+
+@override
+Map<String, dynamic> toJson() {
+  return _$EntryBookToJson(this, );
+}
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _EntryBook&&(identical(other.id, id) || other.id == id)&&(identical(other.title, title) || other.title == title)&&(identical(other.author, author) || other.author == author)&&(identical(other.totalPages, totalPages) || other.totalPages == totalPages)&&(identical(other.coverUrl, coverUrl) || other.coverUrl == coverUrl)&&(identical(other.pageReached, pageReached) || other.pageReached == pageReached));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,id,title,author,totalPages,coverUrl,pageReached);
+
+@override
+String toString() {
+  return 'EntryBook(id: $id, title: $title, author: $author, totalPages: $totalPages, coverUrl: $coverUrl, pageReached: $pageReached)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$EntryBookCopyWith<$Res> implements $EntryBookCopyWith<$Res> {
+  factory _$EntryBookCopyWith(_EntryBook value, $Res Function(_EntryBook) _then) = __$EntryBookCopyWithImpl;
+@override @useResult
+$Res call({
+ int id, String title, String author, int totalPages, String coverUrl, int? pageReached
+});
+
+
+
+
+}
+/// @nodoc
+class __$EntryBookCopyWithImpl<$Res>
+    implements _$EntryBookCopyWith<$Res> {
+  __$EntryBookCopyWithImpl(this._self, this._then);
+
+  final _EntryBook _self;
+  final $Res Function(_EntryBook) _then;
+
+/// Create a copy of EntryBook
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? title = null,Object? author = null,Object? totalPages = null,Object? coverUrl = null,Object? pageReached = freezed,}) {
+  return _then(_EntryBook(
+id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
+as int,title: null == title ? _self.title : title // ignore: cast_nullable_to_non_nullable
+as String,author: null == author ? _self.author : author // ignore: cast_nullable_to_non_nullable
+as String,totalPages: null == totalPages ? _self.totalPages : totalPages // ignore: cast_nullable_to_non_nullable
+as int,coverUrl: null == coverUrl ? _self.coverUrl : coverUrl // ignore: cast_nullable_to_non_nullable
+as String,pageReached: freezed == pageReached ? _self.pageReached : pageReached // ignore: cast_nullable_to_non_nullable
 as int?,
   ));
 }

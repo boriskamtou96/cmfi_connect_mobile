@@ -11,6 +11,22 @@
 part of 'app_router.dart';
 
 /// generated route for
+/// [AddBookScreen]
+class AddBookRoute extends PageRouteInfo<void> {
+  const AddBookRoute({List<PageRouteInfo>? children})
+    : super(AddBookRoute.name, initialChildren: children);
+
+  static const String name = 'AddBookRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const AddBookScreen();
+    },
+  );
+}
+
+/// generated route for
 /// [AdminDocumentsScreen]
 class AdminDocumentsRoute extends PageRouteInfo<void> {
   const AdminDocumentsRoute({List<PageRouteInfo>? children})
@@ -1531,6 +1547,22 @@ class PurposeRoute extends PageRouteInfo<void> {
     name,
     builder: (data) {
       return const PurposeScreen();
+    },
+  );
+}
+
+/// generated route for
+/// [ReadingScreen]
+class ReadingRoute extends PageRouteInfo<void> {
+  const ReadingRoute({List<PageRouteInfo>? children})
+    : super(ReadingRoute.name, initialChildren: children);
+
+  static const String name = 'ReadingRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const ReadingScreen();
     },
   );
 }

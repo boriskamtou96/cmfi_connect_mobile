@@ -66,9 +66,11 @@ import 'package:cmfi_connect/src/features/profile/infrastructure/profile_api.dar
 import 'package:cmfi_connect/src/features/reports/domain/activity_type.dart';
 import 'package:cmfi_connect/src/features/reports/domain/daily_report.dart';
 import 'package:cmfi_connect/src/features/reports/domain/in_app_sending.dart';
+import 'package:cmfi_connect/src/features/reports/domain/reading_book.dart';
 import 'package:cmfi_connect/src/features/reports/domain/report_goal.dart';
 import 'package:cmfi_connect/src/features/reports/domain/report_summary.dart';
 import 'package:cmfi_connect/src/features/reports/infrastructure/activities_api.dart';
+import 'package:cmfi_connect/src/features/reports/infrastructure/reading_api.dart';
 import 'package:cmfi_connect/src/features/reports/infrastructure/report_sendings_api.dart';
 import 'package:cmfi_connect/src/features/reports/infrastructure/reports_api.dart';
 import 'package:cmfi_connect/src/features/souls/domain/soul.dart';
@@ -454,6 +456,106 @@ class FakeActivitiesApi implements ActivitiesApi {
     activities[index] = activities[index].copyWith(
       goal: goal == null || goal.isEmpty ? null : goal,
     );
+  }
+}
+
+/// Mes lectures in memory: no book until a test adds one.
+class FakeReadingApi implements ReadingApi {
+  FakeReadingApi({List<ReadingBook>? books, List<BookFound>? found})
+    : bookList = [...?books],
+      foundList = [...?found];
+
+  final List<ReadingBook> bookList;
+
+  /// What the search answers, whatever the query.
+  final List<BookFound> foundList;
+
+  /// The search answers SEARCH_UNAVAILABLE.
+  bool searchUnavailable = false;
+
+  int _nextId = 1;
+
+  @override
+  Future<List<ReadingBook>> books() async => [...bookList];
+
+  @override
+  Future<ReadingBook> add({
+    required String title,
+    required String author,
+    required int totalPages,
+    String coverUrl = '',
+  }) async {
+    final book = ReadingBook(
+      id: 1000 + _nextId++,
+      title: title.trim(),
+      author: author.trim(),
+      totalPages: totalPages,
+      coverUrl: coverUrl,
+      startedOn: DateTime.now(),
+    );
+    bookList.insert(0, book);
+    return book;
+  }
+
+  @override
+  Future<ReadingBook> setStatus(
+    int id,
+    ReadingStatus status, {
+    DateTime? finishedOn,
+  }) async {
+    final at = bookList.indexWhere((book) => book.id == id);
+    if (at < 0) {
+      throw const ApiException(
+        status: 404,
+        code: 'NOT_FOUND',
+        message: 'book not found',
+      );
+    }
+    final book = bookList[at].copyWith(
+      status: status,
+      finishedOn: status == ReadingStatus.finished
+          ? finishedOn ?? DateTime.now()
+          : null,
+    );
+    bookList[at] = book;
+    return book;
+  }
+
+  @override
+  Future<void> delete(int id) async =>
+      bookList.removeWhere((book) => book.id == id);
+
+  @override
+  Future<ReadingStats> stats(int year) async {
+    final finished = bookList
+        .map((book) => book.finishedOn)
+        .nonNulls
+        .where((day) => day.year == year)
+        .toList();
+    return ReadingStats(
+      year: year,
+      months: [
+        for (var month = 1; month <= 12; month++)
+          ReadingMonth(
+            month: '$year-${month.toString().padLeft(2, '0')}',
+            books: finished.where((day) => day.month == month).length,
+          ),
+      ],
+      booksFinished: finished.length,
+      pages: bookList.fold(0, (sum, book) => sum + book.pagesRead),
+    );
+  }
+
+  @override
+  Future<List<BookFound>> search(String query) async {
+    if (searchUnavailable) {
+      throw const ApiException(
+        status: 503,
+        code: 'SEARCH_UNAVAILABLE',
+        message: 'search unavailable',
+      );
+    }
+    return [...foundList];
   }
 }
 

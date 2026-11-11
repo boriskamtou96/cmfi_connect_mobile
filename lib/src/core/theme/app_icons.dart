@@ -250,6 +250,10 @@ abstract final class AppIcons {
   // Mes jeûnes
   static const fastsTile = PhosphorIconsDuotone.forkKnife;
 
+  /// Mes lectures: the books of the LLC item.
+  static const readingTile = PhosphorIconsDuotone.bookOpen;
+  static const book = PhosphorIconsRegular.book;
+
   // Ton année avec Dieu
   static const yearStoryTile = PhosphorIconsDuotone.calendarStar;
 }

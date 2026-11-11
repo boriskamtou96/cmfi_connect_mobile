@@ -15,6 +15,9 @@ _ReportEntry _$ReportEntryFromJson(Map<String, dynamic> json) => _ReportEntry(
   tracksDuration: json['tracks_duration'] as bool? ?? false,
   quantity: (json['quantity'] as num?)?.toInt(),
   durationMinutes: (json['duration_minutes'] as num?)?.toInt(),
+  book: json['book'] == null
+      ? null
+      : EntryBook.fromJson(json['book'] as Map<String, dynamic>),
 );
 
 Map<String, dynamic> _$ReportEntryToJson(_ReportEntry instance) =>
@@ -27,6 +30,26 @@ Map<String, dynamic> _$ReportEntryToJson(_ReportEntry instance) =>
       'tracks_duration': instance.tracksDuration,
       'quantity': ?instance.quantity,
       'duration_minutes': ?instance.durationMinutes,
+      'book': ?instance.book?.toJson(),
+    };
+
+_EntryBook _$EntryBookFromJson(Map<String, dynamic> json) => _EntryBook(
+  id: (json['id'] as num).toInt(),
+  title: json['title'] as String,
+  author: json['author'] as String? ?? '',
+  totalPages: (json['total_pages'] as num).toInt(),
+  coverUrl: json['cover_url'] as String? ?? '',
+  pageReached: (json['page_reached'] as num?)?.toInt(),
+);
+
+Map<String, dynamic> _$EntryBookToJson(_EntryBook instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'title': instance.title,
+      'author': instance.author,
+      'total_pages': instance.totalPages,
+      'cover_url': instance.coverUrl,
+      'page_reached': ?instance.pageReached,
     };
 
 _DailyReport _$DailyReportFromJson(Map<String, dynamic> json) => _DailyReport(

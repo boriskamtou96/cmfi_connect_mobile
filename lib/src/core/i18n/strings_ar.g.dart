@@ -89,6 +89,7 @@ class TranslationsAr extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _Translations$menu$ar menu = _Translations$menu$ar._(_root);
 	@override late final _Translations$me$ar me = _Translations$me$ar._(_root);
 	@override late final _Translations$settings$ar settings = _Translations$settings$ar._(_root);
+	@override late final _Translations$reading$ar reading = _Translations$reading$ar._(_root);
 }
 
 // Path: app
@@ -2198,6 +2199,106 @@ class _Translations$settings$ar extends Translations$settings$fr {
 	@override String get contact => 'تواصل معنا';
 	@override String get privacy => 'الخصوصية';
 	@override String get terms => 'شروط الاستخدام';
+}
+
+// Path: reading
+class _Translations$reading$ar extends Translations$reading$fr {
+	_Translations$reading$ar._(TranslationsAr root) : this._root = root, super.internal(root);
+
+	final TranslationsAr _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'قراءاتي';
+	@override String get moreSubtitle => 'الكتب التي تقرأها، صفحة بعد صفحة';
+	@override String moreCount({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n,
+		zero: '${n} كتاب قيد القراءة',
+		one: 'كتاب واحد قيد القراءة',
+		two: 'كتابان قيد القراءة',
+		few: '${n} كتب قيد القراءة',
+		many: '${n} كتابًا قيد القراءة',
+		other: '${n} كتاب قيد القراءة',
+	);
+	@override String get add => 'إضافة كتاب';
+	@override String get reading => 'قيد القراءة';
+	@override String get finished => 'منتهية';
+	@override String get setAside => 'موضوعة جانبًا';
+	@override String get empty => 'لا توجد كتب حاليًا';
+	@override String get emptyText => 'أضف الكتاب الذي تقرأه: صفحات تقريرك ستجعله يتقدّم.';
+	@override String page({required Object page, required Object total}) => 'الصفحة ${page} من ${total}';
+	@override String finishedOn({required Object date}) => 'انتهى في ${date}';
+	@override String monthBooks({required num n, required Object month}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n,
+		zero: 'كتاب في ${month}',
+		one: 'كتاب في ${month}',
+		two: 'كتابان في ${month}',
+		few: 'كتب في ${month}',
+		many: 'كتابًا في ${month}',
+		other: 'كتاب في ${month}',
+	);
+	@override String inYear({required Object year}) => 'في ${year}';
+	@override String get pagesRead => 'صفحات مقروءة';
+	@override String chart({required Object year}) => 'الكتب المنتهية في كل شهر من ${year}';
+	@override String chartMonth({required num n, required Object month}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n,
+		zero: '${month}: ${n} كتاب',
+		one: '${month}: كتاب واحد',
+		two: '${month}: كتابان',
+		few: '${month}: ${n} كتب',
+		many: '${month}: ${n} كتابًا',
+		other: '${month}: ${n} كتاب',
+	);
+	@override String get pick => 'أي كتاب تقرأ؟';
+	@override String get mine => 'كتبي قيد القراءة';
+	@override String get choose => 'اختر الكتاب المقروء';
+	@override String get change => 'تغيير';
+	@override String get current => 'الكتاب الحالي';
+	@override String readUpTo({required Object page}) => 'قرأت حتى الصفحة ${page}';
+	@override String willReach({required Object page, required Object total}) => 'ستصل إلى الصفحة ${page} من ${total}';
+	@override String get searchHint => 'العنوان أو المؤلف';
+	@override String get searchUnavailable => 'البحث لا يستجيب حاليًا. أدخل الكتاب يدويًا.';
+	@override String get noResult => 'لم يُعثر على أي كتاب. أدخله يدويًا.';
+	@override String get manual => 'لم تجده؟ أدخل العنوان والمؤلف والصفحات';
+	@override String get fieldTitle => 'العنوان';
+	@override String get fieldAuthor => 'المؤلف';
+	@override String get fieldPages => 'عدد الصفحات';
+	@override String get titleRequired => 'أدخل العنوان.';
+	@override String get pagesRequired => 'أدخل عدد الصفحات (من 1 إلى 20 000).';
+	@override String pages({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n,
+		zero: '${n} صفحة',
+		one: 'صفحة واحدة',
+		two: 'صفحتان',
+		few: '${n} صفحات',
+		many: '${n} صفحة',
+		other: '${n} صفحة',
+	);
+	@override String get pagesUnknown => 'الصفحات غير محددة';
+	@override String added({required Object title}) => 'أُضيف «${title}» إلى قراءاتك';
+	@override String get finishedQuestion => 'هل أنهيت هذا الكتاب؟';
+	@override String finishedText({required Object page, required Object total}) => 'وصلت إلى الصفحة ${page} من ${total}.';
+	@override String get finishedYes => 'نعم، أنهيته';
+	@override String get finishedNo => 'ليس بعد، سأواصل';
+	@override String get finishedToast => 'أحسنت، انتهى الكتاب!';
+	@override String monthCount({required num n, required Object month}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n,
+		zero: 'كتابك رقم ${n} في ${month}',
+		one: 'كتابك الأول في ${month}',
+		two: 'كتابك الثاني في ${month}',
+		few: 'كتابك رقم ${n} في ${month}',
+		many: 'كتابك رقم ${n} في ${month}',
+		other: 'كتابك رقم ${n} في ${month}',
+	);
+	@override String get markFinished => 'وضع علامة منتهٍ';
+	@override String get readAgain => 'استئنافه';
+	@override String get putAside => 'وضعه جانبًا';
+	@override String get remove => 'إزالة من قراءاتي';
+	@override String get removeTitle => 'إزالة هذا الكتاب؟';
+	@override String removeText({required Object title}) => 'سيُزال «${title}» من قراءاتك. تبقى صفحات تقاريرك.';
+	@override String booksFinished({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n,
+		zero: 'لم يُنهَ أي كتاب في هذه الفترة',
+		one: 'كتاب واحد منتهٍ في هذه الفترة',
+		two: 'كتابان منتهيان في هذه الفترة',
+		few: '${n} كتب منتهية في هذه الفترة',
+		many: '${n} كتابًا منتهيًا في هذه الفترة',
+		other: '${n} كتاب منتهٍ في هذه الفترة',
+	);
+	@override String bookOf({required Object title}) => 'الكتاب: ${title}';
 }
 
 // Path: welcome.seek
@@ -6276,6 +6377,55 @@ extension on TranslationsAr {
 			'settings.contact' => 'تواصل معنا',
 			'settings.privacy' => 'الخصوصية',
 			'settings.terms' => 'شروط الاستخدام',
+			'reading.title' => 'قراءاتي',
+			'reading.moreSubtitle' => 'الكتب التي تقرأها، صفحة بعد صفحة',
+			'reading.moreCount' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n, zero: '${n} كتاب قيد القراءة', one: 'كتاب واحد قيد القراءة', two: 'كتابان قيد القراءة', few: '${n} كتب قيد القراءة', many: '${n} كتابًا قيد القراءة', other: '${n} كتاب قيد القراءة', ), 
+			'reading.add' => 'إضافة كتاب',
+			'reading.reading' => 'قيد القراءة',
+			'reading.finished' => 'منتهية',
+			'reading.setAside' => 'موضوعة جانبًا',
+			'reading.empty' => 'لا توجد كتب حاليًا',
+			'reading.emptyText' => 'أضف الكتاب الذي تقرأه: صفحات تقريرك ستجعله يتقدّم.',
+			'reading.page' => ({required Object page, required Object total}) => 'الصفحة ${page} من ${total}',
+			'reading.finishedOn' => ({required Object date}) => 'انتهى في ${date}',
+			'reading.monthBooks' => ({required num n, required Object month}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n, zero: 'كتاب في ${month}', one: 'كتاب في ${month}', two: 'كتابان في ${month}', few: 'كتب في ${month}', many: 'كتابًا في ${month}', other: 'كتاب في ${month}', ), 
+			'reading.inYear' => ({required Object year}) => 'في ${year}',
+			'reading.pagesRead' => 'صفحات مقروءة',
+			'reading.chart' => ({required Object year}) => 'الكتب المنتهية في كل شهر من ${year}',
+			'reading.chartMonth' => ({required num n, required Object month}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n, zero: '${month}: ${n} كتاب', one: '${month}: كتاب واحد', two: '${month}: كتابان', few: '${month}: ${n} كتب', many: '${month}: ${n} كتابًا', other: '${month}: ${n} كتاب', ), 
+			'reading.pick' => 'أي كتاب تقرأ؟',
+			'reading.mine' => 'كتبي قيد القراءة',
+			'reading.choose' => 'اختر الكتاب المقروء',
+			'reading.change' => 'تغيير',
+			'reading.current' => 'الكتاب الحالي',
+			'reading.readUpTo' => ({required Object page}) => 'قرأت حتى الصفحة ${page}',
+			'reading.willReach' => ({required Object page, required Object total}) => 'ستصل إلى الصفحة ${page} من ${total}',
+			'reading.searchHint' => 'العنوان أو المؤلف',
+			'reading.searchUnavailable' => 'البحث لا يستجيب حاليًا. أدخل الكتاب يدويًا.',
+			'reading.noResult' => 'لم يُعثر على أي كتاب. أدخله يدويًا.',
+			'reading.manual' => 'لم تجده؟ أدخل العنوان والمؤلف والصفحات',
+			'reading.fieldTitle' => 'العنوان',
+			'reading.fieldAuthor' => 'المؤلف',
+			'reading.fieldPages' => 'عدد الصفحات',
+			'reading.titleRequired' => 'أدخل العنوان.',
+			'reading.pagesRequired' => 'أدخل عدد الصفحات (من 1 إلى 20 000).',
+			'reading.pages' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n, zero: '${n} صفحة', one: 'صفحة واحدة', two: 'صفحتان', few: '${n} صفحات', many: '${n} صفحة', other: '${n} صفحة', ), 
+			'reading.pagesUnknown' => 'الصفحات غير محددة',
+			'reading.added' => ({required Object title}) => 'أُضيف «${title}» إلى قراءاتك',
+			'reading.finishedQuestion' => 'هل أنهيت هذا الكتاب؟',
+			'reading.finishedText' => ({required Object page, required Object total}) => 'وصلت إلى الصفحة ${page} من ${total}.',
+			'reading.finishedYes' => 'نعم، أنهيته',
+			'reading.finishedNo' => 'ليس بعد، سأواصل',
+			'reading.finishedToast' => 'أحسنت، انتهى الكتاب!',
+			'reading.monthCount' => ({required num n, required Object month}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n, zero: 'كتابك رقم ${n} في ${month}', one: 'كتابك الأول في ${month}', two: 'كتابك الثاني في ${month}', few: 'كتابك رقم ${n} في ${month}', many: 'كتابك رقم ${n} في ${month}', other: 'كتابك رقم ${n} في ${month}', ), 
+			'reading.markFinished' => 'وضع علامة منتهٍ',
+			'reading.readAgain' => 'استئنافه',
+			'reading.putAside' => 'وضعه جانبًا',
+			'reading.remove' => 'إزالة من قراءاتي',
+			'reading.removeTitle' => 'إزالة هذا الكتاب؟',
+			'reading.removeText' => ({required Object title}) => 'سيُزال «${title}» من قراءاتك. تبقى صفحات تقاريرك.',
+			'reading.booksFinished' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n, zero: 'لم يُنهَ أي كتاب في هذه الفترة', one: 'كتاب واحد منتهٍ في هذه الفترة', two: 'كتابان منتهيان في هذه الفترة', few: '${n} كتب منتهية في هذه الفترة', many: '${n} كتابًا منتهيًا في هذه الفترة', other: '${n} كتاب منتهٍ في هذه الفترة', ), 
+			'reading.bookOf' => ({required Object title}) => 'الكتاب: ${title}',
 			_ => null,
 		};
 	}

@@ -63,6 +63,8 @@ import '../features/profile/presentation/profile_screen.dart';
 import '../features/reports/presentation/export_screen.dart';
 import '../features/reports/presentation/items_screen.dart';
 import '../features/reports/presentation/new_item_screen.dart';
+import '../features/reports/presentation/reading/add_book_screen.dart';
+import '../features/reports/presentation/reading/reading_screen.dart';
 import '../features/reports/presentation/report_send_screen.dart';
 import '../features/reports/presentation/report_sending_screen.dart';
 import '../features/reports/presentation/reports_screen.dart';
@@ -184,6 +186,12 @@ class AppRouter extends RootStackRouter {
     ),
     AutoRoute(path: '/souls', page: SoulsRoute.page, guards: [authGuard]),
     AutoRoute(path: '/fasts', page: FastsRoute.page, guards: [authGuard]),
+    AutoRoute(path: '/reading', page: ReadingRoute.page, guards: [authGuard]),
+    AutoRoute(
+      path: '/reading/add',
+      page: AddBookRoute.page,
+      guards: [authGuard],
+    ),
     AutoRoute(
       path: '/souls/edit',
       page: SoulFormRoute.page,

@@ -89,6 +89,7 @@ class TranslationsEn extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _Translations$menu$en menu = _Translations$menu$en._(_root);
 	@override late final _Translations$me$en me = _Translations$me$en._(_root);
 	@override late final _Translations$settings$en settings = _Translations$settings$en._(_root);
+	@override late final _Translations$reading$en reading = _Translations$reading$en._(_root);
 }
 
 // Path: app
@@ -1950,6 +1951,83 @@ class _Translations$settings$en extends Translations$settings$fr {
 	@override String get contact => 'Contact us';
 	@override String get privacy => 'Privacy';
 	@override String get terms => 'Terms of use';
+}
+
+// Path: reading
+class _Translations$reading$en extends Translations$reading$fr {
+	_Translations$reading$en._(TranslationsEn root) : this._root = root, super.internal(root);
+
+	final TranslationsEn _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'My reading';
+	@override String get moreSubtitle => 'The books you read, page after page';
+	@override String moreCount({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n,
+		one: '${n} book in progress',
+		other: '${n} books in progress',
+	);
+	@override String get add => 'Add a book';
+	@override String get reading => 'In progress';
+	@override String get finished => 'Finished';
+	@override String get setAside => 'Set aside';
+	@override String get empty => 'No book yet';
+	@override String get emptyText => 'Add the book you\'re reading: the pages of your report will move it forward.';
+	@override String page({required Object page, required Object total}) => 'Page ${page} of ${total}';
+	@override String finishedOn({required Object date}) => 'Finished on ${date}';
+	@override String monthBooks({required num n, required Object month}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n,
+		one: 'book in ${month}',
+		other: 'books in ${month}',
+	);
+	@override String inYear({required Object year}) => 'in ${year}';
+	@override String get pagesRead => 'pages read';
+	@override String chart({required Object year}) => 'Books finished each month of ${year}';
+	@override String chartMonth({required num n, required Object month}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n,
+		one: '${month}: ${n} book',
+		other: '${month}: ${n} books',
+	);
+	@override String get pick => 'Which book are you reading?';
+	@override String get mine => 'My books in progress';
+	@override String get choose => 'Choose the book read';
+	@override String get change => 'Change';
+	@override String get current => 'Current book';
+	@override String readUpTo({required Object page}) => 'Already read up to page ${page}';
+	@override String willReach({required Object page, required Object total}) => 'You reach page ${page} of ${total}';
+	@override String get searchHint => 'Title or author';
+	@override String get searchUnavailable => 'The search isn\'t answering right now. Type the book in.';
+	@override String get noResult => 'No book found. Type it in.';
+	@override String get manual => 'Not found? Type title, author and pages';
+	@override String get fieldTitle => 'Title';
+	@override String get fieldAuthor => 'Author';
+	@override String get fieldPages => 'Number of pages';
+	@override String get titleRequired => 'Enter the title.';
+	@override String get pagesRequired => 'Enter the number of pages (1 to 20,000).';
+	@override String pages({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n,
+		one: '${n} page',
+		other: '${n} pages',
+	);
+	@override String get pagesUnknown => 'pages to enter';
+	@override String added({required Object title}) => '“${title}” added to your reading';
+	@override String get finishedQuestion => 'Did you finish this book?';
+	@override String finishedText({required Object page, required Object total}) => 'You reached page ${page} of ${total}.';
+	@override String get finishedYes => 'Yes, I finished it';
+	@override String get finishedNo => 'Not yet, I\'m going on';
+	@override String get finishedToast => 'Well done, book finished!';
+	@override String monthCount({required num n, required Object month}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n,
+		one: 'Your first book of ${month}',
+		other: 'Book number ${n} of ${month}',
+	);
+	@override String get markFinished => 'Mark as finished';
+	@override String get readAgain => 'Read it again';
+	@override String get putAside => 'Set it aside';
+	@override String get remove => 'Remove from my reading';
+	@override String get removeTitle => 'Remove this book?';
+	@override String removeText({required Object title}) => '“${title}” leaves your reading. The pages of your reports stay.';
+	@override String booksFinished({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n,
+		zero: 'No book finished in the period',
+		one: '${n} book finished in the period',
+		other: '${n} books finished in the period',
+	);
+	@override String bookOf({required Object title}) => 'Book: ${title}';
 }
 
 // Path: welcome.seek
@@ -5887,6 +5965,55 @@ extension on TranslationsEn {
 			'settings.contact' => 'Contact us',
 			'settings.privacy' => 'Privacy',
 			'settings.terms' => 'Terms of use',
+			'reading.title' => 'My reading',
+			'reading.moreSubtitle' => 'The books you read, page after page',
+			'reading.moreCount' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n, one: '${n} book in progress', other: '${n} books in progress', ), 
+			'reading.add' => 'Add a book',
+			'reading.reading' => 'In progress',
+			'reading.finished' => 'Finished',
+			'reading.setAside' => 'Set aside',
+			'reading.empty' => 'No book yet',
+			'reading.emptyText' => 'Add the book you\'re reading: the pages of your report will move it forward.',
+			'reading.page' => ({required Object page, required Object total}) => 'Page ${page} of ${total}',
+			'reading.finishedOn' => ({required Object date}) => 'Finished on ${date}',
+			'reading.monthBooks' => ({required num n, required Object month}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n, one: 'book in ${month}', other: 'books in ${month}', ), 
+			'reading.inYear' => ({required Object year}) => 'in ${year}',
+			'reading.pagesRead' => 'pages read',
+			'reading.chart' => ({required Object year}) => 'Books finished each month of ${year}',
+			'reading.chartMonth' => ({required num n, required Object month}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n, one: '${month}: ${n} book', other: '${month}: ${n} books', ), 
+			'reading.pick' => 'Which book are you reading?',
+			'reading.mine' => 'My books in progress',
+			'reading.choose' => 'Choose the book read',
+			'reading.change' => 'Change',
+			'reading.current' => 'Current book',
+			'reading.readUpTo' => ({required Object page}) => 'Already read up to page ${page}',
+			'reading.willReach' => ({required Object page, required Object total}) => 'You reach page ${page} of ${total}',
+			'reading.searchHint' => 'Title or author',
+			'reading.searchUnavailable' => 'The search isn\'t answering right now. Type the book in.',
+			'reading.noResult' => 'No book found. Type it in.',
+			'reading.manual' => 'Not found? Type title, author and pages',
+			'reading.fieldTitle' => 'Title',
+			'reading.fieldAuthor' => 'Author',
+			'reading.fieldPages' => 'Number of pages',
+			'reading.titleRequired' => 'Enter the title.',
+			'reading.pagesRequired' => 'Enter the number of pages (1 to 20,000).',
+			'reading.pages' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n, one: '${n} page', other: '${n} pages', ), 
+			'reading.pagesUnknown' => 'pages to enter',
+			'reading.added' => ({required Object title}) => '“${title}” added to your reading',
+			'reading.finishedQuestion' => 'Did you finish this book?',
+			'reading.finishedText' => ({required Object page, required Object total}) => 'You reached page ${page} of ${total}.',
+			'reading.finishedYes' => 'Yes, I finished it',
+			'reading.finishedNo' => 'Not yet, I\'m going on',
+			'reading.finishedToast' => 'Well done, book finished!',
+			'reading.monthCount' => ({required num n, required Object month}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n, one: 'Your first book of ${month}', other: 'Book number ${n} of ${month}', ), 
+			'reading.markFinished' => 'Mark as finished',
+			'reading.readAgain' => 'Read it again',
+			'reading.putAside' => 'Set it aside',
+			'reading.remove' => 'Remove from my reading',
+			'reading.removeTitle' => 'Remove this book?',
+			'reading.removeText' => ({required Object title}) => '“${title}” leaves your reading. The pages of your reports stay.',
+			'reading.booksFinished' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n, zero: 'No book finished in the period', one: '${n} book finished in the period', other: '${n} books finished in the period', ), 
+			'reading.bookOf' => ({required Object title}) => 'Book: ${title}',
 			_ => null,
 		};
 	}

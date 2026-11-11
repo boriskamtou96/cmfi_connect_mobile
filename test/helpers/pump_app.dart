@@ -53,6 +53,7 @@ import 'package:cmfi_connect/src/features/profile/infrastructure/profile_api.dar
 import 'package:cmfi_connect/src/features/reports/domain/activity_type.dart';
 import 'package:cmfi_connect/src/features/reports/domain/daily_report.dart';
 import 'package:cmfi_connect/src/features/reports/infrastructure/activities_api.dart';
+import 'package:cmfi_connect/src/features/reports/infrastructure/reading_api.dart';
 import 'package:cmfi_connect/src/features/reports/infrastructure/report_sendings_api.dart';
 import 'package:cmfi_connect/src/features/reports/infrastructure/reports_api.dart';
 import 'package:cmfi_connect/src/features/souls/infrastructure/souls_api.dart';
@@ -97,6 +98,7 @@ class TestApp {
     required this.picker,
     required this.documentPicker,
     required this.prayerApi,
+    required this.readingApi,
     required this.music,
     required this.push,
     required this.notificationsApi,
@@ -153,6 +155,7 @@ class TestApp {
   final FakeImagePicking picker;
   final FakeDocumentPicking documentPicker;
   final FakePrayerApi prayerApi;
+  final FakeReadingApi readingApi;
   final FakePushMessaging push;
   final FakeNotificationsApi notificationsApi;
   final FakePremiumStore premium;
@@ -206,6 +209,7 @@ Future<TestApp> pumpApp(
   FakeEventsApi? eventsApi,
   FakeMediaImages? mediaImages,
   FakePrayerApi? prayerApi,
+  FakeReadingApi? readingApi,
   FakePushMessaging? push,
   FakeNotificationsApi? notificationsApi,
   FakePremiumStore? premium,
@@ -273,6 +277,7 @@ Future<TestApp> pumpApp(
   final picker = FakeImagePicking();
   final documentPicker = FakeDocumentPicking();
   final prayer = prayerApi ?? FakePrayerApi();
+  final reading = readingApi ?? FakeReadingApi();
   final music = FakeBackgroundMusic();
   final pushMessaging = push ?? FakePushMessaging();
   final notificationsApi0 = notificationsApi ?? FakeNotificationsApi();
@@ -331,6 +336,7 @@ Future<TestApp> pumpApp(
       imagePickingProvider.overrideWithValue(picker),
       documentPickingProvider.overrideWithValue(documentPicker),
       prayerApiProvider.overrideWithValue(prayer),
+      readingApiProvider.overrideWithValue(reading),
       backgroundMusicProvider.overrideWithValue(music),
       pushMessagingProvider.overrideWithValue(pushMessaging),
       notificationsApiProvider.overrideWithValue(notificationsApi0),
@@ -413,6 +419,7 @@ Future<TestApp> pumpApp(
     picker: picker,
     documentPicker: documentPicker,
     prayerApi: prayer,
+    readingApi: reading,
     music: music,
     push: pushMessaging,
     notificationsApi: notificationsApi0,

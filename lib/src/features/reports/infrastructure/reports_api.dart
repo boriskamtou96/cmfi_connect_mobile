@@ -45,6 +45,7 @@ class ReportsApi {
               if (entry.quantity != null) 'quantity': entry.quantity,
               if (entry.durationMinutes != null)
                 'duration_minutes': entry.durationMinutes,
+              if (entry.book case final book?) 'book_id': book.id,
             },
         ],
       },

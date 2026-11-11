@@ -2685,5 +2685,75 @@
     "contact": "Contact us",
     "privacy": "Privacy",
     "terms": "Terms of use"
+  },
+  "reading": {
+    "title": "My reading",
+    "moreSubtitle": "The books you read, page after page",
+    "moreCount(plural, param=n)": {
+      "one": "{n} book in progress",
+      "other": "{n} books in progress"
+    },
+    "add": "Add a book",
+    "reading": "In progress",
+    "finished": "Finished",
+    "setAside": "Set aside",
+    "empty": "No book yet",
+    "emptyText": "Add the book you're reading: the pages of your report will move it forward.",
+    "page": "Page {page} of {total}",
+    "finishedOn": "Finished on {date}",
+    "monthBooks(plural, param=n)": {
+      "one": "book in {month}",
+      "other": "books in {month}"
+    },
+    "inYear": "in {year}",
+    "pagesRead": "pages read",
+    "chart": "Books finished each month of {year}",
+    "chartMonth(plural, param=n)": {
+      "one": "{month}: {n} book",
+      "other": "{month}: {n} books"
+    },
+    "pick": "Which book are you reading?",
+    "mine": "My books in progress",
+    "choose": "Choose the book read",
+    "change": "Change",
+    "current": "Current book",
+    "readUpTo": "Already read up to page {page}",
+    "willReach": "You reach page {page} of {total}",
+    "searchHint": "Title or author",
+    "searchUnavailable": "The search isn't answering right now. Type the book in.",
+    "noResult": "No book found. Type it in.",
+    "manual": "Not found? Type title, author and pages",
+    "fieldTitle": "Title",
+    "fieldAuthor": "Author",
+    "fieldPages": "Number of pages",
+    "titleRequired": "Enter the title.",
+    "pagesRequired": "Enter the number of pages (1 to 20,000).",
+    "pages(plural, param=n)": {
+      "one": "{n} page",
+      "other": "{n} pages"
+    },
+    "pagesUnknown": "pages to enter",
+    "added": "“{title}” added to your reading",
+    "finishedQuestion": "Did you finish this book?",
+    "finishedText": "You reached page {page} of {total}.",
+    "finishedYes": "Yes, I finished it",
+    "finishedNo": "Not yet, I'm going on",
+    "finishedToast": "Well done, book finished!",
+    "monthCount(plural, param=n)": {
+      "one": "Your first book of {month}",
+      "other": "Book number {n} of {month}"
+    },
+    "markFinished": "Mark as finished",
+    "readAgain": "Read it again",
+    "putAside": "Set it aside",
+    "remove": "Remove from my reading",
+    "removeTitle": "Remove this book?",
+    "removeText": "“{title}” leaves your reading. The pages of your reports stay.",
+    "booksFinished(plural, param=n)": {
+      "zero": "No book finished in the period",
+      "one": "{n} book finished in the period",
+      "other": "{n} books finished in the period"
+    },
+    "bookOf": "Book: {title}"
   }
 }

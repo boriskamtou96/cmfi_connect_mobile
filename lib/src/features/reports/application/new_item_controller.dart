@@ -6,7 +6,7 @@ import 'reports_providers.dart';
 
 part 'new_item_controller.g.dart';
 
-/// Creates a personal report item.
+/// Creates a personal report item, or renames one.
 @riverpod
 class NewItemController extends _$NewItemController {
   @override
@@ -41,5 +41,33 @@ class NewItemController extends _$NewItemController {
       state = result;
     }
     return result.hasError ? null : created;
+  }
+
+  /// [item] with another code, name or unit; null on error (in [state]).
+  Future<ActivityType?> rename(
+    ActivityType item, {
+    required String code,
+    required String label,
+    required String unit,
+  }) async {
+    state = const AsyncLoading();
+    ActivityType? renamed;
+
+    final result = await AsyncValue.guard(() async {
+      renamed = await ref
+          .read(activitiesApiProvider)
+          .update(
+            item.id,
+            code: code.trim().toUpperCase(),
+            label: label.trim(),
+            quantityUnit: item.tracksQuantity ? unit.trim() : null,
+          );
+      ref.invalidate(activitiesProvider);
+    });
+
+    if (ref.mounted) {
+      state = result;
+    }
+    return result.hasError ? null : renamed;
   }
 }

@@ -39,12 +39,31 @@ class MyAccount extends _$MyAccount {
     state = AsyncData(account);
   }
 
+  /// The member chooses their password (a temporary one changed, or the
+  /// first one of a Google or Apple account). Throws an AppException
+  /// (INVALID_CREDENTIALS for a wrong [currentPassword]).
+  Future<Account> changePassword({
+    String? currentPassword,
+    required String password,
+  }) async {
+    final account = await ref
+        .read(membersApiProvider)
+        .changePassword(currentPassword: currentPassword, password: password);
+    await ref.read(accountStorageProvider).write(account);
+    state = AsyncData(account);
+    return account;
+  }
+
   /// Deletes the account on the server, then signs out: App goes back to the
   /// welcome screen, not to the login, and forgets what the phone kept. Throws an AppException
   /// (INVALID_CREDENTIALS, LAST_SUPERADMIN…), the account stays then.
-  Future<void> deleteAccount(String password) async {
+  /// [password] null: an account without one, confirmed by its Google or
+  /// Apple account [firebaseToken].
+  Future<void> deleteAccount(String? password, {String? firebaseToken}) async {
     final session = ref.read(sessionProvider.notifier);
-    await ref.read(membersApiProvider).deleteAccount(password: password);
+    await ref
+        .read(membersApiProvider)
+        .deleteAccount(password: password, firebaseToken: firebaseToken);
     // the number and the password kept for Face ID go with the account
     await ref.read(savedLoginProvider.notifier).forget();
     await session.signOut(accountDeleted: true);

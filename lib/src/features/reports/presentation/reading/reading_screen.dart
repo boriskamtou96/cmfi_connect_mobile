@@ -23,6 +23,7 @@ import '../../../../routing/app_router.dart';
 import '../../application/reading_books.dart';
 import '../../domain/reading_book.dart';
 import 'book_cover.dart';
+import 'book_sheets.dart';
 
 /// Profil › Mon cheminement › Mes lectures: the books finished this month,
 /// this year and the pages read, a bar per month; the books being read with
@@ -433,6 +434,11 @@ Future<void> showBookActions(
               t.page(page: book.pageReached, total: book.totalPages),
             ),
           ),
+          ListTile(
+            leading: const Icon(AppIcons.edit),
+            title: Text(t.edit),
+            onTap: () => Navigator.of(context).pop('edit'),
+          ),
           if (book.isReading) ...[
             ListTile(
               leading: const Icon(AppIcons.checkCircle),
@@ -471,6 +477,8 @@ Future<void> showBookActions(
 
   try {
     switch (action) {
+      case 'edit':
+        await showEditBookSheet(context, book);
       case 'finish':
         await notifier.setStatus(book.id, ReadingStatus.finished);
         toast.success(t.finishedToast);

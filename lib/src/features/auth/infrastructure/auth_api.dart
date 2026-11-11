@@ -49,6 +49,56 @@ class AuthApi {
     );
   });
 
+  /// Google or Apple ([firebaseToken], Firebase): the account it signs in
+  /// to. 404 NO_ACCOUNT the first time: the member completes a profile
+  /// ([socialRegister]). 401 INVALID_SOCIAL_TOKEN, 503
+  /// SOCIAL_SIGN_IN_UNAVAILABLE.
+  Future<LoginResponse> socialSignIn(String firebaseToken) => apiCall(() async {
+    final response = await _dio.post<Map<String, dynamic>>(
+      '/users/social',
+      data: {'firebase_token': firebaseToken},
+    );
+    return LoginResponse.fromJson(response.content);
+  });
+
+  /// The account of a Google or Apple account, signed in. 409 PHONE_TAKEN
+  /// when the number has an account: [socialLink] with its password.
+  Future<LoginResponse> socialRegister({
+    required String firebaseToken,
+    required String firstName,
+    required String lastName,
+    required String phoneNumber,
+  }) => apiCall(() async {
+    final response = await _dio.post<Map<String, dynamic>>(
+      '/users/social/register',
+      data: {
+        'firebase_token': firebaseToken,
+        'first_name': firstName,
+        'last_name': lastName,
+        'phone_number': phoneNumber,
+      },
+    );
+    return LoginResponse.fromJson(response.content);
+  });
+
+  /// An account that has a password signs in with Google or Apple from now
+  /// on. 401 INVALID_CREDENTIALS, 409 IDENTITY_TAKEN.
+  Future<LoginResponse> socialLink({
+    required String firebaseToken,
+    required String phoneNumber,
+    required String password,
+  }) => apiCall(() async {
+    final response = await _dio.post<Map<String, dynamic>>(
+      '/users/social/link',
+      data: {
+        'firebase_token': firebaseToken,
+        'phone_number': phoneNumber,
+        'password': password,
+      },
+    );
+    return LoginResponse.fromJson(response.content);
+  });
+
   /// Forgot password: [firebaseToken] proves the phone (the SMS code), then
   /// log in with [password]. 404 NOT_FOUND without account for the number,
   /// 401 INVALID_PHONE_VERIFICATION when the proof expired, 503

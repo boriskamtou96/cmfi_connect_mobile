@@ -217,6 +217,8 @@ class _Translations$auth$es extends Translations$auth$fr {
 	@override late final _Translations$auth$church$es church = _Translations$auth$church$es._(_root);
 	@override late final _Translations$auth$forgot$es forgot = _Translations$auth$forgot$es._(_root);
 	@override late final _Translations$auth$biometric$es biometric = _Translations$auth$biometric$es._(_root);
+	@override late final _Translations$auth$social$es social = _Translations$auth$social$es._(_root);
+	@override late final _Translations$auth$change$es change = _Translations$auth$change$es._(_root);
 }
 
 // Path: countries
@@ -431,6 +433,7 @@ class _Translations$items$es extends Translations$items$fr {
 	@override String get goalRemove => 'Quitar';
 	@override String get goalSaved => 'Objetivo guardado';
 	@override String get goalRemoved => 'Objetivo quitado';
+	@override String edit({required Object code}) => 'Modificar ${code}';
 }
 
 // Path: newItem
@@ -460,6 +463,10 @@ class _Translations$newItem$es extends Translations$newItem$fr {
 	@override String get codeTaken => 'Este código ya está en uso, por un elemento estándar o por uno de tus elementos (aunque esté archivado).';
 	@override String get codeHint => 'EVG';
 	@override String get labelHint => 'Evangelización';
+	@override String get editTitle => 'Modificar el elemento';
+	@override String get save => 'Guardar';
+	@override String saved({required Object code}) => '${code} modificado';
+	@override String get measuresKept => 'Lo que mide no cambia: los días ya completados lo conservan.';
 }
 
 // Path: more
@@ -2027,6 +2034,10 @@ class _Translations$reading$es extends Translations$reading$fr {
 		other: '${n} libros terminados en el período',
 	);
 	@override String bookOf({required Object title}) => 'Libro: ${title}';
+	@override String get edit => 'Modificar';
+	@override String get editTitle => 'Modificar el libro';
+	@override String get save => 'Guardar';
+	@override String get saved => 'Libro modificado.';
 }
 
 // Path: welcome.seek
@@ -2174,6 +2185,10 @@ class _Translations$auth$forgot$es extends Translations$auth$forgot$fr {
 	@override String get tooManyRequests => 'Demasiados intentos. Inténtalo más tarde.';
 	@override String get unavailable => 'El restablecimiento no está disponible por ahora.';
 	@override String get noAccount => 'Ninguna cuenta usa este número.';
+	@override String get adminText => 'Pide a un responsable de tu asamblea o al equipo de CMFI Connect una contraseña provisional.';
+	@override String get adminNext => 'Inicia sesión con tu número y esa contraseña: la app te pedirá enseguida que elijas una nueva.';
+	@override String get writeTeam => 'Escribir al equipo';
+	@override String get mailSubject => 'Contraseña olvidada';
 }
 
 // Path: auth.biometric
@@ -2201,6 +2216,50 @@ class _Translations$auth$biometric$es extends Translations$auth$biometric$fr {
 	@override String get passwordLabel => 'Contraseña';
 	@override String get confirm => 'Confirmar';
 	@override String enabled({required Object method}) => 'Acceso con ${method} activado';
+}
+
+// Path: auth.social
+class _Translations$auth$social$es extends Translations$auth$social$fr {
+	_Translations$auth$social$es._(TranslationsEs root) : this._root = root, super.internal(root);
+
+	final TranslationsEs _root; // ignore: unused_field
+
+	// Translations
+	@override String get or => 'o';
+	@override String continueWith({required Object provider}) => 'Continuar con ${provider}';
+	@override String get unavailable => 'El inicio de sesión con Google o Apple no está disponible por ahora.';
+	@override String get failed => 'No se pudo iniciar sesión. Inténtalo de nuevo.';
+	@override String get expired => 'El inicio de sesión caducó. Vuelve a empezar con Google o Apple.';
+	@override String get completeTitle => 'Solo un paso más';
+	@override String completeText({required Object provider}) => 'Tu cuenta de ${provider} está verificada. Indica tu nombre y tu número: así te encuentra tu comunidad.';
+	@override String get create => 'Crear mi cuenta';
+	@override String get phoneTakenTitle => 'Este número ya tiene una cuenta';
+	@override String phoneTakenText({required Object provider}) => 'Escribe su contraseña para vincularla: después podrás entrar con ${provider} o con tu contraseña.';
+	@override String get link => 'Vincular e iniciar sesión';
+	@override String identityTaken({required Object provider}) => 'Esta cuenta de ${provider} ya está vinculada a otra cuenta de CMFI Connect.';
+}
+
+// Path: auth.change
+class _Translations$auth$change$es extends Translations$auth$change$fr {
+	_Translations$auth$change$es._(TranslationsEs root) : this._root = root, super.internal(root);
+
+	final TranslationsEs _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Contraseña';
+	@override String get text => 'Elige una nueva contraseña para tu cuenta.';
+	@override String get setTitle => 'Crear una contraseña';
+	@override String get setText => 'Tu cuenta inicia sesión con Google o Apple. Una contraseña también te permite entrar con tu número.';
+	@override String get forcedTitle => 'Elige tu contraseña';
+	@override String get forcedText => 'Iniciaste sesión con una contraseña provisional. Elige una nueva, que solo tú conozcas, para continuar.';
+	@override String get current => 'Contraseña actual';
+	@override String get newPassword => 'Nueva contraseña';
+	@override String get again => 'Confirma la nueva contraseña';
+	@override String get mismatch => 'Las dos contraseñas no coinciden.';
+	@override String get same => 'Elige una contraseña distinta de la actual.';
+	@override String get submit => 'Guardar';
+	@override String get done => 'Contraseña guardada.';
+	@override String get wrongCurrent => 'La contraseña actual no es correcta.';
 }
 
 // Path: reports.tabs
@@ -2488,6 +2547,8 @@ class _Translations$members$deleteAccount$es extends Translations$members$delete
 	@override String get done => 'Tu cuenta ha sido eliminada. ¡Dios te bendiga!';
 	@override String get wrongPassword => 'Contraseña incorrecta.';
 	@override String get lastSuperadmin => 'Eres el único superadmin: da este rol a otra persona antes de eliminar tu cuenta.';
+	@override String get socialHelp => 'Tu cuenta inicia sesión con Google o Apple: confirma la eliminación, sin contraseña.';
+	@override String get socialMissing => 'Vuelve a iniciar sesión con Google o Apple y luego inténtalo de nuevo.';
 }
 
 // Path: hymns.tabs
@@ -4101,6 +4162,10 @@ extension on TranslationsEs {
 			'auth.forgot.tooManyRequests' => 'Demasiados intentos. Inténtalo más tarde.',
 			'auth.forgot.unavailable' => 'El restablecimiento no está disponible por ahora.',
 			'auth.forgot.noAccount' => 'Ninguna cuenta usa este número.',
+			'auth.forgot.adminText' => 'Pide a un responsable de tu asamblea o al equipo de CMFI Connect una contraseña provisional.',
+			'auth.forgot.adminNext' => 'Inicia sesión con tu número y esa contraseña: la app te pedirá enseguida que elijas una nueva.',
+			'auth.forgot.writeTeam' => 'Escribir al equipo',
+			'auth.forgot.mailSubject' => 'Contraseña olvidada',
 			'auth.biometric.faceId' => 'Face ID',
 			'auth.biometric.touchId' => 'Touch ID',
 			'auth.biometric.fingerprint' => 'tu huella',
@@ -4119,6 +4184,32 @@ extension on TranslationsEs {
 			'auth.biometric.passwordLabel' => 'Contraseña',
 			'auth.biometric.confirm' => 'Confirmar',
 			'auth.biometric.enabled' => ({required Object method}) => 'Acceso con ${method} activado',
+			'auth.social.or' => 'o',
+			'auth.social.continueWith' => ({required Object provider}) => 'Continuar con ${provider}',
+			'auth.social.unavailable' => 'El inicio de sesión con Google o Apple no está disponible por ahora.',
+			'auth.social.failed' => 'No se pudo iniciar sesión. Inténtalo de nuevo.',
+			'auth.social.expired' => 'El inicio de sesión caducó. Vuelve a empezar con Google o Apple.',
+			'auth.social.completeTitle' => 'Solo un paso más',
+			'auth.social.completeText' => ({required Object provider}) => 'Tu cuenta de ${provider} está verificada. Indica tu nombre y tu número: así te encuentra tu comunidad.',
+			'auth.social.create' => 'Crear mi cuenta',
+			'auth.social.phoneTakenTitle' => 'Este número ya tiene una cuenta',
+			'auth.social.phoneTakenText' => ({required Object provider}) => 'Escribe su contraseña para vincularla: después podrás entrar con ${provider} o con tu contraseña.',
+			'auth.social.link' => 'Vincular e iniciar sesión',
+			'auth.social.identityTaken' => ({required Object provider}) => 'Esta cuenta de ${provider} ya está vinculada a otra cuenta de CMFI Connect.',
+			'auth.change.title' => 'Contraseña',
+			'auth.change.text' => 'Elige una nueva contraseña para tu cuenta.',
+			'auth.change.setTitle' => 'Crear una contraseña',
+			'auth.change.setText' => 'Tu cuenta inicia sesión con Google o Apple. Una contraseña también te permite entrar con tu número.',
+			'auth.change.forcedTitle' => 'Elige tu contraseña',
+			'auth.change.forcedText' => 'Iniciaste sesión con una contraseña provisional. Elige una nueva, que solo tú conozcas, para continuar.',
+			'auth.change.current' => 'Contraseña actual',
+			'auth.change.newPassword' => 'Nueva contraseña',
+			'auth.change.again' => 'Confirma la nueva contraseña',
+			'auth.change.mismatch' => 'Las dos contraseñas no coinciden.',
+			'auth.change.same' => 'Elige una contraseña distinta de la actual.',
+			'auth.change.submit' => 'Guardar',
+			'auth.change.done' => 'Contraseña guardada.',
+			'auth.change.wrongCurrent' => 'La contraseña actual no es correcta.',
 			'countries.dialCodeTitle' => 'Código de país',
 			'countries.title' => 'Tu país',
 			'countries.search' => 'Buscar un país o un código',
@@ -4370,6 +4461,7 @@ extension on TranslationsEs {
 			'items.goalRemove' => 'Quitar',
 			'items.goalSaved' => 'Objetivo guardado',
 			'items.goalRemoved' => 'Objetivo quitado',
+			'items.edit' => ({required Object code}) => 'Modificar ${code}',
 			'newItem.title' => 'Nuevo elemento',
 			'newItem.code' => 'Código',
 			'newItem.label' => 'Nombre',
@@ -4390,6 +4482,10 @@ extension on TranslationsEs {
 			'newItem.codeTaken' => 'Este código ya está en uso, por un elemento estándar o por uno de tus elementos (aunque esté archivado).',
 			'newItem.codeHint' => 'EVG',
 			'newItem.labelHint' => 'Evangelización',
+			'newItem.editTitle' => 'Modificar el elemento',
+			'newItem.save' => 'Guardar',
+			'newItem.saved' => ({required Object code}) => '${code} modificado',
+			'newItem.measuresKept' => 'Lo que mide no cambia: los días ya completados lo conservan.',
 			'more.title' => 'Más',
 			'more.editProfile' => 'Editar mi perfil',
 			'more.community' => 'Comunidad',
@@ -4442,6 +4538,8 @@ extension on TranslationsEs {
 			'authorities.form.searchLabel' => 'Su nombre de usuario',
 			'authorities.form.searchHint' => 'usuario',
 			'authorities.form.search' => 'Buscar',
+			_ => null,
+		} ?? switch (path) {
 			'authorities.form.searchHelp' => 'Si la persona usa CMFI Connect, búscala por su nombre de usuario. Recibirá tu solicitud, y sus datos de contacto aparecerán cuando la acepte.',
 			'authorities.form.notFound' => ({required Object username}) => 'Nadie tiene el nombre de usuario @${username}.',
 			'authorities.form.invite' => 'Invitarla a unirse a CMFI Connect',
@@ -4477,8 +4575,6 @@ extension on TranslationsEs {
 			'authorities.madeMaker' => ({required Object name}) => '${name} es ahora tu discipulador.',
 			'members.username' => 'Nombre de usuario',
 			'members.usernameHint' => 'nombre.apellido',
-			_ => null,
-		} ?? switch (path) {
 			'members.usernameHelp' => 'Así te encontrarán los demás miembros.',
 			'members.usernameChecking' => 'Comprobando…',
 			'members.usernameFree' => ({required Object username}) => '@${username} está disponible',
@@ -4501,6 +4597,8 @@ extension on TranslationsEs {
 			'members.deleteAccount.done' => 'Tu cuenta ha sido eliminada. ¡Dios te bendiga!',
 			'members.deleteAccount.wrongPassword' => 'Contraseña incorrecta.',
 			'members.deleteAccount.lastSuperadmin' => 'Eres el único superadmin: da este rol a otra persona antes de eliminar tu cuenta.',
+			'members.deleteAccount.socialHelp' => 'Tu cuenta inicia sesión con Google o Apple: confirma la eliminación, sin contraseña.',
+			'members.deleteAccount.socialMissing' => 'Vuelve a iniciar sesión con Google o Apple y luego inténtalo de nuevo.',
 			'admin.title' => 'Equipo y roles',
 			'admin.intro' => 'Los admins gestionan lo que comparte toda la comunidad. Solo un superadmin da o quita un rol.',
 			'admin.roleUser' => 'Miembro',
@@ -4954,6 +5052,8 @@ extension on TranslationsEs {
 			'ministry.lives.founder.story.4' => 'Pasaba cada día largas horas a solas con Dios, dirigió muchas cruzadas, asedios y marchas de oración, y ayunó a menudo. Escribió más de 150 libros sobre la oración, el ayuno, la santidad, el discipulado y la misión, leídos en muchos idiomas.',
 			'ministry.lives.founder.story.5' => 'Con su esposa, Prisca Zei Fomum, servidora de Dios entre los niños, tuvo siete hijos, todos comprometidos en la obra del Evangelio. Juntos vivían con sencillez para dar al Evangelio la mayor parte de sus ingresos.',
 			'ministry.lives.founder.story.6' => 'Partió a la presencia del Señor el 14 de marzo de 2009 y fue sepultado en Yaundé el 21 de marzo. La obra que fundó continúa entre las naciones.',
+			_ => null,
+		} ?? switch (path) {
 			'ministry.lives.leader.name' => 'Theodore Andoseh',
 			'ministry.lives.leader.line' => 'Líder de la CMCI desde 2009',
 			'ministry.lives.leader.facts.0' => 'iglesias plantadas',
@@ -4991,8 +5091,6 @@ extension on TranslationsEs {
 			'prayer.today.week' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('es'))(n, zero: 'Ningún retiro esta semana', one: '${n} retiro esta semana', other: '${n} retiros esta semana', ), 
 			'prayer.routine.title' => 'Tu rutina del día',
 			'prayer.routine.count' => ({required Object done}) => '${done} de 4',
-			_ => null,
-		} ?? switch (path) {
 			'prayer.routine.days' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('es'))(n, one: '${n} día de 7', other: '${n} días de 7', ), 
 			'prayer.routine.week' => ({required Object time}) => '${time} esta semana',
 			'prayer.routine.done' => 'Hecha · 15 min',
@@ -5468,6 +5566,8 @@ extension on TranslationsEs {
 			'seekFirst.appsNone' => 'Ninguna app elegida',
 			'seekFirst.appCount' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('es'))(n, one: '${n} app', other: '${n} apps', ), 
 			'seekFirst.categoryCount' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('es'))(n, one: '${n} categoría', other: '${n} categorías', ), 
+			_ => null,
+		} ?? switch (path) {
 			'seekFirst.siteCount' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('es'))(n, one: '${n} sitio', other: '${n} sitios', ), 
 			'seekFirst.start' => 'Cerradas desde',
 			'seekFirst.pauses' => 'Pausas de 5 minutos',
@@ -5505,8 +5605,6 @@ extension on TranslationsEs {
 			'documents.sizeKb' => ({required Object n}) => '${n} KB',
 			'documents.sizeMb' => ({required Object n}) => '${n} MB',
 			'documents.pdf' => 'PDF',
-			_ => null,
-		} ?? switch (path) {
 			'documents.word' => 'Word',
 			'documents.open' => 'Abrir el documento',
 			'documents.download' => 'Descargar',
@@ -5982,6 +6080,8 @@ extension on TranslationsEs {
 			'reading.chartMonth' => ({required num n, required Object month}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('es'))(n, one: '${month}: ${n} libro', other: '${month}: ${n} libros', ), 
 			'reading.pick' => '¿Qué libro lees?',
 			'reading.mine' => 'Mis libros en curso',
+			_ => null,
+		} ?? switch (path) {
 			'reading.choose' => 'Elegir el libro leído',
 			'reading.change' => 'Cambiar',
 			'reading.current' => 'Libro en curso',
@@ -6013,6 +6113,10 @@ extension on TranslationsEs {
 			'reading.removeText' => ({required Object title}) => '«${title}» sale de tus lecturas. Las páginas de tus informes se quedan.',
 			'reading.booksFinished' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('es'))(n, zero: 'Ningún libro terminado en el período', one: '${n} libro terminado en el período', other: '${n} libros terminados en el período', ), 
 			'reading.bookOf' => ({required Object title}) => 'Libro: ${title}',
+			'reading.edit' => 'Modificar',
+			'reading.editTitle' => 'Modificar el libro',
+			'reading.save' => 'Guardar',
+			'reading.saved' => 'Libro modificado.',
 			_ => null,
 		};
 	}

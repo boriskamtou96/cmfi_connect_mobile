@@ -38,6 +38,30 @@ class ReadingBooks extends _$ReadingBooks {
     return book;
   }
 
+  /// Its title, author or pages corrected; another title or author finds
+  /// its cover again.
+  Future<ReadingBook> edit(
+    ReadingBook book, {
+    required String title,
+    required String author,
+    required int totalPages,
+  }) async {
+    final sameBook = title.trim() == book.title && author.trim() == book.author;
+    final edited = await ref
+        .read(readingApiProvider)
+        .update(
+          book.id,
+          title: title,
+          author: author,
+          totalPages: totalPages,
+          coverUrl: sameBook ? book.coverUrl : '',
+        );
+    _replace(edited);
+    // the reports name it with its new title
+    ref.invalidate(readingStatsProvider);
+    return edited;
+  }
+
   /// Finished ([finishedOn], today by default), set aside, or read again.
   Future<ReadingBook> setStatus(
     int id,

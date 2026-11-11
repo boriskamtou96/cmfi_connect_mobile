@@ -163,7 +163,11 @@
       "expired": "The code expired. Ask for a new one.",
       "tooManyRequests": "Too many attempts. Try again in a while.",
       "unavailable": "Resetting the password isn't available right now.",
-      "noAccount": "No account uses this number."
+      "noAccount": "No account uses this number.",
+      "adminText": "Ask a leader of your assembly or the CMFI Connect team to give you a temporary password.",
+      "adminNext": "Sign in with your number and that password: the app will ask you to choose a new one right away.",
+      "writeTeam": "Write to the team",
+      "mailSubject": "Forgotten password"
     },
     "biometric": {
       "faceId": "Face ID",
@@ -184,6 +188,36 @@
       "passwordLabel": "Password",
       "confirm": "Confirm",
       "enabled": "Sign-in with {method} is on"
+    },
+    "social": {
+      "or": "or",
+      "continueWith": "Continue with {provider}",
+      "unavailable": "Signing in with Google or Apple isn't available right now.",
+      "failed": "The sign-in didn't go through. Try again.",
+      "expired": "The sign-in expired. Start again with Google or Apple.",
+      "completeTitle": "One last step",
+      "completeText": "Your {provider} account is verified. Give your name and your number: that's how your community finds you.",
+      "create": "Create my account",
+      "phoneTakenTitle": "This number already has an account",
+      "phoneTakenText": "Enter its password to link it: you can then sign in with {provider} or with your password.",
+      "link": "Link and sign in",
+      "identityTaken": "This {provider} account is already linked to another CMFI Connect account."
+    },
+    "change": {
+      "title": "Password",
+      "text": "Choose a new password for your account.",
+      "setTitle": "Create a password",
+      "setText": "Your account signs in with Google or Apple. A password also lets you sign in with your number.",
+      "forcedTitle": "Choose your password",
+      "forcedText": "You signed in with a temporary password. Choose a new one that only you know to go on.",
+      "current": "Current password",
+      "newPassword": "New password",
+      "again": "Confirm the new password",
+      "mismatch": "The two passwords don't match.",
+      "same": "Choose a password different from the current one.",
+      "submit": "Save",
+      "done": "Password saved.",
+      "wrongCurrent": "The current password isn't the right one."
     }
   },
   "countries": {
@@ -521,7 +555,8 @@
     "goalHint": "What you aim for each day. It stays on your phone.",
     "goalRemove": "Remove",
     "goalSaved": "Goal saved",
-    "goalRemoved": "Goal removed"
+    "goalRemoved": "Goal removed",
+    "edit": "Edit {code}"
   },
   "newItem": {
     "title": "New item",
@@ -543,7 +578,11 @@
     "created": "{code} created.",
     "codeTaken": "This code is already used, by a standard item or by one of your items (even archived).",
     "codeHint": "EVG",
-    "labelHint": "Evangelism"
+    "labelHint": "Evangelism",
+    "editTitle": "Edit the item",
+    "save": "Save",
+    "saved": "{code} is updated.",
+    "measuresKept": "What it measures doesn't change: the days already filled in keep it."
   },
   "more": {
     "title": "More",
@@ -673,7 +712,9 @@
       "confirm": "Delete for good",
       "done": "Your account has been deleted. God bless you!",
       "wrongPassword": "Wrong password.",
-      "lastSuperadmin": "You are the only superadmin: give this role to someone else before deleting your account."
+      "lastSuperadmin": "You are the only superadmin: give this role to someone else before deleting your account.",
+      "socialHelp": "Your account signs in with Google or Apple: it confirms the deletion, without a password.",
+      "socialMissing": "Sign in again with Google or Apple, then try again."
     }
   },
   "admin": {
@@ -2754,6 +2795,10 @@
       "one": "{n} book finished in the period",
       "other": "{n} books finished in the period"
     },
-    "bookOf": "Book: {title}"
+    "bookOf": "Book: {title}",
+    "edit": "Edit",
+    "editTitle": "Edit the book",
+    "save": "Save",
+    "saved": "Book updated."
   }
 }

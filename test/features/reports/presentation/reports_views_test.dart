@@ -1,5 +1,6 @@
 import 'package:cmfi_connect/src/core/i18n/strings.g.dart';
 import 'package:cmfi_connect/src/core/utils/date_extensions.dart';
+import 'package:cmfi_connect/src/features/reports/domain/activity_type.dart';
 import 'package:cmfi_connect/src/features/reports/domain/daily_report.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -94,6 +95,40 @@ void main() {
     await tester.tap(find.byTooltip('Retour'));
     await tester.pumpAndSettle();
     expect(find.text('Évangélisation'), findsOneWidget);
+  });
+
+  testWidgets('a personal item is renamed, what it measures stays', (
+    tester,
+  ) async {
+    final app = await openReports(tester);
+    app.activitiesApi.activities.add(
+      const ActivityType(
+        id: 90,
+        code: 'EVG',
+        label: 'Évangélisation',
+        tracksQuantity: true,
+        quantityUnit: 'personnes',
+      ),
+    );
+    await tester.tap(find.byTooltip('Mes éléments'));
+    await tester.pumpAndSettle();
+
+    await tester.tap(find.byTooltip('Modifier EVG'));
+    await tester.pumpAndSettle();
+    expect(find.text("Modifier l'élément"), findsOneWidget);
+    expect(find.textContaining('les jours déjà remplis'), findsOneWidget);
+
+    final fields = find.byType(TextField);
+    await tester.enterText(fields.at(1), 'Évangélisation de rue');
+    await tester.pump();
+    await tester.tap(find.text('Enregistrer'));
+    await tester.pumpAndSettle();
+
+    final renamed = app.activitiesApi.activities.last;
+    expect(renamed.label, 'Évangélisation de rue');
+    expect(renamed.tracksQuantity, isTrue);
+    expect(app.toasts.messages, ['EVG est modifié.']);
+    expect(find.text('Évangélisation de rue'), findsOneWidget);
   });
 
   testWidgets('a code already used explains why', (tester) async {

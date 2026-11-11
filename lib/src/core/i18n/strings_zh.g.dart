@@ -216,6 +216,8 @@ class _Translations$auth$zh extends Translations$auth$fr {
 	@override late final _Translations$auth$church$zh church = _Translations$auth$church$zh._(_root);
 	@override late final _Translations$auth$forgot$zh forgot = _Translations$auth$forgot$zh._(_root);
 	@override late final _Translations$auth$biometric$zh biometric = _Translations$auth$biometric$zh._(_root);
+	@override late final _Translations$auth$social$zh social = _Translations$auth$social$zh._(_root);
+	@override late final _Translations$auth$change$zh change = _Translations$auth$change$zh._(_root);
 }
 
 // Path: countries
@@ -424,6 +426,7 @@ class _Translations$items$zh extends Translations$items$fr {
 	@override String get goalRemove => '移除';
 	@override String get goalSaved => '目标已保存';
 	@override String get goalRemoved => '目标已移除';
+	@override String edit({required Object code}) => '编辑 ${code}';
 }
 
 // Path: newItem
@@ -453,6 +456,10 @@ class _Translations$newItem$zh extends Translations$newItem$fr {
 	@override String get codeTaken => '此代码已被使用，可能是标准项目，也可能是你自己的某个项目（包括已归档的）。';
 	@override String get codeHint => 'EVG';
 	@override String get labelHint => '传福音';
+	@override String get editTitle => '编辑项目';
+	@override String get save => '保存';
+	@override String saved({required Object code}) => '${code} 已更新';
+	@override String get measuresKept => '记录方式不会改变：已填写的日子会保留它。';
 }
 
 // Path: more
@@ -1958,6 +1965,10 @@ class _Translations$reading$zh extends Translations$reading$fr {
 		other: '本期间读完 ${n} 本书',
 	);
 	@override String bookOf({required Object title}) => '书籍：${title}';
+	@override String get edit => '编辑';
+	@override String get editTitle => '编辑书籍';
+	@override String get save => '保存';
+	@override String get saved => '书籍已更新。';
 }
 
 // Path: welcome.seek
@@ -2105,6 +2116,10 @@ class _Translations$auth$forgot$zh extends Translations$auth$forgot$fr {
 	@override String get tooManyRequests => '尝试次数过多，请稍后再试。';
 	@override String get unavailable => '暂时无法重置密码。';
 	@override String get noAccount => '没有账号使用这个号码。';
+	@override String get adminText => '请向你所在聚会的负责人或 CMFI Connect 团队索取临时密码。';
+	@override String get adminNext => '用你的号码和这个密码登录：应用会立即让你设置新密码。';
+	@override String get writeTeam => '写信给团队';
+	@override String get mailSubject => '忘记密码';
 }
 
 // Path: auth.biometric
@@ -2132,6 +2147,50 @@ class _Translations$auth$biometric$zh extends Translations$auth$biometric$fr {
 	@override String get passwordLabel => '密码';
 	@override String get confirm => '确认';
 	@override String enabled({required Object method}) => '已开启${method}登录';
+}
+
+// Path: auth.social
+class _Translations$auth$social$zh extends Translations$auth$social$fr {
+	_Translations$auth$social$zh._(TranslationsZh root) : this._root = root, super.internal(root);
+
+	final TranslationsZh _root; // ignore: unused_field
+
+	// Translations
+	@override String get or => '或';
+	@override String continueWith({required Object provider}) => '使用 ${provider} 继续';
+	@override String get unavailable => '目前无法使用 Google 或 Apple 登录。';
+	@override String get failed => '登录未成功，请重试。';
+	@override String get expired => '登录已过期，请重新使用 Google 或 Apple 登录。';
+	@override String get completeTitle => '只差一步';
+	@override String completeText({required Object provider}) => '你的 ${provider} 账号已验证。请填写姓名和号码：你的社区就是这样找到你的。';
+	@override String get create => '创建我的账号';
+	@override String get phoneTakenTitle => '这个号码已有账号';
+	@override String phoneTakenText({required Object provider}) => '输入该账号的密码进行关联：之后你可以用 ${provider} 或密码登录。';
+	@override String get link => '关联并登录';
+	@override String identityTaken({required Object provider}) => '这个 ${provider} 账号已关联到另一个 CMFI Connect 账号。';
+}
+
+// Path: auth.change
+class _Translations$auth$change$zh extends Translations$auth$change$fr {
+	_Translations$auth$change$zh._(TranslationsZh root) : this._root = root, super.internal(root);
+
+	final TranslationsZh _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => '密码';
+	@override String get text => '为你的账号设置新密码。';
+	@override String get setTitle => '创建密码';
+	@override String get setText => '你的账号使用 Google 或 Apple 登录。设置密码后也可以用号码登录。';
+	@override String get forcedTitle => '设置你的密码';
+	@override String get forcedText => '你使用临时密码登录。请设置一个只有你知道的新密码以继续。';
+	@override String get current => '当前密码';
+	@override String get newPassword => '新密码';
+	@override String get again => '确认新密码';
+	@override String get mismatch => '两次输入的密码不一致。';
+	@override String get same => '请设置与当前密码不同的密码。';
+	@override String get submit => '保存';
+	@override String get done => '密码已保存。';
+	@override String get wrongCurrent => '当前密码不正确。';
 }
 
 // Path: reports.tabs
@@ -2414,6 +2473,8 @@ class _Translations$members$deleteAccount$zh extends Translations$members$delete
 	@override String get done => '你的账户已删除。愿神赐福给你！';
 	@override String get wrongPassword => '密码错误。';
 	@override String get lastSuperadmin => '你是唯一的超级管理员：删除账户前，请先把这个角色交给别人。';
+	@override String get socialHelp => '你的账号使用 Google 或 Apple 登录：无需密码即可确认删除。';
+	@override String get socialMissing => '请重新使用 Google 或 Apple 登录，然后重试。';
 }
 
 // Path: hymns.tabs
@@ -3996,6 +4057,10 @@ extension on TranslationsZh {
 			'auth.forgot.tooManyRequests' => '尝试次数过多，请稍后再试。',
 			'auth.forgot.unavailable' => '暂时无法重置密码。',
 			'auth.forgot.noAccount' => '没有账号使用这个号码。',
+			'auth.forgot.adminText' => '请向你所在聚会的负责人或 CMFI Connect 团队索取临时密码。',
+			'auth.forgot.adminNext' => '用你的号码和这个密码登录：应用会立即让你设置新密码。',
+			'auth.forgot.writeTeam' => '写信给团队',
+			'auth.forgot.mailSubject' => '忘记密码',
 			'auth.biometric.faceId' => '面容 ID',
 			'auth.biometric.touchId' => '触控 ID',
 			'auth.biometric.fingerprint' => '指纹',
@@ -4014,6 +4079,32 @@ extension on TranslationsZh {
 			'auth.biometric.passwordLabel' => '密码',
 			'auth.biometric.confirm' => '确认',
 			'auth.biometric.enabled' => ({required Object method}) => '已开启${method}登录',
+			'auth.social.or' => '或',
+			'auth.social.continueWith' => ({required Object provider}) => '使用 ${provider} 继续',
+			'auth.social.unavailable' => '目前无法使用 Google 或 Apple 登录。',
+			'auth.social.failed' => '登录未成功，请重试。',
+			'auth.social.expired' => '登录已过期，请重新使用 Google 或 Apple 登录。',
+			'auth.social.completeTitle' => '只差一步',
+			'auth.social.completeText' => ({required Object provider}) => '你的 ${provider} 账号已验证。请填写姓名和号码：你的社区就是这样找到你的。',
+			'auth.social.create' => '创建我的账号',
+			'auth.social.phoneTakenTitle' => '这个号码已有账号',
+			'auth.social.phoneTakenText' => ({required Object provider}) => '输入该账号的密码进行关联：之后你可以用 ${provider} 或密码登录。',
+			'auth.social.link' => '关联并登录',
+			'auth.social.identityTaken' => ({required Object provider}) => '这个 ${provider} 账号已关联到另一个 CMFI Connect 账号。',
+			'auth.change.title' => '密码',
+			'auth.change.text' => '为你的账号设置新密码。',
+			'auth.change.setTitle' => '创建密码',
+			'auth.change.setText' => '你的账号使用 Google 或 Apple 登录。设置密码后也可以用号码登录。',
+			'auth.change.forcedTitle' => '设置你的密码',
+			'auth.change.forcedText' => '你使用临时密码登录。请设置一个只有你知道的新密码以继续。',
+			'auth.change.current' => '当前密码',
+			'auth.change.newPassword' => '新密码',
+			'auth.change.again' => '确认新密码',
+			'auth.change.mismatch' => '两次输入的密码不一致。',
+			'auth.change.same' => '请设置与当前密码不同的密码。',
+			'auth.change.submit' => '保存',
+			'auth.change.done' => '密码已保存。',
+			'auth.change.wrongCurrent' => '当前密码不正确。',
 			'countries.dialCodeTitle' => '国家/地区区号',
 			'countries.title' => '你的国家/地区',
 			'countries.search' => '搜索国家/地区或区号',
@@ -4265,6 +4356,7 @@ extension on TranslationsZh {
 			'items.goalRemove' => '移除',
 			'items.goalSaved' => '目标已保存',
 			'items.goalRemoved' => '目标已移除',
+			'items.edit' => ({required Object code}) => '编辑 ${code}',
 			'newItem.title' => '新项目',
 			'newItem.code' => '代码',
 			'newItem.label' => '名称',
@@ -4285,6 +4377,10 @@ extension on TranslationsZh {
 			'newItem.codeTaken' => '此代码已被使用，可能是标准项目，也可能是你自己的某个项目（包括已归档的）。',
 			'newItem.codeHint' => 'EVG',
 			'newItem.labelHint' => '传福音',
+			'newItem.editTitle' => '编辑项目',
+			'newItem.save' => '保存',
+			'newItem.saved' => ({required Object code}) => '${code} 已更新',
+			'newItem.measuresKept' => '记录方式不会改变：已填写的日子会保留它。',
 			'more.title' => '更多',
 			'more.editProfile' => '编辑我的资料',
 			'more.community' => '团契',
@@ -4337,6 +4433,8 @@ extension on TranslationsZh {
 			'authorities.form.searchLabel' => '对方的用户名',
 			'authorities.form.searchHint' => '用户名',
 			'authorities.form.search' => '搜索',
+			_ => null,
+		} ?? switch (path) {
 			'authorities.form.searchHelp' => '如果对方在使用 CMFI Connect，可以通过用户名找到他/她。对方会收到你的请求，接受后你就能看到其联系方式。',
 			'authorities.form.notFound' => ({required Object username}) => '没有用户名为 @${username} 的用户。',
 			'authorities.form.invite' => '邀请对方加入 CMFI Connect',
@@ -4372,8 +4470,6 @@ extension on TranslationsZh {
 			'authorities.madeMaker' => ({required Object name}) => '${name} 现在是你的门训者。',
 			'members.username' => '用户名',
 			'members.usernameHint' => 'zhang.san',
-			_ => null,
-		} ?? switch (path) {
 			'members.usernameHelp' => '其他成员会通过它找到你。',
 			'members.usernameChecking' => '正在检查…',
 			'members.usernameFree' => ({required Object username}) => '@${username} 可以使用',
@@ -4396,6 +4492,8 @@ extension on TranslationsZh {
 			'members.deleteAccount.done' => '你的账户已删除。愿神赐福给你！',
 			'members.deleteAccount.wrongPassword' => '密码错误。',
 			'members.deleteAccount.lastSuperadmin' => '你是唯一的超级管理员：删除账户前，请先把这个角色交给别人。',
+			'members.deleteAccount.socialHelp' => '你的账号使用 Google 或 Apple 登录：无需密码即可确认删除。',
+			'members.deleteAccount.socialMissing' => '请重新使用 Google 或 Apple 登录，然后重试。',
 			'admin.title' => '团队与角色',
 			'admin.intro' => '管理员负责管理整个团契共享的内容。只有超级管理员可以授予或收回角色。',
 			'admin.roleUser' => '成员',
@@ -4849,6 +4947,8 @@ extension on TranslationsZh {
 			'ministry.lives.founder.story.4' => '他每天花很长时间独自与神相处，带领了许多祷告大会、祷告围城和祷告行走，并经常禁食。他写了150多本关于祷告、禁食、圣洁、门徒训练和宣教的书，以多种语言被阅读。',
 			'ministry.lives.founder.story.5' => '他与妻子 Prisca Zei Fomum（一位在儿童中服事的同工）育有七个孩子，都投身于福音工作。他们一同过着简朴的生活，把收入的绝大部分奉献给福音。',
 			'ministry.lives.founder.story.6' => '2009年3月14日，他被主接去，3月21日安葬于雅温得。他所创立的事工在万国中继续前进。',
+			_ => null,
+		} ?? switch (path) {
 			'ministry.lives.leader.name' => 'Theodore Andoseh',
 			'ministry.lives.leader.line' => '自2009年起担任 CMFI 领袖',
 			'ministry.lives.leader.facts.0' => '建立的教会',
@@ -4886,8 +4986,6 @@ extension on TranslationsZh {
 			'prayer.today.week' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n, zero: '本周还没有完成祷告', other: '本周完成了 ${n} 次祷告', ), 
 			'prayer.routine.title' => '你今天的祷告安排',
 			'prayer.routine.count' => ({required Object done}) => '${done} / 4',
-			_ => null,
-		} ?? switch (path) {
 			'prayer.routine.days' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n, other: '7 天中有 ${n} 天', ), 
 			'prayer.routine.week' => ({required Object time}) => '本周 ${time}',
 			'prayer.routine.done' => '已完成 · 15 分钟',
@@ -5363,6 +5461,8 @@ extension on TranslationsZh {
 			'seekFirst.appsNone' => '尚未选择应用',
 			'seekFirst.appCount' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n, other: '${n} 个应用', ), 
 			'seekFirst.categoryCount' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n, other: '${n} 个类别', ), 
+			_ => null,
+		} ?? switch (path) {
 			'seekFirst.siteCount' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n, other: '${n} 个网站', ), 
 			'seekFirst.start' => '关闭时间',
 			'seekFirst.pauses' => '5 分钟暂停',
@@ -5400,8 +5500,6 @@ extension on TranslationsZh {
 			'documents.sizeKb' => ({required Object n}) => '${n} KB',
 			'documents.sizeMb' => ({required Object n}) => '${n} MB',
 			'documents.pdf' => 'PDF',
-			_ => null,
-		} ?? switch (path) {
 			'documents.word' => 'Word',
 			'documents.open' => '打开文件',
 			'documents.download' => '下载',
@@ -5877,6 +5975,8 @@ extension on TranslationsZh {
 			'reading.chartMonth' => ({required num n, required Object month}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n, other: '${month}：${n} 本书', ), 
 			'reading.pick' => '你在读哪本书？',
 			'reading.mine' => '我在读的书',
+			_ => null,
+		} ?? switch (path) {
 			'reading.choose' => '选择所读的书',
 			'reading.change' => '更换',
 			'reading.current' => '在读的书',
@@ -5908,6 +6008,10 @@ extension on TranslationsZh {
 			'reading.removeText' => ({required Object title}) => '《${title}》将离开你的阅读。你汇报中的页数会保留。',
 			'reading.booksFinished' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n, other: '本期间读完 ${n} 本书', ), 
 			'reading.bookOf' => ({required Object title}) => '书籍：${title}',
+			'reading.edit' => '编辑',
+			'reading.editTitle' => '编辑书籍',
+			'reading.save' => '保存',
+			'reading.saved' => '书籍已更新。',
 			_ => null,
 		};
 	}

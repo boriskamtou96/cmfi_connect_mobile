@@ -187,6 +187,11 @@ class SettingsScreen extends ConsumerWidget {
           ]),
           group(t.more.account, [
             MenuTile(
+              icon: AppIcons.passwordTile,
+              title: t.auth.change.title,
+              onTap: () => context.router.push(ChangePasswordRoute()),
+            ),
+            MenuTile(
               icon: AppIcons.blockedTile,
               title: t.blocking.listTitle,
               onTap: () => context.router.push(const BlockedMembersRoute()),

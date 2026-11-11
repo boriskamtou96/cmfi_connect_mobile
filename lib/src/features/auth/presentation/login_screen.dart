@@ -9,6 +9,7 @@ import '../../../core/i18n/strings.g.dart';
 import '../../../core/network/app_exception.dart';
 import '../../../core/network/app_exception_message.dart';
 import '../../../core/services/biometrics.dart';
+import '../../../core/session/account.dart';
 import '../../../core/storage/preferences.dart';
 import '../../../core/theme/app_spacing.dart';
 import '../../../core/utils/countries.dart';
@@ -23,7 +24,9 @@ import '../../../routing/app_router.dart';
 import '../application/login_controller.dart';
 import '../application/saved_login.dart';
 import 'widgets/auth_footer.dart';
+import 'widgets/forgot_password_sheet.dart';
 import 'widgets/login_header.dart';
+import 'widgets/social_buttons.dart';
 
 @RoutePage()
 class LoginScreen extends HookConsumerWidget {
@@ -75,10 +78,17 @@ class LoginScreen extends HookConsumerWidget {
       return null;
     }, [saved?.phone]);
 
-    Future<void> openApp() async {
-      if (context.mounted) {
-        await context.router.replaceAll([const AppShellRoute()]);
+    // a temporary password given by an admin: a new one first
+    Future<void> openApp(Account account, {String? password}) async {
+      if (!context.mounted) {
+        return;
       }
+      await context.router.replaceAll([
+        if (account.mustChangePassword)
+          ChangePasswordRoute(forced: true, currentPassword: password)
+        else
+          const AppShellRoute(),
+      ]);
     }
 
     // Face ID / the fingerprint: the number and the password kept
@@ -94,12 +104,12 @@ class LoginScreen extends HookConsumerWidget {
         return;
       }
       viaBiometrics.value = true;
-      final signedIn = await ref
+      final account = await ref
           .read(loginControllerProvider.notifier)
           .submit(phoneNumber: phone, password: password);
       viaBiometrics.value = false;
-      if (signedIn) {
-        await openApp();
+      if (account != null) {
+        await openApp(account, password: password);
       }
     }
 
@@ -113,10 +123,10 @@ class LoginScreen extends HookConsumerWidget {
         country: country,
       );
       final password = passwordController.text;
-      final signedIn = await ref
+      final account = await ref
           .read(loginControllerProvider.notifier)
           .submit(phoneNumber: phone, password: password);
-      if (!signedIn) {
+      if (account == null) {
         return;
       }
       final remembered = ref.read(savedLoginProvider.notifier);
@@ -142,7 +152,7 @@ class LoginScreen extends HookConsumerWidget {
           await remembered.markAsked();
         }
       }
-      await openApp();
+      await openApp(account, password: password);
     }
 
     return Scaffold(
@@ -220,9 +230,21 @@ class LoginScreen extends HookConsumerWidget {
                                   ),
                                 ),
                               ],
-                              // « Mot de passe oublié » reste masqué tant que
-                              // le parcours n'est pas ouvert (l'écran existe
-                              // déjà, pour le jour où il le sera).
+                              // no SMS (it costs): an admin gives a temporary
+                              // password (ForgotPasswordScreen waits for the day
+                              // the SMS is opened)
+                              Align(
+                                alignment: AlignmentDirectional.centerEnd,
+                                child: TextButton(
+                                  onPressed: () =>
+                                      showForgotPasswordSheet(context),
+                                  child: Text(t.auth.forgot.link),
+                                ),
+                              ),
+                              SocialButtons(
+                                enabled: !state.isLoading,
+                                onSignedIn: (account) => openApp(account),
+                              ),
                             ],
                           ),
                         ),

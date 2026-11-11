@@ -19,6 +19,7 @@ import '../../../core/widgets/motion.dart';
 import '../../../core/widgets/section_card.dart';
 import '../../../core/widgets/skeleton.dart';
 import '../../../core/widgets/sub_page.dart';
+import '../../../routing/app_router.dart';
 import '../application/report_goals.dart';
 import '../application/report_item_texts.dart';
 import '../application/reports_providers.dart';
@@ -243,28 +244,47 @@ class ItemsScreen extends HookConsumerWidget {
                         ))
                           row(
                             item,
-                            trailing: OutlinedButton(
-                              onPressed: archiving.value == null
-                                  ? () => archive(item)
-                                  : null,
-                              style: OutlinedButton.styleFrom(
-                                minimumSize: const Size(0, 44),
-                                padding: const EdgeInsets.symmetric(
-                                  horizontal: AppSpacing.md,
+                            trailing: Row(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                IconButton(
+                                  tooltip: t.items.edit(code: item.code),
+                                  onPressed: archiving.value == null
+                                      ? () => context.router.push(
+                                          NewItemRoute(item: item),
+                                        )
+                                      : null,
+                                  icon: const Icon(AppIcons.edit, size: 20),
                                 ),
-                                side: BorderSide(color: scheme.outlineVariant),
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(11),
+                                OutlinedButton(
+                                  onPressed: archiving.value == null
+                                      ? () => archive(item)
+                                      : null,
+                                  style: OutlinedButton.styleFrom(
+                                    minimumSize: const Size(0, 44),
+                                    padding: const EdgeInsets.symmetric(
+                                      horizontal: AppSpacing.md,
+                                    ),
+                                    side: BorderSide(
+                                      color: scheme.outlineVariant,
+                                    ),
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(11),
+                                    ),
+                                    textStyle: const TextStyle(
+                                      fontFamily: AppTheme.fontFamily,
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.w600,
+                                    ),
+                                  ),
+                                  child: archiving.value == item.id
+                                      ? const AppSpinner(
+                                          size: 16,
+                                          strokeWidth: 2,
+                                        )
+                                      : Text(t.items.archive),
                                 ),
-                                textStyle: const TextStyle(
-                                  fontFamily: AppTheme.fontFamily,
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.w600,
-                                ),
-                              ),
-                              child: archiving.value == item.id
-                                  ? const AppSpinner(size: 16, strokeWidth: 2)
-                                  : Text(t.items.archive),
+                              ],
                             ),
                           ),
                         if (items.every((item) => item.isStandard))

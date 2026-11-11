@@ -217,6 +217,8 @@ class _Translations$auth$hi extends Translations$auth$fr {
 	@override late final _Translations$auth$church$hi church = _Translations$auth$church$hi._(_root);
 	@override late final _Translations$auth$forgot$hi forgot = _Translations$auth$forgot$hi._(_root);
 	@override late final _Translations$auth$biometric$hi biometric = _Translations$auth$biometric$hi._(_root);
+	@override late final _Translations$auth$social$hi social = _Translations$auth$social$hi._(_root);
+	@override late final _Translations$auth$change$hi change = _Translations$auth$change$hi._(_root);
 }
 
 // Path: countries
@@ -431,6 +433,7 @@ class _Translations$items$hi extends Translations$items$fr {
 	@override String get goalRemove => 'हटाओ';
 	@override String get goalSaved => 'लक्ष्य सेव हो गया';
 	@override String get goalRemoved => 'लक्ष्य हटा दिया गया';
+	@override String edit({required Object code}) => '${code} बदलें';
 }
 
 // Path: newItem
@@ -460,6 +463,10 @@ class _Translations$newItem$hi extends Translations$newItem$fr {
 	@override String get codeTaken => 'यह कोड पहले से इस्तेमाल हो रहा है, किसी मानक आइटम में या तुम्हारे किसी आइटम में (आर्काइव किए गए आइटम भी)।';
 	@override String get codeHint => 'EVG';
 	@override String get labelHint => 'सुसमाचार प्रचार';
+	@override String get editTitle => 'आइटम बदलें';
+	@override String get save => 'सहेजें';
+	@override String saved({required Object code}) => '${code} बदला गया';
+	@override String get measuresKept => 'यह क्या मापता है, वह नहीं बदलता: पहले भरे गए दिन उसे रखते हैं।';
 }
 
 // Path: more
@@ -2026,6 +2033,10 @@ class _Translations$reading$hi extends Translations$reading$fr {
 		other: 'इस अवधि में ${n} किताबें पूरी हुईं',
 	);
 	@override String bookOf({required Object title}) => 'किताब: ${title}';
+	@override String get edit => 'बदलें';
+	@override String get editTitle => 'किताब बदलें';
+	@override String get save => 'सहेजें';
+	@override String get saved => 'किताब बदली गई।';
 }
 
 // Path: welcome.seek
@@ -2173,6 +2184,10 @@ class _Translations$auth$forgot$hi extends Translations$auth$forgot$fr {
 	@override String get tooManyRequests => 'बहुत ज़्यादा कोशिशें। थोड़ी देर बाद फिर कोशिश करो।';
 	@override String get unavailable => 'अभी पासवर्ड रीसेट उपलब्ध नहीं है।';
 	@override String get noAccount => 'इस नंबर से कोई खाता नहीं है।';
+	@override String get adminText => 'अपनी सभा के किसी अगुवे या CMFI Connect टीम से एक अस्थायी पासवर्ड माँगें।';
+	@override String get adminNext => 'अपने नंबर और इस पासवर्ड से साइन इन करें: ऐप तुरंत नया पासवर्ड चुनने को कहेगा।';
+	@override String get writeTeam => 'टीम को लिखें';
+	@override String get mailSubject => 'पासवर्ड भूल गए';
 }
 
 // Path: auth.biometric
@@ -2200,6 +2215,50 @@ class _Translations$auth$biometric$hi extends Translations$auth$biometric$fr {
 	@override String get passwordLabel => 'पासवर्ड';
 	@override String get confirm => 'पुष्टि करें';
 	@override String enabled({required Object method}) => '${method} से लॉग इन चालू है';
+}
+
+// Path: auth.social
+class _Translations$auth$social$hi extends Translations$auth$social$fr {
+	_Translations$auth$social$hi._(TranslationsHi root) : this._root = root, super.internal(root);
+
+	final TranslationsHi _root; // ignore: unused_field
+
+	// Translations
+	@override String get or => 'या';
+	@override String continueWith({required Object provider}) => '${provider} से जारी रखें';
+	@override String get unavailable => 'Google या Apple से साइन इन अभी उपलब्ध नहीं है।';
+	@override String get failed => 'साइन इन नहीं हो पाया। फिर से कोशिश करें।';
+	@override String get expired => 'साइन इन की समय-सीमा खत्म हो गई। Google या Apple से फिर शुरू करें।';
+	@override String get completeTitle => 'बस एक कदम और';
+	@override String completeText({required Object provider}) => 'आपका ${provider} खाता सत्यापित है। अपना नाम और नंबर दें: इसी से आपका समुदाय आपको ढूँढता है।';
+	@override String get create => 'मेरा खाता बनाएँ';
+	@override String get phoneTakenTitle => 'इस नंबर का पहले से एक खाता है';
+	@override String phoneTakenText({required Object provider}) => 'उसे जोड़ने के लिए उसका पासवर्ड डालें: फिर आप ${provider} या अपने पासवर्ड से साइन इन कर सकेंगे।';
+	@override String get link => 'जोड़ें और साइन इन करें';
+	@override String identityTaken({required Object provider}) => 'यह ${provider} खाता पहले से किसी दूसरे CMFI Connect खाते से जुड़ा है।';
+}
+
+// Path: auth.change
+class _Translations$auth$change$hi extends Translations$auth$change$fr {
+	_Translations$auth$change$hi._(TranslationsHi root) : this._root = root, super.internal(root);
+
+	final TranslationsHi _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'पासवर्ड';
+	@override String get text => 'अपने खाते के लिए नया पासवर्ड चुनें।';
+	@override String get setTitle => 'पासवर्ड बनाएँ';
+	@override String get setText => 'आपका खाता Google या Apple से साइन इन करता है। पासवर्ड से आप अपने नंबर से भी साइन इन कर सकते हैं।';
+	@override String get forcedTitle => 'अपना पासवर्ड चुनें';
+	@override String get forcedText => 'आपने अस्थायी पासवर्ड से साइन इन किया है। आगे बढ़ने के लिए ऐसा नया पासवर्ड चुनें जो सिर्फ़ आप जानते हों।';
+	@override String get current => 'मौजूदा पासवर्ड';
+	@override String get newPassword => 'नया पासवर्ड';
+	@override String get again => 'नए पासवर्ड की पुष्टि करें';
+	@override String get mismatch => 'दोनों पासवर्ड एक जैसे नहीं हैं।';
+	@override String get same => 'मौजूदा पासवर्ड से अलग पासवर्ड चुनें।';
+	@override String get submit => 'सहेजें';
+	@override String get done => 'पासवर्ड सहेजा गया।';
+	@override String get wrongCurrent => 'मौजूदा पासवर्ड सही नहीं है।';
 }
 
 // Path: reports.tabs
@@ -2487,6 +2546,8 @@ class _Translations$members$deleteAccount$hi extends Translations$members$delete
 	@override String get done => 'तुम्हारा खाता हटा दिया गया है। परमेश्वर तुम्हें आशीष दे!';
 	@override String get wrongPassword => 'पासवर्ड ग़लत है।';
 	@override String get lastSuperadmin => 'तुम अकेले सुपरएडमिन हो: खाता हटाने से पहले यह भूमिका किसी और को दो।';
+	@override String get socialHelp => 'आपका खाता Google या Apple से साइन इन करता है: वही बिना पासवर्ड के हटाने की पुष्टि करता है।';
+	@override String get socialMissing => 'Google या Apple से फिर से साइन इन करें, फिर दोबारा कोशिश करें।';
 }
 
 // Path: hymns.tabs
@@ -4100,6 +4161,10 @@ extension on TranslationsHi {
 			'auth.forgot.tooManyRequests' => 'बहुत ज़्यादा कोशिशें। थोड़ी देर बाद फिर कोशिश करो।',
 			'auth.forgot.unavailable' => 'अभी पासवर्ड रीसेट उपलब्ध नहीं है।',
 			'auth.forgot.noAccount' => 'इस नंबर से कोई खाता नहीं है।',
+			'auth.forgot.adminText' => 'अपनी सभा के किसी अगुवे या CMFI Connect टीम से एक अस्थायी पासवर्ड माँगें।',
+			'auth.forgot.adminNext' => 'अपने नंबर और इस पासवर्ड से साइन इन करें: ऐप तुरंत नया पासवर्ड चुनने को कहेगा।',
+			'auth.forgot.writeTeam' => 'टीम को लिखें',
+			'auth.forgot.mailSubject' => 'पासवर्ड भूल गए',
 			'auth.biometric.faceId' => 'Face ID',
 			'auth.biometric.touchId' => 'Touch ID',
 			'auth.biometric.fingerprint' => 'अपने फ़िंगरप्रिंट',
@@ -4118,6 +4183,32 @@ extension on TranslationsHi {
 			'auth.biometric.passwordLabel' => 'पासवर्ड',
 			'auth.biometric.confirm' => 'पुष्टि करें',
 			'auth.biometric.enabled' => ({required Object method}) => '${method} से लॉग इन चालू है',
+			'auth.social.or' => 'या',
+			'auth.social.continueWith' => ({required Object provider}) => '${provider} से जारी रखें',
+			'auth.social.unavailable' => 'Google या Apple से साइन इन अभी उपलब्ध नहीं है।',
+			'auth.social.failed' => 'साइन इन नहीं हो पाया। फिर से कोशिश करें।',
+			'auth.social.expired' => 'साइन इन की समय-सीमा खत्म हो गई। Google या Apple से फिर शुरू करें।',
+			'auth.social.completeTitle' => 'बस एक कदम और',
+			'auth.social.completeText' => ({required Object provider}) => 'आपका ${provider} खाता सत्यापित है। अपना नाम और नंबर दें: इसी से आपका समुदाय आपको ढूँढता है।',
+			'auth.social.create' => 'मेरा खाता बनाएँ',
+			'auth.social.phoneTakenTitle' => 'इस नंबर का पहले से एक खाता है',
+			'auth.social.phoneTakenText' => ({required Object provider}) => 'उसे जोड़ने के लिए उसका पासवर्ड डालें: फिर आप ${provider} या अपने पासवर्ड से साइन इन कर सकेंगे।',
+			'auth.social.link' => 'जोड़ें और साइन इन करें',
+			'auth.social.identityTaken' => ({required Object provider}) => 'यह ${provider} खाता पहले से किसी दूसरे CMFI Connect खाते से जुड़ा है।',
+			'auth.change.title' => 'पासवर्ड',
+			'auth.change.text' => 'अपने खाते के लिए नया पासवर्ड चुनें।',
+			'auth.change.setTitle' => 'पासवर्ड बनाएँ',
+			'auth.change.setText' => 'आपका खाता Google या Apple से साइन इन करता है। पासवर्ड से आप अपने नंबर से भी साइन इन कर सकते हैं।',
+			'auth.change.forcedTitle' => 'अपना पासवर्ड चुनें',
+			'auth.change.forcedText' => 'आपने अस्थायी पासवर्ड से साइन इन किया है। आगे बढ़ने के लिए ऐसा नया पासवर्ड चुनें जो सिर्फ़ आप जानते हों।',
+			'auth.change.current' => 'मौजूदा पासवर्ड',
+			'auth.change.newPassword' => 'नया पासवर्ड',
+			'auth.change.again' => 'नए पासवर्ड की पुष्टि करें',
+			'auth.change.mismatch' => 'दोनों पासवर्ड एक जैसे नहीं हैं।',
+			'auth.change.same' => 'मौजूदा पासवर्ड से अलग पासवर्ड चुनें।',
+			'auth.change.submit' => 'सहेजें',
+			'auth.change.done' => 'पासवर्ड सहेजा गया।',
+			'auth.change.wrongCurrent' => 'मौजूदा पासवर्ड सही नहीं है।',
 			'countries.dialCodeTitle' => 'देश कोड',
 			'countries.title' => 'तुम्हारा देश',
 			'countries.search' => 'देश या कोड खोजो',
@@ -4369,6 +4460,7 @@ extension on TranslationsHi {
 			'items.goalRemove' => 'हटाओ',
 			'items.goalSaved' => 'लक्ष्य सेव हो गया',
 			'items.goalRemoved' => 'लक्ष्य हटा दिया गया',
+			'items.edit' => ({required Object code}) => '${code} बदलें',
 			'newItem.title' => 'नया आइटम',
 			'newItem.code' => 'कोड',
 			'newItem.label' => 'नाम',
@@ -4389,6 +4481,10 @@ extension on TranslationsHi {
 			'newItem.codeTaken' => 'यह कोड पहले से इस्तेमाल हो रहा है, किसी मानक आइटम में या तुम्हारे किसी आइटम में (आर्काइव किए गए आइटम भी)।',
 			'newItem.codeHint' => 'EVG',
 			'newItem.labelHint' => 'सुसमाचार प्रचार',
+			'newItem.editTitle' => 'आइटम बदलें',
+			'newItem.save' => 'सहेजें',
+			'newItem.saved' => ({required Object code}) => '${code} बदला गया',
+			'newItem.measuresKept' => 'यह क्या मापता है, वह नहीं बदलता: पहले भरे गए दिन उसे रखते हैं।',
 			'more.title' => 'और',
 			'more.editProfile' => 'प्रोफ़ाइल बदलो',
 			'more.community' => 'समुदाय',
@@ -4441,6 +4537,8 @@ extension on TranslationsHi {
 			'authorities.form.searchLabel' => 'उनका यूज़रनेम',
 			'authorities.form.searchHint' => 'यूज़रनेम',
 			'authorities.form.search' => 'खोजो',
+			_ => null,
+		} ?? switch (path) {
 			'authorities.form.searchHelp' => 'अगर वे CMFI Connect इस्तेमाल करते हैं, तो उन्हें उनके यूज़रनेम से खोजो। उन्हें तुम्हारा अनुरोध मिलेगा, और उनके स्वीकार करने के बाद उनकी संपर्क जानकारी दिखेगी।',
 			'authorities.form.notFound' => ({required Object username}) => 'किसी का यूज़रनेम @${username} नहीं है।',
 			'authorities.form.invite' => 'उन्हें CMFI Connect से जुड़ने का न्योता दो',
@@ -4476,8 +4574,6 @@ extension on TranslationsHi {
 			'authorities.madeMaker' => ({required Object name}) => '${name} अब तुम्हारे चेला बनाने वाले हैं।',
 			'members.username' => 'यूज़रनेम',
 			'members.usernameHint' => 'naam.surname',
-			_ => null,
-		} ?? switch (path) {
 			'members.usernameHelp' => 'दूसरे सदस्य तुम्हें इसी नाम से ढूँढेंगे।',
 			'members.usernameChecking' => 'जाँच हो रही है…',
 			'members.usernameFree' => ({required Object username}) => '@${username} उपलब्ध है',
@@ -4500,6 +4596,8 @@ extension on TranslationsHi {
 			'members.deleteAccount.done' => 'तुम्हारा खाता हटा दिया गया है। परमेश्वर तुम्हें आशीष दे!',
 			'members.deleteAccount.wrongPassword' => 'पासवर्ड ग़लत है।',
 			'members.deleteAccount.lastSuperadmin' => 'तुम अकेले सुपरएडमिन हो: खाता हटाने से पहले यह भूमिका किसी और को दो।',
+			'members.deleteAccount.socialHelp' => 'आपका खाता Google या Apple से साइन इन करता है: वही बिना पासवर्ड के हटाने की पुष्टि करता है।',
+			'members.deleteAccount.socialMissing' => 'Google या Apple से फिर से साइन इन करें, फिर दोबारा कोशिश करें।',
 			'admin.title' => 'टीम और भूमिकाएँ',
 			'admin.intro' => 'एडमिन वह सब संभालते हैं जो पूरा समुदाय साझा करता है। भूमिका सिर्फ़ सुपरएडमिन ही दे या वापस ले सकते हैं।',
 			'admin.roleUser' => 'सदस्य',
@@ -4953,6 +5051,8 @@ extension on TranslationsHi {
 			'ministry.lives.founder.story.4' => 'वे हर दिन लंबे घंटे परमेश्वर के साथ अकेले बिताते थे, उन्होंने प्रार्थना के अनेक अभियानों, घेरों और प्रार्थना-यात्राओं की अगुवाई की, और अक्सर उपवास किया। उन्होंने प्रार्थना, उपवास, पवित्रता, शिष्यता और मिशन पर 150 से अधिक पुस्तकें लिखीं, जो अनेक भाषाओं में पढ़ी जाती हैं।',
 			'ministry.lives.founder.story.5' => 'अपनी पत्नी प्रिस्का ज़ेई फ़ोमुम के साथ, जो बच्चों के बीच सेवा करती थीं, उनके सात बच्चे हुए, जो सभी सुसमाचार के कार्य में लगे हैं। दोनों ने सादगी से जीवन बिताया ताकि अपनी आय का सबसे बड़ा भाग सुसमाचार के लिए दे सकें।',
 			'ministry.lives.founder.story.6' => '14 मार्च 2009 को वे प्रभु की उपस्थिति में चले गए और 21 मार्च को याउंडे में दफ़नाए गए। उनके द्वारा स्थापित कार्य राष्ट्रों में आगे बढ़ रहा है।',
+			_ => null,
+		} ?? switch (path) {
 			'ministry.lives.leader.name' => 'थियोडोर एंडोसेह',
 			'ministry.lives.leader.line' => '2009 से CMFI के अगुवे',
 			'ministry.lives.leader.facts.0' => 'स्थापित कलीसियाएँ',
@@ -4990,8 +5090,6 @@ extension on TranslationsHi {
 			'prayer.today.week' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n, zero: 'इस हफ़्ते कोई प्रार्थना-समय नहीं', one: 'इस हफ़्ते ${n} प्रार्थना-समय', other: 'इस हफ़्ते ${n} प्रार्थना-समय', ), 
 			'prayer.routine.title' => 'आज की तुम्हारी दिनचर्या',
 			'prayer.routine.count' => ({required Object done}) => '4 में से ${done}',
-			_ => null,
-		} ?? switch (path) {
 			'prayer.routine.days' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n, one: '7 में से ${n} दिन', other: '7 में से ${n} दिन', ), 
 			'prayer.routine.week' => ({required Object time}) => 'इस सप्ताह ${time}',
 			'prayer.routine.done' => 'हो गई · 15 मिनट',
@@ -5467,6 +5565,8 @@ extension on TranslationsHi {
 			'seekFirst.appsNone' => 'कोई ऐप नहीं चुना',
 			'seekFirst.appCount' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n, one: '${n} ऐप', other: '${n} ऐप', ), 
 			'seekFirst.categoryCount' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n, one: '${n} श्रेणी', other: '${n} श्रेणियाँ', ), 
+			_ => null,
+		} ?? switch (path) {
 			'seekFirst.siteCount' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n, one: '${n} साइट', other: '${n} साइटें', ), 
 			'seekFirst.start' => 'से बंद',
 			'seekFirst.pauses' => '5 मिनट के विराम',
@@ -5504,8 +5604,6 @@ extension on TranslationsHi {
 			'documents.sizeKb' => ({required Object n}) => '${n} KB',
 			'documents.sizeMb' => ({required Object n}) => '${n} MB',
 			'documents.pdf' => 'PDF',
-			_ => null,
-		} ?? switch (path) {
 			'documents.word' => 'Word',
 			'documents.open' => 'दस्तावेज़ खोलें',
 			'documents.download' => 'डाउनलोड करें',
@@ -5981,6 +6079,8 @@ extension on TranslationsHi {
 			'reading.chartMonth' => ({required num n, required Object month}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n, one: '${month}: ${n} किताब', other: '${month}: ${n} किताबें', ), 
 			'reading.pick' => 'तुम कौन सी किताब पढ़ रहे हो?',
 			'reading.mine' => 'मेरी चालू किताबें',
+			_ => null,
+		} ?? switch (path) {
 			'reading.choose' => 'पढ़ी गई किताब चुनें',
 			'reading.change' => 'बदलें',
 			'reading.current' => 'चालू किताब',
@@ -6012,6 +6112,10 @@ extension on TranslationsHi {
 			'reading.removeText' => ({required Object title}) => '“${title}” तुम्हारे पठन से हट जाएगी। तुम्हारी रिपोर्टों के पन्ने बने रहेंगे।',
 			'reading.booksFinished' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n, zero: 'इस अवधि में कोई किताब पूरी नहीं हुई', one: 'इस अवधि में ${n} किताब पूरी हुई', other: 'इस अवधि में ${n} किताबें पूरी हुईं', ), 
 			'reading.bookOf' => ({required Object title}) => 'किताब: ${title}',
+			'reading.edit' => 'बदलें',
+			'reading.editTitle' => 'किताब बदलें',
+			'reading.save' => 'सहेजें',
+			'reading.saved' => 'किताब बदली गई।',
 			_ => null,
 		};
 	}

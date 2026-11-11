@@ -25,6 +25,7 @@ import 'package:cmfi_connect/src/core/services/premium_store.dart';
 import 'package:cmfi_connect/src/core/services/push_messaging.dart';
 import 'package:cmfi_connect/src/core/services/screen_awake.dart';
 import 'package:cmfi_connect/src/core/services/share_service.dart';
+import 'package:cmfi_connect/src/core/services/social_sign_in.dart';
 import 'package:cmfi_connect/src/core/services/store_review.dart';
 import 'package:cmfi_connect/src/core/services/voice_reader.dart';
 import 'package:cmfi_connect/src/core/session/account.dart';
@@ -132,6 +133,9 @@ class FakeAuthApi implements AuthApi {
   /// Phone number of the last [login].
   String? loggedInWith;
 
+  /// The password typed is a temporary one an admin gave.
+  bool temporary = false;
+
   /// The (token, password) of each [resetPassword].
   final resets = <(String, String)>[];
   AppException? resetError;
@@ -166,6 +170,7 @@ class FakeAuthApi implements AuthApi {
         firstName: 'Boris',
         lastName: 'Kamtou',
         phoneNumber: phoneNumber,
+        mustChangePassword: temporary,
       ),
       accessToken: 'test-token',
     );
@@ -180,6 +185,72 @@ class FakeAuthApi implements AuthApi {
       throw error;
     }
     resets.add((firebaseToken, password));
+  }
+
+  /// The Firebase tokens of the accounts already made with Google or Apple.
+  final socialAccounts = <String>{};
+
+  /// The numbers that already have an account (409 PHONE_TAKEN), and the
+  /// password that links them.
+  final takenPhones = <String>{};
+  String linkPassword = 'Secret123';
+
+  /// The (token, number) of each account made with Google or Apple.
+  final socialRegistered = <(String, String)>[];
+  final socialLinks = <(String, String)>[];
+
+  LoginResponse _social(String phone) => LoginResponse(
+    account: Account(
+      firstName: 'Paul',
+      lastName: 'Ngono',
+      phoneNumber: phone,
+      hasPassword: false,
+    ),
+    accessToken: 'social-token',
+  );
+
+  @override
+  Future<LoginResponse> socialSignIn(String firebaseToken) async {
+    if (!socialAccounts.contains(firebaseToken)) {
+      throw const ApiException(status: 404, code: 'NO_ACCOUNT', message: '');
+    }
+    return _social('+237690000009');
+  }
+
+  @override
+  Future<LoginResponse> socialRegister({
+    required String firebaseToken,
+    required String firstName,
+    required String lastName,
+    required String phoneNumber,
+  }) async {
+    if (takenPhones.contains(phoneNumber)) {
+      throw const ApiException(status: 409, code: 'PHONE_TAKEN', message: '');
+    }
+    socialAccounts.add(firebaseToken);
+    socialRegistered.add((firebaseToken, phoneNumber));
+    return _social(phoneNumber);
+  }
+
+  @override
+  Future<LoginResponse> socialLink({
+    required String firebaseToken,
+    required String phoneNumber,
+    required String password,
+  }) async {
+    if (password != linkPassword) {
+      throw const ApiException(
+        status: 401,
+        code: 'INVALID_CREDENTIALS',
+        message: '',
+      );
+    }
+    socialAccounts.add(firebaseToken);
+    socialLinks.add((firebaseToken, phoneNumber));
+    return LoginResponse(
+      account: Account(firstName: 'Boris', phoneNumber: phoneNumber),
+      accessToken: 'linked-token',
+    );
   }
 }
 
@@ -436,6 +507,28 @@ class FakeActivitiesApi implements ActivitiesApi {
   Future<void> archive(int id) async =>
       activities.removeWhere((activity) => activity.id == id);
 
+  @override
+  Future<ActivityType> update(
+    int id, {
+    required String code,
+    required String label,
+    String? quantityUnit,
+  }) async {
+    if (activities.any((other) => other.code == code && other.id != id)) {
+      throw const ApiException(
+        status: 409,
+        code: 'CONFLICT',
+        message: 'conflict',
+      );
+    }
+    final index = activities.indexWhere((activity) => activity.id == id);
+    return activities[index] = activities[index].copyWith(
+      code: code,
+      label: label,
+      quantityUnit: quantityUnit,
+    );
+  }
+
   /// The goals sent, in order.
   final goalsSent = <(int, ReportGoal?)>[];
 
@@ -494,6 +587,28 @@ class FakeReadingApi implements ReadingApi {
       startedOn: DateTime.now(),
     );
     bookList.insert(0, book);
+    return book;
+  }
+
+  /// The books edited, in order.
+  final edits = <ReadingBook>[];
+
+  @override
+  Future<ReadingBook> update(
+    int id, {
+    required String title,
+    required String author,
+    required int totalPages,
+    required String coverUrl,
+  }) async {
+    final at = bookList.indexWhere((book) => book.id == id);
+    final book = bookList[at] = bookList[at].copyWith(
+      title: title.trim(),
+      author: author.trim(),
+      totalPages: totalPages,
+      coverUrl: coverUrl,
+    );
+    edits.add(book);
     return book;
   }
 
@@ -1085,10 +1200,15 @@ class FakeMembersApi implements MembersApi {
   /// The server refuses: the account is the last superadmin's.
   bool lastSuperadmin = false;
 
+  /// The Google or Apple token [deleteAccount] accepts (no password).
+  String socialToken = 'firebase:google';
+
   @override
-  Future<void> deleteAccount({required String password}) async {
-    deletions.add(password);
-    if (password != this.password) {
+  Future<void> deleteAccount({String? password, String? firebaseToken}) async {
+    deletions.add(password ?? firebaseToken ?? '');
+    if (firebaseToken == null
+        ? password != this.password
+        : firebaseToken != socialToken) {
       throw const ApiException(
         status: 401,
         code: 'INVALID_CREDENTIALS',
@@ -1102,6 +1222,29 @@ class FakeMembersApi implements MembersApi {
         message: '',
       );
     }
+  }
+
+  /// The passwords chosen with [changePassword].
+  final passwordChanges = <(String?, String)>[];
+
+  @override
+  Future<Account> changePassword({
+    String? currentPassword,
+    required String password,
+  }) async {
+    if (account.hasPassword && currentPassword != this.password) {
+      throw const ApiException(
+        status: 401,
+        code: 'INVALID_CREDENTIALS',
+        message: '',
+      );
+    }
+    passwordChanges.add((currentPassword, password));
+    this.password = password;
+    return account = account.copyWith(
+      mustChangePassword: false,
+      hasPassword: true,
+    );
   }
 
   @override
@@ -3441,4 +3584,34 @@ class FakePaymentsApi implements PaymentsApi {
     status: PaymentStatus.failed,
     failureCode: code,
   );
+}
+
+/// Google and Apple without Firebase: [next] is the account the next sign-in
+/// chooses (null: the member closes the window).
+class FakeSocialSignIn implements SocialSignIn {
+  FakeSocialSignIn({this.next, this.current});
+
+  SocialAccount? next;
+  SocialSignInException? error;
+
+  /// The token of the account signed in on the phone ([currentToken]).
+  String? current;
+  var signedOut = 0;
+
+  @override
+  bool offers(SocialProvider provider) => true;
+
+  @override
+  Future<SocialAccount?> signIn(SocialProvider provider) async {
+    if (error case final error?) {
+      throw error;
+    }
+    return next;
+  }
+
+  @override
+  Future<String?> currentToken() async => current;
+
+  @override
+  Future<void> signOut() async => signedOut++;
 }

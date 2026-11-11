@@ -221,6 +221,8 @@ class _Translations$auth$ar extends Translations$auth$fr {
 	@override late final _Translations$auth$church$ar church = _Translations$auth$church$ar._(_root);
 	@override late final _Translations$auth$forgot$ar forgot = _Translations$auth$forgot$ar._(_root);
 	@override late final _Translations$auth$biometric$ar biometric = _Translations$auth$biometric$ar._(_root);
+	@override late final _Translations$auth$social$ar social = _Translations$auth$social$ar._(_root);
+	@override late final _Translations$auth$change$ar change = _Translations$auth$change$ar._(_root);
 }
 
 // Path: countries
@@ -459,6 +461,7 @@ class _Translations$items$ar extends Translations$items$fr {
 	@override String get goalRemove => 'إزالة';
 	@override String get goalSaved => 'تم حفظ الهدف';
 	@override String get goalRemoved => 'تمت إزالة الهدف';
+	@override String edit({required Object code}) => 'تعديل ${code}';
 }
 
 // Path: newItem
@@ -488,6 +491,10 @@ class _Translations$newItem$ar extends Translations$newItem$fr {
 	@override String get codeTaken => 'هذا الرمز مستخدم بالفعل، لعنصر أساسي أو لأحد عناصرك (حتى المؤرشفة).';
 	@override String get codeHint => 'EVG';
 	@override String get labelHint => 'التبشير';
+	@override String get editTitle => 'تعديل العنصر';
+	@override String get save => 'حفظ';
+	@override String saved({required Object code}) => 'تم تعديل ${code}';
+	@override String get measuresKept => 'ما يقيسه لا يتغير: الأيام المملوءة سابقًا تحتفظ به.';
 }
 
 // Path: more
@@ -2299,6 +2306,10 @@ class _Translations$reading$ar extends Translations$reading$fr {
 		other: '${n} كتاب منتهٍ في هذه الفترة',
 	);
 	@override String bookOf({required Object title}) => 'الكتاب: ${title}';
+	@override String get edit => 'تعديل';
+	@override String get editTitle => 'تعديل الكتاب';
+	@override String get save => 'حفظ';
+	@override String get saved => 'تم تعديل الكتاب.';
 }
 
 // Path: welcome.seek
@@ -2446,6 +2457,10 @@ class _Translations$auth$forgot$ar extends Translations$auth$forgot$fr {
 	@override String get tooManyRequests => 'محاولات كثيرة. حاول مجددًا بعد قليل.';
 	@override String get unavailable => 'إعادة التعيين غير متاحة حاليًا.';
 	@override String get noAccount => 'لا يوجد حساب بهذا الرقم.';
+	@override String get adminText => 'اطلب من أحد مسؤولي جماعتك أو من فريق CMFI Connect كلمة مرور مؤقتة.';
+	@override String get adminNext => 'سجّل الدخول برقمك وبهذه الكلمة: سيطلب منك التطبيق فورًا اختيار كلمة جديدة.';
+	@override String get writeTeam => 'راسل الفريق';
+	@override String get mailSubject => 'نسيت كلمة المرور';
 }
 
 // Path: auth.biometric
@@ -2473,6 +2488,50 @@ class _Translations$auth$biometric$ar extends Translations$auth$biometric$fr {
 	@override String get passwordLabel => 'كلمة المرور';
 	@override String get confirm => 'تأكيد';
 	@override String enabled({required Object method}) => 'تم تفعيل الدخول باستخدام ${method}';
+}
+
+// Path: auth.social
+class _Translations$auth$social$ar extends Translations$auth$social$fr {
+	_Translations$auth$social$ar._(TranslationsAr root) : this._root = root, super.internal(root);
+
+	final TranslationsAr _root; // ignore: unused_field
+
+	// Translations
+	@override String get or => 'أو';
+	@override String continueWith({required Object provider}) => 'المتابعة باستخدام ${provider}';
+	@override String get unavailable => 'تسجيل الدخول باستخدام Google أو Apple غير متاح حاليًا.';
+	@override String get failed => 'لم يكتمل تسجيل الدخول. حاول مرة أخرى.';
+	@override String get expired => 'انتهت صلاحية تسجيل الدخول. ابدأ من جديد باستخدام Google أو Apple.';
+	@override String get completeTitle => 'خطوة أخيرة';
+	@override String completeText({required Object provider}) => 'تم التحقق من حسابك في ${provider}. أدخل اسمك ورقمك: هكذا يجدك مجتمعك.';
+	@override String get create => 'إنشاء حسابي';
+	@override String get phoneTakenTitle => 'لهذا الرقم حساب بالفعل';
+	@override String phoneTakenText({required Object provider}) => 'أدخل كلمة مروره لربطه: ستتمكن بعدها من الدخول باستخدام ${provider} أو بكلمة مرورك.';
+	@override String get link => 'الربط وتسجيل الدخول';
+	@override String identityTaken({required Object provider}) => 'حساب ${provider} هذا مرتبط بالفعل بحساب آخر في CMFI Connect.';
+}
+
+// Path: auth.change
+class _Translations$auth$change$ar extends Translations$auth$change$fr {
+	_Translations$auth$change$ar._(TranslationsAr root) : this._root = root, super.internal(root);
+
+	final TranslationsAr _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'كلمة المرور';
+	@override String get text => 'اختر كلمة مرور جديدة لحسابك.';
+	@override String get setTitle => 'إنشاء كلمة مرور';
+	@override String get setText => 'يسجّل حسابك الدخول باستخدام Google أو Apple. تتيح لك كلمة المرور أيضًا الدخول برقمك.';
+	@override String get forcedTitle => 'اختر كلمة مرورك';
+	@override String get forcedText => 'سجّلت الدخول بكلمة مرور مؤقتة. اختر كلمة جديدة لا يعرفها غيرك للمتابعة.';
+	@override String get current => 'كلمة المرور الحالية';
+	@override String get newPassword => 'كلمة المرور الجديدة';
+	@override String get again => 'أكّد كلمة المرور الجديدة';
+	@override String get mismatch => 'كلمتا المرور غير متطابقتين.';
+	@override String get same => 'اختر كلمة مرور مختلفة عن الحالية.';
+	@override String get submit => 'حفظ';
+	@override String get done => 'تم حفظ كلمة المرور.';
+	@override String get wrongCurrent => 'كلمة المرور الحالية غير صحيحة.';
 }
 
 // Path: reports.tabs
@@ -2780,6 +2839,8 @@ class _Translations$members$deleteAccount$ar extends Translations$members$delete
 	@override String get done => 'تم حذف حسابك. باركك الله!';
 	@override String get wrongPassword => 'كلمة المرور غير صحيحة.';
 	@override String get lastSuperadmin => 'أنت المشرف العام الوحيد: امنح هذا الدور لشخص آخر قبل حذف حسابك.';
+	@override String get socialHelp => 'يسجّل حسابك الدخول باستخدام Google أو Apple: فهو يؤكد الحذف دون كلمة مرور.';
+	@override String get socialMissing => 'سجّل الدخول من جديد باستخدام Google أو Apple، ثم حاول مرة أخرى.';
 }
 
 // Path: hymns.tabs
@@ -4514,6 +4575,10 @@ extension on TranslationsAr {
 			'auth.forgot.tooManyRequests' => 'محاولات كثيرة. حاول مجددًا بعد قليل.',
 			'auth.forgot.unavailable' => 'إعادة التعيين غير متاحة حاليًا.',
 			'auth.forgot.noAccount' => 'لا يوجد حساب بهذا الرقم.',
+			'auth.forgot.adminText' => 'اطلب من أحد مسؤولي جماعتك أو من فريق CMFI Connect كلمة مرور مؤقتة.',
+			'auth.forgot.adminNext' => 'سجّل الدخول برقمك وبهذه الكلمة: سيطلب منك التطبيق فورًا اختيار كلمة جديدة.',
+			'auth.forgot.writeTeam' => 'راسل الفريق',
+			'auth.forgot.mailSubject' => 'نسيت كلمة المرور',
 			'auth.biometric.faceId' => 'Face ID',
 			'auth.biometric.touchId' => 'Touch ID',
 			'auth.biometric.fingerprint' => 'بصمتك',
@@ -4532,6 +4597,32 @@ extension on TranslationsAr {
 			'auth.biometric.passwordLabel' => 'كلمة المرور',
 			'auth.biometric.confirm' => 'تأكيد',
 			'auth.biometric.enabled' => ({required Object method}) => 'تم تفعيل الدخول باستخدام ${method}',
+			'auth.social.or' => 'أو',
+			'auth.social.continueWith' => ({required Object provider}) => 'المتابعة باستخدام ${provider}',
+			'auth.social.unavailable' => 'تسجيل الدخول باستخدام Google أو Apple غير متاح حاليًا.',
+			'auth.social.failed' => 'لم يكتمل تسجيل الدخول. حاول مرة أخرى.',
+			'auth.social.expired' => 'انتهت صلاحية تسجيل الدخول. ابدأ من جديد باستخدام Google أو Apple.',
+			'auth.social.completeTitle' => 'خطوة أخيرة',
+			'auth.social.completeText' => ({required Object provider}) => 'تم التحقق من حسابك في ${provider}. أدخل اسمك ورقمك: هكذا يجدك مجتمعك.',
+			'auth.social.create' => 'إنشاء حسابي',
+			'auth.social.phoneTakenTitle' => 'لهذا الرقم حساب بالفعل',
+			'auth.social.phoneTakenText' => ({required Object provider}) => 'أدخل كلمة مروره لربطه: ستتمكن بعدها من الدخول باستخدام ${provider} أو بكلمة مرورك.',
+			'auth.social.link' => 'الربط وتسجيل الدخول',
+			'auth.social.identityTaken' => ({required Object provider}) => 'حساب ${provider} هذا مرتبط بالفعل بحساب آخر في CMFI Connect.',
+			'auth.change.title' => 'كلمة المرور',
+			'auth.change.text' => 'اختر كلمة مرور جديدة لحسابك.',
+			'auth.change.setTitle' => 'إنشاء كلمة مرور',
+			'auth.change.setText' => 'يسجّل حسابك الدخول باستخدام Google أو Apple. تتيح لك كلمة المرور أيضًا الدخول برقمك.',
+			'auth.change.forcedTitle' => 'اختر كلمة مرورك',
+			'auth.change.forcedText' => 'سجّلت الدخول بكلمة مرور مؤقتة. اختر كلمة جديدة لا يعرفها غيرك للمتابعة.',
+			'auth.change.current' => 'كلمة المرور الحالية',
+			'auth.change.newPassword' => 'كلمة المرور الجديدة',
+			'auth.change.again' => 'أكّد كلمة المرور الجديدة',
+			'auth.change.mismatch' => 'كلمتا المرور غير متطابقتين.',
+			'auth.change.same' => 'اختر كلمة مرور مختلفة عن الحالية.',
+			'auth.change.submit' => 'حفظ',
+			'auth.change.done' => 'تم حفظ كلمة المرور.',
+			'auth.change.wrongCurrent' => 'كلمة المرور الحالية غير صحيحة.',
 			'countries.dialCodeTitle' => 'رمز الدولة',
 			'countries.title' => 'بلدك',
 			'countries.search' => 'ابحث عن دولة أو رمز',
@@ -4783,6 +4874,7 @@ extension on TranslationsAr {
 			'items.goalRemove' => 'إزالة',
 			'items.goalSaved' => 'تم حفظ الهدف',
 			'items.goalRemoved' => 'تمت إزالة الهدف',
+			'items.edit' => ({required Object code}) => 'تعديل ${code}',
 			'newItem.title' => 'عنصر جديد',
 			'newItem.code' => 'الرمز',
 			'newItem.label' => 'الاسم',
@@ -4803,6 +4895,10 @@ extension on TranslationsAr {
 			'newItem.codeTaken' => 'هذا الرمز مستخدم بالفعل، لعنصر أساسي أو لأحد عناصرك (حتى المؤرشفة).',
 			'newItem.codeHint' => 'EVG',
 			'newItem.labelHint' => 'التبشير',
+			'newItem.editTitle' => 'تعديل العنصر',
+			'newItem.save' => 'حفظ',
+			'newItem.saved' => ({required Object code}) => 'تم تعديل ${code}',
+			'newItem.measuresKept' => 'ما يقيسه لا يتغير: الأيام المملوءة سابقًا تحتفظ به.',
 			'more.title' => 'المزيد',
 			'more.editProfile' => 'تعديل ملفي الشخصي',
 			'more.community' => 'المجتمع',
@@ -4855,6 +4951,8 @@ extension on TranslationsAr {
 			'authorities.form.searchLabel' => 'اسم المستخدم',
 			'authorities.form.searchHint' => 'اسم المستخدم',
 			'authorities.form.search' => 'بحث',
+			_ => null,
+		} ?? switch (path) {
 			'authorities.form.searchHelp' => 'إذا كان الشخص يستخدم CMFI Connect، فابحث عنه باسم المستخدم. سيتلقّى طلبك، وستظهر بيانات الاتصال الخاصة به بعد أن يقبله.',
 			'authorities.form.notFound' => ({required Object username}) => 'لا أحد يحمل اسم المستخدم @${username}.',
 			'authorities.form.invite' => 'ادعُه للانضمام إلى CMFI Connect',
@@ -4890,8 +4988,6 @@ extension on TranslationsAr {
 			'authorities.madeMaker' => ({required Object name}) => '${name} هو الآن صانع التلاميذ الخاص بك.',
 			'members.username' => 'اسم المستخدم',
 			'members.usernameHint' => 'firstname.lastname',
-			_ => null,
-		} ?? switch (path) {
 			'members.usernameHelp' => 'بهذا الاسم سيجدك الأعضاء الآخرون.',
 			'members.usernameChecking' => 'جارٍ التحقق…',
 			'members.usernameFree' => ({required Object username}) => '@${username} متاح',
@@ -4914,6 +5010,8 @@ extension on TranslationsAr {
 			'members.deleteAccount.done' => 'تم حذف حسابك. باركك الله!',
 			'members.deleteAccount.wrongPassword' => 'كلمة المرور غير صحيحة.',
 			'members.deleteAccount.lastSuperadmin' => 'أنت المشرف العام الوحيد: امنح هذا الدور لشخص آخر قبل حذف حسابك.',
+			'members.deleteAccount.socialHelp' => 'يسجّل حسابك الدخول باستخدام Google أو Apple: فهو يؤكد الحذف دون كلمة مرور.',
+			'members.deleteAccount.socialMissing' => 'سجّل الدخول من جديد باستخدام Google أو Apple، ثم حاول مرة أخرى.',
 			'admin.title' => 'الفريق والأدوار',
 			'admin.intro' => 'يدير المشرفون ما يتشاركه المجتمع بأكمله. وحده المشرف العام يمنح دورًا أو يسحبه.',
 			'admin.roleUser' => 'عضو',
@@ -5367,6 +5465,8 @@ extension on TranslationsAr {
 			'ministry.lives.founder.story.4' => 'كان يقضي كل يوم ساعات طويلة وحده مع الله، وقاد كثيرًا من حملات الصلاة وحصاراتها ومسيراتها، وصام كثيرًا. كتب أكثر من 150 كتابًا عن الصلاة والصوم والقداسة والتلمذة والإرسالية، تُقرأ بلغات كثيرة.',
 			'ministry.lives.founder.story.5' => 'رُزق مع زوجته بريسكا زي فومم، خادمة الرب بين الأطفال، بسبعة أبناء كلهم منخرطون في عمل الإنجيل. وعاشا معًا ببساطة ليقدّما للإنجيل الجزء الأكبر من دخلهما.',
 			'ministry.lives.founder.story.6' => 'انتقل إلى محضر الرب في 14 مارس 2009، ودُفن في ياوندي في 21 مارس. والعمل الذي أسّسه مستمر بين الأمم.',
+			_ => null,
+		} ?? switch (path) {
 			'ministry.lives.leader.name' => 'ثيودور أندوسيه',
 			'ministry.lives.leader.line' => 'قائد CMFI منذ 2009',
 			'ministry.lives.leader.facts.0' => 'كنيسة غرسها',
@@ -5404,8 +5504,6 @@ extension on TranslationsAr {
 			'prayer.today.week' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n, zero: 'لا خلوات هذا الأسبوع', one: 'خلوة واحدة هذا الأسبوع', two: 'خلوتان هذا الأسبوع', few: '${n} خلوات هذا الأسبوع', many: '${n} خلوة هذا الأسبوع', other: '${n} خلوة هذا الأسبوع', ), 
 			'prayer.routine.title' => 'روتينك اليومي',
 			'prayer.routine.count' => ({required Object done}) => '${done} من 4',
-			_ => null,
-		} ?? switch (path) {
 			'prayer.routine.days' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n, zero: '${n} يوم من 7', one: 'يوم واحد من 7', two: 'يومان من 7', few: '${n} أيام من 7', many: '${n} يومًا من 7', other: '${n} يوم من 7', ), 
 			'prayer.routine.week' => ({required Object time}) => '${time} هذا الأسبوع',
 			'prayer.routine.done' => 'تمّت · 15 دقيقة',
@@ -5881,6 +5979,8 @@ extension on TranslationsAr {
 			'seekFirst.appsNone' => 'لم تختر أي تطبيق',
 			'seekFirst.appCount' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n, zero: '${n} تطبيق', one: 'تطبيق واحد', two: 'تطبيقان', few: '${n} تطبيقات', many: '${n} تطبيقًا', other: '${n} تطبيق', ), 
 			'seekFirst.categoryCount' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n, zero: '${n} فئة', one: 'فئة واحدة', two: 'فئتان', few: '${n} فئات', many: '${n} فئة', other: '${n} فئة', ), 
+			_ => null,
+		} ?? switch (path) {
 			'seekFirst.siteCount' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n, zero: '${n} موقع', one: 'موقع واحد', two: 'موقعان', few: '${n} مواقع', many: '${n} موقعًا', other: '${n} موقع', ), 
 			'seekFirst.start' => 'مغلقة ابتداءً من',
 			'seekFirst.pauses' => 'استراحات من 5 دقائق',
@@ -5918,8 +6018,6 @@ extension on TranslationsAr {
 			'documents.sizeKb' => ({required Object n}) => '${n} ك.ب',
 			'documents.sizeMb' => ({required Object n}) => '${n} م.ب',
 			'documents.pdf' => 'PDF',
-			_ => null,
-		} ?? switch (path) {
 			'documents.word' => 'Word',
 			'documents.open' => 'افتح المستند',
 			'documents.download' => 'تنزيل',
@@ -6395,6 +6493,8 @@ extension on TranslationsAr {
 			'reading.chartMonth' => ({required num n, required Object month}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n, zero: '${month}: ${n} كتاب', one: '${month}: كتاب واحد', two: '${month}: كتابان', few: '${month}: ${n} كتب', many: '${month}: ${n} كتابًا', other: '${month}: ${n} كتاب', ), 
 			'reading.pick' => 'أي كتاب تقرأ؟',
 			'reading.mine' => 'كتبي قيد القراءة',
+			_ => null,
+		} ?? switch (path) {
 			'reading.choose' => 'اختر الكتاب المقروء',
 			'reading.change' => 'تغيير',
 			'reading.current' => 'الكتاب الحالي',
@@ -6426,6 +6526,10 @@ extension on TranslationsAr {
 			'reading.removeText' => ({required Object title}) => 'سيُزال «${title}» من قراءاتك. تبقى صفحات تقاريرك.',
 			'reading.booksFinished' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n, zero: 'لم يُنهَ أي كتاب في هذه الفترة', one: 'كتاب واحد منتهٍ في هذه الفترة', two: 'كتابان منتهيان في هذه الفترة', few: '${n} كتب منتهية في هذه الفترة', many: '${n} كتابًا منتهيًا في هذه الفترة', other: '${n} كتاب منتهٍ في هذه الفترة', ), 
 			'reading.bookOf' => ({required Object title}) => 'الكتاب: ${title}',
+			'reading.edit' => 'تعديل',
+			'reading.editTitle' => 'تعديل الكتاب',
+			'reading.save' => 'حفظ',
+			'reading.saved' => 'تم تعديل الكتاب.',
 			_ => null,
 		};
 	}

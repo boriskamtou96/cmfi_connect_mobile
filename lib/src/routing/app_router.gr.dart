@@ -203,6 +203,72 @@ class BlockedMembersRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
+/// [ChangePasswordScreen]
+class ChangePasswordRoute extends PageRouteInfo<ChangePasswordRouteArgs> {
+  ChangePasswordRoute({
+    bool forced = false,
+    String? currentPassword,
+    Key? key,
+    List<PageRouteInfo>? children,
+  }) : super(
+         ChangePasswordRoute.name,
+         args: ChangePasswordRouteArgs(
+           forced: forced,
+           currentPassword: currentPassword,
+           key: key,
+         ),
+         initialChildren: children,
+       );
+
+  static const String name = 'ChangePasswordRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      final args = data.argsAs<ChangePasswordRouteArgs>(
+        orElse: () => const ChangePasswordRouteArgs(),
+      );
+      return ChangePasswordScreen(
+        forced: args.forced,
+        currentPassword: args.currentPassword,
+        key: args.key,
+      );
+    },
+  );
+}
+
+class ChangePasswordRouteArgs {
+  const ChangePasswordRouteArgs({
+    this.forced = false,
+    this.currentPassword,
+    this.key,
+  });
+
+  final bool forced;
+
+  final String? currentPassword;
+
+  final Key? key;
+
+  @override
+  String toString() {
+    return 'ChangePasswordRouteArgs{forced: $forced, currentPassword: $currentPassword, key: $key}';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (other is! ChangePasswordRouteArgs) return false;
+    return forced == other.forced &&
+        currentPassword == other.currentPassword &&
+        key == other.key;
+  }
+
+  @override
+  int get hashCode => forced.hashCode ^ currentPassword.hashCode ^ key.hashCode;
+}
+
+/// generated route for
 /// [ChurchFormScreen]
 class ChurchFormRoute extends PageRouteInfo<ChurchFormRouteArgs> {
   ChurchFormRoute({
@@ -249,6 +315,53 @@ class ChurchFormRouteArgs {
 
   @override
   int get hashCode => isEditing.hashCode ^ key.hashCode;
+}
+
+/// generated route for
+/// [CompleteProfileScreen]
+class CompleteProfileRoute extends PageRouteInfo<CompleteProfileRouteArgs> {
+  CompleteProfileRoute({
+    required SocialAccount account,
+    Key? key,
+    List<PageRouteInfo>? children,
+  }) : super(
+         CompleteProfileRoute.name,
+         args: CompleteProfileRouteArgs(account: account, key: key),
+         initialChildren: children,
+       );
+
+  static const String name = 'CompleteProfileRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      final args = data.argsAs<CompleteProfileRouteArgs>();
+      return CompleteProfileScreen(account: args.account, key: args.key);
+    },
+  );
+}
+
+class CompleteProfileRouteArgs {
+  const CompleteProfileRouteArgs({required this.account, this.key});
+
+  final SocialAccount account;
+
+  final Key? key;
+
+  @override
+  String toString() {
+    return 'CompleteProfileRouteArgs{account: $account, key: $key}';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (other is! CompleteProfileRouteArgs) return false;
+    return account == other.account && key == other.key;
+  }
+
+  @override
+  int get hashCode => account.hashCode ^ key.hashCode;
 }
 
 /// generated route for
@@ -1291,18 +1404,48 @@ class NationsRoute extends PageRouteInfo<void> {
 
 /// generated route for
 /// [NewItemScreen]
-class NewItemRoute extends PageRouteInfo<void> {
-  const NewItemRoute({List<PageRouteInfo>? children})
-    : super(NewItemRoute.name, initialChildren: children);
+class NewItemRoute extends PageRouteInfo<NewItemRouteArgs> {
+  NewItemRoute({ActivityType? item, Key? key, List<PageRouteInfo>? children})
+    : super(
+        NewItemRoute.name,
+        args: NewItemRouteArgs(item: item, key: key),
+        initialChildren: children,
+      );
 
   static const String name = 'NewItemRoute';
 
   static PageInfo page = PageInfo(
     name,
     builder: (data) {
-      return const NewItemScreen();
+      final args = data.argsAs<NewItemRouteArgs>(
+        orElse: () => const NewItemRouteArgs(),
+      );
+      return NewItemScreen(item: args.item, key: args.key);
     },
   );
+}
+
+class NewItemRouteArgs {
+  const NewItemRouteArgs({this.item, this.key});
+
+  final ActivityType? item;
+
+  final Key? key;
+
+  @override
+  String toString() {
+    return 'NewItemRouteArgs{item: $item, key: $key}';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (other is! NewItemRouteArgs) return false;
+    return item == other.item && key == other.key;
+  }
+
+  @override
+  int get hashCode => item.hashCode ^ key.hashCode;
 }
 
 /// generated route for

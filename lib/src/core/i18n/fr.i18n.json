@@ -163,7 +163,11 @@
       "expired": "Le code a expiré. Demandes-en un nouveau.",
       "tooManyRequests": "Trop de tentatives. Réessaie dans un moment.",
       "unavailable": "La réinitialisation n'est pas disponible pour l'instant.",
-      "noAccount": "Aucun compte n'utilise ce numéro."
+      "noAccount": "Aucun compte n'utilise ce numéro.",
+      "adminText": "Demande à un responsable de ton assemblée ou à l'équipe CMFI Connect de te donner un mot de passe provisoire.",
+      "adminNext": "Connecte-toi avec ton numéro et ce mot de passe : l'app te demandera aussitôt d'en choisir un nouveau.",
+      "writeTeam": "Écrire à l'équipe",
+      "mailSubject": "Mot de passe oublié"
     },
     "biometric": {
       "faceId": "Face ID",
@@ -184,6 +188,36 @@
       "passwordLabel": "Mot de passe",
       "confirm": "Valider",
       "enabled": "Connexion avec {method} activée"
+    },
+    "social": {
+      "or": "ou",
+      "continueWith": "Continuer avec {provider}",
+      "unavailable": "La connexion avec Google ou Apple n'est pas disponible pour l'instant.",
+      "failed": "La connexion n'a pas abouti. Réessaie.",
+      "expired": "La connexion a expiré. Recommence avec Google ou Apple.",
+      "completeTitle": "Plus qu'une étape",
+      "completeText": "Ton compte {provider} est vérifié. Indique ton nom et ton numéro : c'est ainsi que ta communauté te retrouve.",
+      "create": "Créer mon compte",
+      "phoneTakenTitle": "Ce numéro a déjà un compte",
+      "phoneTakenText": "Entre son mot de passe pour le relier : tu pourras ensuite te connecter avec {provider} ou avec ton mot de passe.",
+      "link": "Relier et me connecter",
+      "identityTaken": "Ce compte {provider} est déjà relié à un autre compte CMFI Connect."
+    },
+    "change": {
+      "title": "Mot de passe",
+      "text": "Choisis un nouveau mot de passe pour ton compte.",
+      "setTitle": "Créer un mot de passe",
+      "setText": "Ton compte se connecte avec Google ou Apple. Un mot de passe te permet aussi de te connecter avec ton numéro.",
+      "forcedTitle": "Choisis ton mot de passe",
+      "forcedText": "Tu t'es connecté avec un mot de passe provisoire. Choisis-en un nouveau, que toi seul connais, pour continuer.",
+      "current": "Mot de passe actuel",
+      "newPassword": "Nouveau mot de passe",
+      "again": "Confirme le nouveau mot de passe",
+      "mismatch": "Les deux mots de passe ne sont pas pareils.",
+      "same": "Choisis un mot de passe différent de l'actuel.",
+      "submit": "Enregistrer",
+      "done": "Mot de passe enregistré.",
+      "wrongCurrent": "Le mot de passe actuel n'est pas le bon."
     }
   },
   "countries": {
@@ -521,7 +555,8 @@
     "goalHint": "Ce que tu vises chaque jour. Il reste sur ton téléphone.",
     "goalRemove": "Retirer",
     "goalSaved": "Objectif enregistré",
-    "goalRemoved": "Objectif retiré"
+    "goalRemoved": "Objectif retiré",
+    "edit": "Modifier {code}"
   },
   "newItem": {
     "title": "Nouvel élément",
@@ -543,7 +578,11 @@
     "created": "{code} est créé.",
     "codeTaken": "Ce code est déjà utilisé, par un élément standard ou par l'un de tes éléments (même archivé).",
     "codeHint": "EVG",
-    "labelHint": "Évangélisation"
+    "labelHint": "Évangélisation",
+    "editTitle": "Modifier l'élément",
+    "save": "Enregistrer",
+    "saved": "{code} est modifié.",
+    "measuresKept": "Ce qu'il mesure ne change pas : les jours déjà remplis le gardent."
   },
   "more": {
     "title": "Plus",
@@ -673,7 +712,9 @@
       "confirm": "Supprimer définitivement",
       "done": "Ton compte a été supprimé. Que Dieu te bénisse !",
       "wrongPassword": "Mot de passe incorrect.",
-      "lastSuperadmin": "Tu es le seul superadmin : donne ce rôle à quelqu'un d'autre avant de supprimer ton compte."
+      "lastSuperadmin": "Tu es le seul superadmin : donne ce rôle à quelqu'un d'autre avant de supprimer ton compte.",
+      "socialHelp": "Ton compte se connecte avec Google ou Apple : il confirme la suppression, sans mot de passe.",
+      "socialMissing": "Reconnecte-toi avec Google ou Apple, puis réessaie."
     }
   },
   "admin": {
@@ -2753,6 +2794,10 @@
       "one": "{n} livre terminé sur la période",
       "other": "{n} livres terminés sur la période"
     },
-    "bookOf": "Livre : {title}"
+    "bookOf": "Livre : {title}",
+    "edit": "Modifier",
+    "editTitle": "Modifier le livre",
+    "save": "Enregistrer",
+    "saved": "Livre modifié."
   }
 }

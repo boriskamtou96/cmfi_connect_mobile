@@ -14,6 +14,8 @@ _Account _$AccountFromJson(Map<String, dynamic> json) => _Account(
   id: (json['id'] as num?)?.toInt() ?? 0,
   username: json['username'] as String? ?? '',
   role: json['role'] as String? ?? 'user',
+  mustChangePassword: json['must_change_password'] as bool? ?? false,
+  hasPassword: json['has_password'] as bool? ?? true,
 );
 
 Map<String, dynamic> _$AccountToJson(_Account instance) => <String, dynamic>{
@@ -24,4 +26,6 @@ Map<String, dynamic> _$AccountToJson(_Account instance) => <String, dynamic>{
   'id': instance.id,
   'username': instance.username,
   'role': instance.role,
+  'must_change_password': instance.mustChangePassword,
+  'has_password': instance.hasPassword,
 };

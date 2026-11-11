@@ -115,6 +115,10 @@ abstract final class AppIcons {
   static const languageTile = PhosphorIconsDuotone.translate;
   static const blockedTile = PhosphorIconsDuotone.prohibit;
   static const deleteAccountTile = PhosphorIconsDuotone.trash;
+  static const passwordTile = PhosphorIconsDuotone.key;
+  static const google = PhosphorIconsBold.googleLogo;
+  static const apple = PhosphorIconsFill.appleLogo;
+  static const forgotPassword = PhosphorIconsDuotone.lockKeyOpen;
   static const contactTile = PhosphorIconsDuotone.envelopeSimple;
   static const privacyTile = PhosphorIconsDuotone.lockSimple;
   static const termsTile = PhosphorIconsDuotone.fileText;

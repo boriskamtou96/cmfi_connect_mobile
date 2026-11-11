@@ -44,7 +44,25 @@ class SplashScreen extends HookConsumerWidget {
           return;
         }
 
+        // closed before choosing a new password after a temporary one
+        var mustChange = false;
+        if (status == SessionStatus.authenticated) {
+          try {
+            final account = await ref.read(signedInAccountProvider.future);
+            mustChange = account?.mustChangePassword ?? false;
+          } on Object catch (error) {
+            AppLog.info('account unreadable at launch: $error');
+          }
+        }
+        if (!context.mounted) {
+          return;
+        }
+        // the routes have no common type the compiler finds by itself
+        // ignore: omit_local_variable_types
         final PageRouteInfo next = switch (status) {
+          SessionStatus.authenticated when mustChange => ChangePasswordRoute(
+            forced: true,
+          ),
           SessionStatus.authenticated => const AppShellRoute(),
           _ => const WelcomeRoute(),
         };

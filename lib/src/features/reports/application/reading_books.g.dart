@@ -39,7 +39,7 @@ final class ReadingBooksProvider
   ReadingBooks create() => ReadingBooks();
 }
 
-String _$readingBooksHash() => r'5410ba155a62dc88625208d823e0458a197fd9c7';
+String _$readingBooksHash() => r'6702180cdd3adb8e0880a44801db71332f9e6fb1';
 
 /// Mes lectures: the member's books with their progress, those being read
 /// first. Read again after a report is saved (its pages move the progress).

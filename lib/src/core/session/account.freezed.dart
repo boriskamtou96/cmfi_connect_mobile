@@ -17,7 +17,11 @@ mixin _$Account {
 
  String get firstName; String get lastName; String get phoneNumber; String get email; int get id;/// The pseudo others find the user by ("" for a session older than pseudos).
  String get username;/// user, admin or superadmin.
- String get role;
+ String get role;/// Signed in with a temporary password an admin gave: the app asks for
+/// a new one before anything else.
+ bool get mustChangePassword;/// false for an account made with Google or Apple, until the member
+/// chooses a password.
+ bool get hasPassword;
 /// Create a copy of Account
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -30,16 +34,16 @@ $AccountCopyWith<Account> get copyWith => _$AccountCopyWithImpl<Account>(this as
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is Account&&(identical(other.firstName, firstName) || other.firstName == firstName)&&(identical(other.lastName, lastName) || other.lastName == lastName)&&(identical(other.phoneNumber, phoneNumber) || other.phoneNumber == phoneNumber)&&(identical(other.email, email) || other.email == email)&&(identical(other.id, id) || other.id == id)&&(identical(other.username, username) || other.username == username)&&(identical(other.role, role) || other.role == role));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is Account&&(identical(other.firstName, firstName) || other.firstName == firstName)&&(identical(other.lastName, lastName) || other.lastName == lastName)&&(identical(other.phoneNumber, phoneNumber) || other.phoneNumber == phoneNumber)&&(identical(other.email, email) || other.email == email)&&(identical(other.id, id) || other.id == id)&&(identical(other.username, username) || other.username == username)&&(identical(other.role, role) || other.role == role)&&(identical(other.mustChangePassword, mustChangePassword) || other.mustChangePassword == mustChangePassword)&&(identical(other.hasPassword, hasPassword) || other.hasPassword == hasPassword));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,firstName,lastName,phoneNumber,email,id,username,role);
+int get hashCode => Object.hash(runtimeType,firstName,lastName,phoneNumber,email,id,username,role,mustChangePassword,hasPassword);
 
 @override
 String toString() {
-  return 'Account(firstName: $firstName, lastName: $lastName, phoneNumber: $phoneNumber, email: $email, id: $id, username: $username, role: $role)';
+  return 'Account(firstName: $firstName, lastName: $lastName, phoneNumber: $phoneNumber, email: $email, id: $id, username: $username, role: $role, mustChangePassword: $mustChangePassword, hasPassword: $hasPassword)';
 }
 
 
@@ -50,7 +54,7 @@ abstract mixin class $AccountCopyWith<$Res>  {
   factory $AccountCopyWith(Account value, $Res Function(Account) _then) = _$AccountCopyWithImpl;
 @useResult
 $Res call({
- String firstName, String lastName, String phoneNumber, String email, int id, String username, String role
+ String firstName, String lastName, String phoneNumber, String email, int id, String username, String role, bool mustChangePassword, bool hasPassword
 });
 
 
@@ -67,7 +71,7 @@ class _$AccountCopyWithImpl<$Res>
 
 /// Create a copy of Account
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? firstName = null,Object? lastName = null,Object? phoneNumber = null,Object? email = null,Object? id = null,Object? username = null,Object? role = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? firstName = null,Object? lastName = null,Object? phoneNumber = null,Object? email = null,Object? id = null,Object? username = null,Object? role = null,Object? mustChangePassword = null,Object? hasPassword = null,}) {
   return _then(_self.copyWith(
 firstName: null == firstName ? _self.firstName : firstName // ignore: cast_nullable_to_non_nullable
 as String,lastName: null == lastName ? _self.lastName : lastName // ignore: cast_nullable_to_non_nullable
@@ -76,7 +80,9 @@ as String,email: null == email ? _self.email : email // ignore: cast_nullable_to
 as String,id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as int,username: null == username ? _self.username : username // ignore: cast_nullable_to_non_nullable
 as String,role: null == role ? _self.role : role // ignore: cast_nullable_to_non_nullable
-as String,
+as String,mustChangePassword: null == mustChangePassword ? _self.mustChangePassword : mustChangePassword // ignore: cast_nullable_to_non_nullable
+as bool,hasPassword: null == hasPassword ? _self.hasPassword : hasPassword // ignore: cast_nullable_to_non_nullable
+as bool,
   ));
 }
 
@@ -161,10 +167,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String firstName,  String lastName,  String phoneNumber,  String email,  int id,  String username,  String role)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String firstName,  String lastName,  String phoneNumber,  String email,  int id,  String username,  String role,  bool mustChangePassword,  bool hasPassword)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _Account() when $default != null:
-return $default(_that.firstName,_that.lastName,_that.phoneNumber,_that.email,_that.id,_that.username,_that.role);case _:
+return $default(_that.firstName,_that.lastName,_that.phoneNumber,_that.email,_that.id,_that.username,_that.role,_that.mustChangePassword,_that.hasPassword);case _:
   return orElse();
 
 }
@@ -182,10 +188,10 @@ return $default(_that.firstName,_that.lastName,_that.phoneNumber,_that.email,_th
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String firstName,  String lastName,  String phoneNumber,  String email,  int id,  String username,  String role)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String firstName,  String lastName,  String phoneNumber,  String email,  int id,  String username,  String role,  bool mustChangePassword,  bool hasPassword)  $default,) {final _that = this;
 switch (_that) {
 case _Account():
-return $default(_that.firstName,_that.lastName,_that.phoneNumber,_that.email,_that.id,_that.username,_that.role);case _:
+return $default(_that.firstName,_that.lastName,_that.phoneNumber,_that.email,_that.id,_that.username,_that.role,_that.mustChangePassword,_that.hasPassword);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -202,10 +208,10 @@ return $default(_that.firstName,_that.lastName,_that.phoneNumber,_that.email,_th
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String firstName,  String lastName,  String phoneNumber,  String email,  int id,  String username,  String role)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String firstName,  String lastName,  String phoneNumber,  String email,  int id,  String username,  String role,  bool mustChangePassword,  bool hasPassword)?  $default,) {final _that = this;
 switch (_that) {
 case _Account() when $default != null:
-return $default(_that.firstName,_that.lastName,_that.phoneNumber,_that.email,_that.id,_that.username,_that.role);case _:
+return $default(_that.firstName,_that.lastName,_that.phoneNumber,_that.email,_that.id,_that.username,_that.role,_that.mustChangePassword,_that.hasPassword);case _:
   return null;
 
 }
@@ -217,7 +223,7 @@ return $default(_that.firstName,_that.lastName,_that.phoneNumber,_that.email,_th
 @JsonSerializable()
 
 class _Account extends Account {
-  const _Account({required this.firstName, this.lastName = '', required this.phoneNumber, this.email = '', this.id = 0, this.username = '', this.role = 'user'}): super._();
+  const _Account({required this.firstName, this.lastName = '', required this.phoneNumber, this.email = '', this.id = 0, this.username = '', this.role = 'user', this.mustChangePassword = false, this.hasPassword = true}): super._();
   factory _Account.fromJson(Map<String, dynamic> json) => _$AccountFromJson(json);
 
 @override final  String firstName;
@@ -229,6 +235,12 @@ class _Account extends Account {
 @override@JsonKey() final  String username;
 /// user, admin or superadmin.
 @override@JsonKey() final  String role;
+/// Signed in with a temporary password an admin gave: the app asks for
+/// a new one before anything else.
+@override@JsonKey() final  bool mustChangePassword;
+/// false for an account made with Google or Apple, until the member
+/// chooses a password.
+@override@JsonKey() final  bool hasPassword;
 
 /// Create a copy of Account
 /// with the given fields replaced by the non-null parameter values.
@@ -243,16 +255,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Account&&(identical(other.firstName, firstName) || other.firstName == firstName)&&(identical(other.lastName, lastName) || other.lastName == lastName)&&(identical(other.phoneNumber, phoneNumber) || other.phoneNumber == phoneNumber)&&(identical(other.email, email) || other.email == email)&&(identical(other.id, id) || other.id == id)&&(identical(other.username, username) || other.username == username)&&(identical(other.role, role) || other.role == role));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Account&&(identical(other.firstName, firstName) || other.firstName == firstName)&&(identical(other.lastName, lastName) || other.lastName == lastName)&&(identical(other.phoneNumber, phoneNumber) || other.phoneNumber == phoneNumber)&&(identical(other.email, email) || other.email == email)&&(identical(other.id, id) || other.id == id)&&(identical(other.username, username) || other.username == username)&&(identical(other.role, role) || other.role == role)&&(identical(other.mustChangePassword, mustChangePassword) || other.mustChangePassword == mustChangePassword)&&(identical(other.hasPassword, hasPassword) || other.hasPassword == hasPassword));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,firstName,lastName,phoneNumber,email,id,username,role);
+int get hashCode => Object.hash(runtimeType,firstName,lastName,phoneNumber,email,id,username,role,mustChangePassword,hasPassword);
 
 @override
 String toString() {
-  return 'Account(firstName: $firstName, lastName: $lastName, phoneNumber: $phoneNumber, email: $email, id: $id, username: $username, role: $role)';
+  return 'Account(firstName: $firstName, lastName: $lastName, phoneNumber: $phoneNumber, email: $email, id: $id, username: $username, role: $role, mustChangePassword: $mustChangePassword, hasPassword: $hasPassword)';
 }
 
 
@@ -263,7 +275,7 @@ abstract mixin class _$AccountCopyWith<$Res> implements $AccountCopyWith<$Res> {
   factory _$AccountCopyWith(_Account value, $Res Function(_Account) _then) = __$AccountCopyWithImpl;
 @override @useResult
 $Res call({
- String firstName, String lastName, String phoneNumber, String email, int id, String username, String role
+ String firstName, String lastName, String phoneNumber, String email, int id, String username, String role, bool mustChangePassword, bool hasPassword
 });
 
 
@@ -280,7 +292,7 @@ class __$AccountCopyWithImpl<$Res>
 
 /// Create a copy of Account
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? firstName = null,Object? lastName = null,Object? phoneNumber = null,Object? email = null,Object? id = null,Object? username = null,Object? role = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? firstName = null,Object? lastName = null,Object? phoneNumber = null,Object? email = null,Object? id = null,Object? username = null,Object? role = null,Object? mustChangePassword = null,Object? hasPassword = null,}) {
   return _then(_Account(
 firstName: null == firstName ? _self.firstName : firstName // ignore: cast_nullable_to_non_nullable
 as String,lastName: null == lastName ? _self.lastName : lastName // ignore: cast_nullable_to_non_nullable
@@ -289,7 +301,9 @@ as String,email: null == email ? _self.email : email // ignore: cast_nullable_to
 as String,id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as int,username: null == username ? _self.username : username // ignore: cast_nullable_to_non_nullable
 as String,role: null == role ? _self.role : role // ignore: cast_nullable_to_non_nullable
-as String,
+as String,mustChangePassword: null == mustChangePassword ? _self.mustChangePassword : mustChangePassword // ignore: cast_nullable_to_non_nullable
+as bool,hasPassword: null == hasPassword ? _self.hasPassword : hasPassword // ignore: cast_nullable_to_non_nullable
+as bool,
   ));
 }
 

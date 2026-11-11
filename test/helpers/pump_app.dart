@@ -23,6 +23,7 @@ import 'package:cmfi_connect/src/core/services/premium_store.dart';
 import 'package:cmfi_connect/src/core/services/push_messaging.dart';
 import 'package:cmfi_connect/src/core/services/screen_awake.dart';
 import 'package:cmfi_connect/src/core/services/share_service.dart';
+import 'package:cmfi_connect/src/core/services/social_sign_in.dart';
 import 'package:cmfi_connect/src/core/services/store_review.dart';
 import 'package:cmfi_connect/src/core/services/voice_reader.dart';
 import 'package:cmfi_connect/src/core/session/account.dart';
@@ -223,6 +224,7 @@ Future<TestApp> pumpApp(
   FakeSoulsStorage? soulsStorage,
   FakeSoulsApi? soulsApi,
   FakePhoneVerification? phoneVerification,
+  FakeSocialSignIn? socialSignIn,
   FakeStoreReview? storeReview,
   FakeAppShortcuts? shortcuts,
   FakeIncomingLinks? incomingLinks,
@@ -370,6 +372,10 @@ Future<TestApp> pumpApp(
       paymentsApiProvider.overrideWithValue(payments),
       phoneVerificationProvider.overrideWithValue(
         phoneVerification ?? FakePhoneVerification(),
+      ),
+      // no button unless a test gives one
+      socialSignInProvider.overrideWithValue(
+        socialSignIn ?? const NoSocialSignIn(),
       ),
     ],
   );

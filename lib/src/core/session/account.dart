@@ -19,6 +19,14 @@ abstract class Account with _$Account {
 
     /// user, admin or superadmin.
     @Default('user') String role,
+
+    /// Signed in with a temporary password an admin gave: the app asks for
+    /// a new one before anything else.
+    @Default(false) bool mustChangePassword,
+
+    /// false for an account made with Google or Apple, until the member
+    /// chooses a password.
+    @Default(true) bool hasPassword,
   }) = _Account;
 
   const Account._();

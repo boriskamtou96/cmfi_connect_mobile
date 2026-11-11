@@ -1,5 +1,6 @@
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
+import '../services/social_sign_in.dart';
 import '../storage/account_storage.dart';
 import '../storage/token_storage.dart';
 import 'account.dart';
@@ -31,6 +32,8 @@ class Session extends _$Session {
     _accountDeleted = accountDeleted;
     await ref.read(tokenStorageProvider).delete();
     await ref.read(accountStorageProvider).delete();
+    // the next one may choose another Google or Apple account
+    await ref.read(socialSignInProvider).signOut();
     state = const AsyncData(SessionStatus.unauthenticated);
   }
 

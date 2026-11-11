@@ -43,6 +43,27 @@ class ReadingApi {
     return ReadingBook.fromJson(response.content);
   });
 
+  /// Its title, author or pages corrected. [coverUrl] '' when the title or
+  /// the author changed: the server looks for the cover again.
+  Future<ReadingBook> update(
+    int id, {
+    required String title,
+    required String author,
+    required int totalPages,
+    required String coverUrl,
+  }) => apiCall(() async {
+    final response = await _dio.put<Map<String, dynamic>>(
+      '/reading/books/$id',
+      data: {
+        'title': title.trim(),
+        'author': author.trim(),
+        'total_pages': totalPages,
+        'cover_url': coverUrl,
+      },
+    );
+    return ReadingBook.fromJson(response.content);
+  });
+
   /// Finished (on [finishedOn], today by default), abandoned, or being read
   /// again.
   Future<ReadingBook> setStatus(

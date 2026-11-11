@@ -217,6 +217,8 @@ class _Translations$auth$de extends Translations$auth$fr {
 	@override late final _Translations$auth$church$de church = _Translations$auth$church$de._(_root);
 	@override late final _Translations$auth$forgot$de forgot = _Translations$auth$forgot$de._(_root);
 	@override late final _Translations$auth$biometric$de biometric = _Translations$auth$biometric$de._(_root);
+	@override late final _Translations$auth$social$de social = _Translations$auth$social$de._(_root);
+	@override late final _Translations$auth$change$de change = _Translations$auth$change$de._(_root);
 }
 
 // Path: countries
@@ -431,6 +433,7 @@ class _Translations$items$de extends Translations$items$fr {
 	@override String get goalRemove => 'Entfernen';
 	@override String get goalSaved => 'Ziel gespeichert';
 	@override String get goalRemoved => 'Ziel entfernt';
+	@override String edit({required Object code}) => '${code} bearbeiten';
 }
 
 // Path: newItem
@@ -460,6 +463,10 @@ class _Translations$newItem$de extends Translations$newItem$fr {
 	@override String get codeTaken => 'Dieser Code wird schon verwendet, von einem Standardelement oder von einem deiner Elemente (auch archiviert).';
 	@override String get codeHint => 'EVG';
 	@override String get labelHint => 'Evangelisation';
+	@override String get editTitle => 'Eintrag bearbeiten';
+	@override String get save => 'Speichern';
+	@override String saved({required Object code}) => '${code} geändert';
+	@override String get measuresKept => 'Was er misst, bleibt gleich: Die schon ausgefüllten Tage behalten es.';
 }
 
 // Path: more
@@ -2027,6 +2034,10 @@ class _Translations$reading$de extends Translations$reading$fr {
 		other: '${n} Bücher im Zeitraum beendet',
 	);
 	@override String bookOf({required Object title}) => 'Buch: ${title}';
+	@override String get edit => 'Bearbeiten';
+	@override String get editTitle => 'Buch bearbeiten';
+	@override String get save => 'Speichern';
+	@override String get saved => 'Buch geändert.';
 }
 
 // Path: welcome.seek
@@ -2174,6 +2185,10 @@ class _Translations$auth$forgot$de extends Translations$auth$forgot$fr {
 	@override String get tooManyRequests => 'Zu viele Versuche. Versuche es später erneut.';
 	@override String get unavailable => 'Das Zurücksetzen ist gerade nicht möglich.';
 	@override String get noAccount => 'Kein Konto verwendet diese Nummer.';
+	@override String get adminText => 'Bitte einen Verantwortlichen deiner Gemeinde oder das CMFI-Connect-Team um ein vorläufiges Passwort.';
+	@override String get adminNext => 'Melde dich mit deiner Nummer und diesem Passwort an: Die App bittet dich sofort, ein neues zu wählen.';
+	@override String get writeTeam => 'Dem Team schreiben';
+	@override String get mailSubject => 'Passwort vergessen';
 }
 
 // Path: auth.biometric
@@ -2201,6 +2216,50 @@ class _Translations$auth$biometric$de extends Translations$auth$biometric$fr {
 	@override String get passwordLabel => 'Passwort';
 	@override String get confirm => 'Bestätigen';
 	@override String enabled({required Object method}) => 'Anmeldung mit ${method} ist eingeschaltet';
+}
+
+// Path: auth.social
+class _Translations$auth$social$de extends Translations$auth$social$fr {
+	_Translations$auth$social$de._(TranslationsDe root) : this._root = root, super.internal(root);
+
+	final TranslationsDe _root; // ignore: unused_field
+
+	// Translations
+	@override String get or => 'oder';
+	@override String continueWith({required Object provider}) => 'Weiter mit ${provider}';
+	@override String get unavailable => 'Die Anmeldung mit Google oder Apple ist gerade nicht verfügbar.';
+	@override String get failed => 'Die Anmeldung hat nicht geklappt. Versuche es erneut.';
+	@override String get expired => 'Die Anmeldung ist abgelaufen. Beginne erneut mit Google oder Apple.';
+	@override String get completeTitle => 'Nur noch ein Schritt';
+	@override String completeText({required Object provider}) => 'Dein ${provider}-Konto ist bestätigt. Gib deinen Namen und deine Nummer an: So findet dich deine Gemeinschaft.';
+	@override String get create => 'Mein Konto erstellen';
+	@override String get phoneTakenTitle => 'Diese Nummer hat schon ein Konto';
+	@override String phoneTakenText({required Object provider}) => 'Gib sein Passwort ein, um es zu verknüpfen: Danach meldest du dich mit ${provider} oder mit deinem Passwort an.';
+	@override String get link => 'Verknüpfen und anmelden';
+	@override String identityTaken({required Object provider}) => 'Dieses ${provider}-Konto ist schon mit einem anderen CMFI-Connect-Konto verknüpft.';
+}
+
+// Path: auth.change
+class _Translations$auth$change$de extends Translations$auth$change$fr {
+	_Translations$auth$change$de._(TranslationsDe root) : this._root = root, super.internal(root);
+
+	final TranslationsDe _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Passwort';
+	@override String get text => 'Wähle ein neues Passwort für dein Konto.';
+	@override String get setTitle => 'Passwort erstellen';
+	@override String get setText => 'Dein Konto meldet sich mit Google oder Apple an. Mit einem Passwort kannst du dich auch mit deiner Nummer anmelden.';
+	@override String get forcedTitle => 'Wähle dein Passwort';
+	@override String get forcedText => 'Du hast dich mit einem vorläufigen Passwort angemeldet. Wähle ein neues, das nur du kennst, um fortzufahren.';
+	@override String get current => 'Aktuelles Passwort';
+	@override String get newPassword => 'Neues Passwort';
+	@override String get again => 'Neues Passwort bestätigen';
+	@override String get mismatch => 'Die beiden Passwörter stimmen nicht überein.';
+	@override String get same => 'Wähle ein anderes Passwort als das aktuelle.';
+	@override String get submit => 'Speichern';
+	@override String get done => 'Passwort gespeichert.';
+	@override String get wrongCurrent => 'Das aktuelle Passwort ist nicht richtig.';
 }
 
 // Path: reports.tabs
@@ -2488,6 +2547,8 @@ class _Translations$members$deleteAccount$de extends Translations$members$delete
 	@override String get done => 'Dein Konto wurde gelöscht. Gott segne dich!';
 	@override String get wrongPassword => 'Falsches Passwort.';
 	@override String get lastSuperadmin => 'Du bist der einzige Superadmin: Gib diese Rolle jemand anderem, bevor du dein Konto löschst.';
+	@override String get socialHelp => 'Dein Konto meldet sich mit Google oder Apple an: Es bestätigt das Löschen, ohne Passwort.';
+	@override String get socialMissing => 'Melde dich erneut mit Google oder Apple an und versuche es dann noch einmal.';
 }
 
 // Path: hymns.tabs
@@ -4101,6 +4162,10 @@ extension on TranslationsDe {
 			'auth.forgot.tooManyRequests' => 'Zu viele Versuche. Versuche es später erneut.',
 			'auth.forgot.unavailable' => 'Das Zurücksetzen ist gerade nicht möglich.',
 			'auth.forgot.noAccount' => 'Kein Konto verwendet diese Nummer.',
+			'auth.forgot.adminText' => 'Bitte einen Verantwortlichen deiner Gemeinde oder das CMFI-Connect-Team um ein vorläufiges Passwort.',
+			'auth.forgot.adminNext' => 'Melde dich mit deiner Nummer und diesem Passwort an: Die App bittet dich sofort, ein neues zu wählen.',
+			'auth.forgot.writeTeam' => 'Dem Team schreiben',
+			'auth.forgot.mailSubject' => 'Passwort vergessen',
 			'auth.biometric.faceId' => 'Face ID',
 			'auth.biometric.touchId' => 'Touch ID',
 			'auth.biometric.fingerprint' => 'deinem Fingerabdruck',
@@ -4119,6 +4184,32 @@ extension on TranslationsDe {
 			'auth.biometric.passwordLabel' => 'Passwort',
 			'auth.biometric.confirm' => 'Bestätigen',
 			'auth.biometric.enabled' => ({required Object method}) => 'Anmeldung mit ${method} ist eingeschaltet',
+			'auth.social.or' => 'oder',
+			'auth.social.continueWith' => ({required Object provider}) => 'Weiter mit ${provider}',
+			'auth.social.unavailable' => 'Die Anmeldung mit Google oder Apple ist gerade nicht verfügbar.',
+			'auth.social.failed' => 'Die Anmeldung hat nicht geklappt. Versuche es erneut.',
+			'auth.social.expired' => 'Die Anmeldung ist abgelaufen. Beginne erneut mit Google oder Apple.',
+			'auth.social.completeTitle' => 'Nur noch ein Schritt',
+			'auth.social.completeText' => ({required Object provider}) => 'Dein ${provider}-Konto ist bestätigt. Gib deinen Namen und deine Nummer an: So findet dich deine Gemeinschaft.',
+			'auth.social.create' => 'Mein Konto erstellen',
+			'auth.social.phoneTakenTitle' => 'Diese Nummer hat schon ein Konto',
+			'auth.social.phoneTakenText' => ({required Object provider}) => 'Gib sein Passwort ein, um es zu verknüpfen: Danach meldest du dich mit ${provider} oder mit deinem Passwort an.',
+			'auth.social.link' => 'Verknüpfen und anmelden',
+			'auth.social.identityTaken' => ({required Object provider}) => 'Dieses ${provider}-Konto ist schon mit einem anderen CMFI-Connect-Konto verknüpft.',
+			'auth.change.title' => 'Passwort',
+			'auth.change.text' => 'Wähle ein neues Passwort für dein Konto.',
+			'auth.change.setTitle' => 'Passwort erstellen',
+			'auth.change.setText' => 'Dein Konto meldet sich mit Google oder Apple an. Mit einem Passwort kannst du dich auch mit deiner Nummer anmelden.',
+			'auth.change.forcedTitle' => 'Wähle dein Passwort',
+			'auth.change.forcedText' => 'Du hast dich mit einem vorläufigen Passwort angemeldet. Wähle ein neues, das nur du kennst, um fortzufahren.',
+			'auth.change.current' => 'Aktuelles Passwort',
+			'auth.change.newPassword' => 'Neues Passwort',
+			'auth.change.again' => 'Neues Passwort bestätigen',
+			'auth.change.mismatch' => 'Die beiden Passwörter stimmen nicht überein.',
+			'auth.change.same' => 'Wähle ein anderes Passwort als das aktuelle.',
+			'auth.change.submit' => 'Speichern',
+			'auth.change.done' => 'Passwort gespeichert.',
+			'auth.change.wrongCurrent' => 'Das aktuelle Passwort ist nicht richtig.',
 			'countries.dialCodeTitle' => 'Ländervorwahl',
 			'countries.title' => 'Dein Land',
 			'countries.search' => 'Land oder Vorwahl suchen',
@@ -4370,6 +4461,7 @@ extension on TranslationsDe {
 			'items.goalRemove' => 'Entfernen',
 			'items.goalSaved' => 'Ziel gespeichert',
 			'items.goalRemoved' => 'Ziel entfernt',
+			'items.edit' => ({required Object code}) => '${code} bearbeiten',
 			'newItem.title' => 'Neues Element',
 			'newItem.code' => 'Code',
 			'newItem.label' => 'Name',
@@ -4390,6 +4482,10 @@ extension on TranslationsDe {
 			'newItem.codeTaken' => 'Dieser Code wird schon verwendet, von einem Standardelement oder von einem deiner Elemente (auch archiviert).',
 			'newItem.codeHint' => 'EVG',
 			'newItem.labelHint' => 'Evangelisation',
+			'newItem.editTitle' => 'Eintrag bearbeiten',
+			'newItem.save' => 'Speichern',
+			'newItem.saved' => ({required Object code}) => '${code} geändert',
+			'newItem.measuresKept' => 'Was er misst, bleibt gleich: Die schon ausgefüllten Tage behalten es.',
 			'more.title' => 'Mehr',
 			'more.editProfile' => 'Profil bearbeiten',
 			'more.community' => 'Gemeinschaft',
@@ -4442,6 +4538,8 @@ extension on TranslationsDe {
 			'authorities.form.searchLabel' => 'Benutzername',
 			'authorities.form.searchHint' => 'benutzername',
 			'authorities.form.search' => 'Suchen',
+			_ => null,
+		} ?? switch (path) {
 			'authorities.form.searchHelp' => 'Wenn die Person CMFI Connect nutzt, suche sie über ihren Benutzernamen. Sie erhält deine Anfrage, und ihre Kontaktdaten erscheinen, sobald sie angenommen hat.',
 			'authorities.form.notFound' => ({required Object username}) => 'Niemand hat den Benutzernamen @${username}.',
 			'authorities.form.invite' => 'Zu CMFI Connect einladen',
@@ -4477,8 +4575,6 @@ extension on TranslationsDe {
 			'authorities.madeMaker' => ({required Object name}) => '${name} ist jetzt dein Jüngermacher.',
 			'members.username' => 'Benutzername',
 			'members.usernameHint' => 'vorname.nachname',
-			_ => null,
-		} ?? switch (path) {
 			'members.usernameHelp' => 'So finden dich die anderen Mitglieder.',
 			'members.usernameChecking' => 'Wird geprüft …',
 			'members.usernameFree' => ({required Object username}) => '@${username} ist verfügbar',
@@ -4501,6 +4597,8 @@ extension on TranslationsDe {
 			'members.deleteAccount.done' => 'Dein Konto wurde gelöscht. Gott segne dich!',
 			'members.deleteAccount.wrongPassword' => 'Falsches Passwort.',
 			'members.deleteAccount.lastSuperadmin' => 'Du bist der einzige Superadmin: Gib diese Rolle jemand anderem, bevor du dein Konto löschst.',
+			'members.deleteAccount.socialHelp' => 'Dein Konto meldet sich mit Google oder Apple an: Es bestätigt das Löschen, ohne Passwort.',
+			'members.deleteAccount.socialMissing' => 'Melde dich erneut mit Google oder Apple an und versuche es dann noch einmal.',
 			'admin.title' => 'Team und Rollen',
 			'admin.intro' => 'Admins verwalten, was die ganze Gemeinschaft teilt. Nur ein Superadmin kann Rollen vergeben oder entziehen.',
 			'admin.roleUser' => 'Mitglied',
@@ -4954,6 +5052,8 @@ extension on TranslationsDe {
 			'ministry.lives.founder.story.4' => 'Er verbrachte täglich lange Stunden allein mit Gott, leitete viele Gebetskreuzzüge, Gebetsbelagerungen und Gebetsmärsche und fastete oft. Er schrieb über 150 Bücher über Gebet, Fasten, Heiligkeit, Jüngerschaft und Mission, die in vielen Sprachen gelesen werden.',
 			'ministry.lives.founder.story.5' => 'Mit seiner Frau Prisca Zei Fomum, die unter Kindern diente, hatte er sieben Kinder, die alle im Werk des Evangeliums stehen. Gemeinsam lebten sie einfach, um den größten Teil ihres Einkommens für das Evangelium zu geben.',
 			'ministry.lives.founder.story.6' => 'Am 14. März 2009 ging er heim zum Herrn und wurde am 21. März in Yaoundé beigesetzt. Das Werk, das er gegründet hat, geht unter den Nationen weiter.',
+			_ => null,
+		} ?? switch (path) {
 			'ministry.lives.leader.name' => 'Theodore Andoseh',
 			'ministry.lives.leader.line' => 'Leiter der CMFI seit 2009',
 			'ministry.lives.leader.facts.0' => 'gegründete Gemeinden',
@@ -4991,8 +5091,6 @@ extension on TranslationsDe {
 			'prayer.today.week' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('de'))(n, zero: 'Diese Woche noch keine Gebetszeit', one: '${n} Gebetszeit diese Woche', other: '${n} Gebetszeiten diese Woche', ), 
 			'prayer.routine.title' => 'Deine tägliche Routine',
 			'prayer.routine.count' => ({required Object done}) => '${done} von 4',
-			_ => null,
-		} ?? switch (path) {
 			'prayer.routine.days' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('de'))(n, one: '${n} Tag von 7', other: '${n} Tage von 7', ), 
 			'prayer.routine.week' => ({required Object time}) => '${time} diese Woche',
 			'prayer.routine.done' => 'Erledigt · 15 Min.',
@@ -5468,6 +5566,8 @@ extension on TranslationsDe {
 			'seekFirst.appsNone' => 'Keine App gewählt',
 			'seekFirst.appCount' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('de'))(n, one: '${n} App', other: '${n} Apps', ), 
 			'seekFirst.categoryCount' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('de'))(n, one: '${n} Kategorie', other: '${n} Kategorien', ), 
+			_ => null,
+		} ?? switch (path) {
 			'seekFirst.siteCount' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('de'))(n, one: '${n} Website', other: '${n} Websites', ), 
 			'seekFirst.start' => 'Geschlossen ab',
 			'seekFirst.pauses' => '5-Minuten-Pausen',
@@ -5505,8 +5605,6 @@ extension on TranslationsDe {
 			'documents.sizeKb' => ({required Object n}) => '${n} KB',
 			'documents.sizeMb' => ({required Object n}) => '${n} MB',
 			'documents.pdf' => 'PDF',
-			_ => null,
-		} ?? switch (path) {
 			'documents.word' => 'Word',
 			'documents.open' => 'Das Dokument öffnen',
 			'documents.download' => 'Herunterladen',
@@ -5982,6 +6080,8 @@ extension on TranslationsDe {
 			'reading.chartMonth' => ({required num n, required Object month}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('de'))(n, one: '${month}: ${n} Buch', other: '${month}: ${n} Bücher', ), 
 			'reading.pick' => 'Welches Buch liest du?',
 			'reading.mine' => 'Meine Bücher in Arbeit',
+			_ => null,
+		} ?? switch (path) {
 			'reading.choose' => 'Gelesenes Buch wählen',
 			'reading.change' => 'Ändern',
 			'reading.current' => 'Aktuelles Buch',
@@ -6013,6 +6113,10 @@ extension on TranslationsDe {
 			'reading.removeText' => ({required Object title}) => '„${title}“ verlässt deine Lektüre. Die Seiten deiner Berichte bleiben.',
 			'reading.booksFinished' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('de'))(n, zero: 'Kein Buch im Zeitraum beendet', one: '${n} Buch im Zeitraum beendet', other: '${n} Bücher im Zeitraum beendet', ), 
 			'reading.bookOf' => ({required Object title}) => 'Buch: ${title}',
+			'reading.edit' => 'Bearbeiten',
+			'reading.editTitle' => 'Buch bearbeiten',
+			'reading.save' => 'Speichern',
+			'reading.saved' => 'Buch geändert.',
 			_ => null,
 		};
 	}

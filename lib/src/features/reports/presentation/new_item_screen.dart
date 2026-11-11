@@ -19,27 +19,34 @@ import '../../../core/widgets/labeled_field.dart';
 import '../../../core/widgets/section_card.dart';
 import '../../../core/widgets/sub_page.dart';
 import '../application/new_item_controller.dart';
+import '../domain/activity_type.dart';
 import '../domain/measure_format.dart';
 import 'widgets/measure_labels.dart';
 
-/// Creates a personal item: code, name, and what it measures.
+/// Creates a personal item: code, name, and what it measures. With [item]:
+/// renames it (code, name, unit); what it measures stays, the days already
+/// filled in keep it.
 @RoutePage()
 class NewItemScreen extends HookConsumerWidget {
-  const NewItemScreen({super.key});
+  const NewItemScreen({this.item, super.key});
+
+  final ActivityType? item;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final t = context.t;
     final scheme = Theme.of(context).colorScheme;
     final tones = AppTones.of(context);
-    final codeController = useTextEditingController();
-    final labelController = useTextEditingController();
-    final unitController = useTextEditingController();
+    final item = this.item;
+    final editing = item != null;
+    final codeController = useTextEditingController(text: item?.code);
+    final labelController = useTextEditingController(text: item?.label);
+    final unitController = useTextEditingController(text: item?.quantityUnit);
     useListenable(codeController);
     useListenable(labelController);
     useListenable(unitController);
-    final tracksQuantity = useState(true);
-    final tracksDuration = useState(false);
+    final tracksQuantity = useState(item?.tracksQuantity ?? true);
+    final tracksDuration = useState(item?.tracksDuration ?? false);
     final state = ref.watch(newItemControllerProvider);
     // a refused request pops up at the top of the screen
     ref.listen(newItemControllerProvider, (_, next) {
@@ -59,6 +66,16 @@ class NewItemScreen extends HookConsumerWidget {
     Future<void> submit() async {
       FocusScope.of(context).unfocus();
       final toast = ref.read(toasterProvider).of(context);
+      if (item != null) {
+        final renamed = await ref
+            .read(newItemControllerProvider.notifier)
+            .rename(item, code: code, label: label, unit: unitController.text);
+        if (renamed != null && context.mounted) {
+          toast.success(t.newItem.saved(code: renamed.code));
+          await context.router.maybePop();
+        }
+        return;
+      }
       final created = await ref
           .read(newItemControllerProvider.notifier)
           .submit(
@@ -90,12 +107,13 @@ class NewItemScreen extends HookConsumerWidget {
           style: TextStyle(fontSize: 13, color: scheme.onSurfaceVariant),
         ),
         value: value.value,
-        onChanged: (enabled) => value.value = enabled,
+        // the days already filled in keep what it measures
+        onChanged: editing ? null : (enabled) => value.value = enabled,
       ),
     );
 
     return SubPage(
-      title: t.newItem.title,
+      title: editing ? t.newItem.editTitle : t.newItem.title,
       bottom: Container(
         decoration: BoxDecoration(
           color: scheme.surface,
@@ -108,7 +126,7 @@ class NewItemScreen extends HookConsumerWidget {
           AppSpacing.md,
         ),
         child: AppButton(
-          label: t.newItem.submit,
+          label: editing ? t.newItem.save : t.newItem.submit,
           isLoading: state.isLoading,
           onPressed: canCreate ? submit : null,
         ),
@@ -242,6 +260,20 @@ class NewItemScreen extends HookConsumerWidget {
                   subtitle: t.newItem.durationHint,
                   value: tracksDuration,
                 ),
+                if (editing)
+                  Padding(
+                    padding: const EdgeInsets.only(
+                      right: AppSpacing.sm,
+                      bottom: AppSpacing.md,
+                    ),
+                    child: Text(
+                      t.newItem.measuresKept,
+                      style: TextStyle(
+                        fontSize: 12,
+                        color: scheme.onSurfaceVariant,
+                      ),
+                    ),
+                  ),
               ],
             ),
           ),

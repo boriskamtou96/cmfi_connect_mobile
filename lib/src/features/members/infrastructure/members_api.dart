@@ -55,10 +55,29 @@ class MembersApi {
     return Account.fromJson(response.content['user'] as Map<String, dynamic>);
   });
 
-  /// Deletes the account and everything that is the user's, for good.
-  /// 401 INVALID_CREDENTIALS for a wrong password, 409 LAST_SUPERADMIN.
-  Future<void> deleteAccount({required String password}) => apiCall(() async {
-    await _dio.delete<void>('/users/me', data: {'password': password});
+  /// Deletes the account and everything that is the user's, for good, with
+  /// its [password], or the [firebaseToken] of its Google or Apple account
+  /// (an account without password). 401 INVALID_CREDENTIALS, 409
+  /// LAST_SUPERADMIN.
+  Future<void> deleteAccount({String? password, String? firebaseToken}) =>
+      apiCall(() async {
+        await _dio.delete<void>(
+          '/users/me',
+          data: {'password': ?password, 'firebase_token': ?firebaseToken},
+        );
+      });
+
+  /// The member chooses their password; [currentPassword] is not needed
+  /// for an account without one. 401 INVALID_CREDENTIALS for a wrong one.
+  Future<Account> changePassword({
+    String? currentPassword,
+    required String password,
+  }) => apiCall(() async {
+    final response = await _dio.put<Map<String, dynamic>>(
+      '/users/me/password',
+      data: {'current_password': ?currentPassword, 'password': password},
+    );
+    return Account.fromJson(response.content['user'] as Map<String, dynamic>);
   });
 }
 

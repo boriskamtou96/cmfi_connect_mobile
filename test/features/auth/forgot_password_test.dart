@@ -23,11 +23,15 @@ void main() {
     await tester.pumpAndSettle();
   }
 
-  testWidgets('the link stays hidden on the login screen', (tester) async {
+  testWidgets('the link asks the team, not an SMS', (tester) async {
     await pumpApp(tester);
     await tester.tap(find.text("J'ai déjà un compte"));
     await tester.pumpAndSettle();
-    expect(find.text('Mot de passe oublié ?'), findsNothing);
+    // no SMS (it costs): the link explains how to get a temporary password
+    await tester.tap(find.text('Mot de passe oublié ?'));
+    await tester.pumpAndSettle();
+    expect(find.text("Écrire à l'équipe"), findsOneWidget);
+    expect(find.text('1 / 3'), findsNothing);
   });
 
   Future<void> tapButton(WidgetTester tester, String label) async {

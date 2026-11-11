@@ -4,7 +4,10 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
+import '../core/services/social_sign_in.dart';
 import '../features/admin/presentation/admin_screen.dart';
+import '../features/auth/presentation/change_password_screen.dart';
+import '../features/auth/presentation/complete_profile_screen.dart';
 import '../features/auth/presentation/forgot_password_screen.dart';
 import '../features/auth/presentation/login_screen.dart';
 import '../features/auth/presentation/register_screen.dart';
@@ -60,6 +63,7 @@ import '../features/premium/presentation/premium_screen.dart';
 import '../features/profile/presentation/church_form_screen.dart';
 import '../features/profile/presentation/photo_crop_screen.dart';
 import '../features/profile/presentation/profile_screen.dart';
+import '../features/reports/domain/activity_type.dart';
 import '../features/reports/presentation/export_screen.dart';
 import '../features/reports/presentation/items_screen.dart';
 import '../features/reports/presentation/new_item_screen.dart';
@@ -115,6 +119,13 @@ class AppRouter extends RootStackRouter {
     AutoRoute(path: '/login', page: LoginRoute.page),
     AutoRoute(path: '/register', page: RegisterRoute.page),
     AutoRoute(path: '/forgot-password', page: ForgotPasswordRoute.page),
+    // the first sign-in with Google or Apple: the number and the name
+    AutoRoute(path: '/social/complete', page: CompleteProfileRoute.page),
+    AutoRoute(
+      path: '/password',
+      page: ChangePasswordRoute.page,
+      guards: [authGuard],
+    ),
     CustomRoute(
       path: '/church',
       page: ChurchFormRoute.page,

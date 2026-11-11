@@ -12,8 +12,16 @@ class PasswordField extends HookWidget {
     this.isNewPassword = false,
     this.helper,
     this.onSubmitted,
+    this.label,
+    this.validator,
     super.key,
   });
+
+  /// "Mot de passe" by default.
+  final String? label;
+
+  /// Checked after the length (a confirmation that must match).
+  final String? Function(String value)? validator;
 
   final TextEditingController controller;
 
@@ -28,7 +36,7 @@ class PasswordField extends HookWidget {
     final obscure = useState(true);
 
     return LabeledField(
-      label: t.auth.password,
+      label: label ?? t.auth.password,
       helper: helper,
       child: TextFormField(
         controller: controller,
@@ -52,7 +60,10 @@ class PasswordField extends HookWidget {
           if ((value ?? '').isEmpty) {
             return t.validation.required;
           }
-          return value!.length < 6 ? t.validation.passwordTooShort : null;
+          if (value!.length < 6) {
+            return t.validation.passwordTooShort;
+          }
+          return validator?.call(value);
         },
       ),
     );

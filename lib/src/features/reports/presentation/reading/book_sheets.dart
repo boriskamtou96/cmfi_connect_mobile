@@ -1,16 +1,141 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../../core/i18n/strings.g.dart';
+import '../../../../core/network/app_exception.dart';
+import '../../../../core/network/app_exception_message.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/theme/app_icons.dart';
 import '../../../../core/theme/app_spacing.dart';
 import '../../../../core/utils/date_format.dart';
+import '../../../../core/widgets/app_button.dart';
+import '../../../../core/widgets/app_toast.dart';
+import '../../../../core/widgets/labeled_field.dart';
 import '../../../../routing/app_router.dart';
 import '../../application/reading_books.dart';
 import '../../domain/reading_book.dart';
 import 'book_cover.dart';
+
+/// « Modifier »: the title, the author or the pages of [book] corrected
+/// (another title or author finds its cover again).
+Future<void> showEditBookSheet(BuildContext context, ReadingBook book) =>
+    showModalBottomSheet<void>(
+      context: context,
+      isScrollControlled: true,
+      useSafeArea: true,
+      builder: (context) => _EditBook(book: book),
+    );
+
+class _EditBook extends HookConsumerWidget {
+  const _EditBook({required this.book});
+
+  final ReadingBook book;
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final t = context.t.reading;
+    final formKey = useMemoized(GlobalKey<FormState>.new);
+    final title = useTextEditingController(text: book.title);
+    final author = useTextEditingController(text: book.author);
+    final pages = useTextEditingController(text: '${book.totalPages}');
+    final saving = useState(false);
+
+    Future<void> save() async {
+      if (!(formKey.currentState?.validate() ?? false) || saving.value) {
+        return;
+      }
+      final toast = ref.read(toasterProvider).of(context);
+      final texts = context.t;
+      saving.value = true;
+      try {
+        await ref
+            .read(readingBooksProvider.notifier)
+            .edit(
+              book,
+              title: title.text,
+              author: author.text,
+              totalPages: int.parse(pages.text),
+            );
+        toast.success(t.saved);
+        if (context.mounted) {
+          Navigator.of(context).pop();
+        }
+      } on AppException catch (error) {
+        toast.error(userMessageFor(error, texts));
+        if (context.mounted) {
+          saving.value = false;
+        }
+      }
+    }
+
+    return Padding(
+      padding: EdgeInsets.only(bottom: MediaQuery.viewInsetsOf(context).bottom),
+      child: SingleChildScrollView(
+        padding: const EdgeInsetsDirectional.fromSTEB(20, 0, 20, 20),
+        child: Form(
+          key: formKey,
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              Text(t.editTitle, style: Theme.of(context).textTheme.titleLarge),
+              const SizedBox(height: AppSpacing.lg),
+              LabeledField(
+                label: t.fieldTitle,
+                child: TextFormField(
+                  controller: title,
+                  maxLength: 300,
+                  textCapitalization: TextCapitalization.sentences,
+                  textInputAction: TextInputAction.next,
+                  decoration: const InputDecoration(counterText: ''),
+                  validator: (value) =>
+                      (value ?? '').trim().isEmpty ? t.titleRequired : null,
+                ),
+              ),
+              const SizedBox(height: AppSpacing.md),
+              LabeledField(
+                label: t.fieldAuthor,
+                child: TextFormField(
+                  controller: author,
+                  maxLength: 200,
+                  textCapitalization: TextCapitalization.words,
+                  textInputAction: TextInputAction.next,
+                  decoration: const InputDecoration(counterText: ''),
+                ),
+              ),
+              const SizedBox(height: AppSpacing.md),
+              LabeledField(
+                label: t.fieldPages,
+                child: TextFormField(
+                  controller: pages,
+                  keyboardType: TextInputType.number,
+                  inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+                  textInputAction: TextInputAction.done,
+                  onFieldSubmitted: (_) => save(),
+                  validator: (value) {
+                    final n = int.tryParse(value ?? '');
+                    return n == null || n < 1 || n > 20000
+                        ? t.pagesRequired
+                        : null;
+                  },
+                ),
+              ),
+              const SizedBox(height: AppSpacing.lg),
+              AppButton(
+                label: t.save,
+                isLoading: saving.value,
+                onPressed: save,
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
 
 /// « Quel livre lis-tu ? »: the books being read, [selectedId] ticked, and
 /// « Ajouter un livre ». The book chosen or added; null when closed.

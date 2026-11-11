@@ -8,15 +8,15 @@ part of 'new_item_controller.dart';
 
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint, type=warning
-/// Creates a personal report item.
+/// Creates a personal report item, or renames one.
 
 @ProviderFor(NewItemController)
 final newItemControllerProvider = NewItemControllerProvider._();
 
-/// Creates a personal report item.
+/// Creates a personal report item, or renames one.
 final class NewItemControllerProvider
     extends $AsyncNotifierProvider<NewItemController, void> {
-  /// Creates a personal report item.
+  /// Creates a personal report item, or renames one.
   NewItemControllerProvider._()
     : super(
         from: null,
@@ -36,9 +36,9 @@ final class NewItemControllerProvider
   NewItemController create() => NewItemController();
 }
 
-String _$newItemControllerHash() => r'9964a54c4f200343136f1dda94ec688e0650f99c';
+String _$newItemControllerHash() => r'1db9ba5635e21660c14e2dc7e243d61807a7f677';
 
-/// Creates a personal report item.
+/// Creates a personal report item, or renames one.
 
 abstract class _$NewItemController extends $AsyncNotifier<void> {
   FutureOr<void> build();

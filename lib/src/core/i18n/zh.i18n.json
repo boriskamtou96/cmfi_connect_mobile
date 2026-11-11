@@ -162,7 +162,11 @@
       "expired": "验证码已过期，请重新获取。",
       "tooManyRequests": "尝试次数过多，请稍后再试。",
       "unavailable": "暂时无法重置密码。",
-      "noAccount": "没有账号使用这个号码。"
+      "noAccount": "没有账号使用这个号码。",
+      "adminText": "请向你所在聚会的负责人或 CMFI Connect 团队索取临时密码。",
+      "adminNext": "用你的号码和这个密码登录：应用会立即让你设置新密码。",
+      "writeTeam": "写信给团队",
+      "mailSubject": "忘记密码"
     },
     "biometric": {
       "faceId": "面容 ID",
@@ -183,6 +187,36 @@
       "passwordLabel": "密码",
       "confirm": "确认",
       "enabled": "已开启{method}登录"
+    },
+    "social": {
+      "or": "或",
+      "continueWith": "使用 {provider} 继续",
+      "unavailable": "目前无法使用 Google 或 Apple 登录。",
+      "failed": "登录未成功，请重试。",
+      "expired": "登录已过期，请重新使用 Google 或 Apple 登录。",
+      "completeTitle": "只差一步",
+      "completeText": "你的 {provider} 账号已验证。请填写姓名和号码：你的社区就是这样找到你的。",
+      "create": "创建我的账号",
+      "phoneTakenTitle": "这个号码已有账号",
+      "phoneTakenText": "输入该账号的密码进行关联：之后你可以用 {provider} 或密码登录。",
+      "link": "关联并登录",
+      "identityTaken": "这个 {provider} 账号已关联到另一个 CMFI Connect 账号。"
+    },
+    "change": {
+      "title": "密码",
+      "text": "为你的账号设置新密码。",
+      "setTitle": "创建密码",
+      "setText": "你的账号使用 Google 或 Apple 登录。设置密码后也可以用号码登录。",
+      "forcedTitle": "设置你的密码",
+      "forcedText": "你使用临时密码登录。请设置一个只有你知道的新密码以继续。",
+      "current": "当前密码",
+      "newPassword": "新密码",
+      "again": "确认新密码",
+      "mismatch": "两次输入的密码不一致。",
+      "same": "请设置与当前密码不同的密码。",
+      "submit": "保存",
+      "done": "密码已保存。",
+      "wrongCurrent": "当前密码不正确。"
     }
   },
   "countries": {
@@ -506,7 +540,8 @@
     "goalHint": "你每天想要达到的目标，只保存在你的手机上。",
     "goalRemove": "移除",
     "goalSaved": "目标已保存",
-    "goalRemoved": "目标已移除"
+    "goalRemoved": "目标已移除",
+    "edit": "编辑 {code}"
   },
   "newItem": {
     "title": "新项目",
@@ -528,7 +563,11 @@
     "created": "{code} 已创建。",
     "codeTaken": "此代码已被使用，可能是标准项目，也可能是你自己的某个项目（包括已归档的）。",
     "codeHint": "EVG",
-    "labelHint": "传福音"
+    "labelHint": "传福音",
+    "editTitle": "编辑项目",
+    "save": "保存",
+    "saved": "{code} 已更新",
+    "measuresKept": "记录方式不会改变：已填写的日子会保留它。"
   },
   "more": {
     "title": "更多",
@@ -655,7 +694,9 @@
       "confirm": "永久删除",
       "done": "你的账户已删除。愿神赐福给你！",
       "wrongPassword": "密码错误。",
-      "lastSuperadmin": "你是唯一的超级管理员：删除账户前，请先把这个角色交给别人。"
+      "lastSuperadmin": "你是唯一的超级管理员：删除账户前，请先把这个角色交给别人。",
+      "socialHelp": "你的账号使用 Google 或 Apple 登录：无需密码即可确认删除。",
+      "socialMissing": "请重新使用 Google 或 Apple 登录，然后重试。"
     }
   },
   "admin": {
@@ -2648,6 +2689,10 @@
     "booksFinished(plural, param=n)": {
       "other": "本期间读完 {n} 本书"
     },
-    "bookOf": "书籍：{title}"
+    "bookOf": "书籍：{title}",
+    "edit": "编辑",
+    "editTitle": "编辑书籍",
+    "save": "保存",
+    "saved": "书籍已更新。"
   }
 }

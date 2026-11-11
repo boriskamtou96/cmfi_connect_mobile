@@ -45,6 +45,22 @@ class ActivitiesApi {
     return ActivityType.fromJson(response.content);
   });
 
+  /// A personal item renamed: its code, name or unit (what it measures
+  /// stays: the days already filled in keep it). 409 CONFLICT for a code
+  /// already used.
+  Future<ActivityType> update(
+    int id, {
+    required String code,
+    required String label,
+    String? quantityUnit,
+  }) => apiCall(() async {
+    final response = await _dio.put<Map<String, dynamic>>(
+      '/activities/$id',
+      data: {'code': code, 'label': label, 'quantity_unit': quantityUnit ?? ''},
+    );
+    return ActivityType.fromJson(response.content);
+  });
+
   /// Keeps the daily goal of an item on the account; null or empty removes
   /// it. An archived or unknown item answers 404.
   Future<void> setGoal(int id, ReportGoal? goal) => apiCall(() async {

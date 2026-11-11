@@ -163,7 +163,11 @@
       "expired": "Der Code ist abgelaufen. Fordere einen neuen an.",
       "tooManyRequests": "Zu viele Versuche. Versuche es später erneut.",
       "unavailable": "Das Zurücksetzen ist gerade nicht möglich.",
-      "noAccount": "Kein Konto verwendet diese Nummer."
+      "noAccount": "Kein Konto verwendet diese Nummer.",
+      "adminText": "Bitte einen Verantwortlichen deiner Gemeinde oder das CMFI-Connect-Team um ein vorläufiges Passwort.",
+      "adminNext": "Melde dich mit deiner Nummer und diesem Passwort an: Die App bittet dich sofort, ein neues zu wählen.",
+      "writeTeam": "Dem Team schreiben",
+      "mailSubject": "Passwort vergessen"
     },
     "biometric": {
       "faceId": "Face ID",
@@ -184,6 +188,36 @@
       "passwordLabel": "Passwort",
       "confirm": "Bestätigen",
       "enabled": "Anmeldung mit {method} ist eingeschaltet"
+    },
+    "social": {
+      "or": "oder",
+      "continueWith": "Weiter mit {provider}",
+      "unavailable": "Die Anmeldung mit Google oder Apple ist gerade nicht verfügbar.",
+      "failed": "Die Anmeldung hat nicht geklappt. Versuche es erneut.",
+      "expired": "Die Anmeldung ist abgelaufen. Beginne erneut mit Google oder Apple.",
+      "completeTitle": "Nur noch ein Schritt",
+      "completeText": "Dein {provider}-Konto ist bestätigt. Gib deinen Namen und deine Nummer an: So findet dich deine Gemeinschaft.",
+      "create": "Mein Konto erstellen",
+      "phoneTakenTitle": "Diese Nummer hat schon ein Konto",
+      "phoneTakenText": "Gib sein Passwort ein, um es zu verknüpfen: Danach meldest du dich mit {provider} oder mit deinem Passwort an.",
+      "link": "Verknüpfen und anmelden",
+      "identityTaken": "Dieses {provider}-Konto ist schon mit einem anderen CMFI-Connect-Konto verknüpft."
+    },
+    "change": {
+      "title": "Passwort",
+      "text": "Wähle ein neues Passwort für dein Konto.",
+      "setTitle": "Passwort erstellen",
+      "setText": "Dein Konto meldet sich mit Google oder Apple an. Mit einem Passwort kannst du dich auch mit deiner Nummer anmelden.",
+      "forcedTitle": "Wähle dein Passwort",
+      "forcedText": "Du hast dich mit einem vorläufigen Passwort angemeldet. Wähle ein neues, das nur du kennst, um fortzufahren.",
+      "current": "Aktuelles Passwort",
+      "newPassword": "Neues Passwort",
+      "again": "Neues Passwort bestätigen",
+      "mismatch": "Die beiden Passwörter stimmen nicht überein.",
+      "same": "Wähle ein anderes Passwort als das aktuelle.",
+      "submit": "Speichern",
+      "done": "Passwort gespeichert.",
+      "wrongCurrent": "Das aktuelle Passwort ist nicht richtig."
     }
   },
   "countries": {
@@ -521,7 +555,8 @@
     "goalHint": "Was du dir für jeden Tag vornimmst. Es bleibt auf deinem Handy.",
     "goalRemove": "Entfernen",
     "goalSaved": "Ziel gespeichert",
-    "goalRemoved": "Ziel entfernt"
+    "goalRemoved": "Ziel entfernt",
+    "edit": "{code} bearbeiten"
   },
   "newItem": {
     "title": "Neues Element",
@@ -543,7 +578,11 @@
     "created": "{code} wurde erstellt.",
     "codeTaken": "Dieser Code wird schon verwendet, von einem Standardelement oder von einem deiner Elemente (auch archiviert).",
     "codeHint": "EVG",
-    "labelHint": "Evangelisation"
+    "labelHint": "Evangelisation",
+    "editTitle": "Eintrag bearbeiten",
+    "save": "Speichern",
+    "saved": "{code} geändert",
+    "measuresKept": "Was er misst, bleibt gleich: Die schon ausgefüllten Tage behalten es."
   },
   "more": {
     "title": "Mehr",
@@ -673,7 +712,9 @@
       "confirm": "Endgültig löschen",
       "done": "Dein Konto wurde gelöscht. Gott segne dich!",
       "wrongPassword": "Falsches Passwort.",
-      "lastSuperadmin": "Du bist der einzige Superadmin: Gib diese Rolle jemand anderem, bevor du dein Konto löschst."
+      "lastSuperadmin": "Du bist der einzige Superadmin: Gib diese Rolle jemand anderem, bevor du dein Konto löschst.",
+      "socialHelp": "Dein Konto meldet sich mit Google oder Apple an: Es bestätigt das Löschen, ohne Passwort.",
+      "socialMissing": "Melde dich erneut mit Google oder Apple an und versuche es dann noch einmal."
     }
   },
   "admin": {
@@ -2753,6 +2794,10 @@
       "one": "{n} Buch im Zeitraum beendet",
       "other": "{n} Bücher im Zeitraum beendet"
     },
-    "bookOf": "Buch: {title}"
+    "bookOf": "Buch: {title}",
+    "edit": "Bearbeiten",
+    "editTitle": "Buch bearbeiten",
+    "save": "Speichern",
+    "saved": "Buch geändert."
   }
 }

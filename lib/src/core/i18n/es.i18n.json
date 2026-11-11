@@ -163,7 +163,11 @@
       "expired": "El código caducó. Pide uno nuevo.",
       "tooManyRequests": "Demasiados intentos. Inténtalo más tarde.",
       "unavailable": "El restablecimiento no está disponible por ahora.",
-      "noAccount": "Ninguna cuenta usa este número."
+      "noAccount": "Ninguna cuenta usa este número.",
+      "adminText": "Pide a un responsable de tu asamblea o al equipo de CMFI Connect una contraseña provisional.",
+      "adminNext": "Inicia sesión con tu número y esa contraseña: la app te pedirá enseguida que elijas una nueva.",
+      "writeTeam": "Escribir al equipo",
+      "mailSubject": "Contraseña olvidada"
     },
     "biometric": {
       "faceId": "Face ID",
@@ -184,6 +188,36 @@
       "passwordLabel": "Contraseña",
       "confirm": "Confirmar",
       "enabled": "Acceso con {method} activado"
+    },
+    "social": {
+      "or": "o",
+      "continueWith": "Continuar con {provider}",
+      "unavailable": "El inicio de sesión con Google o Apple no está disponible por ahora.",
+      "failed": "No se pudo iniciar sesión. Inténtalo de nuevo.",
+      "expired": "El inicio de sesión caducó. Vuelve a empezar con Google o Apple.",
+      "completeTitle": "Solo un paso más",
+      "completeText": "Tu cuenta de {provider} está verificada. Indica tu nombre y tu número: así te encuentra tu comunidad.",
+      "create": "Crear mi cuenta",
+      "phoneTakenTitle": "Este número ya tiene una cuenta",
+      "phoneTakenText": "Escribe su contraseña para vincularla: después podrás entrar con {provider} o con tu contraseña.",
+      "link": "Vincular e iniciar sesión",
+      "identityTaken": "Esta cuenta de {provider} ya está vinculada a otra cuenta de CMFI Connect."
+    },
+    "change": {
+      "title": "Contraseña",
+      "text": "Elige una nueva contraseña para tu cuenta.",
+      "setTitle": "Crear una contraseña",
+      "setText": "Tu cuenta inicia sesión con Google o Apple. Una contraseña también te permite entrar con tu número.",
+      "forcedTitle": "Elige tu contraseña",
+      "forcedText": "Iniciaste sesión con una contraseña provisional. Elige una nueva, que solo tú conozcas, para continuar.",
+      "current": "Contraseña actual",
+      "newPassword": "Nueva contraseña",
+      "again": "Confirma la nueva contraseña",
+      "mismatch": "Las dos contraseñas no coinciden.",
+      "same": "Elige una contraseña distinta de la actual.",
+      "submit": "Guardar",
+      "done": "Contraseña guardada.",
+      "wrongCurrent": "La contraseña actual no es correcta."
     }
   },
   "countries": {
@@ -521,7 +555,8 @@
     "goalHint": "Lo que te propones cada día. Se queda en tu teléfono.",
     "goalRemove": "Quitar",
     "goalSaved": "Objetivo guardado",
-    "goalRemoved": "Objetivo quitado"
+    "goalRemoved": "Objetivo quitado",
+    "edit": "Modificar {code}"
   },
   "newItem": {
     "title": "Nuevo elemento",
@@ -543,7 +578,11 @@
     "created": "{code} se ha creado.",
     "codeTaken": "Este código ya está en uso, por un elemento estándar o por uno de tus elementos (aunque esté archivado).",
     "codeHint": "EVG",
-    "labelHint": "Evangelización"
+    "labelHint": "Evangelización",
+    "editTitle": "Modificar el elemento",
+    "save": "Guardar",
+    "saved": "{code} modificado",
+    "measuresKept": "Lo que mide no cambia: los días ya completados lo conservan."
   },
   "more": {
     "title": "Más",
@@ -673,7 +712,9 @@
       "confirm": "Eliminar definitivamente",
       "done": "Tu cuenta ha sido eliminada. ¡Dios te bendiga!",
       "wrongPassword": "Contraseña incorrecta.",
-      "lastSuperadmin": "Eres el único superadmin: da este rol a otra persona antes de eliminar tu cuenta."
+      "lastSuperadmin": "Eres el único superadmin: da este rol a otra persona antes de eliminar tu cuenta.",
+      "socialHelp": "Tu cuenta inicia sesión con Google o Apple: confirma la eliminación, sin contraseña.",
+      "socialMissing": "Vuelve a iniciar sesión con Google o Apple y luego inténtalo de nuevo."
     }
   },
   "admin": {
@@ -2753,6 +2794,10 @@
       "one": "{n} libro terminado en el período",
       "other": "{n} libros terminados en el período"
     },
-    "bookOf": "Libro: {title}"
+    "bookOf": "Libro: {title}",
+    "edit": "Modificar",
+    "editTitle": "Modificar el libro",
+    "save": "Guardar",
+    "saved": "Libro modificado."
   }
 }

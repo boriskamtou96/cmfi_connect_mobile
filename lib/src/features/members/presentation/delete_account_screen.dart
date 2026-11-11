@@ -6,6 +6,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import '../../../core/i18n/strings.g.dart';
 import '../../../core/network/app_exception.dart';
 import '../../../core/network/app_exception_message.dart';
+import '../../../core/services/social_sign_in.dart';
 import '../../../core/theme/app_icons.dart';
 import '../../../core/theme/app_spacing.dart';
 import '../../../core/widgets/adaptive.dart';
@@ -15,8 +16,10 @@ import '../../../core/widgets/password_field.dart';
 import '../../../core/widgets/sub_page.dart';
 import '../application/my_account.dart';
 
-/// Plus › Supprimer mon compte: what goes, then the password to confirm. The
-/// account is deleted on the server, and App goes back to the welcome screen.
+/// Plus › Supprimer mon compte: what goes, then the password to confirm (an
+/// account made with Google or Apple: its Google or Apple account, signed in
+/// on the phone). The account is deleted on the server, and App goes back to
+/// the welcome screen.
 @RoutePage()
 class DeleteAccountScreen extends HookConsumerWidget {
   const DeleteAccountScreen({super.key});
@@ -30,9 +33,11 @@ class DeleteAccountScreen extends HookConsumerWidget {
     final deleting = useState(false);
     final wrongPassword = useState(false);
     final errorKey = useMemoized(GlobalKey.new);
+    final hasPassword = ref.watch(myAccountProvider).value?.hasPassword ?? true;
+    final ready = !hasPassword || password.text.isNotEmpty;
 
     Future<void> delete() async {
-      if (password.text.isEmpty || deleting.value) {
+      if (!ready || deleting.value) {
         return;
       }
       final toast = ref.read(toasterProvider).of(context);
@@ -40,7 +45,21 @@ class DeleteAccountScreen extends HookConsumerWidget {
       deleting.value = true;
       wrongPassword.value = false;
       try {
-        await ref.read(myAccountProvider.notifier).deleteAccount(password.text);
+        if (hasPassword) {
+          await ref
+              .read(myAccountProvider.notifier)
+              .deleteAccount(password.text);
+        } else {
+          final token = await ref.read(socialSignInProvider).currentToken();
+          if (token == null) {
+            deleting.value = false;
+            toast.error(t.socialMissing);
+            return;
+          }
+          await ref
+              .read(myAccountProvider.notifier)
+              .deleteAccount(null, firebaseToken: token);
+        }
         toast.success(messages.members.deleteAccount.done);
       } on Object catch (error) {
         if (!context.mounted) {
@@ -99,7 +118,7 @@ class DeleteAccountScreen extends HookConsumerWidget {
             backgroundColor: scheme.error,
             foregroundColor: scheme.onError,
           ),
-          onPressed: password.text.isEmpty || deleting.value ? null : delete,
+          onPressed: !ready || deleting.value ? null : delete,
           child: deleting.value
               ? AppSpinner(size: 20, strokeWidth: 2.4, color: scheme.onError)
               : Text(t.confirm),
@@ -154,11 +173,21 @@ class DeleteAccountScreen extends HookConsumerWidget {
             ),
           ),
           const SizedBox(height: AppSpacing.xl),
-          PasswordField(
-            controller: password,
-            helper: t.passwordHelp,
-            onSubmitted: delete,
-          ),
+          if (hasPassword)
+            PasswordField(
+              controller: password,
+              helper: t.passwordHelp,
+              onSubmitted: delete,
+            )
+          else
+            Text(
+              t.socialHelp,
+              style: TextStyle(
+                fontSize: 14,
+                height: 1.45,
+                color: scheme.onSurfaceVariant,
+              ),
+            ),
           if (wrongPassword.value) ...[
             const SizedBox(height: AppSpacing.sm),
             InlineError(t.wrongPassword, key: errorKey),

@@ -2239,6 +2239,7 @@ class _Translations$auth$social$hi extends Translations$auth$social$fr {
 
 	// Translations
 	@override String get or => 'या';
+	@override String get orWith => 'या इनसे जारी रखें';
 	@override String continueWith({required Object provider}) => '${provider} से जारी रखें';
 	@override String get unavailable => 'Google या Apple से साइन इन अभी उपलब्ध नहीं है।';
 	@override String get failed => 'साइन इन नहीं हो पाया। फिर से कोशिश करें।';
@@ -4198,6 +4199,7 @@ extension on TranslationsHi {
 			'auth.biometric.confirm' => 'पुष्टि करें',
 			'auth.biometric.enabled' => ({required Object method}) => '${method} से लॉग इन चालू है',
 			'auth.social.or' => 'या',
+			'auth.social.orWith' => 'या इनसे जारी रखें',
 			'auth.social.continueWith' => ({required Object provider}) => '${provider} से जारी रखें',
 			'auth.social.unavailable' => 'Google या Apple से साइन इन अभी उपलब्ध नहीं है।',
 			'auth.social.failed' => 'साइन इन नहीं हो पाया। फिर से कोशिश करें।',
@@ -4550,9 +4552,9 @@ extension on TranslationsHi {
 			'authorities.form.added' => ({required Object name}) => '${name} अब तुम्हारे अगुवों में शामिल हैं।',
 			'authorities.form.searchLabel' => 'उनका यूज़रनेम',
 			'authorities.form.searchHint' => 'यूज़रनेम',
-			'authorities.form.search' => 'खोजो',
 			_ => null,
 		} ?? switch (path) {
+			'authorities.form.search' => 'खोजो',
 			'authorities.form.searchHelp' => 'अगर वे CMFI Connect इस्तेमाल करते हैं, तो उन्हें उनके यूज़रनेम से खोजो। उन्हें तुम्हारा अनुरोध मिलेगा, और उनके स्वीकार करने के बाद उनकी संपर्क जानकारी दिखेगी।',
 			'authorities.form.notFound' => ({required Object username}) => 'किसी का यूज़रनेम @${username} नहीं है।',
 			'authorities.form.invite' => 'उन्हें CMFI Connect से जुड़ने का न्योता दो',
@@ -5064,9 +5066,9 @@ extension on TranslationsHi {
 			'ministry.lives.founder.story.3' => '12 मई 1975 को याउंडे में उन्होंने क्रिश्चियन मिशनरी फ़ेलोशिप इंटरनेशनल (CMFI) की स्थापना की: आत्माओं को जीतने, चेले बनाने, कलीसियाएँ स्थापित करने और मिशनरी भेजने के लिए एक आंदोलन। उन्होंने कैमरून में 700 से अधिक मिशनरी यात्राएँ कीं और छह महाद्वीपों के 70 से अधिक राष्ट्रों में 500 से अधिक यात्राएँ कीं।',
 			'ministry.lives.founder.story.4' => 'वे हर दिन लंबे घंटे परमेश्वर के साथ अकेले बिताते थे, उन्होंने प्रार्थना के अनेक अभियानों, घेरों और प्रार्थना-यात्राओं की अगुवाई की, और अक्सर उपवास किया। उन्होंने प्रार्थना, उपवास, पवित्रता, शिष्यता और मिशन पर 150 से अधिक पुस्तकें लिखीं, जो अनेक भाषाओं में पढ़ी जाती हैं।',
 			'ministry.lives.founder.story.5' => 'अपनी पत्नी प्रिस्का ज़ेई फ़ोमुम के साथ, जो बच्चों के बीच सेवा करती थीं, उनके सात बच्चे हुए, जो सभी सुसमाचार के कार्य में लगे हैं। दोनों ने सादगी से जीवन बिताया ताकि अपनी आय का सबसे बड़ा भाग सुसमाचार के लिए दे सकें।',
-			'ministry.lives.founder.story.6' => '14 मार्च 2009 को वे प्रभु की उपस्थिति में चले गए और 21 मार्च को याउंडे में दफ़नाए गए। उनके द्वारा स्थापित कार्य राष्ट्रों में आगे बढ़ रहा है।',
 			_ => null,
 		} ?? switch (path) {
+			'ministry.lives.founder.story.6' => '14 मार्च 2009 को वे प्रभु की उपस्थिति में चले गए और 21 मार्च को याउंडे में दफ़नाए गए। उनके द्वारा स्थापित कार्य राष्ट्रों में आगे बढ़ रहा है।',
 			'ministry.lives.leader.name' => 'थियोडोर एंडोसेह',
 			'ministry.lives.leader.line' => '2009 से CMFI के अगुवे',
 			'ministry.lives.leader.facts.0' => 'स्थापित कलीसियाएँ',
@@ -5578,9 +5580,9 @@ extension on TranslationsHi {
 			'yearStory.share' => 'अपना साल साझा करो',
 			'yearStory.homeText' => ({required Object year}) => 'तुम्हारी वफ़ादारी, प्रार्थना, वचन: ${year} में परमेश्वर के साथ जो जिया, उसे फिर से देखो।',
 			'yearStory.open' => 'मेरा साल देखो',
-			'yearStory.notificationTitle' => 'परमेश्वर के साथ तुम्हारा साल तैयार है',
 			_ => null,
 		} ?? switch (path) {
+			'yearStory.notificationTitle' => 'परमेश्वर के साथ तुम्हारा साल तैयार है',
 			'yearStory.notificationBody' => ({required Object year}) => '${year} में प्रभु के साथ जो कुछ जिया, उसे फिर से देखो और साझा करो।',
 			'yearStory.channel' => 'परमेश्वर के साथ तुम्हारा साल',
 			'yearStory.moreTitle' => 'परमेश्वर के साथ मेरा साल',
@@ -6092,9 +6094,9 @@ extension on TranslationsHi {
 			'reading.title' => 'मेरा पठन',
 			'reading.moreSubtitle' => 'जो किताबें तुम पढ़ते हो, पन्ना दर पन्ना',
 			'reading.moreCount' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n, one: '${n} किताब पढ़ी जा रही है', other: '${n} किताबें पढ़ी जा रही हैं', ), 
-			'reading.add' => 'किताब जोड़ें',
 			_ => null,
 		} ?? switch (path) {
+			'reading.add' => 'किताब जोड़ें',
 			'reading.reading' => 'पढ़ी जा रही',
 			'reading.finished' => 'पूरी हुईं',
 			'reading.setAside' => 'अलग रखी गईं',

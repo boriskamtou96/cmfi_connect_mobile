@@ -191,6 +191,7 @@
     },
     "social": {
       "or": "o",
+      "orWith": "o continúa con",
       "continueWith": "Continuar con {provider}",
       "unavailable": "El inicio de sesión con Google o Apple no está disponible por ahora.",
       "failed": "No se pudo iniciar sesión. Inténtalo de nuevo.",

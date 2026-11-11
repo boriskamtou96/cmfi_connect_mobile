@@ -4,6 +4,7 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../core/i18n/strings.g.dart';
+import '../../../core/session/account.dart';
 import '../../../core/storage/preferences.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_icons.dart';
@@ -13,6 +14,8 @@ import '../../../core/theme/app_theme.dart';
 import '../../../core/widgets/cmfi_logo.dart';
 import '../../../core/widgets/photo_kit.dart';
 import '../../../routing/app_router.dart';
+// the same Google / Apple buttons as the login, round here
+import '../../auth/presentation/widgets/social_buttons.dart';
 
 /// Signed out: three pages to swipe (23/10/2026), each a photo of real
 /// people from the top to the middle, melting into the page, with two
@@ -77,6 +80,19 @@ class WelcomeScreen extends HookConsumerWidget {
       if (context.mounted) {
         await context.router.push(route);
       }
+    }
+
+    // signed in with Google or Apple: the app, or a new password first
+    Future<void> openApp(Account account) async {
+      if (!context.mounted) {
+        return;
+      }
+      await context.router.replaceAll([
+        if (account.mustChangePassword)
+          ChangePasswordRoute(forced: true)
+        else
+          const AppShellRoute(),
+      ]);
     }
 
     void turnTo(int index) => controller.animateToPage(
@@ -199,6 +215,20 @@ class WelcomeScreen extends HookConsumerWidget {
                         last ? t.welcome.createAccount : t.welcome.next,
                       ),
                     ),
+                  ),
+                  // on the page of « Créer mon compte »
+                  AnimatedSize(
+                    duration: AppMotion.of(context, AppMotion.fast),
+                    alignment: Alignment.topCenter,
+                    child: last
+                        ? Padding(
+                            padding: const EdgeInsets.only(top: AppSpacing.md),
+                            child: SocialButtons(
+                              compact: true,
+                              onSignedIn: openApp,
+                            ),
+                          )
+                        : const SizedBox(width: double.infinity),
                   ),
                   const SizedBox(height: AppSpacing.xs),
                   TextButton(

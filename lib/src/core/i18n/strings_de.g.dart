@@ -2240,6 +2240,7 @@ class _Translations$auth$social$de extends Translations$auth$social$fr {
 
 	// Translations
 	@override String get or => 'oder';
+	@override String get orWith => 'oder weiter mit';
 	@override String continueWith({required Object provider}) => 'Weiter mit ${provider}';
 	@override String get unavailable => 'Die Anmeldung mit Google oder Apple ist gerade nicht verfügbar.';
 	@override String get failed => 'Die Anmeldung hat nicht geklappt. Versuche es erneut.';
@@ -4199,6 +4200,7 @@ extension on TranslationsDe {
 			'auth.biometric.confirm' => 'Bestätigen',
 			'auth.biometric.enabled' => ({required Object method}) => 'Anmeldung mit ${method} ist eingeschaltet',
 			'auth.social.or' => 'oder',
+			'auth.social.orWith' => 'oder weiter mit',
 			'auth.social.continueWith' => ({required Object provider}) => 'Weiter mit ${provider}',
 			'auth.social.unavailable' => 'Die Anmeldung mit Google oder Apple ist gerade nicht verfügbar.',
 			'auth.social.failed' => 'Die Anmeldung hat nicht geklappt. Versuche es erneut.',
@@ -4551,9 +4553,9 @@ extension on TranslationsDe {
 			'authorities.form.added' => ({required Object name}) => '${name} gehört jetzt zu deinen Autoritäten.',
 			'authorities.form.searchLabel' => 'Benutzername',
 			'authorities.form.searchHint' => 'benutzername',
-			'authorities.form.search' => 'Suchen',
 			_ => null,
 		} ?? switch (path) {
+			'authorities.form.search' => 'Suchen',
 			'authorities.form.searchHelp' => 'Wenn die Person CMFI Connect nutzt, suche sie über ihren Benutzernamen. Sie erhält deine Anfrage, und ihre Kontaktdaten erscheinen, sobald sie angenommen hat.',
 			'authorities.form.notFound' => ({required Object username}) => 'Niemand hat den Benutzernamen @${username}.',
 			'authorities.form.invite' => 'Zu CMFI Connect einladen',
@@ -5065,9 +5067,9 @@ extension on TranslationsDe {
 			'ministry.lives.founder.story.3' => 'Am 12. Mai 1975 gründete er in Yaoundé die Christian Missionary Fellowship International: eine Bewegung, um Seelen zu gewinnen, Jünger zu machen, Gemeinden zu gründen und Missionare auszusenden. Er unternahm über 700 Missionsreisen in Kamerun und über 500 in mehr als 70 Nationen auf sechs Kontinenten.',
 			'ministry.lives.founder.story.4' => 'Er verbrachte täglich lange Stunden allein mit Gott, leitete viele Gebetskreuzzüge, Gebetsbelagerungen und Gebetsmärsche und fastete oft. Er schrieb über 150 Bücher über Gebet, Fasten, Heiligkeit, Jüngerschaft und Mission, die in vielen Sprachen gelesen werden.',
 			'ministry.lives.founder.story.5' => 'Mit seiner Frau Prisca Zei Fomum, die unter Kindern diente, hatte er sieben Kinder, die alle im Werk des Evangeliums stehen. Gemeinsam lebten sie einfach, um den größten Teil ihres Einkommens für das Evangelium zu geben.',
-			'ministry.lives.founder.story.6' => 'Am 14. März 2009 ging er heim zum Herrn und wurde am 21. März in Yaoundé beigesetzt. Das Werk, das er gegründet hat, geht unter den Nationen weiter.',
 			_ => null,
 		} ?? switch (path) {
+			'ministry.lives.founder.story.6' => 'Am 14. März 2009 ging er heim zum Herrn und wurde am 21. März in Yaoundé beigesetzt. Das Werk, das er gegründet hat, geht unter den Nationen weiter.',
 			'ministry.lives.leader.name' => 'Theodore Andoseh',
 			'ministry.lives.leader.line' => 'Leiter der CMFI seit 2009',
 			'ministry.lives.leader.facts.0' => 'gegründete Gemeinden',
@@ -5579,9 +5581,9 @@ extension on TranslationsDe {
 			'yearStory.share' => 'Mein Jahr teilen',
 			'yearStory.homeText' => ({required Object year}) => 'Deine Treue, dein Gebet, das Wort: Schau zurück auf alles, was du ${year} mit Gott erlebt hast.',
 			'yearStory.open' => 'Mein Jahr ansehen',
-			'yearStory.notificationTitle' => 'Dein Jahr mit Gott ist bereit',
 			_ => null,
 		} ?? switch (path) {
+			'yearStory.notificationTitle' => 'Dein Jahr mit Gott ist bereit',
 			'yearStory.notificationBody' => ({required Object year}) => 'Schau zurück auf alles, was du ${year} mit dem Herrn erlebt hast, und teile es.',
 			'yearStory.channel' => 'Dein Jahr mit Gott',
 			'yearStory.moreTitle' => 'Mein Jahr mit Gott',
@@ -6093,9 +6095,9 @@ extension on TranslationsDe {
 			'reading.title' => 'Meine Lektüre',
 			'reading.moreSubtitle' => 'Die Bücher, die du liest, Seite für Seite',
 			'reading.moreCount' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('de'))(n, one: '${n} Buch in Arbeit', other: '${n} Bücher in Arbeit', ), 
-			'reading.add' => 'Buch hinzufügen',
 			_ => null,
 		} ?? switch (path) {
+			'reading.add' => 'Buch hinzufügen',
 			'reading.reading' => 'Am Lesen',
 			'reading.finished' => 'Beendet',
 			'reading.setAside' => 'Beiseitegelegt',

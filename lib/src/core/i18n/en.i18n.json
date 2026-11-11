@@ -191,6 +191,7 @@
     },
     "social": {
       "or": "or",
+      "orWith": "or continue with",
       "continueWith": "Continue with {provider}",
       "unavailable": "Signing in with Google or Apple isn't available right now.",
       "failed": "The sign-in didn't go through. Try again.",

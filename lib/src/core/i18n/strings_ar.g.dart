@@ -2512,6 +2512,7 @@ class _Translations$auth$social$ar extends Translations$auth$social$fr {
 
 	// Translations
 	@override String get or => 'أو';
+	@override String get orWith => 'أو تابع باستخدام';
 	@override String continueWith({required Object provider}) => 'المتابعة باستخدام ${provider}';
 	@override String get unavailable => 'تسجيل الدخول باستخدام Google أو Apple غير متاح حاليًا.';
 	@override String get failed => 'لم يكتمل تسجيل الدخول. حاول مرة أخرى.';
@@ -4612,6 +4613,7 @@ extension on TranslationsAr {
 			'auth.biometric.confirm' => 'تأكيد',
 			'auth.biometric.enabled' => ({required Object method}) => 'تم تفعيل الدخول باستخدام ${method}',
 			'auth.social.or' => 'أو',
+			'auth.social.orWith' => 'أو تابع باستخدام',
 			'auth.social.continueWith' => ({required Object provider}) => 'المتابعة باستخدام ${provider}',
 			'auth.social.unavailable' => 'تسجيل الدخول باستخدام Google أو Apple غير متاح حاليًا.',
 			'auth.social.failed' => 'لم يكتمل تسجيل الدخول. حاول مرة أخرى.',
@@ -4964,9 +4966,9 @@ extension on TranslationsAr {
 			'authorities.form.added' => ({required Object name}) => 'أصبح ${name} الآن ضمن مرشديك.',
 			'authorities.form.searchLabel' => 'اسم المستخدم',
 			'authorities.form.searchHint' => 'اسم المستخدم',
-			'authorities.form.search' => 'بحث',
 			_ => null,
 		} ?? switch (path) {
+			'authorities.form.search' => 'بحث',
 			'authorities.form.searchHelp' => 'إذا كان الشخص يستخدم CMFI Connect، فابحث عنه باسم المستخدم. سيتلقّى طلبك، وستظهر بيانات الاتصال الخاصة به بعد أن يقبله.',
 			'authorities.form.notFound' => ({required Object username}) => 'لا أحد يحمل اسم المستخدم @${username}.',
 			'authorities.form.invite' => 'ادعُه للانضمام إلى CMFI Connect',
@@ -5478,9 +5480,9 @@ extension on TranslationsAr {
 			'ministry.lives.founder.story.3' => 'في 12 مايو 1975، في ياوندي، أسّس الشركة المسيحية الإرسالية الدولية (CMFI): حركة لربح النفوس وتلمذة التلاميذ وغرس الكنائس وإرسال المرسلين. قام بأكثر من 700 رحلة إرسالية في الكاميرون وبأكثر من 500 رحلة إلى أكثر من 70 أمة في ست قارات.',
 			'ministry.lives.founder.story.4' => 'كان يقضي كل يوم ساعات طويلة وحده مع الله، وقاد كثيرًا من حملات الصلاة وحصاراتها ومسيراتها، وصام كثيرًا. كتب أكثر من 150 كتابًا عن الصلاة والصوم والقداسة والتلمذة والإرسالية، تُقرأ بلغات كثيرة.',
 			'ministry.lives.founder.story.5' => 'رُزق مع زوجته بريسكا زي فومم، خادمة الرب بين الأطفال، بسبعة أبناء كلهم منخرطون في عمل الإنجيل. وعاشا معًا ببساطة ليقدّما للإنجيل الجزء الأكبر من دخلهما.',
-			'ministry.lives.founder.story.6' => 'انتقل إلى محضر الرب في 14 مارس 2009، ودُفن في ياوندي في 21 مارس. والعمل الذي أسّسه مستمر بين الأمم.',
 			_ => null,
 		} ?? switch (path) {
+			'ministry.lives.founder.story.6' => 'انتقل إلى محضر الرب في 14 مارس 2009، ودُفن في ياوندي في 21 مارس. والعمل الذي أسّسه مستمر بين الأمم.',
 			'ministry.lives.leader.name' => 'ثيودور أندوسيه',
 			'ministry.lives.leader.line' => 'قائد CMFI منذ 2009',
 			'ministry.lives.leader.facts.0' => 'كنيسة غرسها',
@@ -5992,9 +5994,9 @@ extension on TranslationsAr {
 			'yearStory.share' => 'مشاركة عامي',
 			'yearStory.homeText' => ({required Object year}) => 'أمانتك وصلاتك وكلمة الله: استعد كل ما عشته مع الله في ${year}.',
 			'yearStory.open' => 'عرض عامي',
-			'yearStory.notificationTitle' => 'عامك مع الله جاهز',
 			_ => null,
 		} ?? switch (path) {
+			'yearStory.notificationTitle' => 'عامك مع الله جاهز',
 			'yearStory.notificationBody' => ({required Object year}) => 'استعد كل ما عشته مع الرب في ${year} وشاركه.',
 			'yearStory.channel' => 'عامك مع الله',
 			'yearStory.moreTitle' => 'عامي مع الله',
@@ -6506,9 +6508,9 @@ extension on TranslationsAr {
 			'reading.title' => 'قراءاتي',
 			'reading.moreSubtitle' => 'الكتب التي تقرأها، صفحة بعد صفحة',
 			'reading.moreCount' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n, zero: '${n} كتاب قيد القراءة', one: 'كتاب واحد قيد القراءة', two: 'كتابان قيد القراءة', few: '${n} كتب قيد القراءة', many: '${n} كتابًا قيد القراءة', other: '${n} كتاب قيد القراءة', ), 
-			'reading.add' => 'إضافة كتاب',
 			_ => null,
 		} ?? switch (path) {
+			'reading.add' => 'إضافة كتاب',
 			'reading.reading' => 'قيد القراءة',
 			'reading.finished' => 'منتهية',
 			'reading.setAside' => 'موضوعة جانبًا',

@@ -191,6 +191,7 @@
     },
     "social": {
       "or": "या",
+      "orWith": "या इनसे जारी रखें",
       "continueWith": "{provider} से जारी रखें",
       "unavailable": "Google या Apple से साइन इन अभी उपलब्ध नहीं है।",
       "failed": "साइन इन नहीं हो पाया। फिर से कोशिश करें।",

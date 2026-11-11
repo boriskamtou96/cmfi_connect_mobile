@@ -2241,6 +2241,7 @@ class _Translations$auth$social$en extends Translations$auth$social$fr {
 
 	// Translations
 	@override String get or => 'or';
+	@override String get orWith => 'or continue with';
 	@override String continueWith({required Object provider}) => 'Continue with ${provider}';
 	@override String get unavailable => 'Signing in with Google or Apple isn\'t available right now.';
 	@override String get failed => 'The sign-in didn\'t go through. Try again.';
@@ -4200,6 +4201,7 @@ extension on TranslationsEn {
 			'auth.biometric.confirm' => 'Confirm',
 			'auth.biometric.enabled' => ({required Object method}) => 'Sign-in with ${method} is on',
 			'auth.social.or' => 'or',
+			'auth.social.orWith' => 'or continue with',
 			'auth.social.continueWith' => ({required Object provider}) => 'Continue with ${provider}',
 			'auth.social.unavailable' => 'Signing in with Google or Apple isn\'t available right now.',
 			'auth.social.failed' => 'The sign-in didn\'t go through. Try again.',
@@ -4552,9 +4554,9 @@ extension on TranslationsEn {
 			'authorities.form.added' => ({required Object name}) => '${name} is now one of your leaders.',
 			'authorities.form.searchLabel' => 'Their username',
 			'authorities.form.searchHint' => 'username',
-			'authorities.form.search' => 'Search',
 			_ => null,
 		} ?? switch (path) {
+			'authorities.form.search' => 'Search',
 			'authorities.form.searchHelp' => 'If they use CMFI Connect, find them by their username. They will get your request, and their contact details will show once they accept.',
 			'authorities.form.notFound' => ({required Object username}) => 'Nobody has the username @${username}.',
 			'authorities.form.invite' => 'Invite them to join CMFI Connect',
@@ -5066,9 +5068,9 @@ extension on TranslationsEn {
 			'ministry.lives.founder.story.3' => 'On 12 May 1975, in Yaoundé, he founded Christian Missionary Fellowship International: a movement to win souls, make disciples, plant churches and send out missionaries. He made more than 700 missionary journeys in Cameroon and more than 500 to over 70 nations, on six continents.',
 			'ministry.lives.founder.story.4' => 'He spent long hours alone with God every day, led many prayer crusades, sieges and walks, and fasted often. He wrote more than 150 books on prayer, fasting, holiness, discipleship and mission, read in many languages.',
 			'ministry.lives.founder.story.5' => 'With his wife, Prisca Zei Fomum, a minister to children, he had seven children, all involved in the work of the Gospel. Together they lived simply, so as to give the largest part of their income to the Gospel.',
-			'ministry.lives.founder.story.6' => 'He went to be with the Lord on 14 March 2009 and was buried in Yaoundé on 21 March. The work he founded goes on among the nations.',
 			_ => null,
 		} ?? switch (path) {
+			'ministry.lives.founder.story.6' => 'He went to be with the Lord on 14 March 2009 and was buried in Yaoundé on 21 March. The work he founded goes on among the nations.',
 			'ministry.lives.leader.name' => 'Theodore Andoseh',
 			'ministry.lives.leader.line' => 'Leader of CMFI since 2009',
 			'ministry.lives.leader.facts.0' => 'churches planted',
@@ -5580,9 +5582,9 @@ extension on TranslationsEn {
 			'yearStory.share' => 'Share my year',
 			'yearStory.homeText' => ({required Object year}) => 'Your faithfulness, your prayer, the Word: look back on all you lived with God in ${year}.',
 			'yearStory.open' => 'See my year',
-			'yearStory.notificationTitle' => 'Your year with God is ready',
 			_ => null,
 		} ?? switch (path) {
+			'yearStory.notificationTitle' => 'Your year with God is ready',
 			'yearStory.notificationBody' => ({required Object year}) => 'Look back on all you lived with the Lord in ${year}, and share it.',
 			'yearStory.channel' => 'Your year with God',
 			'yearStory.moreTitle' => 'My year with God',
@@ -6094,9 +6096,9 @@ extension on TranslationsEn {
 			'reading.title' => 'My reading',
 			'reading.moreSubtitle' => 'The books you read, page after page',
 			'reading.moreCount' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n, one: '${n} book in progress', other: '${n} books in progress', ), 
-			'reading.add' => 'Add a book',
 			_ => null,
 		} ?? switch (path) {
+			'reading.add' => 'Add a book',
 			'reading.reading' => 'In progress',
 			'reading.finished' => 'Finished',
 			'reading.setAside' => 'Set aside',

@@ -191,6 +191,7 @@
     },
     "social": {
       "or": "ou",
+      "orWith": "ou continuer avec",
       "continueWith": "Continuer avec {provider}",
       "unavailable": "La connexion avec Google ou Apple n'est pas disponible pour l'instant.",
       "failed": "La connexion n'a pas abouti. Réessaie.",

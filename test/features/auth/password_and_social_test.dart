@@ -105,6 +105,34 @@ void main() {
     expect(find.text('Ton église'), findsOneWidget);
   });
 
+  testWidgets('the welcome screen: round Google and Apple buttons', (
+    tester,
+  ) async {
+    await pumpApp(tester, socialSignIn: FakeSocialSignIn(next: paul));
+    expect(find.text('ou continuer avec'), findsOneWidget);
+    expect(find.byTooltip('Continuer avec Apple'), findsOneWidget);
+    await tester.tap(find.byTooltip('Continuer avec Google'));
+    await tester.pumpAndSettle();
+    // the first time: the profile is completed
+    expect(find.text("Plus qu'une étape"), findsOneWidget);
+  });
+
+  testWidgets('the welcome pages: the buttons come on the last one', (
+    tester,
+  ) async {
+    await pumpApp(
+      tester,
+      onboardingSeen: false,
+      socialSignIn: FakeSocialSignIn(next: paul),
+    );
+    expect(find.byTooltip('Continuer avec Google'), findsNothing);
+    await tester.tap(find.text('Continuer'));
+    await tester.pumpAndSettle();
+    await tester.tap(find.text('Continuer'));
+    await tester.pumpAndSettle();
+    expect(find.byTooltip('Continuer avec Google'), findsOneWidget);
+  });
+
   testWidgets('Google the first time: its photo becomes the profile photo', (
     tester,
   ) async {

@@ -2171,6 +2171,7 @@ class _Translations$auth$social$zh extends Translations$auth$social$fr {
 
 	// Translations
 	@override String get or => '或';
+	@override String get orWith => '或继续使用';
 	@override String continueWith({required Object provider}) => '使用 ${provider} 继续';
 	@override String get unavailable => '目前无法使用 Google 或 Apple 登录。';
 	@override String get failed => '登录未成功，请重试。';
@@ -4094,6 +4095,7 @@ extension on TranslationsZh {
 			'auth.biometric.confirm' => '确认',
 			'auth.biometric.enabled' => ({required Object method}) => '已开启${method}登录',
 			'auth.social.or' => '或',
+			'auth.social.orWith' => '或继续使用',
 			'auth.social.continueWith' => ({required Object provider}) => '使用 ${provider} 继续',
 			'auth.social.unavailable' => '目前无法使用 Google 或 Apple 登录。',
 			'auth.social.failed' => '登录未成功，请重试。',
@@ -4446,9 +4448,9 @@ extension on TranslationsZh {
 			'authorities.form.added' => ({required Object name}) => '${name} 现在是你的带领者了。',
 			'authorities.form.searchLabel' => '对方的用户名',
 			'authorities.form.searchHint' => '用户名',
-			'authorities.form.search' => '搜索',
 			_ => null,
 		} ?? switch (path) {
+			'authorities.form.search' => '搜索',
 			'authorities.form.searchHelp' => '如果对方在使用 CMFI Connect，可以通过用户名找到他/她。对方会收到你的请求，接受后你就能看到其联系方式。',
 			'authorities.form.notFound' => ({required Object username}) => '没有用户名为 @${username} 的用户。',
 			'authorities.form.invite' => '邀请对方加入 CMFI Connect',
@@ -4960,9 +4962,9 @@ extension on TranslationsZh {
 			'ministry.lives.founder.story.3' => '1975年5月12日，他在雅温得创立了国际基督教宣教团契（CMFI）：一个赢得灵魂、使人作门徒、建立教会、差派宣教士的运动。他在喀麦隆进行了700多次宣教旅程，又在六大洲70多个国家进行了500多次旅程。',
 			'ministry.lives.founder.story.4' => '他每天花很长时间独自与神相处，带领了许多祷告大会、祷告围城和祷告行走，并经常禁食。他写了150多本关于祷告、禁食、圣洁、门徒训练和宣教的书，以多种语言被阅读。',
 			'ministry.lives.founder.story.5' => '他与妻子 Prisca Zei Fomum（一位在儿童中服事的同工）育有七个孩子，都投身于福音工作。他们一同过着简朴的生活，把收入的绝大部分奉献给福音。',
-			'ministry.lives.founder.story.6' => '2009年3月14日，他被主接去，3月21日安葬于雅温得。他所创立的事工在万国中继续前进。',
 			_ => null,
 		} ?? switch (path) {
+			'ministry.lives.founder.story.6' => '2009年3月14日，他被主接去，3月21日安葬于雅温得。他所创立的事工在万国中继续前进。',
 			'ministry.lives.leader.name' => 'Theodore Andoseh',
 			'ministry.lives.leader.line' => '自2009年起担任 CMFI 领袖',
 			'ministry.lives.leader.facts.0' => '建立的教会',
@@ -5474,9 +5476,9 @@ extension on TranslationsZh {
 			'yearStory.share' => '分享我的一年',
 			'yearStory.homeText' => ({required Object year}) => '你的忠心、祷告与神的话：回顾 ${year} 年你与神同在的点滴。',
 			'yearStory.open' => '查看我的一年',
-			'yearStory.notificationTitle' => '你与神同在的一年已准备好',
 			_ => null,
 		} ?? switch (path) {
+			'yearStory.notificationTitle' => '你与神同在的一年已准备好',
 			'yearStory.notificationBody' => ({required Object year}) => '回顾 ${year} 年你与主同在的点滴，并分享出去。',
 			'yearStory.channel' => '你与神同在的一年',
 			'yearStory.moreTitle' => '我与神同在的一年',
@@ -5988,9 +5990,9 @@ extension on TranslationsZh {
 			'reading.title' => '我的阅读',
 			'reading.moreSubtitle' => '你在读的书，一页又一页',
 			'reading.moreCount' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n, other: '${n} 本书在读', ), 
-			'reading.add' => '添加书籍',
 			_ => null,
 		} ?? switch (path) {
+			'reading.add' => '添加书籍',
 			'reading.reading' => '在读',
 			'reading.finished' => '已读完',
 			'reading.setAside' => '已搁置',

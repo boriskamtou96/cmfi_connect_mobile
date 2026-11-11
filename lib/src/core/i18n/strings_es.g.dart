@@ -2240,6 +2240,7 @@ class _Translations$auth$social$es extends Translations$auth$social$fr {
 
 	// Translations
 	@override String get or => 'o';
+	@override String get orWith => 'o continúa con';
 	@override String continueWith({required Object provider}) => 'Continuar con ${provider}';
 	@override String get unavailable => 'El inicio de sesión con Google o Apple no está disponible por ahora.';
 	@override String get failed => 'No se pudo iniciar sesión. Inténtalo de nuevo.';
@@ -4199,6 +4200,7 @@ extension on TranslationsEs {
 			'auth.biometric.confirm' => 'Confirmar',
 			'auth.biometric.enabled' => ({required Object method}) => 'Acceso con ${method} activado',
 			'auth.social.or' => 'o',
+			'auth.social.orWith' => 'o continúa con',
 			'auth.social.continueWith' => ({required Object provider}) => 'Continuar con ${provider}',
 			'auth.social.unavailable' => 'El inicio de sesión con Google o Apple no está disponible por ahora.',
 			'auth.social.failed' => 'No se pudo iniciar sesión. Inténtalo de nuevo.',
@@ -4551,9 +4553,9 @@ extension on TranslationsEs {
 			'authorities.form.added' => ({required Object name}) => '${name} ahora forma parte de tus autoridades.',
 			'authorities.form.searchLabel' => 'Su nombre de usuario',
 			'authorities.form.searchHint' => 'usuario',
-			'authorities.form.search' => 'Buscar',
 			_ => null,
 		} ?? switch (path) {
+			'authorities.form.search' => 'Buscar',
 			'authorities.form.searchHelp' => 'Si la persona usa CMFI Connect, búscala por su nombre de usuario. Recibirá tu solicitud, y sus datos de contacto aparecerán cuando la acepte.',
 			'authorities.form.notFound' => ({required Object username}) => 'Nadie tiene el nombre de usuario @${username}.',
 			'authorities.form.invite' => 'Invitarla a unirse a CMFI Connect',
@@ -5065,9 +5067,9 @@ extension on TranslationsEs {
 			'ministry.lives.founder.story.3' => 'El 12 de mayo de 1975, en Yaundé, fundó la Comunidad Misionera Cristiana Internacional: un movimiento para ganar almas, hacer discípulos, plantar iglesias y enviar misioneros. Hizo más de 700 viajes misioneros en Camerún y más de 500 a más de 70 naciones, en seis continentes.',
 			'ministry.lives.founder.story.4' => 'Pasaba cada día largas horas a solas con Dios, dirigió muchas cruzadas, asedios y marchas de oración, y ayunó a menudo. Escribió más de 150 libros sobre la oración, el ayuno, la santidad, el discipulado y la misión, leídos en muchos idiomas.',
 			'ministry.lives.founder.story.5' => 'Con su esposa, Prisca Zei Fomum, servidora de Dios entre los niños, tuvo siete hijos, todos comprometidos en la obra del Evangelio. Juntos vivían con sencillez para dar al Evangelio la mayor parte de sus ingresos.',
-			'ministry.lives.founder.story.6' => 'Partió a la presencia del Señor el 14 de marzo de 2009 y fue sepultado en Yaundé el 21 de marzo. La obra que fundó continúa entre las naciones.',
 			_ => null,
 		} ?? switch (path) {
+			'ministry.lives.founder.story.6' => 'Partió a la presencia del Señor el 14 de marzo de 2009 y fue sepultado en Yaundé el 21 de marzo. La obra que fundó continúa entre las naciones.',
 			'ministry.lives.leader.name' => 'Theodore Andoseh',
 			'ministry.lives.leader.line' => 'Líder de la CMCI desde 2009',
 			'ministry.lives.leader.facts.0' => 'iglesias plantadas',
@@ -5579,9 +5581,9 @@ extension on TranslationsEs {
 			'yearStory.share' => 'Compartir mi año',
 			'yearStory.homeText' => ({required Object year}) => 'Tu fidelidad, tu oración, la Palabra: repasa todo lo que viviste con Dios en ${year}.',
 			'yearStory.open' => 'Ver mi año',
-			'yearStory.notificationTitle' => 'Tu año con Dios está listo',
 			_ => null,
 		} ?? switch (path) {
+			'yearStory.notificationTitle' => 'Tu año con Dios está listo',
 			'yearStory.notificationBody' => ({required Object year}) => 'Repasa todo lo que viviste con el Señor en ${year} y compártelo.',
 			'yearStory.channel' => 'Tu año con Dios',
 			'yearStory.moreTitle' => 'Mi año con Dios',
@@ -6093,9 +6095,9 @@ extension on TranslationsEs {
 			'reading.title' => 'Mis lecturas',
 			'reading.moreSubtitle' => 'Los libros que lees, página tras página',
 			'reading.moreCount' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('es'))(n, one: '${n} libro en curso', other: '${n} libros en curso', ), 
-			'reading.add' => 'Añadir un libro',
 			_ => null,
 		} ?? switch (path) {
+			'reading.add' => 'Añadir un libro',
 			'reading.reading' => 'En curso',
 			'reading.finished' => 'Terminados',
 			'reading.setAside' => 'Dejados de lado',

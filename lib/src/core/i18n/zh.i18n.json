@@ -190,6 +190,7 @@
     },
     "social": {
       "or": "或",
+      "orWith": "或继续使用",
       "continueWith": "使用 {provider} 继续",
       "unavailable": "目前无法使用 Google 或 Apple 登录。",
       "failed": "登录未成功，请重试。",

@@ -19,16 +19,19 @@ import '../../infrastructure/auth_api.dart';
 /// « Continuer avec Google / Apple », under « ou ». An account already linked
 /// (or of the same email) signs in, then [onSignedIn]; the first time, the
 /// member completes a profile (CompleteProfileScreen). Nothing without
-/// Firebase.
+/// Firebase. [compact]: two round buttons under « ou continuer avec » (the
+/// welcome screen), instead of the wide ones under « ou ».
 class SocialButtons extends HookConsumerWidget {
   const SocialButtons({
     required this.onSignedIn,
     this.enabled = true,
+    this.compact = false,
     super.key,
   });
 
   final Future<void> Function(Account account) onSignedIn;
   final bool enabled;
+  final bool compact;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -82,6 +85,14 @@ class SocialButtons extends HookConsumerWidget {
     }
 
     final scheme = Theme.of(context).colorScheme;
+    if (compact) {
+      return _RoundButtons(
+        offered: offered,
+        busy: busy.value,
+        enabled: enabled,
+        onTap: start,
+      );
+    }
     return Padding(
       padding: const EdgeInsets.only(top: AppSpacing.md),
       child: Column(
@@ -111,10 +122,7 @@ class SocialButtons extends HookConsumerWidget {
               ),
               icon: busy.value == provider
                   ? const AppSpinner(size: 18, strokeWidth: 2.2)
-                  : Icon(switch (provider) {
-                      SocialProvider.google => AppIcons.google,
-                      SocialProvider.apple => AppIcons.apple,
-                    }),
+                  : _ProviderIcon(provider),
               label: Text(t.auth.social.continueWith(provider: provider.label)),
             ),
           ],
@@ -122,4 +130,97 @@ class SocialButtons extends HookConsumerWidget {
       ),
     );
   }
+}
+
+/// « ou continuer avec » and one round button per provider.
+class _RoundButtons extends StatelessWidget {
+  const _RoundButtons({
+    required this.offered,
+    required this.busy,
+    required this.enabled,
+    required this.onTap,
+  });
+
+  final List<SocialProvider> offered;
+  final SocialProvider? busy;
+  final bool enabled;
+  final void Function(SocialProvider provider) onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    final t = context.t;
+    final scheme = Theme.of(context).colorScheme;
+    final dark = Theme.of(context).brightness == Brightness.dark;
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Row(
+          children: [
+            Expanded(child: Divider(color: scheme.outlineVariant)),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: AppSpacing.md),
+              child: Text(
+                t.auth.social.orWith,
+                style: TextStyle(color: scheme.onSurfaceVariant, fontSize: 13),
+              ),
+            ),
+            Expanded(child: Divider(color: scheme.outlineVariant)),
+          ],
+        ),
+        const SizedBox(height: AppSpacing.md),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            for (final (index, provider) in offered.indexed) ...[
+              if (index > 0) const SizedBox(width: AppSpacing.lg),
+              Tooltip(
+                message: t.auth.social.continueWith(provider: provider.label),
+                child: IconButton(
+                  onPressed: !enabled || busy != null
+                      ? null
+                      : () => onTap(provider),
+                  style: IconButton.styleFrom(
+                    fixedSize: const Size.square(52),
+                    // Apple asks for a black (or white) button, Google a white one
+                    backgroundColor: provider == SocialProvider.apple
+                        ? (dark ? Colors.white : Colors.black)
+                        : (dark ? scheme.surfaceContainerHigh : Colors.white),
+                    foregroundColor: provider == SocialProvider.apple
+                        ? (dark ? Colors.black : Colors.white)
+                        : scheme.onSurface,
+                    side: provider == SocialProvider.google
+                        ? BorderSide(color: scheme.outlineVariant)
+                        : null,
+                  ),
+                  icon: busy == provider
+                      ? const AppSpinner(size: 18, strokeWidth: 2.2)
+                      : _ProviderIcon(provider),
+                ),
+              ),
+            ],
+          ],
+        ),
+      ],
+    );
+  }
+}
+
+/// The mark of the provider: the Google « G » in its four colors (their sign-in
+/// guidelines ask for it), Apple's logo in the color of the button.
+class _ProviderIcon extends StatelessWidget {
+  const _ProviderIcon(this.provider);
+
+  final SocialProvider provider;
+
+  @override
+  Widget build(BuildContext context) => switch (provider) {
+    SocialProvider.google => Image.asset(
+      'assets/social/google_g.png',
+      width: 22,
+      height: 22,
+      filterQuality: FilterQuality.medium,
+      excludeFromSemantics: true,
+    ),
+    SocialProvider.apple => const Icon(AppIcons.apple),
+  };
 }

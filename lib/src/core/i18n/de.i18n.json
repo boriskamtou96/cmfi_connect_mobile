@@ -191,6 +191,7 @@
     },
     "social": {
       "or": "oder",
+      "orWith": "oder weiter mit",
       "continueWith": "Weiter mit {provider}",
       "unavailable": "Die Anmeldung mit Google oder Apple ist gerade nicht verfügbar.",
       "failed": "Die Anmeldung hat nicht geklappt. Versuche es erneut.",

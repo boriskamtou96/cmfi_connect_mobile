@@ -40,6 +40,8 @@ jobs:
 
   android:
     needs: test
+    # the secrets of the store live in the « Env » environment, not in the repository
+    environment: Env
     runs-on: ubuntu-latest
     timeout-minutes: 45
     steps:
@@ -73,6 +75,8 @@ jobs:
 
   ios:
     needs: test
+    # the secrets of the store live in the « Env » environment, not in the repository
+    environment: Env
     runs-on: macos-15
     timeout-minutes: 90
     steps:

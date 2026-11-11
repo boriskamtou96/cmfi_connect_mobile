@@ -1,7 +1,6 @@
-Bienvenue dans CMFI Connect !
-• Ton compte rendu spirituel en une minute, tes objectifs et ta série (avec un jour de grâce par semaine)
-• Tes 3 pas du jour et tes étapes du chemin
-• Le temps passé avec Dieu, chaque jour et chaque mois
-• Les cantiques sur la couleur de leur recueil, à partager en image
-• La prière, la Bible, les évènements et la communauté
-• Tout s'ouvre même sans réseau
+Nouveautés de CMFI Connect
+• Connexion avec Google ou Apple, avec ta photo de profil importée dès l'inscription
+• Lecture de la littérature chrétienne : tes livres avec leur couverture, modifiables à tout moment
+• Mes disciples : vois qui n'a pas rempli son compte rendu depuis quelques jours et envoie un rappel d'une seule touche
+• Changement de mot de passe simplifié, y compris après un mot de passe temporaire
+• Améliorations et corrections de fiabilité

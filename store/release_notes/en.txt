@@ -1,7 +1,6 @@
-Welcome to CMFI Connect!
-• Your spiritual report in a minute, your goals and your streak (with one day of grace a week)
-• Your 3 steps of the day and the steps of the way
-• Your time with God, every day and every month
-• Hymns on the color of their book, to share as an image
-• Prayer, the Bible, events and the community
-• Everything opens even offline
+What's new in CMFI Connect
+• Sign in with Google or Apple, with your profile photo imported at sign-up
+• Christian literature reading: your books with their covers, editable anytime
+• My disciples: see who hasn't filled in their report for a few days and send a reminder with one tap
+• Simpler password change, including after a temporary password
+• Improvements and reliability fixes

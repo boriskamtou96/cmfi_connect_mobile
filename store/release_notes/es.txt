@@ -1,7 +1,6 @@
-¡Bienvenido a CMFI Connect!
-• Tu informe espiritual en un minuto, tus objetivos y tu racha (con un día de gracia por semana)
-• Tus 3 pasos del día y las etapas del camino
-• Tu tiempo con Dios, cada día y cada mes
-• Los himnos en el color de su himnario, para compartir como imagen
-• La oración, la Biblia, los eventos y la comunidad
-• Todo se abre incluso sin conexión
+Novedades de CMFI Connect
+• Inicia sesión con Google o Apple, con tu foto de perfil importada al registrarte
+• Lectura de literatura cristiana: tus libros con su portada, editables en cualquier momento
+• Mis discípulos: mira quién no ha rellenado su informe en unos días y envía un recordatorio con un toque
+• Cambio de contraseña más sencillo, también tras una contraseña temporal
+• Mejoras y correcciones de fiabilidad

@@ -19,6 +19,12 @@ on:
   push:
     tags: ['v*']
   workflow_dispatch:
+    inputs:
+      platform:
+        description: Which store to send to (a tag always does both)
+        type: choice
+        options: [all, ios, android]
+        default: all
 
 jobs:
   test:
@@ -40,6 +46,7 @@ jobs:
 
   android:
     needs: test
+    if: ${{ inputs.platform != 'ios' }}
     # the secrets of the store live in the « Env » environment, not in the repository
     environment: Env
     runs-on: ubuntu-latest
@@ -75,6 +82,7 @@ jobs:
 
   ios:
     needs: test
+    if: ${{ inputs.platform != 'android' }}
     # the secrets of the store live in the « Env » environment, not in the repository
     environment: Env
     runs-on: macos-15

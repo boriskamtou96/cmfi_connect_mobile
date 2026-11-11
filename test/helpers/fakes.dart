@@ -25,6 +25,7 @@ import 'package:cmfi_connect/src/core/services/premium_store.dart';
 import 'package:cmfi_connect/src/core/services/push_messaging.dart';
 import 'package:cmfi_connect/src/core/services/screen_awake.dart';
 import 'package:cmfi_connect/src/core/services/share_service.dart';
+import 'package:cmfi_connect/src/core/services/social_photo.dart';
 import 'package:cmfi_connect/src/core/services/social_sign_in.dart';
 import 'package:cmfi_connect/src/core/services/store_review.dart';
 import 'package:cmfi_connect/src/core/services/voice_reader.dart';
@@ -39,6 +40,7 @@ import 'package:cmfi_connect/src/features/auth/infrastructure/login_response.dar
 import 'package:cmfi_connect/src/features/authorities/domain/authority.dart';
 import 'package:cmfi_connect/src/features/authorities/infrastructure/authorities_api.dart';
 import 'package:cmfi_connect/src/features/disciples/domain/disciple.dart';
+import 'package:cmfi_connect/src/features/disciples/domain/overdue.dart';
 import 'package:cmfi_connect/src/features/disciples/domain/received_report.dart';
 import 'package:cmfi_connect/src/features/disciples/infrastructure/disciples_api.dart';
 import 'package:cmfi_connect/src/features/documents/domain/document_draft.dart';
@@ -2538,6 +2540,32 @@ class FakeDisciplesApi implements DisciplesApi {
     return answered;
   }
 
+  /// The late disciples, and the thresholds and reminders asked.
+  Overdue overdueResult = const Overdue();
+  final overdueAsked = <int>[];
+  final nudged = <List<int>>[];
+
+  @override
+  Future<Overdue> overdue({required DateTime today, int days = 3}) async {
+    overdueAsked.add(days);
+    return overdueResult.copyWith(days: days);
+  }
+
+  @override
+  Future<NudgeResult> nudge({
+    List<int> authorityIds = const [],
+    int days = 3,
+    required DateTime today,
+  }) async {
+    nudged.add(authorityIds);
+    return (
+      sent: authorityIds.isEmpty
+          ? overdueResult.overdue.length
+          : authorityIds.length,
+      skipped: 0,
+    );
+  }
+
   /// The pages asked, with their search.
   final pages = <({String search, int page})>[];
 
@@ -3614,4 +3642,18 @@ class FakeSocialSignIn implements SocialSignIn {
 
   @override
   Future<void> signOut() async => signedOut++;
+}
+
+/// The pictures of Google accounts, by address; none for the others.
+class FakePhotoDownloader implements PhotoDownloader {
+  FakePhotoDownloader([this.photos = const {}]);
+
+  final Map<String, Uint8List> photos;
+  final asked = <String>[];
+
+  @override
+  Future<Uint8List?> download(String url) async {
+    asked.add(url);
+    return photos[url];
+  }
 }

@@ -16,6 +16,7 @@ import '../../../core/services/home_widgets.dart';
 import '../../../core/services/local_notifications.dart';
 import '../../../core/services/premium_store.dart';
 import '../../../core/services/push_messaging.dart';
+import '../../../core/services/social_photo.dart';
 import '../../../core/session/session.dart';
 import '../../../core/utils/date_extensions.dart';
 import '../../../routing/app_router.dart';
@@ -43,6 +44,7 @@ import '../../prayer/domain/prayer.dart';
 import '../../prayer/presentation/prayer_screen.dart';
 import '../../prayer/presentation/widgets/topic_row.dart';
 import '../../premium/application/premium_end.dart';
+import '../../profile/application/social_photo_import.dart';
 import '../../reports/application/in_app_sendings.dart';
 import '../../reports/application/pending_reports.dart';
 import '../../reports/application/report_reminder.dart';
@@ -76,6 +78,18 @@ class SignedInTasks extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final plannedOn = useRef<DateTime?>(null);
     final language = TranslationProvider.of(context).locale;
+
+    // the photo of the Google account the member just signed up with
+    final pendingPhoto = ref.watch(pendingSocialPhotoProvider);
+    useEffect(() {
+      if (pendingPhoto != null) {
+        // after the build: it changes a provider
+        unawaited(
+          Future.microtask(ref.read(socialPhotoImportProvider.notifier).run),
+        );
+      }
+      return null;
+    }, [pendingPhoto]);
 
     // the shortcuts of the app icon, set again when the language changes
     // (App clears them at sign-out)

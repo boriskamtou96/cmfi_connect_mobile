@@ -20,6 +20,7 @@ import '../../members/presentation/widgets/member_avatar.dart';
 import '../application/disciples.dart';
 import '../application/received_reports.dart';
 import '../domain/disciple.dart';
+import 'widgets/overdue_section.dart';
 
 /// Plus › Mes disciples: the members who chose the user as disciple maker or
 /// as another authority, each with how regular they are; a touch opens their
@@ -115,7 +116,19 @@ class DisciplesScreen extends HookConsumerWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          receivedTile,
+          // who is late and the reports received: they scroll on their own
+          // when tall, so the list below keeps room
+          ConstrainedBox(
+            constraints: BoxConstraints(
+              maxHeight: MediaQuery.sizeOf(context).height * 0.4,
+            ),
+            child: SingleChildScrollView(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [const OverdueSection(), receivedTile],
+              ),
+            ),
+          ),
           searchField,
           Expanded(
             child: switch (first) {

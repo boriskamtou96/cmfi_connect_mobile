@@ -23,6 +23,7 @@ import 'package:cmfi_connect/src/core/services/premium_store.dart';
 import 'package:cmfi_connect/src/core/services/push_messaging.dart';
 import 'package:cmfi_connect/src/core/services/screen_awake.dart';
 import 'package:cmfi_connect/src/core/services/share_service.dart';
+import 'package:cmfi_connect/src/core/services/social_photo.dart';
 import 'package:cmfi_connect/src/core/services/social_sign_in.dart';
 import 'package:cmfi_connect/src/core/services/store_review.dart';
 import 'package:cmfi_connect/src/core/services/voice_reader.dart';
@@ -225,6 +226,7 @@ Future<TestApp> pumpApp(
   FakeSoulsApi? soulsApi,
   FakePhoneVerification? phoneVerification,
   FakeSocialSignIn? socialSignIn,
+  FakePhotoDownloader? photoDownloader,
   FakeStoreReview? storeReview,
   FakeAppShortcuts? shortcuts,
   FakeIncomingLinks? incomingLinks,
@@ -336,6 +338,10 @@ Future<TestApp> pumpApp(
       calendarServiceProvider.overrideWithValue(calendar),
       linkLauncherProvider.overrideWithValue(links),
       imagePickingProvider.overrideWithValue(picker),
+      // no network in the tests: no picture unless one is given
+      photoDownloaderProvider.overrideWithValue(
+        photoDownloader ?? FakePhotoDownloader(),
+      ),
       documentPickingProvider.overrideWithValue(documentPicker),
       prayerApiProvider.overrideWithValue(prayer),
       readingApiProvider.overrideWithValue(reading),

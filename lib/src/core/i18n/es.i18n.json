@@ -1840,7 +1840,21 @@
     "filter": "Filtrar por fecha",
     "filterPick": "Elige un periodo",
     "filterTooLong": "Elige 92 días como máximo.",
-    "filterClear": "Quitar el filtro"
+    "filterClear": "Quitar el filtro",
+    "overdueTitle": "Por recordar · {n}",
+    "upToDateTitle": "Todos están al día",
+    "upToDate": "Todos tus discípulos llenaron su informe recientemente.",
+    "daysShort": "{n} d",
+    "never": "Ningún informe todavía",
+    "since": "Nada desde hace {days}",
+    "remind": "Recordar",
+    "reminded": "Recordado",
+    "remindAll": "Recordar a todos",
+    "remindSent": "Recordatorios enviados: {n}",
+    "remindNone": "Ya recordados hoy.",
+    "showAll": "Ver los otros {n}",
+    "showLess": "Ver menos",
+    "overdueHidden": "{n} no comparten sus informes: no se sabe nada."
   },
   "weekStory": {
     "title": "Tu semana con Dios",

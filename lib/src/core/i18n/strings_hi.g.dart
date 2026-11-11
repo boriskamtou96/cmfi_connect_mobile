@@ -1191,6 +1191,20 @@ class _Translations$disciples$hi extends Translations$disciples$fr {
 	@override String get filterPick => 'समय-सीमा चुनो';
 	@override String get filterTooLong => 'ज़्यादा से ज़्यादा 92 दिन चुनो।';
 	@override String get filterClear => 'फ़िल्टर हटाओ';
+	@override String overdueTitle({required Object n}) => 'याद दिलाओ · ${n}';
+	@override String get upToDateTitle => 'सब अद्यतन हैं';
+	@override String get upToDate => 'तुम्हारे सभी शिष्यों ने हाल ही में रिपोर्ट भरी है।';
+	@override String daysShort({required Object n}) => '${n} दिन';
+	@override String get never => 'अभी तक कोई रिपोर्ट नहीं';
+	@override String since({required Object days}) => '${days} से कुछ नहीं';
+	@override String get remind => 'याद दिलाओ';
+	@override String get reminded => 'याद दिलाया';
+	@override String get remindAll => 'सभी को याद दिलाओ';
+	@override String remindSent({required Object n}) => 'भेजे गए अनुस्मारक: ${n}';
+	@override String get remindNone => 'आज पहले ही याद दिलाया जा चुका है।';
+	@override String showAll({required Object n}) => 'बाकी ${n} देखो';
+	@override String get showLess => 'कम दिखाओ';
+	@override String overdueHidden({required Object n}) => '${n} अपनी रिपोर्ट साझा नहीं करते: कुछ पता नहीं।';
 }
 
 // Path: weekStory
@@ -5474,6 +5488,20 @@ extension on TranslationsHi {
 			'disciples.filterPick' => 'समय-सीमा चुनो',
 			'disciples.filterTooLong' => 'ज़्यादा से ज़्यादा 92 दिन चुनो।',
 			'disciples.filterClear' => 'फ़िल्टर हटाओ',
+			'disciples.overdueTitle' => ({required Object n}) => 'याद दिलाओ · ${n}',
+			'disciples.upToDateTitle' => 'सब अद्यतन हैं',
+			'disciples.upToDate' => 'तुम्हारे सभी शिष्यों ने हाल ही में रिपोर्ट भरी है।',
+			'disciples.daysShort' => ({required Object n}) => '${n} दिन',
+			'disciples.never' => 'अभी तक कोई रिपोर्ट नहीं',
+			'disciples.since' => ({required Object days}) => '${days} से कुछ नहीं',
+			'disciples.remind' => 'याद दिलाओ',
+			'disciples.reminded' => 'याद दिलाया',
+			'disciples.remindAll' => 'सभी को याद दिलाओ',
+			'disciples.remindSent' => ({required Object n}) => 'भेजे गए अनुस्मारक: ${n}',
+			'disciples.remindNone' => 'आज पहले ही याद दिलाया जा चुका है।',
+			'disciples.showAll' => ({required Object n}) => 'बाकी ${n} देखो',
+			'disciples.showLess' => 'कम दिखाओ',
+			'disciples.overdueHidden' => ({required Object n}) => '${n} अपनी रिपोर्ट साझा नहीं करते: कुछ पता नहीं।',
 			'weekStory.title' => 'परमेश्वर के साथ तुम्हारा हफ़्ता',
 			'weekStory.range' => ({required Object from, required Object to}) => '${from} से ${to} तक',
 			'weekStory.intro' => 'इस हफ़्ते प्रभु के साथ जो जिया, उसे फिर से देखो।',
@@ -5551,6 +5579,8 @@ extension on TranslationsHi {
 			'yearStory.homeText' => ({required Object year}) => 'तुम्हारी वफ़ादारी, प्रार्थना, वचन: ${year} में परमेश्वर के साथ जो जिया, उसे फिर से देखो।',
 			'yearStory.open' => 'मेरा साल देखो',
 			'yearStory.notificationTitle' => 'परमेश्वर के साथ तुम्हारा साल तैयार है',
+			_ => null,
+		} ?? switch (path) {
 			'yearStory.notificationBody' => ({required Object year}) => '${year} में प्रभु के साथ जो कुछ जिया, उसे फिर से देखो और साझा करो।',
 			'yearStory.channel' => 'परमेश्वर के साथ तुम्हारा साल',
 			'yearStory.moreTitle' => 'परमेश्वर के साथ मेरा साल',
@@ -5565,8 +5595,6 @@ extension on TranslationsHi {
 			'seekFirst.appsNone' => 'कोई ऐप नहीं चुना',
 			'seekFirst.appCount' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n, one: '${n} ऐप', other: '${n} ऐप', ), 
 			'seekFirst.categoryCount' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n, one: '${n} श्रेणी', other: '${n} श्रेणियाँ', ), 
-			_ => null,
-		} ?? switch (path) {
 			'seekFirst.siteCount' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n, one: '${n} साइट', other: '${n} साइटें', ), 
 			'seekFirst.start' => 'से बंद',
 			'seekFirst.pauses' => '5 मिनट के विराम',
@@ -6065,6 +6093,8 @@ extension on TranslationsHi {
 			'reading.moreSubtitle' => 'जो किताबें तुम पढ़ते हो, पन्ना दर पन्ना',
 			'reading.moreCount' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n, one: '${n} किताब पढ़ी जा रही है', other: '${n} किताबें पढ़ी जा रही हैं', ), 
 			'reading.add' => 'किताब जोड़ें',
+			_ => null,
+		} ?? switch (path) {
 			'reading.reading' => 'पढ़ी जा रही',
 			'reading.finished' => 'पूरी हुईं',
 			'reading.setAside' => 'अलग रखी गईं',
@@ -6079,8 +6109,6 @@ extension on TranslationsHi {
 			'reading.chartMonth' => ({required num n, required Object month}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n, one: '${month}: ${n} किताब', other: '${month}: ${n} किताबें', ), 
 			'reading.pick' => 'तुम कौन सी किताब पढ़ रहे हो?',
 			'reading.mine' => 'मेरी चालू किताबें',
-			_ => null,
-		} ?? switch (path) {
 			'reading.choose' => 'पढ़ी गई किताब चुनें',
 			'reading.change' => 'बदलें',
 			'reading.current' => 'चालू किताब',

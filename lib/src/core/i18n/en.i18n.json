@@ -1841,7 +1841,21 @@
     "filter": "Filter by date",
     "filterPick": "Pick a period",
     "filterTooLong": "Pick 92 days at most.",
-    "filterClear": "Clear the filter"
+    "filterClear": "Clear the filter",
+    "overdueTitle": "To remind · {n}",
+    "upToDateTitle": "Everyone is up to date",
+    "upToDate": "All your disciples filled their report recently.",
+    "daysShort": "{n} d",
+    "never": "No report yet",
+    "since": "Nothing for {days}",
+    "remind": "Remind",
+    "reminded": "Reminded",
+    "remindAll": "Remind all",
+    "remindSent": "Reminders sent: {n}",
+    "remindNone": "Already reminded today.",
+    "showAll": "See the other {n}",
+    "showLess": "See less",
+    "overdueHidden": "{n} don't share their reports: nothing is known about them."
   },
   "weekStory": {
     "title": "Your week with God",

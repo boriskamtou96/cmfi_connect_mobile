@@ -6,6 +6,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import '../../../core/i18n/strings.g.dart';
 import '../../../core/network/app_exception.dart';
 import '../../../core/network/app_exception_message.dart';
+import '../../../core/services/social_photo.dart';
 import '../../../core/services/social_sign_in.dart';
 import '../../../core/session/session.dart';
 import '../../../core/storage/preferences.dart';
@@ -58,6 +59,11 @@ class CompleteProfileScreen extends HookConsumerWidget {
         (value ?? '').trim().isEmpty ? t.validation.required : null;
 
     Future<void> signIn(LoginResponse response, {String? typed}) async {
+      // a new account takes the photo of its Google account (the app does it
+      // once signed in)
+      if (typed == null && account.photoUrl.isNotEmpty) {
+        ref.read(pendingSocialPhotoProvider.notifier).set(account.photoUrl);
+      }
       await ref
           .read(sessionProvider.notifier)
           .signIn(response.accessToken, account: response.account);

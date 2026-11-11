@@ -1,4 +1,7 @@
+import 'dart:typed_data';
+
 import 'package:cmfi_connect/src/core/i18n/strings.g.dart';
+import 'package:cmfi_connect/src/core/services/social_photo.dart';
 import 'package:cmfi_connect/src/core/services/social_sign_in.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -71,7 +74,7 @@ void main() {
     await tester.tap(find.text("Écrire à l'équipe"));
     await tester.pumpAndSettle();
     expect(app.links.opened.single.scheme, 'mailto');
-    expect(app.links.opened.single.path, 'info@cmfi-connect.com');
+    expect(app.links.opened.single.path, 'contact@cmfi-connect.com');
   });
 
   testWidgets('Google the first time: the profile is completed', (
@@ -100,6 +103,58 @@ void main() {
     ]);
     // a new account: its church next
     expect(find.text('Ton église'), findsOneWidget);
+  });
+
+  testWidgets('Google the first time: its photo becomes the profile photo', (
+    tester,
+  ) async {
+    const photo = 'https://lh3.googleusercontent.com/a/paul=s400-c';
+    final bytes = Uint8List.fromList([1, 2, 3]);
+    final downloader = FakePhotoDownloader({photo: bytes});
+    final app = await pumpApp(
+      tester,
+      socialSignIn: FakeSocialSignIn(
+        next: const SocialAccount(
+          idToken: 'firebase:google',
+          provider: SocialProvider.google,
+          firstName: 'Paul',
+          lastName: 'Ngono',
+          email: 'paul.ngono@gmail.com',
+          photoUrl: photo,
+        ),
+      ),
+      photoDownloader: downloader,
+    );
+    await openLogin(tester);
+    await tester.ensureVisible(find.text('Continuer avec Google'));
+    await tester.tap(find.text('Continuer avec Google'));
+    await tester.pumpAndSettle();
+    await tester.enterText(find.byType(TextFormField).at(2), '6 77 11 22 33');
+    await tester.tap(find.widgetWithText(FilledButton, 'Créer mon compte'));
+    await tester.pumpAndSettle();
+
+    // the photo is taken once the app opens, after the church step
+    expect(downloader.asked, isEmpty);
+    await tester.tap(find.text('Passer cette étape'));
+    await tester.pumpAndSettle();
+
+    expect(downloader.asked, [photo]);
+    expect(app.profileApi.avatars, [bytes]);
+
+    // only the pictures of Google accounts are downloaded
+    expect(HttpPhotoDownloader.isGooglePhoto(Uri.parse(photo)), isTrue);
+    expect(
+      HttpPhotoDownloader.isGooglePhoto(
+        Uri.parse('http://lh3.googleusercontent.com/a'),
+      ),
+      isFalse,
+    );
+    expect(
+      HttpPhotoDownloader.isGooglePhoto(
+        Uri.parse('https://googleusercontent.com.evil.test/a'),
+      ),
+      isFalse,
+    );
   });
 
   testWidgets('a number that has an account is linked with its password', (

@@ -1791,7 +1791,21 @@
     "filter": "按日期筛选",
     "filterPick": "选择时间段",
     "filterTooLong": "最多选择 92 天。",
-    "filterClear": "清除筛选"
+    "filterClear": "清除筛选",
+    "overdueTitle": "待提醒 · {n}",
+    "upToDateTitle": "大家都已跟上",
+    "upToDate": "你的门徒最近都填写了报告。",
+    "daysShort": "{n}天",
+    "never": "还没有报告",
+    "since": "已有 {days} 没有报告",
+    "remind": "提醒",
+    "reminded": "已提醒",
+    "remindAll": "全部提醒",
+    "remindSent": "已发送提醒：{n}",
+    "remindNone": "今天已提醒过。",
+    "showAll": "查看其余 {n} 位",
+    "showLess": "收起",
+    "overdueHidden": "{n} 人未分享报告：无从得知。"
   },
   "weekStory": {
     "title": "你与神同在的一周",

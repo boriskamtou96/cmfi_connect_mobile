@@ -5,6 +5,7 @@ import '../../../core/network/api_call.dart';
 import '../../../core/network/dio_provider.dart';
 import '../../../core/utils/date_extensions.dart';
 import '../domain/disciple.dart';
+import '../domain/overdue.dart';
 import '../domain/received_report.dart';
 
 part 'disciples_api.g.dart';
@@ -42,6 +43,40 @@ class DisciplesApi {
     return (
       items: items,
       total: (meta?['total'] as num?)?.toInt() ?? items.length,
+    );
+  });
+
+  /// The disciples who share their reports and have none for [days] days or
+  /// more, the longest without first.
+  Future<Overdue> overdue({required DateTime today, int days = 3}) =>
+      apiCall(() async {
+        final response = await _dio.get<Map<String, dynamic>>(
+          '/disciples/overdue',
+          queryParameters: {'days': days, 'today': today.toApiDate()},
+        );
+        return Overdue.fromJson(response.content);
+      });
+
+  /// Reminds [authorityIds] to fill their report (a push), or every disciple
+  /// late by [days] days when none is given. A disciple is reminded once a
+  /// day: the others are skipped.
+  Future<NudgeResult> nudge({
+    List<int> authorityIds = const [],
+    int days = 3,
+    required DateTime today,
+  }) => apiCall(() async {
+    final response = await _dio.post<Map<String, dynamic>>(
+      '/disciples/nudge',
+      data: {
+        if (authorityIds.isNotEmpty) 'authority_ids': authorityIds,
+        'days': days,
+        'today': today.toApiDate(),
+      },
+    );
+    final body = response.content;
+    return (
+      sent: (body['sent'] as num?)?.toInt() ?? 0,
+      skipped: (body['skipped'] as num?)?.toInt() ?? 0,
     );
   });
 

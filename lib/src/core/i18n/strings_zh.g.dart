@@ -1163,6 +1163,20 @@ class _Translations$disciples$zh extends Translations$disciples$fr {
 	@override String get filterPick => '选择时间段';
 	@override String get filterTooLong => '最多选择 92 天。';
 	@override String get filterClear => '清除筛选';
+	@override String overdueTitle({required Object n}) => '待提醒 · ${n}';
+	@override String get upToDateTitle => '大家都已跟上';
+	@override String get upToDate => '你的门徒最近都填写了报告。';
+	@override String daysShort({required Object n}) => '${n}天';
+	@override String get never => '还没有报告';
+	@override String since({required Object days}) => '已有 ${days} 没有报告';
+	@override String get remind => '提醒';
+	@override String get reminded => '已提醒';
+	@override String get remindAll => '全部提醒';
+	@override String remindSent({required Object n}) => '已发送提醒：${n}';
+	@override String get remindNone => '今天已提醒过。';
+	@override String showAll({required Object n}) => '查看其余 ${n} 位';
+	@override String get showLess => '收起';
+	@override String overdueHidden({required Object n}) => '${n} 人未分享报告：无从得知。';
 }
 
 // Path: weekStory
@@ -5370,6 +5384,20 @@ extension on TranslationsZh {
 			'disciples.filterPick' => '选择时间段',
 			'disciples.filterTooLong' => '最多选择 92 天。',
 			'disciples.filterClear' => '清除筛选',
+			'disciples.overdueTitle' => ({required Object n}) => '待提醒 · ${n}',
+			'disciples.upToDateTitle' => '大家都已跟上',
+			'disciples.upToDate' => '你的门徒最近都填写了报告。',
+			'disciples.daysShort' => ({required Object n}) => '${n}天',
+			'disciples.never' => '还没有报告',
+			'disciples.since' => ({required Object days}) => '已有 ${days} 没有报告',
+			'disciples.remind' => '提醒',
+			'disciples.reminded' => '已提醒',
+			'disciples.remindAll' => '全部提醒',
+			'disciples.remindSent' => ({required Object n}) => '已发送提醒：${n}',
+			'disciples.remindNone' => '今天已提醒过。',
+			'disciples.showAll' => ({required Object n}) => '查看其余 ${n} 位',
+			'disciples.showLess' => '收起',
+			'disciples.overdueHidden' => ({required Object n}) => '${n} 人未分享报告：无从得知。',
 			'weekStory.title' => '你与神同在的一周',
 			'weekStory.range' => ({required Object from, required Object to}) => '${from}至${to}',
 			'weekStory.intro' => '回顾这一周你与主同在的点滴。',
@@ -5447,6 +5475,8 @@ extension on TranslationsZh {
 			'yearStory.homeText' => ({required Object year}) => '你的忠心、祷告与神的话：回顾 ${year} 年你与神同在的点滴。',
 			'yearStory.open' => '查看我的一年',
 			'yearStory.notificationTitle' => '你与神同在的一年已准备好',
+			_ => null,
+		} ?? switch (path) {
 			'yearStory.notificationBody' => ({required Object year}) => '回顾 ${year} 年你与主同在的点滴，并分享出去。',
 			'yearStory.channel' => '你与神同在的一年',
 			'yearStory.moreTitle' => '我与神同在的一年',
@@ -5461,8 +5491,6 @@ extension on TranslationsZh {
 			'seekFirst.appsNone' => '尚未选择应用',
 			'seekFirst.appCount' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n, other: '${n} 个应用', ), 
 			'seekFirst.categoryCount' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n, other: '${n} 个类别', ), 
-			_ => null,
-		} ?? switch (path) {
 			'seekFirst.siteCount' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n, other: '${n} 个网站', ), 
 			'seekFirst.start' => '关闭时间',
 			'seekFirst.pauses' => '5 分钟暂停',
@@ -5961,6 +5989,8 @@ extension on TranslationsZh {
 			'reading.moreSubtitle' => '你在读的书，一页又一页',
 			'reading.moreCount' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n, other: '${n} 本书在读', ), 
 			'reading.add' => '添加书籍',
+			_ => null,
+		} ?? switch (path) {
 			'reading.reading' => '在读',
 			'reading.finished' => '已读完',
 			'reading.setAside' => '已搁置',
@@ -5975,8 +6005,6 @@ extension on TranslationsZh {
 			'reading.chartMonth' => ({required num n, required Object month}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n, other: '${month}：${n} 本书', ), 
 			'reading.pick' => '你在读哪本书？',
 			'reading.mine' => '我在读的书',
-			_ => null,
-		} ?? switch (path) {
 			'reading.choose' => '选择所读的书',
 			'reading.change' => '更换',
 			'reading.current' => '在读的书',

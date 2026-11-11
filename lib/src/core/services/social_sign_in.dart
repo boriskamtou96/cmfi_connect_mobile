@@ -26,6 +26,7 @@ class SocialAccount {
     this.firstName = '',
     this.lastName = '',
     this.email = '',
+    this.photoUrl = '',
   });
 
   /// The Firebase ID token the server checks (valid one hour).
@@ -34,6 +35,10 @@ class SocialAccount {
   final String firstName;
   final String lastName;
   final String email;
+
+  /// The picture of the Google account (400 px), '' without one (Apple
+  /// gives none).
+  final String photoUrl;
 }
 
 class SocialSignInException implements Exception {
@@ -127,6 +132,9 @@ class FirebaseSocialSignIn implements SocialSignIn {
             _text(profile['family_name']) ??
             (space < 0 ? '' : name.substring(space + 1).trim()),
         email: user.email ?? '',
+        photoUrl: provider == SocialProvider.google
+            ? _bigPhoto(user.photoURL ?? _text(profile['picture']))
+            : '',
       );
     } on FirebaseAuthException catch (error) {
       if (_cancelled.contains(error.code)) {
@@ -148,6 +156,15 @@ class FirebaseSocialSignIn implements SocialSignIn {
     'popup-closed-by-user',
     'user-cancelled',
   };
+
+  /// Google's pictures end with their size ("=s96-c"): 400 px is sharp enough
+  /// for the profile photo.
+  static String _bigPhoto(String? url) {
+    if (url == null || url.isEmpty) {
+      return '';
+    }
+    return url.replaceFirst(RegExp(r'=s\d+-c$'), '=s400-c');
+  }
 
   static String? _text(Object? value) =>
       value is String && value.trim().isNotEmpty ? value.trim() : null;

@@ -1193,6 +1193,20 @@ class _Translations$disciples$en extends Translations$disciples$fr {
 	@override String get filterPick => 'Pick a period';
 	@override String get filterTooLong => 'Pick 92 days at most.';
 	@override String get filterClear => 'Clear the filter';
+	@override String overdueTitle({required Object n}) => 'To remind · ${n}';
+	@override String get upToDateTitle => 'Everyone is up to date';
+	@override String get upToDate => 'All your disciples filled their report recently.';
+	@override String daysShort({required Object n}) => '${n} d';
+	@override String get never => 'No report yet';
+	@override String since({required Object days}) => 'Nothing for ${days}';
+	@override String get remind => 'Remind';
+	@override String get reminded => 'Reminded';
+	@override String get remindAll => 'Remind all';
+	@override String remindSent({required Object n}) => 'Reminders sent: ${n}';
+	@override String get remindNone => 'Already reminded today.';
+	@override String showAll({required Object n}) => 'See the other ${n}';
+	@override String get showLess => 'See less';
+	@override String overdueHidden({required Object n}) => '${n} don\'t share their reports: nothing is known about them.';
 }
 
 // Path: weekStory
@@ -5476,6 +5490,20 @@ extension on TranslationsEn {
 			'disciples.filterPick' => 'Pick a period',
 			'disciples.filterTooLong' => 'Pick 92 days at most.',
 			'disciples.filterClear' => 'Clear the filter',
+			'disciples.overdueTitle' => ({required Object n}) => 'To remind · ${n}',
+			'disciples.upToDateTitle' => 'Everyone is up to date',
+			'disciples.upToDate' => 'All your disciples filled their report recently.',
+			'disciples.daysShort' => ({required Object n}) => '${n} d',
+			'disciples.never' => 'No report yet',
+			'disciples.since' => ({required Object days}) => 'Nothing for ${days}',
+			'disciples.remind' => 'Remind',
+			'disciples.reminded' => 'Reminded',
+			'disciples.remindAll' => 'Remind all',
+			'disciples.remindSent' => ({required Object n}) => 'Reminders sent: ${n}',
+			'disciples.remindNone' => 'Already reminded today.',
+			'disciples.showAll' => ({required Object n}) => 'See the other ${n}',
+			'disciples.showLess' => 'See less',
+			'disciples.overdueHidden' => ({required Object n}) => '${n} don\'t share their reports: nothing is known about them.',
 			'weekStory.title' => 'Your week with God',
 			'weekStory.range' => ({required Object from, required Object to}) => '${from} to ${to}',
 			'weekStory.intro' => 'Look back on what you lived with the Lord this week.',
@@ -5553,6 +5581,8 @@ extension on TranslationsEn {
 			'yearStory.homeText' => ({required Object year}) => 'Your faithfulness, your prayer, the Word: look back on all you lived with God in ${year}.',
 			'yearStory.open' => 'See my year',
 			'yearStory.notificationTitle' => 'Your year with God is ready',
+			_ => null,
+		} ?? switch (path) {
 			'yearStory.notificationBody' => ({required Object year}) => 'Look back on all you lived with the Lord in ${year}, and share it.',
 			'yearStory.channel' => 'Your year with God',
 			'yearStory.moreTitle' => 'My year with God',
@@ -5567,8 +5597,6 @@ extension on TranslationsEn {
 			'seekFirst.appsNone' => 'No app chosen',
 			'seekFirst.appCount' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n, one: '${n} app', other: '${n} apps', ), 
 			'seekFirst.categoryCount' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n, one: '${n} category', other: '${n} categories', ), 
-			_ => null,
-		} ?? switch (path) {
 			'seekFirst.siteCount' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n, one: '${n} site', other: '${n} sites', ), 
 			'seekFirst.start' => 'Closed from',
 			'seekFirst.pauses' => '5-minute breaks',
@@ -6067,6 +6095,8 @@ extension on TranslationsEn {
 			'reading.moreSubtitle' => 'The books you read, page after page',
 			'reading.moreCount' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n, one: '${n} book in progress', other: '${n} books in progress', ), 
 			'reading.add' => 'Add a book',
+			_ => null,
+		} ?? switch (path) {
 			'reading.reading' => 'In progress',
 			'reading.finished' => 'Finished',
 			'reading.setAside' => 'Set aside',
@@ -6081,8 +6111,6 @@ extension on TranslationsEn {
 			'reading.chartMonth' => ({required num n, required Object month}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n, one: '${month}: ${n} book', other: '${month}: ${n} books', ), 
 			'reading.pick' => 'Which book are you reading?',
 			'reading.mine' => 'My books in progress',
-			_ => null,
-		} ?? switch (path) {
 			'reading.choose' => 'Choose the book read',
 			'reading.change' => 'Change',
 			'reading.current' => 'Current book',

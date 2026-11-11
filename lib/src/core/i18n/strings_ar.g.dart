@@ -1310,6 +1310,20 @@ class _Translations$disciples$ar extends Translations$disciples$fr {
 	@override String get filterPick => 'اختر فترة';
 	@override String get filterTooLong => 'اختر 92 يومًا على الأكثر.';
 	@override String get filterClear => 'إزالة التصفية';
+	@override String overdueTitle({required Object n}) => 'للتذكير · ${n}';
+	@override String get upToDateTitle => 'الجميع على اطلاع';
+	@override String get upToDate => 'ملأ كل تلاميذك تقاريرهم مؤخرًا.';
+	@override String daysShort({required Object n}) => '${n} ي';
+	@override String get never => 'لا يوجد تقرير بعد';
+	@override String since({required Object days}) => 'لا شيء منذ ${days}';
+	@override String get remind => 'ذكّر';
+	@override String get reminded => 'تم التذكير';
+	@override String get remindAll => 'ذكّر الجميع';
+	@override String remindSent({required Object n}) => 'التذكيرات المرسلة: ${n}';
+	@override String get remindNone => 'تم تذكيرهم اليوم.';
+	@override String showAll({required Object n}) => 'عرض الـ ${n} الآخرين';
+	@override String get showLess => 'عرض أقل';
+	@override String overdueHidden({required Object n}) => '${n} لا يشاركون تقاريرهم: لا يُعرف عنهم شيء.';
 }
 
 // Path: weekStory
@@ -5888,6 +5902,20 @@ extension on TranslationsAr {
 			'disciples.filterPick' => 'اختر فترة',
 			'disciples.filterTooLong' => 'اختر 92 يومًا على الأكثر.',
 			'disciples.filterClear' => 'إزالة التصفية',
+			'disciples.overdueTitle' => ({required Object n}) => 'للتذكير · ${n}',
+			'disciples.upToDateTitle' => 'الجميع على اطلاع',
+			'disciples.upToDate' => 'ملأ كل تلاميذك تقاريرهم مؤخرًا.',
+			'disciples.daysShort' => ({required Object n}) => '${n} ي',
+			'disciples.never' => 'لا يوجد تقرير بعد',
+			'disciples.since' => ({required Object days}) => 'لا شيء منذ ${days}',
+			'disciples.remind' => 'ذكّر',
+			'disciples.reminded' => 'تم التذكير',
+			'disciples.remindAll' => 'ذكّر الجميع',
+			'disciples.remindSent' => ({required Object n}) => 'التذكيرات المرسلة: ${n}',
+			'disciples.remindNone' => 'تم تذكيرهم اليوم.',
+			'disciples.showAll' => ({required Object n}) => 'عرض الـ ${n} الآخرين',
+			'disciples.showLess' => 'عرض أقل',
+			'disciples.overdueHidden' => ({required Object n}) => '${n} لا يشاركون تقاريرهم: لا يُعرف عنهم شيء.',
 			'weekStory.title' => 'أسبوعك مع الله',
 			'weekStory.range' => ({required Object from, required Object to}) => 'من ${from} إلى ${to}',
 			'weekStory.intro' => 'استعد ما عشته مع الرب هذا الأسبوع.',
@@ -5965,6 +5993,8 @@ extension on TranslationsAr {
 			'yearStory.homeText' => ({required Object year}) => 'أمانتك وصلاتك وكلمة الله: استعد كل ما عشته مع الله في ${year}.',
 			'yearStory.open' => 'عرض عامي',
 			'yearStory.notificationTitle' => 'عامك مع الله جاهز',
+			_ => null,
+		} ?? switch (path) {
 			'yearStory.notificationBody' => ({required Object year}) => 'استعد كل ما عشته مع الرب في ${year} وشاركه.',
 			'yearStory.channel' => 'عامك مع الله',
 			'yearStory.moreTitle' => 'عامي مع الله',
@@ -5979,8 +6009,6 @@ extension on TranslationsAr {
 			'seekFirst.appsNone' => 'لم تختر أي تطبيق',
 			'seekFirst.appCount' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n, zero: '${n} تطبيق', one: 'تطبيق واحد', two: 'تطبيقان', few: '${n} تطبيقات', many: '${n} تطبيقًا', other: '${n} تطبيق', ), 
 			'seekFirst.categoryCount' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n, zero: '${n} فئة', one: 'فئة واحدة', two: 'فئتان', few: '${n} فئات', many: '${n} فئة', other: '${n} فئة', ), 
-			_ => null,
-		} ?? switch (path) {
 			'seekFirst.siteCount' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n, zero: '${n} موقع', one: 'موقع واحد', two: 'موقعان', few: '${n} مواقع', many: '${n} موقعًا', other: '${n} موقع', ), 
 			'seekFirst.start' => 'مغلقة ابتداءً من',
 			'seekFirst.pauses' => 'استراحات من 5 دقائق',
@@ -6479,6 +6507,8 @@ extension on TranslationsAr {
 			'reading.moreSubtitle' => 'الكتب التي تقرأها، صفحة بعد صفحة',
 			'reading.moreCount' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n, zero: '${n} كتاب قيد القراءة', one: 'كتاب واحد قيد القراءة', two: 'كتابان قيد القراءة', few: '${n} كتب قيد القراءة', many: '${n} كتابًا قيد القراءة', other: '${n} كتاب قيد القراءة', ), 
 			'reading.add' => 'إضافة كتاب',
+			_ => null,
+		} ?? switch (path) {
 			'reading.reading' => 'قيد القراءة',
 			'reading.finished' => 'منتهية',
 			'reading.setAside' => 'موضوعة جانبًا',
@@ -6493,8 +6523,6 @@ extension on TranslationsAr {
 			'reading.chartMonth' => ({required num n, required Object month}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n, zero: '${month}: ${n} كتاب', one: '${month}: كتاب واحد', two: '${month}: كتابان', few: '${month}: ${n} كتب', many: '${month}: ${n} كتابًا', other: '${month}: ${n} كتاب', ), 
 			'reading.pick' => 'أي كتاب تقرأ؟',
 			'reading.mine' => 'كتبي قيد القراءة',
-			_ => null,
-		} ?? switch (path) {
 			'reading.choose' => 'اختر الكتاب المقروء',
 			'reading.change' => 'تغيير',
 			'reading.current' => 'الكتاب الحالي',

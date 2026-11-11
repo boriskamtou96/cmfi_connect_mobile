@@ -2476,6 +2476,48 @@ class Translations$disciples$fr {
 
 	/// fr: 'Retirer le filtre'
 	String get filterClear => 'Retirer le filtre';
+
+	/// fr: 'À relancer · {n}'
+	String overdueTitle({required Object n}) => 'À relancer · ${n}';
+
+	/// fr: 'Tout le monde est à jour'
+	String get upToDateTitle => 'Tout le monde est à jour';
+
+	/// fr: 'Tous tes disciples ont rempli leur compte rendu récemment.'
+	String get upToDate => 'Tous tes disciples ont rempli leur compte rendu récemment.';
+
+	/// fr: '{n} j'
+	String daysShort({required Object n}) => '${n} j';
+
+	/// fr: 'Aucun compte rendu'
+	String get never => 'Aucun compte rendu';
+
+	/// fr: 'Rien depuis {days}'
+	String since({required Object days}) => 'Rien depuis ${days}';
+
+	/// fr: 'Rappeler'
+	String get remind => 'Rappeler';
+
+	/// fr: 'Rappelé'
+	String get reminded => 'Rappelé';
+
+	/// fr: 'Rappeler tous'
+	String get remindAll => 'Rappeler tous';
+
+	/// fr: 'Rappels envoyés : {n}'
+	String remindSent({required Object n}) => 'Rappels envoyés : ${n}';
+
+	/// fr: 'Déjà rappelés aujourd'hui.'
+	String get remindNone => 'Déjà rappelés aujourd\'hui.';
+
+	/// fr: 'Voir les {n} autres'
+	String showAll({required Object n}) => 'Voir les ${n} autres';
+
+	/// fr: 'Voir moins'
+	String get showLess => 'Voir moins';
+
+	/// fr: '{n} ne partage pas ses comptes rendus : on ne peut pas savoir.'
+	String overdueHidden({required Object n}) => '${n} ne partage pas ses comptes rendus : on ne peut pas savoir.';
 }
 
 // Path: weekStory
@@ -9467,6 +9509,20 @@ extension on Translations {
 			'disciples.filterPick' => 'Choisis une période',
 			'disciples.filterTooLong' => 'Choisis 92 jours au plus.',
 			'disciples.filterClear' => 'Retirer le filtre',
+			'disciples.overdueTitle' => ({required Object n}) => 'À relancer · ${n}',
+			'disciples.upToDateTitle' => 'Tout le monde est à jour',
+			'disciples.upToDate' => 'Tous tes disciples ont rempli leur compte rendu récemment.',
+			'disciples.daysShort' => ({required Object n}) => '${n} j',
+			'disciples.never' => 'Aucun compte rendu',
+			'disciples.since' => ({required Object days}) => 'Rien depuis ${days}',
+			'disciples.remind' => 'Rappeler',
+			'disciples.reminded' => 'Rappelé',
+			'disciples.remindAll' => 'Rappeler tous',
+			'disciples.remindSent' => ({required Object n}) => 'Rappels envoyés : ${n}',
+			'disciples.remindNone' => 'Déjà rappelés aujourd\'hui.',
+			'disciples.showAll' => ({required Object n}) => 'Voir les ${n} autres',
+			'disciples.showLess' => 'Voir moins',
+			'disciples.overdueHidden' => ({required Object n}) => '${n} ne partage pas ses comptes rendus : on ne peut pas savoir.',
 			'weekStory.title' => 'Ta semaine avec Dieu',
 			'weekStory.range' => ({required Object from, required Object to}) => 'Du ${from} au ${to}',
 			'weekStory.intro' => 'Revois ce que tu as vécu avec le Seigneur cette semaine.',
@@ -9544,6 +9600,8 @@ extension on Translations {
 			'yearStory.homeText' => ({required Object year}) => 'Ta fidélité, ta prière, la Parole : revois tout ce que tu as vécu avec Dieu en ${year}.',
 			'yearStory.open' => 'Voir mon année',
 			'yearStory.notificationTitle' => 'Ton année avec Dieu est prête',
+			_ => null,
+		} ?? switch (path) {
 			'yearStory.notificationBody' => ({required Object year}) => 'Revois tout ce que tu as vécu avec le Seigneur en ${year}, et partage-le.',
 			'yearStory.channel' => 'Ton année avec Dieu',
 			'yearStory.moreTitle' => 'Mon année avec Dieu',
@@ -9558,8 +9616,6 @@ extension on Translations {
 			'seekFirst.appsNone' => 'Aucune app choisie',
 			'seekFirst.appCount' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('fr'))(n, one: '${n} app', other: '${n} apps', ), 
 			'seekFirst.categoryCount' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('fr'))(n, one: '${n} catégorie', other: '${n} catégories', ), 
-			_ => null,
-		} ?? switch (path) {
 			'seekFirst.siteCount' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('fr'))(n, one: '${n} site', other: '${n} sites', ), 
 			'seekFirst.start' => 'Fermées à partir de',
 			'seekFirst.pauses' => 'Pauses de 5 minutes',
@@ -10058,6 +10114,8 @@ extension on Translations {
 			'reading.moreSubtitle' => 'Les livres que tu lis, page après page',
 			'reading.moreCount' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('fr'))(n, one: '${n} livre en cours', other: '${n} livres en cours', ), 
 			'reading.add' => 'Ajouter un livre',
+			_ => null,
+		} ?? switch (path) {
 			'reading.reading' => 'En cours',
 			'reading.finished' => 'Terminés',
 			'reading.setAside' => 'Mis de côté',
@@ -10072,8 +10130,6 @@ extension on Translations {
 			'reading.chartMonth' => ({required num n, required Object month}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('fr'))(n, one: '${month} : ${n} livre', other: '${month} : ${n} livres', ), 
 			'reading.pick' => 'Quel livre lis-tu ?',
 			'reading.mine' => 'Mes livres en cours',
-			_ => null,
-		} ?? switch (path) {
 			'reading.choose' => 'Choisir le livre lu',
 			'reading.change' => 'Changer',
 			'reading.current' => 'Livre en cours',

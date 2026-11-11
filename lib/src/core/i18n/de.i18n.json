@@ -1840,7 +1840,21 @@
     "filter": "Nach Datum filtern",
     "filterPick": "Wähle einen Zeitraum",
     "filterTooLong": "Wähle höchstens 92 Tage.",
-    "filterClear": "Filter entfernen"
+    "filterClear": "Filter entfernen",
+    "overdueTitle": "Erinnern · {n}",
+    "upToDateTitle": "Alle sind auf dem Laufenden",
+    "upToDate": "Alle deine Jünger haben kürzlich ihren Bericht ausgefüllt.",
+    "daysShort": "{n} T",
+    "never": "Noch kein Bericht",
+    "since": "Nichts seit {days}",
+    "remind": "Erinnern",
+    "reminded": "Erinnert",
+    "remindAll": "Alle erinnern",
+    "remindSent": "Erinnerungen gesendet: {n}",
+    "remindNone": "Heute schon erinnert.",
+    "showAll": "Die anderen {n} anzeigen",
+    "showLess": "Weniger anzeigen",
+    "overdueHidden": "{n} teilen ihre Berichte nicht: nichts bekannt."
   },
   "weekStory": {
     "title": "Deine Woche mit Gott",

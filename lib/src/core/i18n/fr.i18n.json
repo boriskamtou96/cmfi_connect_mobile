@@ -1840,7 +1840,21 @@
     "filter": "Filtrer par date",
     "filterPick": "Choisis une période",
     "filterTooLong": "Choisis 92 jours au plus.",
-    "filterClear": "Retirer le filtre"
+    "filterClear": "Retirer le filtre",
+    "overdueTitle": "À relancer · {n}",
+    "upToDateTitle": "Tout le monde est à jour",
+    "upToDate": "Tous tes disciples ont rempli leur compte rendu récemment.",
+    "daysShort": "{n} j",
+    "never": "Aucun compte rendu",
+    "since": "Rien depuis {days}",
+    "remind": "Rappeler",
+    "reminded": "Rappelé",
+    "remindAll": "Rappeler tous",
+    "remindSent": "Rappels envoyés : {n}",
+    "remindNone": "Déjà rappelés aujourd'hui.",
+    "showAll": "Voir les {n} autres",
+    "showLess": "Voir moins",
+    "overdueHidden": "{n} ne partage pas ses comptes rendus : on ne peut pas savoir."
   },
   "weekStory": {
     "title": "Ta semaine avec Dieu",

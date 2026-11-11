@@ -10,6 +10,7 @@ import 'package:cmfi_connect/src/features/bible/application/bible_position.dart'
 import 'package:cmfi_connect/src/features/bible/domain/bible.dart';
 import 'package:cmfi_connect/src/features/bible/presentation/bible_screen.dart';
 import 'package:cmfi_connect/src/features/disciples/domain/disciple.dart';
+import 'package:cmfi_connect/src/features/disciples/domain/overdue.dart';
 import 'package:cmfi_connect/src/features/disciples/domain/received_report.dart';
 import 'package:cmfi_connect/src/features/disciples/presentation/disciples_screen.dart';
 import 'package:cmfi_connect/src/features/disciples/presentation/received_reports_screen.dart';
@@ -53,6 +54,61 @@ void main() {
       member: MemberCard(username: 'marie.ebo', firstName: 'Marie'),
       sharesRegularity: false,
     );
+
+    testWidgets('who is late: a reminder to one, or to all', (tester) async {
+      final api = FakeDisciplesApi([paul, marie])
+        ..overdueResult = const Overdue(
+          sharing: 2,
+          notSharing: 1,
+          overdue: [
+            OverdueDisciple(
+              authorityId: 11,
+              member: MemberCard(
+                username: 'paul.ndi',
+                firstName: 'Paul',
+                lastName: 'Ndi',
+              ),
+              daysSince: 5,
+            ),
+            OverdueDisciple(
+              authorityId: 13,
+              member: MemberCard(username: 'zoe.eto', firstName: 'Zoé'),
+            ),
+          ],
+        );
+      await pumpApp(tester, token: 't', disciplesApi: api);
+      await openProfile(tester);
+      await scrollTo(tester, find.text('Mes disciples'));
+      await tester.tap(find.text('Mes disciples'));
+      await tester.pumpAndSettle();
+
+      expect(find.text('À relancer · 2'), findsOneWidget);
+      expect(find.text('Rien depuis 5 j'), findsOneWidget);
+      expect(find.text('Aucun compte rendu'), findsOneWidget);
+      expect(
+        find.text(
+          '1 ne partage pas ses comptes rendus : on ne peut pas savoir.',
+        ),
+        findsOneWidget,
+      );
+      expect(api.overdueAsked.last, 3);
+
+      // a longer wait
+      await tester.tap(find.text('7 j'));
+      await tester.pumpAndSettle();
+      expect(api.overdueAsked.last, 7);
+
+      // one touch for one disciple, one for all
+      await tester.tap(find.text('Rappeler').first);
+      await tester.pumpAndSettle();
+      expect(api.nudged, [
+        [11],
+      ]);
+      await tester.ensureVisible(find.text('Rappeler tous'));
+      await tester.tap(find.text('Rappeler tous'));
+      await tester.pumpAndSettle();
+      expect(api.nudged.last, isEmpty);
+    });
 
     testWidgets('nobody chose me: no entry in Plus', (tester) async {
       await pumpApp(tester, token: 't');

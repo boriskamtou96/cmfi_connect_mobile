@@ -9,7 +9,7 @@ import '../../../../core/theme/app_icons.dart';
 import '../../../../core/theme/app_spacing.dart';
 
 /// Where to ask for help (the same as Plus › Nous contacter).
-const _teamEmail = 'info@cmfi-connect.com';
+const _teamEmail = 'contact@cmfi-connect.com';
 
 /// « Mot de passe oublié ? »: no SMS (it costs), an admin gives a temporary
 /// password from the back office; the app asks for a new one at the next

@@ -40,7 +40,7 @@ Monte la version (type:patch|minor|major), le numéro de build +1, commit et tag
 [bundle exec] fastlane ios certificates
 ```
 
-Une fois (puis à chaque nouvelle extension) : crée certificat et profils App Store dans le dépôt de match
+Une fois (puis à chaque nouvelle extension) : crée certificat et profils App Store dans le dépôt de match. force:true refait les profils (une capacité ajoutée à un identifiant, comme Sign in with Apple)
 
 ### ios beta
 

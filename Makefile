@@ -24,7 +24,7 @@ export LC_ALL := en_US.UTF-8
 .PHONY: help setup gen gen-clean watch run run-dev run-prod run-device catalog \
 	analyze test check format brand mascots screenshots landing-screens \
 	build-apk build-aab build-ipa build-dev-apk pods clean \
-	lanes bump bump-dry ios-beta ios-metadata ios-release android-beta match-setup asc-env play-env ci-secrets publish
+	lanes bump bump-dry ios-beta ios-metadata ios-release android-beta match-setup match-refresh asc-env play-env ci-secrets publish
 
 help: ## Affiche cette aide
 	@grep -hE '^[a-zA-Z_-]+:.*?## ' $(MAKEFILE_LIST) | awk 'BEGIN {FS = ":.*?## "}; {printf "  \033[36m%-18s\033[0m %s\n", $$1, $$2}'
@@ -153,6 +153,9 @@ android-beta: ## Envoie sur Google Play (TRACK=internal par défaut)
 
 match-setup: ## Une fois : crée certificat et profils iOS dans le dépôt de match (clé API et MATCH_* dans fastlane/.env)
 	$(FASTLANE) ios certificates
+
+match-refresh: ## Refait les profils iOS de match après une capacité ajoutée (Sign in with Apple…)
+	$(FASTLANE) ios certificates force:true
 
 play-env: ## Écrit PLAY_JSON_KEY dans fastlane/.env depuis la clé JSON du compte de service Google Play : make play-env JSON=…
 	@test -f "$(JSON)" || { echo "Usage : make play-env JSON=~/chemin/compte-de-service.json"; exit 1; }

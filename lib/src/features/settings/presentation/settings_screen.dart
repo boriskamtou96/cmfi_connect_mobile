@@ -38,7 +38,7 @@ import 'sign_out.dart';
 import 'widgets/theme_sheet.dart';
 
 /// Where to write to the team (the address of the site's legal pages).
-const _contactEmail = 'info@cmfi-connect.com';
+const _contactEmail = 'contact@cmfi-connect.com';
 
 /// « Réglages » (validated on 23/10/2026), from the gear of the profile or
 /// the menu: how the app works for the member. Premium, the practice (Cherche

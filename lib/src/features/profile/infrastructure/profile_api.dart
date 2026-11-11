@@ -78,5 +78,5 @@ class ProfileApi {
       };
 }
 
-@riverpod
+@Riverpod(keepAlive: true)
 ProfileApi profileApi(Ref ref) => ProfileApi(ref.watch(dioProvider));

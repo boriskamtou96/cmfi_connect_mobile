@@ -36,7 +36,7 @@ final class SessionProvider
   Session create() => Session();
 }
 
-String _$sessionHash() => r'cb554ecb66e4ae172ce85f34ced7200c02351de4';
+String _$sessionHash() => r'1ac755677e577f0ad5622b33c70c657e0a90bdbf';
 
 /// Whether a user is signed in. The router guard and the 401 handling rely on it.
 

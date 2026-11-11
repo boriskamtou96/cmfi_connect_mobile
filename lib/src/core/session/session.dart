@@ -37,8 +37,9 @@ class Session extends _$Session {
     state = const AsyncData(SessionStatus.unauthenticated);
   }
 
-  /// Whether the last sign-out came with the account's deletion.
-  bool get accountDeleted => _accountDeleted;
+  /// Whether the last sign-out came with the account's deletion. A method:
+  /// a notifier exposes its public API through its state.
+  bool accountWasDeleted() => _accountDeleted;
   var _accountDeleted = false;
 }
 

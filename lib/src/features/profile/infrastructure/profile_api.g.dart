@@ -21,7 +21,7 @@ final class ProfileApiProvider
         argument: null,
         retry: null,
         name: r'profileApiProvider',
-        isAutoDispose: true,
+        isAutoDispose: false,
         dependencies: null,
         $allTransitiveDependencies: null,
       );
@@ -48,4 +48,4 @@ final class ProfileApiProvider
   }
 }
 
-String _$profileApiHash() => r'c735db8ac68aed9f076467560b92e0ab4ccd0fd4';
+String _$profileApiHash() => r'54ba7bfad02fda82e26aa9ea55b8b66f55f862ed';

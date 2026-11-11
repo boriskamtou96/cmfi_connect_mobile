@@ -56,7 +56,7 @@ class App extends ConsumerWidget {
         // back to the login, the welcome screen behind it (its back arrow)
         router.replaceAll([
           const WelcomeRoute(),
-          if (!ref.read(sessionProvider.notifier).accountDeleted)
+          if (!ref.read(sessionProvider.notifier).accountWasDeleted())
             const LoginRoute(),
         ]);
 

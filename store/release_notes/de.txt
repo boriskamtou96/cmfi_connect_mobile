@@ -1,5 +1,6 @@
 Neu in CMFI Connect
-• Spiele: lerne die Bibel, Verse und die Geschichte des Werkes in Kursen mit kurzen Lektionen, mit Tagesaufgabe und Rangliste
-• Neuer Tab „Du“ für dein Profil und deine Einstellungen
-• Lehren: fortlaufendes Hören, mit Zurück / Weiter, „Als Nächstes“ und Schlaftimer
-• Verbesserungen und Zuverlässigkeitskorrekturen
+• Spiele: ein neu gestalteter Weg mit dem Titel jeder Lektion und ein neuer Kurs „Bibel-Challenge“ vom Anfänger bis Experte++
+• Neue Fragen: in die richtige Reihenfolge bringen und Paare verbinden
+• „Vers im Flug“: Hilf Zoé, die Wörter eines Verses der Reihe nach zu fangen
+• Offline spielen: Lade einen Kurs herunter, deine Lektionen werden gesendet, sobald das Netz zurück ist
+• Ein Siegesklang am Ende jeder Lektion

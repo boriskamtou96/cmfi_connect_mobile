@@ -1,5 +1,6 @@
 Nouveautés de CMFI Connect
-• Jeux : apprends la Bible, les versets et l'histoire du ministère en parcours de leçons courtes, avec un défi du jour et un classement
-• Nouvel onglet « Vous » pour retrouver ton profil et tes réglages
-• Enseignements : écoute en continu, avec précédent / suivant, « À suivre » et minuterie de sommeil
-• Améliorations et corrections de fiabilité
+• Jeux : un chemin repensé, avec le titre de chaque leçon, et un nouveau parcours « Défi biblique » du niveau débutant à expert++
+• Nouvelles questions : remettre dans l’ordre et relier les paires
+• « Verset en vol » : aide Zoé à attraper les mots d’un verset dans l’ordre
+• Joue hors ligne : télécharge un parcours, tes leçons partent au retour du réseau
+• Un son de victoire à la fin de chaque leçon

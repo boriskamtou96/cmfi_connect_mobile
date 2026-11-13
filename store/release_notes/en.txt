@@ -1,5 +1,6 @@
 What's new in CMFI Connect
-• Games: learn the Bible, verses and the history of the ministry through courses of short lessons, with a daily challenge and a leaderboard
-• New « You » tab for your profile and settings
-• Teachings: continuous listening, with previous / next, « Up next » and a sleep timer
-• Improvements and reliability fixes
+• Games: a redesigned path, with the title of each lesson, and a new « Bible challenge » course from beginner to expert++
+• New questions: put in order and match the pairs
+• « Verse in flight »: help Zoé catch the words of a verse in order
+• Play offline: download a course, your lessons are sent when the network is back
+• A victory sound at the end of each lesson

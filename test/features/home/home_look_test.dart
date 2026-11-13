@@ -47,12 +47,12 @@ void main() {
     expect(find.byType(MinistryScreen), findsOneWidget);
   });
 
-  testWidgets('« À écouter »: the latest teachings, a touch plays one', (
+  testWidgets('« Enseignements »: the latest teachings, a touch plays one', (
     tester,
   ) async {
     final app = await pumpApp(tester, token: 't');
     await scrollTo(tester, find.text('Le message de la croix'));
-    expect(find.text('À écouter'), findsOneWidget);
+    expect(find.text('Enseignements'), findsOneWidget);
 
     await tester.tap(find.text('Le message de la croix'));
     await tester.pumpAndSettle();

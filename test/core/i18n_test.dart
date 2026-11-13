@@ -99,22 +99,34 @@ void main() {
     final tab = tester.element(find.text(AppLocale.ar.buildSync().nav.home));
     expect(Directionality.of(tab), TextDirection.rtl);
 
-    // every tab opens without a layout error
+    // every tab opens without a layout error (the menu last)
+    final ar = AppLocale.ar.buildSync();
     for (final tab in [
-      AppLocale.ar.buildSync().nav.reports,
-      AppLocale.ar.buildSync().nav.hymns,
-      AppLocale.ar.buildSync().nav.prayer,
-      AppLocale.ar.buildSync().nav.bible,
+      ar.nav.reports,
+      ar.nav.games,
+      ar.nav.bible,
+      ar.nav.menu,
     ]) {
       await tester.tap(find.text(tab).last);
       await tester.pumpAndSettle();
     }
-    // the menu, from the photo of the home screen, and the profile
-    await tester.tap(find.text(AppLocale.ar.buildSync().nav.home).last);
+    // from the home screen: the hymns and the prayer
+    await tester.tap(find.text(ar.nav.home).last);
     await tester.pumpAndSettle();
-    await tester.tap(find.byTooltip(AppLocale.ar.buildSync().menu.open));
+    for (final page in [ar.nav.hymns, ar.nav.prayer]) {
+      await scrollTo(tester, find.text(page).first);
+      await tester.tap(find.text(page).first);
+      await tester.pumpAndSettle();
+      final back = MaterialLocalizations.of(
+        tester.element(find.byType(Scaffold).last),
+      ).backButtonTooltip;
+      await tester.tap(find.byTooltip(back).last);
+      await tester.pumpAndSettle();
+    }
+    // « Vous », then the profile
+    await tester.tap(find.text(ar.nav.menu).last);
     await tester.pumpAndSettle();
-    await tester.tap(find.text(AppLocale.ar.buildSync().menu.seeProfile));
+    await tester.tap(find.byTooltip(ar.menu.seeProfile));
     await tester.pumpAndSettle();
     expect(tester.takeException(), isNull);
   });
@@ -127,7 +139,7 @@ void main() {
       await pumpApp(tester, token: 't');
       await tester.tap(find.byTooltip(locale.buildSync().menu.open));
       await tester.pumpAndSettle();
-      await tester.tap(find.text(locale.buildSync().menu.seeProfile));
+      await tester.tap(find.byTooltip(locale.buildSync().menu.seeProfile));
       await tester.pumpAndSettle();
       await tester.tap(find.byType(AppBackButton));
       await tester.pumpAndSettle();

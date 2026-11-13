@@ -15,6 +15,7 @@ class AudioServicePlayer implements TeachingPlayer {
   final _player = AudioPlayer();
   final _snapshots = StreamController<PlayerSnapshot>.broadcast();
   final _subscriptions = <StreamSubscription<Object?>>[];
+  final _skips = _Skips();
   Future<_Handler>? _ready;
   PlayerSnapshot _snapshot = const PlayerSnapshot();
 
@@ -34,7 +35,7 @@ class AudioServicePlayer implements TeachingPlayer {
     final session = await AudioSession.instance;
     await session.configure(const AudioSessionConfiguration.speech());
     final handler = await AudioService.init(
-      builder: () => _Handler(_player),
+      builder: () => _Handler(_player, _skips),
       config: const AudioServiceConfig(
         androidNotificationChannelId: 'teachings_player',
         androidNotificationChannelName: 'Enseignements',
@@ -140,6 +141,18 @@ class AudioServicePlayer implements TeachingPlayer {
   Future<void> setSpeed(double speed) => _player.setSpeed(speed);
 
   @override
+  void setSkips({
+    Future<void> Function()? next,
+    Future<void> Function()? previous,
+  }) {
+    _skips
+      ..next = next
+      ..previous = previous;
+    // the notification and the lock screen draw their buttons again
+    unawaited(_ready?.then((handler) => handler.refresh()));
+  }
+
+  @override
   Future<void> stop() async {
     if (_ready == null) {
       return;
@@ -162,10 +175,17 @@ class AudioServicePlayer implements TeachingPlayer {
   }
 }
 
+/// What « next » and « previous » do now; null: the button is not shown.
+class _Skips {
+  Future<void> Function()? next;
+  Future<void> Function()? previous;
+}
+
 /// What the system sees: the state of the player for the lock screen and
-/// the notification, and its buttons (play, pause, ±15 s, the bar).
+/// the notification, and its buttons (play, pause, ±15 s, the bar, the
+/// message before and the next one when there is one).
 class _Handler extends BaseAudioHandler with SeekHandler {
-  _Handler(this._player) {
+  _Handler(this._player, this._skips) {
     // listened, not piped: a pipe holds playbackState for itself
     // (addStream), and stop() could no longer say « stopped » to the system
     _player.playbackEventStream.listen(
@@ -175,19 +195,30 @@ class _Handler extends BaseAudioHandler with SeekHandler {
   }
 
   final AudioPlayer _player;
+  final _Skips _skips;
+
+  /// Says the state again: the buttons changed.
+  void refresh() => playbackState.add(_state(_player.playbackEvent));
 
   PlaybackState _state(PlaybackEvent event) => PlaybackState(
     controls: [
+      if (_skips.previous != null) MediaControl.skipToPrevious,
       MediaControl.rewind,
       if (_player.playing) MediaControl.pause else MediaControl.play,
       MediaControl.fastForward,
+      if (_skips.next != null) MediaControl.skipToNext,
     ],
-    systemActions: const {
+    systemActions: {
       MediaAction.seek,
       MediaAction.seekForward,
       MediaAction.seekBackward,
+      if (_skips.next != null) MediaAction.skipToNext,
+      if (_skips.previous != null) MediaAction.skipToPrevious,
     },
-    androidCompactActionIndices: const [0, 1, 2],
+    // folded, the notification keeps −15, play and +15
+    androidCompactActionIndices: _skips.previous != null
+        ? const [1, 2, 3]
+        : const [0, 1, 2],
     processingState: const {
       ProcessingState.idle: AudioProcessingState.idle,
       ProcessingState.loading: AudioProcessingState.loading,
@@ -212,6 +243,12 @@ class _Handler extends BaseAudioHandler with SeekHandler {
 
   @override
   Future<void> setSpeed(double speed) => _player.setSpeed(speed);
+
+  @override
+  Future<void> skipToNext() async => _skips.next?.call();
+
+  @override
+  Future<void> skipToPrevious() async => _skips.previous?.call();
 
   @override
   Future<void> stop() async {

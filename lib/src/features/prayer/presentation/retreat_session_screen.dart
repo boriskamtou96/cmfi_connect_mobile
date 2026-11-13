@@ -912,8 +912,10 @@ class _RetreatDone extends HookConsumerWidget {
                     ),
                     const SizedBox(height: AppSpacing.sm),
                     TextButton.icon(
-                      onPressed: () =>
-                          context.router.navigate(const HymnsRoute()),
+                      // the hymns, with nothing left above the tabs but them
+                      onPressed: () => context.router.root
+                        ..popUntilRouteWithName(AppShellRoute.name)
+                        ..push(const HymnsRoute()),
                       icon: const Icon(AppIcons.hymns, size: 18),
                       label: Text(t.prayer.done.hymn),
                     ),

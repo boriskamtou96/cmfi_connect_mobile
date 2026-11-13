@@ -891,6 +891,22 @@ class FounderRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
+/// [GamesScreen]
+class GamesRoute extends PageRouteInfo<void> {
+  const GamesRoute({List<PageRouteInfo>? children})
+    : super(GamesRoute.name, initialChildren: children);
+
+  static const String name = 'GamesRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const GamesScreen();
+    },
+  );
+}
+
+/// generated route for
 /// [HomeScreen]
 class HomeRoute extends PageRouteInfo<void> {
   const HomeRoute({List<PageRouteInfo>? children})
@@ -1169,6 +1185,70 @@ class LeaderRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
+/// [LeaderboardScreen]
+class LeaderboardRoute extends PageRouteInfo<void> {
+  const LeaderboardRoute({List<PageRouteInfo>? children})
+    : super(LeaderboardRoute.name, initialChildren: children);
+
+  static const String name = 'LeaderboardRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const LeaderboardScreen();
+    },
+  );
+}
+
+/// generated route for
+/// [LessonScreen]
+class LessonRoute extends PageRouteInfo<LessonRouteArgs> {
+  LessonRoute({required int lessonId, Key? key, List<PageRouteInfo>? children})
+    : super(
+        LessonRoute.name,
+        args: LessonRouteArgs(lessonId: lessonId, key: key),
+        rawPathParams: {'lessonId': lessonId},
+        initialChildren: children,
+      );
+
+  static const String name = 'LessonRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      final pathParams = data.inheritedPathParams;
+      final args = data.argsAs<LessonRouteArgs>(
+        orElse: () => LessonRouteArgs(lessonId: pathParams.getInt('lessonId')),
+      );
+      return LessonScreen(lessonId: args.lessonId, key: args.key);
+    },
+  );
+}
+
+class LessonRouteArgs {
+  const LessonRouteArgs({required this.lessonId, this.key});
+
+  final int lessonId;
+
+  final Key? key;
+
+  @override
+  String toString() {
+    return 'LessonRouteArgs{lessonId: $lessonId, key: $key}';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (other is! LessonRouteArgs) return false;
+    return lessonId == other.lessonId && key == other.key;
+  }
+
+  @override
+  int get hashCode => lessonId.hashCode ^ key.hashCode;
+}
+
+/// generated route for
 /// [LoginScreen]
 class LoginRoute extends PageRouteInfo<void> {
   const LoginRoute({List<PageRouteInfo>? children})
@@ -1245,6 +1325,22 @@ class MemoryRoute extends PageRouteInfo<void> {
     name,
     builder: (data) {
       return const MemoryScreen();
+    },
+  );
+}
+
+/// generated route for
+/// [MenuScreen]
+class MenuRoute extends PageRouteInfo<void> {
+  const MenuRoute({List<PageRouteInfo>? children})
+    : super(MenuRoute.name, initialChildren: children);
+
+  static const String name = 'MenuRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const MenuScreen();
     },
   );
 }

@@ -52,9 +52,8 @@ void main() {
       biometrics: biometrics,
       initialPreferences: preferences,
     );
-    await openProfile(tester);
-    await scrollTo(tester, find.text('Suivi des âmes'));
-    await tester.tap(find.text('Suivi des âmes'));
+    await openMenu(tester);
+    await tester.tap(inMenu('Suivi des âmes'));
     await tester.pumpAndSettle();
     return app;
   }

@@ -90,6 +90,7 @@ class TranslationsAr extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _Translations$me$ar me = _Translations$me$ar._(_root);
 	@override late final _Translations$settings$ar settings = _Translations$settings$ar._(_root);
 	@override late final _Translations$reading$ar reading = _Translations$reading$ar._(_root);
+	@override late final _Translations$games$ar games = _Translations$games$ar._(_root);
 }
 
 // Path: app
@@ -251,6 +252,8 @@ class _Translations$nav$ar extends Translations$nav$fr {
 	@override String get hymns => 'الترانيم';
 	@override String get prayer => 'الصلاة';
 	@override String get bible => 'الكتاب المقدس';
+	@override String get games => 'الألعاب';
+	@override String get menu => 'أنت';
 }
 
 // Path: home
@@ -296,7 +299,7 @@ class _Translations$home$ar extends Translations$home$fr {
 	@override String get prayTogether => 'نصلّي معًا';
 	@override String invitedBy({required Object name}) => '${name} يدعوك إلى الصلاة';
 	@override String get soulsTitle => 'نفوس للتواصل معها';
-	@override String get listenTitle => 'للاستماع';
+	@override String get listenTitle => 'التعاليم';
 	@override String soulsText({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n,
 		zero: 'لا أحد اليوم',
 		one: 'شخص واحد اليوم',
@@ -1850,6 +1853,18 @@ class _Translations$teachings$ar extends Translations$teachings$fr {
 	@override String get searchOpen => 'بحث';
 	@override String get searchClose => 'إغلاق البحث';
 	@override String get dayAll => 'الكل';
+	@override String get previousMessage => 'الرسالة السابقة';
+	@override String get nextMessage => 'الرسالة التالية';
+	@override String get upNext => 'التالي';
+	@override String get continuous => 'تشغيل متواصل';
+	@override String get sleepTimer => 'مؤقّت النوم';
+	@override String sleepIn({required Object n}) => 'بعد ${n} دقيقة';
+	@override String get sleepInHour => 'بعد ساعة';
+	@override String get sleepAtEnd => 'عند نهاية هذه الرسالة';
+	@override String get sleepOff => 'إيقاف المؤقّت';
+	@override String sleepUntil({required Object time}) => 'يتوقف عند ${time}';
+	@override String get sleepAfterThis => 'يتوقف عند نهاية الرسالة';
+	@override String get nextUnavailable => 'بدون شبكة، ما يلي غير متاح.';
 }
 
 // Path: memorize
@@ -2324,6 +2339,78 @@ class _Translations$reading$ar extends Translations$reading$fr {
 	@override String get editTitle => 'تعديل الكتاب';
 	@override String get save => 'حفظ';
 	@override String get saved => 'تم تعديل الكتاب.';
+}
+
+// Path: games
+class _Translations$games$ar extends Translations$games$fr {
+	_Translations$games$ar._(TranslationsAr root) : this._root = root, super.internal(root);
+
+	final TranslationsAr _root; // ignore: unused_field
+
+	// Translations
+	@override String get soonTitle => 'الألعاب قادمة قريبًا';
+	@override String get soonText => 'تعلَّم الكلمة وأنت تلعب: مستويات ونقاط وترتيب بين الأعضاء. قليلًا من الصبر!';
+	@override String get start => 'ابدأ';
+	@override String get replay => 'العب مجددًا';
+	@override String get check => 'تحقَّق';
+	@override String get next => 'تابِع';
+	@override String get locked => 'أنهِ الدرس السابق أولًا.';
+	@override String get right => 'أحسنت!';
+	@override String get wrong => 'ليس تمامًا';
+	@override String rightAnswer({required Object answer}) => 'الإجابة الصحيحة: ${answer}';
+	@override String get retry => 'لنراجعه مرة أخرى';
+	@override String get quit => 'مغادرة الدرس';
+	@override String get quitTitle => 'هل تغادر الدرس؟';
+	@override String get quitText => 'لن تُحفظ إجاباتك في هذا الدرس.';
+	@override String get quitConfirm => 'غادِر';
+	@override String get done => 'اكتمل الدرس!';
+	@override String get perfect => 'بلا أخطاء!';
+	@override String get replayDone => 'تمت مراجعة الدرس!';
+	@override String get points => 'النقاط';
+	@override String get firstTry => 'من المحاولة الأولى';
+	@override String get stars => 'النجوم';
+	@override String streak({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n,
+		zero: '${n} يوم متتالٍ',
+		one: 'يوم واحد متتالٍ',
+		two: 'يومان متتاليان',
+		few: '${n} أيام متتالية',
+		many: '${n} يومًا متتاليًا',
+		other: '${n} يوم متتالٍ',
+	);
+	@override String levelUp({required Object n}) => 'بلغتَ المستوى ${n}!';
+	@override String level({required Object n}) => 'المستوى ${n}';
+	@override String levelOf({required Object n, required Object done, required Object total}) => 'المستوى ${n} · ${done} من ${total}';
+	@override String goal({required Object done, required Object goal}) => '${done} من ${goal}';
+	@override String goalLabel({required Object done, required Object goal}) => 'هدف اليوم: ${done} نقطة من ${goal}';
+	@override String pointsLabel({required Object n}) => '${n} نقطة';
+	@override String get streakLabel => 'سلسلة اللعب';
+	@override String get sending => 'جارٍ إرسال درسك…';
+	@override String get sendFailed => 'تعذّر إرسال درسك. لم يضِع: حاول مجددًا عند عودة الاتصال.';
+	@override String get sendRetry => 'أعد المحاولة';
+	@override String get lessonDone => 'درس مكتمل';
+	@override String get lessonLocked => 'درس مغلق';
+	@override String get leaderboard => 'الترتيب';
+	@override String get week => 'هذا الأسبوع';
+	@override String get ever => 'منذ البداية';
+	@override String get scopeAll => 'الجميع';
+	@override String get scopeCircle => 'دائرتي';
+	@override String get joinTitle => 'هل تظهر في الترتيب؟';
+	@override String get joinText => 'سيرى الأعضاء الآخرون اسم المستخدم وصورتك ونقاط لعبك. يمكنك تغيير رأيك في أي وقت.';
+	@override String get joinYes => 'نعم، أشارك';
+	@override String get joinNo => 'لا، شكرًا';
+	@override String get appear => 'الظهور في الترتيب';
+	@override String get boardEmpty => 'لم يلعب أحد هذا الأسبوع بعد. كن أنت الأول.';
+	@override String get boardEmptyCircle => 'لا أحد من دائرتك لديه نقاط هنا بعد.';
+	@override String get notInBoard => 'أنت لا تظهر في الترتيب.';
+	@override String get you => 'أنت';
+	@override String get dailyTitle => 'تحدي اليوم';
+	@override String get dailyText => '5 أسئلة · +15 نقطة';
+	@override String get dailyDone => 'أنجزتَ تحدي اليوم. إلى الغد!';
+	@override String get dailyEnd => 'أُنجز التحدي!';
+	@override String get seeBoard => 'عرض الترتيب';
+	@override String rank({required Object n}) => 'المرتبة ${n}';
+	@override String get sendLater => 'يمكنك المغادرة: سيُرسَل تلقائيًا فور عودة الاتصال.';
+	@override String readIn({required Object place}) => 'اقرأ في «${place}»';
 }
 
 // Path: welcome.seek
@@ -4649,6 +4736,8 @@ extension on TranslationsAr {
 			'nav.hymns' => 'الترانيم',
 			'nav.prayer' => 'الصلاة',
 			'nav.bible' => 'الكتاب المقدس',
+			'nav.games' => 'الألعاب',
+			'nav.menu' => 'أنت',
 			'home.greeting' => ({required Object name}) => 'مرحبًا ${name}',
 			'home.greetingNoName' => 'مرحبًا',
 			'home.progress' => ({required Object filled, required Object total}) => '${filled} من ${total}',
@@ -4678,7 +4767,7 @@ extension on TranslationsAr {
 			'home.prayTogether' => 'نصلّي معًا',
 			'home.invitedBy' => ({required Object name}) => '${name} يدعوك إلى الصلاة',
 			'home.soulsTitle' => 'نفوس للتواصل معها',
-			'home.listenTitle' => 'للاستماع',
+			'home.listenTitle' => 'التعاليم',
 			'home.soulsText' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n, zero: 'لا أحد اليوم', one: 'شخص واحد اليوم', two: 'شخصان اليوم', few: '${n} أشخاص اليوم', many: '${n} شخصًا اليوم', other: '${n} شخص اليوم', ), 
 			'home.timeToday' => ({required Object time}) => '${time} مع الله اليوم',
 			'home.timeTodayNone' => 'لم يُسجَّل بعد وقت مع الله اليوم',
@@ -4964,10 +5053,10 @@ extension on TranslationsAr {
 			'authorities.form.discipleMakerTaken' => ({required Object name}) => '${name} هو بالفعل صانع التلاميذ الخاص بك. أزِله من القائمة لتختار شخصًا آخر.',
 			'authorities.form.submit' => 'إضافة',
 			'authorities.form.added' => ({required Object name}) => 'أصبح ${name} الآن ضمن مرشديك.',
-			'authorities.form.searchLabel' => 'اسم المستخدم',
-			'authorities.form.searchHint' => 'اسم المستخدم',
 			_ => null,
 		} ?? switch (path) {
+			'authorities.form.searchLabel' => 'اسم المستخدم',
+			'authorities.form.searchHint' => 'اسم المستخدم',
 			'authorities.form.search' => 'بحث',
 			'authorities.form.searchHelp' => 'إذا كان الشخص يستخدم CMFI Connect، فابحث عنه باسم المستخدم. سيتلقّى طلبك، وستظهر بيانات الاتصال الخاصة به بعد أن يقبله.',
 			'authorities.form.notFound' => ({required Object username}) => 'لا أحد يحمل اسم المستخدم @${username}.',
@@ -5478,10 +5567,10 @@ extension on TranslationsAr {
 			'ministry.lives.founder.story.1' => 'وعندما كان طالبًا في كلية فوراه باي في سيراليون، كرّس نفسه بلا تحفّظ للرب ولخدمته في 1 أكتوبر 1966. وفي 24 أكتوبر 1970، بعد سبعة أيام من الصلاة والصوم، امتلأ بالروح القدس. ومنذ ذلك الحين صارت الصلاة محور حياته.',
 			'ministry.lives.founder.story.2' => 'حصل على الدكتوراه في الكيمياء العضوية من جامعة ماكيريري في أوغندا، ثم درّس في جامعة ياوندي حيث صار أستاذًا. أشرف على نحو مئة أطروحة ورسالة، ومنحته جامعة دورهام في بريطانيا عام 2005 دكتوراه العلوم تقديرًا لمجمل أعماله.',
 			'ministry.lives.founder.story.3' => 'في 12 مايو 1975، في ياوندي، أسّس الشركة المسيحية الإرسالية الدولية (CMFI): حركة لربح النفوس وتلمذة التلاميذ وغرس الكنائس وإرسال المرسلين. قام بأكثر من 700 رحلة إرسالية في الكاميرون وبأكثر من 500 رحلة إلى أكثر من 70 أمة في ست قارات.',
-			'ministry.lives.founder.story.4' => 'كان يقضي كل يوم ساعات طويلة وحده مع الله، وقاد كثيرًا من حملات الصلاة وحصاراتها ومسيراتها، وصام كثيرًا. كتب أكثر من 150 كتابًا عن الصلاة والصوم والقداسة والتلمذة والإرسالية، تُقرأ بلغات كثيرة.',
-			'ministry.lives.founder.story.5' => 'رُزق مع زوجته بريسكا زي فومم، خادمة الرب بين الأطفال، بسبعة أبناء كلهم منخرطون في عمل الإنجيل. وعاشا معًا ببساطة ليقدّما للإنجيل الجزء الأكبر من دخلهما.',
 			_ => null,
 		} ?? switch (path) {
+			'ministry.lives.founder.story.4' => 'كان يقضي كل يوم ساعات طويلة وحده مع الله، وقاد كثيرًا من حملات الصلاة وحصاراتها ومسيراتها، وصام كثيرًا. كتب أكثر من 150 كتابًا عن الصلاة والصوم والقداسة والتلمذة والإرسالية، تُقرأ بلغات كثيرة.',
+			'ministry.lives.founder.story.5' => 'رُزق مع زوجته بريسكا زي فومم، خادمة الرب بين الأطفال، بسبعة أبناء كلهم منخرطون في عمل الإنجيل. وعاشا معًا ببساطة ليقدّما للإنجيل الجزء الأكبر من دخلهما.',
 			'ministry.lives.founder.story.6' => 'انتقل إلى محضر الرب في 14 مارس 2009، ودُفن في ياوندي في 21 مارس. والعمل الذي أسّسه مستمر بين الأمم.',
 			'ministry.lives.leader.name' => 'ثيودور أندوسيه',
 			'ministry.lives.leader.line' => 'قائد CMFI منذ 2009',
@@ -5992,10 +6081,10 @@ extension on TranslationsAr {
 			'yearStory.statGoals' => 'من الأهداف',
 			'yearStory.emptyText' => 'املأ تقريرك كل يوم: سيُكتب عامك هنا.',
 			'yearStory.share' => 'مشاركة عامي',
-			'yearStory.homeText' => ({required Object year}) => 'أمانتك وصلاتك وكلمة الله: استعد كل ما عشته مع الله في ${year}.',
-			'yearStory.open' => 'عرض عامي',
 			_ => null,
 		} ?? switch (path) {
+			'yearStory.homeText' => ({required Object year}) => 'أمانتك وصلاتك وكلمة الله: استعد كل ما عشته مع الله في ${year}.',
+			'yearStory.open' => 'عرض عامي',
 			'yearStory.notificationTitle' => 'عامك مع الله جاهز',
 			'yearStory.notificationBody' => ({required Object year}) => 'استعد كل ما عشته مع الرب في ${year} وشاركه.',
 			'yearStory.channel' => 'عامك مع الله',
@@ -6190,6 +6279,18 @@ extension on TranslationsAr {
 			'teachings.searchOpen' => 'بحث',
 			'teachings.searchClose' => 'إغلاق البحث',
 			'teachings.dayAll' => 'الكل',
+			'teachings.previousMessage' => 'الرسالة السابقة',
+			'teachings.nextMessage' => 'الرسالة التالية',
+			'teachings.upNext' => 'التالي',
+			'teachings.continuous' => 'تشغيل متواصل',
+			'teachings.sleepTimer' => 'مؤقّت النوم',
+			'teachings.sleepIn' => ({required Object n}) => 'بعد ${n} دقيقة',
+			'teachings.sleepInHour' => 'بعد ساعة',
+			'teachings.sleepAtEnd' => 'عند نهاية هذه الرسالة',
+			'teachings.sleepOff' => 'إيقاف المؤقّت',
+			'teachings.sleepUntil' => ({required Object time}) => 'يتوقف عند ${time}',
+			'teachings.sleepAfterThis' => 'يتوقف عند نهاية الرسالة',
+			'teachings.nextUnavailable' => 'بدون شبكة، ما يلي غير متاح.',
 			'memorize.title' => 'الحفظ',
 			'memorize.subtitle' => 'اخبأ الكلمة في قلبك',
 			'memorize.toReview' => 'للمراجعة',
@@ -6494,6 +6595,8 @@ extension on TranslationsAr {
 			'me.edit' => 'تعديل ملفي',
 			'me.journey' => 'مسيرتي',
 			'me.streak' => 'السلسلة',
+			_ => null,
+		} ?? switch (path) {
 			'me.steps' => 'المراحل',
 			'me.timeMonth' => 'مع الله هذا الشهر',
 			'me.nextStep' => ({required Object name}) => 'التالية: ${name}',
@@ -6508,8 +6611,6 @@ extension on TranslationsAr {
 			'reading.title' => 'قراءاتي',
 			'reading.moreSubtitle' => 'الكتب التي تقرأها، صفحة بعد صفحة',
 			'reading.moreCount' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n, zero: '${n} كتاب قيد القراءة', one: 'كتاب واحد قيد القراءة', two: 'كتابان قيد القراءة', few: '${n} كتب قيد القراءة', many: '${n} كتابًا قيد القراءة', other: '${n} كتاب قيد القراءة', ), 
-			_ => null,
-		} ?? switch (path) {
 			'reading.add' => 'إضافة كتاب',
 			'reading.reading' => 'قيد القراءة',
 			'reading.finished' => 'منتهية',
@@ -6560,6 +6661,62 @@ extension on TranslationsAr {
 			'reading.editTitle' => 'تعديل الكتاب',
 			'reading.save' => 'حفظ',
 			'reading.saved' => 'تم تعديل الكتاب.',
+			'games.soonTitle' => 'الألعاب قادمة قريبًا',
+			'games.soonText' => 'تعلَّم الكلمة وأنت تلعب: مستويات ونقاط وترتيب بين الأعضاء. قليلًا من الصبر!',
+			'games.start' => 'ابدأ',
+			'games.replay' => 'العب مجددًا',
+			'games.check' => 'تحقَّق',
+			'games.next' => 'تابِع',
+			'games.locked' => 'أنهِ الدرس السابق أولًا.',
+			'games.right' => 'أحسنت!',
+			'games.wrong' => 'ليس تمامًا',
+			'games.rightAnswer' => ({required Object answer}) => 'الإجابة الصحيحة: ${answer}',
+			'games.retry' => 'لنراجعه مرة أخرى',
+			'games.quit' => 'مغادرة الدرس',
+			'games.quitTitle' => 'هل تغادر الدرس؟',
+			'games.quitText' => 'لن تُحفظ إجاباتك في هذا الدرس.',
+			'games.quitConfirm' => 'غادِر',
+			'games.done' => 'اكتمل الدرس!',
+			'games.perfect' => 'بلا أخطاء!',
+			'games.replayDone' => 'تمت مراجعة الدرس!',
+			'games.points' => 'النقاط',
+			'games.firstTry' => 'من المحاولة الأولى',
+			'games.stars' => 'النجوم',
+			'games.streak' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n, zero: '${n} يوم متتالٍ', one: 'يوم واحد متتالٍ', two: 'يومان متتاليان', few: '${n} أيام متتالية', many: '${n} يومًا متتاليًا', other: '${n} يوم متتالٍ', ), 
+			'games.levelUp' => ({required Object n}) => 'بلغتَ المستوى ${n}!',
+			'games.level' => ({required Object n}) => 'المستوى ${n}',
+			'games.levelOf' => ({required Object n, required Object done, required Object total}) => 'المستوى ${n} · ${done} من ${total}',
+			'games.goal' => ({required Object done, required Object goal}) => '${done} من ${goal}',
+			'games.goalLabel' => ({required Object done, required Object goal}) => 'هدف اليوم: ${done} نقطة من ${goal}',
+			'games.pointsLabel' => ({required Object n}) => '${n} نقطة',
+			'games.streakLabel' => 'سلسلة اللعب',
+			'games.sending' => 'جارٍ إرسال درسك…',
+			'games.sendFailed' => 'تعذّر إرسال درسك. لم يضِع: حاول مجددًا عند عودة الاتصال.',
+			'games.sendRetry' => 'أعد المحاولة',
+			'games.lessonDone' => 'درس مكتمل',
+			'games.lessonLocked' => 'درس مغلق',
+			'games.leaderboard' => 'الترتيب',
+			'games.week' => 'هذا الأسبوع',
+			'games.ever' => 'منذ البداية',
+			'games.scopeAll' => 'الجميع',
+			'games.scopeCircle' => 'دائرتي',
+			'games.joinTitle' => 'هل تظهر في الترتيب؟',
+			'games.joinText' => 'سيرى الأعضاء الآخرون اسم المستخدم وصورتك ونقاط لعبك. يمكنك تغيير رأيك في أي وقت.',
+			'games.joinYes' => 'نعم، أشارك',
+			'games.joinNo' => 'لا، شكرًا',
+			'games.appear' => 'الظهور في الترتيب',
+			'games.boardEmpty' => 'لم يلعب أحد هذا الأسبوع بعد. كن أنت الأول.',
+			'games.boardEmptyCircle' => 'لا أحد من دائرتك لديه نقاط هنا بعد.',
+			'games.notInBoard' => 'أنت لا تظهر في الترتيب.',
+			'games.you' => 'أنت',
+			'games.dailyTitle' => 'تحدي اليوم',
+			'games.dailyText' => '5 أسئلة · +15 نقطة',
+			'games.dailyDone' => 'أنجزتَ تحدي اليوم. إلى الغد!',
+			'games.dailyEnd' => 'أُنجز التحدي!',
+			'games.seeBoard' => 'عرض الترتيب',
+			'games.rank' => ({required Object n}) => 'المرتبة ${n}',
+			'games.sendLater' => 'يمكنك المغادرة: سيُرسَل تلقائيًا فور عودة الاتصال.',
+			'games.readIn' => ({required Object place}) => 'اقرأ في «${place}»',
 			_ => null,
 		};
 	}

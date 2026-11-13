@@ -90,6 +90,7 @@ class TranslationsHi extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _Translations$me$hi me = _Translations$me$hi._(_root);
 	@override late final _Translations$settings$hi settings = _Translations$settings$hi._(_root);
 	@override late final _Translations$reading$hi reading = _Translations$reading$hi._(_root);
+	@override late final _Translations$games$hi games = _Translations$games$hi._(_root);
 }
 
 // Path: app
@@ -247,6 +248,8 @@ class _Translations$nav$hi extends Translations$nav$fr {
 	@override String get hymns => 'भजन';
 	@override String get prayer => 'प्रार्थना';
 	@override String get bible => 'बाइबल';
+	@override String get games => 'खेल';
+	@override String get menu => 'तुम';
 }
 
 // Path: home
@@ -288,7 +291,7 @@ class _Translations$home$hi extends Translations$home$fr {
 	@override String get prayTogether => 'साथ मिलकर प्रार्थना';
 	@override String invitedBy({required Object name}) => '${name} आपको प्रार्थना के लिए बुलाते हैं';
 	@override String get soulsTitle => 'फिर से संपर्क करने वाली आत्माएँ';
-	@override String get listenTitle => 'सुनने के लिए';
+	@override String get listenTitle => 'शिक्षाएँ';
 	@override String soulsText({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n,
 		one: 'आज ${n} व्यक्ति',
 		other: 'आज ${n} लोग',
@@ -1604,6 +1607,18 @@ class _Translations$teachings$hi extends Translations$teachings$fr {
 	@override String get searchOpen => 'खोजें';
 	@override String get searchClose => 'खोज बंद करें';
 	@override String get dayAll => 'सभी';
+	@override String get previousMessage => 'पिछला संदेश';
+	@override String get nextMessage => 'अगला संदेश';
+	@override String get upNext => 'आगे';
+	@override String get continuous => 'लगातार सुनना';
+	@override String get sleepTimer => 'स्लीप टाइमर';
+	@override String sleepIn({required Object n}) => '${n} मिनट में';
+	@override String get sleepInHour => '1 घंटे में';
+	@override String get sleepAtEnd => 'इस संदेश के अंत में';
+	@override String get sleepOff => 'टाइमर बंद करो';
+	@override String sleepUntil({required Object time}) => '${time} पर रुकेगा';
+	@override String get sleepAfterThis => 'संदेश के अंत में रुकेगा';
+	@override String get nextUnavailable => 'नेटवर्क के बिना आगे का संदेश उपलब्ध नहीं है।';
 }
 
 // Path: memorize
@@ -2051,6 +2066,74 @@ class _Translations$reading$hi extends Translations$reading$fr {
 	@override String get editTitle => 'किताब बदलें';
 	@override String get save => 'सहेजें';
 	@override String get saved => 'किताब बदली गई।';
+}
+
+// Path: games
+class _Translations$games$hi extends Translations$games$fr {
+	_Translations$games$hi._(TranslationsHi root) : this._root = root, super.internal(root);
+
+	final TranslationsHi _root; // ignore: unused_field
+
+	// Translations
+	@override String get soonTitle => 'खेल जल्द आ रहे हैं';
+	@override String get soonText => 'खेलते हुए वचन सीखो: स्तर, अंक और सदस्यों के बीच लीडरबोर्ड। बस थोड़ा और धैर्य रखो!';
+	@override String get start => 'शुरू करो';
+	@override String get replay => 'फिर खेलो';
+	@override String get check => 'जाँचो';
+	@override String get next => 'आगे बढ़ो';
+	@override String get locked => 'पहले पिछला पाठ पूरा करो।';
+	@override String get right => 'बहुत बढ़िया!';
+	@override String get wrong => 'पूरी तरह नहीं';
+	@override String rightAnswer({required Object answer}) => 'सही उत्तर: ${answer}';
+	@override String get retry => 'इसे फिर देखते हैं';
+	@override String get quit => 'पाठ छोड़ो';
+	@override String get quitTitle => 'पाठ छोड़ना है?';
+	@override String get quitText => 'इस पाठ के तुम्हारे उत्तर नहीं रखे जाएँगे।';
+	@override String get quitConfirm => 'छोड़ो';
+	@override String get done => 'पाठ पूरा हुआ!';
+	@override String get perfect => 'बिना गलती के!';
+	@override String get replayDone => 'पाठ दोहराया गया!';
+	@override String get points => 'अंक';
+	@override String get firstTry => 'पहली बार में';
+	@override String get stars => 'तारे';
+	@override String streak({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n,
+		one: 'लगातार ${n} दिन',
+		other: 'लगातार ${n} दिन',
+	);
+	@override String levelUp({required Object n}) => 'स्तर ${n} पा लिया!';
+	@override String level({required Object n}) => 'स्तर ${n}';
+	@override String levelOf({required Object n, required Object total, required Object done}) => 'स्तर ${n} · ${total} में से ${done}';
+	@override String goal({required Object goal, required Object done}) => '${goal} में से ${done}';
+	@override String goalLabel({required Object goal, required Object done}) => 'आज का लक्ष्य: ${goal} में से ${done} अंक';
+	@override String pointsLabel({required Object n}) => '${n} अंक';
+	@override String get streakLabel => 'खेल की लगातार गिनती';
+	@override String get sending => 'तुम्हारा पाठ भेजा जा रहा है…';
+	@override String get sendFailed => 'तुम्हारा पाठ नहीं भेजा जा सका। वह खोया नहीं है: कनेक्शन लौटने पर फिर कोशिश करो।';
+	@override String get sendRetry => 'फिर कोशिश करो';
+	@override String get lessonDone => 'पूरा किया पाठ';
+	@override String get lessonLocked => 'बंद पाठ';
+	@override String get leaderboard => 'लीडरबोर्ड';
+	@override String get week => 'इस हफ़्ते';
+	@override String get ever => 'शुरू से';
+	@override String get scopeAll => 'सभी';
+	@override String get scopeCircle => 'मेरा दायरा';
+	@override String get joinTitle => 'लीडरबोर्ड में दिखना है?';
+	@override String get joinText => 'दूसरे सदस्य तुम्हारा यूज़रनेम, तुम्हारी फ़ोटो और तुम्हारे खेल के अंक देखेंगे। तुम कभी भी अपना मन बदल सकते हो।';
+	@override String get joinYes => 'हाँ, मैं शामिल हूँ';
+	@override String get joinNo => 'नहीं, धन्यवाद';
+	@override String get appear => 'लीडरबोर्ड में दिखना';
+	@override String get boardEmpty => 'इस हफ़्ते अभी तक किसी ने नहीं खेला। तुम शुरुआत करो।';
+	@override String get boardEmptyCircle => 'तुम्हारे दायरे में अभी किसी के यहाँ अंक नहीं हैं।';
+	@override String get notInBoard => 'तुम लीडरबोर्ड में नहीं दिखते।';
+	@override String get you => 'तुम';
+	@override String get dailyTitle => 'आज की चुनौती';
+	@override String get dailyText => '5 सवाल · +15 अंक';
+	@override String get dailyDone => 'आज की चुनौती पूरी हुई। कल मिलते हैं!';
+	@override String get dailyEnd => 'चुनौती पूरी हुई!';
+	@override String get seeBoard => 'लीडरबोर्ड देखो';
+	@override String rank({required Object n}) => 'स्थान ${n}';
+	@override String get sendLater => 'तुम जा सकते हो: कनेक्शन लौटते ही यह अपने आप भेज दिया जाएगा।';
+	@override String readIn({required Object place}) => '“${place}” में पढ़ो';
 }
 
 // Path: welcome.seek
@@ -4235,6 +4318,8 @@ extension on TranslationsHi {
 			'nav.hymns' => 'भजन',
 			'nav.prayer' => 'प्रार्थना',
 			'nav.bible' => 'बाइबल',
+			'nav.games' => 'खेल',
+			'nav.menu' => 'तुम',
 			'home.greeting' => ({required Object name}) => 'नमस्ते ${name}',
 			'home.greetingNoName' => 'नमस्ते',
 			'home.progress' => ({required Object total, required Object filled}) => '${total} में से ${filled}',
@@ -4264,7 +4349,7 @@ extension on TranslationsHi {
 			'home.prayTogether' => 'साथ मिलकर प्रार्थना',
 			'home.invitedBy' => ({required Object name}) => '${name} आपको प्रार्थना के लिए बुलाते हैं',
 			'home.soulsTitle' => 'फिर से संपर्क करने वाली आत्माएँ',
-			'home.listenTitle' => 'सुनने के लिए',
+			'home.listenTitle' => 'शिक्षाएँ',
 			'home.soulsText' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n, one: 'आज ${n} व्यक्ति', other: 'आज ${n} लोग', ), 
 			'home.timeToday' => ({required Object time}) => 'आज परमेश्वर के साथ ${time}',
 			'home.timeTodayNone' => 'आज अभी तक परमेश्वर के साथ का समय दर्ज नहीं हुआ',
@@ -4550,10 +4635,10 @@ extension on TranslationsHi {
 			'authorities.form.discipleMakerTaken' => ({required Object name}) => 'तुम्हारे चेला बनाने वाले के रूप में ${name} पहले से दर्ज हैं। किसी और को चुनने के लिए पहले उन्हें सूची से हटाओ।',
 			'authorities.form.submit' => 'जोड़ो',
 			'authorities.form.added' => ({required Object name}) => '${name} अब तुम्हारे अगुवों में शामिल हैं।',
-			'authorities.form.searchLabel' => 'उनका यूज़रनेम',
-			'authorities.form.searchHint' => 'यूज़रनेम',
 			_ => null,
 		} ?? switch (path) {
+			'authorities.form.searchLabel' => 'उनका यूज़रनेम',
+			'authorities.form.searchHint' => 'यूज़रनेम',
 			'authorities.form.search' => 'खोजो',
 			'authorities.form.searchHelp' => 'अगर वे CMFI Connect इस्तेमाल करते हैं, तो उन्हें उनके यूज़रनेम से खोजो। उन्हें तुम्हारा अनुरोध मिलेगा, और उनके स्वीकार करने के बाद उनकी संपर्क जानकारी दिखेगी।',
 			'authorities.form.notFound' => ({required Object username}) => 'किसी का यूज़रनेम @${username} नहीं है।',
@@ -5064,10 +5149,10 @@ extension on TranslationsHi {
 			'ministry.lives.founder.story.1' => 'सिएरा लियोन के फ़ोरा बे कॉलेज में छात्र रहते हुए, 1 अक्टूबर 1966 को उन्होंने स्वयं को बिना किसी शर्त के प्रभु और उसकी सेवा के लिए समर्पित कर दिया। 24 अक्टूबर 1970 को, सात दिन की प्रार्थना और उपवास के बाद, वे पवित्र आत्मा से भर गए। तब से प्रार्थना उनके जीवन का केंद्र बन गई।',
 			'ministry.lives.founder.story.2' => 'युगांडा के माकेरेरे विश्वविद्यालय से कार्बनिक रसायन में डॉक्टरेट करने के बाद उन्होंने याउंडे विश्वविद्यालय में पढ़ाया, जहाँ वे प्रोफ़ेसर बने। उन्होंने लगभग सौ शोध-प्रबंधों का मार्गदर्शन किया, और 2005 में ब्रिटेन के डरहम विश्वविद्यालय ने उनके समग्र कार्य के लिए उन्हें डॉक्टर ऑफ़ साइंस की उपाधि दी।',
 			'ministry.lives.founder.story.3' => '12 मई 1975 को याउंडे में उन्होंने क्रिश्चियन मिशनरी फ़ेलोशिप इंटरनेशनल (CMFI) की स्थापना की: आत्माओं को जीतने, चेले बनाने, कलीसियाएँ स्थापित करने और मिशनरी भेजने के लिए एक आंदोलन। उन्होंने कैमरून में 700 से अधिक मिशनरी यात्राएँ कीं और छह महाद्वीपों के 70 से अधिक राष्ट्रों में 500 से अधिक यात्राएँ कीं।',
-			'ministry.lives.founder.story.4' => 'वे हर दिन लंबे घंटे परमेश्वर के साथ अकेले बिताते थे, उन्होंने प्रार्थना के अनेक अभियानों, घेरों और प्रार्थना-यात्राओं की अगुवाई की, और अक्सर उपवास किया। उन्होंने प्रार्थना, उपवास, पवित्रता, शिष्यता और मिशन पर 150 से अधिक पुस्तकें लिखीं, जो अनेक भाषाओं में पढ़ी जाती हैं।',
-			'ministry.lives.founder.story.5' => 'अपनी पत्नी प्रिस्का ज़ेई फ़ोमुम के साथ, जो बच्चों के बीच सेवा करती थीं, उनके सात बच्चे हुए, जो सभी सुसमाचार के कार्य में लगे हैं। दोनों ने सादगी से जीवन बिताया ताकि अपनी आय का सबसे बड़ा भाग सुसमाचार के लिए दे सकें।',
 			_ => null,
 		} ?? switch (path) {
+			'ministry.lives.founder.story.4' => 'वे हर दिन लंबे घंटे परमेश्वर के साथ अकेले बिताते थे, उन्होंने प्रार्थना के अनेक अभियानों, घेरों और प्रार्थना-यात्राओं की अगुवाई की, और अक्सर उपवास किया। उन्होंने प्रार्थना, उपवास, पवित्रता, शिष्यता और मिशन पर 150 से अधिक पुस्तकें लिखीं, जो अनेक भाषाओं में पढ़ी जाती हैं।',
+			'ministry.lives.founder.story.5' => 'अपनी पत्नी प्रिस्का ज़ेई फ़ोमुम के साथ, जो बच्चों के बीच सेवा करती थीं, उनके सात बच्चे हुए, जो सभी सुसमाचार के कार्य में लगे हैं। दोनों ने सादगी से जीवन बिताया ताकि अपनी आय का सबसे बड़ा भाग सुसमाचार के लिए दे सकें।',
 			'ministry.lives.founder.story.6' => '14 मार्च 2009 को वे प्रभु की उपस्थिति में चले गए और 21 मार्च को याउंडे में दफ़नाए गए। उनके द्वारा स्थापित कार्य राष्ट्रों में आगे बढ़ रहा है।',
 			'ministry.lives.leader.name' => 'थियोडोर एंडोसेह',
 			'ministry.lives.leader.line' => '2009 से CMFI के अगुवे',
@@ -5578,10 +5663,10 @@ extension on TranslationsHi {
 			'yearStory.statGoals' => 'लक्ष्य',
 			'yearStory.emptyText' => 'हर दिन अपनी रिपोर्ट भरो: तुम्हारा साल यहाँ लिखा जाएगा।',
 			'yearStory.share' => 'अपना साल साझा करो',
-			'yearStory.homeText' => ({required Object year}) => 'तुम्हारी वफ़ादारी, प्रार्थना, वचन: ${year} में परमेश्वर के साथ जो जिया, उसे फिर से देखो।',
-			'yearStory.open' => 'मेरा साल देखो',
 			_ => null,
 		} ?? switch (path) {
+			'yearStory.homeText' => ({required Object year}) => 'तुम्हारी वफ़ादारी, प्रार्थना, वचन: ${year} में परमेश्वर के साथ जो जिया, उसे फिर से देखो।',
+			'yearStory.open' => 'मेरा साल देखो',
 			'yearStory.notificationTitle' => 'परमेश्वर के साथ तुम्हारा साल तैयार है',
 			'yearStory.notificationBody' => ({required Object year}) => '${year} में प्रभु के साथ जो कुछ जिया, उसे फिर से देखो और साझा करो।',
 			'yearStory.channel' => 'परमेश्वर के साथ तुम्हारा साल',
@@ -5776,6 +5861,18 @@ extension on TranslationsHi {
 			'teachings.searchOpen' => 'खोजें',
 			'teachings.searchClose' => 'खोज बंद करें',
 			'teachings.dayAll' => 'सभी',
+			'teachings.previousMessage' => 'पिछला संदेश',
+			'teachings.nextMessage' => 'अगला संदेश',
+			'teachings.upNext' => 'आगे',
+			'teachings.continuous' => 'लगातार सुनना',
+			'teachings.sleepTimer' => 'स्लीप टाइमर',
+			'teachings.sleepIn' => ({required Object n}) => '${n} मिनट में',
+			'teachings.sleepInHour' => '1 घंटे में',
+			'teachings.sleepAtEnd' => 'इस संदेश के अंत में',
+			'teachings.sleepOff' => 'टाइमर बंद करो',
+			'teachings.sleepUntil' => ({required Object time}) => '${time} पर रुकेगा',
+			'teachings.sleepAfterThis' => 'संदेश के अंत में रुकेगा',
+			'teachings.nextUnavailable' => 'नेटवर्क के बिना आगे का संदेश उपलब्ध नहीं है।',
 			'memorize.title' => 'कंठस्थ करना',
 			'memorize.subtitle' => 'वचन को अपने हृदय में रखो',
 			'memorize.toReview' => 'दोहराने को',
@@ -6080,6 +6177,8 @@ extension on TranslationsHi {
 			'me.edit' => 'मेरी प्रोफ़ाइल बदलो',
 			'me.journey' => 'मेरी यात्रा',
 			'me.streak' => 'सिलसिला',
+			_ => null,
+		} ?? switch (path) {
 			'me.steps' => 'पड़ाव',
 			'me.timeMonth' => 'इस महीने परमेश्वर के साथ',
 			'me.nextStep' => ({required Object name}) => 'अगला: ${name}',
@@ -6094,8 +6193,6 @@ extension on TranslationsHi {
 			'reading.title' => 'मेरा पठन',
 			'reading.moreSubtitle' => 'जो किताबें तुम पढ़ते हो, पन्ना दर पन्ना',
 			'reading.moreCount' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n, one: '${n} किताब पढ़ी जा रही है', other: '${n} किताबें पढ़ी जा रही हैं', ), 
-			_ => null,
-		} ?? switch (path) {
 			'reading.add' => 'किताब जोड़ें',
 			'reading.reading' => 'पढ़ी जा रही',
 			'reading.finished' => 'पूरी हुईं',
@@ -6146,6 +6243,62 @@ extension on TranslationsHi {
 			'reading.editTitle' => 'किताब बदलें',
 			'reading.save' => 'सहेजें',
 			'reading.saved' => 'किताब बदली गई।',
+			'games.soonTitle' => 'खेल जल्द आ रहे हैं',
+			'games.soonText' => 'खेलते हुए वचन सीखो: स्तर, अंक और सदस्यों के बीच लीडरबोर्ड। बस थोड़ा और धैर्य रखो!',
+			'games.start' => 'शुरू करो',
+			'games.replay' => 'फिर खेलो',
+			'games.check' => 'जाँचो',
+			'games.next' => 'आगे बढ़ो',
+			'games.locked' => 'पहले पिछला पाठ पूरा करो।',
+			'games.right' => 'बहुत बढ़िया!',
+			'games.wrong' => 'पूरी तरह नहीं',
+			'games.rightAnswer' => ({required Object answer}) => 'सही उत्तर: ${answer}',
+			'games.retry' => 'इसे फिर देखते हैं',
+			'games.quit' => 'पाठ छोड़ो',
+			'games.quitTitle' => 'पाठ छोड़ना है?',
+			'games.quitText' => 'इस पाठ के तुम्हारे उत्तर नहीं रखे जाएँगे।',
+			'games.quitConfirm' => 'छोड़ो',
+			'games.done' => 'पाठ पूरा हुआ!',
+			'games.perfect' => 'बिना गलती के!',
+			'games.replayDone' => 'पाठ दोहराया गया!',
+			'games.points' => 'अंक',
+			'games.firstTry' => 'पहली बार में',
+			'games.stars' => 'तारे',
+			'games.streak' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n, one: 'लगातार ${n} दिन', other: 'लगातार ${n} दिन', ), 
+			'games.levelUp' => ({required Object n}) => 'स्तर ${n} पा लिया!',
+			'games.level' => ({required Object n}) => 'स्तर ${n}',
+			'games.levelOf' => ({required Object n, required Object total, required Object done}) => 'स्तर ${n} · ${total} में से ${done}',
+			'games.goal' => ({required Object goal, required Object done}) => '${goal} में से ${done}',
+			'games.goalLabel' => ({required Object goal, required Object done}) => 'आज का लक्ष्य: ${goal} में से ${done} अंक',
+			'games.pointsLabel' => ({required Object n}) => '${n} अंक',
+			'games.streakLabel' => 'खेल की लगातार गिनती',
+			'games.sending' => 'तुम्हारा पाठ भेजा जा रहा है…',
+			'games.sendFailed' => 'तुम्हारा पाठ नहीं भेजा जा सका। वह खोया नहीं है: कनेक्शन लौटने पर फिर कोशिश करो।',
+			'games.sendRetry' => 'फिर कोशिश करो',
+			'games.lessonDone' => 'पूरा किया पाठ',
+			'games.lessonLocked' => 'बंद पाठ',
+			'games.leaderboard' => 'लीडरबोर्ड',
+			'games.week' => 'इस हफ़्ते',
+			'games.ever' => 'शुरू से',
+			'games.scopeAll' => 'सभी',
+			'games.scopeCircle' => 'मेरा दायरा',
+			'games.joinTitle' => 'लीडरबोर्ड में दिखना है?',
+			'games.joinText' => 'दूसरे सदस्य तुम्हारा यूज़रनेम, तुम्हारी फ़ोटो और तुम्हारे खेल के अंक देखेंगे। तुम कभी भी अपना मन बदल सकते हो।',
+			'games.joinYes' => 'हाँ, मैं शामिल हूँ',
+			'games.joinNo' => 'नहीं, धन्यवाद',
+			'games.appear' => 'लीडरबोर्ड में दिखना',
+			'games.boardEmpty' => 'इस हफ़्ते अभी तक किसी ने नहीं खेला। तुम शुरुआत करो।',
+			'games.boardEmptyCircle' => 'तुम्हारे दायरे में अभी किसी के यहाँ अंक नहीं हैं।',
+			'games.notInBoard' => 'तुम लीडरबोर्ड में नहीं दिखते।',
+			'games.you' => 'तुम',
+			'games.dailyTitle' => 'आज की चुनौती',
+			'games.dailyText' => '5 सवाल · +15 अंक',
+			'games.dailyDone' => 'आज की चुनौती पूरी हुई। कल मिलते हैं!',
+			'games.dailyEnd' => 'चुनौती पूरी हुई!',
+			'games.seeBoard' => 'लीडरबोर्ड देखो',
+			'games.rank' => ({required Object n}) => 'स्थान ${n}',
+			'games.sendLater' => 'तुम जा सकते हो: कनेक्शन लौटते ही यह अपने आप भेज दिया जाएगा।',
+			'games.readIn' => ({required Object place}) => '“${place}” में पढ़ो',
 			_ => null,
 		};
 	}

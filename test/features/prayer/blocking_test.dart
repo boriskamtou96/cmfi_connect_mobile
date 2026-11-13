@@ -12,7 +12,7 @@ import '../../helpers/pump_app.dart';
 
 /// Opens the Prière tab.
 Future<void> openPrayer(WidgetTester tester) async {
-  await tester.tap(find.text('Prière').last);
+  await openFromHome(tester, 'Prière');
   await tester.pumpAndSettle();
 }
 

@@ -90,6 +90,7 @@ class TranslationsEn extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _Translations$me$en me = _Translations$me$en._(_root);
 	@override late final _Translations$settings$en settings = _Translations$settings$en._(_root);
 	@override late final _Translations$reading$en reading = _Translations$reading$en._(_root);
+	@override late final _Translations$games$en games = _Translations$games$en._(_root);
 }
 
 // Path: app
@@ -247,6 +248,8 @@ class _Translations$nav$en extends Translations$nav$fr {
 	@override String get hymns => 'Hymns';
 	@override String get prayer => 'Prayer';
 	@override String get bible => 'Bible';
+	@override String get games => 'Games';
+	@override String get menu => 'You';
 }
 
 // Path: home
@@ -288,7 +291,7 @@ class _Translations$home$en extends Translations$home$fr {
 	@override String get prayTogether => 'Pray together';
 	@override String invitedBy({required Object name}) => '${name} invites you to pray';
 	@override String get soulsTitle => 'Souls to contact again';
-	@override String get listenTitle => 'To listen';
+	@override String get listenTitle => 'Teachings';
 	@override String soulsText({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n,
 		one: '${n} person today',
 		other: '${n} people today',
@@ -1606,6 +1609,18 @@ class _Translations$teachings$en extends Translations$teachings$fr {
 	@override String get searchOpen => 'Search';
 	@override String get searchClose => 'Close the search';
 	@override String get dayAll => 'All';
+	@override String get previousMessage => 'Previous message';
+	@override String get nextMessage => 'Next message';
+	@override String get upNext => 'Up next';
+	@override String get continuous => 'Continuous play';
+	@override String get sleepTimer => 'Sleep timer';
+	@override String sleepIn({required Object n}) => 'In ${n} min';
+	@override String get sleepInHour => 'In 1 hour';
+	@override String get sleepAtEnd => 'At the end of this message';
+	@override String get sleepOff => 'Turn the timer off';
+	@override String sleepUntil({required Object time}) => 'Stops at ${time}';
+	@override String get sleepAfterThis => 'Stops at the end of the message';
+	@override String get nextUnavailable => 'Without network, what follows is not available.';
 }
 
 // Path: memorize
@@ -2053,6 +2068,74 @@ class _Translations$reading$en extends Translations$reading$fr {
 	@override String get editTitle => 'Edit the book';
 	@override String get save => 'Save';
 	@override String get saved => 'Book updated.';
+}
+
+// Path: games
+class _Translations$games$en extends Translations$games$fr {
+	_Translations$games$en._(TranslationsEn root) : this._root = root, super.internal(root);
+
+	final TranslationsEn _root; // ignore: unused_field
+
+	// Translations
+	@override String get soonTitle => 'Games are coming soon';
+	@override String get soonText => 'Learn the Word while playing: levels, points and a leaderboard among members. Just a little more patience!';
+	@override String get start => 'Start';
+	@override String get replay => 'Play again';
+	@override String get check => 'Check';
+	@override String get next => 'Continue';
+	@override String get locked => 'Finish the lesson before it first.';
+	@override String get right => 'Well done!';
+	@override String get wrong => 'Not quite';
+	@override String rightAnswer({required Object answer}) => 'The right answer: ${answer}';
+	@override String get retry => 'Let\'s see it again';
+	@override String get quit => 'Leave the lesson';
+	@override String get quitTitle => 'Leave the lesson?';
+	@override String get quitText => 'Your answers in this lesson will not be kept.';
+	@override String get quitConfirm => 'Leave';
+	@override String get done => 'Lesson complete!';
+	@override String get perfect => 'No mistakes!';
+	@override String get replayDone => 'Lesson reviewed!';
+	@override String get points => 'Points';
+	@override String get firstTry => 'First try';
+	@override String get stars => 'Stars';
+	@override String streak({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n,
+		one: '${n} day in a row',
+		other: '${n} days in a row',
+	);
+	@override String levelUp({required Object n}) => 'Level ${n} reached!';
+	@override String level({required Object n}) => 'Level ${n}';
+	@override String levelOf({required Object n, required Object done, required Object total}) => 'Level ${n} · ${done} of ${total}';
+	@override String goal({required Object done, required Object goal}) => '${done} of ${goal}';
+	@override String goalLabel({required Object done, required Object goal}) => 'Goal of the day: ${done} points out of ${goal}';
+	@override String pointsLabel({required Object n}) => '${n} points';
+	@override String get streakLabel => 'Game streak';
+	@override String get sending => 'Sending your lesson…';
+	@override String get sendFailed => 'Your lesson could not be sent. It is not lost: try again when the connection is back.';
+	@override String get sendRetry => 'Try again';
+	@override String get lessonDone => 'Lesson done';
+	@override String get lessonLocked => 'Lesson locked';
+	@override String get leaderboard => 'Leaderboard';
+	@override String get week => 'This week';
+	@override String get ever => 'All time';
+	@override String get scopeAll => 'Everyone';
+	@override String get scopeCircle => 'My circle';
+	@override String get joinTitle => 'Appear in the leaderboard?';
+	@override String get joinText => 'Other members will see your username, your photo and your game points. You can change your mind at any time.';
+	@override String get joinYes => 'Yes, I\'m in';
+	@override String get joinNo => 'No thanks';
+	@override String get appear => 'Appear in the leaderboard';
+	@override String get boardEmpty => 'Nobody has played this week yet. Be the first.';
+	@override String get boardEmptyCircle => 'Nobody in your circle has points here yet.';
+	@override String get notInBoard => 'You do not appear in the leaderboard.';
+	@override String get you => 'You';
+	@override String get dailyTitle => 'Challenge of the day';
+	@override String get dailyText => '5 questions · +15 points';
+	@override String get dailyDone => 'Challenge of the day done. See you tomorrow!';
+	@override String get dailyEnd => 'Challenge done!';
+	@override String get seeBoard => 'See the leaderboard';
+	@override String rank({required Object n}) => 'Rank ${n}';
+	@override String get sendLater => 'You can leave: it will be sent by itself as soon as the connection is back.';
+	@override String readIn({required Object place}) => 'Read in “${place}”';
 }
 
 // Path: welcome.seek
@@ -4237,6 +4320,8 @@ extension on TranslationsEn {
 			'nav.hymns' => 'Hymns',
 			'nav.prayer' => 'Prayer',
 			'nav.bible' => 'Bible',
+			'nav.games' => 'Games',
+			'nav.menu' => 'You',
 			'home.greeting' => ({required Object name}) => 'Hello ${name}',
 			'home.greetingNoName' => 'Hello',
 			'home.progress' => ({required Object filled, required Object total}) => '${filled} of ${total}',
@@ -4266,7 +4351,7 @@ extension on TranslationsEn {
 			'home.prayTogether' => 'Pray together',
 			'home.invitedBy' => ({required Object name}) => '${name} invites you to pray',
 			'home.soulsTitle' => 'Souls to contact again',
-			'home.listenTitle' => 'To listen',
+			'home.listenTitle' => 'Teachings',
 			'home.soulsText' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n, one: '${n} person today', other: '${n} people today', ), 
 			'home.timeToday' => ({required Object time}) => '${time} with God today',
 			'home.timeTodayNone' => 'No time with God noted today yet',
@@ -4552,10 +4637,10 @@ extension on TranslationsEn {
 			'authorities.form.discipleMakerTaken' => ({required Object name}) => '${name} is already your disciple maker. Remove them from the list to choose someone else.',
 			'authorities.form.submit' => 'Add',
 			'authorities.form.added' => ({required Object name}) => '${name} is now one of your leaders.',
-			'authorities.form.searchLabel' => 'Their username',
-			'authorities.form.searchHint' => 'username',
 			_ => null,
 		} ?? switch (path) {
+			'authorities.form.searchLabel' => 'Their username',
+			'authorities.form.searchHint' => 'username',
 			'authorities.form.search' => 'Search',
 			'authorities.form.searchHelp' => 'If they use CMFI Connect, find them by their username. They will get your request, and their contact details will show once they accept.',
 			'authorities.form.notFound' => ({required Object username}) => 'Nobody has the username @${username}.',
@@ -5066,10 +5151,10 @@ extension on TranslationsEn {
 			'ministry.lives.founder.story.1' => 'As a student at Fourah Bay College in Sierra Leone, he surrendered himself without reserve to the Lord and to His service on 1 October 1966. On 24 October 1970, at the end of seven days of prayer and fasting, he was filled with the Holy Spirit. From then on, prayer was the centre of his life.',
 			'ministry.lives.founder.story.2' => 'With a doctorate in organic chemistry from Makerere University in Uganda, he taught at the University of Yaoundé, where he became a professor. He supervised about a hundred theses and dissertations, and in 2005 Durham University, in Great Britain, awarded him a Doctor of Science for his whole body of work.',
 			'ministry.lives.founder.story.3' => 'On 12 May 1975, in Yaoundé, he founded Christian Missionary Fellowship International: a movement to win souls, make disciples, plant churches and send out missionaries. He made more than 700 missionary journeys in Cameroon and more than 500 to over 70 nations, on six continents.',
-			'ministry.lives.founder.story.4' => 'He spent long hours alone with God every day, led many prayer crusades, sieges and walks, and fasted often. He wrote more than 150 books on prayer, fasting, holiness, discipleship and mission, read in many languages.',
-			'ministry.lives.founder.story.5' => 'With his wife, Prisca Zei Fomum, a minister to children, he had seven children, all involved in the work of the Gospel. Together they lived simply, so as to give the largest part of their income to the Gospel.',
 			_ => null,
 		} ?? switch (path) {
+			'ministry.lives.founder.story.4' => 'He spent long hours alone with God every day, led many prayer crusades, sieges and walks, and fasted often. He wrote more than 150 books on prayer, fasting, holiness, discipleship and mission, read in many languages.',
+			'ministry.lives.founder.story.5' => 'With his wife, Prisca Zei Fomum, a minister to children, he had seven children, all involved in the work of the Gospel. Together they lived simply, so as to give the largest part of their income to the Gospel.',
 			'ministry.lives.founder.story.6' => 'He went to be with the Lord on 14 March 2009 and was buried in Yaoundé on 21 March. The work he founded goes on among the nations.',
 			'ministry.lives.leader.name' => 'Theodore Andoseh',
 			'ministry.lives.leader.line' => 'Leader of CMFI since 2009',
@@ -5580,10 +5665,10 @@ extension on TranslationsEn {
 			'yearStory.statGoals' => 'of goals',
 			'yearStory.emptyText' => 'Fill in your report every day: your year will be written here.',
 			'yearStory.share' => 'Share my year',
-			'yearStory.homeText' => ({required Object year}) => 'Your faithfulness, your prayer, the Word: look back on all you lived with God in ${year}.',
-			'yearStory.open' => 'See my year',
 			_ => null,
 		} ?? switch (path) {
+			'yearStory.homeText' => ({required Object year}) => 'Your faithfulness, your prayer, the Word: look back on all you lived with God in ${year}.',
+			'yearStory.open' => 'See my year',
 			'yearStory.notificationTitle' => 'Your year with God is ready',
 			'yearStory.notificationBody' => ({required Object year}) => 'Look back on all you lived with the Lord in ${year}, and share it.',
 			'yearStory.channel' => 'Your year with God',
@@ -5778,6 +5863,18 @@ extension on TranslationsEn {
 			'teachings.searchOpen' => 'Search',
 			'teachings.searchClose' => 'Close the search',
 			'teachings.dayAll' => 'All',
+			'teachings.previousMessage' => 'Previous message',
+			'teachings.nextMessage' => 'Next message',
+			'teachings.upNext' => 'Up next',
+			'teachings.continuous' => 'Continuous play',
+			'teachings.sleepTimer' => 'Sleep timer',
+			'teachings.sleepIn' => ({required Object n}) => 'In ${n} min',
+			'teachings.sleepInHour' => 'In 1 hour',
+			'teachings.sleepAtEnd' => 'At the end of this message',
+			'teachings.sleepOff' => 'Turn the timer off',
+			'teachings.sleepUntil' => ({required Object time}) => 'Stops at ${time}',
+			'teachings.sleepAfterThis' => 'Stops at the end of the message',
+			'teachings.nextUnavailable' => 'Without network, what follows is not available.',
 			'memorize.title' => 'Memorization',
 			'memorize.subtitle' => 'Hide the Word in your heart',
 			'memorize.toReview' => 'To review',
@@ -6082,6 +6179,8 @@ extension on TranslationsEn {
 			'me.edit' => 'Edit my profile',
 			'me.journey' => 'My journey',
 			'me.streak' => 'Streak',
+			_ => null,
+		} ?? switch (path) {
 			'me.steps' => 'Steps',
 			'me.timeMonth' => 'With God this month',
 			'me.nextStep' => ({required Object name}) => 'next: ${name}',
@@ -6096,8 +6195,6 @@ extension on TranslationsEn {
 			'reading.title' => 'My reading',
 			'reading.moreSubtitle' => 'The books you read, page after page',
 			'reading.moreCount' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n, one: '${n} book in progress', other: '${n} books in progress', ), 
-			_ => null,
-		} ?? switch (path) {
 			'reading.add' => 'Add a book',
 			'reading.reading' => 'In progress',
 			'reading.finished' => 'Finished',
@@ -6148,6 +6245,62 @@ extension on TranslationsEn {
 			'reading.editTitle' => 'Edit the book',
 			'reading.save' => 'Save',
 			'reading.saved' => 'Book updated.',
+			'games.soonTitle' => 'Games are coming soon',
+			'games.soonText' => 'Learn the Word while playing: levels, points and a leaderboard among members. Just a little more patience!',
+			'games.start' => 'Start',
+			'games.replay' => 'Play again',
+			'games.check' => 'Check',
+			'games.next' => 'Continue',
+			'games.locked' => 'Finish the lesson before it first.',
+			'games.right' => 'Well done!',
+			'games.wrong' => 'Not quite',
+			'games.rightAnswer' => ({required Object answer}) => 'The right answer: ${answer}',
+			'games.retry' => 'Let\'s see it again',
+			'games.quit' => 'Leave the lesson',
+			'games.quitTitle' => 'Leave the lesson?',
+			'games.quitText' => 'Your answers in this lesson will not be kept.',
+			'games.quitConfirm' => 'Leave',
+			'games.done' => 'Lesson complete!',
+			'games.perfect' => 'No mistakes!',
+			'games.replayDone' => 'Lesson reviewed!',
+			'games.points' => 'Points',
+			'games.firstTry' => 'First try',
+			'games.stars' => 'Stars',
+			'games.streak' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n, one: '${n} day in a row', other: '${n} days in a row', ), 
+			'games.levelUp' => ({required Object n}) => 'Level ${n} reached!',
+			'games.level' => ({required Object n}) => 'Level ${n}',
+			'games.levelOf' => ({required Object n, required Object done, required Object total}) => 'Level ${n} · ${done} of ${total}',
+			'games.goal' => ({required Object done, required Object goal}) => '${done} of ${goal}',
+			'games.goalLabel' => ({required Object done, required Object goal}) => 'Goal of the day: ${done} points out of ${goal}',
+			'games.pointsLabel' => ({required Object n}) => '${n} points',
+			'games.streakLabel' => 'Game streak',
+			'games.sending' => 'Sending your lesson…',
+			'games.sendFailed' => 'Your lesson could not be sent. It is not lost: try again when the connection is back.',
+			'games.sendRetry' => 'Try again',
+			'games.lessonDone' => 'Lesson done',
+			'games.lessonLocked' => 'Lesson locked',
+			'games.leaderboard' => 'Leaderboard',
+			'games.week' => 'This week',
+			'games.ever' => 'All time',
+			'games.scopeAll' => 'Everyone',
+			'games.scopeCircle' => 'My circle',
+			'games.joinTitle' => 'Appear in the leaderboard?',
+			'games.joinText' => 'Other members will see your username, your photo and your game points. You can change your mind at any time.',
+			'games.joinYes' => 'Yes, I\'m in',
+			'games.joinNo' => 'No thanks',
+			'games.appear' => 'Appear in the leaderboard',
+			'games.boardEmpty' => 'Nobody has played this week yet. Be the first.',
+			'games.boardEmptyCircle' => 'Nobody in your circle has points here yet.',
+			'games.notInBoard' => 'You do not appear in the leaderboard.',
+			'games.you' => 'You',
+			'games.dailyTitle' => 'Challenge of the day',
+			'games.dailyText' => '5 questions · +15 points',
+			'games.dailyDone' => 'Challenge of the day done. See you tomorrow!',
+			'games.dailyEnd' => 'Challenge done!',
+			'games.seeBoard' => 'See the leaderboard',
+			'games.rank' => ({required Object n}) => 'Rank ${n}',
+			'games.sendLater' => 'You can leave: it will be sent by itself as soon as the connection is back.',
+			'games.readIn' => ({required Object place}) => 'Read in “${place}”',
 			_ => null,
 		};
 	}

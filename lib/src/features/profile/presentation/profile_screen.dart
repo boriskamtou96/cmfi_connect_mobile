@@ -23,11 +23,8 @@ import '../../journey/application/journey_steps.dart';
 import '../../journey/domain/journey_step.dart';
 import '../../journey/presentation/step_look.dart';
 import '../../members/application/my_account.dart';
-import '../../reports/application/reading_books.dart';
 import '../../reports/application/reports_providers.dart';
-import '../../reports/domain/reading_book.dart';
 import '../../reports/domain/time_with_god.dart';
-import '../../souls/application/souls.dart';
 import '../application/current_profile.dart';
 import 'widgets/profile_photo.dart';
 
@@ -51,13 +48,6 @@ class ProfileScreen extends ConsumerWidget {
         const <JourneyStep, DateTime>{};
     final month = ref.watch(reportSummaryProvider(SummaryPeriod.month)).value;
     final minutes = month == null ? 0 : minutesOfItems(month.items);
-    final souls = ref.watch(soulsProvider).value ?? const [];
-    final due = souls.where((soul) => soul.dueBy(today())).length;
-    // Mes lectures: the books being read
-    final reading =
-        (ref.watch(readingBooksProvider).value ?? const <ReadingBook>[])
-            .where((book) => book.isReading)
-            .length;
     final authorities = ref.watch(authoritiesControllerProvider).value;
     final requests = ref.watch(authorityRequestsProvider).value?.length ?? 0;
     // the members who chose the user as disciple maker or authority
@@ -135,18 +125,6 @@ class ProfileScreen extends ConsumerWidget {
                               context.router.push(const JourneyRoute()),
                         ),
                         MenuTile(
-                          icon: AppIcons.soulsTile,
-                          module: AppModule.hymns,
-                          title: t.souls.title,
-                          subtitle: souls.isEmpty
-                              ? t.souls.moreSubtitle
-                              : [
-                                  me.souls(n: souls.length),
-                                  if (due > 0) me.soulsDue(n: due),
-                                ].join(' · '),
-                          onTap: () => context.router.push(const SoulsRoute()),
-                        ),
-                        MenuTile(
                           icon: AppIcons.yearStoryTile,
                           title: t.yearStory.moreTitle,
                           subtitle: storyYear < DateTime.now().year
@@ -155,23 +133,6 @@ class ProfileScreen extends ConsumerWidget {
                           onTap: () => context.router.push(
                             YearStoryRoute(year: storyYear),
                           ),
-                        ),
-                        MenuTile(
-                          icon: AppIcons.fastsTile,
-                          module: AppModule.prayer,
-                          title: t.fasts.title,
-                          subtitle: t.fasts.moreSubtitle,
-                          onTap: () => context.router.push(const FastsRoute()),
-                        ),
-                        MenuTile(
-                          icon: AppIcons.readingTile,
-                          module: AppModule.bible,
-                          title: t.reading.title,
-                          subtitle: reading == 0
-                              ? t.reading.moreSubtitle
-                              : t.reading.moreCount(n: reading),
-                          onTap: () =>
-                              context.router.push(const ReadingRoute()),
                         ),
                       ],
                     ),

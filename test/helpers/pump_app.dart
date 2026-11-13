@@ -42,6 +42,8 @@ import 'package:cmfi_connect/src/features/bible/infrastructure/bible_storage.dar
 import 'package:cmfi_connect/src/features/disciples/infrastructure/disciples_api.dart';
 import 'package:cmfi_connect/src/features/documents/infrastructure/documents_api.dart';
 import 'package:cmfi_connect/src/features/events/infrastructure/events_api.dart';
+import 'package:cmfi_connect/src/features/games/infrastructure/games_api.dart';
+import 'package:cmfi_connect/src/features/home/presentation/home_screen.dart';
 import 'package:cmfi_connect/src/features/hymns/infrastructure/hymn_book_storage.dart';
 import 'package:cmfi_connect/src/features/hymns/infrastructure/hymns_api.dart';
 import 'package:cmfi_connect/src/features/members/infrastructure/members_api.dart';
@@ -58,6 +60,7 @@ import 'package:cmfi_connect/src/features/reports/infrastructure/activities_api.
 import 'package:cmfi_connect/src/features/reports/infrastructure/reading_api.dart';
 import 'package:cmfi_connect/src/features/reports/infrastructure/report_sendings_api.dart';
 import 'package:cmfi_connect/src/features/reports/infrastructure/reports_api.dart';
+import 'package:cmfi_connect/src/features/shell/presentation/menu_screen.dart';
 import 'package:cmfi_connect/src/features/souls/infrastructure/souls_api.dart';
 import 'package:cmfi_connect/src/features/souls/infrastructure/souls_storage.dart';
 import 'package:cmfi_connect/src/features/teachings/application/teaching_player.dart';
@@ -101,6 +104,7 @@ class TestApp {
     required this.documentPicker,
     required this.prayerApi,
     required this.readingApi,
+    required this.gamesApi,
     required this.music,
     required this.push,
     required this.notificationsApi,
@@ -158,6 +162,7 @@ class TestApp {
   final FakeDocumentPicking documentPicker;
   final FakePrayerApi prayerApi;
   final FakeReadingApi readingApi;
+  final FakeGamesApi gamesApi;
   final FakePushMessaging push;
   final FakeNotificationsApi notificationsApi;
   final FakePremiumStore premium;
@@ -212,6 +217,7 @@ Future<TestApp> pumpApp(
   FakeMediaImages? mediaImages,
   FakePrayerApi? prayerApi,
   FakeReadingApi? readingApi,
+  FakeGamesApi? gamesApi,
   FakePushMessaging? push,
   FakeNotificationsApi? notificationsApi,
   FakePremiumStore? premium,
@@ -282,6 +288,7 @@ Future<TestApp> pumpApp(
   final documentPicker = FakeDocumentPicking();
   final prayer = prayerApi ?? FakePrayerApi();
   final reading = readingApi ?? FakeReadingApi();
+  final games = gamesApi ?? FakeGamesApi();
   final music = FakeBackgroundMusic();
   final pushMessaging = push ?? FakePushMessaging();
   final notificationsApi0 = notificationsApi ?? FakeNotificationsApi();
@@ -345,6 +352,7 @@ Future<TestApp> pumpApp(
       documentPickingProvider.overrideWithValue(documentPicker),
       prayerApiProvider.overrideWithValue(prayer),
       readingApiProvider.overrideWithValue(reading),
+      gamesApiProvider.overrideWithValue(games),
       backgroundMusicProvider.overrideWithValue(music),
       pushMessagingProvider.overrideWithValue(pushMessaging),
       notificationsApiProvider.overrideWithValue(notificationsApi0),
@@ -432,6 +440,7 @@ Future<TestApp> pumpApp(
     documentPicker: documentPicker,
     prayerApi: prayer,
     readingApi: reading,
+    gamesApi: games,
     music: music,
     push: pushMessaging,
     notificationsApi: notificationsApi0,
@@ -469,34 +478,59 @@ Future<void> scrollToEnd(WidgetTester tester) async {
   await tester.pumpAndSettle();
 }
 
-/// Back to Accueil, when the tab bar shows another tab.
-Future<void> _backHome(WidgetTester tester) async {
-  final home = find.descendant(
-    of: find.byType(NavigationBar),
-    matching: find.text('Accueil'),
-  );
-  if (home.evaluate().isNotEmpty) {
-    await tester.tap(home);
+/// Back to the tabs, when pages are open above them (Prière, a hymn).
+Future<void> backToTabs(WidgetTester tester) async {
+  for (var i = 0; i < 6 && find.byType(NavigationBar).evaluate().isEmpty; i++) {
+    await tester.tap(find.byTooltip('Retour').last);
     await tester.pumpAndSettle();
   }
 }
 
-/// The menu (the drawer), from the photo at the top of the home screen
-/// (back to Accueil first).
+/// The menu: the last tab, under the photo of the member (closes the pages
+/// above the tabs first).
 Future<void> openMenu(WidgetTester tester) async {
-  await _backHome(tester);
-  await tester.tap(find.byTooltip('Ouvrir le menu'));
+  await backToTabs(tester);
+  final tab = find.descendant(
+    of: find.byType(NavigationBar),
+    matching: find.text('Vous'),
+  );
+  await tester.tap(tab, warnIfMissed: false);
   await tester.pumpAndSettle();
+  // a celebration shown over the tabs (a new step) took the touch and left
+  if (find.byType(MenuScreen).evaluate().isEmpty) {
+    await tester.tap(tab);
+    await tester.pumpAndSettle();
+  }
 }
 
-/// [text] in the menu only (the home screen under it may say it too).
+/// [text] in the menu only.
 Finder inMenu(String text) =>
-    find.descendant(of: find.byType(Drawer), matching: find.text(text));
+    find.descendant(of: find.byType(MenuScreen), matching: find.text(text));
+
+/// A module that has no tab (« Cantiques », « Prière »), from its card on
+/// the home screen.
+Future<void> openFromHome(WidgetTester tester, String name) async {
+  await backToTabs(tester);
+  await tester.tap(
+    find.descendant(
+      of: find.byType(NavigationBar),
+      matching: find.text('Accueil'),
+    ),
+    warnIfMissed: false,
+  );
+  await tester.pumpAndSettle();
+  final card = find
+      .descendant(of: find.byType(HomeScreen), matching: find.text(name))
+      .first;
+  await scrollTo(tester, card);
+  await tester.tap(card);
+  await tester.pumpAndSettle();
+}
 
 /// Mon profil, from the top of the menu.
 Future<void> openProfile(WidgetTester tester) async {
   await openMenu(tester);
-  await tester.tap(find.text('Voir mon profil'));
+  await tester.tap(find.byTooltip('Voir mon profil'));
   await tester.pumpAndSettle();
 }
 

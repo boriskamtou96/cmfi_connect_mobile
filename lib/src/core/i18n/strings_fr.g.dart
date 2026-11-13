@@ -92,6 +92,7 @@ class Translations with BaseTranslations<AppLocale, Translations> {
 	late final Translations$me$fr me = Translations$me$fr.internal(_root);
 	late final Translations$settings$fr settings = Translations$settings$fr.internal(_root);
 	late final Translations$reading$fr reading = Translations$reading$fr.internal(_root);
+	late final Translations$games$fr games = Translations$games$fr.internal(_root);
 }
 
 // Path: app
@@ -393,6 +394,12 @@ class Translations$nav$fr {
 
 	/// fr: 'Bible'
 	String get bible => 'Bible';
+
+	/// fr: 'Jeux'
+	String get games => 'Jeux';
+
+	/// fr: 'Vous'
+	String get menu => 'Vous';
 }
 
 // Path: home
@@ -493,8 +500,8 @@ class Translations$home$fr {
 	/// fr: 'Âmes à recontacter'
 	String get soulsTitle => 'Âmes à recontacter';
 
-	/// fr: 'À écouter'
-	String get listenTitle => 'À écouter';
+	/// fr: 'Enseignements'
+	String get listenTitle => 'Enseignements';
 
 	/// fr: '(one) {{n} personne aujourd'hui} (other) {{n} personnes aujourd'hui}'
 	String soulsText({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('fr'))(n,
@@ -3369,6 +3376,42 @@ class Translations$teachings$fr {
 
 	/// fr: 'Tous'
 	String get dayAll => 'Tous';
+
+	/// fr: 'Message précédent'
+	String get previousMessage => 'Message précédent';
+
+	/// fr: 'Message suivant'
+	String get nextMessage => 'Message suivant';
+
+	/// fr: 'À suivre'
+	String get upNext => 'À suivre';
+
+	/// fr: 'Lecture en continu'
+	String get continuous => 'Lecture en continu';
+
+	/// fr: 'Minuterie de sommeil'
+	String get sleepTimer => 'Minuterie de sommeil';
+
+	/// fr: 'Dans {n} min'
+	String sleepIn({required Object n}) => 'Dans ${n} min';
+
+	/// fr: 'Dans 1 heure'
+	String get sleepInHour => 'Dans 1 heure';
+
+	/// fr: 'À la fin de ce message'
+	String get sleepAtEnd => 'À la fin de ce message';
+
+	/// fr: 'Désactiver la minuterie'
+	String get sleepOff => 'Désactiver la minuterie';
+
+	/// fr: 'Arrêt à {time}'
+	String sleepUntil({required Object time}) => 'Arrêt à ${time}';
+
+	/// fr: 'Arrêt à la fin du message'
+	String get sleepAfterThis => 'Arrêt à la fin du message';
+
+	/// fr: 'Sans réseau, la suite n’est pas disponible.'
+	String get nextUnavailable => 'Sans réseau, la suite n’est pas disponible.';
 }
 
 // Path: memorize
@@ -4305,6 +4348,186 @@ class Translations$reading$fr {
 
 	/// fr: 'Livre modifié.'
 	String get saved => 'Livre modifié.';
+}
+
+// Path: games
+class Translations$games$fr {
+	Translations$games$fr.internal(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// fr: 'Les jeux arrivent bientôt'
+	String get soonTitle => 'Les jeux arrivent bientôt';
+
+	/// fr: 'Apprends la Parole en jouant : des niveaux, des points et un classement entre membres. Encore un peu de patience !'
+	String get soonText => 'Apprends la Parole en jouant : des niveaux, des points et un classement entre membres. Encore un peu de patience !';
+
+	/// fr: 'Commencer'
+	String get start => 'Commencer';
+
+	/// fr: 'Rejouer'
+	String get replay => 'Rejouer';
+
+	/// fr: 'Vérifier'
+	String get check => 'Vérifier';
+
+	/// fr: 'Continuer'
+	String get next => 'Continuer';
+
+	/// fr: 'Termine d'abord la leçon précédente.'
+	String get locked => 'Termine d\'abord la leçon précédente.';
+
+	/// fr: 'Bien joué !'
+	String get right => 'Bien joué !';
+
+	/// fr: 'Pas tout à fait'
+	String get wrong => 'Pas tout à fait';
+
+	/// fr: 'La bonne réponse : {answer}'
+	String rightAnswer({required Object answer}) => 'La bonne réponse : ${answer}';
+
+	/// fr: 'On la revoit'
+	String get retry => 'On la revoit';
+
+	/// fr: 'Quitter la leçon'
+	String get quit => 'Quitter la leçon';
+
+	/// fr: 'Quitter la leçon ?'
+	String get quitTitle => 'Quitter la leçon ?';
+
+	/// fr: 'Tes réponses de cette leçon ne seront pas gardées.'
+	String get quitText => 'Tes réponses de cette leçon ne seront pas gardées.';
+
+	/// fr: 'Quitter'
+	String get quitConfirm => 'Quitter';
+
+	/// fr: 'Leçon terminée !'
+	String get done => 'Leçon terminée !';
+
+	/// fr: 'Sans faute !'
+	String get perfect => 'Sans faute !';
+
+	/// fr: 'Leçon revue !'
+	String get replayDone => 'Leçon revue !';
+
+	/// fr: 'Points'
+	String get points => 'Points';
+
+	/// fr: 'Du premier coup'
+	String get firstTry => 'Du premier coup';
+
+	/// fr: 'Étoiles'
+	String get stars => 'Étoiles';
+
+	/// fr: '(one) {{n} jour de suite} (other) {{n} jours de suite}'
+	String streak({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('fr'))(n,
+		one: '${n} jour de suite',
+		other: '${n} jours de suite',
+	);
+
+	/// fr: 'Niveau {n} atteint !'
+	String levelUp({required Object n}) => 'Niveau ${n} atteint !';
+
+	/// fr: 'Niveau {n}'
+	String level({required Object n}) => 'Niveau ${n}';
+
+	/// fr: 'Niveau {n} · {done} sur {total}'
+	String levelOf({required Object n, required Object done, required Object total}) => 'Niveau ${n} · ${done} sur ${total}';
+
+	/// fr: '{done} sur {goal}'
+	String goal({required Object done, required Object goal}) => '${done} sur ${goal}';
+
+	/// fr: 'Objectif du jour : {done} points sur {goal}'
+	String goalLabel({required Object done, required Object goal}) => 'Objectif du jour : ${done} points sur ${goal}';
+
+	/// fr: '{n} points'
+	String pointsLabel({required Object n}) => '${n} points';
+
+	/// fr: 'Série de jeu'
+	String get streakLabel => 'Série de jeu';
+
+	/// fr: 'Envoi de ta leçon…'
+	String get sending => 'Envoi de ta leçon…';
+
+	/// fr: 'Ta leçon n'a pas pu être envoyée. Elle n'est pas perdue : réessaie quand la connexion revient.'
+	String get sendFailed => 'Ta leçon n\'a pas pu être envoyée. Elle n\'est pas perdue : réessaie quand la connexion revient.';
+
+	/// fr: 'Réessayer'
+	String get sendRetry => 'Réessayer';
+
+	/// fr: 'Leçon terminée'
+	String get lessonDone => 'Leçon terminée';
+
+	/// fr: 'Leçon fermée'
+	String get lessonLocked => 'Leçon fermée';
+
+	/// fr: 'Classement'
+	String get leaderboard => 'Classement';
+
+	/// fr: 'Cette semaine'
+	String get week => 'Cette semaine';
+
+	/// fr: 'Depuis toujours'
+	String get ever => 'Depuis toujours';
+
+	/// fr: 'Tous'
+	String get scopeAll => 'Tous';
+
+	/// fr: 'Mon cercle'
+	String get scopeCircle => 'Mon cercle';
+
+	/// fr: 'Apparaître dans le classement ?'
+	String get joinTitle => 'Apparaître dans le classement ?';
+
+	/// fr: 'Les autres membres verront ton pseudo, ta photo et tes points de jeu. Tu peux changer d'avis à tout moment.'
+	String get joinText => 'Les autres membres verront ton pseudo, ta photo et tes points de jeu. Tu peux changer d\'avis à tout moment.';
+
+	/// fr: 'Oui, j'y entre'
+	String get joinYes => 'Oui, j\'y entre';
+
+	/// fr: 'Non merci'
+	String get joinNo => 'Non merci';
+
+	/// fr: 'Apparaître dans le classement'
+	String get appear => 'Apparaître dans le classement';
+
+	/// fr: 'Personne n'a encore joué cette semaine. À toi d'ouvrir la marche.'
+	String get boardEmpty => 'Personne n\'a encore joué cette semaine. À toi d\'ouvrir la marche.';
+
+	/// fr: 'Personne de ton cercle n'a encore de points ici.'
+	String get boardEmptyCircle => 'Personne de ton cercle n\'a encore de points ici.';
+
+	/// fr: 'Tu n'apparais pas dans le classement.'
+	String get notInBoard => 'Tu n\'apparais pas dans le classement.';
+
+	/// fr: 'Toi'
+	String get you => 'Toi';
+
+	/// fr: 'Défi du jour'
+	String get dailyTitle => 'Défi du jour';
+
+	/// fr: '5 questions · +15 points'
+	String get dailyText => '5 questions · +15 points';
+
+	/// fr: 'Défi du jour relevé. À demain !'
+	String get dailyDone => 'Défi du jour relevé. À demain !';
+
+	/// fr: 'Défi relevé !'
+	String get dailyEnd => 'Défi relevé !';
+
+	/// fr: 'Voir le classement'
+	String get seeBoard => 'Voir le classement';
+
+	/// fr: 'Rang {n}'
+	String rank({required Object n}) => 'Rang ${n}';
+
+	/// fr: 'Tu peux quitter : elle partira toute seule dès que la connexion reviendra.'
+	String get sendLater => 'Tu peux quitter : elle partira toute seule dès que la connexion reviendra.';
+
+	/// fr: 'Lire dans « {place} »'
+	String readIn({required Object place}) => 'Lire dans « ${place} »';
 }
 
 // Path: welcome.seek
@@ -8258,6 +8481,8 @@ extension on Translations {
 			'nav.hymns' => 'Cantiques',
 			'nav.prayer' => 'Prière',
 			'nav.bible' => 'Bible',
+			'nav.games' => 'Jeux',
+			'nav.menu' => 'Vous',
 			'home.greeting' => ({required Object name}) => 'Bonjour ${name}',
 			'home.greetingNoName' => 'Bonjour',
 			'home.progress' => ({required Object filled, required Object total}) => '${filled} sur ${total}',
@@ -8287,7 +8512,7 @@ extension on Translations {
 			'home.prayTogether' => 'Prier ensemble',
 			'home.invitedBy' => ({required Object name}) => '${name} t\'invite à prier',
 			'home.soulsTitle' => 'Âmes à recontacter',
-			'home.listenTitle' => 'À écouter',
+			'home.listenTitle' => 'Enseignements',
 			'home.soulsText' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('fr'))(n, one: '${n} personne aujourd\'hui', other: '${n} personnes aujourd\'hui', ), 
 			'home.timeToday' => ({required Object time}) => '${time} avec Dieu aujourd\'hui',
 			'home.timeTodayNone' => 'Pas encore de temps avec Dieu noté aujourd\'hui',
@@ -8573,10 +8798,10 @@ extension on Translations {
 			'authorities.form.discipleMakerTaken' => ({required Object name}) => '${name} est déjà ton faiseur de disciples. Retire-le de la liste pour en désigner un autre.',
 			'authorities.form.submit' => 'Ajouter',
 			'authorities.form.added' => ({required Object name}) => '${name} fait maintenant partie de tes autorités.',
-			'authorities.form.searchLabel' => 'Son pseudo',
-			'authorities.form.searchHint' => 'pseudo',
 			_ => null,
 		} ?? switch (path) {
+			'authorities.form.searchLabel' => 'Son pseudo',
+			'authorities.form.searchHint' => 'pseudo',
 			'authorities.form.search' => 'Rechercher',
 			'authorities.form.searchHelp' => 'Si la personne utilise CMFI Connect, cherche-la par son pseudo. Elle recevra ta demande, et ses coordonnées s\'afficheront quand elle l\'aura acceptée.',
 			'authorities.form.notFound' => ({required Object username}) => 'Personne n\'a le pseudo @${username}.',
@@ -9087,10 +9312,10 @@ extension on Translations {
 			'ministry.lives.founder.story.1' => 'Étudiant à Fourah Bay College, en Sierra Leone, il s\'est livré sans réserve au Seigneur et à son service le 1er octobre 1966. Le 24 octobre 1970, au terme de sept jours de prière et de jeûne, il a été rempli du Saint-Esprit. Dès lors, la prière est devenue le centre de sa vie.',
 			'ministry.lives.founder.story.2' => 'Docteur en chimie organique de l\'université Makerere, en Ouganda, il a enseigné à l\'Université de Yaoundé, où il est devenu professeur. Il a dirigé une centaine de thèses et de mémoires, et l\'Université de Durham, en Grande-Bretagne, lui a décerné en 2005 un doctorat ès sciences pour l\'ensemble de ses travaux.',
 			'ministry.lives.founder.story.3' => 'Le 12 mai 1975, à Yaoundé, il a fondé la Communauté Missionnaire Chrétienne Internationale : un mouvement pour gagner des âmes, faire des disciples, implanter des églises et envoyer des missionnaires. Il a fait plus de 700 voyages missionnaires au Cameroun et plus de 500 dans plus de 70 nations, sur six continents.',
-			'ministry.lives.founder.story.4' => 'Il passait chaque jour de longues heures seul avec Dieu, a conduit de nombreuses croisades, sièges et marches de prière, et a souvent jeûné. Il a écrit plus de 150 livres sur la prière, le jeûne, la sainteté, la formation des disciples et la mission, lus dans de nombreuses langues.',
-			'ministry.lives.founder.story.5' => 'Avec son épouse, Prisca Zei Fomum, servante de Dieu auprès des enfants, il a eu sept enfants, tous engagés dans l\'œuvre de l\'Évangile. Ensemble, ils vivaient simplement pour donner à l\'Évangile la plus grande part de leurs revenus.',
 			_ => null,
 		} ?? switch (path) {
+			'ministry.lives.founder.story.4' => 'Il passait chaque jour de longues heures seul avec Dieu, a conduit de nombreuses croisades, sièges et marches de prière, et a souvent jeûné. Il a écrit plus de 150 livres sur la prière, le jeûne, la sainteté, la formation des disciples et la mission, lus dans de nombreuses langues.',
+			'ministry.lives.founder.story.5' => 'Avec son épouse, Prisca Zei Fomum, servante de Dieu auprès des enfants, il a eu sept enfants, tous engagés dans l\'œuvre de l\'Évangile. Ensemble, ils vivaient simplement pour donner à l\'Évangile la plus grande part de leurs revenus.',
 			'ministry.lives.founder.story.6' => 'Il est entré dans la présence du Seigneur le 14 mars 2009 et a été inhumé à Yaoundé le 21 mars. L\'œuvre qu\'il a fondée continue dans les nations.',
 			'ministry.lives.leader.name' => 'Théodore Andoseh',
 			'ministry.lives.leader.line' => 'Leader de la CMCI depuis 2009',
@@ -9601,10 +9826,10 @@ extension on Translations {
 			'yearStory.statGoals' => 'd\'objectifs',
 			'yearStory.emptyText' => 'Remplis ton compte rendu chaque jour : ton année s\'écrira ici.',
 			'yearStory.share' => 'Partager mon année',
-			'yearStory.homeText' => ({required Object year}) => 'Ta fidélité, ta prière, la Parole : revois tout ce que tu as vécu avec Dieu en ${year}.',
-			'yearStory.open' => 'Voir mon année',
 			_ => null,
 		} ?? switch (path) {
+			'yearStory.homeText' => ({required Object year}) => 'Ta fidélité, ta prière, la Parole : revois tout ce que tu as vécu avec Dieu en ${year}.',
+			'yearStory.open' => 'Voir mon année',
 			'yearStory.notificationTitle' => 'Ton année avec Dieu est prête',
 			'yearStory.notificationBody' => ({required Object year}) => 'Revois tout ce que tu as vécu avec le Seigneur en ${year}, et partage-le.',
 			'yearStory.channel' => 'Ton année avec Dieu',
@@ -9799,6 +10024,18 @@ extension on Translations {
 			'teachings.searchOpen' => 'Rechercher',
 			'teachings.searchClose' => 'Fermer la recherche',
 			'teachings.dayAll' => 'Tous',
+			'teachings.previousMessage' => 'Message précédent',
+			'teachings.nextMessage' => 'Message suivant',
+			'teachings.upNext' => 'À suivre',
+			'teachings.continuous' => 'Lecture en continu',
+			'teachings.sleepTimer' => 'Minuterie de sommeil',
+			'teachings.sleepIn' => ({required Object n}) => 'Dans ${n} min',
+			'teachings.sleepInHour' => 'Dans 1 heure',
+			'teachings.sleepAtEnd' => 'À la fin de ce message',
+			'teachings.sleepOff' => 'Désactiver la minuterie',
+			'teachings.sleepUntil' => ({required Object time}) => 'Arrêt à ${time}',
+			'teachings.sleepAfterThis' => 'Arrêt à la fin du message',
+			'teachings.nextUnavailable' => 'Sans réseau, la suite n’est pas disponible.',
 			'memorize.title' => 'Mémorisation',
 			'memorize.subtitle' => 'Cache la Parole dans ton cœur',
 			'memorize.toReview' => 'À réviser',
@@ -10103,6 +10340,8 @@ extension on Translations {
 			'me.edit' => 'Modifier mon profil',
 			'me.journey' => 'Mon cheminement',
 			'me.streak' => 'Série',
+			_ => null,
+		} ?? switch (path) {
 			'me.steps' => 'Étapes',
 			'me.timeMonth' => 'Avec Dieu ce mois',
 			'me.nextStep' => ({required Object name}) => 'prochaine : ${name}',
@@ -10117,8 +10356,6 @@ extension on Translations {
 			'reading.title' => 'Mes lectures',
 			'reading.moreSubtitle' => 'Les livres que tu lis, page après page',
 			'reading.moreCount' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('fr'))(n, one: '${n} livre en cours', other: '${n} livres en cours', ), 
-			_ => null,
-		} ?? switch (path) {
 			'reading.add' => 'Ajouter un livre',
 			'reading.reading' => 'En cours',
 			'reading.finished' => 'Terminés',
@@ -10169,6 +10406,62 @@ extension on Translations {
 			'reading.editTitle' => 'Modifier le livre',
 			'reading.save' => 'Enregistrer',
 			'reading.saved' => 'Livre modifié.',
+			'games.soonTitle' => 'Les jeux arrivent bientôt',
+			'games.soonText' => 'Apprends la Parole en jouant : des niveaux, des points et un classement entre membres. Encore un peu de patience !',
+			'games.start' => 'Commencer',
+			'games.replay' => 'Rejouer',
+			'games.check' => 'Vérifier',
+			'games.next' => 'Continuer',
+			'games.locked' => 'Termine d\'abord la leçon précédente.',
+			'games.right' => 'Bien joué !',
+			'games.wrong' => 'Pas tout à fait',
+			'games.rightAnswer' => ({required Object answer}) => 'La bonne réponse : ${answer}',
+			'games.retry' => 'On la revoit',
+			'games.quit' => 'Quitter la leçon',
+			'games.quitTitle' => 'Quitter la leçon ?',
+			'games.quitText' => 'Tes réponses de cette leçon ne seront pas gardées.',
+			'games.quitConfirm' => 'Quitter',
+			'games.done' => 'Leçon terminée !',
+			'games.perfect' => 'Sans faute !',
+			'games.replayDone' => 'Leçon revue !',
+			'games.points' => 'Points',
+			'games.firstTry' => 'Du premier coup',
+			'games.stars' => 'Étoiles',
+			'games.streak' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('fr'))(n, one: '${n} jour de suite', other: '${n} jours de suite', ), 
+			'games.levelUp' => ({required Object n}) => 'Niveau ${n} atteint !',
+			'games.level' => ({required Object n}) => 'Niveau ${n}',
+			'games.levelOf' => ({required Object n, required Object done, required Object total}) => 'Niveau ${n} · ${done} sur ${total}',
+			'games.goal' => ({required Object done, required Object goal}) => '${done} sur ${goal}',
+			'games.goalLabel' => ({required Object done, required Object goal}) => 'Objectif du jour : ${done} points sur ${goal}',
+			'games.pointsLabel' => ({required Object n}) => '${n} points',
+			'games.streakLabel' => 'Série de jeu',
+			'games.sending' => 'Envoi de ta leçon…',
+			'games.sendFailed' => 'Ta leçon n\'a pas pu être envoyée. Elle n\'est pas perdue : réessaie quand la connexion revient.',
+			'games.sendRetry' => 'Réessayer',
+			'games.lessonDone' => 'Leçon terminée',
+			'games.lessonLocked' => 'Leçon fermée',
+			'games.leaderboard' => 'Classement',
+			'games.week' => 'Cette semaine',
+			'games.ever' => 'Depuis toujours',
+			'games.scopeAll' => 'Tous',
+			'games.scopeCircle' => 'Mon cercle',
+			'games.joinTitle' => 'Apparaître dans le classement ?',
+			'games.joinText' => 'Les autres membres verront ton pseudo, ta photo et tes points de jeu. Tu peux changer d\'avis à tout moment.',
+			'games.joinYes' => 'Oui, j\'y entre',
+			'games.joinNo' => 'Non merci',
+			'games.appear' => 'Apparaître dans le classement',
+			'games.boardEmpty' => 'Personne n\'a encore joué cette semaine. À toi d\'ouvrir la marche.',
+			'games.boardEmptyCircle' => 'Personne de ton cercle n\'a encore de points ici.',
+			'games.notInBoard' => 'Tu n\'apparais pas dans le classement.',
+			'games.you' => 'Toi',
+			'games.dailyTitle' => 'Défi du jour',
+			'games.dailyText' => '5 questions · +15 points',
+			'games.dailyDone' => 'Défi du jour relevé. À demain !',
+			'games.dailyEnd' => 'Défi relevé !',
+			'games.seeBoard' => 'Voir le classement',
+			'games.rank' => ({required Object n}) => 'Rang ${n}',
+			'games.sendLater' => 'Tu peux quitter : elle partira toute seule dès que la connexion reviendra.',
+			'games.readIn' => ({required Object place}) => 'Lire dans « ${place} »',
 			_ => null,
 		};
 	}

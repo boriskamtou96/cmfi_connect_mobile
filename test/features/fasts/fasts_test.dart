@@ -100,9 +100,8 @@ void main() {
       activities: fastItems,
       initialPreferences: preferences,
     );
-    await openProfile(tester);
-    await scrollTo(tester, find.text('Mes jeûnes'));
-    await tester.tap(find.text('Mes jeûnes'));
+    await openMenu(tester);
+    await tester.tap(inMenu('Mes jeûnes'));
     await tester.pumpAndSettle();
     return app;
   }

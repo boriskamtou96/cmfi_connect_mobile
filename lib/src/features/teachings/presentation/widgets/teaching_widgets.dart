@@ -19,8 +19,10 @@ import '../../../../core/utils/date_format.dart';
 import '../../../../core/widgets/adaptive.dart';
 import '../../../../core/widgets/app_toast.dart';
 import '../../../../routing/app_router.dart';
+import '../../application/listening.dart';
 import '../../application/now_playing.dart';
 import '../../application/teaching_library.dart';
+import '../../domain/play_queue.dart';
 import '../../domain/teaching.dart';
 import '../../infrastructure/teaching_files.dart';
 
@@ -79,17 +81,35 @@ String teachingFacts(BuildContext context, Teaching teaching) => [
   if (teaching.duration case final duration?) formatClock(duration),
 ].join(' · ');
 
-/// Opens the player on [teaching], playing.
+/// The list the rows under it belong to: a message played from one of them
+/// is followed by the rest of that list.
+class TeachingSequence extends InheritedWidget {
+  const TeachingSequence({required this.list, required super.child, super.key});
+
+  final TeachingList list;
+
+  static TeachingList? maybeOf(BuildContext context) =>
+      context.getInheritedWidgetOfExactType<TeachingSequence>()?.list;
+
+  // read at the tap, never watched
+  @override
+  bool updateShouldNotify(TeachingSequence oldWidget) => false;
+}
+
+/// Opens the player on [teaching], playing; what follows it is [among],
+/// else the list its row is in ([TeachingSequence]).
 Future<void> openTeaching(
   BuildContext context,
   WidgetRef ref,
-  Teaching teaching,
-) async {
+  Teaching teaching, {
+  TeachingList? among,
+}) async {
   final toast = ref.read(toasterProvider).of(context);
   final messages = context.t;
+  final list = among ?? TeachingSequence.maybeOf(context);
   unawaited(context.router.push(const TeachingPlayerRoute()));
   try {
-    await ref.read(nowPlayingProvider.notifier).listen(teaching);
+    await ref.read(listeningProvider.notifier).start(teaching, among: list);
   } on Object catch (error) {
     toast.error(userMessageFor(error, messages));
   }

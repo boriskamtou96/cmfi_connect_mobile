@@ -17,12 +17,13 @@ import '../../../core/theme/app_spacing.dart';
 import '../../../core/theme/app_theme.dart';
 import '../../../core/theme/app_tones.dart';
 import '../../../core/widgets/adaptive_menus.dart';
+import '../../../core/widgets/app_back_button.dart';
 import '../../../core/widgets/app_toast.dart';
 import '../../../core/widgets/error_view.dart';
 import '../../../core/widgets/motion.dart';
 import '../../../core/widgets/section_card.dart';
 import '../../../core/widgets/skeleton.dart';
-import '../../../core/widgets/tab_page.dart';
+import '../../../core/widgets/sub_page.dart';
 import '../../../routing/app_router.dart';
 import '../application/hymn_collections.dart';
 import '../application/hymn_library.dart';
@@ -149,7 +150,7 @@ class HymnsScreen extends HookConsumerWidget {
           ),
         ),
       ),
-      AsyncError(:final error) => TabPage(
+      AsyncError(:final error) => SubPage(
         title: t.nav.hymns,
         child: ErrorView(
           error: error,
@@ -157,7 +158,7 @@ class HymnsScreen extends HookConsumerWidget {
         ),
       ),
       // the hymns: their number, then the title
-      _ => TabPage(
+      _ => SubPage(
         title: t.nav.hymns,
         child: const LoadingList(
           count: 8,
@@ -202,7 +203,7 @@ class _OnBookColor extends StatelessWidget {
   }
 }
 
-/// The top of the tab, on the color of the book: the title and the search,
+/// The top of the page, on the color of the book: the title and the search,
 /// the cover with the book's name and "Changer de recueil", then "Aller au
 /// numéro" and a hymn at random. The views under it.
 class _Album extends ConsumerWidget {
@@ -264,13 +265,15 @@ class _Album extends ConsumerWidget {
               children: [
                 Padding(
                   padding: const EdgeInsetsDirectional.fromSTEB(
-                    20,
-                    18,
+                    AppSpacing.xs,
+                    AppSpacing.sm,
                     AppSpacing.sm,
                     0,
                   ),
                   child: Row(
                     children: [
+                      // a page above the tabs since 12/11/2026
+                      const AppBackButton(),
                       Expanded(
                         child: Semantics(
                           header: true,

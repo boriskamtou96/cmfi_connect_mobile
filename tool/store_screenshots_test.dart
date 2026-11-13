@@ -957,7 +957,8 @@ final _scenes = <String, Future<void> Function(WidgetTester, TestApp)>{
     await tester.pumpAndSettle();
   },
   '05_priere': (tester, app) async {
-    await _openTab(tester, 'Prière');
+    unawaited(_router(app).push(const PrayerRoute()));
+    await tester.pumpAndSettle();
   },
   '06_evenements': (tester, app) async {
     unawaited(_router(app).push(EventRoute(eventId: 2)));

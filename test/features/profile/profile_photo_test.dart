@@ -151,7 +151,7 @@ void main() {
         contains('Ta photo de profil est enregistrée.'),
       );
 
-      // back to the home screen, under Plus
+      // back to the menu: the photo at its top and on its tab
       await tester.tap(find.byTooltip('Retour'));
       await tester.pumpAndSettle();
       expect(
@@ -159,7 +159,7 @@ void main() {
           of: find.byType(MemberAvatar),
           matching: find.byType(Image),
         ),
-        findsOneWidget,
+        findsNWidgets(2),
       );
     });
 
@@ -276,7 +276,7 @@ void main() {
         ],
       ),
     );
-    await tester.tap(find.text('Prière').last);
+    await openFromHome(tester, 'Prière');
     await tester.pumpAndSettle();
 
     final photo = find.descendant(

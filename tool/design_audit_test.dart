@@ -226,20 +226,14 @@ void main() {
 
       unawaitedNavigate(
         tester,
-        _router(app).push(
-          HymnReaderRoute(
-            bookCode: 'rendons-ministere-1',
-            number: 1,
-          ),
-        ),
+        _router(
+          app,
+        ).push(HymnReaderRoute(bookCode: 'rendons-ministere-1', number: 1)),
       );
       await _settle(tester);
       await _save(tester, key, '09_hymn_reader_$suffix');
 
-      unawaitedNavigate(
-        tester,
-        _router(app).push(EventRoute(eventId: 2)),
-      );
+      unawaitedNavigate(tester, _router(app).push(EventRoute(eventId: 2)));
       await _settle(tester);
       await _save(tester, key, '10_event_$suffix');
 
@@ -247,7 +241,7 @@ void main() {
       await _settle(tester);
       await tester.tap(find.byTooltip('Ouvrir le menu'));
       await _settle(tester);
-      await _save(tester, key, '13_drawer_$suffix');
+      await _save(tester, key, '13_menu_$suffix');
     });
 
     testWidgets('welcome and login ${dark ? 'dark' : 'light'}', (tester) async {

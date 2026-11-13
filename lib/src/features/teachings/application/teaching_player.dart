@@ -52,7 +52,8 @@ class PlayerSnapshot {
 }
 
 /// Plays one teaching at a time, on with the screen locked, with its
-/// controls on the lock screen and in the notification. Behind a provider so
+/// controls on the lock screen and in the notification (what follows is
+/// decided by `Listening`, which opens the next one). Behind a provider so
 /// tests play nothing.
 abstract class TeachingPlayer {
   Stream<PlayerSnapshot> get snapshots;
@@ -72,6 +73,13 @@ abstract class TeachingPlayer {
   Future<void> pause();
   Future<void> seek(Duration position);
   Future<void> setSpeed(double speed);
+
+  /// What « next » and « previous » of the system do (the lock screen, the
+  /// notification, the headphones); null: no such button.
+  void setSkips({
+    Future<void> Function()? next,
+    Future<void> Function()? previous,
+  });
 
   /// Stops and forgets the teaching (signing out).
   Future<void> stop();

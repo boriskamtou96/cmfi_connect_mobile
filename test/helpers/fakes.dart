@@ -50,6 +50,8 @@ import 'package:cmfi_connect/src/features/documents/infrastructure/documents_api
 import 'package:cmfi_connect/src/features/events/domain/event.dart';
 import 'package:cmfi_connect/src/features/events/domain/event_draft.dart';
 import 'package:cmfi_connect/src/features/events/infrastructure/events_api.dart';
+import 'package:cmfi_connect/src/features/games/domain/game.dart';
+import 'package:cmfi_connect/src/features/games/infrastructure/games_api.dart';
 import 'package:cmfi_connect/src/features/hymns/domain/hymn.dart';
 import 'package:cmfi_connect/src/features/hymns/infrastructure/hymn_book_storage.dart';
 import 'package:cmfi_connect/src/features/hymns/infrastructure/hymns_api.dart';
@@ -3289,6 +3291,22 @@ class FakeTeachingPlayer implements TeachingPlayer {
   /// What [open] was given: the source and where it started.
   final opened = <({Teaching teaching, Uri source, Duration start})>[];
 
+  /// No network: only a file kept on the phone opens.
+  bool offline = false;
+
+  /// The buttons of the system (lock screen, headphones), when shown.
+  Future<void> Function()? skipNext;
+  Future<void> Function()? skipPrevious;
+
+  @override
+  void setSkips({
+    Future<void> Function()? next,
+    Future<void> Function()? previous,
+  }) {
+    skipNext = next;
+    skipPrevious = previous;
+  }
+
   @override
   Stream<PlayerSnapshot> get snapshots => _controller.stream;
 
@@ -3309,6 +3327,9 @@ class FakeTeachingPlayer implements TeachingPlayer {
     Duration start = Duration.zero,
     double speed = 1,
   }) async {
+    if (offline && source.scheme != 'file') {
+      throw const NetworkException();
+    }
     opened.add((teaching: teaching, source: source, start: start));
     emit(
       PlayerSnapshot(
@@ -3655,5 +3676,163 @@ class FakePhotoDownloader implements PhotoDownloader {
   Future<Uint8List?> download(String url) async {
     asked.add(url);
     return photos[url];
+  }
+}
+
+/// The games in memory. No course is published unless [gamePath] is given
+/// (the tab then says the games are coming).
+class FakeGamesApi implements GamesApi {
+  FakeGamesApi({this.gamePath, List<GameLesson>? lessons})
+    : lessonList = [...?lessons];
+
+  GamePath? gamePath;
+  final List<GameLesson> lessonList;
+
+  /// What a lesson played gives.
+  GameResult result = const GameResult(
+    points: 90,
+    firstTry: 7,
+    total: 8,
+    stars: 2,
+    bestStars: 2,
+    comboBonus: 5,
+    levelUp: true,
+    player: GamePlayer(
+      totalPoints: 690,
+      level: 3,
+      levelFloor: 600,
+      nextLevelAt: 1200,
+      streakDays: 7,
+      playedToday: true,
+      pointsToday: 120,
+    ),
+  );
+
+  /// The sendings fail: no network.
+  bool offline = false;
+
+  /// The server refuses the plays for good (the lesson is gone).
+  bool refused = false;
+
+  int pathCalls = 0;
+
+  /// The course asked for by each reading of the path.
+  final List<String?> coursesAsked = [];
+
+  /// The client id of every sending tried, and the plays received.
+  final List<String> attempts = [];
+  final List<({int lessonId, String clientId, List<GameAnswer> answers})>
+  submitted = [];
+
+  /// What the leaderboard answers, whatever is asked.
+  GameLeaderboard board = const GameLeaderboard();
+  final List<({String period, String scope})> boardsAsked = [];
+
+  /// The choices sent by the player.
+  final List<({bool? inLeaderboard, int? dailyGoal})> settings = [];
+
+  /// The challenge of the day; null: no lesson done yet (404).
+  GameDaily? dailyChallenge;
+  final List<({String clientId, List<GameAnswer> answers})> dailySubmitted = [];
+
+  @override
+  Future<GameLeaderboard> leaderboard({
+    required String period,
+    required String scope,
+  }) async {
+    boardsAsked.add((period: period, scope: scope));
+    return board.copyWith(period: period, scope: scope);
+  }
+
+  @override
+  Future<GamePlayer> updateMe({bool? inLeaderboard, int? dailyGoal}) async {
+    settings.add((inLeaderboard: inLeaderboard, dailyGoal: dailyGoal));
+    final player = (gamePath?.player ?? const GamePlayer()).copyWith(
+      inLeaderboard: inLeaderboard ?? gamePath?.player.inLeaderboard,
+      dailyGoal: dailyGoal ?? gamePath?.player.dailyGoal ?? 50,
+    );
+    gamePath = gamePath?.copyWith(player: player);
+    return player;
+  }
+
+  @override
+  Future<GameDaily> daily() async =>
+      dailyChallenge ??
+      (throw const ApiException(
+        status: 404,
+        code: 'NOT_FOUND',
+        message: 'challenge of the day not found',
+      ));
+
+  @override
+  Future<GameDailyResult> submitDaily({
+    required String clientId,
+    required List<GameAnswer> answers,
+  }) async {
+    attempts.add(clientId);
+    if (offline) {
+      throw const NetworkException();
+    }
+    if (refused) {
+      throw const ApiException(
+        status: 409,
+        code: 'LESSON_LOCKED',
+        message: 'this lesson is not open',
+      );
+    }
+    dailySubmitted.add((clientId: clientId, answers: answers));
+    final right = answers.where((answer) => answer.attempt == 1).length;
+    return GameDailyResult(
+      points: 15,
+      firstTry: right,
+      total: right,
+      player: result.player,
+    );
+  }
+
+  @override
+  Future<GamePath> path({String? course}) async {
+    pathCalls++;
+    coursesAsked.add(course);
+    final path = gamePath;
+    if (path == null) {
+      throw const ApiException(
+        status: 404,
+        code: 'NOT_FOUND',
+        message: 'course not found',
+      );
+    }
+    return course == null ? path : path.copyWith(course: course);
+  }
+
+  @override
+  Future<GameLesson> lesson(int id) async => lessonList.firstWhere(
+    (lesson) => lesson.id == id,
+    orElse: () => throw const ApiException(
+      status: 404,
+      code: 'NOT_FOUND',
+      message: 'lesson not found',
+    ),
+  );
+
+  @override
+  Future<GameResult> submitLesson(
+    int id, {
+    required String clientId,
+    required List<GameAnswer> answers,
+  }) async {
+    attempts.add(clientId);
+    if (offline) {
+      throw const NetworkException();
+    }
+    if (refused) {
+      throw const ApiException(
+        status: 409,
+        code: 'LESSON_LOCKED',
+        message: 'this lesson is not open',
+      );
+    }
+    submitted.add((lessonId: id, clientId: clientId, answers: answers));
+    return result;
   }
 }

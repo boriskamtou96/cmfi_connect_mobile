@@ -14,6 +14,7 @@ abstract final class AppColors {
   static const onPrimaryMuted = Color(0xFFB8D6F2);
   static const gold = Color(0xFFE2A93B); // Or lumière: the flame, rare accents
   static const goldLight = Color(0xFFF6D27A);
+  static const success = Color(0xFF2E9E5B); // a right answer in the games
 
   // The photographic look (core/widgets/photo_kit.dart)
   static const night = Color(0xFF061F40); // the veils over the photos

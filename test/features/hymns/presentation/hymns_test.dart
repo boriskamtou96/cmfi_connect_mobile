@@ -24,7 +24,7 @@ void main() {
       hymnsApi: api,
       initialPreferences: tipSeen,
     );
-    await tester.tap(find.text('Cantiques').last);
+    await openFromHome(tester, 'Cantiques');
     await tester.pumpAndSettle();
     return app;
   }
@@ -353,7 +353,7 @@ void main() {
     tester,
   ) async {
     final app = await pumpApp(tester, token: 't');
-    await tester.tap(find.text('Cantiques').last);
+    await openFromHome(tester, 'Cantiques');
     await tester.pumpAndSettle();
     await tester.tap(find.text('A Toi la gloire'));
     await tester.pumpAndSettle();

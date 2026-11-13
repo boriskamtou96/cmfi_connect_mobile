@@ -436,7 +436,7 @@ void main() {
         token: 't',
         initialPreferences: {'hymn_pinch_hint_seen': true},
       );
-      await tester.tap(find.text('Cantiques').last);
+      await openFromHome(tester, 'Cantiques');
       await tester.pumpAndSettle();
       await tester.tap(find.text('A Toi la gloire'));
       await tester.pumpAndSettle();

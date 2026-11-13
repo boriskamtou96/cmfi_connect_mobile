@@ -16,6 +16,7 @@ import '../../../core/widgets/section_card.dart';
 import '../../../core/widgets/skeleton.dart';
 import '../application/teaching_library.dart';
 import '../application/teachings.dart';
+import '../domain/play_queue.dart';
 import '../domain/teaching.dart';
 import '../domain/teaching_query.dart';
 import 'widgets/teaching_widgets.dart';
@@ -122,6 +123,14 @@ class TeachingsScreen extends HookConsumerWidget {
       ),
       AsyncValue(value: final state?) => _List(
         items: state.items,
+        // what follows a message played from here: the rest of this list,
+        // read further at the server when it has more pages
+        source: TeachingList(
+          state.items,
+          query: query,
+          page: state.page,
+          total: state.total,
+        ),
         inEdition: edition != null,
         hasMore: state.hasMore,
         loadingMore: state.loadingMore,
@@ -232,12 +241,20 @@ class TeachingsScreen extends HookConsumerWidget {
                   ),
                 if (edition != null)
                   SliverToBoxAdapter(
-                    child: _EditionCard(
-                      edition: edition,
-                      items: shown?.items ?? const [],
-                      complete: shown != null && !shown.hasMore,
-                      days: facets?.days.length ?? 0,
-                      onEditions: () => switchEdition(edition),
+                    child: TeachingSequence(
+                      list: TeachingList(
+                        shown?.items ?? const [],
+                        query: query,
+                        page: shown?.page ?? 1,
+                        total: shown?.total,
+                      ),
+                      child: _EditionCard(
+                        edition: edition,
+                        items: shown?.items ?? const [],
+                        complete: shown != null && !shown.hasMore,
+                        days: facets?.days.length ?? 0,
+                        onEditions: () => switchEdition(edition),
+                      ),
                     ),
                   ),
                 if (edition != null && (facets?.days.length ?? 0) > 1)
@@ -1400,6 +1417,7 @@ class _EditionChoice extends StatelessWidget {
 class _List extends StatelessWidget {
   const _List({
     required this.items,
+    this.source,
     this.inEdition = false,
     this.empty,
     this.hasMore = false,
@@ -1408,6 +1426,9 @@ class _List extends StatelessWidget {
   });
 
   final List<Teaching> items;
+
+  /// Where [items] come from; without it they are the whole list.
+  final TeachingList? source;
   final bool inEdition;
   final String? empty;
   final bool hasMore;
@@ -1422,11 +1443,14 @@ class _List extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        SectionCard(
-          children: [
-            for (final teaching in items)
-              TeachingRow(teaching: teaching, inEdition: inEdition),
-          ],
+        TeachingSequence(
+          list: source ?? TeachingList(items),
+          child: SectionCard(
+            children: [
+              for (final teaching in items)
+                TeachingRow(teaching: teaching, inEdition: inEdition),
+            ],
+          ),
         ),
         if (hasMore)
           Padding(

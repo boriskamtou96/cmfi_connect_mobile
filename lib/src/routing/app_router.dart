@@ -34,6 +34,9 @@ import '../features/events/presentation/admin/event_registrants_screen.dart';
 import '../features/events/presentation/event_screen.dart';
 import '../features/events/presentation/events_screen.dart';
 import '../features/fasts/presentation/fasts_screen.dart';
+import '../features/games/presentation/games_screen.dart';
+import '../features/games/presentation/leaderboard_screen.dart';
+import '../features/games/presentation/lesson_screen.dart';
 import '../features/home/presentation/home_screen.dart';
 import '../features/home/presentation/week_story_screen.dart';
 import '../features/home/presentation/year_story_screen.dart';
@@ -75,6 +78,7 @@ import '../features/reports/presentation/reports_screen.dart';
 import '../features/seek_first/presentation/seek_first_screen.dart';
 import '../features/settings/presentation/settings_screen.dart';
 import '../features/shell/presentation/app_shell_screen.dart';
+import '../features/shell/presentation/menu_screen.dart';
 import '../features/souls/presentation/soul_form_screen.dart';
 import '../features/souls/presentation/soul_screen.dart';
 import '../features/souls/presentation/souls_screen.dart';
@@ -140,12 +144,28 @@ class AppRouter extends RootStackRouter {
       children: [
         AutoRoute(path: 'home', page: HomeRoute.page, initial: true),
         AutoRoute(path: 'reports', page: ReportsRoute.page),
-        AutoRoute(path: 'hymns', page: HymnsRoute.page),
-        AutoRoute(path: 'prayer', page: PrayerRoute.page),
+        AutoRoute(path: 'games', page: GamesRoute.page),
         AutoRoute(path: 'bible', page: BibleRoute.page),
+        AutoRoute(path: 'menu', page: MenuRoute.page),
       ],
     ),
-    // Plus: opened from the photo at the top of the home screen
+    // the hymns and the prayer: pages above the tabs since 12/11/2026,
+    // opened from the menu and the home screen
+    AutoRoute(path: '/hymns', page: HymnsRoute.page, guards: [authGuard]),
+    AutoRoute(path: '/prayer', page: PrayerRoute.page, guards: [authGuard]),
+    // a lesson of the games, played full screen
+    AutoRoute(
+      path: '/games/lessons/:lessonId',
+      page: LessonRoute.page,
+      guards: [authGuard],
+      fullscreenDialog: true,
+    ),
+    AutoRoute(
+      path: '/games/leaderboard',
+      page: LeaderboardRoute.page,
+      guards: [authGuard],
+    ),
+    // the profile and the settings, from the menu
     AutoRoute(path: '/profile', page: ProfileRoute.page, guards: [authGuard]),
     AutoRoute(path: '/settings', page: SettingsRoute.page, guards: [authGuard]),
     AutoRoute(

@@ -90,6 +90,7 @@ class TranslationsZh extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _Translations$me$zh me = _Translations$me$zh._(_root);
 	@override late final _Translations$settings$zh settings = _Translations$settings$zh._(_root);
 	@override late final _Translations$reading$zh reading = _Translations$reading$zh._(_root);
+	@override late final _Translations$games$zh games = _Translations$games$zh._(_root);
 }
 
 // Path: app
@@ -246,6 +247,8 @@ class _Translations$nav$zh extends Translations$nav$fr {
 	@override String get hymns => '诗歌';
 	@override String get prayer => '祷告';
 	@override String get bible => '圣经';
+	@override String get games => '游戏';
+	@override String get menu => '你';
 }
 
 // Path: home
@@ -286,7 +289,7 @@ class _Translations$home$zh extends Translations$home$fr {
 	@override String get prayTogether => '一起祷告';
 	@override String invitedBy({required Object name}) => '${name} 邀请你祷告';
 	@override String get soulsTitle => '需要再联系的人';
-	@override String get listenTitle => '收听';
+	@override String get listenTitle => '教导';
 	@override String soulsText({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n,
 		other: '今天 ${n} 人',
 	);
@@ -1544,6 +1547,18 @@ class _Translations$teachings$zh extends Translations$teachings$fr {
 	@override String get searchOpen => '搜索';
 	@override String get searchClose => '关闭搜索';
 	@override String get dayAll => '全部';
+	@override String get previousMessage => '上一篇信息';
+	@override String get nextMessage => '下一篇信息';
+	@override String get upNext => '接下来';
+	@override String get continuous => '连续播放';
+	@override String get sleepTimer => '睡眠定时';
+	@override String sleepIn({required Object n}) => '${n} 分钟后';
+	@override String get sleepInHour => '1 小时后';
+	@override String get sleepAtEnd => '本篇信息结束时';
+	@override String get sleepOff => '关闭定时';
+	@override String sleepUntil({required Object time}) => '${time} 停止';
+	@override String get sleepAfterThis => '本篇信息结束时停止';
+	@override String get nextUnavailable => '没有网络，后面的信息无法播放。';
 }
 
 // Path: memorize
@@ -1983,6 +1998,73 @@ class _Translations$reading$zh extends Translations$reading$fr {
 	@override String get editTitle => '编辑书籍';
 	@override String get save => '保存';
 	@override String get saved => '书籍已更新。';
+}
+
+// Path: games
+class _Translations$games$zh extends Translations$games$fr {
+	_Translations$games$zh._(TranslationsZh root) : this._root = root, super.internal(root);
+
+	final TranslationsZh _root; // ignore: unused_field
+
+	// Translations
+	@override String get soonTitle => '游戏即将上线';
+	@override String get soonText => '在游戏中学习神的话语：关卡、积分和成员排行榜。请再耐心等一等！';
+	@override String get start => '开始';
+	@override String get replay => '再玩一次';
+	@override String get check => '检查';
+	@override String get next => '继续';
+	@override String get locked => '请先完成上一课。';
+	@override String get right => '做得好！';
+	@override String get wrong => '还差一点';
+	@override String rightAnswer({required Object answer}) => '正确答案：${answer}';
+	@override String get retry => '再看一次';
+	@override String get quit => '离开本课';
+	@override String get quitTitle => '离开本课？';
+	@override String get quitText => '本课的作答不会保留。';
+	@override String get quitConfirm => '离开';
+	@override String get done => '本课完成！';
+	@override String get perfect => '全对！';
+	@override String get replayDone => '本课已复习！';
+	@override String get points => '积分';
+	@override String get firstTry => '一次答对';
+	@override String get stars => '星星';
+	@override String streak({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n,
+		other: '连续 ${n} 天',
+	);
+	@override String levelUp({required Object n}) => '达到第 ${n} 级！';
+	@override String level({required Object n}) => '第 ${n} 级';
+	@override String levelOf({required Object n, required Object done, required Object total}) => '第 ${n} 关 · ${done}/${total}';
+	@override String goal({required Object done, required Object goal}) => '${done}/${goal}';
+	@override String goalLabel({required Object done, required Object goal}) => '今日目标：${done}/${goal} 分';
+	@override String pointsLabel({required Object n}) => '${n} 分';
+	@override String get streakLabel => '连续游戏天数';
+	@override String get sending => '正在提交本课…';
+	@override String get sendFailed => '本课未能提交。作答没有丢失：网络恢复后请重试。';
+	@override String get sendRetry => '重试';
+	@override String get lessonDone => '已完成的课';
+	@override String get lessonLocked => '未开放的课';
+	@override String get leaderboard => '排行榜';
+	@override String get week => '本周';
+	@override String get ever => '累计';
+	@override String get scopeAll => '全部';
+	@override String get scopeCircle => '我的圈子';
+	@override String get joinTitle => '要出现在排行榜上吗？';
+	@override String get joinText => '其他成员会看到你的用户名、头像和游戏积分。你随时可以改变主意。';
+	@override String get joinYes => '好，我加入';
+	@override String get joinNo => '不用了';
+	@override String get appear => '出现在排行榜上';
+	@override String get boardEmpty => '本周还没有人玩。由你来开个头吧。';
+	@override String get boardEmptyCircle => '你的圈子里还没有人在这里得分。';
+	@override String get notInBoard => '你没有出现在排行榜上。';
+	@override String get you => '你';
+	@override String get dailyTitle => '每日挑战';
+	@override String get dailyText => '5 道题 · +15 分';
+	@override String get dailyDone => '今日挑战已完成。明天见！';
+	@override String get dailyEnd => '挑战完成！';
+	@override String get seeBoard => '查看排行榜';
+	@override String rank({required Object n}) => '第 ${n} 名';
+	@override String get sendLater => '你可以离开：网络恢复后会自动提交。';
+	@override String readIn({required Object place}) => '在“${place}”中阅读';
 }
 
 // Path: welcome.seek
@@ -4131,6 +4213,8 @@ extension on TranslationsZh {
 			'nav.hymns' => '诗歌',
 			'nav.prayer' => '祷告',
 			'nav.bible' => '圣经',
+			'nav.games' => '游戏',
+			'nav.menu' => '你',
 			'home.greeting' => ({required Object name}) => '你好，${name}',
 			'home.greetingNoName' => '你好',
 			'home.progress' => ({required Object filled, required Object total}) => '${filled}/${total}',
@@ -4160,7 +4244,7 @@ extension on TranslationsZh {
 			'home.prayTogether' => '一起祷告',
 			'home.invitedBy' => ({required Object name}) => '${name} 邀请你祷告',
 			'home.soulsTitle' => '需要再联系的人',
-			'home.listenTitle' => '收听',
+			'home.listenTitle' => '教导',
 			'home.soulsText' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n, other: '今天 ${n} 人', ), 
 			'home.timeToday' => ({required Object time}) => '今天与神同在 ${time}',
 			'home.timeTodayNone' => '今天还没有记录与神同在的时间',
@@ -4446,10 +4530,10 @@ extension on TranslationsZh {
 			'authorities.form.discipleMakerTaken' => ({required Object name}) => '${name} 已经是你的门训者。若要指定其他人，请先将其从列表中移除。',
 			'authorities.form.submit' => '添加',
 			'authorities.form.added' => ({required Object name}) => '${name} 现在是你的带领者了。',
-			'authorities.form.searchLabel' => '对方的用户名',
-			'authorities.form.searchHint' => '用户名',
 			_ => null,
 		} ?? switch (path) {
+			'authorities.form.searchLabel' => '对方的用户名',
+			'authorities.form.searchHint' => '用户名',
 			'authorities.form.search' => '搜索',
 			'authorities.form.searchHelp' => '如果对方在使用 CMFI Connect，可以通过用户名找到他/她。对方会收到你的请求，接受后你就能看到其联系方式。',
 			'authorities.form.notFound' => ({required Object username}) => '没有用户名为 @${username} 的用户。',
@@ -4960,10 +5044,10 @@ extension on TranslationsZh {
 			'ministry.lives.founder.story.1' => '在塞拉利昂富拉湾学院求学期间，他于1966年10月1日毫无保留地把自己献给主和主的事工。1970年10月24日，在七天的祷告禁食之后，他被圣灵充满。从那时起，祷告成了他生命的中心。',
 			'ministry.lives.founder.story.2' => '他在乌干达马凯雷雷大学获得有机化学博士学位，之后在雅温得大学任教并成为教授。他指导了约一百篇博士和硕士论文；2005年，英国杜伦大学因他的全部学术成就授予他理学博士学位。',
 			'ministry.lives.founder.story.3' => '1975年5月12日，他在雅温得创立了国际基督教宣教团契（CMFI）：一个赢得灵魂、使人作门徒、建立教会、差派宣教士的运动。他在喀麦隆进行了700多次宣教旅程，又在六大洲70多个国家进行了500多次旅程。',
-			'ministry.lives.founder.story.4' => '他每天花很长时间独自与神相处，带领了许多祷告大会、祷告围城和祷告行走，并经常禁食。他写了150多本关于祷告、禁食、圣洁、门徒训练和宣教的书，以多种语言被阅读。',
-			'ministry.lives.founder.story.5' => '他与妻子 Prisca Zei Fomum（一位在儿童中服事的同工）育有七个孩子，都投身于福音工作。他们一同过着简朴的生活，把收入的绝大部分奉献给福音。',
 			_ => null,
 		} ?? switch (path) {
+			'ministry.lives.founder.story.4' => '他每天花很长时间独自与神相处，带领了许多祷告大会、祷告围城和祷告行走，并经常禁食。他写了150多本关于祷告、禁食、圣洁、门徒训练和宣教的书，以多种语言被阅读。',
+			'ministry.lives.founder.story.5' => '他与妻子 Prisca Zei Fomum（一位在儿童中服事的同工）育有七个孩子，都投身于福音工作。他们一同过着简朴的生活，把收入的绝大部分奉献给福音。',
 			'ministry.lives.founder.story.6' => '2009年3月14日，他被主接去，3月21日安葬于雅温得。他所创立的事工在万国中继续前进。',
 			'ministry.lives.leader.name' => 'Theodore Andoseh',
 			'ministry.lives.leader.line' => '自2009年起担任 CMFI 领袖',
@@ -5474,10 +5558,10 @@ extension on TranslationsZh {
 			'yearStory.statGoals' => '目标',
 			'yearStory.emptyText' => '每天填写你的报告：你的一年将写在这里。',
 			'yearStory.share' => '分享我的一年',
-			'yearStory.homeText' => ({required Object year}) => '你的忠心、祷告与神的话：回顾 ${year} 年你与神同在的点滴。',
-			'yearStory.open' => '查看我的一年',
 			_ => null,
 		} ?? switch (path) {
+			'yearStory.homeText' => ({required Object year}) => '你的忠心、祷告与神的话：回顾 ${year} 年你与神同在的点滴。',
+			'yearStory.open' => '查看我的一年',
 			'yearStory.notificationTitle' => '你与神同在的一年已准备好',
 			'yearStory.notificationBody' => ({required Object year}) => '回顾 ${year} 年你与主同在的点滴，并分享出去。',
 			'yearStory.channel' => '你与神同在的一年',
@@ -5672,6 +5756,18 @@ extension on TranslationsZh {
 			'teachings.searchOpen' => '搜索',
 			'teachings.searchClose' => '关闭搜索',
 			'teachings.dayAll' => '全部',
+			'teachings.previousMessage' => '上一篇信息',
+			'teachings.nextMessage' => '下一篇信息',
+			'teachings.upNext' => '接下来',
+			'teachings.continuous' => '连续播放',
+			'teachings.sleepTimer' => '睡眠定时',
+			'teachings.sleepIn' => ({required Object n}) => '${n} 分钟后',
+			'teachings.sleepInHour' => '1 小时后',
+			'teachings.sleepAtEnd' => '本篇信息结束时',
+			'teachings.sleepOff' => '关闭定时',
+			'teachings.sleepUntil' => ({required Object time}) => '${time} 停止',
+			'teachings.sleepAfterThis' => '本篇信息结束时停止',
+			'teachings.nextUnavailable' => '没有网络，后面的信息无法播放。',
 			'memorize.title' => '背经',
 			'memorize.subtitle' => '将神的话藏在心里',
 			'memorize.toReview' => '待复习',
@@ -5976,6 +6072,8 @@ extension on TranslationsZh {
 			'me.edit' => '编辑我的资料',
 			'me.journey' => '我的旅程',
 			'me.streak' => '连续',
+			_ => null,
+		} ?? switch (path) {
 			'me.steps' => '里程',
 			'me.timeMonth' => '本月与神同在',
 			'me.nextStep' => ({required Object name}) => '下一个：${name}',
@@ -5990,8 +6088,6 @@ extension on TranslationsZh {
 			'reading.title' => '我的阅读',
 			'reading.moreSubtitle' => '你在读的书，一页又一页',
 			'reading.moreCount' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n, other: '${n} 本书在读', ), 
-			_ => null,
-		} ?? switch (path) {
 			'reading.add' => '添加书籍',
 			'reading.reading' => '在读',
 			'reading.finished' => '已读完',
@@ -6042,6 +6138,62 @@ extension on TranslationsZh {
 			'reading.editTitle' => '编辑书籍',
 			'reading.save' => '保存',
 			'reading.saved' => '书籍已更新。',
+			'games.soonTitle' => '游戏即将上线',
+			'games.soonText' => '在游戏中学习神的话语：关卡、积分和成员排行榜。请再耐心等一等！',
+			'games.start' => '开始',
+			'games.replay' => '再玩一次',
+			'games.check' => '检查',
+			'games.next' => '继续',
+			'games.locked' => '请先完成上一课。',
+			'games.right' => '做得好！',
+			'games.wrong' => '还差一点',
+			'games.rightAnswer' => ({required Object answer}) => '正确答案：${answer}',
+			'games.retry' => '再看一次',
+			'games.quit' => '离开本课',
+			'games.quitTitle' => '离开本课？',
+			'games.quitText' => '本课的作答不会保留。',
+			'games.quitConfirm' => '离开',
+			'games.done' => '本课完成！',
+			'games.perfect' => '全对！',
+			'games.replayDone' => '本课已复习！',
+			'games.points' => '积分',
+			'games.firstTry' => '一次答对',
+			'games.stars' => '星星',
+			'games.streak' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n, other: '连续 ${n} 天', ), 
+			'games.levelUp' => ({required Object n}) => '达到第 ${n} 级！',
+			'games.level' => ({required Object n}) => '第 ${n} 级',
+			'games.levelOf' => ({required Object n, required Object done, required Object total}) => '第 ${n} 关 · ${done}/${total}',
+			'games.goal' => ({required Object done, required Object goal}) => '${done}/${goal}',
+			'games.goalLabel' => ({required Object done, required Object goal}) => '今日目标：${done}/${goal} 分',
+			'games.pointsLabel' => ({required Object n}) => '${n} 分',
+			'games.streakLabel' => '连续游戏天数',
+			'games.sending' => '正在提交本课…',
+			'games.sendFailed' => '本课未能提交。作答没有丢失：网络恢复后请重试。',
+			'games.sendRetry' => '重试',
+			'games.lessonDone' => '已完成的课',
+			'games.lessonLocked' => '未开放的课',
+			'games.leaderboard' => '排行榜',
+			'games.week' => '本周',
+			'games.ever' => '累计',
+			'games.scopeAll' => '全部',
+			'games.scopeCircle' => '我的圈子',
+			'games.joinTitle' => '要出现在排行榜上吗？',
+			'games.joinText' => '其他成员会看到你的用户名、头像和游戏积分。你随时可以改变主意。',
+			'games.joinYes' => '好，我加入',
+			'games.joinNo' => '不用了',
+			'games.appear' => '出现在排行榜上',
+			'games.boardEmpty' => '本周还没有人玩。由你来开个头吧。',
+			'games.boardEmptyCircle' => '你的圈子里还没有人在这里得分。',
+			'games.notInBoard' => '你没有出现在排行榜上。',
+			'games.you' => '你',
+			'games.dailyTitle' => '每日挑战',
+			'games.dailyText' => '5 道题 · +15 分',
+			'games.dailyDone' => '今日挑战已完成。明天见！',
+			'games.dailyEnd' => '挑战完成！',
+			'games.seeBoard' => '查看排行榜',
+			'games.rank' => ({required Object n}) => '第 ${n} 名',
+			'games.sendLater' => '你可以离开：网络恢复后会自动提交。',
+			'games.readIn' => ({required Object place}) => '在“${place}”中阅读',
 			_ => null,
 		};
 	}

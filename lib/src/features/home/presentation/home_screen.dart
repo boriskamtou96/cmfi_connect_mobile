@@ -49,7 +49,6 @@ import '../../reports/application/day_report_controller.dart';
 import '../../reports/application/report_goals.dart';
 import '../../reports/application/reports_providers.dart';
 import '../../reports/domain/time_with_god.dart';
-import '../../shell/presentation/app_drawer.dart';
 import '../../souls/application/souls.dart';
 import '../../souls/domain/soul.dart';
 import '../../teachings/application/now_playing.dart';
@@ -108,8 +107,6 @@ class HomeScreen extends ConsumerWidget {
       // the summary is night blue, under the status bar
       value: SystemUiOverlayStyle.light,
       child: Scaffold(
-        // ☰ or swiped from the edge: where to go
-        drawer: const AppDrawer(),
         body: Stack(
           children: [
             RefreshIndicator.adaptive(
@@ -156,6 +153,9 @@ class HomeScreen extends ConsumerWidget {
                             child: _WeekStoryCard(monday: week),
                           ),
                         ],
+                        // the hymns and the prayer have no tab (12/11/2026)
+                        const SizedBox(height: 16),
+                        const FadeSlideIn(index: 1, child: _Shortcuts()),
                         const SizedBox(height: 28),
                         FadeSlideIn(index: 1, child: _Title(t.home.resume)),
                         const FadeSlideIn(index: 1, child: _Resume()),
@@ -344,12 +344,12 @@ class _Summary extends ConsumerWidget {
             children: [
               Row(
                 children: [
-                  // the photo opens the menu (23/10/2026: one button less in
-                  // the header); light on the night blue, crowned with Premium
+                  // the photo opens the menu, the last tab (a drawer until
+                  // 12/11/2026); light on the night blue, crowned with Premium
                   Tooltip(
                     message: t.menu.open,
                     child: InkResponse(
-                      onTap: () => Scaffold.of(context).openDrawer(),
+                      onTap: () => context.navigateTo(const MenuRoute()),
                       radius: 28,
                       child: PremiumCrown(
                         size: 42,
@@ -1053,6 +1053,82 @@ class _Resume extends ConsumerWidget {
           ],
         ),
       ),
+    );
+  }
+}
+
+/// The hymns and the prayer, one touch away: two cards side by side, since
+/// they left the tab bar for the menu (12/11/2026).
+class _Shortcuts extends StatelessWidget {
+  const _Shortcuts();
+
+  @override
+  Widget build(BuildContext context) {
+    final t = context.t;
+
+    Widget card({
+      required AppModule module,
+      required IconData icon,
+      required String title,
+      required PageRouteInfo<Object?> route,
+    }) {
+      final tone = module.tone(context);
+      return Expanded(
+        child: Semantics(
+          button: true,
+          child: Container(
+            decoration: _card(context),
+            clipBehavior: Clip.antiAlias,
+            child: Material(
+              type: MaterialType.transparency,
+              child: InkWell(
+                onTap: () => context.router.push(route),
+                child: Padding(
+                  padding: const EdgeInsetsDirectional.fromSTEB(12, 12, 8, 12),
+                  child: Row(
+                    children: [
+                      _Tile(
+                        color: tone.soft,
+                        child: PhosphorIcon(icon, size: 22, color: tone.onSoft),
+                      ),
+                      const SizedBox(width: 12),
+                      Expanded(
+                        child: Text(
+                          title,
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                          style: const TextStyle(
+                            fontSize: 15.5,
+                            fontWeight: FontWeight.w700,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          ),
+        ),
+      );
+    }
+
+    return Row(
+      children: [
+        card(
+          module: AppModule.hymns,
+          icon: AppIcons.hymnsTile,
+          title: t.nav.hymns,
+          route: const HymnsRoute(),
+        ),
+        const SizedBox(width: 12),
+        card(
+          module: AppModule.prayer,
+          icon: AppIcons.prayerTile,
+          title: t.nav.prayer,
+          route: const PrayerRoute(),
+        ),
+      ],
     );
   }
 }

@@ -19,6 +19,15 @@ abstract final class AppIcons {
   static const prayerActive = PhosphorIconsFill.handsPraying;
   static const bible = PhosphorIconsRegular.bookBookmark;
   static const bibleActive = PhosphorIconsFill.bookBookmark;
+  static const games = PhosphorIconsRegular.gameController;
+  static const gamesActive = PhosphorIconsFill.gameController;
+  // the path of the games: a lesson done, to play, closed
+  static const lessonDone = PhosphorIconsBold.check;
+  static const lessonOpen = PhosphorIconsFill.star;
+  static const lessonLocked = PhosphorIconsFill.lockSimple;
+  static const leaderboard = PhosphorIconsFill.trophy;
+  static const right = PhosphorIconsFill.checkCircle;
+  static const wrong = PhosphorIconsFill.arrowCounterClockwise;
 
   // Modules and settings
   static const events = PhosphorIconsRegular.calendarDots;
@@ -240,6 +249,10 @@ abstract final class AppIcons {
   static const teachingsTile = PhosphorIconsDuotone.headphones;
   static const back15 = PhosphorIconsRegular.arrowCounterClockwise;
   static const forward15 = PhosphorIconsRegular.arrowClockwise;
+  static const previousTrack = PhosphorIconsFill.skipBack;
+  static const nextTrack = PhosphorIconsFill.skipForward;
+  static const sleepTimer = PhosphorIconsRegular.moon;
+  static const sleepTimerOn = PhosphorIconsFill.moon;
 
   // Mémorisation des versets
   static const memorize = PhosphorIconsRegular.brain;

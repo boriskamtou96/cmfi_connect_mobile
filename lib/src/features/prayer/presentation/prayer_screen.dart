@@ -436,7 +436,7 @@ String _retreatStatus(
   return t.prayer.routine.later[moment.name]!;
 }
 
-/// The top of the tab, on a photo of a sister praying by a window (graded
+/// The top of the page, on a photo of a sister praying by a window (graded
 /// night blue): the title and the reminders, the days prayed out of the last
 /// seven and the time prayed this week in frosted chips, then the retreat
 /// to pray now, what it prays for and "Commencer" (once the four are made,
@@ -492,6 +492,17 @@ class _Hero extends ConsumerWidget {
                 children: [
                   Row(
                     children: [
+                      // a page above the tabs since 12/11/2026
+                      IconButton(
+                        tooltip: MaterialLocalizations.of(
+                          context,
+                        ).backButtonTooltip,
+                        color: Colors.white,
+                        padding: EdgeInsets.zero,
+                        alignment: AlignmentDirectional.centerStart,
+                        onPressed: () => Navigator.of(context).maybePop(),
+                        icon: const Icon(AppIcons.back, size: 30),
+                      ),
                       Expanded(
                         child: Semantics(
                           header: true,

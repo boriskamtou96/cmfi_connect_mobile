@@ -306,8 +306,11 @@ class _VerseShareSheet extends HookConsumerWidget {
   }
 }
 
-/// The square card shared: the night blue of the app, the verse in gold
-/// light.
+/// The square card shared (redrawn on 12/11/2026): the night of the app
+/// with a glow of gold in a corner and the ring of the brand behind; « Verset
+/// du jour » after a gold rule, the verse in Lora on a large faded quotation
+/// mark, its reference in gold with the Bible it comes from, then the app
+/// under a hairline.
 class _VerseImage extends StatelessWidget {
   const _VerseImage({required this.verse});
 
@@ -315,80 +318,148 @@ class _VerseImage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final t = context.t;
     final long = verse.text.length;
-    final size = long > 180 ? 15.0 : (long > 110 ? 17.0 : 20.0);
+    final size = long > 260
+        ? 13.5
+        : long > 180
+        ? 15.0
+        : long > 110
+        ? 17.0
+        : 20.0;
 
     return Container(
       width: 320,
       height: 320,
-      padding: const EdgeInsets.all(26),
+      clipBehavior: Clip.antiAlias,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(24),
         gradient: const LinearGradient(
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
-          colors: [Color(0xFF0B3B70), AppColors.primaryDeep],
+          colors: [Color(0xFF0D427C), AppColors.night],
         ),
       ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+      child: Stack(
         children: [
-          const Text(
-            '“',
-            style: TextStyle(
-              fontFamily: 'Lora',
-              fontSize: 54,
-              height: 0.8,
-              color: AppColors.gold,
-            ),
-          ),
-          Expanded(
-            child: Align(
-              alignment: AlignmentDirectional.centerStart,
-              child: Text(
-                verse.text,
-                style: TextStyle(
-                  fontFamily: 'Lora',
-                  fontStyle: FontStyle.italic,
-                  fontSize: size,
-                  height: 1.4,
-                  color: Colors.white,
+          // a glow of gold from the corner the reading starts in
+          const Positioned.fill(
+            child: DecoratedBox(
+              decoration: BoxDecoration(
+                gradient: RadialGradient(
+                  center: Alignment(-1.1, -1.2),
+                  radius: 1.1,
+                  colors: [Color(0x38E2A93B), Color(0x00E2A93B)],
                 ),
               ),
             ),
           ),
-          const SizedBox(height: 10),
-          Text(
-            verse.reference,
-            style: const TextStyle(
-              fontSize: 15,
-              fontWeight: FontWeight.w800,
-              color: AppColors.goldLight,
+          // the ring of the brand, large and faint (a decor: it stays there
+          // in right-to-left languages too)
+          Positioned(
+            right: -92,
+            bottom: -104,
+            child: BrandRing(
+              size: 300,
+              color: Colors.white.withValues(alpha: 0.055),
             ),
           ),
-          // the Bible it comes from, whole (some licences ask for it)
-          Text(
-            verse.source,
-            maxLines: 2,
-            style: const TextStyle(
-              fontSize: 9,
-              color: AppColors.onPrimaryMuted,
-            ),
-          ),
-          const SizedBox(height: 12),
-          Row(
-            children: [
-              const CmfiLogo.onDark(size: 22),
-              const SizedBox(width: 8),
-              Text(
-                context.t.app.name,
-                style: const TextStyle(
-                  fontSize: 12,
-                  fontWeight: FontWeight.w700,
-                  color: AppColors.onPrimaryMuted,
+          Padding(
+            padding: const EdgeInsets.fromLTRB(26, 24, 26, 20),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  children: [
+                    Container(width: 22, height: 2, color: AppColors.gold),
+                    const SizedBox(width: 8),
+                    Text(
+                      t.verses.title.toUpperCase(),
+                      style: const TextStyle(
+                        fontSize: 10,
+                        fontWeight: FontWeight.w800,
+                        letterSpacing: 1.6,
+                        color: AppColors.goldLight,
+                      ),
+                    ),
+                  ],
                 ),
-              ),
-            ],
+                Expanded(
+                  child: Stack(
+                    children: [
+                      // the quotation mark, behind the words
+                      PositionedDirectional(
+                        start: -6,
+                        top: 2,
+                        child: Text(
+                          '“',
+                          style: TextStyle(
+                            fontFamily: 'Lora',
+                            fontSize: 120,
+                            height: 1,
+                            color: AppColors.gold.withValues(alpha: 0.2),
+                          ),
+                        ),
+                      ),
+                      Align(
+                        alignment: AlignmentDirectional.centerStart,
+                        child: Text(
+                          verse.text,
+                          style: TextStyle(
+                            fontFamily: 'Lora',
+                            fontStyle: FontStyle.italic,
+                            fontSize: size,
+                            height: 1.42,
+                            color: Colors.white,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                const SizedBox(height: 8),
+                Text(
+                  verse.reference,
+                  style: const TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.w800,
+                    letterSpacing: -0.1,
+                    color: AppColors.goldLight,
+                  ),
+                ),
+                const SizedBox(height: 1),
+                // the Bible it comes from, whole (some licences ask for it)
+                Text(
+                  verse.source,
+                  maxLines: 2,
+                  style: const TextStyle(
+                    fontSize: 9,
+                    color: AppColors.onPrimaryMuted,
+                  ),
+                ),
+                const SizedBox(height: 12),
+                Container(
+                  height: 1,
+                  color: Colors.white.withValues(alpha: 0.14),
+                ),
+                const SizedBox(height: 11),
+                Row(
+                  children: [
+                    const CmfiLogo.onDark(size: 22),
+                    const SizedBox(width: 8),
+                    Text(
+                      t.app.name,
+                      style: const TextStyle(
+                        fontSize: 12,
+                        fontWeight: FontWeight.w700,
+                        letterSpacing: 0.1,
+                        color: Colors.white,
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
           ),
         ],
       ),

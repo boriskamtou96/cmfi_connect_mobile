@@ -56,6 +56,11 @@ void main() {
 
     await tester.tap(find.byTooltip('Partager le verset'));
     await tester.pumpAndSettle();
+    // the card to share: its name, the verse, where it comes from, the app
+    expect(find.text('VERSET DU JOUR'), findsOneWidget);
+    expect(find.text(today['text'] as String), findsNWidgets(2));
+    expect(find.text(today['ref'] as String), findsNWidgets(2));
+    expect(find.text('CMFI Connect'), findsOneWidget);
     await tester.tap(find.text('Partager le texte'));
     await tester.pumpAndSettle();
     expect(app.share.texts.single, contains(today['text'] as String));

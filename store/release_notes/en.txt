@@ -1,6 +1,6 @@
 What's new in CMFI Connect
-• Games: a redesigned path, with the title of each lesson, and a new « Bible challenge » course from beginner to expert++
-• New questions: put in order and match the pairs
-• « Verse in flight »: help Zoé catch the words of a verse in order
-• Play offline: download a course, your lessons are sent when the network is back
-• A victory sound at the end of each lesson
+• Report: import your past days from an Excel file, instead of entering them one by one
+• Export and import are now easy to see in History and Summary
+• Proclamations: take back a tap too many, or set your number by hand
+• Games: a victory vibration at the end of each lesson
+• A new mark for Premium members

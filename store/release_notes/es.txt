@@ -1,6 +1,6 @@
 Novedades de CMFI Connect
-• Juegos: un camino rediseñado, con el título de cada lección, y un nuevo curso «Desafío bíblico» de principiante a experto++
-• Nuevas preguntas: ordenar y unir parejas
-• «Versículo en vuelo»: ayuda a Zoé a atrapar las palabras de un versículo en orden
-• Juega sin conexión: descarga un curso y tus lecciones se envían cuando vuelve la red
-• Un sonido de victoria al final de cada lección
+• Informe: importa tus días pasados desde un archivo Excel, en lugar de escribirlos uno a uno
+• Exportar e importar ahora se ven bien en Historial y Balance
+• Proclamaciones: quita un toque de más o define tu número a mano
+• Juegos: una vibración de victoria al final de cada lección
+• Una nueva señal para los miembros Premium

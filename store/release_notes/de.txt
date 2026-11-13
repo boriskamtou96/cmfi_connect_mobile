@@ -1,6 +1,5 @@
 Neu in CMFI Connect
-• Anmeldung mit Google oder Apple, dein Profilfoto wird bei der Registrierung übernommen
-• Lesen christlicher Literatur: deine Bücher mit Cover, jederzeit bearbeitbar
-• Meine Jünger: sieh, wer seit einigen Tagen keinen Bericht ausgefüllt hat, und sende eine Erinnerung mit einem Tipp
-• Einfacheres Ändern des Passworts, auch nach einem temporären Passwort
+• Spiele: lerne die Bibel, Verse und die Geschichte des Werkes in Kursen mit kurzen Lektionen, mit Tagesaufgabe und Rangliste
+• Neuer Tab „Du“ für dein Profil und deine Einstellungen
+• Lehren: fortlaufendes Hören, mit Zurück / Weiter, „Als Nächstes“ und Schlaftimer
 • Verbesserungen und Zuverlässigkeitskorrekturen

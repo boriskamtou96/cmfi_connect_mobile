@@ -1,6 +1,5 @@
 What's new in CMFI Connect
-• Sign in with Google or Apple, with your profile photo imported at sign-up
-• Christian literature reading: your books with their covers, editable anytime
-• My disciples: see who hasn't filled in their report for a few days and send a reminder with one tap
-• Simpler password change, including after a temporary password
+• Games: learn the Bible, verses and the history of the ministry through courses of short lessons, with a daily challenge and a leaderboard
+• New « You » tab for your profile and settings
+• Teachings: continuous listening, with previous / next, « Up next » and a sleep timer
 • Improvements and reliability fixes

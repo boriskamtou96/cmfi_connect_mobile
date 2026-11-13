@@ -1,6 +1,5 @@
 Nouveautés de CMFI Connect
-• Connexion avec Google ou Apple, avec ta photo de profil importée dès l'inscription
-• Lecture de la littérature chrétienne : tes livres avec leur couverture, modifiables à tout moment
-• Mes disciples : vois qui n'a pas rempli son compte rendu depuis quelques jours et envoie un rappel d'une seule touche
-• Changement de mot de passe simplifié, y compris après un mot de passe temporaire
+• Jeux : apprends la Bible, les versets et l'histoire du ministère en parcours de leçons courtes, avec un défi du jour et un classement
+• Nouvel onglet « Vous » pour retrouver ton profil et tes réglages
+• Enseignements : écoute en continu, avec précédent / suivant, « À suivre » et minuterie de sommeil
 • Améliorations et corrections de fiabilité

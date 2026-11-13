@@ -109,6 +109,7 @@ _GamePath _$GamePathFromJson(Map<String, dynamic> json) => _GamePath(
           ?.map((e) => GameLevel.fromJson(e as Map<String, dynamic>))
           .toList() ??
       const <GameLevel>[],
+  offline: json['offline'] as bool? ?? false,
 );
 
 Map<String, dynamic> _$GamePathToJson(_GamePath instance) => <String, dynamic>{
@@ -116,6 +117,7 @@ Map<String, dynamic> _$GamePathToJson(_GamePath instance) => <String, dynamic>{
   'course': instance.course,
   'player': instance.player.toJson(),
   'levels': instance.levels.map((e) => e.toJson()).toList(),
+  'offline': instance.offline,
 };
 
 _GameChoice _$GameChoiceFromJson(Map<String, dynamic> json) =>

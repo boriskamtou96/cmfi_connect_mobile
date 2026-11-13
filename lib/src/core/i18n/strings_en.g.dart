@@ -2136,6 +2136,44 @@ class _Translations$games$en extends Translations$games$fr {
 	@override String rank({required Object n}) => 'Rank ${n}';
 	@override String get sendLater => 'You can leave: it will be sent by itself as soon as the connection is back.';
 	@override String readIn({required Object place}) => 'Read in “${place}”';
+	@override String levelStars({required Object stars, required Object total}) => 'Stars: ${stars} of ${total}';
+	@override String combo({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n,
+		one: '${n} in a row!',
+		other: '${n} in a row!',
+	);
+	@override String get letters => 'ABCD';
+	@override String get orderHint => 'Tap the items in the right order. Tap a place to empty it.';
+	@override String get matchHint => 'Tap an item on the left, then the one that goes with it on the right.';
+	@override String get offlineTitle => 'Play offline';
+	@override String offlineText({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n,
+		one: 'Download the lesson of this course',
+		other: 'Download the ${n} lessons of this course',
+	);
+	@override String get offlineKept => 'Course kept on your phone';
+	@override String get offlineLoading => 'Downloading…';
+	@override String get offlineUpdate => 'Update';
+	@override String get offlineRemove => 'Remove from the phone';
+	@override String get offlineDone => 'Course kept: you can play without network.';
+	@override String get offlineBanner => 'Offline: your lessons will be sent as soon as the network is back.';
+	@override String get flightShort => 'Bonus';
+	@override String get offlineKeptShort => 'Kept';
+	@override String offlineShort({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n,
+		one: '${n} lesson',
+		other: '${n} lessons',
+	);
+	@override String get flightTitle => 'Verse in flight';
+	@override String get flightText => 'Bonus: catch the words of a verse in order';
+	@override String get flightHint => 'Tap above or below Zoé to make her fly, and catch the words in order.';
+	@override String get flightWon => 'Verse learned!';
+	@override String get flightLost => 'Zoé lost her hearts';
+	@override String get flightLostText => 'Never mind: the verse is waiting. Try again!';
+	@override String get flightAgain => 'Try again';
+	@override String get flightNext => 'Another verse';
+	@override String get flightDone => 'Done';
+	@override String flightHearts({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n,
+		one: '${n} heart',
+		other: '${n} hearts',
+	);
 }
 
 // Path: welcome.seek
@@ -6301,6 +6339,32 @@ extension on TranslationsEn {
 			'games.rank' => ({required Object n}) => 'Rank ${n}',
 			'games.sendLater' => 'You can leave: it will be sent by itself as soon as the connection is back.',
 			'games.readIn' => ({required Object place}) => 'Read in “${place}”',
+			'games.levelStars' => ({required Object stars, required Object total}) => 'Stars: ${stars} of ${total}',
+			'games.combo' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n, one: '${n} in a row!', other: '${n} in a row!', ), 
+			'games.letters' => 'ABCD',
+			'games.orderHint' => 'Tap the items in the right order. Tap a place to empty it.',
+			'games.matchHint' => 'Tap an item on the left, then the one that goes with it on the right.',
+			'games.offlineTitle' => 'Play offline',
+			'games.offlineText' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n, one: 'Download the lesson of this course', other: 'Download the ${n} lessons of this course', ), 
+			'games.offlineKept' => 'Course kept on your phone',
+			'games.offlineLoading' => 'Downloading…',
+			'games.offlineUpdate' => 'Update',
+			'games.offlineRemove' => 'Remove from the phone',
+			'games.offlineDone' => 'Course kept: you can play without network.',
+			'games.offlineBanner' => 'Offline: your lessons will be sent as soon as the network is back.',
+			'games.flightShort' => 'Bonus',
+			'games.offlineKeptShort' => 'Kept',
+			'games.offlineShort' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n, one: '${n} lesson', other: '${n} lessons', ), 
+			'games.flightTitle' => 'Verse in flight',
+			'games.flightText' => 'Bonus: catch the words of a verse in order',
+			'games.flightHint' => 'Tap above or below Zoé to make her fly, and catch the words in order.',
+			'games.flightWon' => 'Verse learned!',
+			'games.flightLost' => 'Zoé lost her hearts',
+			'games.flightLostText' => 'Never mind: the verse is waiting. Try again!',
+			'games.flightAgain' => 'Try again',
+			'games.flightNext' => 'Another verse',
+			'games.flightDone' => 'Done',
+			'games.flightHearts' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n, one: '${n} heart', other: '${n} hearts', ), 
 			_ => null,
 		};
 	}

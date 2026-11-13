@@ -10,6 +10,7 @@ import 'package:cmfi_connect/src/core/services/calendar_service.dart';
 import 'package:cmfi_connect/src/core/services/crash_reporting.dart';
 import 'package:cmfi_connect/src/core/services/deep_links.dart';
 import 'package:cmfi_connect/src/core/services/document_picking.dart';
+import 'package:cmfi_connect/src/core/services/game_sounds.dart';
 import 'package:cmfi_connect/src/core/services/home_widgets.dart';
 import 'package:cmfi_connect/src/core/services/image_picking.dart';
 import 'package:cmfi_connect/src/core/services/link_launcher.dart';
@@ -42,6 +43,7 @@ import 'package:cmfi_connect/src/features/bible/infrastructure/bible_storage.dar
 import 'package:cmfi_connect/src/features/disciples/infrastructure/disciples_api.dart';
 import 'package:cmfi_connect/src/features/documents/infrastructure/documents_api.dart';
 import 'package:cmfi_connect/src/features/events/infrastructure/events_api.dart';
+import 'package:cmfi_connect/src/features/games/infrastructure/game_storage.dart';
 import 'package:cmfi_connect/src/features/games/infrastructure/games_api.dart';
 import 'package:cmfi_connect/src/features/home/presentation/home_screen.dart';
 import 'package:cmfi_connect/src/features/hymns/infrastructure/hymn_book_storage.dart';
@@ -105,6 +107,7 @@ class TestApp {
     required this.prayerApi,
     required this.readingApi,
     required this.gamesApi,
+    required this.gameSounds,
     required this.music,
     required this.push,
     required this.notificationsApi,
@@ -163,6 +166,9 @@ class TestApp {
   final FakePrayerApi prayerApi;
   final FakeReadingApi readingApi;
   final FakeGamesApi gamesApi;
+
+  /// The sounds of the games played.
+  final FakeGameSounds gameSounds;
   final FakePushMessaging push;
   final FakeNotificationsApi notificationsApi;
   final FakePremiumStore premium;
@@ -218,6 +224,7 @@ Future<TestApp> pumpApp(
   FakePrayerApi? prayerApi,
   FakeReadingApi? readingApi,
   FakeGamesApi? gamesApi,
+  FakeGameStorage? gameStorage,
   FakePushMessaging? push,
   FakeNotificationsApi? notificationsApi,
   FakePremiumStore? premium,
@@ -289,7 +296,9 @@ Future<TestApp> pumpApp(
   final prayer = prayerApi ?? FakePrayerApi();
   final reading = readingApi ?? FakeReadingApi();
   final games = gamesApi ?? FakeGamesApi();
+  final gameStore = gameStorage ?? FakeGameStorage();
   final music = FakeBackgroundMusic();
+  final gameSounds = FakeGameSounds();
   final pushMessaging = push ?? FakePushMessaging();
   final notificationsApi0 = notificationsApi ?? FakeNotificationsApi();
   final premiumStore = premium ?? FakePremiumStore();
@@ -353,7 +362,9 @@ Future<TestApp> pumpApp(
       prayerApiProvider.overrideWithValue(prayer),
       readingApiProvider.overrideWithValue(reading),
       gamesApiProvider.overrideWithValue(games),
+      gameStorageProvider.overrideWithValue(gameStore),
       backgroundMusicProvider.overrideWithValue(music),
+      gameSoundsProvider.overrideWithValue(gameSounds),
       pushMessagingProvider.overrideWithValue(pushMessaging),
       notificationsApiProvider.overrideWithValue(notificationsApi0),
       premiumStoreProvider.overrideWithValue(premiumStore),
@@ -441,6 +452,7 @@ Future<TestApp> pumpApp(
     prayerApi: prayer,
     readingApi: reading,
     gamesApi: games,
+    gameSounds: gameSounds,
     music: music,
     push: pushMessaging,
     notificationsApi: notificationsApi0,

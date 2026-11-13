@@ -2887,6 +2887,44 @@
     "seeBoard": "लीडरबोर्ड देखो",
     "rank": "स्थान {n}",
     "sendLater": "तुम जा सकते हो: कनेक्शन लौटते ही यह अपने आप भेज दिया जाएगा।",
-    "readIn": "“{place}” में पढ़ो"
+    "readIn": "“{place}” में पढ़ो",
+    "levelStars": "तारे: {total} में से {stars}",
+    "combo(plural, param=n)": {
+      "one": "लगातार {n} सही!",
+      "other": "लगातार {n} सही!"
+    },
+    "letters": "कखगघ",
+    "orderHint": "चीज़ों को सही क्रम में छुओ। किसी जगह को खाली करने के लिए उसे छुओ।",
+    "matchHint": "बाईं ओर एक चीज़ छुओ, फिर दाईं ओर उससे मेल खाने वाली।",
+    "offlineTitle": "बिना नेटवर्क खेलो",
+    "offlineText(plural, param=n)": {
+      "one": "इस कोर्स का पाठ डाउनलोड करो",
+      "other": "इस कोर्स के {n} पाठ डाउनलोड करो"
+    },
+    "offlineKept": "कोर्स तुम्हारे फ़ोन पर रखा है",
+    "offlineLoading": "डाउनलोड हो रहा है…",
+    "offlineUpdate": "अपडेट करो",
+    "offlineRemove": "फ़ोन से हटाओ",
+    "offlineDone": "कोर्स रखा गया: अब बिना नेटवर्क खेल सकते हो।",
+    "offlineBanner": "ऑफ़लाइन: नेटवर्क लौटते ही तुम्हारे पाठ भेज दिए जाएँगे।",
+    "flightShort": "बोनस",
+    "offlineKeptShort": "रखा है",
+    "offlineShort(plural, param=n)": {
+      "one": "{n} पाठ",
+      "other": "{n} पाठ"
+    },
+    "flightTitle": "उड़ता वचन",
+    "flightText": "बोनस: वचन के शब्दों को क्रम से पकड़ो",
+    "flightHint": "ज़ोए को उड़ाने के लिए उसके ऊपर या नीचे छुओ, और शब्दों को क्रम से पकड़ो।",
+    "flightWon": "वचन याद हो गया!",
+    "flightLost": "ज़ोए के दिल ख़त्म हो गए",
+    "flightLostText": "कोई बात नहीं: वचन तुम्हारा इंतज़ार कर रहा है। फिर से कोशिश करो!",
+    "flightAgain": "फिर से",
+    "flightNext": "दूसरा वचन",
+    "flightDone": "पूरा",
+    "flightHearts(plural, param=n)": {
+      "one": "{n} दिल",
+      "other": "{n} दिल"
+    }
   }
 }

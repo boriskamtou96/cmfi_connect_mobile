@@ -59,7 +59,7 @@ final class LessonControllerProvider
   }
 }
 
-String _$lessonControllerHash() => r'2f9b1c590322067e1a19c38621475199b4f98f33';
+String _$lessonControllerHash() => r'44d5d9b0ebf47e01133c2b27bd6dd764b514f2dc';
 
 /// Plays lesson [lessonId]: loads its questions (shuffled), takes the
 /// answers, and sends the play once every question is settled. The server

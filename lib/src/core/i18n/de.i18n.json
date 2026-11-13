@@ -2888,6 +2888,44 @@
     "seeBoard": "Rangliste ansehen",
     "rank": "Platz {n}",
     "sendLater": "Du kannst gehen: Sie wird von selbst gesendet, sobald die Verbindung zurück ist.",
-    "readIn": "In „{place}“ lesen"
+    "readIn": "In „{place}“ lesen",
+    "levelStars": "Sterne: {stars} von {total}",
+    "combo(plural, param=n)": {
+      "one": "{n} in Folge!",
+      "other": "{n} in Folge!"
+    },
+    "letters": "ABCD",
+    "orderHint": "Tippe die Elemente in der richtigen Reihenfolge an. Tippe auf einen Platz, um ihn zu leeren.",
+    "matchHint": "Tippe links auf ein Element und dann rechts auf das passende.",
+    "offlineTitle": "Offline spielen",
+    "offlineText(plural, param=n)": {
+      "one": "Lade die Lektion dieses Kurses herunter",
+      "other": "Lade die {n} Lektionen dieses Kurses herunter"
+    },
+    "offlineKept": "Kurs auf deinem Handy gespeichert",
+    "offlineLoading": "Wird heruntergeladen …",
+    "offlineUpdate": "Aktualisieren",
+    "offlineRemove": "Vom Handy entfernen",
+    "offlineDone": "Kurs gespeichert: Du kannst ohne Netz spielen.",
+    "offlineBanner": "Offline: Deine Lektionen werden gesendet, sobald das Netz zurück ist.",
+    "flightShort": "Bonus",
+    "offlineKeptShort": "Gespeichert",
+    "offlineShort(plural, param=n)": {
+      "one": "{n} Lektion",
+      "other": "{n} Lektionen"
+    },
+    "flightTitle": "Vers im Flug",
+    "flightText": "Bonus: Fange die Wörter eines Verses der Reihe nach",
+    "flightHint": "Tippe über oder unter Zoé, um sie fliegen zu lassen, und fange die Wörter der Reihe nach.",
+    "flightWon": "Vers eingeprägt!",
+    "flightLost": "Zoé hat ihre Herzen verloren",
+    "flightLostText": "Macht nichts: Der Vers wartet auf dich. Versuch es noch einmal!",
+    "flightAgain": "Nochmal",
+    "flightNext": "Ein anderer Vers",
+    "flightDone": "Fertig",
+    "flightHearts(plural, param=n)": {
+      "one": "{n} Herz",
+      "other": "{n} Herzen"
+    }
   }
 }

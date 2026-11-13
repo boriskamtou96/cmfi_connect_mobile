@@ -103,10 +103,49 @@ abstract class GamePath with _$GamePath {
     required String course,
     @Default(GamePlayer()) GamePlayer player,
     @Default(<GameLevel>[]) List<GameLevel> levels,
+
+    /// Read from the copy of the phone, without network (never from the
+    /// server).
+    @Default(false) bool offline,
   }) = _GamePath;
 
   factory GamePath.fromJson(Map<String, dynamic> json) =>
       _$GamePathFromJson(json);
+}
+
+/// [path] as the phone sees it while plays wait to be sent: the lessons in
+/// [played] are done (one star until the server counts them), and the
+/// lessons open again one after the other.
+GamePath withPlayedOffline(GamePath path, Set<int> played) {
+  if (played.isEmpty) {
+    return path;
+  }
+  var previousDone = true;
+  return path.copyWith(
+    levels: [
+      for (final level in path.levels)
+        level.copyWith(
+          lessons: [
+            for (final lesson in level.lessons)
+              () {
+                final done =
+                    lesson.state == LessonState.done ||
+                    played.contains(lesson.id);
+                final state = done
+                    ? LessonState.done
+                    : previousDone
+                    ? LessonState.open
+                    : LessonState.locked;
+                previousDone = done;
+                return lesson.copyWith(
+                  state: state,
+                  stars: done && lesson.stars == 0 ? 1 : lesson.stars,
+                );
+              }(),
+          ],
+        ),
+    ],
+  );
 }
 
 @freezed
@@ -135,6 +174,46 @@ abstract class GameQuestion with _$GameQuestion {
   factory GameQuestion.fromJson(Map<String, dynamic> json) =>
       _$GameQuestionFromJson(json);
 }
+
+/// The kinds of questions beyond a single choice: « order » (put the things
+/// in order; [GameQuestion.answer] is their ids in the right order, "c,a,d,b")
+/// and « match » (link pairs, ids l1… on the left and r1… on the right; the
+/// answer is "l1=r2,l2=r1,…", by left id).
+extension GameQuestionKinds on GameQuestion {
+  bool get isOrder => kind == 'order';
+  bool get isMatch => kind == 'match';
+
+  String _text(String id) => choices
+      .firstWhere(
+        (choice) => choice.id == id,
+        orElse: () => GameChoice(id: id, text: id),
+      )
+      .text;
+
+  /// The right answer in words: the choice, the things in order
+  /// (« A → B → C »), or the pairs (« Noé — L'arche · … »).
+  String get answerText {
+    if (isOrder) {
+      return answer.split(',').map(_text).join(' → ');
+    }
+    if (isMatch) {
+      return answer
+          .split(',')
+          .map((pair) {
+            final [left, right] = pair.split('=');
+            return '${_text(left)} — ${_text(right)}';
+          })
+          .join(' · ');
+    }
+    return _text(answer);
+  }
+}
+
+/// The answer of a match, its pairs written by left id as the server keeps
+/// them ("l1=r2,l2=r1,…").
+String matchAnswer(Map<String, String> pairs) =>
+    (pairs.entries.map((pair) => '${pair.key}=${pair.value}').toList()..sort())
+        .join(',');
 
 /// A lesson to play (GET /v1/games/lessons/:id).
 @freezed

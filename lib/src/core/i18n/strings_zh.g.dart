@@ -2065,6 +2065,40 @@ class _Translations$games$zh extends Translations$games$fr {
 	@override String rank({required Object n}) => '第 ${n} 名';
 	@override String get sendLater => '你可以离开：网络恢复后会自动提交。';
 	@override String readIn({required Object place}) => '在“${place}”中阅读';
+	@override String levelStars({required Object stars, required Object total}) => '星星：${stars} / ${total}';
+	@override String combo({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n,
+		other: '连对 ${n} 题！',
+	);
+	@override String get letters => 'ABCD';
+	@override String get orderHint => '按正确的顺序点击各项。点击某个位置可将其清空。';
+	@override String get matchHint => '先点左边的一项，再点右边与之对应的一项。';
+	@override String get offlineTitle => '离线游玩';
+	@override String offlineText({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n,
+		other: '下载本课程的 ${n} 节课',
+	);
+	@override String get offlineKept => '课程已保存在手机上';
+	@override String get offlineLoading => '正在下载…';
+	@override String get offlineUpdate => '更新';
+	@override String get offlineRemove => '从手机移除';
+	@override String get offlineDone => '课程已保存：没有网络也能玩。';
+	@override String get offlineBanner => '离线：网络恢复后会立即发送你的课程。';
+	@override String get flightShort => '额外';
+	@override String get offlineKeptShort => '已保存';
+	@override String offlineShort({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n,
+		other: '${n} 节课',
+	);
+	@override String get flightTitle => '飞翔的经文';
+	@override String get flightText => '额外游戏：按顺序接住经文的词语';
+	@override String get flightHint => '点击佐伊上方或下方让她飞起来，按顺序接住词语。';
+	@override String get flightWon => '经文记住了！';
+	@override String get flightLost => '佐伊失去了所有的心';
+	@override String get flightLostText => '没关系：经文在等你。再试一次！';
+	@override String get flightAgain => '再试一次';
+	@override String get flightNext => '换一节经文';
+	@override String get flightDone => '完成';
+	@override String flightHearts({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n,
+		other: '${n} 颗心',
+	);
 }
 
 // Path: welcome.seek
@@ -6194,6 +6228,32 @@ extension on TranslationsZh {
 			'games.rank' => ({required Object n}) => '第 ${n} 名',
 			'games.sendLater' => '你可以离开：网络恢复后会自动提交。',
 			'games.readIn' => ({required Object place}) => '在“${place}”中阅读',
+			'games.levelStars' => ({required Object stars, required Object total}) => '星星：${stars} / ${total}',
+			'games.combo' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n, other: '连对 ${n} 题！', ), 
+			'games.letters' => 'ABCD',
+			'games.orderHint' => '按正确的顺序点击各项。点击某个位置可将其清空。',
+			'games.matchHint' => '先点左边的一项，再点右边与之对应的一项。',
+			'games.offlineTitle' => '离线游玩',
+			'games.offlineText' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n, other: '下载本课程的 ${n} 节课', ), 
+			'games.offlineKept' => '课程已保存在手机上',
+			'games.offlineLoading' => '正在下载…',
+			'games.offlineUpdate' => '更新',
+			'games.offlineRemove' => '从手机移除',
+			'games.offlineDone' => '课程已保存：没有网络也能玩。',
+			'games.offlineBanner' => '离线：网络恢复后会立即发送你的课程。',
+			'games.flightShort' => '额外',
+			'games.offlineKeptShort' => '已保存',
+			'games.offlineShort' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n, other: '${n} 节课', ), 
+			'games.flightTitle' => '飞翔的经文',
+			'games.flightText' => '额外游戏：按顺序接住经文的词语',
+			'games.flightHint' => '点击佐伊上方或下方让她飞起来，按顺序接住词语。',
+			'games.flightWon' => '经文记住了！',
+			'games.flightLost' => '佐伊失去了所有的心',
+			'games.flightLostText' => '没关系：经文在等你。再试一次！',
+			'games.flightAgain' => '再试一次',
+			'games.flightNext' => '换一节经文',
+			'games.flightDone' => '完成',
+			'games.flightHearts' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n, other: '${n} 颗心', ), 
 			_ => null,
 		};
 	}

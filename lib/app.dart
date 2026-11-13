@@ -17,6 +17,8 @@ import 'src/core/storage/preferences.dart';
 import 'src/core/theme/app_motion.dart';
 import 'src/core/theme/app_theme.dart';
 import 'src/features/events/infrastructure/events_local_store.dart';
+import 'src/features/games/application/game_downloads.dart';
+import 'src/features/games/infrastructure/game_storage.dart';
 import 'src/features/journey/application/weekly_caps.dart';
 import 'src/features/notifications/application/inbox.dart';
 import 'src/features/notifications/infrastructure/inbox_local_store.dart';
@@ -64,6 +66,8 @@ class App extends ConsumerWidget {
         unawaited(ref.read(eventsLocalStoreProvider).clear());
         unawaited(ref.read(inboxLocalStoreProvider).clear());
         unawaited(ref.read(prayerLocalStoreProvider).clear());
+        // the paths kept show this account's progress: not another's
+        unawaited(ref.read(gameStorageProvider).clear());
         unawaited(ref.read(reportReminderProvider.notifier).cancelAll());
         unawaited(ref.read(reportSendingProvider.notifier).forget());
         unawaited(ref.read(reportGoalsProvider.notifier).clear());
@@ -81,6 +85,7 @@ class App extends ConsumerWidget {
           ..invalidate(prayerPeopleProvider)
           ..invalidate(importunitiesProvider)
           ..invalidate(inboxProvider)
+          ..invalidate(gameDownloadsProvider)
           ..invalidate(premiumProvider);
 
         unawaited(

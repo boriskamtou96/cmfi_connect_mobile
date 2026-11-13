@@ -1144,7 +1144,9 @@ as List<GameLessonSummary>,
 mixin _$GamePath {
 
  List<GameCourse> get courses;/// The code of the course shown.
- String get course; GamePlayer get player; List<GameLevel> get levels;
+ String get course; GamePlayer get player; List<GameLevel> get levels;/// Read from the copy of the phone, without network (never from the
+/// server).
+ bool get offline;
 /// Create a copy of GamePath
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -1157,16 +1159,16 @@ $GamePathCopyWith<GamePath> get copyWith => _$GamePathCopyWithImpl<GamePath>(thi
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is GamePath&&const DeepCollectionEquality().equals(other.courses, courses)&&(identical(other.course, course) || other.course == course)&&(identical(other.player, player) || other.player == player)&&const DeepCollectionEquality().equals(other.levels, levels));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is GamePath&&const DeepCollectionEquality().equals(other.courses, courses)&&(identical(other.course, course) || other.course == course)&&(identical(other.player, player) || other.player == player)&&const DeepCollectionEquality().equals(other.levels, levels)&&(identical(other.offline, offline) || other.offline == offline));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(courses),course,player,const DeepCollectionEquality().hash(levels));
+int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(courses),course,player,const DeepCollectionEquality().hash(levels),offline);
 
 @override
 String toString() {
-  return 'GamePath(courses: $courses, course: $course, player: $player, levels: $levels)';
+  return 'GamePath(courses: $courses, course: $course, player: $player, levels: $levels, offline: $offline)';
 }
 
 
@@ -1177,7 +1179,7 @@ abstract mixin class $GamePathCopyWith<$Res>  {
   factory $GamePathCopyWith(GamePath value, $Res Function(GamePath) _then) = _$GamePathCopyWithImpl;
 @useResult
 $Res call({
- List<GameCourse> courses, String course, GamePlayer player, List<GameLevel> levels
+ List<GameCourse> courses, String course, GamePlayer player, List<GameLevel> levels, bool offline
 });
 
 
@@ -1194,13 +1196,14 @@ class _$GamePathCopyWithImpl<$Res>
 
 /// Create a copy of GamePath
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? courses = null,Object? course = null,Object? player = null,Object? levels = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? courses = null,Object? course = null,Object? player = null,Object? levels = null,Object? offline = null,}) {
   return _then(_self.copyWith(
 courses: null == courses ? _self.courses : courses // ignore: cast_nullable_to_non_nullable
 as List<GameCourse>,course: null == course ? _self.course : course // ignore: cast_nullable_to_non_nullable
 as String,player: null == player ? _self.player : player // ignore: cast_nullable_to_non_nullable
 as GamePlayer,levels: null == levels ? _self.levels : levels // ignore: cast_nullable_to_non_nullable
-as List<GameLevel>,
+as List<GameLevel>,offline: null == offline ? _self.offline : offline // ignore: cast_nullable_to_non_nullable
+as bool,
   ));
 }
 /// Create a copy of GamePath
@@ -1294,10 +1297,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( List<GameCourse> courses,  String course,  GamePlayer player,  List<GameLevel> levels)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( List<GameCourse> courses,  String course,  GamePlayer player,  List<GameLevel> levels,  bool offline)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _GamePath() when $default != null:
-return $default(_that.courses,_that.course,_that.player,_that.levels);case _:
+return $default(_that.courses,_that.course,_that.player,_that.levels,_that.offline);case _:
   return orElse();
 
 }
@@ -1315,10 +1318,10 @@ return $default(_that.courses,_that.course,_that.player,_that.levels);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( List<GameCourse> courses,  String course,  GamePlayer player,  List<GameLevel> levels)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( List<GameCourse> courses,  String course,  GamePlayer player,  List<GameLevel> levels,  bool offline)  $default,) {final _that = this;
 switch (_that) {
 case _GamePath():
-return $default(_that.courses,_that.course,_that.player,_that.levels);case _:
+return $default(_that.courses,_that.course,_that.player,_that.levels,_that.offline);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -1335,10 +1338,10 @@ return $default(_that.courses,_that.course,_that.player,_that.levels);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( List<GameCourse> courses,  String course,  GamePlayer player,  List<GameLevel> levels)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( List<GameCourse> courses,  String course,  GamePlayer player,  List<GameLevel> levels,  bool offline)?  $default,) {final _that = this;
 switch (_that) {
 case _GamePath() when $default != null:
-return $default(_that.courses,_that.course,_that.player,_that.levels);case _:
+return $default(_that.courses,_that.course,_that.player,_that.levels,_that.offline);case _:
   return null;
 
 }
@@ -1350,7 +1353,7 @@ return $default(_that.courses,_that.course,_that.player,_that.levels);case _:
 @JsonSerializable()
 
 class _GamePath implements GamePath {
-  const _GamePath({final  List<GameCourse> courses = const <GameCourse>[], required this.course, this.player = const GamePlayer(), final  List<GameLevel> levels = const <GameLevel>[]}): _courses = courses,_levels = levels;
+  const _GamePath({final  List<GameCourse> courses = const <GameCourse>[], required this.course, this.player = const GamePlayer(), final  List<GameLevel> levels = const <GameLevel>[], this.offline = false}): _courses = courses,_levels = levels;
   factory _GamePath.fromJson(Map<String, dynamic> json) => _$GamePathFromJson(json);
 
  final  List<GameCourse> _courses;
@@ -1370,6 +1373,9 @@ class _GamePath implements GamePath {
   return EqualUnmodifiableListView(_levels);
 }
 
+/// Read from the copy of the phone, without network (never from the
+/// server).
+@override@JsonKey() final  bool offline;
 
 /// Create a copy of GamePath
 /// with the given fields replaced by the non-null parameter values.
@@ -1384,16 +1390,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _GamePath&&const DeepCollectionEquality().equals(other._courses, _courses)&&(identical(other.course, course) || other.course == course)&&(identical(other.player, player) || other.player == player)&&const DeepCollectionEquality().equals(other._levels, _levels));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _GamePath&&const DeepCollectionEquality().equals(other._courses, _courses)&&(identical(other.course, course) || other.course == course)&&(identical(other.player, player) || other.player == player)&&const DeepCollectionEquality().equals(other._levels, _levels)&&(identical(other.offline, offline) || other.offline == offline));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(_courses),course,player,const DeepCollectionEquality().hash(_levels));
+int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(_courses),course,player,const DeepCollectionEquality().hash(_levels),offline);
 
 @override
 String toString() {
-  return 'GamePath(courses: $courses, course: $course, player: $player, levels: $levels)';
+  return 'GamePath(courses: $courses, course: $course, player: $player, levels: $levels, offline: $offline)';
 }
 
 
@@ -1404,7 +1410,7 @@ abstract mixin class _$GamePathCopyWith<$Res> implements $GamePathCopyWith<$Res>
   factory _$GamePathCopyWith(_GamePath value, $Res Function(_GamePath) _then) = __$GamePathCopyWithImpl;
 @override @useResult
 $Res call({
- List<GameCourse> courses, String course, GamePlayer player, List<GameLevel> levels
+ List<GameCourse> courses, String course, GamePlayer player, List<GameLevel> levels, bool offline
 });
 
 
@@ -1421,13 +1427,14 @@ class __$GamePathCopyWithImpl<$Res>
 
 /// Create a copy of GamePath
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? courses = null,Object? course = null,Object? player = null,Object? levels = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? courses = null,Object? course = null,Object? player = null,Object? levels = null,Object? offline = null,}) {
   return _then(_GamePath(
 courses: null == courses ? _self._courses : courses // ignore: cast_nullable_to_non_nullable
 as List<GameCourse>,course: null == course ? _self.course : course // ignore: cast_nullable_to_non_nullable
 as String,player: null == player ? _self.player : player // ignore: cast_nullable_to_non_nullable
 as GamePlayer,levels: null == levels ? _self._levels : levels // ignore: cast_nullable_to_non_nullable
-as List<GameLevel>,
+as List<GameLevel>,offline: null == offline ? _self.offline : offline // ignore: cast_nullable_to_non_nullable
+as bool,
   ));
 }
 

@@ -4,6 +4,24 @@ import 'package:flutter/foundation.dart';
 
 import '../domain/game.dart';
 
+/// Where a question of the lesson stands, for its box in the bar.
+enum QuestionMark {
+  /// Not answered yet.
+  waiting,
+
+  /// Right at once.
+  right,
+
+  /// Right the second time.
+  second,
+
+  /// Missed once: it comes back at the end.
+  again,
+
+  /// Missed twice.
+  missed,
+}
+
 /// A lesson being played: one question at a time, a choice, « Vérifier »,
 /// then the next one. A question answered wrong comes back once at the end.
 /// Immutable: each move gives the play after it.
@@ -89,6 +107,25 @@ class LessonPlay {
     return settled.length / total;
   }
 
+  /// A mark per question of the lesson, in the order they are asked.
+  List<QuestionMark> get marks => [
+    for (final question in queue.take(lesson.questions.length))
+      _markOf(question.id),
+  ];
+
+  QuestionMark _markOf(int id) {
+    final mine = answers.where((answer) => answer.questionId == id);
+    if (mine.isEmpty) {
+      return QuestionMark.waiting;
+    }
+    final last = mine.last;
+    final right = _rightChoice(last);
+    if (last.attempt == 1) {
+      return right ? QuestionMark.right : QuestionMark.again;
+    }
+    return right ? QuestionMark.second : QuestionMark.missed;
+  }
+
   /// Touches a choice (until the answer is checked).
   LessonPlay choose(String choice) =>
       checked || finished ? this : _copy(selected: choice);
@@ -98,7 +135,8 @@ class LessonPlay {
   LessonPlay check() {
     final question = current;
     final choice = selected;
-    if (question == null || choice == null || checked) {
+    // an order or a match not finished yet has an empty answer
+    if (question == null || choice == null || choice.isEmpty || checked) {
       return this;
     }
     final right = choice == question.answer;

@@ -6,6 +6,7 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 import '../../../core/network/app_exception.dart';
 import '../../../core/session/session.dart';
 import '../domain/game.dart';
+import '../infrastructure/game_storage.dart';
 import '../infrastructure/games_api.dart';
 import 'game_path.dart';
 import 'lesson_play.dart';
@@ -71,7 +72,7 @@ class LessonController extends _$LessonController {
             title: '',
             questions: (await api.daily()).questions,
           )
-        : await api.lesson(lessonId);
+        : await _lesson(api);
     final random = Random();
     return LessonSession(
       play: LessonPlay.start(lesson, random: random),
@@ -79,6 +80,22 @@ class LessonController extends _$LessonController {
           '${DateTime.now().microsecondsSinceEpoch.toRadixString(36)}-'
           '${random.nextInt(1 << 32).toRadixString(36)}',
     );
+  }
+
+  /// The lesson from the server, or without network the copy of a course
+  /// downloaded.
+  Future<GameLesson> _lesson(GamesApi api) async {
+    try {
+      return await api.lesson(lessonId);
+    } on ApiException {
+      rethrow;
+    } on Object {
+      final kept = await ref.read(gameStorageProvider).lesson(lessonId);
+      if (kept == null) {
+        rethrow;
+      }
+      return kept;
+    }
   }
 
   void choose(String choice) => _move((play) => play.choose(choice));
@@ -136,6 +153,8 @@ class LessonController extends _$LessonController {
                 ),
               );
           kept = true;
+          // the path without network: this lesson done, the next one open
+          ref.invalidate(gamePathProvider);
         }
       }
       if (ref.mounted) {

@@ -2134,6 +2134,44 @@ class _Translations$games$hi extends Translations$games$fr {
 	@override String rank({required Object n}) => 'स्थान ${n}';
 	@override String get sendLater => 'तुम जा सकते हो: कनेक्शन लौटते ही यह अपने आप भेज दिया जाएगा।';
 	@override String readIn({required Object place}) => '“${place}” में पढ़ो';
+	@override String levelStars({required Object total, required Object stars}) => 'तारे: ${total} में से ${stars}';
+	@override String combo({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n,
+		one: 'लगातार ${n} सही!',
+		other: 'लगातार ${n} सही!',
+	);
+	@override String get letters => 'कखगघ';
+	@override String get orderHint => 'चीज़ों को सही क्रम में छुओ। किसी जगह को खाली करने के लिए उसे छुओ।';
+	@override String get matchHint => 'बाईं ओर एक चीज़ छुओ, फिर दाईं ओर उससे मेल खाने वाली।';
+	@override String get offlineTitle => 'बिना नेटवर्क खेलो';
+	@override String offlineText({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n,
+		one: 'इस कोर्स का पाठ डाउनलोड करो',
+		other: 'इस कोर्स के ${n} पाठ डाउनलोड करो',
+	);
+	@override String get offlineKept => 'कोर्स तुम्हारे फ़ोन पर रखा है';
+	@override String get offlineLoading => 'डाउनलोड हो रहा है…';
+	@override String get offlineUpdate => 'अपडेट करो';
+	@override String get offlineRemove => 'फ़ोन से हटाओ';
+	@override String get offlineDone => 'कोर्स रखा गया: अब बिना नेटवर्क खेल सकते हो।';
+	@override String get offlineBanner => 'ऑफ़लाइन: नेटवर्क लौटते ही तुम्हारे पाठ भेज दिए जाएँगे।';
+	@override String get flightShort => 'बोनस';
+	@override String get offlineKeptShort => 'रखा है';
+	@override String offlineShort({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n,
+		one: '${n} पाठ',
+		other: '${n} पाठ',
+	);
+	@override String get flightTitle => 'उड़ता वचन';
+	@override String get flightText => 'बोनस: वचन के शब्दों को क्रम से पकड़ो';
+	@override String get flightHint => 'ज़ोए को उड़ाने के लिए उसके ऊपर या नीचे छुओ, और शब्दों को क्रम से पकड़ो।';
+	@override String get flightWon => 'वचन याद हो गया!';
+	@override String get flightLost => 'ज़ोए के दिल ख़त्म हो गए';
+	@override String get flightLostText => 'कोई बात नहीं: वचन तुम्हारा इंतज़ार कर रहा है। फिर से कोशिश करो!';
+	@override String get flightAgain => 'फिर से';
+	@override String get flightNext => 'दूसरा वचन';
+	@override String get flightDone => 'पूरा';
+	@override String flightHearts({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n,
+		one: '${n} दिल',
+		other: '${n} दिल',
+	);
 }
 
 // Path: welcome.seek
@@ -6299,6 +6337,32 @@ extension on TranslationsHi {
 			'games.rank' => ({required Object n}) => 'स्थान ${n}',
 			'games.sendLater' => 'तुम जा सकते हो: कनेक्शन लौटते ही यह अपने आप भेज दिया जाएगा।',
 			'games.readIn' => ({required Object place}) => '“${place}” में पढ़ो',
+			'games.levelStars' => ({required Object total, required Object stars}) => 'तारे: ${total} में से ${stars}',
+			'games.combo' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n, one: 'लगातार ${n} सही!', other: 'लगातार ${n} सही!', ), 
+			'games.letters' => 'कखगघ',
+			'games.orderHint' => 'चीज़ों को सही क्रम में छुओ। किसी जगह को खाली करने के लिए उसे छुओ।',
+			'games.matchHint' => 'बाईं ओर एक चीज़ छुओ, फिर दाईं ओर उससे मेल खाने वाली।',
+			'games.offlineTitle' => 'बिना नेटवर्क खेलो',
+			'games.offlineText' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n, one: 'इस कोर्स का पाठ डाउनलोड करो', other: 'इस कोर्स के ${n} पाठ डाउनलोड करो', ), 
+			'games.offlineKept' => 'कोर्स तुम्हारे फ़ोन पर रखा है',
+			'games.offlineLoading' => 'डाउनलोड हो रहा है…',
+			'games.offlineUpdate' => 'अपडेट करो',
+			'games.offlineRemove' => 'फ़ोन से हटाओ',
+			'games.offlineDone' => 'कोर्स रखा गया: अब बिना नेटवर्क खेल सकते हो।',
+			'games.offlineBanner' => 'ऑफ़लाइन: नेटवर्क लौटते ही तुम्हारे पाठ भेज दिए जाएँगे।',
+			'games.flightShort' => 'बोनस',
+			'games.offlineKeptShort' => 'रखा है',
+			'games.offlineShort' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n, one: '${n} पाठ', other: '${n} पाठ', ), 
+			'games.flightTitle' => 'उड़ता वचन',
+			'games.flightText' => 'बोनस: वचन के शब्दों को क्रम से पकड़ो',
+			'games.flightHint' => 'ज़ोए को उड़ाने के लिए उसके ऊपर या नीचे छुओ, और शब्दों को क्रम से पकड़ो।',
+			'games.flightWon' => 'वचन याद हो गया!',
+			'games.flightLost' => 'ज़ोए के दिल ख़त्म हो गए',
+			'games.flightLostText' => 'कोई बात नहीं: वचन तुम्हारा इंतज़ार कर रहा है। फिर से कोशिश करो!',
+			'games.flightAgain' => 'फिर से',
+			'games.flightNext' => 'दूसरा वचन',
+			'games.flightDone' => 'पूरा',
+			'games.flightHearts' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n, one: '${n} दिल', other: '${n} दिल', ), 
 			_ => null,
 		};
 	}

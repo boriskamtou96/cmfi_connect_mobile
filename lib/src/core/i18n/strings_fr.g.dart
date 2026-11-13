@@ -4528,6 +4528,96 @@ class Translations$games$fr {
 
 	/// fr: 'Lire dans « {place} »'
 	String readIn({required Object place}) => 'Lire dans « ${place} »';
+
+	/// fr: 'Étoiles : {stars} sur {total}'
+	String levelStars({required Object stars, required Object total}) => 'Étoiles : ${stars} sur ${total}';
+
+	/// fr: '(one) {{n} d'affilée !} (other) {{n} d'affilée !}'
+	String combo({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('fr'))(n,
+		one: '${n} d\'affilée !',
+		other: '${n} d\'affilée !',
+	);
+
+	/// fr: 'ABCD'
+	String get letters => 'ABCD';
+
+	/// fr: 'Touche les éléments dans le bon ordre. Touche une place pour la vider.'
+	String get orderHint => 'Touche les éléments dans le bon ordre. Touche une place pour la vider.';
+
+	/// fr: 'Touche un élément à gauche, puis celui qui va avec à droite.'
+	String get matchHint => 'Touche un élément à gauche, puis celui qui va avec à droite.';
+
+	/// fr: 'Jouer hors ligne'
+	String get offlineTitle => 'Jouer hors ligne';
+
+	/// fr: '(one) {Télécharge la leçon de ce parcours} (other) {Télécharge les {n} leçons de ce parcours}'
+	String offlineText({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('fr'))(n,
+		one: 'Télécharge la leçon de ce parcours',
+		other: 'Télécharge les ${n} leçons de ce parcours',
+	);
+
+	/// fr: 'Parcours gardé sur ton téléphone'
+	String get offlineKept => 'Parcours gardé sur ton téléphone';
+
+	/// fr: 'Téléchargement…'
+	String get offlineLoading => 'Téléchargement…';
+
+	/// fr: 'Mettre à jour'
+	String get offlineUpdate => 'Mettre à jour';
+
+	/// fr: 'Retirer du téléphone'
+	String get offlineRemove => 'Retirer du téléphone';
+
+	/// fr: 'Parcours gardé : tu peux jouer sans réseau.'
+	String get offlineDone => 'Parcours gardé : tu peux jouer sans réseau.';
+
+	/// fr: 'Hors ligne : tes leçons partiront dès le retour du réseau.'
+	String get offlineBanner => 'Hors ligne : tes leçons partiront dès le retour du réseau.';
+
+	/// fr: 'Bonus'
+	String get flightShort => 'Bonus';
+
+	/// fr: 'Gardé'
+	String get offlineKeptShort => 'Gardé';
+
+	/// fr: '(one) {{n} leçon} (other) {{n} leçons}'
+	String offlineShort({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('fr'))(n,
+		one: '${n} leçon',
+		other: '${n} leçons',
+	);
+
+	/// fr: 'Verset en vol'
+	String get flightTitle => 'Verset en vol';
+
+	/// fr: 'Bonus : attrape les mots d’un verset dans l’ordre'
+	String get flightText => 'Bonus : attrape les mots d’un verset dans l’ordre';
+
+	/// fr: 'Touche au-dessus ou au-dessous de Zoé pour la faire voler, et attrape les mots dans l’ordre.'
+	String get flightHint => 'Touche au-dessus ou au-dessous de Zoé pour la faire voler, et attrape les mots dans l’ordre.';
+
+	/// fr: 'Verset gravé !'
+	String get flightWon => 'Verset gravé !';
+
+	/// fr: 'Zoé a perdu ses cœurs'
+	String get flightLost => 'Zoé a perdu ses cœurs';
+
+	/// fr: 'Pas grave : le verset t’attend. Recommence !'
+	String get flightLostText => 'Pas grave : le verset t’attend. Recommence !';
+
+	/// fr: 'Recommencer'
+	String get flightAgain => 'Recommencer';
+
+	/// fr: 'Un autre verset'
+	String get flightNext => 'Un autre verset';
+
+	/// fr: 'Terminer'
+	String get flightDone => 'Terminer';
+
+	/// fr: '(one) {{n} cœur} (other) {{n} cœurs}'
+	String flightHearts({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('fr'))(n,
+		one: '${n} cœur',
+		other: '${n} cœurs',
+	);
 }
 
 // Path: welcome.seek
@@ -10462,6 +10552,32 @@ extension on Translations {
 			'games.rank' => ({required Object n}) => 'Rang ${n}',
 			'games.sendLater' => 'Tu peux quitter : elle partira toute seule dès que la connexion reviendra.',
 			'games.readIn' => ({required Object place}) => 'Lire dans « ${place} »',
+			'games.levelStars' => ({required Object stars, required Object total}) => 'Étoiles : ${stars} sur ${total}',
+			'games.combo' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('fr'))(n, one: '${n} d\'affilée !', other: '${n} d\'affilée !', ), 
+			'games.letters' => 'ABCD',
+			'games.orderHint' => 'Touche les éléments dans le bon ordre. Touche une place pour la vider.',
+			'games.matchHint' => 'Touche un élément à gauche, puis celui qui va avec à droite.',
+			'games.offlineTitle' => 'Jouer hors ligne',
+			'games.offlineText' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('fr'))(n, one: 'Télécharge la leçon de ce parcours', other: 'Télécharge les ${n} leçons de ce parcours', ), 
+			'games.offlineKept' => 'Parcours gardé sur ton téléphone',
+			'games.offlineLoading' => 'Téléchargement…',
+			'games.offlineUpdate' => 'Mettre à jour',
+			'games.offlineRemove' => 'Retirer du téléphone',
+			'games.offlineDone' => 'Parcours gardé : tu peux jouer sans réseau.',
+			'games.offlineBanner' => 'Hors ligne : tes leçons partiront dès le retour du réseau.',
+			'games.flightShort' => 'Bonus',
+			'games.offlineKeptShort' => 'Gardé',
+			'games.offlineShort' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('fr'))(n, one: '${n} leçon', other: '${n} leçons', ), 
+			'games.flightTitle' => 'Verset en vol',
+			'games.flightText' => 'Bonus : attrape les mots d’un verset dans l’ordre',
+			'games.flightHint' => 'Touche au-dessus ou au-dessous de Zoé pour la faire voler, et attrape les mots dans l’ordre.',
+			'games.flightWon' => 'Verset gravé !',
+			'games.flightLost' => 'Zoé a perdu ses cœurs',
+			'games.flightLostText' => 'Pas grave : le verset t’attend. Recommence !',
+			'games.flightAgain' => 'Recommencer',
+			'games.flightNext' => 'Un autre verset',
+			'games.flightDone' => 'Terminer',
+			'games.flightHearts' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('fr'))(n, one: '${n} cœur', other: '${n} cœurs', ), 
 			_ => null,
 		};
 	}

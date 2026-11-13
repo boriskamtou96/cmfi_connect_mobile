@@ -2888,6 +2888,44 @@
     "seeBoard": "Voir le classement",
     "rank": "Rang {n}",
     "sendLater": "Tu peux quitter : elle partira toute seule dès que la connexion reviendra.",
-    "readIn": "Lire dans « {place} »"
+    "readIn": "Lire dans « {place} »",
+    "levelStars": "Étoiles : {stars} sur {total}",
+    "combo(plural, param=n)": {
+      "one": "{n} d'affilée !",
+      "other": "{n} d'affilée !"
+    },
+    "letters": "ABCD",
+    "orderHint": "Touche les éléments dans le bon ordre. Touche une place pour la vider.",
+    "matchHint": "Touche un élément à gauche, puis celui qui va avec à droite.",
+    "offlineTitle": "Jouer hors ligne",
+    "offlineText(plural, param=n)": {
+      "one": "Télécharge la leçon de ce parcours",
+      "other": "Télécharge les {n} leçons de ce parcours"
+    },
+    "offlineKept": "Parcours gardé sur ton téléphone",
+    "offlineLoading": "Téléchargement…",
+    "offlineUpdate": "Mettre à jour",
+    "offlineRemove": "Retirer du téléphone",
+    "offlineDone": "Parcours gardé : tu peux jouer sans réseau.",
+    "offlineBanner": "Hors ligne : tes leçons partiront dès le retour du réseau.",
+    "flightShort": "Bonus",
+    "offlineKeptShort": "Gardé",
+    "offlineShort(plural, param=n)": {
+      "one": "{n} leçon",
+      "other": "{n} leçons"
+    },
+    "flightTitle": "Verset en vol",
+    "flightText": "Bonus : attrape les mots d’un verset dans l’ordre",
+    "flightHint": "Touche au-dessus ou au-dessous de Zoé pour la faire voler, et attrape les mots dans l’ordre.",
+    "flightWon": "Verset gravé !",
+    "flightLost": "Zoé a perdu ses cœurs",
+    "flightLostText": "Pas grave : le verset t’attend. Recommence !",
+    "flightAgain": "Recommencer",
+    "flightNext": "Un autre verset",
+    "flightDone": "Terminer",
+    "flightHearts(plural, param=n)": {
+      "one": "{n} cœur",
+      "other": "{n} cœurs"
+    }
   }
 }

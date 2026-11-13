@@ -129,9 +129,11 @@ void main() {
 
     expect(find.text('NIVEAU 1 · 1 SUR 3'), findsOneWidget);
     expect(find.text('Notre fondateur'), findsOneWidget);
-    expect(find.byType(PathNode), findsNWidgets(3));
+    // the last lesson is under the fold
+    final nodes = find.byType(PathNode, skipOffstage: false);
+    expect(nodes, findsNWidgets(3));
     expect(
-      tester.widgetList<PathNode>(find.byType(PathNode)).map((n) => n.state),
+      tester.widgetList<PathNode>(nodes).map((n) => n.state),
       [LessonState.done, LessonState.open, LessonState.locked],
     );
     // the one to play
@@ -150,6 +152,9 @@ void main() {
     );
     await _openGames(tester);
 
+    // the last lesson is under the fold
+    await tester.drag(find.byType(ListView).last, const Offset(0, -400));
+    await tester.pumpAndSettle();
     await tester.tap(find.byType(PathNode).last);
     await tester.pumpAndSettle();
 
@@ -178,7 +183,7 @@ void main() {
     tester,
   ) async {
     final api = FakeGamesApi(gamePath: _path, lessons: [_lesson]);
-    await pumpApp(tester, token: 't', gamesApi: api);
+    final app = await pumpApp(tester, token: 't', gamesApi: api);
     await _openGames(tester);
     await tester.tap(find.byType(PathNode).at(1));
     await tester.pumpAndSettle();
@@ -224,6 +229,8 @@ void main() {
     expect(find.text('7 / 8'), findsOneWidget);
     expect(find.text('7 jours de suite'), findsOneWidget);
     expect(find.text('Niveau 3 atteint !'), findsOneWidget);
+    // a level up is heard with the longer fanfare, once
+    expect(app.gameSounds.played, ['level']);
 
     await tester.tap(find.text('CONTINUER'));
     await tester.pumpAndSettle();

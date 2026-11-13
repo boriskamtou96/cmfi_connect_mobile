@@ -1,9 +1,12 @@
+import 'dart:math' as math;
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/theme/app_icons.dart';
+import '../../../../core/theme/app_motion.dart';
 import '../../../../core/theme/app_theme.dart';
 import '../../../../core/theme/app_tones.dart';
 import '../../domain/game.dart';
@@ -110,11 +113,15 @@ class PathNode extends StatelessWidget {
     required this.stars,
     required this.label,
     required this.onTap,
+    this.withStars = true,
     super.key,
   });
 
   final LessonState state;
   final int stars;
+
+  /// The stars under a lesson done (the path shows them by its title).
+  final bool withStars;
 
   /// Read by screen readers: the lesson and where it stands.
   final String label;
@@ -185,7 +192,7 @@ class PathNode extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             node,
-            if (state == LessonState.done)
+            if (withStars && state == LessonState.done)
               Padding(
                 padding: const EdgeInsets.only(top: 2),
                 child: GameStars(stars: stars, size: 14),
@@ -229,17 +236,22 @@ enum ChoiceLook { idle, selected, right, wrong, faded }
 /// A choice of a question: a wide card in relief, its text, and what the
 /// check said (a tick on the right one, an arrow on the one to see again:
 /// never the color alone).
+///
+/// Its [letter] (A, B, C, D; أ, ب… in Arabic) sits in a square at the start.
+/// Missed, it shakes once.
 class ChoiceCard extends StatelessWidget {
   const ChoiceCard({
     required this.text,
     required this.look,
     required this.onTap,
+    this.letter,
     super.key,
   });
 
   final String text;
   final ChoiceLook look;
   final VoidCallback? onTap;
+  final String? letter;
 
   @override
   Widget build(BuildContext context) {
@@ -281,47 +293,184 @@ class ChoiceCard extends StatelessWidget {
       button: true,
       selected: look == ChoiceLook.selected,
       enabled: onTap != null,
-      child: Opacity(
-        opacity: look == ChoiceLook.faded ? 0.55 : 1,
-        child: GestureDetector(
-          behavior: HitTestBehavior.opaque,
-          onTap: onTap == null
-              ? null
-              : () {
-                  HapticFeedback.selectionClick();
-                  onTap!();
-                },
-          child: Container(
-            margin: const EdgeInsets.only(bottom: 4),
-            padding: const EdgeInsetsDirectional.fromSTEB(18, 15, 14, 15),
-            constraints: const BoxConstraints(minHeight: 56),
-            decoration: BoxDecoration(
-              color: fill,
-              borderRadius: BorderRadius.circular(16),
-              border: Border.all(color: edge, width: 2),
-              boxShadow: [BoxShadow(color: edge, offset: const Offset(0, 4))],
-            ),
-            child: Row(
-              children: [
-                Expanded(
-                  child: Text(
-                    text,
-                    style: TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.w700,
-                      height: 1.25,
-                      color: ink,
+      child: _Shake(
+        active: look == ChoiceLook.wrong,
+        child: Opacity(
+          opacity: look == ChoiceLook.faded ? 0.55 : 1,
+          child: GestureDetector(
+            behavior: HitTestBehavior.opaque,
+            onTap: onTap == null
+                ? null
+                : () {
+                    HapticFeedback.selectionClick();
+                    onTap!();
+                  },
+            child: Container(
+              margin: const EdgeInsets.only(bottom: 4),
+              padding: const EdgeInsetsDirectional.fromSTEB(18, 15, 14, 15),
+              constraints: const BoxConstraints(minHeight: 56),
+              decoration: BoxDecoration(
+                color: fill,
+                borderRadius: BorderRadius.circular(16),
+                border: Border.all(color: edge, width: 2),
+                boxShadow: [BoxShadow(color: edge, offset: const Offset(0, 4))],
+              ),
+              child: Row(
+                children: [
+                  if (letter case final letter?) ...[
+                    ExcludeSemantics(
+                      child: Container(
+                        width: 30,
+                        height: 30,
+                        alignment: Alignment.center,
+                        decoration: BoxDecoration(
+                          color:
+                              look == ChoiceLook.idle ||
+                                  look == ChoiceLook.faded
+                              ? scheme.surfaceContainerHighest
+                              : edge,
+                          borderRadius: BorderRadius.circular(9),
+                        ),
+                        child: Text(
+                          letter,
+                          style: TextStyle(
+                            fontSize: 14,
+                            fontWeight: FontWeight.w800,
+                            color:
+                                look == ChoiceLook.idle ||
+                                    look == ChoiceLook.faded
+                                ? scheme.onSurfaceVariant
+                                : Colors.white,
+                          ),
+                        ),
+                      ),
+                    ),
+                    const SizedBox(width: 12),
+                  ],
+                  Expanded(
+                    child: Text(
+                      text,
+                      style: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.w700,
+                        height: 1.25,
+                        color: ink,
+                      ),
                     ),
                   ),
-                ),
-                if (mark != null) ...[const SizedBox(width: 10), mark],
-              ],
+                  if (mark != null) ...[const SizedBox(width: 10), mark],
+                ],
+              ),
             ),
           ),
         ),
       ),
     );
   }
+}
+
+/// Shakes [child] side to side once when [active] turns true (a missed
+/// choice); still with « reduce motion ».
+class _Shake extends StatelessWidget {
+  const _Shake({required this.active, required this.child});
+
+  final bool active;
+  final Widget child;
+
+  @override
+  Widget build(BuildContext context) {
+    if (!active || AppMotion.reduced(context)) {
+      return child;
+    }
+    return TweenAnimationBuilder<double>(
+      tween: Tween(begin: 0, end: 1),
+      duration: const Duration(milliseconds: 420),
+      builder: (context, t, child) => Transform.translate(
+        // three swings that fade out
+        offset: Offset(math.sin(t * math.pi * 6) * 9 * (1 - t), 0),
+        child: child,
+      ),
+      child: child,
+    );
+  }
+}
+
+/// A sheaf of gold sparks that bursts once from the middle and fades: a right
+/// answer. Nothing with « reduce motion ». Decorative, it lets touches through.
+class SparkBurst extends HookWidget {
+  const SparkBurst({this.size = 160, super.key});
+
+  final double size;
+
+  @override
+  Widget build(BuildContext context) {
+    final controller = useAnimationController(
+      duration: const Duration(milliseconds: 750),
+    );
+    final reduced = AppMotion.reduced(context);
+    useEffect(() {
+      if (!reduced) {
+        controller.forward();
+      }
+      return null;
+    }, const []);
+    if (reduced) {
+      return SizedBox.square(dimension: size);
+    }
+    return IgnorePointer(
+      child: ExcludeSemantics(
+        child: AnimatedBuilder(
+          animation: controller,
+          builder: (context, _) => CustomPaint(
+            size: Size.square(size),
+            painter: _SparksPainter(
+              Curves.easeOutCubic.transform(controller.value),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class _SparksPainter extends CustomPainter {
+  const _SparksPainter(this.t);
+
+  /// 0 to 1, eased.
+  final double t;
+
+  static const _count = 14;
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    if (t <= 0 || t >= 1) {
+      return;
+    }
+    final center = size.center(Offset.zero);
+    final reach = size.shortestSide / 2;
+    final fade = (1 - t).clamp(0.0, 1.0);
+    for (var i = 0; i < _count; i++) {
+      final angle = i / _count * 2 * math.pi + (i.isEven ? 0.12 : -0.08);
+      // every other spark goes less far: a sheaf, not a ring
+      final far = reach * (i.isEven ? 1 : 0.7) * t;
+      final near = far * 0.55;
+      final direction = Offset(math.cos(angle), math.sin(angle));
+      final paint = Paint()
+        ..color = (i % 3 == 0 ? Colors.white : AppColors.gold).withValues(
+          alpha: fade,
+        )
+        ..strokeWidth = 3.2 * fade + 0.8
+        ..strokeCap = StrokeCap.round;
+      canvas.drawLine(
+        center + direction * near,
+        center + direction * far,
+        paint,
+      );
+    }
+  }
+
+  @override
+  bool shouldRepaint(_SparksPainter old) => old.t != t;
 }
 
 /// A number at the top of the tab, after its icon: the streak, the points,

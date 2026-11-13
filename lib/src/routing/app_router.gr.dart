@@ -2219,6 +2219,22 @@ class TeachingsRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
+/// [VerseFlightScreen]
+class VerseFlightRoute extends PageRouteInfo<void> {
+  const VerseFlightRoute({List<PageRouteInfo>? children})
+    : super(VerseFlightRoute.name, initialChildren: children);
+
+  static const String name = 'VerseFlightRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const VerseFlightScreen();
+    },
+  );
+}
+
+/// generated route for
 /// [WeekStoryScreen]
 class WeekStoryRoute extends PageRouteInfo<WeekStoryRouteArgs> {
   WeekStoryRoute({

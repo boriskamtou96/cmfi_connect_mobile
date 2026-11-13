@@ -2889,6 +2889,44 @@
     "seeBoard": "See the leaderboard",
     "rank": "Rank {n}",
     "sendLater": "You can leave: it will be sent by itself as soon as the connection is back.",
-    "readIn": "Read in “{place}”"
+    "readIn": "Read in “{place}”",
+    "levelStars": "Stars: {stars} of {total}",
+    "combo(plural, param=n)": {
+      "one": "{n} in a row!",
+      "other": "{n} in a row!"
+    },
+    "letters": "ABCD",
+    "orderHint": "Tap the items in the right order. Tap a place to empty it.",
+    "matchHint": "Tap an item on the left, then the one that goes with it on the right.",
+    "offlineTitle": "Play offline",
+    "offlineText(plural, param=n)": {
+      "one": "Download the lesson of this course",
+      "other": "Download the {n} lessons of this course"
+    },
+    "offlineKept": "Course kept on your phone",
+    "offlineLoading": "Downloading…",
+    "offlineUpdate": "Update",
+    "offlineRemove": "Remove from the phone",
+    "offlineDone": "Course kept: you can play without network.",
+    "offlineBanner": "Offline: your lessons will be sent as soon as the network is back.",
+    "flightShort": "Bonus",
+    "offlineKeptShort": "Kept",
+    "offlineShort(plural, param=n)": {
+      "one": "{n} lesson",
+      "other": "{n} lessons"
+    },
+    "flightTitle": "Verse in flight",
+    "flightText": "Bonus: catch the words of a verse in order",
+    "flightHint": "Tap above or below Zoé to make her fly, and catch the words in order.",
+    "flightWon": "Verse learned!",
+    "flightLost": "Zoé lost her hearts",
+    "flightLostText": "Never mind: the verse is waiting. Try again!",
+    "flightAgain": "Try again",
+    "flightNext": "Another verse",
+    "flightDone": "Done",
+    "flightHearts(plural, param=n)": {
+      "one": "{n} heart",
+      "other": "{n} hearts"
+    }
   }
 }

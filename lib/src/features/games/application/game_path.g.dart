@@ -111,4 +111,4 @@ final class GamePathProvider
   }
 }
 
-String _$gamePathHash() => r'c1c230be38894517dc0ed09b11fef8ef9707f6b8';
+String _$gamePathHash() => r'3e47d47ea1654a449f67103ad1b41bc241811e73';

@@ -2782,6 +2782,40 @@
     "seeBoard": "查看排行榜",
     "rank": "第 {n} 名",
     "sendLater": "你可以离开：网络恢复后会自动提交。",
-    "readIn": "在“{place}”中阅读"
+    "readIn": "在“{place}”中阅读",
+    "levelStars": "星星：{stars} / {total}",
+    "combo(plural, param=n)": {
+      "other": "连对 {n} 题！"
+    },
+    "letters": "ABCD",
+    "orderHint": "按正确的顺序点击各项。点击某个位置可将其清空。",
+    "matchHint": "先点左边的一项，再点右边与之对应的一项。",
+    "offlineTitle": "离线游玩",
+    "offlineText(plural, param=n)": {
+      "other": "下载本课程的 {n} 节课"
+    },
+    "offlineKept": "课程已保存在手机上",
+    "offlineLoading": "正在下载…",
+    "offlineUpdate": "更新",
+    "offlineRemove": "从手机移除",
+    "offlineDone": "课程已保存：没有网络也能玩。",
+    "offlineBanner": "离线：网络恢复后会立即发送你的课程。",
+    "flightShort": "额外",
+    "offlineKeptShort": "已保存",
+    "offlineShort(plural, param=n)": {
+      "other": "{n} 节课"
+    },
+    "flightTitle": "飞翔的经文",
+    "flightText": "额外游戏：按顺序接住经文的词语",
+    "flightHint": "点击佐伊上方或下方让她飞起来，按顺序接住词语。",
+    "flightWon": "经文记住了！",
+    "flightLost": "佐伊失去了所有的心",
+    "flightLostText": "没关系：经文在等你。再试一次！",
+    "flightAgain": "再试一次",
+    "flightNext": "换一节经文",
+    "flightDone": "完成",
+    "flightHearts(plural, param=n)": {
+      "other": "{n} 颗心"
+    }
   }
 }

@@ -2411,6 +2411,60 @@ class _Translations$games$ar extends Translations$games$fr {
 	@override String rank({required Object n}) => 'المرتبة ${n}';
 	@override String get sendLater => 'يمكنك المغادرة: سيُرسَل تلقائيًا فور عودة الاتصال.';
 	@override String readIn({required Object place}) => 'اقرأ في «${place}»';
+	@override String levelStars({required Object stars, required Object total}) => 'النجوم: ${stars} من ${total}';
+	@override String combo({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n,
+		zero: '${n} على التوالي!',
+		one: 'إجابة صحيحة على التوالي!',
+		two: 'إجابتان على التوالي!',
+		few: '${n} إجابات على التوالي!',
+		many: '${n} إجابة على التوالي!',
+		other: '${n} إجابة على التوالي!',
+	);
+	@override String get letters => 'أبجد';
+	@override String get orderHint => 'المس العناصر بالترتيب الصحيح. المس مكانًا لتفريغه.';
+	@override String get matchHint => 'المس عنصرًا من جهة، ثم ما يناسبه من الجهة الأخرى.';
+	@override String get offlineTitle => 'العب دون اتصال';
+	@override String offlineText({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n,
+		zero: 'نزّل دروس هذا المسار',
+		one: 'نزّل درس هذا المسار',
+		two: 'نزّل درسَي هذا المسار',
+		few: 'نزّل دروس هذا المسار الـ${n}',
+		many: 'نزّل دروس هذا المسار الـ${n}',
+		other: 'نزّل دروس هذا المسار الـ${n}',
+	);
+	@override String get offlineKept => 'المسار محفوظ على هاتفك';
+	@override String get offlineLoading => 'جارٍ التنزيل…';
+	@override String get offlineUpdate => 'تحديث';
+	@override String get offlineRemove => 'إزالة من الهاتف';
+	@override String get offlineDone => 'تم حفظ المسار: يمكنك اللعب دون اتصال.';
+	@override String get offlineBanner => 'دون اتصال: ستُرسل دروسك فور عودة الشبكة.';
+	@override String get flightShort => 'مكافأة';
+	@override String get offlineKeptShort => 'محفوظ';
+	@override String offlineShort({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n,
+		zero: 'لا دروس',
+		one: 'درس واحد',
+		two: 'درسان',
+		few: '${n} دروس',
+		many: '${n} درسًا',
+		other: '${n} درس',
+	);
+	@override String get flightTitle => 'آية في الطيران';
+	@override String get flightText => 'مكافأة: التقط كلمات الآية بالترتيب';
+	@override String get flightHint => 'المس فوق زوي أو تحتها لتطير، والتقط الكلمات بالترتيب.';
+	@override String get flightWon => 'حُفظت الآية!';
+	@override String get flightLost => 'فقدت زوي قلوبها';
+	@override String get flightLostText => 'لا بأس: الآية في انتظارك. أعد المحاولة!';
+	@override String get flightAgain => 'أعد المحاولة';
+	@override String get flightNext => 'آية أخرى';
+	@override String get flightDone => 'إنهاء';
+	@override String flightHearts({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n,
+		zero: 'لا قلوب',
+		one: 'قلب واحد',
+		two: 'قلبان',
+		few: '${n} قلوب',
+		many: '${n} قلبًا',
+		other: '${n} قلب',
+	);
 }
 
 // Path: welcome.seek
@@ -6717,6 +6771,32 @@ extension on TranslationsAr {
 			'games.rank' => ({required Object n}) => 'المرتبة ${n}',
 			'games.sendLater' => 'يمكنك المغادرة: سيُرسَل تلقائيًا فور عودة الاتصال.',
 			'games.readIn' => ({required Object place}) => 'اقرأ في «${place}»',
+			'games.levelStars' => ({required Object stars, required Object total}) => 'النجوم: ${stars} من ${total}',
+			'games.combo' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n, zero: '${n} على التوالي!', one: 'إجابة صحيحة على التوالي!', two: 'إجابتان على التوالي!', few: '${n} إجابات على التوالي!', many: '${n} إجابة على التوالي!', other: '${n} إجابة على التوالي!', ), 
+			'games.letters' => 'أبجد',
+			'games.orderHint' => 'المس العناصر بالترتيب الصحيح. المس مكانًا لتفريغه.',
+			'games.matchHint' => 'المس عنصرًا من جهة، ثم ما يناسبه من الجهة الأخرى.',
+			'games.offlineTitle' => 'العب دون اتصال',
+			'games.offlineText' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n, zero: 'نزّل دروس هذا المسار', one: 'نزّل درس هذا المسار', two: 'نزّل درسَي هذا المسار', few: 'نزّل دروس هذا المسار الـ${n}', many: 'نزّل دروس هذا المسار الـ${n}', other: 'نزّل دروس هذا المسار الـ${n}', ), 
+			'games.offlineKept' => 'المسار محفوظ على هاتفك',
+			'games.offlineLoading' => 'جارٍ التنزيل…',
+			'games.offlineUpdate' => 'تحديث',
+			'games.offlineRemove' => 'إزالة من الهاتف',
+			'games.offlineDone' => 'تم حفظ المسار: يمكنك اللعب دون اتصال.',
+			'games.offlineBanner' => 'دون اتصال: ستُرسل دروسك فور عودة الشبكة.',
+			'games.flightShort' => 'مكافأة',
+			'games.offlineKeptShort' => 'محفوظ',
+			'games.offlineShort' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n, zero: 'لا دروس', one: 'درس واحد', two: 'درسان', few: '${n} دروس', many: '${n} درسًا', other: '${n} درس', ), 
+			'games.flightTitle' => 'آية في الطيران',
+			'games.flightText' => 'مكافأة: التقط كلمات الآية بالترتيب',
+			'games.flightHint' => 'المس فوق زوي أو تحتها لتطير، والتقط الكلمات بالترتيب.',
+			'games.flightWon' => 'حُفظت الآية!',
+			'games.flightLost' => 'فقدت زوي قلوبها',
+			'games.flightLostText' => 'لا بأس: الآية في انتظارك. أعد المحاولة!',
+			'games.flightAgain' => 'أعد المحاولة',
+			'games.flightNext' => 'آية أخرى',
+			'games.flightDone' => 'إنهاء',
+			'games.flightHearts' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n, zero: 'لا قلوب', one: 'قلب واحد', two: 'قلبان', few: '${n} قلوب', many: '${n} قلبًا', other: '${n} قلب', ), 
 			_ => null,
 		};
 	}

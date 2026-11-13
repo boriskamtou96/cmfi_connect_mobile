@@ -37,6 +37,7 @@ import '../features/fasts/presentation/fasts_screen.dart';
 import '../features/games/presentation/games_screen.dart';
 import '../features/games/presentation/leaderboard_screen.dart';
 import '../features/games/presentation/lesson_screen.dart';
+import '../features/games/presentation/verse_flight_screen.dart';
 import '../features/home/presentation/home_screen.dart';
 import '../features/home/presentation/week_story_screen.dart';
 import '../features/home/presentation/year_story_screen.dart';
@@ -164,6 +165,13 @@ class AppRouter extends RootStackRouter {
       path: '/games/leaderboard',
       page: LeaderboardRoute.page,
       guards: [authGuard],
+    ),
+    // « Verset en vol », the bonus game drawn with Flame
+    AutoRoute(
+      path: '/games/verse-flight',
+      page: VerseFlightRoute.page,
+      guards: [authGuard],
+      fullscreenDialog: true,
     ),
     // the profile and the settings, from the menu
     AutoRoute(path: '/profile', page: ProfileRoute.page, guards: [authGuard]),

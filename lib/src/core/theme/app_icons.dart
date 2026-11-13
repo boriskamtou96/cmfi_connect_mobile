@@ -43,6 +43,10 @@ abstract final class AppIcons {
   static const items = PhosphorIconsRegular.slidersHorizontal;
   static const reminder = PhosphorIconsRegular.bellRinging;
   static const goal = PhosphorIconsRegular.flag;
+  static const goalReached = PhosphorIconsFill.flagCheckered;
+  // « Verset en vol »: the game, and its hearts
+  static const verseFlight = PhosphorIconsFill.bird;
+  static const heartFilled = PhosphorIconsFill.heart;
   static const streak = PhosphorIconsFill.flame;
   static const offline = PhosphorIconsRegular.cloudSlash;
 

@@ -1,12 +1,15 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../core/i18n/strings.g.dart';
 import '../../../core/network/app_exception_message.dart';
+import '../../../core/services/game_sounds.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_icons.dart';
+import '../../../core/theme/app_motion.dart';
 import '../../../core/theme/app_spacing.dart';
 import '../../../core/theme/app_theme.dart';
 import '../../../core/theme/app_tones.dart';
@@ -19,6 +22,7 @@ import '../../../routing/app_router.dart';
 import '../application/lesson_controller.dart';
 import '../application/lesson_play.dart';
 import '../domain/game.dart';
+import 'widgets/arrange_boards.dart';
 import 'widgets/game_widgets.dart';
 
 /// A lesson of the games, full screen: one question at a time, asked by
@@ -40,6 +44,15 @@ class LessonScreen extends ConsumerWidget {
     final t = context.t;
     final session = ref.watch(lessonControllerProvider(lessonId));
     final controller = ref.read(lessonControllerProvider(lessonId).notifier);
+    // the end of the lesson is heard: longer when a level is finished
+    ref.listen(lessonControllerProvider(lessonId), (previous, next) {
+      final result = next.value?.result;
+      if (result != null && previous?.value?.result == null) {
+        ref
+            .read(gameSoundsProvider)
+            .lessonDone(level: result.levelCompleted || result.levelUp);
+      }
+    });
 
     Future<void> quit() async {
       final leave = await showConfirmDialog(
@@ -108,7 +121,7 @@ PageRouteInfo<Object?>? _sourceRoute(String source) => switch (source) {
   _ => null,
 };
 
-class _Question extends StatelessWidget {
+class _Question extends HookWidget {
   const _Question({
     required this.play,
     required this.tag,
@@ -143,6 +156,17 @@ class _Question extends StatelessWidget {
     final scheme = Theme.of(context).colorScheme;
     final question = play.current!;
     final missing = AppTones.of(context).missing;
+    final letters = t.games.letters.characters.toList();
+    // a right answer is felt lightly, a missed one a little more
+    useEffect(() {
+      if (play.checked) {
+        play.isRight
+            ? HapticFeedback.lightImpact()
+            : HapticFeedback.mediumImpact();
+      }
+      return null;
+    }, [play.checked, play.index]);
+    final combo = play.checked && play.isRight && _combos.contains(play.run);
 
     return Scaffold(
       body: SafeArea(
@@ -159,7 +183,13 @@ class _Question extends StatelessWidget {
                     onPressed: onQuit,
                     icon: const Icon(AppIcons.close),
                   ),
-                  Expanded(child: _ProgressBar(value: play.progress)),
+                  Expanded(
+                    child: _Segments(
+                      marks: play.marks,
+                      current: play.isRetry ? null : play.index,
+                      progress: play.progress,
+                    ),
+                  ),
                   // right answers in a row, from two
                   if (play.run >= 2) ...[
                     const SizedBox(width: 12),
@@ -254,20 +284,38 @@ class _Question extends StatelessWidget {
                     ],
                   ),
                   const SizedBox(height: 18),
-                  for (final choice in question.choices) ...[
-                    ChoiceCard(
-                      text: choice.text,
-                      look: _look(question, choice),
-                      onTap: play.checked ? null : () => onChoose(choice.id),
-                    ),
-                    const SizedBox(height: 10),
-                  ],
+                  if (question.isOrder)
+                    OrderBoard(
+                      key: ValueKey(play.index),
+                      question: question,
+                      checked: play.checked,
+                      onChanged: onChoose,
+                    )
+                  else if (question.isMatch)
+                    MatchBoard(
+                      key: ValueKey(play.index),
+                      question: question,
+                      checked: play.checked,
+                      onChanged: onChoose,
+                    )
+                  else
+                    for (final (i, choice) in question.choices.indexed) ...[
+                      ChoiceCard(
+                        letter: i < letters.length ? letters[i] : null,
+                        text: choice.text,
+                        look: _look(question, choice),
+                        onTap: play.checked ? null : () => onChoose(choice.id),
+                      ),
+                      const SizedBox(height: 10),
+                    ],
                 ],
               ),
             ),
             // what the check said, then the way on
             AnimatedSize(
               duration: const Duration(milliseconds: 180),
+              // the sparks of a right answer may go past its top
+              clipBehavior: Clip.none,
               alignment: Alignment.bottomCenter,
               child: Container(
                 width: double.infinity,
@@ -291,9 +339,31 @@ class _Question extends StatelessWidget {
                         liveRegion: true,
                         child: Row(
                           children: [
-                            Icon(
-                              play.isRight ? AppIcons.right : AppIcons.wrong,
-                              color: play.isRight ? AppColors.success : missing,
+                            Stack(
+                              clipBehavior: Clip.none,
+                              alignment: Alignment.center,
+                              children: [
+                                // centred on the 24 px icon
+                                if (play.isRight)
+                                  Positioned(
+                                    left: -78,
+                                    top: -78,
+                                    width: 180,
+                                    height: 180,
+                                    child: SparkBurst(
+                                      key: ValueKey(play.index),
+                                      size: 180,
+                                    ),
+                                  ),
+                                Icon(
+                                  play.isRight
+                                      ? AppIcons.right
+                                      : AppIcons.wrong,
+                                  color: play.isRight
+                                      ? AppColors.success
+                                      : missing,
+                                ),
+                              ],
                             ),
                             const SizedBox(width: 8),
                             Expanded(
@@ -311,17 +381,14 @@ class _Question extends StatelessWidget {
                           ],
                         ),
                       ),
+                      if (combo) ...[
+                        const SizedBox(height: 6),
+                        _Combo(text: t.games.combo(n: play.run)),
+                      ],
                       if (!play.isRight) ...[
                         const SizedBox(height: 6),
                         Text(
-                          t.games.rightAnswer(
-                            answer: question.choices
-                                .firstWhere(
-                                  (choice) => choice.id == question.answer,
-                                  orElse: () => question.choices.first,
-                                )
-                                .text,
-                          ),
+                          t.games.rightAnswer(answer: question.answerText),
                           style: const TextStyle(fontWeight: FontWeight.w700),
                         ),
                       ],
@@ -356,7 +423,10 @@ class _Question extends StatelessWidget {
                     ] else
                       GameButton(
                         label: t.games.check,
-                        onPressed: play.selected == null ? null : onCheck,
+                        // an order or a match not finished: an empty answer
+                        onPressed: (play.selected ?? '').isEmpty
+                            ? null
+                            : onCheck,
                       ),
                   ],
                 ),
@@ -369,32 +439,102 @@ class _Question extends StatelessWidget {
   }
 }
 
-/// The bar of the lesson: gold, thick, it fills as the questions are settled.
-class _ProgressBar extends StatelessWidget {
-  const _ProgressBar({required this.value});
+/// Right answers in a row that are cheered (« 3 d'affilée ! »).
+const _combos = {3, 5, 8};
 
-  final double value;
+/// The bar of the lesson: a box per question, in the order they are asked.
+/// Green right at once, gold the second time, amber while it waits to come
+/// back; the one asked has a ring. Read as the share settled.
+class _Segments extends StatelessWidget {
+  const _Segments({
+    required this.marks,
+    required this.current,
+    required this.progress,
+  });
+
+  final List<QuestionMark> marks;
+
+  /// The box of the question asked, null when one comes back.
+  final int? current;
+  final double progress;
 
   @override
-  Widget build(BuildContext context) => Semantics(
-    value: '${(value * 100).round()} %',
-    child: ClipRRect(
-      borderRadius: BorderRadius.circular(8),
-      child: TweenAnimationBuilder<double>(
-        tween: Tween(end: value),
-        duration: const Duration(milliseconds: 260),
-        curve: Curves.easeOutCubic,
-        builder: (context, shown, _) => LinearProgressIndicator(
-          value: shown,
-          minHeight: 14,
-          color: AppColors.gold,
-          backgroundColor: Theme.of(
-            context,
-          ).colorScheme.surfaceContainerHighest,
+  Widget build(BuildContext context) {
+    final scheme = Theme.of(context).colorScheme;
+    final missing = AppTones.of(context).missing;
+    final duration = AppMotion.of(context, AppMotion.medium);
+    return Semantics(
+      value: '${(progress * 100).round()} %',
+      child: ExcludeSemantics(
+        child: Row(
+          children: [
+            for (final (i, mark) in marks.indexed) ...[
+              if (i > 0) const SizedBox(width: 4),
+              Expanded(
+                child: AnimatedContainer(
+                  duration: duration,
+                  curve: AppMotion.standard,
+                  height: 14,
+                  decoration: BoxDecoration(
+                    color: switch (mark) {
+                      QuestionMark.waiting => scheme.surfaceContainerHighest,
+                      QuestionMark.right => AppColors.success,
+                      QuestionMark.second => AppColors.gold,
+                      QuestionMark.again => missing.withValues(alpha: 0.55),
+                      QuestionMark.missed => missing,
+                    },
+                    borderRadius: BorderRadius.circular(7),
+                    border: i == current
+                        ? Border.all(color: scheme.primary, width: 2)
+                        : null,
+                  ),
+                ),
+              ),
+            ],
+          ],
         ),
       ),
-    ),
-  );
+    );
+  }
+}
+
+/// « 3 d'affilée ! »: the flame and the words, in gold, popping in.
+class _Combo extends StatelessWidget {
+  const _Combo({required this.text});
+
+  final String text;
+
+  @override
+  Widget build(BuildContext context) {
+    final row = Row(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        const Icon(AppIcons.streak, size: 18, color: AppColors.gold),
+        const SizedBox(width: 6),
+        Text(
+          text,
+          style: const TextStyle(
+            fontSize: 15,
+            fontWeight: FontWeight.w800,
+            color: AppColors.gold,
+          ),
+        ),
+      ],
+    );
+    return Align(
+      alignment: AlignmentDirectional.centerStart,
+      child: AppMotion.reduced(context)
+          ? row
+          : TweenAnimationBuilder<double>(
+              tween: Tween(begin: 0.6, end: 1),
+              duration: AppMotion.slow,
+              curve: AppMotion.pop,
+              builder: (context, scale, child) =>
+                  Transform.scale(scale: scale, child: child),
+              child: row,
+            ),
+    );
+  }
 }
 
 /// The lesson is over and goes to the server; when the network fails, it
@@ -537,7 +677,7 @@ class _End extends StatelessWidget {
                         child: _EndCard(
                           label: t.games.points,
                           color: AppColors.gold,
-                          child: Text('+${result.points}'),
+                          child: _CountUp(points: result.points),
                         ),
                       ),
                       const SizedBox(width: 10),
@@ -553,11 +693,7 @@ class _End extends StatelessWidget {
                         child: _EndCard(
                           label: t.games.stars,
                           color: AppColors.primary,
-                          child: GameStars(
-                            stars: result.stars,
-                            size: 22,
-                            empty: AppColors.line,
-                          ),
+                          child: _StarsIn(stars: result.stars),
                         ),
                       ),
                     ],
@@ -591,6 +727,70 @@ class _End extends StatelessWidget {
       ),
     );
   }
+}
+
+/// The points of the end, counting up to their value (« +80 »).
+class _CountUp extends StatelessWidget {
+  const _CountUp({required this.points});
+
+  final int points;
+
+  @override
+  Widget build(BuildContext context) {
+    if (AppMotion.reduced(context)) {
+      return Text('+$points');
+    }
+    return TweenAnimationBuilder<double>(
+      tween: Tween(begin: 0, end: points.toDouble()),
+      duration: const Duration(milliseconds: 900),
+      curve: AppMotion.standard,
+      builder: (context, value, _) =>
+          Text('+${value.round()}', semanticsLabel: '+$points'),
+    );
+  }
+}
+
+/// The stars of the end, coming in one after the other with a little pop.
+class _StarsIn extends StatelessWidget {
+  const _StarsIn({required this.stars});
+
+  final int stars;
+
+  @override
+  Widget build(BuildContext context) {
+    final reduced = AppMotion.reduced(context);
+    return Semantics(
+      label: '$stars / 3',
+      excludeSemantics: true,
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          for (var i = 1; i <= 3; i++)
+            reduced || i > stars
+                ? _star(i <= stars)
+                : TweenAnimationBuilder<double>(
+                    tween: Tween(begin: 0, end: 1),
+                    // each star waits for the one before it
+                    duration: Duration(milliseconds: 380 + i * 220),
+                    curve: Interval(
+                      (i * 220) / (380 + i * 220),
+                      1,
+                      curve: AppMotion.pop,
+                    ),
+                    builder: (context, scale, child) =>
+                        Transform.scale(scale: scale, child: child),
+                    child: _star(true),
+                  ),
+        ],
+      ),
+    );
+  }
+
+  static Widget _star(bool won) => Icon(
+    won ? AppIcons.starFilled : AppIcons.star,
+    size: 22,
+    color: won ? AppColors.gold : AppColors.line,
+  );
 }
 
 /// A number of the end: its name on its color, the value under it.

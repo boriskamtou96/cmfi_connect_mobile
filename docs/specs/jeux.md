@@ -79,6 +79,48 @@ Le jeu a **deux parcours**, choisis en haut de l'onglet : « Notre ministère »
 
 ---
 
+## 0 ter. Refonte du 13 novembre : un jeu à nous, hors ligne, plus de quiz
+
+Demandé le 13/11/2026 après les essais sur téléphone (« les titres des leçons ne se voient pas ») : de l'originalité (inspirée des quiz de Dribbble : typographie éditoriale, podium, segments de progression, grandes tuiles de réponse), télécharger les leçons, plus de quiz. Choix faits par Claude à la demande de l'utilisateur ; ils **remplacent** ce qui les contredit plus bas.
+
+### A. Le chemin du pèlerin (onglet Jeux)
+
+- **Chaque leçon porte son titre** à côté de sa pastille (du côté où il y a de la place), avec ses étoiles. Plus de pastille muette.
+- Les pastilles sont reliées par **une route dessinée** : dorée et pleine sur ce qui est fait, en pointillés pâles sur ce qui reste.
+- Le bandeau d'un niveau devient un **chapitre** : un grand numéro en Lora en filigrane, le titre, une barre en segments (une par leçon) et le total d'étoiles (« 7 sur 12 »).
+- Les parcours défilent sur une ligne, chaque titre entier ; celui choisi vient au centre.
+- Objectif du jour atteint : la cible devient une coche dorée (« 50 sur 50 »), plus de « 105 sur 50 ».
+- Pas de Rive (il faudrait un dessinateur Rive) ni de Flame : tout est dessiné en code, avec `AppMotion` (rien d'infini, rien avec « réduire les animations »).
+
+### B. La leçon
+
+- La barre devient **une case par question** : verte au premier coup, dorée au second, pâle à venir.
+- Les choix sont de **grandes tuiles avec leur lettre** (A, B, C, D).
+- Bonne réponse : une gerbe d'étincelles dorées (une fois) et une vibration légère ; erreur : la tuile tremble et une vibration plus marquée. « 3 d'affilée ! » s'affiche à 3, 5 et 8 bonnes réponses de suite.
+- Fin : les étoiles arrivent une à une, les points comptent jusqu'à leur valeur.
+
+### C. Hors ligne
+
+- « Télécharger ce parcours » (en haut du chemin) garde toutes les leçons publiées du parcours sur le téléphone. Sans réseau, le chemin vient de la copie du téléphone et les leçons se jouent ; chaque leçon finie attend (comme aujourd'hui) et part au retour du réseau, **dans l'ordre où elles ont été jouées** : le serveur ouvre ainsi chaque leçon avant de recevoir la suivante.
+- Sur le téléphone, une leçon finie en attente ouvre la suivante.
+- Côté serveur : `GET /v1/games/courses/:code/download` (les leçons publiées du parcours, avec leurs questions, comme `GET /games/lessons/:id`).
+
+### D. Plus de quiz
+
+- Deux nouveaux types : `order` (remettre 4 à 6 éléments dans l'ordre ; réponse « c,a,d,b ») et `match` (relier 3 ou 4 paires, ids `l1…` à gauche et `r1…` à droite ; réponse « l1=r2,l2=r1,… », par id de gauche), dans l'API (migration 000043), le back-office et l'app (`OrderBoard`, `MatchBoard`).
+- Un nouveau parcours **« Défi biblique »** (`data/games/defi.fr.json`, code `defi`) : 5 niveaux de difficulté (Débutant, Intermédiaire, Avancé, Expert, Expert++), 3 leçons chacun, 120 questions (choix, vrai/faux, versets à trous, ordre, paires). **Livré en brouillon** : un responsable le relit puis le publie depuis le back-office.
+
+### E. Le son de fin
+
+- Fin d'une leçon : quatre notes qui montent ; fin d'un niveau (ou niveau du joueur atteint) : une fanfare plus longue. Sons faits pour l'app (`assets/sounds/games`, synthétisés), muets quand le téléphone est en silencieux (`GameSounds`).
+
+### F. « Verset en vol » (Flame)
+
+- Un jeu bonus de l'onglet, dessiné avec Flame (paquet `flame`, ajouté à la demande de l'utilisateur le 13/11/2026) : Zoé vole dans la nuit, les mots d'un verset arrivent sur trois couloirs, elle doit les attraper dans l'ordre ; un toucher au-dessus ou au-dessous d'elle la fait monter ou descendre. Trois cœurs : un mot faux en coûte un. Les versets viennent du verset du jour (`assets/verses`, ceux de 6 à 14 mots ; en chinois, des morceaux de 3 caractères), dans la langue de l'app. Pas de points du serveur : on joue pour retenir la Parole.
+- Flame ne sert qu'à ce jeu d'adresse : les leçons et le chemin restent en Flutter (accessibilité, 7 langues, droite à gauche).
+
+---
+
 ## 1. Vocabulaire
 
 | Mot | Ce que c'est | Exemple |

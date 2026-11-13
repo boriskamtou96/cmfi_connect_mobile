@@ -40,6 +40,19 @@ class GamesApi {
     return GameLesson.fromJson(response.content);
   });
 
+  /// Every published lesson of [course] with its questions, to keep on the
+  /// phone and play without network.
+  Future<List<GameLesson>> download(String course) => apiCall(() async {
+    final response = await _dio.get<Map<String, dynamic>>(
+      '/games/courses/$course/download',
+      queryParameters: {'lang': _lang},
+    );
+    return [
+      for (final lesson in response.content['lessons'] as List<dynamic>)
+        GameLesson.fromJson(lesson as Map<String, dynamic>),
+    ];
+  });
+
   /// A lesson played. [clientId] names the play: sent again after a network
   /// failure, it counts once.
   Future<GameResult> submitLesson(

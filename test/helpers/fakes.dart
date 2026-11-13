@@ -12,6 +12,7 @@ import 'package:cmfi_connect/src/core/services/calendar_service.dart';
 import 'package:cmfi_connect/src/core/services/crash_reporting.dart';
 import 'package:cmfi_connect/src/core/services/deep_links.dart';
 import 'package:cmfi_connect/src/core/services/document_picking.dart';
+import 'package:cmfi_connect/src/core/services/game_sounds.dart';
 import 'package:cmfi_connect/src/core/services/home_widgets.dart';
 import 'package:cmfi_connect/src/core/services/image_picking.dart';
 import 'package:cmfi_connect/src/core/services/link_launcher.dart';
@@ -51,6 +52,7 @@ import 'package:cmfi_connect/src/features/events/domain/event.dart';
 import 'package:cmfi_connect/src/features/events/domain/event_draft.dart';
 import 'package:cmfi_connect/src/features/events/infrastructure/events_api.dart';
 import 'package:cmfi_connect/src/features/games/domain/game.dart';
+import 'package:cmfi_connect/src/features/games/infrastructure/game_storage.dart';
 import 'package:cmfi_connect/src/features/games/infrastructure/games_api.dart';
 import 'package:cmfi_connect/src/features/hymns/domain/hymn.dart';
 import 'package:cmfi_connect/src/features/hymns/infrastructure/hymn_book_storage.dart';
@@ -3711,6 +3713,21 @@ class FakeGamesApi implements GamesApi {
   /// The sendings fail: no network.
   bool offline = false;
 
+  /// The readings fail too (path, lesson, download): no network at all.
+  bool readsOffline = false;
+
+  /// The courses downloaded.
+  final List<String> downloads = [];
+
+  @override
+  Future<List<GameLesson>> download(String course) async {
+    if (readsOffline) {
+      throw const NetworkException();
+    }
+    downloads.add(course);
+    return lessonList;
+  }
+
   /// The server refuses the plays for good (the lesson is gone).
   bool refused = false;
 
@@ -3794,6 +3811,9 @@ class FakeGamesApi implements GamesApi {
   Future<GamePath> path({String? course}) async {
     pathCalls++;
     coursesAsked.add(course);
+    if (readsOffline) {
+      throw const NetworkException();
+    }
     final path = gamePath;
     if (path == null) {
       throw const ApiException(
@@ -3806,14 +3826,16 @@ class FakeGamesApi implements GamesApi {
   }
 
   @override
-  Future<GameLesson> lesson(int id) async => lessonList.firstWhere(
-    (lesson) => lesson.id == id,
-    orElse: () => throw const ApiException(
-      status: 404,
-      code: 'NOT_FOUND',
-      message: 'lesson not found',
-    ),
-  );
+  Future<GameLesson> lesson(int id) async => readsOffline
+      ? throw const NetworkException()
+      : lessonList.firstWhere(
+          (lesson) => lesson.id == id,
+          orElse: () => throw const ApiException(
+            status: 404,
+            code: 'NOT_FOUND',
+            message: 'lesson not found',
+          ),
+        );
 
   @override
   Future<GameResult> submitLesson(
@@ -3835,4 +3857,65 @@ class FakeGamesApi implements GamesApi {
     submitted.add((lessonId: id, clientId: clientId, answers: answers));
     return result;
   }
+}
+
+/// The games kept on the phone, in memory.
+class FakeGameStorage implements GameStorage {
+  final Map<String, GamePath> paths = {};
+  final Map<String, List<GameLesson>> courses = {};
+  String? last;
+
+  @override
+  Future<GamePath?> path(String course) async => paths[course];
+
+  @override
+  Future<void> savePath(GamePath path) async =>
+      paths[path.course] = path.copyWith(offline: false);
+
+  @override
+  Future<String?> lastCourse() async => last;
+
+  @override
+  Future<void> saveLastCourse(String course) async => last = course;
+
+  @override
+  Future<List<GameLesson>?> lessons(String course) async => courses[course];
+
+  @override
+  Future<void> saveLessons(String course, List<GameLesson> lessons) async =>
+      courses[course] = lessons;
+
+  @override
+  Future<void> removeLessons(String course) async => courses.remove(course);
+
+  @override
+  Future<Set<String>> downloaded() async => courses.keys.toSet();
+
+  @override
+  Future<GameLesson?> lesson(int id) async {
+    for (final lessons in courses.values) {
+      for (final lesson in lessons) {
+        if (lesson.id == id) {
+          return lesson;
+        }
+      }
+    }
+    return null;
+  }
+
+  @override
+  Future<void> clear() async {
+    paths.clear();
+    courses.clear();
+    last = null;
+  }
+}
+
+/// The sounds of the games, heard by nobody: what was played.
+class FakeGameSounds implements GameSounds {
+  final List<String> played = [];
+
+  @override
+  Future<void> lessonDone({bool level = false}) async =>
+      played.add(level ? 'level' : 'lesson');
 }

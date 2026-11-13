@@ -2888,6 +2888,44 @@
     "seeBoard": "Ver la clasificación",
     "rank": "Puesto {n}",
     "sendLater": "Puedes salir: se enviará sola en cuanto vuelva la conexión.",
-    "readIn": "Leer en «{place}»"
+    "readIn": "Leer en «{place}»",
+    "levelStars": "Estrellas: {stars} de {total}",
+    "combo(plural, param=n)": {
+      "one": "¡{n} seguida!",
+      "other": "¡{n} seguidas!"
+    },
+    "letters": "ABCD",
+    "orderHint": "Toca los elementos en el orden correcto. Toca un lugar para vaciarlo.",
+    "matchHint": "Toca un elemento a la izquierda y luego el que le corresponde a la derecha.",
+    "offlineTitle": "Jugar sin conexión",
+    "offlineText(plural, param=n)": {
+      "one": "Descarga la lección de este curso",
+      "other": "Descarga las {n} lecciones de este curso"
+    },
+    "offlineKept": "Curso guardado en tu teléfono",
+    "offlineLoading": "Descargando…",
+    "offlineUpdate": "Actualizar",
+    "offlineRemove": "Quitar del teléfono",
+    "offlineDone": "Curso guardado: puedes jugar sin conexión.",
+    "offlineBanner": "Sin conexión: tus lecciones se enviarán en cuanto vuelva la red.",
+    "flightShort": "Extra",
+    "offlineKeptShort": "Guardado",
+    "offlineShort(plural, param=n)": {
+      "one": "{n} lección",
+      "other": "{n} lecciones"
+    },
+    "flightTitle": "Versículo en vuelo",
+    "flightText": "Extra: atrapa las palabras de un versículo en orden",
+    "flightHint": "Toca encima o debajo de Zoé para hacerla volar y atrapa las palabras en orden.",
+    "flightWon": "¡Versículo grabado!",
+    "flightLost": "Zoé perdió sus corazones",
+    "flightLostText": "No pasa nada: el versículo te espera. ¡Inténtalo otra vez!",
+    "flightAgain": "Reintentar",
+    "flightNext": "Otro versículo",
+    "flightDone": "Terminar",
+    "flightHearts(plural, param=n)": {
+      "one": "{n} corazón",
+      "other": "{n} corazones"
+    }
   }
 }

@@ -109,6 +109,7 @@ dependencies:
   gal: ^2.3.3
   rename: ^3.1.0
   file_picker: ^13.3.0
+  flame: ^1.35.1
 
 dev_dependencies:
   flutter_test:
@@ -144,6 +145,8 @@ flutter:
     - assets/prayer/
     # piano behind a retreat (Pixabay Content License, see background_music.dart)
     - assets/sounds/music/
+    # the sounds of the games, made for the app (core/services/game_sounds.dart)
+    - assets/sounds/games/
     # Our ministry: the nations (copy of GET /v1/ministry/nations) and the land
     # of the globe (Natural Earth, public domain: see features/ministry/application/land.dart)
     - assets/ministry/

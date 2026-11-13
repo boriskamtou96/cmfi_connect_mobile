@@ -24,8 +24,15 @@ class PaymentWaiting extends HookConsumerWidget {
     required this.onRetry,
     this.every = const Duration(seconds: 3),
     this.patience = const Duration(minutes: 3),
+    this.slowText,
+    this.cardText,
     super.key,
   });
+
+  /// What is said after [patience], and while a card is typed on Wajub's
+  /// page, when the payment is not a registration (a donation).
+  final String? slowText;
+  final String? cardText;
 
   final Payment payment;
   final Future<void> Function(Payment payment) onCompleted;
@@ -136,9 +143,9 @@ class PaymentWaiting extends HookConsumerWidget {
             failed
                 ? paymentFailureMessage(current.value.failureCode, context.t)
                 : slow.value
-                ? t.waitingSlow
+                ? slowText ?? t.waitingSlow
                 : payment.byCard
-                ? t.waitingCardText
+                ? cardText ?? t.waitingCardText
                 : t.waitingText(amount: amount),
             textAlign: TextAlign.center,
             style: TextStyle(

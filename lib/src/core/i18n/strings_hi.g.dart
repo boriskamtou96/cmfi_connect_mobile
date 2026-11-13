@@ -92,6 +92,7 @@ class TranslationsHi extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _Translations$reading$hi reading = _Translations$reading$hi._(_root);
 	@override late final _Translations$games$hi games = _Translations$games$hi._(_root);
 	@override late final _Translations$sheetImport$hi sheetImport = _Translations$sheetImport$hi._(_root);
+	@override late final _Translations$donation$hi donation = _Translations$donation$hi._(_root);
 }
 
 // Path: app
@@ -2228,6 +2229,30 @@ class _Translations$sheetImport$hi extends Translations$sheetImport$fr {
 	@override String get exportHint => 'PDF, तालिका, WhatsApp';
 	@override String get importTile => 'आयात';
 	@override String get importHint => 'Excel से';
+}
+
+// Path: donation
+class _Translations$donation$hi extends Translations$donation$fr {
+	_Translations$donation$hi._(TranslationsHi root) : this._root = root, super.internal(root);
+
+	final TranslationsHi _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'दान दो';
+	@override String get menuHint => 'अपनी पसंद की राशि से काम में सहयोग करो';
+	@override String get intro => 'अपनी पसंद की राशि के दान से परमेश्वर के काम में सहयोग करो। Mobile Money या कार्ड से सुरक्षित भुगतान करो।';
+	@override String get amount => 'राशि';
+	@override String get other => 'दूसरी राशि';
+	@override String bounds({required Object min, required Object max}) => '${min} और ${max} के बीच।';
+	@override String give({required Object amount}) => '${amount} दो';
+	@override String giveCard({required Object amount}) => 'कार्ड से ${amount} दो';
+	@override String get unavailable => 'भुगतान अभी उपलब्ध नहीं है। बाद में फिर कोशिश करो।';
+	@override String get waitingSlow => 'अभी भी प्रतीक्षा में। भुगतान आते ही तुम्हारा दान दर्ज हो जाएगा, भले ही तुम यह पेज बंद कर दो।';
+	@override String get waitingCard => 'Wajub के पेज पर अपना कार्ड डालो। भुगतान मिलते ही तुम्हारा दान यहाँ पक्का हो जाएगा।';
+	@override String get thanksTitle => 'तुम्हारे दान के लिए धन्यवाद!';
+	@override String thanksText({required Object amount}) => 'तुम्हारा ${amount} का दान मिल गया। प्रभु तुम्हें सौ गुना लौटाए।';
+	@override String get verse => '“परमेश्‍वर हर्ष से देनेवाले से प्रेम रखता है।” (2 कुरिन्थियों 9:7)';
+	@override String get done => 'पूरा';
 }
 
 // Path: welcome.seek
@@ -6448,6 +6473,21 @@ extension on TranslationsHi {
 			'sheetImport.exportHint' => 'PDF, तालिका, WhatsApp',
 			'sheetImport.importTile' => 'आयात',
 			'sheetImport.importHint' => 'Excel से',
+			'donation.title' => 'दान दो',
+			'donation.menuHint' => 'अपनी पसंद की राशि से काम में सहयोग करो',
+			'donation.intro' => 'अपनी पसंद की राशि के दान से परमेश्वर के काम में सहयोग करो। Mobile Money या कार्ड से सुरक्षित भुगतान करो।',
+			'donation.amount' => 'राशि',
+			'donation.other' => 'दूसरी राशि',
+			'donation.bounds' => ({required Object min, required Object max}) => '${min} और ${max} के बीच।',
+			'donation.give' => ({required Object amount}) => '${amount} दो',
+			'donation.giveCard' => ({required Object amount}) => 'कार्ड से ${amount} दो',
+			'donation.unavailable' => 'भुगतान अभी उपलब्ध नहीं है। बाद में फिर कोशिश करो।',
+			'donation.waitingSlow' => 'अभी भी प्रतीक्षा में। भुगतान आते ही तुम्हारा दान दर्ज हो जाएगा, भले ही तुम यह पेज बंद कर दो।',
+			'donation.waitingCard' => 'Wajub के पेज पर अपना कार्ड डालो। भुगतान मिलते ही तुम्हारा दान यहाँ पक्का हो जाएगा।',
+			'donation.thanksTitle' => 'तुम्हारे दान के लिए धन्यवाद!',
+			'donation.thanksText' => ({required Object amount}) => 'तुम्हारा ${amount} का दान मिल गया। प्रभु तुम्हें सौ गुना लौटाए।',
+			'donation.verse' => '“परमेश्‍वर हर्ष से देनेवाले से प्रेम रखता है।” (2 कुरिन्थियों 9:7)',
+			'donation.done' => 'पूरा',
 			_ => null,
 		};
 	}

@@ -2977,5 +2977,22 @@
     "exportHint": "PDF, Tabelle, WhatsApp",
     "importTile": "Importieren",
     "importHint": "Aus Excel"
+  },
+  "donation": {
+    "title": "Spenden",
+    "menuHint": "Unterstütze das Werk mit einem Betrag deiner Wahl",
+    "intro": "Unterstütze das Werk Gottes mit einer Spende in der Höhe deiner Wahl. Du zahlst sicher per Mobile Money oder Karte.",
+    "amount": "Betrag",
+    "other": "Anderer Betrag",
+    "bounds": "Zwischen {min} und {max}.",
+    "give": "{amount} spenden",
+    "giveCard": "{amount} per Karte spenden",
+    "unavailable": "Die Zahlung ist im Moment nicht verfügbar. Versuch es später noch einmal.",
+    "waitingSlow": "Noch in Bearbeitung. Deine Spende wird gespeichert, sobald die Zahlung eingeht, auch wenn du diese Seite schließt.",
+    "waitingCard": "Gib deine Karte auf der Wajub-Seite ein. Deine Spende wird hier bestätigt, sobald die Zahlung eingegangen ist.",
+    "thanksTitle": "Danke für deine Spende!",
+    "thanksText": "Deine Spende von {amount} ist angekommen. Der Herr vergelte es dir hundertfach.",
+    "verse": "„Einen fröhlichen Geber hat Gott lieb.“ (2. Korinther 9,7)",
+    "done": "Fertig"
   }
 }

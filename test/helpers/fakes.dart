@@ -3613,6 +3613,51 @@ class FakePaymentsApi implements PaymentsApi {
 
   final _details = <String, (bool, String)>{};
 
+  /// The donations asked.
+  final donations =
+      <
+        ({
+          int amount,
+          String phoneNumber,
+          String provider,
+          PaymentMethod method,
+        })
+      >[];
+
+  @override
+  Future<Payment> donate(
+    int amount, {
+    PaymentMethod method = PaymentMethod.mobileMoney,
+    String phoneNumber = '',
+    String provider = '',
+  }) async {
+    if (payError != null) {
+      throw payError!;
+    }
+    donations.add((
+      amount: amount,
+      phoneNumber: phoneNumber,
+      provider: provider,
+      method: method,
+    ));
+    final payment = Payment(
+      id: 'pay-${payments.length + 1}',
+      purpose: 'donation',
+      status: startStatus,
+      failureCode: startFailure,
+      amount: amount,
+      provider: method == PaymentMethod.card ? cardProvider : provider,
+      gatewayUrl: method == PaymentMethod.card
+          ? 'https://pay.wajub.com/gw_${payments.length + 1}'
+          : '',
+    );
+    return payments[payment.id] = payment;
+  }
+
+  /// The money of a donation arrived.
+  void received(String id) =>
+      payments[id] = payments[id]!.copyWith(status: PaymentStatus.completed);
+
   @override
   Future<Payment> get(String id) async => payments[id]!;
 

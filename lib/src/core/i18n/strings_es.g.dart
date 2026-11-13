@@ -92,6 +92,7 @@ class TranslationsEs extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _Translations$reading$es reading = _Translations$reading$es._(_root);
 	@override late final _Translations$games$es games = _Translations$games$es._(_root);
 	@override late final _Translations$sheetImport$es sheetImport = _Translations$sheetImport$es._(_root);
+	@override late final _Translations$donation$es donation = _Translations$donation$es._(_root);
 }
 
 // Path: app
@@ -2229,6 +2230,30 @@ class _Translations$sheetImport$es extends Translations$sheetImport$fr {
 	@override String get exportHint => 'PDF, hoja de cálculo, WhatsApp';
 	@override String get importTile => 'Importar';
 	@override String get importHint => 'Desde Excel';
+}
+
+// Path: donation
+class _Translations$donation$es extends Translations$donation$fr {
+	_Translations$donation$es._(TranslationsEs root) : this._root = root, super.internal(root);
+
+	final TranslationsEs _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Hacer una ofrenda';
+	@override String get menuHint => 'Apoya la obra con el monto que elijas';
+	@override String get intro => 'Apoya la obra de Dios con una ofrenda del monto que elijas. Pagas con Mobile Money o con tarjeta, de forma segura.';
+	@override String get amount => 'Monto';
+	@override String get other => 'Otro monto';
+	@override String bounds({required Object min, required Object max}) => 'Entre ${min} y ${max}.';
+	@override String give({required Object amount}) => 'Dar ${amount}';
+	@override String giveCard({required Object amount}) => 'Dar ${amount} con tarjeta';
+	@override String get unavailable => 'El pago no está disponible por ahora. Inténtalo más tarde.';
+	@override String get waitingSlow => 'Aún en espera. Tu ofrenda se registrará en cuanto llegue el pago, aunque cierres esta página.';
+	@override String get waitingCard => 'Introduce tu tarjeta en la página de Wajub. Tu ofrenda se confirma aquí en cuanto se recibe el pago.';
+	@override String get thanksTitle => '¡Gracias por tu ofrenda!';
+	@override String thanksText({required Object amount}) => 'Tu ofrenda de ${amount} se ha recibido. Que el Señor te lo devuelva al ciento por uno.';
+	@override String get verse => '«Dios ama el dador alegre.» (2 Corintios 9:7)';
+	@override String get done => 'Terminar';
 }
 
 // Path: welcome.seek
@@ -6449,6 +6474,21 @@ extension on TranslationsEs {
 			'sheetImport.exportHint' => 'PDF, hoja de cálculo, WhatsApp',
 			'sheetImport.importTile' => 'Importar',
 			'sheetImport.importHint' => 'Desde Excel',
+			'donation.title' => 'Hacer una ofrenda',
+			'donation.menuHint' => 'Apoya la obra con el monto que elijas',
+			'donation.intro' => 'Apoya la obra de Dios con una ofrenda del monto que elijas. Pagas con Mobile Money o con tarjeta, de forma segura.',
+			'donation.amount' => 'Monto',
+			'donation.other' => 'Otro monto',
+			'donation.bounds' => ({required Object min, required Object max}) => 'Entre ${min} y ${max}.',
+			'donation.give' => ({required Object amount}) => 'Dar ${amount}',
+			'donation.giveCard' => ({required Object amount}) => 'Dar ${amount} con tarjeta',
+			'donation.unavailable' => 'El pago no está disponible por ahora. Inténtalo más tarde.',
+			'donation.waitingSlow' => 'Aún en espera. Tu ofrenda se registrará en cuanto llegue el pago, aunque cierres esta página.',
+			'donation.waitingCard' => 'Introduce tu tarjeta en la página de Wajub. Tu ofrenda se confirma aquí en cuanto se recibe el pago.',
+			'donation.thanksTitle' => '¡Gracias por tu ofrenda!',
+			'donation.thanksText' => ({required Object amount}) => 'Tu ofrenda de ${amount} se ha recibido. Que el Señor te lo devuelva al ciento por uno.',
+			'donation.verse' => '«Dios ama el dador alegre.» (2 Corintios 9:7)',
+			'donation.done' => 'Terminar',
 			_ => null,
 		};
 	}

@@ -2860,5 +2860,22 @@
     "exportHint": "PDF、表格、WhatsApp",
     "importTile": "导入",
     "importHint": "从 Excel"
+  },
+  "donation": {
+    "title": "奉献",
+    "menuHint": "以你选择的金额支持事工",
+    "intro": "以你选择的金额奉献，支持神的工作。可通过 Mobile Money 或银行卡安全支付。",
+    "amount": "金额",
+    "other": "其他金额",
+    "bounds": "在 {min} 和 {max} 之间。",
+    "give": "奉献 {amount}",
+    "giveCard": "用银行卡奉献 {amount}",
+    "unavailable": "暂时无法支付，请稍后再试。",
+    "waitingSlow": "仍在等待。付款一到，你的奉献就会被记录，即使你关闭此页面。",
+    "waitingCard": "请在 Wajub 页面输入你的银行卡。收到付款后，你的奉献会在这里确认。",
+    "thanksTitle": "感谢你的奉献！",
+    "thanksText": "已收到你 {amount} 的奉献。愿主百倍地报答你。",
+    "verse": "“捐得乐意的人是神所喜爱的。”（哥林多后书 9:7）",
+    "done": "完成"
   }
 }

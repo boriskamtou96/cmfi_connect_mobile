@@ -65,6 +65,30 @@ class PaymentsApi {
     return Payment.fromJson(response.content);
   });
 
+  /// « Faire un don »: [amount] of [currency]'s whole units, asked of the
+  /// member's phone or paid on Wajub's page for a card. Nothing is given in
+  /// return. 409 AMOUNT_OUT_OF_BOUNDS, PROVIDER_UNAVAILABLE, CARDS_DISABLED;
+  /// 400 INVALID_PHONE; 503 PAYMENTS_DISABLED.
+  Future<Payment> donate(
+    int amount, {
+    PaymentMethod method = PaymentMethod.mobileMoney,
+    String phoneNumber = '',
+    String provider = '',
+  }) => apiCall(() async {
+    final response = await _dio.post<Map<String, dynamic>>(
+      '/donations',
+      data: {
+        'amount': amount,
+        'method': method.code,
+        if (method == PaymentMethod.mobileMoney) ...{
+          'phone_number': phoneNumber,
+          'provider': provider,
+        },
+      },
+    );
+    return Payment.fromJson(response.content);
+  });
+
   Future<Payment> get(String id) => apiCall(() async {
     final response = await _dio.get<Map<String, dynamic>>('/payments/$id');
     return Payment.fromJson(response.content);

@@ -2977,5 +2977,22 @@
     "exportHint": "PDF, hoja de cálculo, WhatsApp",
     "importTile": "Importar",
     "importHint": "Desde Excel"
+  },
+  "donation": {
+    "title": "Hacer una ofrenda",
+    "menuHint": "Apoya la obra con el monto que elijas",
+    "intro": "Apoya la obra de Dios con una ofrenda del monto que elijas. Pagas con Mobile Money o con tarjeta, de forma segura.",
+    "amount": "Monto",
+    "other": "Otro monto",
+    "bounds": "Entre {min} y {max}.",
+    "give": "Dar {amount}",
+    "giveCard": "Dar {amount} con tarjeta",
+    "unavailable": "El pago no está disponible por ahora. Inténtalo más tarde.",
+    "waitingSlow": "Aún en espera. Tu ofrenda se registrará en cuanto llegue el pago, aunque cierres esta página.",
+    "waitingCard": "Introduce tu tarjeta en la página de Wajub. Tu ofrenda se confirma aquí en cuanto se recibe el pago.",
+    "thanksTitle": "¡Gracias por tu ofrenda!",
+    "thanksText": "Tu ofrenda de {amount} se ha recibido. Que el Señor te lo devuelva al ciento por uno.",
+    "verse": "«Dios ama el dador alegre.» (2 Corintios 9:7)",
+    "done": "Terminar"
   }
 }

@@ -92,6 +92,7 @@ class TranslationsAr extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _Translations$reading$ar reading = _Translations$reading$ar._(_root);
 	@override late final _Translations$games$ar games = _Translations$games$ar._(_root);
 	@override late final _Translations$sheetImport$ar sheetImport = _Translations$sheetImport$ar._(_root);
+	@override late final _Translations$donation$ar donation = _Translations$donation$ar._(_root);
 }
 
 // Path: app
@@ -2549,6 +2550,30 @@ class _Translations$sheetImport$ar extends Translations$sheetImport$fr {
 	@override String get exportHint => 'PDF، جدول، WhatsApp';
 	@override String get importTile => 'استيراد';
 	@override String get importHint => 'من Excel';
+}
+
+// Path: donation
+class _Translations$donation$ar extends Translations$donation$fr {
+	_Translations$donation$ar._(TranslationsAr root) : this._root = root, super.internal(root);
+
+	final TranslationsAr _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'تقديم عطاء';
+	@override String get menuHint => 'ادعم العمل بالمبلغ الذي تختاره';
+	@override String get intro => 'ادعم عمل الله بعطاء بالمبلغ الذي تختاره. تدفع عبر Mobile Money أو بالبطاقة، بأمان.';
+	@override String get amount => 'المبلغ';
+	@override String get other => 'مبلغ آخر';
+	@override String bounds({required Object min, required Object max}) => 'بين ${min} و${max}.';
+	@override String give({required Object amount}) => 'أعطِ ${amount}';
+	@override String giveCard({required Object amount}) => 'أعطِ ${amount} بالبطاقة';
+	@override String get unavailable => 'الدفع غير متاح حاليًا. حاول لاحقًا.';
+	@override String get waitingSlow => 'ما زال قيد الانتظار. سيُسجَّل عطاؤك فور وصول الدفع، حتى لو أغلقت هذه الصفحة.';
+	@override String get waitingCard => 'أدخل بطاقتك في صفحة Wajub. يتأكد عطاؤك هنا فور استلام الدفع.';
+	@override String get thanksTitle => 'شكرًا على عطائك!';
+	@override String thanksText({required Object amount}) => 'تم استلام عطائك البالغ ${amount}. ليعوّضك الرب مئة ضعف.';
+	@override String get verse => '«الْمُعْطِيَ الْمَسْرُورَ يُحِبُّهُ اللهُ.» (٢ كورنثوس ٩: ٧)';
+	@override String get done => 'إنهاء';
 }
 
 // Path: welcome.seek
@@ -6910,6 +6935,21 @@ extension on TranslationsAr {
 			'sheetImport.exportHint' => 'PDF، جدول، WhatsApp',
 			'sheetImport.importTile' => 'استيراد',
 			'sheetImport.importHint' => 'من Excel',
+			'donation.title' => 'تقديم عطاء',
+			'donation.menuHint' => 'ادعم العمل بالمبلغ الذي تختاره',
+			'donation.intro' => 'ادعم عمل الله بعطاء بالمبلغ الذي تختاره. تدفع عبر Mobile Money أو بالبطاقة، بأمان.',
+			'donation.amount' => 'المبلغ',
+			'donation.other' => 'مبلغ آخر',
+			'donation.bounds' => ({required Object min, required Object max}) => 'بين ${min} و${max}.',
+			'donation.give' => ({required Object amount}) => 'أعطِ ${amount}',
+			'donation.giveCard' => ({required Object amount}) => 'أعطِ ${amount} بالبطاقة',
+			'donation.unavailable' => 'الدفع غير متاح حاليًا. حاول لاحقًا.',
+			'donation.waitingSlow' => 'ما زال قيد الانتظار. سيُسجَّل عطاؤك فور وصول الدفع، حتى لو أغلقت هذه الصفحة.',
+			'donation.waitingCard' => 'أدخل بطاقتك في صفحة Wajub. يتأكد عطاؤك هنا فور استلام الدفع.',
+			'donation.thanksTitle' => 'شكرًا على عطائك!',
+			'donation.thanksText' => ({required Object amount}) => 'تم استلام عطائك البالغ ${amount}. ليعوّضك الرب مئة ضعف.',
+			'donation.verse' => '«الْمُعْطِيَ الْمَسْرُورَ يُحِبُّهُ اللهُ.» (٢ كورنثوس ٩: ٧)',
+			'donation.done' => 'إنهاء',
 			_ => null,
 		};
 	}

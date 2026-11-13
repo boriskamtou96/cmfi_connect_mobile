@@ -55,6 +55,7 @@ import '../features/notifications/presentation/notification_screen.dart';
 import '../features/notifications/presentation/notifications_screen.dart';
 import '../features/onboarding/presentation/splash_screen.dart';
 import '../features/onboarding/presentation/welcome_screen.dart';
+import '../features/payments/presentation/donation_screen.dart';
 import '../features/prayer/domain/prayer.dart';
 import '../features/prayer/presentation/blocked_members_screen.dart';
 import '../features/prayer/presentation/importunity_screen.dart';
@@ -299,6 +300,8 @@ class AppRouter extends RootStackRouter {
       page: ExportReportRoute.page,
       guards: [authGuard],
     ),
+    // « Faire un don »: an amount chosen, paid with Wajub
+    AutoRoute(path: '/donate', page: DonationRoute.page, guards: [authGuard]),
     // past days filled from an Excel file
     AutoRoute(
       path: '/reports/import',

@@ -92,6 +92,7 @@ class TranslationsEn extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _Translations$reading$en reading = _Translations$reading$en._(_root);
 	@override late final _Translations$games$en games = _Translations$games$en._(_root);
 	@override late final _Translations$sheetImport$en sheetImport = _Translations$sheetImport$en._(_root);
+	@override late final _Translations$donation$en donation = _Translations$donation$en._(_root);
 }
 
 // Path: app
@@ -2230,6 +2231,30 @@ class _Translations$sheetImport$en extends Translations$sheetImport$fr {
 	@override String get exportHint => 'PDF, spreadsheet, WhatsApp';
 	@override String get importTile => 'Import';
 	@override String get importHint => 'From Excel';
+}
+
+// Path: donation
+class _Translations$donation$en extends Translations$donation$fr {
+	_Translations$donation$en._(TranslationsEn root) : this._root = root, super.internal(root);
+
+	final TranslationsEn _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Give';
+	@override String get menuHint => 'Support the work, with the amount you choose';
+	@override String get intro => 'Support the work of God with a gift of the amount you choose. You pay by Mobile Money or by card, securely.';
+	@override String get amount => 'Amount';
+	@override String get other => 'Other amount';
+	@override String bounds({required Object min, required Object max}) => 'Between ${min} and ${max}.';
+	@override String give({required Object amount}) => 'Give ${amount}';
+	@override String giveCard({required Object amount}) => 'Give ${amount} by card';
+	@override String get unavailable => 'Payment is not available for now. Try again later.';
+	@override String get waitingSlow => 'Still waiting. Your gift will be recorded as soon as the payment arrives, even if you close this page.';
+	@override String get waitingCard => 'Enter your card on the Wajub page. Your gift is confirmed here as soon as the payment is received.';
+	@override String get thanksTitle => 'Thank you for your gift!';
+	@override String thanksText({required Object amount}) => 'Your gift of ${amount} has been received. May the Lord repay you a hundredfold.';
+	@override String get verse => '“God loveth a cheerful giver.” (2 Corinthians 9:7)';
+	@override String get done => 'Done';
 }
 
 // Path: welcome.seek
@@ -6450,6 +6475,21 @@ extension on TranslationsEn {
 			'sheetImport.exportHint' => 'PDF, spreadsheet, WhatsApp',
 			'sheetImport.importTile' => 'Import',
 			'sheetImport.importHint' => 'From Excel',
+			'donation.title' => 'Give',
+			'donation.menuHint' => 'Support the work, with the amount you choose',
+			'donation.intro' => 'Support the work of God with a gift of the amount you choose. You pay by Mobile Money or by card, securely.',
+			'donation.amount' => 'Amount',
+			'donation.other' => 'Other amount',
+			'donation.bounds' => ({required Object min, required Object max}) => 'Between ${min} and ${max}.',
+			'donation.give' => ({required Object amount}) => 'Give ${amount}',
+			'donation.giveCard' => ({required Object amount}) => 'Give ${amount} by card',
+			'donation.unavailable' => 'Payment is not available for now. Try again later.',
+			'donation.waitingSlow' => 'Still waiting. Your gift will be recorded as soon as the payment arrives, even if you close this page.',
+			'donation.waitingCard' => 'Enter your card on the Wajub page. Your gift is confirmed here as soon as the payment is received.',
+			'donation.thanksTitle' => 'Thank you for your gift!',
+			'donation.thanksText' => ({required Object amount}) => 'Your gift of ${amount} has been received. May the Lord repay you a hundredfold.',
+			'donation.verse' => '“God loveth a cheerful giver.” (2 Corinthians 9:7)',
+			'donation.done' => 'Done',
 			_ => null,
 		};
 	}

@@ -92,6 +92,7 @@ class TranslationsDe extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _Translations$reading$de reading = _Translations$reading$de._(_root);
 	@override late final _Translations$games$de games = _Translations$games$de._(_root);
 	@override late final _Translations$sheetImport$de sheetImport = _Translations$sheetImport$de._(_root);
+	@override late final _Translations$donation$de donation = _Translations$donation$de._(_root);
 }
 
 // Path: app
@@ -2229,6 +2230,30 @@ class _Translations$sheetImport$de extends Translations$sheetImport$fr {
 	@override String get exportHint => 'PDF, Tabelle, WhatsApp';
 	@override String get importTile => 'Importieren';
 	@override String get importHint => 'Aus Excel';
+}
+
+// Path: donation
+class _Translations$donation$de extends Translations$donation$fr {
+	_Translations$donation$de._(TranslationsDe root) : this._root = root, super.internal(root);
+
+	final TranslationsDe _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Spenden';
+	@override String get menuHint => 'Unterstütze das Werk mit einem Betrag deiner Wahl';
+	@override String get intro => 'Unterstütze das Werk Gottes mit einer Spende in der Höhe deiner Wahl. Du zahlst sicher per Mobile Money oder Karte.';
+	@override String get amount => 'Betrag';
+	@override String get other => 'Anderer Betrag';
+	@override String bounds({required Object min, required Object max}) => 'Zwischen ${min} und ${max}.';
+	@override String give({required Object amount}) => '${amount} spenden';
+	@override String giveCard({required Object amount}) => '${amount} per Karte spenden';
+	@override String get unavailable => 'Die Zahlung ist im Moment nicht verfügbar. Versuch es später noch einmal.';
+	@override String get waitingSlow => 'Noch in Bearbeitung. Deine Spende wird gespeichert, sobald die Zahlung eingeht, auch wenn du diese Seite schließt.';
+	@override String get waitingCard => 'Gib deine Karte auf der Wajub-Seite ein. Deine Spende wird hier bestätigt, sobald die Zahlung eingegangen ist.';
+	@override String get thanksTitle => 'Danke für deine Spende!';
+	@override String thanksText({required Object amount}) => 'Deine Spende von ${amount} ist angekommen. Der Herr vergelte es dir hundertfach.';
+	@override String get verse => '„Einen fröhlichen Geber hat Gott lieb.“ (2. Korinther 9,7)';
+	@override String get done => 'Fertig';
 }
 
 // Path: welcome.seek
@@ -6449,6 +6474,21 @@ extension on TranslationsDe {
 			'sheetImport.exportHint' => 'PDF, Tabelle, WhatsApp',
 			'sheetImport.importTile' => 'Importieren',
 			'sheetImport.importHint' => 'Aus Excel',
+			'donation.title' => 'Spenden',
+			'donation.menuHint' => 'Unterstütze das Werk mit einem Betrag deiner Wahl',
+			'donation.intro' => 'Unterstütze das Werk Gottes mit einer Spende in der Höhe deiner Wahl. Du zahlst sicher per Mobile Money oder Karte.',
+			'donation.amount' => 'Betrag',
+			'donation.other' => 'Anderer Betrag',
+			'donation.bounds' => ({required Object min, required Object max}) => 'Zwischen ${min} und ${max}.',
+			'donation.give' => ({required Object amount}) => '${amount} spenden',
+			'donation.giveCard' => ({required Object amount}) => '${amount} per Karte spenden',
+			'donation.unavailable' => 'Die Zahlung ist im Moment nicht verfügbar. Versuch es später noch einmal.',
+			'donation.waitingSlow' => 'Noch in Bearbeitung. Deine Spende wird gespeichert, sobald die Zahlung eingeht, auch wenn du diese Seite schließt.',
+			'donation.waitingCard' => 'Gib deine Karte auf der Wajub-Seite ein. Deine Spende wird hier bestätigt, sobald die Zahlung eingegangen ist.',
+			'donation.thanksTitle' => 'Danke für deine Spende!',
+			'donation.thanksText' => ({required Object amount}) => 'Deine Spende von ${amount} ist angekommen. Der Herr vergelte es dir hundertfach.',
+			'donation.verse' => '„Einen fröhlichen Geber hat Gott lieb.“ (2. Korinther 9,7)',
+			'donation.done' => 'Fertig',
 			_ => null,
 		};
 	}

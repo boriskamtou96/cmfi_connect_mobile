@@ -94,6 +94,7 @@ class Translations with BaseTranslations<AppLocale, Translations> {
 	late final Translations$reading$fr reading = Translations$reading$fr.internal(_root);
 	late final Translations$games$fr games = Translations$games$fr.internal(_root);
 	late final Translations$sheetImport$fr sheetImport = Translations$sheetImport$fr.internal(_root);
+	late final Translations$donation$fr donation = Translations$donation$fr.internal(_root);
 }
 
 // Path: app
@@ -4724,6 +4725,60 @@ class Translations$sheetImport$fr {
 
 	/// fr: 'Depuis Excel'
 	String get importHint => 'Depuis Excel';
+}
+
+// Path: donation
+class Translations$donation$fr {
+	Translations$donation$fr.internal(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// fr: 'Faire un don'
+	String get title => 'Faire un don';
+
+	/// fr: 'Soutiens l’œuvre, du montant de ton choix'
+	String get menuHint => 'Soutiens l’œuvre, du montant de ton choix';
+
+	/// fr: 'Soutiens l’œuvre de Dieu par un don du montant de ton choix. Tu paies par Mobile Money ou par carte, en toute sécurité.'
+	String get intro => 'Soutiens l’œuvre de Dieu par un don du montant de ton choix. Tu paies par Mobile Money ou par carte, en toute sécurité.';
+
+	/// fr: 'Montant'
+	String get amount => 'Montant';
+
+	/// fr: 'Autre montant'
+	String get other => 'Autre montant';
+
+	/// fr: 'Entre {min} et {max}.'
+	String bounds({required Object min, required Object max}) => 'Entre ${min} et ${max}.';
+
+	/// fr: 'Donner {amount}'
+	String give({required Object amount}) => 'Donner ${amount}';
+
+	/// fr: 'Donner {amount} par carte'
+	String giveCard({required Object amount}) => 'Donner ${amount} par carte';
+
+	/// fr: 'Le paiement n’est pas disponible pour le moment. Réessaie plus tard.'
+	String get unavailable => 'Le paiement n’est pas disponible pour le moment. Réessaie plus tard.';
+
+	/// fr: 'Toujours en attente. Ton don sera enregistré dès que le paiement arrive, même si tu fermes cette page.'
+	String get waitingSlow => 'Toujours en attente. Ton don sera enregistré dès que le paiement arrive, même si tu fermes cette page.';
+
+	/// fr: 'Saisis ta carte sur la page Wajub. Ton don se confirme ici dès que le paiement est reçu.'
+	String get waitingCard => 'Saisis ta carte sur la page Wajub. Ton don se confirme ici dès que le paiement est reçu.';
+
+	/// fr: 'Merci pour ton don !'
+	String get thanksTitle => 'Merci pour ton don !';
+
+	/// fr: 'Ton don de {amount} est bien reçu. Que le Seigneur te le rende au centuple.'
+	String thanksText({required Object amount}) => 'Ton don de ${amount} est bien reçu. Que le Seigneur te le rende au centuple.';
+
+	/// fr: '« Dieu aime celui qui donne avec joie. » (2 Corinthiens 9.7)'
+	String get verse => '« Dieu aime celui qui donne avec joie. » (2 Corinthiens 9.7)';
+
+	/// fr: 'Terminer'
+	String get done => 'Terminer';
 }
 
 // Path: welcome.seek
@@ -10717,6 +10772,21 @@ extension on Translations {
 			'sheetImport.exportHint' => 'PDF, tableur, WhatsApp',
 			'sheetImport.importTile' => 'Importer',
 			'sheetImport.importHint' => 'Depuis Excel',
+			'donation.title' => 'Faire un don',
+			'donation.menuHint' => 'Soutiens l’œuvre, du montant de ton choix',
+			'donation.intro' => 'Soutiens l’œuvre de Dieu par un don du montant de ton choix. Tu paies par Mobile Money ou par carte, en toute sécurité.',
+			'donation.amount' => 'Montant',
+			'donation.other' => 'Autre montant',
+			'donation.bounds' => ({required Object min, required Object max}) => 'Entre ${min} et ${max}.',
+			'donation.give' => ({required Object amount}) => 'Donner ${amount}',
+			'donation.giveCard' => ({required Object amount}) => 'Donner ${amount} par carte',
+			'donation.unavailable' => 'Le paiement n’est pas disponible pour le moment. Réessaie plus tard.',
+			'donation.waitingSlow' => 'Toujours en attente. Ton don sera enregistré dès que le paiement arrive, même si tu fermes cette page.',
+			'donation.waitingCard' => 'Saisis ta carte sur la page Wajub. Ton don se confirme ici dès que le paiement est reçu.',
+			'donation.thanksTitle' => 'Merci pour ton don !',
+			'donation.thanksText' => ({required Object amount}) => 'Ton don de ${amount} est bien reçu. Que le Seigneur te le rende au centuple.',
+			'donation.verse' => '« Dieu aime celui qui donne avec joie. » (2 Corinthiens 9.7)',
+			'donation.done' => 'Terminer',
 			_ => null,
 		};
 	}

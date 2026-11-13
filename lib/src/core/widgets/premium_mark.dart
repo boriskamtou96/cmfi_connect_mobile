@@ -12,10 +12,19 @@ import '../theme/app_icons.dart';
 /// photo was taken away at the user's request). Read « Membre Premium » by
 /// screen readers. Nothing changes without Premium.
 class PremiumMark extends ConsumerWidget {
-  const PremiumMark({required this.size, required this.child, super.key});
+  const PremiumMark({
+    required this.size,
+    required this.child,
+    this.sealAtStart = false,
+    super.key,
+  });
 
   final double size;
   final Widget child;
+
+  /// The seal on the other lower side: the photo already carries a button
+  /// where the seal usually sits (the camera of the profile).
+  final bool sealAtStart;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -45,7 +54,8 @@ class PremiumMark extends ConsumerWidget {
               ),
             ),
             PositionedDirectional(
-              end: -seal * 0.18,
+              start: sealAtStart ? -seal * 0.18 : null,
+              end: sealAtStart ? null : -seal * 0.18,
               bottom: -seal * 0.18,
               child: Container(
                 width: seal,

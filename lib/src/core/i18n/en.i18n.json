@@ -2978,5 +2978,22 @@
     "exportHint": "PDF, spreadsheet, WhatsApp",
     "importTile": "Import",
     "importHint": "From Excel"
+  },
+  "donation": {
+    "title": "Give",
+    "menuHint": "Support the work, with the amount you choose",
+    "intro": "Support the work of God with a gift of the amount you choose. You pay by Mobile Money or by card, securely.",
+    "amount": "Amount",
+    "other": "Other amount",
+    "bounds": "Between {min} and {max}.",
+    "give": "Give {amount}",
+    "giveCard": "Give {amount} by card",
+    "unavailable": "Payment is not available for now. Try again later.",
+    "waitingSlow": "Still waiting. Your gift will be recorded as soon as the payment arrives, even if you close this page.",
+    "waitingCard": "Enter your card on the Wajub page. Your gift is confirmed here as soon as the payment is received.",
+    "thanksTitle": "Thank you for your gift!",
+    "thanksText": "Your gift of {amount} has been received. May the Lord repay you a hundredfold.",
+    "verse": "“God loveth a cheerful giver.” (2 Corinthians 9:7)",
+    "done": "Done"
   }
 }

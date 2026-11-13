@@ -2977,5 +2977,22 @@
     "exportHint": "PDF, tableur, WhatsApp",
     "importTile": "Importer",
     "importHint": "Depuis Excel"
+  },
+  "donation": {
+    "title": "Faire un don",
+    "menuHint": "Soutiens l’œuvre, du montant de ton choix",
+    "intro": "Soutiens l’œuvre de Dieu par un don du montant de ton choix. Tu paies par Mobile Money ou par carte, en toute sécurité.",
+    "amount": "Montant",
+    "other": "Autre montant",
+    "bounds": "Entre {min} et {max}.",
+    "give": "Donner {amount}",
+    "giveCard": "Donner {amount} par carte",
+    "unavailable": "Le paiement n’est pas disponible pour le moment. Réessaie plus tard.",
+    "waitingSlow": "Toujours en attente. Ton don sera enregistré dès que le paiement arrive, même si tu fermes cette page.",
+    "waitingCard": "Saisis ta carte sur la page Wajub. Ton don se confirme ici dès que le paiement est reçu.",
+    "thanksTitle": "Merci pour ton don !",
+    "thanksText": "Ton don de {amount} est bien reçu. Que le Seigneur te le rende au centuple.",
+    "verse": "« Dieu aime celui qui donne avec joie. » (2 Corinthiens 9.7)",
+    "done": "Terminer"
   }
 }

@@ -245,6 +245,18 @@ class MenuScreen extends ConsumerWidget {
                       SectionCard(
                         children: [
                           MenuTile(
+                            icon: AppIcons.donateTile,
+                            module: AppModule.prayer,
+                            title: t.donation.title,
+                            subtitle: t.donation.menuHint,
+                            onTap: () => go(const DonationRoute()),
+                          ),
+                        ],
+                      ),
+                      const SizedBox(height: AppSpacing.lg),
+                      SectionCard(
+                        children: [
+                          MenuTile(
                             icon: AppIcons.settings,
                             title: t.settings.title,
                             onTap: () => go(const SettingsRoute()),

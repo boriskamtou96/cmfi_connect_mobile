@@ -47,6 +47,8 @@ abstract final class AppIcons {
   // « Verset en vol »: the game, and its hearts
   static const verseFlight = PhosphorIconsFill.bird;
   static const heartFilled = PhosphorIconsFill.heart;
+  // « Faire un don »
+  static const donateTile = PhosphorIconsDuotone.handHeart;
   static const streak = PhosphorIconsFill.flame;
   static const offline = PhosphorIconsRegular.cloudSlash;
 

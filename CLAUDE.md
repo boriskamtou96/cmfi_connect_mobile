@@ -362,6 +362,10 @@ Règles de dépendance :
 - La géométrie : `domain/globe_math.dart` (projection orthographique, arcs). Les terres : `assets/ministry/land_dots.bin`, 4 233 points tirés de Natural Earth 1:110m (domaine public) ; voir `application/land.dart`.
 - Dans les tests : `FakeMinistryApi(list:, offline:)` ; « Les nations » s'ouvre depuis le hub. Pendant un voyage, `pump(journeyStep)` (pas de `pumpAndSettle`) ; après « Pause », un `pump()` avant d'avancer le temps.
 
+## Faire un don
+
+- Onglet « Vous » › « Faire un don » (`DonationScreen`, `/donate`, `features/payments`, 13/11/2026) : quatre montants à toucher (`donationAmounts`) ou « Autre montant » (100 à 500 000 FCFA, comme le serveur), puis le paiement Wajub d'un évènement : Mobile Money (numéro du compte par défaut, opérateur deviné) ou carte. `PaymentsApi.donate` → `POST /v1/donations` ; `PaymentWaiting` (ses textes `slowText`, `cardText` parlent du don) suit le paiement, puis un merci (Zoé, 2 Corinthiens 9.7). Rien n'est donné en échange. Dans les tests : `FakePaymentsApi.donations`, `received(id)`. À savoir : l'App Store ne permet les dons dans une app qu'aux organisations approuvées ; sinon il faut renvoyer vers un site.
+
 ## Mascotte
 
 - Zoé, la colombe du logo : `DoveMascot(pose:, size:)` (`core/widgets/dove_mascot.dart`), poses `joy`, `cheer`, `celebrate`, `rest` ; décorative sauf `semanticLabel`. Vivante depuis le 22/10/2026, sans paquet (Rive écarté : elle est dessinée en code) : elle respire, cligne des yeux (joy), salue de l'aile (cheer), bat des ailes avec les étoiles qui scintillent (celebrate), les « z » montent (rest) — `DoveMotion.at(pose, t)`, une boucle de 3,6 s ; immobile sous 40 px, avec « réduire les animations », et dans les tests (`DoveMascot.lively = false` dans `pumpApp`). Utilisée sur les états vides (notifications, membres bloqués), l'écran Premium, le widget et la fête des paliers de la série. `flutter test tool/brand_assets_test.dart --plain-name 'generate mascot images'` régénère `assets/brand/mascot_*.png`.

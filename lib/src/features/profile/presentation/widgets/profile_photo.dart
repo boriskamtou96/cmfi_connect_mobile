@@ -54,6 +54,8 @@ class ProfilePhotoButton extends HookConsumerWidget {
             children: [
               PremiumMark(
                 size: size,
+                // the camera button holds the usual corner of the seal
+                sealAtStart: true,
                 child: MemberAvatar(
                   initials: profile?.initials ?? '',
                   photo: profile?.avatar,

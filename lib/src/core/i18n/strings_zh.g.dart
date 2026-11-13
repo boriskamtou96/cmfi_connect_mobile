@@ -92,6 +92,7 @@ class TranslationsZh extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _Translations$reading$zh reading = _Translations$reading$zh._(_root);
 	@override late final _Translations$games$zh games = _Translations$games$zh._(_root);
 	@override late final _Translations$sheetImport$zh sheetImport = _Translations$sheetImport$zh._(_root);
+	@override late final _Translations$donation$zh donation = _Translations$donation$zh._(_root);
 }
 
 // Path: app
@@ -2148,6 +2149,30 @@ class _Translations$sheetImport$zh extends Translations$sheetImport$fr {
 	@override String get exportHint => 'PDF、表格、WhatsApp';
 	@override String get importTile => '导入';
 	@override String get importHint => '从 Excel';
+}
+
+// Path: donation
+class _Translations$donation$zh extends Translations$donation$fr {
+	_Translations$donation$zh._(TranslationsZh root) : this._root = root, super.internal(root);
+
+	final TranslationsZh _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => '奉献';
+	@override String get menuHint => '以你选择的金额支持事工';
+	@override String get intro => '以你选择的金额奉献，支持神的工作。可通过 Mobile Money 或银行卡安全支付。';
+	@override String get amount => '金额';
+	@override String get other => '其他金额';
+	@override String bounds({required Object min, required Object max}) => '在 ${min} 和 ${max} 之间。';
+	@override String give({required Object amount}) => '奉献 ${amount}';
+	@override String giveCard({required Object amount}) => '用银行卡奉献 ${amount}';
+	@override String get unavailable => '暂时无法支付，请稍后再试。';
+	@override String get waitingSlow => '仍在等待。付款一到，你的奉献就会被记录，即使你关闭此页面。';
+	@override String get waitingCard => '请在 Wajub 页面输入你的银行卡。收到付款后，你的奉献会在这里确认。';
+	@override String get thanksTitle => '感谢你的奉献！';
+	@override String thanksText({required Object amount}) => '已收到你 ${amount} 的奉献。愿主百倍地报答你。';
+	@override String get verse => '“捐得乐意的人是神所喜爱的。”（哥林多后书 9:7）';
+	@override String get done => '完成';
 }
 
 // Path: welcome.seek
@@ -6332,6 +6357,21 @@ extension on TranslationsZh {
 			'sheetImport.exportHint' => 'PDF、表格、WhatsApp',
 			'sheetImport.importTile' => '导入',
 			'sheetImport.importHint' => '从 Excel',
+			'donation.title' => '奉献',
+			'donation.menuHint' => '以你选择的金额支持事工',
+			'donation.intro' => '以你选择的金额奉献，支持神的工作。可通过 Mobile Money 或银行卡安全支付。',
+			'donation.amount' => '金额',
+			'donation.other' => '其他金额',
+			'donation.bounds' => ({required Object min, required Object max}) => '在 ${min} 和 ${max} 之间。',
+			'donation.give' => ({required Object amount}) => '奉献 ${amount}',
+			'donation.giveCard' => ({required Object amount}) => '用银行卡奉献 ${amount}',
+			'donation.unavailable' => '暂时无法支付，请稍后再试。',
+			'donation.waitingSlow' => '仍在等待。付款一到，你的奉献就会被记录，即使你关闭此页面。',
+			'donation.waitingCard' => '请在 Wajub 页面输入你的银行卡。收到付款后，你的奉献会在这里确认。',
+			'donation.thanksTitle' => '感谢你的奉献！',
+			'donation.thanksText' => ({required Object amount}) => '已收到你 ${amount} 的奉献。愿主百倍地报答你。',
+			'donation.verse' => '“捐得乐意的人是神所喜爱的。”（哥林多后书 9:7）',
+			'donation.done' => '完成',
 			_ => null,
 		};
 	}

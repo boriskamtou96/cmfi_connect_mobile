@@ -86,14 +86,6 @@ class ReportsScreen extends ConsumerWidget {
             icon: const Icon(AppIcons.calendar, size: 22),
           ),
           const SizedBox(width: AppSpacing.sm),
-        ] else ...[
-          IconButton.outlined(
-            tooltip: t.reports.export,
-            style: squareStyle,
-            onPressed: () => context.router.push(const ExportReportRoute()),
-            icon: const Icon(AppIcons.share, size: 21),
-          ),
-          const SizedBox(width: AppSpacing.sm),
         ],
         IconButton.outlined(
           tooltip: t.reports.myItems,
@@ -146,6 +138,54 @@ class ReportsScreen extends ConsumerWidget {
                 : _PendingBanner(
                     count: pending.length,
                     onRetry: ref.read(pendingReportsProvider.notifier).send,
+                  ),
+          ),
+          // History and Summary: what can be done with the days, said in
+          // words (the lone share icon of the title bar went unnoticed)
+          AnimatedSize(
+            duration: duration,
+            curve: AppMotion.standard,
+            alignment: Alignment.topCenter,
+            child: view == ReportsView.today
+                ? const SizedBox(width: double.infinity)
+                : Padding(
+                    padding: const EdgeInsetsDirectional.fromSTEB(
+                      AppSpacing.lg,
+                      AppSpacing.sm,
+                      AppSpacing.lg,
+                      0,
+                    ),
+                    // the two tiles as tall as the taller one
+                    child: IntrinsicHeight(
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.stretch,
+                        children: [
+                          Expanded(
+                            child: _DataTile(
+                              icon: AppIcons.share,
+                              title: t.sheetImport.exportTile,
+                              text: t.sheetImport.exportHint,
+                              label: t.reports.export,
+                              onTap: () => context.router.push(
+                                const ExportReportRoute(),
+                              ),
+                            ),
+                          ),
+                          const SizedBox(width: AppSpacing.sm),
+                          Expanded(
+                            child: _DataTile(
+                              icon: AppIcons.download,
+                              title: t.sheetImport.importTile,
+                              text: t.sheetImport.importHint,
+                              label: t.sheetImport.title,
+                              onTap: () => context.router.push(
+                                const ImportReportRoute(),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
                   ),
           ),
           Expanded(
@@ -206,6 +246,86 @@ class _PendingBanner extends StatelessWidget {
               ),
               TextButton(onPressed: onRetry, child: Text(t.common.retry)),
             ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+/// « Exporter » or « Importer », under the tabs of History and Summary: an
+/// icon on a tint, the word, and what it gives in a few words.
+class _DataTile extends StatelessWidget {
+  const _DataTile({
+    required this.icon,
+    required this.title,
+    required this.text,
+    required this.label,
+    required this.onTap,
+  });
+
+  final IconData icon;
+  final String title;
+  final String text;
+
+  /// The whole sentence, for screen readers and the long press.
+  final String label;
+  final VoidCallback onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    final scheme = Theme.of(context).colorScheme;
+    return Tooltip(
+      message: label,
+      child: Material(
+        color: scheme.surface,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(AppRadius.md),
+          side: BorderSide(color: scheme.outlineVariant),
+        ),
+        clipBehavior: Clip.antiAlias,
+        child: InkWell(
+          onTap: onTap,
+          child: Padding(
+            padding: const EdgeInsetsDirectional.fromSTEB(10, 9, 10, 9),
+            child: Row(
+              children: [
+                Container(
+                  width: 36,
+                  height: 36,
+                  decoration: BoxDecoration(
+                    color: scheme.primaryContainer,
+                    borderRadius: BorderRadius.circular(11),
+                  ),
+                  child: Icon(icon, size: 20, color: scheme.onPrimaryContainer),
+                ),
+                const SizedBox(width: 10),
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        title,
+                        style: const TextStyle(
+                          fontSize: 14.5,
+                          fontWeight: FontWeight.w700,
+                        ),
+                      ),
+                      Text(
+                        text,
+                        maxLines: 2,
+                        overflow: TextOverflow.ellipsis,
+                        style: TextStyle(
+                          fontSize: 12,
+                          height: 1.2,
+                          color: scheme.onSurfaceVariant,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ),

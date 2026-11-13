@@ -91,6 +91,7 @@ class TranslationsEn extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _Translations$settings$en settings = _Translations$settings$en._(_root);
 	@override late final _Translations$reading$en reading = _Translations$reading$en._(_root);
 	@override late final _Translations$games$en games = _Translations$games$en._(_root);
+	@override late final _Translations$sheetImport$en sheetImport = _Translations$sheetImport$en._(_root);
 }
 
 // Path: app
@@ -2176,6 +2177,61 @@ class _Translations$games$en extends Translations$games$fr {
 	);
 }
 
+// Path: sheetImport
+class _Translations$sheetImport$en extends Translations$sheetImport$fr {
+	_Translations$sheetImport$en._(TranslationsEn root) : this._root = root, super.internal(root);
+
+	final TranslationsEn _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Import from Excel';
+	@override String get intro => 'Fill your past days at once: an Excel file, one row per day. A day that already has a report is never replaced.';
+	@override String get dateColumn => 'Date';
+	@override String get modelName => 'report_template';
+	@override String get modelTitle => 'Get the template';
+	@override String get modelText => 'An Excel file with your items as columns. Write one row per day: the date (2026-11-03 or 03/11/2026), then your numbers. Durations are in minutes.';
+	@override String get modelButton => 'Download the template';
+	@override String get fileTitle => 'Choose your filled file';
+	@override String get fileText => 'An .xlsx file in the format of the template. Nothing is saved before you confirm.';
+	@override String get fileButton => 'Choose an Excel file';
+	@override String get notExcel => 'This file is not a readable Excel file (.xlsx).';
+	@override String toFill({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n,
+		one: '${n} day to import',
+		other: '${n} days to import',
+	);
+	@override String get nothing => 'No day to import in this file.';
+	@override String alreadyFilled({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n,
+		one: '${n} day already filled, left as it is',
+		other: '${n} days already filled, left as they are',
+	);
+	@override String future({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n,
+		one: '${n} row in the future, ignored',
+		other: '${n} rows in the future, ignored',
+	);
+	@override String badRows({required num n, required Object rows}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n,
+		one: '${n} unreadable row (row ${rows}): a date or a number to fix',
+		other: '${n} unreadable rows (rows ${rows}): a date or a number to fix',
+	);
+	@override String unknownColumns({required Object columns}) => 'Columns not recognised: ${columns}';
+	@override String run({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n,
+		one: 'Import ${n} day',
+		other: 'Import ${n} days',
+	);
+	@override String progress({required Object done, required Object total}) => '${done} of ${total}…';
+	@override String saved({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n,
+		one: '${n} day imported.',
+		other: '${n} days imported.',
+	);
+	@override String failed({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n,
+		one: '${n} day could not be saved.',
+		other: '${n} days could not be saved.',
+	);
+	@override String get exportTile => 'Export';
+	@override String get exportHint => 'PDF, spreadsheet, WhatsApp';
+	@override String get importTile => 'Import';
+	@override String get importHint => 'From Excel';
+}
+
 // Path: welcome.seek
 class _Translations$welcome$seek$en extends Translations$welcome$seek$fr {
 	_Translations$welcome$seek$en._(TranslationsEn root) : this._root = root, super.internal(root);
@@ -3334,9 +3390,9 @@ class _Translations$prayer$importunity$en extends Translations$prayer$importunit
 	);
 	@override String mine({required Object n}) => 'You: ${n}';
 	@override String get tapHint => 'Tap at each proclamation';
-	@override String get addMany => 'Add a number';
-	@override String get addManyTitle => 'How many proclamations?';
-	@override String get addManyLabel => 'Proclamations';
+	@override String get addMany => 'Set manually';
+	@override String get addManyTitle => 'How many proclamations have you made?';
+	@override String get addManyLabel => 'My proclamations';
 	@override String get add => 'Add';
 	@override String pending({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n,
 		one: '${n} waiting to be sent',
@@ -3365,6 +3421,8 @@ class _Translations$prayer$importunity$en extends Translations$prayer$importunit
 	@override String get timeLabel => 'Prayer time for this topic';
 	@override String mineTime({required Object n, required Object time}) => 'You: ${n} · ${time} of prayer';
 	@override String get timerNote => 'The time is added to "Personal prayer" in your report.';
+	@override String get minusOne => 'Take one proclamation off';
+	@override String get set => 'Save';
 }
 
 // Path: prayer.free
@@ -5372,9 +5430,9 @@ extension on TranslationsEn {
 			'prayer.importunity.participants' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n, one: '${n} prays', other: '${n} pray', ), 
 			'prayer.importunity.mine' => ({required Object n}) => 'You: ${n}',
 			'prayer.importunity.tapHint' => 'Tap at each proclamation',
-			'prayer.importunity.addMany' => 'Add a number',
-			'prayer.importunity.addManyTitle' => 'How many proclamations?',
-			'prayer.importunity.addManyLabel' => 'Proclamations',
+			'prayer.importunity.addMany' => 'Set manually',
+			'prayer.importunity.addManyTitle' => 'How many proclamations have you made?',
+			'prayer.importunity.addManyLabel' => 'My proclamations',
 			'prayer.importunity.add' => 'Add',
 			'prayer.importunity.pending' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n, one: '${n} waiting to be sent', other: '${n} waiting to be sent', ), 
 			'prayer.importunity.invite' => 'Invite',
@@ -5415,6 +5473,8 @@ extension on TranslationsEn {
 			'prayer.importunity.timeLabel' => 'Prayer time for this topic',
 			'prayer.importunity.mineTime' => ({required Object n, required Object time}) => 'You: ${n} · ${time} of prayer',
 			'prayer.importunity.timerNote' => 'The time is added to "Personal prayer" in your report.',
+			'prayer.importunity.minusOne' => 'Take one proclamation off',
+			'prayer.importunity.set' => 'Save',
 			'prayer.free.title' => 'Personal prayer',
 			'prayer.free.text' => 'No retreat: your time counts in “Personal prayer”.',
 			'prayer.free.start' => 'Time it',
@@ -5701,10 +5761,10 @@ extension on TranslationsEn {
 			'yearStory.statChapters' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n, one: 'chapter read', other: 'chapters read', ), 
 			'yearStory.statFasts' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n, one: 'day of fasting', other: 'days of fasting', ), 
 			'yearStory.statGoals' => 'of goals',
-			'yearStory.emptyText' => 'Fill in your report every day: your year will be written here.',
-			'yearStory.share' => 'Share my year',
 			_ => null,
 		} ?? switch (path) {
+			'yearStory.emptyText' => 'Fill in your report every day: your year will be written here.',
+			'yearStory.share' => 'Share my year',
 			'yearStory.homeText' => ({required Object year}) => 'Your faithfulness, your prayer, the Word: look back on all you lived with God in ${year}.',
 			'yearStory.open' => 'See my year',
 			'yearStory.notificationTitle' => 'Your year with God is ready',
@@ -6215,10 +6275,10 @@ extension on TranslationsEn {
 			'menu.seeProfile' => 'See my profile',
 			'me.title' => 'My profile',
 			'me.edit' => 'Edit my profile',
-			'me.journey' => 'My journey',
-			'me.streak' => 'Streak',
 			_ => null,
 		} ?? switch (path) {
+			'me.journey' => 'My journey',
+			'me.streak' => 'Streak',
 			'me.steps' => 'Steps',
 			'me.timeMonth' => 'With God this month',
 			'me.nextStep' => ({required Object name}) => 'next: ${name}',
@@ -6365,6 +6425,31 @@ extension on TranslationsEn {
 			'games.flightNext' => 'Another verse',
 			'games.flightDone' => 'Done',
 			'games.flightHearts' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n, one: '${n} heart', other: '${n} hearts', ), 
+			'sheetImport.title' => 'Import from Excel',
+			'sheetImport.intro' => 'Fill your past days at once: an Excel file, one row per day. A day that already has a report is never replaced.',
+			'sheetImport.dateColumn' => 'Date',
+			'sheetImport.modelName' => 'report_template',
+			'sheetImport.modelTitle' => 'Get the template',
+			'sheetImport.modelText' => 'An Excel file with your items as columns. Write one row per day: the date (2026-11-03 or 03/11/2026), then your numbers. Durations are in minutes.',
+			'sheetImport.modelButton' => 'Download the template',
+			'sheetImport.fileTitle' => 'Choose your filled file',
+			'sheetImport.fileText' => 'An .xlsx file in the format of the template. Nothing is saved before you confirm.',
+			'sheetImport.fileButton' => 'Choose an Excel file',
+			'sheetImport.notExcel' => 'This file is not a readable Excel file (.xlsx).',
+			'sheetImport.toFill' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n, one: '${n} day to import', other: '${n} days to import', ), 
+			'sheetImport.nothing' => 'No day to import in this file.',
+			'sheetImport.alreadyFilled' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n, one: '${n} day already filled, left as it is', other: '${n} days already filled, left as they are', ), 
+			'sheetImport.future' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n, one: '${n} row in the future, ignored', other: '${n} rows in the future, ignored', ), 
+			'sheetImport.badRows' => ({required num n, required Object rows}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n, one: '${n} unreadable row (row ${rows}): a date or a number to fix', other: '${n} unreadable rows (rows ${rows}): a date or a number to fix', ), 
+			'sheetImport.unknownColumns' => ({required Object columns}) => 'Columns not recognised: ${columns}',
+			'sheetImport.run' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n, one: 'Import ${n} day', other: 'Import ${n} days', ), 
+			'sheetImport.progress' => ({required Object done, required Object total}) => '${done} of ${total}…',
+			'sheetImport.saved' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n, one: '${n} day imported.', other: '${n} days imported.', ), 
+			'sheetImport.failed' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n, one: '${n} day could not be saved.', other: '${n} days could not be saved.', ), 
+			'sheetImport.exportTile' => 'Export',
+			'sheetImport.exportHint' => 'PDF, spreadsheet, WhatsApp',
+			'sheetImport.importTile' => 'Import',
+			'sheetImport.importHint' => 'From Excel',
 			_ => null,
 		};
 	}

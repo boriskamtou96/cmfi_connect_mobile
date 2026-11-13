@@ -69,6 +69,7 @@ import '../features/profile/presentation/photo_crop_screen.dart';
 import '../features/profile/presentation/profile_screen.dart';
 import '../features/reports/domain/activity_type.dart';
 import '../features/reports/presentation/export_screen.dart';
+import '../features/reports/presentation/import_screen.dart';
 import '../features/reports/presentation/items_screen.dart';
 import '../features/reports/presentation/new_item_screen.dart';
 import '../features/reports/presentation/reading/add_book_screen.dart';
@@ -296,6 +297,12 @@ class AppRouter extends RootStackRouter {
     AutoRoute(
       path: '/reports/export',
       page: ExportReportRoute.page,
+      guards: [authGuard],
+    ),
+    // past days filled from an Excel file
+    AutoRoute(
+      path: '/reports/import',
+      page: ImportReportRoute.page,
       guards: [authGuard],
     ),
     AutoRoute(

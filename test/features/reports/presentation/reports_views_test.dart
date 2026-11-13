@@ -60,7 +60,8 @@ void main() {
     await tester.pumpAndSettle();
 
     expect(find.text('RÉGULARITÉ'), findsOneWidget);
-    expect(find.text('Lecture biblique'), findsOneWidget);
+    // under the fold since the export and import tiles came above
+    expect(find.text('Lecture biblique', skipOffstage: false), findsOneWidget);
 
     await tester.tap(find.text('Semaine'));
     await tester.pumpAndSettle();

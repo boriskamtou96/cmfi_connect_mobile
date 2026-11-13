@@ -100,7 +100,7 @@ class PrayerLocalStore {
         _pendingCountsKey,
         jsonEncode({
           for (final entry in counts.entries)
-            if (entry.value > 0) entry.key.toString(): entry.value,
+            if (entry.value != 0) entry.key.toString(): entry.value,
         }),
       );
 

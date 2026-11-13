@@ -1498,9 +1498,9 @@
       },
       "mine": "你：{n}",
       "tapHint": "每宣告一次，就点一下",
-      "addMany": "添加次数",
-      "addManyTitle": "宣告了多少次？",
-      "addManyLabel": "宣告次数",
+      "addMany": "手动设定",
+      "addManyTitle": "你已经宣告了多少次？",
+      "addManyLabel": "我的宣告次数",
       "add": "添加",
       "pending(plural, param=n)": {
         "other": "{n} 次待发送"
@@ -1553,7 +1553,9 @@
       "timer": "为祷告计时",
       "timeLabel": "为此事项祷告的时间",
       "mineTime": "你：{n} · 祷告 {time}",
-      "timerNote": "时间会计入报告中的“个人祷告”。"
+      "timerNote": "时间会计入报告中的“个人祷告”。",
+      "minusOne": "减去一次宣告",
+      "set": "保存"
     },
     "free": {
       "title": "个人祷告",
@@ -2817,5 +2819,46 @@
     "flightHearts(plural, param=n)": {
       "other": "{n} 颗心"
     }
+  },
+  "sheetImport": {
+    "title": "从 Excel 导入",
+    "intro": "一次填好过去的日子：一个 Excel 文件，每天一行。已有记录的日子绝不会被替换。",
+    "dateColumn": "日期",
+    "modelName": "report_template",
+    "modelTitle": "获取模板",
+    "modelText": "一个以你的项目为列的 Excel 文件。每天写一行：日期（2026-11-03 或 03/11/2026），然后是你的数字。时长以分钟计。",
+    "modelButton": "下载模板",
+    "fileTitle": "选择填好的文件",
+    "fileText": "模板格式的 .xlsx 文件。在你确认之前不会保存任何内容。",
+    "fileButton": "选择 Excel 文件",
+    "notExcel": "此文件不是可读取的 Excel 文件（.xlsx）。",
+    "toFill(plural, param=n)": {
+      "other": "{n} 天待导入"
+    },
+    "nothing": "此文件中没有可导入的日子。",
+    "alreadyFilled(plural, param=n)": {
+      "other": "{n} 天已填写，保持不变"
+    },
+    "future(plural, param=n)": {
+      "other": "{n} 行在未来，已忽略"
+    },
+    "badRows(plural, param=n)": {
+      "other": "{n} 行无法读取（第 {rows} 行）：请更正日期或数字"
+    },
+    "unknownColumns": "无法识别的列：{columns}",
+    "run(plural, param=n)": {
+      "other": "导入 {n} 天"
+    },
+    "progress": "{done} / {total}…",
+    "saved(plural, param=n)": {
+      "other": "已导入 {n} 天。"
+    },
+    "failed(plural, param=n)": {
+      "other": "{n} 天未能保存。"
+    },
+    "exportTile": "导出",
+    "exportHint": "PDF、表格、WhatsApp",
+    "importTile": "导入",
+    "importHint": "从 Excel"
   }
 }

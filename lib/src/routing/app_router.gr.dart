@@ -1081,6 +1081,22 @@ class HymnsRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
+/// [ImportReportScreen]
+class ImportReportRoute extends PageRouteInfo<void> {
+  const ImportReportRoute({List<PageRouteInfo>? children})
+    : super(ImportReportRoute.name, initialChildren: children);
+
+  static const String name = 'ImportReportRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const ImportReportScreen();
+    },
+  );
+}
+
+/// generated route for
 /// [ImportunityScreen]
 class ImportunityRoute extends PageRouteInfo<ImportunityRouteArgs> {
   ImportunityRoute({

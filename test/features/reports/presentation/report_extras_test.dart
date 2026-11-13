@@ -185,7 +185,10 @@ void main() {
       await tester.pumpAndSettle();
 
       expect(
-        find.text('Accomplissement moyen de tes objectifs'),
+        find.text(
+          'Accomplissement moyen de tes objectifs',
+          skipOffstage: false,
+        ),
         findsOneWidget,
       );
     });

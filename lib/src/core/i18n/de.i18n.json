@@ -1535,9 +1535,9 @@
       },
       "mine": "Du: {n}",
       "tapHint": "Tippe bei jeder Proklamation",
-      "addMany": "Anzahl hinzufügen",
-      "addManyTitle": "Wie viele Proklamationen?",
-      "addManyLabel": "Proklamationen",
+      "addMany": "Manuell festlegen",
+      "addManyTitle": "Wie viele Proklamationen hast du gemacht?",
+      "addManyLabel": "Meine Proklamationen",
       "add": "Hinzufügen",
       "pending(plural, param=n)": {
         "one": "{n} noch nicht gesendet",
@@ -1594,7 +1594,9 @@
       "timer": "Mein Gebet stoppen",
       "timeLabel": "Gebetszeit für dieses Anliegen",
       "mineTime": "Du: {n} · {time} Gebet",
-      "timerNote": "Die Zeit kommt zu „Persönliches Gebet“ in deinem Bericht."
+      "timerNote": "Die Zeit kommt zu „Persönliches Gebet“ in deinem Bericht.",
+      "minusOne": "Eine Proklamation abziehen",
+      "set": "Speichern"
     },
     "free": {
       "title": "Persönliches Gebet",
@@ -2927,5 +2929,53 @@
       "one": "{n} Herz",
       "other": "{n} Herzen"
     }
+  },
+  "sheetImport": {
+    "title": "Aus Excel importieren",
+    "intro": "Fülle vergangene Tage auf einmal aus: eine Excel-Datei, eine Zeile pro Tag. Ein Tag, der schon einen Bericht hat, wird nie ersetzt.",
+    "dateColumn": "Datum",
+    "modelName": "bericht_vorlage",
+    "modelTitle": "Hol dir die Vorlage",
+    "modelText": "Eine Excel-Datei mit deinen Elementen als Spalten. Schreib eine Zeile pro Tag: das Datum (2026-11-03 oder 03.11.2026), dann deine Zahlen. Dauern in Minuten.",
+    "modelButton": "Vorlage herunterladen",
+    "fileTitle": "Wähle deine ausgefüllte Datei",
+    "fileText": "Eine .xlsx-Datei im Format der Vorlage. Nichts wird gespeichert, bevor du bestätigst.",
+    "fileButton": "Excel-Datei wählen",
+    "notExcel": "Diese Datei ist keine lesbare Excel-Datei (.xlsx).",
+    "toFill(plural, param=n)": {
+      "one": "{n} Tag zu importieren",
+      "other": "{n} Tage zu importieren"
+    },
+    "nothing": "Kein Tag zum Importieren in dieser Datei.",
+    "alreadyFilled(plural, param=n)": {
+      "one": "{n} Tag bereits ausgefüllt, bleibt unverändert",
+      "other": "{n} Tage bereits ausgefüllt, bleiben unverändert"
+    },
+    "future(plural, param=n)": {
+      "one": "{n} Zeile in der Zukunft, ignoriert",
+      "other": "{n} Zeilen in der Zukunft, ignoriert"
+    },
+    "badRows(plural, param=n)": {
+      "one": "{n} unlesbare Zeile (Zeile {rows}): Datum oder Zahl korrigieren",
+      "other": "{n} unlesbare Zeilen (Zeilen {rows}): Datum oder Zahl korrigieren"
+    },
+    "unknownColumns": "Nicht erkannte Spalten: {columns}",
+    "run(plural, param=n)": {
+      "one": "{n} Tag importieren",
+      "other": "{n} Tage importieren"
+    },
+    "progress": "{done} von {total} …",
+    "saved(plural, param=n)": {
+      "one": "{n} Tag importiert.",
+      "other": "{n} Tage importiert."
+    },
+    "failed(plural, param=n)": {
+      "one": "{n} Tag konnte nicht gespeichert werden.",
+      "other": "{n} Tage konnten nicht gespeichert werden."
+    },
+    "exportTile": "Exportieren",
+    "exportHint": "PDF, Tabelle, WhatsApp",
+    "importTile": "Importieren",
+    "importHint": "Aus Excel"
   }
 }

@@ -91,6 +91,7 @@ class TranslationsHi extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _Translations$settings$hi settings = _Translations$settings$hi._(_root);
 	@override late final _Translations$reading$hi reading = _Translations$reading$hi._(_root);
 	@override late final _Translations$games$hi games = _Translations$games$hi._(_root);
+	@override late final _Translations$sheetImport$hi sheetImport = _Translations$sheetImport$hi._(_root);
 }
 
 // Path: app
@@ -2174,6 +2175,61 @@ class _Translations$games$hi extends Translations$games$fr {
 	);
 }
 
+// Path: sheetImport
+class _Translations$sheetImport$hi extends Translations$sheetImport$fr {
+	_Translations$sheetImport$hi._(TranslationsHi root) : this._root = root, super.internal(root);
+
+	final TranslationsHi _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Excel से आयात करो';
+	@override String get intro => 'पिछले दिन एक साथ भरो: एक Excel फ़ाइल, हर दिन की एक पंक्ति। जिस दिन की रिपोर्ट पहले से है, वह कभी नहीं बदली जाती।';
+	@override String get dateColumn => 'तारीख';
+	@override String get modelName => 'report_template';
+	@override String get modelTitle => 'नमूना लो';
+	@override String get modelText => 'एक Excel फ़ाइल जिसमें तुम्हारे तत्व कॉलम में हैं। हर दिन की एक पंक्ति लिखो: तारीख (2026-11-03 या 03/11/2026), फिर अपने आँकड़े। अवधि मिनटों में।';
+	@override String get modelButton => 'नमूना डाउनलोड करो';
+	@override String get fileTitle => 'अपनी भरी हुई फ़ाइल चुनो';
+	@override String get fileText => 'नमूने के प्रारूप में .xlsx फ़ाइल। तुम्हारी पुष्टि से पहले कुछ नहीं सहेजा जाता।';
+	@override String get fileButton => 'Excel फ़ाइल चुनो';
+	@override String get notExcel => 'यह फ़ाइल पढ़ने योग्य Excel फ़ाइल (.xlsx) नहीं है।';
+	@override String toFill({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n,
+		one: '${n} दिन आयात के लिए',
+		other: '${n} दिन आयात के लिए',
+	);
+	@override String get nothing => 'इस फ़ाइल में आयात के लिए कोई दिन नहीं।';
+	@override String alreadyFilled({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n,
+		one: '${n} दिन पहले से भरा है, वैसा ही रहेगा',
+		other: '${n} दिन पहले से भरे हैं, वैसे ही रहेंगे',
+	);
+	@override String future({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n,
+		one: '${n} पंक्ति भविष्य की है, छोड़ी गई',
+		other: '${n} पंक्तियाँ भविष्य की हैं, छोड़ी गईं',
+	);
+	@override String badRows({required num n, required Object rows}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n,
+		one: '${n} पंक्ति पढ़ी नहीं गई (पंक्ति ${rows}): तारीख या संख्या ठीक करो',
+		other: '${n} पंक्तियाँ पढ़ी नहीं गईं (पंक्तियाँ ${rows}): तारीख या संख्या ठीक करो',
+	);
+	@override String unknownColumns({required Object columns}) => 'न पहचाने गए कॉलम: ${columns}';
+	@override String run({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n,
+		one: '${n} दिन आयात करो',
+		other: '${n} दिन आयात करो',
+	);
+	@override String progress({required Object total, required Object done}) => '${total} में से ${done}…';
+	@override String saved({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n,
+		one: '${n} दिन आयात हुआ।',
+		other: '${n} दिन आयात हुए।',
+	);
+	@override String failed({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n,
+		one: '${n} दिन सहेजा नहीं जा सका।',
+		other: '${n} दिन सहेजे नहीं जा सके।',
+	);
+	@override String get exportTile => 'निर्यात';
+	@override String get exportHint => 'PDF, तालिका, WhatsApp';
+	@override String get importTile => 'आयात';
+	@override String get importHint => 'Excel से';
+}
+
 // Path: welcome.seek
 class _Translations$welcome$seek$hi extends Translations$welcome$seek$fr {
 	_Translations$welcome$seek$hi._(TranslationsHi root) : this._root = root, super.internal(root);
@@ -3332,9 +3388,9 @@ class _Translations$prayer$importunity$hi extends Translations$prayer$importunit
 	);
 	@override String mine({required Object n}) => 'तुम: ${n}';
 	@override String get tapHint => 'हर घोषणा पर टैप करो';
-	@override String get addMany => 'संख्या जोड़ो';
-	@override String get addManyTitle => 'कितनी घोषणाएँ?';
-	@override String get addManyLabel => 'घोषणाएँ';
+	@override String get addMany => 'खुद तय करो';
+	@override String get addManyTitle => 'तुमने कितनी उद्घोषणाएँ की हैं?';
+	@override String get addManyLabel => 'मेरी उद्घोषणाएँ';
 	@override String get add => 'जोड़ो';
 	@override String pending({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n,
 		one: '${n} घोषणा भेजी जानी बाकी है',
@@ -3363,6 +3419,8 @@ class _Translations$prayer$importunity$hi extends Translations$prayer$importunit
 	@override String get timeLabel => 'इस विषय के लिए प्रार्थना का समय';
 	@override String mineTime({required Object n, required Object time}) => 'तुम: ${n} · ${time} प्रार्थना';
 	@override String get timerNote => 'यह समय तुम्हारी रिपोर्ट में "व्यक्तिगत प्रार्थना" में जुड़ता है।';
+	@override String get minusOne => 'एक उद्घोषणा घटाओ';
+	@override String get set => 'सहेजो';
 }
 
 // Path: prayer.free
@@ -5370,9 +5428,9 @@ extension on TranslationsHi {
 			'prayer.importunity.participants' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n, one: '${n} व्यक्ति प्रार्थना में शामिल', other: '${n} लोग प्रार्थना में शामिल', ), 
 			'prayer.importunity.mine' => ({required Object n}) => 'तुम: ${n}',
 			'prayer.importunity.tapHint' => 'हर घोषणा पर टैप करो',
-			'prayer.importunity.addMany' => 'संख्या जोड़ो',
-			'prayer.importunity.addManyTitle' => 'कितनी घोषणाएँ?',
-			'prayer.importunity.addManyLabel' => 'घोषणाएँ',
+			'prayer.importunity.addMany' => 'खुद तय करो',
+			'prayer.importunity.addManyTitle' => 'तुमने कितनी उद्घोषणाएँ की हैं?',
+			'prayer.importunity.addManyLabel' => 'मेरी उद्घोषणाएँ',
 			'prayer.importunity.add' => 'जोड़ो',
 			'prayer.importunity.pending' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n, one: '${n} घोषणा भेजी जानी बाकी है', other: '${n} घोषणाएँ भेजी जानी बाकी हैं', ), 
 			'prayer.importunity.invite' => 'न्योता दो',
@@ -5413,6 +5471,8 @@ extension on TranslationsHi {
 			'prayer.importunity.timeLabel' => 'इस विषय के लिए प्रार्थना का समय',
 			'prayer.importunity.mineTime' => ({required Object n, required Object time}) => 'तुम: ${n} · ${time} प्रार्थना',
 			'prayer.importunity.timerNote' => 'यह समय तुम्हारी रिपोर्ट में "व्यक्तिगत प्रार्थना" में जुड़ता है।',
+			'prayer.importunity.minusOne' => 'एक उद्घोषणा घटाओ',
+			'prayer.importunity.set' => 'सहेजो',
 			'prayer.free.title' => 'व्यक्तिगत प्रार्थना',
 			'prayer.free.text' => 'बिना रिट्रीट: आपका समय «व्यक्तिगत प्रार्थना» में गिना जाता है।',
 			'prayer.free.start' => 'समय गिनें',
@@ -5699,10 +5759,10 @@ extension on TranslationsHi {
 			'yearStory.statChapters' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n, one: 'अध्याय पढ़ा', other: 'अध्याय पढ़े', ), 
 			'yearStory.statFasts' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n, one: 'उपवास का दिन', other: 'उपवास के दिन', ), 
 			'yearStory.statGoals' => 'लक्ष्य',
-			'yearStory.emptyText' => 'हर दिन अपनी रिपोर्ट भरो: तुम्हारा साल यहाँ लिखा जाएगा।',
-			'yearStory.share' => 'अपना साल साझा करो',
 			_ => null,
 		} ?? switch (path) {
+			'yearStory.emptyText' => 'हर दिन अपनी रिपोर्ट भरो: तुम्हारा साल यहाँ लिखा जाएगा।',
+			'yearStory.share' => 'अपना साल साझा करो',
 			'yearStory.homeText' => ({required Object year}) => 'तुम्हारी वफ़ादारी, प्रार्थना, वचन: ${year} में परमेश्वर के साथ जो जिया, उसे फिर से देखो।',
 			'yearStory.open' => 'मेरा साल देखो',
 			'yearStory.notificationTitle' => 'परमेश्वर के साथ तुम्हारा साल तैयार है',
@@ -6213,10 +6273,10 @@ extension on TranslationsHi {
 			'menu.seeProfile' => 'मेरी प्रोफ़ाइल देखो',
 			'me.title' => 'मेरी प्रोफ़ाइल',
 			'me.edit' => 'मेरी प्रोफ़ाइल बदलो',
-			'me.journey' => 'मेरी यात्रा',
-			'me.streak' => 'सिलसिला',
 			_ => null,
 		} ?? switch (path) {
+			'me.journey' => 'मेरी यात्रा',
+			'me.streak' => 'सिलसिला',
 			'me.steps' => 'पड़ाव',
 			'me.timeMonth' => 'इस महीने परमेश्वर के साथ',
 			'me.nextStep' => ({required Object name}) => 'अगला: ${name}',
@@ -6363,6 +6423,31 @@ extension on TranslationsHi {
 			'games.flightNext' => 'दूसरा वचन',
 			'games.flightDone' => 'पूरा',
 			'games.flightHearts' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n, one: '${n} दिल', other: '${n} दिल', ), 
+			'sheetImport.title' => 'Excel से आयात करो',
+			'sheetImport.intro' => 'पिछले दिन एक साथ भरो: एक Excel फ़ाइल, हर दिन की एक पंक्ति। जिस दिन की रिपोर्ट पहले से है, वह कभी नहीं बदली जाती।',
+			'sheetImport.dateColumn' => 'तारीख',
+			'sheetImport.modelName' => 'report_template',
+			'sheetImport.modelTitle' => 'नमूना लो',
+			'sheetImport.modelText' => 'एक Excel फ़ाइल जिसमें तुम्हारे तत्व कॉलम में हैं। हर दिन की एक पंक्ति लिखो: तारीख (2026-11-03 या 03/11/2026), फिर अपने आँकड़े। अवधि मिनटों में।',
+			'sheetImport.modelButton' => 'नमूना डाउनलोड करो',
+			'sheetImport.fileTitle' => 'अपनी भरी हुई फ़ाइल चुनो',
+			'sheetImport.fileText' => 'नमूने के प्रारूप में .xlsx फ़ाइल। तुम्हारी पुष्टि से पहले कुछ नहीं सहेजा जाता।',
+			'sheetImport.fileButton' => 'Excel फ़ाइल चुनो',
+			'sheetImport.notExcel' => 'यह फ़ाइल पढ़ने योग्य Excel फ़ाइल (.xlsx) नहीं है।',
+			'sheetImport.toFill' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n, one: '${n} दिन आयात के लिए', other: '${n} दिन आयात के लिए', ), 
+			'sheetImport.nothing' => 'इस फ़ाइल में आयात के लिए कोई दिन नहीं।',
+			'sheetImport.alreadyFilled' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n, one: '${n} दिन पहले से भरा है, वैसा ही रहेगा', other: '${n} दिन पहले से भरे हैं, वैसे ही रहेंगे', ), 
+			'sheetImport.future' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n, one: '${n} पंक्ति भविष्य की है, छोड़ी गई', other: '${n} पंक्तियाँ भविष्य की हैं, छोड़ी गईं', ), 
+			'sheetImport.badRows' => ({required num n, required Object rows}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n, one: '${n} पंक्ति पढ़ी नहीं गई (पंक्ति ${rows}): तारीख या संख्या ठीक करो', other: '${n} पंक्तियाँ पढ़ी नहीं गईं (पंक्तियाँ ${rows}): तारीख या संख्या ठीक करो', ), 
+			'sheetImport.unknownColumns' => ({required Object columns}) => 'न पहचाने गए कॉलम: ${columns}',
+			'sheetImport.run' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n, one: '${n} दिन आयात करो', other: '${n} दिन आयात करो', ), 
+			'sheetImport.progress' => ({required Object total, required Object done}) => '${total} में से ${done}…',
+			'sheetImport.saved' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n, one: '${n} दिन आयात हुआ।', other: '${n} दिन आयात हुए।', ), 
+			'sheetImport.failed' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n, one: '${n} दिन सहेजा नहीं जा सका।', other: '${n} दिन सहेजे नहीं जा सके।', ), 
+			'sheetImport.exportTile' => 'निर्यात',
+			'sheetImport.exportHint' => 'PDF, तालिका, WhatsApp',
+			'sheetImport.importTile' => 'आयात',
+			'sheetImport.importHint' => 'Excel से',
 			_ => null,
 		};
 	}

@@ -42,7 +42,7 @@ final class ImportunitiesProvider
   Importunities create() => Importunities();
 }
 
-String _$importunitiesHash() => r'0f439a9199af1563b82eca55b5301295117ccd53';
+String _$importunitiesHash() => r'945c669845d8a59122b1e458ba755c7420a8caa2';
 
 /// The importunity topics the user prays for or is invited to. The
 /// proclamations counted without network are added to what the server says,

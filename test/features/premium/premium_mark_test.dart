@@ -10,24 +10,23 @@ void main() {
   setUpAll(initializeDateFormatting);
   setUp(() => LocaleSettings.setLocale(AppLocale.fr));
 
-  testWidgets('with Premium, a crown on the photo (home and Plus)', (
+  testWidgets('with Premium, a gold seal on the photo (home and Plus)', (
     tester,
   ) async {
     await pumpApp(tester, token: 't', premium: FakePremiumStore(active: true));
 
-    // the gold crown over its white outline
-    expect(find.byIcon(AppIcons.premiumCrown), findsNWidgets(2));
+    expect(find.byIcon(AppIcons.premiumSeal), findsOneWidget);
     expect(find.bySemanticsLabel(RegExp('Membre Premium')), findsOneWidget);
 
     await openProfile(tester);
-    expect(find.byIcon(AppIcons.premiumCrown), findsWidgets);
+    expect(find.byIcon(AppIcons.premiumSeal), findsWidgets);
   });
 
-  testWidgets('without Premium, no crown', (tester) async {
+  testWidgets('without Premium, no seal', (tester) async {
     await pumpApp(tester, token: 't');
 
-    expect(find.byIcon(AppIcons.premiumCrown), findsNothing);
+    expect(find.byIcon(AppIcons.premiumSeal), findsNothing);
     await openProfile(tester);
-    expect(find.byIcon(AppIcons.premiumCrown), findsNothing);
+    expect(find.byIcon(AppIcons.premiumSeal), findsNothing);
   });
 }

@@ -133,11 +133,28 @@ class Importunities extends _$Importunities {
   }
 
   /// Counts [amount] proclamations at once on the phone; [sendCounts] sends
-  /// them (the counter calls it a moment after the last tap).
+  /// them (the counter calls it a moment after the last tap). A negative
+  /// [amount] takes some back (a tap too many, a number set by hand), never
+  /// below zero for the member.
   Future<void> count(Importunity topic, int amount) async {
     final store = ref.read(prayerLocalStoreProvider);
     final pending = store.pendingCounts();
-    pending[topic.id] = (pending[topic.id] ?? 0) + amount;
+    final shown = (state.value ?? const <Importunity>[])
+        .where((other) => other.id == topic.id)
+        .firstOrNull;
+    final mine = (shown ?? topic).myCount;
+    if (amount < -mine) {
+      amount = -mine;
+    }
+    if (amount == 0) {
+      return;
+    }
+    final waiting = (pending[topic.id] ?? 0) + amount;
+    if (waiting == 0) {
+      pending.remove(topic.id);
+    } else {
+      pending[topic.id] = waiting;
+    }
     await store.savePendingCounts(pending);
     if (ref.mounted) {
       state = AsyncData([
@@ -164,9 +181,9 @@ class Importunities extends _$Importunities {
     for (final entry in pending.entries.toList()) {
       var left = entry.value;
       try {
-        // the server takes 10 000 at most at once
-        while (left > 0) {
-          final amount = left > 10000 ? 10000 : left;
+        // the server takes 10 000 at most at once (given or taken back)
+        while (left != 0) {
+          final amount = left.clamp(-10000, 10000);
           final topic = await ref
               .read(prayerApiProvider)
               .count(entry.key, amount);
@@ -210,7 +227,7 @@ class Importunities extends _$Importunities {
     return [
       for (final topic in topics)
         switch (pending[topic.id]) {
-          final amount? when amount > 0 => topic.copyWith(
+          final amount? when amount != 0 => topic.copyWith(
             total: topic.total + amount,
             myCount: topic.myCount + amount,
           ),

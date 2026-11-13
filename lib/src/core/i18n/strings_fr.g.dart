@@ -93,6 +93,7 @@ class Translations with BaseTranslations<AppLocale, Translations> {
 	late final Translations$settings$fr settings = Translations$settings$fr.internal(_root);
 	late final Translations$reading$fr reading = Translations$reading$fr.internal(_root);
 	late final Translations$games$fr games = Translations$games$fr.internal(_root);
+	late final Translations$sheetImport$fr sheetImport = Translations$sheetImport$fr.internal(_root);
 }
 
 // Path: app
@@ -4620,6 +4621,111 @@ class Translations$games$fr {
 	);
 }
 
+// Path: sheetImport
+class Translations$sheetImport$fr {
+	Translations$sheetImport$fr.internal(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// fr: 'Importer depuis Excel'
+	String get title => 'Importer depuis Excel';
+
+	/// fr: 'Remplis d’un coup tes jours passés : un fichier Excel, une ligne par jour. Un jour qui a déjà un compte rendu n’est jamais remplacé.'
+	String get intro => 'Remplis d’un coup tes jours passés : un fichier Excel, une ligne par jour. Un jour qui a déjà un compte rendu n’est jamais remplacé.';
+
+	/// fr: 'Date'
+	String get dateColumn => 'Date';
+
+	/// fr: 'modele_compte_rendu'
+	String get modelName => 'modele_compte_rendu';
+
+	/// fr: 'Récupère le modèle'
+	String get modelTitle => 'Récupère le modèle';
+
+	/// fr: 'Un fichier Excel avec tes éléments en colonnes. Écris une ligne par jour : la date (2026-11-03 ou 03/11/2026), puis tes chiffres. Les durées sont en minutes.'
+	String get modelText => 'Un fichier Excel avec tes éléments en colonnes. Écris une ligne par jour : la date (2026-11-03 ou 03/11/2026), puis tes chiffres. Les durées sont en minutes.';
+
+	/// fr: 'Télécharger le modèle'
+	String get modelButton => 'Télécharger le modèle';
+
+	/// fr: 'Choisis ton fichier rempli'
+	String get fileTitle => 'Choisis ton fichier rempli';
+
+	/// fr: 'Un fichier .xlsx au format du modèle. Rien n’est enregistré avant que tu confirmes.'
+	String get fileText => 'Un fichier .xlsx au format du modèle. Rien n’est enregistré avant que tu confirmes.';
+
+	/// fr: 'Choisir un fichier Excel'
+	String get fileButton => 'Choisir un fichier Excel';
+
+	/// fr: 'Ce fichier n’est pas un fichier Excel (.xlsx) lisible.'
+	String get notExcel => 'Ce fichier n’est pas un fichier Excel (.xlsx) lisible.';
+
+	/// fr: '(one) {{n} jour à importer} (other) {{n} jours à importer}'
+	String toFill({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('fr'))(n,
+		one: '${n} jour à importer',
+		other: '${n} jours à importer',
+	);
+
+	/// fr: 'Aucun jour à importer dans ce fichier.'
+	String get nothing => 'Aucun jour à importer dans ce fichier.';
+
+	/// fr: '(one) {{n} jour déjà rempli, laissé tel quel} (other) {{n} jours déjà remplis, laissés tels quels}'
+	String alreadyFilled({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('fr'))(n,
+		one: '${n} jour déjà rempli, laissé tel quel',
+		other: '${n} jours déjà remplis, laissés tels quels',
+	);
+
+	/// fr: '(one) {{n} ligne dans le futur, ignorée} (other) {{n} lignes dans le futur, ignorées}'
+	String future({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('fr'))(n,
+		one: '${n} ligne dans le futur, ignorée',
+		other: '${n} lignes dans le futur, ignorées',
+	);
+
+	/// fr: '(one) {{n} ligne illisible (ligne {rows}) : date ou chiffre à corriger} (other) {{n} lignes illisibles (lignes {rows}) : date ou chiffre à corriger}'
+	String badRows({required num n, required Object rows}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('fr'))(n,
+		one: '${n} ligne illisible (ligne ${rows}) : date ou chiffre à corriger',
+		other: '${n} lignes illisibles (lignes ${rows}) : date ou chiffre à corriger',
+	);
+
+	/// fr: 'Colonnes non reconnues : {columns}'
+	String unknownColumns({required Object columns}) => 'Colonnes non reconnues : ${columns}';
+
+	/// fr: '(one) {Importer {n} jour} (other) {Importer {n} jours}'
+	String run({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('fr'))(n,
+		one: 'Importer ${n} jour',
+		other: 'Importer ${n} jours',
+	);
+
+	/// fr: '{done} sur {total}…'
+	String progress({required Object done, required Object total}) => '${done} sur ${total}…';
+
+	/// fr: '(one) {{n} jour importé.} (other) {{n} jours importés.}'
+	String saved({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('fr'))(n,
+		one: '${n} jour importé.',
+		other: '${n} jours importés.',
+	);
+
+	/// fr: '(one) {{n} jour n’a pas pu être enregistré.} (other) {{n} jours n’ont pas pu être enregistrés.}'
+	String failed({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('fr'))(n,
+		one: '${n} jour n’a pas pu être enregistré.',
+		other: '${n} jours n’ont pas pu être enregistrés.',
+	);
+
+	/// fr: 'Exporter'
+	String get exportTile => 'Exporter';
+
+	/// fr: 'PDF, tableur, WhatsApp'
+	String get exportHint => 'PDF, tableur, WhatsApp';
+
+	/// fr: 'Importer'
+	String get importTile => 'Importer';
+
+	/// fr: 'Depuis Excel'
+	String get importHint => 'Depuis Excel';
+}
+
 // Path: welcome.seek
 class Translations$welcome$seek$fr {
 	Translations$welcome$seek$fr.internal(this._root);
@@ -7011,14 +7117,14 @@ class Translations$prayer$importunity$fr {
 	/// fr: 'Touche à chaque proclamation'
 	String get tapHint => 'Touche à chaque proclamation';
 
-	/// fr: 'Ajouter un nombre'
-	String get addMany => 'Ajouter un nombre';
+	/// fr: 'Redéfinir manuellement'
+	String get addMany => 'Redéfinir manuellement';
 
-	/// fr: 'Combien de proclamations ?'
-	String get addManyTitle => 'Combien de proclamations ?';
+	/// fr: 'Combien de proclamations as-tu faites ?'
+	String get addManyTitle => 'Combien de proclamations as-tu faites ?';
 
-	/// fr: 'Proclamations'
-	String get addManyLabel => 'Proclamations';
+	/// fr: 'Mes proclamations'
+	String get addManyLabel => 'Mes proclamations';
 
 	/// fr: 'Ajouter'
 	String get add => 'Ajouter';
@@ -7088,6 +7194,12 @@ class Translations$prayer$importunity$fr {
 
 	/// fr: 'Le temps s'ajoute à « Prière seule » dans ton compte rendu.'
 	String get timerNote => 'Le temps s\'ajoute à « Prière seule » dans ton compte rendu.';
+
+	/// fr: 'Retirer une proclamation'
+	String get minusOne => 'Retirer une proclamation';
+
+	/// fr: 'Enregistrer'
+	String get set => 'Enregistrer';
 }
 
 // Path: prayer.free
@@ -9585,9 +9697,9 @@ extension on Translations {
 			'prayer.importunity.participants' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('fr'))(n, one: '${n} prie', other: '${n} prient', ), 
 			'prayer.importunity.mine' => ({required Object n}) => 'Toi : ${n}',
 			'prayer.importunity.tapHint' => 'Touche à chaque proclamation',
-			'prayer.importunity.addMany' => 'Ajouter un nombre',
-			'prayer.importunity.addManyTitle' => 'Combien de proclamations ?',
-			'prayer.importunity.addManyLabel' => 'Proclamations',
+			'prayer.importunity.addMany' => 'Redéfinir manuellement',
+			'prayer.importunity.addManyTitle' => 'Combien de proclamations as-tu faites ?',
+			'prayer.importunity.addManyLabel' => 'Mes proclamations',
 			'prayer.importunity.add' => 'Ajouter',
 			'prayer.importunity.pending' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('fr'))(n, one: '${n} en attente d\'envoi', other: '${n} en attente d\'envoi', ), 
 			'prayer.importunity.invite' => 'Inviter',
@@ -9628,6 +9740,8 @@ extension on Translations {
 			'prayer.importunity.timeLabel' => 'Temps de prière pour ce sujet',
 			'prayer.importunity.mineTime' => ({required Object n, required Object time}) => 'Toi : ${n} · ${time} de prière',
 			'prayer.importunity.timerNote' => 'Le temps s\'ajoute à « Prière seule » dans ton compte rendu.',
+			'prayer.importunity.minusOne' => 'Retirer une proclamation',
+			'prayer.importunity.set' => 'Enregistrer',
 			'prayer.free.title' => 'Prière seule',
 			'prayer.free.text' => 'Sans retraite : ton temps compte dans « Prière seule ».',
 			'prayer.free.start' => 'Chronométrer',
@@ -9914,10 +10028,10 @@ extension on Translations {
 			'yearStory.statChapters' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('fr'))(n, one: 'chapitre lu', other: 'chapitres lus', ), 
 			'yearStory.statFasts' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('fr'))(n, one: 'jour de jeûne', other: 'jours de jeûne', ), 
 			'yearStory.statGoals' => 'd\'objectifs',
-			'yearStory.emptyText' => 'Remplis ton compte rendu chaque jour : ton année s\'écrira ici.',
-			'yearStory.share' => 'Partager mon année',
 			_ => null,
 		} ?? switch (path) {
+			'yearStory.emptyText' => 'Remplis ton compte rendu chaque jour : ton année s\'écrira ici.',
+			'yearStory.share' => 'Partager mon année',
 			'yearStory.homeText' => ({required Object year}) => 'Ta fidélité, ta prière, la Parole : revois tout ce que tu as vécu avec Dieu en ${year}.',
 			'yearStory.open' => 'Voir mon année',
 			'yearStory.notificationTitle' => 'Ton année avec Dieu est prête',
@@ -10428,10 +10542,10 @@ extension on Translations {
 			'menu.seeProfile' => 'Voir mon profil',
 			'me.title' => 'Mon profil',
 			'me.edit' => 'Modifier mon profil',
-			'me.journey' => 'Mon cheminement',
-			'me.streak' => 'Série',
 			_ => null,
 		} ?? switch (path) {
+			'me.journey' => 'Mon cheminement',
+			'me.streak' => 'Série',
 			'me.steps' => 'Étapes',
 			'me.timeMonth' => 'Avec Dieu ce mois',
 			'me.nextStep' => ({required Object name}) => 'prochaine : ${name}',
@@ -10578,6 +10692,31 @@ extension on Translations {
 			'games.flightNext' => 'Un autre verset',
 			'games.flightDone' => 'Terminer',
 			'games.flightHearts' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('fr'))(n, one: '${n} cœur', other: '${n} cœurs', ), 
+			'sheetImport.title' => 'Importer depuis Excel',
+			'sheetImport.intro' => 'Remplis d’un coup tes jours passés : un fichier Excel, une ligne par jour. Un jour qui a déjà un compte rendu n’est jamais remplacé.',
+			'sheetImport.dateColumn' => 'Date',
+			'sheetImport.modelName' => 'modele_compte_rendu',
+			'sheetImport.modelTitle' => 'Récupère le modèle',
+			'sheetImport.modelText' => 'Un fichier Excel avec tes éléments en colonnes. Écris une ligne par jour : la date (2026-11-03 ou 03/11/2026), puis tes chiffres. Les durées sont en minutes.',
+			'sheetImport.modelButton' => 'Télécharger le modèle',
+			'sheetImport.fileTitle' => 'Choisis ton fichier rempli',
+			'sheetImport.fileText' => 'Un fichier .xlsx au format du modèle. Rien n’est enregistré avant que tu confirmes.',
+			'sheetImport.fileButton' => 'Choisir un fichier Excel',
+			'sheetImport.notExcel' => 'Ce fichier n’est pas un fichier Excel (.xlsx) lisible.',
+			'sheetImport.toFill' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('fr'))(n, one: '${n} jour à importer', other: '${n} jours à importer', ), 
+			'sheetImport.nothing' => 'Aucun jour à importer dans ce fichier.',
+			'sheetImport.alreadyFilled' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('fr'))(n, one: '${n} jour déjà rempli, laissé tel quel', other: '${n} jours déjà remplis, laissés tels quels', ), 
+			'sheetImport.future' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('fr'))(n, one: '${n} ligne dans le futur, ignorée', other: '${n} lignes dans le futur, ignorées', ), 
+			'sheetImport.badRows' => ({required num n, required Object rows}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('fr'))(n, one: '${n} ligne illisible (ligne ${rows}) : date ou chiffre à corriger', other: '${n} lignes illisibles (lignes ${rows}) : date ou chiffre à corriger', ), 
+			'sheetImport.unknownColumns' => ({required Object columns}) => 'Colonnes non reconnues : ${columns}',
+			'sheetImport.run' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('fr'))(n, one: 'Importer ${n} jour', other: 'Importer ${n} jours', ), 
+			'sheetImport.progress' => ({required Object done, required Object total}) => '${done} sur ${total}…',
+			'sheetImport.saved' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('fr'))(n, one: '${n} jour importé.', other: '${n} jours importés.', ), 
+			'sheetImport.failed' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('fr'))(n, one: '${n} jour n’a pas pu être enregistré.', other: '${n} jours n’ont pas pu être enregistrés.', ), 
+			'sheetImport.exportTile' => 'Exporter',
+			'sheetImport.exportHint' => 'PDF, tableur, WhatsApp',
+			'sheetImport.importTile' => 'Importer',
+			'sheetImport.importHint' => 'Depuis Excel',
 			_ => null,
 		};
 	}

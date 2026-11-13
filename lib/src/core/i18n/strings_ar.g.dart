@@ -91,6 +91,7 @@ class TranslationsAr extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _Translations$settings$ar settings = _Translations$settings$ar._(_root);
 	@override late final _Translations$reading$ar reading = _Translations$reading$ar._(_root);
 	@override late final _Translations$games$ar games = _Translations$games$ar._(_root);
+	@override late final _Translations$sheetImport$ar sheetImport = _Translations$sheetImport$ar._(_root);
 }
 
 // Path: app
@@ -2467,6 +2468,89 @@ class _Translations$games$ar extends Translations$games$fr {
 	);
 }
 
+// Path: sheetImport
+class _Translations$sheetImport$ar extends Translations$sheetImport$fr {
+	_Translations$sheetImport$ar._(TranslationsAr root) : this._root = root, super.internal(root);
+
+	final TranslationsAr _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'استيراد من Excel';
+	@override String get intro => 'املأ أيامك الماضية دفعة واحدة: ملف Excel، سطر لكل يوم. اليوم الذي له تقرير لا يُستبدل أبدًا.';
+	@override String get dateColumn => 'التاريخ';
+	@override String get modelName => 'report_template';
+	@override String get modelTitle => 'احصل على النموذج';
+	@override String get modelText => 'ملف Excel فيه عناصرك كأعمدة. اكتب سطرًا لكل يوم: التاريخ (2026-11-03 أو 03/11/2026) ثم أرقامك. المدد بالدقائق.';
+	@override String get modelButton => 'تنزيل النموذج';
+	@override String get fileTitle => 'اختر ملفك المملوء';
+	@override String get fileText => 'ملف ‎.xlsx بصيغة النموذج. لا يُحفظ شيء قبل أن تؤكد.';
+	@override String get fileButton => 'اختيار ملف Excel';
+	@override String get notExcel => 'هذا الملف ليس ملف Excel ‏(.xlsx) مقروءًا.';
+	@override String toFill({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n,
+		zero: 'لا أيام للاستيراد',
+		one: 'يوم واحد للاستيراد',
+		two: 'يومان للاستيراد',
+		few: '${n} أيام للاستيراد',
+		many: '${n} يومًا للاستيراد',
+		other: '${n} يوم للاستيراد',
+	);
+	@override String get nothing => 'لا يوم للاستيراد في هذا الملف.';
+	@override String alreadyFilled({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n,
+		zero: 'لا أيام مملوءة',
+		one: 'يوم واحد مملوء من قبل، يبقى كما هو',
+		two: 'يومان مملوءان من قبل، يبقيان كما هما',
+		few: '${n} أيام مملوءة من قبل، تبقى كما هي',
+		many: '${n} يومًا مملوءًا من قبل، تبقى كما هي',
+		other: '${n} يوم مملوء من قبل، تبقى كما هي',
+	);
+	@override String future({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n,
+		zero: 'لا أسطر في المستقبل',
+		one: 'سطر واحد في المستقبل، تم تجاهله',
+		two: 'سطران في المستقبل، تم تجاهلهما',
+		few: '${n} أسطر في المستقبل، تم تجاهلها',
+		many: '${n} سطرًا في المستقبل، تم تجاهلها',
+		other: '${n} سطر في المستقبل، تم تجاهلها',
+	);
+	@override String badRows({required num n, required Object rows}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n,
+		zero: 'لا أسطر غير مقروءة',
+		one: 'سطر واحد غير مقروء (السطر ${rows}): صحّح التاريخ أو الرقم',
+		two: 'سطران غير مقروءين (السطران ${rows}): صحّح التاريخ أو الرقم',
+		few: '${n} أسطر غير مقروءة (الأسطر ${rows}): صحّح التاريخ أو الرقم',
+		many: '${n} سطرًا غير مقروء (الأسطر ${rows}): صحّح التاريخ أو الرقم',
+		other: '${n} سطر غير مقروء (الأسطر ${rows}): صحّح التاريخ أو الرقم',
+	);
+	@override String unknownColumns({required Object columns}) => 'أعمدة غير معروفة: ${columns}';
+	@override String run({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n,
+		zero: 'استيراد',
+		one: 'استيراد يوم واحد',
+		two: 'استيراد يومين',
+		few: 'استيراد ${n} أيام',
+		many: 'استيراد ${n} يومًا',
+		other: 'استيراد ${n} يوم',
+	);
+	@override String progress({required Object done, required Object total}) => '${done} من ${total}…';
+	@override String saved({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n,
+		zero: 'لم يُستورد أي يوم.',
+		one: 'تم استيراد يوم واحد.',
+		two: 'تم استيراد يومين.',
+		few: 'تم استيراد ${n} أيام.',
+		many: 'تم استيراد ${n} يومًا.',
+		other: 'تم استيراد ${n} يوم.',
+	);
+	@override String failed({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n,
+		zero: '',
+		one: 'تعذّر حفظ يوم واحد.',
+		two: 'تعذّر حفظ يومين.',
+		few: 'تعذّر حفظ ${n} أيام.',
+		many: 'تعذّر حفظ ${n} يومًا.',
+		other: 'تعذّر حفظ ${n} يوم.',
+	);
+	@override String get exportTile => 'تصدير';
+	@override String get exportHint => 'PDF، جدول، WhatsApp';
+	@override String get importTile => 'استيراد';
+	@override String get importHint => 'من Excel';
+}
+
 // Path: welcome.seek
 class _Translations$welcome$seek$ar extends Translations$welcome$seek$fr {
 	_Translations$welcome$seek$ar._(TranslationsAr root) : this._root = root, super.internal(root);
@@ -3675,9 +3759,9 @@ class _Translations$prayer$importunity$ar extends Translations$prayer$importunit
 	);
 	@override String mine({required Object n}) => 'أنت: ${n}';
 	@override String get tapHint => 'المس الشاشة مع كل إعلان';
-	@override String get addMany => 'إضافة عدد';
-	@override String get addManyTitle => 'كم عدد الإعلانات؟';
-	@override String get addManyLabel => 'الإعلانات';
+	@override String get addMany => 'تحديد يدوي';
+	@override String get addManyTitle => 'كم إعلانًا قمت به؟';
+	@override String get addManyLabel => 'إعلاناتي';
 	@override String get add => 'إضافة';
 	@override String pending({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n,
 		zero: '${n} إعلان بانتظار الإرسال',
@@ -3714,6 +3798,8 @@ class _Translations$prayer$importunity$ar extends Translations$prayer$importunit
 	@override String get timeLabel => 'وقت الصلاة لهذا الموضوع';
 	@override String mineTime({required Object n, required Object time}) => 'أنت: ${n} · ${time} من الصلاة';
 	@override String get timerNote => 'يُضاف الوقت إلى «الصلاة الفردية» في تقريرك.';
+	@override String get minusOne => 'إنقاص إعلان واحد';
+	@override String get set => 'حفظ';
 }
 
 // Path: prayer.free
@@ -5804,9 +5890,9 @@ extension on TranslationsAr {
 			'prayer.importunity.participants' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n, zero: 'لا أحد يصلّي بعد', one: 'شخص واحد يصلّي', two: 'شخصان يصلّيان', few: '${n} أشخاص يصلّون', many: '${n} شخصًا يصلّون', other: '${n} شخص يصلّون', ), 
 			'prayer.importunity.mine' => ({required Object n}) => 'أنت: ${n}',
 			'prayer.importunity.tapHint' => 'المس الشاشة مع كل إعلان',
-			'prayer.importunity.addMany' => 'إضافة عدد',
-			'prayer.importunity.addManyTitle' => 'كم عدد الإعلانات؟',
-			'prayer.importunity.addManyLabel' => 'الإعلانات',
+			'prayer.importunity.addMany' => 'تحديد يدوي',
+			'prayer.importunity.addManyTitle' => 'كم إعلانًا قمت به؟',
+			'prayer.importunity.addManyLabel' => 'إعلاناتي',
 			'prayer.importunity.add' => 'إضافة',
 			'prayer.importunity.pending' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n, zero: '${n} إعلان بانتظار الإرسال', one: 'إعلان واحد بانتظار الإرسال', two: 'إعلانان بانتظار الإرسال', few: '${n} إعلانات بانتظار الإرسال', many: '${n} إعلانًا بانتظار الإرسال', other: '${n} إعلان بانتظار الإرسال', ), 
 			'prayer.importunity.invite' => 'دعوة',
@@ -5847,6 +5933,8 @@ extension on TranslationsAr {
 			'prayer.importunity.timeLabel' => 'وقت الصلاة لهذا الموضوع',
 			'prayer.importunity.mineTime' => ({required Object n, required Object time}) => 'أنت: ${n} · ${time} من الصلاة',
 			'prayer.importunity.timerNote' => 'يُضاف الوقت إلى «الصلاة الفردية» في تقريرك.',
+			'prayer.importunity.minusOne' => 'إنقاص إعلان واحد',
+			'prayer.importunity.set' => 'حفظ',
 			'prayer.free.title' => 'الصلاة الفردية',
 			'prayer.free.text' => 'بلا خلوة: يُحتسب وقتك في «الصلاة الفردية».',
 			'prayer.free.start' => 'ابدأ المؤقت',
@@ -6133,10 +6221,10 @@ extension on TranslationsAr {
 			'yearStory.statChapters' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n, zero: 'فصل مقروء', one: 'فصل مقروء', two: 'فصلان مقروءان', few: 'فصول مقروءة', many: 'فصلًا مقروءًا', other: 'فصل مقروء', ), 
 			'yearStory.statFasts' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n, zero: 'يوم صوم', one: 'يوم صوم', two: 'يوما صوم', few: 'أيام صوم', many: 'يومًا من الصوم', other: 'يوم صوم', ), 
 			'yearStory.statGoals' => 'من الأهداف',
-			'yearStory.emptyText' => 'املأ تقريرك كل يوم: سيُكتب عامك هنا.',
-			'yearStory.share' => 'مشاركة عامي',
 			_ => null,
 		} ?? switch (path) {
+			'yearStory.emptyText' => 'املأ تقريرك كل يوم: سيُكتب عامك هنا.',
+			'yearStory.share' => 'مشاركة عامي',
 			'yearStory.homeText' => ({required Object year}) => 'أمانتك وصلاتك وكلمة الله: استعد كل ما عشته مع الله في ${year}.',
 			'yearStory.open' => 'عرض عامي',
 			'yearStory.notificationTitle' => 'عامك مع الله جاهز',
@@ -6647,10 +6735,10 @@ extension on TranslationsAr {
 			'menu.seeProfile' => 'عرض ملفي',
 			'me.title' => 'ملفي',
 			'me.edit' => 'تعديل ملفي',
-			'me.journey' => 'مسيرتي',
-			'me.streak' => 'السلسلة',
 			_ => null,
 		} ?? switch (path) {
+			'me.journey' => 'مسيرتي',
+			'me.streak' => 'السلسلة',
 			'me.steps' => 'المراحل',
 			'me.timeMonth' => 'مع الله هذا الشهر',
 			'me.nextStep' => ({required Object name}) => 'التالية: ${name}',
@@ -6797,6 +6885,31 @@ extension on TranslationsAr {
 			'games.flightNext' => 'آية أخرى',
 			'games.flightDone' => 'إنهاء',
 			'games.flightHearts' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n, zero: 'لا قلوب', one: 'قلب واحد', two: 'قلبان', few: '${n} قلوب', many: '${n} قلبًا', other: '${n} قلب', ), 
+			'sheetImport.title' => 'استيراد من Excel',
+			'sheetImport.intro' => 'املأ أيامك الماضية دفعة واحدة: ملف Excel، سطر لكل يوم. اليوم الذي له تقرير لا يُستبدل أبدًا.',
+			'sheetImport.dateColumn' => 'التاريخ',
+			'sheetImport.modelName' => 'report_template',
+			'sheetImport.modelTitle' => 'احصل على النموذج',
+			'sheetImport.modelText' => 'ملف Excel فيه عناصرك كأعمدة. اكتب سطرًا لكل يوم: التاريخ (2026-11-03 أو 03/11/2026) ثم أرقامك. المدد بالدقائق.',
+			'sheetImport.modelButton' => 'تنزيل النموذج',
+			'sheetImport.fileTitle' => 'اختر ملفك المملوء',
+			'sheetImport.fileText' => 'ملف ‎.xlsx بصيغة النموذج. لا يُحفظ شيء قبل أن تؤكد.',
+			'sheetImport.fileButton' => 'اختيار ملف Excel',
+			'sheetImport.notExcel' => 'هذا الملف ليس ملف Excel ‏(.xlsx) مقروءًا.',
+			'sheetImport.toFill' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n, zero: 'لا أيام للاستيراد', one: 'يوم واحد للاستيراد', two: 'يومان للاستيراد', few: '${n} أيام للاستيراد', many: '${n} يومًا للاستيراد', other: '${n} يوم للاستيراد', ), 
+			'sheetImport.nothing' => 'لا يوم للاستيراد في هذا الملف.',
+			'sheetImport.alreadyFilled' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n, zero: 'لا أيام مملوءة', one: 'يوم واحد مملوء من قبل، يبقى كما هو', two: 'يومان مملوءان من قبل، يبقيان كما هما', few: '${n} أيام مملوءة من قبل، تبقى كما هي', many: '${n} يومًا مملوءًا من قبل، تبقى كما هي', other: '${n} يوم مملوء من قبل، تبقى كما هي', ), 
+			'sheetImport.future' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n, zero: 'لا أسطر في المستقبل', one: 'سطر واحد في المستقبل، تم تجاهله', two: 'سطران في المستقبل، تم تجاهلهما', few: '${n} أسطر في المستقبل، تم تجاهلها', many: '${n} سطرًا في المستقبل، تم تجاهلها', other: '${n} سطر في المستقبل، تم تجاهلها', ), 
+			'sheetImport.badRows' => ({required num n, required Object rows}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n, zero: 'لا أسطر غير مقروءة', one: 'سطر واحد غير مقروء (السطر ${rows}): صحّح التاريخ أو الرقم', two: 'سطران غير مقروءين (السطران ${rows}): صحّح التاريخ أو الرقم', few: '${n} أسطر غير مقروءة (الأسطر ${rows}): صحّح التاريخ أو الرقم', many: '${n} سطرًا غير مقروء (الأسطر ${rows}): صحّح التاريخ أو الرقم', other: '${n} سطر غير مقروء (الأسطر ${rows}): صحّح التاريخ أو الرقم', ), 
+			'sheetImport.unknownColumns' => ({required Object columns}) => 'أعمدة غير معروفة: ${columns}',
+			'sheetImport.run' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n, zero: 'استيراد', one: 'استيراد يوم واحد', two: 'استيراد يومين', few: 'استيراد ${n} أيام', many: 'استيراد ${n} يومًا', other: 'استيراد ${n} يوم', ), 
+			'sheetImport.progress' => ({required Object done, required Object total}) => '${done} من ${total}…',
+			'sheetImport.saved' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n, zero: 'لم يُستورد أي يوم.', one: 'تم استيراد يوم واحد.', two: 'تم استيراد يومين.', few: 'تم استيراد ${n} أيام.', many: 'تم استيراد ${n} يومًا.', other: 'تم استيراد ${n} يوم.', ), 
+			'sheetImport.failed' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n, zero: '', one: 'تعذّر حفظ يوم واحد.', two: 'تعذّر حفظ يومين.', few: 'تعذّر حفظ ${n} أيام.', many: 'تعذّر حفظ ${n} يومًا.', other: 'تعذّر حفظ ${n} يوم.', ), 
+			'sheetImport.exportTile' => 'تصدير',
+			'sheetImport.exportHint' => 'PDF، جدول، WhatsApp',
+			'sheetImport.importTile' => 'استيراد',
+			'sheetImport.importHint' => 'من Excel',
 			_ => null,
 		};
 	}

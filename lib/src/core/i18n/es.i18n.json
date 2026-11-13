@@ -1535,9 +1535,9 @@
       },
       "mine": "Tú: {n}",
       "tapHint": "Toca en cada proclamación",
-      "addMany": "Añadir una cantidad",
-      "addManyTitle": "¿Cuántas proclamaciones?",
-      "addManyLabel": "Proclamaciones",
+      "addMany": "Definir manualmente",
+      "addManyTitle": "¿Cuántas proclamaciones has hecho?",
+      "addManyLabel": "Mis proclamaciones",
       "add": "Añadir",
       "pending(plural, param=n)": {
         "one": "{n} pendiente de envío",
@@ -1594,7 +1594,9 @@
       "timer": "Cronometrar mi oración",
       "timeLabel": "Tiempo de oración por este motivo",
       "mineTime": "Tú: {n} · {time} de oración",
-      "timerNote": "El tiempo se suma a «Oración personal» en tu informe."
+      "timerNote": "El tiempo se suma a «Oración personal» en tu informe.",
+      "minusOne": "Quitar una proclamación",
+      "set": "Guardar"
     },
     "free": {
       "title": "Oración personal",
@@ -2927,5 +2929,53 @@
       "one": "{n} corazón",
       "other": "{n} corazones"
     }
+  },
+  "sheetImport": {
+    "title": "Importar desde Excel",
+    "intro": "Rellena de una vez tus días pasados: un archivo Excel, una fila por día. Un día que ya tiene informe nunca se reemplaza.",
+    "dateColumn": "Fecha",
+    "modelName": "plantilla_informe",
+    "modelTitle": "Consigue la plantilla",
+    "modelText": "Un archivo Excel con tus elementos en columnas. Escribe una fila por día: la fecha (2026-11-03 o 03/11/2026) y luego tus cifras. Las duraciones van en minutos.",
+    "modelButton": "Descargar la plantilla",
+    "fileTitle": "Elige tu archivo rellenado",
+    "fileText": "Un archivo .xlsx con el formato de la plantilla. No se guarda nada antes de que confirmes.",
+    "fileButton": "Elegir un archivo Excel",
+    "notExcel": "Este archivo no es un archivo Excel (.xlsx) legible.",
+    "toFill(plural, param=n)": {
+      "one": "{n} día para importar",
+      "other": "{n} días para importar"
+    },
+    "nothing": "Ningún día para importar en este archivo.",
+    "alreadyFilled(plural, param=n)": {
+      "one": "{n} día ya rellenado, se deja como está",
+      "other": "{n} días ya rellenados, se dejan como están"
+    },
+    "future(plural, param=n)": {
+      "one": "{n} fila en el futuro, ignorada",
+      "other": "{n} filas en el futuro, ignoradas"
+    },
+    "badRows(plural, param=n)": {
+      "one": "{n} fila ilegible (fila {rows}): fecha o cifra por corregir",
+      "other": "{n} filas ilegibles (filas {rows}): fecha o cifra por corregir"
+    },
+    "unknownColumns": "Columnas no reconocidas: {columns}",
+    "run(plural, param=n)": {
+      "one": "Importar {n} día",
+      "other": "Importar {n} días"
+    },
+    "progress": "{done} de {total}…",
+    "saved(plural, param=n)": {
+      "one": "{n} día importado.",
+      "other": "{n} días importados."
+    },
+    "failed(plural, param=n)": {
+      "one": "{n} día no se pudo guardar.",
+      "other": "{n} días no se pudieron guardar."
+    },
+    "exportTile": "Exportar",
+    "exportHint": "PDF, hoja de cálculo, WhatsApp",
+    "importTile": "Importar",
+    "importHint": "Desde Excel"
   }
 }

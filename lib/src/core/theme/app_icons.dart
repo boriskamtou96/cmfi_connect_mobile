@@ -222,6 +222,10 @@ abstract final class AppIcons {
   static const private = PhosphorIconsRegular.lockSimple;
   static const premiumLock = PhosphorIconsFill.lockSimple;
   static const premiumCrown = PhosphorIconsFill.crown;
+  // on the photo of a Premium member (the seal of PremiumMark)
+  static const premiumSeal = PhosphorIconsFill.star;
+  // the Excel file of the import of the reports
+  static const spreadsheet = PhosphorIconsRegular.table;
   static const stopwatch = PhosphorIconsRegular.timer;
   // a retreat read aloud
   static const voiceOn = PhosphorIconsFill.userSound;

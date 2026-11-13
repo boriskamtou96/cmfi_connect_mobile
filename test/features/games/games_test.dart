@@ -132,10 +132,11 @@ void main() {
     // the last lesson is under the fold
     final nodes = find.byType(PathNode, skipOffstage: false);
     expect(nodes, findsNWidgets(3));
-    expect(
-      tester.widgetList<PathNode>(nodes).map((n) => n.state),
-      [LessonState.done, LessonState.open, LessonState.locked],
-    );
+    expect(tester.widgetList<PathNode>(nodes).map((n) => n.state), [
+      LessonState.done,
+      LessonState.open,
+      LessonState.locked,
+    ]);
     // the one to play
     expect(find.text('COMMENCER'), findsOneWidget);
     expect(

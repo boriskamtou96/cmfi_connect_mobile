@@ -107,10 +107,13 @@ class ImportunityScreen extends HookConsumerWidget {
       );
     }
 
+    // « Redéfinir manuellement »: the member writes their own number; the
+    // difference is counted, up or down
     Future<void> addMany() async {
-      final amount = await _askAmount(context);
-      if (amount != null && amount > 0) {
-        count(amount);
+      final mine = topic.myCount;
+      final wanted = await _askAmount(context);
+      if (wanted != null && wanted != mine) {
+        count(wanted - mine);
       }
     }
 
@@ -156,7 +159,12 @@ class ImportunityScreen extends HookConsumerWidget {
               ),
             ),
             const SizedBox(height: AppSpacing.md),
-            _PrayerTime(topic: topic, canCount: canCount, onAddMany: addMany),
+            _PrayerTime(
+              topic: topic,
+              canCount: canCount,
+              onAddMany: addMany,
+              onMinus: () => count(-1),
+            ),
           ],
           const SizedBox(height: AppSpacing.lg),
           if (topic.goal case final goal?) ...[
@@ -256,11 +264,15 @@ class _PrayerTime extends HookConsumerWidget {
     required this.topic,
     required this.canCount,
     required this.onAddMany,
+    required this.onMinus,
   });
 
   final Importunity topic;
   final bool canCount;
   final VoidCallback onAddMany;
+
+  /// One proclamation taken back (a tap too many).
+  final VoidCallback onMinus;
 
   /// « Prière seule », counted in time.
   static const _prayerCode = 'PS';
@@ -414,9 +426,15 @@ class _PrayerTime extends HookConsumerWidget {
                   icon: const Icon(AppIcons.stopwatch, size: 18),
                   label: Text(t.prayer.importunity.timer),
                 ),
+              if (topic.myCount > 0)
+                IconButton.outlined(
+                  tooltip: t.prayer.importunity.minusOne,
+                  onPressed: onMinus,
+                  icon: const Icon(AppIcons.minus, size: 18),
+                ),
               TextButton.icon(
                 onPressed: onAddMany,
-                icon: const Icon(AppIcons.addCircle, size: 18),
+                icon: const Icon(AppIcons.edit, size: 18),
                 label: Text(t.prayer.importunity.addMany),
               ),
             ],
@@ -691,11 +709,11 @@ Future<int?> _askAmount(BuildContext context) async {
     context,
     title: t.addManyTitle,
     label: t.addManyLabel,
-    confirmLabel: t.add,
+    confirmLabel: t.set,
     keyboardType: TextInputType.number,
     inputFormatters: [
       FilteringTextInputFormatter.digitsOnly,
-      LengthLimitingTextInputFormatter(5),
+      LengthLimitingTextInputFormatter(7),
     ],
   );
   return typed == null ? null : int.tryParse(typed);

@@ -11,7 +11,7 @@ import '../../../core/theme/app_spacing.dart';
 import '../../../core/utils/date_extensions.dart';
 import '../../../core/widgets/cmfi_logo.dart';
 import '../../../core/widgets/menu_tile.dart';
-import '../../../core/widgets/premium_crown.dart';
+import '../../../core/widgets/premium_mark.dart';
 import '../../../core/widgets/section_card.dart';
 import '../../../routing/app_router.dart';
 import '../../members/application/my_account.dart';
@@ -85,7 +85,7 @@ class MenuScreen extends ConsumerWidget {
                         ),
                         child: Row(
                           children: [
-                            PremiumCrown(
+                            PremiumMark(
                               size: 58,
                               child: MemberAvatar(
                                 initials: profile?.initials ?? '',
@@ -260,12 +260,13 @@ class MenuScreen extends ConsumerWidget {
                         ],
                       ),
                       const SizedBox(height: AppSpacing.lg),
+                      // centred under the menu (asked on 13/11/2026)
                       Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          const SizedBox(width: AppSpacing.xs),
                           const CmfiLogo.onDark(size: 30),
                           const SizedBox(width: AppSpacing.sm),
-                          Expanded(
+                          Flexible(
                             child: Text(
                               [
                                 t.app.name,

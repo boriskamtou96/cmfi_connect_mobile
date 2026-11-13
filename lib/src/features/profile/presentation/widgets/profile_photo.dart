@@ -12,7 +12,7 @@ import '../../../../core/theme/app_icons.dart';
 import '../../../../core/widgets/adaptive.dart';
 import '../../../../core/widgets/adaptive_menus.dart';
 import '../../../../core/widgets/app_toast.dart';
-import '../../../../core/widgets/premium_crown.dart';
+import '../../../../core/widgets/premium_mark.dart';
 import '../../../../routing/app_router.dart';
 import '../../../members/presentation/widgets/member_avatar.dart';
 import '../../application/current_profile.dart';
@@ -49,10 +49,10 @@ class ProfilePhotoButton extends HookConsumerWidget {
         child: SizedBox.square(
           dimension: size,
           child: Stack(
-            // the Premium crown leans out of the photo
+            // the Premium seal sits on the edge of the photo
             clipBehavior: Clip.none,
             children: [
-              PremiumCrown(
+              PremiumMark(
                 size: size,
                 child: MemberAvatar(
                   initials: profile?.initials ?? '',

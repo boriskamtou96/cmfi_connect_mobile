@@ -15,11 +15,14 @@ class DocumentPicking {
 
   static const extensions = ['pdf', 'docx', 'doc'];
 
-  /// null when the user gives up.
-  Future<PickedDocument?> pickOne() async {
+  /// The Excel files of the import of the reports.
+  static const sheets = ['xlsx'];
+
+  /// null when the user gives up. [among]: the kinds of files offered.
+  Future<PickedDocument?> pickOne({List<String> among = extensions}) async {
     final file = await FilePicker.pickFile(
       type: FileType.custom,
-      allowedExtensions: extensions,
+      allowedExtensions: among,
     );
     if (file == null) {
       return null;

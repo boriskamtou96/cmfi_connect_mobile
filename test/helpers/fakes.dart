@@ -3130,8 +3130,9 @@ class FakeDocumentPicking implements DocumentPicking {
   final next = <PickedDocument>[];
 
   @override
-  Future<PickedDocument?> pickOne() async =>
-      next.isEmpty ? null : next.removeAt(0);
+  Future<PickedDocument?> pickOne({
+    List<String> among = DocumentPicking.extensions,
+  }) async => next.isEmpty ? null : next.removeAt(0);
 }
 
 /// Enseignements: two messages, the newest first.

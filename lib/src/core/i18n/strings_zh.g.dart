@@ -91,6 +91,7 @@ class TranslationsZh extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _Translations$settings$zh settings = _Translations$settings$zh._(_root);
 	@override late final _Translations$reading$zh reading = _Translations$reading$zh._(_root);
 	@override late final _Translations$games$zh games = _Translations$games$zh._(_root);
+	@override late final _Translations$sheetImport$zh sheetImport = _Translations$sheetImport$zh._(_root);
 }
 
 // Path: app
@@ -2101,6 +2102,54 @@ class _Translations$games$zh extends Translations$games$fr {
 	);
 }
 
+// Path: sheetImport
+class _Translations$sheetImport$zh extends Translations$sheetImport$fr {
+	_Translations$sheetImport$zh._(TranslationsZh root) : this._root = root, super.internal(root);
+
+	final TranslationsZh _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => '从 Excel 导入';
+	@override String get intro => '一次填好过去的日子：一个 Excel 文件，每天一行。已有记录的日子绝不会被替换。';
+	@override String get dateColumn => '日期';
+	@override String get modelName => 'report_template';
+	@override String get modelTitle => '获取模板';
+	@override String get modelText => '一个以你的项目为列的 Excel 文件。每天写一行：日期（2026-11-03 或 03/11/2026），然后是你的数字。时长以分钟计。';
+	@override String get modelButton => '下载模板';
+	@override String get fileTitle => '选择填好的文件';
+	@override String get fileText => '模板格式的 .xlsx 文件。在你确认之前不会保存任何内容。';
+	@override String get fileButton => '选择 Excel 文件';
+	@override String get notExcel => '此文件不是可读取的 Excel 文件（.xlsx）。';
+	@override String toFill({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n,
+		other: '${n} 天待导入',
+	);
+	@override String get nothing => '此文件中没有可导入的日子。';
+	@override String alreadyFilled({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n,
+		other: '${n} 天已填写，保持不变',
+	);
+	@override String future({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n,
+		other: '${n} 行在未来，已忽略',
+	);
+	@override String badRows({required num n, required Object rows}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n,
+		other: '${n} 行无法读取（第 ${rows} 行）：请更正日期或数字',
+	);
+	@override String unknownColumns({required Object columns}) => '无法识别的列：${columns}';
+	@override String run({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n,
+		other: '导入 ${n} 天',
+	);
+	@override String progress({required Object done, required Object total}) => '${done} / ${total}…';
+	@override String saved({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n,
+		other: '已导入 ${n} 天。',
+	);
+	@override String failed({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n,
+		other: '${n} 天未能保存。',
+	);
+	@override String get exportTile => '导出';
+	@override String get exportHint => 'PDF、表格、WhatsApp';
+	@override String get importTile => '导入';
+	@override String get importHint => '从 Excel';
+}
+
 // Path: welcome.seek
 class _Translations$welcome$seek$zh extends Translations$welcome$seek$fr {
 	_Translations$welcome$seek$zh._(TranslationsZh root) : this._root = root, super.internal(root);
@@ -3246,9 +3295,9 @@ class _Translations$prayer$importunity$zh extends Translations$prayer$importunit
 	);
 	@override String mine({required Object n}) => '你：${n}';
 	@override String get tapHint => '每宣告一次，就点一下';
-	@override String get addMany => '添加次数';
-	@override String get addManyTitle => '宣告了多少次？';
-	@override String get addManyLabel => '宣告次数';
+	@override String get addMany => '手动设定';
+	@override String get addManyTitle => '你已经宣告了多少次？';
+	@override String get addManyLabel => '我的宣告次数';
 	@override String get add => '添加';
 	@override String pending({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n,
 		other: '${n} 次待发送',
@@ -3275,6 +3324,8 @@ class _Translations$prayer$importunity$zh extends Translations$prayer$importunit
 	@override String get timeLabel => '为此事项祷告的时间';
 	@override String mineTime({required Object n, required Object time}) => '你：${n} · 祷告 ${time}';
 	@override String get timerNote => '时间会计入报告中的“个人祷告”。';
+	@override String get minusOne => '减去一次宣告';
+	@override String get set => '保存';
 }
 
 // Path: prayer.free
@@ -5261,9 +5312,9 @@ extension on TranslationsZh {
 			'prayer.importunity.participants' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n, other: '${n} 人在祷告', ), 
 			'prayer.importunity.mine' => ({required Object n}) => '你：${n}',
 			'prayer.importunity.tapHint' => '每宣告一次，就点一下',
-			'prayer.importunity.addMany' => '添加次数',
-			'prayer.importunity.addManyTitle' => '宣告了多少次？',
-			'prayer.importunity.addManyLabel' => '宣告次数',
+			'prayer.importunity.addMany' => '手动设定',
+			'prayer.importunity.addManyTitle' => '你已经宣告了多少次？',
+			'prayer.importunity.addManyLabel' => '我的宣告次数',
 			'prayer.importunity.add' => '添加',
 			'prayer.importunity.pending' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n, other: '${n} 次待发送', ), 
 			'prayer.importunity.invite' => '邀请',
@@ -5304,6 +5355,8 @@ extension on TranslationsZh {
 			'prayer.importunity.timeLabel' => '为此事项祷告的时间',
 			'prayer.importunity.mineTime' => ({required Object n, required Object time}) => '你：${n} · 祷告 ${time}',
 			'prayer.importunity.timerNote' => '时间会计入报告中的“个人祷告”。',
+			'prayer.importunity.minusOne' => '减去一次宣告',
+			'prayer.importunity.set' => '保存',
 			'prayer.free.title' => '个人祷告',
 			'prayer.free.text' => '不做灵修：你的时间计入「个人祷告」。',
 			'prayer.free.start' => '开始计时',
@@ -5590,10 +5643,10 @@ extension on TranslationsZh {
 			'yearStory.statChapters' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n, other: '章已读', ), 
 			'yearStory.statFasts' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n, other: '天禁食', ), 
 			'yearStory.statGoals' => '目标',
-			'yearStory.emptyText' => '每天填写你的报告：你的一年将写在这里。',
-			'yearStory.share' => '分享我的一年',
 			_ => null,
 		} ?? switch (path) {
+			'yearStory.emptyText' => '每天填写你的报告：你的一年将写在这里。',
+			'yearStory.share' => '分享我的一年',
 			'yearStory.homeText' => ({required Object year}) => '你的忠心、祷告与神的话：回顾 ${year} 年你与神同在的点滴。',
 			'yearStory.open' => '查看我的一年',
 			'yearStory.notificationTitle' => '你与神同在的一年已准备好',
@@ -6104,10 +6157,10 @@ extension on TranslationsZh {
 			'menu.seeProfile' => '查看我的资料',
 			'me.title' => '我的资料',
 			'me.edit' => '编辑我的资料',
-			'me.journey' => '我的旅程',
-			'me.streak' => '连续',
 			_ => null,
 		} ?? switch (path) {
+			'me.journey' => '我的旅程',
+			'me.streak' => '连续',
 			'me.steps' => '里程',
 			'me.timeMonth' => '本月与神同在',
 			'me.nextStep' => ({required Object name}) => '下一个：${name}',
@@ -6254,6 +6307,31 @@ extension on TranslationsZh {
 			'games.flightNext' => '换一节经文',
 			'games.flightDone' => '完成',
 			'games.flightHearts' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n, other: '${n} 颗心', ), 
+			'sheetImport.title' => '从 Excel 导入',
+			'sheetImport.intro' => '一次填好过去的日子：一个 Excel 文件，每天一行。已有记录的日子绝不会被替换。',
+			'sheetImport.dateColumn' => '日期',
+			'sheetImport.modelName' => 'report_template',
+			'sheetImport.modelTitle' => '获取模板',
+			'sheetImport.modelText' => '一个以你的项目为列的 Excel 文件。每天写一行：日期（2026-11-03 或 03/11/2026），然后是你的数字。时长以分钟计。',
+			'sheetImport.modelButton' => '下载模板',
+			'sheetImport.fileTitle' => '选择填好的文件',
+			'sheetImport.fileText' => '模板格式的 .xlsx 文件。在你确认之前不会保存任何内容。',
+			'sheetImport.fileButton' => '选择 Excel 文件',
+			'sheetImport.notExcel' => '此文件不是可读取的 Excel 文件（.xlsx）。',
+			'sheetImport.toFill' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n, other: '${n} 天待导入', ), 
+			'sheetImport.nothing' => '此文件中没有可导入的日子。',
+			'sheetImport.alreadyFilled' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n, other: '${n} 天已填写，保持不变', ), 
+			'sheetImport.future' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n, other: '${n} 行在未来，已忽略', ), 
+			'sheetImport.badRows' => ({required num n, required Object rows}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n, other: '${n} 行无法读取（第 ${rows} 行）：请更正日期或数字', ), 
+			'sheetImport.unknownColumns' => ({required Object columns}) => '无法识别的列：${columns}',
+			'sheetImport.run' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n, other: '导入 ${n} 天', ), 
+			'sheetImport.progress' => ({required Object done, required Object total}) => '${done} / ${total}…',
+			'sheetImport.saved' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n, other: '已导入 ${n} 天。', ), 
+			'sheetImport.failed' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n, other: '${n} 天未能保存。', ), 
+			'sheetImport.exportTile' => '导出',
+			'sheetImport.exportHint' => 'PDF、表格、WhatsApp',
+			'sheetImport.importTile' => '导入',
+			'sheetImport.importHint' => '从 Excel',
 			_ => null,
 		};
 	}

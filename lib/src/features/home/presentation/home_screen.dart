@@ -16,7 +16,7 @@ import '../../../core/widgets/cmfi_logo.dart';
 import '../../../core/widgets/fade_slide_in.dart';
 import '../../../core/widgets/media_picture.dart';
 import '../../../core/widgets/photo_kit.dart';
-import '../../../core/widgets/premium_crown.dart';
+import '../../../core/widgets/premium_mark.dart';
 import '../../../routing/app_router.dart';
 import '../../bible/application/bible_library.dart';
 import '../../bible/application/bible_plan.dart';
@@ -351,7 +351,7 @@ class _Summary extends ConsumerWidget {
                     child: InkResponse(
                       onTap: () => context.navigateTo(const MenuRoute()),
                       radius: 28,
-                      child: PremiumCrown(
+                      child: PremiumMark(
                         size: 42,
                         child: MemberAvatar(
                           initials: profile?.initials ?? '',

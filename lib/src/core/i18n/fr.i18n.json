@@ -1535,9 +1535,9 @@
       },
       "mine": "Toi : {n}",
       "tapHint": "Touche à chaque proclamation",
-      "addMany": "Ajouter un nombre",
-      "addManyTitle": "Combien de proclamations ?",
-      "addManyLabel": "Proclamations",
+      "addMany": "Redéfinir manuellement",
+      "addManyTitle": "Combien de proclamations as-tu faites ?",
+      "addManyLabel": "Mes proclamations",
       "add": "Ajouter",
       "pending(plural, param=n)": {
         "one": "{n} en attente d'envoi",
@@ -1594,7 +1594,9 @@
       "timer": "Chronométrer ma prière",
       "timeLabel": "Temps de prière pour ce sujet",
       "mineTime": "Toi : {n} · {time} de prière",
-      "timerNote": "Le temps s'ajoute à « Prière seule » dans ton compte rendu."
+      "timerNote": "Le temps s'ajoute à « Prière seule » dans ton compte rendu.",
+      "minusOne": "Retirer une proclamation",
+      "set": "Enregistrer"
     },
     "free": {
       "title": "Prière seule",
@@ -2927,5 +2929,53 @@
       "one": "{n} cœur",
       "other": "{n} cœurs"
     }
+  },
+  "sheetImport": {
+    "title": "Importer depuis Excel",
+    "intro": "Remplis d’un coup tes jours passés : un fichier Excel, une ligne par jour. Un jour qui a déjà un compte rendu n’est jamais remplacé.",
+    "dateColumn": "Date",
+    "modelName": "modele_compte_rendu",
+    "modelTitle": "Récupère le modèle",
+    "modelText": "Un fichier Excel avec tes éléments en colonnes. Écris une ligne par jour : la date (2026-11-03 ou 03/11/2026), puis tes chiffres. Les durées sont en minutes.",
+    "modelButton": "Télécharger le modèle",
+    "fileTitle": "Choisis ton fichier rempli",
+    "fileText": "Un fichier .xlsx au format du modèle. Rien n’est enregistré avant que tu confirmes.",
+    "fileButton": "Choisir un fichier Excel",
+    "notExcel": "Ce fichier n’est pas un fichier Excel (.xlsx) lisible.",
+    "toFill(plural, param=n)": {
+      "one": "{n} jour à importer",
+      "other": "{n} jours à importer"
+    },
+    "nothing": "Aucun jour à importer dans ce fichier.",
+    "alreadyFilled(plural, param=n)": {
+      "one": "{n} jour déjà rempli, laissé tel quel",
+      "other": "{n} jours déjà remplis, laissés tels quels"
+    },
+    "future(plural, param=n)": {
+      "one": "{n} ligne dans le futur, ignorée",
+      "other": "{n} lignes dans le futur, ignorées"
+    },
+    "badRows(plural, param=n)": {
+      "one": "{n} ligne illisible (ligne {rows}) : date ou chiffre à corriger",
+      "other": "{n} lignes illisibles (lignes {rows}) : date ou chiffre à corriger"
+    },
+    "unknownColumns": "Colonnes non reconnues : {columns}",
+    "run(plural, param=n)": {
+      "one": "Importer {n} jour",
+      "other": "Importer {n} jours"
+    },
+    "progress": "{done} sur {total}…",
+    "saved(plural, param=n)": {
+      "one": "{n} jour importé.",
+      "other": "{n} jours importés."
+    },
+    "failed(plural, param=n)": {
+      "one": "{n} jour n’a pas pu être enregistré.",
+      "other": "{n} jours n’ont pas pu être enregistrés."
+    },
+    "exportTile": "Exporter",
+    "exportHint": "PDF, tableur, WhatsApp",
+    "importTile": "Importer",
+    "importHint": "Depuis Excel"
   }
 }

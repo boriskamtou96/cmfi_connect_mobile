@@ -1536,9 +1536,9 @@
       },
       "mine": "You: {n}",
       "tapHint": "Tap at each proclamation",
-      "addMany": "Add a number",
-      "addManyTitle": "How many proclamations?",
-      "addManyLabel": "Proclamations",
+      "addMany": "Set manually",
+      "addManyTitle": "How many proclamations have you made?",
+      "addManyLabel": "My proclamations",
       "add": "Add",
       "pending(plural, param=n)": {
         "one": "{n} waiting to be sent",
@@ -1595,7 +1595,9 @@
       "timer": "Time my prayer",
       "timeLabel": "Prayer time for this topic",
       "mineTime": "You: {n} · {time} of prayer",
-      "timerNote": "The time is added to \"Personal prayer\" in your report."
+      "timerNote": "The time is added to \"Personal prayer\" in your report.",
+      "minusOne": "Take one proclamation off",
+      "set": "Save"
     },
     "free": {
       "title": "Personal prayer",
@@ -2928,5 +2930,53 @@
       "one": "{n} heart",
       "other": "{n} hearts"
     }
+  },
+  "sheetImport": {
+    "title": "Import from Excel",
+    "intro": "Fill your past days at once: an Excel file, one row per day. A day that already has a report is never replaced.",
+    "dateColumn": "Date",
+    "modelName": "report_template",
+    "modelTitle": "Get the template",
+    "modelText": "An Excel file with your items as columns. Write one row per day: the date (2026-11-03 or 03/11/2026), then your numbers. Durations are in minutes.",
+    "modelButton": "Download the template",
+    "fileTitle": "Choose your filled file",
+    "fileText": "An .xlsx file in the format of the template. Nothing is saved before you confirm.",
+    "fileButton": "Choose an Excel file",
+    "notExcel": "This file is not a readable Excel file (.xlsx).",
+    "toFill(plural, param=n)": {
+      "one": "{n} day to import",
+      "other": "{n} days to import"
+    },
+    "nothing": "No day to import in this file.",
+    "alreadyFilled(plural, param=n)": {
+      "one": "{n} day already filled, left as it is",
+      "other": "{n} days already filled, left as they are"
+    },
+    "future(plural, param=n)": {
+      "one": "{n} row in the future, ignored",
+      "other": "{n} rows in the future, ignored"
+    },
+    "badRows(plural, param=n)": {
+      "one": "{n} unreadable row (row {rows}): a date or a number to fix",
+      "other": "{n} unreadable rows (rows {rows}): a date or a number to fix"
+    },
+    "unknownColumns": "Columns not recognised: {columns}",
+    "run(plural, param=n)": {
+      "one": "Import {n} day",
+      "other": "Import {n} days"
+    },
+    "progress": "{done} of {total}…",
+    "saved(plural, param=n)": {
+      "one": "{n} day imported.",
+      "other": "{n} days imported."
+    },
+    "failed(plural, param=n)": {
+      "one": "{n} day could not be saved.",
+      "other": "{n} days could not be saved."
+    },
+    "exportTile": "Export",
+    "exportHint": "PDF, spreadsheet, WhatsApp",
+    "importTile": "Import",
+    "importHint": "From Excel"
   }
 }

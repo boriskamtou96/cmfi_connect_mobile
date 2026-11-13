@@ -538,6 +538,44 @@ void main() {
       expect(find.text('43 sur 100'), findsOneWidget);
     });
 
+    testWidgets('a proclamation too many is taken back; « Redéfinir '
+        'manuellement » sets my number, up or down', (tester) async {
+      final api = FakePrayerApi(importunities: [topic]);
+      await pumpApp(tester, token: 't', prayerApi: api);
+      await openPrayer(tester);
+      await scrollToMiddle(tester, find.text('Seigneur, sauve Paul'));
+      await tester.tap(find.text('Seigneur, sauve Paul'));
+      await tester.pumpAndSettle();
+
+      // a tap, then one taken back: nothing to send
+      await tester.tap(find.text('Touche à chaque proclamation'));
+      await tester.pump();
+      await tester.tap(find.byTooltip('Retirer une proclamation'));
+      await tester.pump();
+      expect(find.text('Toi : 10'), findsOneWidget);
+      // one more taken back: sent as -1
+      await tester.tap(find.byTooltip('Retirer une proclamation'));
+      await tester.pump();
+      expect(find.text('Toi : 9'), findsOneWidget);
+      expect(find.text('39 sur 100'), findsOneWidget);
+      await tester.pump(const Duration(seconds: 3));
+      await tester.pumpAndSettle();
+      expect(api.counts, [(7, -1)]);
+
+      // my number set by hand: 9 → 4
+      await tester.tap(find.text('Redéfinir manuellement'));
+      await tester.pumpAndSettle();
+      await tester.enterText(find.byType(TextField), '4');
+      await tester.pump();
+      await tester.tap(find.text('Enregistrer'));
+      await tester.pumpAndSettle();
+      expect(find.text('Toi : 4'), findsOneWidget);
+      expect(find.text('34 sur 100'), findsOneWidget);
+      await tester.pump(const Duration(seconds: 3));
+      await tester.pumpAndSettle();
+      expect(api.counts.last, (7, -5));
+    });
+
     testWidgets('a time of prayer for the topic, added to « Prière seule »', (
       tester,
     ) async {

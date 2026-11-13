@@ -44,13 +44,18 @@ class LessonScreen extends ConsumerWidget {
     final t = context.t;
     final session = ref.watch(lessonControllerProvider(lessonId));
     final controller = ref.read(lessonControllerProvider(lessonId).notifier);
-    // the end of the lesson is heard: longer when a level is finished
+    // the end of the lesson is heard and felt: more when a level is finished
     ref.listen(lessonControllerProvider(lessonId), (previous, next) {
       final result = next.value?.result;
       if (result != null && previous?.value?.result == null) {
-        ref
-            .read(gameSoundsProvider)
-            .lessonDone(level: result.levelCompleted || result.levelUp);
+        final level = result.levelCompleted || result.levelUp;
+        // felt too: a firm tap, a heavier one for a level
+        if (level) {
+          HapticFeedback.heavyImpact();
+        } else {
+          HapticFeedback.mediumImpact();
+        }
+        ref.read(gameSoundsProvider).lessonDone(level: level);
       }
     });
 

@@ -1,6 +1,4 @@
 Neu in CMFI Connect
-• Bericht: Importiere vergangene Tage aus einer Excel-Datei, statt sie einzeln einzutragen
-• Export und Import sind jetzt in Verlauf und Bilanz gut sichtbar
-• Proklamationen: Nimm einen Tipp zu viel zurück oder lege deine Zahl von Hand fest
-• Spiele: eine Siegesvibration am Ende jeder Lektion
-• Ein neues Zeichen für Premium-Mitglieder
+• Spenden: Unterstütze das Werk mit einem Betrag deiner Wahl, per Mobile Money oder Karte (Tab „Du“)
+• Profil: Das Premium-Zeichen liegt nicht mehr hinter der Foto-Schaltfläche
+• Verbesserungen und Zuverlässigkeitskorrekturen

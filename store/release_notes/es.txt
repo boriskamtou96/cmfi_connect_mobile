@@ -1,6 +1,4 @@
 Novedades de CMFI Connect
-• Informe: importa tus días pasados desde un archivo Excel, en lugar de escribirlos uno a uno
-• Exportar e importar ahora se ven bien en Historial y Balance
-• Proclamaciones: quita un toque de más o define tu número a mano
-• Juegos: una vibración de victoria al final de cada lección
-• Una nueva señal para los miembros Premium
+• Hacer una ofrenda: apoya la obra con el monto que elijas, con Mobile Money o tarjeta (pestaña «Tú»)
+• Perfil: la señal Premium ya no queda detrás del botón de la foto
+• Mejoras y correcciones de fiabilidad

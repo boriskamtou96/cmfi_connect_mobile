@@ -1,6 +1,4 @@
 What's new in CMFI Connect
-• Report: import your past days from an Excel file, instead of entering them one by one
-• Export and import are now easy to see in History and Summary
-• Proclamations: take back a tap too many, or set your number by hand
-• Games: a victory vibration at the end of each lesson
-• A new mark for Premium members
+• Give: support the work with the amount you choose, by Mobile Money or by card (« You » tab)
+• Profile: the Premium mark no longer hides behind the photo button
+• Improvements and reliability fixes

@@ -1,6 +1,4 @@
 Nouveautés de CMFI Connect
-• Compte rendu : importe tes jours passés depuis un fichier Excel, au lieu de les saisir un à un
-• L’export et l’import sont maintenant bien visibles dans Historique et Bilan
-• Proclamations : retire un toucher de trop, ou redéfinis ton nombre à la main
-• Jeux : une vibration de victoire à la fin de chaque leçon
-• Un nouveau signe pour les membres Premium
+• Faire un don : soutiens l’œuvre du montant de ton choix, par Mobile Money ou par carte (onglet « Vous »)
+• Profil : le signe Premium ne passe plus derrière le bouton de la photo
+• Améliorations et corrections de fiabilité

@@ -2,7 +2,8 @@
   "app": {
     "name": "CMFI Connect",
     "tagline": "Grandir ensemble, chaque jour.",
-    "languageName": "Français"
+    "languageName": "Français",
+    "shareInvite": "Télécharge l'app CMFI Connect : {url}"
   },
   "common": {
     "retry": "Réessayer",
@@ -1703,7 +1704,13 @@
     "title": "Verset du jour",
     "share": "Partager le verset",
     "shareImage": "Partager l'image",
-    "shareText": "Partager le texte"
+    "shareText": "Partager le texte",
+    "background": "Fond",
+    "photos": "Images",
+    "colors": "Couleurs",
+    "photoN": "Image {n}",
+    "colorN": "Couleur {n}",
+    "ownPhoto": "Ta photo"
   },
   "bible": {
     "title": "Bible",
@@ -2566,12 +2573,12 @@
         "text": "365 jours de suite avec un compte rendu."
       },
       "fullDay": {
-        "title": "Trois pas",
-        "text": "Faire les 3 pas du jour."
+        "title": "Quatre pas",
+        "text": "Faire les 4 pas du jour."
       },
       "sevenFullDays": {
         "title": "Sept journées complètes",
-        "text": "Faire les 3 pas du jour sept fois."
+        "text": "Faire les 4 pas du jour sept fois."
       },
       "fourRetreats": {
         "title": "Une journée de prière",
@@ -2607,13 +2614,14 @@
       }
     },
     "daily": {
-      "title": "Tes 3 pas du jour",
-      "progress": "{n} sur 3",
+      "title": "Tes 4 pas du jour",
+      "progress": "{n} sur 4",
       "report": "Remplir mon compte rendu",
-      "prayer": "Faire une retraite de prière",
+      "prayer": "Faire une retraite de 15 min",
       "word": "Lire un chapitre de la Bible",
       "wordPlan": "Lire les chapitres du plan",
-      "allDone": "Les trois pas sont faits. Belle journée avec Dieu !",
+      "meditation": "Méditer la Parole",
+      "allDone": "Les quatre pas sont faits. Belle journée avec Dieu !",
       "done": "Fait"
     },
     "grace": {
@@ -2980,8 +2988,8 @@
   },
   "donation": {
     "title": "Faire un don",
-    "menuHint": "Soutiens l’œuvre, du montant de ton choix",
-    "intro": "Soutiens l’œuvre de Dieu par un don du montant de ton choix. Tu paies par Mobile Money ou par carte, en toute sécurité.",
+    "menuHint": "Soutiens cette application, du montant de ton choix",
+    "intro": "Soutiens cette application par un don du montant de ton choix. Tu paies par Mobile Money ou par carte, en toute sécurité.",
     "amount": "Montant",
     "other": "Autre montant",
     "bounds": "Entre {min} et {max}.",

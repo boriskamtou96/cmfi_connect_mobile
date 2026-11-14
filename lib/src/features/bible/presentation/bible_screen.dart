@@ -10,6 +10,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import '../../../core/i18n/strings.g.dart';
 import '../../../core/network/app_exception.dart';
 import '../../../core/network/app_exception_message.dart';
+import '../../../core/services/app_invite.dart';
 import '../../../core/services/deep_links.dart';
 import '../../../core/services/link_launcher.dart';
 import '../../../core/services/screen_awake.dart';
@@ -269,9 +270,12 @@ class _Reader extends HookConsumerWidget {
           await ref
               .read(shareServiceProvider)
               .shareText(
-                BibleLink(
-                  BibleRef(current.book, current.chapter, first).key,
-                ).under(asText(verses)),
+                withAppInvite(
+                  t,
+                  BibleLink(
+                    BibleRef(current.book, current.chapter, first).key,
+                  ).under(asText(verses)),
+                ),
                 subject: label(verses),
                 origin: box == null
                     ? null

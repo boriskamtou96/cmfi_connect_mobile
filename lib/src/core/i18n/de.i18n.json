@@ -2,7 +2,8 @@
   "app": {
     "name": "CMFI Connect",
     "tagline": "Gemeinsam wachsen, jeden Tag.",
-    "languageName": "Deutsch"
+    "languageName": "Deutsch",
+    "shareInvite": "Lade die App CMFI Connect herunter: {url}"
   },
   "common": {
     "retry": "Erneut versuchen",
@@ -1703,7 +1704,13 @@
     "title": "Vers des Tages",
     "share": "Vers teilen",
     "shareImage": "Bild teilen",
-    "shareText": "Text teilen"
+    "shareText": "Text teilen",
+    "background": "Hintergrund",
+    "photos": "Bilder",
+    "colors": "Farben",
+    "photoN": "Bild {n}",
+    "colorN": "Farbe {n}",
+    "ownPhoto": "Dein Foto"
   },
   "bible": {
     "title": "Bibel",
@@ -2566,12 +2573,12 @@
         "text": "365 Tage in Folge mit einem Bericht."
       },
       "fullDay": {
-        "title": "Drei Schritte",
-        "text": "Die 3 Schritte des Tages machen."
+        "title": "Vier Schritte",
+        "text": "Die 4 Schritte des Tages machen."
       },
       "sevenFullDays": {
         "title": "Sieben volle Tage",
-        "text": "Die 3 Schritte des Tages siebenmal machen."
+        "text": "Die 4 Schritte des Tages siebenmal machen."
       },
       "fourRetreats": {
         "title": "Ein Tag des Gebets",
@@ -2607,13 +2614,14 @@
       }
     },
     "daily": {
-      "title": "Deine 3 Schritte des Tages",
-      "progress": "{n} von 3",
+      "title": "Deine 4 Schritte des Tages",
+      "progress": "{n} von 4",
       "report": "Meinen Bericht ausfüllen",
       "prayer": "Eine Gebetszeit halten",
       "word": "Ein Kapitel der Bibel lesen",
       "wordPlan": "Die Kapitel des Plans lesen",
-      "allDone": "Die drei Schritte sind gemacht. Einen schönen Tag mit Gott!",
+      "meditation": "Über das Wort nachsinnen",
+      "allDone": "Die vier Schritte sind gemacht. Einen schönen Tag mit Gott!",
       "done": "Erledigt"
     },
     "grace": {
@@ -2980,8 +2988,8 @@
   },
   "donation": {
     "title": "Spenden",
-    "menuHint": "Unterstütze das Werk mit einem Betrag deiner Wahl",
-    "intro": "Unterstütze das Werk Gottes mit einer Spende in der Höhe deiner Wahl. Du zahlst sicher per Mobile Money oder Karte.",
+    "menuHint": "Unterstütze diese App mit einem Betrag deiner Wahl",
+    "intro": "Unterstütze diese App mit einer Spende in der Höhe deiner Wahl. Du zahlst sicher per Mobile Money oder Karte.",
     "amount": "Betrag",
     "other": "Anderer Betrag",
     "bounds": "Zwischen {min} und {max}.",

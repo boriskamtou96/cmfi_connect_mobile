@@ -5,6 +5,7 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../core/i18n/strings.g.dart';
+import '../../../core/services/app_invite.dart';
 import '../../../core/services/deep_links.dart';
 import '../../../core/services/screen_awake.dart';
 import '../../../core/services/share_service.dart';
@@ -189,8 +190,11 @@ class HymnReaderScreen extends HookConsumerWidget {
           .read(shareServiceProvider)
           .shareText(
             // a blank line between the last verse and the link
-            HymnLink(bookCode, hymn.number).under(
-              '${hymnAsText(hymn, chorusLabel: t.hymns.chorus, bookTitle: book.title)}\n',
+            withAppInvite(
+              t,
+              HymnLink(bookCode, hymn.number).under(
+                '${hymnAsText(hymn, chorusLabel: t.hymns.chorus, bookTitle: book.title)}\n',
+              ),
             ),
             subject: hymn.title,
             origin: box == null

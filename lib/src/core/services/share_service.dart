@@ -17,17 +17,21 @@ class ShareService {
         ShareParams(text: text, subject: subject, sharePositionOrigin: origin),
       );
 
+  /// [text]: a caption sent with the file (the link of the app under an
+  /// image), where the receiving app takes one.
   Future<void> shareFile(
     Uint8List bytes, {
     required String name,
     required String mimeType,
     String? subject,
+    String? text,
     Rect? origin,
   }) => SharePlus.instance.share(
     ShareParams(
       files: [XFile.fromData(bytes, name: name, mimeType: mimeType)],
       fileNameOverrides: [name],
       subject: subject,
+      text: text,
       sharePositionOrigin: origin,
     ),
   );

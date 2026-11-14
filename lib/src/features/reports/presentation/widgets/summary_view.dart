@@ -7,6 +7,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:intl/intl.dart';
 
 import '../../../../core/i18n/strings.g.dart';
+import '../../../../core/services/app_invite.dart';
 import '../../../../core/services/premium_store.dart';
 import '../../../../core/services/share_service.dart';
 import '../../../../core/theme/app_colors.dart';
@@ -82,11 +83,14 @@ class SummaryView extends HookConsumerWidget {
       await ref
           .read(shareServiceProvider)
           .shareText(
-            reportAsText(
-              export,
-              t: t,
-              locale: locale,
-              owner: (name: profile?.fullName ?? '', church: profile?.church),
+            withAppInvite(
+              t,
+              reportAsText(
+                export,
+                t: t,
+                locale: locale,
+                owner: (name: profile?.fullName ?? '', church: profile?.church),
+              ),
             ),
             subject: t.export.subject(
               period: exportPeriodLabel(t, locale, range.from, range.to),

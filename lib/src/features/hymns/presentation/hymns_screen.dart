@@ -8,6 +8,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../core/i18n/strings.g.dart';
 import '../../../core/network/app_exception_message.dart';
+import '../../../core/services/app_invite.dart';
 import '../../../core/services/deep_links.dart';
 import '../../../core/services/share_service.dart';
 import '../../../core/theme/app_colors.dart';
@@ -715,7 +716,10 @@ class _HymnRow extends ConsumerWidget {
               .read(shareServiceProvider)
               .shareText(
                 // a blank line between the last verse and the link
-                HymnLink(book.code, hymn.number).under('${words()}\n'),
+                withAppInvite(
+                  t,
+                  HymnLink(book.code, hymn.number).under('${words()}\n'),
+                ),
                 subject: hymn.title,
                 origin: box == null
                     ? null

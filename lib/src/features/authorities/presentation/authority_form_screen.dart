@@ -6,6 +6,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import '../../../core/i18n/strings.g.dart';
 import '../../../core/network/app_exception.dart';
 import '../../../core/network/app_exception_message.dart';
+import '../../../core/services/app_invite.dart';
 import '../../../core/services/share_service.dart';
 import '../../../core/storage/preferences.dart';
 import '../../../core/theme/app_icons.dart';
@@ -124,6 +125,7 @@ class AuthorityFormScreen extends HookConsumerWidget {
               t.authorities.form.inviteText,
               if (mine.isNotEmpty)
                 t.authorities.form.inviteMine(username: mine),
+              appInvite(t),
             ].join('\n\n'),
             origin: box == null
                 ? null

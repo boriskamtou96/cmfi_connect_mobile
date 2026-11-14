@@ -2,7 +2,8 @@
   "app": {
     "name": "CMFI Connect",
     "tagline": "Crecer juntos, cada día.",
-    "languageName": "Español"
+    "languageName": "Español",
+    "shareInvite": "Descarga la app CMFI Connect: {url}"
   },
   "common": {
     "retry": "Reintentar",
@@ -1703,7 +1704,13 @@
     "title": "Versículo del día",
     "share": "Compartir el versículo",
     "shareImage": "Compartir la imagen",
-    "shareText": "Compartir el texto"
+    "shareText": "Compartir el texto",
+    "background": "Fondo",
+    "photos": "Imágenes",
+    "colors": "Colores",
+    "photoN": "Imagen {n}",
+    "colorN": "Color {n}",
+    "ownPhoto": "Tu foto"
   },
   "bible": {
     "title": "Biblia",
@@ -2566,12 +2573,12 @@
         "text": "365 días seguidos con un informe."
       },
       "fullDay": {
-        "title": "Tres pasos",
-        "text": "Dar los 3 pasos del día."
+        "title": "Cuatro pasos",
+        "text": "Dar los 4 pasos del día."
       },
       "sevenFullDays": {
         "title": "Siete días completos",
-        "text": "Dar los 3 pasos del día siete veces."
+        "text": "Dar los 4 pasos del día siete veces."
       },
       "fourRetreats": {
         "title": "Un día de oración",
@@ -2607,13 +2614,14 @@
       }
     },
     "daily": {
-      "title": "Tus 3 pasos del día",
-      "progress": "{n} de 3",
+      "title": "Tus 4 pasos del día",
+      "progress": "{n} de 4",
       "report": "Llenar mi informe",
       "prayer": "Hacer un retiro de oración",
       "word": "Leer un capítulo de la Biblia",
       "wordPlan": "Leer los capítulos del plan",
-      "allDone": "Los tres pasos están hechos. ¡Buen día con Dios!",
+      "meditation": "Meditar la Palabra",
+      "allDone": "Los cuatro pasos están hechos. ¡Buen día con Dios!",
       "done": "Hecho"
     },
     "grace": {
@@ -2980,8 +2988,8 @@
   },
   "donation": {
     "title": "Hacer una ofrenda",
-    "menuHint": "Apoya la obra con el monto que elijas",
-    "intro": "Apoya la obra de Dios con una ofrenda del monto que elijas. Pagas con Mobile Money o con tarjeta, de forma segura.",
+    "menuHint": "Apoya esta aplicación con el monto que elijas",
+    "intro": "Apoya esta aplicación con una ofrenda del monto que elijas. Pagas con Mobile Money o con tarjeta, de forma segura.",
     "amount": "Monto",
     "other": "Otro monto",
     "bounds": "Entre {min} y {max}.",

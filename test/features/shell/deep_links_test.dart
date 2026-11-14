@@ -191,7 +191,8 @@ void main() {
       await tester.tap(find.byTooltip('Partager'));
       await tester.pumpAndSettle();
 
-      expect(app.share.texts.single, endsWith('\n$site/open?to=events/2'));
+      expect(app.share.texts.single, contains('\n$site/open?to=events/2\n'));
+      expect(app.share.texts.single, endsWith(site));
     });
 
     testWidgets('a hymn, with its link under it', (tester) async {
@@ -207,7 +208,7 @@ void main() {
       expect(app.share.texts.single, startsWith('1. A Toi la gloire'));
       expect(
         app.share.texts.single,
-        endsWith('\n\n$site/open?to=hymns/rendons-ministere-1/1'),
+        contains('\n\n$site/open?to=hymns/rendons-ministere-1/1\n'),
       );
     });
   });

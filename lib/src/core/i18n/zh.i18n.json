@@ -2,7 +2,8 @@
   "app": {
     "name": "CMFI Connect",
     "tagline": "一起成长，每一天。",
-    "languageName": "中文"
+    "languageName": "中文",
+    "shareInvite": "下载 CMFI Connect 应用：{url}"
   },
   "common": {
     "retry": "重试",
@@ -1660,7 +1661,13 @@
     "title": "每日经文",
     "share": "分享经文",
     "shareImage": "分享图片",
-    "shareText": "分享文字"
+    "shareText": "分享文字",
+    "background": "背景",
+    "photos": "图片",
+    "colors": "颜色",
+    "photoN": "图片 {n}",
+    "colorN": "颜色 {n}",
+    "ownPhoto": "你的照片"
   },
   "bible": {
     "title": "圣经",
@@ -2484,12 +2491,12 @@
         "text": "连续 365 天提交报告。"
       },
       "fullDay": {
-        "title": "三步",
-        "text": "完成今日三步。"
+        "title": "四步",
+        "text": "完成今日四步。"
       },
       "sevenFullDays": {
         "title": "七个完整的日子",
-        "text": "完成今日三步共七次。"
+        "text": "完成今日四步共七次。"
       },
       "fourRetreats": {
         "title": "祷告的一天",
@@ -2525,13 +2532,14 @@
       }
     },
     "daily": {
-      "title": "今日三步",
-      "progress": "{n} / 3",
+      "title": "今日四步",
+      "progress": "{n} / 4",
       "report": "填写我的报告",
       "prayer": "做一次退修祷告",
       "word": "读一章圣经",
       "wordPlan": "读计划中的章节",
-      "allDone": "三步都完成了。愿你与神同度美好的一天！",
+      "meditation": "默想神的话语",
+      "allDone": "四步都完成了。愿你与神同度美好的一天！",
       "done": "已完成"
     },
     "grace": {
@@ -2863,8 +2871,8 @@
   },
   "donation": {
     "title": "奉献",
-    "menuHint": "以你选择的金额支持事工",
-    "intro": "以你选择的金额奉献，支持神的工作。可通过 Mobile Money 或银行卡安全支付。",
+    "menuHint": "以你选择的金额支持这个应用",
+    "intro": "以你选择的金额奉献，支持这个应用。可通过 Mobile Money 或银行卡安全支付。",
     "amount": "金额",
     "other": "其他金额",
     "bounds": "在 {min} 和 {max} 之间。",

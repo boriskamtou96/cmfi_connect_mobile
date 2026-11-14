@@ -473,6 +473,15 @@ void main() {
       });
       await tester.pumpAndSettle();
       expect(app.share.files.single.mimeType, 'image/png');
+      // the hymn and its link go with the image, as a caption
+      expect(
+        app.share.captions.single,
+        allOf(
+          startsWith('1. A Toi la gloire'),
+          contains('/open?to=hymns/'),
+          endsWith('https://cmfi-connect.com'),
+        ),
+      );
 
       // the photos refused: said
       app.photos.allowed = false;

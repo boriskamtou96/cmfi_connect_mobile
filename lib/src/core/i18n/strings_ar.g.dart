@@ -105,6 +105,7 @@ class _Translations$app$ar extends Translations$app$fr {
 	@override String get name => 'CMFI Connect';
 	@override String get tagline => 'ننمو معًا، كل يوم.';
 	@override String get languageName => 'العربية';
+	@override String shareInvite({required Object url}) => 'حمّل تطبيق CMFI Connect: ${url}';
 }
 
 // Path: common
@@ -1133,6 +1134,12 @@ class _Translations$verses$ar extends Translations$verses$fr {
 	@override String get share => 'مشاركة الآية';
 	@override String get shareImage => 'مشاركة الصورة';
 	@override String get shareText => 'مشاركة النص';
+	@override String get background => 'الخلفية';
+	@override String get photos => 'صور';
+	@override String get colors => 'ألوان';
+	@override String photoN({required Object n}) => 'صورة ${n}';
+	@override String colorN({required Object n}) => 'لون ${n}';
+	@override String get ownPhoto => 'صورتك';
 }
 
 // Path: bible
@@ -2560,8 +2567,8 @@ class _Translations$donation$ar extends Translations$donation$fr {
 
 	// Translations
 	@override String get title => 'تقديم عطاء';
-	@override String get menuHint => 'ادعم العمل بالمبلغ الذي تختاره';
-	@override String get intro => 'ادعم عمل الله بعطاء بالمبلغ الذي تختاره. تدفع عبر Mobile Money أو بالبطاقة، بأمان.';
+	@override String get menuHint => 'ادعم هذا التطبيق بالمبلغ الذي تختاره';
+	@override String get intro => 'ادعم هذا التطبيق بعطاء بالمبلغ الذي تختاره. تدفع عبر Mobile Money أو بالبطاقة، بأمان.';
 	@override String get amount => 'المبلغ';
 	@override String get other => 'مبلغ آخر';
 	@override String bounds({required Object min, required Object max}) => 'بين ${min} و${max}.';
@@ -3997,13 +4004,14 @@ class _Translations$journey$daily$ar extends Translations$journey$daily$fr {
 	final TranslationsAr _root; // ignore: unused_field
 
 	// Translations
-	@override String get title => 'خطواتك الثلاث اليوم';
-	@override String progress({required Object n}) => '${n} من 3';
+	@override String get title => 'خطواتك الأربع اليوم';
+	@override String progress({required Object n}) => '${n} من 4';
 	@override String get report => 'ملء تقريري';
 	@override String get prayer => 'القيام بخلوة صلاة';
 	@override String get word => 'قراءة إصحاح من الكتاب المقدس';
 	@override String get wordPlan => 'قراءة إصحاحات الخطة';
-	@override String get allDone => 'أنجزت الخطوات الثلاث. يومًا طيبًا مع الله!';
+	@override String get meditation => 'التأمل في الكلمة';
+	@override String get allDone => 'أنجزت الخطوات الأربع. يومًا طيبًا مع الله!';
 	@override String get done => 'تم';
 }
 
@@ -4595,8 +4603,8 @@ class _Translations$journey$steps$fullDay$ar extends Translations$journey$steps$
 	final TranslationsAr _root; // ignore: unused_field
 
 	// Translations
-	@override String get title => 'ثلاث خطوات';
-	@override String get text => 'أنجز خطوات اليوم الثلاث.';
+	@override String get title => 'أربع خطوات';
+	@override String get text => 'أنجز خطوات اليوم الأربع.';
 }
 
 // Path: journey.steps.sevenFullDays
@@ -4607,7 +4615,7 @@ class _Translations$journey$steps$sevenFullDays$ar extends Translations$journey$
 
 	// Translations
 	@override String get title => 'سبعة أيام كاملة';
-	@override String get text => 'أنجز خطوات اليوم الثلاث سبع مرات.';
+	@override String get text => 'أنجز خطوات اليوم الأربع سبع مرات.';
 }
 
 // Path: journey.steps.fourRetreats
@@ -4709,6 +4717,7 @@ extension on TranslationsAr {
 			'app.name' => 'CMFI Connect',
 			'app.tagline' => 'ننمو معًا، كل يوم.',
 			'app.languageName' => 'العربية',
+			'app.shareInvite' => ({required Object url}) => 'حمّل تطبيق CMFI Connect: ${url}',
 			'common.retry' => 'إعادة المحاولة',
 			'common.cancel' => 'إلغاء',
 			'common.save' => 'حفظ',
@@ -5217,9 +5226,9 @@ extension on TranslationsAr {
 			'authorities.form.isDiscipleMakerHelp' => 'الشخص الذي يرافقك شخصيًا. لديك واحد فقط.',
 			'authorities.form.discipleMakerTaken' => ({required Object name}) => '${name} هو بالفعل صانع التلاميذ الخاص بك. أزِله من القائمة لتختار شخصًا آخر.',
 			'authorities.form.submit' => 'إضافة',
-			'authorities.form.added' => ({required Object name}) => 'أصبح ${name} الآن ضمن مرشديك.',
 			_ => null,
 		} ?? switch (path) {
+			'authorities.form.added' => ({required Object name}) => 'أصبح ${name} الآن ضمن مرشديك.',
 			'authorities.form.searchLabel' => 'اسم المستخدم',
 			'authorities.form.searchHint' => 'اسم المستخدم',
 			'authorities.form.search' => 'بحث',
@@ -5731,9 +5740,9 @@ extension on TranslationsAr {
 			'ministry.lives.founder.story.0' => 'وُلد في 20 يونيو 1945 في الكاميرون، في عائلة مشيخية من باتيبو في شمال غرب البلاد. وبينما كان لا يزال تلميذًا، سلّم حياته ليسوع المسيح في 13 يونيو 1956، عندما قرأ نشرة بعنوان «شخص مات لأجلك».',
 			'ministry.lives.founder.story.1' => 'وعندما كان طالبًا في كلية فوراه باي في سيراليون، كرّس نفسه بلا تحفّظ للرب ولخدمته في 1 أكتوبر 1966. وفي 24 أكتوبر 1970، بعد سبعة أيام من الصلاة والصوم، امتلأ بالروح القدس. ومنذ ذلك الحين صارت الصلاة محور حياته.',
 			'ministry.lives.founder.story.2' => 'حصل على الدكتوراه في الكيمياء العضوية من جامعة ماكيريري في أوغندا، ثم درّس في جامعة ياوندي حيث صار أستاذًا. أشرف على نحو مئة أطروحة ورسالة، ومنحته جامعة دورهام في بريطانيا عام 2005 دكتوراه العلوم تقديرًا لمجمل أعماله.',
-			'ministry.lives.founder.story.3' => 'في 12 مايو 1975، في ياوندي، أسّس الشركة المسيحية الإرسالية الدولية (CMFI): حركة لربح النفوس وتلمذة التلاميذ وغرس الكنائس وإرسال المرسلين. قام بأكثر من 700 رحلة إرسالية في الكاميرون وبأكثر من 500 رحلة إلى أكثر من 70 أمة في ست قارات.',
 			_ => null,
 		} ?? switch (path) {
+			'ministry.lives.founder.story.3' => 'في 12 مايو 1975، في ياوندي، أسّس الشركة المسيحية الإرسالية الدولية (CMFI): حركة لربح النفوس وتلمذة التلاميذ وغرس الكنائس وإرسال المرسلين. قام بأكثر من 700 رحلة إرسالية في الكاميرون وبأكثر من 500 رحلة إلى أكثر من 70 أمة في ست قارات.',
 			'ministry.lives.founder.story.4' => 'كان يقضي كل يوم ساعات طويلة وحده مع الله، وقاد كثيرًا من حملات الصلاة وحصاراتها ومسيراتها، وصام كثيرًا. كتب أكثر من 150 كتابًا عن الصلاة والصوم والقداسة والتلمذة والإرسالية، تُقرأ بلغات كثيرة.',
 			'ministry.lives.founder.story.5' => 'رُزق مع زوجته بريسكا زي فومم، خادمة الرب بين الأطفال، بسبعة أبناء كلهم منخرطون في عمل الإنجيل. وعاشا معًا ببساطة ليقدّما للإنجيل الجزء الأكبر من دخلهما.',
 			'ministry.lives.founder.story.6' => 'انتقل إلى محضر الرب في 14 مارس 2009، ودُفن في ياوندي في 21 مارس. والعمل الذي أسّسه مستمر بين الأمم.',
@@ -6044,6 +6053,12 @@ extension on TranslationsAr {
 			'verses.share' => 'مشاركة الآية',
 			'verses.shareImage' => 'مشاركة الصورة',
 			'verses.shareText' => 'مشاركة النص',
+			'verses.background' => 'الخلفية',
+			'verses.photos' => 'صور',
+			'verses.colors' => 'ألوان',
+			'verses.photoN' => ({required Object n}) => 'صورة ${n}',
+			'verses.colorN' => ({required Object n}) => 'لون ${n}',
+			'verses.ownPhoto' => 'صورتك',
 			'bible.title' => 'الكتاب المقدس',
 			'bible.books' => 'الأسفار',
 			'bible.oldTestament' => 'العهد القديم',
@@ -6239,6 +6254,8 @@ extension on TranslationsAr {
 			'yearStory.goalsReached' => 'تحقّقت في المتوسط',
 			'yearStory.bestMonth' => ({required Object month, required Object percent}) => 'أفضل شهر لك: ${month} · ${percent}',
 			'yearStory.summaryTitle' => 'عامي مع الله',
+			_ => null,
+		} ?? switch (path) {
 			'yearStory.statDays' => 'أيام مملوءة',
 			'yearStory.statStreak' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n, zero: 'يوم على التوالي، رقمك القياسي', one: 'يوم على التوالي، رقمك القياسي', two: 'يومان على التوالي، رقمك القياسي', few: 'أيام على التوالي، رقمك القياسي', many: 'يومًا على التوالي، رقمك القياسي', other: 'يوم على التوالي، رقمك القياسي', ), 
 			'yearStory.statRetreats' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n, zero: 'خلوة', one: 'خلوة', two: 'خلوتان', few: 'خلوات', many: 'خلوة', other: 'خلوة', ), 
@@ -6246,8 +6263,6 @@ extension on TranslationsAr {
 			'yearStory.statChapters' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n, zero: 'فصل مقروء', one: 'فصل مقروء', two: 'فصلان مقروءان', few: 'فصول مقروءة', many: 'فصلًا مقروءًا', other: 'فصل مقروء', ), 
 			'yearStory.statFasts' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n, zero: 'يوم صوم', one: 'يوم صوم', two: 'يوما صوم', few: 'أيام صوم', many: 'يومًا من الصوم', other: 'يوم صوم', ), 
 			'yearStory.statGoals' => 'من الأهداف',
-			_ => null,
-		} ?? switch (path) {
 			'yearStory.emptyText' => 'املأ تقريرك كل يوم: سيُكتب عامك هنا.',
 			'yearStory.share' => 'مشاركة عامي',
 			'yearStory.homeText' => ({required Object year}) => 'أمانتك وصلاتك وكلمة الله: استعد كل ما عشته مع الله في ${year}.',
@@ -6676,10 +6691,10 @@ extension on TranslationsAr {
 			'journey.steps.streak100.text' => '100 يوم متتالٍ مع تقرير.',
 			'journey.steps.streak365.title' => 'سنة كاملة',
 			'journey.steps.streak365.text' => '365 يومًا متتاليًا مع تقرير.',
-			'journey.steps.fullDay.title' => 'ثلاث خطوات',
-			'journey.steps.fullDay.text' => 'أنجز خطوات اليوم الثلاث.',
+			'journey.steps.fullDay.title' => 'أربع خطوات',
+			'journey.steps.fullDay.text' => 'أنجز خطوات اليوم الأربع.',
 			'journey.steps.sevenFullDays.title' => 'سبعة أيام كاملة',
-			'journey.steps.sevenFullDays.text' => 'أنجز خطوات اليوم الثلاث سبع مرات.',
+			'journey.steps.sevenFullDays.text' => 'أنجز خطوات اليوم الأربع سبع مرات.',
 			'journey.steps.fourRetreats.title' => 'يوم صلاة',
 			'journey.steps.fourRetreats.text' => 'أنجز الخلوات الأربع في اليوم نفسه.',
 			'journey.steps.planDone.title' => 'خطة مكتملة',
@@ -6696,13 +6711,14 @@ extension on TranslationsAr {
 			'journey.steps.firstSending.text' => 'أرسل تقريرك إلى مرشد داخل التطبيق.',
 			'journey.steps.firstEncouragement.title' => 'المشجِّع',
 			'journey.steps.firstEncouragement.text' => 'أرسل كلمة تشجيع إلى تلميذ.',
-			'journey.daily.title' => 'خطواتك الثلاث اليوم',
-			'journey.daily.progress' => ({required Object n}) => '${n} من 3',
+			'journey.daily.title' => 'خطواتك الأربع اليوم',
+			'journey.daily.progress' => ({required Object n}) => '${n} من 4',
 			'journey.daily.report' => 'ملء تقريري',
 			'journey.daily.prayer' => 'القيام بخلوة صلاة',
 			'journey.daily.word' => 'قراءة إصحاح من الكتاب المقدس',
 			'journey.daily.wordPlan' => 'قراءة إصحاحات الخطة',
-			'journey.daily.allDone' => 'أنجزت الخطوات الثلاث. يومًا طيبًا مع الله!',
+			'journey.daily.meditation' => 'التأمل في الكلمة',
+			'journey.daily.allDone' => 'أنجزت الخطوات الأربع. يومًا طيبًا مع الله!',
 			'journey.daily.done' => 'تم',
 			'journey.grace.day' => 'يوم نعمة',
 			'journey.grace.used' => ({required Object day}) => 'يوم نعمة ${day}: سلسلتك مستمرة.',
@@ -6752,6 +6768,8 @@ extension on TranslationsAr {
 			'gamification.collective.title' => 'مسيرة المجموعة',
 			'gamification.collective.sharedThisWeek' => ({required num n, required Object total}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n, zero: 'لم يشارك أحد من ${total} تقريرًا هذا الأسبوع', one: 'شارك تلميذ واحد من ${total} تقريرًا هذا الأسبوع', two: 'شارك تلميذان من ${total} تقريرًا هذا الأسبوع', few: 'شارك ${n} تلاميذ من ${total} تقريرًا هذا الأسبوع', many: 'شارك ${n} تلميذًا من ${total} تقريرًا هذا الأسبوع', other: 'شارك ${n} تلميذ من ${total} تقريرًا هذا الأسبوع', ), 
 			'gamification.collective.empty' => 'لم يشارك أحد بعد هذا الأسبوع. كل واحد يتقدم على وتيرته.',
+			_ => null,
+		} ?? switch (path) {
 			'gamification.collective.reports' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n, zero: 'لم يُستلم أي تقرير هذا الأسبوع', one: 'استُلم تقرير واحد هذا الأسبوع', two: 'استُلم تقريران هذا الأسبوع', few: 'استُلمت ${n} تقارير هذا الأسبوع', many: 'استُلم ${n} تقريرًا هذا الأسبوع', other: 'استُلم ${n} تقرير هذا الأسبوع', ), 
 			'gamification.collective.noDisciples' => 'الطريق يُسار معًا أيضًا: عندما ترافق تلاميذ، ستظهر هنا مسيرتهم في الأسبوع، دون أسماء.',
 			'gamification.collective.anonymous' => 'مجموع المجموعة، دون أسماء ودون ترتيب.',
@@ -6760,8 +6778,6 @@ extension on TranslationsAr {
 			'menu.seeProfile' => 'عرض ملفي',
 			'me.title' => 'ملفي',
 			'me.edit' => 'تعديل ملفي',
-			_ => null,
-		} ?? switch (path) {
 			'me.journey' => 'مسيرتي',
 			'me.streak' => 'السلسلة',
 			'me.steps' => 'المراحل',
@@ -6936,8 +6952,8 @@ extension on TranslationsAr {
 			'sheetImport.importTile' => 'استيراد',
 			'sheetImport.importHint' => 'من Excel',
 			'donation.title' => 'تقديم عطاء',
-			'donation.menuHint' => 'ادعم العمل بالمبلغ الذي تختاره',
-			'donation.intro' => 'ادعم عمل الله بعطاء بالمبلغ الذي تختاره. تدفع عبر Mobile Money أو بالبطاقة، بأمان.',
+			'donation.menuHint' => 'ادعم هذا التطبيق بالمبلغ الذي تختاره',
+			'donation.intro' => 'ادعم هذا التطبيق بعطاء بالمبلغ الذي تختاره. تدفع عبر Mobile Money أو بالبطاقة، بأمان.',
 			'donation.amount' => 'المبلغ',
 			'donation.other' => 'مبلغ آخر',
 			'donation.bounds' => ({required Object min, required Object max}) => 'بين ${min} و${max}.',

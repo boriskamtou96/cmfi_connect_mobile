@@ -1079,8 +1079,15 @@ class FakeShareService implements ShareService {
     required String name,
     required String mimeType,
     String? subject,
+    String? text,
     Rect? origin,
-  }) async => files.add((name: name, mimeType: mimeType, bytes: bytes));
+  }) async {
+    files.add((name: name, mimeType: mimeType, bytes: bytes));
+    captions.add(text);
+  }
+
+  /// The caption sent with each file.
+  final captions = <String?>[];
 
   final paths = <({String path, String name, String mimeType})>[];
 

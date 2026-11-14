@@ -92,17 +92,20 @@ final class VerseCalendarFamily extends $Family
   String toString() => r'verseCalendarProvider';
 }
 
-/// Today's verse in the app's language (the same for everyone that day).
+/// Today's verse in the app's language (the same for everyone that day),
+/// changed with the day even when the app stayed open ([currentDayProvider]).
 
 @ProviderFor(verseOfTheDay)
 final verseOfTheDayProvider = VerseOfTheDayProvider._();
 
-/// Today's verse in the app's language (the same for everyone that day).
+/// Today's verse in the app's language (the same for everyone that day),
+/// changed with the day even when the app stayed open ([currentDayProvider]).
 
 final class VerseOfTheDayProvider
     extends $FunctionalProvider<AsyncValue<Verse?>, Verse?, FutureOr<Verse?>>
     with $FutureModifier<Verse?>, $FutureProvider<Verse?> {
-  /// Today's verse in the app's language (the same for everyone that day).
+  /// Today's verse in the app's language (the same for everyone that day),
+  /// changed with the day even when the app stayed open ([currentDayProvider]).
   VerseOfTheDayProvider._()
     : super(
         from: null,
@@ -128,4 +131,4 @@ final class VerseOfTheDayProvider
   }
 }
 
-String _$verseOfTheDayHash() => r'2f44f3013d3b1ff479bb6dba05f924945a89b4b8';
+String _$verseOfTheDayHash() => r'13b6dfc826a0d6d1d29916e9ae15c9393f13c96e';

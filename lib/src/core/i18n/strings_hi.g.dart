@@ -105,6 +105,7 @@ class _Translations$app$hi extends Translations$app$fr {
 	@override String get name => 'CMFI Connect';
 	@override String get tagline => 'साथ मिलकर बढ़ना, हर दिन।';
 	@override String get languageName => 'हिन्दी';
+	@override String shareInvite({required Object url}) => 'CMFI Connect ऐप डाउनलोड करो: ${url}';
 }
 
 // Path: common
@@ -1039,6 +1040,12 @@ class _Translations$verses$hi extends Translations$verses$fr {
 	@override String get share => 'वचन शेयर करो';
 	@override String get shareImage => 'चित्र शेयर करो';
 	@override String get shareText => 'टेक्स्ट शेयर करो';
+	@override String get background => 'पृष्ठभूमि';
+	@override String get photos => 'चित्र';
+	@override String get colors => 'रंग';
+	@override String photoN({required Object n}) => 'चित्र ${n}';
+	@override String colorN({required Object n}) => 'रंग ${n}';
+	@override String get ownPhoto => 'तुम्हारी फ़ोटो';
 }
 
 // Path: bible
@@ -2239,8 +2246,8 @@ class _Translations$donation$hi extends Translations$donation$fr {
 
 	// Translations
 	@override String get title => 'दान दो';
-	@override String get menuHint => 'अपनी पसंद की राशि से काम में सहयोग करो';
-	@override String get intro => 'अपनी पसंद की राशि के दान से परमेश्वर के काम में सहयोग करो। Mobile Money या कार्ड से सुरक्षित भुगतान करो।';
+	@override String get menuHint => 'अपनी पसंद की राशि से इस ऐप का सहयोग करो';
+	@override String get intro => 'अपनी पसंद की राशि के दान से इस ऐप का सहयोग करो। Mobile Money या कार्ड से सुरक्षित भुगतान करो।';
 	@override String get amount => 'राशि';
 	@override String get other => 'दूसरी राशि';
 	@override String bounds({required Object min, required Object max}) => '${min} और ${max} के बीच।';
@@ -3618,13 +3625,14 @@ class _Translations$journey$daily$hi extends Translations$journey$daily$fr {
 	final TranslationsHi _root; // ignore: unused_field
 
 	// Translations
-	@override String get title => 'आज के तुम्हारे 3 क़दम';
-	@override String progress({required Object n}) => '3 में से ${n}';
+	@override String get title => 'आज के तुम्हारे 4 क़दम';
+	@override String progress({required Object n}) => '4 में से ${n}';
 	@override String get report => 'अपनी रिपोर्ट भरो';
 	@override String get prayer => 'एक प्रार्थना-समय करो';
 	@override String get word => 'बाइबल का एक अध्याय पढ़ो';
 	@override String get wordPlan => 'योजना के अध्याय पढ़ो';
-	@override String get allDone => 'तीनों क़दम पूरे हुए। परमेश्वर के साथ तुम्हारा दिन शुभ हो!';
+	@override String get meditation => 'वचन पर मनन करो';
+	@override String get allDone => 'चारों क़दम पूरे हुए। परमेश्वर के साथ तुम्हारा दिन शुभ हो!';
 	@override String get done => 'पूरा';
 }
 
@@ -4133,8 +4141,8 @@ class _Translations$journey$steps$fullDay$hi extends Translations$journey$steps$
 	final TranslationsHi _root; // ignore: unused_field
 
 	// Translations
-	@override String get title => 'तीन क़दम';
-	@override String get text => 'दिन के 3 क़दम पूरे करो।';
+	@override String get title => 'चार क़दम';
+	@override String get text => 'दिन के 4 क़दम पूरे करो।';
 }
 
 // Path: journey.steps.sevenFullDays
@@ -4145,7 +4153,7 @@ class _Translations$journey$steps$sevenFullDays$hi extends Translations$journey$
 
 	// Translations
 	@override String get title => 'सात पूरे दिन';
-	@override String get text => 'दिन के 3 क़दम सात बार पूरे करो।';
+	@override String get text => 'दिन के 4 क़दम सात बार पूरे करो।';
 }
 
 // Path: journey.steps.fourRetreats
@@ -4247,6 +4255,7 @@ extension on TranslationsHi {
 			'app.name' => 'CMFI Connect',
 			'app.tagline' => 'साथ मिलकर बढ़ना, हर दिन।',
 			'app.languageName' => 'हिन्दी',
+			'app.shareInvite' => ({required Object url}) => 'CMFI Connect ऐप डाउनलोड करो: ${url}',
 			'common.retry' => 'फिर से कोशिश करो',
 			'common.cancel' => 'रद्द करो',
 			'common.save' => 'सेव करो',
@@ -4755,9 +4764,9 @@ extension on TranslationsHi {
 			'authorities.form.isDiscipleMakerHelp' => 'जो व्यक्ति व्यक्तिगत रूप से तुम्हारा मार्गदर्शन करता है। ऐसा सिर्फ़ एक ही हो सकता है।',
 			'authorities.form.discipleMakerTaken' => ({required Object name}) => 'तुम्हारे चेला बनाने वाले के रूप में ${name} पहले से दर्ज हैं। किसी और को चुनने के लिए पहले उन्हें सूची से हटाओ।',
 			'authorities.form.submit' => 'जोड़ो',
-			'authorities.form.added' => ({required Object name}) => '${name} अब तुम्हारे अगुवों में शामिल हैं।',
 			_ => null,
 		} ?? switch (path) {
+			'authorities.form.added' => ({required Object name}) => '${name} अब तुम्हारे अगुवों में शामिल हैं।',
 			'authorities.form.searchLabel' => 'उनका यूज़रनेम',
 			'authorities.form.searchHint' => 'यूज़रनेम',
 			'authorities.form.search' => 'खोजो',
@@ -5269,9 +5278,9 @@ extension on TranslationsHi {
 			'ministry.lives.founder.story.0' => 'उनका जन्म 20 जून 1945 को कैमरून में, उत्तर-पश्चिम के बातिबो से आए एक प्रेस्बिटेरियन परिवार में हुआ। स्कूल में पढ़ते हुए ही, 13 जून 1956 को, “किसी ने तुम्हारे लिए अपनी जान दी” नामक एक ट्रैक्ट पढ़कर उन्होंने अपना जीवन यीशु मसीह को सौंप दिया।',
 			'ministry.lives.founder.story.1' => 'सिएरा लियोन के फ़ोरा बे कॉलेज में छात्र रहते हुए, 1 अक्टूबर 1966 को उन्होंने स्वयं को बिना किसी शर्त के प्रभु और उसकी सेवा के लिए समर्पित कर दिया। 24 अक्टूबर 1970 को, सात दिन की प्रार्थना और उपवास के बाद, वे पवित्र आत्मा से भर गए। तब से प्रार्थना उनके जीवन का केंद्र बन गई।',
 			'ministry.lives.founder.story.2' => 'युगांडा के माकेरेरे विश्वविद्यालय से कार्बनिक रसायन में डॉक्टरेट करने के बाद उन्होंने याउंडे विश्वविद्यालय में पढ़ाया, जहाँ वे प्रोफ़ेसर बने। उन्होंने लगभग सौ शोध-प्रबंधों का मार्गदर्शन किया, और 2005 में ब्रिटेन के डरहम विश्वविद्यालय ने उनके समग्र कार्य के लिए उन्हें डॉक्टर ऑफ़ साइंस की उपाधि दी।',
-			'ministry.lives.founder.story.3' => '12 मई 1975 को याउंडे में उन्होंने क्रिश्चियन मिशनरी फ़ेलोशिप इंटरनेशनल (CMFI) की स्थापना की: आत्माओं को जीतने, चेले बनाने, कलीसियाएँ स्थापित करने और मिशनरी भेजने के लिए एक आंदोलन। उन्होंने कैमरून में 700 से अधिक मिशनरी यात्राएँ कीं और छह महाद्वीपों के 70 से अधिक राष्ट्रों में 500 से अधिक यात्राएँ कीं।',
 			_ => null,
 		} ?? switch (path) {
+			'ministry.lives.founder.story.3' => '12 मई 1975 को याउंडे में उन्होंने क्रिश्चियन मिशनरी फ़ेलोशिप इंटरनेशनल (CMFI) की स्थापना की: आत्माओं को जीतने, चेले बनाने, कलीसियाएँ स्थापित करने और मिशनरी भेजने के लिए एक आंदोलन। उन्होंने कैमरून में 700 से अधिक मिशनरी यात्राएँ कीं और छह महाद्वीपों के 70 से अधिक राष्ट्रों में 500 से अधिक यात्राएँ कीं।',
 			'ministry.lives.founder.story.4' => 'वे हर दिन लंबे घंटे परमेश्वर के साथ अकेले बिताते थे, उन्होंने प्रार्थना के अनेक अभियानों, घेरों और प्रार्थना-यात्राओं की अगुवाई की, और अक्सर उपवास किया। उन्होंने प्रार्थना, उपवास, पवित्रता, शिष्यता और मिशन पर 150 से अधिक पुस्तकें लिखीं, जो अनेक भाषाओं में पढ़ी जाती हैं।',
 			'ministry.lives.founder.story.5' => 'अपनी पत्नी प्रिस्का ज़ेई फ़ोमुम के साथ, जो बच्चों के बीच सेवा करती थीं, उनके सात बच्चे हुए, जो सभी सुसमाचार के कार्य में लगे हैं। दोनों ने सादगी से जीवन बिताया ताकि अपनी आय का सबसे बड़ा भाग सुसमाचार के लिए दे सकें।',
 			'ministry.lives.founder.story.6' => '14 मार्च 2009 को वे प्रभु की उपस्थिति में चले गए और 21 मार्च को याउंडे में दफ़नाए गए। उनके द्वारा स्थापित कार्य राष्ट्रों में आगे बढ़ रहा है।',
@@ -5582,6 +5591,12 @@ extension on TranslationsHi {
 			'verses.share' => 'वचन शेयर करो',
 			'verses.shareImage' => 'चित्र शेयर करो',
 			'verses.shareText' => 'टेक्स्ट शेयर करो',
+			'verses.background' => 'पृष्ठभूमि',
+			'verses.photos' => 'चित्र',
+			'verses.colors' => 'रंग',
+			'verses.photoN' => ({required Object n}) => 'चित्र ${n}',
+			'verses.colorN' => ({required Object n}) => 'रंग ${n}',
+			'verses.ownPhoto' => 'तुम्हारी फ़ोटो',
 			'bible.title' => 'बाइबल',
 			'bible.books' => 'पुस्तकें',
 			'bible.oldTestament' => 'पुराना नियम',
@@ -5777,6 +5792,8 @@ extension on TranslationsHi {
 			'yearStory.goalsReached' => 'औसतन पूरे हुए',
 			'yearStory.bestMonth' => ({required Object month, required Object percent}) => 'तुम्हारा सबसे अच्छा महीना: ${month} · ${percent}',
 			'yearStory.summaryTitle' => 'परमेश्वर के साथ मेरा साल',
+			_ => null,
+		} ?? switch (path) {
 			'yearStory.statDays' => 'दिन भरे गए',
 			'yearStory.statStreak' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n, one: 'दिन लगातार, तुम्हारा रिकॉर्ड', other: 'दिन लगातार, तुम्हारा रिकॉर्ड', ), 
 			'yearStory.statRetreats' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n, one: 'प्रार्थना-समय', other: 'प्रार्थना-समय', ), 
@@ -5784,8 +5801,6 @@ extension on TranslationsHi {
 			'yearStory.statChapters' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n, one: 'अध्याय पढ़ा', other: 'अध्याय पढ़े', ), 
 			'yearStory.statFasts' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n, one: 'उपवास का दिन', other: 'उपवास के दिन', ), 
 			'yearStory.statGoals' => 'लक्ष्य',
-			_ => null,
-		} ?? switch (path) {
 			'yearStory.emptyText' => 'हर दिन अपनी रिपोर्ट भरो: तुम्हारा साल यहाँ लिखा जाएगा।',
 			'yearStory.share' => 'अपना साल साझा करो',
 			'yearStory.homeText' => ({required Object year}) => 'तुम्हारी वफ़ादारी, प्रार्थना, वचन: ${year} में परमेश्वर के साथ जो जिया, उसे फिर से देखो।',
@@ -6214,10 +6229,10 @@ extension on TranslationsHi {
 			'journey.steps.streak100.text' => 'लगातार 100 दिन रिपोर्ट।',
 			'journey.steps.streak365.title' => 'पूरा एक साल',
 			'journey.steps.streak365.text' => 'लगातार 365 दिन रिपोर्ट।',
-			'journey.steps.fullDay.title' => 'तीन क़दम',
-			'journey.steps.fullDay.text' => 'दिन के 3 क़दम पूरे करो।',
+			'journey.steps.fullDay.title' => 'चार क़दम',
+			'journey.steps.fullDay.text' => 'दिन के 4 क़दम पूरे करो।',
 			'journey.steps.sevenFullDays.title' => 'सात पूरे दिन',
-			'journey.steps.sevenFullDays.text' => 'दिन के 3 क़दम सात बार पूरे करो।',
+			'journey.steps.sevenFullDays.text' => 'दिन के 4 क़दम सात बार पूरे करो।',
 			'journey.steps.fourRetreats.title' => 'प्रार्थना का दिन',
 			'journey.steps.fourRetreats.text' => 'एक ही दिन में 4 प्रार्थना-समय पूरे करो।',
 			'journey.steps.planDone.title' => 'योजना पूरी',
@@ -6234,13 +6249,14 @@ extension on TranslationsHi {
 			'journey.steps.firstSending.text' => 'ऐप में अपनी रिपोर्ट किसी अगुवे को भेजो।',
 			'journey.steps.firstEncouragement.title' => 'प्रोत्साहक',
 			'journey.steps.firstEncouragement.text' => 'किसी चेले को प्रोत्साहन का संदेश भेजो।',
-			'journey.daily.title' => 'आज के तुम्हारे 3 क़दम',
-			'journey.daily.progress' => ({required Object n}) => '3 में से ${n}',
+			'journey.daily.title' => 'आज के तुम्हारे 4 क़दम',
+			'journey.daily.progress' => ({required Object n}) => '4 में से ${n}',
 			'journey.daily.report' => 'अपनी रिपोर्ट भरो',
 			'journey.daily.prayer' => 'एक प्रार्थना-समय करो',
 			'journey.daily.word' => 'बाइबल का एक अध्याय पढ़ो',
 			'journey.daily.wordPlan' => 'योजना के अध्याय पढ़ो',
-			'journey.daily.allDone' => 'तीनों क़दम पूरे हुए। परमेश्वर के साथ तुम्हारा दिन शुभ हो!',
+			'journey.daily.meditation' => 'वचन पर मनन करो',
+			'journey.daily.allDone' => 'चारों क़दम पूरे हुए। परमेश्वर के साथ तुम्हारा दिन शुभ हो!',
 			'journey.daily.done' => 'पूरा',
 			'journey.grace.day' => 'अनुग्रह का दिन',
 			'journey.grace.used' => ({required Object day}) => 'अनुग्रह का दिन ${day}: तुम्हारा सिलसिला जारी है।',
@@ -6290,6 +6306,8 @@ extension on TranslationsHi {
 			'gamification.collective.title' => 'समूह का सफ़र',
 			'gamification.collective.sharedThisWeek' => ({required num n, required Object total}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n, one: 'इस सप्ताह ${total} में से ${n} चेले ने रिपोर्ट साझा की', other: 'इस सप्ताह ${total} में से ${n} चेलों ने रिपोर्ट साझा की', ), 
 			'gamification.collective.empty' => 'इस सप्ताह अभी किसी ने साझा नहीं किया। हर कोई अपनी गति से चलता है।',
+			_ => null,
+		} ?? switch (path) {
 			'gamification.collective.reports' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n, one: 'इस सप्ताह ${n} रिपोर्ट मिली', other: 'इस सप्ताह ${n} रिपोर्टें मिलीं', ), 
 			'gamification.collective.noDisciples' => 'रास्ता साथ मिलकर भी चला जाता है: जब तुम चेलों का साथ देते हो, उनका इस सप्ताह का सफ़र यहाँ दिखेगा, बिना नाम।',
 			'gamification.collective.anonymous' => 'समूह का कुल, बिना नाम और बिना क्रम।',
@@ -6298,8 +6316,6 @@ extension on TranslationsHi {
 			'menu.seeProfile' => 'मेरी प्रोफ़ाइल देखो',
 			'me.title' => 'मेरी प्रोफ़ाइल',
 			'me.edit' => 'मेरी प्रोफ़ाइल बदलो',
-			_ => null,
-		} ?? switch (path) {
 			'me.journey' => 'मेरी यात्रा',
 			'me.streak' => 'सिलसिला',
 			'me.steps' => 'पड़ाव',
@@ -6474,8 +6490,8 @@ extension on TranslationsHi {
 			'sheetImport.importTile' => 'आयात',
 			'sheetImport.importHint' => 'Excel से',
 			'donation.title' => 'दान दो',
-			'donation.menuHint' => 'अपनी पसंद की राशि से काम में सहयोग करो',
-			'donation.intro' => 'अपनी पसंद की राशि के दान से परमेश्वर के काम में सहयोग करो। Mobile Money या कार्ड से सुरक्षित भुगतान करो।',
+			'donation.menuHint' => 'अपनी पसंद की राशि से इस ऐप का सहयोग करो',
+			'donation.intro' => 'अपनी पसंद की राशि के दान से इस ऐप का सहयोग करो। Mobile Money या कार्ड से सुरक्षित भुगतान करो।',
 			'donation.amount' => 'राशि',
 			'donation.other' => 'दूसरी राशि',
 			'donation.bounds' => ({required Object min, required Object max}) => '${min} और ${max} के बीच।',

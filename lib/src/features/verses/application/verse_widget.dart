@@ -1,9 +1,9 @@
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../../../core/i18n/strings.g.dart';
+import '../../../core/services/current_day.dart';
 import '../../../core/services/home_widgets.dart';
 import '../../../core/storage/preferences.dart';
-import '../../../core/utils/date_extensions.dart';
 import 'verse_of_the_day.dart';
 
 part 'verse_widget.g.dart';
@@ -22,7 +22,7 @@ Future<VerseWidgetData> verseWidget(Ref ref) async {
   final calendar = await ref.watch(
     verseCalendarProvider(locale.languageCode).future,
   );
-  final start = today();
+  final start = ref.watch(currentDayProvider);
   return VerseWidgetData(
     days: {
       for (var i = 0; i < verseWidgetDays; i++)

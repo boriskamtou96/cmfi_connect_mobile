@@ -1,4 +1,7 @@
 What's new in CMFI Connect
-• Give: support the work with the amount you choose, by Mobile Money or by card (« You » tab)
-• Profile: the Premium mark no longer hides behind the photo button
-• Improvements and reliability fixes
+• Steps of the day: a 4th step, meditation, in a more compact card
+• Verse of the day: it changes every morning, even if the app stayed open
+• Sharing the verse: pick a background photo, a color or your own photo
+• Games: 96 new questions, including « Our heritage », and a progress bar that moves smoothly
+• Every share invites people to get the app
+• Improvements and fixes

@@ -105,6 +105,7 @@ class _Translations$app$zh extends Translations$app$fr {
 	@override String get name => 'CMFI Connect';
 	@override String get tagline => '一起成长，每一天。';
 	@override String get languageName => '中文';
+	@override String shareInvite({required Object url}) => '下载 CMFI Connect 应用：${url}';
 }
 
 // Path: common
@@ -1016,6 +1017,12 @@ class _Translations$verses$zh extends Translations$verses$fr {
 	@override String get share => '分享经文';
 	@override String get shareImage => '分享图片';
 	@override String get shareText => '分享文字';
+	@override String get background => '背景';
+	@override String get photos => '图片';
+	@override String get colors => '颜色';
+	@override String photoN({required Object n}) => '图片 ${n}';
+	@override String colorN({required Object n}) => '颜色 ${n}';
+	@override String get ownPhoto => '你的照片';
 }
 
 // Path: bible
@@ -2159,8 +2166,8 @@ class _Translations$donation$zh extends Translations$donation$fr {
 
 	// Translations
 	@override String get title => '奉献';
-	@override String get menuHint => '以你选择的金额支持事工';
-	@override String get intro => '以你选择的金额奉献，支持神的工作。可通过 Mobile Money 或银行卡安全支付。';
+	@override String get menuHint => '以你选择的金额支持这个应用';
+	@override String get intro => '以你选择的金额奉献，支持这个应用。可通过 Mobile Money 或银行卡安全支付。';
 	@override String get amount => '金额';
 	@override String get other => '其他金额';
 	@override String bounds({required Object min, required Object max}) => '在 ${min} 和 ${max} 之间。';
@@ -3523,13 +3530,14 @@ class _Translations$journey$daily$zh extends Translations$journey$daily$fr {
 	final TranslationsZh _root; // ignore: unused_field
 
 	// Translations
-	@override String get title => '今日三步';
-	@override String progress({required Object n}) => '${n} / 3';
+	@override String get title => '今日四步';
+	@override String progress({required Object n}) => '${n} / 4';
 	@override String get report => '填写我的报告';
 	@override String get prayer => '做一次退修祷告';
 	@override String get word => '读一章圣经';
 	@override String get wordPlan => '读计划中的章节';
-	@override String get allDone => '三步都完成了。愿你与神同度美好的一天！';
+	@override String get meditation => '默想神的话语';
+	@override String get allDone => '四步都完成了。愿你与神同度美好的一天！';
 	@override String get done => '已完成';
 }
 
@@ -4017,8 +4025,8 @@ class _Translations$journey$steps$fullDay$zh extends Translations$journey$steps$
 	final TranslationsZh _root; // ignore: unused_field
 
 	// Translations
-	@override String get title => '三步';
-	@override String get text => '完成今日三步。';
+	@override String get title => '四步';
+	@override String get text => '完成今日四步。';
 }
 
 // Path: journey.steps.sevenFullDays
@@ -4029,7 +4037,7 @@ class _Translations$journey$steps$sevenFullDays$zh extends Translations$journey$
 
 	// Translations
 	@override String get title => '七个完整的日子';
-	@override String get text => '完成今日三步共七次。';
+	@override String get text => '完成今日四步共七次。';
 }
 
 // Path: journey.steps.fourRetreats
@@ -4131,6 +4139,7 @@ extension on TranslationsZh {
 			'app.name' => 'CMFI Connect',
 			'app.tagline' => '一起成长，每一天。',
 			'app.languageName' => '中文',
+			'app.shareInvite' => ({required Object url}) => '下载 CMFI Connect 应用：${url}',
 			'common.retry' => '重试',
 			'common.cancel' => '取消',
 			'common.save' => '保存',
@@ -4639,9 +4648,9 @@ extension on TranslationsZh {
 			'authorities.form.isDiscipleMakerHelp' => '亲自带领你的那个人。你只能有一位。',
 			'authorities.form.discipleMakerTaken' => ({required Object name}) => '${name} 已经是你的门训者。若要指定其他人，请先将其从列表中移除。',
 			'authorities.form.submit' => '添加',
-			'authorities.form.added' => ({required Object name}) => '${name} 现在是你的带领者了。',
 			_ => null,
 		} ?? switch (path) {
+			'authorities.form.added' => ({required Object name}) => '${name} 现在是你的带领者了。',
 			'authorities.form.searchLabel' => '对方的用户名',
 			'authorities.form.searchHint' => '用户名',
 			'authorities.form.search' => '搜索',
@@ -5153,9 +5162,9 @@ extension on TranslationsZh {
 			'ministry.lives.founder.story.0' => '他于1945年6月20日出生在喀麦隆，家族是来自西北部巴蒂博的长老会信徒。还在上学时，他于1956年6月13日读了一份名为《有人为你而死》的福音单张，把生命交给了耶稣基督。',
 			'ministry.lives.founder.story.1' => '在塞拉利昂富拉湾学院求学期间，他于1966年10月1日毫无保留地把自己献给主和主的事工。1970年10月24日，在七天的祷告禁食之后，他被圣灵充满。从那时起，祷告成了他生命的中心。',
 			'ministry.lives.founder.story.2' => '他在乌干达马凯雷雷大学获得有机化学博士学位，之后在雅温得大学任教并成为教授。他指导了约一百篇博士和硕士论文；2005年，英国杜伦大学因他的全部学术成就授予他理学博士学位。',
-			'ministry.lives.founder.story.3' => '1975年5月12日，他在雅温得创立了国际基督教宣教团契（CMFI）：一个赢得灵魂、使人作门徒、建立教会、差派宣教士的运动。他在喀麦隆进行了700多次宣教旅程，又在六大洲70多个国家进行了500多次旅程。',
 			_ => null,
 		} ?? switch (path) {
+			'ministry.lives.founder.story.3' => '1975年5月12日，他在雅温得创立了国际基督教宣教团契（CMFI）：一个赢得灵魂、使人作门徒、建立教会、差派宣教士的运动。他在喀麦隆进行了700多次宣教旅程，又在六大洲70多个国家进行了500多次旅程。',
 			'ministry.lives.founder.story.4' => '他每天花很长时间独自与神相处，带领了许多祷告大会、祷告围城和祷告行走，并经常禁食。他写了150多本关于祷告、禁食、圣洁、门徒训练和宣教的书，以多种语言被阅读。',
 			'ministry.lives.founder.story.5' => '他与妻子 Prisca Zei Fomum（一位在儿童中服事的同工）育有七个孩子，都投身于福音工作。他们一同过着简朴的生活，把收入的绝大部分奉献给福音。',
 			'ministry.lives.founder.story.6' => '2009年3月14日，他被主接去，3月21日安葬于雅温得。他所创立的事工在万国中继续前进。',
@@ -5466,6 +5475,12 @@ extension on TranslationsZh {
 			'verses.share' => '分享经文',
 			'verses.shareImage' => '分享图片',
 			'verses.shareText' => '分享文字',
+			'verses.background' => '背景',
+			'verses.photos' => '图片',
+			'verses.colors' => '颜色',
+			'verses.photoN' => ({required Object n}) => '图片 ${n}',
+			'verses.colorN' => ({required Object n}) => '颜色 ${n}',
+			'verses.ownPhoto' => '你的照片',
 			'bible.title' => '圣经',
 			'bible.books' => '书卷',
 			'bible.oldTestament' => '旧约',
@@ -5661,6 +5676,8 @@ extension on TranslationsZh {
 			'yearStory.goalsReached' => '平均达成',
 			'yearStory.bestMonth' => ({required Object month, required Object percent}) => '你最好的月份：${month} · ${percent}',
 			'yearStory.summaryTitle' => '我与神同在的一年',
+			_ => null,
+		} ?? switch (path) {
 			'yearStory.statDays' => '天已填写',
 			'yearStory.statStreak' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n, other: '天连续，你的纪录', ), 
 			'yearStory.statRetreats' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n, other: '次退修', ), 
@@ -5668,8 +5685,6 @@ extension on TranslationsZh {
 			'yearStory.statChapters' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n, other: '章已读', ), 
 			'yearStory.statFasts' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n, other: '天禁食', ), 
 			'yearStory.statGoals' => '目标',
-			_ => null,
-		} ?? switch (path) {
 			'yearStory.emptyText' => '每天填写你的报告：你的一年将写在这里。',
 			'yearStory.share' => '分享我的一年',
 			'yearStory.homeText' => ({required Object year}) => '你的忠心、祷告与神的话：回顾 ${year} 年你与神同在的点滴。',
@@ -6098,10 +6113,10 @@ extension on TranslationsZh {
 			'journey.steps.streak100.text' => '连续 100 天提交报告。',
 			'journey.steps.streak365.title' => '整整一年',
 			'journey.steps.streak365.text' => '连续 365 天提交报告。',
-			'journey.steps.fullDay.title' => '三步',
-			'journey.steps.fullDay.text' => '完成今日三步。',
+			'journey.steps.fullDay.title' => '四步',
+			'journey.steps.fullDay.text' => '完成今日四步。',
 			'journey.steps.sevenFullDays.title' => '七个完整的日子',
-			'journey.steps.sevenFullDays.text' => '完成今日三步共七次。',
+			'journey.steps.sevenFullDays.text' => '完成今日四步共七次。',
 			'journey.steps.fourRetreats.title' => '祷告的一天',
 			'journey.steps.fourRetreats.text' => '在同一天完成 4 次退修祷告。',
 			'journey.steps.planDone.title' => '计划完成',
@@ -6118,13 +6133,14 @@ extension on TranslationsZh {
 			'journey.steps.firstSending.text' => '在应用中把报告发给属灵带领者。',
 			'journey.steps.firstEncouragement.title' => '鼓励者',
 			'journey.steps.firstEncouragement.text' => '给门徒发送一句鼓励的话。',
-			'journey.daily.title' => '今日三步',
-			'journey.daily.progress' => ({required Object n}) => '${n} / 3',
+			'journey.daily.title' => '今日四步',
+			'journey.daily.progress' => ({required Object n}) => '${n} / 4',
 			'journey.daily.report' => '填写我的报告',
 			'journey.daily.prayer' => '做一次退修祷告',
 			'journey.daily.word' => '读一章圣经',
 			'journey.daily.wordPlan' => '读计划中的章节',
-			'journey.daily.allDone' => '三步都完成了。愿你与神同度美好的一天！',
+			'journey.daily.meditation' => '默想神的话语',
+			'journey.daily.allDone' => '四步都完成了。愿你与神同度美好的一天！',
 			'journey.daily.done' => '已完成',
 			'journey.grace.day' => '恩典日',
 			'journey.grace.used' => ({required Object day}) => '恩典日 ${day}：你的连续记录继续。',
@@ -6174,6 +6190,8 @@ extension on TranslationsZh {
 			'gamification.collective.title' => '小组的行程',
 			'gamification.collective.sharedThisWeek' => ({required num n, required Object total}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n, other: '本周 ${total} 位门徒中有 ${n} 位分享了报告', ), 
 			'gamification.collective.empty' => '这周还没有人分享。每个人都有自己的节奏。',
+			_ => null,
+		} ?? switch (path) {
 			'gamification.collective.reports' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n, other: '本周收到 ${n} 份报告', ), 
 			'gamification.collective.noDisciples' => '路也可以一起走：当你陪伴门徒时，他们这一周的行程会显示在这里，不显示姓名。',
 			'gamification.collective.anonymous' => '全组总数，不显示姓名，也不排名。',
@@ -6182,8 +6200,6 @@ extension on TranslationsZh {
 			'menu.seeProfile' => '查看我的资料',
 			'me.title' => '我的资料',
 			'me.edit' => '编辑我的资料',
-			_ => null,
-		} ?? switch (path) {
 			'me.journey' => '我的旅程',
 			'me.streak' => '连续',
 			'me.steps' => '里程',
@@ -6358,8 +6374,8 @@ extension on TranslationsZh {
 			'sheetImport.importTile' => '导入',
 			'sheetImport.importHint' => '从 Excel',
 			'donation.title' => '奉献',
-			'donation.menuHint' => '以你选择的金额支持事工',
-			'donation.intro' => '以你选择的金额奉献，支持神的工作。可通过 Mobile Money 或银行卡安全支付。',
+			'donation.menuHint' => '以你选择的金额支持这个应用',
+			'donation.intro' => '以你选择的金额奉献，支持这个应用。可通过 Mobile Money 或银行卡安全支付。',
 			'donation.amount' => '金额',
 			'donation.other' => '其他金额',
 			'donation.bounds' => ({required Object min, required Object max}) => '在 ${min} 和 ${max} 之间。',

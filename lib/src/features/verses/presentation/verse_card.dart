@@ -1,21 +1,30 @@
+import 'dart:async';
+import 'dart:typed_data';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../core/i18n/strings.g.dart';
 import '../../../core/network/app_exception_message.dart';
+import '../../../core/services/app_invite.dart';
+import '../../../core/services/deep_links.dart';
+import '../../../core/services/image_picking.dart';
 import '../../../core/services/share_service.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_icons.dart';
 import '../../../core/theme/app_spacing.dart';
 import '../../../core/utils/date_extensions.dart';
 import '../../../core/utils/widget_image.dart';
+import '../../../core/widgets/adaptive_menus.dart';
 import '../../../core/widgets/app_button.dart';
 import '../../../core/widgets/app_toast.dart';
 import '../../../core/widgets/cmfi_logo.dart';
 import '../../../core/widgets/photo_kit.dart';
 import '../application/verse_of_the_day.dart';
+import '../application/verse_share_background.dart';
 import '../domain/verse.dart';
+import 'verse_backgrounds.dart';
 
 /// Today's verse on the home screen, on the photo of a brother reading his
 /// Bible, graded toward the night blue: a frosted "Verset du jour", a gold
@@ -233,6 +242,13 @@ class _VerseShareSheet extends HookConsumerWidget {
     final t = context.t;
     final key = useMemoized(GlobalKey.new);
     final busy = useState(false);
+    // the member's own photo, for this share only
+    final own = useState<Uint8List?>(null);
+    final ownChosen = useState(false);
+    final background = switch (own.value) {
+      final bytes? when ownChosen.value => VerseBackground.own(bytes),
+      _ => verseBackgroundOf(ref.watch(verseShareBackgroundProvider)),
+    };
     final day = today();
     final name =
         'verset_${day.month.toString().padLeft(2, '0')}'
@@ -253,11 +269,18 @@ class _VerseShareSheet extends HookConsumerWidget {
             name: name,
             mimeType: 'image/png',
             subject: t.verses.title,
+            // the link goes with the image, not on it (like a song shared
+            // from Spotify): the verse opens in the app, or the site offers
+            // the stores
+            text: _verseCaption(t, verse),
             origin: origin,
           );
         } else {
           await service.shareText(
-            '« ${verse.text} »\n${verse.reference}\n\n${t.app.name}',
+            withAppInvite(
+              t,
+              _withLink(verse, '« ${verse.text} »\n${verse.reference}'),
+            ),
             subject: t.verses.title,
             origin: origin,
           );
@@ -271,8 +294,63 @@ class _VerseShareSheet extends HookConsumerWidget {
       }
     }
 
+    void choose(VerseBackground chosen) {
+      ownChosen.value = false;
+      unawaited(
+        ref.read(verseShareBackgroundProvider.notifier).choose(chosen.id),
+      );
+    }
+
+    // « Ta photo »: chosen again if there is one, else taken or picked
+    Future<void> chooseOwn() async {
+      if (own.value != null && !ownChosen.value) {
+        ownChosen.value = true;
+        return;
+      }
+      final toast = ref.read(toasterProvider).of(context);
+      final camera = await showActionSheet<bool>(
+        context,
+        title: t.verses.ownPhoto,
+        actions: [
+          AdaptiveAction(
+            value: true,
+            icon: AppIcons.camera,
+            label: t.profilePhoto.camera,
+          ),
+          AdaptiveAction(
+            value: false,
+            icon: AppIcons.image,
+            label: t.profilePhoto.gallery,
+          ),
+        ],
+      );
+      if (camera == null) {
+        return;
+      }
+      try {
+        final picked = await ref
+            .read(imagePickingProvider)
+            .pickOne(camera: camera);
+        if (picked != null && context.mounted) {
+          own.value = picked.bytes;
+          ownChosen.value = true;
+        }
+      } on Object catch (error) {
+        toast.error(userMessageFor(error, t));
+      }
+    }
+
+    final photos = [
+      for (final option in verseBackgrounds)
+        if (option.isPhoto) option,
+    ];
+    final colors = [
+      for (final option in verseBackgrounds)
+        if (!option.isPhoto) option,
+    ];
+
     return SafeArea(
-      child: Padding(
+      child: SingleChildScrollView(
         padding: const EdgeInsets.fromLTRB(
           AppSpacing.xl,
           0,
@@ -283,10 +361,54 @@ class _VerseShareSheet extends HookConsumerWidget {
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
+            // the preview is the image shared
             Center(
               child: RepaintBoundary(
                 key: key,
-                child: _VerseImage(verse: verse),
+                child: _VerseImage(verse: verse, background: background),
+              ),
+            ),
+            const SizedBox(height: AppSpacing.lg),
+            _BackgroundLabel(t.verses.photos),
+            const SizedBox(height: AppSpacing.sm),
+            SizedBox(
+              height: 56,
+              child: ListView.separated(
+                scrollDirection: Axis.horizontal,
+                // the photos, then « Ta photo » at the end
+                itemCount: photos.length + 1,
+                separatorBuilder: (_, _) => const SizedBox(width: 10),
+                itemBuilder: (context, index) => index == photos.length
+                    ? _OwnPhotoChoice(
+                        photo: own.value,
+                        label: t.verses.ownPhoto,
+                        selected: background.id == VerseBackground.ownId,
+                        onTap: chooseOwn,
+                      )
+                    : _BackgroundChoice(
+                        background: photos[index],
+                        label: t.verses.photoN(n: index + 1),
+                        selected: photos[index].id == background.id,
+                        onTap: () => choose(photos[index]),
+                      ),
+              ),
+            ),
+            const SizedBox(height: AppSpacing.md),
+            _BackgroundLabel(t.verses.colors),
+            const SizedBox(height: AppSpacing.sm),
+            SizedBox(
+              height: 48,
+              child: ListView.separated(
+                scrollDirection: Axis.horizontal,
+                itemCount: colors.length,
+                separatorBuilder: (_, _) => const SizedBox(width: 10),
+                itemBuilder: (context, index) => _BackgroundChoice(
+                  background: colors[index],
+                  label: t.verses.colorN(n: index + 1),
+                  selected: colors[index].id == background.id,
+                  round: true,
+                  onTap: () => choose(colors[index]),
+                ),
               ),
             ),
             const SizedBox(height: AppSpacing.lg),
@@ -306,19 +428,203 @@ class _VerseShareSheet extends HookConsumerWidget {
   }
 }
 
-/// The square card shared (redrawn on 12/11/2026): the night of the app
-/// with a glow of gold in a corner and the ring of the brand behind; « Verset
-/// du jour » after a gold rule, the verse in Lora on a large faded quotation
-/// mark, its reference in gold with the Bible it comes from, then the app
-/// under a hairline.
+/// [text], then the link of [verse] when it has a key: it opens the verse
+/// in the Bible of the app, or the site offers the stores.
+String _withLink(Verse verse, String text) => switch (verse.osis) {
+  final osis? => BibleLink(osis).under(text),
+  null => text,
+};
+
+/// The words sent with the image (14/11/2026, like a song shared from
+/// Spotify): the reference, its link, then the invitation to get the app.
+String _verseCaption(Translations t, Verse verse) =>
+    withAppInvite(t, _withLink(verse, verse.reference));
+
+class _BackgroundLabel extends StatelessWidget {
+  const _BackgroundLabel(this.text);
+
+  final String text;
+
+  @override
+  Widget build(BuildContext context) => Text(
+    text,
+    style: TextStyle(
+      fontSize: 13,
+      fontWeight: FontWeight.w700,
+      color: Theme.of(context).colorScheme.onSurfaceVariant,
+    ),
+  );
+}
+
+/// A background to touch: a small photo (rounded) or a round color, ringed
+/// in gold and checked once chosen.
+class _BackgroundChoice extends StatelessWidget {
+  const _BackgroundChoice({
+    required this.background,
+    required this.label,
+    required this.selected,
+    required this.onTap,
+    this.round = false,
+  });
+
+  final VerseBackground background;
+  final String label;
+  final bool selected;
+  final bool round;
+  final VoidCallback onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    final photo = background.image(width: 168);
+    final size = round ? 48.0 : 56.0;
+    final radius = BorderRadius.circular(round ? 99 : AppRadius.md);
+    return Semantics(
+      button: true,
+      selected: selected,
+      label: label,
+      excludeSemantics: true,
+      child: GestureDetector(
+        onTap: onTap,
+        child: AnimatedContainer(
+          duration: const Duration(milliseconds: 180),
+          width: size,
+          height: size,
+          padding: const EdgeInsets.all(3),
+          decoration: BoxDecoration(
+            borderRadius: radius,
+            border: Border.all(
+              color: selected ? AppColors.gold : Colors.transparent,
+              width: 2.5,
+            ),
+          ),
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(round ? 99 : AppRadius.md - 3),
+            child: Stack(
+              fit: StackFit.expand,
+              children: [
+                if (photo != null)
+                  Image(
+                    image: photo,
+                    fit: BoxFit.cover,
+                    alignment: background.alignment,
+                    excludeFromSemantics: true,
+                    gaplessPlayback: true,
+                  )
+                else
+                  DecoratedBox(
+                    decoration: BoxDecoration(
+                      gradient: LinearGradient(
+                        begin: Alignment.topLeft,
+                        end: Alignment.bottomRight,
+                        colors: background.colors,
+                      ),
+                    ),
+                  ),
+                if (selected)
+                  const ColoredBox(
+                    color: Color(0x55061F40),
+                    child: Icon(AppIcons.check, size: 18, color: Colors.white),
+                  ),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+/// « Ta photo », after the photos offered: an image icon until the member
+/// takes or picks one, then that photo (ringed in gold once chosen).
+class _OwnPhotoChoice extends StatelessWidget {
+  const _OwnPhotoChoice({
+    required this.photo,
+    required this.label,
+    required this.selected,
+    required this.onTap,
+  });
+
+  final Uint8List? photo;
+  final String label;
+  final bool selected;
+  final VoidCallback onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    final scheme = Theme.of(context).colorScheme;
+    final photo = this.photo;
+    return Semantics(
+      button: true,
+      selected: selected,
+      label: label,
+      excludeSemantics: true,
+      child: GestureDetector(
+        onTap: onTap,
+        child: AnimatedContainer(
+          duration: const Duration(milliseconds: 180),
+          width: 56,
+          height: 56,
+          padding: const EdgeInsets.all(3),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(AppRadius.md),
+            border: Border.all(
+              color: selected ? AppColors.gold : Colors.transparent,
+              width: 2.5,
+            ),
+          ),
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(AppRadius.md - 3),
+            child: photo == null
+                ? ColoredBox(
+                    color: scheme.surfaceContainerHighest,
+                    child: Icon(
+                      AppIcons.addImage,
+                      size: 22,
+                      color: scheme.onSurfaceVariant,
+                    ),
+                  )
+                : Stack(
+                    fit: StackFit.expand,
+                    children: [
+                      Image(
+                        image: ResizeImage(MemoryImage(photo), width: 168),
+                        fit: BoxFit.cover,
+                        excludeFromSemantics: true,
+                      ),
+                      if (selected)
+                        const ColoredBox(
+                          color: Color(0x55061F40),
+                          child: Icon(
+                            AppIcons.check,
+                            size: 18,
+                            color: Colors.white,
+                          ),
+                        ),
+                    ],
+                  ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+/// The square card shared (redrawn on 12/11/2026, a background to choose
+/// since 14/11/2026): a photo graded toward the night blue under a veil, or
+/// two colors with a glow of gold in a corner and the ring of the brand
+/// behind; « Verset du jour » after a gold rule, the verse in Lora on a
+/// large faded quotation mark, its reference in gold with the Bible it comes
+/// from, then the app and its site under a hairline.
 class _VerseImage extends StatelessWidget {
-  const _VerseImage({required this.verse});
+  const _VerseImage({required this.verse, required this.background});
 
   final Verse verse;
+  final VerseBackground background;
 
   @override
   Widget build(BuildContext context) {
     final t = context.t;
+    final photo = background.image();
     final long = verse.text.length;
     final size = long > 260
         ? 13.5
@@ -334,36 +640,64 @@ class _VerseImage extends StatelessWidget {
       clipBehavior: Clip.antiAlias,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(24),
-        gradient: const LinearGradient(
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
-          colors: [Color(0xFF0D427C), AppColors.night],
-        ),
+        color: AppColors.night,
+        gradient: photo != null
+            ? null
+            : LinearGradient(
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+                colors: background.colors,
+              ),
       ),
       child: Stack(
         children: [
-          // a glow of gold from the corner the reading starts in
-          const Positioned.fill(
-            child: DecoratedBox(
-              decoration: BoxDecoration(
-                gradient: RadialGradient(
-                  center: Alignment(-1.1, -1.2),
-                  radius: 1.1,
-                  colors: [Color(0x38E2A93B), Color(0x00E2A93B)],
+          if (photo != null) ...[
+            Positioned.fill(
+              child: Image(
+                image: photo,
+                fit: BoxFit.cover,
+                alignment: background.alignment,
+                excludeFromSemantics: true,
+                gaplessPlayback: true,
+              ),
+            ),
+            // a dark veil that keeps the warm light of the photo: the words
+            // stay easy to read on any part of it
+            const Positioned.fill(
+              child: PhotoScrim(
+                colors: [
+                  Color(0x66000000),
+                  Color(0x52000000),
+                  Color(0x80000000),
+                  Color(0xD9000000),
+                ],
+                stops: [0, 0.35, 0.65, 1],
+              ),
+            ),
+          ] else ...[
+            // a glow of gold from the corner the reading starts in
+            const Positioned.fill(
+              child: DecoratedBox(
+                decoration: BoxDecoration(
+                  gradient: RadialGradient(
+                    center: Alignment(-1.1, -1.2),
+                    radius: 1.1,
+                    colors: [Color(0x38E2A93B), Color(0x00E2A93B)],
+                  ),
                 ),
               ),
             ),
-          ),
-          // the ring of the brand, large and faint (a decor: it stays there
-          // in right-to-left languages too)
-          Positioned(
-            right: -92,
-            bottom: -104,
-            child: BrandRing(
-              size: 300,
-              color: Colors.white.withValues(alpha: 0.055),
+            // the ring of the brand, large and faint (a decor: it stays
+            // there in right-to-left languages too)
+            Positioned(
+              right: -92,
+              bottom: -104,
+              child: BrandRing(
+                size: 300,
+                color: Colors.white.withValues(alpha: 0.055),
+              ),
             ),
-          ),
+          ],
           Padding(
             padding: const EdgeInsets.fromLTRB(26, 24, 26, 20),
             child: Column(
@@ -411,6 +745,14 @@ class _VerseImage extends StatelessWidget {
                             fontSize: size,
                             height: 1.42,
                             color: Colors.white,
+                            shadows: photo == null
+                                ? null
+                                : const [
+                                    Shadow(
+                                      color: Color(0x66000000),
+                                      blurRadius: 6,
+                                    ),
+                                  ],
                           ),
                         ),
                       ),

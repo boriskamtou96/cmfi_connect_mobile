@@ -4,6 +4,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../core/i18n/strings.g.dart';
 import '../../../core/network/app_exception_message.dart';
+import '../../../core/services/app_invite.dart';
 import '../../../core/services/share_service.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_icons.dart';
@@ -59,6 +60,7 @@ class _StepCardDialog extends HookConsumerWidget {
           name: 'etape-${step.name}.png',
           mimeType: 'image/png',
           subject: t.gamification.cards.shareSubject(name: texts.title),
+          text: appInvite(t),
           origin: origin,
         );
       } on Object catch (error) {

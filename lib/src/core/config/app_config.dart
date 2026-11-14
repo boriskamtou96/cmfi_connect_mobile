@@ -15,11 +15,12 @@ class AppConfig {
 
   // La Bible du Semeur in the app, through the YouVersion Platform (Biblica's
   // channel), once Biblica's licence covers the app: the app key of the
-  // platform and the switch in .env (YOUVERSION_APP_KEY, BIBLE_SEMEUR=on).
-  // Without them it stays read on Bibleserver.
+  // platform in .env (YOUVERSION_APP_KEY), then the switch `bible_semeur` of
+  // Firebase Remote Config (14/11/2026, see SemeurInApp). Without the key it
+  // stays read on Bibleserver. BIBLE_SEMEUR=on in .env only says what the
+  // app does while Remote Config has no value.
   static const youversionAppKey = String.fromEnvironment('YOUVERSION_APP_KEY');
-  static const semeurInApp =
-      youversionAppKey != '' && String.fromEnvironment('BIBLE_SEMEUR') == 'on';
+  static const semeurByDefault = String.fromEnvironment('BIBLE_SEMEUR') == 'on';
 
   // Premium is bought on the website (cmfi-connect.com/premium, mobile money
   // through Wajub): the paywall says so and opens the site. PREMIUM_ON_SITE=off

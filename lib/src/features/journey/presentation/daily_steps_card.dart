@@ -17,9 +17,10 @@ import '../domain/weekly_cap.dart';
 import 'progress_texts.dart';
 import 'step_look.dart';
 
-/// « Tes 3 pas du jour » on Home: the report, a retreat, the Word, each
-/// checked once done and opening where it is done; Zoé rejoices when the
-/// three are.
+/// « Tes 4 pas du jour » on Home: the report, a retreat, the Word and a
+/// meditation, two by two in tiles (14/11/2026: the fourth step took no more
+/// room than the three rows before), each checked once done and opening
+/// where it is done; Zoé rejoices when the four are.
 class DailyStepsCard extends ConsumerWidget {
   const DailyStepsCard({required this.onReport, super.key});
 
@@ -58,6 +59,13 @@ class DailyStepsCard extends ConsumerWidget {
         onTap: () => steps.withPlan
             ? context.router.push(const BiblePlanRoute())
             : context.navigateTo(const BibleRoute()),
+      ),
+      // « Méditation » is an item of the report: filled there
+      (
+        done: steps.meditation,
+        label: t.meditation,
+        icon: AppIcons.meditation,
+        onTap: onReport,
       ),
     ];
 
@@ -125,69 +133,35 @@ class DailyStepsCard extends ConsumerWidget {
               ],
             ),
           ),
-          for (final row in rows)
-            Semantics(
-              button: true,
-              label: row.done ? '${row.label}, ${t.done}' : row.label,
-              excludeSemantics: true,
-              child: InkWell(
-                onTap: row.onTap,
-                child: Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(18, 9, 14, 9),
-                  child: Row(
-                    children: [
-                      AnimatedContainer(
-                        duration: const Duration(milliseconds: 250),
-                        width: 30,
-                        height: 30,
-                        decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          color: row.done ? AppColors.gold : null,
-                          border: row.done
-                              ? null
-                              : Border.all(
-                                  color: scheme.outlineVariant,
-                                  width: 2,
-                                ),
-                        ),
-                        child: row.done
-                            ? const Icon(
-                                AppIcons.check,
-                                size: 16,
-                                color: AppColors.primaryDeep,
-                              )
-                            : Icon(
-                                row.icon,
-                                size: 15,
-                                color: scheme.onSurfaceVariant,
-                              ),
-                      ),
-                      const SizedBox(width: AppSpacing.md),
-                      Expanded(
-                        child: Text(
-                          row.label,
-                          style: TextStyle(
-                            fontSize: 15,
-                            fontWeight: FontWeight.w600,
-                            color: row.done ? scheme.onSurfaceVariant : null,
-                            decoration: row.done
-                                ? TextDecoration.lineThrough
-                                : null,
-                            decorationColor: scheme.onSurfaceVariant,
+          Padding(
+            padding: const EdgeInsets.fromLTRB(12, 4, 12, 0),
+            child: Column(
+              children: [
+                for (var i = 0; i < rows.length; i += 2) ...[
+                  if (i > 0) const SizedBox(height: AppSpacing.sm),
+                  IntrinsicHeight(
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      children: [
+                        for (var j = i; j < i + 2 && j < rows.length; j++) ...[
+                          if (j > i) const SizedBox(width: AppSpacing.sm),
+                          Expanded(
+                            child: _StepTile(
+                              done: rows[j].done,
+                              label: rows[j].label,
+                              icon: rows[j].icon,
+                              doneLabel: t.done,
+                              onTap: rows[j].onTap,
+                            ),
                           ),
-                        ),
-                      ),
-                      if (!row.done)
-                        Icon(
-                          AppIcons.chevronRight,
-                          size: 18,
-                          color: scheme.onSurfaceVariant,
-                        ),
-                    ],
+                        ],
+                      ],
+                    ),
                   ),
-                ),
-              ),
+                ],
+              ],
             ),
+          ),
           if (steps.all)
             Container(
               margin: const EdgeInsets.fromLTRB(12, 4, 12, 12),
@@ -214,7 +188,7 @@ class DailyStepsCard extends ConsumerWidget {
               ),
             )
           else
-            const SizedBox(height: 8),
+            const SizedBox(height: 12),
           if (next != null || cap != null)
             _JourneyFooter(
               next: next,
@@ -228,7 +202,90 @@ class DailyStepsCard extends ConsumerWidget {
   }
 }
 
-/// The line under « Tes 3 pas du jour »: the next step and, when one was
+/// One step of the day: a round check (gold once done) and its words on two
+/// lines at most, struck through once done; 48 dp at least to touch.
+class _StepTile extends StatelessWidget {
+  const _StepTile({
+    required this.done,
+    required this.label,
+    required this.icon,
+    required this.doneLabel,
+    required this.onTap,
+  });
+
+  final bool done;
+  final String label;
+  final IconData icon;
+  final String doneLabel;
+  final VoidCallback onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    final scheme = Theme.of(context).colorScheme;
+    return Semantics(
+      button: true,
+      label: done ? '$label, $doneLabel' : label,
+      excludeSemantics: true,
+      child: Material(
+        color: done
+            ? AppColors.gold.withValues(alpha: 0.12)
+            : scheme.surfaceContainerHighest.withValues(alpha: 0.55),
+        borderRadius: BorderRadius.circular(AppRadius.lg),
+        clipBehavior: Clip.antiAlias,
+        child: InkWell(
+          onTap: onTap,
+          child: ConstrainedBox(
+            constraints: const BoxConstraints(minHeight: 56),
+            child: Padding(
+              padding: const EdgeInsetsDirectional.fromSTEB(10, 8, 8, 8),
+              child: Row(
+                children: [
+                  AnimatedContainer(
+                    duration: const Duration(milliseconds: 250),
+                    width: 28,
+                    height: 28,
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: done ? AppColors.gold : null,
+                      border: done
+                          ? null
+                          : Border.all(color: scheme.outlineVariant, width: 2),
+                    ),
+                    child: done
+                        ? const Icon(
+                            AppIcons.check,
+                            size: 15,
+                            color: AppColors.primaryDeep,
+                          )
+                        : Icon(icon, size: 14, color: scheme.onSurfaceVariant),
+                  ),
+                  const SizedBox(width: AppSpacing.sm),
+                  Expanded(
+                    child: Text(
+                      label,
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
+                      style: TextStyle(
+                        fontSize: 13.5,
+                        height: 1.25,
+                        fontWeight: FontWeight.w600,
+                        color: done ? scheme.onSurfaceVariant : null,
+                        decoration: done ? TextDecoration.lineThrough : null,
+                        decorationColor: scheme.onSurfaceVariant,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+/// The line under « Tes 4 pas du jour »: the next step and, when one was
 /// chosen, the cap of the week. Both open « Mes étapes ».
 class _JourneyFooter extends StatelessWidget {
   const _JourneyFooter({

@@ -6,6 +6,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../../core/i18n/strings.g.dart';
 import '../../../../core/network/app_exception_message.dart';
+import '../../../../core/services/app_invite.dart';
 import '../../../../core/services/share_service.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/theme/app_icons.dart';
@@ -72,6 +73,7 @@ class StreakCelebration extends HookConsumerWidget {
           name: 'cmfi-connect-$days.png',
           mimeType: 'image/png',
           subject: t.streak.title(n: days),
+          text: appInvite(t),
           origin: origin,
         );
       } on Object catch (error) {

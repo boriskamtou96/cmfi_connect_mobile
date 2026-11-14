@@ -1,4 +1,7 @@
 Neu in CMFI Connect
-• Spenden: Unterstütze das Werk mit einem Betrag deiner Wahl, per Mobile Money oder Karte (Tab „Du“)
-• Profil: Das Premium-Zeichen liegt nicht mehr hinter der Foto-Schaltfläche
-• Verbesserungen und Zuverlässigkeitskorrekturen
+• Schritte des Tages: ein 4. Schritt, die Meditation, in einer kompakteren Karte
+• Vers des Tages: er wechselt jeden Morgen, auch wenn die App offen geblieben ist
+• Vers teilen: wähle ein Hintergrundfoto, eine Farbe oder dein eigenes Foto
+• Spiele: 96 neue Fragen, darunter « Unser Erbe », und ein Fortschrittsbalken, der sanft vorrückt
+• Jedes Teilen lädt ein, die App zu holen
+• Verbesserungen und Korrekturen

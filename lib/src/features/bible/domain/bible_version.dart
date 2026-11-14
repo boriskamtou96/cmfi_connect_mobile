@@ -1,5 +1,3 @@
-import '../../../core/config/app_config.dart';
-
 /// A Bible the app offers, from the Free Use Bible API (bible.helloao.org):
 /// public domain texts, or under a free licence that only asks for
 /// [attribution]. Or a Bible under licence from the YouVersion Platform
@@ -43,8 +41,8 @@ class BibleVersion {
 }
 
 /// La Bible du Semeur (© Biblica), through the YouVersion Platform (21):
-/// among the versions once [AppConfig.semeurInApp]; its notice as the
-/// platform gives it.
+/// among the versions while it is switched on ([availableBibleVersions],
+/// `SemeurInApp`); its notice as the platform gives it.
 const semeurVersion = BibleVersion(
   id: 'fra_bds',
   abbreviation: 'BDS',
@@ -81,7 +79,6 @@ const bibleVersions = [
     language: 'fr',
     megabytes: 6,
   ),
-  if (AppConfig.semeurInApp) semeurVersion,
   BibleVersion(
     id: 'ENGWEBP',
     abbreviation: 'WEB',
@@ -158,9 +155,29 @@ const bibleVersions = [
   ),
 ];
 
-/// The version of [id], or null.
-BibleVersion? bibleVersionOf(String? id) =>
-    bibleVersions.where((version) => version.id == id).firstOrNull;
+/// The versions offered: [bibleVersions], and La Bible du Semeur after the
+/// other French ones when [semeur] (switched on).
+List<BibleVersion> availableBibleVersions({required bool semeur}) {
+  if (!semeur) {
+    return bibleVersions;
+  }
+  final after =
+      bibleVersions.lastIndexWhere(
+        (version) => version.language == semeurVersion.language,
+      ) +
+      1;
+  return [
+    ...bibleVersions.take(after),
+    semeurVersion,
+    ...bibleVersions.skip(after),
+  ];
+}
+
+/// The version of [id] among those offered, or null.
+BibleVersion? bibleVersionOf(String? id, {bool semeur = false}) =>
+    availableBibleVersions(
+      semeur: semeur,
+    ).where((version) => version.id == id).firstOrNull;
 
 /// The first version of [language], English otherwise.
 BibleVersion defaultBibleVersion(String language) =>
@@ -197,14 +214,19 @@ class ExternalBible {
 }
 
 const externalBibles = [
-  // read in the app instead once its licence is there
-  if (!AppConfig.semeurInApp)
-    ExternalBible(
-      abbreviation: 'BDS',
-      name: 'La Bible du Semeur',
-      language: 'fr',
-      site: 'Bibleserver',
-    ),
+  ExternalBible(
+    abbreviation: 'BDS',
+    name: 'La Bible du Semeur',
+    language: 'fr',
+    site: 'Bibleserver',
+  ),
+];
+
+/// [externalBibles], without La Bible du Semeur when it is read in the app
+/// ([semeur]).
+List<ExternalBible> externalBiblesWith({required bool semeur}) => [
+  for (final bible in externalBibles)
+    if (!semeur || bible.abbreviation != 'BDS') bible,
 ];
 
 /// The books as Bibleserver reads them, by their USFM code.

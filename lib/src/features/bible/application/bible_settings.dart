@@ -7,6 +7,7 @@ import '../../../core/i18n/strings.g.dart';
 import '../../../core/storage/preferences.dart';
 import '../../../core/widgets/reader/reader_palette.dart';
 import '../domain/bible_version.dart';
+import 'semeur.dart';
 
 part 'bible_settings.freezed.dart';
 part 'bible_settings.g.dart';
@@ -97,6 +98,7 @@ BibleVersion bibleVersion(Ref ref) {
   final chosen = ref.watch(bibleSettingsControllerProvider).version;
   // read again when the language of the app changes
   ref.watch(savedLanguageProvider);
-  return bibleVersionOf(chosen) ??
+  // La Bible du Semeur switched off: back to the Bible of the language
+  return bibleVersionOf(chosen, semeur: ref.watch(semeurInAppProvider)) ??
       defaultBibleVersion(LocaleSettings.currentLocale.languageCode);
 }

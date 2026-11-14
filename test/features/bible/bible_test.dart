@@ -161,7 +161,12 @@ void main() {
     final shared = app.share.texts.single;
     expect(shared, startsWith('Car Dieu a tant aimé le monde'));
     expect(shared, contains('\nJean 3:16 (LSG)\n'));
-    expect(shared, endsWith('/open?to=bible/JHN.3.16'));
+    expect(shared, contains('/open?to=bible/JHN.3.16\n'));
+    // then the invitation to get the app
+    expect(
+      shared,
+      endsWith('Télécharge l\'app CMFI Connect : https://cmfi-connect.com'),
+    );
   });
 
   testWidgets('the words of Jesus in red, unless turned off', (tester) async {

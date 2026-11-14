@@ -47,12 +47,17 @@ class BookCover extends StatelessWidget {
     required this.book,
     required this.colors,
     required this.size,
+    this.withMark = true,
     super.key,
   });
 
   final HymnBook book;
   final List<Color> colors;
   final double size;
+
+  /// The mark of the app in its corner; false where the mark is already
+  /// shown (the image of shared lyrics has it at the bottom).
+  final bool withMark;
 
   @override
   Widget build(BuildContext context) {
@@ -94,12 +99,13 @@ class BookCover extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    SizedBox.square(
-                      dimension: size * 0.17,
-                      child: const CustomPaint(
-                        painter: CmfiLogoPainter(disc: true, details: false),
+                    if (withMark)
+                      SizedBox.square(
+                        dimension: size * 0.17,
+                        child: const CustomPaint(
+                          painter: CmfiLogoPainter(disc: true, details: false),
+                        ),
                       ),
-                    ),
                     const Spacer(),
                     Text(
                       text.name,

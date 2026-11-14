@@ -48,7 +48,7 @@ final class DailyStepsProvider
   }
 }
 
-String _$dailyStepsHash() => r'd99241fcf8dd7e5367c1c192d9895a25cb4cbf0f';
+String _$dailyStepsHash() => r'0bb39904d7aeef16c93760feee8835a9ca591af1';
 
 /// The days the three steps were all done (`full_days`, the last 60), for
 /// « Sept journées complètes ».

@@ -105,6 +105,7 @@ class _Translations$app$en extends Translations$app$fr {
 	@override String get name => 'CMFI Connect';
 	@override String get tagline => 'Growing together, every day.';
 	@override String get languageName => 'English';
+	@override String shareInvite({required Object url}) => 'Download the CMFI Connect app: ${url}';
 }
 
 // Path: common
@@ -1040,6 +1041,12 @@ class _Translations$verses$en extends Translations$verses$fr {
 	@override String get share => 'Share the verse';
 	@override String get shareImage => 'Share the image';
 	@override String get shareText => 'Share the text';
+	@override String get background => 'Background';
+	@override String get photos => 'Images';
+	@override String get colors => 'Colors';
+	@override String photoN({required Object n}) => 'Image ${n}';
+	@override String colorN({required Object n}) => 'Color ${n}';
+	@override String get ownPhoto => 'Your photo';
 }
 
 // Path: bible
@@ -2241,8 +2248,8 @@ class _Translations$donation$en extends Translations$donation$fr {
 
 	// Translations
 	@override String get title => 'Give';
-	@override String get menuHint => 'Support the work, with the amount you choose';
-	@override String get intro => 'Support the work of God with a gift of the amount you choose. You pay by Mobile Money or by card, securely.';
+	@override String get menuHint => 'Support this app, with the amount you choose';
+	@override String get intro => 'Support this app with a gift of the amount you choose. You pay by Mobile Money or by card, securely.';
 	@override String get amount => 'Amount';
 	@override String get other => 'Other amount';
 	@override String bounds({required Object min, required Object max}) => 'Between ${min} and ${max}.';
@@ -3620,13 +3627,14 @@ class _Translations$journey$daily$en extends Translations$journey$daily$fr {
 	final TranslationsEn _root; // ignore: unused_field
 
 	// Translations
-	@override String get title => 'Your 3 steps of the day';
-	@override String progress({required Object n}) => '${n} of 3';
+	@override String get title => 'Your 4 steps of the day';
+	@override String progress({required Object n}) => '${n} of 4';
 	@override String get report => 'Fill in my report';
 	@override String get prayer => 'Do a prayer retreat';
 	@override String get word => 'Read a chapter of the Bible';
 	@override String get wordPlan => 'Read the chapters of the plan';
-	@override String get allDone => 'All three steps are done. Have a good day with God!';
+	@override String get meditation => 'Meditate on the Word';
+	@override String get allDone => 'All four steps are done. Have a good day with God!';
 	@override String get done => 'Done';
 }
 
@@ -4135,8 +4143,8 @@ class _Translations$journey$steps$fullDay$en extends Translations$journey$steps$
 	final TranslationsEn _root; // ignore: unused_field
 
 	// Translations
-	@override String get title => 'Three steps';
-	@override String get text => 'Do the 3 steps of the day.';
+	@override String get title => 'Four steps';
+	@override String get text => 'Do the 4 steps of the day.';
 }
 
 // Path: journey.steps.sevenFullDays
@@ -4147,7 +4155,7 @@ class _Translations$journey$steps$sevenFullDays$en extends Translations$journey$
 
 	// Translations
 	@override String get title => 'Seven full days';
-	@override String get text => 'Do the 3 steps of the day seven times.';
+	@override String get text => 'Do the 4 steps of the day seven times.';
 }
 
 // Path: journey.steps.fourRetreats
@@ -4249,6 +4257,7 @@ extension on TranslationsEn {
 			'app.name' => 'CMFI Connect',
 			'app.tagline' => 'Growing together, every day.',
 			'app.languageName' => 'English',
+			'app.shareInvite' => ({required Object url}) => 'Download the CMFI Connect app: ${url}',
 			'common.retry' => 'Try again',
 			'common.cancel' => 'Cancel',
 			'common.save' => 'Save',
@@ -4757,9 +4766,9 @@ extension on TranslationsEn {
 			'authorities.form.isDiscipleMakerHelp' => 'The person who mentors you personally. You only have one.',
 			'authorities.form.discipleMakerTaken' => ({required Object name}) => '${name} is already your disciple maker. Remove them from the list to choose someone else.',
 			'authorities.form.submit' => 'Add',
-			'authorities.form.added' => ({required Object name}) => '${name} is now one of your leaders.',
 			_ => null,
 		} ?? switch (path) {
+			'authorities.form.added' => ({required Object name}) => '${name} is now one of your leaders.',
 			'authorities.form.searchLabel' => 'Their username',
 			'authorities.form.searchHint' => 'username',
 			'authorities.form.search' => 'Search',
@@ -5271,9 +5280,9 @@ extension on TranslationsEn {
 			'ministry.lives.founder.story.0' => 'Zacharias Tanee Fomum was born on 20 June 1945 in Cameroon, into a Presbyterian family from Batibo, in the North-West. While still a schoolboy, he gave his life to Jesus Christ on 13 June 1956, through a tract entitled “Someone died for you”.',
 			'ministry.lives.founder.story.1' => 'As a student at Fourah Bay College in Sierra Leone, he surrendered himself without reserve to the Lord and to His service on 1 October 1966. On 24 October 1970, at the end of seven days of prayer and fasting, he was filled with the Holy Spirit. From then on, prayer was the centre of his life.',
 			'ministry.lives.founder.story.2' => 'With a doctorate in organic chemistry from Makerere University in Uganda, he taught at the University of Yaoundé, where he became a professor. He supervised about a hundred theses and dissertations, and in 2005 Durham University, in Great Britain, awarded him a Doctor of Science for his whole body of work.',
-			'ministry.lives.founder.story.3' => 'On 12 May 1975, in Yaoundé, he founded Christian Missionary Fellowship International: a movement to win souls, make disciples, plant churches and send out missionaries. He made more than 700 missionary journeys in Cameroon and more than 500 to over 70 nations, on six continents.',
 			_ => null,
 		} ?? switch (path) {
+			'ministry.lives.founder.story.3' => 'On 12 May 1975, in Yaoundé, he founded Christian Missionary Fellowship International: a movement to win souls, make disciples, plant churches and send out missionaries. He made more than 700 missionary journeys in Cameroon and more than 500 to over 70 nations, on six continents.',
 			'ministry.lives.founder.story.4' => 'He spent long hours alone with God every day, led many prayer crusades, sieges and walks, and fasted often. He wrote more than 150 books on prayer, fasting, holiness, discipleship and mission, read in many languages.',
 			'ministry.lives.founder.story.5' => 'With his wife, Prisca Zei Fomum, a minister to children, he had seven children, all involved in the work of the Gospel. Together they lived simply, so as to give the largest part of their income to the Gospel.',
 			'ministry.lives.founder.story.6' => 'He went to be with the Lord on 14 March 2009 and was buried in Yaoundé on 21 March. The work he founded goes on among the nations.',
@@ -5584,6 +5593,12 @@ extension on TranslationsEn {
 			'verses.share' => 'Share the verse',
 			'verses.shareImage' => 'Share the image',
 			'verses.shareText' => 'Share the text',
+			'verses.background' => 'Background',
+			'verses.photos' => 'Images',
+			'verses.colors' => 'Colors',
+			'verses.photoN' => ({required Object n}) => 'Image ${n}',
+			'verses.colorN' => ({required Object n}) => 'Color ${n}',
+			'verses.ownPhoto' => 'Your photo',
 			'bible.title' => 'Bible',
 			'bible.books' => 'Books',
 			'bible.oldTestament' => 'Old Testament',
@@ -5779,6 +5794,8 @@ extension on TranslationsEn {
 			'yearStory.goalsReached' => 'reached on average',
 			'yearStory.bestMonth' => ({required Object month, required Object percent}) => 'Your best month: ${month} · ${percent}',
 			'yearStory.summaryTitle' => 'My year with God',
+			_ => null,
+		} ?? switch (path) {
 			'yearStory.statDays' => 'days filled in',
 			'yearStory.statStreak' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n, one: 'day in a row, your record', other: 'days in a row, your record', ), 
 			'yearStory.statRetreats' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n, one: 'retreat', other: 'retreats', ), 
@@ -5786,8 +5803,6 @@ extension on TranslationsEn {
 			'yearStory.statChapters' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n, one: 'chapter read', other: 'chapters read', ), 
 			'yearStory.statFasts' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n, one: 'day of fasting', other: 'days of fasting', ), 
 			'yearStory.statGoals' => 'of goals',
-			_ => null,
-		} ?? switch (path) {
 			'yearStory.emptyText' => 'Fill in your report every day: your year will be written here.',
 			'yearStory.share' => 'Share my year',
 			'yearStory.homeText' => ({required Object year}) => 'Your faithfulness, your prayer, the Word: look back on all you lived with God in ${year}.',
@@ -6216,10 +6231,10 @@ extension on TranslationsEn {
 			'journey.steps.streak100.text' => '100 days in a row with a report.',
 			'journey.steps.streak365.title' => 'A whole year',
 			'journey.steps.streak365.text' => '365 days in a row with a report.',
-			'journey.steps.fullDay.title' => 'Three steps',
-			'journey.steps.fullDay.text' => 'Do the 3 steps of the day.',
+			'journey.steps.fullDay.title' => 'Four steps',
+			'journey.steps.fullDay.text' => 'Do the 4 steps of the day.',
 			'journey.steps.sevenFullDays.title' => 'Seven full days',
-			'journey.steps.sevenFullDays.text' => 'Do the 3 steps of the day seven times.',
+			'journey.steps.sevenFullDays.text' => 'Do the 4 steps of the day seven times.',
 			'journey.steps.fourRetreats.title' => 'A day of prayer',
 			'journey.steps.fourRetreats.text' => 'Do the 4 retreats on the same day.',
 			'journey.steps.planDone.title' => 'Plan completed',
@@ -6236,13 +6251,14 @@ extension on TranslationsEn {
 			'journey.steps.firstSending.text' => 'Send your report to an authority in the app.',
 			'journey.steps.firstEncouragement.title' => 'Encourager',
 			'journey.steps.firstEncouragement.text' => 'Send a word of encouragement to a disciple.',
-			'journey.daily.title' => 'Your 3 steps of the day',
-			'journey.daily.progress' => ({required Object n}) => '${n} of 3',
+			'journey.daily.title' => 'Your 4 steps of the day',
+			'journey.daily.progress' => ({required Object n}) => '${n} of 4',
 			'journey.daily.report' => 'Fill in my report',
 			'journey.daily.prayer' => 'Do a prayer retreat',
 			'journey.daily.word' => 'Read a chapter of the Bible',
 			'journey.daily.wordPlan' => 'Read the chapters of the plan',
-			'journey.daily.allDone' => 'All three steps are done. Have a good day with God!',
+			'journey.daily.meditation' => 'Meditate on the Word',
+			'journey.daily.allDone' => 'All four steps are done. Have a good day with God!',
 			'journey.daily.done' => 'Done',
 			'journey.grace.day' => 'Day of grace',
 			'journey.grace.used' => ({required Object day}) => 'Day of grace ${day}: your streak goes on.',
@@ -6292,6 +6308,8 @@ extension on TranslationsEn {
 			'gamification.collective.title' => 'The group\'s walk',
 			'gamification.collective.sharedThisWeek' => ({required num n, required Object total}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n, one: '${n} disciple of ${total} shared a report this week', other: '${n} disciples of ${total} shared a report this week', ), 
 			'gamification.collective.empty' => 'No one has shared yet this week. Each one walks at their own pace.',
+			_ => null,
+		} ?? switch (path) {
 			'gamification.collective.reports' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n, one: '${n} report received this week', other: '${n} reports received this week', ), 
 			'gamification.collective.noDisciples' => 'The path is also walked together: when you accompany disciples, their walk of the week will appear here, without names.',
 			'gamification.collective.anonymous' => 'A total for the group, without names and without a ranking.',
@@ -6300,8 +6318,6 @@ extension on TranslationsEn {
 			'menu.seeProfile' => 'See my profile',
 			'me.title' => 'My profile',
 			'me.edit' => 'Edit my profile',
-			_ => null,
-		} ?? switch (path) {
 			'me.journey' => 'My journey',
 			'me.streak' => 'Streak',
 			'me.steps' => 'Steps',
@@ -6476,8 +6492,8 @@ extension on TranslationsEn {
 			'sheetImport.importTile' => 'Import',
 			'sheetImport.importHint' => 'From Excel',
 			'donation.title' => 'Give',
-			'donation.menuHint' => 'Support the work, with the amount you choose',
-			'donation.intro' => 'Support the work of God with a gift of the amount you choose. You pay by Mobile Money or by card, securely.',
+			'donation.menuHint' => 'Support this app, with the amount you choose',
+			'donation.intro' => 'Support this app with a gift of the amount you choose. You pay by Mobile Money or by card, securely.',
 			'donation.amount' => 'Amount',
 			'donation.other' => 'Other amount',
 			'donation.bounds' => ({required Object min, required Object max}) => 'Between ${min} and ${max}.',

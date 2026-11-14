@@ -2,7 +2,8 @@
   "app": {
     "name": "CMFI Connect",
     "tagline": "Growing together, every day.",
-    "languageName": "English"
+    "languageName": "English",
+    "shareInvite": "Download the CMFI Connect app: {url}"
   },
   "common": {
     "retry": "Try again",
@@ -1704,7 +1705,13 @@
     "title": "Verse of the day",
     "share": "Share the verse",
     "shareImage": "Share the image",
-    "shareText": "Share the text"
+    "shareText": "Share the text",
+    "background": "Background",
+    "photos": "Images",
+    "colors": "Colors",
+    "photoN": "Image {n}",
+    "colorN": "Color {n}",
+    "ownPhoto": "Your photo"
   },
   "bible": {
     "title": "Bible",
@@ -2567,12 +2574,12 @@
         "text": "365 days in a row with a report."
       },
       "fullDay": {
-        "title": "Three steps",
-        "text": "Do the 3 steps of the day."
+        "title": "Four steps",
+        "text": "Do the 4 steps of the day."
       },
       "sevenFullDays": {
         "title": "Seven full days",
-        "text": "Do the 3 steps of the day seven times."
+        "text": "Do the 4 steps of the day seven times."
       },
       "fourRetreats": {
         "title": "A day of prayer",
@@ -2608,13 +2615,14 @@
       }
     },
     "daily": {
-      "title": "Your 3 steps of the day",
-      "progress": "{n} of 3",
+      "title": "Your 4 steps of the day",
+      "progress": "{n} of 4",
       "report": "Fill in my report",
       "prayer": "Do a prayer retreat",
       "word": "Read a chapter of the Bible",
       "wordPlan": "Read the chapters of the plan",
-      "allDone": "All three steps are done. Have a good day with God!",
+      "meditation": "Meditate on the Word",
+      "allDone": "All four steps are done. Have a good day with God!",
       "done": "Done"
     },
     "grace": {
@@ -2981,8 +2989,8 @@
   },
   "donation": {
     "title": "Give",
-    "menuHint": "Support the work, with the amount you choose",
-    "intro": "Support the work of God with a gift of the amount you choose. You pay by Mobile Money or by card, securely.",
+    "menuHint": "Support this app, with the amount you choose",
+    "intro": "Support this app with a gift of the amount you choose. You pay by Mobile Money or by card, securely.",
     "amount": "Amount",
     "other": "Other amount",
     "bounds": "Between {min} and {max}.",

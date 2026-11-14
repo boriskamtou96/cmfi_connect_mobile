@@ -4,9 +4,6 @@ import 'dart:io';
 import 'package:path_provider/path_provider.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-import '../../../core/config/app_config.dart';
-import '../domain/bible_version.dart';
-
 part 'bible_storage.g.dart';
 
 /// What the phone keeps of each version, in the app's support directory:
@@ -67,10 +64,6 @@ class BibleStorage {
 
 @Riverpod(keepAlive: true)
 BibleStorage bibleStorage(Ref ref) {
-  final storage = BibleStorage(directory: getApplicationSupportDirectory);
-  // La Bible du Semeur turned off (its licence over): its copy goes
-  if (!AppConfig.semeurInApp) {
-    unawaited(storage.removeAll(semeurVersion.id));
-  }
-  return storage;
+  // La Bible du Semeur switched off: SemeurInApp takes its copy away
+  return BibleStorage(directory: getApplicationSupportDirectory);
 }

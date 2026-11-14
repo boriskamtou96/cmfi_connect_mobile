@@ -53,4 +53,4 @@ final class VerseWidgetProvider
   }
 }
 
-String _$verseWidgetHash() => r'61cd706e8fea6ca70ed6aa89ddb76ee5d2d4ae33';
+String _$verseWidgetHash() => r'a316d33351472523e80ac26167faac5300f689ab';

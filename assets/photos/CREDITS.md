@@ -21,3 +21,20 @@ l'accord des personnes) quand le service communication en fournira.
 | woman_ebony2.jpg | https://unsplash.com/photos/3dqSZidOkvs | Eye for Ebony | Visage décoratif (connexion) |
 | woman_ebony.jpg | https://unsplash.com/photos/aZzXKGcyWqk | Eye for Ebony | Visage décoratif (connexion) |
 | man_beard_nappy.jpg | https://unsplash.com/photos/6zg37ia-q5E | Nappy | Visage décoratif (connexion) |
+
+## Fonds du verset partagé (14/11/2026)
+
+Une série homogène, « la lumière de l'aube » : des paysages au lever ou au coucher du soleil, sans personne.
+Photos libres d'Unsplash (licence Unsplash, pas Unsplash+), recadrées en carré de 1 080 px (la taille de l'image partagée).
+Utilisées pour : les fonds de l'image du verset du jour (`verseBackgrounds`, `features/verses/presentation/verse_backgrounds.dart`).
+
+| Fichier | Page Unsplash | Photographe |
+|---|---|---|
+| dawn_ridge.jpg | https://unsplash.com/photos/dQejX2ucPBs | Ivana Cajina |
+| dawn_rays.jpg | https://unsplash.com/photos/VWxiaKn-lVc | Tadej Skofic |
+| dawn_valley.jpg | https://unsplash.com/photos/hNv5s6NEYig | Ravi Sharma |
+| dawn_peaks.jpg | https://unsplash.com/photos/ssYgIMFt-x0 | Ahmet Yüksek |
+| dawn_haze.jpg | https://unsplash.com/photos/IwDesG0f76c | Marco J Haenssgen |
+| dawn_sea.jpg | https://unsplash.com/photos/-IMlv9Jlb24 | Sebastien Gabriel |
+| dawn_clouds.jpg | https://unsplash.com/photos/WzazSaQF1F8 | Nic Y-C |
+| dawn_field.jpg | https://unsplash.com/photos/-G3rw6Y02D0 | Dawid Zawiła |

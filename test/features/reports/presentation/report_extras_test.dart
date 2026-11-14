@@ -426,10 +426,13 @@ void main() {
       await tester.tap(find.text('Bilan'));
       await tester.pumpAndSettle();
       await tester.scrollUntilVisible(find.text('Partager ce bilan'), 200);
+      await tester.ensureVisible(find.text('Partager ce bilan'));
+      await tester.pumpAndSettle();
       await tester.tap(find.text('Partager ce bilan'));
       await tester.pumpAndSettle();
 
       expect(app.share.texts.single, startsWith('*Compte rendu'));
+      expect(app.share.texts.single, endsWith('https://cmfi-connect.com'));
       expect(app.share.texts.single, contains('Régularité'));
     });
 

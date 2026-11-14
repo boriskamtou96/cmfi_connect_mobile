@@ -4,6 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../core/i18n/strings.g.dart';
+import '../../../core/services/current_day.dart';
 import '../../../core/services/premium_store.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_icons.dart';
@@ -73,7 +74,8 @@ class HomeScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final t = context.t;
-    final now = today();
+    // the new day when the app comes back the next morning
+    final now = ref.watch(currentDayProvider);
     final top = MediaQuery.paddingOf(context).top;
 
     void openReports(ReportsView view) {
@@ -289,7 +291,7 @@ class _Summary extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final t = context.t;
-    final now = today();
+    final now = ref.watch(currentDayProvider);
     final top = MediaQuery.paddingOf(context).top;
     final profile = ref.watch(currentProfileProvider).value;
     final draft = ref.watch(dayReportControllerProvider(now)).value;
@@ -377,17 +379,26 @@ class _Summary extends ConsumerWidget {
                           ),
                         ),
                         const SizedBox(height: 2),
+                        // the first given name only, on one line: a long
+                        // one gets smaller rather than wrapping
                         Semantics(
                           header: true,
-                          child: Text(
-                            profile == null
-                                ? t.home.greetingNoName
-                                : t.home.greeting(name: profile.firstName),
-                            style: const TextStyle(
-                              fontSize: 26,
-                              fontWeight: FontWeight.w800,
-                              letterSpacing: -0.6,
-                              color: Colors.white,
+                          child: FittedBox(
+                            fit: BoxFit.scaleDown,
+                            alignment: AlignmentDirectional.centerStart,
+                            child: Text(
+                              switch (givenName(profile?.firstName)) {
+                                final name? => t.home.greeting(name: name),
+                                null => t.home.greetingNoName,
+                              },
+                              maxLines: 1,
+                              softWrap: false,
+                              style: const TextStyle(
+                                fontSize: 26,
+                                fontWeight: FontWeight.w800,
+                                letterSpacing: -0.6,
+                                color: Colors.white,
+                              ),
                             ),
                           ),
                         ),
@@ -1805,4 +1816,12 @@ class _PremiumNudge extends ConsumerWidget {
       ),
     );
   }
+}
+
+/// The first of the given names ("Jean Paul" → "Jean"), or null when there
+/// is none.
+@visibleForTesting
+String? givenName(String? firstName) {
+  final words = (firstName ?? '').trim().split(RegExp(r'\s+'));
+  return words.first.isEmpty ? null : words.first;
 }

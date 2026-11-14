@@ -450,6 +450,10 @@ const _combos = {3, 5, 8};
 /// The bar of the lesson: a box per question, in the order they are asked.
 /// Green right at once, gold the second time, amber while it waits to come
 /// back; the one asked has a ring. Read as the share settled.
+///
+/// It moves like a gauge (14/11/2026, as in Busuu): an answer fills its box
+/// from the start of the line to its end, and the ring slides on to the next
+/// question rather than jumping there. At once with « reduce motion ».
 class _Segments extends StatelessWidget {
   const _Segments({
     required this.marks,
@@ -463,40 +467,95 @@ class _Segments extends StatelessWidget {
   final int? current;
   final double progress;
 
+  static const _gap = 4.0;
+  static const _height = 14.0;
+
   @override
   Widget build(BuildContext context) {
     final scheme = Theme.of(context).colorScheme;
     final missing = AppTones.of(context).missing;
-    final duration = AppMotion.of(context, AppMotion.medium);
+    final fill = AppMotion.of(context, const Duration(milliseconds: 520));
+    final slide = AppMotion.of(context, AppMotion.slow);
+    final radius = BorderRadius.circular(_height / 2);
+    final current = this.current;
+
+    Color? colorOf(QuestionMark mark) => switch (mark) {
+      QuestionMark.waiting => null,
+      QuestionMark.right => AppColors.success,
+      QuestionMark.second => AppColors.gold,
+      QuestionMark.again => missing.withValues(alpha: 0.55),
+      QuestionMark.missed => missing,
+    };
+
     return Semantics(
       value: '${(progress * 100).round()} %',
       child: ExcludeSemantics(
-        child: Row(
-          children: [
-            for (final (i, mark) in marks.indexed) ...[
-              if (i > 0) const SizedBox(width: 4),
-              Expanded(
-                child: AnimatedContainer(
-                  duration: duration,
-                  curve: AppMotion.standard,
-                  height: 14,
-                  decoration: BoxDecoration(
-                    color: switch (mark) {
-                      QuestionMark.waiting => scheme.surfaceContainerHighest,
-                      QuestionMark.right => AppColors.success,
-                      QuestionMark.second => AppColors.gold,
-                      QuestionMark.again => missing.withValues(alpha: 0.55),
-                      QuestionMark.missed => missing,
-                    },
-                    borderRadius: BorderRadius.circular(7),
-                    border: i == current
-                        ? Border.all(color: scheme.primary, width: 2)
-                        : null,
+        child: SizedBox(
+          height: _height,
+          child: LayoutBuilder(
+            builder: (context, constraints) {
+              final count = marks.length;
+              final width = count == 0
+                  ? 0.0
+                  : (constraints.maxWidth - _gap * (count - 1)) / count;
+              return Stack(
+                children: [
+                  Row(
+                    children: [
+                      for (final (i, mark) in marks.indexed) ...[
+                        if (i > 0) const SizedBox(width: _gap),
+                        Expanded(
+                          child: DecoratedBox(
+                            decoration: BoxDecoration(
+                              color: scheme.surfaceContainerHighest,
+                              borderRadius: radius,
+                            ),
+                            // the answer fills the box, from the start
+                            child: AnimatedFractionallySizedBox(
+                              duration: fill,
+                              curve: Curves.easeOutCubic,
+                              alignment: AlignmentDirectional.centerStart,
+                              widthFactor: colorOf(mark) == null ? 0 : 1,
+                              heightFactor: 1,
+                              child: AnimatedContainer(
+                                duration: fill,
+                                curve: AppMotion.standard,
+                                decoration: BoxDecoration(
+                                  color:
+                                      colorOf(mark) ??
+                                      scheme.surfaceContainerHighest,
+                                  borderRadius: radius,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ],
                   ),
-                ),
-              ),
-            ],
-          ],
+                  // the ring of the question asked, sliding to the next one
+                  AnimatedPositionedDirectional(
+                    duration: slide,
+                    curve: AppMotion.emphasized,
+                    start: (current ?? 0) * (width + _gap),
+                    top: 0,
+                    width: width,
+                    height: _height,
+                    child: AnimatedOpacity(
+                      duration: slide,
+                      opacity: current == null ? 0 : 1,
+                      child: DecoratedBox(
+                        decoration: BoxDecoration(
+                          borderRadius: radius,
+                          border: Border.all(color: scheme.primary, width: 2),
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              );
+            },
+          ),
         ),
       ),
     );

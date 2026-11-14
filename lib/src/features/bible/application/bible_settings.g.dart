@@ -140,4 +140,4 @@ final class BibleVersionProvider
   }
 }
 
-String _$bibleVersionHash() => r'f31e58da50d92c8fee670caf0e169545cf76c031';
+String _$bibleVersionHash() => r'86f80176c51d5fb8d592f418db93e8e08a7cc1df';

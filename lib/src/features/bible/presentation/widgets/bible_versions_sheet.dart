@@ -13,6 +13,7 @@ import '../../../../core/widgets/app_toast.dart';
 import '../../application/bible_library.dart';
 import '../../application/bible_position.dart';
 import '../../application/bible_settings.dart';
+import '../../application/semeur.dart';
 import '../../domain/bible_version.dart';
 
 /// The versions, those of the app's language first; under them, the version
@@ -41,10 +42,12 @@ class _VersionsSheet extends ConsumerWidget {
     final t = context.t;
     final theme = Theme.of(context);
     final current = ref.watch(bibleVersionProvider);
+    final semeur = ref.watch(semeurInAppProvider);
+    final versionsOffered = availableBibleVersions(semeur: semeur);
     final language = LocaleSettings.currentLocale.languageCode;
     final languages = {
       language,
-      for (final version in bibleVersions) version.language,
+      for (final version in versionsOffered) version.language,
     };
 
     return ListView(
@@ -62,7 +65,7 @@ class _VersionsSheet extends ConsumerWidget {
         ),
         _DownloadCard(version: current),
         for (final code in languages)
-          if (bibleVersions.where((version) => version.language == code)
+          if (versionsOffered.where((version) => version.language == code)
               case final versions when versions.isNotEmpty) ...[
             Padding(
               padding: const EdgeInsetsDirectional.fromSTEB(24, 18, 24, 4),
@@ -90,7 +93,7 @@ class _VersionsSheet extends ConsumerWidget {
                 },
               ),
 
-            for (final bible in externalBibles)
+            for (final bible in externalBiblesWith(semeur: semeur))
               if (bible.language == code)
                 _ExternalRow(
                   bible: bible,

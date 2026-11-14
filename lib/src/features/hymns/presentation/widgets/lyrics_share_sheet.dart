@@ -8,6 +8,7 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../../core/i18n/strings.g.dart';
+import '../../../../core/services/app_invite.dart';
 import '../../../../core/services/deep_links.dart';
 import '../../../../core/services/photo_saver.dart';
 import '../../../../core/services/share_service.dart';
@@ -80,11 +81,14 @@ class _LyricsShareSheet extends HookConsumerWidget {
     final busy = useState(false);
     final cardKey = useMemoized(GlobalKey.new);
 
-    final text = HymnLink(book.code, hymn.number).under(
-      excerptAsText(
-        lines,
-        reference: s.reference(number: hymn.number, title: hymn.title),
-        bookTitle: book.title,
+    final text = withAppInvite(
+      context.t,
+      HymnLink(book.code, hymn.number).under(
+        excerptAsText(
+          lines,
+          reference: s.reference(number: hymn.number, title: hymn.title),
+          bookTitle: book.title,
+        ),
       ),
     );
     final fileName = 'cantique-${hymn.number}.png';
@@ -146,6 +150,15 @@ class _LyricsShareSheet extends HookConsumerWidget {
 
     Future<void> shareImage(BuildContext anchor) => run(() async {
       final where = origin(anchor);
+      // the link goes with the image, not on it (like a song shared from
+      // Spotify): the hymn opens in the app, or the site offers the stores
+      final caption = withAppInvite(
+        context.t,
+        HymnLink(
+          book.code,
+          hymn.number,
+        ).under('${hymn.number}. ${hymn.title} · ${book.title}'),
+      );
       final png = await image();
       if (png == null) {
         return;
@@ -157,6 +170,7 @@ class _LyricsShareSheet extends HookConsumerWidget {
             name: fileName,
             mimeType: 'image/png',
             subject: hymn.title,
+            text: caption,
             origin: where,
           );
       shared();
@@ -354,7 +368,13 @@ class LyricsCard extends StatelessWidget {
             children: [
               Row(
                 children: [
-                  BookCover(book: book, colors: bookColors, size: 52),
+                  BookCover(
+                    book: book,
+                    colors: bookColors,
+                    size: 52,
+                    // the mark of the app is already at the bottom
+                    withMark: false,
+                  ),
                   const SizedBox(width: 12),
                   Expanded(
                     child: Column(

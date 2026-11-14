@@ -16,6 +16,7 @@ abstract final class AppIcons {
   static const hymns = PhosphorIconsRegular.musicNotes;
   static const hymnsActive = PhosphorIconsFill.musicNotes;
   static const prayer = PhosphorIconsRegular.handsPraying;
+  static const meditation = PhosphorIconsRegular.lightbulbFilament;
   static const prayerActive = PhosphorIconsFill.handsPraying;
   static const bible = PhosphorIconsRegular.bookBookmark;
   static const bibleActive = PhosphorIconsFill.bookBookmark;
@@ -196,6 +197,7 @@ abstract final class AppIcons {
   static const pinned = PhosphorIconsFill.pushPin;
   static const pin = PhosphorIconsRegular.pushPin;
   static const image = PhosphorIconsRegular.image;
+  static const addImage = PhosphorIconsRegular.imageSquare;
   static const camera = PhosphorIconsRegular.camera;
   static const imageBroken = PhosphorIconsRegular.imageBroken;
   static const photos = PhosphorIconsRegular.images;

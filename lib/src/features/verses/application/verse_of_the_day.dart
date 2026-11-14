@@ -4,8 +4,8 @@ import 'package:flutter/services.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../../../core/i18n/strings.g.dart';
+import '../../../core/services/current_day.dart';
 import '../../../core/storage/preferences.dart';
-import '../../../core/utils/date_extensions.dart';
 import '../domain/verse.dart';
 
 part 'verse_of_the_day.g.dart';
@@ -23,12 +23,14 @@ Future<VerseCalendar> verseCalendar(Ref ref, String language) async {
   return VerseCalendar.fromJson(utf8.decode(data.buffer.asUint8List()));
 }
 
-/// Today's verse in the app's language (the same for everyone that day).
+/// Today's verse in the app's language (the same for everyone that day),
+/// changed with the day even when the app stayed open ([currentDayProvider]).
 @riverpod
 Future<Verse?> verseOfTheDay(Ref ref) async {
-  // read again when the language of the app changes
+  // read again when the language of the app changes, and the next day
   ref.watch(savedLanguageProvider);
+  final day = ref.watch(currentDayProvider);
   final language = LocaleSettings.currentLocale.languageCode;
   final calendar = await ref.watch(verseCalendarProvider(language).future);
-  return calendar.of(today());
+  return calendar.of(day);
 }

@@ -2,10 +2,12 @@ import 'package:cmfi_connect/src/core/i18n/strings.g.dart';
 import 'package:cmfi_connect/src/core/utils/date_extensions.dart';
 import 'package:cmfi_connect/src/features/journey/application/journey_steps.dart';
 import 'package:cmfi_connect/src/features/journey/domain/journey_step.dart';
+import 'package:cmfi_connect/src/features/journey/presentation/daily_steps_card.dart';
 import 'package:cmfi_connect/src/features/journey/presentation/journey_screen.dart';
 import 'package:cmfi_connect/src/features/prayer/application/retreats.dart';
 import 'package:cmfi_connect/src/features/prayer/domain/prayer.dart';
 import 'package:cmfi_connect/src/features/reports/application/reports_providers.dart';
+import 'package:cmfi_connect/src/features/reports/domain/activity_type.dart';
 import 'package:cmfi_connect/src/features/reports/domain/daily_report.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -40,20 +42,76 @@ void main() {
     );
   }
 
-  testWidgets('home shows the 3 steps of the day, checked as they are done', (
+  testWidgets('home shows the 4 steps of the day, checked as they are done', (
     tester,
   ) async {
     final prayer = FakePrayerApi();
     await pumpApp(tester, token: 't', prayerApi: prayer);
 
-    expect(find.text('Tes 3 pas du jour'), findsOneWidget);
-    expect(find.text('0 sur 3'), findsOneWidget);
-    expect(find.text('Remplir mon compte rendu'), findsOneWidget);
-    expect(find.text('Faire une retraite de prière'), findsOneWidget);
-    expect(find.text('Lire un chapitre de la Bible'), findsOneWidget);
+    expect(find.text('Tes 4 pas du jour'), findsOneWidget);
     expect(
-      find.bySemanticsLabel('Faire une retraite de prière, Fait'),
+      find.descendant(
+        of: find.byType(DailyStepsCard),
+        matching: find.text('0 sur 4'),
+      ),
+      findsOneWidget,
+    );
+    expect(find.text('Remplir mon compte rendu'), findsOneWidget);
+    expect(find.text('Faire une retraite de 15\u00a0min'), findsOneWidget);
+    expect(find.text('Lire un chapitre de la Bible'), findsOneWidget);
+    expect(find.text('Méditer la Parole'), findsOneWidget);
+    expect(
+      find.bySemanticsLabel('Faire une retraite de 15\u00a0min, Fait'),
       findsNothing,
+    );
+  });
+
+  testWidgets('the meditation is done once « Méditation » is in the report', (
+    tester,
+  ) async {
+    final day = today();
+    await pumpApp(
+      tester,
+      token: 't',
+      activities: [
+        ...sampleActivities,
+        const ActivityType(
+          id: 3,
+          code: 'RDQAD',
+          label: 'Méditation',
+          tracksQuantity: true,
+          quantityUnit: 'fois',
+          isStandard: true,
+        ),
+      ],
+      reportDays: {
+        day: DailyReport(
+          date: day,
+          submitted: true,
+          entries: const [
+            ReportEntry(
+              activityTypeId: 3,
+              code: 'RDQAD',
+              label: 'Méditation',
+              tracksQuantity: true,
+              quantity: 1,
+            ),
+          ],
+        ),
+      },
+    );
+
+    expect(find.bySemanticsLabel('Méditer la Parole, Fait'), findsOneWidget);
+    expect(
+      find.bySemanticsLabel('Remplir mon compte rendu, Fait'),
+      findsOneWidget,
+    );
+    expect(
+      find.descendant(
+        of: find.byType(DailyStepsCard),
+        matching: find.text('2 sur 4'),
+      ),
+      findsOneWidget,
     );
   });
 

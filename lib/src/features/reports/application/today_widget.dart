@@ -1,9 +1,9 @@
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../../../core/i18n/strings.g.dart';
+import '../../../core/services/current_day.dart';
 import '../../../core/services/home_widgets.dart';
 import '../../../core/services/premium_store.dart';
-import '../../../core/utils/date_extensions.dart';
 import 'day_report_controller.dart';
 import 'report_goals.dart';
 
@@ -30,7 +30,7 @@ Map<String, String> todayWidgetTexts({int filled = 0, int total = 0}) {
 /// goals go. null while the day loads.
 @riverpod
 TodayWidgetData? todayWidget(Ref ref) {
-  final day = today();
+  final day = ref.watch(currentDayProvider);
   final draft = ref.watch(dayReportControllerProvider(day)).value;
   if (draft == null) {
     return null;

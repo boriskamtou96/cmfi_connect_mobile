@@ -1,7 +1,5 @@
 What's new in CMFI Connect
-• Steps of the day: a 4th step, meditation, in a more compact card
-• Verse of the day: it changes every morning, even if the app stayed open
-• Sharing the verse: pick a background photo, a color or your own photo
-• Games: 96 new questions, including « Our heritage », and a progress bar that moves smoothly
-• Every share invites people to get the app
+• The steps of the day and the report move to the new day every morning, without restarting the app
+• Share a Bible verse as an image: on a photo, a color or your own photo
+• The image of a shared verse is now square, without rounded corners
 • Improvements and fixes

@@ -229,7 +229,7 @@ final class GoalsEvolutionProvider
   }
 }
 
-String _$goalsEvolutionHash() => r'd5cf090b48d84199c62ce0a15104d38680395fbf';
+String _$goalsEvolutionHash() => r'60f59980a2d3fa81c50cbd96e53693b7ca98b397';
 
 /// The goals of the last [weeks] weeks, the oldest first (Premium).
 

@@ -812,7 +812,7 @@ class _Resume extends ConsumerWidget {
     final bible = AppModule.bible.tone(context);
     // the reading plan: today's chapters, while not all read
     final plan = ref.watch(biblePlanProvider);
-    final day = today();
+    final day = ref.watch(currentDayProvider);
     final reading = plan == null || plan.doneOn(day)
         ? const <BibleRef>[]
         : plan.chaptersOf(day);

@@ -258,7 +258,7 @@ final class ReportStreakDetailProvider
 }
 
 String _$reportStreakDetailHash() =>
-    r'c350a65d5ed5ce8e80df71dd6a944e58c744f146';
+    r'94249187849ae5fc8c2785f7b25fae3a9d177259';
 
 /// Days in a row with a report, up to today (see [streakWithGrace]).
 
@@ -438,7 +438,7 @@ final class ReportSummaryProvider
   }
 }
 
-String _$reportSummaryHash() => r'1faad6a77f1fb7e6f9aece88574f6c2016969ce3';
+String _$reportSummaryHash() => r'e6281d5f9535dd420d5eb4f7d3eb73d96ea0365b';
 
 final class ReportSummaryFamily extends $Family
     with $FunctionalFamilyOverride<FutureOr<ReportSummary>, SummaryPeriod> {

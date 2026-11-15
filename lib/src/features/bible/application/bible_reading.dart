@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
+import '../../../core/services/current_day.dart';
 import '../../../core/storage/preferences.dart';
 import '../../../core/utils/date_extensions.dart';
 import '../../reports/application/day_report_controller.dart';
@@ -21,6 +22,8 @@ class BibleReading extends _$BibleReading {
 
   @override
   Set<String> build() {
+    // the chapters of the day: none the next morning
+    ref.watch(currentDayProvider);
     final json = ref.watch(sharedPreferencesProvider).getString(_key);
     if (json == null) {
       return const {};

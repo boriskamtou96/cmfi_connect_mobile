@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../core/i18n/strings.g.dart';
+import '../../../core/services/current_day.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_icons.dart';
 import '../../../core/theme/app_motion.dart';
@@ -32,7 +33,9 @@ class ReportsScreen extends ConsumerWidget {
     final scheme = Theme.of(context).colorScheme;
     final view = ref.watch(selectedReportsViewProvider);
     final pending = ref.watch(pendingReportsProvider);
-    final day = ref.watch(selectedReportDayProvider) ?? today();
+    // today follows the clock: the next morning, the new day without a restart
+    final now = ref.watch(currentDayProvider);
+    final day = ref.watch(selectedReportDayProvider) ?? now;
     final duration = AppMotion.of(context, AppMotion.medium);
     final running = ref.watch(reportTimerProvider) != null;
 

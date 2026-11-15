@@ -1,10 +1,11 @@
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-import '../../../core/storage/preferences.dart';
+import '../../storage/preferences.dart';
 
 part 'verse_share_background.g.dart';
 
-/// The background last chosen for the image of a verse (its id in
+/// The background last chosen for the image of a verse (of the day or of
+/// the Bible) (its id in
 /// `verseBackgrounds`), kept on the phone (`verse_share_background`): the
 /// next share starts from it. null: the first photo.
 @Riverpod(keepAlive: true)

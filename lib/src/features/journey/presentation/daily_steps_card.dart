@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../core/i18n/strings.g.dart';
+import '../../../core/services/current_day.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_icons.dart';
 import '../../../core/theme/app_spacing.dart';
@@ -34,7 +35,7 @@ class DailyStepsCard extends ConsumerWidget {
     final scheme = theme.colorScheme;
     final dark = theme.brightness == Brightness.dark;
     final steps = ref.watch(dailyStepsProvider);
-    final week = today().startOfWeek;
+    final week = ref.watch(currentDayProvider).startOfWeek;
     final next = ref.watch(journeyOverviewProvider).next;
     final cap = ref.watch(weeklyCapProvider(week));
     final capProgress = ref.watch(weeklyCapProgressProvider(week)).value;

@@ -3,6 +3,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../../core/i18n/strings.g.dart';
 import '../../../../core/network/app_exception_message.dart';
+import '../../../../core/services/current_day.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/theme/app_icons.dart';
 import '../../../../core/theme/app_spacing.dart';
@@ -34,7 +35,9 @@ class _StopwatchPicker extends ConsumerWidget {
     final t = context.t;
     final s = t.reports.timer;
     final scheme = Theme.of(context).colorScheme;
-    final report = ref.watch(dayReportControllerProvider(today()));
+    final report = ref.watch(
+      dayReportControllerProvider(ref.watch(currentDayProvider)),
+    );
     final running = ref.watch(reportTimerProvider);
 
     Future<void> start(DayDraft draft, int activityTypeId) async {

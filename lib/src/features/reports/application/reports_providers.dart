@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../../../core/network/app_exception.dart';
+import '../../../core/services/current_day.dart';
 import '../../../core/utils/date_extensions.dart';
 import '../domain/activity_type.dart';
 import '../domain/daily_report.dart';
@@ -86,7 +87,7 @@ Future<List<DailyReport>> reportHistory(
 /// (see [streakWithGrace]).
 @riverpod
 Future<StreakResult> reportStreakDetail(Ref ref) async {
-  final now = today();
+  final now = ref.watch(currentDayProvider);
   // a month is enough for most; a longer series looks a year back
   late StreakResult result;
   for (final span in const [35, 366]) {
@@ -139,7 +140,7 @@ enum SummaryPeriod {
 
 @riverpod
 Future<ReportSummary> reportSummary(Ref ref, SummaryPeriod period) {
-  final range = period.rangeEnding(today());
+  final range = period.rangeEnding(ref.watch(currentDayProvider));
   return ref.watch(reportsApiProvider).summary(from: range.from, to: range.to);
 }
 

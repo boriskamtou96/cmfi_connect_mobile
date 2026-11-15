@@ -1,7 +1,5 @@
 Nouveautés de CMFI Connect
-• Pas du jour : un 4e pas, la méditation, dans une carte plus compacte
-• Verset du jour : il change chaque matin, même si l'app est restée ouverte
-• Partage du verset : choisis une photo de fond, une couleur ou ta propre photo
-• Jeux : 96 nouvelles questions, dont « Notre héritage », et une jauge qui avance en douceur
-• Chaque partage invite à télécharger l'app
+• Les pas du jour et le compte rendu passent au nouveau jour chaque matin, sans relancer l'app
+• Partage d'un verset de la Bible en image : sur une photo, une couleur ou ta propre photo
+• L'image d'un verset partagé est maintenant carrée, sans coins arrondis
 • Améliorations et corrections

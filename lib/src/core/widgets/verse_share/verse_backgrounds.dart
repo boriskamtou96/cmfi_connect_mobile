@@ -2,7 +2,7 @@ import 'dart:typed_data';
 
 import 'package:flutter/widgets.dart';
 
-import '../../../core/theme/app_colors.dart';
+import '../../theme/app_colors.dart';
 
 /// A background of the image of a verse: a photo (under a dark veil for the
 /// words) or two colors in a gradient.

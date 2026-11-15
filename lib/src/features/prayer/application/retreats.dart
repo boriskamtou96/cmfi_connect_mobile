@@ -6,6 +6,7 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../../../core/network/app_exception.dart';
 import '../../../core/services/app_log.dart';
+import '../../../core/services/current_day.dart';
 import '../../../core/utils/countries.dart';
 import '../../../core/utils/date_extensions.dart';
 import '../../authorities/application/authorities_controller.dart';
@@ -190,7 +191,8 @@ class RetreatLog extends _$RetreatLog {
   Future<List<RetreatRecord>> build() async {
     final store = ref.watch(prayerLocalStoreProvider);
     await sendPending();
-    final now = today();
+    // the next day: its retreats, read again
+    final now = ref.watch(currentDayProvider);
     try {
       final records = await ref
           .watch(prayerApiProvider)
@@ -307,7 +309,7 @@ class RetreatLog extends _$RetreatLog {
 @Riverpod(keepAlive: true)
 Set<RetreatMoment> retreatsToday(Ref ref) {
   final records = ref.watch(retreatLogProvider).value ?? const [];
-  final day = today();
+  final day = ref.watch(currentDayProvider);
   return {
     for (final record in records)
       if (record.day.isSameDay(day)) record.moment,

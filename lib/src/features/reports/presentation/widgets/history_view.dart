@@ -3,6 +3,7 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../../core/i18n/strings.g.dart';
+import '../../../../core/services/current_day.dart';
 import '../../../../core/theme/app_icons.dart';
 import '../../../../core/theme/app_motion.dart';
 import '../../../../core/theme/app_spacing.dart';
@@ -31,7 +32,7 @@ class HistoryView extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final now = today();
+    final now = ref.watch(currentDayProvider);
     final month = useState(now.startOfMonth);
     final from = month.value;
     final lastOfMonth = DateTime(from.year, from.month + 1, 0);

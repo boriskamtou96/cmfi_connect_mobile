@@ -8,6 +8,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../core/i18n/strings.g.dart';
 import '../../../core/network/app_exception_message.dart';
+import '../../../core/services/current_day.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_icons.dart';
 import '../../../core/theme/app_spacing.dart';
@@ -453,7 +454,7 @@ class _Hero extends ConsumerWidget {
     final top = MediaQuery.paddingOf(context).top;
     final log = ref.watch(retreatLogProvider).value ?? const <RetreatRecord>[];
     final days = {for (final record in log) record.day.dateOnly}.length;
-    final monday = today().startOfWeek;
+    final monday = ref.watch(currentDayProvider).startOfWeek;
     final minutes = log
         .where((record) => !record.day.dateOnly.isBefore(monday))
         .fold(0, (sum, record) => sum + record.minutes);

@@ -4,6 +4,7 @@ import 'dart:convert';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../../../core/network/app_exception.dart';
+import '../../../core/services/current_day.dart';
 import '../../../core/storage/preferences.dart';
 import '../../../core/utils/date_extensions.dart';
 import '../domain/activity_type.dart';
@@ -146,7 +147,7 @@ typedef GoalsWeek = ({DateTime monday, double? progress});
 /// The goals of the last [weeks] weeks, the oldest first (Premium).
 @riverpod
 Future<List<GoalsWeek>> goalsEvolution(Ref ref, {int weeks = 12}) async {
-  final now = today();
+  final now = ref.watch(currentDayProvider);
   final firstMonday = DateTime(
     now.startOfWeek.year,
     now.startOfWeek.month,

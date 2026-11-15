@@ -1,4 +1,5 @@
 import 'package:cmfi_connect/src/core/i18n/strings.g.dart';
+import 'package:cmfi_connect/src/core/services/current_day.dart';
 import 'package:cmfi_connect/src/core/utils/date_extensions.dart';
 import 'package:cmfi_connect/src/features/journey/application/journey_steps.dart';
 import 'package:cmfi_connect/src/features/journey/domain/journey_step.dart';
@@ -57,11 +58,11 @@ void main() {
       findsOneWidget,
     );
     expect(find.text('Remplir mon compte rendu'), findsOneWidget);
-    expect(find.text('Faire une retraite de 15\u00a0min'), findsOneWidget);
+    expect(find.text('Faire une retraite de 15m'), findsOneWidget);
     expect(find.text('Lire un chapitre de la Bible'), findsOneWidget);
     expect(find.text('Méditer la Parole'), findsOneWidget);
     expect(
-      find.bySemanticsLabel('Faire une retraite de 15\u00a0min, Fait'),
+      find.bySemanticsLabel('Faire une retraite de 15m, Fait'),
       findsNothing,
     );
   });
@@ -178,6 +179,34 @@ void main() {
     await tester.tap(find.text('Continuer'));
     await tester.pumpAndSettle();
     expect(find.text('NOUVELLE ÉTAPE'), findsNothing);
+  });
+
+  testWidgets('the next morning, the steps start again without a restart', (
+    tester,
+  ) async {
+    final prayer = FakePrayerApi()
+      ..retreatList.add(
+        RetreatRecord(day: today(), moment: RetreatMoment.morning),
+      );
+    final app = await pumpApp(tester, token: 't', prayerApi: prayer);
+    expect(
+      find.bySemanticsLabel('Faire une retraite de 15m, Fait'),
+      findsOneWidget,
+    );
+
+    // the app comes back the next day: yesterday's retreat is not today's
+    final now = today();
+    app.container.read(currentDayProvider.notifier).state = DateTime(
+      now.year,
+      now.month,
+      now.day + 1,
+    );
+    await tester.pumpAndSettle();
+    expect(
+      find.bySemanticsLabel('Faire une retraite de 15m, Fait'),
+      findsNothing,
+    );
+    expect(find.bySemanticsLabel('Faire une retraite de 15m'), findsOneWidget);
   });
 
   testWidgets('the four retreats of a day: « Une journée de prière »', (

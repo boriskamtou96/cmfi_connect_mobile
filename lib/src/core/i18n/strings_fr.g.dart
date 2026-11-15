@@ -7592,8 +7592,8 @@ class Translations$journey$daily$fr {
 	/// fr: 'Remplir mon compte rendu'
 	String get report => 'Remplir mon compte rendu';
 
-	/// fr: 'Faire une retraite de 15 min'
-	String get prayer => 'Faire une retraite de 15 min';
+	/// fr: 'Faire une retraite de 15m'
+	String get prayer => 'Faire une retraite de 15m';
 
 	/// fr: 'Lire un chapitre de la Bible'
 	String get word => 'Lire un chapitre de la Bible';
@@ -10567,7 +10567,7 @@ extension on Translations {
 			'journey.daily.title' => 'Tes 4 pas du jour',
 			'journey.daily.progress' => ({required Object n}) => '${n} sur 4',
 			'journey.daily.report' => 'Remplir mon compte rendu',
-			'journey.daily.prayer' => 'Faire une retraite de 15 min',
+			'journey.daily.prayer' => 'Faire une retraite de 15m',
 			'journey.daily.word' => 'Lire un chapitre de la Bible',
 			'journey.daily.wordPlan' => 'Lire les chapitres du plan',
 			'journey.daily.meditation' => 'Méditer la Parole',

@@ -1,7 +1,5 @@
 Novedades de CMFI Connect
-• Pasos del día: un 4.º paso, la meditación, en una tarjeta más compacta
-• Versículo del día: cambia cada mañana, aunque la app haya quedado abierta
-• Compartir el versículo: elige una foto de fondo, un color o tu propia foto
-• Juegos: 96 preguntas nuevas, entre ellas « Nuestra herencia », y una barra que avanza con suavidad
-• Cada vez que compartes, invitas a descargar la app
+• Los pasos del día y el informe pasan al nuevo día cada mañana, sin reiniciar la app
+• Comparte un versículo de la Biblia como imagen: sobre una foto, un color o tu propia foto
+• La imagen de un versículo compartido ahora es cuadrada, sin esquinas redondeadas
 • Mejoras y correcciones

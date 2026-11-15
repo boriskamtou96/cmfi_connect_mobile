@@ -158,6 +158,11 @@ void main() {
     await tapVerse(tester, 'Car Dieu a tant aimé');
     await tester.tap(find.byTooltip('Partager'));
     await tester.pumpAndSettle();
+    // like the verse of the day: an image to make, or the text
+    expect(find.text('BIBLE'), findsOneWidget);
+    expect(find.text("Partager l'image"), findsOneWidget);
+    await tester.tap(find.text('Partager le texte'));
+    await tester.pumpAndSettle();
     final shared = app.share.texts.single;
     expect(shared, startsWith('Car Dieu a tant aimé le monde'));
     expect(shared, contains('\nJean 3:16 (LSG)\n'));

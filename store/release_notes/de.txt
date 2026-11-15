@@ -1,7 +1,5 @@
 Neu in CMFI Connect
-• Schritte des Tages: ein 4. Schritt, die Meditation, in einer kompakteren Karte
-• Vers des Tages: er wechselt jeden Morgen, auch wenn die App offen geblieben ist
-• Vers teilen: wähle ein Hintergrundfoto, eine Farbe oder dein eigenes Foto
-• Spiele: 96 neue Fragen, darunter « Unser Erbe », und ein Fortschrittsbalken, der sanft vorrückt
-• Jedes Teilen lädt ein, die App zu holen
+• Die Schritte des Tages und der Bericht wechseln jeden Morgen zum neuen Tag, ohne die App neu zu starten
+• Einen Bibelvers als Bild teilen: auf einem Foto, einer Farbe oder deinem eigenen Foto
+• Das Bild eines geteilten Verses ist jetzt quadratisch, ohne abgerundete Ecken
 • Verbesserungen und Korrekturen

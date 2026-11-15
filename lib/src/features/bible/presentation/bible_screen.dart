@@ -14,7 +14,6 @@ import '../../../core/services/app_invite.dart';
 import '../../../core/services/deep_links.dart';
 import '../../../core/services/link_launcher.dart';
 import '../../../core/services/screen_awake.dart';
-import '../../../core/services/share_service.dart';
 import '../../../core/storage/preferences.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_icons.dart';
@@ -30,6 +29,7 @@ import '../../../core/widgets/reader/pinch_to_scale.dart';
 import '../../../core/widgets/reader/reader_palette.dart';
 import '../../../core/widgets/skeleton.dart';
 import '../../../core/widgets/tab_page.dart';
+import '../../../core/widgets/verse_share/verse_share_sheet.dart';
 import '../../../routing/app_router.dart';
 import '../application/bible_library.dart';
 import '../application/bible_listening.dart';
@@ -265,22 +265,27 @@ class _Reader extends HookConsumerWidget {
           await Clipboard.setData(ClipboardData(text: asText(verses)));
           toast.success(t.bible.copied);
         case ShareVerses():
-          final box = anchor?.findRenderObject() as RenderBox?;
-          final first = verses.first.number;
-          await ref
-              .read(shareServiceProvider)
-              .shareText(
-                withAppInvite(
-                  t,
-                  BibleLink(
-                    BibleRef(current.book, current.chapter, first).key,
-                  ).under(asText(verses)),
-                ),
-                subject: label(verses),
-                origin: box == null
-                    ? null
-                    : box.localToGlobal(Offset.zero) & box.size,
-              );
+          // like the verse of the day (15/11/2026): a card on a photo, a
+          // color or the member's photo, or the text
+          final key = BibleRef(
+            current.book,
+            current.chapter,
+            verses.first.number,
+          ).key;
+          final reference = label(verses);
+          await showVerseShareSheet(
+            context,
+            VerseShare(
+              text: verses.map((verse) => verse.text).join(' '),
+              reference: reference,
+              source: version.attribution ?? version.name,
+              eyebrow: t.bible.title,
+              caption: withAppInvite(t, BibleLink(key).under(reference)),
+              shareText: withAppInvite(t, BibleLink(key).under(asText(verses))),
+              subject: reference,
+              fileName: 'verset_${key.replaceAll('.', '-')}.png',
+            ),
+          );
       }
     }
 

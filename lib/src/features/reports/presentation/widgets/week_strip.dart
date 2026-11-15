@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
+import '../../../../core/services/current_day.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/theme/app_motion.dart';
 import '../../../../core/theme/app_spacing.dart';
@@ -21,7 +22,7 @@ class WeekStrip extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final scheme = Theme.of(context).colorScheme;
     final tones = AppTones.of(context);
-    final now = today();
+    final now = ref.watch(currentDayProvider);
     final reported =
         ref.watch(reportedDaysOfWeekProvider(selected)).value ??
         const <DateTime>{};

@@ -60,4 +60,4 @@ final class TodayWidgetProvider
   }
 }
 
-String _$todayWidgetHash() => r'e92900f19775eca62d65f60022aff8e2b899b7d7';
+String _$todayWidgetHash() => r'2b698d0be1f8a3bc15a6b7e163f10ccbe8df1d3a';

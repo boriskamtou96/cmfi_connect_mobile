@@ -8,19 +8,22 @@ part of 'verse_share_background.dart';
 
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint, type=warning
-/// The background last chosen for the image of a verse (its id in
+/// The background last chosen for the image of a verse (of the day or of
+/// the Bible) (its id in
 /// `verseBackgrounds`), kept on the phone (`verse_share_background`): the
 /// next share starts from it. null: the first photo.
 
 @ProviderFor(VerseShareBackground)
 final verseShareBackgroundProvider = VerseShareBackgroundProvider._();
 
-/// The background last chosen for the image of a verse (its id in
+/// The background last chosen for the image of a verse (of the day or of
+/// the Bible) (its id in
 /// `verseBackgrounds`), kept on the phone (`verse_share_background`): the
 /// next share starts from it. null: the first photo.
 final class VerseShareBackgroundProvider
     extends $NotifierProvider<VerseShareBackground, String?> {
-  /// The background last chosen for the image of a verse (its id in
+  /// The background last chosen for the image of a verse (of the day or of
+  /// the Bible) (its id in
   /// `verseBackgrounds`), kept on the phone (`verse_share_background`): the
   /// next share starts from it. null: the first photo.
   VerseShareBackgroundProvider._()
@@ -53,7 +56,8 @@ final class VerseShareBackgroundProvider
 String _$verseShareBackgroundHash() =>
     r'7e10db297da4ed5edd375464eb1468b2c8e855ba';
 
-/// The background last chosen for the image of a verse (its id in
+/// The background last chosen for the image of a verse (of the day or of
+/// the Bible) (its id in
 /// `verseBackgrounds`), kept on the phone (`verse_share_background`): the
 /// next share starts from it. null: the first photo.
 

@@ -238,7 +238,7 @@ final class RetreatLogProvider
   RetreatLog create() => RetreatLog();
 }
 
-String _$retreatLogHash() => r'9f3ed37f7a79a8ddcc0404820defbcc7821f5cf1';
+String _$retreatLogHash() => r'8e0564de74d3f2b8d1d0ebd82122bb0a575eb999';
 
 /// The retreats of the last week: from the server, with those made without
 /// network (sent as soon as it comes back).
@@ -312,7 +312,7 @@ final class RetreatsTodayProvider
   }
 }
 
-String _$retreatsTodayHash() => r'996d8cfea0e737aebcd1a9b267871e37dcc3dabc';
+String _$retreatsTodayHash() => r'887a4b24549bbc6e5393a3a8b35ac489ac6ffee2';
 
 /// The retreats of the week starting on [monday] ("Ta semaine avec Dieu"):
 /// from the server, or what the phone keeps of the last days without network.

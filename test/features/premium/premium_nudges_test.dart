@@ -1,5 +1,6 @@
 import 'package:cmfi_connect/src/core/i18n/strings.g.dart';
 import 'package:cmfi_connect/src/core/services/local_notifications.dart';
+import 'package:cmfi_connect/src/core/services/premium_store.dart';
 import 'package:cmfi_connect/src/features/premium/application/premium_end.dart';
 import 'package:cmfi_connect/src/features/premium/application/premium_nudge.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -38,6 +39,26 @@ void main() {
     // for life, or no Premium: nothing
     await planPremiumEnd(notifications, until: null, now: now);
     expect(notifications.groups[NotificationGroup.premiumEnd] ?? [], isEmpty);
+  });
+
+  test('Premium renewed: told a week before of the payment request', () async {
+    final notifications = FakeLocalNotifications();
+    await planPremiumEnd(
+      notifications,
+      until: DateTime(2026, 12, 12, 15),
+      now: DateTime(2026, 11, 5, 9),
+      renewal: PremiumRenewal(
+        plan: 'monthly',
+        phoneNumber: '+237653456789',
+        nextRequestAt: DateTime(2026, 12, 11, 10),
+      ),
+    );
+
+    // the server sends the request the day before, with its own push
+    final planned = notifications.groups[NotificationGroup.premiumEnd]!;
+    expect(planned.map((n) => n.at), [DateTime(2026, 12, 5, 10)]);
+    expect(planned.single.title, 'Ton Premium se renouvelle bientôt');
+    expect(planned.single.body, contains('11 décembre'));
   });
 
   test(

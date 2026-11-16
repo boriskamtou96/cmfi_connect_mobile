@@ -8,12 +8,16 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../core/config/app_config.dart';
 import '../../../core/i18n/strings.g.dart';
+import '../../../core/network/app_exception_message.dart';
 import '../../../core/services/link_launcher.dart';
 import '../../../core/services/premium_store.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_icons.dart';
 import '../../../core/theme/app_spacing.dart';
 import '../../../core/theme/app_theme.dart';
+import '../../../core/utils/date_format.dart';
+import '../../../core/widgets/adaptive_dialogs.dart';
+import '../../../core/widgets/app_toast.dart';
 import '../../../core/widgets/dove_mascot.dart';
 import '../../../core/widgets/fade_slide_in.dart';
 
@@ -449,16 +453,48 @@ class _OnSite extends StatelessWidget {
   }
 }
 
-/// Premium is on: a golden card instead of the plans.
-class _Active extends StatelessWidget {
+/// Premium is on: a golden card instead of the plans; with the renewal by
+/// payment request (chosen on the site), when it goes and how to stop it.
+class _Active extends HookConsumerWidget {
   const _Active({required this.offered});
 
   /// Given with the role (the team), not bought.
   final bool offered;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final t = context.t.premium;
+    final store = ref.watch(premiumStoreProvider);
+    final renewal = useState(offered ? null : store.renewal);
+    final stopping = useState(false);
+
+    Future<void> stop() async {
+      final toast = ref.read(toasterProvider).of(context);
+      final yes = await showConfirmDialog(
+        context,
+        title: t.renewal.stopTitle,
+        text: t.renewal.stopText,
+        confirmLabel: t.renewal.stopConfirm,
+        destructive: true,
+      );
+      if (!yes || !context.mounted) {
+        return;
+      }
+      stopping.value = true;
+      try {
+        await store.stopRenewal();
+        renewal.value = null;
+        toast.success(t.renewal.stopped);
+      } on Object catch (error) {
+        if (context.mounted) {
+          toast.error(userMessageFor(error, context.t));
+        }
+      } finally {
+        if (context.mounted) {
+          stopping.value = false;
+        }
+      }
+    }
 
     return Container(
       padding: const EdgeInsets.all(AppSpacing.lg),
@@ -497,6 +533,31 @@ class _Active extends StatelessWidget {
             textAlign: TextAlign.center,
             style: const TextStyle(color: _onNightMuted, height: 1.4),
           ),
+          if (renewal.value case final next?) ...[
+            const SizedBox(height: AppSpacing.md),
+            Text(
+              t.renewal.line(
+                date: context.formatDate(next.nextRequestAt, 'd MMMM'),
+                // the number keeps its order in Arabic
+                phone: '\u2066${next.phoneNumber}\u2069',
+              ),
+              textAlign: TextAlign.center,
+              style: const TextStyle(color: _onNight, height: 1.4),
+            ),
+            const SizedBox(height: AppSpacing.xs),
+            TextButton(
+              onPressed: stopping.value ? null : stop,
+              style: TextButton.styleFrom(
+                foregroundColor: AppColors.gold,
+                minimumSize: const Size(48, 48),
+                textStyle: const TextStyle(
+                  fontFamily: AppTheme.fontFamily,
+                  fontWeight: FontWeight.w700,
+                ),
+              ),
+              child: Text(t.renewal.stop),
+            ),
+          ],
         ],
       ),
     );

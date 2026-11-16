@@ -795,6 +795,7 @@ class _Translations$premium$en extends Translations$premium$fr {
 	@override late final _Translations$premium$end$en end = _Translations$premium$end$en._(_root);
 	@override late final _Translations$premium$nudge$en nudge = _Translations$premium$nudge$en._(_root);
 	@override String get preview => 'Preview of your goals with Premium';
+	@override late final _Translations$premium$renewal$en renewal = _Translations$premium$renewal$en._(_root);
 }
 
 // Path: homeWidget
@@ -3124,6 +3125,8 @@ class _Translations$premium$end$en extends Translations$premium$end$fr {
 	@override String weekBody({required Object date}) => '7 days left, until ${date}. Extend it to keep your year and your widget.';
 	@override String get dayTitle => 'Your Premium ends tomorrow';
 	@override String get dayBody => 'Extend it now so you lose nothing: the new period is added at the end.';
+	@override String get renewTitle => 'Your Premium renews soon';
+	@override String renewBody({required Object date}) => 'On ${date}, a payment request will come to your phone: approve it with your PIN to keep going.';
 }
 
 // Path: premium.nudge
@@ -3137,6 +3140,21 @@ class _Translations$premium$nudge$en extends Translations$premium$nudge$fr {
 	@override String get text => 'Your year with God, how your goals progress and the home-screen widget.';
 	@override String get action => 'Discover Premium';
 	@override String get close => 'Hide';
+}
+
+// Path: premium.renewal
+class _Translations$premium$renewal$en extends Translations$premium$renewal$fr {
+	_Translations$premium$renewal$en._(TranslationsEn root) : this._root = root, super.internal(root);
+
+	final TranslationsEn _root; // ignore: unused_field
+
+	// Translations
+	@override String line({required Object date, required Object phone}) => 'Automatic renewal: next payment request on ${date}, to ${phone}.';
+	@override String get stop => 'Stop renewing';
+	@override String get stopTitle => 'Stop renewing?';
+	@override String get stopText => 'No more payment requests will be sent. Premium goes on until the end of the period.';
+	@override String get stopConfirm => 'Stop';
+	@override String get stopped => 'Automatic renewal stopped.';
 }
 
 // Path: ministry.goals
@@ -5190,11 +5208,19 @@ extension on TranslationsEn {
 			'premium.end.weekBody' => ({required Object date}) => '7 days left, until ${date}. Extend it to keep your year and your widget.',
 			'premium.end.dayTitle' => 'Your Premium ends tomorrow',
 			'premium.end.dayBody' => 'Extend it now so you lose nothing: the new period is added at the end.',
+			'premium.end.renewTitle' => 'Your Premium renews soon',
+			'premium.end.renewBody' => ({required Object date}) => 'On ${date}, a payment request will come to your phone: approve it with your PIN to keep going.',
 			'premium.nudge.title' => 'Keep track of your walk',
 			'premium.nudge.text' => 'Your year with God, how your goals progress and the home-screen widget.',
 			'premium.nudge.action' => 'Discover Premium',
 			'premium.nudge.close' => 'Hide',
 			'premium.preview' => 'Preview of your goals with Premium',
+			'premium.renewal.line' => ({required Object date, required Object phone}) => 'Automatic renewal: next payment request on ${date}, to ${phone}.',
+			'premium.renewal.stop' => 'Stop renewing',
+			'premium.renewal.stopTitle' => 'Stop renewing?',
+			'premium.renewal.stopText' => 'No more payment requests will be sent. Premium goes on until the end of the period.',
+			'premium.renewal.stopConfirm' => 'Stop',
+			'premium.renewal.stopped' => 'Automatic renewal stopped.',
 			'homeWidget.title' => 'Today',
 			'homeWidget.done' => 'Done',
 			'homeWidget.todo' => 'To fill in',
@@ -5272,6 +5298,8 @@ extension on TranslationsEn {
 			'ministry.lives.founder.facts.2' => 'nations visited',
 			'ministry.lives.founder.dates.0' => 'Born on 20 June in Cameroon, into a Presbyterian family.',
 			'ministry.lives.founder.dates.1' => 'Gives his life to Jesus Christ on 13 June, through a tract.',
+			_ => null,
+		} ?? switch (path) {
 			'ministry.lives.founder.dates.2' => 'Surrenders himself wholly to the Lord on 1 October, in Sierra Leone.',
 			'ministry.lives.founder.dates.3' => 'Filled with the Holy Spirit on 24 October, after seven days of prayer.',
 			'ministry.lives.founder.dates.4' => 'Founds CMFI in Yaoundé on 12 May.',
@@ -5280,8 +5308,6 @@ extension on TranslationsEn {
 			'ministry.lives.founder.story.0' => 'Zacharias Tanee Fomum was born on 20 June 1945 in Cameroon, into a Presbyterian family from Batibo, in the North-West. While still a schoolboy, he gave his life to Jesus Christ on 13 June 1956, through a tract entitled “Someone died for you”.',
 			'ministry.lives.founder.story.1' => 'As a student at Fourah Bay College in Sierra Leone, he surrendered himself without reserve to the Lord and to His service on 1 October 1966. On 24 October 1970, at the end of seven days of prayer and fasting, he was filled with the Holy Spirit. From then on, prayer was the centre of his life.',
 			'ministry.lives.founder.story.2' => 'With a doctorate in organic chemistry from Makerere University in Uganda, he taught at the University of Yaoundé, where he became a professor. He supervised about a hundred theses and dissertations, and in 2005 Durham University, in Great Britain, awarded him a Doctor of Science for his whole body of work.',
-			_ => null,
-		} ?? switch (path) {
 			'ministry.lives.founder.story.3' => 'On 12 May 1975, in Yaoundé, he founded Christian Missionary Fellowship International: a movement to win souls, make disciples, plant churches and send out missionaries. He made more than 700 missionary journeys in Cameroon and more than 500 to over 70 nations, on six continents.',
 			'ministry.lives.founder.story.4' => 'He spent long hours alone with God every day, led many prayer crusades, sieges and walks, and fasted often. He wrote more than 150 books on prayer, fasting, holiness, discipleship and mission, read in many languages.',
 			'ministry.lives.founder.story.5' => 'With his wife, Prisca Zei Fomum, a minister to children, he had seven children, all involved in the work of the Gospel. Together they lived simply, so as to give the largest part of their income to the Gospel.',
@@ -5786,6 +5812,8 @@ extension on TranslationsEn {
 			'yearStory.versesKnown' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n, one: 'verse learnt by heart', other: 'verses learnt by heart', ), 
 			'yearStory.versesLearning' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n, one: 'verse being memorized', other: 'verses being memorized', ), 
 			'yearStory.fastLead' => 'You fasted',
+			_ => null,
+		} ?? switch (path) {
 			'yearStory.fastDays' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n, one: '${n} day', other: '${n} days', ), 
 			'yearStory.fastText' => 'of fasting before the Lord',
 			'yearStory.fullFasts' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n, one: 'day of full fast', other: 'days of full fast', ), 
@@ -5794,8 +5822,6 @@ extension on TranslationsEn {
 			'yearStory.goalsReached' => 'reached on average',
 			'yearStory.bestMonth' => ({required Object month, required Object percent}) => 'Your best month: ${month} · ${percent}',
 			'yearStory.summaryTitle' => 'My year with God',
-			_ => null,
-		} ?? switch (path) {
 			'yearStory.statDays' => 'days filled in',
 			'yearStory.statStreak' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n, one: 'day in a row, your record', other: 'days in a row, your record', ), 
 			'yearStory.statRetreats' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n, one: 'retreat', other: 'retreats', ), 
@@ -6300,6 +6326,8 @@ extension on TranslationsEn {
 			'gamification.cards.subtitle' => 'The cards of the steps you have reached, to keep or to share.',
 			'gamification.cards.empty' => 'Your first card is waiting: it comes with your first report.',
 			'gamification.cards.locked' => 'To reach',
+			_ => null,
+		} ?? switch (path) {
 			'gamification.cards.lockedTitle' => 'This card is waiting for you',
 			'gamification.cards.lockedText' => ({required Object name}) => 'Reach “${name}” to receive it.',
 			'gamification.cards.pageTitle' => 'Your card',
@@ -6308,8 +6336,6 @@ extension on TranslationsEn {
 			'gamification.collective.title' => 'The group\'s walk',
 			'gamification.collective.sharedThisWeek' => ({required num n, required Object total}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n, one: '${n} disciple of ${total} shared a report this week', other: '${n} disciples of ${total} shared a report this week', ), 
 			'gamification.collective.empty' => 'No one has shared yet this week. Each one walks at their own pace.',
-			_ => null,
-		} ?? switch (path) {
 			'gamification.collective.reports' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n, one: '${n} report received this week', other: '${n} reports received this week', ), 
 			'gamification.collective.noDisciples' => 'The path is also walked together: when you accompany disciples, their walk of the week will appear here, without names.',
 			'gamification.collective.anonymous' => 'A total for the group, without names and without a ranking.',

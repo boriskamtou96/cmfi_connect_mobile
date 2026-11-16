@@ -1149,7 +1149,9 @@
       "weekTitle": "Dein Premium endet bald",
       "weekBody": "Noch 7 Tage, bis zum {date}. Verlängere es, um dein Jahr und dein Widget zu behalten.",
       "dayTitle": "Dein Premium endet morgen",
-      "dayBody": "Verlängere es jetzt, damit nichts verloren geht: Der neue Zeitraum kommt ans Ende."
+      "dayBody": "Verlängere es jetzt, damit nichts verloren geht: Der neue Zeitraum kommt ans Ende.",
+      "renewTitle": "Dein Premium verlängert sich bald",
+      "renewBody": "Am {date} kommt eine Zahlungsanfrage auf dein Handy: Bestätige sie mit deiner PIN, um weiterzumachen."
     },
     "nudge": {
       "title": "Behalte deinen Weg im Blick",
@@ -1157,7 +1159,15 @@
       "action": "Premium entdecken",
       "close": "Ausblenden"
     },
-    "preview": "Vorschau deiner Ziele mit Premium"
+    "preview": "Vorschau deiner Ziele mit Premium",
+    "renewal": {
+      "line": "Automatische Verlängerung: nächste Zahlungsanfrage am {date}, an {phone}.",
+      "stop": "Verlängerung beenden",
+      "stopTitle": "Verlängerung beenden?",
+      "stopText": "Es werden keine Zahlungsanfragen mehr gesendet. Premium läuft bis zum Ende des Zeitraums weiter.",
+      "stopConfirm": "Beenden",
+      "stopped": "Automatische Verlängerung beendet."
+    }
   },
   "homeWidget": {
     "title": "Heute",

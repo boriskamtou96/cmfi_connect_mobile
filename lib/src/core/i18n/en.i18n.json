@@ -1150,7 +1150,9 @@
       "weekTitle": "Your Premium ends soon",
       "weekBody": "7 days left, until {date}. Extend it to keep your year and your widget.",
       "dayTitle": "Your Premium ends tomorrow",
-      "dayBody": "Extend it now so you lose nothing: the new period is added at the end."
+      "dayBody": "Extend it now so you lose nothing: the new period is added at the end.",
+      "renewTitle": "Your Premium renews soon",
+      "renewBody": "On {date}, a payment request will come to your phone: approve it with your PIN to keep going."
     },
     "nudge": {
       "title": "Keep track of your walk",
@@ -1158,7 +1160,15 @@
       "action": "Discover Premium",
       "close": "Hide"
     },
-    "preview": "Preview of your goals with Premium"
+    "preview": "Preview of your goals with Premium",
+    "renewal": {
+      "line": "Automatic renewal: next payment request on {date}, to {phone}.",
+      "stop": "Stop renewing",
+      "stopTitle": "Stop renewing?",
+      "stopText": "No more payment requests will be sent. Premium goes on until the end of the period.",
+      "stopConfirm": "Stop",
+      "stopped": "Automatic renewal stopped."
+    }
   },
   "homeWidget": {
     "title": "Today",

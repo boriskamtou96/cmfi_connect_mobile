@@ -225,4 +225,39 @@ void main() {
     expect(store.refreshed, 1);
     expect(find.text('Tu as Premium'), findsOneWidget);
   });
+
+  testWidgets('Premium renewed by payment request: when, and stopped', (
+    tester,
+  ) async {
+    final store = FakePremiumStore(active: true)
+      ..until = DateTime(2026, 12, 16, 12)
+      ..renewal = PremiumRenewal(
+        plan: 'monthly',
+        phoneNumber: '+237653456789',
+        nextRequestAt: DateTime(2026, 12, 15, 10),
+      );
+    final app = await pumpApp(tester, token: 't', premium: store);
+
+    // the request comes back as a push: Premium opens
+    app.push.tapsController.add({'type': 'premium_renewal'});
+    await tester.pumpAndSettle();
+    expect(store.refreshed, 1);
+    const line =
+        'Renouvellement automatique : prochaine demande de paiement le '
+        '15 décembre, sur le \u2066+237653456789\u2069.';
+    await reach(tester, find.text(line));
+
+    await show(tester, find.text('Arrêter le renouvellement'));
+    await tester.tap(find.text('Arrêter le renouvellement'));
+    await tester.pumpAndSettle();
+    expect(find.text('Arrêter le renouvellement ?'), findsOneWidget);
+    await tester.tap(find.text('Arrêter'));
+    await tester.pumpAndSettle();
+
+    expect(store.renewalsStopped, 1);
+    expect(find.text(line), findsNothing);
+    expect(app.toasts.messages, contains('Renouvellement automatique arrêté.'));
+    // Premium goes on to its end
+    expect(find.text('Tu as Premium'), findsOneWidget);
+  });
 }

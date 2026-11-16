@@ -1122,7 +1122,9 @@
       "weekTitle": "你的 Premium 即将到期",
       "weekBody": "还剩 7 天，到 {date} 为止。续期即可保留你的年度回顾和小组件。",
       "dayTitle": "你的 Premium 明天到期",
-      "dayBody": "现在续期，什么都不会丢失：新的时段会接在后面。"
+      "dayBody": "现在续期，什么都不会丢失：新的时段会接在后面。",
+      "renewTitle": "你的 Premium 即将续订",
+      "renewBody": "{date}，一笔付款请求将发到你的手机：用 PIN 码确认即可继续。"
     },
     "nudge": {
       "title": "记录你的属灵历程",
@@ -1130,7 +1132,15 @@
       "action": "了解 Premium",
       "close": "隐藏"
     },
-    "preview": "Premium 中你的目标预览"
+    "preview": "Premium 中你的目标预览",
+    "renewal": {
+      "line": "自动续订：下一笔付款请求将于 {date} 发送到 {phone}。",
+      "stop": "停止续订",
+      "stopTitle": "停止续订？",
+      "stopText": "将不再发送任何付款请求。Premium 将持续到本期结束。",
+      "stopConfirm": "停止",
+      "stopped": "自动续订已停止。"
+    }
   },
   "homeWidget": {
     "title": "今天",

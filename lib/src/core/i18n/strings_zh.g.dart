@@ -776,6 +776,7 @@ class _Translations$premium$zh extends Translations$premium$fr {
 	@override late final _Translations$premium$end$zh end = _Translations$premium$end$zh._(_root);
 	@override late final _Translations$premium$nudge$zh nudge = _Translations$premium$nudge$zh._(_root);
 	@override String get preview => 'Premium 中你的目标预览';
+	@override late final _Translations$premium$renewal$zh renewal = _Translations$premium$renewal$zh._(_root);
 }
 
 // Path: homeWidget
@@ -3036,6 +3037,8 @@ class _Translations$premium$end$zh extends Translations$premium$end$fr {
 	@override String weekBody({required Object date}) => '还剩 7 天，到 ${date} 为止。续期即可保留你的年度回顾和小组件。';
 	@override String get dayTitle => '你的 Premium 明天到期';
 	@override String get dayBody => '现在续期，什么都不会丢失：新的时段会接在后面。';
+	@override String get renewTitle => '你的 Premium 即将续订';
+	@override String renewBody({required Object date}) => '${date}，一笔付款请求将发到你的手机：用 PIN 码确认即可继续。';
 }
 
 // Path: premium.nudge
@@ -3049,6 +3052,21 @@ class _Translations$premium$nudge$zh extends Translations$premium$nudge$fr {
 	@override String get text => '你与神同行的一年、目标的进展，以及主屏幕小组件。';
 	@override String get action => '了解 Premium';
 	@override String get close => '隐藏';
+}
+
+// Path: premium.renewal
+class _Translations$premium$renewal$zh extends Translations$premium$renewal$fr {
+	_Translations$premium$renewal$zh._(TranslationsZh root) : this._root = root, super.internal(root);
+
+	final TranslationsZh _root; // ignore: unused_field
+
+	// Translations
+	@override String line({required Object date, required Object phone}) => '自动续订：下一笔付款请求将于 ${date} 发送到 ${phone}。';
+	@override String get stop => '停止续订';
+	@override String get stopTitle => '停止续订？';
+	@override String get stopText => '将不再发送任何付款请求。Premium 将持续到本期结束。';
+	@override String get stopConfirm => '停止';
+	@override String get stopped => '自动续订已停止。';
 }
 
 // Path: ministry.goals
@@ -5072,11 +5090,19 @@ extension on TranslationsZh {
 			'premium.end.weekBody' => ({required Object date}) => '还剩 7 天，到 ${date} 为止。续期即可保留你的年度回顾和小组件。',
 			'premium.end.dayTitle' => '你的 Premium 明天到期',
 			'premium.end.dayBody' => '现在续期，什么都不会丢失：新的时段会接在后面。',
+			'premium.end.renewTitle' => '你的 Premium 即将续订',
+			'premium.end.renewBody' => ({required Object date}) => '${date}，一笔付款请求将发到你的手机：用 PIN 码确认即可继续。',
 			'premium.nudge.title' => '记录你的属灵历程',
 			'premium.nudge.text' => '你与神同行的一年、目标的进展，以及主屏幕小组件。',
 			'premium.nudge.action' => '了解 Premium',
 			'premium.nudge.close' => '隐藏',
 			'premium.preview' => 'Premium 中你的目标预览',
+			'premium.renewal.line' => ({required Object date, required Object phone}) => '自动续订：下一笔付款请求将于 ${date} 发送到 ${phone}。',
+			'premium.renewal.stop' => '停止续订',
+			'premium.renewal.stopTitle' => '停止续订？',
+			'premium.renewal.stopText' => '将不再发送任何付款请求。Premium 将持续到本期结束。',
+			'premium.renewal.stopConfirm' => '停止',
+			'premium.renewal.stopped' => '自动续订已停止。',
 			'homeWidget.title' => '今天',
 			'homeWidget.done' => '已完成',
 			'homeWidget.todo' => '待填写',
@@ -5154,6 +5180,8 @@ extension on TranslationsZh {
 			'ministry.lives.founder.facts.2' => '个走访的国家',
 			'ministry.lives.founder.dates.0' => '6月20日生于喀麦隆一个长老会家庭。',
 			'ministry.lives.founder.dates.1' => '6月13日通过一份福音单张把生命交给耶稣基督。',
+			_ => null,
+		} ?? switch (path) {
 			'ministry.lives.founder.dates.2' => '10月1日在塞拉利昂把自己完全献给主。',
 			'ministry.lives.founder.dates.3' => '经过七天祷告，于10月24日被圣灵充满。',
 			'ministry.lives.founder.dates.4' => '5月12日在雅温得创立 CMFI。',
@@ -5162,8 +5190,6 @@ extension on TranslationsZh {
 			'ministry.lives.founder.story.0' => '他于1945年6月20日出生在喀麦隆，家族是来自西北部巴蒂博的长老会信徒。还在上学时，他于1956年6月13日读了一份名为《有人为你而死》的福音单张，把生命交给了耶稣基督。',
 			'ministry.lives.founder.story.1' => '在塞拉利昂富拉湾学院求学期间，他于1966年10月1日毫无保留地把自己献给主和主的事工。1970年10月24日，在七天的祷告禁食之后，他被圣灵充满。从那时起，祷告成了他生命的中心。',
 			'ministry.lives.founder.story.2' => '他在乌干达马凯雷雷大学获得有机化学博士学位，之后在雅温得大学任教并成为教授。他指导了约一百篇博士和硕士论文；2005年，英国杜伦大学因他的全部学术成就授予他理学博士学位。',
-			_ => null,
-		} ?? switch (path) {
 			'ministry.lives.founder.story.3' => '1975年5月12日，他在雅温得创立了国际基督教宣教团契（CMFI）：一个赢得灵魂、使人作门徒、建立教会、差派宣教士的运动。他在喀麦隆进行了700多次宣教旅程，又在六大洲70多个国家进行了500多次旅程。',
 			'ministry.lives.founder.story.4' => '他每天花很长时间独自与神相处，带领了许多祷告大会、祷告围城和祷告行走，并经常禁食。他写了150多本关于祷告、禁食、圣洁、门徒训练和宣教的书，以多种语言被阅读。',
 			'ministry.lives.founder.story.5' => '他与妻子 Prisca Zei Fomum（一位在儿童中服事的同工）育有七个孩子，都投身于福音工作。他们一同过着简朴的生活，把收入的绝大部分奉献给福音。',
@@ -5668,6 +5694,8 @@ extension on TranslationsZh {
 			'yearStory.versesKnown' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n, other: '节经文已背熟', ), 
 			'yearStory.versesLearning' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n, other: '节经文正在背诵', ), 
 			'yearStory.fastLead' => '你禁食了',
+			_ => null,
+		} ?? switch (path) {
 			'yearStory.fastDays' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n, other: '${n} 天', ), 
 			'yearStory.fastText' => '在主面前禁食',
 			'yearStory.fullFasts' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n, other: '天完全禁食', ), 
@@ -5676,8 +5704,6 @@ extension on TranslationsZh {
 			'yearStory.goalsReached' => '平均达成',
 			'yearStory.bestMonth' => ({required Object month, required Object percent}) => '你最好的月份：${month} · ${percent}',
 			'yearStory.summaryTitle' => '我与神同在的一年',
-			_ => null,
-		} ?? switch (path) {
 			'yearStory.statDays' => '天已填写',
 			'yearStory.statStreak' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n, other: '天连续，你的纪录', ), 
 			'yearStory.statRetreats' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n, other: '次退修', ), 
@@ -6182,6 +6208,8 @@ extension on TranslationsZh {
 			'gamification.cards.subtitle' => '你已到达的里程碑卡片，可以收藏或分享。',
 			'gamification.cards.empty' => '你的第一张卡片在等你：它会随你的第一份报告到来。',
 			'gamification.cards.locked' => '尚未到达',
+			_ => null,
+		} ?? switch (path) {
 			'gamification.cards.lockedTitle' => '这张卡片在等你',
 			'gamification.cards.lockedText' => ({required Object name}) => '到达「${name}」即可获得。',
 			'gamification.cards.pageTitle' => '你的卡片',
@@ -6190,8 +6218,6 @@ extension on TranslationsZh {
 			'gamification.collective.title' => '小组的行程',
 			'gamification.collective.sharedThisWeek' => ({required num n, required Object total}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n, other: '本周 ${total} 位门徒中有 ${n} 位分享了报告', ), 
 			'gamification.collective.empty' => '这周还没有人分享。每个人都有自己的节奏。',
-			_ => null,
-		} ?? switch (path) {
 			'gamification.collective.reports' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n, other: '本周收到 ${n} 份报告', ), 
 			'gamification.collective.noDisciples' => '路也可以一起走：当你陪伴门徒时，他们这一周的行程会显示在这里，不显示姓名。',
 			'gamification.collective.anonymous' => '全组总数，不显示姓名，也不排名。',

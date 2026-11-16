@@ -2447,6 +2447,19 @@ class FakePremiumStore implements PremiumStore {
 
   @override
   DateTime? until;
+
+  @override
+  PremiumRenewal? renewal;
+
+  /// The renewals stopped (DELETE /v1/premium/renewal).
+  var renewalsStopped = 0;
+
+  @override
+  Future<void> stopRenewal() async {
+    renewalsStopped++;
+    renewal = null;
+  }
+
   final loggedIn = <String>[];
   var loggedOut = false;
   final _changes = StreamController<bool>.broadcast();

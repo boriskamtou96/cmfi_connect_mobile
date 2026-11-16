@@ -1149,7 +1149,9 @@
       "weekTitle": "Ton Premium se termine bientôt",
       "weekBody": "Il reste 7 jours, jusqu'au {date}. Prolonge-le pour garder ton année et ton widget.",
       "dayTitle": "Ton Premium se termine demain",
-      "dayBody": "Prolonge-le maintenant pour ne rien perdre : la nouvelle période s'ajoute à la fin."
+      "dayBody": "Prolonge-le maintenant pour ne rien perdre : la nouvelle période s'ajoute à la fin.",
+      "renewTitle": "Ton Premium se renouvelle bientôt",
+      "renewBody": "Le {date}, une demande de paiement arrivera sur ton téléphone : valide-la avec ton code PIN pour continuer."
     },
     "nudge": {
       "title": "Garde la trace de ta marche",
@@ -1157,7 +1159,15 @@
       "action": "Découvrir Premium",
       "close": "Masquer"
     },
-    "preview": "Aperçu de tes objectifs avec Premium"
+    "preview": "Aperçu de tes objectifs avec Premium",
+    "renewal": {
+      "line": "Renouvellement automatique : prochaine demande de paiement le {date}, sur le {phone}.",
+      "stop": "Arrêter le renouvellement",
+      "stopTitle": "Arrêter le renouvellement ?",
+      "stopText": "Plus aucune demande de paiement ne sera envoyée. Premium continue jusqu'à la fin de la période.",
+      "stopConfirm": "Arrêter",
+      "stopped": "Renouvellement automatique arrêté."
+    }
   },
   "homeWidget": {
     "title": "Aujourd'hui",

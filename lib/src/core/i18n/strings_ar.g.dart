@@ -868,6 +868,7 @@ class _Translations$premium$ar extends Translations$premium$fr {
 	@override late final _Translations$premium$end$ar end = _Translations$premium$end$ar._(_root);
 	@override late final _Translations$premium$nudge$ar nudge = _Translations$premium$nudge$ar._(_root);
 	@override String get preview => 'معاينة أهدافك مع Premium';
+	@override late final _Translations$premium$renewal$ar renewal = _Translations$premium$renewal$ar._(_root);
 }
 
 // Path: homeWidget
@@ -3467,6 +3468,8 @@ class _Translations$premium$end$ar extends Translations$premium$end$fr {
 	@override String weekBody({required Object date}) => 'بقيت 7 أيام، حتى ${date}. مدِّده لتحتفظ بسنتك وأداتك.';
 	@override String get dayTitle => 'ينتهي Premium غدًا';
 	@override String get dayBody => 'مدِّده الآن حتى لا تفقد شيئًا: تُضاف الفترة الجديدة إلى النهاية.';
+	@override String get renewTitle => 'يتجدّد Premium قريبًا';
+	@override String renewBody({required Object date}) => 'في ${date}، سيصل طلب دفع إلى هاتفك: أكّده برمزك السري للمتابعة.';
 }
 
 // Path: premium.nudge
@@ -3480,6 +3483,21 @@ class _Translations$premium$nudge$ar extends Translations$premium$nudge$fr {
 	@override String get text => 'سنتك مع الله، وتطوّر أهدافك، وأداة الشاشة الرئيسية.';
 	@override String get action => 'اكتشف Premium';
 	@override String get close => 'إخفاء';
+}
+
+// Path: premium.renewal
+class _Translations$premium$renewal$ar extends Translations$premium$renewal$fr {
+	_Translations$premium$renewal$ar._(TranslationsAr root) : this._root = root, super.internal(root);
+
+	final TranslationsAr _root; // ignore: unused_field
+
+	// Translations
+	@override String line({required Object date, required Object phone}) => 'التجديد التلقائي: طلب الدفع التالي في ${date}، إلى ${phone}.';
+	@override String get stop => 'إيقاف التجديد';
+	@override String get stopTitle => 'إيقاف التجديد؟';
+	@override String get stopText => 'لن يُرسل أي طلب دفع بعد الآن. يستمر Premium حتى نهاية الفترة.';
+	@override String get stopConfirm => 'إيقاف';
+	@override String get stopped => 'تم إيقاف التجديد التلقائي.';
 }
 
 // Path: ministry.goals
@@ -5650,11 +5668,19 @@ extension on TranslationsAr {
 			'premium.end.weekBody' => ({required Object date}) => 'بقيت 7 أيام، حتى ${date}. مدِّده لتحتفظ بسنتك وأداتك.',
 			'premium.end.dayTitle' => 'ينتهي Premium غدًا',
 			'premium.end.dayBody' => 'مدِّده الآن حتى لا تفقد شيئًا: تُضاف الفترة الجديدة إلى النهاية.',
+			'premium.end.renewTitle' => 'يتجدّد Premium قريبًا',
+			'premium.end.renewBody' => ({required Object date}) => 'في ${date}، سيصل طلب دفع إلى هاتفك: أكّده برمزك السري للمتابعة.',
 			'premium.nudge.title' => 'احتفظ بأثر مسيرتك',
 			'premium.nudge.text' => 'سنتك مع الله، وتطوّر أهدافك، وأداة الشاشة الرئيسية.',
 			'premium.nudge.action' => 'اكتشف Premium',
 			'premium.nudge.close' => 'إخفاء',
 			'premium.preview' => 'معاينة أهدافك مع Premium',
+			'premium.renewal.line' => ({required Object date, required Object phone}) => 'التجديد التلقائي: طلب الدفع التالي في ${date}، إلى ${phone}.',
+			'premium.renewal.stop' => 'إيقاف التجديد',
+			'premium.renewal.stopTitle' => 'إيقاف التجديد؟',
+			'premium.renewal.stopText' => 'لن يُرسل أي طلب دفع بعد الآن. يستمر Premium حتى نهاية الفترة.',
+			'premium.renewal.stopConfirm' => 'إيقاف',
+			'premium.renewal.stopped' => 'تم إيقاف التجديد التلقائي.',
 			'homeWidget.title' => 'اليوم',
 			'homeWidget.done' => 'تم',
 			'homeWidget.todo' => 'للتعبئة',
@@ -5732,6 +5758,8 @@ extension on TranslationsAr {
 			'ministry.lives.founder.facts.2' => 'أمم زارها',
 			'ministry.lives.founder.dates.0' => 'وُلد في 20 يونيو في الكاميرون، في عائلة مشيخية.',
 			'ministry.lives.founder.dates.1' => 'سلّم حياته ليسوع المسيح في 13 يونيو، من خلال نشرة.',
+			_ => null,
+		} ?? switch (path) {
 			'ministry.lives.founder.dates.2' => 'كرّس نفسه بالكامل للرب في 1 أكتوبر، في سيراليون.',
 			'ministry.lives.founder.dates.3' => 'امتلأ بالروح القدس في 24 أكتوبر، بعد سبعة أيام من الصلاة.',
 			'ministry.lives.founder.dates.4' => 'أسّس CMFI في ياوندي في 12 مايو.',
@@ -5740,8 +5768,6 @@ extension on TranslationsAr {
 			'ministry.lives.founder.story.0' => 'وُلد في 20 يونيو 1945 في الكاميرون، في عائلة مشيخية من باتيبو في شمال غرب البلاد. وبينما كان لا يزال تلميذًا، سلّم حياته ليسوع المسيح في 13 يونيو 1956، عندما قرأ نشرة بعنوان «شخص مات لأجلك».',
 			'ministry.lives.founder.story.1' => 'وعندما كان طالبًا في كلية فوراه باي في سيراليون، كرّس نفسه بلا تحفّظ للرب ولخدمته في 1 أكتوبر 1966. وفي 24 أكتوبر 1970، بعد سبعة أيام من الصلاة والصوم، امتلأ بالروح القدس. ومنذ ذلك الحين صارت الصلاة محور حياته.',
 			'ministry.lives.founder.story.2' => 'حصل على الدكتوراه في الكيمياء العضوية من جامعة ماكيريري في أوغندا، ثم درّس في جامعة ياوندي حيث صار أستاذًا. أشرف على نحو مئة أطروحة ورسالة، ومنحته جامعة دورهام في بريطانيا عام 2005 دكتوراه العلوم تقديرًا لمجمل أعماله.',
-			_ => null,
-		} ?? switch (path) {
 			'ministry.lives.founder.story.3' => 'في 12 مايو 1975، في ياوندي، أسّس الشركة المسيحية الإرسالية الدولية (CMFI): حركة لربح النفوس وتلمذة التلاميذ وغرس الكنائس وإرسال المرسلين. قام بأكثر من 700 رحلة إرسالية في الكاميرون وبأكثر من 500 رحلة إلى أكثر من 70 أمة في ست قارات.',
 			'ministry.lives.founder.story.4' => 'كان يقضي كل يوم ساعات طويلة وحده مع الله، وقاد كثيرًا من حملات الصلاة وحصاراتها ومسيراتها، وصام كثيرًا. كتب أكثر من 150 كتابًا عن الصلاة والصوم والقداسة والتلمذة والإرسالية، تُقرأ بلغات كثيرة.',
 			'ministry.lives.founder.story.5' => 'رُزق مع زوجته بريسكا زي فومم، خادمة الرب بين الأطفال، بسبعة أبناء كلهم منخرطون في عمل الإنجيل. وعاشا معًا ببساطة ليقدّما للإنجيل الجزء الأكبر من دخلهما.',
@@ -6246,6 +6272,8 @@ extension on TranslationsAr {
 			'yearStory.versesKnown' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n, zero: 'آية حفظتها عن ظهر قلب', one: 'آية حفظتها عن ظهر قلب', two: 'آيتان حفظتهما عن ظهر قلب', few: 'آيات حفظتها عن ظهر قلب', many: 'آية حفظتها عن ظهر قلب', other: 'آية حفظتها عن ظهر قلب', ), 
 			'yearStory.versesLearning' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n, zero: 'آية قيد الحفظ', one: 'آية قيد الحفظ', two: 'آيتان قيد الحفظ', few: 'آيات قيد الحفظ', many: 'آية قيد الحفظ', other: 'آية قيد الحفظ', ), 
 			'yearStory.fastLead' => 'صُمت',
+			_ => null,
+		} ?? switch (path) {
 			'yearStory.fastDays' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n, zero: '${n} يوم', one: 'يوم واحد', two: 'يومان', few: '${n} أيام', many: '${n} يومًا', other: '${n} يوم', ), 
 			'yearStory.fastText' => 'من الصوم أمام الرب',
 			'yearStory.fullFasts' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n, zero: 'يوم صوم كامل', one: 'يوم صوم كامل', two: 'يوما صوم كامل', few: 'أيام صوم كامل', many: 'يومًا من الصوم الكامل', other: 'يوم صوم كامل', ), 
@@ -6254,8 +6282,6 @@ extension on TranslationsAr {
 			'yearStory.goalsReached' => 'تحقّقت في المتوسط',
 			'yearStory.bestMonth' => ({required Object month, required Object percent}) => 'أفضل شهر لك: ${month} · ${percent}',
 			'yearStory.summaryTitle' => 'عامي مع الله',
-			_ => null,
-		} ?? switch (path) {
 			'yearStory.statDays' => 'أيام مملوءة',
 			'yearStory.statStreak' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n, zero: 'يوم على التوالي، رقمك القياسي', one: 'يوم على التوالي، رقمك القياسي', two: 'يومان على التوالي، رقمك القياسي', few: 'أيام على التوالي، رقمك القياسي', many: 'يومًا على التوالي، رقمك القياسي', other: 'يوم على التوالي، رقمك القياسي', ), 
 			'yearStory.statRetreats' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n, zero: 'خلوة', one: 'خلوة', two: 'خلوتان', few: 'خلوات', many: 'خلوة', other: 'خلوة', ), 
@@ -6760,6 +6786,8 @@ extension on TranslationsAr {
 			'gamification.cards.subtitle' => 'بطاقات المحطات التي وصلت إليها، لتحفظها أو تشاركها.',
 			'gamification.cards.empty' => 'بطاقتك الأولى تنتظرك: تأتي مع تقريرك الأول.',
 			'gamification.cards.locked' => 'لم تُبلَغ بعد',
+			_ => null,
+		} ?? switch (path) {
 			'gamification.cards.lockedTitle' => 'هذه البطاقة تنتظرك',
 			'gamification.cards.lockedText' => ({required Object name}) => 'ابلغ «${name}» لتحصل عليها.',
 			'gamification.cards.pageTitle' => 'بطاقتك',
@@ -6768,8 +6796,6 @@ extension on TranslationsAr {
 			'gamification.collective.title' => 'مسيرة المجموعة',
 			'gamification.collective.sharedThisWeek' => ({required num n, required Object total}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n, zero: 'لم يشارك أحد من ${total} تقريرًا هذا الأسبوع', one: 'شارك تلميذ واحد من ${total} تقريرًا هذا الأسبوع', two: 'شارك تلميذان من ${total} تقريرًا هذا الأسبوع', few: 'شارك ${n} تلاميذ من ${total} تقريرًا هذا الأسبوع', many: 'شارك ${n} تلميذًا من ${total} تقريرًا هذا الأسبوع', other: 'شارك ${n} تلميذ من ${total} تقريرًا هذا الأسبوع', ), 
 			'gamification.collective.empty' => 'لم يشارك أحد بعد هذا الأسبوع. كل واحد يتقدم على وتيرته.',
-			_ => null,
-		} ?? switch (path) {
 			'gamification.collective.reports' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n, zero: 'لم يُستلم أي تقرير هذا الأسبوع', one: 'استُلم تقرير واحد هذا الأسبوع', two: 'استُلم تقريران هذا الأسبوع', few: 'استُلمت ${n} تقارير هذا الأسبوع', many: 'استُلم ${n} تقريرًا هذا الأسبوع', other: 'استُلم ${n} تقرير هذا الأسبوع', ), 
 			'gamification.collective.noDisciples' => 'الطريق يُسار معًا أيضًا: عندما ترافق تلاميذ، ستظهر هنا مسيرتهم في الأسبوع، دون أسماء.',
 			'gamification.collective.anonymous' => 'مجموع المجموعة، دون أسماء ودون ترتيب.',

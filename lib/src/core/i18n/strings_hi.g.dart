@@ -794,6 +794,7 @@ class _Translations$premium$hi extends Translations$premium$fr {
 	@override late final _Translations$premium$end$hi end = _Translations$premium$end$hi._(_root);
 	@override late final _Translations$premium$nudge$hi nudge = _Translations$premium$nudge$hi._(_root);
 	@override String get preview => 'Premium के साथ तुम्हारे लक्ष्यों की झलक';
+	@override late final _Translations$premium$renewal$hi renewal = _Translations$premium$renewal$hi._(_root);
 }
 
 // Path: homeWidget
@@ -3122,6 +3123,8 @@ class _Translations$premium$end$hi extends Translations$premium$end$fr {
 	@override String weekBody({required Object date}) => '7 दिन बाक़ी हैं, ${date} तक। अपना साल और विजेट बनाए रखने के लिए इसे आगे बढ़ाओ।';
 	@override String get dayTitle => 'तुम्हारा Premium कल ख़त्म होगा';
 	@override String get dayBody => 'कुछ भी न खोने के लिए इसे अभी आगे बढ़ाओ: नई अवधि आख़िर में जुड़ जाती है।';
+	@override String get renewTitle => 'आपका Premium जल्द नवीनीकृत होगा';
+	@override String renewBody({required Object date}) => '${date} को आपके फ़ोन पर भुगतान अनुरोध आएगा: जारी रखने के लिए इसे अपने PIN से मंज़ूर करें।';
 }
 
 // Path: premium.nudge
@@ -3135,6 +3138,21 @@ class _Translations$premium$nudge$hi extends Translations$premium$nudge$fr {
 	@override String get text => 'परमेश्वर के साथ तुम्हारा साल, तुम्हारे लक्ष्यों की प्रगति और होम स्क्रीन विजेट।';
 	@override String get action => 'Premium देखो';
 	@override String get close => 'छिपाओ';
+}
+
+// Path: premium.renewal
+class _Translations$premium$renewal$hi extends Translations$premium$renewal$fr {
+	_Translations$premium$renewal$hi._(TranslationsHi root) : this._root = root, super.internal(root);
+
+	final TranslationsHi _root; // ignore: unused_field
+
+	// Translations
+	@override String line({required Object date, required Object phone}) => 'अपने-आप नवीनीकरण: अगला भुगतान अनुरोध ${date} को, ${phone} पर।';
+	@override String get stop => 'नवीनीकरण रोकें';
+	@override String get stopTitle => 'नवीनीकरण रोकें?';
+	@override String get stopText => 'अब कोई भुगतान अनुरोध नहीं भेजा जाएगा। Premium अवधि के अंत तक जारी रहेगा।';
+	@override String get stopConfirm => 'रोकें';
+	@override String get stopped => 'अपने-आप नवीनीकरण रोक दिया गया।';
 }
 
 // Path: ministry.goals
@@ -5188,11 +5206,19 @@ extension on TranslationsHi {
 			'premium.end.weekBody' => ({required Object date}) => '7 दिन बाक़ी हैं, ${date} तक। अपना साल और विजेट बनाए रखने के लिए इसे आगे बढ़ाओ।',
 			'premium.end.dayTitle' => 'तुम्हारा Premium कल ख़त्म होगा',
 			'premium.end.dayBody' => 'कुछ भी न खोने के लिए इसे अभी आगे बढ़ाओ: नई अवधि आख़िर में जुड़ जाती है।',
+			'premium.end.renewTitle' => 'आपका Premium जल्द नवीनीकृत होगा',
+			'premium.end.renewBody' => ({required Object date}) => '${date} को आपके फ़ोन पर भुगतान अनुरोध आएगा: जारी रखने के लिए इसे अपने PIN से मंज़ूर करें।',
 			'premium.nudge.title' => 'अपनी यात्रा का हिसाब रखो',
 			'premium.nudge.text' => 'परमेश्वर के साथ तुम्हारा साल, तुम्हारे लक्ष्यों की प्रगति और होम स्क्रीन विजेट।',
 			'premium.nudge.action' => 'Premium देखो',
 			'premium.nudge.close' => 'छिपाओ',
 			'premium.preview' => 'Premium के साथ तुम्हारे लक्ष्यों की झलक',
+			'premium.renewal.line' => ({required Object date, required Object phone}) => 'अपने-आप नवीनीकरण: अगला भुगतान अनुरोध ${date} को, ${phone} पर।',
+			'premium.renewal.stop' => 'नवीनीकरण रोकें',
+			'premium.renewal.stopTitle' => 'नवीनीकरण रोकें?',
+			'premium.renewal.stopText' => 'अब कोई भुगतान अनुरोध नहीं भेजा जाएगा। Premium अवधि के अंत तक जारी रहेगा।',
+			'premium.renewal.stopConfirm' => 'रोकें',
+			'premium.renewal.stopped' => 'अपने-आप नवीनीकरण रोक दिया गया।',
 			'homeWidget.title' => 'आज',
 			'homeWidget.done' => 'हो गया',
 			'homeWidget.todo' => 'भरना बाकी',
@@ -5270,6 +5296,8 @@ extension on TranslationsHi {
 			'ministry.lives.founder.facts.2' => 'राष्ट्रों की यात्रा',
 			'ministry.lives.founder.dates.0' => '20 जून को कैमरून में एक प्रेस्बिटेरियन परिवार में जन्म।',
 			'ministry.lives.founder.dates.1' => '13 जून को एक ट्रैक्ट के द्वारा अपना जीवन यीशु मसीह को सौंपा।',
+			_ => null,
+		} ?? switch (path) {
 			'ministry.lives.founder.dates.2' => '1 अक्टूबर को सिएरा लियोन में स्वयं को पूरी तरह प्रभु को समर्पित किया।',
 			'ministry.lives.founder.dates.3' => 'सात दिन की प्रार्थना के बाद 24 अक्टूबर को पवित्र आत्मा से भर गए।',
 			'ministry.lives.founder.dates.4' => '12 मई को याउंडे में CMFI की स्थापना की।',
@@ -5278,8 +5306,6 @@ extension on TranslationsHi {
 			'ministry.lives.founder.story.0' => 'उनका जन्म 20 जून 1945 को कैमरून में, उत्तर-पश्चिम के बातिबो से आए एक प्रेस्बिटेरियन परिवार में हुआ। स्कूल में पढ़ते हुए ही, 13 जून 1956 को, “किसी ने तुम्हारे लिए अपनी जान दी” नामक एक ट्रैक्ट पढ़कर उन्होंने अपना जीवन यीशु मसीह को सौंप दिया।',
 			'ministry.lives.founder.story.1' => 'सिएरा लियोन के फ़ोरा बे कॉलेज में छात्र रहते हुए, 1 अक्टूबर 1966 को उन्होंने स्वयं को बिना किसी शर्त के प्रभु और उसकी सेवा के लिए समर्पित कर दिया। 24 अक्टूबर 1970 को, सात दिन की प्रार्थना और उपवास के बाद, वे पवित्र आत्मा से भर गए। तब से प्रार्थना उनके जीवन का केंद्र बन गई।',
 			'ministry.lives.founder.story.2' => 'युगांडा के माकेरेरे विश्वविद्यालय से कार्बनिक रसायन में डॉक्टरेट करने के बाद उन्होंने याउंडे विश्वविद्यालय में पढ़ाया, जहाँ वे प्रोफ़ेसर बने। उन्होंने लगभग सौ शोध-प्रबंधों का मार्गदर्शन किया, और 2005 में ब्रिटेन के डरहम विश्वविद्यालय ने उनके समग्र कार्य के लिए उन्हें डॉक्टर ऑफ़ साइंस की उपाधि दी।',
-			_ => null,
-		} ?? switch (path) {
 			'ministry.lives.founder.story.3' => '12 मई 1975 को याउंडे में उन्होंने क्रिश्चियन मिशनरी फ़ेलोशिप इंटरनेशनल (CMFI) की स्थापना की: आत्माओं को जीतने, चेले बनाने, कलीसियाएँ स्थापित करने और मिशनरी भेजने के लिए एक आंदोलन। उन्होंने कैमरून में 700 से अधिक मिशनरी यात्राएँ कीं और छह महाद्वीपों के 70 से अधिक राष्ट्रों में 500 से अधिक यात्राएँ कीं।',
 			'ministry.lives.founder.story.4' => 'वे हर दिन लंबे घंटे परमेश्वर के साथ अकेले बिताते थे, उन्होंने प्रार्थना के अनेक अभियानों, घेरों और प्रार्थना-यात्राओं की अगुवाई की, और अक्सर उपवास किया। उन्होंने प्रार्थना, उपवास, पवित्रता, शिष्यता और मिशन पर 150 से अधिक पुस्तकें लिखीं, जो अनेक भाषाओं में पढ़ी जाती हैं।',
 			'ministry.lives.founder.story.5' => 'अपनी पत्नी प्रिस्का ज़ेई फ़ोमुम के साथ, जो बच्चों के बीच सेवा करती थीं, उनके सात बच्चे हुए, जो सभी सुसमाचार के कार्य में लगे हैं। दोनों ने सादगी से जीवन बिताया ताकि अपनी आय का सबसे बड़ा भाग सुसमाचार के लिए दे सकें।',
@@ -5784,6 +5810,8 @@ extension on TranslationsHi {
 			'yearStory.versesKnown' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n, one: 'पद कंठस्थ किया', other: 'पद कंठस्थ किए', ), 
 			'yearStory.versesLearning' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n, one: 'पद कंठस्थ हो रहा है', other: 'पद कंठस्थ हो रहे हैं', ), 
 			'yearStory.fastLead' => 'तुमने उपवास किया',
+			_ => null,
+		} ?? switch (path) {
 			'yearStory.fastDays' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n, one: '${n} दिन', other: '${n} दिन', ), 
 			'yearStory.fastText' => 'प्रभु के सामने उपवास',
 			'yearStory.fullFasts' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n, one: 'दिन पूर्ण उपवास', other: 'दिन पूर्ण उपवास', ), 
@@ -5792,8 +5820,6 @@ extension on TranslationsHi {
 			'yearStory.goalsReached' => 'औसतन पूरे हुए',
 			'yearStory.bestMonth' => ({required Object month, required Object percent}) => 'तुम्हारा सबसे अच्छा महीना: ${month} · ${percent}',
 			'yearStory.summaryTitle' => 'परमेश्वर के साथ मेरा साल',
-			_ => null,
-		} ?? switch (path) {
 			'yearStory.statDays' => 'दिन भरे गए',
 			'yearStory.statStreak' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n, one: 'दिन लगातार, तुम्हारा रिकॉर्ड', other: 'दिन लगातार, तुम्हारा रिकॉर्ड', ), 
 			'yearStory.statRetreats' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n, one: 'प्रार्थना-समय', other: 'प्रार्थना-समय', ), 
@@ -6298,6 +6324,8 @@ extension on TranslationsHi {
 			'gamification.cards.subtitle' => 'जिन पड़ावों तक तुम पहुँचे, उनके कार्ड: सहेजने या साझा करने के लिए।',
 			'gamification.cards.empty' => 'तुम्हारा पहला कार्ड इंतज़ार कर रहा है: वह तुम्हारी पहली रिपोर्ट के साथ आएगा।',
 			'gamification.cards.locked' => 'अभी बाकी',
+			_ => null,
+		} ?? switch (path) {
 			'gamification.cards.lockedTitle' => 'यह कार्ड तुम्हारा इंतज़ार कर रहा है',
 			'gamification.cards.lockedText' => ({required Object name}) => 'इसे पाने के लिए «${name}» तक पहुँचो।',
 			'gamification.cards.pageTitle' => 'तुम्हारा कार्ड',
@@ -6306,8 +6334,6 @@ extension on TranslationsHi {
 			'gamification.collective.title' => 'समूह का सफ़र',
 			'gamification.collective.sharedThisWeek' => ({required num n, required Object total}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n, one: 'इस सप्ताह ${total} में से ${n} चेले ने रिपोर्ट साझा की', other: 'इस सप्ताह ${total} में से ${n} चेलों ने रिपोर्ट साझा की', ), 
 			'gamification.collective.empty' => 'इस सप्ताह अभी किसी ने साझा नहीं किया। हर कोई अपनी गति से चलता है।',
-			_ => null,
-		} ?? switch (path) {
 			'gamification.collective.reports' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n, one: 'इस सप्ताह ${n} रिपोर्ट मिली', other: 'इस सप्ताह ${n} रिपोर्टें मिलीं', ), 
 			'gamification.collective.noDisciples' => 'रास्ता साथ मिलकर भी चला जाता है: जब तुम चेलों का साथ देते हो, उनका इस सप्ताह का सफ़र यहाँ दिखेगा, बिना नाम।',
 			'gamification.collective.anonymous' => 'समूह का कुल, बिना नाम और बिना क्रम।',

@@ -10,6 +10,31 @@ import '../storage/account_storage.dart';
 
 part 'premium_store.g.dart';
 
+/// Premium renewed by itself (chosen on the site when paying by mobile
+/// money): the day before the end, the server sends the payment request of
+/// the same plan to [phoneNumber]; the member types the PIN.
+class PremiumRenewal {
+  const PremiumRenewal({
+    required this.plan,
+    required this.phoneNumber,
+    required this.nextRequestAt,
+  });
+
+  factory PremiumRenewal.fromJson(Map<String, dynamic> json) => PremiumRenewal(
+    plan: '${json['plan'] ?? ''}',
+    phoneNumber: '${json['phone_number'] ?? ''}',
+    nextRequestAt:
+        DateTime.tryParse('${json['next_request_at'] ?? ''}')?.toLocal() ??
+        DateTime.now(),
+  );
+
+  final String plan;
+  final String phoneNumber;
+
+  /// When the next payment request goes.
+  final DateTime nextRequestAt;
+}
+
 /// The Premium of the signed-in member, as the server keeps it (bought on
 /// cmfi-connect.com, offered by the admins): GET /v1/premium/status. Behind
 /// a provider: tests use a fake.
@@ -24,6 +49,13 @@ abstract class PremiumStore {
   /// When the Premium bought or offered ends, as last known; null without
   /// one, or for life.
   DateTime? get until;
+
+  /// The renewal by payment request, as last known; null without one.
+  PremiumRenewal? get renewal;
+
+  /// No more payment requests: Premium goes on to its end
+  /// (DELETE /v1/premium/renewal).
+  Future<void> stopRenewal();
 
   /// Premium starts or ends (bought on the site, offered, over).
   Stream<bool> get changes;
@@ -42,9 +74,20 @@ class ServerPremiumStore implements PremiumStore {
   /// The last answer, kept for when the network is gone.
   var _active = false;
   DateTime? _until;
+  PremiumRenewal? _renewal;
 
   @override
   DateTime? get until => _until;
+
+  @override
+  PremiumRenewal? get renewal => _renewal;
+
+  @override
+  Future<void> stopRenewal() async {
+    await apiCall(() => _dio.delete<void>('/premium/renewal'));
+    _renewal = null;
+    _changes.add(_active);
+  }
 
   @override
   Future<void> logIn(String userId) => refresh();
@@ -53,6 +96,7 @@ class ServerPremiumStore implements PremiumStore {
   Future<void> logOut() async {
     _active = false;
     _until = null;
+    _renewal = null;
     _changes.add(false);
   }
 
@@ -64,6 +108,10 @@ class ServerPremiumStore implements PremiumStore {
       final until = DateTime.tryParse('${status['until'] ?? ''}');
       final lifetime = status['lifetime'] == true;
       _until = lifetime ? null : until?.toLocal();
+      final renewal = status['renewal'];
+      _renewal = !lifetime && renewal is Map<String, dynamic>
+          ? PremiumRenewal.fromJson(renewal)
+          : null;
       _active = lifetime || (until != null && until.isAfter(DateTime.now()));
     } on DioException {
       // offline: what was known

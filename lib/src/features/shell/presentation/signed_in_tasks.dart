@@ -146,8 +146,9 @@ class SignedInTasks extends HookConsumerWidget {
       return subscription.close;
     }, const []);
 
-    // Premium bought on the site doesn't renew: told 7 days and 1 day before
-    // its end (the team has it with the role: nothing to tell)
+    // Premium bought on the site: told 7 days and 1 day before its end, or a
+    // week before the payment request when it renews (the team has it with
+    // the role: nothing to tell)
     useEffect(() {
       final subscription = ref.listenManual(premiumProvider, (_, next) {
         if (!next.hasValue) {
@@ -159,6 +160,7 @@ class SignedInTasks extends HookConsumerWidget {
             ref.read(localNotificationsProvider),
             until: staff ? null : ref.read(premiumStoreProvider).until,
             now: DateTime.now(),
+            renewal: ref.read(premiumStoreProvider).renewal,
           ),
         );
       }, fireImmediately: true);
@@ -249,6 +251,14 @@ class SignedInTasks extends HookConsumerWidget {
       // community (a teaching, a document, an event, a prayer topic: their
       // page, the new one first)
       void openAnnouncement(Map<String, String>? data) {
+        // Premium renewed (asked, paid, given up): no id, its page
+        if (data?['type'] == 'premium_renewal') {
+          unawaited(ref.read(premiumStoreProvider).refresh());
+          if (context.mounted) {
+            context.router.push(const PremiumRoute());
+          }
+          return;
+        }
         final id = int.tryParse(data?['id'] ?? '');
         if (id == null) {
           return;
@@ -505,7 +515,7 @@ class SignedInTasks extends HookConsumerWidget {
             ref.invalidate(receivedReportsProvider);
           case 'report_reply':
             ref.invalidate(sentInAppProvider);
-          case 'premium_gift':
+          case 'premium_gift' || 'premium_renewal':
             unawaited(ref.read(premiumStoreProvider).refresh());
           case 'authority_request' || 'authority_accepted':
             ref

@@ -1611,6 +1611,8 @@ class Translations$premium$fr {
 
 	/// fr: 'Aperçu de tes objectifs avec Premium'
 	String get preview => 'Aperçu de tes objectifs avec Premium';
+
+	late final Translations$premium$renewal$fr renewal = Translations$premium$renewal$fr.internal(_root);
 }
 
 // Path: homeWidget
@@ -6686,6 +6688,12 @@ class Translations$premium$end$fr {
 
 	/// fr: 'Prolonge-le maintenant pour ne rien perdre : la nouvelle période s'ajoute à la fin.'
 	String get dayBody => 'Prolonge-le maintenant pour ne rien perdre : la nouvelle période s\'ajoute à la fin.';
+
+	/// fr: 'Ton Premium se renouvelle bientôt'
+	String get renewTitle => 'Ton Premium se renouvelle bientôt';
+
+	/// fr: 'Le {date}, une demande de paiement arrivera sur ton téléphone : valide-la avec ton code PIN pour continuer.'
+	String renewBody({required Object date}) => 'Le ${date}, une demande de paiement arrivera sur ton téléphone : valide-la avec ton code PIN pour continuer.';
 }
 
 // Path: premium.nudge
@@ -6707,6 +6715,33 @@ class Translations$premium$nudge$fr {
 
 	/// fr: 'Masquer'
 	String get close => 'Masquer';
+}
+
+// Path: premium.renewal
+class Translations$premium$renewal$fr {
+	Translations$premium$renewal$fr.internal(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// fr: 'Renouvellement automatique : prochaine demande de paiement le {date}, sur le {phone}.'
+	String line({required Object date, required Object phone}) => 'Renouvellement automatique : prochaine demande de paiement le ${date}, sur le ${phone}.';
+
+	/// fr: 'Arrêter le renouvellement'
+	String get stop => 'Arrêter le renouvellement';
+
+	/// fr: 'Arrêter le renouvellement ?'
+	String get stopTitle => 'Arrêter le renouvellement ?';
+
+	/// fr: 'Plus aucune demande de paiement ne sera envoyée. Premium continue jusqu'à la fin de la période.'
+	String get stopText => 'Plus aucune demande de paiement ne sera envoyée. Premium continue jusqu\'à la fin de la période.';
+
+	/// fr: 'Arrêter'
+	String get stopConfirm => 'Arrêter';
+
+	/// fr: 'Renouvellement automatique arrêté.'
+	String get stopped => 'Renouvellement automatique arrêté.';
 }
 
 // Path: ministry.goals
@@ -9503,11 +9538,19 @@ extension on Translations {
 			'premium.end.weekBody' => ({required Object date}) => 'Il reste 7 jours, jusqu\'au ${date}. Prolonge-le pour garder ton année et ton widget.',
 			'premium.end.dayTitle' => 'Ton Premium se termine demain',
 			'premium.end.dayBody' => 'Prolonge-le maintenant pour ne rien perdre : la nouvelle période s\'ajoute à la fin.',
+			'premium.end.renewTitle' => 'Ton Premium se renouvelle bientôt',
+			'premium.end.renewBody' => ({required Object date}) => 'Le ${date}, une demande de paiement arrivera sur ton téléphone : valide-la avec ton code PIN pour continuer.',
 			'premium.nudge.title' => 'Garde la trace de ta marche',
 			'premium.nudge.text' => 'Ton année avec Dieu, l\'évolution de tes objectifs et le widget de l\'écran d\'accueil.',
 			'premium.nudge.action' => 'Découvrir Premium',
 			'premium.nudge.close' => 'Masquer',
 			'premium.preview' => 'Aperçu de tes objectifs avec Premium',
+			'premium.renewal.line' => ({required Object date, required Object phone}) => 'Renouvellement automatique : prochaine demande de paiement le ${date}, sur le ${phone}.',
+			'premium.renewal.stop' => 'Arrêter le renouvellement',
+			'premium.renewal.stopTitle' => 'Arrêter le renouvellement ?',
+			'premium.renewal.stopText' => 'Plus aucune demande de paiement ne sera envoyée. Premium continue jusqu\'à la fin de la période.',
+			'premium.renewal.stopConfirm' => 'Arrêter',
+			'premium.renewal.stopped' => 'Renouvellement automatique arrêté.',
 			'homeWidget.title' => 'Aujourd\'hui',
 			'homeWidget.done' => 'Fait',
 			'homeWidget.todo' => 'À remplir',
@@ -9585,6 +9628,8 @@ extension on Translations {
 			'ministry.lives.founder.facts.2' => 'nations visitées',
 			'ministry.lives.founder.dates.0' => 'Naît le 20 juin au Cameroun, dans une famille presbytérienne.',
 			'ministry.lives.founder.dates.1' => 'Donne sa vie à Jésus-Christ le 13 juin, en lisant un tract.',
+			_ => null,
+		} ?? switch (path) {
 			'ministry.lives.founder.dates.2' => 'Se livre tout entier au Seigneur le 1er octobre, en Sierra Leone.',
 			'ministry.lives.founder.dates.3' => 'Est rempli du Saint-Esprit le 24 octobre, après sept jours de prière.',
 			'ministry.lives.founder.dates.4' => 'Fonde la CMCI à Yaoundé le 12 mai.',
@@ -9593,8 +9638,6 @@ extension on Translations {
 			'ministry.lives.founder.story.0' => 'Zacharias Tanee Fomum est né le 20 juin 1945 au Cameroun, dans une famille presbytérienne originaire de Batibo, dans le Nord-Ouest. Encore écolier, il a donné sa vie à Jésus-Christ le 13 juin 1956, en lisant un tract intitulé « Quelqu\'un est mort pour toi ».',
 			'ministry.lives.founder.story.1' => 'Étudiant à Fourah Bay College, en Sierra Leone, il s\'est livré sans réserve au Seigneur et à son service le 1er octobre 1966. Le 24 octobre 1970, au terme de sept jours de prière et de jeûne, il a été rempli du Saint-Esprit. Dès lors, la prière est devenue le centre de sa vie.',
 			'ministry.lives.founder.story.2' => 'Docteur en chimie organique de l\'université Makerere, en Ouganda, il a enseigné à l\'Université de Yaoundé, où il est devenu professeur. Il a dirigé une centaine de thèses et de mémoires, et l\'Université de Durham, en Grande-Bretagne, lui a décerné en 2005 un doctorat ès sciences pour l\'ensemble de ses travaux.',
-			_ => null,
-		} ?? switch (path) {
 			'ministry.lives.founder.story.3' => 'Le 12 mai 1975, à Yaoundé, il a fondé la Communauté Missionnaire Chrétienne Internationale : un mouvement pour gagner des âmes, faire des disciples, implanter des églises et envoyer des missionnaires. Il a fait plus de 700 voyages missionnaires au Cameroun et plus de 500 dans plus de 70 nations, sur six continents.',
 			'ministry.lives.founder.story.4' => 'Il passait chaque jour de longues heures seul avec Dieu, a conduit de nombreuses croisades, sièges et marches de prière, et a souvent jeûné. Il a écrit plus de 150 livres sur la prière, le jeûne, la sainteté, la formation des disciples et la mission, lus dans de nombreuses langues.',
 			'ministry.lives.founder.story.5' => 'Avec son épouse, Prisca Zei Fomum, servante de Dieu auprès des enfants, il a eu sept enfants, tous engagés dans l\'œuvre de l\'Évangile. Ensemble, ils vivaient simplement pour donner à l\'Évangile la plus grande part de leurs revenus.',
@@ -10099,6 +10142,8 @@ extension on Translations {
 			'yearStory.versesKnown' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('fr'))(n, one: 'verset appris par cœur', other: 'versets appris par cœur', ), 
 			'yearStory.versesLearning' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('fr'))(n, one: 'verset en cours de mémorisation', other: 'versets en cours de mémorisation', ), 
 			'yearStory.fastLead' => 'Tu as jeûné',
+			_ => null,
+		} ?? switch (path) {
 			'yearStory.fastDays' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('fr'))(n, one: '${n} jour', other: '${n} jours', ), 
 			'yearStory.fastText' => 'de jeûne devant le Seigneur',
 			'yearStory.fullFasts' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('fr'))(n, one: 'jour de jeûne complet', other: 'jours de jeûne complet', ), 
@@ -10107,8 +10152,6 @@ extension on Translations {
 			'yearStory.goalsReached' => 'atteints en moyenne',
 			'yearStory.bestMonth' => ({required Object month, required Object percent}) => 'Ton meilleur mois : ${month} · ${percent}',
 			'yearStory.summaryTitle' => 'Mon année avec Dieu',
-			_ => null,
-		} ?? switch (path) {
 			'yearStory.statDays' => 'jours remplis',
 			'yearStory.statStreak' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('fr'))(n, one: 'jour d\'affilée, ton record', other: 'jours d\'affilée, ton record', ), 
 			'yearStory.statRetreats' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('fr'))(n, one: 'retraite', other: 'retraites', ), 
@@ -10613,6 +10656,8 @@ extension on Translations {
 			'gamification.cards.subtitle' => 'Les cartes des étapes que tu as atteintes, à garder ou à partager.',
 			'gamification.cards.empty' => 'Ta première carte t\'attend : elle arrive avec ton premier compte rendu.',
 			'gamification.cards.locked' => 'À atteindre',
+			_ => null,
+		} ?? switch (path) {
 			'gamification.cards.lockedTitle' => 'Cette carte t\'attend',
 			'gamification.cards.lockedText' => ({required Object name}) => 'Atteins « ${name} » pour la recevoir.',
 			'gamification.cards.pageTitle' => 'Ta carte',
@@ -10621,8 +10666,6 @@ extension on Translations {
 			'gamification.collective.title' => 'La marche du groupe',
 			'gamification.collective.sharedThisWeek' => ({required num n, required Object total}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('fr'))(n, one: '${n} disciple sur ${total} a partagé un compte rendu cette semaine', other: '${n} disciples sur ${total} ont partagé un compte rendu cette semaine', ), 
 			'gamification.collective.empty' => 'Personne n\'a encore partagé cette semaine. Chacun avance à son rythme.',
-			_ => null,
-		} ?? switch (path) {
 			'gamification.collective.reports' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('fr'))(n, one: '${n} compte rendu reçu cette semaine', other: '${n} comptes rendus reçus cette semaine', ), 
 			'gamification.collective.noDisciples' => 'Le chemin se marche aussi ensemble : quand tu accompagnes des disciples, leur marche de la semaine apparaîtra ici, sans nom.',
 			'gamification.collective.anonymous' => 'Un total du groupe, sans nom et sans classement.',

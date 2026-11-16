@@ -2,6 +2,7 @@ import 'package:intl/intl.dart';
 
 import '../../../core/i18n/strings.g.dart';
 import '../../../core/services/local_notifications.dart';
+import '../../../core/services/premium_store.dart';
 
 /// The payload of the reminders before Premium ends: the Premium page.
 const premiumEndPayload = 'premium:end';
@@ -14,12 +15,15 @@ List<DateTime> premiumEndTimes(DateTime until, {required DateTime now}) => [
 ].where((at) => at.isAfter(now)).toList();
 
 /// Plans the reminders before the Premium of the member ends ([until]: null
-/// without one, for life, or for the team: none). Premium bought on the site
-/// doesn't renew on its own: the member is told in time to go on.
+/// without one, for life, or for the team: none). Without [renewal], Premium
+/// bought on the site doesn't go on by itself: the member is told in time.
+/// With it, the server sends the payment request the day before (and its own
+/// push): the member is only told a week before that it will come.
 Future<void> planPremiumEnd(
   LocalNotifications notifications, {
   required DateTime? until,
   required DateTime now,
+  PremiumRenewal? renewal,
 }) async {
   if (until == null || !until.isAfter(now)) {
     return notifications.cancel(NotificationGroup.premiumEnd);
@@ -30,6 +34,21 @@ Future<void> planPremiumEnd(
     LocaleSettings.currentLocale.languageCode,
   ).format(until);
   final week = DateTime(until.year, until.month, until.day - 7, 10);
+  if (renewal != null) {
+    final request = DateFormat.MMMMd(
+      LocaleSettings.currentLocale.languageCode,
+    ).format(renewal.nextRequestAt);
+    return notifications.replace(NotificationGroup.premiumEnd, [
+      if (week.isAfter(now))
+        (
+          id: 0,
+          at: week,
+          title: t2.renewTitle,
+          body: t2.renewBody(date: request),
+          payload: premiumEndPayload,
+        ),
+    ], channelName: t2.channel);
+  }
   return notifications.replace(NotificationGroup.premiumEnd, [
     for (final (i, at) in premiumEndTimes(until, now: now).indexed)
       (

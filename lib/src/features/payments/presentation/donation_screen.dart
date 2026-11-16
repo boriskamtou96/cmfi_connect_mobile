@@ -33,7 +33,7 @@ const _currency = 'XAF';
 /// « Faire un don » (13/11/2026): the member chooses an amount (one of the
 /// four offered, or their own), then pays like a registration: mobile money
 /// (the number of the account by default, its operator guessed) or a card on
-/// Wajub's page. The payment is followed here; once received, a thank you.
+/// the provider's secure page. The payment is followed here; once received, a thank you.
 /// Nothing is given in return.
 @RoutePage()
 class DonationScreen extends HookConsumerWidget {
@@ -118,7 +118,7 @@ class DonationScreen extends HookConsumerWidget {
           toast.error(paymentFailureMessage(started.failureCode, t));
         } else {
           payment.value = started;
-          // a card: Wajub's secure page, the app waits behind it
+          // a card: the provider's secure page, the app waits behind it
           if (started.gatewayUrl.isNotEmpty) {
             unawaited(
               ref

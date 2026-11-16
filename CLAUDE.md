@@ -368,7 +368,7 @@ Règles de dépendance :
 
 ## Faire un don
 
-- Onglet « Vous » › « Faire un don » (`DonationScreen`, `/donate`, `features/payments`, 13/11/2026) : quatre montants à toucher (`donationAmounts`) ou « Autre montant » (100 à 500 000 FCFA, comme le serveur), puis le paiement Wajub d'un évènement : Mobile Money (numéro du compte par défaut, opérateur deviné) ou carte. `PaymentsApi.donate` → `POST /v1/donations` ; `PaymentWaiting` (ses textes `slowText`, `cardText` parlent du don) suit le paiement, puis un merci (Zoé, 2 Corinthiens 9.7). Rien n'est donné en échange. Dans les tests : `FakePaymentsApi.donations`, `received(id)`. À savoir : l'App Store ne permet les dons dans une app qu'aux organisations approuvées ; sinon il faut renvoyer vers un site.
+- Onglet « Vous » › « Faire un don » (`DonationScreen`, `/donate`, `features/payments`, 13/11/2026) : quatre montants à toucher (`donationAmounts`) ou « Autre montant » (100 à 500 000 FCFA, comme le serveur), puis le paiement d'un évènement (KPAY-NOW ou Wajub, choisi par le serveur : `PAYMENT_PROVIDER`, 16/11/2026 ; l'app ne nomme pas le prestataire, « la page de paiement sécurisée ») : Mobile Money (numéro du compte par défaut, opérateur deviné) ou carte. `PaymentsApi.donate` → `POST /v1/donations` ; `PaymentWaiting` (ses textes `slowText`, `cardText` parlent du don) suit le paiement, puis un merci (Zoé, 2 Corinthiens 9.7). Rien n'est donné en échange. Dans les tests : `FakePaymentsApi.donations`, `received(id)`. À savoir : l'App Store ne permet les dons dans une app qu'aux organisations approuvées ; sinon il faut renvoyer vers un site.
 
 ## Mascotte
 

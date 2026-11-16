@@ -29,7 +29,7 @@ class PaymentWaiting extends HookConsumerWidget {
     super.key,
   });
 
-  /// What is said after [patience], and while a card is typed on Wajub's
+  /// What is said after [patience], and while a card is typed on the provider's
   /// page, when the payment is not a registration (a donation).
   final String? slowText;
   final String? cardText;

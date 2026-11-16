@@ -2255,7 +2255,7 @@ class _Translations$donation$hi extends Translations$donation$fr {
 	@override String giveCard({required Object amount}) => 'कार्ड से ${amount} दो';
 	@override String get unavailable => 'भुगतान अभी उपलब्ध नहीं है। बाद में फिर कोशिश करो।';
 	@override String get waitingSlow => 'अभी भी प्रतीक्षा में। भुगतान आते ही तुम्हारा दान दर्ज हो जाएगा, भले ही तुम यह पेज बंद कर दो।';
-	@override String get waitingCard => 'Wajub के पेज पर अपना कार्ड डालो। भुगतान मिलते ही तुम्हारा दान यहाँ पक्का हो जाएगा।';
+	@override String get waitingCard => 'सुरक्षित भुगतान पेज पर अपना कार्ड डालो। भुगतान मिलते ही तुम्हारा दान यहाँ पक्का हो जाएगा।';
 	@override String get thanksTitle => 'तुम्हारे दान के लिए धन्यवाद!';
 	@override String thanksText({required Object amount}) => 'तुम्हारा ${amount} का दान मिल गया। प्रभु तुम्हें सौ गुना लौटाए।';
 	@override String get verse => '“परमेश्‍वर हर्ष से देनेवाले से प्रेम रखता है।” (2 कुरिन्थियों 9:7)';
@@ -3090,10 +3090,10 @@ class _Translations$events$pay$hi extends Translations$events$pay$fr {
 	@override String get how => 'आप कैसे भुगतान करना चाहते हैं?';
 	@override String get methodMobile => 'मोबाइल मनी';
 	@override String get methodCard => 'बैंक कार्ड';
-	@override String get cardNote => 'आप Wajub के सुरक्षित पेज पर भुगतान करते हैं (Visa, Mastercard)।';
+	@override String get cardNote => 'तुम एक सुरक्षित भुगतान पेज पर भुगतान करते हो (Visa, Mastercard)।';
 	@override String payCard({required Object amount}) => 'कार्ड से ${amount} का भुगतान करें';
 	@override String get waitingCardTitle => 'सुरक्षित पेज पर भुगतान पूरा करें';
-	@override String get waitingCardText => 'Wajub पेज पर अपना कार्ड दर्ज करें। भुगतान पहुँचते ही आपका पंजीकरण यहाँ पक्का हो जाएगा।';
+	@override String get waitingCardText => 'सुरक्षित भुगतान पेज पर अपना कार्ड दर्ज करो। भुगतान पहुँचते ही तुम्हारा पंजीकरण यहाँ पक्का हो जाएगा।';
 	@override String get reopen => 'भुगतान पेज फिर से खोलें';
 }
 
@@ -3875,7 +3875,7 @@ class _Translations$events$pay$failures$hi extends Translations$events$pay$failu
 	@override String get notApproved => 'भुगतान की पुष्टि नहीं हुई: पिन नहीं डाला गया या अस्वीकार हुआ।';
 	@override String get unavailable => 'ऑपरेटर अभी उपलब्ध नहीं है। बाद में फिर कोशिश करें।';
 	@override String get generic => 'भुगतान विफल रहा। फिर कोशिश करें या कोई दूसरा नंबर इस्तेमाल करें।';
-	@override String get sandbox => 'टेस्ट मोड में केवल Wajub के टेस्ट नंबर स्वीकार होते हैं: उदाहरण के लिए 6 70 00 00 00 इस्तेमाल करें।';
+	@override String get sandbox => 'टेस्ट मोड में केवल टेस्ट नंबर स्वीकार होते हैं: उदाहरण के लिए 6 53 45 67 89 इस्तेमाल करो।';
 }
 
 // Path: ministry.goals.crusade
@@ -5129,7 +5129,7 @@ extension on TranslationsHi {
 			'events.pay.failures.notApproved' => 'भुगतान की पुष्टि नहीं हुई: पिन नहीं डाला गया या अस्वीकार हुआ।',
 			'events.pay.failures.unavailable' => 'ऑपरेटर अभी उपलब्ध नहीं है। बाद में फिर कोशिश करें।',
 			'events.pay.failures.generic' => 'भुगतान विफल रहा। फिर कोशिश करें या कोई दूसरा नंबर इस्तेमाल करें।',
-			'events.pay.failures.sandbox' => 'टेस्ट मोड में केवल Wajub के टेस्ट नंबर स्वीकार होते हैं: उदाहरण के लिए 6 70 00 00 00 इस्तेमाल करें।',
+			'events.pay.failures.sandbox' => 'टेस्ट मोड में केवल टेस्ट नंबर स्वीकार होते हैं: उदाहरण के लिए 6 53 45 67 89 इस्तेमाल करो।',
 			'events.pay.later' => 'मैं बाद में भुगतान करूँगा',
 			'events.pay.toPay' => ({required Object amount}) => 'भुगतान बाकी: ${amount}',
 			'events.pay.payNow' => 'भुगतान करें',
@@ -5139,10 +5139,10 @@ extension on TranslationsHi {
 			'events.pay.how' => 'आप कैसे भुगतान करना चाहते हैं?',
 			'events.pay.methodMobile' => 'मोबाइल मनी',
 			'events.pay.methodCard' => 'बैंक कार्ड',
-			'events.pay.cardNote' => 'आप Wajub के सुरक्षित पेज पर भुगतान करते हैं (Visa, Mastercard)।',
+			'events.pay.cardNote' => 'तुम एक सुरक्षित भुगतान पेज पर भुगतान करते हो (Visa, Mastercard)।',
 			'events.pay.payCard' => ({required Object amount}) => 'कार्ड से ${amount} का भुगतान करें',
 			'events.pay.waitingCardTitle' => 'सुरक्षित पेज पर भुगतान पूरा करें',
-			'events.pay.waitingCardText' => 'Wajub पेज पर अपना कार्ड दर्ज करें। भुगतान पहुँचते ही आपका पंजीकरण यहाँ पक्का हो जाएगा।',
+			'events.pay.waitingCardText' => 'सुरक्षित भुगतान पेज पर अपना कार्ड दर्ज करो। भुगतान पहुँचते ही तुम्हारा पंजीकरण यहाँ पक्का हो जाएगा।',
 			'events.pay.reopen' => 'भुगतान पेज फिर से खोलें',
 			'notifications.title' => 'सूचनाएँ',
 			'notifications.channel' => 'समुदाय की घोषणाएँ',
@@ -6499,7 +6499,7 @@ extension on TranslationsHi {
 			'donation.giveCard' => ({required Object amount}) => 'कार्ड से ${amount} दो',
 			'donation.unavailable' => 'भुगतान अभी उपलब्ध नहीं है। बाद में फिर कोशिश करो।',
 			'donation.waitingSlow' => 'अभी भी प्रतीक्षा में। भुगतान आते ही तुम्हारा दान दर्ज हो जाएगा, भले ही तुम यह पेज बंद कर दो।',
-			'donation.waitingCard' => 'Wajub के पेज पर अपना कार्ड डालो। भुगतान मिलते ही तुम्हारा दान यहाँ पक्का हो जाएगा।',
+			'donation.waitingCard' => 'सुरक्षित भुगतान पेज पर अपना कार्ड डालो। भुगतान मिलते ही तुम्हारा दान यहाँ पक्का हो जाएगा।',
 			'donation.thanksTitle' => 'तुम्हारे दान के लिए धन्यवाद!',
 			'donation.thanksText' => ({required Object amount}) => 'तुम्हारा ${amount} का दान मिल गया। प्रभु तुम्हें सौ गुना लौटाए।',
 			'donation.verse' => '“परमेश्‍वर हर्ष से देनेवाले से प्रेम रखता है।” (2 कुरिन्थियों 9:7)',

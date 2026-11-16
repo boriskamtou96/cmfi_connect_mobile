@@ -1051,7 +1051,7 @@
         "notApproved": "付款未确认：未输入 PIN 码或被拒绝。",
         "unavailable": "运营商暂时不可用，请稍后再试。",
         "generic": "付款失败。请重试，或换一个号码。",
-        "sandbox": "测试模式下只接受 Wajub 测试号码：例如使用 6 70 00 00 00。"
+        "sandbox": "测试模式下只接受测试号码：例如使用 6 53 45 67 89。"
       },
       "later": "稍后付款",
       "toPay": "待付：{amount}",
@@ -1062,10 +1062,10 @@
       "how": "你想如何付款？",
       "methodMobile": "移动钱包",
       "methodCard": "银行卡",
-      "cardNote": "你将在 Wajub 的安全页面付款（Visa、Mastercard）。",
+      "cardNote": "你将在安全的付款页面付款（Visa、Mastercard）。",
       "payCard": "用银行卡支付 {amount}",
       "waitingCardTitle": "请在安全页面完成付款",
-      "waitingCardText": "在 Wajub 页面输入你的银行卡。付款一到账，你的报名就会在这里确认。",
+      "waitingCardText": "在安全的付款页面输入你的银行卡。付款一到账，你的报名就会在这里确认。",
       "reopen": "重新打开付款页面"
     }
   },
@@ -2880,7 +2880,7 @@
     "giveCard": "用银行卡奉献 {amount}",
     "unavailable": "暂时无法支付，请稍后再试。",
     "waitingSlow": "仍在等待。付款一到，你的奉献就会被记录，即使你关闭此页面。",
-    "waitingCard": "请在 Wajub 页面输入你的银行卡。收到付款后，你的奉献会在这里确认。",
+    "waitingCard": "请在安全的付款页面输入你的银行卡。收到付款后，你的奉献会在这里确认。",
     "thanksTitle": "感谢你的奉献！",
     "thanksText": "已收到你 {amount} 的奉献。愿主百倍地报答你。",
     "verse": "“捐得乐意的人是神所喜爱的。”（哥林多后书 9:7）",

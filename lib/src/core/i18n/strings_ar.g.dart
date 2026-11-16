@@ -2576,7 +2576,7 @@ class _Translations$donation$ar extends Translations$donation$fr {
 	@override String giveCard({required Object amount}) => 'أعطِ ${amount} بالبطاقة';
 	@override String get unavailable => 'الدفع غير متاح حاليًا. حاول لاحقًا.';
 	@override String get waitingSlow => 'ما زال قيد الانتظار. سيُسجَّل عطاؤك فور وصول الدفع، حتى لو أغلقت هذه الصفحة.';
-	@override String get waitingCard => 'أدخل بطاقتك في صفحة Wajub. يتأكد عطاؤك هنا فور استلام الدفع.';
+	@override String get waitingCard => 'أدخل بطاقتك في صفحة الدفع الآمنة. يتأكد عطاؤك هنا فور استلام الدفع.';
 	@override String get thanksTitle => 'شكرًا على عطائك!';
 	@override String thanksText({required Object amount}) => 'تم استلام عطائك البالغ ${amount}. ليعوّضك الرب مئة ضعف.';
 	@override String get verse => '«الْمُعْطِيَ الْمَسْرُورَ يُحِبُّهُ اللهُ.» (٢ كورنثوس ٩: ٧)';
@@ -3435,10 +3435,10 @@ class _Translations$events$pay$ar extends Translations$events$pay$fr {
 	@override String get how => 'كيف تريد أن تدفع؟';
 	@override String get methodMobile => 'المحفظة الإلكترونية';
 	@override String get methodCard => 'البطاقة البنكية';
-	@override String get cardNote => 'تدفع على صفحة Wajub الآمنة (Visa، Mastercard).';
+	@override String get cardNote => 'تدفع على صفحة دفع آمنة (Visa، Mastercard).';
 	@override String payCard({required Object amount}) => 'ادفع ${amount} بالبطاقة';
 	@override String get waitingCardTitle => 'أكمل الدفع على الصفحة الآمنة';
-	@override String get waitingCardText => 'أدخل بطاقتك على صفحة Wajub. يُؤكَّد تسجيلك هنا فور وصول الدفع.';
+	@override String get waitingCardText => 'أدخل بطاقتك على صفحة الدفع الآمنة. يُؤكَّد تسجيلك هنا فور وصول الدفع.';
 	@override String get reopen => 'إعادة فتح صفحة الدفع';
 }
 
@@ -4330,7 +4330,7 @@ class _Translations$events$pay$failures$ar extends Translations$events$pay$failu
 	@override String get notApproved => 'لم يُؤكَّد الدفع: لم يُدخَل الرمز السري أو رُفض.';
 	@override String get unavailable => 'المشغّل غير متاح حاليًا. حاول لاحقًا.';
 	@override String get generic => 'فشل الدفع. حاول مجددًا أو استخدم رقمًا آخر.';
-	@override String get sandbox => 'في وضع الاختبار، لا تُقبل إلا أرقام الاختبار الخاصة بـ Wajub: استخدم مثلًا 6 70 00 00 00.';
+	@override String get sandbox => 'في وضع الاختبار، لا تُقبل إلا أرقام الاختبار: استخدم مثلًا 6 53 45 67 89.';
 }
 
 // Path: ministry.goals.crusade
@@ -5591,7 +5591,7 @@ extension on TranslationsAr {
 			'events.pay.failures.notApproved' => 'لم يُؤكَّد الدفع: لم يُدخَل الرمز السري أو رُفض.',
 			'events.pay.failures.unavailable' => 'المشغّل غير متاح حاليًا. حاول لاحقًا.',
 			'events.pay.failures.generic' => 'فشل الدفع. حاول مجددًا أو استخدم رقمًا آخر.',
-			'events.pay.failures.sandbox' => 'في وضع الاختبار، لا تُقبل إلا أرقام الاختبار الخاصة بـ Wajub: استخدم مثلًا 6 70 00 00 00.',
+			'events.pay.failures.sandbox' => 'في وضع الاختبار، لا تُقبل إلا أرقام الاختبار: استخدم مثلًا 6 53 45 67 89.',
 			'events.pay.later' => 'سأدفع لاحقًا',
 			'events.pay.toPay' => ({required Object amount}) => 'المبلغ المستحق: ${amount}',
 			'events.pay.payNow' => 'ادفع',
@@ -5601,10 +5601,10 @@ extension on TranslationsAr {
 			'events.pay.how' => 'كيف تريد أن تدفع؟',
 			'events.pay.methodMobile' => 'المحفظة الإلكترونية',
 			'events.pay.methodCard' => 'البطاقة البنكية',
-			'events.pay.cardNote' => 'تدفع على صفحة Wajub الآمنة (Visa، Mastercard).',
+			'events.pay.cardNote' => 'تدفع على صفحة دفع آمنة (Visa، Mastercard).',
 			'events.pay.payCard' => ({required Object amount}) => 'ادفع ${amount} بالبطاقة',
 			'events.pay.waitingCardTitle' => 'أكمل الدفع على الصفحة الآمنة',
-			'events.pay.waitingCardText' => 'أدخل بطاقتك على صفحة Wajub. يُؤكَّد تسجيلك هنا فور وصول الدفع.',
+			'events.pay.waitingCardText' => 'أدخل بطاقتك على صفحة الدفع الآمنة. يُؤكَّد تسجيلك هنا فور وصول الدفع.',
 			'events.pay.reopen' => 'إعادة فتح صفحة الدفع',
 			'notifications.title' => 'الإشعارات',
 			'notifications.channel' => 'إعلانات الجماعة',
@@ -6961,7 +6961,7 @@ extension on TranslationsAr {
 			'donation.giveCard' => ({required Object amount}) => 'أعطِ ${amount} بالبطاقة',
 			'donation.unavailable' => 'الدفع غير متاح حاليًا. حاول لاحقًا.',
 			'donation.waitingSlow' => 'ما زال قيد الانتظار. سيُسجَّل عطاؤك فور وصول الدفع، حتى لو أغلقت هذه الصفحة.',
-			'donation.waitingCard' => 'أدخل بطاقتك في صفحة Wajub. يتأكد عطاؤك هنا فور استلام الدفع.',
+			'donation.waitingCard' => 'أدخل بطاقتك في صفحة الدفع الآمنة. يتأكد عطاؤك هنا فور استلام الدفع.',
 			'donation.thanksTitle' => 'شكرًا على عطائك!',
 			'donation.thanksText' => ({required Object amount}) => 'تم استلام عطائك البالغ ${amount}. ليعوّضك الرب مئة ضعف.',
 			'donation.verse' => '«الْمُعْطِيَ الْمَسْرُورَ يُحِبُّهُ اللهُ.» (٢ كورنثوس ٩: ٧)',

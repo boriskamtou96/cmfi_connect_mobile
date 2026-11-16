@@ -300,7 +300,7 @@ class AppRouter extends RootStackRouter {
       page: ExportReportRoute.page,
       guards: [authGuard],
     ),
-    // « Faire un don »: an amount chosen, paid with Wajub
+    // « Faire un don »: an amount chosen, paid by mobile money or card
     AutoRoute(path: '/donate', page: DonationRoute.page, guards: [authGuard]),
     // past days filled from an Excel file
     AutoRoute(

@@ -1,4 +1,5 @@
 import 'package:cmfi_connect/src/core/i18n/strings.g.dart';
+import 'package:cmfi_connect/src/core/widgets/phone_field.dart';
 import 'package:cmfi_connect/src/features/payments/domain/payment.dart';
 import 'package:cmfi_connect/src/features/payments/presentation/donation_screen.dart';
 import 'package:cmfi_connect/src/routing/app_router.dart';
@@ -95,5 +96,50 @@ void main() {
     );
     expect(find.text('Merci pour ton don !'), findsNothing);
     expect(find.text('Montant'), findsOneWidget);
+  });
+
+  testWidgets('the dial code is chosen from the list, never typed', (
+    tester,
+  ) async {
+    final app = await _open(tester);
+    final number = find.descendant(
+      of: find.byType(PhoneField),
+      matching: find.byType(TextField),
+    );
+
+    // the account's number, its country in front
+    expect(find.text('+237'), findsOneWidget);
+    expect(
+      tester.widget<TextField>(number).controller!.text,
+      isNot(startsWith('+')),
+    );
+
+    await tester.ensureVisible(find.text('+237'));
+    await tester.pumpAndSettle();
+    await tester.tap(find.text('+237'));
+    await tester.pumpAndSettle();
+    await tester.enterText(
+      find.descendant(
+        of: find.byType(BottomSheet),
+        matching: find.byType(TextField),
+      ),
+      'franc',
+    );
+    await tester.pumpAndSettle();
+    await tester.tap(find.text('France'));
+    await tester.pumpAndSettle();
+    expect(find.text('+33'), findsOneWidget);
+
+    await tester.enterText(number, '6 12 34 56 78');
+    await tester.pump();
+    await tester.pump(const Duration(milliseconds: 600));
+    await tester.pump();
+    await tester.ensureVisible(find.textContaining('Donner 2'));
+    await tester.pumpAndSettle();
+    await tester.tap(find.textContaining('Donner 2'));
+    await tester.pump();
+    await tester.pump();
+
+    expect(app.paymentsApi.donations.single.phoneNumber, '+33612345678');
   });
 }

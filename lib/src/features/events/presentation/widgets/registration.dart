@@ -9,13 +9,16 @@ import '../../../../core/network/app_exception.dart';
 import '../../../../core/network/app_exception_message.dart';
 import '../../../../core/services/link_launcher.dart';
 import '../../../../core/services/local_notifications.dart';
+import '../../../../core/storage/preferences.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/theme/app_icons.dart';
 import '../../../../core/theme/app_spacing.dart';
 import '../../../../core/theme/app_tones.dart';
+import '../../../../core/utils/phone.dart';
 import '../../../../core/widgets/adaptive_dialogs.dart';
 import '../../../../core/widgets/app_button.dart';
 import '../../../../core/widgets/app_toast.dart';
+import '../../../../core/widgets/phone_field.dart';
 import '../../../members/application/my_account.dart';
 import '../../../payments/domain/payment.dart';
 import '../../../payments/infrastructure/payments_api.dart';
@@ -230,9 +233,14 @@ class _RegistrationSheet extends HookConsumerWidget {
     final paidAlready = mine?.paid ?? false;
     final paying = price != null && !paidAlready;
     final locale = Localizations.localeOf(context).toString();
-    final phone = useTextEditingController(
-      text: ref.read(myAccountProvider).value?.phoneNumber ?? '',
+    // the number of the account, its country in front (the dial code is
+    // chosen, never typed)
+    final (accountCountry, accountNational) = splitPhone(
+      ref.read(myAccountProvider).value?.phoneNumber ?? '',
+      ref.read(phoneCountryProvider),
     );
+    final phoneCountry = useState(accountCountry);
+    final phone = useTextEditingController(text: accountNational);
     final phoneText = useValueListenable(phone).text;
     final chosenOperator = useState<String?>(null);
     final guessedOperator = useState<String?>(null);
@@ -255,14 +263,17 @@ class _RegistrationSheet extends HookConsumerWidget {
     useEffect(() {
       if (!canPay ||
           byCard ||
-          phoneText.replaceAll(RegExp(r'\D'), '').length < 9) {
+          !(parsePhone(phoneText, phoneCountry.value)?.isValidLength() ??
+              false)) {
         return null;
       }
       final timer = Timer(const Duration(milliseconds: 500), () async {
         try {
           final guess = await ref
               .read(paymentsApiProvider)
-              .guessOperator(phoneText.trim());
+              .guessOperator(
+                toInternationalPhone(phoneText, country: phoneCountry.value),
+              );
           if (context.mounted) {
             guessedOperator.value = guess.provider;
           }
@@ -271,7 +282,7 @@ class _RegistrationSheet extends HookConsumerWidget {
         }
       });
       return timer.cancel;
-    }, [phoneText, canPay, byCard]);
+    }, [phoneText, phoneCountry.value, canPay, byCard]);
     final operator = chosenOperator.value ?? guessedOperator.value;
 
     Future<void> pay() async {
@@ -287,7 +298,10 @@ class _RegistrationSheet extends HookConsumerWidget {
               needsLodging: lodging.value,
               departureCity: city.text.trim(),
               method: byCard ? PaymentMethod.card : PaymentMethod.mobileMoney,
-              phoneNumber: phone.text.trim(),
+              phoneNumber: toInternationalPhone(
+                phone.text,
+                country: phoneCountry.value,
+              ),
               provider: operator ?? '',
             );
         if (started.status == PaymentStatus.failed) {
@@ -513,18 +527,13 @@ class _RegistrationSheet extends HookConsumerWidget {
               style: TextStyle(fontSize: 14, color: scheme.onSurfaceVariant),
             ),
           if (canPay && !byCard) ...[
-            TextField(
+            PhoneField(
               controller: phone,
-              keyboardType: TextInputType.phone,
-              autofillHints: const [AutofillHints.telephoneNumber],
+              country: phoneCountry.value,
+              onCountryChanged: (picked) => phoneCountry.value = picked,
               textInputAction: TextInputAction.done,
-              decoration: InputDecoration(
-                labelText: t.pay.phone,
-                hintText: t.pay.phoneHint,
-                helperText: t.pay.phoneHelp,
-                helperMaxLines: 2,
-                prefixIcon: const Icon(AppIcons.phone),
-              ),
+              label: t.pay.phone,
+              helperText: t.pay.phoneHelp,
             ),
             if (operators != null && operators.isNotEmpty) ...[
               const SizedBox(height: AppSpacing.md),

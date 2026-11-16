@@ -1,5 +1,6 @@
 import 'package:cmfi_connect/src/core/i18n/strings.g.dart';
 import 'package:cmfi_connect/src/core/network/app_exception.dart';
+import 'package:cmfi_connect/src/core/widgets/phone_field.dart';
 import 'package:cmfi_connect/src/features/events/domain/event.dart';
 import 'package:cmfi_connect/src/features/payments/domain/payment.dart';
 import 'package:cmfi_connect/src/features/payments/presentation/operator_logo.dart';
@@ -44,7 +45,10 @@ void main() {
     await tester.tap(find.text('Je participe'));
     await tester.pumpAndSettle();
     await tester.enterText(
-      find.widgetWithText(TextField, 'Numéro mobile money'),
+      find.descendant(
+        of: find.byType(PhoneField),
+        matching: find.byType(TextField),
+      ),
       '+237 6 90 00 00 01',
     );
     // the operator is guessed once typed
@@ -79,7 +83,7 @@ void main() {
     expect(app.paymentsApi.started.single, (
       eventId: 2,
       people: 1,
-      phoneNumber: '+237 6 90 00 00 01',
+      phoneNumber: '+237690000001',
       provider: 'ORANGE_CMR',
       method: PaymentMethod.mobileMoney,
     ));
@@ -264,7 +268,10 @@ void main() {
       await tester.tap(find.text('Carte bancaire'));
       await tester.pumpAndSettle();
       expect(
-        find.widgetWithText(TextField, 'Numéro mobile money'),
+        find.descendant(
+          of: find.byType(PhoneField),
+          matching: find.byType(TextField),
+        ),
         findsNothing,
       );
       final pay = find.text('Payer ${fcfa(5000)} par carte');

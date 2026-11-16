@@ -10,12 +10,15 @@ import '../../../core/i18n/strings.g.dart';
 import '../../../core/network/app_exception.dart';
 import '../../../core/network/app_exception_message.dart';
 import '../../../core/services/link_launcher.dart';
+import '../../../core/storage/preferences.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_icons.dart';
 import '../../../core/theme/app_spacing.dart';
+import '../../../core/utils/phone.dart';
 import '../../../core/widgets/app_button.dart';
 import '../../../core/widgets/app_toast.dart';
 import '../../../core/widgets/dove_mascot.dart';
+import '../../../core/widgets/phone_field.dart';
 import '../../../core/widgets/sub_page.dart';
 import '../../members/application/my_account.dart';
 import '../domain/payment.dart';
@@ -47,9 +50,14 @@ class DonationScreen extends HookConsumerWidget {
     final typed = useTextEditingController();
     final typedText = useValueListenable(typed).text;
     final chosen = useState<int?>(donationAmounts[1]);
-    final phone = useTextEditingController(
-      text: ref.read(myAccountProvider).value?.phoneNumber ?? '',
+    // the number of the account, its country in front (the dial code is
+    // chosen, never typed)
+    final (accountCountry, accountNational) = splitPhone(
+      ref.read(myAccountProvider).value?.phoneNumber ?? '',
+      ref.read(phoneCountryProvider),
     );
+    final phoneCountry = useState(accountCountry);
+    final phone = useTextEditingController(text: accountNational);
     final phoneText = useValueListenable(phone).text;
     final chosenOperator = useState<String?>(null);
     final guessedOperator = useState<String?>(null);
@@ -77,14 +85,18 @@ class DonationScreen extends HookConsumerWidget {
 
     // the operator of the number, guessed as it is typed
     useEffect(() {
-      if (byCard || phoneText.replaceAll(RegExp(r'\D'), '').length < 9) {
+      if (byCard ||
+          !(parsePhone(phoneText, phoneCountry.value)?.isValidLength() ??
+              false)) {
         return null;
       }
       final timer = Timer(const Duration(milliseconds: 500), () async {
         try {
           final guess = await ref
               .read(paymentsApiProvider)
-              .guessOperator(phoneText.trim());
+              .guessOperator(
+                toInternationalPhone(phoneText, country: phoneCountry.value),
+              );
           if (context.mounted) {
             guessedOperator.value = guess.provider;
           }
@@ -93,7 +105,7 @@ class DonationScreen extends HookConsumerWidget {
         }
       });
       return timer.cancel;
-    }, [phoneText, byCard]);
+    }, [phoneText, phoneCountry.value, byCard]);
     final operator = chosenOperator.value ?? guessedOperator.value;
 
     Future<void> give() async {
@@ -111,7 +123,10 @@ class DonationScreen extends HookConsumerWidget {
             .donate(
               amount,
               method: byCard ? PaymentMethod.card : PaymentMethod.mobileMoney,
-              phoneNumber: phone.text.trim(),
+              phoneNumber: toInternationalPhone(
+                phone.text,
+                country: phoneCountry.value,
+              ),
               provider: operator ?? '',
             );
         if (started.status == PaymentStatus.failed) {
@@ -280,18 +295,13 @@ class DonationScreen extends HookConsumerWidget {
                 style: TextStyle(fontSize: 14, color: scheme.onSurfaceVariant),
               )
             else ...[
-              TextField(
+              PhoneField(
                 controller: phone,
-                keyboardType: TextInputType.phone,
-                autofillHints: const [AutofillHints.telephoneNumber],
+                country: phoneCountry.value,
+                onCountryChanged: (picked) => phoneCountry.value = picked,
                 textInputAction: TextInputAction.done,
-                decoration: InputDecoration(
-                  labelText: t.events.pay.phone,
-                  hintText: t.events.pay.phoneHint,
-                  helperText: t.events.pay.phoneHelp,
-                  helperMaxLines: 2,
-                  prefixIcon: const Icon(AppIcons.phone),
-                ),
+                label: t.events.pay.phone,
+                helperText: t.events.pay.phoneHelp,
               ),
               if (operators != null && operators.isNotEmpty) ...[
                 const SizedBox(height: AppSpacing.md),

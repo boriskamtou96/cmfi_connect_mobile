@@ -18,6 +18,8 @@ class PhoneField extends StatelessWidget {
     required this.onCountryChanged,
     this.lenient = false,
     this.textInputAction = TextInputAction.next,
+    this.label,
+    this.helperText,
     super.key,
   });
 
@@ -28,6 +30,12 @@ class PhoneField extends StatelessWidget {
   /// Only checks the length (sign-in: an existing account is never refused).
   final bool lenient;
   final TextInputAction textInputAction;
+
+  /// « Téléphone » by default; a payment says « Numéro mobile money ».
+  final String? label;
+
+  /// A line under the number (where the payment request arrives).
+  final String? helperText;
 
   @override
   Widget build(BuildContext context) {
@@ -67,7 +75,7 @@ class PhoneField extends StatelessWidget {
     }
 
     return LabeledField(
-      label: t.auth.phone,
+      label: label ?? t.auth.phone,
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -128,7 +136,11 @@ class PhoneField extends StatelessWidget {
               textInputAction: textInputAction,
               autofillHints: const [AutofillHints.telephoneNumberNational],
               onChanged: followPrefix,
-              decoration: InputDecoration(hintText: examplePhone(country)),
+              decoration: InputDecoration(
+                hintText: examplePhone(country),
+                helperText: helperText,
+                helperMaxLines: 3,
+              ),
               validator: (value) {
                 final digits = (value ?? '').replaceAll(RegExp('[^0-9]'), '');
                 if (digits.isEmpty) {

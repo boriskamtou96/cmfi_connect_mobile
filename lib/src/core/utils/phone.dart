@@ -46,6 +46,17 @@ String toInternationalPhone(
   return '${country.dialCode}${input.replaceAll(RegExp(r'[^0-9]'), '')}';
 }
 
+/// A stored number ("+237690000001") split for [PhoneField]: its country and
+/// its national part ("6 90 00 00 01"); [fallback] and the number as it is
+/// when it can't be read.
+(Country, String) splitPhone(String phone, Country fallback) {
+  final number = parsePhone(phone, fallback);
+  if (number == null || !number.isValidLength()) {
+    return (fallback, phone);
+  }
+  return (Country(number.isoCode), number.formatNsn());
+}
+
 /// "+237690000001" -> "+237 6 90 00 00 01", in the usual grouping of each
 /// country. A number that can't be read is shown as stored.
 String formatPhone(String phone) {

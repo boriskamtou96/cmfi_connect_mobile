@@ -2175,7 +2175,7 @@ class _Translations$donation$zh extends Translations$donation$fr {
 	@override String giveCard({required Object amount}) => '用银行卡奉献 ${amount}';
 	@override String get unavailable => '暂时无法支付，请稍后再试。';
 	@override String get waitingSlow => '仍在等待。付款一到，你的奉献就会被记录，即使你关闭此页面。';
-	@override String get waitingCard => '请在 Wajub 页面输入你的银行卡。收到付款后，你的奉献会在这里确认。';
+	@override String get waitingCard => '请在安全的付款页面输入你的银行卡。收到付款后，你的奉献会在这里确认。';
 	@override String get thanksTitle => '感谢你的奉献！';
 	@override String thanksText({required Object amount}) => '已收到你 ${amount} 的奉献。愿主百倍地报答你。';
 	@override String get verse => '“捐得乐意的人是神所喜爱的。”（哥林多后书 9:7）';
@@ -3004,10 +3004,10 @@ class _Translations$events$pay$zh extends Translations$events$pay$fr {
 	@override String get how => '你想如何付款？';
 	@override String get methodMobile => '移动钱包';
 	@override String get methodCard => '银行卡';
-	@override String get cardNote => '你将在 Wajub 的安全页面付款（Visa、Mastercard）。';
+	@override String get cardNote => '你将在安全的付款页面付款（Visa、Mastercard）。';
 	@override String payCard({required Object amount}) => '用银行卡支付 ${amount}';
 	@override String get waitingCardTitle => '请在安全页面完成付款';
-	@override String get waitingCardText => '在 Wajub 页面输入你的银行卡。付款一到账，你的报名就会在这里确认。';
+	@override String get waitingCardText => '在安全的付款页面输入你的银行卡。付款一到账，你的报名就会在这里确认。';
 	@override String get reopen => '重新打开付款页面';
 }
 
@@ -3761,7 +3761,7 @@ class _Translations$events$pay$failures$zh extends Translations$events$pay$failu
 	@override String get notApproved => '付款未确认：未输入 PIN 码或被拒绝。';
 	@override String get unavailable => '运营商暂时不可用，请稍后再试。';
 	@override String get generic => '付款失败。请重试，或换一个号码。';
-	@override String get sandbox => '测试模式下只接受 Wajub 测试号码：例如使用 6 70 00 00 00。';
+	@override String get sandbox => '测试模式下只接受测试号码：例如使用 6 53 45 67 89。';
 }
 
 // Path: ministry.goals.crusade
@@ -5013,7 +5013,7 @@ extension on TranslationsZh {
 			'events.pay.failures.notApproved' => '付款未确认：未输入 PIN 码或被拒绝。',
 			'events.pay.failures.unavailable' => '运营商暂时不可用，请稍后再试。',
 			'events.pay.failures.generic' => '付款失败。请重试，或换一个号码。',
-			'events.pay.failures.sandbox' => '测试模式下只接受 Wajub 测试号码：例如使用 6 70 00 00 00。',
+			'events.pay.failures.sandbox' => '测试模式下只接受测试号码：例如使用 6 53 45 67 89。',
 			'events.pay.later' => '稍后付款',
 			'events.pay.toPay' => ({required Object amount}) => '待付：${amount}',
 			'events.pay.payNow' => '付款',
@@ -5023,10 +5023,10 @@ extension on TranslationsZh {
 			'events.pay.how' => '你想如何付款？',
 			'events.pay.methodMobile' => '移动钱包',
 			'events.pay.methodCard' => '银行卡',
-			'events.pay.cardNote' => '你将在 Wajub 的安全页面付款（Visa、Mastercard）。',
+			'events.pay.cardNote' => '你将在安全的付款页面付款（Visa、Mastercard）。',
 			'events.pay.payCard' => ({required Object amount}) => '用银行卡支付 ${amount}',
 			'events.pay.waitingCardTitle' => '请在安全页面完成付款',
-			'events.pay.waitingCardText' => '在 Wajub 页面输入你的银行卡。付款一到账，你的报名就会在这里确认。',
+			'events.pay.waitingCardText' => '在安全的付款页面输入你的银行卡。付款一到账，你的报名就会在这里确认。',
 			'events.pay.reopen' => '重新打开付款页面',
 			'notifications.title' => '通知',
 			'notifications.channel' => '团契公告',
@@ -6383,7 +6383,7 @@ extension on TranslationsZh {
 			'donation.giveCard' => ({required Object amount}) => '用银行卡奉献 ${amount}',
 			'donation.unavailable' => '暂时无法支付，请稍后再试。',
 			'donation.waitingSlow' => '仍在等待。付款一到，你的奉献就会被记录，即使你关闭此页面。',
-			'donation.waitingCard' => '请在 Wajub 页面输入你的银行卡。收到付款后，你的奉献会在这里确认。',
+			'donation.waitingCard' => '请在安全的付款页面输入你的银行卡。收到付款后，你的奉献会在这里确认。',
 			'donation.thanksTitle' => '感谢你的奉献！',
 			'donation.thanksText' => ({required Object amount}) => '已收到你 ${amount} 的奉献。愿主百倍地报答你。',
 			'donation.verse' => '“捐得乐意的人是神所喜爱的。”（哥林多后书 9:7）',

@@ -294,7 +294,7 @@ class _RegistrationSheet extends HookConsumerWidget {
           toast.error(paymentFailureMessage(started.failureCode, messages));
         } else {
           payment.value = started;
-          // a card: Wajub's secure page, the app waits behind it
+          // a card: the provider's secure page, the app waits behind it
           if (started.gatewayUrl.isNotEmpty) {
             unawaited(
               ref

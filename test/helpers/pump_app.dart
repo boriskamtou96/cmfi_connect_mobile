@@ -200,7 +200,7 @@ class TestApp {
   final FakeUpdateRules updateRules;
   final FakeAppInstaller installer;
 
-  /// The mobile money payments (Wajub through the server).
+  /// The mobile money payments (the provider through the server).
   final FakePaymentsApi paymentsApi;
 }
 

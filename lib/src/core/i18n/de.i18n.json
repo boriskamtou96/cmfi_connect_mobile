@@ -1076,7 +1076,7 @@
         "notApproved": "Die Zahlung wurde nicht bestätigt: PIN nicht eingegeben oder abgelehnt.",
         "unavailable": "Der Anbieter ist gerade nicht verfügbar. Versuche es später erneut.",
         "generic": "Die Zahlung ist fehlgeschlagen. Versuche es erneut oder nutze eine andere Nummer.",
-        "sandbox": "Im Testmodus werden nur Wajub-Testnummern akzeptiert: nutze zum Beispiel 6 70 00 00 00."
+        "sandbox": "Im Testmodus werden nur Testnummern akzeptiert: nutze zum Beispiel 6 53 45 67 89."
       },
       "later": "Ich bezahle später",
       "toPay": "Zu zahlen: {amount}",
@@ -1087,10 +1087,10 @@
       "how": "Wie möchtest du bezahlen?",
       "methodMobile": "Mobile Money",
       "methodCard": "Bankkarte",
-      "cardNote": "Du bezahlst auf der sicheren Wajub-Seite (Visa, Mastercard).",
+      "cardNote": "Du bezahlst auf einer sicheren Zahlungsseite (Visa, Mastercard).",
       "payCard": "{amount} mit Karte bezahlen",
       "waitingCardTitle": "Schließe die Zahlung auf der sicheren Seite ab",
-      "waitingCardText": "Gib deine Karte auf der Wajub-Seite ein. Deine Anmeldung wird hier bestätigt, sobald die Zahlung eingeht.",
+      "waitingCardText": "Gib deine Karte auf der sicheren Zahlungsseite ein. Deine Anmeldung wird hier bestätigt, sobald die Zahlung eingeht.",
       "reopen": "Zahlungsseite erneut öffnen"
     }
   },
@@ -2997,7 +2997,7 @@
     "giveCard": "{amount} per Karte spenden",
     "unavailable": "Die Zahlung ist im Moment nicht verfügbar. Versuch es später noch einmal.",
     "waitingSlow": "Noch in Bearbeitung. Deine Spende wird gespeichert, sobald die Zahlung eingeht, auch wenn du diese Seite schließt.",
-    "waitingCard": "Gib deine Karte auf der Wajub-Seite ein. Deine Spende wird hier bestätigt, sobald die Zahlung eingegangen ist.",
+    "waitingCard": "Gib deine Karte auf der sicheren Zahlungsseite ein. Deine Spende wird hier bestätigt, sobald die Zahlung eingegangen ist.",
     "thanksTitle": "Danke für deine Spende!",
     "thanksText": "Deine Spende von {amount} ist angekommen. Der Herr vergelte es dir hundertfach.",
     "verse": "„Einen fröhlichen Geber hat Gott lieb.“ (2. Korinther 9,7)",

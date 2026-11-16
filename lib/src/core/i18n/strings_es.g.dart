@@ -2256,7 +2256,7 @@ class _Translations$donation$es extends Translations$donation$fr {
 	@override String giveCard({required Object amount}) => 'Dar ${amount} con tarjeta';
 	@override String get unavailable => 'El pago no está disponible por ahora. Inténtalo más tarde.';
 	@override String get waitingSlow => 'Aún en espera. Tu ofrenda se registrará en cuanto llegue el pago, aunque cierres esta página.';
-	@override String get waitingCard => 'Introduce tu tarjeta en la página de Wajub. Tu ofrenda se confirma aquí en cuanto se recibe el pago.';
+	@override String get waitingCard => 'Introduce tu tarjeta en la página de pago segura. Tu ofrenda se confirma aquí en cuanto se recibe el pago.';
 	@override String get thanksTitle => '¡Gracias por tu ofrenda!';
 	@override String thanksText({required Object amount}) => 'Tu ofrenda de ${amount} se ha recibido. Que el Señor te lo devuelva al ciento por uno.';
 	@override String get verse => '«Dios ama el dador alegre.» (2 Corintios 9:7)';
@@ -3091,10 +3091,10 @@ class _Translations$events$pay$es extends Translations$events$pay$fr {
 	@override String get how => '¿Cómo quieres pagar?';
 	@override String get methodMobile => 'Dinero móvil';
 	@override String get methodCard => 'Tarjeta bancaria';
-	@override String get cardNote => 'Pagas en la página segura de Wajub (Visa, Mastercard).';
+	@override String get cardNote => 'Pagas en una página de pago segura (Visa, Mastercard).';
 	@override String payCard({required Object amount}) => 'Pagar ${amount} con tarjeta';
 	@override String get waitingCardTitle => 'Termina el pago en la página segura';
-	@override String get waitingCardText => 'Introduce tu tarjeta en la página de Wajub. Tu inscripción se confirma aquí en cuanto llega el pago.';
+	@override String get waitingCardText => 'Introduce tu tarjeta en la página de pago segura. Tu inscripción se confirma aquí en cuanto llega el pago.';
 	@override String get reopen => 'Volver a abrir la página de pago';
 }
 
@@ -3876,7 +3876,7 @@ class _Translations$events$pay$failures$es extends Translations$events$pay$failu
 	@override String get notApproved => 'El pago no se validó: PIN no introducido o rechazado.';
 	@override String get unavailable => 'El operador no está disponible ahora. Inténtalo más tarde.';
 	@override String get generic => 'El pago falló. Inténtalo de nuevo o usa otro número.';
-	@override String get sandbox => 'En modo de prueba solo se aceptan los números de prueba de Wajub: usa, por ejemplo, el 6 70 00 00 00.';
+	@override String get sandbox => 'En modo de prueba solo se aceptan números de prueba: usa, por ejemplo, el 6 53 45 67 89.';
 }
 
 // Path: ministry.goals.crusade
@@ -5130,7 +5130,7 @@ extension on TranslationsEs {
 			'events.pay.failures.notApproved' => 'El pago no se validó: PIN no introducido o rechazado.',
 			'events.pay.failures.unavailable' => 'El operador no está disponible ahora. Inténtalo más tarde.',
 			'events.pay.failures.generic' => 'El pago falló. Inténtalo de nuevo o usa otro número.',
-			'events.pay.failures.sandbox' => 'En modo de prueba solo se aceptan los números de prueba de Wajub: usa, por ejemplo, el 6 70 00 00 00.',
+			'events.pay.failures.sandbox' => 'En modo de prueba solo se aceptan números de prueba: usa, por ejemplo, el 6 53 45 67 89.',
 			'events.pay.later' => 'Pagaré más tarde',
 			'events.pay.toPay' => ({required Object amount}) => 'Por pagar: ${amount}',
 			'events.pay.payNow' => 'Pagar',
@@ -5140,10 +5140,10 @@ extension on TranslationsEs {
 			'events.pay.how' => '¿Cómo quieres pagar?',
 			'events.pay.methodMobile' => 'Dinero móvil',
 			'events.pay.methodCard' => 'Tarjeta bancaria',
-			'events.pay.cardNote' => 'Pagas en la página segura de Wajub (Visa, Mastercard).',
+			'events.pay.cardNote' => 'Pagas en una página de pago segura (Visa, Mastercard).',
 			'events.pay.payCard' => ({required Object amount}) => 'Pagar ${amount} con tarjeta',
 			'events.pay.waitingCardTitle' => 'Termina el pago en la página segura',
-			'events.pay.waitingCardText' => 'Introduce tu tarjeta en la página de Wajub. Tu inscripción se confirma aquí en cuanto llega el pago.',
+			'events.pay.waitingCardText' => 'Introduce tu tarjeta en la página de pago segura. Tu inscripción se confirma aquí en cuanto llega el pago.',
 			'events.pay.reopen' => 'Volver a abrir la página de pago',
 			'notifications.title' => 'Notificaciones',
 			'notifications.channel' => 'Anuncios de la comunidad',
@@ -6500,7 +6500,7 @@ extension on TranslationsEs {
 			'donation.giveCard' => ({required Object amount}) => 'Dar ${amount} con tarjeta',
 			'donation.unavailable' => 'El pago no está disponible por ahora. Inténtalo más tarde.',
 			'donation.waitingSlow' => 'Aún en espera. Tu ofrenda se registrará en cuanto llegue el pago, aunque cierres esta página.',
-			'donation.waitingCard' => 'Introduce tu tarjeta en la página de Wajub. Tu ofrenda se confirma aquí en cuanto se recibe el pago.',
+			'donation.waitingCard' => 'Introduce tu tarjeta en la página de pago segura. Tu ofrenda se confirma aquí en cuanto se recibe el pago.',
 			'donation.thanksTitle' => '¡Gracias por tu ofrenda!',
 			'donation.thanksText' => ({required Object amount}) => 'Tu ofrenda de ${amount} se ha recibido. Que el Señor te lo devuelva al ciento por uno.',
 			'donation.verse' => '«Dios ama el dador alegre.» (2 Corintios 9:7)',

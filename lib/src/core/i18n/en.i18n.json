@@ -1077,7 +1077,7 @@
         "notApproved": "The payment was not approved: PIN not entered or refused.",
         "unavailable": "The operator is unavailable right now. Try again later.",
         "generic": "The payment failed. Try again, or use another number.",
-        "sandbox": "In test mode, only Wajub test numbers are accepted: use 6 70 00 00 00, for example."
+        "sandbox": "In test mode, only test numbers are accepted: use 6 53 45 67 89, for example."
       },
       "later": "I'll pay later",
       "toPay": "To pay: {amount}",
@@ -1088,10 +1088,10 @@
       "how": "How do you want to pay?",
       "methodMobile": "Mobile Money",
       "methodCard": "Bank card",
-      "cardNote": "You pay on Wajub's secure page (Visa, Mastercard).",
+      "cardNote": "You pay on a secure payment page (Visa, Mastercard).",
       "payCard": "Pay {amount} by card",
       "waitingCardTitle": "Finish the payment on the secure page",
-      "waitingCardText": "Enter your card on the Wajub page. Your registration is confirmed here as soon as the payment arrives.",
+      "waitingCardText": "Enter your card on the secure payment page. Your registration is confirmed here as soon as the payment arrives.",
       "reopen": "Reopen the payment page"
     }
   },
@@ -2998,7 +2998,7 @@
     "giveCard": "Give {amount} by card",
     "unavailable": "Payment is not available for now. Try again later.",
     "waitingSlow": "Still waiting. Your gift will be recorded as soon as the payment arrives, even if you close this page.",
-    "waitingCard": "Enter your card on the Wajub page. Your gift is confirmed here as soon as the payment is received.",
+    "waitingCard": "Enter your card on the secure payment page. Your gift is confirmed here as soon as the payment is received.",
     "thanksTitle": "Thank you for your gift!",
     "thanksText": "Your gift of {amount} has been received. May the Lord repay you a hundredfold.",
     "verse": "“God loveth a cheerful giver.” (2 Corinthians 9:7)",

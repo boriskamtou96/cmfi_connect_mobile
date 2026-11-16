@@ -7,7 +7,8 @@ import '../domain/payment.dart';
 
 part 'payments_api.g.dart';
 
-/// Payments by mobile money (Wajub, through /v1/payments): the operators,
+/// Payments by mobile money or card (KPAY-NOW or Wajub, chosen by the
+/// server, through /v1/payments): the operators,
 /// the registration to a paid event, and following a payment while the member
 /// confirms it on their phone.
 class PaymentsApi {
@@ -36,7 +37,7 @@ class PaymentsApi {
   });
 
   /// Asks the member's phone for the price of their registration, or opens
-  /// Wajub's page for a card ([Payment.gatewayUrl]); the registration is made
+  /// the provider's secure page for a card ([Payment.gatewayUrl]); the registration is made
   /// once paid. 409 EVENT_FULL, REGISTRATION_CLOSED, ALREADY_PAID,
   /// PROVIDER_UNAVAILABLE, AMOUNT_OUT_OF_BOUNDS, CARDS_DISABLED; 400
   /// INVALID_PHONE.
@@ -66,7 +67,7 @@ class PaymentsApi {
   });
 
   /// « Faire un don »: [amount] of [currency]'s whole units, asked of the
-  /// member's phone or paid on Wajub's page for a card. Nothing is given in
+  /// member's phone or paid on the provider's secure page for a card. Nothing is given in
   /// return. 409 AMOUNT_OUT_OF_BOUNDS, PROVIDER_UNAVAILABLE, CARDS_DISABLED;
   /// 400 INVALID_PHONE; 503 PAYMENTS_DISABLED.
   Future<Payment> donate(

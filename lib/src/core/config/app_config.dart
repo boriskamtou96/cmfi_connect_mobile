@@ -23,7 +23,7 @@ class AppConfig {
   static const semeurByDefault = String.fromEnvironment('BIBLE_SEMEUR') == 'on';
 
   // Premium is bought on the website (cmfi-connect.com/premium, mobile money
-  // through Wajub): the paywall says so and opens the site. PREMIUM_ON_SITE=off
+  // through the payment provider): the paywall says so and opens the site. PREMIUM_ON_SITE=off
   // in .env takes the link out (a build sent to a store review that refuses
   // it): the paywall then says Premium comes soon.
   static const premiumOnSite =

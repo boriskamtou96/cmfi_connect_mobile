@@ -8,6 +8,7 @@ import 'package:cmfi_connect/src/features/prayer/domain/prayer.dart';
 import 'package:cmfi_connect/src/features/reports/domain/daily_report.dart';
 import 'package:cmfi_connect/src/features/reports/domain/report_goal.dart';
 import 'package:cmfi_connect/src/routing/app_router.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:intl/intl.dart';
@@ -291,7 +292,20 @@ void main() {
 
     testWidgets('the past weeks open from the Bilan', (tester) async {
       await pumpApp(tester, token: 't', reportDays: reportDays);
-      await tester.tap(find.text('Compte rendu').last);
+      await tester.pumpAndSettle();
+      // depending on the day, the missing Wednesday is told first as a day
+      // of grace
+      if (find.text('Merci !').evaluate().isNotEmpty) {
+        await tester.tap(find.text('Merci !'));
+        await tester.pumpAndSettle();
+      }
+      // the tab (on Monday, the card of the week says « Compte rendu » too)
+      await tester.tap(
+        find.descendant(
+          of: find.byType(NavigationBar),
+          matching: find.text('Compte rendu'),
+        ),
+      );
       await tester.pumpAndSettle();
       await tester.tap(find.text('Bilan'));
       await tester.pumpAndSettle();

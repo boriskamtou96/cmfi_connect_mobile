@@ -6654,8 +6654,8 @@ class Translations$premium$onSite$fr {
 	/// fr: 'Active Premium sur le site'
 	String get title => 'Active Premium sur le site';
 
-	/// fr: 'Sur cmfi-connect.com, connecte-toi avec ton compte et paie par mobile money (MTN, Orange). Un seul paiement, rien ne se renouvelle tout seul.'
-	String get text => 'Sur cmfi-connect.com, connecte-toi avec ton compte et paie par mobile money (MTN, Orange). Un seul paiement, rien ne se renouvelle tout seul.';
+	/// fr: 'Connecte-toi avec ton compte et paie par mobile money (MTN, Orange). Un seul paiement : rien ne se renouvelle tout seul.'
+	String get text => 'Connecte-toi avec ton compte et paie par mobile money (MTN, Orange). Un seul paiement : rien ne se renouvelle tout seul.';
 
 	/// fr: 'Premium arrive ensuite ici tout seul, sur tous tes téléphones.'
 	String get note => 'Premium arrive ensuite ici tout seul, sur tous tes téléphones.';
@@ -9480,7 +9480,7 @@ extension on Translations {
 			'premium.supportText' => 'Ton soutien fait vivre l\'app et ses nouveautés pour toute la communauté.',
 			'premium.unavailable' => 'Premium arrive bientôt dans l\'app.',
 			'premium.onSite.title' => 'Active Premium sur le site',
-			'premium.onSite.text' => 'Sur cmfi-connect.com, connecte-toi avec ton compte et paie par mobile money (MTN, Orange). Un seul paiement, rien ne se renouvelle tout seul.',
+			'premium.onSite.text' => 'Connecte-toi avec ton compte et paie par mobile money (MTN, Orange). Un seul paiement : rien ne se renouvelle tout seul.',
 			'premium.onSite.note' => 'Premium arrive ensuite ici tout seul, sur tous tes téléphones.',
 			'premium.onSite.button' => 'Continuer sur cmfi-connect.com',
 			'premium.privacy' => 'Confidentialité',

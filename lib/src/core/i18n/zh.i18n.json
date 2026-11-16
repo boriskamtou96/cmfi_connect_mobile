@@ -1098,7 +1098,7 @@
     "unavailable": "Premium 即将登陆应用。",
     "onSite": {
       "title": "在网站上开通 Premium",
-      "text": "在 cmfi-connect.com 用你的账户登录，通过移动支付（MTN、Orange）付款。一次性付款，不会自动续订。",
+      "text": "用你的账户登录，通过移动支付（MTN、Orange）付款。一次性付款，不会自动续订。",
       "note": "之后 Premium 会自动出现在这里，你的所有手机都可使用。",
       "button": "前往 cmfi-connect.com"
     },

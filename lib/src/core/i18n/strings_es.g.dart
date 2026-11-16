@@ -3106,7 +3106,7 @@ class _Translations$premium$onSite$es extends Translations$premium$onSite$fr {
 
 	// Translations
 	@override String get title => 'Activa Premium en el sitio';
-	@override String get text => 'En cmfi-connect.com, inicia sesión con tu cuenta y paga por mobile money (MTN, Orange). Un solo pago, nada se renueva solo.';
+	@override String get text => 'Inicia sesión con tu cuenta y paga por mobile money (MTN, Orange). Un solo pago: nada se renueva solo.';
 	@override String get note => 'Premium aparece luego aquí solo, en todos tus teléfonos.';
 	@override String get button => 'Continuar en cmfi-connect.com';
 }
@@ -5166,7 +5166,7 @@ extension on TranslationsEs {
 			'premium.supportText' => 'Tu apoyo mantiene viva la app y sus novedades para toda la comunidad.',
 			'premium.unavailable' => 'Premium llega pronto a la app.',
 			'premium.onSite.title' => 'Activa Premium en el sitio',
-			'premium.onSite.text' => 'En cmfi-connect.com, inicia sesión con tu cuenta y paga por mobile money (MTN, Orange). Un solo pago, nada se renueva solo.',
+			'premium.onSite.text' => 'Inicia sesión con tu cuenta y paga por mobile money (MTN, Orange). Un solo pago: nada se renueva solo.',
 			'premium.onSite.note' => 'Premium aparece luego aquí solo, en todos tus teléfonos.',
 			'premium.onSite.button' => 'Continuar en cmfi-connect.com',
 			'premium.privacy' => 'Privacidad',

@@ -3450,7 +3450,7 @@ class _Translations$premium$onSite$ar extends Translations$premium$onSite$fr {
 
 	// Translations
 	@override String get title => 'فعِّل Premium على الموقع';
-	@override String get text => 'على cmfi-connect.com، سجّل الدخول بحسابك وادفع عبر الهاتف المحمول (MTN، Orange). دفعة واحدة، ولا يتجدّد شيء تلقائيًا.';
+	@override String get text => 'سجّل الدخول بحسابك وادفع عبر الهاتف المحمول (MTN، Orange). دفعة واحدة، ولا يتجدّد شيء تلقائيًا.';
 	@override String get note => 'يظهر Premium بعد ذلك هنا تلقائيًا، على كل هواتفك.';
 	@override String get button => 'المتابعة على cmfi-connect.com';
 }
@@ -5627,7 +5627,7 @@ extension on TranslationsAr {
 			'premium.supportText' => 'دعمك يُبقي التطبيق وميزاته الجديدة حيّة للجماعة كلّها.',
 			'premium.unavailable' => 'Premium قادم قريبًا إلى التطبيق.',
 			'premium.onSite.title' => 'فعِّل Premium على الموقع',
-			'premium.onSite.text' => 'على cmfi-connect.com، سجّل الدخول بحسابك وادفع عبر الهاتف المحمول (MTN، Orange). دفعة واحدة، ولا يتجدّد شيء تلقائيًا.',
+			'premium.onSite.text' => 'سجّل الدخول بحسابك وادفع عبر الهاتف المحمول (MTN، Orange). دفعة واحدة، ولا يتجدّد شيء تلقائيًا.',
 			'premium.onSite.note' => 'يظهر Premium بعد ذلك هنا تلقائيًا، على كل هواتفك.',
 			'premium.onSite.button' => 'المتابعة على cmfi-connect.com',
 			'premium.privacy' => 'الخصوصية',

@@ -1,5 +1,3 @@
 Novedades de CMFI Connect
-• Los pasos del día y el informe pasan al nuevo día cada mañana, sin reiniciar la app
-• Comparte un versículo de la Biblia como imagen: sobre una foto, un color o tu propia foto
-• La imagen de un versículo compartido ahora es cuadrada, sin esquinas redondeadas
+• Premium: un texto más claro para activarlo en el sitio
 • Mejoras y correcciones

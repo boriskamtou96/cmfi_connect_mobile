@@ -3105,7 +3105,7 @@ class _Translations$premium$onSite$hi extends Translations$premium$onSite$fr {
 
 	// Translations
 	@override String get title => 'साइट पर Premium चालू करें';
-	@override String get text => 'cmfi-connect.com पर अपने खाते से लॉग इन करें और मोबाइल मनी (MTN, Orange) से भुगतान करें। एक बार का भुगतान, कुछ भी अपने आप नवीनीकृत नहीं होता।';
+	@override String get text => 'अपने खाते से लॉग इन करो और मोबाइल मनी (MTN, Orange) से भुगतान करो। एक बार का भुगतान, कुछ भी अपने आप नवीनीकृत नहीं होता।';
 	@override String get note => 'इसके बाद Premium यहाँ अपने आप आ जाएगा, आपके सभी फ़ोन पर।';
 	@override String get button => 'cmfi-connect.com पर जारी रखें';
 }
@@ -5165,7 +5165,7 @@ extension on TranslationsHi {
 			'premium.supportText' => 'तुम्हारा सहयोग पूरे समुदाय के लिए ऐप और उसकी नई सुविधाओं को चलाए रखता है।',
 			'premium.unavailable' => 'Premium जल्द ही ऐप में आ रहा है।',
 			'premium.onSite.title' => 'साइट पर Premium चालू करें',
-			'premium.onSite.text' => 'cmfi-connect.com पर अपने खाते से लॉग इन करें और मोबाइल मनी (MTN, Orange) से भुगतान करें। एक बार का भुगतान, कुछ भी अपने आप नवीनीकृत नहीं होता।',
+			'premium.onSite.text' => 'अपने खाते से लॉग इन करो और मोबाइल मनी (MTN, Orange) से भुगतान करो। एक बार का भुगतान, कुछ भी अपने आप नवीनीकृत नहीं होता।',
 			'premium.onSite.note' => 'इसके बाद Premium यहाँ अपने आप आ जाएगा, आपके सभी फ़ोन पर।',
 			'premium.onSite.button' => 'cmfi-connect.com पर जारी रखें',
 			'premium.privacy' => 'गोपनीयता',

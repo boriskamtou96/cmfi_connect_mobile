@@ -1,5 +1,3 @@
 What's new in CMFI Connect
-• The steps of the day and the report move to the new day every morning, without restarting the app
-• Share a Bible verse as an image: on a photo, a color or your own photo
-• The image of a shared verse is now square, without rounded corners
+• Premium: clearer words on how to activate it on the website
 • Improvements and fixes

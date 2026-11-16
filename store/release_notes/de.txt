@@ -1,5 +1,3 @@
 Neu in CMFI Connect
-• Die Schritte des Tages und der Bericht wechseln jeden Morgen zum neuen Tag, ohne die App neu zu starten
-• Einen Bibelvers als Bild teilen: auf einem Foto, einer Farbe oder deinem eigenen Foto
-• Das Bild eines geteilten Verses ist jetzt quadratisch, ohne abgerundete Ecken
+• Premium: klarere Worte, wie du es auf der Website aktivierst
 • Verbesserungen und Korrekturen

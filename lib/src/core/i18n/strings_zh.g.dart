@@ -3019,7 +3019,7 @@ class _Translations$premium$onSite$zh extends Translations$premium$onSite$fr {
 
 	// Translations
 	@override String get title => '在网站上开通 Premium';
-	@override String get text => '在 cmfi-connect.com 用你的账户登录，通过移动支付（MTN、Orange）付款。一次性付款，不会自动续订。';
+	@override String get text => '用你的账户登录，通过移动支付（MTN、Orange）付款。一次性付款，不会自动续订。';
 	@override String get note => '之后 Premium 会自动出现在这里，你的所有手机都可使用。';
 	@override String get button => '前往 cmfi-connect.com';
 }
@@ -5049,7 +5049,7 @@ extension on TranslationsZh {
 			'premium.supportText' => '你的支持让应用及其新功能为整个团体持续运作。',
 			'premium.unavailable' => 'Premium 即将登陆应用。',
 			'premium.onSite.title' => '在网站上开通 Premium',
-			'premium.onSite.text' => '在 cmfi-connect.com 用你的账户登录，通过移动支付（MTN、Orange）付款。一次性付款，不会自动续订。',
+			'premium.onSite.text' => '用你的账户登录，通过移动支付（MTN、Orange）付款。一次性付款，不会自动续订。',
 			'premium.onSite.note' => '之后 Premium 会自动出现在这里，你的所有手机都可使用。',
 			'premium.onSite.button' => '前往 cmfi-connect.com',
 			'premium.privacy' => '隐私',

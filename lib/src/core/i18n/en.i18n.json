@@ -1126,7 +1126,7 @@
     "unavailable": "Premium is coming soon to the app.",
     "onSite": {
       "title": "Activate Premium on the website",
-      "text": "On cmfi-connect.com, sign in with your account and pay by mobile money (MTN, Orange). One payment, nothing renews on its own.",
+      "text": "Sign in with your account and pay by mobile money (MTN, Orange). One payment: nothing renews on its own.",
       "note": "Premium then shows up here on its own, on all your phones.",
       "button": "Continue on cmfi-connect.com"
     },

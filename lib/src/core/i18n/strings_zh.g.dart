@@ -1456,6 +1456,8 @@ class _Translations$biblePlan$zh extends Translations$biblePlan$fr {
 	);
 	@override String inDays({required Object days}) => '${days}读完';
 	@override String perDayAbout({required Object perDay}) => '每天约 ${perDay} 章';
+	@override String get customDays => '天数';
+	@override String get customDaysHint => '1 到 730 天';
 	@override String endsOn({required Object date}) => '${date} 结束';
 	@override String startsOn({required Object date}) => '计划将于 ${date} 开始。';
 	@override String get start => '开始计划';
@@ -5831,6 +5833,8 @@ extension on TranslationsZh {
 			'biblePlan.chapterCount' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n, other: '${n} 章', ), 
 			'biblePlan.inDays' => ({required Object days}) => '${days}读完',
 			'biblePlan.perDayAbout' => ({required Object perDay}) => '每天约 ${perDay} 章',
+			'biblePlan.customDays' => '天数',
+			'biblePlan.customDaysHint' => '1 到 730 天',
 			'biblePlan.endsOn' => ({required Object date}) => '${date} 结束',
 			'biblePlan.startsOn' => ({required Object date}) => '计划将于 ${date} 开始。',
 			'biblePlan.start' => '开始计划',
@@ -6206,10 +6210,10 @@ extension on TranslationsZh {
 			'gamification.cap.suggestRetreats' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n, other: '${n} 次退修', ), 
 			'gamification.cap.suggestChapters' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n, other: '${n} 章', ), 
 			'gamification.cards.subtitle' => '你已到达的里程碑卡片，可以收藏或分享。',
-			'gamification.cards.empty' => '你的第一张卡片在等你：它会随你的第一份报告到来。',
-			'gamification.cards.locked' => '尚未到达',
 			_ => null,
 		} ?? switch (path) {
+			'gamification.cards.empty' => '你的第一张卡片在等你：它会随你的第一份报告到来。',
+			'gamification.cards.locked' => '尚未到达',
 			'gamification.cards.lockedTitle' => '这张卡片在等你',
 			'gamification.cards.lockedText' => ({required Object name}) => '到达「${name}」即可获得。',
 			'gamification.cards.pageTitle' => '你的卡片',

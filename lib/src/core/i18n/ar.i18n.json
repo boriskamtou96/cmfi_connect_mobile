@@ -2499,6 +2499,8 @@
     },
     "inDays": "في {days}",
     "perDayAbout": "نحو {perDay} في اليوم",
+    "customDays": "عدد الأيام",
+    "customDaysHint": "من 1 إلى 730 يومًا",
     "endsOn": "ينتهي في {date}",
     "startsOn": "تبدأ الخطة في {date}.",
     "start": "ابدأ الخطة",

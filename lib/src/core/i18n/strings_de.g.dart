@@ -1516,6 +1516,8 @@ class _Translations$biblePlan$de extends Translations$biblePlan$fr {
 	);
 	@override String inDays({required Object days}) => 'über ${days}';
 	@override String perDayAbout({required Object perDay}) => 'etwa ${perDay} pro Tag';
+	@override String get customDays => 'Anzahl der Tage';
+	@override String get customDaysHint => 'Von 1 bis 730 Tagen';
 	@override String endsOn({required Object date}) => 'Endet am ${date}';
 	@override String startsOn({required Object date}) => 'Der Plan beginnt am ${date}.';
 	@override String get start => 'Plan beginnen';
@@ -5948,6 +5950,8 @@ extension on TranslationsDe {
 			'biblePlan.chapterCount' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('de'))(n, one: '${n} Kapitel', other: '${n} Kapitel', ), 
 			'biblePlan.inDays' => ({required Object days}) => 'über ${days}',
 			'biblePlan.perDayAbout' => ({required Object perDay}) => 'etwa ${perDay} pro Tag',
+			'biblePlan.customDays' => 'Anzahl der Tage',
+			'biblePlan.customDaysHint' => 'Von 1 bis 730 Tagen',
 			'biblePlan.endsOn' => ({required Object date}) => 'Endet am ${date}',
 			'biblePlan.startsOn' => ({required Object date}) => 'Der Plan beginnt am ${date}.',
 			'biblePlan.start' => 'Plan beginnen',
@@ -6323,10 +6327,10 @@ extension on TranslationsDe {
 			'gamification.cap.suggestRetreats' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('de'))(n, one: '${n} Gebetszeit', other: '${n} Gebetszeiten', ), 
 			'gamification.cap.suggestChapters' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('de'))(n, one: '${n} Kapitel', other: '${n} Kapitel', ), 
 			'gamification.cards.subtitle' => 'Die Karten der erreichten Meilensteine, zum Aufbewahren oder Teilen.',
-			'gamification.cards.empty' => 'Deine erste Karte wartet: Sie kommt mit deinem ersten Bericht.',
-			'gamification.cards.locked' => 'Noch nicht erreicht',
 			_ => null,
 		} ?? switch (path) {
+			'gamification.cards.empty' => 'Deine erste Karte wartet: Sie kommt mit deinem ersten Bericht.',
+			'gamification.cards.locked' => 'Noch nicht erreicht',
 			'gamification.cards.lockedTitle' => 'Diese Karte wartet auf dich',
 			'gamification.cards.lockedText' => ({required Object name}) => 'Erreiche „${name}“, um sie zu bekommen.',
 			'gamification.cards.pageTitle' => 'Deine Karte',

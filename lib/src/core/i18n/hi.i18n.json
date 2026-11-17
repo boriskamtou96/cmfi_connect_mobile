@@ -2180,6 +2180,8 @@
     },
     "inDays": "{days} में",
     "perDayAbout": "रोज़ लगभग {perDay}",
+    "customDays": "दिनों की संख्या",
+    "customDaysHint": "1 से 730 दिन",
     "endsOn": "{date} को समाप्त",
     "startsOn": "योजना {date} को शुरू होगी।",
     "start": "योजना शुरू करें",

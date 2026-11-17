@@ -169,3 +169,17 @@ String readingLabel(
   }
   return parts.join(' · ');
 }
+
+/// The days a plan of its own length (« Autre ») can take.
+const customDaysMin = 1;
+const customDaysMax = 730;
+
+/// The next length of a plan of its own length, with − or +: 1 by 1 under 30
+/// days (« the New Testament in 3 days »), 10 by 10 from 30, between
+/// [customDaysMin] and [customDaysMax].
+int stepCustomDays(int days, {required bool up}) {
+  final next = up
+      ? (days < 30 ? days + 1 : days + 10)
+      : (days <= 30 ? days - 1 : (days - 10 < 30 ? 30 : days - 10));
+  return next.clamp(customDaysMin, customDaysMax);
+}

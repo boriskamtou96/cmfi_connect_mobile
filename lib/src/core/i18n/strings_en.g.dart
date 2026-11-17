@@ -1517,6 +1517,8 @@ class _Translations$biblePlan$en extends Translations$biblePlan$fr {
 	);
 	@override String inDays({required Object days}) => 'in ${days}';
 	@override String perDayAbout({required Object perDay}) => 'about ${perDay} a day';
+	@override String get customDays => 'Number of days';
+	@override String get customDaysHint => 'From 1 to 730 days';
 	@override String endsOn({required Object date}) => 'Ends on ${date}';
 	@override String startsOn({required Object date}) => 'The plan starts on ${date}.';
 	@override String get start => 'Start the plan';
@@ -5949,6 +5951,8 @@ extension on TranslationsEn {
 			'biblePlan.chapterCount' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n, one: '${n} chapter', other: '${n} chapters', ), 
 			'biblePlan.inDays' => ({required Object days}) => 'in ${days}',
 			'biblePlan.perDayAbout' => ({required Object perDay}) => 'about ${perDay} a day',
+			'biblePlan.customDays' => 'Number of days',
+			'biblePlan.customDaysHint' => 'From 1 to 730 days',
 			'biblePlan.endsOn' => ({required Object date}) => 'Ends on ${date}',
 			'biblePlan.startsOn' => ({required Object date}) => 'The plan starts on ${date}.',
 			'biblePlan.start' => 'Start the plan',
@@ -6324,10 +6328,10 @@ extension on TranslationsEn {
 			'gamification.cap.suggestRetreats' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n, one: '${n} retreat', other: '${n} retreats', ), 
 			'gamification.cap.suggestChapters' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n, one: '${n} chapter', other: '${n} chapters', ), 
 			'gamification.cards.subtitle' => 'The cards of the steps you have reached, to keep or to share.',
-			'gamification.cards.empty' => 'Your first card is waiting: it comes with your first report.',
-			'gamification.cards.locked' => 'To reach',
 			_ => null,
 		} ?? switch (path) {
+			'gamification.cards.empty' => 'Your first card is waiting: it comes with your first report.',
+			'gamification.cards.locked' => 'To reach',
 			'gamification.cards.lockedTitle' => 'This card is waiting for you',
 			'gamification.cards.lockedText' => ({required Object name}) => 'Reach “${name}” to receive it.',
 			'gamification.cards.pageTitle' => 'Your card',

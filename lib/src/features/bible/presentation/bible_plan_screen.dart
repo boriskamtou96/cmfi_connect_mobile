@@ -272,6 +272,27 @@ class _Grid extends StatelessWidget {
 
 // ----- making a plan -----
 
+/// The length of a plan of its own, typed (1 to 730 days); null when
+/// cancelled or out of bounds.
+Future<int?> _askDays(BuildContext context) async {
+  final t = context.t;
+  final typed = await showInputDialog(
+    context,
+    title: t.biblePlan.customDays,
+    label: t.biblePlan.customDaysHint,
+    confirmLabel: t.common.done,
+    keyboardType: TextInputType.number,
+    inputFormatters: [
+      FilteringTextInputFormatter.digitsOnly,
+      LengthLimitingTextInputFormatter(3),
+    ],
+  );
+  final days = int.tryParse(typed ?? '');
+  return days == null || days < customDaysMin || days > customDaysMax
+      ? null
+      : days;
+}
+
 class _Setup extends HookConsumerWidget {
   const _Setup();
 
@@ -425,29 +446,44 @@ class _Setup extends HookConsumerWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   IconButton.filledTonal(
-                    tooltip: '−10',
+                    tooltip: custom.value <= 30 ? '−1' : '−10',
                     visualDensity: VisualDensity.compact,
-                    onPressed: custom.value > 20
-                        ? () => custom.value -= 10
+                    onPressed: custom.value > customDaysMin
+                        ? () => custom.value = stepCustomDays(
+                            custom.value,
+                            up: false,
+                          )
                         : null,
                     icon: const Icon(AppIcons.minus),
                   ),
                   SizedBox(
                     width: 112,
-                    child: Text(
-                      t.days(n: custom.value),
-                      textAlign: TextAlign.center,
-                      style: const TextStyle(
-                        fontSize: 17,
-                        fontWeight: FontWeight.w800,
+                    // touched: the number typed
+                    child: TextButton(
+                      onPressed: () async {
+                        final typed = await _askDays(context);
+                        if (typed != null) {
+                          custom.value = typed;
+                        }
+                      },
+                      child: Text(
+                        t.days(n: custom.value),
+                        textAlign: TextAlign.center,
+                        style: const TextStyle(
+                          fontSize: 17,
+                          fontWeight: FontWeight.w800,
+                        ),
                       ),
                     ),
                   ),
                   IconButton.filledTonal(
-                    tooltip: '+10',
+                    tooltip: custom.value < 30 ? '+1' : '+10',
                     visualDensity: VisualDensity.compact,
-                    onPressed: custom.value < 730
-                        ? () => custom.value += 10
+                    onPressed: custom.value < customDaysMax
+                        ? () => custom.value = stepCustomDays(
+                            custom.value,
+                            up: true,
+                          )
                         : null,
                     icon: const Icon(AppIcons.plus),
                   ),

@@ -1757,6 +1757,8 @@ class _Translations$biblePlan$ar extends Translations$biblePlan$fr {
 	);
 	@override String inDays({required Object days}) => 'في ${days}';
 	@override String perDayAbout({required Object perDay}) => 'نحو ${perDay} في اليوم';
+	@override String get customDays => 'عدد الأيام';
+	@override String get customDaysHint => 'من 1 إلى 730 يومًا';
 	@override String endsOn({required Object date}) => 'ينتهي في ${date}';
 	@override String startsOn({required Object date}) => 'تبدأ الخطة في ${date}.';
 	@override String get start => 'ابدأ الخطة';
@@ -6409,6 +6411,8 @@ extension on TranslationsAr {
 			'biblePlan.chapterCount' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n, zero: '${n} أصحاح', one: 'أصحاح واحد', two: 'أصحاحان', few: '${n} أصحاحات', many: '${n} أصحاحًا', other: '${n} أصحاح', ), 
 			'biblePlan.inDays' => ({required Object days}) => 'في ${days}',
 			'biblePlan.perDayAbout' => ({required Object perDay}) => 'نحو ${perDay} في اليوم',
+			'biblePlan.customDays' => 'عدد الأيام',
+			'biblePlan.customDaysHint' => 'من 1 إلى 730 يومًا',
 			'biblePlan.endsOn' => ({required Object date}) => 'ينتهي في ${date}',
 			'biblePlan.startsOn' => ({required Object date}) => 'تبدأ الخطة في ${date}.',
 			'biblePlan.start' => 'ابدأ الخطة',
@@ -6784,10 +6788,10 @@ extension on TranslationsAr {
 			'gamification.cap.suggestRetreats' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n, zero: 'لا خلوات', one: 'خلوة واحدة', two: 'خلوتان', few: '${n} خلوات', many: '${n} خلوة', other: '${n} خلوة', ), 
 			'gamification.cap.suggestChapters' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n, zero: 'لا إصحاحات', one: 'إصحاح واحد', two: 'إصحاحان', few: '${n} إصحاحات', many: '${n} إصحاحًا', other: '${n} إصحاح', ), 
 			'gamification.cards.subtitle' => 'بطاقات المحطات التي وصلت إليها، لتحفظها أو تشاركها.',
-			'gamification.cards.empty' => 'بطاقتك الأولى تنتظرك: تأتي مع تقريرك الأول.',
-			'gamification.cards.locked' => 'لم تُبلَغ بعد',
 			_ => null,
 		} ?? switch (path) {
+			'gamification.cards.empty' => 'بطاقتك الأولى تنتظرك: تأتي مع تقريرك الأول.',
+			'gamification.cards.locked' => 'لم تُبلَغ بعد',
 			'gamification.cards.lockedTitle' => 'هذه البطاقة تنتظرك',
 			'gamification.cards.lockedText' => ({required Object name}) => 'ابلغ «${name}» لتحصل عليها.',
 			'gamification.cards.pageTitle' => 'بطاقتك',

@@ -1515,6 +1515,8 @@ class _Translations$biblePlan$hi extends Translations$biblePlan$fr {
 	);
 	@override String inDays({required Object days}) => '${days} में';
 	@override String perDayAbout({required Object perDay}) => 'रोज़ लगभग ${perDay}';
+	@override String get customDays => 'दिनों की संख्या';
+	@override String get customDaysHint => '1 से 730 दिन';
 	@override String endsOn({required Object date}) => '${date} को समाप्त';
 	@override String startsOn({required Object date}) => 'योजना ${date} को शुरू होगी।';
 	@override String get start => 'योजना शुरू करें';
@@ -5947,6 +5949,8 @@ extension on TranslationsHi {
 			'biblePlan.chapterCount' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n, one: '${n} अध्याय', other: '${n} अध्याय', ), 
 			'biblePlan.inDays' => ({required Object days}) => '${days} में',
 			'biblePlan.perDayAbout' => ({required Object perDay}) => 'रोज़ लगभग ${perDay}',
+			'biblePlan.customDays' => 'दिनों की संख्या',
+			'biblePlan.customDaysHint' => '1 से 730 दिन',
 			'biblePlan.endsOn' => ({required Object date}) => '${date} को समाप्त',
 			'biblePlan.startsOn' => ({required Object date}) => 'योजना ${date} को शुरू होगी।',
 			'biblePlan.start' => 'योजना शुरू करें',
@@ -6322,10 +6326,10 @@ extension on TranslationsHi {
 			'gamification.cap.suggestRetreats' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n, one: '${n} प्रार्थना-समय', other: '${n} प्रार्थना-समय', ), 
 			'gamification.cap.suggestChapters' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n, one: '${n} अध्याय', other: '${n} अध्याय', ), 
 			'gamification.cards.subtitle' => 'जिन पड़ावों तक तुम पहुँचे, उनके कार्ड: सहेजने या साझा करने के लिए।',
-			'gamification.cards.empty' => 'तुम्हारा पहला कार्ड इंतज़ार कर रहा है: वह तुम्हारी पहली रिपोर्ट के साथ आएगा।',
-			'gamification.cards.locked' => 'अभी बाकी',
 			_ => null,
 		} ?? switch (path) {
+			'gamification.cards.empty' => 'तुम्हारा पहला कार्ड इंतज़ार कर रहा है: वह तुम्हारी पहली रिपोर्ट के साथ आएगा।',
+			'gamification.cards.locked' => 'अभी बाकी',
 			'gamification.cards.lockedTitle' => 'यह कार्ड तुम्हारा इंतज़ार कर रहा है',
 			'gamification.cards.lockedText' => ({required Object name}) => 'इसे पाने के लिए «${name}» तक पहुँचो।',
 			'gamification.cards.pageTitle' => 'तुम्हारा कार्ड',

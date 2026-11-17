@@ -2181,6 +2181,8 @@
     },
     "inDays": "en {days}",
     "perDayAbout": "unos {perDay} al día",
+    "customDays": "Número de días",
+    "customDaysHint": "De 1 a 730 días",
     "endsOn": "Termina el {date}",
     "startsOn": "El plan empieza el {date}.",
     "start": "Empezar el plan",

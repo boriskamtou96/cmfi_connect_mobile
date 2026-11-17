@@ -264,4 +264,46 @@ void main() {
     await tester.pumpAndSettle();
     expect(find.byType(BiblePlanScreen), findsOneWidget);
   });
+
+  test('custom days: 1 by 1 under 30, then 10 by 10', () {
+    int up(int days) => stepCustomDays(days, up: true);
+    int down(int days) => stepCustomDays(days, up: false);
+    expect([up(1), up(29), up(30), up(725), up(730)], [2, 30, 40, 730, 730]);
+    expect(
+      [down(40), down(35), down(30), down(2), down(1)],
+      [30, 30, 29, 1, 1],
+    );
+    expect((customDaysMin, customDaysMax), (1, 730));
+  });
+
+  testWidgets('a custom plan: the New Testament in 3 days', (tester) async {
+    await openPlan(tester);
+
+    await tester.tap(find.bySemanticsLabel('Autre'));
+    await tester.pumpAndSettle();
+    // the number of days is typed
+    await tester.tap(find.text('120 jours'));
+    await tester.pumpAndSettle();
+    expect(find.text('Nombre de jours'), findsOneWidget);
+    expect(find.text('De 1 à 730 jours'), findsOneWidget);
+    await tester.enterText(find.byType(TextField), '3');
+    await tester.tap(find.text('OK'));
+    await tester.pumpAndSettle();
+    await tester.tap(find.text('Le Nouveau Testament'));
+    await tester.pumpAndSettle();
+    expect(
+      find.bySemanticsLabel(
+        RegExp('^260 chapitres en 3 jours, environ 86,7 par jour'),
+      ),
+      findsOneWidget,
+    );
+
+    // under 30 days, − and + go 1 by 1
+    await tester.tap(find.byTooltip('−1'));
+    await tester.pumpAndSettle();
+    expect(find.text('2 jours'), findsOneWidget);
+    await tester.tap(find.text('Commencer le plan'));
+    await tester.pumpAndSettle();
+    expect(find.text('Jour 1 sur 2'), findsOneWidget);
+  });
 }

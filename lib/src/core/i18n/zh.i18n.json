@@ -2101,6 +2101,8 @@
     },
     "inDays": "{days}读完",
     "perDayAbout": "每天约 {perDay} 章",
+    "customDays": "天数",
+    "customDaysHint": "1 到 730 天",
     "endsOn": "{date} 结束",
     "startsOn": "计划将于 {date} 开始。",
     "start": "开始计划",

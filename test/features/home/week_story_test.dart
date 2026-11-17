@@ -293,9 +293,13 @@ void main() {
     testWidgets('the past weeks open from the Bilan', (tester) async {
       await pumpApp(tester, token: 't', reportDays: reportDays);
       await tester.pumpAndSettle();
-      // depending on the day, the missing Wednesday is told first as a day
-      // of grace
-      if (find.text('Merci !').evaluate().isNotEmpty) {
+      // depending on the day, the missing Wednesday (and, on a Tuesday, an
+      // empty Monday) is told first as a day of grace, one after the other
+      for (
+        var i = 0;
+        i < 3 && find.text('Merci !').evaluate().isNotEmpty;
+        i++
+      ) {
         await tester.tap(find.text('Merci !'));
         await tester.pumpAndSettle();
       }

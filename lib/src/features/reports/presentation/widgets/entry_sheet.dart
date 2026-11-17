@@ -44,6 +44,7 @@ Future<EntryValues?> showEntrySheet(
   VoidCallback? onStartTimer,
   bool timerRunning = false,
   bool withBook = false,
+  bool countOnce = false,
 }) => showModalBottomSheet<EntryValues>(
   context: context,
   isScrollControlled: true,
@@ -56,6 +57,7 @@ Future<EntryValues?> showEntrySheet(
     onStartTimer: onStartTimer,
     timerRunning: timerRunning,
     withBook: withBook,
+    countOnce: countOnce,
   ),
 );
 
@@ -68,6 +70,7 @@ class EntrySheet extends HookConsumerWidget {
     this.onStartTimer,
     this.timerRunning = false,
     this.withBook = false,
+    this.countOnce = false,
     super.key,
   });
 
@@ -78,6 +81,10 @@ class EntrySheet extends HookConsumerWidget {
   final VoidCallback? onStartTimer;
   final bool timerRunning;
   final bool withBook;
+
+  /// The day's report (not a goal): on an item counted in times and in time
+  /// ([ReportEntry.countsTimes]), a duration given on no count is one time.
+  final bool countOnce;
 
   // limits of the API
   static const maxQuantity = 100000;
@@ -112,6 +119,26 @@ class EntrySheet extends HookConsumerWidget {
     );
 
     int? quantity() => int.tryParse(quantityController.text);
+    // the member gave the count (typed, + or −): it is theirs, even 0
+    final countGiven = useRef(false);
+
+    // an item counted in times and in time: a duration given on no count
+    // is one time (a count already given is left alone)
+    useEffect(() {
+      if (!countOnce || !entry.countsTimes) {
+        return null;
+      }
+      void countIt() {
+        if (!countGiven.value &&
+            (minutes.value ?? 0) > 0 &&
+            (quantity() ?? 0) == 0) {
+          quantityController.text = '1';
+        }
+      }
+
+      minutes.addListener(countIt);
+      return () => minutes.removeListener(countIt);
+    }, [minutes]);
 
     // Lecture de la littérature chrétienne names the book read: the one of
     // the day, else (a day not filled in yet) the book being read
@@ -148,6 +175,7 @@ class EntrySheet extends HookConsumerWidget {
     }
 
     void setQuantity(int value) {
+      countGiven.value = true;
       final clamped = value.clamp(0, maxQuantity);
       nudgeDirection.value = clamped < (quantity() ?? 0) ? -1 : 1;
       quantityController.value = TextEditingValue(
@@ -307,6 +335,7 @@ class EntrySheet extends HookConsumerWidget {
                           opacity: nudgeOpacity,
                           child: TextField(
                             controller: quantityController,
+                            onChanged: (_) => countGiven.value = true,
                             autofocus:
                                 entry.quantity == null && !entry.tracksDuration,
                             textAlign: TextAlign.center,

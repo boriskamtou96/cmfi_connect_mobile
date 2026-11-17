@@ -1,6 +1,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 import '../../../core/network/json_converters.dart';
+import 'standard_item.dart';
 
 part 'daily_report.freezed.dart';
 part 'daily_report.g.dart';
@@ -29,6 +30,19 @@ abstract class ReportEntry with _$ReportEntry {
       _$ReportEntryFromJson(json);
 
   bool get isFilled => quantity != null || durationMinutes != null;
+
+  /// Counted in times and in time (Méditation, Prière en groupe, a personal
+  /// item without a unit): a duration given is also one time.
+  bool get countsTimes {
+    if (!tracksQuantity || !tracksDuration) {
+      return false;
+    }
+    final standard = StandardItem.of(code);
+    if (standard != null) {
+      return standard.unit == StandardUnit.times;
+    }
+    return quantityUnit?.trim().isEmpty ?? true;
+  }
 }
 
 /// The book named by an LLC entry. [pageReached] (history only): the page

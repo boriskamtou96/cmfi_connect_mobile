@@ -51,8 +51,10 @@ Future<bool> addToDayReport(
 }
 
 /// Adds [minutes] to the duration of the item [activityTypeId] of [day]'s
-/// report and saves it (1440 minutes at most). false when the report has no
-/// such item counted in time. Used by the stopwatch.
+/// report and saves it (1440 minutes at most), and one time to an item
+/// counted in times too ([ReportEntry.countsTimes]: a meditation timed is a
+/// meditation done). false when the report has no such item counted in time.
+/// Used by the stopwatch.
 Future<bool> addMinutesToDayReport(
   Ref ref, {
   required DateTime day,
@@ -76,7 +78,9 @@ Future<bool> addMinutesToDayReport(
         .read(provider.notifier)
         .updateEntry(
           entry.activityTypeId,
-          quantity: entry.quantity,
+          quantity: entry.countsTimes
+              ? ((entry.quantity ?? 0) + 1).clamp(0, 9999)
+              : entry.quantity,
           durationMinutes: ((entry.durationMinutes ?? 0) + minutes).clamp(
             0,
             1440,

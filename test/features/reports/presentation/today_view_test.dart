@@ -1,10 +1,12 @@
 import 'package:cmfi_connect/src/core/i18n/strings.g.dart';
 import 'package:cmfi_connect/src/core/utils/date_extensions.dart';
+import 'package:cmfi_connect/src/features/reports/domain/activity_type.dart';
 import 'package:cmfi_connect/src/features/reports/presentation/widgets/entry_sheet.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:intl/date_symbol_data_local.dart';
 
+import '../../../helpers/fakes.dart';
 import '../../../helpers/pump_app.dart';
 
 void main() {
@@ -158,5 +160,127 @@ void main() {
 
     await openReports(tester);
     expect(find.text('Non enregistré'), findsOneWidget);
+  });
+
+  const meditation = ActivityType(
+    id: 3,
+    code: 'RDQAD',
+    label: 'Méditation',
+    tracksQuantity: true,
+    quantityUnit: 'Nombre de fois',
+    tracksDuration: true,
+    isStandard: true,
+  );
+
+  Finder sheetField() => find.descendant(
+    of: find.byType(EntrySheet),
+    matching: find.byType(TextField),
+  );
+
+  testWidgets('a duration on an item counted in times counts it once', (
+    tester,
+  ) async {
+    final app = await pumpApp(
+      tester,
+      token: 'saved-token',
+      activities: const [...sampleActivities, meditation],
+    );
+    await openReports(tester);
+
+    await tester.tap(find.text('Méditation'));
+    await tester.pumpAndSettle();
+    await tester.tap(find.text('15 min'));
+    await tester.pumpAndSettle();
+    expect(tester.widget<TextField>(sheetField()).controller!.text, '1');
+    await tester.tap(find.text('Valider'));
+    await tester.pumpAndSettle();
+    await tester.tap(find.text('Enregistrer la journée'));
+    await tester.pumpAndSettle();
+
+    final saved = app.reportsApi.saves.single.entries.single;
+    expect(saved.code, 'RDQAD');
+    expect(saved.quantity, 1);
+    expect(saved.durationMinutes, 15);
+  });
+
+  testWidgets('… but leaves a count already given, and items with a unit', (
+    tester,
+  ) async {
+    final app = await pumpApp(
+      tester,
+      token: 'saved-token',
+      activities: const [...sampleActivities, meditation],
+    );
+    await openReports(tester);
+
+    await tester.tap(find.text('Méditation'));
+    await tester.pumpAndSettle();
+    await tester.enterText(sheetField(), '3');
+    await tester.tap(find.text('30 min'));
+    await tester.pumpAndSettle();
+    await tester.tap(find.text('Valider'));
+    await tester.pumpAndSettle();
+
+    // a personal item whose unit is written: not counted in times
+    await tester.tap(find.text('RQDQA').last);
+    await tester.pumpAndSettle();
+    await tester.tap(find.text('15 min'));
+    await tester.pumpAndSettle();
+    await tester.tap(find.text('Valider'));
+    await tester.pumpAndSettle();
+    await tester.tap(find.text('Enregistrer la journée'));
+    await tester.pumpAndSettle();
+
+    final entries = app.reportsApi.saves.single.entries;
+    final meditated = entries.firstWhere((entry) => entry.code == 'RDQAD');
+    expect(meditated.quantity, 3);
+    expect(meditated.durationMinutes, 30);
+    final personal = entries.firstWhere((entry) => entry.code == 'RQDQA');
+    expect(personal.quantity, isNull);
+    expect(personal.durationMinutes, 15);
+  });
+
+  testWidgets('a count put back to 0 stays 0 when the duration changes', (
+    tester,
+  ) async {
+    await pumpApp(
+      tester,
+      token: 'saved-token',
+      activities: const [...sampleActivities, meditation],
+    );
+    await openReports(tester);
+
+    await tester.tap(find.text('Méditation'));
+    await tester.pumpAndSettle();
+    await tester.tap(find.text('15 min'));
+    await tester.pumpAndSettle();
+    expect(tester.widget<TextField>(sheetField()).controller!.text, '1');
+    await tester.enterText(sheetField(), '0');
+    await tester.tap(find.text('+ 1 min'));
+    await tester.pumpAndSettle();
+    expect(tester.widget<TextField>(sheetField()).controller!.text, '0');
+  });
+
+  testWidgets('a goal on an item counted in times keeps the duration alone', (
+    tester,
+  ) async {
+    final app = await pumpApp(
+      tester,
+      token: 'saved-token',
+      activities: const [...sampleActivities, meditation],
+    );
+    await openReports(tester);
+    await tester.tap(find.byTooltip('Mes éléments'));
+    await tester.pumpAndSettle();
+
+    await tester.tap(find.text('Méditation'));
+    await tester.pumpAndSettle();
+    await tester.tap(find.text('30 min'));
+    await tester.pumpAndSettle();
+    expect(tester.widget<TextField>(sheetField()).controller!.text, '');
+    await tester.tap(find.text('Valider'));
+    await tester.pumpAndSettle();
+
+    expect(app.preferences.getString('report_goals'), '{"3":{"minutes":30}}');
   });
 }

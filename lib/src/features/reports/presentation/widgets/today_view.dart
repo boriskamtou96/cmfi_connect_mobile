@@ -80,6 +80,7 @@ class TodayView extends ConsumerWidget {
             : null,
         timerRunning: running?.activityTypeId == entry.activityTypeId,
         withBook: true,
+        countOnce: true,
         caption: goal == null
             ? null
             : t.items.goal(

@@ -4,11 +4,14 @@ import 'package:cmfi_connect/src/core/i18n/strings.g.dart';
 import 'package:cmfi_connect/src/core/utils/date_extensions.dart';
 import 'package:cmfi_connect/src/core/utils/stopwatch_clock.dart';
 import 'package:cmfi_connect/src/features/reports/application/report_timer.dart';
+import 'package:cmfi_connect/src/features/reports/domain/activity_type.dart';
+import 'package:cmfi_connect/src/features/reports/domain/daily_report.dart';
 import 'package:cmfi_connect/src/features/reports/presentation/widgets/timer_banner.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:intl/date_symbol_data_local.dart';
 
+import '../../../helpers/fakes.dart';
 import '../../../helpers/pump_app.dart';
 
 void main() {
@@ -145,5 +148,110 @@ void main() {
           .durationMinutes,
       1,
     );
+  });
+
+  /// A stopwatch on [code] started [minutes] ago, paused now.
+  Map<String, Object> pausedTimer(
+    int id,
+    String code,
+    String label,
+    int minutes,
+  ) {
+    final now = DateTime.now();
+    return {
+      ReportTimer.key: jsonEncode(
+        RunningTimer(
+          activityTypeId: id,
+          code: code,
+          label: label,
+          startedAt: now.subtract(Duration(minutes: minutes)),
+          pausedAt: now,
+        ).toJson(),
+      ),
+    };
+  }
+
+  testWidgets('« Terminer » on an item counted in times: its minutes and one '
+      'more time', (tester) async {
+    final app = await pumpApp(
+      tester,
+      token: 't',
+      activities: [
+        ...sampleActivities,
+        const ActivityType(
+          id: 3,
+          code: 'RDQAD',
+          label: 'Méditation',
+          tracksQuantity: true,
+          quantityUnit: 'Nombre de fois',
+          tracksDuration: true,
+          isStandard: true,
+        ),
+      ],
+      initialPreferences: pausedTimer(3, 'RDQAD', 'Méditation', 20),
+    );
+    ReportEntry meditation() => app.reportsApi.days[today()]!.entries
+        .firstWhere((entry) => entry.code == 'RDQAD');
+
+    await tester.tap(find.text('Terminer'));
+    await tester.pumpAndSettle();
+    expect(meditation().quantity, 1);
+    expect(meditation().durationMinutes, 20);
+
+    // a second one: one more time
+    final timer = app.container.read(reportTimerProvider.notifier);
+    await timer.start(activityTypeId: 3, code: 'RDQAD', label: 'Méditation');
+    await timer.pause();
+    await tester.pumpAndSettle();
+    await timer.finish();
+    await tester.pumpAndSettle();
+    expect(meditation().quantity, 2);
+    expect(meditation().durationMinutes, 21);
+  });
+
+  testWidgets('« Terminer » on Lecture biblique leaves its chapters alone', (
+    tester,
+  ) async {
+    final app = await pumpApp(
+      tester,
+      token: 't',
+      activities: const [
+        ActivityType(
+          id: 1,
+          code: 'LB',
+          label: 'Lecture biblique',
+          tracksQuantity: true,
+          quantityUnit: 'chapitres',
+          tracksDuration: true,
+          isStandard: true,
+        ),
+      ],
+      initialPreferences: pausedTimer(1, 'LB', 'Lecture biblique', 10),
+      reportDays: {
+        today(): DailyReport(
+          date: today(),
+          submitted: true,
+          entries: const [
+            ReportEntry(
+              activityTypeId: 1,
+              code: 'LB',
+              label: 'Lecture biblique',
+              tracksQuantity: true,
+              quantityUnit: 'chapitres',
+              tracksDuration: true,
+              quantity: 3,
+            ),
+          ],
+        ),
+      },
+    );
+
+    await tester.tap(find.text('Terminer'));
+    await tester.pumpAndSettle();
+    final entry = app.reportsApi.days[today()]!.entries.firstWhere(
+      (entry) => entry.code == 'LB',
+    );
+    expect(entry.quantity, 3);
+    expect(entry.durationMinutes, 10);
   });
 }

@@ -10,7 +10,6 @@ import '../../../core/services/app_update.dart';
 import '../../../core/services/app_version.dart';
 import '../../../core/services/biometrics.dart';
 import '../../../core/services/link_launcher.dart';
-import '../../../core/services/premium_store.dart';
 import '../../../core/storage/preferences.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_icons.dart';
@@ -57,9 +56,6 @@ class SettingsScreen extends ConsumerWidget {
     final themeMode = ref.watch(savedThemeModeProvider);
     final reminder = ref.watch(reportReminderProvider);
     final sending = ref.watch(reportSendingProvider);
-    final premium = ref.watch(premiumProvider).value ?? false;
-    // v1: Premium is offered to everyone, nothing leads to the paywall
-    final premiumForEveryone = ref.watch(premiumForEveryoneProvider);
     final seekFirst = ref.watch(seekFirstProvider).value;
     final biometricKind = ref.watch(biometricKindProvider).value;
     final savedLogin = ref.watch(savedLoginProvider).value;
@@ -103,18 +99,6 @@ class SettingsScreen extends ConsumerWidget {
           AppSpacing.xl,
         ),
         children: [
-          if (!premiumForEveryone)
-            group(null, [
-              MenuTile(
-                icon: AppIcons.premiumTile,
-                title: t.premium.name,
-                subtitle: premium
-                    ? t.premium.moreActive
-                    : t.premium.moreSubtitle,
-                subtitleStrong: premium,
-                onTap: () => context.router.push(const PremiumRoute()),
-              ),
-            ]),
           group(s.practice, [
             if (seekFirst?.supported ?? false)
               MenuTile(

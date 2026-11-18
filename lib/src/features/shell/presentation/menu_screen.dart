@@ -5,6 +5,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../core/i18n/strings.g.dart';
 import '../../../core/services/app_version.dart';
+import '../../../core/services/premium_store.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_icons.dart';
 import '../../../core/theme/app_spacing.dart';
@@ -48,6 +49,8 @@ class MenuScreen extends ConsumerWidget {
             .where((book) => book.isReading)
             .length;
     final version = ref.watch(appVersionProvider).value ?? '';
+    final premium = ref.watch(premiumProvider).value ?? false;
+    final premiumForEveryone = ref.watch(premiumForEveryoneProvider);
     final top = MediaQuery.paddingOf(context).top;
 
     // a page above the tabs
@@ -150,6 +153,26 @@ class MenuScreen extends ConsumerWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
+                      // Premium first (asked on 18/11/2026): « Devenir
+                      // Premium », or that it is on
+                      if (!premiumForEveryone) ...[
+                        SectionCard(
+                          children: [
+                            MenuTile(
+                              icon: AppIcons.premiumTile,
+                              title: premium
+                                  ? t.premium.name
+                                  : t.premium.become,
+                              subtitle: premium
+                                  ? t.premium.moreActive
+                                  : t.premium.moreSubtitle,
+                              subtitleStrong: premium,
+                              onTap: () => go(const PremiumRoute()),
+                            ),
+                          ],
+                        ),
+                        const SizedBox(height: AppSpacing.lg),
+                      ],
                       // what is theirs (12/11/2026, in place of the hymns
                       // and the prayer, which open from the home screen)
                       SectionLabel(t.me.journey),

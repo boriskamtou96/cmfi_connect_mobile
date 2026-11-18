@@ -817,6 +817,7 @@ class _Translations$premium$es extends Translations$premium$fr {
 	@override String get activeText => '¡Gracias por apoyar CMFI Connect! El widget, tu año, tu balance y las enseñanzas sin conexión están abiertos.';
 	@override String get staffText => 'Tienes Premium gratis porque formas parte del equipo de CMFI Connect.';
 	@override String get moreSubtitle => 'Widget, tu año, enseñanzas sin conexión';
+	@override String get become => 'Hazte Premium';
 	@override String get moreActive => 'Activo';
 	@override String get unlock => 'Desbloquear con Premium';
 	@override String get termsShort => 'Condiciones';
@@ -5250,6 +5251,7 @@ extension on TranslationsEs {
 			'premium.activeText' => '¡Gracias por apoyar CMFI Connect! El widget, tu año, tu balance y las enseñanzas sin conexión están abiertos.',
 			'premium.staffText' => 'Tienes Premium gratis porque formas parte del equipo de CMFI Connect.',
 			'premium.moreSubtitle' => 'Widget, tu año, enseñanzas sin conexión',
+			'premium.become' => 'Hazte Premium',
 			'premium.moreActive' => 'Activo',
 			'premium.unlock' => 'Desbloquear con Premium',
 			'premium.termsShort' => 'Condiciones',
@@ -5327,9 +5329,9 @@ extension on TranslationsEs {
 			'ministry.previousGoal' => 'Objetivo anterior',
 			'ministry.nextGoal' => 'Siguiente objetivo',
 			'ministry.media.books' => 'Libros',
-			'ministry.media.tracts' => 'Tratados',
 			_ => null,
 		} ?? switch (path) {
+			'ministry.media.tracts' => 'Tratados',
 			'ministry.media.magazines' => 'Revistas',
 			'ministry.media.cds' => 'CD',
 			'ministry.media.dvds' => 'DVD',
@@ -5841,9 +5843,9 @@ extension on TranslationsEs {
 			'weekStory.statDays' => 'días llenados',
 			'weekStory.statStreak' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('es'))(n, one: 'día seguido', other: 'días seguidos', ), 
 			'weekStory.statRetreats' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('es'))(n, one: 'retiro', other: 'retiros', ), 
-			'weekStory.statGoals' => 'de objetivos',
 			_ => null,
 		} ?? switch (path) {
+			'weekStory.statGoals' => 'de objetivos',
 			'weekStory.share' => 'Compartir mi semana',
 			'weekStory.homeText' => 'Tu fidelidad, tu oración y tus objetivos de la semana.',
 			'weekStory.open' => 'Ver mi semana',
@@ -6355,9 +6357,9 @@ extension on TranslationsEs {
 			'journey.grace.used' => ({required Object day}) => 'Día de gracia ${day}: tu racha continúa.',
 			'journey.grace.title' => 'Un día de gracia',
 			'journey.grace.text' => ({required Object day}) => 'No llenaste ${day}, pero tu racha continúa: cada semana, un día de gracia la protege. Mañana es un nuevo comienzo.',
-			'journey.grace.ok' => '¡Gracias!',
 			_ => null,
 		} ?? switch (path) {
+			'journey.grace.ok' => '¡Gracias!',
 			'gamification.tabs.path' => 'El camino',
 			'gamification.tabs.cards' => 'Mis tarjetas',
 			'gamification.next.title' => 'Tu próximo hito',

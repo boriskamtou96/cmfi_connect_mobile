@@ -899,6 +899,7 @@ class _Translations$premium$ar extends Translations$premium$fr {
 	@override String get activeText => 'شكرًا لدعمك CMFI Connect! الأداة وسنتك وحصيلتك والتعاليم دون اتصال مفتوحة.';
 	@override String get staffText => 'Premium مقدَّم لك مجانًا لأنك من فريق CMFI Connect.';
 	@override String get moreSubtitle => 'الأداة، سنتك، التعاليم دون اتصال';
+	@override String get become => 'اشترك في Premium';
 	@override String get moreActive => 'مفعّل';
 	@override String get unlock => 'افتح مع Premium';
 	@override String get termsShort => 'الشروط';
@@ -5719,6 +5720,7 @@ extension on TranslationsAr {
 			'premium.activeText' => 'شكرًا لدعمك CMFI Connect! الأداة وسنتك وحصيلتك والتعاليم دون اتصال مفتوحة.',
 			'premium.staffText' => 'Premium مقدَّم لك مجانًا لأنك من فريق CMFI Connect.',
 			'premium.moreSubtitle' => 'الأداة، سنتك، التعاليم دون اتصال',
+			'premium.become' => 'اشترك في Premium',
 			'premium.moreActive' => 'مفعّل',
 			'premium.unlock' => 'افتح مع Premium',
 			'premium.termsShort' => 'الشروط',
@@ -5796,9 +5798,9 @@ extension on TranslationsAr {
 			'ministry.previousGoal' => 'الهدف السابق',
 			'ministry.nextGoal' => 'الهدف التالي',
 			'ministry.media.books' => 'الكتب',
-			'ministry.media.tracts' => 'النبذات',
 			_ => null,
 		} ?? switch (path) {
+			'ministry.media.tracts' => 'النبذات',
 			'ministry.media.magazines' => 'المجلات',
 			'ministry.media.cds' => 'الأقراص المدمجة',
 			'ministry.media.dvds' => 'أقراص الفيديو',
@@ -6310,9 +6312,9 @@ extension on TranslationsAr {
 			'weekStory.statDays' => 'أيام مملوءة',
 			'weekStory.statStreak' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n, zero: 'يوم على التوالي', one: 'يوم على التوالي', two: 'يومان على التوالي', few: 'أيام على التوالي', many: 'يومًا على التوالي', other: 'يوم على التوالي', ), 
 			'weekStory.statRetreats' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n, zero: 'خلوة', one: 'خلوة', two: 'خلوتان', few: 'خلوات', many: 'خلوة', other: 'خلوة', ), 
-			'weekStory.statGoals' => 'من الأهداف',
 			_ => null,
 		} ?? switch (path) {
+			'weekStory.statGoals' => 'من الأهداف',
 			'weekStory.share' => 'مشاركة أسبوعي',
 			'weekStory.homeText' => 'أمانتك وصلاتك وأهدافك هذا الأسبوع.',
 			'weekStory.open' => 'عرض أسبوعي',
@@ -6824,9 +6826,9 @@ extension on TranslationsAr {
 			'journey.grace.used' => ({required Object day}) => 'يوم نعمة ${day}: سلسلتك مستمرة.',
 			'journey.grace.title' => 'يوم نعمة',
 			'journey.grace.text' => ({required Object day}) => 'لم تملأ تقرير ${day}، لكن سلسلتك مستمرة: كل أسبوع يحميها يوم نعمة. غدًا بداية جديدة.',
-			'journey.grace.ok' => 'شكرًا!',
 			_ => null,
 		} ?? switch (path) {
+			'journey.grace.ok' => 'شكرًا!',
 			'gamification.tabs.path' => 'الطريق',
 			'gamification.tabs.cards' => 'بطاقاتي',
 			'gamification.next.title' => 'محطتك القادمة',

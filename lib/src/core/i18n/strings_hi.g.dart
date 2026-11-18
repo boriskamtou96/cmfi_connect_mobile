@@ -817,6 +817,7 @@ class _Translations$premium$hi extends Translations$premium$fr {
 	@override String get activeText => 'CMFI Connect का साथ देने के लिए धन्यवाद! विजेट, आपका साल, लेखा-जोखा और ऑफ़लाइन शिक्षाएँ खुली हैं।';
 	@override String get staffText => 'तुम CMFI Connect टीम का हिस्सा हो, इसलिए Premium तुम्हें मुफ़्त मिला है।';
 	@override String get moreSubtitle => 'विजेट, आपका साल, शिक्षाएँ ऑफ़लाइन';
+	@override String get become => 'Premium लें';
 	@override String get moreActive => 'चालू';
 	@override String get unlock => 'Premium से खोलो';
 	@override String get termsShort => 'शर्तें';
@@ -5249,6 +5250,7 @@ extension on TranslationsHi {
 			'premium.activeText' => 'CMFI Connect का साथ देने के लिए धन्यवाद! विजेट, आपका साल, लेखा-जोखा और ऑफ़लाइन शिक्षाएँ खुली हैं।',
 			'premium.staffText' => 'तुम CMFI Connect टीम का हिस्सा हो, इसलिए Premium तुम्हें मुफ़्त मिला है।',
 			'premium.moreSubtitle' => 'विजेट, आपका साल, शिक्षाएँ ऑफ़लाइन',
+			'premium.become' => 'Premium लें',
 			'premium.moreActive' => 'चालू',
 			'premium.unlock' => 'Premium से खोलो',
 			'premium.termsShort' => 'शर्तें',
@@ -5326,9 +5328,9 @@ extension on TranslationsHi {
 			'ministry.previousGoal' => 'पिछला लक्ष्य',
 			'ministry.nextGoal' => 'अगला लक्ष्य',
 			'ministry.media.books' => 'पुस्तकें',
-			'ministry.media.tracts' => 'पर्चे',
 			_ => null,
 		} ?? switch (path) {
+			'ministry.media.tracts' => 'पर्चे',
 			'ministry.media.magazines' => 'पत्रिकाएँ',
 			'ministry.media.cds' => 'सीडी',
 			'ministry.media.dvds' => 'डीवीडी',
@@ -5840,9 +5842,9 @@ extension on TranslationsHi {
 			'weekStory.statDays' => 'दिन भरे गए',
 			'weekStory.statStreak' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n, one: 'दिन लगातार', other: 'दिन लगातार', ), 
 			'weekStory.statRetreats' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n, one: 'प्रार्थना-समय', other: 'प्रार्थना-समय', ), 
-			'weekStory.statGoals' => 'लक्ष्य',
 			_ => null,
 		} ?? switch (path) {
+			'weekStory.statGoals' => 'लक्ष्य',
 			'weekStory.share' => 'अपना हफ़्ता साझा करो',
 			'weekStory.homeText' => 'इस हफ़्ते की तुम्हारी वफ़ादारी, प्रार्थना और लक्ष्य।',
 			'weekStory.open' => 'मेरा हफ़्ता देखो',
@@ -6354,9 +6356,9 @@ extension on TranslationsHi {
 			'journey.grace.used' => ({required Object day}) => 'अनुग्रह का दिन ${day}: तुम्हारा सिलसिला जारी है।',
 			'journey.grace.title' => 'अनुग्रह का दिन',
 			'journey.grace.text' => ({required Object day}) => 'तुमने ${day} की रिपोर्ट नहीं भरी, पर तुम्हारा सिलसिला जारी है: हर सप्ताह एक अनुग्रह का दिन उसे बचाता है। कल एक नई शुरुआत है।',
-			'journey.grace.ok' => 'धन्यवाद!',
 			_ => null,
 		} ?? switch (path) {
+			'journey.grace.ok' => 'धन्यवाद!',
 			'gamification.tabs.path' => 'रास्ता',
 			'gamification.tabs.cards' => 'मेरे कार्ड',
 			'gamification.next.title' => 'तुम्हारा अगला पड़ाव',

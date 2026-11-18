@@ -797,6 +797,7 @@ class _Translations$premium$zh extends Translations$premium$fr {
 	@override String get activeText => '感谢支持 CMFI Connect！小组件、你的一年、年度回顾和离线教导已开启。';
 	@override String get staffText => '你是 CMFI Connect 团队的成员，Premium 免费为你开放。';
 	@override String get moreSubtitle => '小组件、你的一年、离线教导';
+	@override String get become => '成为 Premium 会员';
 	@override String get moreActive => '已开启';
 	@override String get unlock => '用 Premium 解锁';
 	@override String get termsShort => '条款';
@@ -5131,6 +5132,7 @@ extension on TranslationsZh {
 			'premium.activeText' => '感谢支持 CMFI Connect！小组件、你的一年、年度回顾和离线教导已开启。',
 			'premium.staffText' => '你是 CMFI Connect 团队的成员，Premium 免费为你开放。',
 			'premium.moreSubtitle' => '小组件、你的一年、离线教导',
+			'premium.become' => '成为 Premium 会员',
 			'premium.moreActive' => '已开启',
 			'premium.unlock' => '用 Premium 解锁',
 			'premium.termsShort' => '条款',
@@ -5208,9 +5210,9 @@ extension on TranslationsZh {
 			'ministry.previousGoal' => '上一个目标',
 			'ministry.nextGoal' => '下一个目标',
 			'ministry.media.books' => '书籍',
-			'ministry.media.tracts' => '单张',
 			_ => null,
 		} ?? switch (path) {
+			'ministry.media.tracts' => '单张',
 			'ministry.media.magazines' => '杂志',
 			'ministry.media.cds' => 'CD',
 			'ministry.media.dvds' => 'DVD',
@@ -5722,9 +5724,9 @@ extension on TranslationsZh {
 			'weekStory.statDays' => '天已填写',
 			'weekStory.statStreak' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n, other: '天连续', ), 
 			'weekStory.statRetreats' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n, other: '次退修', ), 
-			'weekStory.statGoals' => '目标',
 			_ => null,
 		} ?? switch (path) {
+			'weekStory.statGoals' => '目标',
 			'weekStory.share' => '分享我的一周',
 			'weekStory.homeText' => '你这一周的忠心、祷告和目标。',
 			'weekStory.open' => '查看我的一周',
@@ -6236,9 +6238,9 @@ extension on TranslationsZh {
 			'journey.grace.used' => ({required Object day}) => '恩典日 ${day}：你的连续记录继续。',
 			'journey.grace.title' => '恩典日',
 			'journey.grace.text' => ({required Object day}) => '你没有填写${day}的报告，但你的连续记录还在：每周都有一个恩典日保护它。明天是新的开始。',
-			'journey.grace.ok' => '谢谢！',
 			_ => null,
 		} ?? switch (path) {
+			'journey.grace.ok' => '谢谢！',
 			'gamification.tabs.path' => '路程',
 			'gamification.tabs.cards' => '我的卡片',
 			'gamification.next.title' => '你的下一个里程碑',

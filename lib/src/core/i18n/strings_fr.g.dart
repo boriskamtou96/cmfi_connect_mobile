@@ -1673,6 +1673,9 @@ class Translations$premium$fr {
 	/// fr: 'Widget, année, enseignements hors ligne'
 	String get moreSubtitle => 'Widget, année, enseignements hors ligne';
 
+	/// fr: 'Devenir Premium'
+	String get become => 'Devenir Premium';
+
 	/// fr: 'Actif'
 	String get moreActive => 'Actif';
 
@@ -9650,6 +9653,7 @@ extension on Translations {
 			'premium.activeText' => 'Merci de soutenir CMFI Connect ! Le widget, ton année, ton bilan et les enseignements hors ligne sont ouverts.',
 			'premium.staffText' => 'Premium t\'est offert parce que tu fais partie de l\'équipe de CMFI Connect.',
 			'premium.moreSubtitle' => 'Widget, année, enseignements hors ligne',
+			'premium.become' => 'Devenir Premium',
 			'premium.moreActive' => 'Actif',
 			'premium.unlock' => 'Débloquer avec Premium',
 			'premium.termsShort' => 'Conditions',
@@ -9727,9 +9731,9 @@ extension on Translations {
 			'ministry.previousGoal' => 'But précédent',
 			'ministry.nextGoal' => 'But suivant',
 			'ministry.media.books' => 'Livres',
-			'ministry.media.tracts' => 'Traités',
 			_ => null,
 		} ?? switch (path) {
+			'ministry.media.tracts' => 'Traités',
 			'ministry.media.magazines' => 'Magazines',
 			'ministry.media.cds' => 'CD',
 			'ministry.media.dvds' => 'DVD',
@@ -10241,9 +10245,9 @@ extension on Translations {
 			'weekStory.statDays' => 'jours remplis',
 			'weekStory.statStreak' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('fr'))(n, one: 'jour d\'affilée', other: 'jours d\'affilée', ), 
 			'weekStory.statRetreats' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('fr'))(n, one: 'retraite', other: 'retraites', ), 
-			'weekStory.statGoals' => 'd\'objectifs',
 			_ => null,
 		} ?? switch (path) {
+			'weekStory.statGoals' => 'd\'objectifs',
 			'weekStory.share' => 'Partager ma semaine',
 			'weekStory.homeText' => 'Ta fidélité, ta prière et tes objectifs de la semaine.',
 			'weekStory.open' => 'Voir ma semaine',
@@ -10755,9 +10759,9 @@ extension on Translations {
 			'journey.grace.used' => ({required Object day}) => 'Jour de grâce ${day} : ta série continue.',
 			'journey.grace.title' => 'Un jour de grâce',
 			'journey.grace.text' => ({required Object day}) => 'Tu n\'as pas rempli ${day}, mais ta série continue : chaque semaine, un jour de grâce la protège. Demain est un nouveau départ.',
-			'journey.grace.ok' => 'Merci !',
 			_ => null,
 		} ?? switch (path) {
+			'journey.grace.ok' => 'Merci !',
 			'gamification.tabs.path' => 'Le chemin',
 			'gamification.tabs.cards' => 'Mes cartes',
 			'gamification.next.title' => 'Ton prochain jalon',

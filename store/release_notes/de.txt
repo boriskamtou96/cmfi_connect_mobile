@@ -1,4 +1,3 @@
 Neu in CMFI Connect
-• Bericht: Eine gestoppte Meditation oder ein gestopptes Gruppengebet zählt auch als einmal
-• Leseplan: Wähle frei zwischen 1 und 730 Tagen (zum Beispiel das Neue Testament in 3 Tagen)
-• Verbesserungen und Fehlerbehebungen
+• Bibel: ein Lesezeichen, um das Kapitel wiederzufinden, bei dem du aufgehört hast, auch nach dem Blättern (Menü ⋮ › Dieses Kapitel markieren)
+• Verbesserungen und Korrekturen

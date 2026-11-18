@@ -1,4 +1,3 @@
 Novedades de CMFI Connect
-• Informe: una meditación u oración en grupo cronometrada también cuenta como una vez
-• Plan de lectura: elige libremente de 1 a 730 días (el Nuevo Testamento en 3 días, por ejemplo)
+• Biblia: un marcapáginas para volver al capítulo donde te quedaste, aunque hayas hojeado otros (menú ⋮ › Marcar este capítulo)
 • Mejoras y correcciones

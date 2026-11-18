@@ -1,4 +1,3 @@
 What's new in CMFI Connect
-• Report: a timed meditation or group prayer also counts as one time
-• Reading plan: choose any length from 1 to 730 days (the New Testament in 3 days, for example)
+• Bible: a bookmark to find the chapter where you stopped, even after browsing elsewhere (menu ⋮ › Bookmark this chapter)
 • Improvements and fixes

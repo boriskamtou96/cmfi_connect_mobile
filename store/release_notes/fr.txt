@@ -1,4 +1,3 @@
 Nouveautés de CMFI Connect
-• Compte rendu : une méditation ou une prière en groupe chronométrée compte aussi une fois
-• Plan de lecture : choisis librement de 1 à 730 jours (le Nouveau Testament en 3 jours, par exemple)
+• Bible : un marque-page pour retrouver le chapitre où tu t'es arrêté, même après avoir feuilleté ailleurs (menu ⋮ › Marquer ce chapitre)
 • Améliorations et corrections

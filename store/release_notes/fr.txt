@@ -1,3 +1,4 @@
 Nouveautés de CMFI Connect
-• Bible : un marque-page pour retrouver le chapitre où tu t'es arrêté, même après avoir feuilleté ailleurs (menu ⋮ › Marquer ce chapitre)
+• Premium s'achète maintenant directement dans l'app (mensuel, 6 mois, annuel ou à vie)
+• Bible : un marque-page pour retrouver le chapitre où tu t'es arrêté (menu ⋮ › Marquer ce chapitre)
 • Améliorations et corrections

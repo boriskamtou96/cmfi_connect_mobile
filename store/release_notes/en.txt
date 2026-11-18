@@ -1,3 +1,4 @@
 What's new in CMFI Connect
-• Bible: a bookmark to find the chapter where you stopped, even after browsing elsewhere (menu ⋮ › Bookmark this chapter)
+• Premium can now be bought right in the app (monthly, 6 months, yearly or for life)
+• Bible: a bookmark to find the chapter where you stopped (menu ⋮ › Bookmark this chapter)
 • Improvements and fixes

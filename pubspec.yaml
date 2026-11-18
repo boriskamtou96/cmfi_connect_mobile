@@ -3,7 +3,7 @@ description: 'CMFI Connect'
 
 publish_to: 'none'
 
-version: 1.1.11+16
+version: 1.1.11+17
 
 environment:
   sdk: ^3.10.8

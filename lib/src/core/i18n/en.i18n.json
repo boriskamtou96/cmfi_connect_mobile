@@ -1200,7 +1200,11 @@
       "stopText": "No more payment requests will be sent. Premium goes on until the end of the period.",
       "stopConfirm": "Stop",
       "stopped": "Automatic renewal stopped."
-    }
+    },
+    "devCancel": "Cancel the subscription (dev)",
+    "devCancelTitle": "Cancel the subscription",
+    "devCancelText": "Premium bought in the store (Test Store) is forgotten on this phone, to test a new purchase. Premium from the website or offered to the team does not change.",
+    "devCancelDone": "Subscription cancelled (dev)"
   },
   "homeWidget": {
     "title": "Today",

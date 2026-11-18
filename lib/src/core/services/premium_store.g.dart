@@ -211,3 +211,62 @@ final class PremiumIsOfferedProvider
 }
 
 String _$premiumIsOfferedHash() => r'1ed1c1aa1a91d7560ab6bcda817e5d4c963887a3';
+
+/// The user of the store for an account: its number (« 12 »). In the dev app
+/// only, « Annuler la souscription (dev) » (18/11/2026, in « Vous ») gives it
+/// a new one (« 12-dev-1731… », kept on the phone): the purchase of the Test
+/// Store stays with the old user, so Premium can be bought again. Premium
+/// bought on the website or offered to the team does not change.
+
+@ProviderFor(devSubscription)
+final devSubscriptionProvider = DevSubscriptionProvider._();
+
+/// The user of the store for an account: its number (« 12 »). In the dev app
+/// only, « Annuler la souscription (dev) » (18/11/2026, in « Vous ») gives it
+/// a new one (« 12-dev-1731… », kept on the phone): the purchase of the Test
+/// Store stays with the old user, so Premium can be bought again. Premium
+/// bought on the website or offered to the team does not change.
+
+final class DevSubscriptionProvider
+    extends
+        $FunctionalProvider<DevSubscription, DevSubscription, DevSubscription>
+    with $Provider<DevSubscription> {
+  /// The user of the store for an account: its number (« 12 »). In the dev app
+  /// only, « Annuler la souscription (dev) » (18/11/2026, in « Vous ») gives it
+  /// a new one (« 12-dev-1731… », kept on the phone): the purchase of the Test
+  /// Store stays with the old user, so Premium can be bought again. Premium
+  /// bought on the website or offered to the team does not change.
+  DevSubscriptionProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'devSubscriptionProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$devSubscriptionHash();
+
+  @$internal
+  @override
+  $ProviderElement<DevSubscription> $createElement($ProviderPointer pointer) =>
+      $ProviderElement(pointer);
+
+  @override
+  DevSubscription create(Ref ref) {
+    return devSubscription(ref);
+  }
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(DevSubscription value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<DevSubscription>(value),
+    );
+  }
+}
+
+String _$devSubscriptionHash() => r'9b993e1afa0ee805bf897c835ff913a331acfcbd';

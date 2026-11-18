@@ -1713,6 +1713,18 @@ class Translations$premium$fr {
 	String get preview => 'Aperçu de tes objectifs avec Premium';
 
 	late final Translations$premium$renewal$fr renewal = Translations$premium$renewal$fr.internal(_root);
+
+	/// fr: 'Annuler la souscription (dev)'
+	String get devCancel => 'Annuler la souscription (dev)';
+
+	/// fr: 'Annuler la souscription'
+	String get devCancelTitle => 'Annuler la souscription';
+
+	/// fr: 'Le Premium acheté dans le store (Test Store) est oublié sur ce téléphone, pour tester un nouvel achat. Le Premium du site ou offert à l'équipe ne change pas.'
+	String get devCancelText => 'Le Premium acheté dans le store (Test Store) est oublié sur ce téléphone, pour tester un nouvel achat. Le Premium du site ou offert à l\'équipe ne change pas.';
+
+	/// fr: 'Souscription annulée (dev)'
+	String get devCancelDone => 'Souscription annulée (dev)';
 }
 
 // Path: homeWidget
@@ -9682,6 +9694,10 @@ extension on Translations {
 			'premium.renewal.stopText' => 'Plus aucune demande de paiement ne sera envoyée. Premium continue jusqu\'à la fin de la période.',
 			'premium.renewal.stopConfirm' => 'Arrêter',
 			'premium.renewal.stopped' => 'Renouvellement automatique arrêté.',
+			'premium.devCancel' => 'Annuler la souscription (dev)',
+			'premium.devCancelTitle' => 'Annuler la souscription',
+			'premium.devCancelText' => 'Le Premium acheté dans le store (Test Store) est oublié sur ce téléphone, pour tester un nouvel achat. Le Premium du site ou offert à l\'équipe ne change pas.',
+			'premium.devCancelDone' => 'Souscription annulée (dev)',
 			'homeWidget.title' => 'Aujourd\'hui',
 			'homeWidget.done' => 'Fait',
 			'homeWidget.todo' => 'À remplir',
@@ -9727,12 +9743,12 @@ extension on Translations {
 			'ministry.keyDates' => 'Les grandes dates',
 			'ministry.life' => 'Sa vie',
 			'ministry.story' => 'Son histoire',
+			_ => null,
+		} ?? switch (path) {
 			'ministry.goalOf' => ({required Object n, required Object total}) => 'NOTRE BUT · ${n}/${total}',
 			'ministry.previousGoal' => 'But précédent',
 			'ministry.nextGoal' => 'But suivant',
 			'ministry.media.books' => 'Livres',
-			_ => null,
-		} ?? switch (path) {
 			'ministry.media.tracts' => 'Traités',
 			'ministry.media.magazines' => 'Magazines',
 			'ministry.media.cds' => 'CD',
@@ -10241,12 +10257,12 @@ extension on Translations {
 			'weekStory.goalsLead' => 'Tes objectifs',
 			'weekStory.goalsReached' => 'atteints en moyenne',
 			'weekStory.bestDay' => ({required Object day, required Object percent}) => 'Ton meilleur jour : ${day} · ${percent}',
+			_ => null,
+		} ?? switch (path) {
 			'weekStory.summaryTitle' => 'Ma semaine avec Dieu',
 			'weekStory.statDays' => 'jours remplis',
 			'weekStory.statStreak' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('fr'))(n, one: 'jour d\'affilée', other: 'jours d\'affilée', ), 
 			'weekStory.statRetreats' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('fr'))(n, one: 'retraite', other: 'retraites', ), 
-			_ => null,
-		} ?? switch (path) {
 			'weekStory.statGoals' => 'd\'objectifs',
 			'weekStory.share' => 'Partager ma semaine',
 			'weekStory.homeText' => 'Ta fidélité, ta prière et tes objectifs de la semaine.',
@@ -10755,12 +10771,12 @@ extension on Translations {
 			'journey.daily.meditation' => 'Méditer la Parole',
 			'journey.daily.allDone' => 'Les quatre pas sont faits. Belle journée avec Dieu !',
 			'journey.daily.done' => 'Fait',
+			_ => null,
+		} ?? switch (path) {
 			'journey.grace.day' => 'Jour de grâce',
 			'journey.grace.used' => ({required Object day}) => 'Jour de grâce ${day} : ta série continue.',
 			'journey.grace.title' => 'Un jour de grâce',
 			'journey.grace.text' => ({required Object day}) => 'Tu n\'as pas rempli ${day}, mais ta série continue : chaque semaine, un jour de grâce la protège. Demain est un nouveau départ.',
-			_ => null,
-		} ?? switch (path) {
 			'journey.grace.ok' => 'Merci !',
 			'gamification.tabs.path' => 'Le chemin',
 			'gamification.tabs.cards' => 'Mes cartes',

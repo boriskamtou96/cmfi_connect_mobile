@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:cmfi_connect/src/core/i18n/strings.g.dart';
+import 'package:cmfi_connect/src/core/theme/app_icons.dart';
 import 'package:cmfi_connect/src/core/utils/date_extensions.dart';
 import 'package:cmfi_connect/src/features/reports/application/reports_providers.dart';
 import 'package:cmfi_connect/src/features/reports/domain/daily_report.dart';
@@ -342,8 +343,47 @@ void main() {
   });
 
   group('export and share', () {
+    testWidgets('without Premium, export and import open the Premium page', (
+      tester,
+    ) async {
+      await pumpApp(tester, token: 't');
+      await tester.tap(
+        find.descendant(
+          of: find.byType(NavigationBar),
+          matching: find.text('Compte rendu'),
+        ),
+      );
+      await tester.pumpAndSettle();
+      await tester.tap(find.text('Bilan'));
+      await tester.pumpAndSettle();
+
+      for (final tile in [
+        'Exporter mon compte rendu',
+        'Importer depuis Excel',
+      ]) {
+        // a lock on the tile
+        expect(
+          find.descendant(
+            of: find.byTooltip(tile),
+            matching: find.byIcon(AppIcons.premiumLock),
+          ),
+          findsOneWidget,
+        );
+        await tester.tap(find.byTooltip(tile));
+        await tester.pumpAndSettle();
+        expect(find.bySemanticsLabel('CMFI Connect Premium'), findsOneWidget);
+        await tester.tap(find.byTooltip('Fermer'));
+        await tester.pumpAndSettle();
+      }
+      expect(find.text('Ce mois-ci'), findsNothing);
+    });
+
     Future<TestApp> openExport(WidgetTester tester) async {
-      final app = await pumpApp(tester, token: 't');
+      final app = await pumpApp(
+        tester,
+        token: 't',
+        premium: FakePremiumStore(active: true),
+      );
       seedDay(app, 0, chapters: 4);
       app.container.invalidate(reportHistoryProvider);
       // from the actions of the Compte rendu tab

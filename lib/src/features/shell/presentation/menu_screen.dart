@@ -4,12 +4,15 @@ import 'package:flutter/services.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../core/i18n/strings.g.dart';
+import '../../../core/network/app_exception_message.dart';
 import '../../../core/services/app_version.dart';
 import '../../../core/services/premium_store.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_icons.dart';
 import '../../../core/theme/app_spacing.dart';
 import '../../../core/utils/date_extensions.dart';
+import '../../../core/widgets/adaptive_dialogs.dart';
+import '../../../core/widgets/app_toast.dart';
 import '../../../core/widgets/cmfi_logo.dart';
 import '../../../core/widgets/menu_tile.dart';
 import '../../../core/widgets/premium_mark.dart';
@@ -51,6 +54,7 @@ class MenuScreen extends ConsumerWidget {
     final version = ref.watch(appVersionProvider).value ?? '';
     final premium = ref.watch(premiumProvider).value ?? false;
     final premiumForEveryone = ref.watch(premiumForEveryoneProvider);
+    final devSubscription = ref.watch(devSubscriptionProvider);
     final top = MediaQuery.paddingOf(context).top;
 
     // a page above the tabs
@@ -276,6 +280,27 @@ class MenuScreen extends ConsumerWidget {
                           ),
                         ],
                       ),
+                      // the dev app only: Premium bought in the Test Store
+                      // forgotten, to buy it again (18/11/2026)
+                      if (devSubscription.dev &&
+                          premium &&
+                          account != null) ...[
+                        const SizedBox(height: AppSpacing.lg),
+                        SectionCard(
+                          children: [
+                            MenuTile(
+                              icon: AppIcons.close,
+                              title: t.premium.devCancel,
+                              destructive: true,
+                              onTap: () => _cancelDevSubscription(
+                                context,
+                                ref,
+                                account.id,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
                       const SizedBox(height: AppSpacing.lg),
                       SectionCard(
                         children: [
@@ -336,5 +361,32 @@ class MenuScreen extends ConsumerWidget {
         ),
       ),
     );
+  }
+}
+
+/// « Annuler la souscription (dev) »: see [DevSubscription].
+Future<void> _cancelDevSubscription(
+  BuildContext context,
+  WidgetRef ref,
+  int accountId,
+) async {
+  final t = context.t;
+  final toast = ref.read(toasterProvider).of(context);
+  final confirmed = await showConfirmDialog(
+    context,
+    title: t.premium.devCancelTitle,
+    text: t.premium.devCancelText,
+    confirmLabel: t.premium.devCancelTitle,
+    destructive: true,
+  );
+  if (!confirmed) {
+    return;
+  }
+  try {
+    await ref.read(devSubscriptionProvider).cancel(accountId);
+    ref.invalidate(premiumProvider);
+    toast.success(t.premium.devCancelDone);
+  } on Object catch (error) {
+    toast.error(userMessageFor(error, t));
   }
 }

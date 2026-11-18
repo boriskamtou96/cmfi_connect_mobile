@@ -812,6 +812,10 @@ class _Translations$premium$zh extends Translations$premium$fr {
 	@override late final _Translations$premium$nudge$zh nudge = _Translations$premium$nudge$zh._(_root);
 	@override String get preview => 'Premium 中你的目标预览';
 	@override late final _Translations$premium$renewal$zh renewal = _Translations$premium$renewal$zh._(_root);
+	@override String get devCancel => '取消订阅 (dev)';
+	@override String get devCancelTitle => '取消订阅';
+	@override String get devCancelText => '在此手机上忘记商店（Test Store）中购买的 Premium，以便测试新的购买。网站上的 Premium 或赠送给团队的 Premium 不变。';
+	@override String get devCancelDone => '订阅已取消 (dev)';
 }
 
 // Path: homeWidget
@@ -5161,6 +5165,10 @@ extension on TranslationsZh {
 			'premium.renewal.stopText' => '将不再发送任何付款请求。Premium 将持续到本期结束。',
 			'premium.renewal.stopConfirm' => '停止',
 			'premium.renewal.stopped' => '自动续订已停止。',
+			'premium.devCancel' => '取消订阅 (dev)',
+			'premium.devCancelTitle' => '取消订阅',
+			'premium.devCancelText' => '在此手机上忘记商店（Test Store）中购买的 Premium，以便测试新的购买。网站上的 Premium 或赠送给团队的 Premium 不变。',
+			'premium.devCancelDone' => '订阅已取消 (dev)',
 			'homeWidget.title' => '今天',
 			'homeWidget.done' => '已完成',
 			'homeWidget.todo' => '待填写',
@@ -5206,12 +5214,12 @@ extension on TranslationsZh {
 			'ministry.keyDates' => '重要日期',
 			'ministry.life' => '生平',
 			'ministry.story' => '故事',
+			_ => null,
+		} ?? switch (path) {
 			'ministry.goalOf' => ({required Object n, required Object total}) => '我们的目标 · ${n}/${total}',
 			'ministry.previousGoal' => '上一个目标',
 			'ministry.nextGoal' => '下一个目标',
 			'ministry.media.books' => '书籍',
-			_ => null,
-		} ?? switch (path) {
 			'ministry.media.tracts' => '单张',
 			'ministry.media.magazines' => '杂志',
 			'ministry.media.cds' => 'CD',
@@ -5720,12 +5728,12 @@ extension on TranslationsZh {
 			'weekStory.goalsLead' => '你的目标',
 			'weekStory.goalsReached' => '平均达成',
 			'weekStory.bestDay' => ({required Object day, required Object percent}) => '你最好的一天：${day} · ${percent}',
+			_ => null,
+		} ?? switch (path) {
 			'weekStory.summaryTitle' => '我与神同在的一周',
 			'weekStory.statDays' => '天已填写',
 			'weekStory.statStreak' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n, other: '天连续', ), 
 			'weekStory.statRetreats' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n, other: '次退修', ), 
-			_ => null,
-		} ?? switch (path) {
 			'weekStory.statGoals' => '目标',
 			'weekStory.share' => '分享我的一周',
 			'weekStory.homeText' => '你这一周的忠心、祷告和目标。',
@@ -6234,12 +6242,12 @@ extension on TranslationsZh {
 			'journey.daily.meditation' => '默想神的话语',
 			'journey.daily.allDone' => '四步都完成了。愿你与神同度美好的一天！',
 			'journey.daily.done' => '已完成',
+			_ => null,
+		} ?? switch (path) {
 			'journey.grace.day' => '恩典日',
 			'journey.grace.used' => ({required Object day}) => '恩典日 ${day}：你的连续记录继续。',
 			'journey.grace.title' => '恩典日',
 			'journey.grace.text' => ({required Object day}) => '你没有填写${day}的报告，但你的连续记录还在：每周都有一个恩典日保护它。明天是新的开始。',
-			_ => null,
-		} ?? switch (path) {
 			'journey.grace.ok' => '谢谢！',
 			'gamification.tabs.path' => '路程',
 			'gamification.tabs.cards' => '我的卡片',

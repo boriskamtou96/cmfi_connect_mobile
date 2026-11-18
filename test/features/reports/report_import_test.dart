@@ -10,6 +10,7 @@ import 'package:cmfi_connect/src/routing/app_router.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:intl/date_symbol_data_local.dart';
 
+import '../../helpers/fakes.dart';
 import '../../helpers/pump_app.dart';
 
 const _items = [
@@ -90,6 +91,7 @@ void main() {
     final app = await pumpApp(
       tester,
       token: 't',
+      premium: FakePremiumStore(active: true),
       activities: _items,
       reportDays: {yesterday: DailyReport(date: yesterday, submitted: true)},
     );

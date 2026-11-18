@@ -1170,7 +1170,11 @@
       "stopText": "将不再发送任何付款请求。Premium 将持续到本期结束。",
       "stopConfirm": "停止",
       "stopped": "自动续订已停止。"
-    }
+    },
+    "devCancel": "取消订阅 (dev)",
+    "devCancelTitle": "取消订阅",
+    "devCancelText": "在此手机上忘记商店（Test Store）中购买的 Premium，以便测试新的购买。网站上的 Premium 或赠送给团队的 Premium 不变。",
+    "devCancelDone": "订阅已取消 (dev)"
   },
   "homeWidget": {
     "title": "今天",

@@ -6,12 +6,15 @@ import 'package:flutter/services.dart';
 import 'package:purchases_flutter/purchases_flutter.dart';
 import 'package:purchases_ui_flutter/purchases_ui_flutter.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../config/app_config.dart';
+import '../config/flavor.dart';
 import '../network/api_call.dart';
 import '../network/dio_provider.dart';
 import '../session/session.dart';
 import '../storage/account_storage.dart';
+import '../storage/preferences.dart';
 import 'app_log.dart';
 
 part 'premium_store.g.dart';
@@ -562,4 +565,49 @@ Future<bool> premiumIsOffered(Ref ref) async {
   }
   final account = await ref.watch(accountStorageProvider).read();
   return account?.isAdmin ?? false;
+}
+
+/// The user of the store for an account: its number (« 12 »). In the dev app
+/// only, « Annuler la souscription (dev) » (18/11/2026, in « Vous ») gives it
+/// a new one (« 12-dev-1731… », kept on the phone): the purchase of the Test
+/// Store stays with the old user, so Premium can be bought again. Premium
+/// bought on the website or offered to the team does not change.
+@riverpod
+DevSubscription devSubscription(Ref ref) => DevSubscription(
+  dev: ref.watch(flavorProvider) == Flavor.dev,
+  preferences: ref.watch(sharedPreferencesProvider),
+  store: ref.watch(premiumStoreProvider),
+);
+
+class DevSubscription {
+  DevSubscription({
+    required this.dev,
+    required SharedPreferences preferences,
+    required PremiumStore store,
+  }) : _preferences = preferences,
+       _store = store;
+
+  static const _key = 'premium_dev_user';
+
+  /// The dev app (never the published one).
+  final bool dev;
+  final SharedPreferences _preferences;
+  final PremiumStore _store;
+
+  String userIdFor(int accountId) {
+    final suffix = dev ? _preferences.getString(_key) : null;
+    return suffix == null ? '$accountId' : '$accountId-dev-$suffix';
+  }
+
+  /// A new user of the store for [accountId]: the purchase is forgotten.
+  Future<void> cancel(int accountId) async {
+    if (!dev) {
+      return;
+    }
+    await _preferences.setString(
+      _key,
+      '${DateTime.now().millisecondsSinceEpoch}',
+    );
+    await _store.logIn(userIdFor(accountId));
+  }
 }

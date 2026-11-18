@@ -442,7 +442,9 @@ class SignedInTasks extends HookConsumerWidget {
         }
         unawaited(ref.read(crashReportingProvider).identify('${account.id}'));
         try {
-          await ref.read(premiumStoreProvider).logIn('${account.id}');
+          await ref
+              .read(premiumStoreProvider)
+              .logIn(ref.read(devSubscriptionProvider).userIdFor(account.id));
         } on Object catch (error) {
           // the store is unreachable: Premium stays as it was
           AppLog.info('premium: store unreachable ($error)');

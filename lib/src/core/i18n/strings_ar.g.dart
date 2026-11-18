@@ -914,6 +914,10 @@ class _Translations$premium$ar extends Translations$premium$fr {
 	@override late final _Translations$premium$nudge$ar nudge = _Translations$premium$nudge$ar._(_root);
 	@override String get preview => 'معاينة أهدافك مع Premium';
 	@override late final _Translations$premium$renewal$ar renewal = _Translations$premium$renewal$ar._(_root);
+	@override String get devCancel => 'إلغاء الاشتراك (dev)';
+	@override String get devCancelTitle => 'إلغاء الاشتراك';
+	@override String get devCancelText => 'يُنسى Premium المشترى من المتجر (Test Store) على هذا الهاتف لتجربة شراء جديد. لا يتغيّر Premium الموقع أو الممنوح للفريق.';
+	@override String get devCancelDone => 'أُلغي الاشتراك (dev)';
 }
 
 // Path: homeWidget
@@ -5749,6 +5753,10 @@ extension on TranslationsAr {
 			'premium.renewal.stopText' => 'لن يُرسل أي طلب دفع بعد الآن. يستمر Premium حتى نهاية الفترة.',
 			'premium.renewal.stopConfirm' => 'إيقاف',
 			'premium.renewal.stopped' => 'تم إيقاف التجديد التلقائي.',
+			'premium.devCancel' => 'إلغاء الاشتراك (dev)',
+			'premium.devCancelTitle' => 'إلغاء الاشتراك',
+			'premium.devCancelText' => 'يُنسى Premium المشترى من المتجر (Test Store) على هذا الهاتف لتجربة شراء جديد. لا يتغيّر Premium الموقع أو الممنوح للفريق.',
+			'premium.devCancelDone' => 'أُلغي الاشتراك (dev)',
 			'homeWidget.title' => 'اليوم',
 			'homeWidget.done' => 'تم',
 			'homeWidget.todo' => 'للتعبئة',
@@ -5794,12 +5802,12 @@ extension on TranslationsAr {
 			'ministry.keyDates' => 'تواريخ مهمة',
 			'ministry.life' => 'حياته',
 			'ministry.story' => 'القصة',
+			_ => null,
+		} ?? switch (path) {
 			'ministry.goalOf' => ({required Object n, required Object total}) => 'هدفنا · ${n}/${total}',
 			'ministry.previousGoal' => 'الهدف السابق',
 			'ministry.nextGoal' => 'الهدف التالي',
 			'ministry.media.books' => 'الكتب',
-			_ => null,
-		} ?? switch (path) {
 			'ministry.media.tracts' => 'النبذات',
 			'ministry.media.magazines' => 'المجلات',
 			'ministry.media.cds' => 'الأقراص المدمجة',
@@ -6308,12 +6316,12 @@ extension on TranslationsAr {
 			'weekStory.goalsLead' => 'أهدافك',
 			'weekStory.goalsReached' => 'تحقّقت في المتوسط',
 			'weekStory.bestDay' => ({required Object day, required Object percent}) => 'أفضل يوم لك: ${day} · ${percent}',
+			_ => null,
+		} ?? switch (path) {
 			'weekStory.summaryTitle' => 'أسبوعي مع الله',
 			'weekStory.statDays' => 'أيام مملوءة',
 			'weekStory.statStreak' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n, zero: 'يوم على التوالي', one: 'يوم على التوالي', two: 'يومان على التوالي', few: 'أيام على التوالي', many: 'يومًا على التوالي', other: 'يوم على التوالي', ), 
 			'weekStory.statRetreats' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n, zero: 'خلوة', one: 'خلوة', two: 'خلوتان', few: 'خلوات', many: 'خلوة', other: 'خلوة', ), 
-			_ => null,
-		} ?? switch (path) {
 			'weekStory.statGoals' => 'من الأهداف',
 			'weekStory.share' => 'مشاركة أسبوعي',
 			'weekStory.homeText' => 'أمانتك وصلاتك وأهدافك هذا الأسبوع.',
@@ -6822,12 +6830,12 @@ extension on TranslationsAr {
 			'journey.daily.meditation' => 'التأمل في الكلمة',
 			'journey.daily.allDone' => 'أنجزت الخطوات الأربع. يومًا طيبًا مع الله!',
 			'journey.daily.done' => 'تم',
+			_ => null,
+		} ?? switch (path) {
 			'journey.grace.day' => 'يوم نعمة',
 			'journey.grace.used' => ({required Object day}) => 'يوم نعمة ${day}: سلسلتك مستمرة.',
 			'journey.grace.title' => 'يوم نعمة',
 			'journey.grace.text' => ({required Object day}) => 'لم تملأ تقرير ${day}، لكن سلسلتك مستمرة: كل أسبوع يحميها يوم نعمة. غدًا بداية جديدة.',
-			_ => null,
-		} ?? switch (path) {
 			'journey.grace.ok' => 'شكرًا!',
 			'gamification.tabs.path' => 'الطريق',
 			'gamification.tabs.cards' => 'بطاقاتي',

@@ -1199,7 +1199,11 @@
       "stopText": "Plus aucune demande de paiement ne sera envoyée. Premium continue jusqu'à la fin de la période.",
       "stopConfirm": "Arrêter",
       "stopped": "Renouvellement automatique arrêté."
-    }
+    },
+    "devCancel": "Annuler la souscription (dev)",
+    "devCancelTitle": "Annuler la souscription",
+    "devCancelText": "Le Premium acheté dans le store (Test Store) est oublié sur ce téléphone, pour tester un nouvel achat. Le Premium du site ou offert à l'équipe ne change pas.",
+    "devCancelDone": "Souscription annulée (dev)"
   },
   "homeWidget": {
     "title": "Aujourd'hui",

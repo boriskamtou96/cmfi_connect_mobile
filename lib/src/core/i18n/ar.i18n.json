@@ -1317,7 +1317,11 @@
       "stopText": "لن يُرسل أي طلب دفع بعد الآن. يستمر Premium حتى نهاية الفترة.",
       "stopConfirm": "إيقاف",
       "stopped": "تم إيقاف التجديد التلقائي."
-    }
+    },
+    "devCancel": "إلغاء الاشتراك (dev)",
+    "devCancelTitle": "إلغاء الاشتراك",
+    "devCancelText": "يُنسى Premium المشترى من المتجر (Test Store) على هذا الهاتف لتجربة شراء جديد. لا يتغيّر Premium الموقع أو الممنوح للفريق.",
+    "devCancelDone": "أُلغي الاشتراك (dev)"
   },
   "homeWidget": {
     "title": "اليوم",

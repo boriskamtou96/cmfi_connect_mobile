@@ -2548,7 +2548,14 @@ class FakePremiumStore implements PremiumStore {
   final _changes = StreamController<bool>.broadcast();
 
   @override
-  Future<void> logIn(String userId) async => loggedIn.add(userId);
+  Future<void> logIn(String userId) async {
+    // a purchase in the store belongs to its user: another one has none
+    if (inStore && loggedIn.isNotEmpty && loggedIn.last != userId) {
+      active = inStore = false;
+      _changes.add(false);
+    }
+    loggedIn.add(userId);
+  }
 
   @override
   Future<void> logOut() async => loggedOut = true;

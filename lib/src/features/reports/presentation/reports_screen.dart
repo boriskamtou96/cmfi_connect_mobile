@@ -4,6 +4,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../core/i18n/strings.g.dart';
 import '../../../core/services/current_day.dart';
+import '../../../core/services/premium_store.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_icons.dart';
 import '../../../core/theme/app_motion.dart';
@@ -38,6 +39,8 @@ class ReportsScreen extends ConsumerWidget {
     final day = ref.watch(selectedReportDayProvider) ?? now;
     final duration = AppMotion.of(context, AppMotion.medium);
     final running = ref.watch(reportTimerProvider) != null;
+    // export and import are Premium (18/11/2026)
+    final premium = ref.watch(premiumProvider).value ?? false;
 
     void openDay(DateTime date) {
       ref.read(selectedReportDayProvider.notifier).select(date);
@@ -169,6 +172,7 @@ class ReportsScreen extends ConsumerWidget {
                               title: t.sheetImport.exportTile,
                               text: t.sheetImport.exportHint,
                               label: t.reports.export,
+                              locked: !premium,
                               onTap: () => context.router.push(
                                 const ExportReportRoute(),
                               ),
@@ -181,6 +185,7 @@ class ReportsScreen extends ConsumerWidget {
                               title: t.sheetImport.importTile,
                               text: t.sheetImport.importHint,
                               label: t.sheetImport.title,
+                              locked: !premium,
                               onTap: () => context.router.push(
                                 const ImportReportRoute(),
                               ),
@@ -265,6 +270,7 @@ class _DataTile extends StatelessWidget {
     required this.text,
     required this.label,
     required this.onTap,
+    this.locked = false,
   });
 
   final IconData icon;
@@ -274,6 +280,9 @@ class _DataTile extends StatelessWidget {
   /// The whole sentence, for screen readers and the long press.
   final String label;
   final VoidCallback onTap;
+
+  /// Premium only: a small lock (the tap opens the Premium page).
+  final bool locked;
 
   @override
   Widget build(BuildContext context) {
@@ -315,15 +324,29 @@ class _DataTile extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(
-                          title,
-                          maxLines: 1,
-                          overflow: TextOverflow.ellipsis,
-                          style: const TextStyle(
-                            fontSize: 13,
-                            height: 1.2,
-                            fontWeight: FontWeight.w700,
-                          ),
+                        Row(
+                          children: [
+                            Flexible(
+                              child: Text(
+                                title,
+                                maxLines: 1,
+                                overflow: TextOverflow.ellipsis,
+                                style: const TextStyle(
+                                  fontSize: 13,
+                                  height: 1.2,
+                                  fontWeight: FontWeight.w700,
+                                ),
+                              ),
+                            ),
+                            if (locked) ...[
+                              const SizedBox(width: 4),
+                              Icon(
+                                AppIcons.premiumLock,
+                                size: 12,
+                                color: scheme.onSurfaceVariant,
+                              ),
+                            ],
+                          ],
                         ),
                         Text(
                           text,

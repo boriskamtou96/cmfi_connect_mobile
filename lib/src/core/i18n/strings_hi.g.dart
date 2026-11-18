@@ -832,6 +832,10 @@ class _Translations$premium$hi extends Translations$premium$fr {
 	@override late final _Translations$premium$nudge$hi nudge = _Translations$premium$nudge$hi._(_root);
 	@override String get preview => 'Premium के साथ तुम्हारे लक्ष्यों की झलक';
 	@override late final _Translations$premium$renewal$hi renewal = _Translations$premium$renewal$hi._(_root);
+	@override String get devCancel => 'सदस्यता रद्द करें (dev)';
+	@override String get devCancelTitle => 'सदस्यता रद्द करें';
+	@override String get devCancelText => 'स्टोर (Test Store) से खरीदा गया Premium इस फ़ोन पर भुला दिया जाता है, ताकि नई खरीद आज़माई जा सके। साइट का या टीम को दिया गया Premium नहीं बदलता।';
+	@override String get devCancelDone => 'सदस्यता रद्द हुई (dev)';
 }
 
 // Path: homeWidget
@@ -5279,6 +5283,10 @@ extension on TranslationsHi {
 			'premium.renewal.stopText' => 'अब कोई भुगतान अनुरोध नहीं भेजा जाएगा। Premium अवधि के अंत तक जारी रहेगा।',
 			'premium.renewal.stopConfirm' => 'रोकें',
 			'premium.renewal.stopped' => 'अपने-आप नवीनीकरण रोक दिया गया।',
+			'premium.devCancel' => 'सदस्यता रद्द करें (dev)',
+			'premium.devCancelTitle' => 'सदस्यता रद्द करें',
+			'premium.devCancelText' => 'स्टोर (Test Store) से खरीदा गया Premium इस फ़ोन पर भुला दिया जाता है, ताकि नई खरीद आज़माई जा सके। साइट का या टीम को दिया गया Premium नहीं बदलता।',
+			'premium.devCancelDone' => 'सदस्यता रद्द हुई (dev)',
 			'homeWidget.title' => 'आज',
 			'homeWidget.done' => 'हो गया',
 			'homeWidget.todo' => 'भरना बाकी',
@@ -5324,12 +5332,12 @@ extension on TranslationsHi {
 			'ministry.keyDates' => 'मुख्य तिथियाँ',
 			'ministry.life' => 'उनका जीवन',
 			'ministry.story' => 'उनकी कहानी',
+			_ => null,
+		} ?? switch (path) {
 			'ministry.goalOf' => ({required Object n, required Object total}) => 'हमारा लक्ष्य · ${n}/${total}',
 			'ministry.previousGoal' => 'पिछला लक्ष्य',
 			'ministry.nextGoal' => 'अगला लक्ष्य',
 			'ministry.media.books' => 'पुस्तकें',
-			_ => null,
-		} ?? switch (path) {
 			'ministry.media.tracts' => 'पर्चे',
 			'ministry.media.magazines' => 'पत्रिकाएँ',
 			'ministry.media.cds' => 'सीडी',
@@ -5838,12 +5846,12 @@ extension on TranslationsHi {
 			'weekStory.goalsLead' => 'तुम्हारे लक्ष्य',
 			'weekStory.goalsReached' => 'औसतन पूरे हुए',
 			'weekStory.bestDay' => ({required Object day, required Object percent}) => 'तुम्हारा सबसे अच्छा दिन: ${day} · ${percent}',
+			_ => null,
+		} ?? switch (path) {
 			'weekStory.summaryTitle' => 'परमेश्वर के साथ मेरा हफ़्ता',
 			'weekStory.statDays' => 'दिन भरे गए',
 			'weekStory.statStreak' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n, one: 'दिन लगातार', other: 'दिन लगातार', ), 
 			'weekStory.statRetreats' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n, one: 'प्रार्थना-समय', other: 'प्रार्थना-समय', ), 
-			_ => null,
-		} ?? switch (path) {
 			'weekStory.statGoals' => 'लक्ष्य',
 			'weekStory.share' => 'अपना हफ़्ता साझा करो',
 			'weekStory.homeText' => 'इस हफ़्ते की तुम्हारी वफ़ादारी, प्रार्थना और लक्ष्य।',
@@ -6352,12 +6360,12 @@ extension on TranslationsHi {
 			'journey.daily.meditation' => 'वचन पर मनन करो',
 			'journey.daily.allDone' => 'चारों क़दम पूरे हुए। परमेश्वर के साथ तुम्हारा दिन शुभ हो!',
 			'journey.daily.done' => 'पूरा',
+			_ => null,
+		} ?? switch (path) {
 			'journey.grace.day' => 'अनुग्रह का दिन',
 			'journey.grace.used' => ({required Object day}) => 'अनुग्रह का दिन ${day}: तुम्हारा सिलसिला जारी है।',
 			'journey.grace.title' => 'अनुग्रह का दिन',
 			'journey.grace.text' => ({required Object day}) => 'तुमने ${day} की रिपोर्ट नहीं भरी, पर तुम्हारा सिलसिला जारी है: हर सप्ताह एक अनुग्रह का दिन उसे बचाता है। कल एक नई शुरुआत है।',
-			_ => null,
-		} ?? switch (path) {
 			'journey.grace.ok' => 'धन्यवाद!',
 			'gamification.tabs.path' => 'रास्ता',
 			'gamification.tabs.cards' => 'मेरे कार्ड',

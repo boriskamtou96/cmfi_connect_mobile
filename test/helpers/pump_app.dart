@@ -260,6 +260,8 @@ Future<TestApp> pumpApp(
   // a boundary around the whole app, to take a picture of the screen
   GlobalKey? screenKey,
   Map<String, Object> initialPreferences = const {},
+  // the app built with --flavor prod (what only the dev app shows)
+  Flavor flavor = Flavor.dev,
 }) async {
   // Zoé breathes forever: still in the tests, so that they settle
   DoveMascot.lively = false;
@@ -328,7 +330,7 @@ Future<TestApp> pumpApp(
 
   final container = ProviderContainer(
     overrides: [
-      flavorProvider.overrideWithValue(Flavor.dev),
+      flavorProvider.overrideWithValue(flavor),
       sharedPreferencesProvider.overrideWithValue(preferences),
       // phone numbers default to Cameroon, whatever the test machine's region
       deviceRegionProvider.overrideWithValue('CM'),

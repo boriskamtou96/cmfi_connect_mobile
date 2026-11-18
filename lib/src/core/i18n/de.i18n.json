@@ -1199,7 +1199,11 @@
       "stopText": "Es werden keine Zahlungsanfragen mehr gesendet. Premium läuft bis zum Ende des Zeitraums weiter.",
       "stopConfirm": "Beenden",
       "stopped": "Automatische Verlängerung beendet."
-    }
+    },
+    "devCancel": "Abo kündigen (dev)",
+    "devCancelTitle": "Abo kündigen",
+    "devCancelText": "Das im Store (Test Store) gekaufte Premium wird auf diesem Telefon vergessen, um einen neuen Kauf zu testen. Premium von der Website oder für das Team bleibt.",
+    "devCancelDone": "Abo gekündigt (dev)"
   },
   "homeWidget": {
     "title": "Heute",

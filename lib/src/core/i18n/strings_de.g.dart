@@ -832,6 +832,10 @@ class _Translations$premium$de extends Translations$premium$fr {
 	@override late final _Translations$premium$nudge$de nudge = _Translations$premium$nudge$de._(_root);
 	@override String get preview => 'Vorschau deiner Ziele mit Premium';
 	@override late final _Translations$premium$renewal$de renewal = _Translations$premium$renewal$de._(_root);
+	@override String get devCancel => 'Abo kündigen (dev)';
+	@override String get devCancelTitle => 'Abo kündigen';
+	@override String get devCancelText => 'Das im Store (Test Store) gekaufte Premium wird auf diesem Telefon vergessen, um einen neuen Kauf zu testen. Premium von der Website oder für das Team bleibt.';
+	@override String get devCancelDone => 'Abo gekündigt (dev)';
 }
 
 // Path: homeWidget
@@ -5280,6 +5284,10 @@ extension on TranslationsDe {
 			'premium.renewal.stopText' => 'Es werden keine Zahlungsanfragen mehr gesendet. Premium läuft bis zum Ende des Zeitraums weiter.',
 			'premium.renewal.stopConfirm' => 'Beenden',
 			'premium.renewal.stopped' => 'Automatische Verlängerung beendet.',
+			'premium.devCancel' => 'Abo kündigen (dev)',
+			'premium.devCancelTitle' => 'Abo kündigen',
+			'premium.devCancelText' => 'Das im Store (Test Store) gekaufte Premium wird auf diesem Telefon vergessen, um einen neuen Kauf zu testen. Premium von der Website oder für das Team bleibt.',
+			'premium.devCancelDone' => 'Abo gekündigt (dev)',
 			'homeWidget.title' => 'Heute',
 			'homeWidget.done' => 'Erledigt',
 			'homeWidget.todo' => 'Auszufüllen',
@@ -5325,12 +5333,12 @@ extension on TranslationsDe {
 			'ministry.keyDates' => 'Wichtige Daten',
 			'ministry.life' => 'Sein Leben',
 			'ministry.story' => 'Lebensgeschichte',
+			_ => null,
+		} ?? switch (path) {
 			'ministry.goalOf' => ({required Object n, required Object total}) => 'UNSER ZIEL · ${n}/${total}',
 			'ministry.previousGoal' => 'Vorheriges Ziel',
 			'ministry.nextGoal' => 'Nächstes Ziel',
 			'ministry.media.books' => 'Bücher',
-			_ => null,
-		} ?? switch (path) {
 			'ministry.media.tracts' => 'Traktate',
 			'ministry.media.magazines' => 'Zeitschriften',
 			'ministry.media.cds' => 'CDs',
@@ -5839,12 +5847,12 @@ extension on TranslationsDe {
 			'weekStory.goalsLead' => 'Deine Ziele',
 			'weekStory.goalsReached' => 'im Durchschnitt erreicht',
 			'weekStory.bestDay' => ({required Object day, required Object percent}) => 'Dein bester Tag: ${day} · ${percent}',
+			_ => null,
+		} ?? switch (path) {
 			'weekStory.summaryTitle' => 'Meine Woche mit Gott',
 			'weekStory.statDays' => 'ausgefüllte Tage',
 			'weekStory.statStreak' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('de'))(n, one: 'Tag in Folge', other: 'Tage in Folge', ), 
 			'weekStory.statRetreats' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('de'))(n, one: 'Gebetszeit', other: 'Gebetszeiten', ), 
-			_ => null,
-		} ?? switch (path) {
 			'weekStory.statGoals' => 'der Ziele',
 			'weekStory.share' => 'Meine Woche teilen',
 			'weekStory.homeText' => 'Deine Treue, dein Gebet und deine Ziele dieser Woche.',
@@ -6353,12 +6361,12 @@ extension on TranslationsDe {
 			'journey.daily.meditation' => 'Über das Wort nachsinnen',
 			'journey.daily.allDone' => 'Die vier Schritte sind gemacht. Einen schönen Tag mit Gott!',
 			'journey.daily.done' => 'Erledigt',
+			_ => null,
+		} ?? switch (path) {
 			'journey.grace.day' => 'Tag der Gnade',
 			'journey.grace.used' => ({required Object day}) => 'Tag der Gnade ${day}: deine Serie geht weiter.',
 			'journey.grace.title' => 'Ein Tag der Gnade',
 			'journey.grace.text' => ({required Object day}) => 'Du hast ${day} nicht ausgefüllt, aber deine Serie geht weiter: Jede Woche schützt sie ein Tag der Gnade. Morgen ist ein neuer Anfang.',
-			_ => null,
-		} ?? switch (path) {
 			'journey.grace.ok' => 'Danke!',
 			'gamification.tabs.path' => 'Der Weg',
 			'gamification.tabs.cards' => 'Meine Karten',

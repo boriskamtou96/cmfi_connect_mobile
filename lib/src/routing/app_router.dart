@@ -298,7 +298,7 @@ class AppRouter extends RootStackRouter {
     AutoRoute(
       path: '/reports/export',
       page: ExportReportRoute.page,
-      guards: [authGuard],
+      guards: [authGuard, premiumGuard],
     ),
     // « Faire un don »: an amount chosen, paid by mobile money or card
     AutoRoute(path: '/donate', page: DonationRoute.page, guards: [authGuard]),
@@ -306,7 +306,7 @@ class AppRouter extends RootStackRouter {
     AutoRoute(
       path: '/reports/import',
       page: ImportReportRoute.page,
-      guards: [authGuard],
+      guards: [authGuard, premiumGuard],
     ),
     AutoRoute(
       path: '/reports/sending',

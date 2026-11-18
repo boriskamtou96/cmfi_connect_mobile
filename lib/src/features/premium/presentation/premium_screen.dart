@@ -96,33 +96,19 @@ class PremiumScreen extends HookConsumerWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-                  Align(
-                    alignment: AlignmentDirectional.centerStart,
-                    child: Padding(
-                      padding: const EdgeInsetsDirectional.only(
-                        start: AppSpacing.xs,
-                      ),
-                      child: IconButton(
-                        tooltip: context.t.common.close,
-                        color: _onNight,
-                        onPressed: () => context.router.maybePop(),
-                        icon: const Icon(AppIcons.close),
-                      ),
-                    ),
-                  ),
                   Expanded(
                     child: SingleChildScrollView(
                       padding: const EdgeInsets.fromLTRB(
                         AppSpacing.xl,
-                        0,
+                        AppSpacing.md,
                         AppSpacing.xl,
-                        AppSpacing.lg,
+                        AppSpacing.md,
                       ),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.stretch,
                         children: [
                           const FadeSlideIn(child: _Hero()),
-                          const SizedBox(height: AppSpacing.md),
+                          const SizedBox(height: AppSpacing.sm),
                           FadeSlideIn(
                             index: 1,
                             child: Column(
@@ -136,41 +122,37 @@ class PremiumScreen extends HookConsumerWidget {
                                     color: _onNight,
                                   ),
                                 ),
-                                for (final (icon, title, text) in [
-                                  (
-                                    AppIcons.offlineTile,
-                                    t.offlineTitle,
-                                    t.offlineText,
-                                  ),
-                                  (
-                                    AppIcons.yearStoryTile,
-                                    t.yearTitle,
-                                    t.yearText,
-                                  ),
-                                  (
-                                    AppIcons.homeWidgetTile,
-                                    t.widgetTitle,
-                                    t.widgetText,
-                                  ),
-                                  (
-                                    AppIcons.progressTile,
-                                    t.statsTitle,
-                                    t.statsText,
-                                  ),
-                                  (
-                                    AppIcons.supportTile,
-                                    t.supportTitle,
-                                    t.supportText,
-                                  ),
-                                ]) ...[
-                                  const SizedBox(height: AppSpacing.md),
-                                  _Benefit(
-                                    icon: icon,
-                                    title: title,
-                                    text: text,
-                                  ),
-                                ],
-                                const SizedBox(height: AppSpacing.md),
+                                const SizedBox(height: AppSpacing.sm),
+                                _Benefits(
+                                  items: [
+                                    (
+                                      AppIcons.offlineTile,
+                                      t.offlineTitle,
+                                      t.offlineText,
+                                    ),
+                                    (
+                                      AppIcons.yearStoryTile,
+                                      t.yearTitle,
+                                      t.yearText,
+                                    ),
+                                    (
+                                      AppIcons.homeWidgetTile,
+                                      t.widgetTitle,
+                                      t.widgetText,
+                                    ),
+                                    (
+                                      AppIcons.progressTile,
+                                      t.statsTitle,
+                                      t.statsText,
+                                    ),
+                                    (
+                                      AppIcons.supportTile,
+                                      t.supportTitle,
+                                      t.supportText,
+                                    ),
+                                  ],
+                                ),
+                                const SizedBox(height: AppSpacing.sm),
                                 // what stays free: what Premium is not
                                 Row(
                                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -196,7 +178,7 @@ class PremiumScreen extends HookConsumerWidget {
                               ],
                             ),
                           ),
-                          const SizedBox(height: AppSpacing.xl),
+                          const SizedBox(height: AppSpacing.md),
                           FadeSlideIn(
                             index: 4,
                             child: active
@@ -226,7 +208,7 @@ class PremiumScreen extends HookConsumerWidget {
                                   },
                           ),
                           if (!active) ...[
-                            const SizedBox(height: AppSpacing.md),
+                            const SizedBox(height: AppSpacing.sm),
                             _FinePrint(
                               lifetime:
                                   selected?.period == PremiumPeriod.lifetime,
@@ -251,9 +233,20 @@ class PremiumScreen extends HookConsumerWidget {
                       done: t.restored,
                       none: t.nothingToRestore,
                     ),
-                    onClose: () => context.router.maybePop(),
                   ),
                 ],
+              ),
+            ),
+            // the cross floats over the top of the page: the page holds on
+            // one screen (asked on 18/11/2026)
+            PositionedDirectional(
+              top: MediaQuery.paddingOf(context).top,
+              end: AppSpacing.xs,
+              child: IconButton(
+                tooltip: context.t.common.close,
+                color: _onNight,
+                onPressed: () => context.router.maybePop(),
+                icon: const Icon(AppIcons.close),
               ),
             ),
           ],
@@ -323,8 +316,8 @@ class _Hero extends StatelessWidget {
         Row(
           children: [
             Container(
-              width: 84,
-              height: 76,
+              width: 72,
+              height: 64,
               alignment: Alignment.center,
               decoration: BoxDecoration(
                 gradient: RadialGradient(
@@ -337,7 +330,7 @@ class _Hero extends StatelessWidget {
                   stops: const [0, 0.5, 1],
                 ),
               ),
-              child: const DoveMascot(pose: DovePose.celebrate, size: 64),
+              child: const DoveMascot(pose: DovePose.celebrate, size: 56),
             ),
             const SizedBox(width: AppSpacing.sm),
             Expanded(
@@ -367,7 +360,7 @@ class _Hero extends StatelessWidget {
                       child: Text(
                         t.pill,
                         style: const TextStyle(
-                          fontSize: 34,
+                          fontSize: 30,
                           height: 1.1,
                           fontWeight: FontWeight.w800,
                           letterSpacing: -0.5,
@@ -394,8 +387,44 @@ class _Hero extends StatelessWidget {
   }
 }
 
-/// What Premium opens, lit in gold: its icon on a tile, its title and the
-/// sentence that says what it gives.
+/// What Premium opens, two by two (one screen, asked on 18/11/2026): each
+/// its golden icon and its title; the sentence that says what it gives is
+/// read by screen readers.
+class _Benefits extends StatelessWidget {
+  const _Benefits({required this.items});
+
+  final List<(IconData, String, String)> items;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        for (var i = 0; i < items.length; i += 2) ...[
+          if (i > 0) const SizedBox(height: AppSpacing.sm),
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              for (final (j, (icon, title, text))
+                  in items.skip(i).take(2).indexed) ...[
+                if (j > 0) const SizedBox(width: AppSpacing.sm),
+                Expanded(
+                  child: _Benefit(icon: icon, title: title, text: text),
+                ),
+              ],
+              // the last one alone keeps half the width
+              if (items.length - i == 1) ...[
+                const SizedBox(width: AppSpacing.sm),
+                const Spacer(),
+              ],
+            ],
+          ),
+        ],
+      ],
+    );
+  }
+}
+
+/// A benefit: its icon on a tile lit in gold, its title beside it.
 class _Benefit extends StatelessWidget {
   const _Benefit({required this.icon, required this.title, required this.text});
 
@@ -405,45 +434,34 @@ class _Benefit extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MergeSemantics(
+    return Semantics(
+      label: '$title. $text',
+      excludeSemantics: true,
       child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Container(
-            width: 42,
-            height: 42,
+            width: 34,
+            height: 34,
             alignment: Alignment.center,
             decoration: BoxDecoration(
               color: Colors.white.withValues(alpha: 0.08),
-              borderRadius: BorderRadius.circular(AppRadius.md),
+              borderRadius: BorderRadius.circular(AppRadius.sm),
               border: Border.all(color: AppColors.gold.withValues(alpha: 0.45)),
             ),
-            child: PhosphorIcon(icon, color: AppColors.goldLight, size: 22),
+            child: PhosphorIcon(icon, color: AppColors.goldLight, size: 18),
           ),
-          const SizedBox(width: AppSpacing.md),
+          const SizedBox(width: AppSpacing.sm),
           Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  title,
-                  style: const TextStyle(
-                    fontSize: 15,
-                    height: 1.3,
-                    fontWeight: FontWeight.w700,
-                    color: _onNight,
-                  ),
-                ),
-                const SizedBox(height: 2),
-                Text(
-                  text,
-                  style: const TextStyle(
-                    fontSize: 13.5,
-                    height: 1.4,
-                    color: _onNightMuted,
-                  ),
-                ),
-              ],
+            child: Text(
+              title,
+              maxLines: 2,
+              overflow: TextOverflow.ellipsis,
+              style: const TextStyle(
+                fontSize: 13,
+                height: 1.25,
+                fontWeight: FontWeight.w700,
+                color: _onNight,
+              ),
             ),
           ),
         ],
@@ -514,9 +532,9 @@ class _Plans extends StatelessWidget {
           ),
         ),
         // room for the saving badges on the top edge
-        const SizedBox(height: AppSpacing.lg),
+        const SizedBox(height: AppSpacing.md),
         for (var i = 0; i < ordered.length; i += 2) ...[
-          if (i > 0) const SizedBox(height: AppSpacing.md),
+          if (i > 0) const SizedBox(height: AppSpacing.sm),
           IntrinsicHeight(
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -952,7 +970,6 @@ class _Footer extends ConsumerWidget {
     required this.busy,
     required this.onBuy,
     required this.onRestore,
-    required this.onClose,
   });
 
   final bool active;
@@ -960,7 +977,6 @@ class _Footer extends ConsumerWidget {
   final bool busy;
   final VoidCallback? onBuy;
   final VoidCallback onRestore;
-  final VoidCallback onClose;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -1022,53 +1038,54 @@ class _Footer extends ConsumerWidget {
                 ),
               ),
             ),
-          DecoratedBox(
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(AppRadius.lg),
-              boxShadow: [
-                if (active || onBuy != null)
-                  BoxShadow(
-                    color: AppColors.gold.withValues(alpha: 0.3),
-                    blurRadius: 18,
-                    offset: const Offset(0, 4),
-                  ),
-              ],
-            ),
-            child: FilledButton(
-              onPressed: active ? onClose : (busy ? () {} : onBuy),
-              style: FilledButton.styleFrom(
-                backgroundColor: AppColors.gold,
-                foregroundColor: AppColors.ink,
-                disabledBackgroundColor: Colors.white.withValues(alpha: 0.12),
-                disabledForegroundColor: _onNightMuted,
-                minimumSize: const Size.fromHeight(52),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(AppRadius.lg),
-                ),
-                textStyle: const TextStyle(
-                  fontFamily: AppTheme.fontFamily,
-                  fontSize: 16,
-                  fontWeight: FontWeight.w800,
-                ),
-              ),
-              child: busy
-                  ? const AppSpinner(
-                      size: 22,
-                      strokeWidth: 2.4,
-                      color: AppColors.ink,
-                    )
-                  : Text(
-                      active
-                          ? context.t.common.close
-                          : plan?.period == PremiumPeriod.lifetime
-                          ? t.buyLifetime
-                          : trial != null
-                          ? t.startTrial
-                          : t.subscribe,
+          // Premium on: no button, the cross at the top closes the page
+          if (!active) ...[
+            DecoratedBox(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(AppRadius.lg),
+                boxShadow: [
+                  if (onBuy != null)
+                    BoxShadow(
+                      color: AppColors.gold.withValues(alpha: 0.3),
+                      blurRadius: 18,
+                      offset: const Offset(0, 4),
                     ),
+                ],
+              ),
+              child: FilledButton(
+                onPressed: busy ? () {} : onBuy,
+                style: FilledButton.styleFrom(
+                  backgroundColor: AppColors.gold,
+                  foregroundColor: AppColors.ink,
+                  disabledBackgroundColor: Colors.white.withValues(alpha: 0.12),
+                  disabledForegroundColor: _onNightMuted,
+                  minimumSize: const Size.fromHeight(52),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(AppRadius.lg),
+                  ),
+                  textStyle: const TextStyle(
+                    fontFamily: AppTheme.fontFamily,
+                    fontSize: 16,
+                    fontWeight: FontWeight.w800,
+                  ),
+                ),
+                child: busy
+                    ? const AppSpinner(
+                        size: 22,
+                        strokeWidth: 2.4,
+                        color: AppColors.ink,
+                      )
+                    : Text(
+                        plan?.period == PremiumPeriod.lifetime
+                            ? t.buyLifetime
+                            : trial != null
+                            ? t.startTrial
+                            : t.subscribe,
+                      ),
+              ),
             ),
-          ),
-          const SizedBox(height: AppSpacing.xs),
+            const SizedBox(height: AppSpacing.xs),
+          ],
           // one line in most languages, two when the words are long
           Wrap(
             alignment: WrapAlignment.center,

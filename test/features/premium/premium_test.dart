@@ -88,8 +88,9 @@ void main() {
     expect(app.toasts.messages, ['Merci ! Premium est activé.']);
     expect(find.text('Tu as Premium'), findsOneWidget);
 
-    await reach(tester, find.text('Fermer'));
-    await tester.tap(find.text('Fermer'));
+    // no « Fermer » button any more: the cross at the top closes it
+    expect(find.text('Fermer'), findsNothing);
+    await tester.tap(find.byTooltip('Fermer'));
     await tester.pumpAndSettle();
     // the year opens now, and the progress of the goals shows
     await tester.tap(find.text('Année'));

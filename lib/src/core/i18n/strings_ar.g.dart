@@ -848,8 +848,52 @@ class _Translations$premium$ar extends Translations$premium$fr {
 	@override String get statsText => 'حصيلة سنتك وتطوّر أهدافك أسبوعًا بعد أسبوع.';
 	@override String get supportTitle => 'أنت تدعم العمل';
 	@override String get supportText => 'دعمك يُبقي التطبيق وميزاته الجديدة حيّة للجماعة كلّها.';
-	@override String get unavailable => 'Premium قادم قريبًا إلى التطبيق.';
-	@override late final _Translations$premium$onSite$ar onSite = _Translations$premium$onSite$ar._(_root);
+	@override String get annual => 'سنوي';
+	@override String get lifetime => 'مدى الحياة';
+	@override String get monthly => 'شهري';
+	@override String perYear({required Object price}) => '${price} / سنة';
+	@override String once({required Object price}) => '${price} مرة واحدة';
+	@override String perMonth({required Object price}) => '${price} / شهر';
+	@override String annualPerMonth({required Object price}) => 'أي ${price} شهريًا';
+	@override String get best => 'الأوفر';
+	@override String trialDays({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n,
+		zero: 'تجربة مجانية',
+		one: 'يوم واحد تجربة مجانية',
+		two: 'يومان تجربة مجانية',
+		few: '${n} أيام تجربة مجانية',
+		many: '${n} يومًا تجربة مجانية',
+		other: '${n} يوم تجربة مجانية',
+	);
+	@override String trialMonths({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n,
+		zero: 'تجربة مجانية',
+		one: 'شهر واحد تجربة مجانية',
+		two: 'شهران تجربة مجانية',
+		few: '${n} أشهر تجربة مجانية',
+		many: '${n} شهرًا تجربة مجانية',
+		other: '${n} شهر تجربة مجانية',
+	);
+	@override String get subscribe => 'اشترك';
+	@override String get startTrial => 'ابدأ التجربة المجانية';
+	@override String get restore => 'استعادة المشتريات';
+	@override String get restored => 'عاد Premium إلى هذا الهاتف';
+	@override String get nothingToRestore => 'لا يوجد شراء Premium لهذا الحساب';
+	@override String get thanks => 'شكرًا! تم تفعيل Premium.';
+	@override String get failed => 'لم تكتمل عملية الشراء. أعد المحاولة بعد قليل.';
+	@override String get pending => 'شراؤك في انتظار الموافقة. سيُفتح Premium فور قبوله.';
+	@override String renews({required Object store}) => 'يتجدد الاشتراك تلقائيًا. يمكنك إلغاؤه متى شئت من إعدادات حسابك في ${store}.';
+	@override String get terms => 'شروط الاستخدام';
+	@override String trialThen({required Object trial, required Object price}) => '${trial}، ثم ${price}';
+	@override String savePercent({required Object percent}) => '−${percent}';
+	@override String get choose => 'اختر عرضك';
+	@override String get cancelAnytime => 'بلا التزام، يمكن الإلغاء في أي وقت';
+	@override String get restoreShort => 'استعادة';
+	@override String get semiannual => 'نصف سنوي';
+	@override String perSemester({required Object price}) => '${price} / 6 أشهر';
+	@override String get buyLifetime => 'اشترِ مدى الحياة';
+	@override String get lifetimeNote => 'مدى الحياة: دفعة واحدة، بلا اشتراك ولا تجديد.';
+	@override String get manage => 'إدارة اشتراكي';
+	@override String get manageFailed => 'تعذّر فتح إدارة الاشتراك. حاول لاحقًا.';
+	@override String get unavailable => 'العروض غير متاحة حاليًا.';
 	@override String get privacy => 'الخصوصية';
 	@override String get activeTitle => 'لديك Premium';
 	@override String get activeText => 'شكرًا لدعمك CMFI Connect! الأداة وسنتك وحصيلتك والتعاليم دون اتصال مفتوحة.';
@@ -3451,19 +3495,6 @@ class _Translations$events$pay$ar extends Translations$events$pay$fr {
 	@override String get reopen => 'إعادة فتح صفحة الدفع';
 }
 
-// Path: premium.onSite
-class _Translations$premium$onSite$ar extends Translations$premium$onSite$fr {
-	_Translations$premium$onSite$ar._(TranslationsAr root) : this._root = root, super.internal(root);
-
-	final TranslationsAr _root; // ignore: unused_field
-
-	// Translations
-	@override String get title => 'فعِّل Premium على الموقع';
-	@override String get text => 'سجّل الدخول بحسابك وادفع عبر الهاتف المحمول (MTN، Orange). دفعة واحدة، ولا يتجدّد شيء تلقائيًا.';
-	@override String get note => 'يظهر Premium بعد ذلك هنا تلقائيًا، على كل هواتفك.';
-	@override String get button => 'المتابعة على cmfi-connect.com';
-}
-
 // Path: premium.end
 class _Translations$premium$end$ar extends Translations$premium$end$fr {
 	_Translations$premium$end$ar._(TranslationsAr root) : this._root = root, super.internal(root);
@@ -5651,11 +5682,38 @@ extension on TranslationsAr {
 			'premium.statsText' => 'حصيلة سنتك وتطوّر أهدافك أسبوعًا بعد أسبوع.',
 			'premium.supportTitle' => 'أنت تدعم العمل',
 			'premium.supportText' => 'دعمك يُبقي التطبيق وميزاته الجديدة حيّة للجماعة كلّها.',
-			'premium.unavailable' => 'Premium قادم قريبًا إلى التطبيق.',
-			'premium.onSite.title' => 'فعِّل Premium على الموقع',
-			'premium.onSite.text' => 'سجّل الدخول بحسابك وادفع عبر الهاتف المحمول (MTN، Orange). دفعة واحدة، ولا يتجدّد شيء تلقائيًا.',
-			'premium.onSite.note' => 'يظهر Premium بعد ذلك هنا تلقائيًا، على كل هواتفك.',
-			'premium.onSite.button' => 'المتابعة على cmfi-connect.com',
+			'premium.annual' => 'سنوي',
+			'premium.lifetime' => 'مدى الحياة',
+			'premium.monthly' => 'شهري',
+			'premium.perYear' => ({required Object price}) => '${price} / سنة',
+			'premium.once' => ({required Object price}) => '${price} مرة واحدة',
+			'premium.perMonth' => ({required Object price}) => '${price} / شهر',
+			'premium.annualPerMonth' => ({required Object price}) => 'أي ${price} شهريًا',
+			'premium.best' => 'الأوفر',
+			'premium.trialDays' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n, zero: 'تجربة مجانية', one: 'يوم واحد تجربة مجانية', two: 'يومان تجربة مجانية', few: '${n} أيام تجربة مجانية', many: '${n} يومًا تجربة مجانية', other: '${n} يوم تجربة مجانية', ), 
+			'premium.trialMonths' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n, zero: 'تجربة مجانية', one: 'شهر واحد تجربة مجانية', two: 'شهران تجربة مجانية', few: '${n} أشهر تجربة مجانية', many: '${n} شهرًا تجربة مجانية', other: '${n} شهر تجربة مجانية', ), 
+			'premium.subscribe' => 'اشترك',
+			'premium.startTrial' => 'ابدأ التجربة المجانية',
+			'premium.restore' => 'استعادة المشتريات',
+			'premium.restored' => 'عاد Premium إلى هذا الهاتف',
+			'premium.nothingToRestore' => 'لا يوجد شراء Premium لهذا الحساب',
+			'premium.thanks' => 'شكرًا! تم تفعيل Premium.',
+			'premium.failed' => 'لم تكتمل عملية الشراء. أعد المحاولة بعد قليل.',
+			'premium.pending' => 'شراؤك في انتظار الموافقة. سيُفتح Premium فور قبوله.',
+			'premium.renews' => ({required Object store}) => 'يتجدد الاشتراك تلقائيًا. يمكنك إلغاؤه متى شئت من إعدادات حسابك في ${store}.',
+			'premium.terms' => 'شروط الاستخدام',
+			'premium.trialThen' => ({required Object trial, required Object price}) => '${trial}، ثم ${price}',
+			'premium.savePercent' => ({required Object percent}) => '−${percent}',
+			'premium.choose' => 'اختر عرضك',
+			'premium.cancelAnytime' => 'بلا التزام، يمكن الإلغاء في أي وقت',
+			'premium.restoreShort' => 'استعادة',
+			'premium.semiannual' => 'نصف سنوي',
+			'premium.perSemester' => ({required Object price}) => '${price} / 6 أشهر',
+			'premium.buyLifetime' => 'اشترِ مدى الحياة',
+			'premium.lifetimeNote' => 'مدى الحياة: دفعة واحدة، بلا اشتراك ولا تجديد.',
+			'premium.manage' => 'إدارة اشتراكي',
+			'premium.manageFailed' => 'تعذّر فتح إدارة الاشتراك. حاول لاحقًا.',
+			'premium.unavailable' => 'العروض غير متاحة حاليًا.',
 			'premium.privacy' => 'الخصوصية',
 			'premium.activeTitle' => 'لديك Premium',
 			'premium.activeText' => 'شكرًا لدعمك CMFI Connect! الأداة وسنتك وحصيلتك والتعاليم دون اتصال مفتوحة.',
@@ -5739,6 +5797,8 @@ extension on TranslationsAr {
 			'ministry.nextGoal' => 'الهدف التالي',
 			'ministry.media.books' => 'الكتب',
 			'ministry.media.tracts' => 'النبذات',
+			_ => null,
+		} ?? switch (path) {
 			'ministry.media.magazines' => 'المجلات',
 			'ministry.media.cds' => 'الأقراص المدمجة',
 			'ministry.media.dvds' => 'أقراص الفيديو',
@@ -5766,8 +5826,6 @@ extension on TranslationsAr {
 			'ministry.lives.founder.facts.2' => 'أمم زارها',
 			'ministry.lives.founder.dates.0' => 'وُلد في 20 يونيو في الكاميرون، في عائلة مشيخية.',
 			'ministry.lives.founder.dates.1' => 'سلّم حياته ليسوع المسيح في 13 يونيو، من خلال نشرة.',
-			_ => null,
-		} ?? switch (path) {
 			'ministry.lives.founder.dates.2' => 'كرّس نفسه بالكامل للرب في 1 أكتوبر، في سيراليون.',
 			'ministry.lives.founder.dates.3' => 'امتلأ بالروح القدس في 24 أكتوبر، بعد سبعة أيام من الصلاة.',
 			'ministry.lives.founder.dates.4' => 'أسّس CMFI في ياوندي في 12 مايو.',
@@ -6253,6 +6311,8 @@ extension on TranslationsAr {
 			'weekStory.statStreak' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n, zero: 'يوم على التوالي', one: 'يوم على التوالي', two: 'يومان على التوالي', few: 'أيام على التوالي', many: 'يومًا على التوالي', other: 'يوم على التوالي', ), 
 			'weekStory.statRetreats' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n, zero: 'خلوة', one: 'خلوة', two: 'خلوتان', few: 'خلوات', many: 'خلوة', other: 'خلوة', ), 
 			'weekStory.statGoals' => 'من الأهداف',
+			_ => null,
+		} ?? switch (path) {
 			'weekStory.share' => 'مشاركة أسبوعي',
 			'weekStory.homeText' => 'أمانتك وصلاتك وأهدافك هذا الأسبوع.',
 			'weekStory.open' => 'عرض أسبوعي',
@@ -6280,8 +6340,6 @@ extension on TranslationsAr {
 			'yearStory.faithfulMoment' => ({required num n, required Object moment}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n, zero: 'وقتك الأكثر أمانة: ${moment} (${n} مرة)', one: 'وقتك الأكثر أمانة: ${moment} (مرة واحدة)', two: 'وقتك الأكثر أمانة: ${moment} (مرتان)', few: 'وقتك الأكثر أمانة: ${moment} (${n} مرات)', many: 'وقتك الأكثر أمانة: ${moment} (${n} مرة)', other: 'وقتك الأكثر أمانة: ${moment} (${n} مرة)', ), 
 			'yearStory.wordLead' => 'قرأت كلمة الله',
 			'yearStory.memoryLead' => 'خبّأت كلمة الله في قلبك',
-			_ => null,
-		} ?? switch (path) {
 			'yearStory.chapters' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n, zero: '${n} فصل', one: 'فصل واحد', two: 'فصلان', few: '${n} فصول', many: '${n} فصلًا', other: '${n} فصل', ), 
 			'yearStory.bibleShare' => ({required Object percent}) => '${percent} من الكتاب المقدس',
 			'yearStory.wholeBible' => 'ما يعادل الكتاب المقدس كله!',
@@ -6767,6 +6825,8 @@ extension on TranslationsAr {
 			'journey.grace.title' => 'يوم نعمة',
 			'journey.grace.text' => ({required Object day}) => 'لم تملأ تقرير ${day}، لكن سلسلتك مستمرة: كل أسبوع يحميها يوم نعمة. غدًا بداية جديدة.',
 			'journey.grace.ok' => 'شكرًا!',
+			_ => null,
+		} ?? switch (path) {
 			'gamification.tabs.path' => 'الطريق',
 			'gamification.tabs.cards' => 'بطاقاتي',
 			'gamification.next.title' => 'محطتك القادمة',
@@ -6794,8 +6854,6 @@ extension on TranslationsAr {
 			'gamification.cap.sheetText' => 'التزام واحد، تختاره أنت. يمكنك تغييره أو تركه: لا لوم عليك.',
 			'gamification.cap.skip' => 'ليس هذا الأسبوع',
 			'gamification.cap.remainingReports' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n, zero: 'لا أيام تقرير متبقية', one: 'بقي يوم تقرير واحد', two: 'بقي يومان للتقرير', few: 'بقيت ${n} أيام تقرير', many: 'بقي ${n} يوم تقرير', other: 'بقي ${n} يوم تقرير', ), 
-			_ => null,
-		} ?? switch (path) {
 			'gamification.cap.remainingRetreats' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n, zero: 'لا خلوات متبقية', one: 'بقيت خلوة واحدة', two: 'بقيت خلتان', few: 'بقيت ${n} خلوات', many: 'بقيت ${n} خلوة', other: 'بقيت ${n} خلوة', ), 
 			'gamification.cap.remainingChapters' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n, zero: 'لا إصحاحات متبقية', one: 'بقي إصحاح واحد', two: 'بقي إصحاحان', few: 'بقيت ${n} إصحاحات', many: 'بقي ${n} إصحاحًا', other: 'بقي ${n} إصحاح', ), 
 			'gamification.cap.suggestReports' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n, zero: 'لا أيام تقرير', one: 'يوم تقرير واحد', two: 'يومان تقرير', few: '${n} أيام تقرير', many: '${n} يوم تقرير', other: '${n} يوم تقرير', ), 

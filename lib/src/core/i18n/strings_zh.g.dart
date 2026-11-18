@@ -756,8 +756,42 @@ class _Translations$premium$zh extends Translations$premium$fr {
 	@override String get statsText => '你的年度回顾，以及目标逐周的变化。';
 	@override String get supportTitle => '你在支持这份事工';
 	@override String get supportText => '你的支持让应用及其新功能为整个团体持续运作。';
-	@override String get unavailable => 'Premium 即将登陆应用。';
-	@override late final _Translations$premium$onSite$zh onSite = _Translations$premium$onSite$zh._(_root);
+	@override String get annual => '按年';
+	@override String get lifetime => '终身';
+	@override String get monthly => '按月';
+	@override String perYear({required Object price}) => '${price} / 年';
+	@override String once({required Object price}) => '${price} 一次性';
+	@override String perMonth({required Object price}) => '${price} / 月';
+	@override String annualPerMonth({required Object price}) => '相当于每月 ${price}';
+	@override String get best => '最划算';
+	@override String trialDays({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n,
+		other: '免费试用 ${n} 天',
+	);
+	@override String trialMonths({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n,
+		other: '免费试用 ${n} 个月',
+	);
+	@override String get subscribe => '订阅';
+	@override String get startTrial => '开始免费试用';
+	@override String get restore => '恢复购买';
+	@override String get restored => 'Premium 已在这部手机上恢复';
+	@override String get nothingToRestore => '此账户没有 Premium 购买记录';
+	@override String get thanks => '谢谢你！Premium 已开启。';
+	@override String get failed => '购买未完成，请稍后再试。';
+	@override String get pending => '你的购买正在等待批准。批准后 Premium 会立即开启。';
+	@override String renews({required Object store}) => '订阅会自动续订。你可以随时在 ${store} 账户设置中取消。';
+	@override String get terms => '使用条款';
+	@override String trialThen({required Object trial, required Object price}) => '${trial}，之后 ${price}';
+	@override String savePercent({required Object percent}) => '−${percent}';
+	@override String get choose => '选择你的方案';
+	@override String get cancelAnytime => '无需承诺，随时可取消';
+	@override String get restoreShort => '恢复购买';
+	@override String get semiannual => '半年';
+	@override String perSemester({required Object price}) => '${price} / 6 个月';
+	@override String get buyLifetime => '终身购买';
+	@override String get lifetimeNote => '终身：一次付款，无需订阅，不会续费。';
+	@override String get manage => '管理我的订阅';
+	@override String get manageFailed => '无法打开订阅管理，请稍后再试。';
+	@override String get unavailable => '暂时无法获取订阅方案。';
 	@override String get privacy => '隐私';
 	@override String get activeTitle => '你已拥有 Premium';
 	@override String get activeText => '感谢支持 CMFI Connect！小组件、你的一年、年度回顾和离线教导已开启。';
@@ -3020,19 +3054,6 @@ class _Translations$events$pay$zh extends Translations$events$pay$fr {
 	@override String get reopen => '重新打开付款页面';
 }
 
-// Path: premium.onSite
-class _Translations$premium$onSite$zh extends Translations$premium$onSite$fr {
-	_Translations$premium$onSite$zh._(TranslationsZh root) : this._root = root, super.internal(root);
-
-	final TranslationsZh _root; // ignore: unused_field
-
-	// Translations
-	@override String get title => '在网站上开通 Premium';
-	@override String get text => '用你的账户登录，通过移动支付（MTN、Orange）付款。一次性付款，不会自动续订。';
-	@override String get note => '之后 Premium 会自动出现在这里，你的所有手机都可使用。';
-	@override String get button => '前往 cmfi-connect.com';
-}
-
 // Path: premium.end
 class _Translations$premium$end$zh extends Translations$premium$end$fr {
 	_Translations$premium$end$zh._(TranslationsZh root) : this._root = root, super.internal(root);
@@ -5073,11 +5094,38 @@ extension on TranslationsZh {
 			'premium.statsText' => '你的年度回顾，以及目标逐周的变化。',
 			'premium.supportTitle' => '你在支持这份事工',
 			'premium.supportText' => '你的支持让应用及其新功能为整个团体持续运作。',
-			'premium.unavailable' => 'Premium 即将登陆应用。',
-			'premium.onSite.title' => '在网站上开通 Premium',
-			'premium.onSite.text' => '用你的账户登录，通过移动支付（MTN、Orange）付款。一次性付款，不会自动续订。',
-			'premium.onSite.note' => '之后 Premium 会自动出现在这里，你的所有手机都可使用。',
-			'premium.onSite.button' => '前往 cmfi-connect.com',
+			'premium.annual' => '按年',
+			'premium.lifetime' => '终身',
+			'premium.monthly' => '按月',
+			'premium.perYear' => ({required Object price}) => '${price} / 年',
+			'premium.once' => ({required Object price}) => '${price} 一次性',
+			'premium.perMonth' => ({required Object price}) => '${price} / 月',
+			'premium.annualPerMonth' => ({required Object price}) => '相当于每月 ${price}',
+			'premium.best' => '最划算',
+			'premium.trialDays' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n, other: '免费试用 ${n} 天', ), 
+			'premium.trialMonths' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n, other: '免费试用 ${n} 个月', ), 
+			'premium.subscribe' => '订阅',
+			'premium.startTrial' => '开始免费试用',
+			'premium.restore' => '恢复购买',
+			'premium.restored' => 'Premium 已在这部手机上恢复',
+			'premium.nothingToRestore' => '此账户没有 Premium 购买记录',
+			'premium.thanks' => '谢谢你！Premium 已开启。',
+			'premium.failed' => '购买未完成，请稍后再试。',
+			'premium.pending' => '你的购买正在等待批准。批准后 Premium 会立即开启。',
+			'premium.renews' => ({required Object store}) => '订阅会自动续订。你可以随时在 ${store} 账户设置中取消。',
+			'premium.terms' => '使用条款',
+			'premium.trialThen' => ({required Object trial, required Object price}) => '${trial}，之后 ${price}',
+			'premium.savePercent' => ({required Object percent}) => '−${percent}',
+			'premium.choose' => '选择你的方案',
+			'premium.cancelAnytime' => '无需承诺，随时可取消',
+			'premium.restoreShort' => '恢复购买',
+			'premium.semiannual' => '半年',
+			'premium.perSemester' => ({required Object price}) => '${price} / 6 个月',
+			'premium.buyLifetime' => '终身购买',
+			'premium.lifetimeNote' => '终身：一次付款，无需订阅，不会续费。',
+			'premium.manage' => '管理我的订阅',
+			'premium.manageFailed' => '无法打开订阅管理，请稍后再试。',
+			'premium.unavailable' => '暂时无法获取订阅方案。',
 			'premium.privacy' => '隐私',
 			'premium.activeTitle' => '你已拥有 Premium',
 			'premium.activeText' => '感谢支持 CMFI Connect！小组件、你的一年、年度回顾和离线教导已开启。',
@@ -5161,6 +5209,8 @@ extension on TranslationsZh {
 			'ministry.nextGoal' => '下一个目标',
 			'ministry.media.books' => '书籍',
 			'ministry.media.tracts' => '单张',
+			_ => null,
+		} ?? switch (path) {
 			'ministry.media.magazines' => '杂志',
 			'ministry.media.cds' => 'CD',
 			'ministry.media.dvds' => 'DVD',
@@ -5188,8 +5238,6 @@ extension on TranslationsZh {
 			'ministry.lives.founder.facts.2' => '个走访的国家',
 			'ministry.lives.founder.dates.0' => '6月20日生于喀麦隆一个长老会家庭。',
 			'ministry.lives.founder.dates.1' => '6月13日通过一份福音单张把生命交给耶稣基督。',
-			_ => null,
-		} ?? switch (path) {
 			'ministry.lives.founder.dates.2' => '10月1日在塞拉利昂把自己完全献给主。',
 			'ministry.lives.founder.dates.3' => '经过七天祷告，于10月24日被圣灵充满。',
 			'ministry.lives.founder.dates.4' => '5月12日在雅温得创立 CMFI。',
@@ -5675,6 +5723,8 @@ extension on TranslationsZh {
 			'weekStory.statStreak' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n, other: '天连续', ), 
 			'weekStory.statRetreats' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n, other: '次退修', ), 
 			'weekStory.statGoals' => '目标',
+			_ => null,
+		} ?? switch (path) {
 			'weekStory.share' => '分享我的一周',
 			'weekStory.homeText' => '你这一周的忠心、祷告和目标。',
 			'weekStory.open' => '查看我的一周',
@@ -5702,8 +5752,6 @@ extension on TranslationsZh {
 			'yearStory.faithfulMoment' => ({required num n, required Object moment}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n, other: '你最忠心的时段：${moment}（${n} 次）', ), 
 			'yearStory.wordLead' => '你读了神的话',
 			'yearStory.memoryLead' => '你把神的话藏在心里',
-			_ => null,
-		} ?? switch (path) {
 			'yearStory.chapters' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n, other: '${n} 章', ), 
 			'yearStory.bibleShare' => ({required Object percent}) => '占整本圣经的 ${percent}',
 			'yearStory.wholeBible' => '相当于整本圣经！',
@@ -6189,6 +6237,8 @@ extension on TranslationsZh {
 			'journey.grace.title' => '恩典日',
 			'journey.grace.text' => ({required Object day}) => '你没有填写${day}的报告，但你的连续记录还在：每周都有一个恩典日保护它。明天是新的开始。',
 			'journey.grace.ok' => '谢谢！',
+			_ => null,
+		} ?? switch (path) {
 			'gamification.tabs.path' => '路程',
 			'gamification.tabs.cards' => '我的卡片',
 			'gamification.next.title' => '你的下一个里程碑',
@@ -6216,8 +6266,6 @@ extension on TranslationsZh {
 			'gamification.cap.sheetText' => '只选一个承诺，由你决定。你可以更改，也可以放下：没有人责怪你。',
 			'gamification.cap.skip' => '这周不了',
 			'gamification.cap.remainingReports' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n, other: '还差 ${n} 个报告日', ), 
-			_ => null,
-		} ?? switch (path) {
 			'gamification.cap.remainingRetreats' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n, other: '还差 ${n} 次退修', ), 
 			'gamification.cap.remainingChapters' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n, other: '还差 ${n} 章', ), 
 			'gamification.cap.suggestReports' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n, other: '${n} 个报告日', ), 

@@ -774,8 +774,44 @@ class _Translations$premium$hi extends Translations$premium$fr {
 	@override String get statsText => 'आपके साल का लेखा-जोखा और हफ़्ते-दर-हफ़्ते लक्ष्यों की प्रगति।';
 	@override String get supportTitle => 'तुम सेवकाई का साथ देते हो';
 	@override String get supportText => 'तुम्हारा सहयोग पूरे समुदाय के लिए ऐप और उसकी नई सुविधाओं को चलाए रखता है।';
-	@override String get unavailable => 'Premium जल्द ही ऐप में आ रहा है।';
-	@override late final _Translations$premium$onSite$hi onSite = _Translations$premium$onSite$hi._(_root);
+	@override String get annual => 'सालाना';
+	@override String get lifetime => 'आजीवन';
+	@override String get monthly => 'मासिक';
+	@override String perYear({required Object price}) => '${price} / साल';
+	@override String once({required Object price}) => '${price} एक बार';
+	@override String perMonth({required Object price}) => '${price} / महीना';
+	@override String annualPerMonth({required Object price}) => 'यानी ${price} प्रति महीना';
+	@override String get best => 'सबसे फ़ायदेमंद';
+	@override String trialDays({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n,
+		one: '${n} दिन मुफ़्त आज़माओ',
+		other: '${n} दिन मुफ़्त आज़माओ',
+	);
+	@override String trialMonths({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n,
+		one: '${n} महीना मुफ़्त आज़माओ',
+		other: '${n} महीने मुफ़्त आज़माओ',
+	);
+	@override String get subscribe => 'सदस्यता लो';
+	@override String get startTrial => 'मुफ़्त आज़माना शुरू करो';
+	@override String get restore => 'ख़रीदारी वापस लाओ';
+	@override String get restored => 'Premium इस फ़ोन पर वापस आ गया';
+	@override String get nothingToRestore => 'इस खाते के लिए कोई Premium ख़रीदारी नहीं';
+	@override String get thanks => 'धन्यवाद! Premium चालू है।';
+	@override String get failed => 'ख़रीदारी पूरी नहीं हुई। थोड़ी देर में फिर कोशिश करो।';
+	@override String get pending => 'तुम्हारी खरीद मंज़ूरी का इंतज़ार कर रही है। मंज़ूर होते ही Premium खुल जाएगा।';
+	@override String renews({required Object store}) => 'सदस्यता अपने आप नवीनीकृत होती है। तुम इसे कभी भी अपने ${store} खाते की सेटिंग में रद्द कर सकते हो।';
+	@override String get terms => 'उपयोग की शर्तें';
+	@override String trialThen({required Object trial, required Object price}) => '${trial}, फिर ${price}';
+	@override String savePercent({required Object percent}) => '−${percent}';
+	@override String get choose => 'अपना प्लान चुनो';
+	@override String get cancelAnytime => 'कोई बंधन नहीं, कभी भी रद्द करो';
+	@override String get restoreShort => 'बहाल करें';
+	@override String get semiannual => 'छमाही';
+	@override String perSemester({required Object price}) => '${price} / 6 महीने';
+	@override String get buyLifetime => 'आजीवन खरीदें';
+	@override String get lifetimeNote => 'आजीवन: एक ही भुगतान, कोई सदस्यता नहीं, कोई नवीनीकरण नहीं।';
+	@override String get manage => 'मेरी सदस्यता प्रबंधित करें';
+	@override String get manageFailed => 'सदस्यता प्रबंधन नहीं खुल रहा। बाद में फिर कोशिश करें।';
+	@override String get unavailable => 'अभी ऑफ़र उपलब्ध नहीं हैं।';
 	@override String get privacy => 'गोपनीयता';
 	@override String get activeTitle => 'तुम्हारे पास Premium है';
 	@override String get activeText => 'CMFI Connect का साथ देने के लिए धन्यवाद! विजेट, आपका साल, लेखा-जोखा और ऑफ़लाइन शिक्षाएँ खुली हैं।';
@@ -3106,19 +3142,6 @@ class _Translations$events$pay$hi extends Translations$events$pay$fr {
 	@override String get reopen => 'भुगतान पेज फिर से खोलें';
 }
 
-// Path: premium.onSite
-class _Translations$premium$onSite$hi extends Translations$premium$onSite$fr {
-	_Translations$premium$onSite$hi._(TranslationsHi root) : this._root = root, super.internal(root);
-
-	final TranslationsHi _root; // ignore: unused_field
-
-	// Translations
-	@override String get title => 'साइट पर Premium चालू करें';
-	@override String get text => 'अपने खाते से लॉग इन करो और मोबाइल मनी (MTN, Orange) से भुगतान करो। एक बार का भुगतान, कुछ भी अपने आप नवीनीकृत नहीं होता।';
-	@override String get note => 'इसके बाद Premium यहाँ अपने आप आ जाएगा, आपके सभी फ़ोन पर।';
-	@override String get button => 'cmfi-connect.com पर जारी रखें';
-}
-
 // Path: premium.end
 class _Translations$premium$end$hi extends Translations$premium$end$fr {
 	_Translations$premium$end$hi._(TranslationsHi root) : this._root = root, super.internal(root);
@@ -5189,11 +5212,38 @@ extension on TranslationsHi {
 			'premium.statsText' => 'आपके साल का लेखा-जोखा और हफ़्ते-दर-हफ़्ते लक्ष्यों की प्रगति।',
 			'premium.supportTitle' => 'तुम सेवकाई का साथ देते हो',
 			'premium.supportText' => 'तुम्हारा सहयोग पूरे समुदाय के लिए ऐप और उसकी नई सुविधाओं को चलाए रखता है।',
-			'premium.unavailable' => 'Premium जल्द ही ऐप में आ रहा है।',
-			'premium.onSite.title' => 'साइट पर Premium चालू करें',
-			'premium.onSite.text' => 'अपने खाते से लॉग इन करो और मोबाइल मनी (MTN, Orange) से भुगतान करो। एक बार का भुगतान, कुछ भी अपने आप नवीनीकृत नहीं होता।',
-			'premium.onSite.note' => 'इसके बाद Premium यहाँ अपने आप आ जाएगा, आपके सभी फ़ोन पर।',
-			'premium.onSite.button' => 'cmfi-connect.com पर जारी रखें',
+			'premium.annual' => 'सालाना',
+			'premium.lifetime' => 'आजीवन',
+			'premium.monthly' => 'मासिक',
+			'premium.perYear' => ({required Object price}) => '${price} / साल',
+			'premium.once' => ({required Object price}) => '${price} एक बार',
+			'premium.perMonth' => ({required Object price}) => '${price} / महीना',
+			'premium.annualPerMonth' => ({required Object price}) => 'यानी ${price} प्रति महीना',
+			'premium.best' => 'सबसे फ़ायदेमंद',
+			'premium.trialDays' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n, one: '${n} दिन मुफ़्त आज़माओ', other: '${n} दिन मुफ़्त आज़माओ', ), 
+			'premium.trialMonths' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n, one: '${n} महीना मुफ़्त आज़माओ', other: '${n} महीने मुफ़्त आज़माओ', ), 
+			'premium.subscribe' => 'सदस्यता लो',
+			'premium.startTrial' => 'मुफ़्त आज़माना शुरू करो',
+			'premium.restore' => 'ख़रीदारी वापस लाओ',
+			'premium.restored' => 'Premium इस फ़ोन पर वापस आ गया',
+			'premium.nothingToRestore' => 'इस खाते के लिए कोई Premium ख़रीदारी नहीं',
+			'premium.thanks' => 'धन्यवाद! Premium चालू है।',
+			'premium.failed' => 'ख़रीदारी पूरी नहीं हुई। थोड़ी देर में फिर कोशिश करो।',
+			'premium.pending' => 'तुम्हारी खरीद मंज़ूरी का इंतज़ार कर रही है। मंज़ूर होते ही Premium खुल जाएगा।',
+			'premium.renews' => ({required Object store}) => 'सदस्यता अपने आप नवीनीकृत होती है। तुम इसे कभी भी अपने ${store} खाते की सेटिंग में रद्द कर सकते हो।',
+			'premium.terms' => 'उपयोग की शर्तें',
+			'premium.trialThen' => ({required Object trial, required Object price}) => '${trial}, फिर ${price}',
+			'premium.savePercent' => ({required Object percent}) => '−${percent}',
+			'premium.choose' => 'अपना प्लान चुनो',
+			'premium.cancelAnytime' => 'कोई बंधन नहीं, कभी भी रद्द करो',
+			'premium.restoreShort' => 'बहाल करें',
+			'premium.semiannual' => 'छमाही',
+			'premium.perSemester' => ({required Object price}) => '${price} / 6 महीने',
+			'premium.buyLifetime' => 'आजीवन खरीदें',
+			'premium.lifetimeNote' => 'आजीवन: एक ही भुगतान, कोई सदस्यता नहीं, कोई नवीनीकरण नहीं।',
+			'premium.manage' => 'मेरी सदस्यता प्रबंधित करें',
+			'premium.manageFailed' => 'सदस्यता प्रबंधन नहीं खुल रहा। बाद में फिर कोशिश करें।',
+			'premium.unavailable' => 'अभी ऑफ़र उपलब्ध नहीं हैं।',
 			'premium.privacy' => 'गोपनीयता',
 			'premium.activeTitle' => 'तुम्हारे पास Premium है',
 			'premium.activeText' => 'CMFI Connect का साथ देने के लिए धन्यवाद! विजेट, आपका साल, लेखा-जोखा और ऑफ़लाइन शिक्षाएँ खुली हैं।',
@@ -5277,6 +5327,8 @@ extension on TranslationsHi {
 			'ministry.nextGoal' => 'अगला लक्ष्य',
 			'ministry.media.books' => 'पुस्तकें',
 			'ministry.media.tracts' => 'पर्चे',
+			_ => null,
+		} ?? switch (path) {
 			'ministry.media.magazines' => 'पत्रिकाएँ',
 			'ministry.media.cds' => 'सीडी',
 			'ministry.media.dvds' => 'डीवीडी',
@@ -5304,8 +5356,6 @@ extension on TranslationsHi {
 			'ministry.lives.founder.facts.2' => 'राष्ट्रों की यात्रा',
 			'ministry.lives.founder.dates.0' => '20 जून को कैमरून में एक प्रेस्बिटेरियन परिवार में जन्म।',
 			'ministry.lives.founder.dates.1' => '13 जून को एक ट्रैक्ट के द्वारा अपना जीवन यीशु मसीह को सौंपा।',
-			_ => null,
-		} ?? switch (path) {
 			'ministry.lives.founder.dates.2' => '1 अक्टूबर को सिएरा लियोन में स्वयं को पूरी तरह प्रभु को समर्पित किया।',
 			'ministry.lives.founder.dates.3' => 'सात दिन की प्रार्थना के बाद 24 अक्टूबर को पवित्र आत्मा से भर गए।',
 			'ministry.lives.founder.dates.4' => '12 मई को याउंडे में CMFI की स्थापना की।',
@@ -5791,6 +5841,8 @@ extension on TranslationsHi {
 			'weekStory.statStreak' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n, one: 'दिन लगातार', other: 'दिन लगातार', ), 
 			'weekStory.statRetreats' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n, one: 'प्रार्थना-समय', other: 'प्रार्थना-समय', ), 
 			'weekStory.statGoals' => 'लक्ष्य',
+			_ => null,
+		} ?? switch (path) {
 			'weekStory.share' => 'अपना हफ़्ता साझा करो',
 			'weekStory.homeText' => 'इस हफ़्ते की तुम्हारी वफ़ादारी, प्रार्थना और लक्ष्य।',
 			'weekStory.open' => 'मेरा हफ़्ता देखो',
@@ -5818,8 +5870,6 @@ extension on TranslationsHi {
 			'yearStory.faithfulMoment' => ({required num n, required Object moment}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n, one: 'तुम्हारा सबसे वफ़ादार समय: ${moment} (${n} बार)', other: 'तुम्हारा सबसे वफ़ादार समय: ${moment} (${n} बार)', ), 
 			'yearStory.wordLead' => 'तुमने वचन पढ़ा',
 			'yearStory.memoryLead' => 'तुमने वचन को अपने हृदय में रखा',
-			_ => null,
-		} ?? switch (path) {
 			'yearStory.chapters' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n, one: '${n} अध्याय', other: '${n} अध्याय', ), 
 			'yearStory.bibleShare' => ({required Object percent}) => 'बाइबल का ${percent}',
 			'yearStory.wholeBible' => 'पूरी बाइबल के बराबर!',
@@ -6305,6 +6355,8 @@ extension on TranslationsHi {
 			'journey.grace.title' => 'अनुग्रह का दिन',
 			'journey.grace.text' => ({required Object day}) => 'तुमने ${day} की रिपोर्ट नहीं भरी, पर तुम्हारा सिलसिला जारी है: हर सप्ताह एक अनुग्रह का दिन उसे बचाता है। कल एक नई शुरुआत है।',
 			'journey.grace.ok' => 'धन्यवाद!',
+			_ => null,
+		} ?? switch (path) {
 			'gamification.tabs.path' => 'रास्ता',
 			'gamification.tabs.cards' => 'मेरे कार्ड',
 			'gamification.next.title' => 'तुम्हारा अगला पड़ाव',
@@ -6332,8 +6384,6 @@ extension on TranslationsHi {
 			'gamification.cap.sheetText' => 'एक ही वचन, तुम्हारा चुना हुआ। तुम इसे बदल सकते हो या छोड़ सकते हो: कोई उलाहना नहीं।',
 			'gamification.cap.skip' => 'इस सप्ताह नहीं',
 			'gamification.cap.remainingReports' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n, one: '${n} रिपोर्ट वाला दिन बाकी', other: '${n} रिपोर्ट वाले दिन बाकी', ), 
-			_ => null,
-		} ?? switch (path) {
 			'gamification.cap.remainingRetreats' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n, one: '${n} प्रार्थना-समय बाकी', other: '${n} प्रार्थना-समय बाकी', ), 
 			'gamification.cap.remainingChapters' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n, one: '${n} अध्याय बाकी', other: '${n} अध्याय बाकी', ), 
 			'gamification.cap.suggestReports' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n, one: '${n} रिपोर्ट वाला दिन', other: '${n} रिपोर्ट वाले दिन', ), 

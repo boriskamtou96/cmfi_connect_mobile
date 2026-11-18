@@ -5,7 +5,8 @@ import com.ryanheise.audioservice.AudioServiceFragmentActivity
 import io.flutter.embedding.engine.FlutterEngine
 import io.flutter.plugin.common.MethodChannel
 
-// a FragmentActivity: the fingerprint sign-in (local_auth) needs one;
+// a FragmentActivity: the fingerprint sign-in (local_auth) and the Customer
+// Center of RevenueCat (purchases_ui_flutter) need one;
 // audio_service's: the Enseignements keep playing in the background on the
 // same Flutter engine
 class MainActivity : AudioServiceFragmentActivity() {

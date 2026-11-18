@@ -81,7 +81,9 @@ dependencies:
   # Phone numbers from every country: checked and formatted for the chosen country
   phone_numbers_parser: ^9.0.28
 
-  # Premium (RevenueCat)
+  # Premium (RevenueCat): bought in the App Store or Google Play, beside the site
+  purchases_flutter: ^10.16.0
+  purchases_ui_flutter: ^10.16.0
 
   # Notifications sent by the admins (Firebase Cloud Messaging)
   firebase_core: ^4.15.0

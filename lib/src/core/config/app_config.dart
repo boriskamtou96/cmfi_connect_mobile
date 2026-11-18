@@ -6,10 +6,24 @@ import 'flavor.dart';
 part 'app_config.g.dart';
 
 class AppConfig {
-  const AppConfig({required this.apiBaseUrl});
+  const AppConfig({required this.apiBaseUrl, this.revenueCatKey = ''});
 
   /// flutter run --flavor dev --dart-define=API_BASE_URL=http://192.168.100.2:8080/v1
   static const _apiBaseUrlOverride = String.fromEnvironment('API_BASE_URL');
+
+  // The public RevenueCat keys, from .env (Premium bought in the App Store or
+  // Google Play, beside the site):
+
+  // flutter run --flavor dev --dart-define-from-file=.env
+  static const _revenueCatTestKey = String.fromEnvironment(
+    'REVENUE_CAT_TEST_API_KEY',
+  );
+  static const _revenueCatAppleKey = String.fromEnvironment(
+    'REVENUE_CAT_APPLE_API_KEY',
+  );
+  static const _revenueCatGoogleKey = String.fromEnvironment(
+    'REVENUE_CAT_GOOGLE_API_KEY',
+  );
 
   static const siteUrl = 'https://cmfi-connect.com';
 
@@ -22,16 +36,13 @@ class AppConfig {
   static const youversionAppKey = String.fromEnvironment('YOUVERSION_APP_KEY');
   static const semeurByDefault = String.fromEnvironment('BIBLE_SEMEUR') == 'on';
 
-  // Premium is bought on the website (cmfi-connect.com/premium, mobile money
-  // through the payment provider): the paywall says so and opens the site. PREMIUM_ON_SITE=off
-  // in .env takes the link out (a build sent to a store review that refuses
-  // it): the paywall then says Premium comes soon.
-  static const premiumOnSite =
-      String.fromEnvironment('PREMIUM_ON_SITE', defaultValue: 'on') != 'off';
-
   factory AppConfig.forFlavor(Flavor flavor) {
+    final revenueCatKey = _revenueCatKeyFor(flavor);
     if (_apiBaseUrlOverride.isNotEmpty) {
-      return const AppConfig(apiBaseUrl: _apiBaseUrlOverride);
+      return AppConfig(
+        apiBaseUrl: _apiBaseUrlOverride,
+        revenueCatKey: revenueCatKey,
+      );
     }
 
     return switch (flavor) {
@@ -39,16 +50,37 @@ class AppConfig {
         apiBaseUrl: !kIsWeb && defaultTargetPlatform == TargetPlatform.android
             ? 'http://10.0.2.2:8080/v1'
             : 'http://localhost:8080/v1',
+        revenueCatKey: revenueCatKey,
       ),
       // the server on Render, behind our domain (the onrender.com address
       // stays for the versions already installed)
-      Flavor.prod => const AppConfig(
+      Flavor.prod => AppConfig(
         apiBaseUrl: 'https://api.cmfi-connect.com/v1',
+        revenueCatKey: revenueCatKey,
       ),
     };
   }
 
+  /// dev: the RevenueCat Test Store (no real payment) when its key is
+  /// given; prod: the App Store or Google Play. '' : nothing sold in the app.
+  static String _revenueCatKeyFor(Flavor flavor) {
+    if (kIsWeb) {
+      return '';
+    }
+    if (flavor == Flavor.dev && _revenueCatTestKey.isNotEmpty) {
+      return _revenueCatTestKey;
+    }
+    return switch (defaultTargetPlatform) {
+      TargetPlatform.iOS => _revenueCatAppleKey,
+      TargetPlatform.android => _revenueCatGoogleKey,
+      _ => '',
+    };
+  }
+
   final String apiBaseUrl;
+
+  /// The public RevenueCat key of this flavor and platform; '' without one.
+  final String revenueCatKey;
 }
 
 @Riverpod(keepAlive: true)

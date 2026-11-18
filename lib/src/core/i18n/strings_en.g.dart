@@ -775,8 +775,44 @@ class _Translations$premium$en extends Translations$premium$fr {
 	@override String get statsText => 'Your year in review and how your goals grow, week after week.';
 	@override String get supportTitle => 'You support the work';
 	@override String get supportText => 'Your support keeps the app and its new features going for the whole community.';
-	@override String get unavailable => 'Premium is coming soon to the app.';
-	@override late final _Translations$premium$onSite$en onSite = _Translations$premium$onSite$en._(_root);
+	@override String get annual => 'Yearly';
+	@override String get lifetime => 'Lifetime';
+	@override String get monthly => 'Monthly';
+	@override String perYear({required Object price}) => '${price} / year';
+	@override String once({required Object price}) => '${price} once';
+	@override String perMonth({required Object price}) => '${price} / month';
+	@override String annualPerMonth({required Object price}) => 'that\'s ${price} a month';
+	@override String get best => 'Best value';
+	@override String trialDays({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n,
+		one: '${n}-day free trial',
+		other: '${n}-day free trial',
+	);
+	@override String trialMonths({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n,
+		one: '${n}-month free trial',
+		other: '${n}-month free trial',
+	);
+	@override String get subscribe => 'Subscribe';
+	@override String get startTrial => 'Start the free trial';
+	@override String get restore => 'Restore purchases';
+	@override String get restored => 'Premium is back on this phone';
+	@override String get nothingToRestore => 'No Premium purchase for this account';
+	@override String get thanks => 'Thank you! Premium is on.';
+	@override String get failed => 'The purchase didn\'t go through. Try again in a moment.';
+	@override String get pending => 'Your purchase is waiting for approval. Premium will open as soon as it is accepted.';
+	@override String renews({required Object store}) => 'The subscription renews automatically. You can cancel it anytime in your ${store} account settings.';
+	@override String get terms => 'Terms of use';
+	@override String trialThen({required Object trial, required Object price}) => '${trial}, then ${price}';
+	@override String savePercent({required Object percent}) => '−${percent}';
+	@override String get choose => 'Choose your plan';
+	@override String get cancelAnytime => 'No commitment, cancel anytime';
+	@override String get restoreShort => 'Restore';
+	@override String get semiannual => '6 months';
+	@override String perSemester({required Object price}) => '${price} / 6 months';
+	@override String get buyLifetime => 'Buy for life';
+	@override String get lifetimeNote => 'Lifetime: a single payment, no subscription, nothing renews.';
+	@override String get manage => 'Manage my subscription';
+	@override String get manageFailed => 'Subscription management won\'t open. Try again later.';
+	@override String get unavailable => 'The offers aren\'t available right now.';
 	@override String get privacy => 'Privacy';
 	@override String get activeTitle => 'You have Premium';
 	@override String get activeText => 'Thank you for supporting CMFI Connect! The widget, your year, your review and offline teachings are open.';
@@ -3108,19 +3144,6 @@ class _Translations$events$pay$en extends Translations$events$pay$fr {
 	@override String get reopen => 'Reopen the payment page';
 }
 
-// Path: premium.onSite
-class _Translations$premium$onSite$en extends Translations$premium$onSite$fr {
-	_Translations$premium$onSite$en._(TranslationsEn root) : this._root = root, super.internal(root);
-
-	final TranslationsEn _root; // ignore: unused_field
-
-	// Translations
-	@override String get title => 'Activate Premium on the website';
-	@override String get text => 'Sign in with your account and pay by mobile money (MTN, Orange). One payment: nothing renews on its own.';
-	@override String get note => 'Premium then shows up here on its own, on all your phones.';
-	@override String get button => 'Continue on cmfi-connect.com';
-}
-
 // Path: premium.end
 class _Translations$premium$end$en extends Translations$premium$end$fr {
 	_Translations$premium$end$en._(TranslationsEn root) : this._root = root, super.internal(root);
@@ -5191,11 +5214,38 @@ extension on TranslationsEn {
 			'premium.statsText' => 'Your year in review and how your goals grow, week after week.',
 			'premium.supportTitle' => 'You support the work',
 			'premium.supportText' => 'Your support keeps the app and its new features going for the whole community.',
-			'premium.unavailable' => 'Premium is coming soon to the app.',
-			'premium.onSite.title' => 'Activate Premium on the website',
-			'premium.onSite.text' => 'Sign in with your account and pay by mobile money (MTN, Orange). One payment: nothing renews on its own.',
-			'premium.onSite.note' => 'Premium then shows up here on its own, on all your phones.',
-			'premium.onSite.button' => 'Continue on cmfi-connect.com',
+			'premium.annual' => 'Yearly',
+			'premium.lifetime' => 'Lifetime',
+			'premium.monthly' => 'Monthly',
+			'premium.perYear' => ({required Object price}) => '${price} / year',
+			'premium.once' => ({required Object price}) => '${price} once',
+			'premium.perMonth' => ({required Object price}) => '${price} / month',
+			'premium.annualPerMonth' => ({required Object price}) => 'that\'s ${price} a month',
+			'premium.best' => 'Best value',
+			'premium.trialDays' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n, one: '${n}-day free trial', other: '${n}-day free trial', ), 
+			'premium.trialMonths' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n, one: '${n}-month free trial', other: '${n}-month free trial', ), 
+			'premium.subscribe' => 'Subscribe',
+			'premium.startTrial' => 'Start the free trial',
+			'premium.restore' => 'Restore purchases',
+			'premium.restored' => 'Premium is back on this phone',
+			'premium.nothingToRestore' => 'No Premium purchase for this account',
+			'premium.thanks' => 'Thank you! Premium is on.',
+			'premium.failed' => 'The purchase didn\'t go through. Try again in a moment.',
+			'premium.pending' => 'Your purchase is waiting for approval. Premium will open as soon as it is accepted.',
+			'premium.renews' => ({required Object store}) => 'The subscription renews automatically. You can cancel it anytime in your ${store} account settings.',
+			'premium.terms' => 'Terms of use',
+			'premium.trialThen' => ({required Object trial, required Object price}) => '${trial}, then ${price}',
+			'premium.savePercent' => ({required Object percent}) => '−${percent}',
+			'premium.choose' => 'Choose your plan',
+			'premium.cancelAnytime' => 'No commitment, cancel anytime',
+			'premium.restoreShort' => 'Restore',
+			'premium.semiannual' => '6 months',
+			'premium.perSemester' => ({required Object price}) => '${price} / 6 months',
+			'premium.buyLifetime' => 'Buy for life',
+			'premium.lifetimeNote' => 'Lifetime: a single payment, no subscription, nothing renews.',
+			'premium.manage' => 'Manage my subscription',
+			'premium.manageFailed' => 'Subscription management won\'t open. Try again later.',
+			'premium.unavailable' => 'The offers aren\'t available right now.',
 			'premium.privacy' => 'Privacy',
 			'premium.activeTitle' => 'You have Premium',
 			'premium.activeText' => 'Thank you for supporting CMFI Connect! The widget, your year, your review and offline teachings are open.',
@@ -5279,6 +5329,8 @@ extension on TranslationsEn {
 			'ministry.nextGoal' => 'Next goal',
 			'ministry.media.books' => 'Books',
 			'ministry.media.tracts' => 'Tracts',
+			_ => null,
+		} ?? switch (path) {
 			'ministry.media.magazines' => 'Magazines',
 			'ministry.media.cds' => 'CDs',
 			'ministry.media.dvds' => 'DVDs',
@@ -5306,8 +5358,6 @@ extension on TranslationsEn {
 			'ministry.lives.founder.facts.2' => 'nations visited',
 			'ministry.lives.founder.dates.0' => 'Born on 20 June in Cameroon, into a Presbyterian family.',
 			'ministry.lives.founder.dates.1' => 'Gives his life to Jesus Christ on 13 June, through a tract.',
-			_ => null,
-		} ?? switch (path) {
 			'ministry.lives.founder.dates.2' => 'Surrenders himself wholly to the Lord on 1 October, in Sierra Leone.',
 			'ministry.lives.founder.dates.3' => 'Filled with the Holy Spirit on 24 October, after seven days of prayer.',
 			'ministry.lives.founder.dates.4' => 'Founds CMFI in Yaoundé on 12 May.',
@@ -5793,6 +5843,8 @@ extension on TranslationsEn {
 			'weekStory.statStreak' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n, one: 'day in a row', other: 'days in a row', ), 
 			'weekStory.statRetreats' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n, one: 'retreat', other: 'retreats', ), 
 			'weekStory.statGoals' => 'of goals',
+			_ => null,
+		} ?? switch (path) {
 			'weekStory.share' => 'Share my week',
 			'weekStory.homeText' => 'Your faithfulness, your prayer and your goals this week.',
 			'weekStory.open' => 'See my week',
@@ -5820,8 +5872,6 @@ extension on TranslationsEn {
 			'yearStory.faithfulMoment' => ({required num n, required Object moment}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n, one: 'Your most faithful time: ${moment} (${n} time)', other: 'Your most faithful time: ${moment} (${n} times)', ), 
 			'yearStory.wordLead' => 'You read the Word',
 			'yearStory.memoryLead' => 'You hid the Word in your heart',
-			_ => null,
-		} ?? switch (path) {
 			'yearStory.chapters' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n, one: '${n} chapter', other: '${n} chapters', ), 
 			'yearStory.bibleShare' => ({required Object percent}) => '${percent} of the Bible',
 			'yearStory.wholeBible' => 'As much as the whole Bible!',
@@ -6307,6 +6357,8 @@ extension on TranslationsEn {
 			'journey.grace.title' => 'A day of grace',
 			'journey.grace.text' => ({required Object day}) => 'You didn\'t fill in ${day}, but your streak goes on: each week, a day of grace protects it. Tomorrow is a new start.',
 			'journey.grace.ok' => 'Thank you!',
+			_ => null,
+		} ?? switch (path) {
 			'gamification.tabs.path' => 'The path',
 			'gamification.tabs.cards' => 'My cards',
 			'gamification.next.title' => 'Your next milestone',
@@ -6334,8 +6386,6 @@ extension on TranslationsEn {
 			'gamification.cap.sheetText' => 'One commitment only, chosen by you. You can change it or let it go: nothing is held against you.',
 			'gamification.cap.skip' => 'Not this week',
 			'gamification.cap.remainingReports' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n, one: '${n} report day to go', other: '${n} report days to go', ), 
-			_ => null,
-		} ?? switch (path) {
 			'gamification.cap.remainingRetreats' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n, one: '${n} retreat to go', other: '${n} retreats to go', ), 
 			'gamification.cap.remainingChapters' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n, one: '${n} chapter to go', other: '${n} chapters to go', ), 
 			'gamification.cap.suggestReports' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n, one: '${n} report day', other: '${n} report days', ), 

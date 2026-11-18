@@ -48,11 +48,12 @@ final class PremiumStoreProvider
   }
 }
 
-String _$premiumStoreHash() => r'86921926ed09a38062b27bdec66f08c6810d5f18';
+String _$premiumStoreHash() => r'4344947680dffcc6e220a2733ebf5bd4af98c498';
 
 /// Premium offered to everyone: the widget, the year of the summary and the
 /// progress of the goals open, and nothing leading to the paywall. It was so
-/// in the published app of v1; Premium is sold on the website now. Kept to
+/// in the published app of v1; Premium is sold in the stores and on the
+/// website now. Kept to
 /// offer it again if ever needed: return true.
 
 @ProviderFor(premiumForEveryone)
@@ -60,7 +61,8 @@ final premiumForEveryoneProvider = PremiumForEveryoneProvider._();
 
 /// Premium offered to everyone: the widget, the year of the summary and the
 /// progress of the goals open, and nothing leading to the paywall. It was so
-/// in the published app of v1; Premium is sold on the website now. Kept to
+/// in the published app of v1; Premium is sold in the stores and on the
+/// website now. Kept to
 /// offer it again if ever needed: return true.
 
 final class PremiumForEveryoneProvider
@@ -68,7 +70,8 @@ final class PremiumForEveryoneProvider
     with $Provider<bool> {
   /// Premium offered to everyone: the widget, the year of the summary and the
   /// progress of the goals open, and nothing leading to the paywall. It was so
-  /// in the published app of v1; Premium is sold on the website now. Kept to
+  /// in the published app of v1; Premium is sold in the stores and on the
+  /// website now. Kept to
   /// offer it again if ever needed: return true.
   PremiumForEveryoneProvider._()
     : super(
@@ -145,7 +148,7 @@ final class PremiumProvider extends $AsyncNotifierProvider<Premium, bool> {
   Premium create() => Premium();
 }
 
-String _$premiumHash() => r'1e4e3c20cea29595ad77253becf93be9c7c04c1e';
+String _$premiumHash() => r'382a587e0fbf7a7005a1e88d5d14e0e56b8c5246';
 
 /// Whether the signed-in member has Premium (the home-screen widget, the
 /// year and the progress of the goals in the summary). false while unknown.

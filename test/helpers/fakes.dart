@@ -2440,10 +2440,93 @@ class FakeNotificationsApi implements NotificationsApi {
 
 /// The store of the Premium subscription: two plans, nothing really paid.
 class FakePremiumStore implements PremiumStore {
-  FakePremiumStore({this.active = false});
+  FakePremiumStore({
+    this.active = false,
+    this.restorable = false,
+    this.inStore = false,
+    this.storePlans = allPlans,
+  });
 
-  /// What the server says (bought on the site, offered).
+  /// What the server says (bought on the site, offered), or bought in the
+  /// store when [inStore].
   bool active;
+
+  /// Bought in the store (managed there).
+  bool inStore;
+
+  /// Restoring finds a purchase made in the store elsewhere.
+  bool restorable;
+
+  /// The plans of the store (none: unreachable, or no key).
+  List<PremiumPlan> storePlans;
+
+  /// The store fails to give its plans (RevenueCat not configured).
+  bool plansFail = false;
+
+  /// A purchase waits for an approval (Ask to Buy, a deferred payment).
+  bool pending = false;
+
+  final bought = <PremiumPeriod>[];
+
+  /// The times the Customer Center opened.
+  var managed = 0;
+
+  static const monthly = PremiumPlan(
+    period: PremiumPeriod.monthly,
+    price: '2,99 €',
+    amount: 2.99,
+  );
+  static const semiannual = PremiumPlan(
+    period: PremiumPeriod.semiannual,
+    price: '14,99 €',
+    amount: 14.99,
+    pricePerMonth: '2,50 €',
+  );
+  static const annual = PremiumPlan(
+    period: PremiumPeriod.annual,
+    price: '24,99 €',
+    amount: 24.99,
+    pricePerMonth: '2,08 €',
+    trialDays: 7,
+  );
+  static const lifetime = PremiumPlan(
+    period: PremiumPeriod.lifetime,
+    price: '49,99 €',
+    amount: 49.99,
+  );
+  static const allPlans = [monthly, semiannual, annual, lifetime];
+
+  @override
+  bool get boughtInStore => active && inStore;
+
+  @override
+  Future<List<PremiumPlan>> plans() async {
+    if (plansFail) {
+      throw StateError('store not configured');
+    }
+    return storePlans;
+  }
+
+  @override
+  Future<bool> buy(PremiumPlan plan) async {
+    if (pending) {
+      throw const PurchasePending();
+    }
+    bought.add(plan.period);
+    active = inStore = true;
+    return true;
+  }
+
+  @override
+  Future<bool> restore() async {
+    if (restorable) {
+      active = inStore = true;
+    }
+    return active;
+  }
+
+  @override
+  Future<void> manage() async => managed++;
 
   @override
   DateTime? until;

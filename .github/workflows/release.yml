@@ -3,7 +3,9 @@
 # notes of store/release_notes. Can also be started by hand (Actions › Release).
 #
 # Secrets (Settings › Secrets and variables › Actions), see the README:
-#   DOT_ENV                     the .env of the app (public keys of RevenueCat…)
+#   DOT_ENV                     the .env of the app
+#   REVENUE_CAT_APPLE_API_KEY, REVENUE_CAT_GOOGLE_API_KEY   the public RevenueCat
+#                               keys (Premium sold in the stores), added to .env
 #   ANDROID_KEYSTORE_BASE64     the upload key of Google Play (.jks), in base64
 #   ANDROID_KEY_PROPERTIES      the content of android/key.properties
 #                               (storeFile=upload-keystore.jks)
@@ -69,10 +71,15 @@ jobs:
       - name: Secrets of the build
         env:
           DOT_ENV: ${{ secrets.DOT_ENV }}
+          REVENUE_CAT_GOOGLE_API_KEY: ${{ secrets.REVENUE_CAT_GOOGLE_API_KEY }}
           ANDROID_KEYSTORE_BASE64: ${{ secrets.ANDROID_KEYSTORE_BASE64 }}
           ANDROID_KEY_PROPERTIES: ${{ secrets.ANDROID_KEY_PROPERTIES }}
         run: |
           printf '%s\n' "$DOT_ENV" > .env
+          # Premium sold in Google Play (replaces the one of DOT_ENV, if any)
+          grep -v '^REVENUE_CAT_GOOGLE_API_KEY=' .env > .env.tmp || true
+          mv .env.tmp .env
+          printf 'REVENUE_CAT_GOOGLE_API_KEY=%s\n' "$REVENUE_CAT_GOOGLE_API_KEY" >> .env
           echo "$ANDROID_KEYSTORE_BASE64" | base64 --decode > android/app/upload-keystore.jks
           printf '%s\n' "$ANDROID_KEY_PROPERTIES" > android/key.properties
       - run: flutter pub get
@@ -107,7 +114,13 @@ jobs:
       - name: Secrets of the build
         env:
           DOT_ENV: ${{ secrets.DOT_ENV }}
-        run: printf '%s\n' "$DOT_ENV" > .env
+          REVENUE_CAT_APPLE_API_KEY: ${{ secrets.REVENUE_CAT_APPLE_API_KEY }}
+        # Premium sold in the App Store (replaces the one of DOT_ENV, if any)
+        run: |
+          printf '%s\n' "$DOT_ENV" > .env
+          grep -v '^REVENUE_CAT_APPLE_API_KEY=' .env > .env.tmp || true
+          mv .env.tmp .env
+          printf 'REVENUE_CAT_APPLE_API_KEY=%s\n' "$REVENUE_CAT_APPLE_API_KEY" >> .env
       - run: flutter pub get
       - run: bundle exec fastlane ios beta
         env:

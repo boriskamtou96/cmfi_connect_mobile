@@ -1,6 +1,7 @@
 import 'package:cmfi_connect/src/core/config/flavor.dart';
 import 'package:cmfi_connect/src/core/i18n/strings.g.dart';
 import 'package:cmfi_connect/src/core/services/premium_store.dart';
+import 'package:cmfi_connect/src/core/session/session.dart';
 import 'package:cmfi_connect/src/core/theme/app_icons.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -34,7 +35,7 @@ void main() {
     await tester.pumpAndSettle();
   }
 
-  testWidgets('the year of the summary leads to Premium, bought on the site', (
+  testWidgets('the year of the summary leads to Premium, bought in one tap', (
     tester,
   ) async {
     final app = await pumpApp(
@@ -53,33 +54,31 @@ void main() {
     await tester.pumpAndSettle();
 
     expect(find.bySemanticsLabel('CMFI Connect Premium'), findsOneWidget);
-    // no store: no price, no renewal, no restore
-    await show(tester, find.text('Active Premium sur le site'));
-    expect(find.textContaining('€'), findsNothing);
-    expect(find.textContaining('renouvelle automatiquement'), findsNothing);
-    expect(find.text('Restaurer'), findsNothing);
-
-    await tester.tap(find.text('Continuer sur cmfi-connect.com'));
-    await tester.pumpAndSettle();
+    // the price large, the period under it
+    expect(find.text('24,99 €'), findsOneWidget);
+    expect(find.text('/ an'), findsOneWidget);
+    expect(find.text('soit 2,08 € par mois'), findsOneWidget);
+    expect(find.text('2,99 €'), findsOneWidget);
+    expect(find.text('14,99 €'), findsOneWidget);
+    expect(find.text('/ 6 mois'), findsOneWidget);
+    expect(find.text('soit 2,50 € par mois'), findsOneWidget);
+    // 6 months cost 16 % less than six times a month
+    expect(find.textContaining('−16'), findsOneWidget);
+    // the year costs 30 % less than twelve months
+    expect(find.textContaining('−30'), findsOneWidget);
     expect(
-      app.links.opened.last,
-      Uri.parse('https://cmfi-connect.com/premium'),
+      find.text('7 jours d\'essai gratuit, puis 24,99 € / an'),
+      findsOneWidget,
     );
+    // bought in the app only: no way to pay elsewhere
+    expect(find.textContaining('cmfi-connect.com'), findsNothing);
 
-    // paid on the site; back in the app, Premium is asked again at once
-    app.premium.active = true;
-    for (final state in [
-      AppLifecycleState.inactive,
-      AppLifecycleState.hidden,
-      AppLifecycleState.paused,
-      AppLifecycleState.hidden,
-      AppLifecycleState.inactive,
-      AppLifecycleState.resumed,
-    ]) {
-      tester.binding.handleAppLifecycleStateChanged(state);
-    }
+    await reach(tester, find.text('Commencer l\'essai gratuit'));
+    await tester.tap(find.text('Commencer l\'essai gratuit'));
     await tester.pumpAndSettle();
-    expect(app.premium.refreshed, 1);
+
+    expect(app.premium.bought, [PremiumPeriod.annual]);
+    expect(app.toasts.messages, ['Merci ! Premium est activé.']);
     expect(find.text('Tu as Premium'), findsOneWidget);
 
     await reach(tester, find.text('Fermer'));
@@ -94,7 +93,23 @@ void main() {
     expect(find.text('Débloquer avec Premium'), findsNothing);
   });
 
-  testWidgets('in English, the site of Premium opens in English', (
+  testWidgets('restoring without purchase says so', (tester) async {
+    final app = await pumpApp(tester, token: 't');
+    await openSettings(tester);
+    await tester.pumpAndSettle();
+    await reach(tester, find.text('CMFI Connect Premium'));
+    await scrollTo(tester, find.text('CMFI Connect Premium'));
+    await tester.tap(find.text('CMFI Connect Premium'));
+    await tester.pumpAndSettle();
+
+    await reach(tester, find.text('Restaurer'));
+    await tester.tap(find.text('Restaurer'));
+    await tester.pumpAndSettle();
+
+    expect(app.toasts.messages, ['Aucun achat Premium pour ce compte']);
+  });
+
+  testWidgets('for life: paid once, then managed in the Customer Center', (
     tester,
   ) async {
     final app = await pumpApp(tester, token: 't');
@@ -104,17 +119,84 @@ void main() {
     await scrollTo(tester, find.text('CMFI Connect Premium'));
     await tester.tap(find.text('CMFI Connect Premium'));
     await tester.pumpAndSettle();
-    // the app switched to English
-    LocaleSettings.setLocale(AppLocale.en);
+
+    // the last plan, without a saving badge
+    await show(tester, find.text('À VIE'));
+    expect(find.text('49,99 €'), findsOneWidget);
+    expect(find.text('une fois'), findsOneWidget);
+    await tester.tap(find.text('À VIE'));
+    await tester.pumpAndSettle();
+    await reach(
+      tester,
+      find.text('À vie : un seul paiement, sans abonnement ni renouvellement.'),
+    );
+    await tester.tap(find.text('Acheter à vie'));
     await tester.pumpAndSettle();
 
-    await show(tester, find.text('Continue on cmfi-connect.com'));
-    await tester.tap(find.text('Continue on cmfi-connect.com'));
+    expect(app.premium.bought, [PremiumPeriod.lifetime]);
+    await show(tester, find.text('Gérer mon abonnement'));
+    await tester.tap(find.text('Gérer mon abonnement'));
     await tester.pumpAndSettle();
-    expect(
-      app.links.opened.last,
-      Uri.parse('https://cmfi-connect.com/en/premium'),
+    expect(app.premium.managed, 1);
+  });
+
+  testWidgets('no plans from the store: said, and asked again', (tester) async {
+    final store = FakePremiumStore(storePlans: const []);
+    final app = await pumpApp(tester, token: 't', premium: store);
+    await openSettings(tester);
+    await tester.pumpAndSettle();
+    await reach(tester, find.text('CMFI Connect Premium'));
+    await scrollTo(tester, find.text('CMFI Connect Premium'));
+    await tester.tap(find.text('CMFI Connect Premium'));
+    await tester.pumpAndSettle();
+
+    await show(
+      tester,
+      find.text('Les offres ne sont pas disponibles pour l\'instant.'),
     );
+    store.storePlans = FakePremiumStore.allPlans;
+    await tester.tap(find.text('Réessayer'));
+    await tester.pumpAndSettle();
+    await show(tester, find.text('24,99 €'));
+    expect(app.premium.bought, isEmpty);
+  });
+
+  testWidgets('the store fails: said, never an endless wait', (tester) async {
+    final store = FakePremiumStore()..plansFail = true;
+    await pumpApp(tester, token: 't', premium: store);
+    await openSettings(tester);
+    await tester.pumpAndSettle();
+    await reach(tester, find.text('CMFI Connect Premium'));
+    await scrollTo(tester, find.text('CMFI Connect Premium'));
+    await tester.tap(find.text('CMFI Connect Premium'));
+    await tester.pumpAndSettle();
+
+    await show(
+      tester,
+      find.text('Les offres ne sont pas disponibles pour l\'instant.'),
+    );
+  });
+
+  testWidgets('a purchase waiting for approval is said to wait', (
+    tester,
+  ) async {
+    final store = FakePremiumStore()..pending = true;
+    final app = await pumpApp(tester, token: 't', premium: store);
+    await openSettings(tester);
+    await tester.pumpAndSettle();
+    await reach(tester, find.text('CMFI Connect Premium'));
+    await scrollTo(tester, find.text('CMFI Connect Premium'));
+    await tester.tap(find.text('CMFI Connect Premium'));
+    await tester.pumpAndSettle();
+
+    await reach(tester, find.text('Commencer l\'essai gratuit'));
+    await tester.tap(find.text('Commencer l\'essai gratuit'));
+    await tester.pumpAndSettle();
+
+    expect(app.toasts.errors, isEmpty);
+    expect(app.toasts.messages, [
+      'Ton achat attend une validation. Premium s\'ouvrira dès qu\'il sera accepté.',
+    ]);
   });
 
   testWidgets('v1: Premium offered to everyone, nothing leads to the paywall', (
@@ -198,6 +280,24 @@ void main() {
     expect(app.premium.loggedOut, isTrue);
   });
 
+  testWidgets('a session ended by the server forgets the store too', (
+    tester,
+  ) async {
+    final app = await pumpApp(
+      tester,
+      token: 't',
+      account: sampleAccount,
+      premium: FakePremiumStore(active: true, inStore: true),
+    );
+
+    // what AuthInterceptor does on a 401, or deleting the account
+    await app.container.read(sessionProvider.notifier).signOut();
+    await tester.pumpAndSettle();
+
+    // the next account on this phone does not inherit it
+    expect(app.premium.loggedOut, isTrue);
+  });
+
   test('Premium is no longer offered to everyone', () {
     for (final (flavor, offered) in [
       (Flavor.dev, false),
@@ -257,7 +357,8 @@ void main() {
     expect(store.renewalsStopped, 1);
     expect(find.text(line), findsNothing);
     expect(app.toasts.messages, contains('Renouvellement automatique arrêté.'));
-    // Premium goes on to its end
+    // Premium goes on to its end; bought on the site, not in the store
     expect(find.text('Tu as Premium'), findsOneWidget);
+    expect(find.text('Gérer mon abonnement'), findsNothing);
   });
 }

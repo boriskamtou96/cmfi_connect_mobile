@@ -72,6 +72,9 @@ class App extends ConsumerWidget {
         unawaited(ref.read(reportSendingProvider.notifier).forget());
         unawaited(ref.read(reportGoalsProvider.notifier).clear());
         unawaited(ref.read(crashReportingProvider).identify(null));
+        // Premium of the store too, whatever ended the session (sign-out, a
+        // 401, a deleted account): the next account must not inherit it
+        unawaited(ref.read(premiumStoreProvider).logOut());
         unawaited(ref.read(sentReportsProvider.notifier).forget());
         unawaited(ref.read(streakMilestonesProvider.notifier).clear());
         unawaited(ref.read(weeklyCapsProvider.notifier).clear());

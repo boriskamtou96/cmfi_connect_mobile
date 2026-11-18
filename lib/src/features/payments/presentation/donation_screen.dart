@@ -26,18 +26,13 @@ import '../infrastructure/payments_api.dart';
 import 'operator_logo.dart';
 import 'payment_waiting.dart';
 
-/// The amounts offered at a touch, and the bounds of the server
-/// (api/payments.go), in whole units of the currency.
-const donationAmounts = [1000, 2000, 5000, 10000];
-const minDonation = 100;
-const maxDonation = 500000;
-const _currency = 'XAF';
-
 /// « Faire un don » (13/11/2026): the member chooses an amount (one of the
 /// four offered, or their own), then pays like a registration: mobile money
 /// (the number of the account by default, its operator guessed) or a card on
 /// the provider's secure page. The payment is followed here; once received, a thank you.
-/// Nothing is given in return.
+/// Nothing is given in return. The currency and the way shown first follow
+/// the member's country (18/11/2026, [PaymentOptions]): the card in their
+/// currency, mobile money in the operator's (XAF).
 @RoutePage()
 class DonationScreen extends HookConsumerWidget {
   const DonationScreen({super.key});
@@ -49,7 +44,8 @@ class DonationScreen extends HookConsumerWidget {
     final locale = Localizations.localeOf(context).toString();
     final typed = useTextEditingController();
     final typedText = useValueListenable(typed).text;
-    final chosen = useState<int?>(donationAmounts[1]);
+    // the amount touched, in the currency it was shown in
+    final chosen = useState<(String, int)?>(null);
     // the number of the account, its country in front (the dial code is
     // chosen, never typed)
     final (accountCountry, accountNational) = splitPhone(
@@ -61,27 +57,43 @@ class DonationScreen extends HookConsumerWidget {
     final phoneText = useValueListenable(phone).text;
     final chosenOperator = useState<String?>(null);
     final guessedOperator = useState<String?>(null);
-    final method = useState(PaymentMethod.mobileMoney);
+    // null: the way the server shows first
+    final chosenMethod = useState<PaymentMethod?>(null);
     final sending = useState(false);
     final payment = useState<Payment?>(null);
     final thanked = useState<Payment?>(null);
 
-    final optionsState = ref.watch(paymentOptionsProvider(_currency));
-    final operators = optionsState.value?.countries;
-    final cards = optionsState.value?.cards ?? false;
-    final byCard = cards && method.value == PaymentMethod.card;
+    final optionsState = ref.watch(paymentOptionsProvider('XAF'));
+    final options = optionsState.value;
+    final operators = options?.countries;
+    final cards = options?.cards ?? false;
+    final cardFirst = cards && options?.preferred == PaymentMethod.card.code;
+    final method =
+        chosenMethod.value ??
+        (cardFirst ? PaymentMethod.card : PaymentMethod.mobileMoney);
+    final byCard = cards && method == PaymentMethod.card;
+    // mobile money in the operator's currency, the card in the country's
+    final currency = byCard ? options?.cardCurrency ?? 'XAF' : 'XAF';
+    final rule = options?.ruleFor(currency) ?? DonationRule.fallback;
+    final minDonation = byCard ? rule.cardMin : rule.min;
+    final maxDonation = rule.max;
     final paymentsOff = switch (optionsState.error) {
       ApiException(code: 'PAYMENTS_DISABLED') => true,
       _ => false,
     };
 
+    // the amount touched in this currency, else the second one offered
+    final touched = switch (chosen.value) {
+      (final shownIn, final value) when shownIn == currency => value,
+      _ => rule.amounts[rule.amounts.length > 1 ? 1 : 0],
+    };
     // the amount typed wins over the one touched
     final amount = typedText.trim().isEmpty
-        ? chosen.value
+        ? touched
         : int.tryParse(typedText.replaceAll(RegExp(r'\D'), ''));
     final amountOk =
         amount != null && amount >= minDonation && amount <= maxDonation;
-    String money(int value) => formatMoney(value, _currency, locale);
+    String money(int value) => formatMoney(value, currency, locale);
 
     // the operator of the number, guessed as it is typed
     useEffect(() {
@@ -128,6 +140,8 @@ class DonationScreen extends HookConsumerWidget {
                 country: phoneCountry.value,
               ),
               provider: operator ?? '',
+              // a server that knows the currencies checks the one shown
+              currency: (options?.donations.isEmpty ?? true) ? null : currency,
             );
         if (started.status == PaymentStatus.failed) {
           toast.error(paymentFailureMessage(started.failureCode, t));
@@ -228,13 +242,13 @@ class DonationScreen extends HookConsumerWidget {
               spacing: AppSpacing.sm,
               runSpacing: AppSpacing.sm,
               children: [
-                for (final value in donationAmounts)
+                for (final value in rule.amounts)
                   ChoiceChip(
                     label: Text(money(value)),
-                    selected: typedText.trim().isEmpty && chosen.value == value,
+                    selected: typedText.trim().isEmpty && touched == value,
                     onSelected: (_) {
                       typed.clear();
-                      chosen.value = value;
+                      chosen.value = (currency, value);
                     },
                   ),
               ],
@@ -249,7 +263,7 @@ class DonationScreen extends HookConsumerWidget {
               ],
               decoration: InputDecoration(
                 labelText: t.donation.other,
-                suffixText: 'FCFA',
+                suffixText: formatMoney(0, currency, locale).split(' ').last,
                 helperText: t.donation.bounds(
                   min: money(minDonation),
                   max: money(maxDonation),
@@ -273,19 +287,28 @@ class DonationScreen extends HookConsumerWidget {
                 // its own icons say enough: no tick in place of them
                 showSelectedIcon: false,
                 segments: [
-                  ButtonSegment(
-                    value: PaymentMethod.mobileMoney,
-                    icon: const Icon(AppIcons.mobileMoney),
-                    label: Text(t.events.pay.methodMobile),
-                  ),
-                  ButtonSegment(
-                    value: PaymentMethod.card,
-                    icon: const Icon(AppIcons.card),
-                    label: Text(t.events.pay.methodCard),
-                  ),
+                  for (final way
+                      in cardFirst
+                          ? [PaymentMethod.card, PaymentMethod.mobileMoney]
+                          : [PaymentMethod.mobileMoney, PaymentMethod.card])
+                    way == PaymentMethod.card
+                        ? ButtonSegment(
+                            value: way,
+                            icon: const Icon(AppIcons.card),
+                            label: Text(t.events.pay.methodCard),
+                          )
+                        : ButtonSegment(
+                            value: way,
+                            icon: const Icon(AppIcons.mobileMoney),
+                            label: Text(t.events.pay.methodMobile),
+                          ),
                 ],
-                selected: {method.value},
-                onSelectionChanged: (choice) => method.value = choice.first,
+                selected: {method},
+                onSelectionChanged: (choice) {
+                  // another currency: the amount typed meant another
+                  typed.clear();
+                  chosenMethod.value = choice.first;
+                },
               ),
               const SizedBox(height: AppSpacing.md),
             ],

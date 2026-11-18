@@ -314,7 +314,8 @@ as String,
 /// @nodoc
 mixin _$PaymentOptions {
 
- List<MobileMoneyCountry> get countries; bool get cards;
+ List<MobileMoneyCountry> get countries; bool get cards; String get cardCurrency;/// mobile_money or card
+ String get preferred; List<DonationRule> get donations;
 /// Create a copy of PaymentOptions
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -327,16 +328,16 @@ $PaymentOptionsCopyWith<PaymentOptions> get copyWith => _$PaymentOptionsCopyWith
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is PaymentOptions&&const DeepCollectionEquality().equals(other.countries, countries)&&(identical(other.cards, cards) || other.cards == cards));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is PaymentOptions&&const DeepCollectionEquality().equals(other.countries, countries)&&(identical(other.cards, cards) || other.cards == cards)&&(identical(other.cardCurrency, cardCurrency) || other.cardCurrency == cardCurrency)&&(identical(other.preferred, preferred) || other.preferred == preferred)&&const DeepCollectionEquality().equals(other.donations, donations));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(countries),cards);
+int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(countries),cards,cardCurrency,preferred,const DeepCollectionEquality().hash(donations));
 
 @override
 String toString() {
-  return 'PaymentOptions(countries: $countries, cards: $cards)';
+  return 'PaymentOptions(countries: $countries, cards: $cards, cardCurrency: $cardCurrency, preferred: $preferred, donations: $donations)';
 }
 
 
@@ -347,7 +348,7 @@ abstract mixin class $PaymentOptionsCopyWith<$Res>  {
   factory $PaymentOptionsCopyWith(PaymentOptions value, $Res Function(PaymentOptions) _then) = _$PaymentOptionsCopyWithImpl;
 @useResult
 $Res call({
- List<MobileMoneyCountry> countries, bool cards
+ List<MobileMoneyCountry> countries, bool cards, String cardCurrency, String preferred, List<DonationRule> donations
 });
 
 
@@ -364,11 +365,14 @@ class _$PaymentOptionsCopyWithImpl<$Res>
 
 /// Create a copy of PaymentOptions
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? countries = null,Object? cards = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? countries = null,Object? cards = null,Object? cardCurrency = null,Object? preferred = null,Object? donations = null,}) {
   return _then(_self.copyWith(
 countries: null == countries ? _self.countries : countries // ignore: cast_nullable_to_non_nullable
 as List<MobileMoneyCountry>,cards: null == cards ? _self.cards : cards // ignore: cast_nullable_to_non_nullable
-as bool,
+as bool,cardCurrency: null == cardCurrency ? _self.cardCurrency : cardCurrency // ignore: cast_nullable_to_non_nullable
+as String,preferred: null == preferred ? _self.preferred : preferred // ignore: cast_nullable_to_non_nullable
+as String,donations: null == donations ? _self.donations : donations // ignore: cast_nullable_to_non_nullable
+as List<DonationRule>,
   ));
 }
 
@@ -453,10 +457,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( List<MobileMoneyCountry> countries,  bool cards)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( List<MobileMoneyCountry> countries,  bool cards,  String cardCurrency,  String preferred,  List<DonationRule> donations)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _PaymentOptions() when $default != null:
-return $default(_that.countries,_that.cards);case _:
+return $default(_that.countries,_that.cards,_that.cardCurrency,_that.preferred,_that.donations);case _:
   return orElse();
 
 }
@@ -474,10 +478,10 @@ return $default(_that.countries,_that.cards);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( List<MobileMoneyCountry> countries,  bool cards)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( List<MobileMoneyCountry> countries,  bool cards,  String cardCurrency,  String preferred,  List<DonationRule> donations)  $default,) {final _that = this;
 switch (_that) {
 case _PaymentOptions():
-return $default(_that.countries,_that.cards);case _:
+return $default(_that.countries,_that.cards,_that.cardCurrency,_that.preferred,_that.donations);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -494,10 +498,10 @@ return $default(_that.countries,_that.cards);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( List<MobileMoneyCountry> countries,  bool cards)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( List<MobileMoneyCountry> countries,  bool cards,  String cardCurrency,  String preferred,  List<DonationRule> donations)?  $default,) {final _that = this;
 switch (_that) {
 case _PaymentOptions() when $default != null:
-return $default(_that.countries,_that.cards);case _:
+return $default(_that.countries,_that.cards,_that.cardCurrency,_that.preferred,_that.donations);case _:
   return null;
 
 }
@@ -508,8 +512,8 @@ return $default(_that.countries,_that.cards);case _:
 /// @nodoc
 @JsonSerializable()
 
-class _PaymentOptions implements PaymentOptions {
-  const _PaymentOptions({final  List<MobileMoneyCountry> countries = const <MobileMoneyCountry>[], this.cards = false}): _countries = countries;
+class _PaymentOptions extends PaymentOptions {
+  const _PaymentOptions({final  List<MobileMoneyCountry> countries = const <MobileMoneyCountry>[], this.cards = false, this.cardCurrency = 'XAF', this.preferred = 'mobile_money', final  List<DonationRule> donations = const <DonationRule>[]}): _countries = countries,_donations = donations,super._();
   factory _PaymentOptions.fromJson(Map<String, dynamic> json) => _$PaymentOptionsFromJson(json);
 
  final  List<MobileMoneyCountry> _countries;
@@ -520,6 +524,16 @@ class _PaymentOptions implements PaymentOptions {
 }
 
 @override@JsonKey() final  bool cards;
+@override@JsonKey() final  String cardCurrency;
+/// mobile_money or card
+@override@JsonKey() final  String preferred;
+ final  List<DonationRule> _donations;
+@override@JsonKey() List<DonationRule> get donations {
+  if (_donations is EqualUnmodifiableListView) return _donations;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableListView(_donations);
+}
+
 
 /// Create a copy of PaymentOptions
 /// with the given fields replaced by the non-null parameter values.
@@ -534,16 +548,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _PaymentOptions&&const DeepCollectionEquality().equals(other._countries, _countries)&&(identical(other.cards, cards) || other.cards == cards));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _PaymentOptions&&const DeepCollectionEquality().equals(other._countries, _countries)&&(identical(other.cards, cards) || other.cards == cards)&&(identical(other.cardCurrency, cardCurrency) || other.cardCurrency == cardCurrency)&&(identical(other.preferred, preferred) || other.preferred == preferred)&&const DeepCollectionEquality().equals(other._donations, _donations));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(_countries),cards);
+int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(_countries),cards,cardCurrency,preferred,const DeepCollectionEquality().hash(_donations));
 
 @override
 String toString() {
-  return 'PaymentOptions(countries: $countries, cards: $cards)';
+  return 'PaymentOptions(countries: $countries, cards: $cards, cardCurrency: $cardCurrency, preferred: $preferred, donations: $donations)';
 }
 
 
@@ -554,7 +568,7 @@ abstract mixin class _$PaymentOptionsCopyWith<$Res> implements $PaymentOptionsCo
   factory _$PaymentOptionsCopyWith(_PaymentOptions value, $Res Function(_PaymentOptions) _then) = __$PaymentOptionsCopyWithImpl;
 @override @useResult
 $Res call({
- List<MobileMoneyCountry> countries, bool cards
+ List<MobileMoneyCountry> countries, bool cards, String cardCurrency, String preferred, List<DonationRule> donations
 });
 
 
@@ -571,11 +585,295 @@ class __$PaymentOptionsCopyWithImpl<$Res>
 
 /// Create a copy of PaymentOptions
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? countries = null,Object? cards = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? countries = null,Object? cards = null,Object? cardCurrency = null,Object? preferred = null,Object? donations = null,}) {
   return _then(_PaymentOptions(
 countries: null == countries ? _self._countries : countries // ignore: cast_nullable_to_non_nullable
 as List<MobileMoneyCountry>,cards: null == cards ? _self.cards : cards // ignore: cast_nullable_to_non_nullable
-as bool,
+as bool,cardCurrency: null == cardCurrency ? _self.cardCurrency : cardCurrency // ignore: cast_nullable_to_non_nullable
+as String,preferred: null == preferred ? _self.preferred : preferred // ignore: cast_nullable_to_non_nullable
+as String,donations: null == donations ? _self._donations : donations // ignore: cast_nullable_to_non_nullable
+as List<DonationRule>,
+  ));
+}
+
+
+}
+
+
+/// @nodoc
+mixin _$DonationRule {
+
+ String get currency; List<int> get amounts; int get min; int get cardMin; int get max;
+/// Create a copy of DonationRule
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$DonationRuleCopyWith<DonationRule> get copyWith => _$DonationRuleCopyWithImpl<DonationRule>(this as DonationRule, _$identity);
+
+  /// Serializes this DonationRule to a JSON map.
+  Map<String, dynamic> toJson();
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is DonationRule&&(identical(other.currency, currency) || other.currency == currency)&&const DeepCollectionEquality().equals(other.amounts, amounts)&&(identical(other.min, min) || other.min == min)&&(identical(other.cardMin, cardMin) || other.cardMin == cardMin)&&(identical(other.max, max) || other.max == max));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,currency,const DeepCollectionEquality().hash(amounts),min,cardMin,max);
+
+@override
+String toString() {
+  return 'DonationRule(currency: $currency, amounts: $amounts, min: $min, cardMin: $cardMin, max: $max)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class $DonationRuleCopyWith<$Res>  {
+  factory $DonationRuleCopyWith(DonationRule value, $Res Function(DonationRule) _then) = _$DonationRuleCopyWithImpl;
+@useResult
+$Res call({
+ String currency, List<int> amounts, int min, int cardMin, int max
+});
+
+
+
+
+}
+/// @nodoc
+class _$DonationRuleCopyWithImpl<$Res>
+    implements $DonationRuleCopyWith<$Res> {
+  _$DonationRuleCopyWithImpl(this._self, this._then);
+
+  final DonationRule _self;
+  final $Res Function(DonationRule) _then;
+
+/// Create a copy of DonationRule
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? currency = null,Object? amounts = null,Object? min = null,Object? cardMin = null,Object? max = null,}) {
+  return _then(_self.copyWith(
+currency: null == currency ? _self.currency : currency // ignore: cast_nullable_to_non_nullable
+as String,amounts: null == amounts ? _self.amounts : amounts // ignore: cast_nullable_to_non_nullable
+as List<int>,min: null == min ? _self.min : min // ignore: cast_nullable_to_non_nullable
+as int,cardMin: null == cardMin ? _self.cardMin : cardMin // ignore: cast_nullable_to_non_nullable
+as int,max: null == max ? _self.max : max // ignore: cast_nullable_to_non_nullable
+as int,
+  ));
+}
+
+}
+
+
+/// Adds pattern-matching-related methods to [DonationRule].
+extension DonationRulePatterns on DonationRule {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _DonationRule value)?  $default,{required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _DonationRule() when $default != null:
+return $default(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _DonationRule value)  $default,){
+final _that = this;
+switch (_that) {
+case _DonationRule():
+return $default(_that);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _DonationRule value)?  $default,){
+final _that = this;
+switch (_that) {
+case _DonationRule() when $default != null:
+return $default(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String currency,  List<int> amounts,  int min,  int cardMin,  int max)?  $default,{required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _DonationRule() when $default != null:
+return $default(_that.currency,_that.amounts,_that.min,_that.cardMin,_that.max);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String currency,  List<int> amounts,  int min,  int cardMin,  int max)  $default,) {final _that = this;
+switch (_that) {
+case _DonationRule():
+return $default(_that.currency,_that.amounts,_that.min,_that.cardMin,_that.max);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String currency,  List<int> amounts,  int min,  int cardMin,  int max)?  $default,) {final _that = this;
+switch (_that) {
+case _DonationRule() when $default != null:
+return $default(_that.currency,_that.amounts,_that.min,_that.cardMin,_that.max);case _:
+  return null;
+
+}
+}
+
+}
+
+/// @nodoc
+@JsonSerializable()
+
+class _DonationRule implements DonationRule {
+  const _DonationRule({required this.currency, required final  List<int> amounts, required this.min, required this.cardMin, required this.max}): _amounts = amounts;
+  factory _DonationRule.fromJson(Map<String, dynamic> json) => _$DonationRuleFromJson(json);
+
+@override final  String currency;
+ final  List<int> _amounts;
+@override List<int> get amounts {
+  if (_amounts is EqualUnmodifiableListView) return _amounts;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableListView(_amounts);
+}
+
+@override final  int min;
+@override final  int cardMin;
+@override final  int max;
+
+/// Create a copy of DonationRule
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$DonationRuleCopyWith<_DonationRule> get copyWith => __$DonationRuleCopyWithImpl<_DonationRule>(this, _$identity);
+
+@override
+Map<String, dynamic> toJson() {
+  return _$DonationRuleToJson(this, );
+}
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _DonationRule&&(identical(other.currency, currency) || other.currency == currency)&&const DeepCollectionEquality().equals(other._amounts, _amounts)&&(identical(other.min, min) || other.min == min)&&(identical(other.cardMin, cardMin) || other.cardMin == cardMin)&&(identical(other.max, max) || other.max == max));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,currency,const DeepCollectionEquality().hash(_amounts),min,cardMin,max);
+
+@override
+String toString() {
+  return 'DonationRule(currency: $currency, amounts: $amounts, min: $min, cardMin: $cardMin, max: $max)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$DonationRuleCopyWith<$Res> implements $DonationRuleCopyWith<$Res> {
+  factory _$DonationRuleCopyWith(_DonationRule value, $Res Function(_DonationRule) _then) = __$DonationRuleCopyWithImpl;
+@override @useResult
+$Res call({
+ String currency, List<int> amounts, int min, int cardMin, int max
+});
+
+
+
+
+}
+/// @nodoc
+class __$DonationRuleCopyWithImpl<$Res>
+    implements _$DonationRuleCopyWith<$Res> {
+  __$DonationRuleCopyWithImpl(this._self, this._then);
+
+  final _DonationRule _self;
+  final $Res Function(_DonationRule) _then;
+
+/// Create a copy of DonationRule
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? currency = null,Object? amounts = null,Object? min = null,Object? cardMin = null,Object? max = null,}) {
+  return _then(_DonationRule(
+currency: null == currency ? _self.currency : currency // ignore: cast_nullable_to_non_nullable
+as String,amounts: null == amounts ? _self._amounts : amounts // ignore: cast_nullable_to_non_nullable
+as List<int>,min: null == min ? _self.min : min // ignore: cast_nullable_to_non_nullable
+as int,cardMin: null == cardMin ? _self.cardMin : cardMin // ignore: cast_nullable_to_non_nullable
+as int,max: null == max ? _self.max : max // ignore: cast_nullable_to_non_nullable
+as int,
   ));
 }
 

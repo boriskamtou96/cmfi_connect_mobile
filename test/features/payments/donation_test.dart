@@ -142,4 +142,59 @@ void main() {
 
     expect(app.paymentsApi.donations.single.phoneNumber, '+33612345678');
   });
+
+  // a member abroad (their number, +33): KPAY takes their card in dollars
+  FakePaymentsApi abroad() => FakePaymentsApi()
+    ..cards = true
+    ..cardCurrency = 'USD'
+    ..preferred = 'card'
+    ..donationRules = const [
+      DonationRule(
+        currency: 'XAF',
+        amounts: [1000, 2000, 5000, 10000],
+        min: 100,
+        cardMin: 1000,
+        max: 500000,
+      ),
+      DonationRule(
+        currency: 'USD',
+        amounts: [5, 10, 25, 50],
+        min: 1,
+        cardMin: 1,
+        max: 1000,
+      ),
+    ];
+
+  testWidgets('a member abroad gives by card, in dollars', (tester) async {
+    final app = await _open(tester, payments: abroad());
+
+    // the card first, in the currency of their country
+    expect(find.text('5 \$'), findsOneWidget);
+    await tester.tap(find.textContaining('Donner 10 \$ par carte'));
+    await tester.pump();
+    await tester.pump();
+
+    final gift = app.paymentsApi.donations.single;
+    expect(gift.amount, 10);
+    expect(gift.currency, 'USD');
+    expect(gift.method, PaymentMethod.card);
+  });
+
+  testWidgets('… and back to CFA francs with mobile money', (tester) async {
+    final app = await _open(tester, payments: abroad());
+
+    await tester.tap(find.text('Mobile Money'));
+    await tester.pumpAndSettle();
+    expect(find.text('5 \$'), findsNothing);
+    await tester.ensureVisible(find.textContaining('Donner 2'));
+    await tester.pumpAndSettle();
+    await tester.tap(find.textContaining('Donner 2'));
+    await tester.pump();
+    await tester.pump();
+
+    final gift = app.paymentsApi.donations.single;
+    expect(gift.amount, 2000);
+    expect(gift.currency, 'XAF');
+    expect(gift.method, PaymentMethod.mobileMoney);
+  });
 }

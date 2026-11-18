@@ -60,12 +60,42 @@ _PaymentOptions _$PaymentOptionsFromJson(Map<String, dynamic> json) =>
               .toList() ??
           const <MobileMoneyCountry>[],
       cards: json['cards'] as bool? ?? false,
+      cardCurrency: json['card_currency'] as String? ?? 'XAF',
+      preferred: json['preferred'] as String? ?? 'mobile_money',
+      donations:
+          (json['donations'] as List<dynamic>?)
+              ?.map((e) => DonationRule.fromJson(e as Map<String, dynamic>))
+              .toList() ??
+          const <DonationRule>[],
     );
 
 Map<String, dynamic> _$PaymentOptionsToJson(_PaymentOptions instance) =>
     <String, dynamic>{
       'countries': instance.countries.map((e) => e.toJson()).toList(),
       'cards': instance.cards,
+      'card_currency': instance.cardCurrency,
+      'preferred': instance.preferred,
+      'donations': instance.donations.map((e) => e.toJson()).toList(),
+    };
+
+_DonationRule _$DonationRuleFromJson(Map<String, dynamic> json) =>
+    _DonationRule(
+      currency: json['currency'] as String,
+      amounts: (json['amounts'] as List<dynamic>)
+          .map((e) => (e as num).toInt())
+          .toList(),
+      min: (json['min'] as num).toInt(),
+      cardMin: (json['card_min'] as num).toInt(),
+      max: (json['max'] as num).toInt(),
+    );
+
+Map<String, dynamic> _$DonationRuleToJson(_DonationRule instance) =>
+    <String, dynamic>{
+      'currency': instance.currency,
+      'amounts': instance.amounts,
+      'min': instance.min,
+      'card_min': instance.cardMin,
+      'max': instance.max,
     };
 
 _MobileMoneyOperator _$MobileMoneyOperatorFromJson(Map<String, dynamic> json) =>

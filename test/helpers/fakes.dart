@@ -3561,6 +3561,13 @@ class FakePaymentsApi implements PaymentsApi {
   /// Cards are offered.
   bool cards = false;
 
+  /// The member's country, as the server tells it (18/11/2026): the
+  /// currency of their card, the way shown first, the donations by currency
+  /// (none: a server before that).
+  String cardCurrency = 'XAF';
+  String preferred = 'mobile_money';
+  List<DonationRule> donationRules = const [];
+
   @override
   Future<PaymentOptions> options({String currency = 'XAF'}) async {
     if (operatorsError != null) {
@@ -3568,6 +3575,9 @@ class FakePaymentsApi implements PaymentsApi {
     }
     return PaymentOptions(
       cards: cards,
+      cardCurrency: cardCurrency,
+      preferred: preferred,
+      donations: donationRules,
       countries: const [
         MobileMoneyCountry(
           country: 'CMR',
@@ -3641,6 +3651,7 @@ class FakePaymentsApi implements PaymentsApi {
           String phoneNumber,
           String provider,
           PaymentMethod method,
+          String? currency,
         })
       >[];
 
@@ -3650,6 +3661,7 @@ class FakePaymentsApi implements PaymentsApi {
     PaymentMethod method = PaymentMethod.mobileMoney,
     String phoneNumber = '',
     String provider = '',
+    String? currency,
   }) async {
     if (payError != null) {
       throw payError!;
@@ -3659,6 +3671,7 @@ class FakePaymentsApi implements PaymentsApi {
       phoneNumber: phoneNumber,
       provider: provider,
       method: method,
+      currency: currency,
     ));
     final payment = Payment(
       id: 'pay-${payments.length + 1}',

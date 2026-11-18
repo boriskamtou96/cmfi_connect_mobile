@@ -68,19 +68,23 @@ class PaymentsApi {
 
   /// « Faire un don »: [amount] of [currency]'s whole units, asked of the
   /// member's phone or paid on the provider's secure page for a card. Nothing is given in
-  /// return. 409 AMOUNT_OUT_OF_BOUNDS, PROVIDER_UNAVAILABLE, CARDS_DISABLED;
-  /// 400 INVALID_PHONE; 503 PAYMENTS_DISABLED.
+  /// return. [currency]: the one shown (none: XAF, for a server before
+  /// 18/11/2026). 409 AMOUNT_OUT_OF_BOUNDS, CURRENCY_MISMATCH,
+  /// PROVIDER_UNAVAILABLE, CARDS_DISABLED; 400 INVALID_PHONE; 503
+  /// PAYMENTS_DISABLED.
   Future<Payment> donate(
     int amount, {
     PaymentMethod method = PaymentMethod.mobileMoney,
     String phoneNumber = '',
     String provider = '',
+    String? currency,
   }) => apiCall(() async {
     final response = await _dio.post<Map<String, dynamic>>(
       '/donations',
       data: {
         'amount': amount,
         'method': method.code,
+        'currency': ?currency,
         if (method == PaymentMethod.mobileMoney) ...{
           'phone_number': phoneNumber,
           'provider': provider,

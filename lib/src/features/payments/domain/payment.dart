@@ -58,15 +58,56 @@ enum PaymentMethod {
 }
 
 /// What the server offers: the mobile money operators by country, and cards.
+/// Since 18/11/2026, for the member's country (the code of their number):
+/// the currency of their card ([cardCurrency]: XAF, XOF or USD), the way
+/// shown first ([preferred]), and the donations in each currency they can
+/// give in (none from a server before that: XAF, as before).
 @freezed
 abstract class PaymentOptions with _$PaymentOptions {
   const factory PaymentOptions({
     @Default(<MobileMoneyCountry>[]) List<MobileMoneyCountry> countries,
     @Default(false) bool cards,
+    @Default('XAF') String cardCurrency,
+
+    /// mobile_money or card
+    @Default('mobile_money') String preferred,
+    @Default(<DonationRule>[]) List<DonationRule> donations,
   }) = _PaymentOptions;
+
+  const PaymentOptions._();
 
   factory PaymentOptions.fromJson(Map<String, dynamic> json) =>
       _$PaymentOptionsFromJson(json);
+
+  /// The amounts and bounds of a donation in [currency].
+  DonationRule ruleFor(String currency) =>
+      donations.where((rule) => rule.currency == currency).firstOrNull ??
+      DonationRule.fallback;
+}
+
+/// A donation in a currency: the amounts offered at a touch, and the bounds
+/// of the server ([cardMin]: KPAY takes no card under 1 USD).
+@freezed
+abstract class DonationRule with _$DonationRule {
+  const factory DonationRule({
+    required String currency,
+    required List<int> amounts,
+    required int min,
+    required int cardMin,
+    required int max,
+  }) = _DonationRule;
+
+  factory DonationRule.fromJson(Map<String, dynamic> json) =>
+      _$DonationRuleFromJson(json);
+
+  /// A server before 18/11/2026: XAF, the card as low as mobile money.
+  static const fallback = DonationRule(
+    currency: 'XAF',
+    amounts: [1000, 2000, 5000, 10000],
+    min: 100,
+    cardMin: 100,
+    max: 500000,
+  );
 }
 
 /// A mobile money operator that takes payments in a currency.
@@ -136,6 +177,7 @@ String formatMoney(int amount, String currency, String locale) {
   final number = NumberFormat.decimalPattern(locale).format(amount);
   final unit = switch (currency) {
     'XAF' || 'XOF' => 'FCFA',
+    'USD' => r'$',
     _ => currency,
   };
   return '$number $unit';

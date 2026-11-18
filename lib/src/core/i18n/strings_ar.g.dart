@@ -1208,7 +1208,7 @@ class _Translations$bible$ar extends Translations$bible$fr {
 	@override String get marks => 'آياتي';
 	@override String get favorites => 'المحفوظة';
 	@override String get highlights => 'المظللة';
-	@override String get noFavorites => 'المس آية ثم العلامة لتجدها هنا.';
+	@override String get noFavorites => 'المس آية ثم «حفظ في آياتي» لتجدها هنا.';
 	@override String get noHighlights => 'المس آية ثم لونًا لتظليلها.';
 	@override String get tapHint => 'المس آية لتظليلها أو حفظها أو نسخها أو مشاركتها.';
 	@override String highlight({required Object color}) => 'تظليل باللون ${color}';
@@ -1222,6 +1222,12 @@ class _Translations$bible$ar extends Translations$bible$fr {
 	@override String get copied => 'تم النسخ';
 	@override String get share => 'مشاركة';
 	@override String get closeSelection => 'إغلاق التحديد';
+	@override String get markChapter => 'ضع علامة على هذا الأصحاح';
+	@override String get unmarkChapter => 'أزِل العلامة';
+	@override String bookmarkSet({required Object place}) => 'وُضعت العلامة على ${place}';
+	@override String get bookmarkRemoved => 'أُزيلت العلامة';
+	@override String get bookmark => 'علامة القراءة';
+	@override String backToBookmark({required Object place}) => 'العودة إلى ${place}';
 	@override String get display => 'العرض';
 	@override String get jesusInRed => 'كلمات يسوع بالأحمر';
 	@override String get jesusInRedHelp => 'في الترجمات التي تميّزها';
@@ -6124,7 +6130,7 @@ extension on TranslationsAr {
 			'bible.marks' => 'آياتي',
 			'bible.favorites' => 'المحفوظة',
 			'bible.highlights' => 'المظللة',
-			'bible.noFavorites' => 'المس آية ثم العلامة لتجدها هنا.',
+			'bible.noFavorites' => 'المس آية ثم «حفظ في آياتي» لتجدها هنا.',
 			'bible.noHighlights' => 'المس آية ثم لونًا لتظليلها.',
 			'bible.tapHint' => 'المس آية لتظليلها أو حفظها أو نسخها أو مشاركتها.',
 			'bible.highlight' => ({required Object color}) => 'تظليل باللون ${color}',
@@ -6141,6 +6147,12 @@ extension on TranslationsAr {
 			'bible.copied' => 'تم النسخ',
 			'bible.share' => 'مشاركة',
 			'bible.closeSelection' => 'إغلاق التحديد',
+			'bible.markChapter' => 'ضع علامة على هذا الأصحاح',
+			'bible.unmarkChapter' => 'أزِل العلامة',
+			'bible.bookmarkSet' => ({required Object place}) => 'وُضعت العلامة على ${place}',
+			'bible.bookmarkRemoved' => 'أُزيلت العلامة',
+			'bible.bookmark' => 'علامة القراءة',
+			'bible.backToBookmark' => ({required Object place}) => 'العودة إلى ${place}',
 			'bible.display' => 'العرض',
 			'bible.jesusInRed' => 'كلمات يسوع بالأحمر',
 			'bible.jesusInRedHelp' => 'في الترجمات التي تميّزها',
@@ -6268,14 +6280,14 @@ extension on TranslationsAr {
 			'yearStory.faithfulMoment' => ({required num n, required Object moment}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n, zero: 'وقتك الأكثر أمانة: ${moment} (${n} مرة)', one: 'وقتك الأكثر أمانة: ${moment} (مرة واحدة)', two: 'وقتك الأكثر أمانة: ${moment} (مرتان)', few: 'وقتك الأكثر أمانة: ${moment} (${n} مرات)', many: 'وقتك الأكثر أمانة: ${moment} (${n} مرة)', other: 'وقتك الأكثر أمانة: ${moment} (${n} مرة)', ), 
 			'yearStory.wordLead' => 'قرأت كلمة الله',
 			'yearStory.memoryLead' => 'خبّأت كلمة الله في قلبك',
+			_ => null,
+		} ?? switch (path) {
 			'yearStory.chapters' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n, zero: '${n} فصل', one: 'فصل واحد', two: 'فصلان', few: '${n} فصول', many: '${n} فصلًا', other: '${n} فصل', ), 
 			'yearStory.bibleShare' => ({required Object percent}) => '${percent} من الكتاب المقدس',
 			'yearStory.wholeBible' => 'ما يعادل الكتاب المقدس كله!',
 			'yearStory.versesKnown' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n, zero: 'آية حفظتها عن ظهر قلب', one: 'آية حفظتها عن ظهر قلب', two: 'آيتان حفظتهما عن ظهر قلب', few: 'آيات حفظتها عن ظهر قلب', many: 'آية حفظتها عن ظهر قلب', other: 'آية حفظتها عن ظهر قلب', ), 
 			'yearStory.versesLearning' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n, zero: 'آية قيد الحفظ', one: 'آية قيد الحفظ', two: 'آيتان قيد الحفظ', few: 'آيات قيد الحفظ', many: 'آية قيد الحفظ', other: 'آية قيد الحفظ', ), 
 			'yearStory.fastLead' => 'صُمت',
-			_ => null,
-		} ?? switch (path) {
 			'yearStory.fastDays' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n, zero: '${n} يوم', one: 'يوم واحد', two: 'يومان', few: '${n} أيام', many: '${n} يومًا', other: '${n} يوم', ), 
 			'yearStory.fastText' => 'من الصوم أمام الرب',
 			'yearStory.fullFasts' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n, zero: 'يوم صوم كامل', one: 'يوم صوم كامل', two: 'يوما صوم كامل', few: 'أيام صوم كامل', many: 'يومًا من الصوم الكامل', other: 'يوم صوم كامل', ), 
@@ -6782,14 +6794,14 @@ extension on TranslationsAr {
 			'gamification.cap.sheetText' => 'التزام واحد، تختاره أنت. يمكنك تغييره أو تركه: لا لوم عليك.',
 			'gamification.cap.skip' => 'ليس هذا الأسبوع',
 			'gamification.cap.remainingReports' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n, zero: 'لا أيام تقرير متبقية', one: 'بقي يوم تقرير واحد', two: 'بقي يومان للتقرير', few: 'بقيت ${n} أيام تقرير', many: 'بقي ${n} يوم تقرير', other: 'بقي ${n} يوم تقرير', ), 
+			_ => null,
+		} ?? switch (path) {
 			'gamification.cap.remainingRetreats' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n, zero: 'لا خلوات متبقية', one: 'بقيت خلوة واحدة', two: 'بقيت خلتان', few: 'بقيت ${n} خلوات', many: 'بقيت ${n} خلوة', other: 'بقيت ${n} خلوة', ), 
 			'gamification.cap.remainingChapters' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n, zero: 'لا إصحاحات متبقية', one: 'بقي إصحاح واحد', two: 'بقي إصحاحان', few: 'بقيت ${n} إصحاحات', many: 'بقي ${n} إصحاحًا', other: 'بقي ${n} إصحاح', ), 
 			'gamification.cap.suggestReports' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n, zero: 'لا أيام تقرير', one: 'يوم تقرير واحد', two: 'يومان تقرير', few: '${n} أيام تقرير', many: '${n} يوم تقرير', other: '${n} يوم تقرير', ), 
 			'gamification.cap.suggestRetreats' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n, zero: 'لا خلوات', one: 'خلوة واحدة', two: 'خلوتان', few: '${n} خلوات', many: '${n} خلوة', other: '${n} خلوة', ), 
 			'gamification.cap.suggestChapters' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n, zero: 'لا إصحاحات', one: 'إصحاح واحد', two: 'إصحاحان', few: '${n} إصحاحات', many: '${n} إصحاحًا', other: '${n} إصحاح', ), 
 			'gamification.cards.subtitle' => 'بطاقات المحطات التي وصلت إليها، لتحفظها أو تشاركها.',
-			_ => null,
-		} ?? switch (path) {
 			'gamification.cards.empty' => 'بطاقتك الأولى تنتظرك: تأتي مع تقريرك الأول.',
 			'gamification.cards.locked' => 'لم تُبلَغ بعد',
 			'gamification.cards.lockedTitle' => 'هذه البطاقة تنتظرك',

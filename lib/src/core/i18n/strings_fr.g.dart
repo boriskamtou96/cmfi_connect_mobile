@@ -2255,8 +2255,8 @@ class Translations$bible$fr {
 	/// fr: 'Surlignés'
 	String get highlights => 'Surlignés';
 
-	/// fr: 'Touche un verset, puis le marque-page, pour le retrouver ici.'
-	String get noFavorites => 'Touche un verset, puis le marque-page, pour le retrouver ici.';
+	/// fr: 'Touche un verset, puis « Ajouter à Mes versets », pour le retrouver ici.'
+	String get noFavorites => 'Touche un verset, puis « Ajouter à Mes versets », pour le retrouver ici.';
 
 	/// fr: 'Touche un verset, puis une couleur, pour le surligner.'
 	String get noHighlights => 'Touche un verset, puis une couleur, pour le surligner.';
@@ -2295,6 +2295,24 @@ class Translations$bible$fr {
 
 	/// fr: 'Fermer la sélection'
 	String get closeSelection => 'Fermer la sélection';
+
+	/// fr: 'Marquer ce chapitre'
+	String get markChapter => 'Marquer ce chapitre';
+
+	/// fr: 'Retirer le marque-page'
+	String get unmarkChapter => 'Retirer le marque-page';
+
+	/// fr: 'Marque-page posé sur {place}'
+	String bookmarkSet({required Object place}) => 'Marque-page posé sur ${place}';
+
+	/// fr: 'Marque-page retiré'
+	String get bookmarkRemoved => 'Marque-page retiré';
+
+	/// fr: 'Marque-page'
+	String get bookmark => 'Marque-page';
+
+	/// fr: 'Revenir à {place}'
+	String backToBookmark({required Object place}) => 'Revenir à ${place}';
 
 	/// fr: 'Affichage'
 	String get display => 'Affichage';
@@ -9998,7 +10016,7 @@ extension on Translations {
 			'bible.marks' => 'Mes versets',
 			'bible.favorites' => 'Favoris',
 			'bible.highlights' => 'Surlignés',
-			'bible.noFavorites' => 'Touche un verset, puis le marque-page, pour le retrouver ici.',
+			'bible.noFavorites' => 'Touche un verset, puis « Ajouter à Mes versets », pour le retrouver ici.',
 			'bible.noHighlights' => 'Touche un verset, puis une couleur, pour le surligner.',
 			'bible.tapHint' => 'Touche un verset pour le surligner, le garder, le copier ou le partager.',
 			'bible.highlight' => ({required Object color}) => 'Surligner en ${color}',
@@ -10015,6 +10033,12 @@ extension on Translations {
 			'bible.copied' => 'Copié',
 			'bible.share' => 'Partager',
 			'bible.closeSelection' => 'Fermer la sélection',
+			'bible.markChapter' => 'Marquer ce chapitre',
+			'bible.unmarkChapter' => 'Retirer le marque-page',
+			'bible.bookmarkSet' => ({required Object place}) => 'Marque-page posé sur ${place}',
+			'bible.bookmarkRemoved' => 'Marque-page retiré',
+			'bible.bookmark' => 'Marque-page',
+			'bible.backToBookmark' => ({required Object place}) => 'Revenir à ${place}',
 			'bible.display' => 'Affichage',
 			'bible.jesusInRed' => 'Paroles de Jésus en rouge',
 			'bible.jesusInRedHelp' => 'Dans les versions qui les indiquent',
@@ -10142,14 +10166,14 @@ extension on Translations {
 			'yearStory.faithfulMoment' => ({required num n, required Object moment}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('fr'))(n, one: 'Ton moment le plus fidèle : ${moment} (${n} fois)', other: 'Ton moment le plus fidèle : ${moment} (${n} fois)', ), 
 			'yearStory.wordLead' => 'Tu as lu la Parole',
 			'yearStory.memoryLead' => 'Tu as gardé la Parole dans ton cœur',
+			_ => null,
+		} ?? switch (path) {
 			'yearStory.chapters' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('fr'))(n, one: '${n} chapitre', other: '${n} chapitres', ), 
 			'yearStory.bibleShare' => ({required Object percent}) => '${percent} de la Bible',
 			'yearStory.wholeBible' => 'L\'équivalent de toute la Bible !',
 			'yearStory.versesKnown' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('fr'))(n, one: 'verset appris par cœur', other: 'versets appris par cœur', ), 
 			'yearStory.versesLearning' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('fr'))(n, one: 'verset en cours de mémorisation', other: 'versets en cours de mémorisation', ), 
 			'yearStory.fastLead' => 'Tu as jeûné',
-			_ => null,
-		} ?? switch (path) {
 			'yearStory.fastDays' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('fr'))(n, one: '${n} jour', other: '${n} jours', ), 
 			'yearStory.fastText' => 'de jeûne devant le Seigneur',
 			'yearStory.fullFasts' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('fr'))(n, one: 'jour de jeûne complet', other: 'jours de jeûne complet', ), 
@@ -10656,14 +10680,14 @@ extension on Translations {
 			'gamification.cap.sheetText' => 'Un seul engagement, choisi par toi. Tu pourras le changer, ou le laisser filer : rien ne t\'est reproché.',
 			'gamification.cap.skip' => 'Pas cette semaine',
 			'gamification.cap.remainingReports' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('fr'))(n, one: 'Encore ${n} jour de compte rendu', other: 'Encore ${n} jours de compte rendu', ), 
+			_ => null,
+		} ?? switch (path) {
 			'gamification.cap.remainingRetreats' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('fr'))(n, one: 'Encore ${n} retraite', other: 'Encore ${n} retraites', ), 
 			'gamification.cap.remainingChapters' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('fr'))(n, one: 'Encore ${n} chapitre', other: 'Encore ${n} chapitres', ), 
 			'gamification.cap.suggestReports' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('fr'))(n, one: '${n} jour de compte rendu', other: '${n} jours de compte rendu', ), 
 			'gamification.cap.suggestRetreats' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('fr'))(n, one: '${n} retraite', other: '${n} retraites', ), 
 			'gamification.cap.suggestChapters' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('fr'))(n, one: '${n} chapitre', other: '${n} chapitres', ), 
 			'gamification.cards.subtitle' => 'Les cartes des étapes que tu as atteintes, à garder ou à partager.',
-			_ => null,
-		} ?? switch (path) {
 			'gamification.cards.empty' => 'Ta première carte t\'attend : elle arrive avec ton premier compte rendu.',
 			'gamification.cards.locked' => 'À atteindre',
 			'gamification.cards.lockedTitle' => 'Cette carte t\'attend',

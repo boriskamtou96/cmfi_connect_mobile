@@ -1076,7 +1076,7 @@ class _Translations$bible$zh extends Translations$bible$fr {
 	@override String get marks => '我的经文';
 	@override String get favorites => '收藏';
 	@override String get highlights => '标记';
-	@override String get noFavorites => '点一节经文，再点书签，就能在这里找到它。';
+	@override String get noFavorites => '点一节经文，再点“收藏到我的经文”，就能在这里找到它。';
 	@override String get noHighlights => '点一节经文，再选一种颜色来标记它。';
 	@override String get tapHint => '点一节经文，即可标记、收藏、复制或分享。';
 	@override String highlight({required Object color}) => '用${color}标记';
@@ -1090,6 +1090,12 @@ class _Translations$bible$zh extends Translations$bible$fr {
 	@override String get copied => '已复制';
 	@override String get share => '分享';
 	@override String get closeSelection => '关闭选择';
+	@override String get markChapter => '为本章加书签';
+	@override String get unmarkChapter => '移除书签';
+	@override String bookmarkSet({required Object place}) => '书签已放在${place}';
+	@override String get bookmarkRemoved => '书签已移除';
+	@override String get bookmark => '书签';
+	@override String backToBookmark({required Object place}) => '返回${place}';
 	@override String get display => '显示';
 	@override String get jesusInRed => '耶稣的话用红色显示';
 	@override String get jesusInRedHelp => '适用于标注了耶稣话语的译本';
@@ -5546,7 +5552,7 @@ extension on TranslationsZh {
 			'bible.marks' => '我的经文',
 			'bible.favorites' => '收藏',
 			'bible.highlights' => '标记',
-			'bible.noFavorites' => '点一节经文，再点书签，就能在这里找到它。',
+			'bible.noFavorites' => '点一节经文，再点“收藏到我的经文”，就能在这里找到它。',
 			'bible.noHighlights' => '点一节经文，再选一种颜色来标记它。',
 			'bible.tapHint' => '点一节经文，即可标记、收藏、复制或分享。',
 			'bible.highlight' => ({required Object color}) => '用${color}标记',
@@ -5563,6 +5569,12 @@ extension on TranslationsZh {
 			'bible.copied' => '已复制',
 			'bible.share' => '分享',
 			'bible.closeSelection' => '关闭选择',
+			'bible.markChapter' => '为本章加书签',
+			'bible.unmarkChapter' => '移除书签',
+			'bible.bookmarkSet' => ({required Object place}) => '书签已放在${place}',
+			'bible.bookmarkRemoved' => '书签已移除',
+			'bible.bookmark' => '书签',
+			'bible.backToBookmark' => ({required Object place}) => '返回${place}',
 			'bible.display' => '显示',
 			'bible.jesusInRed' => '耶稣的话用红色显示',
 			'bible.jesusInRedHelp' => '适用于标注了耶稣话语的译本',
@@ -5690,14 +5702,14 @@ extension on TranslationsZh {
 			'yearStory.faithfulMoment' => ({required num n, required Object moment}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n, other: '你最忠心的时段：${moment}（${n} 次）', ), 
 			'yearStory.wordLead' => '你读了神的话',
 			'yearStory.memoryLead' => '你把神的话藏在心里',
+			_ => null,
+		} ?? switch (path) {
 			'yearStory.chapters' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n, other: '${n} 章', ), 
 			'yearStory.bibleShare' => ({required Object percent}) => '占整本圣经的 ${percent}',
 			'yearStory.wholeBible' => '相当于整本圣经！',
 			'yearStory.versesKnown' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n, other: '节经文已背熟', ), 
 			'yearStory.versesLearning' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n, other: '节经文正在背诵', ), 
 			'yearStory.fastLead' => '你禁食了',
-			_ => null,
-		} ?? switch (path) {
 			'yearStory.fastDays' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n, other: '${n} 天', ), 
 			'yearStory.fastText' => '在主面前禁食',
 			'yearStory.fullFasts' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n, other: '天完全禁食', ), 
@@ -6204,14 +6216,14 @@ extension on TranslationsZh {
 			'gamification.cap.sheetText' => '只选一个承诺，由你决定。你可以更改，也可以放下：没有人责怪你。',
 			'gamification.cap.skip' => '这周不了',
 			'gamification.cap.remainingReports' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n, other: '还差 ${n} 个报告日', ), 
+			_ => null,
+		} ?? switch (path) {
 			'gamification.cap.remainingRetreats' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n, other: '还差 ${n} 次退修', ), 
 			'gamification.cap.remainingChapters' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n, other: '还差 ${n} 章', ), 
 			'gamification.cap.suggestReports' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n, other: '${n} 个报告日', ), 
 			'gamification.cap.suggestRetreats' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n, other: '${n} 次退修', ), 
 			'gamification.cap.suggestChapters' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n, other: '${n} 章', ), 
 			'gamification.cards.subtitle' => '你已到达的里程碑卡片，可以收藏或分享。',
-			_ => null,
-		} ?? switch (path) {
 			'gamification.cards.empty' => '你的第一张卡片在等你：它会随你的第一份报告到来。',
 			'gamification.cards.locked' => '尚未到达',
 			'gamification.cards.lockedTitle' => '这张卡片在等你',

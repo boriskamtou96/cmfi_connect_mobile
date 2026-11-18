@@ -1102,7 +1102,7 @@ class _Translations$bible$hi extends Translations$bible$fr {
 	@override String get marks => 'मेरे पद';
 	@override String get favorites => 'सहेजे गए';
 	@override String get highlights => 'हाइलाइट किए गए';
-	@override String get noFavorites => 'किसी पद को छुएँ, फिर बुकमार्क को, ताकि वह यहाँ मिले।';
+	@override String get noFavorites => 'किसी पद को छुएँ, फिर “मेरे पद में सहेजें” को, ताकि वह यहाँ मिले।';
 	@override String get noHighlights => 'किसी पद को छुएँ, फिर कोई रंग चुनें, उसे हाइलाइट करने के लिए।';
 	@override String get tapHint => 'किसी पद को हाइलाइट करने, सहेजने, कॉपी करने या साझा करने के लिए उसे छुएँ।';
 	@override String highlight({required Object color}) => '${color} रंग से हाइलाइट करें';
@@ -1116,6 +1116,12 @@ class _Translations$bible$hi extends Translations$bible$fr {
 	@override String get copied => 'कॉपी हो गया';
 	@override String get share => 'साझा करें';
 	@override String get closeSelection => 'चयन बंद करें';
+	@override String get markChapter => 'इस अध्याय पर बुकमार्क लगाएँ';
+	@override String get unmarkChapter => 'बुकमार्क हटाएँ';
+	@override String bookmarkSet({required Object place}) => 'बुकमार्क ${place} पर लगाया गया';
+	@override String get bookmarkRemoved => 'बुकमार्क हटाया गया';
+	@override String get bookmark => 'बुकमार्क';
+	@override String backToBookmark({required Object place}) => '${place} पर लौटें';
 	@override String get display => 'प्रदर्शन';
 	@override String get jesusInRed => 'यीशु के वचन लाल रंग में';
 	@override String get jesusInRedHelp => 'उन अनुवादों में जो उन्हें चिह्नित करते हैं';
@@ -5662,7 +5668,7 @@ extension on TranslationsHi {
 			'bible.marks' => 'मेरे पद',
 			'bible.favorites' => 'सहेजे गए',
 			'bible.highlights' => 'हाइलाइट किए गए',
-			'bible.noFavorites' => 'किसी पद को छुएँ, फिर बुकमार्क को, ताकि वह यहाँ मिले।',
+			'bible.noFavorites' => 'किसी पद को छुएँ, फिर “मेरे पद में सहेजें” को, ताकि वह यहाँ मिले।',
 			'bible.noHighlights' => 'किसी पद को छुएँ, फिर कोई रंग चुनें, उसे हाइलाइट करने के लिए।',
 			'bible.tapHint' => 'किसी पद को हाइलाइट करने, सहेजने, कॉपी करने या साझा करने के लिए उसे छुएँ।',
 			'bible.highlight' => ({required Object color}) => '${color} रंग से हाइलाइट करें',
@@ -5679,6 +5685,12 @@ extension on TranslationsHi {
 			'bible.copied' => 'कॉपी हो गया',
 			'bible.share' => 'साझा करें',
 			'bible.closeSelection' => 'चयन बंद करें',
+			'bible.markChapter' => 'इस अध्याय पर बुकमार्क लगाएँ',
+			'bible.unmarkChapter' => 'बुकमार्क हटाएँ',
+			'bible.bookmarkSet' => ({required Object place}) => 'बुकमार्क ${place} पर लगाया गया',
+			'bible.bookmarkRemoved' => 'बुकमार्क हटाया गया',
+			'bible.bookmark' => 'बुकमार्क',
+			'bible.backToBookmark' => ({required Object place}) => '${place} पर लौटें',
 			'bible.display' => 'प्रदर्शन',
 			'bible.jesusInRed' => 'यीशु के वचन लाल रंग में',
 			'bible.jesusInRedHelp' => 'उन अनुवादों में जो उन्हें चिह्नित करते हैं',
@@ -5806,14 +5818,14 @@ extension on TranslationsHi {
 			'yearStory.faithfulMoment' => ({required num n, required Object moment}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n, one: 'तुम्हारा सबसे वफ़ादार समय: ${moment} (${n} बार)', other: 'तुम्हारा सबसे वफ़ादार समय: ${moment} (${n} बार)', ), 
 			'yearStory.wordLead' => 'तुमने वचन पढ़ा',
 			'yearStory.memoryLead' => 'तुमने वचन को अपने हृदय में रखा',
+			_ => null,
+		} ?? switch (path) {
 			'yearStory.chapters' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n, one: '${n} अध्याय', other: '${n} अध्याय', ), 
 			'yearStory.bibleShare' => ({required Object percent}) => 'बाइबल का ${percent}',
 			'yearStory.wholeBible' => 'पूरी बाइबल के बराबर!',
 			'yearStory.versesKnown' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n, one: 'पद कंठस्थ किया', other: 'पद कंठस्थ किए', ), 
 			'yearStory.versesLearning' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n, one: 'पद कंठस्थ हो रहा है', other: 'पद कंठस्थ हो रहे हैं', ), 
 			'yearStory.fastLead' => 'तुमने उपवास किया',
-			_ => null,
-		} ?? switch (path) {
 			'yearStory.fastDays' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n, one: '${n} दिन', other: '${n} दिन', ), 
 			'yearStory.fastText' => 'प्रभु के सामने उपवास',
 			'yearStory.fullFasts' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n, one: 'दिन पूर्ण उपवास', other: 'दिन पूर्ण उपवास', ), 
@@ -6320,14 +6332,14 @@ extension on TranslationsHi {
 			'gamification.cap.sheetText' => 'एक ही वचन, तुम्हारा चुना हुआ। तुम इसे बदल सकते हो या छोड़ सकते हो: कोई उलाहना नहीं।',
 			'gamification.cap.skip' => 'इस सप्ताह नहीं',
 			'gamification.cap.remainingReports' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n, one: '${n} रिपोर्ट वाला दिन बाकी', other: '${n} रिपोर्ट वाले दिन बाकी', ), 
+			_ => null,
+		} ?? switch (path) {
 			'gamification.cap.remainingRetreats' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n, one: '${n} प्रार्थना-समय बाकी', other: '${n} प्रार्थना-समय बाकी', ), 
 			'gamification.cap.remainingChapters' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n, one: '${n} अध्याय बाकी', other: '${n} अध्याय बाकी', ), 
 			'gamification.cap.suggestReports' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n, one: '${n} रिपोर्ट वाला दिन', other: '${n} रिपोर्ट वाले दिन', ), 
 			'gamification.cap.suggestRetreats' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n, one: '${n} प्रार्थना-समय', other: '${n} प्रार्थना-समय', ), 
 			'gamification.cap.suggestChapters' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n, one: '${n} अध्याय', other: '${n} अध्याय', ), 
 			'gamification.cards.subtitle' => 'जिन पड़ावों तक तुम पहुँचे, उनके कार्ड: सहेजने या साझा करने के लिए।',
-			_ => null,
-		} ?? switch (path) {
 			'gamification.cards.empty' => 'तुम्हारा पहला कार्ड इंतज़ार कर रहा है: वह तुम्हारी पहली रिपोर्ट के साथ आएगा।',
 			'gamification.cards.locked' => 'अभी बाकी',
 			'gamification.cards.lockedTitle' => 'यह कार्ड तुम्हारा इंतज़ार कर रहा है',

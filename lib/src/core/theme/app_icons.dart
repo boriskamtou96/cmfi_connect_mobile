@@ -252,6 +252,10 @@ abstract final class AppIcons {
   static const bookmark = PhosphorIconsRegular.bookmarkSimple;
   static const bookmarkFilled = PhosphorIconsFill.bookmarkSimple;
   static const bookmarksTile = PhosphorIconsDuotone.bookmarksSimple;
+  // the reading bookmark, on a chapter (not the favourites' signet)
+  static const readingMark = PhosphorIconsRegular.bookmark;
+  static const readingMarkFilled = PhosphorIconsFill.bookmark;
+  static const backToMark = PhosphorIconsRegular.arrowUUpLeft;
   static const downloadOffline = PhosphorIconsRegular.cloudArrowDown;
   static const downloaded = PhosphorIconsRegular.cloudCheck;
   static const chapters = PhosphorIconsRegular.listNumbers;

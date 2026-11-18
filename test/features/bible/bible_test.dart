@@ -449,4 +449,108 @@ void main() {
     expect(find.byType(BibleScreen), findsOneWidget);
     expect(find.text('Psaumes 23'), findsOneWidget);
   });
+
+  Future<void> openMenuItem(WidgetTester tester, String label) async {
+    await tester.tap(find.byTooltip("Plus d'options"));
+    await tester.pumpAndSettle();
+    await tester.tap(find.text(label));
+    await tester.pumpAndSettle();
+  }
+
+  testWidgets('a chapter marked; elsewhere, a pill brings back to it', (
+    tester,
+  ) async {
+    final app = await openBible(tester, at: 'JHN.3');
+    await openMenuItem(tester, 'Marquer ce chapitre');
+
+    expect(app.preferences.getString('bible_bookmark'), 'JHN.3');
+    expect(app.toasts.messages, contains('Marque-page posé sur Jean 3'));
+    expect(find.bySemanticsLabel('Marque-page'), findsOneWidget);
+    // on it already: nothing to come back to
+    expect(find.byTooltip('Revenir à Jean 3'), findsNothing);
+
+    // browsing elsewhere: Psalm 23
+    await tester.tap(find.text('Jean 3'));
+    await tester.pumpAndSettle();
+    await tester.tap(find.text('Ancien Testament'));
+    await tester.pumpAndSettle();
+    await tapInView(tester, find.text('Psaumes'));
+    await tapInView(tester, find.text('23'));
+    expect(find.text('Psaumes 23'), findsOneWidget);
+    expect(find.bySemanticsLabel('Marque-page'), findsNothing);
+    expect(find.byTooltip('Revenir à Jean 3'), findsOneWidget);
+
+    // the pill gives way to the verses selected
+    await tapVerse(tester, 'L’Éternel est mon berger');
+    expect(find.byTooltip('Revenir à Jean 3'), findsNothing);
+    await tester.tap(find.byTooltip('Fermer la sélection'));
+    await tester.pumpAndSettle();
+
+    await tester.tap(find.byTooltip('Revenir à Jean 3'));
+    await tester.pumpAndSettle();
+    expect(find.text('Jean 3'), findsOneWidget);
+    expect(app.preferences.getString('bible_position'), 'JHN.3');
+    expect(find.byTooltip('Revenir à Jean 3'), findsNothing);
+    expect(find.bySemanticsLabel('Marque-page'), findsOneWidget);
+  });
+
+  testWidgets('the bookmark moves to another chapter, then is removed', (
+    tester,
+  ) async {
+    final app = await openBible(
+      tester,
+      at: 'JHN.3',
+      preferences: {'bible_bookmark': 'PSA.23'},
+    );
+    expect(find.byTooltip('Revenir à Psaumes 23'), findsOneWidget);
+
+    await openMenuItem(tester, 'Marquer ce chapitre');
+    expect(app.preferences.getString('bible_bookmark'), 'JHN.3');
+    expect(find.byTooltip('Revenir à Psaumes 23'), findsNothing);
+
+    await openMenuItem(tester, 'Retirer le marque-page');
+    expect(app.preferences.getString('bible_bookmark'), isNull);
+    expect(app.toasts.messages, contains('Marque-page retiré'));
+    expect(find.bySemanticsLabel('Marque-page'), findsNothing);
+  });
+
+  testWidgets('while listening, the pill stops the voice and stays there', (
+    tester,
+  ) async {
+    final app = await openBible(
+      tester,
+      at: 'JHN.3',
+      preferences: {'bible_bookmark': 'PSA.23'},
+    );
+    await tester.tap(find.byTooltip('Écouter ce chapitre'));
+    await tester.pump();
+    await tester.pump(const Duration(milliseconds: 50));
+    expect(find.textContaining('verset 1'), findsOneWidget);
+    expect(find.byTooltip('Revenir à Psaumes 23'), findsOneWidget);
+
+    await tester.tap(find.byTooltip('Revenir à Psaumes 23'));
+    await tester.pump();
+    // the voice stops: the next verse would bring John 3 back
+    expect(app.container.read(bibleListeningProvider), isNull);
+    await tester.pump(const Duration(milliseconds: 150));
+    expect(
+      app.container.read(biblePositionProvider),
+      const BibleRef('PSA', 23),
+    );
+    await tester.pumpAndSettle();
+    expect(find.text('Psaumes 23'), findsOneWidget);
+  });
+
+  testWidgets('an unreadable bookmark is no bookmark', (tester) async {
+    await openBible(
+      tester,
+      at: 'JHN.3',
+      preferences: {'bible_bookmark': '???'},
+    );
+
+    expect(find.textContaining('Revenir à'), findsNothing);
+    await tester.tap(find.byTooltip("Plus d'options"));
+    await tester.pumpAndSettle();
+    expect(find.text('Marquer ce chapitre'), findsOneWidget);
+  });
 }

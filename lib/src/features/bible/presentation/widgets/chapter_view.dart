@@ -5,6 +5,7 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../../core/i18n/strings.g.dart';
+import '../../../../core/theme/app_colors.dart';
 import '../../../../core/theme/app_icons.dart';
 import '../../../../core/theme/app_motion.dart';
 import '../../../../core/theme/app_theme.dart';
@@ -40,7 +41,8 @@ Color jesusColor(ReaderPalette palette) => palette.brightness == Brightness.dark
     : const Color(0xFFB3261E);
 
 /// A chapter as read: the book and the big chapter number, the section
-/// titles, the verses (numbered, highlighted, kept), then [footer]. A tap on
+/// titles, the verses (numbered, highlighted, kept), then [footer]; the
+/// reading bookmark's ribbon hangs at the top when [bookmarked]. A tap on
 /// a verse selects it; [focus] is brought into view and lit a moment.
 class ChapterView extends HookConsumerWidget {
   const ChapterView({
@@ -54,6 +56,7 @@ class ChapterView extends HookConsumerWidget {
     this.focus,
     this.onFocused,
     this.footer,
+    this.bookmarked = false,
     super.key,
   });
 
@@ -71,6 +74,7 @@ class ChapterView extends HookConsumerWidget {
   final int? focus;
   final VoidCallback? onFocused;
   final Widget? footer;
+  final bool bookmarked;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -115,34 +119,58 @@ class ChapterView extends HookConsumerWidget {
     return Directionality(
       textDirection: version.rtl ? TextDirection.rtl : TextDirection.ltr,
       child: SingleChildScrollView(
-        padding: const EdgeInsets.fromLTRB(24, 8, 24, 120),
+        // room at the bottom for the bookmark's pill and the listening bar
+        padding: const EdgeInsets.fromLTRB(24, 8, 24, 150),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            Text(
-              bookName.toUpperCase(),
-              style: TextStyle(
-                fontFamily: AppTheme.fontFamily,
-                fontSize: 12.5,
-                fontWeight: FontWeight.w700,
-                letterSpacing: 1.4,
-                color: palette.muted,
-              ),
-            ),
-            Semantics(
-              header: true,
-              label: '$bookName ${chapter.number}',
-              excludeSemantics: true,
-              child: Text(
-                '${chapter.number}',
-                style: TextStyle(
-                  fontFamily: 'Lora',
-                  fontSize: (size * 2.6).clamp(40, 72),
-                  fontWeight: FontWeight.w600,
-                  height: 1.15,
-                  color: palette.accent,
+            Stack(
+              clipBehavior: Clip.none,
+              children: [
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    Text(
+                      bookName.toUpperCase(),
+                      style: TextStyle(
+                        fontFamily: AppTheme.fontFamily,
+                        fontSize: 12.5,
+                        fontWeight: FontWeight.w700,
+                        letterSpacing: 1.4,
+                        color: palette.muted,
+                      ),
+                    ),
+                    Semantics(
+                      header: true,
+                      label: '$bookName ${chapter.number}',
+                      excludeSemantics: true,
+                      child: Text(
+                        '${chapter.number}',
+                        style: TextStyle(
+                          fontFamily: 'Lora',
+                          fontSize: (size * 2.6).clamp(40, 72),
+                          fontWeight: FontWeight.w600,
+                          height: 1.15,
+                          color: palette.accent,
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
-              ),
+                if (bookmarked)
+                  PositionedDirectional(
+                    top: -10,
+                    end: -6,
+                    child: Semantics(
+                      label: context.t.bible.bookmark,
+                      child: const Icon(
+                        AppIcons.readingMarkFilled,
+                        color: AppColors.gold,
+                        size: 36,
+                      ),
+                    ),
+                  ),
+              ],
             ),
             SizedBox(height: size * 0.4),
             for (final item in chapter.items)

@@ -31,6 +31,7 @@ import '../../../core/widgets/skeleton.dart';
 import '../../../core/widgets/tab_page.dart';
 import '../../../core/widgets/verse_share/verse_share_sheet.dart';
 import '../../../routing/app_router.dart';
+import '../application/bible_bookmark.dart';
 import '../application/bible_library.dart';
 import '../application/bible_listening.dart';
 import '../application/bible_marks.dart';
@@ -292,6 +293,7 @@ class _Reader extends HookConsumerWidget {
     final download = ref.watch(bibleDownloadProvider(version.id)).value;
     final selectedNow = selectedVerses();
     final marks = ref.watch(bibleMarksProvider);
+    final bookmark = ref.watch(bibleBookmarkProvider);
 
     return AnnotatedRegion<SystemUiOverlayStyle>(
       value: palette.brightness == Brightness.dark
@@ -404,7 +406,22 @@ class _Reader extends HookConsumerWidget {
                                 ),
                               ),
                           child: selectedNow.isEmpty
-                              ? _ListeningBar(books: books, palette: palette)
+                              ? Column(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    if (bookmark != null &&
+                                        bookmark != current &&
+                                        pages.contains(bookmark))
+                                      _BookmarkReturn(
+                                        bookmark: bookmark,
+                                        books: books,
+                                      ),
+                                    _ListeningBar(
+                                      books: books,
+                                      palette: palette,
+                                    ),
+                                  ],
+                                )
                               : VerseActions(
                                   label: label(selectedNow),
                                   palette: palette,
@@ -444,7 +461,98 @@ class _Reader extends HookConsumerWidget {
   }
 }
 
-enum _MenuAction { plan, memory, marks, concordance, download, display }
+enum _MenuAction {
+  bookmark,
+  plan,
+  memory,
+  marks,
+  concordance,
+  download,
+  display,
+}
+
+/// On another chapter than the one marked: "Matthieu 5", a tap away.
+class _BookmarkReturn extends ConsumerWidget {
+  const _BookmarkReturn({required this.bookmark, required this.books});
+
+  final BibleRef bookmark;
+  final List<BibleBook> books;
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final place = bibleLabel(bookmark, books);
+    return Padding(
+      padding: const EdgeInsetsDirectional.fromSTEB(
+        AppSpacing.md,
+        0,
+        AppSpacing.md,
+        AppSpacing.md,
+      ),
+      child: Tooltip(
+        message: context.t.bible.backToBookmark(place: place),
+        excludeFromSemantics: true,
+        child: Semantics(
+          button: true,
+          label: context.t.bible.backToBookmark(place: place),
+          excludeSemantics: true,
+          child: Material(
+            color: AppColors.primaryDeep,
+            shape: const StadiumBorder(),
+            elevation: 2,
+            child: InkWell(
+              customBorder: const StadiumBorder(),
+              onTap: () async {
+                // the voice would bring the chapter heard back at its next
+                // verse: going back to the bookmark stops it
+                await ref.read(bibleListeningProvider.notifier).stop();
+                await ref.read(biblePositionProvider.notifier).set(bookmark);
+              },
+              child: ConstrainedBox(
+                constraints: const BoxConstraints(minHeight: 48),
+                child: Padding(
+                  padding: const EdgeInsetsDirectional.fromSTEB(
+                    AppSpacing.lg,
+                    AppSpacing.sm,
+                    AppSpacing.lg,
+                    AppSpacing.sm,
+                  ),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      const Icon(
+                        AppIcons.backToMark,
+                        color: AppColors.onPrimaryMuted,
+                        size: 18,
+                      ),
+                      const SizedBox(width: AppSpacing.sm),
+                      const Icon(
+                        AppIcons.readingMarkFilled,
+                        color: AppColors.goldLight,
+                        size: 20,
+                      ),
+                      const SizedBox(width: AppSpacing.xs),
+                      Flexible(
+                        child: Text(
+                          place,
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                          style: const TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.w700,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
 
 /// While the Bible is read aloud: the place heard ("Jean 3 · verset 5"),
 /// pause / resume, and the cross that stops it. Nothing otherwise.
@@ -551,6 +659,20 @@ class _TopBar extends ConsumerWidget {
         toast.success(t.bible.downloadDone(version: version.name));
       } on Object catch (error) {
         toast.error(userMessageFor(error, t));
+      }
+    }
+
+    final marked = ref.watch(bibleBookmarkProvider) == current.chapterRef;
+
+    Future<void> toggleBookmark() async {
+      final toast = ref.read(toasterProvider).of(context);
+      final bookmark = ref.read(bibleBookmarkProvider.notifier);
+      if (marked) {
+        await bookmark.clear();
+        toast.success(t.bible.bookmarkRemoved);
+      } else {
+        await bookmark.set(current);
+        toast.success(t.bible.bookmarkSet(place: bibleLabel(current, books)));
       }
     }
 
@@ -671,6 +793,7 @@ class _TopBar extends ConsumerWidget {
               tooltip: t.bible.more,
               icon: Icon(AppIcons.moreOptions, color: palette.text),
               onSelected: (action) => switch (action) {
+                _MenuAction.bookmark => toggleBookmark(),
                 _MenuAction.plan => context.router.push(const BiblePlanRoute()),
                 _MenuAction.marks => context.router.push(
                   const BibleMarksRoute(),
@@ -683,6 +806,13 @@ class _TopBar extends ConsumerWidget {
                 _MenuAction.display => showBibleSettings(context),
               },
               actions: [
+                AdaptiveAction(
+                  value: _MenuAction.bookmark,
+                  icon: marked
+                      ? AppIcons.readingMarkFilled
+                      : AppIcons.readingMark,
+                  label: marked ? t.bible.unmarkChapter : t.bible.markChapter,
+                ),
                 AdaptiveAction(
                   value: _MenuAction.plan,
                   icon: AppIcons.readingPlan,
@@ -766,6 +896,7 @@ class _ChapterPage extends ConsumerWidget {
       AsyncValue(value: final chapter?) => ChapterView(
         version: version,
         chapter: chapter,
+        bookmarked: ref.watch(bibleBookmarkProvider) == place,
         bookName: books.nameOf(place.book),
         settings: settings,
         palette: palette,

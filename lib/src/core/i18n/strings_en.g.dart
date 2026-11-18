@@ -1103,7 +1103,7 @@ class _Translations$bible$en extends Translations$bible$fr {
 	@override String get marks => 'My verses';
 	@override String get favorites => 'Saved';
 	@override String get highlights => 'Highlighted';
-	@override String get noFavorites => 'Tap a verse, then the bookmark, to find it here.';
+	@override String get noFavorites => 'Tap a verse, then “Save to My verses”, to find it here.';
 	@override String get noHighlights => 'Tap a verse, then a color, to highlight it.';
 	@override String get tapHint => 'Tap a verse to highlight, save, copy or share it.';
 	@override String highlight({required Object color}) => 'Highlight in ${color}';
@@ -1117,6 +1117,12 @@ class _Translations$bible$en extends Translations$bible$fr {
 	@override String get copied => 'Copied';
 	@override String get share => 'Share';
 	@override String get closeSelection => 'Close the selection';
+	@override String get markChapter => 'Bookmark this chapter';
+	@override String get unmarkChapter => 'Remove the bookmark';
+	@override String bookmarkSet({required Object place}) => 'Bookmark placed on ${place}';
+	@override String get bookmarkRemoved => 'Bookmark removed';
+	@override String get bookmark => 'Bookmark';
+	@override String backToBookmark({required Object place}) => 'Back to ${place}';
 	@override String get display => 'Display';
 	@override String get jesusInRed => 'Words of Jesus in red';
 	@override String get jesusInRedHelp => 'In the versions that mark them';
@@ -5664,7 +5670,7 @@ extension on TranslationsEn {
 			'bible.marks' => 'My verses',
 			'bible.favorites' => 'Saved',
 			'bible.highlights' => 'Highlighted',
-			'bible.noFavorites' => 'Tap a verse, then the bookmark, to find it here.',
+			'bible.noFavorites' => 'Tap a verse, then “Save to My verses”, to find it here.',
 			'bible.noHighlights' => 'Tap a verse, then a color, to highlight it.',
 			'bible.tapHint' => 'Tap a verse to highlight, save, copy or share it.',
 			'bible.highlight' => ({required Object color}) => 'Highlight in ${color}',
@@ -5681,6 +5687,12 @@ extension on TranslationsEn {
 			'bible.copied' => 'Copied',
 			'bible.share' => 'Share',
 			'bible.closeSelection' => 'Close the selection',
+			'bible.markChapter' => 'Bookmark this chapter',
+			'bible.unmarkChapter' => 'Remove the bookmark',
+			'bible.bookmarkSet' => ({required Object place}) => 'Bookmark placed on ${place}',
+			'bible.bookmarkRemoved' => 'Bookmark removed',
+			'bible.bookmark' => 'Bookmark',
+			'bible.backToBookmark' => ({required Object place}) => 'Back to ${place}',
 			'bible.display' => 'Display',
 			'bible.jesusInRed' => 'Words of Jesus in red',
 			'bible.jesusInRedHelp' => 'In the versions that mark them',
@@ -5808,14 +5820,14 @@ extension on TranslationsEn {
 			'yearStory.faithfulMoment' => ({required num n, required Object moment}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n, one: 'Your most faithful time: ${moment} (${n} time)', other: 'Your most faithful time: ${moment} (${n} times)', ), 
 			'yearStory.wordLead' => 'You read the Word',
 			'yearStory.memoryLead' => 'You hid the Word in your heart',
+			_ => null,
+		} ?? switch (path) {
 			'yearStory.chapters' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n, one: '${n} chapter', other: '${n} chapters', ), 
 			'yearStory.bibleShare' => ({required Object percent}) => '${percent} of the Bible',
 			'yearStory.wholeBible' => 'As much as the whole Bible!',
 			'yearStory.versesKnown' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n, one: 'verse learnt by heart', other: 'verses learnt by heart', ), 
 			'yearStory.versesLearning' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n, one: 'verse being memorized', other: 'verses being memorized', ), 
 			'yearStory.fastLead' => 'You fasted',
-			_ => null,
-		} ?? switch (path) {
 			'yearStory.fastDays' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n, one: '${n} day', other: '${n} days', ), 
 			'yearStory.fastText' => 'of fasting before the Lord',
 			'yearStory.fullFasts' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n, one: 'day of full fast', other: 'days of full fast', ), 
@@ -6322,14 +6334,14 @@ extension on TranslationsEn {
 			'gamification.cap.sheetText' => 'One commitment only, chosen by you. You can change it or let it go: nothing is held against you.',
 			'gamification.cap.skip' => 'Not this week',
 			'gamification.cap.remainingReports' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n, one: '${n} report day to go', other: '${n} report days to go', ), 
+			_ => null,
+		} ?? switch (path) {
 			'gamification.cap.remainingRetreats' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n, one: '${n} retreat to go', other: '${n} retreats to go', ), 
 			'gamification.cap.remainingChapters' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n, one: '${n} chapter to go', other: '${n} chapters to go', ), 
 			'gamification.cap.suggestReports' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n, one: '${n} report day', other: '${n} report days', ), 
 			'gamification.cap.suggestRetreats' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n, one: '${n} retreat', other: '${n} retreats', ), 
 			'gamification.cap.suggestChapters' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n, one: '${n} chapter', other: '${n} chapters', ), 
 			'gamification.cards.subtitle' => 'The cards of the steps you have reached, to keep or to share.',
-			_ => null,
-		} ?? switch (path) {
 			'gamification.cards.empty' => 'Your first card is waiting: it comes with your first report.',
 			'gamification.cards.locked' => 'To reach',
 			'gamification.cards.lockedTitle' => 'This card is waiting for you',

@@ -1102,7 +1102,7 @@ class _Translations$bible$de extends Translations$bible$fr {
 	@override String get marks => 'Meine Verse';
 	@override String get favorites => 'Gemerkt';
 	@override String get highlights => 'Markiert';
-	@override String get noFavorites => 'Tippe auf einen Vers und dann auf das Lesezeichen, um ihn hier wiederzufinden.';
+	@override String get noFavorites => 'Tippe auf einen Vers und dann auf „Zu Meine Verse hinzufügen“, um ihn hier wiederzufinden.';
 	@override String get noHighlights => 'Tippe auf einen Vers und dann auf eine Farbe, um ihn zu markieren.';
 	@override String get tapHint => 'Tippe auf einen Vers, um ihn zu markieren, zu merken, zu kopieren oder zu teilen.';
 	@override String highlight({required Object color}) => '${color} markieren';
@@ -1116,6 +1116,12 @@ class _Translations$bible$de extends Translations$bible$fr {
 	@override String get copied => 'Kopiert';
 	@override String get share => 'Teilen';
 	@override String get closeSelection => 'Auswahl schließen';
+	@override String get markChapter => 'Dieses Kapitel markieren';
+	@override String get unmarkChapter => 'Lesezeichen entfernen';
+	@override String bookmarkSet({required Object place}) => 'Lesezeichen auf ${place} gesetzt';
+	@override String get bookmarkRemoved => 'Lesezeichen entfernt';
+	@override String get bookmark => 'Lesezeichen';
+	@override String backToBookmark({required Object place}) => 'Zurück zu ${place}';
 	@override String get display => 'Anzeige';
 	@override String get jesusInRed => 'Worte Jesu in Rot';
 	@override String get jesusInRedHelp => 'In den Übersetzungen, die sie kennzeichnen';
@@ -5663,7 +5669,7 @@ extension on TranslationsDe {
 			'bible.marks' => 'Meine Verse',
 			'bible.favorites' => 'Gemerkt',
 			'bible.highlights' => 'Markiert',
-			'bible.noFavorites' => 'Tippe auf einen Vers und dann auf das Lesezeichen, um ihn hier wiederzufinden.',
+			'bible.noFavorites' => 'Tippe auf einen Vers und dann auf „Zu Meine Verse hinzufügen“, um ihn hier wiederzufinden.',
 			'bible.noHighlights' => 'Tippe auf einen Vers und dann auf eine Farbe, um ihn zu markieren.',
 			'bible.tapHint' => 'Tippe auf einen Vers, um ihn zu markieren, zu merken, zu kopieren oder zu teilen.',
 			'bible.highlight' => ({required Object color}) => '${color} markieren',
@@ -5680,6 +5686,12 @@ extension on TranslationsDe {
 			'bible.copied' => 'Kopiert',
 			'bible.share' => 'Teilen',
 			'bible.closeSelection' => 'Auswahl schließen',
+			'bible.markChapter' => 'Dieses Kapitel markieren',
+			'bible.unmarkChapter' => 'Lesezeichen entfernen',
+			'bible.bookmarkSet' => ({required Object place}) => 'Lesezeichen auf ${place} gesetzt',
+			'bible.bookmarkRemoved' => 'Lesezeichen entfernt',
+			'bible.bookmark' => 'Lesezeichen',
+			'bible.backToBookmark' => ({required Object place}) => 'Zurück zu ${place}',
 			'bible.display' => 'Anzeige',
 			'bible.jesusInRed' => 'Worte Jesu in Rot',
 			'bible.jesusInRedHelp' => 'In den Übersetzungen, die sie kennzeichnen',
@@ -5807,14 +5819,14 @@ extension on TranslationsDe {
 			'yearStory.faithfulMoment' => ({required num n, required Object moment}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('de'))(n, one: 'Deine treueste Zeit: ${moment} (${n}-mal)', other: 'Deine treueste Zeit: ${moment} (${n}-mal)', ), 
 			'yearStory.wordLead' => 'Du hast das Wort gelesen',
 			'yearStory.memoryLead' => 'Du hast das Wort in deinem Herzen bewahrt',
+			_ => null,
+		} ?? switch (path) {
 			'yearStory.chapters' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('de'))(n, one: '${n} Kapitel', other: '${n} Kapitel', ), 
 			'yearStory.bibleShare' => ({required Object percent}) => '${percent} der Bibel',
 			'yearStory.wholeBible' => 'So viel wie die ganze Bibel!',
 			'yearStory.versesKnown' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('de'))(n, one: 'Vers auswendig gelernt', other: 'Verse auswendig gelernt', ), 
 			'yearStory.versesLearning' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('de'))(n, one: 'Vers wird gerade gelernt', other: 'Verse werden gerade gelernt', ), 
 			'yearStory.fastLead' => 'Du hast gefastet',
-			_ => null,
-		} ?? switch (path) {
 			'yearStory.fastDays' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('de'))(n, one: '${n} Tag', other: '${n} Tage', ), 
 			'yearStory.fastText' => 'Fasten vor dem Herrn',
 			'yearStory.fullFasts' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('de'))(n, one: 'Tag Vollfasten', other: 'Tage Vollfasten', ), 
@@ -6321,14 +6333,14 @@ extension on TranslationsDe {
 			'gamification.cap.sheetText' => 'Eine einzige Verpflichtung, von dir gewählt. Du kannst sie ändern oder sein lassen: Niemand macht dir Vorwürfe.',
 			'gamification.cap.skip' => 'Diese Woche nicht',
 			'gamification.cap.remainingReports' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('de'))(n, one: 'Noch ${n} Tag mit Bericht', other: 'Noch ${n} Tage mit Bericht', ), 
+			_ => null,
+		} ?? switch (path) {
 			'gamification.cap.remainingRetreats' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('de'))(n, one: 'Noch ${n} Gebetszeit', other: 'Noch ${n} Gebetszeiten', ), 
 			'gamification.cap.remainingChapters' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('de'))(n, one: 'Noch ${n} Kapitel', other: 'Noch ${n} Kapitel', ), 
 			'gamification.cap.suggestReports' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('de'))(n, one: '${n} Tag mit Bericht', other: '${n} Tage mit Bericht', ), 
 			'gamification.cap.suggestRetreats' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('de'))(n, one: '${n} Gebetszeit', other: '${n} Gebetszeiten', ), 
 			'gamification.cap.suggestChapters' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('de'))(n, one: '${n} Kapitel', other: '${n} Kapitel', ), 
 			'gamification.cards.subtitle' => 'Die Karten der erreichten Meilensteine, zum Aufbewahren oder Teilen.',
-			_ => null,
-		} ?? switch (path) {
 			'gamification.cards.empty' => 'Deine erste Karte wartet: Sie kommt mit deinem ersten Bericht.',
 			'gamification.cards.locked' => 'Noch nicht erreicht',
 			'gamification.cards.lockedTitle' => 'Diese Karte wartet auf dich',

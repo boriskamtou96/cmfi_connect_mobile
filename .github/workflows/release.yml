@@ -92,11 +92,11 @@ jobs:
     if: ${{ inputs.platform != 'android' }}
     # the secrets of the store live in the « Env » environment, not in the repository
     environment: Env
-    # Xcode 26, not 27 yet: built with the iOS 27 SDK, an app without the
-    # UIScene life cycle crashes at launch (1.1.11 (17) and 1.1.12 (18) did).
-    # Xcode 27 comes back with the UIScene migration, before April 2027, when
-    # the App Store takes only the iOS 27 SDK (ITMS-90725).
-    runs-on: macos-15
+    # Xcode 27 (preview image of GitHub): from April 2027 the App Store takes
+    # only apps built with the iOS 27 SDK (ITMS-90725). The app needs the
+    # UIScene life cycle for it (Info.plist, AppDelegate.swift): without it,
+    # 1.1.11 (17) and 1.1.12 (18) crashed at launch.
+    runs-on: xcode-27
     timeout-minutes: 90
     steps:
       - uses: actions/checkout@v4
@@ -109,10 +109,10 @@ jobs:
         with:
           ruby-version: 3.3
           bundler-cache: true
-      # the default Xcode of macos-15 is 16.4: connectivity_plus 7 needs the iOS 26
-      # SDK (NWPath.isUltraConstrained)
-      - name: Xcode 26
-        run: sudo xcode-select -s /Applications/Xcode_26.3.app && xcodebuild -version
+      # the iOS 27 SDK, asked by the App Store from April 2027 (connectivity_plus 7
+      # needs at least the iOS 26 SDK)
+      - name: Xcode 27
+        run: sudo xcode-select -s /Applications/Xcode_27.1.app && xcodebuild -version
       - name: Secrets of the build
         env:
           DOT_ENV: ${{ secrets.DOT_ENV }}

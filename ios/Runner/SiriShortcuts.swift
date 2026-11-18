@@ -1,5 +1,6 @@
 import AppIntents
 import UIKit
+import app_links
 
 // Siri and the Shortcuts app (iOS 16+): « Dis Siri, remplis mon compte rendu
 // dans CMFI Connect », « … commence la retraite dans CMFI Connect ». Each
@@ -8,12 +9,15 @@ import UIKit
 // core/services/deep_links.dart). The phrases are in AppShortcuts.strings,
 // the titles in Localizable.strings, one per language of the app.
 
-/// Gives [path] to the app as if its link had been opened.
+/// Gives [path] to the app as if its link had been opened. Straight to
+/// app_links (its shared instance), not through the app delegate: with the
+/// UIScene life cycle, links come through the scene, and on a cold launch the
+/// plugins may not be registered yet when the intent runs. app_links keeps
+/// the link as the launch link until Dart listens.
 @MainActor
 private func openInApp(_ path: String) {
   guard let url = URL(string: "cmficonnect://open?to=\(path)") else { return }
-  let application = UIApplication.shared
-  _ = application.delegate?.application?(application, open: url, options: [:])
+  AppLinks.shared.handleLink(url: url)
 }
 
 @available(iOS 16.0, *)

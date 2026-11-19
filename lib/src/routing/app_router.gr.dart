@@ -845,6 +845,22 @@ class FastsRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
+/// [FlightJourneyScreen]
+class FlightJourneyRoute extends PageRouteInfo<void> {
+  const FlightJourneyRoute({List<PageRouteInfo>? children})
+    : super(FlightJourneyRoute.name, initialChildren: children);
+
+  static const String name = 'FlightJourneyRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const FlightJourneyScreen();
+    },
+  );
+}
+
+/// generated route for
 /// [ForgotPasswordScreen]
 class ForgotPasswordRoute extends PageRouteInfo<ForgotPasswordRouteArgs> {
   ForgotPasswordRoute({String? phone, Key? key, List<PageRouteInfo>? children})
@@ -2252,18 +2268,50 @@ class TeachingsRoute extends PageRouteInfo<void> {
 
 /// generated route for
 /// [VerseFlightScreen]
-class VerseFlightRoute extends PageRouteInfo<void> {
-  const VerseFlightRoute({List<PageRouteInfo>? children})
-    : super(VerseFlightRoute.name, initialChildren: children);
+class VerseFlightRoute extends PageRouteInfo<VerseFlightRouteArgs> {
+  VerseFlightRoute({int? stage, Key? key, List<PageRouteInfo>? children})
+    : super(
+        VerseFlightRoute.name,
+        args: VerseFlightRouteArgs(stage: stage, key: key),
+        rawQueryParams: {'stage': stage},
+        initialChildren: children,
+      );
 
   static const String name = 'VerseFlightRoute';
 
   static PageInfo page = PageInfo(
     name,
     builder: (data) {
-      return const VerseFlightScreen();
+      final queryParams = data.queryParams;
+      final args = data.argsAs<VerseFlightRouteArgs>(
+        orElse: () => VerseFlightRouteArgs(stage: queryParams.optInt('stage')),
+      );
+      return VerseFlightScreen(stage: args.stage, key: args.key);
     },
   );
+}
+
+class VerseFlightRouteArgs {
+  const VerseFlightRouteArgs({this.stage, this.key});
+
+  final int? stage;
+
+  final Key? key;
+
+  @override
+  String toString() {
+    return 'VerseFlightRouteArgs{stage: $stage, key: $key}';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (other is! VerseFlightRouteArgs) return false;
+    return stage == other.stage && key == other.key;
+  }
+
+  @override
+  int get hashCode => stage.hashCode ^ key.hashCode;
 }
 
 /// generated route for

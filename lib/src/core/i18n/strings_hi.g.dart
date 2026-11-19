@@ -2227,6 +2227,7 @@ class _Translations$games$hi extends Translations$games$fr {
 	@override String get flightAgain => 'फिर से';
 	@override String get flightNext => 'दूसरा वचन';
 	@override String get flightDone => 'पूरा';
+	@override late final _Translations$games$journey$hi journey = _Translations$games$journey$hi._(_root);
 	@override String flightHearts({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n,
 		one: '${n} दिल',
 		other: '${n} दिल',
@@ -3841,6 +3842,58 @@ class _Translations$gamification$collective$hi extends Translations$gamification
 	);
 	@override String get noDisciples => 'रास्ता साथ मिलकर भी चला जाता है: जब तुम चेलों का साथ देते हो, उनका इस सप्ताह का सफ़र यहाँ दिखेगा, बिना नाम।';
 	@override String get anonymous => 'समूह का कुल, बिना नाम और बिना क्रम।';
+}
+
+// Path: games.journey
+class _Translations$games$journey$hi extends Translations$games$journey$fr {
+	_Translations$games$journey$hi._(TranslationsHi root) : this._root = root, super.internal(root);
+
+	final TranslationsHi _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'कनान की विजय';
+	@override String get subtitle => 'मिस्र से कनान तक, हर पड़ाव पर एक वचन';
+	@override String stage({required Object total, required Object n}) => '${total} में से पड़ाव ${n}';
+	@override List<String> get places => [
+		'मिस्र',
+		'मिस्र से निकलना',
+		'लाल समुद्र',
+		'एलीम',
+		'रपीदीम',
+		'सीनै पर्वत',
+		'मिलापवाला तम्बू',
+		'कादेश',
+		'मोआब के अराबा',
+		'यरदन',
+		'यरीहो',
+		'कनान',
+	];
+	@override List<String> get stories => [
+		'मिस्र में दास बना इस्राएल पुकारता है, और परमेश्वर सुनता है।',
+		'फसह की रात यहोवा अपनी प्रजा को निकाल लाता है।',
+		'समुद्र दो भाग हो जाता है: इस्राएल सूखी भूमि पर पार होता है।',
+		'प्यास के बाद, पानी के बारह सोते और खजूर के सत्तर पेड़।',
+		'अमालेक आक्रमण करता है; मूसा अपने हाथ उठाए रखता है।',
+		'पर्वत के नीचे परमेश्वर अपनी व्यवस्था देता है।',
+		'यहोवा का तेज तम्बू में भर जाता है।',
+		'दस भेदिए डर जाते हैं; यहोशू और कालेब विश्वास करते हैं।',
+		'प्रवेश से पहले मूसा इस्राएल को परमेश्वर से प्रेम रखना याद दिलाता है।',
+		'वाचा के सन्दूक के सामने नदी रुक जाती है।',
+		'सात दिन की परिक्रमा, और शहरपनाह गिर जाती है।',
+		'प्रतिज्ञा का देश: परमेश्वर ने अपनी हर बात पूरी की।',
+	];
+	@override String get won => 'पड़ाव पार हुआ!';
+	@override String get finished => 'तुम कनान में पहुँच गए!';
+	@override String get finishedText => 'मिस्र से कनान तक: तुमने यात्रा के बारह वचन याद कर लिए।';
+	@override String get next => 'अगला पड़ाव';
+	@override String get map => 'नक्शा देखो';
+	@override String get play => 'खेलो';
+	@override String get free => 'खुली उड़ान';
+	@override String get freeText => 'कोई भी एक वचन, बस आनन्द के लिए';
+	@override String locked({required Object place}) => '${place}, पड़ाव बंद है';
+	@override String open({required Object place}) => '${place}, खेलने के लिए पड़ाव';
+	@override String done({required Object place}) => '${place}, पड़ाव पार';
+	@override String kept({required Object total, required Object n}) => '${total} में से ${n}';
 }
 
 // Path: reports.summary.time
@@ -6565,6 +6618,45 @@ extension on TranslationsHi {
 			'games.flightAgain' => 'फिर से',
 			'games.flightNext' => 'दूसरा वचन',
 			'games.flightDone' => 'पूरा',
+			'games.journey.title' => 'कनान की विजय',
+			'games.journey.subtitle' => 'मिस्र से कनान तक, हर पड़ाव पर एक वचन',
+			'games.journey.stage' => ({required Object total, required Object n}) => '${total} में से पड़ाव ${n}',
+			'games.journey.places.0' => 'मिस्र',
+			'games.journey.places.1' => 'मिस्र से निकलना',
+			'games.journey.places.2' => 'लाल समुद्र',
+			'games.journey.places.3' => 'एलीम',
+			'games.journey.places.4' => 'रपीदीम',
+			'games.journey.places.5' => 'सीनै पर्वत',
+			'games.journey.places.6' => 'मिलापवाला तम्बू',
+			'games.journey.places.7' => 'कादेश',
+			'games.journey.places.8' => 'मोआब के अराबा',
+			'games.journey.places.9' => 'यरदन',
+			'games.journey.places.10' => 'यरीहो',
+			'games.journey.places.11' => 'कनान',
+			'games.journey.stories.0' => 'मिस्र में दास बना इस्राएल पुकारता है, और परमेश्वर सुनता है।',
+			'games.journey.stories.1' => 'फसह की रात यहोवा अपनी प्रजा को निकाल लाता है।',
+			'games.journey.stories.2' => 'समुद्र दो भाग हो जाता है: इस्राएल सूखी भूमि पर पार होता है।',
+			'games.journey.stories.3' => 'प्यास के बाद, पानी के बारह सोते और खजूर के सत्तर पेड़।',
+			'games.journey.stories.4' => 'अमालेक आक्रमण करता है; मूसा अपने हाथ उठाए रखता है।',
+			'games.journey.stories.5' => 'पर्वत के नीचे परमेश्वर अपनी व्यवस्था देता है।',
+			'games.journey.stories.6' => 'यहोवा का तेज तम्बू में भर जाता है।',
+			'games.journey.stories.7' => 'दस भेदिए डर जाते हैं; यहोशू और कालेब विश्वास करते हैं।',
+			'games.journey.stories.8' => 'प्रवेश से पहले मूसा इस्राएल को परमेश्वर से प्रेम रखना याद दिलाता है।',
+			'games.journey.stories.9' => 'वाचा के सन्दूक के सामने नदी रुक जाती है।',
+			'games.journey.stories.10' => 'सात दिन की परिक्रमा, और शहरपनाह गिर जाती है।',
+			'games.journey.stories.11' => 'प्रतिज्ञा का देश: परमेश्वर ने अपनी हर बात पूरी की।',
+			'games.journey.won' => 'पड़ाव पार हुआ!',
+			'games.journey.finished' => 'तुम कनान में पहुँच गए!',
+			'games.journey.finishedText' => 'मिस्र से कनान तक: तुमने यात्रा के बारह वचन याद कर लिए।',
+			'games.journey.next' => 'अगला पड़ाव',
+			'games.journey.map' => 'नक्शा देखो',
+			'games.journey.play' => 'खेलो',
+			'games.journey.free' => 'खुली उड़ान',
+			'games.journey.freeText' => 'कोई भी एक वचन, बस आनन्द के लिए',
+			'games.journey.locked' => ({required Object place}) => '${place}, पड़ाव बंद है',
+			'games.journey.open' => ({required Object place}) => '${place}, खेलने के लिए पड़ाव',
+			'games.journey.done' => ({required Object place}) => '${place}, पड़ाव पार',
+			'games.journey.kept' => ({required Object total, required Object n}) => '${total} में से ${n}',
 			'games.flightHearts' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n, one: '${n} दिल', other: '${n} दिल', ), 
 			'sheetImport.title' => 'Excel से आयात करो',
 			'sheetImport.intro' => 'पिछले दिन एक साथ भरो: एक Excel फ़ाइल, हर दिन की एक पंक्ति। जिस दिन की रिपोर्ट पहले से है, वह कभी नहीं बदली जाती।',

@@ -1,0 +1,457 @@
+{
+ "fr": {
+  "source": "Louis Segond 1910",
+  "verses": [
+   {
+    "osis": "EXO.2.24",
+    "ref": "Exode 2.24",
+    "text": "Dieu entendit leurs gémissements, et se souvint de son alliance avec Abraham, Isaac et Jacob."
+   },
+   {
+    "osis": "EXO.12.51",
+    "ref": "Exode 12.51",
+    "text": "Et ce même jour l’Éternel fit sortir du pays d’Égypte les enfants d’Israël, selon leurs armées."
+   },
+   {
+    "osis": "EXO.14.14",
+    "ref": "Exode 14.14",
+    "text": "L’Éternel combattra pour vous; et vous, gardez le silence."
+   },
+   {
+    "osis": "EXO.15.27",
+    "ref": "Exode 15.27",
+    "text": "Ils arrivèrent à Élim, où il y avait douze sources d’eau et soixante-dix palmiers. Ils campèrent là, près de l’eau."
+   },
+   {
+    "osis": "EXO.17.15",
+    "ref": "Exode 17.15",
+    "text": "Moïse bâtit un autel, et lui donna pour nom: l’Éternel ma bannière."
+   },
+   {
+    "osis": "EXO.20.2",
+    "ref": "Exode 20.2",
+    "text": "Je suis l’Éternel, ton Dieu, qui t’ai fait sortir du pays d’Égypte, de la maison de servitude."
+   },
+   {
+    "osis": "EXO.40.34",
+    "ref": "Exode 40.34",
+    "text": "Alors la nuée couvrit la tente d’assignation, et la gloire de l’Éternel remplit le tabernacle."
+   },
+   {
+    "osis": "NUM.14.8",
+    "ref": "Nombres 14.8",
+    "text": "Si l’Éternel nous est favorable, il nous mènera dans ce pays, et nous le donnera: c’est un pays où coulent le lait et le miel."
+   },
+   {
+    "osis": "DEU.6.5",
+    "ref": "Deutéronome 6.5",
+    "text": "Tu aimeras l’Éternel, ton Dieu, de tout ton cœur, de toute ton âme et de toute ta force."
+   },
+   {
+    "osis": "JOS.3.5",
+    "ref": "Josué 3.5",
+    "text": "Josué dit au peuple: Sanctifiez-vous, car demain l’Éternel fera des prodiges au milieu de vous."
+   },
+   {
+    "osis": "JOS.6.2",
+    "ref": "Josué 6.2",
+    "text": "L’Éternel dit à Josué: Vois, je livre entre tes mains Jéricho et son roi, ses vaillants soldats."
+   },
+   {
+    "osis": "JOS.21.45",
+    "ref": "Josué 21.45",
+    "text": "De toutes les bonnes paroles que l’Éternel avait dites à la maison d’Israël, aucune ne resta sans effet: toutes s’accomplirent."
+   }
+  ]
+ },
+ "en": {
+  "source": "World English Bible",
+  "verses": [
+   {
+    "osis": "EXO.2.24",
+    "ref": "Exodus 2:24",
+    "text": "God heard their groaning, and God remembered his covenant with Abraham, with Isaac, and with Jacob."
+   },
+   {
+    "osis": "EXO.12.51",
+    "ref": "Exodus 12:51",
+    "text": "That same day, the LORD brought the children of Israel out of the land of Egypt by their armies."
+   },
+   {
+    "osis": "EXO.14.14",
+    "ref": "Exodus 14:14",
+    "text": "The LORD will fight for you, and you shall be still."
+   },
+   {
+    "osis": "EXO.15.27",
+    "ref": "Exodus 15:27",
+    "text": "They came to Elim, where there were twelve springs of water and seventy palm trees. They encamped there by the waters."
+   },
+   {
+    "osis": "EXO.17.15",
+    "ref": "Exodus 17:15",
+    "text": "Moses built an altar, and called its name “The LORD our Banner”."
+   },
+   {
+    "osis": "EXO.20.2",
+    "ref": "Exodus 20:2",
+    "text": "I am the LORD your God, who brought you out of the land of Egypt, out of the house of bondage."
+   },
+   {
+    "osis": "EXO.40.34",
+    "ref": "Exodus 40:34",
+    "text": "Then the cloud covered the Tent of Meeting, and the LORD’s glory filled the tabernacle."
+   },
+   {
+    "osis": "NUM.14.8",
+    "ref": "Numbers 14:8",
+    "text": "If the LORD delights in us, then he will bring us into this land, and give it to us: a land which flows with milk and honey."
+   },
+   {
+    "osis": "DEU.6.5",
+    "ref": "Deuteronomy 6:5",
+    "text": "You shall love the LORD your God with all your heart, with all your soul, and with all your might."
+   },
+   {
+    "osis": "JOS.3.5",
+    "ref": "Joshua 3:5",
+    "text": "Joshua said to the people, “Sanctify yourselves; for tomorrow the LORD will do wonders among you.”"
+   },
+   {
+    "osis": "JOS.6.2",
+    "ref": "Joshua 6:2",
+    "text": "The LORD said to Joshua, Behold, I have given Jericho into your hand, with its king and the mighty men of valor."
+   },
+   {
+    "osis": "JOS.21.45",
+    "ref": "Joshua 21:45",
+    "text": "Nothing failed of any good thing which the LORD had spoken to the house of Israel. All came to pass."
+   }
+  ]
+ },
+ "de": {
+  "source": "Lutherbibel 1912",
+  "verses": [
+   {
+    "osis": "EXO.2.24",
+    "ref": "2. Mose 2,24",
+    "text": "Und Gott erhörte ihr Wehklagen und gedachte an seinen Bund mit Abraham, Isaak und Jakob."
+   },
+   {
+    "osis": "EXO.12.51",
+    "ref": "2. Mose 12,51",
+    "text": "Also führte der HERR auf einen Tag die Kinder Israel aus Ägyptenland mit ihrem Heer."
+   },
+   {
+    "osis": "EXO.14.14",
+    "ref": "2. Mose 14,14",
+    "text": "Der HERR wird für euch streiten, und ihr werdet still sein."
+   },
+   {
+    "osis": "EXO.15.27",
+    "ref": "2. Mose 15,27",
+    "text": "Und sie kamen gen Elim, da waren zwölf Wasserbrunnen und siebzig Palmbäume, und sie lagerten sich daselbst ans Wasser."
+   },
+   {
+    "osis": "EXO.17.15",
+    "ref": "2. Mose 17,15",
+    "text": "Und Mose baute einen Altar und hieß ihn: Der HERR ist mein Panier."
+   },
+   {
+    "osis": "EXO.20.2",
+    "ref": "2. Mose 20,2",
+    "text": "Ich bin der HERR, dein Gott, der ich dich aus Ägyptenland, aus dem Diensthause, geführt habe."
+   },
+   {
+    "osis": "EXO.40.34",
+    "ref": "2. Mose 40,34",
+    "text": "Da bedeckte die Wolke die Hütte des Stifts, und die Herrlichkeit des HERRN füllte die Wohnung."
+   },
+   {
+    "osis": "NUM.14.8",
+    "ref": "4. Mose 14,8",
+    "text": "Wenn der HERR uns gnädig ist, so wird er uns in das Land bringen und es uns geben, ein Land, darin Milch und Honig fließt."
+   },
+   {
+    "osis": "DEU.6.5",
+    "ref": "5. Mose 6,5",
+    "text": "Und du sollst den HERRN, deinen Gott, liebhaben von ganzem Herzen, von ganzer Seele, von allem Vermögen."
+   },
+   {
+    "osis": "JOS.3.5",
+    "ref": "Josua 3,5",
+    "text": "Und Josua sprach zu dem Volk: Heiligt euch; denn morgen wird der HERR ein Wunder unter euch tun."
+   },
+   {
+    "osis": "JOS.6.2",
+    "ref": "Josua 6,2",
+    "text": "Aber der HERR sprach zu Josua: Siehe da, ich habe Jericho samt seinem König und seinen Kriegsleuten in deine Hände gegeben."
+   },
+   {
+    "osis": "JOS.21.45",
+    "ref": "Josua 21,45",
+    "text": "Und es fehlte nichts an allem Guten, das der HERR dem Hause Israel verheißen hatte. Es kam alles."
+   }
+  ]
+ },
+ "es": {
+  "source": "Reina-Valera 1909",
+  "verses": [
+   {
+    "osis": "EXO.2.24",
+    "ref": "Éxodo 2:24",
+    "text": "Y oyó Dios el gemido de ellos, y acordóse de su pacto con Abraham, Isaac y Jacob."
+   },
+   {
+    "osis": "EXO.12.51",
+    "ref": "Éxodo 12:51",
+    "text": "Y en aquel mismo día sacó Jehová á los hijos de Israel de la tierra de Egipto por sus escuadrones."
+   },
+   {
+    "osis": "EXO.14.14",
+    "ref": "Éxodo 14:14",
+    "text": "Jehová peleará por vosotros, y vosotros estaréis quedos."
+   },
+   {
+    "osis": "EXO.15.27",
+    "ref": "Éxodo 15:27",
+    "text": "Y llegaron á Elim, donde había doce fuentes de aguas, y setenta palmas; y asentaron allí junto á las aguas."
+   },
+   {
+    "osis": "EXO.17.15",
+    "ref": "Éxodo 17:15",
+    "text": "Y Moisés edificó un altar, y llamó su nombre Jehová-nissi."
+   },
+   {
+    "osis": "EXO.20.2",
+    "ref": "Éxodo 20:2",
+    "text": "Yo soy JEHOVÁ tu Dios, que te saqué de la tierra de Egipto, de casa de siervos."
+   },
+   {
+    "osis": "EXO.40.34",
+    "ref": "Éxodo 40:34",
+    "text": "Entonces una nube cubrió el tabernáculo del testimonio, y la gloria de Jehová hinchió el tabernáculo."
+   },
+   {
+    "osis": "NUM.14.8",
+    "ref": "Números 14:8",
+    "text": "Si Jehová se agradare de nosotros, él nos meterá en esta tierra, y nos la entregará; tierra que fluye leche y miel."
+   },
+   {
+    "osis": "DEU.6.5",
+    "ref": "Deuteronomio 6:5",
+    "text": "Y amarás á Jehová tu Dios de todo tu corazón, y de toda tu alma, y con todo tu poder."
+   },
+   {
+    "osis": "JOS.3.5",
+    "ref": "Josué 3:5",
+    "text": "Y Josué dijo al pueblo: Santificaos, porque Jehová hará mañana entre vosotros maravillas."
+   },
+   {
+    "osis": "JOS.6.2",
+    "ref": "Josué 6:2",
+    "text": "Mas Jehová dijo á Josué: Mira, yo he entregado en tu mano á Jericó y á su rey, con sus varones de guerra."
+   },
+   {
+    "osis": "JOS.21.45",
+    "ref": "Josué 21:45",
+    "text": "No faltó palabra de todas la buenas que habló Jehová á la casa de Israel; todo se cumplió."
+   }
+  ]
+ },
+ "ar": {
+  "source": "ترجمة فاندايك",
+  "verses": [
+   {
+    "osis": "EXO.2.24",
+    "ref": "الخروج 2:24",
+    "text": "فَسَمِعَ ٱللهُ أَنِينَهُمْ، فَتَذَكَّرَ ٱللهُ مِيثَاقَهُ مَعَ إِبْرَاهِيمَ وَإِسْحَاقَ وَيَعْقُوبَ."
+   },
+   {
+    "osis": "EXO.12.51",
+    "ref": "الخروج 12:51",
+    "text": "وَكَانَ فِي ذَلِكَ ٱلْيَوْمِ عَيْنِهِ أَنَّ ٱلرَّبَّ أَخْرَجَ بَنِي إِسْرَائِيلَ مِنْ أَرْضِ مِصْرَ بِحَسَبِ أَجْنَادِهِمْ."
+   },
+   {
+    "osis": "EXO.14.14",
+    "ref": "الخروج 14:14",
+    "text": "ٱلرَّبُّ يُقَاتِلُ عَنْكُمْ وَأَنْتُمْ تَصْمُتُونَ."
+   },
+   {
+    "osis": "EXO.15.27",
+    "ref": "الخروج 15:27",
+    "text": "ثُمَّ جَاءُوا إِلَى إِيلِيمَ وَهُنَاكَ ٱثْنَتَا عَشْرَةَ عَيْنَ مَاءٍ وَسَبْعُونَ نَخْلَةً. فَنَزَلُوا هُنَاكَ عِنْدَ ٱلْمَاءِ."
+   },
+   {
+    "osis": "EXO.17.15",
+    "ref": "الخروج 17:15",
+    "text": "فَبَنَى مُوسَى مَذْبَحًا وَدَعَا ٱسْمَهُ «يَهْوَهْ نِسِّي»."
+   },
+   {
+    "osis": "EXO.20.2",
+    "ref": "الخروج 20:2",
+    "text": "أَنَا ٱلرَّبُّ إِلَهُكَ ٱلَّذِي أَخْرَجَكَ مِنْ أَرْضِ مِصْرَ مِنْ بَيْتِ ٱلْعُبُودِيَّةِ."
+   },
+   {
+    "osis": "EXO.40.34",
+    "ref": "الخروج 40:34",
+    "text": "ثُمَّ غَطَّتِ ٱلسَّحَابَةُ خَيْمَةَ ٱلِٱجْتِمَاعِ وَمَلَأَ بَهَاءُ ٱلرَّبِّ ٱلْمَسْكَنَ."
+   },
+   {
+    "osis": "NUM.14.8",
+    "ref": "العدد 14:8",
+    "text": "إِنْ سُرَّ بِنَا ٱلرَّبُّ يُدْخِلْنَا إِلَى هَذِهِ ٱلْأَرْضِ وَيُعْطِينَا إِيَّاهَا، أَرْضًا تَفِيضُ لَبَنًا وَعَسَلًا."
+   },
+   {
+    "osis": "DEU.6.5",
+    "ref": "التثنية 6:5",
+    "text": "فَتُحِبُّ ٱلرَّبَّ إِلَهَكَ مِنْ كُلِّ قَلْبِكَ وَمِنْ كُلِّ نَفْسِكَ وَمِنْ كُلِّ قُوَّتِكَ."
+   },
+   {
+    "osis": "JOS.3.5",
+    "ref": "يشوع 3:5",
+    "text": "وَقَالَ يَشُوعُ لِلشَّعْبِ: «تَقَدَّسُوا لِأَنَّ ٱلرَّبَّ يَعْمَلُ غَدًا فِي وَسَطِكُمْ عَجَائِبَ»."
+   },
+   {
+    "osis": "JOS.6.2",
+    "ref": "يشوع 6:2",
+    "text": "فَقَالَ ٱلرَّبُّ لِيَشُوعَ: ٱنْظُرْ. قَدْ دَفَعْتُ بِيَدِكَ أَرِيحَا وَمَلِكَهَا، جَبَابِرَةَ ٱلْبَأْسِ."
+   },
+   {
+    "osis": "JOS.21.45",
+    "ref": "يشوع 21:45",
+    "text": "لَمْ تَسْقُطْ كَلِمَةٌ مِنْ جَمِيعِ ٱلْكَلَامِ ٱلصَّالِحِ ٱلَّذِي كَلَّمَ بِهِ ٱلرَّبُّ بَيْتَ إِسْرَائِيلَ، بَلِ ٱلْكُلُّ صَارَ."
+   }
+  ]
+ },
+ "zh": {
+  "source": "和合本",
+  "verses": [
+   {
+    "osis": "EXO.2.24",
+    "ref": "出埃及记 2:24",
+    "text": "神听见他们的哀声，就记念他与亚伯拉罕、以撒、雅各所立的约。"
+   },
+   {
+    "osis": "EXO.12.51",
+    "ref": "出埃及记 12:51",
+    "text": "正当那日，耶和华将以色列人按着他们的军队，从埃及地领出来。"
+   },
+   {
+    "osis": "EXO.14.14",
+    "ref": "出埃及记 14:14",
+    "text": "耶和华必为你们争战；你们只管静默，不要作声。"
+   },
+   {
+    "osis": "EXO.15.27",
+    "ref": "出埃及记 15:27",
+    "text": "他们到了以琳，在那里有十二股水泉，七十棵棕树；他们就在那里的水边安营。"
+   },
+   {
+    "osis": "EXO.17.15",
+    "ref": "出埃及记 17:15",
+    "text": "摩西筑了一座坛，起名叫「耶和华尼西」。"
+   },
+   {
+    "osis": "EXO.20.2",
+    "ref": "出埃及记 20:2",
+    "text": "我是耶和华—你的 神，曾将你从埃及地为奴之家领出来。"
+   },
+   {
+    "osis": "EXO.40.34",
+    "ref": "出埃及记 40:34",
+    "text": "当时，云彩遮盖会幕，耶和华的荣光就充满了帐幕。"
+   },
+   {
+    "osis": "NUM.14.8",
+    "ref": "民数记 14:8",
+    "text": "耶和华若喜悦我们，就必将我们领进那地，把地赐给我们；那地原是流奶与蜜之地。"
+   },
+   {
+    "osis": "DEU.6.5",
+    "ref": "申命记 6:5",
+    "text": "你要尽心、尽性、尽力爱耶和华—你的 神。"
+   },
+   {
+    "osis": "JOS.3.5",
+    "ref": "约书亚记 3:5",
+    "text": "约书亚吩咐百姓说：「你们要自洁，因为明天耶和华必在你们中间行奇事。」"
+   },
+   {
+    "osis": "JOS.6.2",
+    "ref": "约书亚记 6:2",
+    "text": "耶和华晓谕约书亚说：看哪，我已经把耶利哥和耶利哥的王，并大能的勇士，都交在你手中。"
+   },
+   {
+    "osis": "JOS.21.45",
+    "ref": "约书亚记 21:45",
+    "text": "耶和华应许赐福给以色列家的话一句也没有落空，都应验了。"
+   }
+  ]
+ },
+ "hi": {
+  "source": "Indian Revised Version, © 2017–2019 Bridge Connectivity Solutions, CC BY-SA 4.0",
+  "verses": [
+   {
+    "osis": "EXO.2.24",
+    "ref": "निर्गमन 2:24",
+    "text": "और परमेश्वर ने उनका कराहना सुनकर अपनी वाचा को, जो उसने अब्राहम, और इसहाक, और याकूब के साथ बाँधी थी, स्मरण किया।"
+   },
+   {
+    "osis": "EXO.12.51",
+    "ref": "निर्गमन 12:51",
+    "text": "और ठीक उसी दिन यहोवा इस्राएलियों को मिस्र देश से दल-दल करके निकाल ले गया।"
+   },
+   {
+    "osis": "EXO.14.14",
+    "ref": "निर्गमन 14:14",
+    "text": "यहोवा आप ही तुम्हारे लिये लड़ेगा, इसलिए तुम चुपचाप रहो।"
+   },
+   {
+    "osis": "EXO.15.27",
+    "ref": "निर्गमन 15:27",
+    "text": "तब वे एलीम को आए, जहाँ पानी के बारह सोते और सत्तर खजूर के पेड़ थे; और वहाँ उन्होंने जल के पास डेरे खड़े किए।"
+   },
+   {
+    "osis": "EXO.17.15",
+    "ref": "निर्गमन 17:15",
+    "text": "तब मूसा ने एक वेदी बनाकर उसका नाम ‘यहोवा निस्सी’ रखा।"
+   },
+   {
+    "osis": "EXO.20.2",
+    "ref": "निर्गमन 20:2",
+    "text": "मैं तेरा परमेश्वर यहोवा हूँ, जो तुझे दासत्व के घर अर्थात् मिस्र देश से निकाल लाया है।"
+   },
+   {
+    "osis": "EXO.40.34",
+    "ref": "निर्गमन 40:34",
+    "text": "तब बादल मिलापवाले तम्बू पर छा गया, और यहोवा का तेज निवास-स्थान में भर गया।"
+   },
+   {
+    "osis": "NUM.14.8",
+    "ref": "गिनती 14:8",
+    "text": "यदि यहोवा हम से प्रसन्न हो, तो हमको उस देश में, जिसमें दूध और मधु की धाराएँ बहती हैं, पहुँचाकर उसे हमें दे देगा।"
+   },
+   {
+    "osis": "DEU.6.5",
+    "ref": "व्यवस्थाविवरण 6:5",
+    "text": "तू अपने परमेश्वर यहोवा से अपने सारे मन, और सारे प्राण, और सारी शक्ति के साथ प्रेम रखना।"
+   },
+   {
+    "osis": "JOS.3.5",
+    "ref": "यहोशू 3:5",
+    "text": "फिर यहोशू ने प्रजा के लोगों से कहा, “तुम अपने आपको पवित्र करो; क्योंकि कल के दिन यहोवा तुम्हारे मध्य में आश्चर्यकर्म करेगा।”"
+   },
+   {
+    "osis": "JOS.6.2",
+    "ref": "यहोशू 6:2",
+    "text": "फिर यहोवा ने यहोशू से कहा, सुन, मैं यरीहो को उसके राजा और शूरवीरों समेत तेरे वश में कर देता हूँ।"
+   },
+   {
+    "osis": "JOS.21.45",
+    "ref": "यहोशू 21:45",
+    "text": "जितनी भलाई की बातें यहोवा ने इस्राएल के घराने से कही थीं उनमें से कोई भी बात न छूटी; सब की सब पूरी हुईं।"
+   }
+  ]
+ }
+}

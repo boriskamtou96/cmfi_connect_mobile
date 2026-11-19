@@ -4774,6 +4774,8 @@ class Translations$games$fr {
 	/// fr: 'Terminer'
 	String get flightDone => 'Terminer';
 
+	late final Translations$games$journey$fr journey = Translations$games$journey$fr.internal(_root);
+
 	/// fr: '(one) {{n} cœur} (other) {{n} cœurs}'
 	String flightHearts({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('fr'))(n,
 		one: '${n} cœur',
@@ -8016,6 +8018,89 @@ class Translations$gamification$collective$fr {
 	String get anonymous => 'Un total du groupe, sans nom et sans classement.';
 }
 
+// Path: games.journey
+class Translations$games$journey$fr {
+	Translations$games$journey$fr.internal(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// fr: 'La conquête de Canaan'
+	String get title => 'La conquête de Canaan';
+
+	/// fr: 'D’Égypte à Canaan, un verset par étape'
+	String get subtitle => 'D’Égypte à Canaan, un verset par étape';
+
+	/// fr: 'Étape {n} sur {total}'
+	String stage({required Object n, required Object total}) => 'Étape ${n} sur ${total}';
+
+	List<String> get places => [
+		'L’Égypte',
+		'La sortie d’Égypte',
+		'La mer Rouge',
+		'Élim',
+		'Rephidim',
+		'Le Sinaï',
+		'Le tabernacle',
+		'Kadès',
+		'Les plaines de Moab',
+		'Le Jourdain',
+		'Jéricho',
+		'Canaan',
+	];
+	List<String> get stories => [
+		'Esclave en Égypte, Israël crie, et Dieu l’entend.',
+		'La nuit de la Pâque, l’Éternel fait sortir son peuple.',
+		'La mer s’ouvre : Israël passe à pied sec.',
+		'Après la soif, douze sources et soixante-dix palmiers.',
+		'Amalek attaque ; Moïse garde les mains levées.',
+		'Au pied de la montagne, Dieu donne sa loi.',
+		'La gloire de l’Éternel remplit la tente.',
+		'Dix espions ont peur ; Josué et Caleb croient.',
+		'Avant d’entrer, Moïse rappelle à Israël d’aimer Dieu.',
+		'Le fleuve s’arrête devant l’arche de l’alliance.',
+		'Sept jours de marche, et les murs tombent.',
+		'Le pays promis : Dieu a tenu toutes ses paroles.',
+	];
+
+	/// fr: 'Étape franchie !'
+	String get won => 'Étape franchie !';
+
+	/// fr: 'Tu es entré en Canaan !'
+	String get finished => 'Tu es entré en Canaan !';
+
+	/// fr: 'D’Égypte à Canaan : tu as gravé les douze versets du voyage.'
+	String get finishedText => 'D’Égypte à Canaan : tu as gravé les douze versets du voyage.';
+
+	/// fr: 'Étape suivante'
+	String get next => 'Étape suivante';
+
+	/// fr: 'Voir la carte'
+	String get map => 'Voir la carte';
+
+	/// fr: 'Jouer'
+	String get play => 'Jouer';
+
+	/// fr: 'Vol libre'
+	String get free => 'Vol libre';
+
+	/// fr: 'Un verset au hasard, pour le plaisir'
+	String get freeText => 'Un verset au hasard, pour le plaisir';
+
+	/// fr: '{place}, étape fermée'
+	String locked({required Object place}) => '${place}, étape fermée';
+
+	/// fr: '{place}, étape à jouer'
+	String open({required Object place}) => '${place}, étape à jouer';
+
+	/// fr: '{place}, étape franchie'
+	String done({required Object place}) => '${place}, étape franchie';
+
+	/// fr: '{n} sur {total}'
+	String kept({required Object n, required Object total}) => '${n} sur ${total}';
+}
+
 // Path: reports.summary.time
 class Translations$reports$summary$time$fr {
 	Translations$reports$summary$time$fr.internal(this._root);
@@ -10976,6 +11061,45 @@ extension on Translations {
 			'games.flightAgain' => 'Recommencer',
 			'games.flightNext' => 'Un autre verset',
 			'games.flightDone' => 'Terminer',
+			'games.journey.title' => 'La conquête de Canaan',
+			'games.journey.subtitle' => 'D’Égypte à Canaan, un verset par étape',
+			'games.journey.stage' => ({required Object n, required Object total}) => 'Étape ${n} sur ${total}',
+			'games.journey.places.0' => 'L’Égypte',
+			'games.journey.places.1' => 'La sortie d’Égypte',
+			'games.journey.places.2' => 'La mer Rouge',
+			'games.journey.places.3' => 'Élim',
+			'games.journey.places.4' => 'Rephidim',
+			'games.journey.places.5' => 'Le Sinaï',
+			'games.journey.places.6' => 'Le tabernacle',
+			'games.journey.places.7' => 'Kadès',
+			'games.journey.places.8' => 'Les plaines de Moab',
+			'games.journey.places.9' => 'Le Jourdain',
+			'games.journey.places.10' => 'Jéricho',
+			'games.journey.places.11' => 'Canaan',
+			'games.journey.stories.0' => 'Esclave en Égypte, Israël crie, et Dieu l’entend.',
+			'games.journey.stories.1' => 'La nuit de la Pâque, l’Éternel fait sortir son peuple.',
+			'games.journey.stories.2' => 'La mer s’ouvre : Israël passe à pied sec.',
+			'games.journey.stories.3' => 'Après la soif, douze sources et soixante-dix palmiers.',
+			'games.journey.stories.4' => 'Amalek attaque ; Moïse garde les mains levées.',
+			'games.journey.stories.5' => 'Au pied de la montagne, Dieu donne sa loi.',
+			'games.journey.stories.6' => 'La gloire de l’Éternel remplit la tente.',
+			'games.journey.stories.7' => 'Dix espions ont peur ; Josué et Caleb croient.',
+			'games.journey.stories.8' => 'Avant d’entrer, Moïse rappelle à Israël d’aimer Dieu.',
+			'games.journey.stories.9' => 'Le fleuve s’arrête devant l’arche de l’alliance.',
+			'games.journey.stories.10' => 'Sept jours de marche, et les murs tombent.',
+			'games.journey.stories.11' => 'Le pays promis : Dieu a tenu toutes ses paroles.',
+			'games.journey.won' => 'Étape franchie !',
+			'games.journey.finished' => 'Tu es entré en Canaan !',
+			'games.journey.finishedText' => 'D’Égypte à Canaan : tu as gravé les douze versets du voyage.',
+			'games.journey.next' => 'Étape suivante',
+			'games.journey.map' => 'Voir la carte',
+			'games.journey.play' => 'Jouer',
+			'games.journey.free' => 'Vol libre',
+			'games.journey.freeText' => 'Un verset au hasard, pour le plaisir',
+			'games.journey.locked' => ({required Object place}) => '${place}, étape fermée',
+			'games.journey.open' => ({required Object place}) => '${place}, étape à jouer',
+			'games.journey.done' => ({required Object place}) => '${place}, étape franchie',
+			'games.journey.kept' => ({required Object n, required Object total}) => '${n} sur ${total}',
 			'games.flightHearts' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('fr'))(n, one: '${n} cœur', other: '${n} cœurs', ), 
 			'sheetImport.title' => 'Importer depuis Excel',
 			'sheetImport.intro' => 'Remplis d’un coup tes jours passés : un fichier Excel, une ligne par jour. Un jour qui a déjà un compte rendu n’est jamais remplacé.',

@@ -2228,6 +2228,7 @@ class _Translations$games$de extends Translations$games$fr {
 	@override String get flightAgain => 'Nochmal';
 	@override String get flightNext => 'Ein anderer Vers';
 	@override String get flightDone => 'Fertig';
+	@override late final _Translations$games$journey$de journey = _Translations$games$journey$de._(_root);
 	@override String flightHearts({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('de'))(n,
 		one: '${n} Herz',
 		other: '${n} Herzen',
@@ -3842,6 +3843,58 @@ class _Translations$gamification$collective$de extends Translations$gamification
 	);
 	@override String get noDisciples => 'Der Weg wird auch gemeinsam gegangen: Wenn du Jünger begleitest, erscheint hier ihr Weg der Woche, ohne Namen.';
 	@override String get anonymous => 'Eine Summe der Gruppe, ohne Namen und ohne Rangliste.';
+}
+
+// Path: games.journey
+class _Translations$games$journey$de extends Translations$games$journey$fr {
+	_Translations$games$journey$de._(TranslationsDe root) : this._root = root, super.internal(root);
+
+	final TranslationsDe _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Die Eroberung Kanaans';
+	@override String get subtitle => 'Von Ägypten nach Kanaan, ein Vers pro Etappe';
+	@override String stage({required Object n, required Object total}) => 'Etappe ${n} von ${total}';
+	@override List<String> get places => [
+		'Ägypten',
+		'Der Auszug aus Ägypten',
+		'Das Rote Meer',
+		'Elim',
+		'Raphidim',
+		'Der Sinai',
+		'Die Stiftshütte',
+		'Kades',
+		'Die Ebenen Moabs',
+		'Der Jordan',
+		'Jericho',
+		'Kanaan',
+	];
+	@override List<String> get stories => [
+		'Als Sklave in Ägypten schreit Israel, und Gott hört es.',
+		'In der Passahnacht führt der HERR sein Volk heraus.',
+		'Das Meer teilt sich: Israel geht trockenen Fußes hindurch.',
+		'Nach dem Durst: zwölf Quellen und siebzig Palmen.',
+		'Amalek greift an; Mose hält seine Hände erhoben.',
+		'Am Fuß des Berges gibt Gott sein Gesetz.',
+		'Die Herrlichkeit des HERRN erfüllt das Zelt.',
+		'Zehn Kundschafter fürchten sich; Josua und Kaleb glauben.',
+		'Vor dem Einzug erinnert Mose Israel daran, Gott zu lieben.',
+		'Der Fluss bleibt vor der Bundeslade stehen.',
+		'Sieben Tage Marsch, und die Mauern fallen.',
+		'Das verheißene Land: Gott hat alle seine Worte gehalten.',
+	];
+	@override String get won => 'Etappe geschafft!';
+	@override String get finished => 'Du bist in Kanaan angekommen!';
+	@override String get finishedText => 'Von Ägypten nach Kanaan: Du hast die zwölf Verse der Reise behalten.';
+	@override String get next => 'Nächste Etappe';
+	@override String get map => 'Zur Karte';
+	@override String get play => 'Spielen';
+	@override String get free => 'Freier Flug';
+	@override String get freeText => 'Ein zufälliger Vers, einfach zur Freude';
+	@override String locked({required Object place}) => '${place}, Etappe geschlossen';
+	@override String open({required Object place}) => '${place}, Etappe zu spielen';
+	@override String done({required Object place}) => '${place}, Etappe geschafft';
+	@override String kept({required Object n, required Object total}) => '${n} von ${total}';
 }
 
 // Path: reports.summary.time
@@ -6566,6 +6619,45 @@ extension on TranslationsDe {
 			'games.flightAgain' => 'Nochmal',
 			'games.flightNext' => 'Ein anderer Vers',
 			'games.flightDone' => 'Fertig',
+			'games.journey.title' => 'Die Eroberung Kanaans',
+			'games.journey.subtitle' => 'Von Ägypten nach Kanaan, ein Vers pro Etappe',
+			'games.journey.stage' => ({required Object n, required Object total}) => 'Etappe ${n} von ${total}',
+			'games.journey.places.0' => 'Ägypten',
+			'games.journey.places.1' => 'Der Auszug aus Ägypten',
+			'games.journey.places.2' => 'Das Rote Meer',
+			'games.journey.places.3' => 'Elim',
+			'games.journey.places.4' => 'Raphidim',
+			'games.journey.places.5' => 'Der Sinai',
+			'games.journey.places.6' => 'Die Stiftshütte',
+			'games.journey.places.7' => 'Kades',
+			'games.journey.places.8' => 'Die Ebenen Moabs',
+			'games.journey.places.9' => 'Der Jordan',
+			'games.journey.places.10' => 'Jericho',
+			'games.journey.places.11' => 'Kanaan',
+			'games.journey.stories.0' => 'Als Sklave in Ägypten schreit Israel, und Gott hört es.',
+			'games.journey.stories.1' => 'In der Passahnacht führt der HERR sein Volk heraus.',
+			'games.journey.stories.2' => 'Das Meer teilt sich: Israel geht trockenen Fußes hindurch.',
+			'games.journey.stories.3' => 'Nach dem Durst: zwölf Quellen und siebzig Palmen.',
+			'games.journey.stories.4' => 'Amalek greift an; Mose hält seine Hände erhoben.',
+			'games.journey.stories.5' => 'Am Fuß des Berges gibt Gott sein Gesetz.',
+			'games.journey.stories.6' => 'Die Herrlichkeit des HERRN erfüllt das Zelt.',
+			'games.journey.stories.7' => 'Zehn Kundschafter fürchten sich; Josua und Kaleb glauben.',
+			'games.journey.stories.8' => 'Vor dem Einzug erinnert Mose Israel daran, Gott zu lieben.',
+			'games.journey.stories.9' => 'Der Fluss bleibt vor der Bundeslade stehen.',
+			'games.journey.stories.10' => 'Sieben Tage Marsch, und die Mauern fallen.',
+			'games.journey.stories.11' => 'Das verheißene Land: Gott hat alle seine Worte gehalten.',
+			'games.journey.won' => 'Etappe geschafft!',
+			'games.journey.finished' => 'Du bist in Kanaan angekommen!',
+			'games.journey.finishedText' => 'Von Ägypten nach Kanaan: Du hast die zwölf Verse der Reise behalten.',
+			'games.journey.next' => 'Nächste Etappe',
+			'games.journey.map' => 'Zur Karte',
+			'games.journey.play' => 'Spielen',
+			'games.journey.free' => 'Freier Flug',
+			'games.journey.freeText' => 'Ein zufälliger Vers, einfach zur Freude',
+			'games.journey.locked' => ({required Object place}) => '${place}, Etappe geschlossen',
+			'games.journey.open' => ({required Object place}) => '${place}, Etappe zu spielen',
+			'games.journey.done' => ({required Object place}) => '${place}, Etappe geschafft',
+			'games.journey.kept' => ({required Object n, required Object total}) => '${n} von ${total}',
 			'games.flightHearts' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('de'))(n, one: '${n} Herz', other: '${n} Herzen', ), 
 			'sheetImport.title' => 'Aus Excel importieren',
 			'sheetImport.intro' => 'Fülle vergangene Tage auf einmal aus: eine Excel-Datei, eine Zeile pro Tag. Ein Tag, der schon einen Bericht hat, wird nie ersetzt.',

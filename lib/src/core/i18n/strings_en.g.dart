@@ -2229,6 +2229,7 @@ class _Translations$games$en extends Translations$games$fr {
 	@override String get flightAgain => 'Try again';
 	@override String get flightNext => 'Another verse';
 	@override String get flightDone => 'Done';
+	@override late final _Translations$games$journey$en journey = _Translations$games$journey$en._(_root);
 	@override String flightHearts({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n,
 		one: '${n} heart',
 		other: '${n} hearts',
@@ -3843,6 +3844,58 @@ class _Translations$gamification$collective$en extends Translations$gamification
 	);
 	@override String get noDisciples => 'The path is also walked together: when you accompany disciples, their walk of the week will appear here, without names.';
 	@override String get anonymous => 'A total for the group, without names and without a ranking.';
+}
+
+// Path: games.journey
+class _Translations$games$journey$en extends Translations$games$journey$fr {
+	_Translations$games$journey$en._(TranslationsEn root) : this._root = root, super.internal(root);
+
+	final TranslationsEn _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'The Conquest of Canaan';
+	@override String get subtitle => 'From Egypt to Canaan, one verse per stage';
+	@override String stage({required Object n, required Object total}) => 'Stage ${n} of ${total}';
+	@override List<String> get places => [
+		'Egypt',
+		'The way out of Egypt',
+		'The Red Sea',
+		'Elim',
+		'Rephidim',
+		'Sinai',
+		'The tabernacle',
+		'Kadesh',
+		'The plains of Moab',
+		'The Jordan',
+		'Jericho',
+		'Canaan',
+	];
+	@override List<String> get stories => [
+		'A slave in Egypt, Israel cries out, and God hears.',
+		'On the night of the Passover, the LORD brings his people out.',
+		'The sea opens: Israel walks through on dry ground.',
+		'After the thirst, twelve springs and seventy palm trees.',
+		'Amalek attacks; Moses keeps his hands lifted up.',
+		'At the foot of the mountain, God gives his law.',
+		'The glory of the LORD fills the tent.',
+		'Ten spies are afraid; Joshua and Caleb believe.',
+		'Before they go in, Moses reminds Israel to love God.',
+		'The river stops before the ark of the covenant.',
+		'Seven days of marching, and the walls fall.',
+		'The promised land: God has kept all his words.',
+	];
+	@override String get won => 'Stage cleared!';
+	@override String get finished => 'You have entered Canaan!';
+	@override String get finishedText => 'From Egypt to Canaan: you have kept the twelve verses of the journey.';
+	@override String get next => 'Next stage';
+	@override String get map => 'See the map';
+	@override String get play => 'Play';
+	@override String get free => 'Free flight';
+	@override String get freeText => 'A verse at random, just for the joy of it';
+	@override String locked({required Object place}) => '${place}, stage closed';
+	@override String open({required Object place}) => '${place}, stage to play';
+	@override String done({required Object place}) => '${place}, stage cleared';
+	@override String kept({required Object n, required Object total}) => '${n} of ${total}';
 }
 
 // Path: reports.summary.time
@@ -6567,6 +6620,45 @@ extension on TranslationsEn {
 			'games.flightAgain' => 'Try again',
 			'games.flightNext' => 'Another verse',
 			'games.flightDone' => 'Done',
+			'games.journey.title' => 'The Conquest of Canaan',
+			'games.journey.subtitle' => 'From Egypt to Canaan, one verse per stage',
+			'games.journey.stage' => ({required Object n, required Object total}) => 'Stage ${n} of ${total}',
+			'games.journey.places.0' => 'Egypt',
+			'games.journey.places.1' => 'The way out of Egypt',
+			'games.journey.places.2' => 'The Red Sea',
+			'games.journey.places.3' => 'Elim',
+			'games.journey.places.4' => 'Rephidim',
+			'games.journey.places.5' => 'Sinai',
+			'games.journey.places.6' => 'The tabernacle',
+			'games.journey.places.7' => 'Kadesh',
+			'games.journey.places.8' => 'The plains of Moab',
+			'games.journey.places.9' => 'The Jordan',
+			'games.journey.places.10' => 'Jericho',
+			'games.journey.places.11' => 'Canaan',
+			'games.journey.stories.0' => 'A slave in Egypt, Israel cries out, and God hears.',
+			'games.journey.stories.1' => 'On the night of the Passover, the LORD brings his people out.',
+			'games.journey.stories.2' => 'The sea opens: Israel walks through on dry ground.',
+			'games.journey.stories.3' => 'After the thirst, twelve springs and seventy palm trees.',
+			'games.journey.stories.4' => 'Amalek attacks; Moses keeps his hands lifted up.',
+			'games.journey.stories.5' => 'At the foot of the mountain, God gives his law.',
+			'games.journey.stories.6' => 'The glory of the LORD fills the tent.',
+			'games.journey.stories.7' => 'Ten spies are afraid; Joshua and Caleb believe.',
+			'games.journey.stories.8' => 'Before they go in, Moses reminds Israel to love God.',
+			'games.journey.stories.9' => 'The river stops before the ark of the covenant.',
+			'games.journey.stories.10' => 'Seven days of marching, and the walls fall.',
+			'games.journey.stories.11' => 'The promised land: God has kept all his words.',
+			'games.journey.won' => 'Stage cleared!',
+			'games.journey.finished' => 'You have entered Canaan!',
+			'games.journey.finishedText' => 'From Egypt to Canaan: you have kept the twelve verses of the journey.',
+			'games.journey.next' => 'Next stage',
+			'games.journey.map' => 'See the map',
+			'games.journey.play' => 'Play',
+			'games.journey.free' => 'Free flight',
+			'games.journey.freeText' => 'A verse at random, just for the joy of it',
+			'games.journey.locked' => ({required Object place}) => '${place}, stage closed',
+			'games.journey.open' => ({required Object place}) => '${place}, stage to play',
+			'games.journey.done' => ({required Object place}) => '${place}, stage cleared',
+			'games.journey.kept' => ({required Object n, required Object total}) => '${n} of ${total}',
 			'games.flightHearts' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n, one: '${n} heart', other: '${n} hearts', ), 
 			'sheetImport.title' => 'Import from Excel',
 			'sheetImport.intro' => 'Fill your past days at once: an Excel file, one row per day. A day that already has a report is never replaced.',

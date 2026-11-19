@@ -2153,6 +2153,7 @@ class _Translations$games$zh extends Translations$games$fr {
 	@override String get flightAgain => '再试一次';
 	@override String get flightNext => '换一节经文';
 	@override String get flightDone => '完成';
+	@override late final _Translations$games$journey$zh journey = _Translations$games$journey$zh._(_root);
 	@override String flightHearts({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n,
 		other: '${n} 颗心',
 	);
@@ -3728,6 +3729,58 @@ class _Translations$gamification$collective$zh extends Translations$gamification
 	);
 	@override String get noDisciples => '路也可以一起走：当你陪伴门徒时，他们这一周的行程会显示在这里，不显示姓名。';
 	@override String get anonymous => '全组总数，不显示姓名，也不排名。';
+}
+
+// Path: games.journey
+class _Translations$games$journey$zh extends Translations$games$journey$fr {
+	_Translations$games$journey$zh._(TranslationsZh root) : this._root = root, super.internal(root);
+
+	final TranslationsZh _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => '征服迦南';
+	@override String get subtitle => '从埃及到迦南，每一站一节经文';
+	@override String stage({required Object n, required Object total}) => '第 ${n} 站，共 ${total} 站';
+	@override List<String> get places => [
+		'埃及',
+		'出埃及',
+		'红海',
+		'以琳',
+		'利非订',
+		'西奈山',
+		'会幕',
+		'加低斯',
+		'摩押平原',
+		'约旦河',
+		'耶利哥',
+		'迦南',
+	];
+	@override List<String> get stories => [
+		'以色列在埃及为奴，他们呼求，神就垂听。',
+		'逾越节的夜里，耶和华领他的百姓出来。',
+		'海水分开，以色列人走干地过去。',
+		'干渴之后，有十二股水泉和七十棵棕树。',
+		'亚玛力人来攻击，摩西一直举着手。',
+		'在山脚下，神赐下他的律法。',
+		'耶和华的荣光充满了会幕。',
+		'十个探子害怕，约书亚和迦勒却相信。',
+		'进入之前，摩西提醒以色列要爱神。',
+		'河水在约柜前停住。',
+		'绕城七日，城墙就倒塌了。',
+		'应许之地：神的话一句也没有落空。',
+	];
+	@override String get won => '过关了！';
+	@override String get finished => '你进入迦南了！';
+	@override String get finishedText => '从埃及到迦南：你记住了旅程中的十二节经文。';
+	@override String get next => '下一站';
+	@override String get map => '查看地图';
+	@override String get play => '开始';
+	@override String get free => '自由飞行';
+	@override String get freeText => '随机一节经文，轻松飞一回';
+	@override String locked({required Object place}) => '${place}，尚未开放';
+	@override String open({required Object place}) => '${place}，可以开始';
+	@override String done({required Object place}) => '${place}，已过关';
+	@override String kept({required Object n, required Object total}) => '${n} / ${total}';
 }
 
 // Path: reports.summary.time
@@ -6447,6 +6500,45 @@ extension on TranslationsZh {
 			'games.flightAgain' => '再试一次',
 			'games.flightNext' => '换一节经文',
 			'games.flightDone' => '完成',
+			'games.journey.title' => '征服迦南',
+			'games.journey.subtitle' => '从埃及到迦南，每一站一节经文',
+			'games.journey.stage' => ({required Object n, required Object total}) => '第 ${n} 站，共 ${total} 站',
+			'games.journey.places.0' => '埃及',
+			'games.journey.places.1' => '出埃及',
+			'games.journey.places.2' => '红海',
+			'games.journey.places.3' => '以琳',
+			'games.journey.places.4' => '利非订',
+			'games.journey.places.5' => '西奈山',
+			'games.journey.places.6' => '会幕',
+			'games.journey.places.7' => '加低斯',
+			'games.journey.places.8' => '摩押平原',
+			'games.journey.places.9' => '约旦河',
+			'games.journey.places.10' => '耶利哥',
+			'games.journey.places.11' => '迦南',
+			'games.journey.stories.0' => '以色列在埃及为奴，他们呼求，神就垂听。',
+			'games.journey.stories.1' => '逾越节的夜里，耶和华领他的百姓出来。',
+			'games.journey.stories.2' => '海水分开，以色列人走干地过去。',
+			'games.journey.stories.3' => '干渴之后，有十二股水泉和七十棵棕树。',
+			'games.journey.stories.4' => '亚玛力人来攻击，摩西一直举着手。',
+			'games.journey.stories.5' => '在山脚下，神赐下他的律法。',
+			'games.journey.stories.6' => '耶和华的荣光充满了会幕。',
+			'games.journey.stories.7' => '十个探子害怕，约书亚和迦勒却相信。',
+			'games.journey.stories.8' => '进入之前，摩西提醒以色列要爱神。',
+			'games.journey.stories.9' => '河水在约柜前停住。',
+			'games.journey.stories.10' => '绕城七日，城墙就倒塌了。',
+			'games.journey.stories.11' => '应许之地：神的话一句也没有落空。',
+			'games.journey.won' => '过关了！',
+			'games.journey.finished' => '你进入迦南了！',
+			'games.journey.finishedText' => '从埃及到迦南：你记住了旅程中的十二节经文。',
+			'games.journey.next' => '下一站',
+			'games.journey.map' => '查看地图',
+			'games.journey.play' => '开始',
+			'games.journey.free' => '自由飞行',
+			'games.journey.freeText' => '随机一节经文，轻松飞一回',
+			'games.journey.locked' => ({required Object place}) => '${place}，尚未开放',
+			'games.journey.open' => ({required Object place}) => '${place}，可以开始',
+			'games.journey.done' => ({required Object place}) => '${place}，已过关',
+			'games.journey.kept' => ({required Object n, required Object total}) => '${n} / ${total}',
 			'games.flightHearts' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n, other: '${n} 颗心', ), 
 			'sheetImport.title' => '从 Excel 导入',
 			'sheetImport.intro' => '一次填好过去的日子：一个 Excel 文件，每天一行。已有记录的日子绝不会被替换。',

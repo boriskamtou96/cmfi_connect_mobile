@@ -151,6 +151,9 @@ flutter:
     - assets/sounds/music/
     # the sounds of the games, made for the app (core/services/game_sounds.dart)
     - assets/sounds/games/
+    # « La conquête de Canaan », the journey of « Verset en vol »: its verses
+    # in the Bibles of the app (made by tool/flight_journey.mjs)
+    - assets/games/
     # Our ministry: the nations (copy of GET /v1/ministry/nations) and the land
     # of the globe (Natural Earth, public domain: see features/ministry/application/land.dart)
     - assets/ministry/

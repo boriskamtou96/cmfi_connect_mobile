@@ -82,7 +82,7 @@ void main() {
   ) async {
     final app = await pumpApp(tester, token: 't');
     // ignore: unawaited_futures
-    app.container.read(appRouterProvider).push(const VerseFlightRoute());
+    app.container.read(appRouterProvider).push(VerseFlightRoute());
     // the game never settles: its frames are pumped one by one
     for (var i = 0; i < 20; i++) {
       await tester.pump(const Duration(milliseconds: 50));

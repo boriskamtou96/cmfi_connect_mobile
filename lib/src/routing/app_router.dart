@@ -34,6 +34,7 @@ import '../features/events/presentation/admin/event_registrants_screen.dart';
 import '../features/events/presentation/event_screen.dart';
 import '../features/events/presentation/events_screen.dart';
 import '../features/fasts/presentation/fasts_screen.dart';
+import '../features/games/presentation/flight_journey_screen.dart';
 import '../features/games/presentation/games_screen.dart';
 import '../features/games/presentation/leaderboard_screen.dart';
 import '../features/games/presentation/lesson_screen.dart';
@@ -168,7 +169,14 @@ class AppRouter extends RootStackRouter {
       page: LeaderboardRoute.page,
       guards: [authGuard],
     ),
-    // « Verset en vol », the bonus game drawn with Flame
+    // « Verset en vol », the bonus game drawn with Flame: the map of its
+    // journey (« La conquête de Canaan »), then a stage (?stage=3) or the
+    // free flight
+    AutoRoute(
+      path: '/games/journey',
+      page: FlightJourneyRoute.page,
+      guards: [authGuard],
+    ),
     AutoRoute(
       path: '/games/verse-flight',
       page: VerseFlightRoute.page,

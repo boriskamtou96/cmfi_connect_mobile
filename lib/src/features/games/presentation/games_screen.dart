@@ -18,8 +18,10 @@ import '../../../core/widgets/dove_mascot.dart';
 import '../../../core/widgets/error_view.dart';
 import '../../../core/widgets/tab_page.dart';
 import '../../../routing/app_router.dart';
+import '../application/flight_journey.dart';
 import '../application/game_downloads.dart';
 import '../application/game_path.dart';
+import '../domain/flight_journey.dart';
 import '../domain/game.dart';
 import 'widgets/game_chip.dart';
 import 'widgets/game_widgets.dart';
@@ -288,7 +290,8 @@ class _Path extends ConsumerWidget {
                       onBoard: () =>
                           context.router.push(const LeaderboardRoute()),
                       onFlight: () =>
-                          context.router.push(const VerseFlightRoute()),
+                          context.router.push(const FlightJourneyRoute()),
+                      journey: ref.watch(flightJourneyProvider),
                       offline: (
                         kept: kept,
                         loading: loading,
@@ -763,6 +766,7 @@ class _Extras extends StatelessWidget {
     required this.onDaily,
     required this.onBoard,
     required this.onFlight,
+    required this.journey,
     required this.offline,
   });
 
@@ -770,8 +774,10 @@ class _Extras extends StatelessWidget {
   final VoidCallback onDaily;
   final VoidCallback onBoard;
 
-  /// « Verset en vol », the bonus game.
+  /// « Verset en vol », the bonus game: the map of its journey, and where
+  /// the player stands on it.
   final VoidCallback onFlight;
+  final JourneyProgress journey;
 
   /// « Jouer hors ligne »: the course is kept on the phone, or being
   /// downloaded; its number of lessons.
@@ -886,7 +892,13 @@ class _Extras extends StatelessWidget {
                       icon: AppIcons.verseFlight,
                       color: AppColors.gold,
                       title: t.games.flightTitle,
-                      text: t.games.flightShort,
+                      // « Bonus » until the journey is started, then the stage
+                      text: journey.started
+                          ? t.games.journey.stage(
+                              n: journey.current + 1,
+                              total: journey.length,
+                            )
+                          : t.games.flightShort,
                       label: t.games.flightText,
                       onTap: onFlight,
                     ),

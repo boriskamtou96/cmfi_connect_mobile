@@ -119,6 +119,17 @@ Demandé le 13/11/2026 après les essais sur téléphone (« les titres des leç
 - Un jeu bonus de l'onglet, dessiné avec Flame (paquet `flame`, ajouté à la demande de l'utilisateur le 13/11/2026) : Zoé vole dans la nuit, les mots d'un verset arrivent sur trois couloirs, elle doit les attraper dans l'ordre ; un toucher au-dessus ou au-dessous d'elle la fait monter ou descendre. Trois cœurs : un mot faux en coûte un. Les versets viennent du verset du jour (`assets/verses`, ceux de 6 à 14 mots ; en chinois, des morceaux de 3 caractères), dans la langue de l'app. Pas de points du serveur : on joue pour retenir la Parole.
 - Flame ne sert qu'à ce jeu d'adresse : les leçons et le chemin restent en Flutter (accessibilité, 7 langues, droite à gauche).
 
+### G. « La conquête de Canaan » (18/11/2026)
+
+- « Verset en vol » devient un voyage : d'Égypte à Canaan en 12 étapes (l'Égypte, la sortie d'Égypte, la mer Rouge, Élim, Rephidim, le Sinaï, le tabernacle, Kadès, les plaines de Moab, le Jourdain, Jéricho, Canaan). Chaque étape a son verset du récit (Exode 2.24 … Josué 21.45, dans la Bible de chaque langue de l'app), son décor dessiné qui défile sous Zoé (pyramides, mer, palmiers, Sinaï, tentes, Jourdain, murailles, collines) et un rythme un peu plus rapide que la précédente.
+- La carte du voyage (`FlightJourneyScreen`) : une route qui descend d'étape en étape, dorée là où le joueur est passé, en pointillés devant, Zoé sur l'étape à jouer, les cœurs gardés sous chaque étape gagnée, « Étape 3 sur 12 » et une barre dorée. Le vol libre (un verset du jour au hasard) reste à un toucher.
+- L'étape atteinte est gardée sur le téléphone (pas de points du serveur : on joue pour retenir la Parole). Rejouer une étape garde son meilleur score.
+
+### H. « Le grand parcours » (18/11/2026)
+
+- Un parcours de questions du tout débutant au maître : 10 niveaux (Premiers pas, Débutant, Apprenti, Initié, Intermédiaire, Confirmé, Avancé, Expert, Érudit, Maître), 6 leçons chacun, 480 questions (choix, vrai/faux, versets à trou, ordre, paires). Code `parcours`, `data/games/parcours.fr.json` côté serveur, publié dès le déploiement (choix de l'utilisateur), importé au démarrage comme les autres parcours livrés.
+- Écrit et relu par l'IA, chaque fait et chaque citation vérifiés dans la Segond 1910 ; pas de relecture humaine avant publication : une erreur se corrige dans le back-office.
+
 ---
 
 ## 1. Vocabulaire

@@ -2228,6 +2228,7 @@ class _Translations$games$es extends Translations$games$fr {
 	@override String get flightAgain => 'Reintentar';
 	@override String get flightNext => 'Otro versículo';
 	@override String get flightDone => 'Terminar';
+	@override late final _Translations$games$journey$es journey = _Translations$games$journey$es._(_root);
 	@override String flightHearts({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('es'))(n,
 		one: '${n} corazón',
 		other: '${n} corazones',
@@ -3842,6 +3843,58 @@ class _Translations$gamification$collective$es extends Translations$gamification
 	);
 	@override String get noDisciples => 'El camino también se anda juntos: cuando acompañas a discípulos, su caminar de la semana aparecerá aquí, sin nombres.';
 	@override String get anonymous => 'Un total del grupo, sin nombres ni clasificación.';
+}
+
+// Path: games.journey
+class _Translations$games$journey$es extends Translations$games$journey$fr {
+	_Translations$games$journey$es._(TranslationsEs root) : this._root = root, super.internal(root);
+
+	final TranslationsEs _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'La conquista de Canaán';
+	@override String get subtitle => 'De Egipto a Canaán, un versículo por etapa';
+	@override String stage({required Object n, required Object total}) => 'Etapa ${n} de ${total}';
+	@override List<String> get places => [
+		'Egipto',
+		'La salida de Egipto',
+		'El mar Rojo',
+		'Elim',
+		'Rephidim',
+		'El Sinaí',
+		'El tabernáculo',
+		'Cades',
+		'Los campos de Moab',
+		'El Jordán',
+		'Jericó',
+		'Canaán',
+	];
+	@override List<String> get stories => [
+		'Esclavo en Egipto, Israel clama, y Dios lo oye.',
+		'La noche de la Pascua, Jehová saca a su pueblo.',
+		'El mar se abre: Israel pasa en seco.',
+		'Después de la sed, doce fuentes y setenta palmas.',
+		'Amalec ataca; Moisés mantiene las manos alzadas.',
+		'Al pie del monte, Dios da su ley.',
+		'La gloria de Jehová llena el tabernáculo.',
+		'Diez espías tienen miedo; Josué y Caleb creen.',
+		'Antes de entrar, Moisés recuerda a Israel que ame a Dios.',
+		'El río se detiene ante el arca del pacto.',
+		'Siete días de marcha, y los muros caen.',
+		'La tierra prometida: Dios cumplió todas sus palabras.',
+	];
+	@override String get won => '¡Etapa superada!';
+	@override String get finished => '¡Has entrado en Canaán!';
+	@override String get finishedText => 'De Egipto a Canaán: has guardado los doce versículos del viaje.';
+	@override String get next => 'Siguiente etapa';
+	@override String get map => 'Ver el mapa';
+	@override String get play => 'Jugar';
+	@override String get free => 'Vuelo libre';
+	@override String get freeText => 'Un versículo al azar, por gusto';
+	@override String locked({required Object place}) => '${place}, etapa cerrada';
+	@override String open({required Object place}) => '${place}, etapa por jugar';
+	@override String done({required Object place}) => '${place}, etapa superada';
+	@override String kept({required Object n, required Object total}) => '${n} de ${total}';
 }
 
 // Path: reports.summary.time
@@ -6566,6 +6619,45 @@ extension on TranslationsEs {
 			'games.flightAgain' => 'Reintentar',
 			'games.flightNext' => 'Otro versículo',
 			'games.flightDone' => 'Terminar',
+			'games.journey.title' => 'La conquista de Canaán',
+			'games.journey.subtitle' => 'De Egipto a Canaán, un versículo por etapa',
+			'games.journey.stage' => ({required Object n, required Object total}) => 'Etapa ${n} de ${total}',
+			'games.journey.places.0' => 'Egipto',
+			'games.journey.places.1' => 'La salida de Egipto',
+			'games.journey.places.2' => 'El mar Rojo',
+			'games.journey.places.3' => 'Elim',
+			'games.journey.places.4' => 'Rephidim',
+			'games.journey.places.5' => 'El Sinaí',
+			'games.journey.places.6' => 'El tabernáculo',
+			'games.journey.places.7' => 'Cades',
+			'games.journey.places.8' => 'Los campos de Moab',
+			'games.journey.places.9' => 'El Jordán',
+			'games.journey.places.10' => 'Jericó',
+			'games.journey.places.11' => 'Canaán',
+			'games.journey.stories.0' => 'Esclavo en Egipto, Israel clama, y Dios lo oye.',
+			'games.journey.stories.1' => 'La noche de la Pascua, Jehová saca a su pueblo.',
+			'games.journey.stories.2' => 'El mar se abre: Israel pasa en seco.',
+			'games.journey.stories.3' => 'Después de la sed, doce fuentes y setenta palmas.',
+			'games.journey.stories.4' => 'Amalec ataca; Moisés mantiene las manos alzadas.',
+			'games.journey.stories.5' => 'Al pie del monte, Dios da su ley.',
+			'games.journey.stories.6' => 'La gloria de Jehová llena el tabernáculo.',
+			'games.journey.stories.7' => 'Diez espías tienen miedo; Josué y Caleb creen.',
+			'games.journey.stories.8' => 'Antes de entrar, Moisés recuerda a Israel que ame a Dios.',
+			'games.journey.stories.9' => 'El río se detiene ante el arca del pacto.',
+			'games.journey.stories.10' => 'Siete días de marcha, y los muros caen.',
+			'games.journey.stories.11' => 'La tierra prometida: Dios cumplió todas sus palabras.',
+			'games.journey.won' => '¡Etapa superada!',
+			'games.journey.finished' => '¡Has entrado en Canaán!',
+			'games.journey.finishedText' => 'De Egipto a Canaán: has guardado los doce versículos del viaje.',
+			'games.journey.next' => 'Siguiente etapa',
+			'games.journey.map' => 'Ver el mapa',
+			'games.journey.play' => 'Jugar',
+			'games.journey.free' => 'Vuelo libre',
+			'games.journey.freeText' => 'Un versículo al azar, por gusto',
+			'games.journey.locked' => ({required Object place}) => '${place}, etapa cerrada',
+			'games.journey.open' => ({required Object place}) => '${place}, etapa por jugar',
+			'games.journey.done' => ({required Object place}) => '${place}, etapa superada',
+			'games.journey.kept' => ({required Object n, required Object total}) => '${n} de ${total}',
 			'games.flightHearts' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('es'))(n, one: '${n} corazón', other: '${n} corazones', ), 
 			'sheetImport.title' => 'Importar desde Excel',
 			'sheetImport.intro' => 'Rellena de una vez tus días pasados: un archivo Excel, una fila por día. Un día que ya tiene informe nunca se reemplaza.',

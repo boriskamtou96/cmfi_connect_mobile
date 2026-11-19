@@ -2524,6 +2524,7 @@ class _Translations$games$ar extends Translations$games$fr {
 	@override String get flightAgain => 'أعد المحاولة';
 	@override String get flightNext => 'آية أخرى';
 	@override String get flightDone => 'إنهاء';
+	@override late final _Translations$games$journey$ar journey = _Translations$games$journey$ar._(_root);
 	@override String flightHearts({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n,
 		zero: 'لا قلوب',
 		one: 'قلب واحد',
@@ -4292,6 +4293,58 @@ class _Translations$gamification$collective$ar extends Translations$gamification
 	);
 	@override String get noDisciples => 'الطريق يُسار معًا أيضًا: عندما ترافق تلاميذ، ستظهر هنا مسيرتهم في الأسبوع، دون أسماء.';
 	@override String get anonymous => 'مجموع المجموعة، دون أسماء ودون ترتيب.';
+}
+
+// Path: games.journey
+class _Translations$games$journey$ar extends Translations$games$journey$fr {
+	_Translations$games$journey$ar._(TranslationsAr root) : this._root = root, super.internal(root);
+
+	final TranslationsAr _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'امتلاك كنعان';
+	@override String get subtitle => 'من مصر إلى كنعان، آية في كل مرحلة';
+	@override String stage({required Object n, required Object total}) => 'المرحلة ${n} من ${total}';
+	@override List<String> get places => [
+		'مصر',
+		'الخروج من مصر',
+		'البحر الأحمر',
+		'إيليم',
+		'رفيديم',
+		'سيناء',
+		'خيمة الاجتماع',
+		'قادش',
+		'عربات موآب',
+		'الأردن',
+		'أريحا',
+		'كنعان',
+	];
+	@override List<String> get stories => [
+		'إسرائيل عبدٌ في مصر يصرخ، والله يسمع.',
+		'في ليلة الفصح يُخرج الرب شعبه.',
+		'ينشقّ البحر، فيعبر إسرائيل على اليابسة.',
+		'بعد العطش: اثنتا عشرة عين ماء وسبعون نخلة.',
+		'عماليق يهاجم، وموسى يُبقي يديه مرفوعتين.',
+		'عند سفح الجبل يعطي الله شريعته.',
+		'مجد الرب يملأ الخيمة.',
+		'عشرة جواسيس يخافون، ويشوع وكالب يؤمنان.',
+		'قبل الدخول يذكّر موسى إسرائيل بأن يحبّ الله.',
+		'يتوقف النهر أمام تابوت العهد.',
+		'سبعة أيام من السير، فتسقط الأسوار.',
+		'أرض الموعد: حفظ الله كل كلامه.',
+	];
+	@override String get won => 'اجتزتَ المرحلة!';
+	@override String get finished => 'لقد دخلتَ كنعان!';
+	@override String get finishedText => 'من مصر إلى كنعان: حفظتَ آيات الرحلة الاثنتي عشرة.';
+	@override String get next => 'المرحلة التالية';
+	@override String get map => 'عرض الخريطة';
+	@override String get play => 'العب';
+	@override String get free => 'طيران حر';
+	@override String get freeText => 'آية عشوائية، للمتعة';
+	@override String locked({required Object place}) => '${place}، مرحلة مغلقة';
+	@override String open({required Object place}) => '${place}، مرحلة للعب';
+	@override String done({required Object place}) => '${place}، مرحلة مُجتازة';
+	@override String kept({required Object n, required Object total}) => '${n} من ${total}';
 }
 
 // Path: reports.summary.time
@@ -7035,6 +7088,45 @@ extension on TranslationsAr {
 			'games.flightAgain' => 'أعد المحاولة',
 			'games.flightNext' => 'آية أخرى',
 			'games.flightDone' => 'إنهاء',
+			'games.journey.title' => 'امتلاك كنعان',
+			'games.journey.subtitle' => 'من مصر إلى كنعان، آية في كل مرحلة',
+			'games.journey.stage' => ({required Object n, required Object total}) => 'المرحلة ${n} من ${total}',
+			'games.journey.places.0' => 'مصر',
+			'games.journey.places.1' => 'الخروج من مصر',
+			'games.journey.places.2' => 'البحر الأحمر',
+			'games.journey.places.3' => 'إيليم',
+			'games.journey.places.4' => 'رفيديم',
+			'games.journey.places.5' => 'سيناء',
+			'games.journey.places.6' => 'خيمة الاجتماع',
+			'games.journey.places.7' => 'قادش',
+			'games.journey.places.8' => 'عربات موآب',
+			'games.journey.places.9' => 'الأردن',
+			'games.journey.places.10' => 'أريحا',
+			'games.journey.places.11' => 'كنعان',
+			'games.journey.stories.0' => 'إسرائيل عبدٌ في مصر يصرخ، والله يسمع.',
+			'games.journey.stories.1' => 'في ليلة الفصح يُخرج الرب شعبه.',
+			'games.journey.stories.2' => 'ينشقّ البحر، فيعبر إسرائيل على اليابسة.',
+			'games.journey.stories.3' => 'بعد العطش: اثنتا عشرة عين ماء وسبعون نخلة.',
+			'games.journey.stories.4' => 'عماليق يهاجم، وموسى يُبقي يديه مرفوعتين.',
+			'games.journey.stories.5' => 'عند سفح الجبل يعطي الله شريعته.',
+			'games.journey.stories.6' => 'مجد الرب يملأ الخيمة.',
+			'games.journey.stories.7' => 'عشرة جواسيس يخافون، ويشوع وكالب يؤمنان.',
+			'games.journey.stories.8' => 'قبل الدخول يذكّر موسى إسرائيل بأن يحبّ الله.',
+			'games.journey.stories.9' => 'يتوقف النهر أمام تابوت العهد.',
+			'games.journey.stories.10' => 'سبعة أيام من السير، فتسقط الأسوار.',
+			'games.journey.stories.11' => 'أرض الموعد: حفظ الله كل كلامه.',
+			'games.journey.won' => 'اجتزتَ المرحلة!',
+			'games.journey.finished' => 'لقد دخلتَ كنعان!',
+			'games.journey.finishedText' => 'من مصر إلى كنعان: حفظتَ آيات الرحلة الاثنتي عشرة.',
+			'games.journey.next' => 'المرحلة التالية',
+			'games.journey.map' => 'عرض الخريطة',
+			'games.journey.play' => 'العب',
+			'games.journey.free' => 'طيران حر',
+			'games.journey.freeText' => 'آية عشوائية، للمتعة',
+			'games.journey.locked' => ({required Object place}) => '${place}، مرحلة مغلقة',
+			'games.journey.open' => ({required Object place}) => '${place}، مرحلة للعب',
+			'games.journey.done' => ({required Object place}) => '${place}، مرحلة مُجتازة',
+			'games.journey.kept' => ({required Object n, required Object total}) => '${n} من ${total}',
 			'games.flightHearts' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n, zero: 'لا قلوب', one: 'قلب واحد', two: 'قلبان', few: '${n} قلوب', many: '${n} قلبًا', other: '${n} قلب', ), 
 			'sheetImport.title' => 'استيراد من Excel',
 			'sheetImport.intro' => 'املأ أيامك الماضية دفعة واحدة: ملف Excel، سطر لكل يوم. اليوم الذي له تقرير لا يُستبدل أبدًا.',

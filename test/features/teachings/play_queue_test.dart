@@ -62,4 +62,48 @@ void main() {
     expect(queue.pointingAt(_message(9)), isNull);
     expect(const PlayQueue().current, isNull);
   });
+
+  group('a message sent twice is heard once', () {
+    // as on the server: the day uploaded under its files' names, then again
+    // under its own titles, the same lengths
+    Teaching sent(int id, String title, int seconds) => Teaching(
+      id: id,
+      title: title,
+      durationSeconds: seconds,
+      audio: TeachingAudio(id: 100 + id, url: '/v1/media/$id.mp3'),
+    );
+    final day2 = [
+      sent(14, 'Jour 2_1 croisade de prière et de jeûne 2026', 2056),
+      sent(22, 'Jour 2, message 1', 2056),
+      sent(18, 'Jour 2_3 croisade de prière et de jeûne 2026', 494),
+      sent(23, 'Jour 2, message 2', 437),
+      sent(24, 'Jour 2, message 3', 494),
+      sent(16, 'Jour 2_3 croisade de prière et de jeûne 2026', 494),
+      // the same name, another length: another message
+      sent(30, 'Jour 2, message 1', 600),
+    ];
+
+    test('its copies leave the queue, the one heard stays', () {
+      final queue = PlayQueue.around(day2[4], TeachingList(day2));
+
+      expect(queue.current?.id, 24);
+      expect([for (final one in queue.items) one.id], [14, 23, 24, 30]);
+      expect(queue.upcoming.map((one) => one.id), [30]);
+      expect(queue.skipped, 3);
+    });
+
+    test('the next page brings no copy, and the end is known', () {
+      const query = TeachingQuery(category: 'croisades');
+      final queue = PlayQueue.around(
+        day2[0],
+        TeachingList(day2.sublist(0, 3), query: query, total: 7),
+      );
+      expect(queue.items.map((one) => one.id), [14, 18]);
+      expect(queue.hasMorePages, isTrue);
+
+      final whole = queue.extended(day2.sublist(3), total: 7);
+      expect(whole.items.map((one) => one.id), [14, 18, 23, 30]);
+      expect(whole.hasMorePages, isFalse);
+    });
+  });
 }

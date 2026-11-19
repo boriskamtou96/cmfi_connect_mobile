@@ -2307,6 +2307,10 @@
     "resume": "Reprendre",
     "editions": "Éditions",
     "allOfCategory": "Tous les messages",
+    "outsideEdition(plural, param=n)": {
+      "one": "1 autre message, hors de cette édition",
+      "other": "{n} autres messages, hors de cette édition"
+    },
     "daysCount(plural, param=n)": {
       "one": "{n} jour",
       "other": "{n} jours"

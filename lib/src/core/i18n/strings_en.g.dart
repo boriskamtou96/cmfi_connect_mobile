@@ -1655,6 +1655,10 @@ class _Translations$teachings$en extends Translations$teachings$fr {
 	@override String get resume => 'Resume';
 	@override String get editions => 'Editions';
 	@override String get allOfCategory => 'All messages';
+	@override String outsideEdition({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n,
+		one: '1 more message, outside this edition',
+		other: '${n} more messages, outside this edition',
+	);
 	@override String daysCount({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n,
 		one: '${n} day',
 		other: '${n} days',
@@ -6155,6 +6159,7 @@ extension on TranslationsEn {
 			'teachings.resume' => 'Resume',
 			'teachings.editions' => 'Editions',
 			'teachings.allOfCategory' => 'All messages',
+			'teachings.outsideEdition' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n, one: '1 more message, outside this edition', other: '${n} more messages, outside this edition', ), 
 			'teachings.daysCount' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n, one: '${n} day', other: '${n} days', ), 
 			'teachings.andOthers' => ({required num n, required Object name}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n, one: '${name} and 1 other', other: '${name} and ${n} others', ), 
 			'teachings.showCount' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n, one: 'Show ${n} message', other: 'Show ${n} messages', ), 
@@ -6417,9 +6422,9 @@ extension on TranslationsEn {
 			'journey.daily.prayer' => 'Do a prayer retreat',
 			'journey.daily.word' => 'Read a chapter of the Bible',
 			'journey.daily.wordPlan' => 'Read the chapters of the plan',
-			'journey.daily.meditation' => 'Meditate on the Word',
 			_ => null,
 		} ?? switch (path) {
+			'journey.daily.meditation' => 'Meditate on the Word',
 			'journey.daily.allDone' => 'All four steps are done. Have a good day with God!',
 			'journey.daily.done' => 'Done',
 			'journey.grace.day' => 'Day of grace',

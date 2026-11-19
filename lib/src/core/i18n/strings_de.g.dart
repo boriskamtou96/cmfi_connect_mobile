@@ -1654,6 +1654,10 @@ class _Translations$teachings$de extends Translations$teachings$fr {
 	@override String get resume => 'Fortsetzen';
 	@override String get editions => 'Ausgaben';
 	@override String get allOfCategory => 'Alle Botschaften';
+	@override String outsideEdition({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('de'))(n,
+		one: '1 weitere Botschaft außerhalb dieser Ausgabe',
+		other: '${n} weitere Botschaften außerhalb dieser Ausgabe',
+	);
 	@override String daysCount({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('de'))(n,
 		one: '${n} Tag',
 		other: '${n} Tage',
@@ -6154,6 +6158,7 @@ extension on TranslationsDe {
 			'teachings.resume' => 'Fortsetzen',
 			'teachings.editions' => 'Ausgaben',
 			'teachings.allOfCategory' => 'Alle Botschaften',
+			'teachings.outsideEdition' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('de'))(n, one: '1 weitere Botschaft außerhalb dieser Ausgabe', other: '${n} weitere Botschaften außerhalb dieser Ausgabe', ), 
 			'teachings.daysCount' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('de'))(n, one: '${n} Tag', other: '${n} Tage', ), 
 			'teachings.andOthers' => ({required num n, required Object name}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('de'))(n, one: '${name} und 1 weiterer', other: '${name} und ${n} weitere', ), 
 			'teachings.showCount' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('de'))(n, one: '${n} Botschaft anzeigen', other: '${n} Botschaften anzeigen', ), 
@@ -6416,9 +6421,9 @@ extension on TranslationsDe {
 			'journey.daily.prayer' => 'Eine Gebetszeit halten',
 			'journey.daily.word' => 'Ein Kapitel der Bibel lesen',
 			'journey.daily.wordPlan' => 'Die Kapitel des Plans lesen',
-			'journey.daily.meditation' => 'Über das Wort nachsinnen',
 			_ => null,
 		} ?? switch (path) {
+			'journey.daily.meditation' => 'Über das Wort nachsinnen',
 			'journey.daily.allDone' => 'Die vier Schritte sind gemacht. Einen schönen Tag mit Gott!',
 			'journey.daily.done' => 'Erledigt',
 			'journey.grace.day' => 'Tag der Gnade',

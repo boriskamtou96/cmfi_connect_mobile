@@ -2224,6 +2224,10 @@
     "resume": "继续收听",
     "editions": "届次",
     "allOfCategory": "全部信息",
+    "outsideEdition(plural, param=n)": {
+      "one": "另有 {n} 篇信息不在本届",
+      "other": "另有 {n} 篇信息不在本届"
+    },
     "daysCount(plural, param=n)": {
       "one": "{n} 天",
       "other": "{n} 天"

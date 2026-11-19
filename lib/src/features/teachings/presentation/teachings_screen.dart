@@ -86,8 +86,24 @@ class TeachingsScreen extends HookConsumerWidget {
           one,
     ]..sort((a, b) => b.year != a.year ? b.year - a.year : b.id - a.id);
 
-    // a category whose messages all belong to editions opens the latest
-    // one, like a season; otherwise all its messages, none left out
+    /// The messages of the category of [edition] in none of its editions.
+    int outsideOf(TeachingEditionFacet edition) {
+      final key = edition.categorySlug.isNotEmpty
+          ? edition.categorySlug
+          : edition.categoryName;
+      final category = categories
+          .where((one) => one.slug == key || one.name == key)
+          .firstOrNull;
+      if (category == null) {
+        return 0;
+      }
+      final inEditions = editionsOf(key).fold(0, (sum, one) => sum + one.count);
+      return (category.count - inEditions).clamp(0, category.count);
+    }
+
+    // a category whose messages mostly belong to editions opens the latest
+    // one, like a season (the others a touch away under its card);
+    // otherwise all its messages
     void selectCategory(String value) {
       final editions = value == _downloaded
           ? const <TeachingEditionFacet>[]
@@ -97,7 +113,7 @@ class TeachingsScreen extends HookConsumerWidget {
           .firstOrNull;
       final covered =
           category != null &&
-          editions.fold(0, (sum, one) => sum + one.count) >= category.count;
+          editions.fold(0, (sum, one) => sum + one.count) * 2 > category.count;
       final latest = covered ? editions.firstOrNull : null;
       chosen.value = chosen.value.copyWith(
         category: value,
@@ -140,7 +156,13 @@ class TeachingsScreen extends HookConsumerWidget {
         error: error,
         onRetry: () => ref.invalidate(provider),
       ),
-      _ => const LoadingList(count: 6, card: false),
+      // the shape of the messages coming: lines, no picture
+      _ => const LoadingList(
+        count: 5,
+        leading: 0,
+        lines: 3,
+        padding: EdgeInsets.zero,
+      ),
     };
 
     Future<void> openFilters() async {
@@ -180,6 +202,18 @@ class TeachingsScreen extends HookConsumerWidget {
     }
 
     final shown = teachings.value;
+    // the untouched list opens on the latest edition (a crusade, a camp)
+    final latest =
+        !onlyKept && chosen.value == const TeachingQuery() && search.isEmpty
+        ? _latestEdition(base?.editions)
+        : null;
+    void openEdition(TeachingEditionFacet one) => chosen.value = TeachingQuery(
+      category: one.categorySlug.isNotEmpty
+          ? one.categorySlug
+          : one.categoryName,
+      edition: one.id,
+    );
+    final outside = edition == null ? 0 : outsideOf(edition);
     // the edition and its day are in sight on the card and its tabs
     final advanced = [
       chosen.value.speaker.isNotEmpty,
@@ -239,6 +273,13 @@ class TeachingsScreen extends HookConsumerWidget {
                       onSelect: selectCategory,
                     ),
                   ),
+                if (latest != null)
+                  SliverToBoxAdapter(
+                    child: _LatestEdition(
+                      edition: latest,
+                      onOpen: () => openEdition(latest),
+                    ),
+                  ),
                 if (edition != null)
                   SliverToBoxAdapter(
                     child: TeachingSequence(
@@ -254,6 +295,20 @@ class TeachingsScreen extends HookConsumerWidget {
                         complete: shown != null && !shown.hasMore,
                         days: facets?.days.length ?? 0,
                         onEditions: () => switchEdition(edition),
+                      ),
+                    ),
+                  ),
+                if (edition != null && outside > 0)
+                  SliverToBoxAdapter(
+                    child: _OutsideEdition(
+                      count: outside,
+                      // all the messages of its category
+                      onTap: () => chosen.value = chosen.value.copyWith(
+                        category: edition.categorySlug.isNotEmpty
+                            ? edition.categorySlug
+                            : edition.categoryName,
+                        edition: null,
+                        day: null,
                       ),
                     ),
                   ),
@@ -501,7 +556,8 @@ class _EditionCard extends ConsumerWidget {
     required this.items,
     required this.complete,
     required this.days,
-    required this.onEditions,
+    this.onEditions,
+    this.onOpen,
   });
 
   final TeachingEditionFacet edition;
@@ -512,7 +568,12 @@ class _EditionCard extends ConsumerWidget {
   /// Whether [items] hold the whole edition (its total length is known).
   final bool complete;
   final int days;
-  final VoidCallback onEditions;
+
+  /// The other editions of its category (« Éditions ▾ »), once opened.
+  final VoidCallback? onEditions;
+
+  /// Opens it (« Afficher 124 messages ›»), on the untouched list.
+  final VoidCallback? onOpen;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -554,29 +615,16 @@ class _EditionCard extends ConsumerWidget {
         items.firstOrNull;
     final cover = items.where((one) => one.cover != null).firstOrNull;
 
-    return Container(
-      margin: const EdgeInsetsDirectional.fromSTEB(
-        AppSpacing.lg,
-        AppSpacing.md,
-        AppSpacing.lg,
-        0,
-      ),
+    final content = Padding(
       padding: const EdgeInsets.all(AppSpacing.lg),
-      decoration: BoxDecoration(
-        color: AppColors.night,
-        borderRadius: BorderRadius.circular(AppRadius.xl),
-      ),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           if (cover != null)
             TeachingCover(teaching: cover, size: 92)
           else
-            _SeasonArt(
-              kind: edition.categoryName,
-              year: edition.year,
-              size: 92,
-            ),
+            // its title beside it already says what it is: the year alone
+            _SeasonArt(kind: '', year: edition.year, size: 92),
           const SizedBox(width: 14),
           Expanded(
             child: Column(
@@ -604,7 +652,7 @@ class _EditionCard extends ConsumerWidget {
                         fontFamily: 'Lora',
                         fontStyle: FontStyle.italic,
                         fontSize: 14,
-                        color: AppColors.goldLight,
+                        color: AppColors.onPrimaryMuted,
                       ),
                     ),
                   ),
@@ -627,21 +675,146 @@ class _EditionCard extends ConsumerWidget {
                       _CardPill(
                         icon: AppIcons.play,
                         label: begun ? t.resume : t.play,
-                        gold: true,
+                        primary: true,
                         onTap: () => openTeaching(context, ref, next),
                       ),
-                    _CardPill(
-                      icon: AppIcons.chevronDown,
-                      label: t.editions,
-                      trailing: true,
-                      onTap: onEditions,
-                    ),
+                    if (onOpen case final open?)
+                      _CardPill(
+                        icon: AppIcons.chevronRight,
+                        label: t.showCount(n: edition.count),
+                        trailing: true,
+                        onTap: open,
+                      )
+                    else if (onEditions case final editions?)
+                      _CardPill(
+                        icon: AppIcons.chevronDown,
+                        label: t.editions,
+                        trailing: true,
+                        onTap: editions,
+                      ),
                   ],
                 ),
               ],
             ),
           ),
         ],
+      ),
+    );
+    return Padding(
+      padding: const EdgeInsetsDirectional.fromSTEB(
+        AppSpacing.lg,
+        AppSpacing.md,
+        AppSpacing.lg,
+        0,
+      ),
+      child: Material(
+        color: AppColors.night,
+        borderRadius: BorderRadius.circular(AppRadius.xl),
+        clipBehavior: Clip.antiAlias,
+        child: onOpen == null
+            ? content
+            : InkWell(onTap: onOpen, child: content),
+      ),
+    );
+  }
+}
+
+/// The latest edition (a crusade, a camp) at the top of the untouched list:
+/// its card, « Reprendre » or « Écouter », and a touch opens it with its
+/// days.
+class _LatestEdition extends ConsumerWidget {
+  const _LatestEdition({required this.edition, required this.onOpen});
+
+  final TeachingEditionFacet edition;
+  final VoidCallback onOpen;
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    // the very list the edition shows once opened
+    final query = TeachingQuery(
+      category: edition.categorySlug.isNotEmpty
+          ? edition.categorySlug
+          : edition.categoryName,
+      edition: edition.id,
+    );
+    final state = ref.watch(teachingsProvider(query)).value;
+    final days = ref.watch(teachingFacetsProvider(edition.id)).value;
+    final items = state?.items ?? const <Teaching>[];
+    return TeachingSequence(
+      list: TeachingList(
+        items,
+        query: query,
+        page: state?.page ?? 1,
+        total: state?.total,
+      ),
+      child: _EditionCard(
+        edition: edition,
+        items: items,
+        complete: state != null && !state.hasMore,
+        days: days?.days.length ?? 0,
+        onOpen: onOpen,
+      ),
+    );
+  }
+}
+
+/// The edition shown first: the latest year, then the latest made.
+TeachingEditionFacet? _latestEdition(List<TeachingEditionFacet>? editions) {
+  if (editions == null || editions.isEmpty) {
+    return null;
+  }
+  return ([
+    ...editions,
+  ]..sort((a, b) => b.year != a.year ? b.year - a.year : b.id - a.id)).first;
+}
+
+/// « 15 autres messages, hors de cette édition › » under an edition's
+/// card: the messages of its category in none of its editions, a touch
+/// away.
+class _OutsideEdition extends StatelessWidget {
+  const _OutsideEdition({required this.count, required this.onTap});
+
+  final int count;
+  final VoidCallback onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    final scheme = Theme.of(context).colorScheme;
+    return Padding(
+      padding: const EdgeInsetsDirectional.fromSTEB(
+        AppSpacing.sm,
+        AppSpacing.xs,
+        AppSpacing.sm,
+        0,
+      ),
+      child: InkWell(
+        onTap: onTap,
+        borderRadius: BorderRadius.circular(AppRadius.md),
+        child: ConstrainedBox(
+          constraints: const BoxConstraints(minHeight: 48),
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: AppSpacing.sm),
+            child: Row(
+              children: [
+                Expanded(
+                  child: Text(
+                    context.t.teachings.outsideEdition(n: count),
+                    style: TextStyle(
+                      fontSize: 14,
+                      fontWeight: FontWeight.w600,
+                      color: scheme.onSurfaceVariant,
+                    ),
+                  ),
+                ),
+                Icon(
+                  AppIcons.chevronRight,
+                  size: 16,
+                  color: scheme.onSurfaceVariant,
+                ),
+              ],
+            ),
+          ),
+        ),
       ),
     );
   }
@@ -672,7 +845,7 @@ class _SeasonArt extends StatelessWidget {
         end: Alignment.bottomRight,
         colors: [AppColors.primary, AppColors.primaryDeep],
       ),
-      border: Border.all(color: AppColors.goldLight.withValues(alpha: 0.35)),
+      border: Border.all(color: Colors.white.withValues(alpha: 0.14)),
     ),
     child: Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -709,30 +882,31 @@ class _SeasonArt extends StatelessWidget {
   );
 }
 
-/// « ▶ Reprendre » in gold, « Éditions ▾ » in a veil of white.
+/// « ▶ Reprendre » in white (the action of the card, like the button of the
+/// home screen's summary), « Éditions ▾ » in a veil of white.
 class _CardPill extends StatelessWidget {
   const _CardPill({
     required this.icon,
     required this.label,
     required this.onTap,
-    this.gold = false,
+    this.primary = false,
     this.trailing = false,
   });
 
   final IconData icon;
   final String label;
   final VoidCallback onTap;
-  final bool gold;
+  final bool primary;
 
   /// The icon after the label (a chevron), not before.
   final bool trailing;
 
   @override
   Widget build(BuildContext context) {
-    final color = gold ? AppColors.night : Colors.white;
+    final color = primary ? AppColors.night : Colors.white;
     final glyph = Icon(icon, size: 14, color: color);
     return Material(
-      color: gold ? AppColors.goldLight : Colors.white.withValues(alpha: 0.12),
+      color: primary ? Colors.white : Colors.white.withValues(alpha: 0.12),
       shape: const StadiumBorder(),
       child: InkWell(
         customBorder: const StadiumBorder(),
@@ -743,12 +917,16 @@ class _CardPill extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             children: [
               if (!trailing) ...[glyph, const SizedBox(width: 6)],
-              Text(
-                label,
-                style: TextStyle(
-                  color: color,
-                  fontSize: 13.5,
-                  fontWeight: FontWeight.w700,
+              Flexible(
+                child: Text(
+                  label,
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                  style: TextStyle(
+                    color: color,
+                    fontSize: 13.5,
+                    fontWeight: FontWeight.w700,
+                  ),
                 ),
               ),
               if (trailing) ...[const SizedBox(width: 4), glyph],
@@ -1281,7 +1459,7 @@ class _FilterChoice extends StatelessWidget {
                       style: const TextStyle(
                         fontSize: 11.5,
                         fontWeight: FontWeight.w800,
-                        color: AppColors.goldLight,
+                        color: Colors.white,
                       ),
                     ),
                   ),

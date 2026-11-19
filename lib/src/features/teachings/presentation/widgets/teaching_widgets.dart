@@ -26,7 +26,9 @@ import '../../domain/play_queue.dart';
 import '../../domain/teaching.dart';
 import '../../infrastructure/teaching_files.dart';
 
-/// The cover sent by the admins, else night blue with headphones in gold.
+/// The cover sent by the admins, else night blue: the day of a camp or a
+/// crusade and its year (« Jour 3 », 2026), or headphones for a message
+/// without a day, and on the small covers.
 class TeachingCover extends ConsumerWidget {
   const TeachingCover({required this.teaching, required this.size, super.key});
 
@@ -37,6 +39,8 @@ class TeachingCover extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final cover = teaching.cover;
     final radius = BorderRadius.circular(size > 100 ? AppRadius.xxl : 12);
+    final day = size >= 80 ? teachingDay(teaching) : null;
+    final year = teaching.edition?.year ?? teaching.year ?? 0;
     final placeholder = DecoratedBox(
       decoration: BoxDecoration(
         borderRadius: radius,
@@ -46,12 +50,48 @@ class TeachingCover extends ConsumerWidget {
           colors: [AppColors.primary, AppColors.primaryDeep],
         ),
       ),
-      child: Center(
-        child: Icon(
-          AppIcons.teachingsTile,
-          color: AppColors.goldLight,
-          size: size * 0.45,
-        ),
+      // the title says it to the screen readers
+      child: ExcludeSemantics(
+        child: day == null
+            ? Center(
+                child: Icon(
+                  AppIcons.teachingsTile,
+                  color: AppColors.onPrimaryMuted,
+                  size: size * 0.45,
+                ),
+              )
+            : Padding(
+                padding: EdgeInsets.all(size * 0.12),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    FittedBox(
+                      fit: BoxFit.scaleDown,
+                      child: Text(
+                        context.t.teachings.dayChip(n: day),
+                        maxLines: 1,
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: size * 0.22,
+                          height: 1.1,
+                          fontWeight: FontWeight.w800,
+                          letterSpacing: -0.5,
+                        ),
+                      ),
+                    ),
+                    if (year > 0)
+                      Text(
+                        '$year',
+                        style: TextStyle(
+                          color: AppColors.onPrimaryMuted,
+                          fontSize: size * 0.1,
+                          fontWeight: FontWeight.w700,
+                          letterSpacing: 0.8,
+                        ),
+                      ),
+                  ],
+                ),
+              ),
       ),
     );
     return SizedBox.square(
@@ -121,6 +161,18 @@ final _fileTitle = RegExp(
   r'^\s*jour\s*(\d+)\s*[_.\-]\s*(\d+)\b',
   caseSensitive: false,
 );
+
+/// The day of a camp or a crusade the message belongs to: the one of a
+/// file's name ("Jour 1_2…", the title shown says it), else the one the
+/// admins gave; null when none.
+int? teachingDay(Teaching teaching) {
+  final match = _fileTitle.firstMatch(teaching.title);
+  if (match != null) {
+    return int.parse(match[1]!);
+  }
+  final day = teaching.dayNumber;
+  return day != null && day > 0 ? day : null;
+}
 
 /// The title to show: "Jour 1, message 2" for a file's name, the admins'
 /// own titles ("La prière qui persévère") as they are.
@@ -263,12 +315,10 @@ class TeachingRow extends ConsumerWidget {
   }
 }
 
-/// The gold of a message begun, dark enough to read on its pale pill.
-const _goldInk = Color(0xFF8A5A0B);
-
-/// ▶ and the length; « Reste 12 min » and a gold bar once begun; « En
-/// cours » while it plays; « Écouté » beside it once heard. A tap plays it
-/// (or pauses the one playing).
+/// ▶ and the length; « Reste 12 min » and a bar once begun (the one in the
+/// player too, paused); « En cours » while it plays; « Écouté » beside it
+/// once heard, in gold (the only gold of the row). A tap plays it (the one
+/// in the player: pauses it, or goes on).
 class _ListenPill extends ConsumerWidget {
   const _ListenPill({required this.teaching});
 
@@ -288,9 +338,10 @@ class _ListenPill extends ConsumerWidget {
             : (playing: false, on: false),
       ),
     );
-    // heard to the end and stopped: « Écouté », no longer « En cours »
+    // the one in the player (heard to the end and stopped: no longer)
     final on = now.on && (now.playing || !finished);
-    final begun = !finished && heard > 0 && !on;
+    final playing = on && now.playing;
+    final begun = !finished && heard > 0 && !playing;
     final length =
         teaching.duration ??
         (listened == null || listened.duration <= 0
@@ -298,7 +349,7 @@ class _ListenPill extends ConsumerWidget {
             : Duration(seconds: listened.duration));
 
     final String label;
-    if (on) {
+    if (playing) {
       label = t.nowPlaying;
     } else if (begun && length != null && listened != null) {
       label = t.left(
@@ -312,7 +363,6 @@ class _ListenPill extends ConsumerWidget {
     } else {
       label = t.play;
     }
-    final background = begun ? AppColors.gold.withValues(alpha: 0.18) : null;
     final tone = AppModule.reports.tone(context);
 
     return Row(
@@ -320,7 +370,7 @@ class _ListenPill extends ConsumerWidget {
       children: [
         Flexible(
           child: Material(
-            color: background ?? tone.soft,
+            color: tone.soft,
             shape: const StadiumBorder(),
             child: InkWell(
               customBorder: const StadiumBorder(),
@@ -336,7 +386,7 @@ class _ListenPill extends ConsumerWidget {
                       width: 24,
                       height: 24,
                       decoration: BoxDecoration(
-                        color: begun ? AppColors.gold : tone.onSoft,
+                        color: tone.onSoft,
                         shape: BoxShape.circle,
                       ),
                       child: Icon(
@@ -354,7 +404,7 @@ class _ListenPill extends ConsumerWidget {
                         style: TextStyle(
                           fontSize: 13,
                           fontWeight: FontWeight.w700,
-                          color: begun ? _goldInk : tone.onSoft,
+                          color: tone.onSoft,
                           fontFeatures: const [FontFeature.tabularFigures()],
                         ),
                       ),
@@ -374,13 +424,13 @@ class _ListenPill extends ConsumerWidget {
               child: LinearProgressIndicator(
                 value: heard,
                 minHeight: 4,
-                color: AppColors.gold,
-                backgroundColor: AppColors.gold.withValues(alpha: 0.25),
+                color: tone.onSoft,
+                backgroundColor: tone.soft,
               ),
             ),
           ),
         ],
-        if (finished && !on) ...[
+        if (finished && !playing) ...[
           const SizedBox(width: 10),
           const Icon(AppIcons.check, size: 16, color: AppColors.gold),
           const SizedBox(width: 4),
@@ -448,7 +498,7 @@ class DownloadButton extends ConsumerWidget {
           child: CircularProgressIndicator(
             value: progress > 0 ? progress : null,
             strokeWidth: 2.5,
-            color: color ?? AppColors.gold,
+            color: color ?? Theme.of(context).colorScheme.primary,
           ),
         ),
       );
@@ -466,7 +516,7 @@ class DownloadButton extends ConsumerWidget {
       onPressed: kept ? remove : download,
       icon: Icon(
         kept ? AppIcons.downloaded : AppIcons.downloadOffline,
-        color: kept ? AppColors.gold : color,
+        color: color,
       ),
     );
   }
@@ -560,7 +610,7 @@ class ShareTeachingButton extends HookConsumerWidget {
                 child: CircularProgressIndicator(
                   value: value > 0 ? value : null,
                   strokeWidth: 2.5,
-                  color: color ?? AppColors.gold,
+                  color: color ?? Theme.of(context).colorScheme.primary,
                 ),
               ),
             )
@@ -605,7 +655,7 @@ class MiniPlayer extends ConsumerWidget {
               LinearProgressIndicator(
                 value: fraction,
                 minHeight: 2,
-                color: AppColors.goldLight,
+                color: Colors.white,
                 backgroundColor: Colors.white12,
               ),
               Padding(

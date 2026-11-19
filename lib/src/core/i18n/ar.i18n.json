@@ -2637,6 +2637,10 @@
     "resume": "متابعة",
     "editions": "الدورات",
     "allOfCategory": "كل الرسائل",
+    "outsideEdition(plural, param=n)": {
+      "one": "رسالة أخرى خارج هذه الدورة",
+      "other": "{n} رسائل أخرى خارج هذه الدورة"
+    },
     "daysCount(plural, param=n)": {
       "one": "يوم واحد",
       "other": "{n} أيام"

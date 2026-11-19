@@ -1591,6 +1591,10 @@ class _Translations$teachings$zh extends Translations$teachings$fr {
 	@override String get resume => '继续收听';
 	@override String get editions => '届次';
 	@override String get allOfCategory => '全部信息';
+	@override String outsideEdition({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n,
+		one: '另有 ${n} 篇信息不在本届',
+		other: '另有 ${n} 篇信息不在本届',
+	);
 	@override String daysCount({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n,
 		one: '${n} 天',
 		other: '${n} 天',
@@ -6035,6 +6039,7 @@ extension on TranslationsZh {
 			'teachings.resume' => '继续收听',
 			'teachings.editions' => '届次',
 			'teachings.allOfCategory' => '全部信息',
+			'teachings.outsideEdition' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n, one: '另有 ${n} 篇信息不在本届', other: '另有 ${n} 篇信息不在本届', ), 
 			'teachings.daysCount' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n, one: '${n} 天', other: '${n} 天', ), 
 			'teachings.andOthers' => ({required num n, required Object name}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n, one: '${name} 等 2 人', other: '${name} 等 ${n} 人', ), 
 			'teachings.showCount' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n, one: '显示 ${n} 篇信息', other: '显示 ${n} 篇信息', ), 
@@ -6297,9 +6302,9 @@ extension on TranslationsZh {
 			'journey.daily.prayer' => '做一次退修祷告',
 			'journey.daily.word' => '读一章圣经',
 			'journey.daily.wordPlan' => '读计划中的章节',
-			'journey.daily.meditation' => '默想神的话语',
 			_ => null,
 		} ?? switch (path) {
+			'journey.daily.meditation' => '默想神的话语',
 			'journey.daily.allDone' => '四步都完成了。愿你与神同度美好的一天！',
 			'journey.daily.done' => '已完成',
 			'journey.grace.day' => '恩典日',

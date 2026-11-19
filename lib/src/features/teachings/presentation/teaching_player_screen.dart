@@ -49,10 +49,20 @@ class TeachingPlayerScreen extends HookConsumerWidget {
     // the bar while it is dragged, then where the player is
     final dragging = useState<double?>(null);
 
+    // the moment before the first message opens: the night and the way
+    // back, no spinner (the play button says it loads)
     if (teaching == null) {
       return const Scaffold(
         backgroundColor: AppColors.primaryDeep,
-        body: Center(child: AppSpinner(color: Colors.white)),
+        body: SafeArea(
+          child: Align(
+            alignment: AlignmentDirectional.topStart,
+            child: IconTheme(
+              data: IconThemeData(color: Colors.white),
+              child: AppBackButton(),
+            ),
+          ),
+        ),
       );
     }
     final duration = now.duration ?? teaching.duration ?? Duration.zero;
@@ -159,19 +169,17 @@ class TeachingPlayerScreen extends HookConsumerWidget {
                           fontFamily: 'Lora',
                           fontStyle: FontStyle.italic,
                           fontSize: 16,
-                          color: AppColors.goldLight,
+                          color: AppColors.onPrimaryMuted,
                         ),
                       ),
                     ],
                     const SizedBox(height: AppSpacing.lg),
                     SliderTheme(
                       data: SliderTheme.of(context).copyWith(
-                        activeTrackColor: AppColors.goldLight,
+                        activeTrackColor: Colors.white,
                         inactiveTrackColor: Colors.white24,
-                        thumbColor: AppColors.goldLight,
-                        overlayColor: AppColors.goldLight.withValues(
-                          alpha: 0.2,
-                        ),
+                        thumbColor: Colors.white,
+                        overlayColor: Colors.white24,
                         trackHeight: 4,
                       ),
                       child: Slider(
@@ -280,9 +288,7 @@ class TeachingPlayerScreen extends HookConsumerWidget {
                         IconButton(
                           tooltip: t.sleepTimer,
                           onPressed: chooseSleep,
-                          color: listening.sleeping
-                              ? AppColors.goldLight
-                              : Colors.white,
+                          color: Colors.white,
                           icon: Icon(
                             listening.sleeping
                                 ? AppIcons.sleepTimerOn
@@ -304,7 +310,7 @@ class TeachingPlayerScreen extends HookConsumerWidget {
                           },
                           textAlign: TextAlign.center,
                           style: const TextStyle(
-                            color: AppColors.goldLight,
+                            color: AppColors.onPrimaryMuted,
                             fontWeight: FontWeight.w600,
                             fontSize: 13,
                           ),
@@ -313,7 +319,6 @@ class TeachingPlayerScreen extends HookConsumerWidget {
                     const SizedBox(height: AppSpacing.md),
                     SwitchListTile.adaptive(
                       contentPadding: EdgeInsets.zero,
-                      activeTrackColor: AppColors.gold,
                       title: Text(
                         t.continuous,
                         style: const TextStyle(
@@ -328,7 +333,7 @@ class TeachingPlayerScreen extends HookConsumerWidget {
                       Text(
                         t.upNext.toUpperCase(),
                         style: const TextStyle(
-                          color: AppColors.goldLight,
+                          color: AppColors.onPrimaryMuted,
                           fontSize: 12,
                           fontWeight: FontWeight.w800,
                           letterSpacing: 1.2,
@@ -496,8 +501,9 @@ class _PlayButton extends StatelessWidget {
     child: Semantics(
       button: true,
       label: tooltip,
+      // white on the night, like the button of the home screen's summary
       child: Material(
-        color: AppColors.gold,
+        color: Colors.white,
         shape: const CircleBorder(),
         clipBehavior: Clip.antiAlias,
         child: InkWell(
@@ -506,10 +512,10 @@ class _PlayButton extends StatelessWidget {
             dimension: 76,
             child: Center(
               child: loading
-                  ? const AppSpinner(size: 30, color: Colors.white)
+                  ? const AppSpinner(size: 30, color: AppColors.primaryDeep)
                   : Icon(
                       playing ? AppIcons.pause : AppIcons.play,
-                      color: Colors.white,
+                      color: AppColors.primaryDeep,
                       size: 34,
                     ),
             ),

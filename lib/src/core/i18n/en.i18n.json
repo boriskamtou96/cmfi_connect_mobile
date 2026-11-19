@@ -2308,6 +2308,10 @@
     "resume": "Resume",
     "editions": "Editions",
     "allOfCategory": "All messages",
+    "outsideEdition(plural, param=n)": {
+      "one": "1 more message, outside this edition",
+      "other": "{n} more messages, outside this edition"
+    },
     "daysCount(plural, param=n)": {
       "one": "{n} day",
       "other": "{n} days"

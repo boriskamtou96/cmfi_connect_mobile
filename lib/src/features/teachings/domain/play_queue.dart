@@ -19,8 +19,10 @@ class TeachingList {
 }
 
 /// What is heard and what follows: the list the message was played from, in
-/// its order, and the place reached in it. At the end of the pages read,
-/// [hasMorePages] says the list goes on at the server.
+/// its order, and the place reached in it. A message sent twice (under its
+/// file's name and its own, same length) is heard once: its repeats are left
+/// out ([skipped]). At the end of the pages read, [hasMorePages] says the list
+/// goes on at the server.
 @immutable
 class PlayQueue {
   const PlayQueue({
@@ -29,21 +31,34 @@ class PlayQueue {
     this.query,
     this.page = 1,
     this.total = 0,
+    this.skipped = 0,
   });
 
-  /// [teaching] in its [list]; alone when no list is given or when it is not
-  /// in it.
+  /// [teaching] in its [list], without the repeats; alone when no list is
+  /// given or when it is not in it.
   factory PlayQueue.around(Teaching teaching, TeachingList? list) {
-    final index = list?.items.indexWhere((one) => one.id == teaching.id) ?? -1;
-    if (list == null || index < 0) {
+    final at = list?.items.indexWhere((one) => one.id == teaching.id) ?? -1;
+    if (list == null || at < 0) {
       return PlayQueue(items: [teaching], index: 0, total: 1);
     }
+    final kept = <Teaching>[];
+    for (final (i, one) in list.items.indexed) {
+      // the one heard stays where it is; its copies and the others' go
+      final repeat = i == at
+          ? false
+          : sameMessage(one, teaching) ||
+                kept.any((known) => sameMessage(known, one));
+      if (!repeat) {
+        kept.add(one);
+      }
+    }
     return PlayQueue(
-      items: list.items,
-      index: index,
+      items: kept,
+      index: kept.indexWhere((one) => one.id == teaching.id),
       query: list.query,
       page: list.page,
       total: list.total ?? list.items.length,
+      skipped: list.items.length - kept.length,
     );
   }
 
@@ -51,7 +66,12 @@ class PlayQueue {
   final int index;
   final TeachingQuery? query;
   final int page;
+
+  /// How many the list holds at the server, the repeats included.
   final int total;
+
+  /// The repeats left out of [items].
+  final int skipped;
 
   Teaching? get current =>
       index >= 0 && index < items.length ? items[index] : null;
@@ -64,7 +84,7 @@ class PlayQueue {
   bool get hasPrevious => index > 0;
 
   /// The server has messages after the last one read.
-  bool get hasMorePages => query != null && items.length < total;
+  bool get hasMorePages => query != null && items.length + skipped < total;
 
   PlayQueue at(int index) => PlayQueue(
     items: items,
@@ -72,6 +92,7 @@ class PlayQueue {
     query: query,
     page: page,
     total: total,
+    skipped: skipped,
   );
 
   /// The queue at [teaching]; null when it does not hold it.
@@ -81,14 +102,52 @@ class PlayQueue {
   }
 
   /// With the next page: what it brings that is new, the place kept.
-  PlayQueue extended(List<Teaching> more, {int? total}) => PlayQueue(
-    items: [
-      ...items,
-      ...more.where((one) => items.every((known) => known.id != one.id)),
-    ],
-    index: index,
-    query: query,
-    page: page + 1,
-    total: total ?? this.total,
-  );
+  PlayQueue extended(List<Teaching> more, {int? total}) {
+    final kept = [...items];
+    for (final one in more) {
+      if (!kept.any((known) => sameMessage(known, one))) {
+        kept.add(one);
+      }
+    }
+    return PlayQueue(
+      items: kept,
+      index: index,
+      query: query,
+      page: page + 1,
+      total: total ?? this.total,
+      skipped: skipped + items.length + more.length - kept.length,
+    );
+  }
+}
+
+/// "Jour 2_3 croisade…", the name of a file.
+final _fileName = RegExp(
+  r'^\s*jour\s*(\d+)\s*[_.\-]\s*(\d+)\b',
+  caseSensitive: false,
+);
+
+/// "Jour 2, message 3", the title the admins give it.
+final _dayMessage = RegExp(
+  r'^\s*jour\s*(\d+)\s*,\s*message\s*(\d+)\s*$',
+  caseSensitive: false,
+);
+
+/// The same message: the same one, or one sent again under its file's name
+/// or its own ("Jour 2_3 …" and "Jour 2, message 3"), of the same length.
+bool sameMessage(Teaching a, Teaching b) {
+  if (a.id == b.id) {
+    return true;
+  }
+  if (a.durationSeconds <= 0 || a.durationSeconds != b.durationSeconds) {
+    return false;
+  }
+  String key(Teaching one) {
+    final match =
+        _fileName.firstMatch(one.title) ?? _dayMessage.firstMatch(one.title);
+    return match == null
+        ? one.title.trim().toLowerCase()
+        : 'day ${match[1]} message ${match[2]}';
+  }
+
+  return key(a) == key(b);
 }

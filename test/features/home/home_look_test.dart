@@ -51,10 +51,10 @@ void main() {
     tester,
   ) async {
     final app = await pumpApp(tester, token: 't');
-    await scrollTo(tester, find.text('Le message de la croix'));
+    await scrollTo(tester, find.text('Le message de la\u00a0croix'));
     expect(find.text('Enseignements'), findsOneWidget);
 
-    await tester.tap(find.text('Le message de la croix'));
+    await tester.tap(find.text('Le message de la\u00a0croix'));
     await tester.pumpAndSettle();
     expect(find.byType(TeachingPlayerScreen), findsOneWidget);
     expect(app.player.snapshot.teaching?.id, 1);

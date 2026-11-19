@@ -3517,6 +3517,12 @@ class Translations$teachings$fr {
 	/// fr: 'Tous les messages'
 	String get allOfCategory => 'Tous les messages';
 
+	/// fr: '(one) {1 autre message, hors de cette édition} (other) {{n} autres messages, hors de cette édition}'
+	String outsideEdition({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('fr'))(n,
+		one: '1 autre message, hors de cette édition',
+		other: '${n} autres messages, hors de cette édition',
+	);
+
 	/// fr: '(one) {{n} jour} (other) {{n} jours}'
 	String daysCount({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('fr'))(n,
 		one: '${n} jour',
@@ -10602,6 +10608,7 @@ extension on Translations {
 			'teachings.resume' => 'Reprendre',
 			'teachings.editions' => 'Éditions',
 			'teachings.allOfCategory' => 'Tous les messages',
+			'teachings.outsideEdition' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('fr'))(n, one: '1 autre message, hors de cette édition', other: '${n} autres messages, hors de cette édition', ), 
 			'teachings.daysCount' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('fr'))(n, one: '${n} jour', other: '${n} jours', ), 
 			'teachings.andOthers' => ({required num n, required Object name}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('fr'))(n, one: '${name} et 1 autre', other: '${name} et ${n} autres', ), 
 			'teachings.showCount' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('fr'))(n, one: 'Afficher ${n} message', other: 'Afficher ${n} messages', ), 
@@ -10864,9 +10871,9 @@ extension on Translations {
 			'journey.daily.prayer' => 'Faire une retraite de 15m',
 			'journey.daily.word' => 'Lire un chapitre de la Bible',
 			'journey.daily.wordPlan' => 'Lire les chapitres du plan',
-			'journey.daily.meditation' => 'Méditer la Parole',
 			_ => null,
 		} ?? switch (path) {
+			'journey.daily.meditation' => 'Méditer la Parole',
 			'journey.daily.allDone' => 'Les quatre pas sont faits. Belle journée avec Dieu !',
 			'journey.daily.done' => 'Fait',
 			'journey.grace.day' => 'Jour de grâce',

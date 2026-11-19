@@ -110,6 +110,9 @@ void main() {
     // the mini player at the foot of the list
     expect(find.byType(MiniPlayer), findsOneWidget);
     expect(find.byTooltip('Écouter'), findsOneWidget);
+    // paused, its row says what is left, not « En cours »
+    expect(find.text('En cours'), findsNothing);
+    expect(find.textContaining('Reste'), findsOneWidget);
 
     // the cross: the player goes away, the place is kept
     await tester.tap(find.byTooltip('Fermer le lecteur'));
@@ -310,7 +313,8 @@ void main() {
     expect(find.text('Affiner la liste'), findsOneWidget);
     // all in sight: the speakers with their initials, the editions
     expect(find.text('TA'), findsOneWidget);
-    expect(find.text('Afficher 3 messages'), findsOneWidget);
+    // the button of the sheet, and the latest edition's card under it
+    expect(find.text('Afficher 3 messages'), findsNWidgets(2));
 
     // in the sheet, over the list
     await tester.tap(find.text('Théodore Andoseh').last);
@@ -477,5 +481,71 @@ void main() {
       findsOneWidget,
     );
     expect(find.text('La prière qui persévère'), findsNothing);
+  });
+
+  group('the latest edition first', () {
+    const crusade = TeachingEditionBrief(
+      id: 7,
+      title: 'Croisades de prière et de jeûne 2026',
+      year: 2026,
+    );
+    Teaching message(int id, String title, {int? day, bool inEdition = true}) =>
+        Teaching(
+          id: id,
+          title: title,
+          speaker: 'Théodore Andoseh',
+          category: 'Croisades de prière et de jeûne',
+          categorySlug: 'croisades',
+          year: 2026,
+          dayNumber: inEdition ? day : null,
+          edition: inEdition ? crusade : null,
+          durationSeconds: 600,
+          audio: TeachingAudio(id: 100 + id, url: '/v1/media/$id.mp3'),
+        );
+    final api = FakeTeachingsApi(
+      teachings: [
+        message(1, 'La sainteté', day: 1),
+        message(2, 'Le pardon', day: 2),
+        message(3, 'Hors édition', inEdition: false),
+        const Teaching(
+          id: 4,
+          title: 'Le message de la croix',
+          category: 'Prédications',
+          audio: TeachingAudio(id: 104, url: '/v1/media/4.mp3'),
+        ),
+      ],
+    );
+
+    testWidgets('the untouched list opens on its card; a touch opens it '
+        'with its days', (tester) async {
+      await openTeachings(tester, api: api);
+      expect(find.text('Croisades de prière et de jeûne 2026'), findsOneWidget);
+      expect(find.text('Afficher 2 messages'), findsOneWidget);
+      expect(find.text('Le message de la croix'), findsOneWidget);
+
+      await tester.tap(find.text('Croisades de prière et de jeûne 2026'));
+      await tester.pumpAndSettle();
+      expect(find.text('Jour 2'), findsOneWidget);
+      expect(find.text('La sainteté'), findsOneWidget);
+      expect(find.text('Le message de la croix'), findsNothing);
+      // the card no longer offers to open it: it is open
+      expect(find.text('Afficher 2 messages'), findsNothing);
+      expect(find.text('Éditions'), findsOneWidget);
+    });
+
+    testWidgets('a category mostly in an edition opens it; the others are a '
+        'touch away', (tester) async {
+      await openTeachings(tester, api: api);
+      await tester.tap(find.text('Croisades de prière et de jeûne'));
+      await tester.pumpAndSettle();
+      expect(find.text('Jour 2'), findsOneWidget);
+      expect(find.text('Hors édition'), findsNothing);
+
+      await tester.tap(find.text('1 autre message, hors de cette édition'));
+      await tester.pumpAndSettle();
+      expect(find.text('3 messages'), findsOneWidget);
+      expect(find.text('Hors édition'), findsOneWidget);
+      expect(find.text('La sainteté'), findsOneWidget);
+    });
   });
 }

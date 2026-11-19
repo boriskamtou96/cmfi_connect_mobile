@@ -1907,6 +1907,10 @@ class _Translations$teachings$ar extends Translations$teachings$fr {
 	@override String get resume => 'متابعة';
 	@override String get editions => 'الدورات';
 	@override String get allOfCategory => 'كل الرسائل';
+	@override String outsideEdition({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n,
+		one: 'رسالة أخرى خارج هذه الدورة',
+		other: '${n} رسائل أخرى خارج هذه الدورة',
+	);
 	@override String daysCount({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n,
 		one: 'يوم واحد',
 		other: '${n} أيام',
@@ -6623,6 +6627,7 @@ extension on TranslationsAr {
 			'teachings.resume' => 'متابعة',
 			'teachings.editions' => 'الدورات',
 			'teachings.allOfCategory' => 'كل الرسائل',
+			'teachings.outsideEdition' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n, one: 'رسالة أخرى خارج هذه الدورة', other: '${n} رسائل أخرى خارج هذه الدورة', ), 
 			'teachings.daysCount' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n, one: 'يوم واحد', other: '${n} أيام', ), 
 			'teachings.andOthers' => ({required num n, required Object name}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n, one: '${name} وآخر', other: '${name} و${n} آخرون', ), 
 			'teachings.showCount' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n, one: 'عرض رسالة واحدة', other: 'عرض ${n} رسائل', ), 
@@ -6885,9 +6890,9 @@ extension on TranslationsAr {
 			'journey.daily.prayer' => 'القيام بخلوة صلاة',
 			'journey.daily.word' => 'قراءة إصحاح من الكتاب المقدس',
 			'journey.daily.wordPlan' => 'قراءة إصحاحات الخطة',
-			'journey.daily.meditation' => 'التأمل في الكلمة',
 			_ => null,
 		} ?? switch (path) {
+			'journey.daily.meditation' => 'التأمل في الكلمة',
 			'journey.daily.allDone' => 'أنجزت الخطوات الأربع. يومًا طيبًا مع الله!',
 			'journey.daily.done' => 'تم',
 			'journey.grace.day' => 'يوم نعمة',

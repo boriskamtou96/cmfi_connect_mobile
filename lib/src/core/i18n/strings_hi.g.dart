@@ -1653,6 +1653,10 @@ class _Translations$teachings$hi extends Translations$teachings$fr {
 	@override String get resume => 'फिर से शुरू करें';
 	@override String get editions => 'संस्करण';
 	@override String get allOfCategory => 'सभी संदेश';
+	@override String outsideEdition({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n,
+		one: 'इस संस्करण के बाहर ${n} और संदेश',
+		other: 'इस संस्करण के बाहर ${n} और संदेश',
+	);
 	@override String daysCount({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n,
 		one: '${n} दिन',
 		other: '${n} दिन',
@@ -6153,6 +6157,7 @@ extension on TranslationsHi {
 			'teachings.resume' => 'फिर से शुरू करें',
 			'teachings.editions' => 'संस्करण',
 			'teachings.allOfCategory' => 'सभी संदेश',
+			'teachings.outsideEdition' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n, one: 'इस संस्करण के बाहर ${n} और संदेश', other: 'इस संस्करण के बाहर ${n} और संदेश', ), 
 			'teachings.daysCount' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n, one: '${n} दिन', other: '${n} दिन', ), 
 			'teachings.andOthers' => ({required num n, required Object name}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n, one: '${name} और 1 अन्य', other: '${name} और ${n} अन्य', ), 
 			'teachings.showCount' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n, one: '${n} संदेश दिखाएँ', other: '${n} संदेश दिखाएँ', ), 
@@ -6415,9 +6420,9 @@ extension on TranslationsHi {
 			'journey.daily.prayer' => 'एक प्रार्थना-समय करो',
 			'journey.daily.word' => 'बाइबल का एक अध्याय पढ़ो',
 			'journey.daily.wordPlan' => 'योजना के अध्याय पढ़ो',
-			'journey.daily.meditation' => 'वचन पर मनन करो',
 			_ => null,
 		} ?? switch (path) {
+			'journey.daily.meditation' => 'वचन पर मनन करो',
 			'journey.daily.allDone' => 'चारों क़दम पूरे हुए। परमेश्वर के साथ तुम्हारा दिन शुभ हो!',
 			'journey.daily.done' => 'पूरा',
 			'journey.grace.day' => 'अनुग्रह का दिन',

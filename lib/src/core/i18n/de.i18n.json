@@ -2307,6 +2307,10 @@
     "resume": "Fortsetzen",
     "editions": "Ausgaben",
     "allOfCategory": "Alle Botschaften",
+    "outsideEdition(plural, param=n)": {
+      "one": "1 weitere Botschaft außerhalb dieser Ausgabe",
+      "other": "{n} weitere Botschaften außerhalb dieser Ausgabe"
+    },
     "daysCount(plural, param=n)": {
       "one": "{n} Tag",
       "other": "{n} Tage"

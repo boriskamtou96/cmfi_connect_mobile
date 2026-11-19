@@ -52,8 +52,9 @@ import '../../reports/application/reports_providers.dart';
 import '../../reports/domain/time_with_god.dart';
 import '../../souls/application/souls.dart';
 import '../../souls/domain/soul.dart';
-import '../../teachings/application/now_playing.dart';
+import '../../teachings/application/teaching_library.dart';
 import '../../teachings/application/teachings.dart';
+import '../../teachings/domain/play_queue.dart';
 import '../../teachings/domain/teaching.dart';
 import '../../teachings/presentation/widgets/teaching_widgets.dart';
 import '../../verses/presentation/verse_card.dart';
@@ -1144,20 +1145,35 @@ class _Shortcuts extends StatelessWidget {
   }
 }
 
-/// « À écouter »: the latest teachings, their covers in a row; a touch
-/// plays one and opens the player. Nothing without teachings (or network).
+/// « Enseignements »: the latest teachings, their covers in a row; the one
+/// begun and not finished comes first, with what is left of it. Each says
+/// where it comes from (its edition, else its category, else its speaker)
+/// and its length. A touch plays it, then the rest of the row, as on the
+/// Enseignements page (`openTeaching`). Nothing without teachings (or
+/// network).
 class _Listen extends ConsumerWidget {
   const _Listen();
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final t = context.t;
-    final scheme = Theme.of(context).colorScheme;
-    final teachings =
-        ref.watch(latestTeachingsProvider).value ?? const <Teaching>[];
-    if (teachings.isEmpty) {
+    final latest =
+        (ref.watch(latestTeachingsProvider).value ?? const <Teaching>[])
+            .take(8)
+            .toList();
+    if (latest.isEmpty) {
       return const SizedBox.shrink();
     }
+    ref.watch(teachingProgressProvider);
+    final progress = ref.read(teachingProgressProvider.notifier);
+    bool begun(Teaching one) =>
+        progress.fraction(one.id) > 0 && !progress.finished(one.id);
+    final shown = [
+      ...latest.where(begun),
+      ...latest.where((one) => !begun(one)),
+    ];
+    // what follows a message played from here: the rest of this row
+    final row = TeachingList(shown);
 
     return Padding(
       padding: const EdgeInsets.only(top: 24),
@@ -1169,60 +1185,135 @@ class _Listen extends ConsumerWidget {
             action: t.home.seeAll,
             onAction: () => context.router.push(const TeachingsRoute()),
           ),
-          SizedBox(
-            // the cover and two lines of title, nothing more
-            height: 192,
-            child: ListView.separated(
-              scrollDirection: Axis.horizontal,
-              clipBehavior: Clip.none,
-              itemCount: teachings.length.clamp(0, 8),
-              separatorBuilder: (_, _) => const SizedBox(width: 12),
-              itemBuilder: (context, i) {
-                final teaching = teachings[i];
-                final duration = teaching.duration;
-                return SizedBox(
-                  width: 124,
-                  child: InkWell(
-                    borderRadius: BorderRadius.circular(AppRadius.lg),
-                    onTap: () {
-                      ref.read(nowPlayingProvider.notifier).listen(teaching);
-                      context.router.push(const TeachingPlayerRoute());
-                    },
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        TeachingCover(teaching: teaching, size: 124),
-                        const SizedBox(height: 8),
-                        Text(
-                          teaching.title,
-                          maxLines: 2,
-                          overflow: TextOverflow.ellipsis,
-                          style: const TextStyle(
-                            fontWeight: FontWeight.w700,
-                            height: 1.2,
-                          ),
-                        ),
-                        const SizedBox(height: 2),
-                        Text(
-                          [
-                            if (teaching.speaker.isNotEmpty) teaching.speaker,
-                            if (duration != null) formatClock(duration),
-                          ].join(' · '),
-                          maxLines: 1,
-                          overflow: TextOverflow.ellipsis,
-                          style: TextStyle(
-                            fontSize: 12.5,
-                            color: scheme.onSurfaceVariant,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                );
-              },
+          // as tall as its tallest card: a large text grows the row, never
+          // cuts it
+          SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            clipBehavior: Clip.none,
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                for (final (i, teaching) in shown.indexed) ...[
+                  if (i > 0) const SizedBox(width: AppSpacing.md),
+                  _ListenCard(teaching: teaching, row: row),
+                ],
+              ],
             ),
           ),
         ],
+      ),
+    );
+  }
+}
+
+/// A teaching of « Enseignements »: its cover (and how far it was heard),
+/// its title, where it comes from, its length or what is left of it.
+class _ListenCard extends ConsumerWidget {
+  const _ListenCard({required this.teaching, required this.row});
+
+  static const _width = 124.0;
+
+  final Teaching teaching;
+
+  /// The row it is in, played after it.
+  final TeachingList row;
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final t = context.t.teachings;
+    final scheme = Theme.of(context).colorScheme;
+    final listened = ref.watch(teachingProgressProvider)[teaching.id];
+    final progress = ref.read(teachingProgressProvider.notifier);
+    final heard = progress.fraction(teaching.id);
+    final begun = heard > 0 && !progress.finished(teaching.id);
+
+    final edition = teaching.edition;
+    final from = edition != null && edition.title.isNotEmpty
+        ? edition.title
+        : teaching.category.isNotEmpty
+        ? teaching.category
+        : teaching.speaker;
+    final length =
+        teaching.duration ??
+        (listened == null || listened.duration <= 0
+            ? null
+            : Duration(seconds: listened.duration));
+    final time = length == null
+        ? null
+        : begun && listened != null
+        ? t.left(
+            time: durationLabel(
+              context,
+              length - Duration(seconds: listened.position),
+            ),
+          )
+        : durationLabel(context, length);
+    final small = TextStyle(fontSize: 13, color: scheme.onSurfaceVariant);
+
+    return SizedBox(
+      width: _width,
+      child: MergeSemantics(
+        child: InkWell(
+          borderRadius: BorderRadius.circular(AppRadius.lg),
+          onTap: () => openTeaching(context, ref, teaching, among: row),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              TeachingCover(teaching: teaching, size: _width),
+              if (begun)
+                Padding(
+                  padding: const EdgeInsets.only(top: AppSpacing.sm),
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(AppRadius.sm),
+                    child: LinearProgressIndicator(
+                      value: heard,
+                      minHeight: 3,
+                      color: scheme.primary,
+                      backgroundColor: scheme.surfaceContainerHighest,
+                    ),
+                  ),
+                ),
+              const SizedBox(height: AppSpacing.sm),
+              Text(
+                // the last word never alone on its line (« message 1 »)
+                teachingTitle(
+                  context,
+                  teaching,
+                ).replaceFirst(RegExp(r' (?=\S+$)'), '\u00a0'),
+                maxLines: 2,
+                overflow: TextOverflow.ellipsis,
+                style: const TextStyle(
+                  fontWeight: FontWeight.w700,
+                  height: 1.2,
+                ),
+              ),
+              if (from.isNotEmpty)
+                Padding(
+                  padding: const EdgeInsets.only(top: 2),
+                  child: Text(
+                    from,
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    style: small,
+                  ),
+                ),
+              if (time != null)
+                Padding(
+                  padding: const EdgeInsets.only(top: 2),
+                  child: Text(
+                    time,
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    style: small.copyWith(
+                      fontWeight: FontWeight.w700,
+                      color: begun ? scheme.primary : null,
+                      fontFeatures: const [FontFeature.tabularFigures()],
+                    ),
+                  ),
+                ),
+            ],
+          ),
+        ),
       ),
     );
   }

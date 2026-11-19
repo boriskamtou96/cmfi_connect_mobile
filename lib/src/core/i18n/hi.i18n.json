@@ -2306,6 +2306,10 @@
     "resume": "फिर से शुरू करें",
     "editions": "संस्करण",
     "allOfCategory": "सभी संदेश",
+    "outsideEdition(plural, param=n)": {
+      "one": "इस संस्करण के बाहर {n} और संदेश",
+      "other": "इस संस्करण के बाहर {n} और संदेश"
+    },
     "daysCount(plural, param=n)": {
       "one": "{n} दिन",
       "other": "{n} दिन"

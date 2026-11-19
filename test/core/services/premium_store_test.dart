@@ -5,6 +5,7 @@ import 'dart:typed_data';
 import 'package:cmfi_connect/src/core/services/premium_store.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:purchases_flutter/purchases_flutter.dart';
 
 /// The server's answer to GET /premium/status, or no network.
 class _StatusAdapter implements HttpClientAdapter {
@@ -205,6 +206,30 @@ void main() {
       shop.controller.add(false);
       await Future<void>.delayed(Duration.zero);
       expect(changes.last, isTrue);
+    });
+  });
+
+  group('the free trial of the App Store', () {
+    test('shown on iPhone only to an account that may still have it', () {
+      expect(
+        trialOffered(
+          ios: true,
+          eligibility: IntroEligibilityStatus.introEligibilityStatusEligible,
+        ),
+        isTrue,
+      );
+      for (final status in [
+        IntroEligibilityStatus.introEligibilityStatusIneligible,
+        IntroEligibilityStatus.introEligibilityStatusUnknown,
+        IntroEligibilityStatus.introEligibilityStatusNoIntroOfferExists,
+        null,
+      ]) {
+        expect(trialOffered(ios: true, eligibility: status), isFalse);
+      }
+    });
+
+    test('left to Google Play on Android', () {
+      expect(trialOffered(ios: false, eligibility: null), isTrue);
     });
   });
 }

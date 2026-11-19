@@ -247,6 +247,19 @@ class NoPremiumShop implements PremiumShop {
   Future<void> refresh() async {}
 }
 
+/// Whether the free trial of a store product is shown. On iPhone only when
+/// RevenueCat says the Apple account may still have it: an unknown answer, or
+/// no answer, shows the normal price (as RevenueCat advises), never a trial
+/// that Apple would not give. On Android, Google Play only gives the offers
+/// the account may have.
+@visibleForTesting
+bool trialOffered({
+  required bool ios,
+  required IntroEligibilityStatus? eligibility,
+}) =>
+    !ios ||
+    eligibility == IntroEligibilityStatus.introEligibilityStatusEligible;
+
 class RevenueCatShop implements PremiumShop {
   RevenueCatShop(this._apiKey);
 
@@ -313,25 +326,70 @@ class RevenueCatShop implements PremiumShop {
     try {
       await _configure();
       final offering = (await Purchases.getOfferings()).current;
-      return [
+      final packages = [
         if (offering?.monthly case final package?)
-          _plan(package, PremiumPeriod.monthly),
+          (package, PremiumPeriod.monthly),
         if (offering?.sixMonth case final package?)
-          _plan(package, PremiumPeriod.semiannual),
+          (package, PremiumPeriod.semiannual),
         if (offering?.annual case final package?)
-          _plan(package, PremiumPeriod.annual),
+          (package, PremiumPeriod.annual),
         if (offering?.lifetime case final package?)
-          _plan(package, PremiumPeriod.lifetime),
+          (package, PremiumPeriod.lifetime),
+      ];
+      final eligibility = await _trialEligibility([
+        for (final (package, _) in packages)
+          if (_hasFreeTrial(package.storeProduct))
+            package.storeProduct.identifier,
+      ]);
+      return [
+        for (final (package, period) in packages)
+          _plan(
+            package,
+            period,
+            withTrial: trialOffered(
+              ios: defaultTargetPlatform == TargetPlatform.iOS,
+              eligibility: eligibility[package.storeProduct.identifier],
+            ),
+          ),
       ];
     } on PlatformException {
       return const [];
     }
   }
 
-  static PremiumPlan _plan(Package package, PremiumPeriod period) {
+  static bool _hasFreeTrial(StoreProduct product) =>
+      product.introductoryPrice?.price == 0;
+
+  /// On iPhone, the App Store gives the trial of a product even to an Apple
+  /// account that already had it (or was subscribed in the group): RevenueCat
+  /// says who may still have it. Google Play only gives the offers the account
+  /// may have, so Android is not asked.
+  static Future<Map<String, IntroEligibilityStatus>> _trialEligibility(
+    List<String> products,
+  ) async {
+    if (products.isEmpty || defaultTargetPlatform != TargetPlatform.iOS) {
+      return const {};
+    }
+    try {
+      final result = await Purchases.checkTrialOrIntroductoryPriceEligibility(
+        products,
+      );
+      return result.map((product, value) => MapEntry(product, value.status));
+    } on PlatformException catch (error, stack) {
+      // no trial shown rather than a trial that is not given
+      AppLog.error(error, stack, reason: 'trial eligibility not read');
+      return const {};
+    }
+  }
+
+  static PremiumPlan _plan(
+    Package package,
+    PremiumPeriod period, {
+    required bool withTrial,
+  }) {
     final product = package.storeProduct;
     final intro = product.introductoryPrice;
-    final free = intro != null && intro.price == 0;
+    final free = withTrial && intro != null && intro.price == 0;
     final units = intro?.periodNumberOfUnits ?? 0;
     return PremiumPlan(
       period: period,

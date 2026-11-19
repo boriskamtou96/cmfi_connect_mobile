@@ -176,6 +176,8 @@ class _Translations$validation$de extends Translations$validation$fr {
 
 	// Translations
 	@override String get required => 'Dieses Feld ist erforderlich';
+	@override String get phoneRequired => 'Gib deine Nummer ein';
+	@override String get passwordRequired => 'Gib dein Passwort ein';
 	@override String get passwordTooShort => 'Mindestens 6 Zeichen';
 	@override String get invalidPhone => 'Ungültige Telefonnummer';
 	@override String get invalidEmail => 'Ungültige E-Mail-Adresse';
@@ -4407,6 +4409,8 @@ extension on TranslationsDe {
 			'errors.peoplePaid' => 'Die Personenzahl einer bezahlten Anmeldung lässt sich nicht mehr ändern.',
 			'errors.cardsDisabled' => 'Kartenzahlung ist derzeit nicht verfügbar.',
 			'validation.required' => 'Dieses Feld ist erforderlich',
+			'validation.phoneRequired' => 'Gib deine Nummer ein',
+			'validation.passwordRequired' => 'Gib dein Passwort ein',
 			'validation.passwordTooShort' => 'Mindestens 6 Zeichen',
 			'validation.invalidPhone' => 'Ungültige Telefonnummer',
 			'validation.invalidEmail' => 'Ungültige E-Mail-Adresse',
@@ -4870,10 +4874,10 @@ extension on TranslationsDe {
 			'authorities.form.emailHint' => 'name@beispiel.de',
 			'authorities.form.isDiscipleMaker' => 'Das ist mein Jüngermacher',
 			'authorities.form.isDiscipleMakerHelp' => 'Die Person, die dich persönlich begleitet. Du hast nur einen.',
-			'authorities.form.discipleMakerTaken' => ({required Object name}) => '${name} ist bereits dein Jüngermacher. Entferne die Person aus der Liste, um jemand anderen zu wählen.',
-			'authorities.form.submit' => 'Hinzufügen',
 			_ => null,
 		} ?? switch (path) {
+			'authorities.form.discipleMakerTaken' => ({required Object name}) => '${name} ist bereits dein Jüngermacher. Entferne die Person aus der Liste, um jemand anderen zu wählen.',
+			'authorities.form.submit' => 'Hinzufügen',
 			'authorities.form.added' => ({required Object name}) => '${name} gehört jetzt zu deinen Autoritäten.',
 			'authorities.form.searchLabel' => 'Benutzername',
 			'authorities.form.searchHint' => 'benutzername',
@@ -5384,10 +5388,10 @@ extension on TranslationsDe {
 			'ministry.personGone' => 'Dieses Porträt ist nicht mehr verfügbar.',
 			'ministry.photoOf' => ({required Object name}) => 'Foto von ${name}',
 			'ministry.keyDates' => 'Wichtige Daten',
-			'ministry.life' => 'Sein Leben',
-			'ministry.story' => 'Lebensgeschichte',
 			_ => null,
 		} ?? switch (path) {
+			'ministry.life' => 'Sein Leben',
+			'ministry.story' => 'Lebensgeschichte',
 			'ministry.goalOf' => ({required Object n, required Object total}) => 'UNSER ZIEL · ${n}/${total}',
 			'ministry.previousGoal' => 'Vorheriges Ziel',
 			'ministry.nextGoal' => 'Nächstes Ziel',
@@ -5898,10 +5902,10 @@ extension on TranslationsDe {
 			'weekStory.noRetreat' => 'Keine Gebetszeit diese Woche',
 			'weekStory.noRetreatText' => 'Die Gebetszeit am Mittag wartet auf dich: 15 Minuten mit dem Herrn.',
 			'weekStory.goalsLead' => 'Deine Ziele',
-			'weekStory.goalsReached' => 'im Durchschnitt erreicht',
-			'weekStory.bestDay' => ({required Object day, required Object percent}) => 'Dein bester Tag: ${day} · ${percent}',
 			_ => null,
 		} ?? switch (path) {
+			'weekStory.goalsReached' => 'im Durchschnitt erreicht',
+			'weekStory.bestDay' => ({required Object day, required Object percent}) => 'Dein bester Tag: ${day} · ${percent}',
 			'weekStory.summaryTitle' => 'Meine Woche mit Gott',
 			'weekStory.statDays' => 'ausgefüllte Tage',
 			'weekStory.statStreak' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('de'))(n, one: 'Tag in Folge', other: 'Tage in Folge', ), 
@@ -6412,10 +6416,10 @@ extension on TranslationsDe {
 			'journey.daily.word' => 'Ein Kapitel der Bibel lesen',
 			'journey.daily.wordPlan' => 'Die Kapitel des Plans lesen',
 			'journey.daily.meditation' => 'Über das Wort nachsinnen',
-			'journey.daily.allDone' => 'Die vier Schritte sind gemacht. Einen schönen Tag mit Gott!',
-			'journey.daily.done' => 'Erledigt',
 			_ => null,
 		} ?? switch (path) {
+			'journey.daily.allDone' => 'Die vier Schritte sind gemacht. Einen schönen Tag mit Gott!',
+			'journey.daily.done' => 'Erledigt',
 			'journey.grace.day' => 'Tag der Gnade',
 			'journey.grace.used' => ({required Object day}) => 'Tag der Gnade ${day}: deine Serie geht weiter.',
 			'journey.grace.title' => 'Ein Tag der Gnade',

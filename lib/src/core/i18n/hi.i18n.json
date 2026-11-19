@@ -53,6 +53,8 @@
   },
   "validation": {
     "required": "यह फ़ील्ड ज़रूरी है",
+    "phoneRequired": "अपना नंबर लिखो",
+    "passwordRequired": "अपना पासवर्ड लिखो",
     "passwordTooShort": "कम से कम 6 कैरेक्टर",
     "invalidPhone": "फ़ोन नंबर सही नहीं है",
     "invalidEmail": "ईमेल पता सही नहीं है",

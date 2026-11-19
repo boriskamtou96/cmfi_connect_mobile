@@ -53,6 +53,8 @@
   },
   "validation": {
     "required": "هذا الحقل مطلوب",
+    "phoneRequired": "أدخل رقمك",
+    "passwordRequired": "أدخل كلمة المرور",
     "passwordTooShort": "6 أحرف على الأقل",
     "invalidPhone": "رقم هاتف غير صالح",
     "invalidEmail": "عنوان بريد إلكتروني غير صالح",

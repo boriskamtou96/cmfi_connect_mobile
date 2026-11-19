@@ -176,6 +176,8 @@ class _Translations$validation$zh extends Translations$validation$fr {
 
 	// Translations
 	@override String get required => '此项为必填';
+	@override String get phoneRequired => '请输入你的号码';
+	@override String get passwordRequired => '请输入你的密码';
 	@override String get passwordTooShort => '至少 6 个字符';
 	@override String get invalidPhone => '手机号无效';
 	@override String get invalidEmail => '邮箱地址无效';
@@ -4288,6 +4290,8 @@ extension on TranslationsZh {
 			'errors.peoplePaid' => '已付款报名的人数不能再更改。',
 			'errors.cardsDisabled' => '银行卡付款暂不可用。',
 			'validation.required' => '此项为必填',
+			'validation.phoneRequired' => '请输入你的号码',
+			'validation.passwordRequired' => '请输入你的密码',
 			'validation.passwordTooShort' => '至少 6 个字符',
 			'validation.invalidPhone' => '手机号无效',
 			'validation.invalidEmail' => '邮箱地址无效',
@@ -4751,10 +4755,10 @@ extension on TranslationsZh {
 			'authorities.form.emailHint' => 'name@example.com',
 			'authorities.form.isDiscipleMaker' => '这是我的门训者',
 			'authorities.form.isDiscipleMakerHelp' => '亲自带领你的那个人。你只能有一位。',
-			'authorities.form.discipleMakerTaken' => ({required Object name}) => '${name} 已经是你的门训者。若要指定其他人，请先将其从列表中移除。',
-			'authorities.form.submit' => '添加',
 			_ => null,
 		} ?? switch (path) {
+			'authorities.form.discipleMakerTaken' => ({required Object name}) => '${name} 已经是你的门训者。若要指定其他人，请先将其从列表中移除。',
+			'authorities.form.submit' => '添加',
 			'authorities.form.added' => ({required Object name}) => '${name} 现在是你的带领者了。',
 			'authorities.form.searchLabel' => '对方的用户名',
 			'authorities.form.searchHint' => '用户名',
@@ -5265,10 +5269,10 @@ extension on TranslationsZh {
 			'ministry.personGone' => '此介绍已不再提供。',
 			'ministry.photoOf' => ({required Object name}) => '${name}的照片',
 			'ministry.keyDates' => '重要日期',
-			'ministry.life' => '生平',
-			'ministry.story' => '故事',
 			_ => null,
 		} ?? switch (path) {
+			'ministry.life' => '生平',
+			'ministry.story' => '故事',
 			'ministry.goalOf' => ({required Object n, required Object total}) => '我们的目标 · ${n}/${total}',
 			'ministry.previousGoal' => '上一个目标',
 			'ministry.nextGoal' => '下一个目标',
@@ -5779,10 +5783,10 @@ extension on TranslationsZh {
 			'weekStory.noRetreat' => '本周没有退修',
 			'weekStory.noRetreatText' => '午间退修在等着你：与主同在 15 分钟。',
 			'weekStory.goalsLead' => '你的目标',
-			'weekStory.goalsReached' => '平均达成',
-			'weekStory.bestDay' => ({required Object day, required Object percent}) => '你最好的一天：${day} · ${percent}',
 			_ => null,
 		} ?? switch (path) {
+			'weekStory.goalsReached' => '平均达成',
+			'weekStory.bestDay' => ({required Object day, required Object percent}) => '你最好的一天：${day} · ${percent}',
 			'weekStory.summaryTitle' => '我与神同在的一周',
 			'weekStory.statDays' => '天已填写',
 			'weekStory.statStreak' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n, other: '天连续', ), 
@@ -6293,10 +6297,10 @@ extension on TranslationsZh {
 			'journey.daily.word' => '读一章圣经',
 			'journey.daily.wordPlan' => '读计划中的章节',
 			'journey.daily.meditation' => '默想神的话语',
-			'journey.daily.allDone' => '四步都完成了。愿你与神同度美好的一天！',
-			'journey.daily.done' => '已完成',
 			_ => null,
 		} ?? switch (path) {
+			'journey.daily.allDone' => '四步都完成了。愿你与神同度美好的一天！',
+			'journey.daily.done' => '已完成',
 			'journey.grace.day' => '恩典日',
 			'journey.grace.used' => ({required Object day}) => '恩典日 ${day}：你的连续记录继续。',
 			'journey.grace.title' => '恩典日',

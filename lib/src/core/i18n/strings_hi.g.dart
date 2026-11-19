@@ -176,6 +176,8 @@ class _Translations$validation$hi extends Translations$validation$fr {
 
 	// Translations
 	@override String get required => 'यह फ़ील्ड ज़रूरी है';
+	@override String get phoneRequired => 'अपना नंबर लिखो';
+	@override String get passwordRequired => 'अपना पासवर्ड लिखो';
 	@override String get passwordTooShort => 'कम से कम 6 कैरेक्टर';
 	@override String get invalidPhone => 'फ़ोन नंबर सही नहीं है';
 	@override String get invalidEmail => 'ईमेल पता सही नहीं है';
@@ -4406,6 +4408,8 @@ extension on TranslationsHi {
 			'errors.peoplePaid' => 'भुगतान किए गए पंजीकरण में लोगों की संख्या अब नहीं बदल सकती।',
 			'errors.cardsDisabled' => 'कार्ड से भुगतान अभी उपलब्ध नहीं है।',
 			'validation.required' => 'यह फ़ील्ड ज़रूरी है',
+			'validation.phoneRequired' => 'अपना नंबर लिखो',
+			'validation.passwordRequired' => 'अपना पासवर्ड लिखो',
 			'validation.passwordTooShort' => 'कम से कम 6 कैरेक्टर',
 			'validation.invalidPhone' => 'फ़ोन नंबर सही नहीं है',
 			'validation.invalidEmail' => 'ईमेल पता सही नहीं है',
@@ -4869,10 +4873,10 @@ extension on TranslationsHi {
 			'authorities.form.emailHint' => 'naam@example.com',
 			'authorities.form.isDiscipleMaker' => 'ये मेरे चेला बनाने वाले हैं',
 			'authorities.form.isDiscipleMakerHelp' => 'जो व्यक्ति व्यक्तिगत रूप से तुम्हारा मार्गदर्शन करता है। ऐसा सिर्फ़ एक ही हो सकता है।',
-			'authorities.form.discipleMakerTaken' => ({required Object name}) => 'तुम्हारे चेला बनाने वाले के रूप में ${name} पहले से दर्ज हैं। किसी और को चुनने के लिए पहले उन्हें सूची से हटाओ।',
-			'authorities.form.submit' => 'जोड़ो',
 			_ => null,
 		} ?? switch (path) {
+			'authorities.form.discipleMakerTaken' => ({required Object name}) => 'तुम्हारे चेला बनाने वाले के रूप में ${name} पहले से दर्ज हैं। किसी और को चुनने के लिए पहले उन्हें सूची से हटाओ।',
+			'authorities.form.submit' => 'जोड़ो',
 			'authorities.form.added' => ({required Object name}) => '${name} अब तुम्हारे अगुवों में शामिल हैं।',
 			'authorities.form.searchLabel' => 'उनका यूज़रनेम',
 			'authorities.form.searchHint' => 'यूज़रनेम',
@@ -5383,10 +5387,10 @@ extension on TranslationsHi {
 			'ministry.personGone' => 'यह परिचय अब उपलब्ध नहीं है।',
 			'ministry.photoOf' => ({required Object name}) => '${name} की फ़ोटो',
 			'ministry.keyDates' => 'मुख्य तिथियाँ',
-			'ministry.life' => 'उनका जीवन',
-			'ministry.story' => 'उनकी कहानी',
 			_ => null,
 		} ?? switch (path) {
+			'ministry.life' => 'उनका जीवन',
+			'ministry.story' => 'उनकी कहानी',
 			'ministry.goalOf' => ({required Object n, required Object total}) => 'हमारा लक्ष्य · ${n}/${total}',
 			'ministry.previousGoal' => 'पिछला लक्ष्य',
 			'ministry.nextGoal' => 'अगला लक्ष्य',
@@ -5897,10 +5901,10 @@ extension on TranslationsHi {
 			'weekStory.noRetreat' => 'इस हफ़्ते कोई प्रार्थना-समय नहीं',
 			'weekStory.noRetreatText' => 'दोपहर का प्रार्थना-समय तुम्हारा इंतज़ार कर रहा है: प्रभु के साथ 15 मिनट।',
 			'weekStory.goalsLead' => 'तुम्हारे लक्ष्य',
-			'weekStory.goalsReached' => 'औसतन पूरे हुए',
-			'weekStory.bestDay' => ({required Object day, required Object percent}) => 'तुम्हारा सबसे अच्छा दिन: ${day} · ${percent}',
 			_ => null,
 		} ?? switch (path) {
+			'weekStory.goalsReached' => 'औसतन पूरे हुए',
+			'weekStory.bestDay' => ({required Object day, required Object percent}) => 'तुम्हारा सबसे अच्छा दिन: ${day} · ${percent}',
 			'weekStory.summaryTitle' => 'परमेश्वर के साथ मेरा हफ़्ता',
 			'weekStory.statDays' => 'दिन भरे गए',
 			'weekStory.statStreak' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n, one: 'दिन लगातार', other: 'दिन लगातार', ), 
@@ -6411,10 +6415,10 @@ extension on TranslationsHi {
 			'journey.daily.word' => 'बाइबल का एक अध्याय पढ़ो',
 			'journey.daily.wordPlan' => 'योजना के अध्याय पढ़ो',
 			'journey.daily.meditation' => 'वचन पर मनन करो',
-			'journey.daily.allDone' => 'चारों क़दम पूरे हुए। परमेश्वर के साथ तुम्हारा दिन शुभ हो!',
-			'journey.daily.done' => 'पूरा',
 			_ => null,
 		} ?? switch (path) {
+			'journey.daily.allDone' => 'चारों क़दम पूरे हुए। परमेश्वर के साथ तुम्हारा दिन शुभ हो!',
+			'journey.daily.done' => 'पूरा',
 			'journey.grace.day' => 'अनुग्रह का दिन',
 			'journey.grace.used' => ({required Object day}) => 'अनुग्रह का दिन ${day}: तुम्हारा सिलसिला जारी है।',
 			'journey.grace.title' => 'अनुग्रह का दिन',

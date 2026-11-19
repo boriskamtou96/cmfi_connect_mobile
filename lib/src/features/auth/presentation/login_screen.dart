@@ -155,6 +155,9 @@ class LoginScreen extends HookConsumerWidget {
       await openApp(account, password: password);
     }
 
+    // read above the Scaffold, which takes the keyboard out of its body
+    final typing = MediaQuery.viewInsetsOf(context).bottom > 0;
+
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.surface,
       body: SafeArea(
@@ -171,7 +174,10 @@ class LoginScreen extends HookConsumerWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [
-                        LoginHeader(canPop: context.router.canPop()),
+                        LoginHeader(
+                          canPop: context.router.canPop(),
+                          typing: typing,
+                        ),
                         Padding(
                           padding: const EdgeInsetsDirectional.fromSTEB(
                             AppSpacing.xl,

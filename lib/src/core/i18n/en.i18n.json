@@ -53,6 +53,8 @@
   },
   "validation": {
     "required": "This field is required",
+    "phoneRequired": "Enter your number",
+    "passwordRequired": "Enter your password",
     "passwordTooShort": "At least 6 characters",
     "invalidPhone": "Invalid phone number",
     "invalidEmail": "Invalid email address",

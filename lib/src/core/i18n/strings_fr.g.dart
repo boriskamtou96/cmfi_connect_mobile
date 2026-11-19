@@ -273,6 +273,12 @@ class Translations$validation$fr {
 	/// fr: 'Ce champ est obligatoire'
 	String get required => 'Ce champ est obligatoire';
 
+	/// fr: 'Entre ton numéro'
+	String get phoneRequired => 'Entre ton numéro';
+
+	/// fr: 'Entre ton mot de passe'
+	String get passwordRequired => 'Entre ton mot de passe';
+
 	/// fr: 'Au moins 6 caractères'
 	String get passwordTooShort => 'Au moins 6 caractères';
 
@@ -8849,6 +8855,8 @@ extension on Translations {
 			'errors.peoplePaid' => 'Le nombre de personnes d\'une inscription payée ne change plus.',
 			'errors.cardsDisabled' => 'Le paiement par carte n\'est pas disponible pour le moment.',
 			'validation.required' => 'Ce champ est obligatoire',
+			'validation.phoneRequired' => 'Entre ton numéro',
+			'validation.passwordRequired' => 'Entre ton mot de passe',
 			'validation.passwordTooShort' => 'Au moins 6 caractères',
 			'validation.invalidPhone' => 'Numéro de téléphone invalide',
 			'validation.invalidEmail' => 'Adresse e-mail invalide',
@@ -9312,10 +9320,10 @@ extension on Translations {
 			'authorities.form.emailHint' => 'nom@exemple.com',
 			'authorities.form.isDiscipleMaker' => 'C\'est mon faiseur de disciples',
 			'authorities.form.isDiscipleMakerHelp' => 'La personne qui t\'accompagne personnellement. Tu n\'en as qu\'un.',
-			'authorities.form.discipleMakerTaken' => ({required Object name}) => '${name} est déjà ton faiseur de disciples. Retire-le de la liste pour en désigner un autre.',
-			'authorities.form.submit' => 'Ajouter',
 			_ => null,
 		} ?? switch (path) {
+			'authorities.form.discipleMakerTaken' => ({required Object name}) => '${name} est déjà ton faiseur de disciples. Retire-le de la liste pour en désigner un autre.',
+			'authorities.form.submit' => 'Ajouter',
 			'authorities.form.added' => ({required Object name}) => '${name} fait maintenant partie de tes autorités.',
 			'authorities.form.searchLabel' => 'Son pseudo',
 			'authorities.form.searchHint' => 'pseudo',
@@ -9826,10 +9834,10 @@ extension on Translations {
 			'ministry.personGone' => 'Ce portrait n\'est plus disponible.',
 			'ministry.photoOf' => ({required Object name}) => 'Photo de ${name}',
 			'ministry.keyDates' => 'Les grandes dates',
-			'ministry.life' => 'Sa vie',
-			'ministry.story' => 'Son histoire',
 			_ => null,
 		} ?? switch (path) {
+			'ministry.life' => 'Sa vie',
+			'ministry.story' => 'Son histoire',
 			'ministry.goalOf' => ({required Object n, required Object total}) => 'NOTRE BUT · ${n}/${total}',
 			'ministry.previousGoal' => 'But précédent',
 			'ministry.nextGoal' => 'But suivant',
@@ -10340,10 +10348,10 @@ extension on Translations {
 			'weekStory.noRetreat' => 'Pas de retraite cette semaine',
 			'weekStory.noRetreatText' => 'La retraite de midi t\'attend : 15 minutes avec le Seigneur.',
 			'weekStory.goalsLead' => 'Tes objectifs',
-			'weekStory.goalsReached' => 'atteints en moyenne',
-			'weekStory.bestDay' => ({required Object day, required Object percent}) => 'Ton meilleur jour : ${day} · ${percent}',
 			_ => null,
 		} ?? switch (path) {
+			'weekStory.goalsReached' => 'atteints en moyenne',
+			'weekStory.bestDay' => ({required Object day, required Object percent}) => 'Ton meilleur jour : ${day} · ${percent}',
 			'weekStory.summaryTitle' => 'Ma semaine avec Dieu',
 			'weekStory.statDays' => 'jours remplis',
 			'weekStory.statStreak' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('fr'))(n, one: 'jour d\'affilée', other: 'jours d\'affilée', ), 
@@ -10854,10 +10862,10 @@ extension on Translations {
 			'journey.daily.word' => 'Lire un chapitre de la Bible',
 			'journey.daily.wordPlan' => 'Lire les chapitres du plan',
 			'journey.daily.meditation' => 'Méditer la Parole',
-			'journey.daily.allDone' => 'Les quatre pas sont faits. Belle journée avec Dieu !',
-			'journey.daily.done' => 'Fait',
 			_ => null,
 		} ?? switch (path) {
+			'journey.daily.allDone' => 'Les quatre pas sont faits. Belle journée avec Dieu !',
+			'journey.daily.done' => 'Fait',
 			'journey.grace.day' => 'Jour de grâce',
 			'journey.grace.used' => ({required Object day}) => 'Jour de grâce ${day} : ta série continue.',
 			'journey.grace.title' => 'Un jour de grâce',

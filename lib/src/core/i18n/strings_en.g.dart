@@ -176,6 +176,8 @@ class _Translations$validation$en extends Translations$validation$fr {
 
 	// Translations
 	@override String get required => 'This field is required';
+	@override String get phoneRequired => 'Enter your number';
+	@override String get passwordRequired => 'Enter your password';
 	@override String get passwordTooShort => 'At least 6 characters';
 	@override String get invalidPhone => 'Invalid phone number';
 	@override String get invalidEmail => 'Invalid email address';
@@ -4408,6 +4410,8 @@ extension on TranslationsEn {
 			'errors.peoplePaid' => 'The number of people of a paid registration can no longer change.',
 			'errors.cardsDisabled' => 'Card payment is not available right now.',
 			'validation.required' => 'This field is required',
+			'validation.phoneRequired' => 'Enter your number',
+			'validation.passwordRequired' => 'Enter your password',
 			'validation.passwordTooShort' => 'At least 6 characters',
 			'validation.invalidPhone' => 'Invalid phone number',
 			'validation.invalidEmail' => 'Invalid email address',
@@ -4871,10 +4875,10 @@ extension on TranslationsEn {
 			'authorities.form.emailHint' => 'name@example.com',
 			'authorities.form.isDiscipleMaker' => 'This is my disciple maker',
 			'authorities.form.isDiscipleMakerHelp' => 'The person who mentors you personally. You only have one.',
-			'authorities.form.discipleMakerTaken' => ({required Object name}) => '${name} is already your disciple maker. Remove them from the list to choose someone else.',
-			'authorities.form.submit' => 'Add',
 			_ => null,
 		} ?? switch (path) {
+			'authorities.form.discipleMakerTaken' => ({required Object name}) => '${name} is already your disciple maker. Remove them from the list to choose someone else.',
+			'authorities.form.submit' => 'Add',
 			'authorities.form.added' => ({required Object name}) => '${name} is now one of your leaders.',
 			'authorities.form.searchLabel' => 'Their username',
 			'authorities.form.searchHint' => 'username',
@@ -5385,10 +5389,10 @@ extension on TranslationsEn {
 			'ministry.personGone' => 'This portrait is no longer available.',
 			'ministry.photoOf' => ({required Object name}) => 'Photo of ${name}',
 			'ministry.keyDates' => 'Key dates',
-			'ministry.life' => 'His life',
-			'ministry.story' => 'Their story',
 			_ => null,
 		} ?? switch (path) {
+			'ministry.life' => 'His life',
+			'ministry.story' => 'Their story',
 			'ministry.goalOf' => ({required Object n, required Object total}) => 'OUR GOAL · ${n}/${total}',
 			'ministry.previousGoal' => 'Previous goal',
 			'ministry.nextGoal' => 'Next goal',
@@ -5899,10 +5903,10 @@ extension on TranslationsEn {
 			'weekStory.noRetreat' => 'No retreat this week',
 			'weekStory.noRetreatText' => 'The noon retreat is waiting for you: 15 minutes with the Lord.',
 			'weekStory.goalsLead' => 'Your goals',
-			'weekStory.goalsReached' => 'reached on average',
-			'weekStory.bestDay' => ({required Object day, required Object percent}) => 'Your best day: ${day} · ${percent}',
 			_ => null,
 		} ?? switch (path) {
+			'weekStory.goalsReached' => 'reached on average',
+			'weekStory.bestDay' => ({required Object day, required Object percent}) => 'Your best day: ${day} · ${percent}',
 			'weekStory.summaryTitle' => 'My week with God',
 			'weekStory.statDays' => 'days filled in',
 			'weekStory.statStreak' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n, one: 'day in a row', other: 'days in a row', ), 
@@ -6413,10 +6417,10 @@ extension on TranslationsEn {
 			'journey.daily.word' => 'Read a chapter of the Bible',
 			'journey.daily.wordPlan' => 'Read the chapters of the plan',
 			'journey.daily.meditation' => 'Meditate on the Word',
-			'journey.daily.allDone' => 'All four steps are done. Have a good day with God!',
-			'journey.daily.done' => 'Done',
 			_ => null,
 		} ?? switch (path) {
+			'journey.daily.allDone' => 'All four steps are done. Have a good day with God!',
+			'journey.daily.done' => 'Done',
 			'journey.grace.day' => 'Day of grace',
 			'journey.grace.used' => ({required Object day}) => 'Day of grace ${day}: your streak goes on.',
 			'journey.grace.title' => 'A day of grace',

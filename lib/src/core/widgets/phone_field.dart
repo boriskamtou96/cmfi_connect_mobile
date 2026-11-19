@@ -132,6 +132,9 @@ class PhoneField extends StatelessWidget {
           Expanded(
             child: TextFormField(
               controller: controller,
+              // digits and their spaces read left to right in every
+              // language: in Arabic the number would show reversed
+              textDirection: TextDirection.ltr,
               keyboardType: TextInputType.phone,
               textInputAction: textInputAction,
               autofillHints: const [AutofillHints.telephoneNumberNational],
@@ -144,7 +147,7 @@ class PhoneField extends StatelessWidget {
               validator: (value) {
                 final digits = (value ?? '').replaceAll(RegExp('[^0-9]'), '');
                 if (digits.isEmpty) {
-                  return t.validation.required;
+                  return t.validation.phoneRequired;
                 }
                 return isValidPhone(value!, country, lenient: lenient)
                     ? null

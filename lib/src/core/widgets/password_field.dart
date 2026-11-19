@@ -48,8 +48,8 @@ class PasswordField extends HookWidget {
           isNewPassword ? AutofillHints.newPassword : AutofillHints.password,
         ],
         onFieldSubmitted: onSubmitted == null ? null : (_) => onSubmitted!(),
+        // no hint: dots in an empty field read as a password already there
         decoration: InputDecoration(
-          hintText: '••••••••',
           suffixIcon: IconButton(
             tooltip: obscure.value ? t.auth.showPassword : t.auth.hidePassword,
             icon: Icon(obscure.value ? AppIcons.visible : AppIcons.hidden),
@@ -58,7 +58,7 @@ class PasswordField extends HookWidget {
         ),
         validator: (value) {
           if ((value ?? '').isEmpty) {
-            return t.validation.required;
+            return t.validation.passwordRequired;
           }
           if (value!.length < 6) {
             return t.validation.passwordTooShort;

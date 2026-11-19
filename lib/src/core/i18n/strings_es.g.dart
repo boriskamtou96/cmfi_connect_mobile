@@ -176,6 +176,8 @@ class _Translations$validation$es extends Translations$validation$fr {
 
 	// Translations
 	@override String get required => 'Este campo es obligatorio';
+	@override String get phoneRequired => 'Escribe tu número';
+	@override String get passwordRequired => 'Escribe tu contraseña';
 	@override String get passwordTooShort => 'Al menos 6 caracteres';
 	@override String get invalidPhone => 'Número de teléfono no válido';
 	@override String get invalidEmail => 'Correo electrónico no válido';
@@ -4407,6 +4409,8 @@ extension on TranslationsEs {
 			'errors.peoplePaid' => 'El número de personas de una inscripción pagada ya no puede cambiar.',
 			'errors.cardsDisabled' => 'El pago con tarjeta no está disponible por ahora.',
 			'validation.required' => 'Este campo es obligatorio',
+			'validation.phoneRequired' => 'Escribe tu número',
+			'validation.passwordRequired' => 'Escribe tu contraseña',
 			'validation.passwordTooShort' => 'Al menos 6 caracteres',
 			'validation.invalidPhone' => 'Número de teléfono no válido',
 			'validation.invalidEmail' => 'Correo electrónico no válido',
@@ -4870,10 +4874,10 @@ extension on TranslationsEs {
 			'authorities.form.emailHint' => 'nombre@ejemplo.com',
 			'authorities.form.isDiscipleMaker' => 'Es mi discipulador',
 			'authorities.form.isDiscipleMakerHelp' => 'La persona que te acompaña personalmente. Solo tienes uno.',
-			'authorities.form.discipleMakerTaken' => ({required Object name}) => '${name} ya es tu discipulador. Quítalo de la lista para elegir a otro.',
-			'authorities.form.submit' => 'Añadir',
 			_ => null,
 		} ?? switch (path) {
+			'authorities.form.discipleMakerTaken' => ({required Object name}) => '${name} ya es tu discipulador. Quítalo de la lista para elegir a otro.',
+			'authorities.form.submit' => 'Añadir',
 			'authorities.form.added' => ({required Object name}) => '${name} ahora forma parte de tus autoridades.',
 			'authorities.form.searchLabel' => 'Su nombre de usuario',
 			'authorities.form.searchHint' => 'usuario',
@@ -5384,10 +5388,10 @@ extension on TranslationsEs {
 			'ministry.personGone' => 'Este retrato ya no está disponible.',
 			'ministry.photoOf' => ({required Object name}) => 'Foto de ${name}',
 			'ministry.keyDates' => 'Fechas clave',
-			'ministry.life' => 'Su vida',
-			'ministry.story' => 'Su historia',
 			_ => null,
 		} ?? switch (path) {
+			'ministry.life' => 'Su vida',
+			'ministry.story' => 'Su historia',
 			'ministry.goalOf' => ({required Object n, required Object total}) => 'NUESTRO OBJETIVO · ${n}/${total}',
 			'ministry.previousGoal' => 'Objetivo anterior',
 			'ministry.nextGoal' => 'Siguiente objetivo',
@@ -5898,10 +5902,10 @@ extension on TranslationsEs {
 			'weekStory.noRetreat' => 'Ningún retiro esta semana',
 			'weekStory.noRetreatText' => 'El retiro del mediodía te espera: 15 minutos con el Señor.',
 			'weekStory.goalsLead' => 'Tus objetivos',
-			'weekStory.goalsReached' => 'alcanzados en promedio',
-			'weekStory.bestDay' => ({required Object day, required Object percent}) => 'Tu mejor día: ${day} · ${percent}',
 			_ => null,
 		} ?? switch (path) {
+			'weekStory.goalsReached' => 'alcanzados en promedio',
+			'weekStory.bestDay' => ({required Object day, required Object percent}) => 'Tu mejor día: ${day} · ${percent}',
 			'weekStory.summaryTitle' => 'Mi semana con Dios',
 			'weekStory.statDays' => 'días llenados',
 			'weekStory.statStreak' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('es'))(n, one: 'día seguido', other: 'días seguidos', ), 
@@ -6412,10 +6416,10 @@ extension on TranslationsEs {
 			'journey.daily.word' => 'Leer un capítulo de la Biblia',
 			'journey.daily.wordPlan' => 'Leer los capítulos del plan',
 			'journey.daily.meditation' => 'Meditar la Palabra',
-			'journey.daily.allDone' => 'Los cuatro pasos están hechos. ¡Buen día con Dios!',
-			'journey.daily.done' => 'Hecho',
 			_ => null,
 		} ?? switch (path) {
+			'journey.daily.allDone' => 'Los cuatro pasos están hechos. ¡Buen día con Dios!',
+			'journey.daily.done' => 'Hecho',
 			'journey.grace.day' => 'Día de gracia',
 			'journey.grace.used' => ({required Object day}) => 'Día de gracia ${day}: tu racha continúa.',
 			'journey.grace.title' => 'Un día de gracia',

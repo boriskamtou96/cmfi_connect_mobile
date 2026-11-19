@@ -176,6 +176,8 @@ class _Translations$validation$ar extends Translations$validation$fr {
 
 	// Translations
 	@override String get required => 'هذا الحقل مطلوب';
+	@override String get phoneRequired => 'أدخل رقمك';
+	@override String get passwordRequired => 'أدخل كلمة المرور';
 	@override String get passwordTooShort => '6 أحرف على الأقل';
 	@override String get invalidPhone => 'رقم هاتف غير صالح';
 	@override String get invalidEmail => 'عنوان بريد إلكتروني غير صالح';
@@ -4876,6 +4878,8 @@ extension on TranslationsAr {
 			'errors.peoplePaid' => 'لم يعد ممكنًا تغيير عدد الأشخاص في تسجيل مدفوع.',
 			'errors.cardsDisabled' => 'الدفع بالبطاقة غير متاح حاليًا.',
 			'validation.required' => 'هذا الحقل مطلوب',
+			'validation.phoneRequired' => 'أدخل رقمك',
+			'validation.passwordRequired' => 'أدخل كلمة المرور',
 			'validation.passwordTooShort' => '6 أحرف على الأقل',
 			'validation.invalidPhone' => 'رقم هاتف غير صالح',
 			'validation.invalidEmail' => 'عنوان بريد إلكتروني غير صالح',
@@ -5339,10 +5343,10 @@ extension on TranslationsAr {
 			'authorities.form.emailHint' => 'name@example.com',
 			'authorities.form.isDiscipleMaker' => 'هذا هو صانع التلاميذ الخاص بي',
 			'authorities.form.isDiscipleMakerHelp' => 'الشخص الذي يرافقك شخصيًا. لديك واحد فقط.',
-			'authorities.form.discipleMakerTaken' => ({required Object name}) => '${name} هو بالفعل صانع التلاميذ الخاص بك. أزِله من القائمة لتختار شخصًا آخر.',
-			'authorities.form.submit' => 'إضافة',
 			_ => null,
 		} ?? switch (path) {
+			'authorities.form.discipleMakerTaken' => ({required Object name}) => '${name} هو بالفعل صانع التلاميذ الخاص بك. أزِله من القائمة لتختار شخصًا آخر.',
+			'authorities.form.submit' => 'إضافة',
 			'authorities.form.added' => ({required Object name}) => 'أصبح ${name} الآن ضمن مرشديك.',
 			'authorities.form.searchLabel' => 'اسم المستخدم',
 			'authorities.form.searchHint' => 'اسم المستخدم',
@@ -5853,10 +5857,10 @@ extension on TranslationsAr {
 			'ministry.personGone' => 'هذا التعريف لم يعد متاحًا.',
 			'ministry.photoOf' => ({required Object name}) => 'صورة ${name}',
 			'ministry.keyDates' => 'تواريخ مهمة',
-			'ministry.life' => 'حياته',
-			'ministry.story' => 'القصة',
 			_ => null,
 		} ?? switch (path) {
+			'ministry.life' => 'حياته',
+			'ministry.story' => 'القصة',
 			'ministry.goalOf' => ({required Object n, required Object total}) => 'هدفنا · ${n}/${total}',
 			'ministry.previousGoal' => 'الهدف السابق',
 			'ministry.nextGoal' => 'الهدف التالي',
@@ -6367,10 +6371,10 @@ extension on TranslationsAr {
 			'weekStory.noRetreat' => 'لا خلوة هذا الأسبوع',
 			'weekStory.noRetreatText' => 'خلوة الظهر تنتظرك: 15 دقيقة مع الرب.',
 			'weekStory.goalsLead' => 'أهدافك',
-			'weekStory.goalsReached' => 'تحقّقت في المتوسط',
-			'weekStory.bestDay' => ({required Object day, required Object percent}) => 'أفضل يوم لك: ${day} · ${percent}',
 			_ => null,
 		} ?? switch (path) {
+			'weekStory.goalsReached' => 'تحقّقت في المتوسط',
+			'weekStory.bestDay' => ({required Object day, required Object percent}) => 'أفضل يوم لك: ${day} · ${percent}',
 			'weekStory.summaryTitle' => 'أسبوعي مع الله',
 			'weekStory.statDays' => 'أيام مملوءة',
 			'weekStory.statStreak' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n, zero: 'يوم على التوالي', one: 'يوم على التوالي', two: 'يومان على التوالي', few: 'أيام على التوالي', many: 'يومًا على التوالي', other: 'يوم على التوالي', ), 
@@ -6881,10 +6885,10 @@ extension on TranslationsAr {
 			'journey.daily.word' => 'قراءة إصحاح من الكتاب المقدس',
 			'journey.daily.wordPlan' => 'قراءة إصحاحات الخطة',
 			'journey.daily.meditation' => 'التأمل في الكلمة',
-			'journey.daily.allDone' => 'أنجزت الخطوات الأربع. يومًا طيبًا مع الله!',
-			'journey.daily.done' => 'تم',
 			_ => null,
 		} ?? switch (path) {
+			'journey.daily.allDone' => 'أنجزت الخطوات الأربع. يومًا طيبًا مع الله!',
+			'journey.daily.done' => 'تم',
 			'journey.grace.day' => 'يوم نعمة',
 			'journey.grace.used' => ({required Object day}) => 'يوم نعمة ${day}: سلسلتك مستمرة.',
 			'journey.grace.title' => 'يوم نعمة',

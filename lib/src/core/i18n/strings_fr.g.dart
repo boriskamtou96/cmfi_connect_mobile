@@ -4275,6 +4275,9 @@ class Translations$me$fr {
 	/// fr: 'Mon profil'
 	String get title => 'Mon profil';
 
+	/// fr: 'Remplis ton premier compte rendu : ta série commence aujourd'hui.'
+	String get firstDay => 'Remplis ton premier compte rendu : ta série commence aujourd\'hui.';
+
 	/// fr: 'Modifier mon profil'
 	String get edit => 'Modifier mon profil';
 
@@ -10921,6 +10924,7 @@ extension on Translations {
 			'menu.discover' => 'Découvrir',
 			'menu.seeProfile' => 'Voir mon profil',
 			'me.title' => 'Mon profil',
+			'me.firstDay' => 'Remplis ton premier compte rendu : ta série commence aujourd\'hui.',
 			'me.edit' => 'Modifier mon profil',
 			'me.journey' => 'Mon cheminement',
 			'me.streak' => 'Série',

@@ -30,7 +30,7 @@ void main() {
   );
 
   Future<void> openJourney(WidgetTester tester) async {
-    await openProfile(tester);
+    await openMenu(tester);
     await tester.tap(find.text('Mes étapes'));
     await tester.pumpAndSettle();
   }
@@ -110,7 +110,7 @@ void main() {
 
   testWidgets('the next step skips what cannot be reached yet', (tester) async {
     final app = await pumpApp(tester, token: 't');
-    await openProfile(tester);
+    await openMenu(tester);
     expect(find.textContaining('prochaine : Premier pas'), findsOneWidget);
 
     final steps = app.container.read(journeyStepsProvider.notifier);

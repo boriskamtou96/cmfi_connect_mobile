@@ -2020,6 +2020,7 @@ class _Translations$me$hi extends Translations$me$fr {
 
 	// Translations
 	@override String get title => 'मेरी प्रोफ़ाइल';
+	@override String get firstDay => 'अपनी पहली रिपोर्ट भरो: तुम्हारा सिलसिला आज से शुरू होता है।';
 	@override String get edit => 'मेरी प्रोफ़ाइल बदलो';
 	@override String get journey => 'मेरी यात्रा';
 	@override String get streak => 'सिलसिला';
@@ -6474,6 +6475,7 @@ extension on TranslationsHi {
 			'menu.discover' => 'खोजो',
 			'menu.seeProfile' => 'मेरी प्रोफ़ाइल देखो',
 			'me.title' => 'मेरी प्रोफ़ाइल',
+			'me.firstDay' => 'अपनी पहली रिपोर्ट भरो: तुम्हारा सिलसिला आज से शुरू होता है।',
 			'me.edit' => 'मेरी प्रोफ़ाइल बदलो',
 			'me.journey' => 'मेरी यात्रा',
 			'me.streak' => 'सिलसिला',

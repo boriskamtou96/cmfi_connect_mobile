@@ -2801,6 +2801,7 @@
   },
   "me": {
     "title": "Mi perfil",
+    "firstDay": "Llena tu primer informe: tu racha empieza hoy.",
     "edit": "Editar mi perfil",
     "journey": "Mi camino",
     "streak": "Racha",

@@ -2278,6 +2278,7 @@ class _Translations$me$ar extends Translations$me$fr {
 
 	// Translations
 	@override String get title => 'ملفي';
+	@override String get firstDay => 'املأ تقريرك الأول: سلسلتك تبدأ اليوم.';
 	@override String get edit => 'تعديل ملفي';
 	@override String get journey => 'مسيرتي';
 	@override String get streak => 'السلسلة';
@@ -6944,6 +6945,7 @@ extension on TranslationsAr {
 			'menu.discover' => 'اكتشف',
 			'menu.seeProfile' => 'عرض ملفي',
 			'me.title' => 'ملفي',
+			'me.firstDay' => 'املأ تقريرك الأول: سلسلتك تبدأ اليوم.',
 			'me.edit' => 'تعديل ملفي',
 			'me.journey' => 'مسيرتي',
 			'me.streak' => 'السلسلة',

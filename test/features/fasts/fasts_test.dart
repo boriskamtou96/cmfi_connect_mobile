@@ -101,6 +101,7 @@ void main() {
       initialPreferences: preferences,
     );
     await openMenu(tester);
+    await scrollTo(tester, inMenu('Mes jeûnes'));
     await tester.tap(inMenu('Mes jeûnes'));
     await tester.pumpAndSettle();
     return app;

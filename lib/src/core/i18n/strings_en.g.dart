@@ -2022,6 +2022,7 @@ class _Translations$me$en extends Translations$me$fr {
 
 	// Translations
 	@override String get title => 'My profile';
+	@override String get firstDay => 'Fill in your first report: your streak starts today.';
 	@override String get edit => 'Edit my profile';
 	@override String get journey => 'My journey';
 	@override String get streak => 'Streak';
@@ -6476,6 +6477,7 @@ extension on TranslationsEn {
 			'menu.discover' => 'Discover',
 			'menu.seeProfile' => 'See my profile',
 			'me.title' => 'My profile',
+			'me.firstDay' => 'Fill in your first report: your streak starts today.',
 			'me.edit' => 'Edit my profile',
 			'me.journey' => 'My journey',
 			'me.streak' => 'Streak',

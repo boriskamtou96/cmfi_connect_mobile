@@ -160,12 +160,15 @@ void main() {
     tester,
   ) async {
     final app = await pumpApp(tester, token: 't');
-    await openProfile(tester);
+    await openMenu(tester);
 
-    // « Mes étapes » in Mon profil, with the next one
+    // « Mes étapes » in « Vous », with the next one
+    await scrollTo(tester, find.text('Mes étapes'));
     expect(find.text('Mes étapes'), findsOneWidget);
     expect(find.textContaining('0 sur 15'), findsOneWidget);
 
+    // away from the tabs: Mon profil, a page above them
+    await openProfile(tester);
     await app.container
         .read(journeyStepsProvider.notifier)
         .reach(JourneyStep.firstEncouragement);

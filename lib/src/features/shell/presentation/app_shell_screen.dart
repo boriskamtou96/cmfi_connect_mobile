@@ -9,6 +9,9 @@ import '../../../core/theme/app_motion.dart';
 import '../../../core/theme/app_theme.dart';
 import '../../../core/theme/app_tones.dart';
 import '../../../routing/app_router.dart';
+import '../../authorities/application/authorities_controller.dart';
+import '../../disciples/application/disciples.dart';
+import '../../disciples/application/received_reports.dart';
 import '../../members/presentation/widgets/member_avatar.dart';
 import '../../profile/application/current_profile.dart';
 import '../../reports/presentation/widgets/timer_banner.dart';
@@ -107,36 +110,42 @@ class AppShellScreen extends StatelessWidget {
                         ),
                       ),
                     ),
-                    child: NavigationBar(
-                      selectedIndex: tabsRouter.activeIndex,
-                      onDestinationSelected: tabsRouter.setActiveIndex,
-                      destinations: [
-                        NavigationDestination(
-                          icon: const Icon(AppIcons.home),
-                          selectedIcon: const Icon(AppIcons.homeActive),
-                          label: t.nav.home,
-                        ),
-                        NavigationDestination(
-                          icon: const Icon(AppIcons.reports),
-                          selectedIcon: const Icon(AppIcons.reportsActive),
-                          label: t.nav.reports,
-                        ),
-                        NavigationDestination(
-                          icon: const Icon(AppIcons.games),
-                          selectedIcon: const Icon(AppIcons.gamesActive),
-                          label: t.nav.games,
-                        ),
-                        NavigationDestination(
-                          icon: const Icon(AppIcons.bible),
-                          selectedIcon: const Icon(AppIcons.bibleActive),
-                          label: t.nav.bible,
-                        ),
-                        NavigationDestination(
-                          icon: const _Photo(),
-                          selectedIcon: _Photo(ring: accent),
-                          label: t.nav.menu,
-                        ),
-                      ],
+                    // the labels keep their size with a large text, as in
+                    // the tab bars of iOS: at 120 % « Compte rendu » already
+                    // went on two lines (the icons still tell the tabs apart)
+                    child: MediaQuery.withClampedTextScaling(
+                      maxScaleFactor: 1,
+                      child: NavigationBar(
+                        selectedIndex: tabsRouter.activeIndex,
+                        onDestinationSelected: tabsRouter.setActiveIndex,
+                        destinations: [
+                          NavigationDestination(
+                            icon: const Icon(AppIcons.home),
+                            selectedIcon: const Icon(AppIcons.homeActive),
+                            label: t.nav.home,
+                          ),
+                          NavigationDestination(
+                            icon: const Icon(AppIcons.reports),
+                            selectedIcon: const Icon(AppIcons.reportsActive),
+                            label: t.nav.reports,
+                          ),
+                          NavigationDestination(
+                            icon: const Icon(AppIcons.games),
+                            selectedIcon: const Icon(AppIcons.gamesActive),
+                            label: t.nav.games,
+                          ),
+                          NavigationDestination(
+                            icon: const Icon(AppIcons.bible),
+                            selectedIcon: const Icon(AppIcons.bibleActive),
+                            label: t.nav.bible,
+                          ),
+                          NavigationDestination(
+                            icon: const _Photo(),
+                            selectedIcon: _Photo(ring: accent),
+                            label: t.nav.menu,
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 ),
@@ -150,7 +159,8 @@ class AppShellScreen extends StatelessWidget {
 }
 
 /// The tab of the menu: the photo of the member (their initials without
-/// one), in a ring of the accent color when the menu is shown.
+/// one), in a ring of the accent color when the menu is shown. A badge says
+/// what waits in « Vous »: requests of disciples, reports received not opened.
 class _Photo extends ConsumerWidget {
   const _Photo({this.ring});
 
@@ -159,17 +169,27 @@ class _Photo extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final profile = ref.watch(currentProfileProvider).value;
+    final requests = ref.watch(authorityRequestsProvider).value?.length ?? 0;
+    final disciples = ref.watch(disciplesListProvider()).value?.total ?? 0;
+    final received = disciples > 0
+        ? ref.watch(receivedReportsUnreadProvider)
+        : 0;
+    final waiting = requests + received;
 
-    return Container(
-      padding: const EdgeInsets.all(1.5),
-      decoration: BoxDecoration(
-        shape: BoxShape.circle,
-        border: Border.all(color: ring ?? Colors.transparent, width: 1.5),
-      ),
-      child: MemberAvatar(
-        initials: profile?.initials ?? '',
-        photo: profile?.avatar,
-        size: 24,
+    return Badge.count(
+      count: waiting,
+      isLabelVisible: waiting > 0,
+      child: Container(
+        padding: const EdgeInsets.all(1.5),
+        decoration: BoxDecoration(
+          shape: BoxShape.circle,
+          border: Border.all(color: ring ?? Colors.transparent, width: 1.5),
+        ),
+        child: MemberAvatar(
+          initials: profile?.initials ?? '',
+          photo: profile?.avatar,
+          size: 24,
+        ),
       ),
     );
   }

@@ -13,7 +13,7 @@ void main() {
   setUp(() => LocaleSettings.setLocale(AppLocale.fr));
 
   Future<void> openAuthorities(WidgetTester tester) async {
-    await openProfile(tester);
+    await openMenu(tester);
     await tester.pumpAndSettle();
     await scrollTo(tester, find.text('Mes autorités spirituelles'));
     await tester.tap(find.text('Mes autorités spirituelles'));
@@ -245,7 +245,7 @@ void main() {
         ),
       ]),
     );
-    await openProfile(tester);
+    await openMenu(tester);
     await tester.pumpAndSettle();
     expect(find.text('1 demande à voir'), findsOneWidget);
 

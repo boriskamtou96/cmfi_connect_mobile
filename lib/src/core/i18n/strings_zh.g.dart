@@ -1957,6 +1957,7 @@ class _Translations$me$zh extends Translations$me$fr {
 
 	// Translations
 	@override String get title => '我的资料';
+	@override String get firstDay => '填写你的第一份报告：你的连续记录从今天开始。';
 	@override String get edit => '编辑我的资料';
 	@override String get journey => '我的旅程';
 	@override String get streak => '连续';
@@ -6356,6 +6357,7 @@ extension on TranslationsZh {
 			'menu.discover' => '探索',
 			'menu.seeProfile' => '查看我的资料',
 			'me.title' => '我的资料',
+			'me.firstDay' => '填写你的第一份报告：你的连续记录从今天开始。',
 			'me.edit' => '编辑我的资料',
 			'me.journey' => '我的旅程',
 			'me.streak' => '连续',

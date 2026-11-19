@@ -2802,6 +2802,7 @@
   },
   "me": {
     "title": "My profile",
+    "firstDay": "Fill in your first report: your streak starts today.",
     "edit": "Edit my profile",
     "journey": "My journey",
     "streak": "Streak",

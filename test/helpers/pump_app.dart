@@ -548,10 +548,12 @@ Future<void> openProfile(WidgetTester tester) async {
   await tester.pumpAndSettle();
 }
 
-/// Réglages, from the gear of Mon profil.
+/// Réglages, near the end of « Vous ».
 Future<void> openSettings(WidgetTester tester) async {
-  await openProfile(tester);
-  await tester.tap(find.byTooltip('Réglages'));
+  await openMenu(tester);
+  final settings = inMenu('Réglages');
+  await scrollTo(tester, settings);
+  await tester.tap(settings);
   await tester.pumpAndSettle();
 }
 

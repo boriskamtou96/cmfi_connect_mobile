@@ -7,31 +7,23 @@ import '../../../core/i18n/strings.g.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_icons.dart';
 import '../../../core/theme/app_spacing.dart';
-import '../../../core/utils/date_extensions.dart';
+import '../../../core/utils/countries.dart';
+import '../../../core/utils/phone.dart';
 import '../../../core/widgets/app_back_button.dart';
 import '../../../core/widgets/cmfi_logo.dart';
 import '../../../core/widgets/fade_slide_in.dart';
-import '../../../core/widgets/menu_tile.dart';
 import '../../../core/widgets/section_card.dart';
 import '../../../routing/app_router.dart';
-import '../../authorities/application/authorities_controller.dart';
-import '../../disciples/application/disciples.dart';
-import '../../disciples/application/received_reports.dart';
-import '../../home/domain/year_story.dart';
-import '../../journey/application/journey_progress.dart';
-import '../../journey/application/journey_steps.dart';
-import '../../journey/domain/journey_step.dart';
-import '../../journey/presentation/step_look.dart';
 import '../../members/application/my_account.dart';
-import '../../reports/application/reports_providers.dart';
-import '../../reports/domain/time_with_god.dart';
 import '../application/current_profile.dart';
 import 'widgets/profile_photo.dart';
 
-/// « Mon profil » (validated on 23/10/2026), from the photo at the top of
-/// the home screen: who the member is (photo, name, church), three numbers
-/// (the streak, the steps, the time with God this month), their journey and
-/// the people they walk with. The gear opens the settings.
+/// « Mon profil », the member's card (validated on 23/10/2026, reduced on
+/// 19/11/2026 after the design critique): the photo (crowned with Premium),
+/// the name, the pseudo and the church, « Modifier mon profil »; under it,
+/// what the member filled in (number, church, assembly, city, country), a
+/// touch opening the form. Their numbers, their way and the people they walk
+/// with are in « Vous », the tab this card opens from; the settings too.
 @RoutePage()
 class ProfileScreen extends ConsumerWidget {
   const ProfileScreen({super.key});
@@ -39,29 +31,8 @@ class ProfileScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final t = context.t;
-    final me = t.me;
     final profile = ref.watch(currentProfileProvider).value;
     final account = ref.watch(myAccountProvider).value;
-    final streak = ref.watch(reportStreakProvider).value ?? 0;
-    final reached =
-        ref.watch(journeyStepsProvider).value ??
-        const <JourneyStep, DateTime>{};
-    final month = ref.watch(reportSummaryProvider(SummaryPeriod.month)).value;
-    final minutes = month == null ? 0 : minutesOfItems(month.items);
-    final authorities = ref.watch(authoritiesControllerProvider).value;
-    final requests = ref.watch(authorityRequestsProvider).value?.length ?? 0;
-    // the members who chose the user as disciple maker or authority
-    final disciples = ref.watch(disciplesListProvider()).value?.total ?? 0;
-    // the reports they sent in the app, not opened yet
-    final received = disciples > 0
-        ? ref.watch(receivedReportsUnreadProvider)
-        : 0;
-    final discipleMaker = authorities
-        ?.where((authority) => authority.isDiscipleMaker)
-        .firstOrNull;
-    final next = ref.watch(nextJourneyStepProvider);
-    // "Mon année avec Dieu": the year so far, or the one just ended
-    final storyYear = latestStoryYear(DateTime.now());
     // an incomplete profile (no name on the server) invites to fill it in
     final missingName = profile != null && !profile.hasName;
 
@@ -81,109 +52,54 @@ class ProfileScreen extends ConsumerWidget {
                 ?profile?.church,
                 ?profile?.assembly,
               ].where((part) => part.isNotEmpty).join(' · '),
-              stats: [
-                (
-                  value: t.home.daysShort(n: streak),
-                  label: me.streak,
-                  gold: true,
-                ),
-                (
-                  value: '${reached.length}/${JourneyStep.values.length}',
-                  label: me.steps,
-                  gold: false,
-                ),
-                (
-                  value: minutes.toDurationLabel(),
-                  label: me.timeMonth,
-                  gold: false,
-                ),
-              ],
             ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: AppSpacing.lg),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: [
-                  const SizedBox(height: 22),
-                  FadeSlideIn(child: SectionLabel(me.journey)),
-                  const SizedBox(height: 10),
-                  FadeSlideIn(
-                    child: SectionCard(
-                      children: [
-                        MenuTile(
-                          icon: AppIcons.journeyTile,
-                          title: t.journey.title,
-                          subtitle: [
-                            t.journey.count(
-                              n: reached.length,
-                              total: JourneyStep.values.length,
-                            ),
-                            if (next != null)
-                              me.nextStep(name: stepTexts(t, next.step).title),
-                          ].join(' · '),
-                          onTap: () =>
-                              context.router.push(const JourneyRoute()),
-                        ),
-                        MenuTile(
-                          icon: AppIcons.yearStoryTile,
-                          title: t.yearStory.moreTitle,
-                          subtitle: storyYear < DateTime.now().year
-                              ? t.yearStory.moreDone(year: storyYear)
-                              : t.yearStory.moreSoFar(year: storyYear),
-                          onTap: () => context.router.push(
-                            YearStoryRoute(year: storyYear),
-                          ),
-                        ),
-                      ],
-                    ),
+            if (profile != null)
+              Padding(
+                padding: const EdgeInsets.fromLTRB(
+                  AppSpacing.lg,
+                  22,
+                  AppSpacing.lg,
+                  0,
+                ),
+                child: FadeSlideIn(
+                  child: _Details(
+                    rows: [
+                      (
+                        icon: AppIcons.phone,
+                        label: t.auth.phone,
+                        // isolated left to right: in Arabic the digits of
+                        // the number would show reversed
+                        value:
+                            '\u2066${formatPhone(profile.phoneNumber)}\u2069',
+                      ),
+                      (
+                        icon: AppIcons.churchTile,
+                        label: t.auth.church.church,
+                        value: profile.church ?? '',
+                      ),
+                      (
+                        icon: AppIcons.churchTile,
+                        label: t.auth.church.assembly,
+                        value: profile.assembly ?? '',
+                      ),
+                      (
+                        icon: AppIcons.place,
+                        label: t.auth.church.city,
+                        value: profile.city ?? '',
+                      ),
+                      (
+                        icon: AppIcons.nationsTile,
+                        label: t.auth.church.country,
+                        value: switch (Country.tryParse(profile.country)) {
+                          final country? =>
+                            '${country.flag} ${country.name(LocaleSettings.currentLocale.languageCode)}',
+                          null => profile.country ?? '',
+                        },
+                      ),
+                    ].where((row) => row.value.trim().isNotEmpty).toList(),
                   ),
-                  const SizedBox(height: 22),
-                  FadeSlideIn(
-                    index: 1,
-                    child: SectionLabel(t.more.accompaniment),
-                  ),
-                  const SizedBox(height: 10),
-                  FadeSlideIn(
-                    index: 1,
-                    child: SectionCard(
-                      children: [
-                        MenuTile(
-                          icon: AppIcons.authoritiesTile,
-                          title: t.authorities.title,
-                          subtitle: requests > 0
-                              ? t.authorities.requestsCount(n: requests)
-                              : authorities == null
-                              ? null
-                              : discipleMaker != null
-                              ? t.authorities.discipleMakerOf(
-                                  name: discipleMaker.fullName,
-                                )
-                              : t.authorities.count(n: authorities.length),
-                          subtitleStrong: requests > 0,
-                          trailing: requests > 0 ? MenuBadge(requests) : null,
-                          onTap: () =>
-                              context.router.push(const AuthoritiesRoute()),
-                        ),
-                        if (disciples > 0)
-                          MenuTile(
-                            icon: AppIcons.disciplesTile,
-                            module: AppModule.prayer,
-                            title: t.more.disciples,
-                            subtitle: [
-                              t.disciples.count(n: disciples),
-                              if (received > 0)
-                                t.received.unreadCount(n: received),
-                            ].join(' · '),
-                            trailing: received > 0 ? MenuBadge(received) : null,
-                            onTap: () =>
-                                context.router.push(const DisciplesRoute()),
-                          ),
-                      ],
-                    ),
-                  ),
-                ],
+                ),
               ),
-            ),
           ],
         ),
       ),
@@ -191,28 +107,22 @@ class ProfileScreen extends ConsumerWidget {
   }
 }
 
-typedef _Stat = ({String value, String label, bool gold});
-
-/// The top, on the night blue: back, the title and the gear; the photo
-/// (crowned with Premium), the name, the pseudo and the church, « Modifier
-/// mon profil »; the three numbers.
+/// The card, on the night blue: back and the title; the photo, the name, the
+/// pseudo and the church; « Modifier mon profil ».
 class _Header extends StatelessWidget {
-  const _Header({
-    required this.name,
-    required this.details,
-    required this.stats,
-  });
+  const _Header({required this.name, required this.details});
 
   final String name;
   final String details;
-  final List<_Stat> stats;
 
   @override
   Widget build(BuildContext context) {
     final t = context.t;
     final top = MediaQuery.paddingOf(context).top;
+    void edit() => context.router.push(ChurchFormRoute(isEditing: true));
+
     return Container(
-      padding: EdgeInsets.fromLTRB(0, top, 0, 22),
+      padding: EdgeInsets.fromLTRB(0, top, 0, 26),
       decoration: const BoxDecoration(
         gradient: LinearGradient(
           begin: Alignment.topCenter,
@@ -254,35 +164,33 @@ class _Header extends StatelessWidget {
                           ),
                         ),
                       ),
-                      IconButton(
-                        tooltip: t.settings.title,
-                        onPressed: () =>
-                            context.router.push(const SettingsRoute()),
-                        icon: const Icon(AppIcons.settings),
-                      ),
+                      // the width of the back button: the title stays centred
+                      const SizedBox(width: 48),
                     ],
                   ),
                 ),
               ),
               const SizedBox(height: AppSpacing.sm),
-              const ProfilePhotoButton(),
+              const ProfilePhotoButton(onNight: true),
               const SizedBox(height: AppSpacing.md),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: AppSpacing.xl),
                 child: Column(
                   children: [
                     // the name opens the form too (« Ajoute ton nom »)
-                    GestureDetector(
-                      onTap: () =>
-                          context.router.push(ChurchFormRoute(isEditing: true)),
-                      child: Text(
-                        name,
-                        textAlign: TextAlign.center,
-                        style: const TextStyle(
-                          color: Colors.white,
-                          fontSize: 23,
-                          fontWeight: FontWeight.w800,
-                          letterSpacing: -0.4,
+                    Semantics(
+                      button: true,
+                      child: GestureDetector(
+                        onTap: edit,
+                        child: Text(
+                          name,
+                          textAlign: TextAlign.center,
+                          style: const TextStyle(
+                            color: Colors.white,
+                            fontSize: 23,
+                            fontWeight: FontWeight.w800,
+                            letterSpacing: -0.4,
+                          ),
                         ),
                       ),
                     ),
@@ -297,73 +205,52 @@ class _Header extends StatelessWidget {
                         ),
                       ),
                     ],
-                    const SizedBox(height: AppSpacing.md),
-                    Material(
-                      color: Colors.white.withValues(alpha: 0.14),
-                      shape: const StadiumBorder(),
-                      child: InkWell(
-                        customBorder: const StadiumBorder(),
-                        onTap: () => context.router.push(
-                          ChurchFormRoute(isEditing: true),
-                        ),
-                        child: Padding(
-                          padding: const EdgeInsets.symmetric(
-                            horizontal: 14,
-                            vertical: 7,
-                          ),
-                          child: Row(
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              const Icon(
-                                AppIcons.edit,
-                                size: 16,
-                                color: Colors.white,
+                    const SizedBox(height: AppSpacing.sm),
+                    // a pill of 36 pt in a target of 48 dp at least
+                    InkWell(
+                      onTap: edit,
+                      customBorder: const StadiumBorder(),
+                      child: ConstrainedBox(
+                        constraints: const BoxConstraints(minHeight: 48),
+                        child: Center(
+                          widthFactor: 1,
+                          child: DecoratedBox(
+                            decoration: ShapeDecoration(
+                              color: Colors.white.withValues(alpha: 0.14),
+                              shape: const StadiumBorder(),
+                            ),
+                            child: Padding(
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: 16,
+                                vertical: 9,
                               ),
-                              const SizedBox(width: 6),
-                              Text(
-                                t.me.edit,
-                                style: const TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 13,
-                                  fontWeight: FontWeight.w700,
-                                ),
+                              child: Row(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  const Icon(
+                                    AppIcons.edit,
+                                    size: 16,
+                                    color: Colors.white,
+                                  ),
+                                  const SizedBox(width: 6),
+                                  Flexible(
+                                    child: Text(
+                                      t.me.edit,
+                                      style: const TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 13.5,
+                                        fontWeight: FontWeight.w700,
+                                      ),
+                                    ),
+                                  ),
+                                ],
                               ),
-                            ],
+                            ),
                           ),
                         ),
                       ),
                     ),
                   ],
-                ),
-              ),
-              const SizedBox(height: 16),
-              // one slim bar of three numbers (23/10/2026: the three tiles
-              // took too much room)
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: AppSpacing.lg),
-                child: Container(
-                  padding: const EdgeInsets.symmetric(vertical: 10),
-                  decoration: BoxDecoration(
-                    color: Colors.white.withValues(alpha: 0.1),
-                    borderRadius: BorderRadius.circular(AppRadius.lg),
-                  ),
-                  child: IntrinsicHeight(
-                    child: Row(
-                      children: [
-                        for (final (i, stat) in stats.indexed) ...[
-                          if (i > 0)
-                            VerticalDivider(
-                              width: 1,
-                              thickness: 1,
-                              indent: 4,
-                              endIndent: 4,
-                              color: Colors.white.withValues(alpha: 0.15),
-                            ),
-                          Expanded(child: _StatTile(stat: stat)),
-                        ],
-                      ],
-                    ),
-                  ),
                 ),
               ),
             ],
@@ -374,46 +261,44 @@ class _Header extends StatelessWidget {
   }
 }
 
-class _StatTile extends StatelessWidget {
-  const _StatTile({required this.stat});
+typedef _Row = ({IconData icon, String label, String value});
 
-  final _Stat stat;
+/// What the member filled in, label above value; a touch opens the form.
+class _Details extends StatelessWidget {
+  const _Details({required this.rows});
+
+  final List<_Row> rows;
 
   @override
-  Widget build(BuildContext context) => Semantics(
-    label: '${stat.label} : ${stat.value}',
-    excludeSemantics: true,
-    child: Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 6),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          FittedBox(
-            fit: BoxFit.scaleDown,
-            child: Text(
-              stat.value,
-              maxLines: 1,
+  Widget build(BuildContext context) {
+    final scheme = Theme.of(context).colorScheme;
+    if (rows.isEmpty) {
+      return const SizedBox.shrink();
+    }
+    return SectionCard(
+      children: [
+        for (final row in rows)
+          ListTile(
+            leading: Icon(row.icon, color: scheme.onSurfaceVariant),
+            title: Text(
+              row.label,
               style: TextStyle(
-                color: stat.gold ? AppColors.goldLight : Colors.white,
-                fontSize: 17,
-                fontWeight: FontWeight.w800,
-              ),
-            ),
-          ),
-          FittedBox(
-            fit: BoxFit.scaleDown,
-            child: Text(
-              stat.label,
-              maxLines: 1,
-              style: TextStyle(
-                color: Colors.white.withValues(alpha: 0.7),
-                fontSize: 11,
+                fontSize: 12.5,
                 fontWeight: FontWeight.w600,
+                color: scheme.onSurfaceVariant,
               ),
             ),
+            subtitle: Text(
+              row.value,
+              style: TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.w600,
+                color: scheme.onSurface,
+              ),
+            ),
+            onTap: () => context.router.push(ChurchFormRoute(isEditing: true)),
           ),
-        ],
-      ),
-    ),
-  );
+      ],
+    );
+  }
 }

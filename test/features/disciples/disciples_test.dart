@@ -77,7 +77,7 @@ void main() {
           ],
         );
       await pumpApp(tester, token: 't', disciplesApi: api);
-      await openProfile(tester);
+      await openMenu(tester);
       await scrollTo(tester, find.text('Mes disciples'));
       await tester.tap(find.text('Mes disciples'));
       await tester.pumpAndSettle();
@@ -112,7 +112,7 @@ void main() {
 
     testWidgets('nobody chose me: no entry in Plus', (tester) async {
       await pumpApp(tester, token: 't');
-      await openProfile(tester);
+      await openMenu(tester);
 
       expect(find.text('Mes disciples'), findsNothing);
     });
@@ -123,7 +123,7 @@ void main() {
         token: 't',
         disciplesApi: FakeDisciplesApi([paul, marie]),
       );
-      await openProfile(tester);
+      await openMenu(tester);
 
       expect(find.text('2 disciples'), findsOneWidget);
       await scrollTo(tester, find.text('Mes disciples'));
@@ -158,7 +158,7 @@ void main() {
         ),
       ]),
     );
-    await openProfile(tester);
+    await openMenu(tester);
     await scrollTo(tester, find.text('Mes autorités spirituelles'));
     await tester.tap(find.text('Mes autorités spirituelles'));
     await tester.pumpAndSettle();
@@ -193,7 +193,7 @@ void main() {
         const Authority(id: 3, firstName: 'Marc', isDiscipleMaker: true),
       ]),
     );
-    await openProfile(tester);
+    await openMenu(tester);
     await scrollTo(tester, find.text('Mes autorités spirituelles'));
     await tester.tap(find.text('Mes autorités spirituelles'));
     await tester.pumpAndSettle();
@@ -221,7 +221,7 @@ void main() {
         token: 't',
         disciplesApi: FakeDisciplesApi(many(n)),
       );
-      await openProfile(tester);
+      await openMenu(tester);
       await scrollTo(tester, find.text('Mes disciples'));
       await tester.tap(find.text('Mes disciples'));
       await tester.pumpAndSettle();
@@ -342,7 +342,7 @@ void main() {
     Future<TestApp> openDisciples(WidgetTester tester) async {
       final api = FakeDisciplesApi([paul, claire])..reportsOf[11] = reports;
       final app = await pumpApp(tester, token: 't', disciplesApi: api);
-      await openProfile(tester);
+      await openMenu(tester);
       await scrollTo(tester, find.text('Mes disciples'));
       await tester.tap(find.text('Mes disciples'));
       await tester.pumpAndSettle();
@@ -443,7 +443,7 @@ void main() {
       final api = FakeDisciplesApi([paul, claire], [sent])
         ..reportsOf[11] = reports;
       final app = await pumpApp(tester, token: 't', disciplesApi: api);
-      await openProfile(tester);
+      await openMenu(tester);
       // in Mes disciples, on top
       await scrollTo(tester, find.text('Mes disciples'));
       await tester.tap(find.text('Mes disciples'));
@@ -517,7 +517,7 @@ void main() {
         ),
       ]);
       final app = await pumpApp(tester, token: 't', disciplesApi: api);
-      await openProfile(tester);
+      await openMenu(tester);
       await scrollTo(tester, find.text('Mes disciples'));
       await tester.tap(find.text('Mes disciples'));
       await tester.pumpAndSettle();
@@ -544,7 +544,7 @@ void main() {
         const Authority(id: 4, firstName: 'Clarisse', username: 'clarisse.n'),
       ]),
     );
-    await openProfile(tester);
+    await openMenu(tester);
     await scrollTo(tester, find.text('Mes autorités spirituelles'));
     await tester.tap(find.text('Mes autorités spirituelles'));
     await tester.pumpAndSettle();
@@ -654,7 +654,7 @@ void main() {
 
     testWidgets('a touch on it opens the verse in the Bible', (tester) async {
       final app = await pumpApp(tester, token: 't');
-      await openProfile(tester);
+      await openMenu(tester);
 
       app.homeWidgets.clicksController.add(Uri.parse('cmficonnect://verse'));
       await tester.pumpAndSettle();

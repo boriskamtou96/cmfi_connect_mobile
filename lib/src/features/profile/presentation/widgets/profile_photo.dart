@@ -8,6 +8,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import '../../../../core/i18n/strings.g.dart';
 import '../../../../core/network/app_exception_message.dart';
 import '../../../../core/services/image_picking.dart';
+import '../../../../core/theme/app_colors.dart';
 import '../../../../core/theme/app_icons.dart';
 import '../../../../core/widgets/adaptive.dart';
 import '../../../../core/widgets/adaptive_menus.dart';
@@ -22,9 +23,13 @@ import '../../infrastructure/profile_api.dart';
 /// the gallery or removes it. Seen by the other members wherever the user's
 /// name appears.
 class ProfilePhotoButton extends HookConsumerWidget {
-  const ProfilePhotoButton({this.size = 96, super.key});
+  const ProfilePhotoButton({this.size = 96, this.onNight = false, super.key});
 
   final double size;
+
+  /// On the night blue of « Mon profil »: the initials on a white disc in
+  /// both themes (the dark one would melt into the night).
+  final bool onNight;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -60,6 +65,8 @@ class ProfilePhotoButton extends HookConsumerWidget {
                   initials: profile?.initials ?? '',
                   photo: profile?.avatar,
                   size: size,
+                  background: onNight ? Colors.white : null,
+                  foreground: onNight ? AppColors.primary : null,
                 ),
               ),
               if (busy.value)

@@ -1,7 +1,9 @@
 import 'package:cmfi_connect/src/core/i18n/strings.g.dart';
+import 'package:cmfi_connect/src/features/authorities/domain/authority.dart';
 import 'package:cmfi_connect/src/features/fasts/presentation/fasts_screen.dart';
 import 'package:cmfi_connect/src/features/games/presentation/games_screen.dart';
 import 'package:cmfi_connect/src/features/hymns/presentation/hymns_screen.dart';
+import 'package:cmfi_connect/src/features/members/domain/member.dart';
 import 'package:cmfi_connect/src/features/prayer/presentation/prayer_screen.dart';
 import 'package:cmfi_connect/src/features/profile/presentation/profile_screen.dart';
 import 'package:cmfi_connect/src/features/reports/presentation/reading/reading_screen.dart';
@@ -66,6 +68,7 @@ void main() {
       ('Mes jeûnes', FastsScreen),
       ('Mes lectures', ReadingScreen),
     ]) {
+      await scrollTo(tester, inMenu(title));
       await tester.tap(inMenu(title));
       await tester.pumpAndSettle();
       expect(find.byType(screen), findsOneWidget, reason: title);
@@ -73,7 +76,80 @@ void main() {
       await tester.pumpAndSettle();
       expect(find.byType(MenuScreen), findsOneWidget);
     }
+    await scrollTo(tester, inMenu('Réglages'));
     expect(inMenu('Réglages'), findsOneWidget);
+  });
+
+  testWidgets('« Vous »: the people the member walks with, and what waits '
+      'for them, also on the tab', (tester) async {
+    await pumpApp(
+      tester,
+      token: 't',
+      authoritiesApi: FakeAuthoritiesApi(const [], [
+        AuthorityRequest(
+          id: 9,
+          from: MemberCard(
+            username: 'clarisse.nguele',
+            firstName: 'Clarisse',
+            lastName: 'Nguele',
+          ),
+          isDiscipleMaker: true,
+        ),
+      ]),
+    );
+    await openMenu(tester);
+
+    await scrollTo(tester, inMenu('Mes autorités spirituelles'));
+    expect(inMenu('1 demande à voir'), findsOneWidget);
+    // the tab tells it too
+    expect(
+      find.descendant(of: find.byType(NavigationBar), matching: find.text('1')),
+      findsOneWidget,
+    );
+  });
+
+  testWidgets('« Vous »: one way of the member, the steps and the year '
+      'with the souls, the fasts and the readings', (tester) async {
+    await pumpApp(tester, token: 't');
+    await openMenu(tester);
+
+    for (final title in [
+      'Mes étapes',
+      'Mon année avec Dieu',
+      'Suivi des âmes',
+      'Mes jeûnes',
+      'Mes lectures',
+    ]) {
+      await scrollTo(tester, inMenu(title));
+      expect(inMenu(title), findsOneWidget, reason: title);
+    }
+  });
+
+  testWidgets('« Vous »: a member who has filled nothing is invited to '
+      'their first report, without three zeros', (tester) async {
+    await pumpApp(tester, token: 't');
+    await openMenu(tester);
+
+    expect(
+      inMenu(
+        'Remplis ton premier compte rendu : ta série commence '
+        "aujourd'hui.",
+      ),
+      findsOneWidget,
+    );
+    expect(inMenu('0 j'), findsNothing);
+  });
+
+  testWidgets('« Mon profil » is the card: no numbers, no settings', (
+    tester,
+  ) async {
+    await pumpApp(tester, token: 't', account: sampleAccount);
+    await openProfile(tester);
+
+    expect(find.byType(ProfileScreen), findsOneWidget);
+    expect(find.text('Modifier mon profil'), findsOneWidget);
+    expect(find.byTooltip('Réglages'), findsNothing);
+    expect(find.text('Mes étapes'), findsNothing);
   });
 
   testWidgets('the photo of the home screen opens « Vous »', (tester) async {

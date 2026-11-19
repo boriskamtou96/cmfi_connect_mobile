@@ -2801,6 +2801,7 @@
   },
   "me": {
     "title": "Mon profil",
+    "firstDay": "Remplis ton premier compte rendu : ta série commence aujourd'hui.",
     "edit": "Modifier mon profil",
     "journey": "Mon cheminement",
     "streak": "Série",

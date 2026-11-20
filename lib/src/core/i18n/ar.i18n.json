@@ -2641,6 +2641,37 @@
       "one": "رسالة أخرى خارج هذه الدورة",
       "other": "{n} رسائل أخرى خارج هذه الدورة"
     },
+    "batchDownload(plural, param=n)": {
+      "one": "تنزيل هذه الرسالة",
+      "other": "تنزيل الرسائل الـ {n}"
+    },
+    "batchRest(plural, param=n)": {
+      "one": "تنزيل الرسالة الناقصة",
+      "other": "تنزيل الرسائل الناقصة ({n})"
+    },
+    "batchTitle": "الاحتفاظ بها على هاتفك؟",
+    "batchText(plural, param=n)": {
+      "one": "رسالة واحدة، {size}، للاستماع دون شبكة. يُفضَّل الواي فاي.",
+      "other": "{n} رسائل، {size}، للاستماع دون شبكة. يُفضَّل الواي فاي: تُنزَّل واحدة تلو الأخرى."
+    },
+    "batchConfirm": "تنزيل",
+    "batchProgress(plural, param=total)": {
+      "one": "جارٍ التنزيل: {done} من {total}",
+      "other": "جارٍ التنزيل: {done} من {total}"
+    },
+    "batchStop": "إيقاف",
+    "batchKept(plural, param=n)": {
+      "one": "هذه الرسالة على هاتفك",
+      "other": "الرسائل الـ {n} على هاتفك"
+    },
+    "batchRemove": "إزالة",
+    "batchRemoveTitle": "إزالة هذه الرسائل من الهاتف؟",
+    "batchRemoveText(plural, param=n)": {
+      "one": "لن تُسمع بعد الآن دون شبكة. يمكنك تنزيلها من جديد.",
+      "other": "لن تُسمع الرسائل الـ {n} دون شبكة. يمكنك تنزيلها من جديد."
+    },
+    "sizeMb": "{n} م.ب",
+    "sizeGb": "{n} ج.ب",
     "daysCount(plural, param=n)": {
       "one": "يوم واحد",
       "other": "{n} أيام"

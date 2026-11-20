@@ -2311,6 +2311,37 @@
       "one": "1 weitere Botschaft außerhalb dieser Ausgabe",
       "other": "{n} weitere Botschaften außerhalb dieser Ausgabe"
     },
+    "batchDownload(plural, param=n)": {
+      "one": "Diese Botschaft herunterladen",
+      "other": "Die {n} Botschaften herunterladen"
+    },
+    "batchRest(plural, param=n)": {
+      "one": "Die fehlende Botschaft herunterladen",
+      "other": "Die {n} fehlenden Botschaften herunterladen"
+    },
+    "batchTitle": "Auf deinem Handy behalten?",
+    "batchText(plural, param=n)": {
+      "one": "1 Botschaft, {size}, ohne Netz zu hören. WLAN ist besser.",
+      "other": "{n} Botschaften, {size}, ohne Netz zu hören. WLAN ist besser: Sie werden nacheinander heruntergeladen."
+    },
+    "batchConfirm": "Herunterladen",
+    "batchProgress(plural, param=total)": {
+      "one": "Download: {done} von {total}",
+      "other": "Download: {done} von {total}"
+    },
+    "batchStop": "Stoppen",
+    "batchKept(plural, param=n)": {
+      "one": "Diese Botschaft ist auf deinem Handy",
+      "other": "Die {n} Botschaften sind auf deinem Handy"
+    },
+    "batchRemove": "Entfernen",
+    "batchRemoveTitle": "Diese Botschaften vom Handy entfernen?",
+    "batchRemoveText(plural, param=n)": {
+      "one": "Sie ist dann ohne Netz nicht mehr zu hören. Du kannst sie wieder herunterladen.",
+      "other": "Die {n} Botschaften sind dann ohne Netz nicht mehr zu hören. Du kannst sie wieder herunterladen."
+    },
+    "sizeMb": "{n} MB",
+    "sizeGb": "{n} GB",
     "daysCount(plural, param=n)": {
       "one": "{n} Tag",
       "other": "{n} Tage"

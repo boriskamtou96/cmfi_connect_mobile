@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -5,15 +7,21 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../core/i18n/strings.g.dart';
+import '../../../core/network/app_exception_message.dart';
+import '../../../core/services/premium_store.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_icons.dart';
 import '../../../core/theme/app_spacing.dart';
 import '../../../core/theme/app_tones.dart';
 import '../../../core/widgets/adaptive.dart';
+import '../../../core/widgets/adaptive_dialogs.dart';
 import '../../../core/widgets/app_back_button.dart';
+import '../../../core/widgets/app_toast.dart';
 import '../../../core/widgets/error_view.dart';
 import '../../../core/widgets/section_card.dart';
 import '../../../core/widgets/skeleton.dart';
+import '../../../routing/app_router.dart';
+import '../application/teaching_batch.dart';
 import '../application/teaching_library.dart';
 import '../application/teachings.dart';
 import '../domain/play_queue.dart';
@@ -319,6 +327,23 @@ class TeachingsScreen extends HookConsumerWidget {
                       selected: chosen.value.day,
                       onSelect: (day) =>
                           chosen.value = chosen.value.copyWith(day: day),
+                    ),
+                  ),
+                // the whole edition, or the day chosen, kept on the phone
+                if (edition != null)
+                  SliverToBoxAdapter(
+                    child: _BatchDownload(
+                      edition: edition,
+                      day: chosen.value.day,
+                      count: switch (chosen.value.day) {
+                        null => edition.count,
+                        final day =>
+                          facets?.days
+                                  .where((one) => one.day == day)
+                                  .firstOrNull
+                                  ?.count ??
+                              0,
+                      },
                     ),
                   ),
                 if (chosen.value.speaker.isNotEmpty ||
@@ -933,6 +958,191 @@ class _CardPill extends StatelessWidget {
             ],
           ),
         ),
+      ),
+    );
+  }
+}
+
+/// The edition opened, or the day chosen in it, kept on the phone in one go
+/// (Premium, like a single message; without it, the Premium page): « ☁
+/// Télécharger les 133 messages » (or those missing), then « Téléchargement
+/// : 12 sur 133 » and « Arrêter », then « Les 133 messages sont sur ton
+/// téléphone » and « Retirer ». Before it starts, how many and how heavy.
+class _BatchDownload extends HookConsumerWidget {
+  const _BatchDownload({
+    required this.edition,
+    required this.day,
+    required this.count,
+  });
+
+  final TeachingEditionFacet edition;
+  final int? day;
+
+  /// How many messages the edition or the day holds.
+  final int count;
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final t = context.t.teachings;
+    final scheme = Theme.of(context).colorScheme;
+    final tone = AppModule.reports.tone(context);
+    final batch = ref.watch(teachingBatchProvider);
+    final notifier = ref.read(teachingBatchProvider.notifier);
+    final kept =
+        ref.watch(teachingDownloadsProvider).value?.kept ??
+        const <int, Teaching>{};
+    final premium = ref.watch(premiumProvider).value ?? false;
+    final reading = useState(false);
+    final scope = TeachingBatch.scopeOf(edition.id, day);
+    final keptHere = [
+      for (final teaching in kept.values)
+        if (teaching.edition?.id == edition.id &&
+            (day == null || teaching.dayNumber == day))
+          teaching,
+    ];
+    if (count == 0) {
+      return const SizedBox.shrink();
+    }
+
+    Future<void> start() async {
+      if (!premium) {
+        unawaited(context.router.push(const PremiumRoute()));
+        return;
+      }
+      final toast = ref.read(toasterProvider).of(context);
+      final messages = context.t;
+      reading.value = true;
+      try {
+        final all = await notifier.messagesOf(
+          TeachingQuery(
+            category: edition.categorySlug.isNotEmpty
+                ? edition.categorySlug
+                : edition.categoryName,
+            edition: edition.id,
+            day: day,
+          ),
+        );
+        final missing = [
+          for (final teaching in all)
+            if (!kept.containsKey(teaching.id)) teaching,
+        ];
+        if (!context.mounted || missing.isEmpty) {
+          return;
+        }
+        // read: the spinner goes before the question
+        reading.value = false;
+        final bytes = missing.fold(
+          0,
+          (sum, teaching) => sum + teaching.audio.sizeBytes,
+        );
+        final go = await showConfirmDialog(
+          context,
+          title: t.batchTitle,
+          text: t.batchText(
+            n: missing.length,
+            size: teachingSize(context, bytes),
+          ),
+          confirmLabel: t.batchConfirm,
+        );
+        if (go) {
+          unawaited(notifier.start(scope, all));
+        }
+      } on Object catch (error) {
+        toast.error(userMessageFor(error, messages));
+      } finally {
+        if (context.mounted) {
+          reading.value = false;
+        }
+      }
+    }
+
+    Future<void> remove() async {
+      final go = await showConfirmDialog(
+        context,
+        title: t.batchRemoveTitle,
+        text: t.batchRemoveText(n: keptHere.length),
+        confirmLabel: t.batchRemove,
+        destructive: true,
+      );
+      if (go) {
+        await notifier.removeAll(keptHere);
+      }
+    }
+
+    final small = TextStyle(
+      fontSize: 14,
+      fontWeight: FontWeight.w600,
+      color: scheme.onSurfaceVariant,
+    );
+    final Widget content;
+    if (batch.running && batch.scope == scope) {
+      content = Row(
+        children: [
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  t.batchProgress(done: batch.done, total: batch.total),
+                  style: small,
+                ),
+                const SizedBox(height: AppSpacing.xs),
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(AppRadius.sm),
+                  child: LinearProgressIndicator(
+                    value: batch.done / batch.total,
+                    minHeight: 4,
+                    color: tone.onSoft,
+                    backgroundColor: tone.soft,
+                  ),
+                ),
+              ],
+            ),
+          ),
+          const SizedBox(width: AppSpacing.sm),
+          TextButton(onPressed: notifier.stop, child: Text(t.batchStop)),
+        ],
+      );
+    } else if (keptHere.length >= count) {
+      content = Row(
+        children: [
+          Icon(AppIcons.downloaded, size: 20, color: tone.onSoft),
+          const SizedBox(width: AppSpacing.sm),
+          Expanded(
+            child: Text(t.batchKept(n: count), style: small),
+          ),
+          TextButton(onPressed: remove, child: Text(t.batchRemove)),
+        ],
+      );
+    } else {
+      final missing = count - keptHere.length;
+      content = Align(
+        alignment: AlignmentDirectional.centerStart,
+        child: TextButton.icon(
+          // one batch at a time
+          onPressed: reading.value || batch.running ? null : start,
+          icon: reading.value
+              ? const AppSpinner(size: 18)
+              : Icon(premium ? AppIcons.downloadOffline : AppIcons.premiumLock),
+          label: Text(
+            keptHere.isEmpty
+                ? t.batchDownload(n: count)
+                : t.batchRest(n: missing),
+          ),
+        ),
+      );
+    }
+
+    return Padding(
+      padding: const EdgeInsetsDirectional.fromSTEB(
+        AppSpacing.lg,
+        AppSpacing.sm,
+        AppSpacing.lg,
+        0,
+      ),
+      child: ConstrainedBox(
+        constraints: const BoxConstraints(minHeight: 48),
+        child: content,
       ),
     );
   }

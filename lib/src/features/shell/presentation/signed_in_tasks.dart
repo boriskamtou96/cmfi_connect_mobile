@@ -56,6 +56,7 @@ import '../../reports/domain/report_sending.dart';
 import '../../seek_first/application/seek_first.dart';
 import '../../souls/application/souls.dart';
 import '../../teachings/application/now_playing.dart';
+import '../../teachings/application/teaching_batch.dart';
 import '../../update/presentation/update_prompts.dart';
 import '../../verses/application/verse_of_the_day.dart';
 import '../../verses/domain/verse.dart';
@@ -120,6 +121,8 @@ class SignedInTasks extends HookConsumerWidget {
           unawaited(ref.read(memoryVersesProvider.notifier).forget());
           unawaited(ref.read(soulsProvider.notifier).forget());
           unawaited(ref.read(nowPlayingProvider.notifier).stop());
+          // and the messages downloading in a batch
+          ref.read(teachingBatchProvider.notifier).stop();
           // the fasts were the account's
           unawaited(ref.read(fastsProvider.notifier).forget());
           // and its stopwatch

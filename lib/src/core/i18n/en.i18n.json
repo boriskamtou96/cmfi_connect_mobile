@@ -2312,6 +2312,37 @@
       "one": "1 more message, outside this edition",
       "other": "{n} more messages, outside this edition"
     },
+    "batchDownload(plural, param=n)": {
+      "one": "Download this message",
+      "other": "Download the {n} messages"
+    },
+    "batchRest(plural, param=n)": {
+      "one": "Download the missing message",
+      "other": "Download the {n} missing messages"
+    },
+    "batchTitle": "Keep on your phone?",
+    "batchText(plural, param=n)": {
+      "one": "1 message, {size}, to listen to without network. Wi-Fi is better.",
+      "other": "{n} messages, {size}, to listen to without network. Wi-Fi is better: they download one after the other."
+    },
+    "batchConfirm": "Download",
+    "batchProgress(plural, param=total)": {
+      "one": "Downloading: {done} of {total}",
+      "other": "Downloading: {done} of {total}"
+    },
+    "batchStop": "Stop",
+    "batchKept(plural, param=n)": {
+      "one": "This message is on your phone",
+      "other": "The {n} messages are on your phone"
+    },
+    "batchRemove": "Remove",
+    "batchRemoveTitle": "Remove these messages from your phone?",
+    "batchRemoveText(plural, param=n)": {
+      "one": "It will no longer play without network. You can download it again.",
+      "other": "The {n} messages will no longer play without network. You can download them again."
+    },
+    "sizeMb": "{n} MB",
+    "sizeGb": "{n} GB",
     "daysCount(plural, param=n)": {
       "one": "{n} day",
       "other": "{n} days"

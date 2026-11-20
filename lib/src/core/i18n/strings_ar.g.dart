@@ -1911,6 +1911,37 @@ class _Translations$teachings$ar extends Translations$teachings$fr {
 		one: 'رسالة أخرى خارج هذه الدورة',
 		other: '${n} رسائل أخرى خارج هذه الدورة',
 	);
+	@override String batchDownload({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n,
+		one: 'تنزيل هذه الرسالة',
+		other: 'تنزيل الرسائل الـ ${n}',
+	);
+	@override String batchRest({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n,
+		one: 'تنزيل الرسالة الناقصة',
+		other: 'تنزيل الرسائل الناقصة (${n})',
+	);
+	@override String get batchTitle => 'الاحتفاظ بها على هاتفك؟';
+	@override String batchText({required num n, required Object size}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n,
+		one: 'رسالة واحدة، ${size}، للاستماع دون شبكة. يُفضَّل الواي فاي.',
+		other: '${n} رسائل، ${size}، للاستماع دون شبكة. يُفضَّل الواي فاي: تُنزَّل واحدة تلو الأخرى.',
+	);
+	@override String get batchConfirm => 'تنزيل';
+	@override String batchProgress({required num total, required Object done}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(total,
+		one: 'جارٍ التنزيل: ${done} من ${total}',
+		other: 'جارٍ التنزيل: ${done} من ${total}',
+	);
+	@override String get batchStop => 'إيقاف';
+	@override String batchKept({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n,
+		one: 'هذه الرسالة على هاتفك',
+		other: 'الرسائل الـ ${n} على هاتفك',
+	);
+	@override String get batchRemove => 'إزالة';
+	@override String get batchRemoveTitle => 'إزالة هذه الرسائل من الهاتف؟';
+	@override String batchRemoveText({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n,
+		one: 'لن تُسمع بعد الآن دون شبكة. يمكنك تنزيلها من جديد.',
+		other: 'لن تُسمع الرسائل الـ ${n} دون شبكة. يمكنك تنزيلها من جديد.',
+	);
+	@override String sizeMb({required Object n}) => '${n} م.ب';
+	@override String sizeGb({required Object n}) => '${n} ج.ب';
 	@override String daysCount({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n,
 		one: 'يوم واحد',
 		other: '${n} أيام',
@@ -6628,6 +6659,19 @@ extension on TranslationsAr {
 			'teachings.editions' => 'الدورات',
 			'teachings.allOfCategory' => 'كل الرسائل',
 			'teachings.outsideEdition' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n, one: 'رسالة أخرى خارج هذه الدورة', other: '${n} رسائل أخرى خارج هذه الدورة', ), 
+			'teachings.batchDownload' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n, one: 'تنزيل هذه الرسالة', other: 'تنزيل الرسائل الـ ${n}', ), 
+			'teachings.batchRest' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n, one: 'تنزيل الرسالة الناقصة', other: 'تنزيل الرسائل الناقصة (${n})', ), 
+			'teachings.batchTitle' => 'الاحتفاظ بها على هاتفك؟',
+			'teachings.batchText' => ({required num n, required Object size}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n, one: 'رسالة واحدة، ${size}، للاستماع دون شبكة. يُفضَّل الواي فاي.', other: '${n} رسائل، ${size}، للاستماع دون شبكة. يُفضَّل الواي فاي: تُنزَّل واحدة تلو الأخرى.', ), 
+			'teachings.batchConfirm' => 'تنزيل',
+			'teachings.batchProgress' => ({required num total, required Object done}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(total, one: 'جارٍ التنزيل: ${done} من ${total}', other: 'جارٍ التنزيل: ${done} من ${total}', ), 
+			'teachings.batchStop' => 'إيقاف',
+			'teachings.batchKept' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n, one: 'هذه الرسالة على هاتفك', other: 'الرسائل الـ ${n} على هاتفك', ), 
+			'teachings.batchRemove' => 'إزالة',
+			'teachings.batchRemoveTitle' => 'إزالة هذه الرسائل من الهاتف؟',
+			'teachings.batchRemoveText' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n, one: 'لن تُسمع بعد الآن دون شبكة. يمكنك تنزيلها من جديد.', other: 'لن تُسمع الرسائل الـ ${n} دون شبكة. يمكنك تنزيلها من جديد.', ), 
+			'teachings.sizeMb' => ({required Object n}) => '${n} م.ب',
+			'teachings.sizeGb' => ({required Object n}) => '${n} ج.ب',
 			'teachings.daysCount' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n, one: 'يوم واحد', other: '${n} أيام', ), 
 			'teachings.andOthers' => ({required num n, required Object name}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n, one: '${name} وآخر', other: '${name} و${n} آخرون', ), 
 			'teachings.showCount' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n, one: 'عرض رسالة واحدة', other: 'عرض ${n} رسائل', ), 
@@ -6877,6 +6921,8 @@ extension on TranslationsAr {
 			'journey.steps.firstSoul.title' => 'الزارع',
 			'journey.steps.firstSoul.text' => 'تابع أول نفس لك.',
 			'journey.steps.tenSouls.title' => 'عشر نفوس',
+			_ => null,
+		} ?? switch (path) {
 			'journey.steps.tenSouls.text' => 'تابع 10 أشخاص في متابعة النفوس.',
 			'journey.steps.soulBaptized.title' => 'نفس معمَّدة',
 			'journey.steps.soulBaptized.text' => 'شخص تتابعه يصل إلى المعمودية.',
@@ -6890,8 +6936,6 @@ extension on TranslationsAr {
 			'journey.daily.prayer' => 'القيام بخلوة صلاة',
 			'journey.daily.word' => 'قراءة إصحاح من الكتاب المقدس',
 			'journey.daily.wordPlan' => 'قراءة إصحاحات الخطة',
-			_ => null,
-		} ?? switch (path) {
 			'journey.daily.meditation' => 'التأمل في الكلمة',
 			'journey.daily.allDone' => 'أنجزت الخطوات الأربع. يومًا طيبًا مع الله!',
 			'journey.daily.done' => 'تم',

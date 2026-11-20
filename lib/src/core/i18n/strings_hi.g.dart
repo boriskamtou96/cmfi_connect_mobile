@@ -1657,6 +1657,37 @@ class _Translations$teachings$hi extends Translations$teachings$fr {
 		one: 'इस संस्करण के बाहर ${n} और संदेश',
 		other: 'इस संस्करण के बाहर ${n} और संदेश',
 	);
+	@override String batchDownload({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n,
+		one: 'यह संदेश डाउनलोड करें',
+		other: 'सभी ${n} संदेश डाउनलोड करें',
+	);
+	@override String batchRest({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n,
+		one: 'बचा हुआ संदेश डाउनलोड करें',
+		other: 'बचे हुए ${n} संदेश डाउनलोड करें',
+	);
+	@override String get batchTitle => 'अपने फ़ोन पर रखें?';
+	@override String batchText({required num n, required Object size}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n,
+		one: '1 संदेश, ${size}, बिना नेटवर्क सुनने के लिए। वाई-फ़ाई बेहतर है।',
+		other: '${n} संदेश, ${size}, बिना नेटवर्क सुनने के लिए। वाई-फ़ाई बेहतर है: ये एक-एक करके डाउनलोड होंगे।',
+	);
+	@override String get batchConfirm => 'डाउनलोड करें';
+	@override String batchProgress({required num total, required Object done}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(total,
+		one: 'डाउनलोड हो रहा है: ${total} में से ${done}',
+		other: 'डाउनलोड हो रहा है: ${total} में से ${done}',
+	);
+	@override String get batchStop => 'रोकें';
+	@override String batchKept({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n,
+		one: 'यह संदेश तुम्हारे फ़ोन पर है',
+		other: 'सभी ${n} संदेश तुम्हारे फ़ोन पर हैं',
+	);
+	@override String get batchRemove => 'हटाएँ';
+	@override String get batchRemoveTitle => 'इन संदेशों को फ़ोन से हटाएँ?';
+	@override String batchRemoveText({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n,
+		one: 'यह बिना नेटवर्क नहीं सुना जा सकेगा। तुम इसे फिर से डाउनलोड कर सकते हो।',
+		other: 'ये ${n} संदेश बिना नेटवर्क नहीं सुने जा सकेंगे। तुम इन्हें फिर से डाउनलोड कर सकते हो।',
+	);
+	@override String sizeMb({required Object n}) => '${n} MB';
+	@override String sizeGb({required Object n}) => '${n} GB';
 	@override String daysCount({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n,
 		one: '${n} दिन',
 		other: '${n} दिन',
@@ -6158,6 +6189,19 @@ extension on TranslationsHi {
 			'teachings.editions' => 'संस्करण',
 			'teachings.allOfCategory' => 'सभी संदेश',
 			'teachings.outsideEdition' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n, one: 'इस संस्करण के बाहर ${n} और संदेश', other: 'इस संस्करण के बाहर ${n} और संदेश', ), 
+			'teachings.batchDownload' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n, one: 'यह संदेश डाउनलोड करें', other: 'सभी ${n} संदेश डाउनलोड करें', ), 
+			'teachings.batchRest' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n, one: 'बचा हुआ संदेश डाउनलोड करें', other: 'बचे हुए ${n} संदेश डाउनलोड करें', ), 
+			'teachings.batchTitle' => 'अपने फ़ोन पर रखें?',
+			'teachings.batchText' => ({required num n, required Object size}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n, one: '1 संदेश, ${size}, बिना नेटवर्क सुनने के लिए। वाई-फ़ाई बेहतर है।', other: '${n} संदेश, ${size}, बिना नेटवर्क सुनने के लिए। वाई-फ़ाई बेहतर है: ये एक-एक करके डाउनलोड होंगे।', ), 
+			'teachings.batchConfirm' => 'डाउनलोड करें',
+			'teachings.batchProgress' => ({required num total, required Object done}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(total, one: 'डाउनलोड हो रहा है: ${total} में से ${done}', other: 'डाउनलोड हो रहा है: ${total} में से ${done}', ), 
+			'teachings.batchStop' => 'रोकें',
+			'teachings.batchKept' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n, one: 'यह संदेश तुम्हारे फ़ोन पर है', other: 'सभी ${n} संदेश तुम्हारे फ़ोन पर हैं', ), 
+			'teachings.batchRemove' => 'हटाएँ',
+			'teachings.batchRemoveTitle' => 'इन संदेशों को फ़ोन से हटाएँ?',
+			'teachings.batchRemoveText' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n, one: 'यह बिना नेटवर्क नहीं सुना जा सकेगा। तुम इसे फिर से डाउनलोड कर सकते हो।', other: 'ये ${n} संदेश बिना नेटवर्क नहीं सुने जा सकेंगे। तुम इन्हें फिर से डाउनलोड कर सकते हो।', ), 
+			'teachings.sizeMb' => ({required Object n}) => '${n} MB',
+			'teachings.sizeGb' => ({required Object n}) => '${n} GB',
 			'teachings.daysCount' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n, one: '${n} दिन', other: '${n} दिन', ), 
 			'teachings.andOthers' => ({required num n, required Object name}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n, one: '${name} और 1 अन्य', other: '${name} और ${n} अन्य', ), 
 			'teachings.showCount' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n, one: '${n} संदेश दिखाएँ', other: '${n} संदेश दिखाएँ', ), 
@@ -6407,6 +6451,8 @@ extension on TranslationsHi {
 			'journey.steps.firstSoul.title' => 'बोने वाला',
 			'journey.steps.firstSoul.text' => 'अपनी पहली आत्मा का साथ दो।',
 			'journey.steps.tenSouls.title' => 'दस आत्माएँ',
+			_ => null,
+		} ?? switch (path) {
 			'journey.steps.tenSouls.text' => 'आत्माओं की देखभाल में 10 लोगों का साथ दो।',
 			'journey.steps.soulBaptized.title' => 'एक आत्मा का बपतिस्मा',
 			'journey.steps.soulBaptized.text' => 'जिसका तुम साथ देते हो, उसका बपतिस्मा हुआ।',
@@ -6420,8 +6466,6 @@ extension on TranslationsHi {
 			'journey.daily.prayer' => 'एक प्रार्थना-समय करो',
 			'journey.daily.word' => 'बाइबल का एक अध्याय पढ़ो',
 			'journey.daily.wordPlan' => 'योजना के अध्याय पढ़ो',
-			_ => null,
-		} ?? switch (path) {
 			'journey.daily.meditation' => 'वचन पर मनन करो',
 			'journey.daily.allDone' => 'चारों क़दम पूरे हुए। परमेश्वर के साथ तुम्हारा दिन शुभ हो!',
 			'journey.daily.done' => 'पूरा',

@@ -2228,6 +2228,31 @@
       "one": "另有 {n} 篇信息不在本届",
       "other": "另有 {n} 篇信息不在本届"
     },
+    "batchDownload(plural, param=n)": {
+      "other": "下载这 {n} 篇信息"
+    },
+    "batchRest(plural, param=n)": {
+      "other": "下载缺少的 {n} 篇信息"
+    },
+    "batchTitle": "保存到手机？",
+    "batchText(plural, param=n)": {
+      "other": "{n} 篇信息，{size}，可离线收听。建议使用 Wi-Fi：将逐篇下载。"
+    },
+    "batchConfirm": "下载",
+    "batchProgress(plural, param=total)": {
+      "other": "正在下载：{done}/{total}"
+    },
+    "batchStop": "停止",
+    "batchKept(plural, param=n)": {
+      "other": "这 {n} 篇信息已保存在手机上"
+    },
+    "batchRemove": "移除",
+    "batchRemoveTitle": "从手机移除这些信息？",
+    "batchRemoveText(plural, param=n)": {
+      "other": "这 {n} 篇信息将无法离线收听。你可以重新下载。"
+    },
+    "sizeMb": "{n} MB",
+    "sizeGb": "{n} GB",
     "daysCount(plural, param=n)": {
       "one": "{n} 天",
       "other": "{n} 天"

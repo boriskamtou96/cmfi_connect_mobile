@@ -1658,6 +1658,37 @@ class _Translations$teachings$es extends Translations$teachings$fr {
 		one: '1 mensaje más, fuera de esta edición',
 		other: '${n} mensajes más, fuera de esta edición',
 	);
+	@override String batchDownload({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('es'))(n,
+		one: 'Descargar este mensaje',
+		other: 'Descargar los ${n} mensajes',
+	);
+	@override String batchRest({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('es'))(n,
+		one: 'Descargar el mensaje que falta',
+		other: 'Descargar los ${n} mensajes que faltan',
+	);
+	@override String get batchTitle => '¿Guardar en tu teléfono?';
+	@override String batchText({required num n, required Object size}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('es'))(n,
+		one: '1 mensaje, ${size}, para escuchar sin red. Mejor con wifi.',
+		other: '${n} mensajes, ${size}, para escuchar sin red. Mejor con wifi: se descargan uno tras otro.',
+	);
+	@override String get batchConfirm => 'Descargar';
+	@override String batchProgress({required num total, required Object done}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('es'))(total,
+		one: 'Descargando: ${done} de ${total}',
+		other: 'Descargando: ${done} de ${total}',
+	);
+	@override String get batchStop => 'Detener';
+	@override String batchKept({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('es'))(n,
+		one: 'Este mensaje está en tu teléfono',
+		other: 'Los ${n} mensajes están en tu teléfono',
+	);
+	@override String get batchRemove => 'Quitar';
+	@override String get batchRemoveTitle => '¿Quitar estos mensajes del teléfono?';
+	@override String batchRemoveText({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('es'))(n,
+		one: 'Ya no se podrá escuchar sin red. Podrás descargarlo de nuevo.',
+		other: 'Los ${n} mensajes ya no se podrán escuchar sin red. Podrás descargarlos de nuevo.',
+	);
+	@override String sizeMb({required Object n}) => '${n} MB';
+	@override String sizeGb({required Object n}) => '${n} GB';
 	@override String daysCount({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('es'))(n,
 		one: '${n} día',
 		other: '${n} días',
@@ -6159,6 +6190,19 @@ extension on TranslationsEs {
 			'teachings.editions' => 'Ediciones',
 			'teachings.allOfCategory' => 'Todos los mensajes',
 			'teachings.outsideEdition' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('es'))(n, one: '1 mensaje más, fuera de esta edición', other: '${n} mensajes más, fuera de esta edición', ), 
+			'teachings.batchDownload' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('es'))(n, one: 'Descargar este mensaje', other: 'Descargar los ${n} mensajes', ), 
+			'teachings.batchRest' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('es'))(n, one: 'Descargar el mensaje que falta', other: 'Descargar los ${n} mensajes que faltan', ), 
+			'teachings.batchTitle' => '¿Guardar en tu teléfono?',
+			'teachings.batchText' => ({required num n, required Object size}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('es'))(n, one: '1 mensaje, ${size}, para escuchar sin red. Mejor con wifi.', other: '${n} mensajes, ${size}, para escuchar sin red. Mejor con wifi: se descargan uno tras otro.', ), 
+			'teachings.batchConfirm' => 'Descargar',
+			'teachings.batchProgress' => ({required num total, required Object done}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('es'))(total, one: 'Descargando: ${done} de ${total}', other: 'Descargando: ${done} de ${total}', ), 
+			'teachings.batchStop' => 'Detener',
+			'teachings.batchKept' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('es'))(n, one: 'Este mensaje está en tu teléfono', other: 'Los ${n} mensajes están en tu teléfono', ), 
+			'teachings.batchRemove' => 'Quitar',
+			'teachings.batchRemoveTitle' => '¿Quitar estos mensajes del teléfono?',
+			'teachings.batchRemoveText' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('es'))(n, one: 'Ya no se podrá escuchar sin red. Podrás descargarlo de nuevo.', other: 'Los ${n} mensajes ya no se podrán escuchar sin red. Podrás descargarlos de nuevo.', ), 
+			'teachings.sizeMb' => ({required Object n}) => '${n} MB',
+			'teachings.sizeGb' => ({required Object n}) => '${n} GB',
 			'teachings.daysCount' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('es'))(n, one: '${n} día', other: '${n} días', ), 
 			'teachings.andOthers' => ({required num n, required Object name}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('es'))(n, one: '${name} y 1 más', other: '${name} y ${n} más', ), 
 			'teachings.showCount' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('es'))(n, one: 'Mostrar ${n} mensaje', other: 'Mostrar ${n} mensajes', ), 
@@ -6408,6 +6452,8 @@ extension on TranslationsEs {
 			'journey.steps.firstSoul.title' => 'Sembrador',
 			'journey.steps.firstSoul.text' => 'Seguir a tu primera alma.',
 			'journey.steps.tenSouls.title' => 'Diez almas seguidas',
+			_ => null,
+		} ?? switch (path) {
 			'journey.steps.tenSouls.text' => 'Seguir a 10 personas en el seguimiento de almas.',
 			'journey.steps.soulBaptized.title' => 'Un alma bautizada',
 			'journey.steps.soulBaptized.text' => 'Una persona que sigues llega al bautismo.',
@@ -6421,8 +6467,6 @@ extension on TranslationsEs {
 			'journey.daily.prayer' => 'Hacer un retiro de oración',
 			'journey.daily.word' => 'Leer un capítulo de la Biblia',
 			'journey.daily.wordPlan' => 'Leer los capítulos del plan',
-			_ => null,
-		} ?? switch (path) {
 			'journey.daily.meditation' => 'Meditar la Palabra',
 			'journey.daily.allDone' => 'Los cuatro pasos están hechos. ¡Buen día con Dios!',
 			'journey.daily.done' => 'Hecho',

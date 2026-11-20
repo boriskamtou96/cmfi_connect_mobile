@@ -5,6 +5,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:intl/intl.dart';
 
 import '../../../../core/i18n/strings.g.dart';
 import '../../../../core/network/app_exception_message.dart';
@@ -185,6 +186,19 @@ String teachingTitle(BuildContext context, Teaching teaching) {
     day: int.parse(match[1]!),
     n: int.parse(match[2]!),
   );
+}
+
+/// "85 Mo", "2,1 Go": the room messages take on the phone.
+String teachingSize(BuildContext context, int bytes) {
+  final t = context.t.teachings;
+  const mb = 1024 * 1024;
+  if (bytes >= 1024 * mb) {
+    final language = TranslationProvider.of(context).locale.languageCode;
+    return t.sizeGb(
+      n: NumberFormat('0.#', language).format(bytes / (1024 * mb)),
+    );
+  }
+  return t.sizeMb(n: (bytes / mb).ceil().clamp(1, 1023));
 }
 
 /// "17 min", "1 h 05": a length to read, not a clock.

@@ -1595,6 +1595,31 @@ class _Translations$teachings$zh extends Translations$teachings$fr {
 		one: '另有 ${n} 篇信息不在本届',
 		other: '另有 ${n} 篇信息不在本届',
 	);
+	@override String batchDownload({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n,
+		other: '下载这 ${n} 篇信息',
+	);
+	@override String batchRest({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n,
+		other: '下载缺少的 ${n} 篇信息',
+	);
+	@override String get batchTitle => '保存到手机？';
+	@override String batchText({required num n, required Object size}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n,
+		other: '${n} 篇信息，${size}，可离线收听。建议使用 Wi-Fi：将逐篇下载。',
+	);
+	@override String get batchConfirm => '下载';
+	@override String batchProgress({required num total, required Object done}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(total,
+		other: '正在下载：${done}/${total}',
+	);
+	@override String get batchStop => '停止';
+	@override String batchKept({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n,
+		other: '这 ${n} 篇信息已保存在手机上',
+	);
+	@override String get batchRemove => '移除';
+	@override String get batchRemoveTitle => '从手机移除这些信息？';
+	@override String batchRemoveText({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n,
+		other: '这 ${n} 篇信息将无法离线收听。你可以重新下载。',
+	);
+	@override String sizeMb({required Object n}) => '${n} MB';
+	@override String sizeGb({required Object n}) => '${n} GB';
 	@override String daysCount({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n,
 		one: '${n} 天',
 		other: '${n} 天',
@@ -6040,6 +6065,19 @@ extension on TranslationsZh {
 			'teachings.editions' => '届次',
 			'teachings.allOfCategory' => '全部信息',
 			'teachings.outsideEdition' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n, one: '另有 ${n} 篇信息不在本届', other: '另有 ${n} 篇信息不在本届', ), 
+			'teachings.batchDownload' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n, other: '下载这 ${n} 篇信息', ), 
+			'teachings.batchRest' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n, other: '下载缺少的 ${n} 篇信息', ), 
+			'teachings.batchTitle' => '保存到手机？',
+			'teachings.batchText' => ({required num n, required Object size}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n, other: '${n} 篇信息，${size}，可离线收听。建议使用 Wi-Fi：将逐篇下载。', ), 
+			'teachings.batchConfirm' => '下载',
+			'teachings.batchProgress' => ({required num total, required Object done}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(total, other: '正在下载：${done}/${total}', ), 
+			'teachings.batchStop' => '停止',
+			'teachings.batchKept' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n, other: '这 ${n} 篇信息已保存在手机上', ), 
+			'teachings.batchRemove' => '移除',
+			'teachings.batchRemoveTitle' => '从手机移除这些信息？',
+			'teachings.batchRemoveText' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n, other: '这 ${n} 篇信息将无法离线收听。你可以重新下载。', ), 
+			'teachings.sizeMb' => ({required Object n}) => '${n} MB',
+			'teachings.sizeGb' => ({required Object n}) => '${n} GB',
 			'teachings.daysCount' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n, one: '${n} 天', other: '${n} 天', ), 
 			'teachings.andOthers' => ({required num n, required Object name}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n, one: '${name} 等 2 人', other: '${name} 等 ${n} 人', ), 
 			'teachings.showCount' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n, one: '显示 ${n} 篇信息', other: '显示 ${n} 篇信息', ), 
@@ -6289,6 +6327,8 @@ extension on TranslationsZh {
 			'journey.steps.firstSoul.title' => '撒种的人',
 			'journey.steps.firstSoul.text' => '跟进你的第一个灵魂。',
 			'journey.steps.tenSouls.title' => '跟进十个灵魂',
+			_ => null,
+		} ?? switch (path) {
 			'journey.steps.tenSouls.text' => '在灵魂跟进中跟进 10 个人。',
 			'journey.steps.soulBaptized.title' => '一个灵魂受洗',
 			'journey.steps.soulBaptized.text' => '你跟进的人受洗了。',
@@ -6302,8 +6342,6 @@ extension on TranslationsZh {
 			'journey.daily.prayer' => '做一次退修祷告',
 			'journey.daily.word' => '读一章圣经',
 			'journey.daily.wordPlan' => '读计划中的章节',
-			_ => null,
-		} ?? switch (path) {
 			'journey.daily.meditation' => '默想神的话语',
 			'journey.daily.allDone' => '四步都完成了。愿你与神同度美好的一天！',
 			'journey.daily.done' => '已完成',

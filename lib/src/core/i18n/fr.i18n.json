@@ -2311,6 +2311,37 @@
       "one": "1 autre message, hors de cette édition",
       "other": "{n} autres messages, hors de cette édition"
     },
+    "batchDownload(plural, param=n)": {
+      "one": "Télécharger ce message",
+      "other": "Télécharger les {n} messages"
+    },
+    "batchRest(plural, param=n)": {
+      "one": "Télécharger le message qui manque",
+      "other": "Télécharger les {n} messages qui manquent"
+    },
+    "batchTitle": "Garder sur ton téléphone ?",
+    "batchText(plural, param=n)": {
+      "one": "1 message, {size}, à écouter sans réseau. Mieux vaut le Wi-Fi.",
+      "other": "{n} messages, {size}, à écouter sans réseau. Mieux vaut le Wi-Fi : ils se téléchargent l'un après l'autre."
+    },
+    "batchConfirm": "Télécharger",
+    "batchProgress(plural, param=total)": {
+      "one": "Téléchargement : {done} sur {total}",
+      "other": "Téléchargement : {done} sur {total}"
+    },
+    "batchStop": "Arrêter",
+    "batchKept(plural, param=n)": {
+      "one": "Ce message est sur ton téléphone",
+      "other": "Les {n} messages sont sur ton téléphone"
+    },
+    "batchRemove": "Retirer",
+    "batchRemoveTitle": "Retirer ces messages du téléphone ?",
+    "batchRemoveText(plural, param=n)": {
+      "one": "Il ne s'écoutera plus sans réseau. Tu pourras le télécharger de nouveau.",
+      "other": "Les {n} messages ne s'écouteront plus sans réseau. Tu pourras les télécharger de nouveau."
+    },
+    "sizeMb": "{n} Mo",
+    "sizeGb": "{n} Go",
     "daysCount(plural, param=n)": {
       "one": "{n} jour",
       "other": "{n} jours"

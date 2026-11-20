@@ -1658,6 +1658,37 @@ class _Translations$teachings$de extends Translations$teachings$fr {
 		one: '1 weitere Botschaft außerhalb dieser Ausgabe',
 		other: '${n} weitere Botschaften außerhalb dieser Ausgabe',
 	);
+	@override String batchDownload({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('de'))(n,
+		one: 'Diese Botschaft herunterladen',
+		other: 'Die ${n} Botschaften herunterladen',
+	);
+	@override String batchRest({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('de'))(n,
+		one: 'Die fehlende Botschaft herunterladen',
+		other: 'Die ${n} fehlenden Botschaften herunterladen',
+	);
+	@override String get batchTitle => 'Auf deinem Handy behalten?';
+	@override String batchText({required num n, required Object size}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('de'))(n,
+		one: '1 Botschaft, ${size}, ohne Netz zu hören. WLAN ist besser.',
+		other: '${n} Botschaften, ${size}, ohne Netz zu hören. WLAN ist besser: Sie werden nacheinander heruntergeladen.',
+	);
+	@override String get batchConfirm => 'Herunterladen';
+	@override String batchProgress({required num total, required Object done}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('de'))(total,
+		one: 'Download: ${done} von ${total}',
+		other: 'Download: ${done} von ${total}',
+	);
+	@override String get batchStop => 'Stoppen';
+	@override String batchKept({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('de'))(n,
+		one: 'Diese Botschaft ist auf deinem Handy',
+		other: 'Die ${n} Botschaften sind auf deinem Handy',
+	);
+	@override String get batchRemove => 'Entfernen';
+	@override String get batchRemoveTitle => 'Diese Botschaften vom Handy entfernen?';
+	@override String batchRemoveText({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('de'))(n,
+		one: 'Sie ist dann ohne Netz nicht mehr zu hören. Du kannst sie wieder herunterladen.',
+		other: 'Die ${n} Botschaften sind dann ohne Netz nicht mehr zu hören. Du kannst sie wieder herunterladen.',
+	);
+	@override String sizeMb({required Object n}) => '${n} MB';
+	@override String sizeGb({required Object n}) => '${n} GB';
 	@override String daysCount({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('de'))(n,
 		one: '${n} Tag',
 		other: '${n} Tage',
@@ -6159,6 +6190,19 @@ extension on TranslationsDe {
 			'teachings.editions' => 'Ausgaben',
 			'teachings.allOfCategory' => 'Alle Botschaften',
 			'teachings.outsideEdition' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('de'))(n, one: '1 weitere Botschaft außerhalb dieser Ausgabe', other: '${n} weitere Botschaften außerhalb dieser Ausgabe', ), 
+			'teachings.batchDownload' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('de'))(n, one: 'Diese Botschaft herunterladen', other: 'Die ${n} Botschaften herunterladen', ), 
+			'teachings.batchRest' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('de'))(n, one: 'Die fehlende Botschaft herunterladen', other: 'Die ${n} fehlenden Botschaften herunterladen', ), 
+			'teachings.batchTitle' => 'Auf deinem Handy behalten?',
+			'teachings.batchText' => ({required num n, required Object size}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('de'))(n, one: '1 Botschaft, ${size}, ohne Netz zu hören. WLAN ist besser.', other: '${n} Botschaften, ${size}, ohne Netz zu hören. WLAN ist besser: Sie werden nacheinander heruntergeladen.', ), 
+			'teachings.batchConfirm' => 'Herunterladen',
+			'teachings.batchProgress' => ({required num total, required Object done}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('de'))(total, one: 'Download: ${done} von ${total}', other: 'Download: ${done} von ${total}', ), 
+			'teachings.batchStop' => 'Stoppen',
+			'teachings.batchKept' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('de'))(n, one: 'Diese Botschaft ist auf deinem Handy', other: 'Die ${n} Botschaften sind auf deinem Handy', ), 
+			'teachings.batchRemove' => 'Entfernen',
+			'teachings.batchRemoveTitle' => 'Diese Botschaften vom Handy entfernen?',
+			'teachings.batchRemoveText' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('de'))(n, one: 'Sie ist dann ohne Netz nicht mehr zu hören. Du kannst sie wieder herunterladen.', other: 'Die ${n} Botschaften sind dann ohne Netz nicht mehr zu hören. Du kannst sie wieder herunterladen.', ), 
+			'teachings.sizeMb' => ({required Object n}) => '${n} MB',
+			'teachings.sizeGb' => ({required Object n}) => '${n} GB',
 			'teachings.daysCount' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('de'))(n, one: '${n} Tag', other: '${n} Tage', ), 
 			'teachings.andOthers' => ({required num n, required Object name}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('de'))(n, one: '${name} und 1 weiterer', other: '${name} und ${n} weitere', ), 
 			'teachings.showCount' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('de'))(n, one: '${n} Botschaft anzeigen', other: '${n} Botschaften anzeigen', ), 
@@ -6408,6 +6452,8 @@ extension on TranslationsDe {
 			'journey.steps.firstSoul.title' => 'Sämann',
 			'journey.steps.firstSoul.text' => 'Deine erste Seele begleiten.',
 			'journey.steps.tenSouls.title' => 'Zehn begleitete Seelen',
+			_ => null,
+		} ?? switch (path) {
 			'journey.steps.tenSouls.text' => '10 Menschen in der Seelenbegleitung begleiten.',
 			'journey.steps.soulBaptized.title' => 'Eine getaufte Seele',
 			'journey.steps.soulBaptized.text' => 'Ein Mensch, den du begleitest, lässt sich taufen.',
@@ -6421,8 +6467,6 @@ extension on TranslationsDe {
 			'journey.daily.prayer' => 'Eine Gebetszeit halten',
 			'journey.daily.word' => 'Ein Kapitel der Bibel lesen',
 			'journey.daily.wordPlan' => 'Die Kapitel des Plans lesen',
-			_ => null,
-		} ?? switch (path) {
 			'journey.daily.meditation' => 'Über das Wort nachsinnen',
 			'journey.daily.allDone' => 'Die vier Schritte sind gemacht. Einen schönen Tag mit Gott!',
 			'journey.daily.done' => 'Erledigt',

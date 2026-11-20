@@ -1659,6 +1659,37 @@ class _Translations$teachings$en extends Translations$teachings$fr {
 		one: '1 more message, outside this edition',
 		other: '${n} more messages, outside this edition',
 	);
+	@override String batchDownload({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n,
+		one: 'Download this message',
+		other: 'Download the ${n} messages',
+	);
+	@override String batchRest({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n,
+		one: 'Download the missing message',
+		other: 'Download the ${n} missing messages',
+	);
+	@override String get batchTitle => 'Keep on your phone?';
+	@override String batchText({required num n, required Object size}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n,
+		one: '1 message, ${size}, to listen to without network. Wi-Fi is better.',
+		other: '${n} messages, ${size}, to listen to without network. Wi-Fi is better: they download one after the other.',
+	);
+	@override String get batchConfirm => 'Download';
+	@override String batchProgress({required num total, required Object done}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(total,
+		one: 'Downloading: ${done} of ${total}',
+		other: 'Downloading: ${done} of ${total}',
+	);
+	@override String get batchStop => 'Stop';
+	@override String batchKept({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n,
+		one: 'This message is on your phone',
+		other: 'The ${n} messages are on your phone',
+	);
+	@override String get batchRemove => 'Remove';
+	@override String get batchRemoveTitle => 'Remove these messages from your phone?';
+	@override String batchRemoveText({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n,
+		one: 'It will no longer play without network. You can download it again.',
+		other: 'The ${n} messages will no longer play without network. You can download them again.',
+	);
+	@override String sizeMb({required Object n}) => '${n} MB';
+	@override String sizeGb({required Object n}) => '${n} GB';
 	@override String daysCount({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n,
 		one: '${n} day',
 		other: '${n} days',
@@ -6160,6 +6191,19 @@ extension on TranslationsEn {
 			'teachings.editions' => 'Editions',
 			'teachings.allOfCategory' => 'All messages',
 			'teachings.outsideEdition' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n, one: '1 more message, outside this edition', other: '${n} more messages, outside this edition', ), 
+			'teachings.batchDownload' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n, one: 'Download this message', other: 'Download the ${n} messages', ), 
+			'teachings.batchRest' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n, one: 'Download the missing message', other: 'Download the ${n} missing messages', ), 
+			'teachings.batchTitle' => 'Keep on your phone?',
+			'teachings.batchText' => ({required num n, required Object size}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n, one: '1 message, ${size}, to listen to without network. Wi-Fi is better.', other: '${n} messages, ${size}, to listen to without network. Wi-Fi is better: they download one after the other.', ), 
+			'teachings.batchConfirm' => 'Download',
+			'teachings.batchProgress' => ({required num total, required Object done}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(total, one: 'Downloading: ${done} of ${total}', other: 'Downloading: ${done} of ${total}', ), 
+			'teachings.batchStop' => 'Stop',
+			'teachings.batchKept' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n, one: 'This message is on your phone', other: 'The ${n} messages are on your phone', ), 
+			'teachings.batchRemove' => 'Remove',
+			'teachings.batchRemoveTitle' => 'Remove these messages from your phone?',
+			'teachings.batchRemoveText' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n, one: 'It will no longer play without network. You can download it again.', other: 'The ${n} messages will no longer play without network. You can download them again.', ), 
+			'teachings.sizeMb' => ({required Object n}) => '${n} MB',
+			'teachings.sizeGb' => ({required Object n}) => '${n} GB',
 			'teachings.daysCount' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n, one: '${n} day', other: '${n} days', ), 
 			'teachings.andOthers' => ({required num n, required Object name}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n, one: '${name} and 1 other', other: '${name} and ${n} others', ), 
 			'teachings.showCount' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n, one: 'Show ${n} message', other: 'Show ${n} messages', ), 
@@ -6409,6 +6453,8 @@ extension on TranslationsEn {
 			'journey.steps.firstSoul.title' => 'Sower',
 			'journey.steps.firstSoul.text' => 'Follow your first soul.',
 			'journey.steps.tenSouls.title' => 'Ten souls followed',
+			_ => null,
+		} ?? switch (path) {
 			'journey.steps.tenSouls.text' => 'Follow 10 people in soul follow-up.',
 			'journey.steps.soulBaptized.title' => 'A soul baptized',
 			'journey.steps.soulBaptized.text' => 'Someone you follow reaches baptism.',
@@ -6422,8 +6468,6 @@ extension on TranslationsEn {
 			'journey.daily.prayer' => 'Do a prayer retreat',
 			'journey.daily.word' => 'Read a chapter of the Bible',
 			'journey.daily.wordPlan' => 'Read the chapters of the plan',
-			_ => null,
-		} ?? switch (path) {
 			'journey.daily.meditation' => 'Meditate on the Word',
 			'journey.daily.allDone' => 'All four steps are done. Have a good day with God!',
 			'journey.daily.done' => 'Done',

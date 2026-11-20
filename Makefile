@@ -21,10 +21,10 @@ export FASTLANE_OPT_OUT_USAGE := 1
 export LC_ALL := en_US.UTF-8
 
 .DEFAULT_GOAL := help
-.PHONY: help setup gen gen-clean watch run run-dev run-prod run-device catalog \
+.PHONY: help setup gen gen-clean watch run run-dev run-staging run-prod run-device catalog \
 	analyze test check format brand mascots screenshots landing-screens \
 	build-apk build-aab build-ipa build-dev-apk pods clean \
-	lanes bump bump-dry ios-beta ios-metadata ios-release android-beta match-setup match-refresh asc-env play-env ci-secrets publish
+	lanes bump bump-dry ios-beta ios-beta-staging ios-metadata ios-release android-beta match-setup match-refresh asc-env play-env ci-secrets publish
 
 help: ## Affiche cette aide
 	@grep -hE '^[a-zA-Z_-]+:.*?## ' $(MAKEFILE_LIST) | awk 'BEGIN {FS = ":.*?## "}; {printf "  \033[36m%-18s\033[0m %s\n", $$1, $$2}'
@@ -55,6 +55,9 @@ run: ## Lance l'app (FLAVOR=dev par défaut, API locale)
 
 run-dev: ## Lance l'app dev (API locale)
 	$(FLUTTER) run --flavor dev $(DEFINES)
+
+run-staging: ## Lance l'app dev sur le staging (staging-api.cmfi-connect.com, données de test)
+	$(FLUTTER) run --flavor dev $(DEFINES) --dart-define=API_BASE_URL=https://staging-api.cmfi-connect.com/v1
 
 run-prod: ## Lance l'app prod en release (API en ligne)
 	$(FLUTTER) run --flavor prod --release $(DEFINES)
@@ -141,6 +144,9 @@ bump-dry: ## Montre la prochaine version sans rien changer
 
 ios-beta: ## Envoie sur TestFlight, avec les notes ; SCREEN_TIME=true quand Apple accorde Family Controls
 	$(FASTLANE) ios beta $(if $(SCREEN_TIME),screen_time:$(SCREEN_TIME),)
+
+ios-beta-staging: ## Envoie l'app dev « CMFI Connect Test » sur TestFlight, branchée sur le staging (monter le build avant)
+	$(FASTLANE) ios beta_staging
 
 ios-metadata: ## Envoie la fiche App Store dans les 7 langues (fastlane/metadata), sans build
 	$(FASTLANE) ios metadata

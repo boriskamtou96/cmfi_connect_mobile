@@ -3,6 +3,7 @@
 #   bundle exec fastlane test                     analyze and tests
 #   bundle exec fastlane bump type:patch          1.0.0+1 -> 1.0.1+2, commit, tag v1.0.1
 #   bundle exec fastlane ios beta                 TestFlight, with the notes
+#   bundle exec fastlane ios beta_staging         TestFlight, the dev app on the staging API
 #   bundle exec fastlane ios release              App Store Connect (not submitted)
 #   bundle exec fastlane android beta             Google Play, internal track
 #   bundle exec fastlane android beta track:production
@@ -40,6 +41,14 @@ IOS_TARGETS = {
   "ShieldConfig" => "com.cmficonnect.mobile.ShieldConfig",
   "ShieldMonitor" => "com.cmficonnect.mobile.ShieldMonitor",
 }.freeze
+
+# the dev flavor on TestFlight: its own app, « CMFI Connect Test », on the
+# staging API (test data), next to the published one
+IOS_DEV_TARGETS = {
+  "Runner" => "com.cmficonnect.mobile.dev",
+  "TodayWidget" => "com.cmficonnect.mobile.dev.TodayWidget",
+}.freeze
+STAGING_API = "https://staging-api.cmfi-connect.com/v1"
 
 # Screen Time (« Cherche d'abord Dieu » on iOS): the 3 Shield extensions and
 # the Family Controls entitlement need Apple's approval for distribution. Until
@@ -173,32 +182,35 @@ platform :ios do
     key
   end
 
-  # Signs every target with its profile of match, then builds the .ipa.
+  # Signs every target with its profile of match, then builds the .ipa
+  # (flavor:dev with defines: for the app on the staging API).
   private_lane :build_signed_app do |options|
     targets = options[:targets]
     screen_time = options[:screen_time]
+    flavor = options.fetch(:flavor, "prod")
+    defines = options.fetch(:defines, "")
     # every target signed by its profile of match
     targets.each do |target, identifier|
       update_code_signing_settings(
         path: File.join(ROOT, "ios", "Runner.xcodeproj"),
         use_automatic_signing: false,
         targets: [target],
-        build_configurations: ["Release-prod"],
+        build_configurations: ["Release-#{flavor}"],
         team_id: "UMF55ZKUY6",
         code_sign_identity: "Apple Distribution",
         profile_name: ENV.fetch("sigh_#{identifier}_appstore_profile-name"),
       )
     end
     # Flutter writes its settings (version, .env), Xcode builds and signs
-    at_root("flutter build ios --release --flavor prod --dart-define-from-file=.env " \
+    at_root("flutter build ios --release --flavor #{flavor} --dart-define-from-file=.env #{defines} " \
             "--dart-define=SCREEN_TIME=#{screen_time} --config-only")
     build_app(
       workspace: File.join(ROOT, "ios", "Runner.xcworkspace"),
-      scheme: "prod",
-      configuration: "Release-prod",
+      scheme: flavor,
+      configuration: "Release-#{flavor}",
       export_method: "app-store",
-      output_directory: File.join(ROOT, "build", "ios"),
-      output_name: "CMFI Connect.ipa",
+      output_directory: flavor == "prod" ? File.join(ROOT, "build", "ios") : File.join(ROOT, "build", "ios", flavor),
+      output_name: flavor == "prod" ? "CMFI Connect.ipa" : "CMFI Connect Test.ipa",
       export_options: {
         provisioningProfiles: targets.values.to_h do |identifier|
           [identifier, ENV.fetch("sigh_#{identifier}_appstore_profile-name")]
@@ -230,6 +242,32 @@ platform :ios do
         [APP_STORE_LOCALES.fetch(language), { whats_new: text }]
       end,
       distribute_external: false,
+    )
+  end
+
+  desc "TestFlight : l'app dev « CMFI Connect Test » (com.cmficonnect.mobile.dev) sur l'API du staging, sans Temps d'écran. " \
+       "Monter le numéro de build avant (bump), comme pour la prod"
+  lane :beta_staging do
+    setup_ci if is_ci
+    key = app_store_key
+    match(api_key: key, readonly: is_ci, app_identifier: IOS_DEV_TARGETS.values)
+    keeping_project_files do
+      leave_out_screen_time
+      sh("/usr/libexec/PlistBuddy -c 'Delete :NSAppTransportSecurity:NSAllowsArbitraryLoads' " \
+         "#{File.join(ROOT, 'ios/Runner/Info.plist').shellescape} || true")
+      build_signed_app(
+        targets: IOS_DEV_TARGETS,
+        screen_time: false,
+        flavor: "dev",
+        defines: "--dart-define=API_BASE_URL=#{STAGING_API}",
+      )
+    end
+    # the internal group « Équipe » gets every build by itself
+    upload_to_testflight(
+      api_key: key,
+      app_identifier: "com.cmficonnect.mobile.dev",
+      distribute_external: false,
+      skip_waiting_for_build_processing: true,
     )
   end
 

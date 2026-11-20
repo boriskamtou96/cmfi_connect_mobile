@@ -57,6 +57,7 @@ bundle install                                   # une fois : installe fastlane 
 bundle exec fastlane test                        # analyse et tests
 bundle exec fastlane bump type:patch             # 1.0.0+1 -> 1.0.1+2 (minor, major), commit et tag v1.0.1
 bundle exec fastlane ios beta                    # TestFlight
+bundle exec fastlane ios beta_staging            # TestFlight : l'app dev « CMFI Connect Test », sur l'API du staging
 bundle exec fastlane ios release                 # App Store Connect, sans l'envoyer à Apple
 bundle exec fastlane android beta                # Google Play, piste interne
 bundle exec fastlane android beta track:production

@@ -50,6 +50,14 @@ Une fois (puis à chaque nouvelle extension) : crée certificat et profils App S
 
 TestFlight, avec les notes de version dans chaque langue
 
+### ios beta_staging
+
+```sh
+[bundle exec] fastlane ios beta_staging
+```
+
+TestFlight : l'app dev « CMFI Connect Test » (com.cmficonnect.mobile.dev) sur l'API du staging, sans Temps d'écran. Monter le numéro de build avant (bump), comme pour la prod
+
 ### ios metadata
 
 ```sh

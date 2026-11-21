@@ -61,18 +61,41 @@ class AppConfig {
     };
   }
 
-  /// dev: the RevenueCat Test Store (no real payment) when its key is
-  /// given; prod: the App Store or Google Play. '' : nothing sold in the app.
   static String _revenueCatKeyFor(Flavor flavor) {
     if (kIsWeb) {
       return '';
     }
-    if (flavor == Flavor.dev && _revenueCatTestKey.isNotEmpty) {
-      return _revenueCatTestKey;
+    return revenueCatKeyOf(
+      flavor,
+      platform: defaultTargetPlatform,
+      release: kReleaseMode,
+      test: _revenueCatTestKey,
+      apple: _revenueCatAppleKey,
+      google: _revenueCatGoogleKey,
+    );
+  }
+
+  /// dev: the RevenueCat Test Store (no real payment) when its key is
+  /// given; prod: the App Store or Google Play. '' : nothing sold in the app.
+  /// A release build of the dev app (« CMFI Connect Test » on TestFlight,
+  /// 20/11/2026) sells nothing: RevenueCat stops on purpose any release build
+  /// configured with the Test Store key, and the dev app has no products of
+  /// its own in the stores.
+  @visibleForTesting
+  static String revenueCatKeyOf(
+    Flavor flavor, {
+    required TargetPlatform platform,
+    required bool release,
+    required String test,
+    required String apple,
+    required String google,
+  }) {
+    if (flavor == Flavor.dev && test.isNotEmpty) {
+      return release ? '' : test;
     }
-    return switch (defaultTargetPlatform) {
-      TargetPlatform.iOS => _revenueCatAppleKey,
-      TargetPlatform.android => _revenueCatGoogleKey,
+    return switch (platform) {
+      TargetPlatform.iOS => apple,
+      TargetPlatform.android => google,
       _ => '',
     };
   }

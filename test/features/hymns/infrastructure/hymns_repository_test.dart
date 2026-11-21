@@ -89,4 +89,23 @@ void main() {
     ]);
     expect(api.downloads, ['chants-edification-2']);
   });
+
+  test('a server without any hymn never empties the phone: its books stay '
+      '(21/11/2026, a database restored without them)', () async {
+    const empty = HymnBook(
+      code: 'ministering-to-the-lord',
+      title: 'Ministering to the Lord',
+      version: '20261119T095504.167480Z',
+    );
+    final repository = HymnsRepository(
+      FakeHymnsApi(books: [empty]),
+      FakeHymnBookStorage(),
+    );
+
+    expect(await repository.sync(await repository.loadLocal()), isNull);
+    expect((await repository.loadLocal()).map((book) => book.code), [
+      'rendons-ministere-1',
+      'christ-the-victor',
+    ]);
+  });
 }

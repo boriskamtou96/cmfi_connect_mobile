@@ -39,7 +39,9 @@ class HymnsRepository {
   /// or null when the phone was already up to date. Throws an AppException when offline.
   Future<List<HymnBook>?> sync(List<HymnBook> local) async {
     final summaries = await _api.listBooks();
-    if (summaries.isEmpty) {
+    // a server without any hymn (a database restored without them, 21/11/2026)
+    // never empties the phone: its books stay
+    if (summaries.every((summary) => summary.hymnCount == 0)) {
       return null;
     }
 

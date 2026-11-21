@@ -99,6 +99,11 @@ def keeping_project_files
   yield
 ensure
   saved&.each { |path, content| File.binwrite(File.join(ROOT, path), content) }
+  # The native code of the Dart packages (objective_c, which path_provider
+  # uses), built here for the iPhone: a simulator build would take it again
+  # without rebuilding it, then fail to load it (no hymns, Bible or teachings
+  # on the phone's disk, 21/11/2026). The next build makes it again.
+  FileUtils.rm_rf(File.join(ROOT, "build", "native_assets", "ios"))
 end
 
 # A build without Screen Time: the Shield extensions are no longer built nor

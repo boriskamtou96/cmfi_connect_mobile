@@ -96,13 +96,20 @@ STORE_BUILD_FILES = %w[
 
 def keeping_project_files
   saved = STORE_BUILD_FILES.to_h { |path| [path, File.binread(File.join(ROOT, path))] }
+  forget_native_assets
   yield
 ensure
   saved&.each { |path, content| File.binwrite(File.join(ROOT, path), content) }
-  # The native code of the Dart packages (objective_c, which path_provider
-  # uses), built here for the iPhone: a simulator build would take it again
-  # without rebuilding it, then fail to load it (no hymns, Bible or teachings
-  # on the phone's disk, 21/11/2026). The next build makes it again.
+  forget_native_assets
+end
+
+# The native code of the Dart packages (objective_c, which path_provider
+# uses) is kept in build/native_assets/ios, and the next build takes it again
+# without rebuilding it, whether made for the iPhone or the simulator
+# (21/11/2026): the simulator then reads nothing on the disk (no hymns), and
+# Apple refuses a store build with the simulator's (« unsupported platform »).
+# Removed before and after a store build: each build makes its own.
+def forget_native_assets
   FileUtils.rm_rf(File.join(ROOT, "build", "native_assets", "ios"))
 end
 

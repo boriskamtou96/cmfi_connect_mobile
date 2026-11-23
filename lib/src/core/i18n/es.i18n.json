@@ -49,7 +49,8 @@
     "paidRegistration": "Inscripción pagada: contacta con los organizadores para anularla.",
     "eventHasPayments": "Hay miembros que pagaron: primero reembolsa sus pagos desde el sitio de administración.",
     "peoplePaid": "El número de personas de una inscripción pagada ya no puede cambiar.",
-    "cardsDisabled": "El pago con tarjeta no está disponible por ahora."
+    "cardsDisabled": "El pago con tarjeta no está disponible por ahora.",
+    "cardMinimum": "Este importe es demasiado pequeño para una tarjeta: paga con dinero móvil."
   },
   "validation": {
     "required": "Este campo es obligatorio",

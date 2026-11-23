@@ -3648,8 +3648,9 @@ class FakePaymentsApi implements PaymentsApi {
   /// PAYMENTS_DISABLED: no mobile money on the server.
   AppException? operatorsError;
 
-  /// Cards are offered.
+  /// Cards are offered, from [cardMin] (0: any amount).
   bool cards = false;
+  int cardMin = 0;
 
   /// The member's country, as the server tells it (18/11/2026): the
   /// currency of their card, the way shown first, the donations by currency
@@ -3665,6 +3666,7 @@ class FakePaymentsApi implements PaymentsApi {
     }
     return PaymentOptions(
       cards: cards,
+      cardMin: cardMin,
       cardCurrency: cardCurrency,
       preferred: preferred,
       donations: donationRules,

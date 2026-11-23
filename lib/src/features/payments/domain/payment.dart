@@ -69,6 +69,10 @@ abstract class PaymentOptions with _$PaymentOptions {
     @Default(false) bool cards,
     @Default('XAF') String cardCurrency,
 
+    /// The least a card pays, in the currency asked (KPAY takes no card
+    /// under 1 USD); 0 from a server that doesn't say it.
+    @Default(0) int cardMin,
+
     /// mobile_money or card
     @Default('mobile_money') String preferred,
     @Default(<DonationRule>[]) List<DonationRule> donations,

@@ -166,6 +166,7 @@ class _Translations$errors$de extends Translations$errors$fr {
 	@override String get eventHasPayments => 'Mitglieder haben bezahlt: erstatte zuerst ihre Zahlungen auf der Admin-Seite.';
 	@override String get peoplePaid => 'Die Personenzahl einer bezahlten Anmeldung lässt sich nicht mehr ändern.';
 	@override String get cardsDisabled => 'Kartenzahlung ist derzeit nicht verfügbar.';
+	@override String get cardMinimum => 'Dieser Betrag ist für eine Karte zu klein: Bezahle mit Mobile Money.';
 }
 
 // Path: validation
@@ -4444,6 +4445,7 @@ extension on TranslationsDe {
 			'errors.eventHasPayments' => 'Mitglieder haben bezahlt: erstatte zuerst ihre Zahlungen auf der Admin-Seite.',
 			'errors.peoplePaid' => 'Die Personenzahl einer bezahlten Anmeldung lässt sich nicht mehr ändern.',
 			'errors.cardsDisabled' => 'Kartenzahlung ist derzeit nicht verfügbar.',
+			'errors.cardMinimum' => 'Dieser Betrag ist für eine Karte zu klein: Bezahle mit Mobile Money.',
 			'validation.required' => 'Dieses Feld ist erforderlich',
 			'validation.phoneRequired' => 'Gib deine Nummer ein',
 			'validation.passwordRequired' => 'Gib dein Passwort ein',
@@ -4909,9 +4911,9 @@ extension on TranslationsDe {
 			'authorities.form.title' => 'Neue Autorität',
 			'authorities.form.emailHint' => 'name@beispiel.de',
 			'authorities.form.isDiscipleMaker' => 'Das ist mein Jüngermacher',
-			'authorities.form.isDiscipleMakerHelp' => 'Die Person, die dich persönlich begleitet. Du hast nur einen.',
 			_ => null,
 		} ?? switch (path) {
+			'authorities.form.isDiscipleMakerHelp' => 'Die Person, die dich persönlich begleitet. Du hast nur einen.',
 			'authorities.form.discipleMakerTaken' => ({required Object name}) => '${name} ist bereits dein Jüngermacher. Entferne die Person aus der Liste, um jemand anderen zu wählen.',
 			'authorities.form.submit' => 'Hinzufügen',
 			'authorities.form.added' => ({required Object name}) => '${name} gehört jetzt zu deinen Autoritäten.',
@@ -5423,9 +5425,9 @@ extension on TranslationsDe {
 			'ministry.heroesEmpty' => 'Die Porträts unserer Helden kommen bald.',
 			'ministry.personGone' => 'Dieses Porträt ist nicht mehr verfügbar.',
 			'ministry.photoOf' => ({required Object name}) => 'Foto von ${name}',
-			'ministry.keyDates' => 'Wichtige Daten',
 			_ => null,
 		} ?? switch (path) {
+			'ministry.keyDates' => 'Wichtige Daten',
 			'ministry.life' => 'Sein Leben',
 			'ministry.story' => 'Lebensgeschichte',
 			'ministry.goalOf' => ({required Object n, required Object total}) => 'UNSER ZIEL · ${n}/${total}',
@@ -5937,9 +5939,9 @@ extension on TranslationsDe {
 			'weekStory.faithfulMoment' => ({required num n, required Object moment}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('de'))(n, one: 'Deine treueste Zeit: ${moment} (${n}-mal)', other: 'Deine treueste Zeit: ${moment} (${n}-mal)', ), 
 			'weekStory.noRetreat' => 'Keine Gebetszeit diese Woche',
 			'weekStory.noRetreatText' => 'Die Gebetszeit am Mittag wartet auf dich: 15 Minuten mit dem Herrn.',
-			'weekStory.goalsLead' => 'Deine Ziele',
 			_ => null,
 		} ?? switch (path) {
+			'weekStory.goalsLead' => 'Deine Ziele',
 			'weekStory.goalsReached' => 'im Durchschnitt erreicht',
 			'weekStory.bestDay' => ({required Object day, required Object percent}) => 'Dein bester Tag: ${day} · ${percent}',
 			'weekStory.summaryTitle' => 'Meine Woche mit Gott',
@@ -6451,9 +6453,9 @@ extension on TranslationsDe {
 			'journey.steps.lyricsShared.text' => 'Den Text eines Liedes teilen.',
 			'journey.steps.firstSoul.title' => 'Sämann',
 			'journey.steps.firstSoul.text' => 'Deine erste Seele begleiten.',
-			'journey.steps.tenSouls.title' => 'Zehn begleitete Seelen',
 			_ => null,
 		} ?? switch (path) {
+			'journey.steps.tenSouls.title' => 'Zehn begleitete Seelen',
 			'journey.steps.tenSouls.text' => '10 Menschen in der Seelenbegleitung begleiten.',
 			'journey.steps.soulBaptized.title' => 'Eine getaufte Seele',
 			'journey.steps.soulBaptized.text' => 'Ein Mensch, den du begleitest, lässt sich taufen.',

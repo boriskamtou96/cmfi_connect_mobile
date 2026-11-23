@@ -166,6 +166,7 @@ class _Translations$errors$ar extends Translations$errors$fr {
 	@override String get eventHasPayments => 'دفع أعضاء رسومهم: أعِد مدفوعاتهم أولًا من موقع الإدارة.';
 	@override String get peoplePaid => 'لم يعد ممكنًا تغيير عدد الأشخاص في تسجيل مدفوع.';
 	@override String get cardsDisabled => 'الدفع بالبطاقة غير متاح حاليًا.';
+	@override String get cardMinimum => 'هذا المبلغ صغير جدًا للدفع بالبطاقة: ادفع عبر المحفظة الإلكترونية.';
 }
 
 // Path: validation
@@ -4913,6 +4914,7 @@ extension on TranslationsAr {
 			'errors.eventHasPayments' => 'دفع أعضاء رسومهم: أعِد مدفوعاتهم أولًا من موقع الإدارة.',
 			'errors.peoplePaid' => 'لم يعد ممكنًا تغيير عدد الأشخاص في تسجيل مدفوع.',
 			'errors.cardsDisabled' => 'الدفع بالبطاقة غير متاح حاليًا.',
+			'errors.cardMinimum' => 'هذا المبلغ صغير جدًا للدفع بالبطاقة: ادفع عبر المحفظة الإلكترونية.',
 			'validation.required' => 'هذا الحقل مطلوب',
 			'validation.phoneRequired' => 'أدخل رقمك',
 			'validation.passwordRequired' => 'أدخل كلمة المرور',
@@ -5378,9 +5380,9 @@ extension on TranslationsAr {
 			'authorities.form.title' => 'مرشد جديد',
 			'authorities.form.emailHint' => 'name@example.com',
 			'authorities.form.isDiscipleMaker' => 'هذا هو صانع التلاميذ الخاص بي',
-			'authorities.form.isDiscipleMakerHelp' => 'الشخص الذي يرافقك شخصيًا. لديك واحد فقط.',
 			_ => null,
 		} ?? switch (path) {
+			'authorities.form.isDiscipleMakerHelp' => 'الشخص الذي يرافقك شخصيًا. لديك واحد فقط.',
 			'authorities.form.discipleMakerTaken' => ({required Object name}) => '${name} هو بالفعل صانع التلاميذ الخاص بك. أزِله من القائمة لتختار شخصًا آخر.',
 			'authorities.form.submit' => 'إضافة',
 			'authorities.form.added' => ({required Object name}) => 'أصبح ${name} الآن ضمن مرشديك.',
@@ -5892,9 +5894,9 @@ extension on TranslationsAr {
 			'ministry.heroesEmpty' => 'صور أبطالنا وقصصهم قادمة قريبًا.',
 			'ministry.personGone' => 'هذا التعريف لم يعد متاحًا.',
 			'ministry.photoOf' => ({required Object name}) => 'صورة ${name}',
-			'ministry.keyDates' => 'تواريخ مهمة',
 			_ => null,
 		} ?? switch (path) {
+			'ministry.keyDates' => 'تواريخ مهمة',
 			'ministry.life' => 'حياته',
 			'ministry.story' => 'القصة',
 			'ministry.goalOf' => ({required Object n, required Object total}) => 'هدفنا · ${n}/${total}',
@@ -6406,9 +6408,9 @@ extension on TranslationsAr {
 			'weekStory.faithfulMoment' => ({required num n, required Object moment}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n, zero: 'وقتك الأكثر أمانة: ${moment} (${n} مرة)', one: 'وقتك الأكثر أمانة: ${moment} (مرة واحدة)', two: 'وقتك الأكثر أمانة: ${moment} (مرتان)', few: 'وقتك الأكثر أمانة: ${moment} (${n} مرات)', many: 'وقتك الأكثر أمانة: ${moment} (${n} مرة)', other: 'وقتك الأكثر أمانة: ${moment} (${n} مرة)', ), 
 			'weekStory.noRetreat' => 'لا خلوة هذا الأسبوع',
 			'weekStory.noRetreatText' => 'خلوة الظهر تنتظرك: 15 دقيقة مع الرب.',
-			'weekStory.goalsLead' => 'أهدافك',
 			_ => null,
 		} ?? switch (path) {
+			'weekStory.goalsLead' => 'أهدافك',
 			'weekStory.goalsReached' => 'تحقّقت في المتوسط',
 			'weekStory.bestDay' => ({required Object day, required Object percent}) => 'أفضل يوم لك: ${day} · ${percent}',
 			'weekStory.summaryTitle' => 'أسبوعي مع الله',
@@ -6920,9 +6922,9 @@ extension on TranslationsAr {
 			'journey.steps.lyricsShared.text' => 'شارك كلمات ترنيمة.',
 			'journey.steps.firstSoul.title' => 'الزارع',
 			'journey.steps.firstSoul.text' => 'تابع أول نفس لك.',
-			'journey.steps.tenSouls.title' => 'عشر نفوس',
 			_ => null,
 		} ?? switch (path) {
+			'journey.steps.tenSouls.title' => 'عشر نفوس',
 			'journey.steps.tenSouls.text' => 'تابع 10 أشخاص في متابعة النفوس.',
 			'journey.steps.soulBaptized.title' => 'نفس معمَّدة',
 			'journey.steps.soulBaptized.text' => 'شخص تتابعه يصل إلى المعمودية.',

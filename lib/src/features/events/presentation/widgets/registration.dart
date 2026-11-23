@@ -250,7 +250,11 @@ class _RegistrationSheet extends HookConsumerWidget {
         ? ref.watch(paymentOptionsProvider(price.currency))
         : null;
     final operators = optionsState?.value?.countries;
-    final cards = optionsState?.value?.cards ?? false;
+    // a card only from its minimum (the whole registration counts)
+    final cards =
+        (optionsState?.value?.cards ?? false) &&
+        price != null &&
+        price.amount * people >= (optionsState?.value?.cardMin ?? 0);
     final byCard = cards && method.value == PaymentMethod.card;
     // mobile money switched off on the server: register now, pay later
     final paymentsOff = switch (optionsState?.error) {

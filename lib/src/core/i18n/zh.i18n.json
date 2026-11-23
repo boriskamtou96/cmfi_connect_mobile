@@ -49,7 +49,8 @@
     "paidRegistration": "报名已付款：如需取消请联系组织者。",
     "eventHasPayments": "已有成员付款：请先在管理网站为他们退款。",
     "peoplePaid": "已付款报名的人数不能再更改。",
-    "cardsDisabled": "银行卡付款暂不可用。"
+    "cardsDisabled": "银行卡付款暂不可用。",
+    "cardMinimum": "这个金额太小，无法用银行卡支付：请用手机钱包支付。"
   },
   "validation": {
     "required": "此项为必填",

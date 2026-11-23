@@ -294,4 +294,31 @@ void main() {
       expect(app.toasts.messages, ['Paiement reçu : tu es inscrit !']);
     },
   );
+
+  testWidgets('under the least a card pays, only mobile money is offered', (
+    tester,
+  ) async {
+    final payments = FakePaymentsApi()
+      ..cards = true
+      ..cardMin = 10000;
+    await pumpApp(
+      tester,
+      token: 't',
+      eventsApi: paidEvents(),
+      paymentsApi: payments,
+    );
+    await openEvent(tester);
+    await tester.tap(find.text('Je participe'));
+    await tester.pumpAndSettle();
+
+    // 5 000 F: under the card's 10 000
+    expect(find.text('Carte bancaire'), findsNothing);
+    expect(
+      find.descendant(
+        of: find.byType(PhoneField),
+        matching: find.byType(TextField),
+      ),
+      findsOneWidget,
+    );
+  });
 }

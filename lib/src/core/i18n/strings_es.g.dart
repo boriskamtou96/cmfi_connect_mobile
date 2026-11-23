@@ -166,6 +166,7 @@ class _Translations$errors$es extends Translations$errors$fr {
 	@override String get eventHasPayments => 'Hay miembros que pagaron: primero reembolsa sus pagos desde el sitio de administración.';
 	@override String get peoplePaid => 'El número de personas de una inscripción pagada ya no puede cambiar.';
 	@override String get cardsDisabled => 'El pago con tarjeta no está disponible por ahora.';
+	@override String get cardMinimum => 'Este importe es demasiado pequeño para una tarjeta: paga con dinero móvil.';
 }
 
 // Path: validation
@@ -4444,6 +4445,7 @@ extension on TranslationsEs {
 			'errors.eventHasPayments' => 'Hay miembros que pagaron: primero reembolsa sus pagos desde el sitio de administración.',
 			'errors.peoplePaid' => 'El número de personas de una inscripción pagada ya no puede cambiar.',
 			'errors.cardsDisabled' => 'El pago con tarjeta no está disponible por ahora.',
+			'errors.cardMinimum' => 'Este importe es demasiado pequeño para una tarjeta: paga con dinero móvil.',
 			'validation.required' => 'Este campo es obligatorio',
 			'validation.phoneRequired' => 'Escribe tu número',
 			'validation.passwordRequired' => 'Escribe tu contraseña',
@@ -4909,9 +4911,9 @@ extension on TranslationsEs {
 			'authorities.form.title' => 'Nueva autoridad',
 			'authorities.form.emailHint' => 'nombre@ejemplo.com',
 			'authorities.form.isDiscipleMaker' => 'Es mi discipulador',
-			'authorities.form.isDiscipleMakerHelp' => 'La persona que te acompaña personalmente. Solo tienes uno.',
 			_ => null,
 		} ?? switch (path) {
+			'authorities.form.isDiscipleMakerHelp' => 'La persona que te acompaña personalmente. Solo tienes uno.',
 			'authorities.form.discipleMakerTaken' => ({required Object name}) => '${name} ya es tu discipulador. Quítalo de la lista para elegir a otro.',
 			'authorities.form.submit' => 'Añadir',
 			'authorities.form.added' => ({required Object name}) => '${name} ahora forma parte de tus autoridades.',
@@ -5423,9 +5425,9 @@ extension on TranslationsEs {
 			'ministry.heroesEmpty' => 'Los retratos de nuestros héroes llegarán pronto.',
 			'ministry.personGone' => 'Este retrato ya no está disponible.',
 			'ministry.photoOf' => ({required Object name}) => 'Foto de ${name}',
-			'ministry.keyDates' => 'Fechas clave',
 			_ => null,
 		} ?? switch (path) {
+			'ministry.keyDates' => 'Fechas clave',
 			'ministry.life' => 'Su vida',
 			'ministry.story' => 'Su historia',
 			'ministry.goalOf' => ({required Object n, required Object total}) => 'NUESTRO OBJETIVO · ${n}/${total}',
@@ -5937,9 +5939,9 @@ extension on TranslationsEs {
 			'weekStory.faithfulMoment' => ({required num n, required Object moment}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('es'))(n, one: 'Tu momento más fiel: ${moment} (${n} vez)', other: 'Tu momento más fiel: ${moment} (${n} veces)', ), 
 			'weekStory.noRetreat' => 'Ningún retiro esta semana',
 			'weekStory.noRetreatText' => 'El retiro del mediodía te espera: 15 minutos con el Señor.',
-			'weekStory.goalsLead' => 'Tus objetivos',
 			_ => null,
 		} ?? switch (path) {
+			'weekStory.goalsLead' => 'Tus objetivos',
 			'weekStory.goalsReached' => 'alcanzados en promedio',
 			'weekStory.bestDay' => ({required Object day, required Object percent}) => 'Tu mejor día: ${day} · ${percent}',
 			'weekStory.summaryTitle' => 'Mi semana con Dios',
@@ -6451,9 +6453,9 @@ extension on TranslationsEs {
 			'journey.steps.lyricsShared.text' => 'Compartir la letra de un himno.',
 			'journey.steps.firstSoul.title' => 'Sembrador',
 			'journey.steps.firstSoul.text' => 'Seguir a tu primera alma.',
-			'journey.steps.tenSouls.title' => 'Diez almas seguidas',
 			_ => null,
 		} ?? switch (path) {
+			'journey.steps.tenSouls.title' => 'Diez almas seguidas',
 			'journey.steps.tenSouls.text' => 'Seguir a 10 personas en el seguimiento de almas.',
 			'journey.steps.soulBaptized.title' => 'Un alma bautizada',
 			'journey.steps.soulBaptized.text' => 'Una persona que sigues llega al bautismo.',

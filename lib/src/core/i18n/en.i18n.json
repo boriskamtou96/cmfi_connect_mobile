@@ -49,7 +49,8 @@
     "paidRegistration": "Paid registration: contact the organizers to cancel it.",
     "eventHasPayments": "Members have paid: refund their payments first from the admin site.",
     "peoplePaid": "The number of people of a paid registration can no longer change.",
-    "cardsDisabled": "Card payment is not available right now."
+    "cardsDisabled": "Card payment is not available right now.",
+    "cardMinimum": "This amount is too small for a card: pay by mobile money."
   },
   "validation": {
     "required": "This field is required",

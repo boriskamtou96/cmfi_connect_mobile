@@ -61,6 +61,7 @@ _PaymentOptions _$PaymentOptionsFromJson(Map<String, dynamic> json) =>
           const <MobileMoneyCountry>[],
       cards: json['cards'] as bool? ?? false,
       cardCurrency: json['card_currency'] as String? ?? 'XAF',
+      cardMin: (json['card_min'] as num?)?.toInt() ?? 0,
       preferred: json['preferred'] as String? ?? 'mobile_money',
       donations:
           (json['donations'] as List<dynamic>?)
@@ -74,6 +75,7 @@ Map<String, dynamic> _$PaymentOptionsToJson(_PaymentOptions instance) =>
       'countries': instance.countries.map((e) => e.toJson()).toList(),
       'cards': instance.cards,
       'card_currency': instance.cardCurrency,
+      'card_min': instance.cardMin,
       'preferred': instance.preferred,
       'donations': instance.donations.map((e) => e.toJson()).toList(),
     };

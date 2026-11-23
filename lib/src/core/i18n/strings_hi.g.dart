@@ -166,6 +166,7 @@ class _Translations$errors$hi extends Translations$errors$fr {
 	@override String get eventHasPayments => 'सदस्यों ने भुगतान किया है: पहले एडमिन साइट से उनका पैसा लौटाएँ।';
 	@override String get peoplePaid => 'भुगतान किए गए पंजीकरण में लोगों की संख्या अब नहीं बदल सकती।';
 	@override String get cardsDisabled => 'कार्ड से भुगतान अभी उपलब्ध नहीं है।';
+	@override String get cardMinimum => 'यह राशि कार्ड के लिए बहुत कम है: मोबाइल मनी से भुगतान करो।';
 }
 
 // Path: validation
@@ -4443,6 +4444,7 @@ extension on TranslationsHi {
 			'errors.eventHasPayments' => 'सदस्यों ने भुगतान किया है: पहले एडमिन साइट से उनका पैसा लौटाएँ।',
 			'errors.peoplePaid' => 'भुगतान किए गए पंजीकरण में लोगों की संख्या अब नहीं बदल सकती।',
 			'errors.cardsDisabled' => 'कार्ड से भुगतान अभी उपलब्ध नहीं है।',
+			'errors.cardMinimum' => 'यह राशि कार्ड के लिए बहुत कम है: मोबाइल मनी से भुगतान करो।',
 			'validation.required' => 'यह फ़ील्ड ज़रूरी है',
 			'validation.phoneRequired' => 'अपना नंबर लिखो',
 			'validation.passwordRequired' => 'अपना पासवर्ड लिखो',
@@ -4908,9 +4910,9 @@ extension on TranslationsHi {
 			'authorities.form.title' => 'नया अगुवा',
 			'authorities.form.emailHint' => 'naam@example.com',
 			'authorities.form.isDiscipleMaker' => 'ये मेरे चेला बनाने वाले हैं',
-			'authorities.form.isDiscipleMakerHelp' => 'जो व्यक्ति व्यक्तिगत रूप से तुम्हारा मार्गदर्शन करता है। ऐसा सिर्फ़ एक ही हो सकता है।',
 			_ => null,
 		} ?? switch (path) {
+			'authorities.form.isDiscipleMakerHelp' => 'जो व्यक्ति व्यक्तिगत रूप से तुम्हारा मार्गदर्शन करता है। ऐसा सिर्फ़ एक ही हो सकता है।',
 			'authorities.form.discipleMakerTaken' => ({required Object name}) => 'तुम्हारे चेला बनाने वाले के रूप में ${name} पहले से दर्ज हैं। किसी और को चुनने के लिए पहले उन्हें सूची से हटाओ।',
 			'authorities.form.submit' => 'जोड़ो',
 			'authorities.form.added' => ({required Object name}) => '${name} अब तुम्हारे अगुवों में शामिल हैं।',
@@ -5422,9 +5424,9 @@ extension on TranslationsHi {
 			'ministry.heroesEmpty' => 'हमारे नायकों के परिचय जल्द ही आ रहे हैं।',
 			'ministry.personGone' => 'यह परिचय अब उपलब्ध नहीं है।',
 			'ministry.photoOf' => ({required Object name}) => '${name} की फ़ोटो',
-			'ministry.keyDates' => 'मुख्य तिथियाँ',
 			_ => null,
 		} ?? switch (path) {
+			'ministry.keyDates' => 'मुख्य तिथियाँ',
 			'ministry.life' => 'उनका जीवन',
 			'ministry.story' => 'उनकी कहानी',
 			'ministry.goalOf' => ({required Object n, required Object total}) => 'हमारा लक्ष्य · ${n}/${total}',
@@ -5936,9 +5938,9 @@ extension on TranslationsHi {
 			'weekStory.faithfulMoment' => ({required num n, required Object moment}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n, one: 'तुम्हारा सबसे वफ़ादार समय: ${moment} (${n} बार)', other: 'तुम्हारा सबसे वफ़ादार समय: ${moment} (${n} बार)', ), 
 			'weekStory.noRetreat' => 'इस हफ़्ते कोई प्रार्थना-समय नहीं',
 			'weekStory.noRetreatText' => 'दोपहर का प्रार्थना-समय तुम्हारा इंतज़ार कर रहा है: प्रभु के साथ 15 मिनट।',
-			'weekStory.goalsLead' => 'तुम्हारे लक्ष्य',
 			_ => null,
 		} ?? switch (path) {
+			'weekStory.goalsLead' => 'तुम्हारे लक्ष्य',
 			'weekStory.goalsReached' => 'औसतन पूरे हुए',
 			'weekStory.bestDay' => ({required Object day, required Object percent}) => 'तुम्हारा सबसे अच्छा दिन: ${day} · ${percent}',
 			'weekStory.summaryTitle' => 'परमेश्वर के साथ मेरा हफ़्ता',
@@ -6450,9 +6452,9 @@ extension on TranslationsHi {
 			'journey.steps.lyricsShared.text' => 'किसी भजन के बोल साझा करो।',
 			'journey.steps.firstSoul.title' => 'बोने वाला',
 			'journey.steps.firstSoul.text' => 'अपनी पहली आत्मा का साथ दो।',
-			'journey.steps.tenSouls.title' => 'दस आत्माएँ',
 			_ => null,
 		} ?? switch (path) {
+			'journey.steps.tenSouls.title' => 'दस आत्माएँ',
 			'journey.steps.tenSouls.text' => 'आत्माओं की देखभाल में 10 लोगों का साथ दो।',
 			'journey.steps.soulBaptized.title' => 'एक आत्मा का बपतिस्मा',
 			'journey.steps.soulBaptized.text' => 'जिसका तुम साथ देते हो, उसका बपतिस्मा हुआ।',

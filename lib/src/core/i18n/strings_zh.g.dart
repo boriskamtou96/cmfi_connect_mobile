@@ -166,6 +166,7 @@ class _Translations$errors$zh extends Translations$errors$fr {
 	@override String get eventHasPayments => '已有成员付款：请先在管理网站为他们退款。';
 	@override String get peoplePaid => '已付款报名的人数不能再更改。';
 	@override String get cardsDisabled => '银行卡付款暂不可用。';
+	@override String get cardMinimum => '这个金额太小，无法用银行卡支付：请用手机钱包支付。';
 }
 
 // Path: validation
@@ -4319,6 +4320,7 @@ extension on TranslationsZh {
 			'errors.eventHasPayments' => '已有成员付款：请先在管理网站为他们退款。',
 			'errors.peoplePaid' => '已付款报名的人数不能再更改。',
 			'errors.cardsDisabled' => '银行卡付款暂不可用。',
+			'errors.cardMinimum' => '这个金额太小，无法用银行卡支付：请用手机钱包支付。',
 			'validation.required' => '此项为必填',
 			'validation.phoneRequired' => '请输入你的号码',
 			'validation.passwordRequired' => '请输入你的密码',
@@ -4784,9 +4786,9 @@ extension on TranslationsZh {
 			'authorities.form.title' => '新的带领者',
 			'authorities.form.emailHint' => 'name@example.com',
 			'authorities.form.isDiscipleMaker' => '这是我的门训者',
-			'authorities.form.isDiscipleMakerHelp' => '亲自带领你的那个人。你只能有一位。',
 			_ => null,
 		} ?? switch (path) {
+			'authorities.form.isDiscipleMakerHelp' => '亲自带领你的那个人。你只能有一位。',
 			'authorities.form.discipleMakerTaken' => ({required Object name}) => '${name} 已经是你的门训者。若要指定其他人，请先将其从列表中移除。',
 			'authorities.form.submit' => '添加',
 			'authorities.form.added' => ({required Object name}) => '${name} 现在是你的带领者了。',
@@ -5298,9 +5300,9 @@ extension on TranslationsZh {
 			'ministry.heroesEmpty' => '我们英雄的介绍即将推出。',
 			'ministry.personGone' => '此介绍已不再提供。',
 			'ministry.photoOf' => ({required Object name}) => '${name}的照片',
-			'ministry.keyDates' => '重要日期',
 			_ => null,
 		} ?? switch (path) {
+			'ministry.keyDates' => '重要日期',
 			'ministry.life' => '生平',
 			'ministry.story' => '故事',
 			'ministry.goalOf' => ({required Object n, required Object total}) => '我们的目标 · ${n}/${total}',
@@ -5812,9 +5814,9 @@ extension on TranslationsZh {
 			'weekStory.faithfulMoment' => ({required num n, required Object moment}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n, other: '你最忠心的时段：${moment}（${n} 次）', ), 
 			'weekStory.noRetreat' => '本周没有退修',
 			'weekStory.noRetreatText' => '午间退修在等着你：与主同在 15 分钟。',
-			'weekStory.goalsLead' => '你的目标',
 			_ => null,
 		} ?? switch (path) {
+			'weekStory.goalsLead' => '你的目标',
 			'weekStory.goalsReached' => '平均达成',
 			'weekStory.bestDay' => ({required Object day, required Object percent}) => '你最好的一天：${day} · ${percent}',
 			'weekStory.summaryTitle' => '我与神同在的一周',
@@ -6326,9 +6328,9 @@ extension on TranslationsZh {
 			'journey.steps.lyricsShared.text' => '分享一首诗歌的歌词。',
 			'journey.steps.firstSoul.title' => '撒种的人',
 			'journey.steps.firstSoul.text' => '跟进你的第一个灵魂。',
-			'journey.steps.tenSouls.title' => '跟进十个灵魂',
 			_ => null,
 		} ?? switch (path) {
+			'journey.steps.tenSouls.title' => '跟进十个灵魂',
 			'journey.steps.tenSouls.text' => '在灵魂跟进中跟进 10 个人。',
 			'journey.steps.soulBaptized.title' => '一个灵魂受洗',
 			'journey.steps.soulBaptized.text' => '你跟进的人受洗了。',

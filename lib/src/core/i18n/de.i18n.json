@@ -49,7 +49,8 @@
     "paidRegistration": "Bezahlte Anmeldung: wende dich zum Stornieren an die Veranstalter.",
     "eventHasPayments": "Mitglieder haben bezahlt: erstatte zuerst ihre Zahlungen auf der Admin-Seite.",
     "peoplePaid": "Die Personenzahl einer bezahlten Anmeldung lässt sich nicht mehr ändern.",
-    "cardsDisabled": "Kartenzahlung ist derzeit nicht verfügbar."
+    "cardsDisabled": "Kartenzahlung ist derzeit nicht verfügbar.",
+    "cardMinimum": "Dieser Betrag ist für eine Karte zu klein: Bezahle mit Mobile Money."
   },
   "validation": {
     "required": "Dieses Feld ist erforderlich",

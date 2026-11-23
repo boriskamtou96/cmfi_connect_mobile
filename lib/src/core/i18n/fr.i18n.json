@@ -49,7 +49,8 @@
     "paidRegistration": "Inscription payée : contacte les organisateurs pour l'annuler.",
     "eventHasPayments": "Des membres ont payé : rembourse d'abord leurs paiements depuis le site d'administration.",
     "peoplePaid": "Le nombre de personnes d'une inscription payée ne change plus.",
-    "cardsDisabled": "Le paiement par carte n'est pas disponible pour le moment."
+    "cardsDisabled": "Le paiement par carte n'est pas disponible pour le moment.",
+    "cardMinimum": "Ce montant est trop petit pour une carte : paie par Mobile Money."
   },
   "validation": {
     "required": "Ce champ est obligatoire",

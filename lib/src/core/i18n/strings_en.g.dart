@@ -166,6 +166,7 @@ class _Translations$errors$en extends Translations$errors$fr {
 	@override String get eventHasPayments => 'Members have paid: refund their payments first from the admin site.';
 	@override String get peoplePaid => 'The number of people of a paid registration can no longer change.';
 	@override String get cardsDisabled => 'Card payment is not available right now.';
+	@override String get cardMinimum => 'This amount is too small for a card: pay by mobile money.';
 }
 
 // Path: validation
@@ -4445,6 +4446,7 @@ extension on TranslationsEn {
 			'errors.eventHasPayments' => 'Members have paid: refund their payments first from the admin site.',
 			'errors.peoplePaid' => 'The number of people of a paid registration can no longer change.',
 			'errors.cardsDisabled' => 'Card payment is not available right now.',
+			'errors.cardMinimum' => 'This amount is too small for a card: pay by mobile money.',
 			'validation.required' => 'This field is required',
 			'validation.phoneRequired' => 'Enter your number',
 			'validation.passwordRequired' => 'Enter your password',
@@ -4910,9 +4912,9 @@ extension on TranslationsEn {
 			'authorities.form.title' => 'New leader',
 			'authorities.form.emailHint' => 'name@example.com',
 			'authorities.form.isDiscipleMaker' => 'This is my disciple maker',
-			'authorities.form.isDiscipleMakerHelp' => 'The person who mentors you personally. You only have one.',
 			_ => null,
 		} ?? switch (path) {
+			'authorities.form.isDiscipleMakerHelp' => 'The person who mentors you personally. You only have one.',
 			'authorities.form.discipleMakerTaken' => ({required Object name}) => '${name} is already your disciple maker. Remove them from the list to choose someone else.',
 			'authorities.form.submit' => 'Add',
 			'authorities.form.added' => ({required Object name}) => '${name} is now one of your leaders.',
@@ -5424,9 +5426,9 @@ extension on TranslationsEn {
 			'ministry.heroesEmpty' => 'Portraits of our heroes are coming soon.',
 			'ministry.personGone' => 'This portrait is no longer available.',
 			'ministry.photoOf' => ({required Object name}) => 'Photo of ${name}',
-			'ministry.keyDates' => 'Key dates',
 			_ => null,
 		} ?? switch (path) {
+			'ministry.keyDates' => 'Key dates',
 			'ministry.life' => 'His life',
 			'ministry.story' => 'Their story',
 			'ministry.goalOf' => ({required Object n, required Object total}) => 'OUR GOAL · ${n}/${total}',
@@ -5938,9 +5940,9 @@ extension on TranslationsEn {
 			'weekStory.faithfulMoment' => ({required num n, required Object moment}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n, one: 'Your most faithful time: ${moment} (${n} time)', other: 'Your most faithful time: ${moment} (${n} times)', ), 
 			'weekStory.noRetreat' => 'No retreat this week',
 			'weekStory.noRetreatText' => 'The noon retreat is waiting for you: 15 minutes with the Lord.',
-			'weekStory.goalsLead' => 'Your goals',
 			_ => null,
 		} ?? switch (path) {
+			'weekStory.goalsLead' => 'Your goals',
 			'weekStory.goalsReached' => 'reached on average',
 			'weekStory.bestDay' => ({required Object day, required Object percent}) => 'Your best day: ${day} · ${percent}',
 			'weekStory.summaryTitle' => 'My week with God',
@@ -6452,9 +6454,9 @@ extension on TranslationsEn {
 			'journey.steps.lyricsShared.text' => 'Share the words of a hymn.',
 			'journey.steps.firstSoul.title' => 'Sower',
 			'journey.steps.firstSoul.text' => 'Follow your first soul.',
-			'journey.steps.tenSouls.title' => 'Ten souls followed',
 			_ => null,
 		} ?? switch (path) {
+			'journey.steps.tenSouls.title' => 'Ten souls followed',
 			'journey.steps.tenSouls.text' => 'Follow 10 people in soul follow-up.',
 			'journey.steps.soulBaptized.title' => 'A soul baptized',
 			'journey.steps.soulBaptized.text' => 'Someone you follow reaches baptism.',

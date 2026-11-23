@@ -23,6 +23,7 @@ import '../../../core/widgets/fade_slide_in.dart';
 import '../../../core/widgets/menu_tile.dart';
 import '../../../core/widgets/section_card.dart';
 import '../../../core/widgets/sub_page.dart';
+import '../../../core/widgets/tour/seen_tours.dart';
 import '../../../routing/app_router.dart';
 import '../../auth/application/saved_login.dart';
 import '../../auth/infrastructure/auth_api.dart';
@@ -189,6 +190,12 @@ class SettingsScreen extends ConsumerWidget {
           ]),
           group(s.help, [
             MenuTile(
+              icon: AppIcons.tourTile,
+              title: t.tour.replay,
+              subtitle: t.tour.replayText,
+              onTap: () => _replayTours(context, ref),
+            ),
+            MenuTile(
               icon: AppIcons.contactTile,
               title: s.contact,
               subtitle: _contactEmail,
@@ -271,6 +278,14 @@ class SettingsScreen extends ConsumerWidget {
     if (await saved.enable(password, reason: t.auth.biometric.enableReason)) {
       toast.success(t.auth.biometric.enabled(method: method));
     }
+  }
+
+  /// Every space presents itself again, the next time the member opens it.
+  Future<void> _replayTours(BuildContext context, WidgetRef ref) async {
+    final t = context.t;
+    final toast = ref.read(toasterProvider).of(context);
+    await ref.read(seenToursProvider.notifier).forgetAll();
+    toast.success(t.tour.replayed);
   }
 
   Future<void> _pickLanguage(BuildContext context, WidgetRef ref) async {

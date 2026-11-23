@@ -93,6 +93,7 @@ class TranslationsHi extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _Translations$games$hi games = _Translations$games$hi._(_root);
 	@override late final _Translations$sheetImport$hi sheetImport = _Translations$sheetImport$hi._(_root);
 	@override late final _Translations$donation$hi donation = _Translations$donation$hi._(_root);
+	@override late final _Translations$tour$hi tour = _Translations$tour$hi._(_root);
 }
 
 // Path: app
@@ -443,6 +444,7 @@ class _Translations$items$hi extends Translations$items$fr {
 	@override String get goalSaved => 'लक्ष्य सेव हो गया';
 	@override String get goalRemoved => 'लक्ष्य हटा दिया गया';
 	@override String edit({required Object code}) => '${code} बदलें';
+	@override late final _Translations$items$limit$hi limit = _Translations$items$limit$hi._(_root);
 }
 
 // Path: newItem
@@ -775,6 +777,8 @@ class _Translations$premium$hi extends Translations$premium$fr {
 	@override String get widgetText => 'ऐप खोले बिना होम स्क्रीन पर आज की रिपोर्ट और आपके लक्ष्य।';
 	@override String get statsTitle => 'पूरे साल के तुम्हारे लक्ष्य';
 	@override String get statsText => 'आपके साल का लेखा-जोखा और हफ़्ते-दर-हफ़्ते लक्ष्यों की प्रगति।';
+	@override String get itemsTitle => 'असीमित आइटम';
+	@override String get itemsText => 'अपनी रिपोर्ट में जितने चाहो उतने निजी आइटम बनाओ।';
 	@override String get supportTitle => 'तुम सेवकाई का साथ देते हो';
 	@override String get supportText => 'तुम्हारा सहयोग पूरे समुदाय के लिए ऐप और उसकी नई सुविधाओं को चलाए रखता है।';
 	@override String get annual => 'सालाना';
@@ -817,9 +821,9 @@ class _Translations$premium$hi extends Translations$premium$fr {
 	@override String get unavailable => 'अभी ऑफ़र उपलब्ध नहीं हैं।';
 	@override String get privacy => 'गोपनीयता';
 	@override String get activeTitle => 'तुम्हारे पास Premium है';
-	@override String get activeText => 'CMFI Connect का साथ देने के लिए धन्यवाद! विजेट, आपका साल, लेखा-जोखा और ऑफ़लाइन शिक्षाएँ खुली हैं।';
+	@override String get activeText => 'CMFI Connect का साथ देने के लिए धन्यवाद! विजेट, आपका साल, लेखा-जोखा, ऑफ़लाइन शिक्षाएँ और असीमित आइटम खुले हैं।';
 	@override String get staffText => 'तुम CMFI Connect टीम का हिस्सा हो, इसलिए Premium तुम्हें मुफ़्त मिला है।';
-	@override String get moreSubtitle => 'विजेट, आपका साल, शिक्षाएँ ऑफ़लाइन';
+	@override String get moreSubtitle => 'विजेट, आपका साल, शिक्षाएँ ऑफ़लाइन, असीमित आइटम';
 	@override String get become => 'Premium लें';
 	@override String get moreActive => 'चालू';
 	@override String get unlock => 'Premium से खोलो';
@@ -2352,6 +2356,24 @@ class _Translations$donation$hi extends Translations$donation$fr {
 	@override String get done => 'पूरा';
 }
 
+// Path: tour
+class _Translations$tour$hi extends Translations$tour$fr {
+	_Translations$tour$hi._(TranslationsHi root) : this._root = root, super.internal(root);
+
+	final TranslationsHi _root; // ignore: unused_field
+
+	// Translations
+	@override String get skip => 'छोड़ें';
+	@override String get next => 'आगे';
+	@override String get done => 'समझ गया';
+	@override String stepOf({required Object n, required Object total}) => '${n}/${total}';
+	@override String get replay => 'हिस्सों का परिचय फिर से देखें';
+	@override String get replayText => 'हर हिस्सा फिर से अपना परिचय देगा';
+	@override String get replayed => 'हो गया: अगली बार खोलने पर हर हिस्सा फिर से अपना परिचय देगा।';
+	@override late final _Translations$tour$spaces$hi spaces = _Translations$tour$spaces$hi._(_root);
+	@override late final _Translations$tour$steps$hi steps = _Translations$tour$steps$hi._(_root);
+}
+
 // Path: welcome.seek
 class _Translations$welcome$seek$hi extends Translations$welcome$seek$fr {
 	_Translations$welcome$seek$hi._(TranslationsHi root) : this._root = root, super.internal(root);
@@ -2792,6 +2814,24 @@ class _Translations$items$measure$hi extends Translations$items$measure$fr {
 	@override String get duration => 'अवधि';
 	@override String both({required Object unit}) => 'मात्रा (${unit}) और अवधि';
 	@override String get bothNoUnit => 'मात्रा और अवधि';
+}
+
+// Path: items.limit
+class _Translations$items$limit$hi extends Translations$items$limit$fr {
+	_Translations$items$limit$hi._(TranslationsHi root) : this._root = root, super.internal(root);
+
+	final TranslationsHi _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Premium के साथ और आइटम';
+	@override String text({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n,
+		one: 'Premium के बिना तुम ${n} निजी आइटम तक बना सकते हो। जो आइटम तुम्हारे पास हैं, वे सब तुम्हारे ही रहेंगे, और किसी आइटम को आर्काइव करने से एक जगह खाली हो जाती है। Premium के साथ जितने चाहो उतने बनाओ, ताकि परमेश्वर के साथ तुम्हारी चाल में जो कुछ मायने रखता है, उस पर नज़र रख सको।',
+		other: 'Premium के बिना तुम ${n} निजी आइटम तक बना सकते हो। जो आइटम तुम्हारे पास हैं, वे सब तुम्हारे ही रहेंगे, और किसी आइटम को आर्काइव करने से एक जगह खाली हो जाती है। Premium के साथ जितने चाहो उतने बनाओ, ताकि परमेश्वर के साथ तुम्हारी चाल में जो कुछ मायने रखता है, उस पर नज़र रख सको।',
+	);
+	@override String get discover => 'Premium देखो';
+	@override String get later => 'बाद में';
+	@override String count({required Object limit, required Object used}) => '${limit} में से ${used}';
+	@override String countLabel({required Object limit, required Object used}) => 'निजी आइटम: ${limit} में से ${used}';
 }
 
 // Path: authorities.form
@@ -3935,6 +3975,80 @@ class _Translations$games$journey$hi extends Translations$games$journey$fr {
 	@override String kept({required Object total, required Object n}) => '${total} में से ${n}';
 }
 
+// Path: tour.spaces
+class _Translations$tour$spaces$hi extends Translations$tour$spaces$fr {
+	_Translations$tour$spaces$hi._(TranslationsHi root) : this._root = root, super.internal(root);
+
+	final TranslationsHi _root; // ignore: unused_field
+
+	// Translations
+	@override String get home => 'होम';
+	@override String get reports => 'रिपोर्ट';
+	@override String get games => 'खेल';
+	@override String get bible => 'बाइबल';
+	@override String get you => 'तुम';
+	@override String get prayer => 'प्रार्थना';
+	@override String get hymns => 'भजन';
+	@override String get teachings => 'शिक्षाएँ';
+	@override String get ministry => 'हमारी सेवकाई';
+	@override String get events => 'कार्यक्रम';
+	@override String get donate => 'दान दें';
+	@override String get premium => 'Premium';
+	@override String get documents => 'हमारे दस्तावेज़';
+	@override String get notifications => 'सूचनाएँ';
+}
+
+// Path: tour.steps
+class _Translations$tour$steps$hi extends Translations$tour$steps$fr {
+	_Translations$tour$steps$hi._(TranslationsHi root) : this._root = root, super.internal(root);
+
+	final TranslationsHi _root; // ignore: unused_field
+
+	// Translations
+	@override late final _Translations$tour$steps$homeDay$hi homeDay = _Translations$tour$steps$homeDay$hi._(_root);
+	@override late final _Translations$tour$steps$homeReport$hi homeReport = _Translations$tour$steps$homeReport$hi._(_root);
+	@override late final _Translations$tour$steps$homeShortcuts$hi homeShortcuts = _Translations$tour$steps$homeShortcuts$hi._(_root);
+	@override late final _Translations$tour$steps$homeBell$hi homeBell = _Translations$tour$steps$homeBell$hi._(_root);
+	@override late final _Translations$tour$steps$reportsViews$hi reportsViews = _Translations$tour$steps$reportsViews$hi._(_root);
+	@override late final _Translations$tour$steps$reportsDay$hi reportsDay = _Translations$tour$steps$reportsDay$hi._(_root);
+	@override late final _Translations$tour$steps$reportsStopwatch$hi reportsStopwatch = _Translations$tour$steps$reportsStopwatch$hi._(_root);
+	@override late final _Translations$tour$steps$reportsItems$hi reportsItems = _Translations$tour$steps$reportsItems$hi._(_root);
+	@override late final _Translations$tour$steps$reportsExport$hi reportsExport = _Translations$tour$steps$reportsExport$hi._(_root);
+	@override late final _Translations$tour$steps$gamesStats$hi gamesStats = _Translations$tour$steps$gamesStats$hi._(_root);
+	@override late final _Translations$tour$steps$gamesExtras$hi gamesExtras = _Translations$tour$steps$gamesExtras$hi._(_root);
+	@override late final _Translations$tour$steps$biblePassage$hi biblePassage = _Translations$tour$steps$biblePassage$hi._(_root);
+	@override late final _Translations$tour$steps$bibleVersion$hi bibleVersion = _Translations$tour$steps$bibleVersion$hi._(_root);
+	@override late final _Translations$tour$steps$bibleListen$hi bibleListen = _Translations$tour$steps$bibleListen$hi._(_root);
+	@override late final _Translations$tour$steps$bibleMore$hi bibleMore = _Translations$tour$steps$bibleMore$hi._(_root);
+	@override late final _Translations$tour$steps$youCard$hi youCard = _Translations$tour$steps$youCard$hi._(_root);
+	@override late final _Translations$tour$steps$youNumbers$hi youNumbers = _Translations$tour$steps$youNumbers$hi._(_root);
+	@override late final _Translations$tour$steps$youDiscover$hi youDiscover = _Translations$tour$steps$youDiscover$hi._(_root);
+	@override late final _Translations$tour$steps$youSettings$hi youSettings = _Translations$tour$steps$youSettings$hi._(_root);
+	@override late final _Translations$tour$steps$prayerToday$hi prayerToday = _Translations$tour$steps$prayerToday$hi._(_root);
+	@override late final _Translations$tour$steps$prayerReminders$hi prayerReminders = _Translations$tour$steps$prayerReminders$hi._(_root);
+	@override late final _Translations$tour$steps$prayerRoutine$hi prayerRoutine = _Translations$tour$steps$prayerRoutine$hi._(_root);
+	@override late final _Translations$tour$steps$prayerTogether$hi prayerTogether = _Translations$tour$steps$prayerTogether$hi._(_root);
+	@override late final _Translations$tour$steps$hymnsBook$hi hymnsBook = _Translations$tour$steps$hymnsBook$hi._(_root);
+	@override late final _Translations$tour$steps$hymnsNumber$hi hymnsNumber = _Translations$tour$steps$hymnsNumber$hi._(_root);
+	@override late final _Translations$tour$steps$hymnsSearch$hi hymnsSearch = _Translations$tour$steps$hymnsSearch$hi._(_root);
+	@override late final _Translations$tour$steps$hymnsViews$hi hymnsViews = _Translations$tour$steps$hymnsViews$hi._(_root);
+	@override late final _Translations$tour$steps$teachingsSearch$hi teachingsSearch = _Translations$tour$steps$teachingsSearch$hi._(_root);
+	@override late final _Translations$tour$steps$teachingsFilters$hi teachingsFilters = _Translations$tour$steps$teachingsFilters$hi._(_root);
+	@override late final _Translations$tour$steps$teachingsCategories$hi teachingsCategories = _Translations$tour$steps$teachingsCategories$hi._(_root);
+	@override late final _Translations$tour$steps$ministryNations$hi ministryNations = _Translations$tour$steps$ministryNations$hi._(_root);
+	@override late final _Translations$tour$steps$ministryLives$hi ministryLives = _Translations$tour$steps$ministryLives$hi._(_root);
+	@override late final _Translations$tour$steps$ministryMenu$hi ministryMenu = _Translations$tour$steps$ministryMenu$hi._(_root);
+	@override late final _Translations$tour$steps$eventsNext$hi eventsNext = _Translations$tour$steps$eventsNext$hi._(_root);
+	@override late final _Translations$tour$steps$donateAmounts$hi donateAmounts = _Translations$tour$steps$donateAmounts$hi._(_root);
+	@override late final _Translations$tour$steps$donateMethod$hi donateMethod = _Translations$tour$steps$donateMethod$hi._(_root);
+	@override late final _Translations$tour$steps$donateGive$hi donateGive = _Translations$tour$steps$donateGive$hi._(_root);
+	@override late final _Translations$tour$steps$premiumBenefits$hi premiumBenefits = _Translations$tour$steps$premiumBenefits$hi._(_root);
+	@override late final _Translations$tour$steps$premiumPlans$hi premiumPlans = _Translations$tour$steps$premiumPlans$hi._(_root);
+	@override late final _Translations$tour$steps$documentsSearch$hi documentsSearch = _Translations$tour$steps$documentsSearch$hi._(_root);
+	@override late final _Translations$tour$steps$documentsCategories$hi documentsCategories = _Translations$tour$steps$documentsCategories$hi._(_root);
+	@override late final _Translations$tour$steps$notificationsInbox$hi notificationsInbox = _Translations$tour$steps$notificationsInbox$hi._(_root);
+}
+
 // Path: reports.summary.time
 class _Translations$reports$summary$time$hi extends Translations$reports$summary$time$fr {
 	_Translations$reports$summary$time$hi._(TranslationsHi root) : this._root = root, super.internal(root);
@@ -4390,6 +4504,468 @@ class _Translations$journey$steps$firstEncouragement$hi extends Translations$jou
 	@override String get text => 'किसी चेले को प्रोत्साहन का संदेश भेजो।';
 }
 
+// Path: tour.steps.homeDay
+class _Translations$tour$steps$homeDay$hi extends Translations$tour$steps$homeDay$fr {
+	_Translations$tour$steps$homeDay$hi._(TranslationsHi root) : this._root = root, super.internal(root);
+
+	final TranslationsHi _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'तुम्हारा दिन एक नज़र में';
+	@override String get text => 'सुनहरा छल्ला तुम्हारी दैनिक रिपोर्ट के साथ भरता है। बगल में: तुम्हारे लक्ष्य, तुम्हारे एकांत, तुम्हारी लगातार दिनों की गिनती और तुम्हारे सप्ताह के दिन।';
+}
+
+// Path: tour.steps.homeReport
+class _Translations$tour$steps$homeReport$hi extends Translations$tour$steps$homeReport$fr {
+	_Translations$tour$steps$homeReport$hi._(TranslationsHi root) : this._root = root, super.internal(root);
+
+	final TranslationsHi _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'आज की रिपोर्ट';
+	@override String get text => 'इसे यहाँ शुरू करो, या जहाँ छोड़ा था वहीं से जारी रखो। यह बिना नेटवर्क के भी सहेजी जाती है।';
+}
+
+// Path: tour.steps.homeShortcuts
+class _Translations$tour$steps$homeShortcuts$hi extends Translations$tour$steps$homeShortcuts$fr {
+	_Translations$tour$steps$homeShortcuts$hi._(TranslationsHi root) : this._root = root, super.internal(root);
+
+	final TranslationsHi _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'भजन और प्रार्थना';
+	@override String get text => 'समुदाय की भजन-पुस्तकें और तुम्हारे 15 मिनट के एकांत बस एक स्पर्श दूर हैं।';
+}
+
+// Path: tour.steps.homeBell
+class _Translations$tour$steps$homeBell$hi extends Translations$tour$steps$homeBell$fr {
+	_Translations$tour$steps$homeBell$hi._(TranslationsHi root) : this._root = root, super.internal(root);
+
+	final TranslationsHi _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'घोषणाएँ';
+	@override String get text => 'घंटी तुम्हें तुम्हारे अगुवों की खबरें लाती है; कुछ नया होने पर एक छोटा बिंदु दिखता है।';
+}
+
+// Path: tour.steps.reportsViews
+class _Translations$tour$steps$reportsViews$hi extends Translations$tour$steps$reportsViews$fr {
+	_Translations$tour$steps$reportsViews$hi._(TranslationsHi root) : this._root = root, super.internal(root);
+
+	final TranslationsHi _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'आज, इतिहास, सारांश';
+	@override String get text => 'अपना दिन भरो, बीते दिन देखो, फिर सप्ताह, महीने या साल में अपना रास्ता देखो।';
+}
+
+// Path: tour.steps.reportsDay
+class _Translations$tour$steps$reportsDay$hi extends Translations$tour$steps$reportsDay$fr {
+	_Translations$tour$steps$reportsDay$hi._(TranslationsHi root) : this._root = root, super.internal(root);
+
+	final TranslationsHi _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'कोई और दिन';
+	@override String get text => 'कल भरना भूल गए? कैलेंडर में दिन चुनो।';
+}
+
+// Path: tour.steps.reportsStopwatch
+class _Translations$tour$steps$reportsStopwatch$hi extends Translations$tour$steps$reportsStopwatch$fr {
+	_Translations$tour$steps$reportsStopwatch$hi._(TranslationsHi root) : this._root = root, super.internal(root);
+
+	final TranslationsHi _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'स्टॉपवॉच';
+	@override String get text => 'अपनी प्रार्थना या पढ़ाई का समय मापो: मिनट अपने आप तुम्हारी रिपोर्ट में जुड़ जाते हैं।';
+}
+
+// Path: tour.steps.reportsItems
+class _Translations$tour$steps$reportsItems$hi extends Translations$tour$steps$reportsItems$fr {
+	_Translations$tour$steps$reportsItems$hi._(TranslationsHi root) : this._root = root, super.internal(root);
+
+	final TranslationsHi _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'तुम्हारे तत्व और लक्ष्य';
+	@override String get text => 'अपने खुद के तत्व जोड़ो और हर एक के लिए अपनी गति से लक्ष्य तय करो।';
+}
+
+// Path: tour.steps.reportsExport
+class _Translations$tour$steps$reportsExport$hi extends Translations$tour$steps$reportsExport$fr {
+	_Translations$tour$steps$reportsExport$hi._(TranslationsHi root) : this._root = root, super.internal(root);
+
+	final TranslationsHi _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'अपनी रिपोर्ट एक्सपोर्ट करो';
+	@override String get text => 'अपनी चुनी हुई अवधि के लिए, छापने या भेजने के लिए PDF, Excel के लिए स्प्रेडशीट, या WhatsApp के लिए संदेश के रूप में। यह Premium की सुविधा है।';
+}
+
+// Path: tour.steps.gamesStats
+class _Translations$tour$steps$gamesStats$hi extends Translations$tour$steps$gamesStats$fr {
+	_Translations$tour$steps$gamesStats$hi._(TranslationsHi root) : this._root = root, super.internal(root);
+
+	final TranslationsHi _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'तुम्हारी प्रगति';
+	@override String get text => 'तुम्हारे लगातार दिन, तुम्हारे अंक और आज का लक्ष्य; नीचे तुम्हारे पाठों का रास्ता। अंक सिर्फ़ खेल के लिए हैं, वे कभी तुम्हारा विश्वास नहीं मापते।';
+}
+
+// Path: tour.steps.gamesExtras
+class _Translations$tour$steps$gamesExtras$hi extends Translations$tour$steps$gamesExtras$fr {
+	_Translations$tour$steps$gamesExtras$hi._(TranslationsHi root) : this._root = root, super.internal(root);
+
+	final TranslationsHi _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'रैंकिंग, उड़ान और ऑफ़लाइन';
+	@override String get text => 'चाहो तो रैंकिंग में शामिल हो, “उड़ता वचन” के साथ कनान की ओर उड़ो, और बिना नेटवर्क के खेलने के लिए एक पाठ्यक्रम सहेज लो।';
+}
+
+// Path: tour.steps.biblePassage
+class _Translations$tour$steps$biblePassage$hi extends Translations$tour$steps$biblePassage$fr {
+	_Translations$tour$steps$biblePassage$hi._(TranslationsHi root) : this._root = root, super.internal(root);
+
+	final TranslationsHi _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'पुस्तक और अध्याय';
+	@override String get text => 'कोई अंश चुनने के लिए यहाँ छुओ, या अध्याय बदलने के लिए सरकाओ। किसी वचन को हाइलाइट करने, सहेजने या साझा करने के लिए उसे छुओ।';
+}
+
+// Path: tour.steps.bibleVersion
+class _Translations$tour$steps$bibleVersion$hi extends Translations$tour$steps$bibleVersion$fr {
+	_Translations$tour$steps$bibleVersion$hi._(TranslationsHi root) : this._root = root, super.internal(root);
+
+	final TranslationsHi _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'संस्करण';
+	@override String get text => 'अनुवाद बदलो, और बिना नेटवर्क के पढ़ने और खोजने के लिए उसे डाउनलोड करो।';
+}
+
+// Path: tour.steps.bibleListen
+class _Translations$tour$steps$bibleListen$hi extends Translations$tour$steps$bibleListen$fr {
+	_Translations$tour$steps$bibleListen$hi._(TranslationsHi root) : this._root = root, super.internal(root);
+
+	final TranslationsHi _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'वचन सुनो';
+	@override String get text => 'फ़ोन की आवाज़ तुम्हें अध्याय पढ़कर सुनाती है, वचन दर वचन।';
+}
+
+// Path: tour.steps.bibleMore
+class _Translations$tour$steps$bibleMore$hi extends Translations$tour$steps$bibleMore$fr {
+	_Translations$tour$steps$bibleMore$hi._(TranslationsHi root) : this._root = root, super.internal(root);
+
+	final TranslationsHi _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'और भी';
+	@override String get text => 'तुम्हारी पढ़ने की योजना, कंठस्थ करना, मेरे वचन, शब्दानुक्रमणिका और बुकमार्क यहाँ हैं।';
+}
+
+// Path: tour.steps.youCard
+class _Translations$tour$steps$youCard$hi extends Translations$tour$steps$youCard$fr {
+	_Translations$tour$steps$youCard$hi._(TranslationsHi root) : this._root = root, super.internal(root);
+
+	final TranslationsHi _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'तुम्हारा कार्ड';
+	@override String get text => 'तुम्हारी फ़ोटो, नाम और यूज़रनेम: यूज़रनेम से ही तुम्हारे भाई-बहन तुम्हें ढूँढते हैं।';
+}
+
+// Path: tour.steps.youNumbers
+class _Translations$tour$steps$youNumbers$hi extends Translations$tour$steps$youNumbers$fr {
+	_Translations$tour$steps$youNumbers$hi._(TranslationsHi root) : this._root = root, super.internal(root);
+
+	final TranslationsHi _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'तुम्हारी आत्मिक यात्रा';
+	@override String get text => 'इस महीने तुम्हारे लगातार दिन, तुम्हारे पड़ाव और परमेश्वर के साथ तुम्हारा समय। ये तुम्हारे हैं: क्या साझा करना है, तुम चुनते हो।';
+}
+
+// Path: tour.steps.youDiscover
+class _Translations$tour$steps$youDiscover$hi extends Translations$tour$steps$youDiscover$fr {
+	_Translations$tour$steps$youDiscover$hi._(TranslationsHi root) : this._root = root, super.internal(root);
+
+	final TranslationsHi _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'खोजो';
+	@override String get text => 'कार्यक्रम, हमारी सेवकाई, ऑडियो शिक्षाएँ और समुदाय के दस्तावेज़।';
+}
+
+// Path: tour.steps.youSettings
+class _Translations$tour$steps$youSettings$hi extends Translations$tour$steps$youSettings$fr {
+	_Translations$tour$steps$youSettings$hi._(TranslationsHi root) : this._root = root, super.internal(root);
+
+	final TranslationsHi _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'सेटिंग्स';
+	@override String get text => 'रिमाइंडर, रूप, भाषा… और जब चाहो ये परिचय फिर से देखने का तरीका।';
+}
+
+// Path: tour.steps.prayerToday
+class _Translations$tour$steps$prayerToday$hi extends Translations$tour$steps$prayerToday$fr {
+	_Translations$tour$steps$prayerToday$hi._(TranslationsHi root) : this._root = root, super.internal(root);
+
+	final TranslationsHi _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'आज की प्रार्थना';
+	@override String get text => 'इस सप्ताह तुमने किन दिनों प्रार्थना की, तुम्हारा प्रार्थना का समय, और अभी शुरू करने वाला एकांत।';
+}
+
+// Path: tour.steps.prayerReminders
+class _Translations$tour$steps$prayerReminders$hi extends Translations$tour$steps$prayerReminders$fr {
+	_Translations$tour$steps$prayerReminders$hi._(TranslationsHi root) : this._root = root, super.internal(root);
+
+	final TranslationsHi _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'तुम्हारे रिमाइंडर';
+	@override String get text => 'हर एकांत का समय चुनो: सुबह, दोपहर, शाम और रात।';
+}
+
+// Path: tour.steps.prayerRoutine
+class _Translations$tour$steps$prayerRoutine$hi extends Translations$tour$steps$prayerRoutine$fr {
+	_Translations$tour$steps$prayerRoutine$hi._(TranslationsHi root) : this._root = root, super.internal(root);
+
+	final TranslationsHi _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'तुम्हारी दैनिक दिनचर्या';
+	@override String get text => '15 मिनट के चार एकांत, बिंदु दर बिंदु मार्गदर्शन के साथ। हर एक अपना समय तुम्हारी रिपोर्ट में जोड़ता है।';
+}
+
+// Path: tour.steps.prayerTogether
+class _Translations$tour$steps$prayerTogether$hi extends Translations$tour$steps$prayerTogether$fr {
+	_Translations$tour$steps$prayerTogether$hi._(TranslationsHi root) : this._root = root, super.internal(root);
+
+	final TranslationsHi _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'साथ मिलकर प्रार्थना';
+	@override String get text => 'लगातार प्रार्थना का एक विषय बनाओ और भाई-बहनों को उसे अपने साथ उठाने के लिए आमंत्रित करो।';
+}
+
+// Path: tour.steps.hymnsBook
+class _Translations$tour$steps$hymnsBook$hi extends Translations$tour$steps$hymnsBook$fr {
+	_Translations$tour$steps$hymnsBook$hi._(TranslationsHi root) : this._root = root, super.internal(root);
+
+	final TranslationsHi _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'भजन-पुस्तक';
+	@override String get text => 'भजन-पुस्तक बदलने के लिए कवर सरकाओ या उसका नाम छुओ। सब कुछ बिना नेटवर्क के चलता है।';
+}
+
+// Path: tour.steps.hymnsNumber
+class _Translations$tour$steps$hymnsNumber$hi extends Translations$tour$steps$hymnsNumber$fr {
+	_Translations$tour$steps$hymnsNumber$hi._(TranslationsHi root) : this._root = root, super.internal(root);
+
+	final TranslationsHi _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'नंबर पर जाओ';
+	@override String get text => 'आराधना में बताया गया नंबर लिखो, और भजन खुल जाएगा।';
+}
+
+// Path: tour.steps.hymnsSearch
+class _Translations$tour$steps$hymnsSearch$hi extends Translations$tour$steps$hymnsSearch$fr {
+	_Translations$tour$steps$hymnsSearch$hi._(TranslationsHi root) : this._root = root, super.internal(root);
+
+	final TranslationsHi _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'खोजो';
+	@override String get text => 'किसी भजन को उसके शीर्षक या उसके बोलों के कुछ शब्दों से ढूँढो।';
+}
+
+// Path: tour.steps.hymnsViews
+class _Translations$tour$steps$hymnsViews$hi extends Translations$tour$steps$hymnsViews$fr {
+	_Translations$tour$steps$hymnsViews$hi._(TranslationsHi root) : this._root = root, super.internal(root);
+
+	final TranslationsHi _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'पसंदीदा और हाल के';
+	@override String get text => 'किसी भजन को रखने के लिए उसका तारा छुओ; हाल में गाए भजन यहाँ तुम्हारा इंतज़ार करते हैं।';
+}
+
+// Path: tour.steps.teachingsSearch
+class _Translations$tour$steps$teachingsSearch$hi extends Translations$tour$steps$teachingsSearch$fr {
+	_Translations$tour$steps$teachingsSearch$hi._(TranslationsHi root) : this._root = root, super.internal(root);
+
+	final TranslationsHi _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'संदेश खोजो';
+	@override String get text => 'उसके शीर्षक, वक्ता या विवरण के किसी शब्द से।';
+}
+
+// Path: tour.steps.teachingsFilters
+class _Translations$tour$steps$teachingsFilters$hi extends Translations$tour$steps$teachingsFilters$fr {
+	_Translations$tour$steps$teachingsFilters$hi._(TranslationsHi root) : this._root = root, super.internal(root);
+
+	final TranslationsHi _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'फ़िल्टर';
+	@override String get text => 'कोई वक्ता, साल या संस्करण चुनो।';
+}
+
+// Path: tour.steps.teachingsCategories
+class _Translations$tour$steps$teachingsCategories$hi extends Translations$tour$steps$teachingsCategories$fr {
+	_Translations$tour$steps$teachingsCategories$hi._(TranslationsHi root) : this._root = root, super.internal(root);
+
+	final TranslationsHi _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'विषय';
+	@override String get text => 'एक विषय से दूसरे पर जाओ; “डाउनलोड किए गए” तुम्हारे संदेशों को बिना नेटवर्क के सुनने के लिए रखता है।';
+}
+
+// Path: tour.steps.ministryNations
+class _Translations$tour$steps$ministryNations$hi extends Translations$tour$steps$ministryNations$fr {
+	_Translations$tour$steps$ministryNations$hi._(TranslationsHi root) : this._root = root, super.internal(root);
+
+	final TranslationsHi _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'राष्ट्र';
+	@override String get text => 'उन राष्ट्रों का ग्लोब घुमाओ जहाँ यह कार्य मौजूद है, और हर एक के लिए प्रार्थना करो।';
+}
+
+// Path: tour.steps.ministryLives
+class _Translations$tour$steps$ministryLives$hi extends Translations$tour$steps$ministryLives$fr {
+	_Translations$tour$steps$ministryLives$hi._(TranslationsHi root) : this._root = root, super.internal(root);
+
+	final TranslationsHi _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'हमारे संस्थापक और अगुवा';
+	@override String get text => 'उनका जीवन, उनकी मुख्य तिथियाँ और परमेश्वर ने उनके द्वारा क्या किया।';
+}
+
+// Path: tour.steps.ministryMenu
+class _Translations$tour$steps$ministryMenu$hi extends Translations$tour$steps$ministryMenu$fr {
+	_Translations$tour$steps$ministryMenu$hi._(TranslationsHi root) : this._root = root, super.internal(root);
+
+	final TranslationsHi _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'हमारा उद्देश्य, मिशनरी, नायक';
+	@override String get text => 'सेवकाई के तीन उद्देश्य, और उन लोगों का जीवन जिन्होंने इसकी सेवा की।';
+}
+
+// Path: tour.steps.eventsNext
+class _Translations$tour$steps$eventsNext$hi extends Translations$tour$steps$eventsNext$fr {
+	_Translations$tour$steps$eventsNext$hi._(TranslationsHi root) : this._root = root, super.internal(root);
+
+	final TranslationsHi _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'समुदाय के कार्यक्रम';
+	@override String get text => 'अगला कार्यक्रम यहाँ दिखता है: उसका कार्यक्रम देखने, पंजीकरण करने, रिमाइंडर पाने या कैलेंडर में जोड़ने के लिए उसे छुओ।';
+}
+
+// Path: tour.steps.donateAmounts
+class _Translations$tour$steps$donateAmounts$hi extends Translations$tour$steps$donateAmounts$fr {
+	_Translations$tour$steps$donateAmounts$hi._(TranslationsHi root) : this._root = root, super.internal(root);
+
+	final TranslationsHi _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'तुम्हारा दान';
+	@override String get text => 'कोई राशि चुनो या अपनी राशि लिखो। तुम्हारा सहयोग पूरे समुदाय के लिए ऐप को चलाए रखता है।';
+}
+
+// Path: tour.steps.donateMethod
+class _Translations$tour$steps$donateMethod$hi extends Translations$tour$steps$donateMethod$fr {
+	_Translations$tour$steps$donateMethod$hi._(TranslationsHi root) : this._root = root, super.internal(root);
+
+	final TranslationsHi _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'भुगतान का तरीका';
+	@override String get text => 'Mobile Money या कार्ड, तुम्हारे देश की मुद्रा में।';
+}
+
+// Path: tour.steps.donateGive
+class _Translations$tour$steps$donateGive$hi extends Translations$tour$steps$donateGive$fr {
+	_Translations$tour$steps$donateGive$hi._(TranslationsHi root) : this._root = root, super.internal(root);
+
+	final TranslationsHi _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'दान दो';
+	@override String get text => 'भुगतान एक सुरक्षित पेज से होता है। “परमेश्वर हर्ष से देनेवाले से प्रेम रखता है” (2 कुरिन्थियों 9:7)।';
+}
+
+// Path: tour.steps.premiumBenefits
+class _Translations$tour$steps$premiumBenefits$hi extends Translations$tour$steps$premiumBenefits$fr {
+	_Translations$tour$steps$premiumBenefits$hi._(TranslationsHi root) : this._root = root, super.internal(root);
+
+	final TranslationsHi _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Premium क्या जोड़ता है';
+	@override String get text => 'अतिरिक्त सुविधाएँ, जैसे ऑफ़लाइन शिक्षाएँ, परमेश्वर के साथ तुम्हारा साल या विजेट। ऐप का मूल हिस्सा मुफ़्त रहता है।';
+}
+
+// Path: tour.steps.premiumPlans
+class _Translations$tour$steps$premiumPlans$hi extends Translations$tour$steps$premiumPlans$fr {
+	_Translations$tour$steps$premiumPlans$hi._(TranslationsHi root) : this._root = root, super.internal(root);
+
+	final TranslationsHi _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'योजनाएँ';
+	@override String get text => 'जो अवधि तुम्हें ठीक लगे वह चुनो: मासिक, छह महीने, सालाना या आजीवन।';
+}
+
+// Path: tour.steps.documentsSearch
+class _Translations$tour$steps$documentsSearch$hi extends Translations$tour$steps$documentsSearch$fr {
+	_Translations$tour$steps$documentsSearch$hi._(TranslationsHi root) : this._root = root, super.internal(root);
+
+	final TranslationsHi _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'दस्तावेज़ खोजो';
+	@override String get text => 'उसके शीर्षक, विवरण या श्रेणी से। खोलने के लिए दस्तावेज़ छुओ, रखने के लिए तीर।';
+}
+
+// Path: tour.steps.documentsCategories
+class _Translations$tour$steps$documentsCategories$hi extends Translations$tour$steps$documentsCategories$fr {
+	_Translations$tour$steps$documentsCategories$hi._(TranslationsHi root) : this._root = root, super.internal(root);
+
+	final TranslationsHi _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'श्रेणियाँ';
+	@override String get text => 'पुस्तकालय को विषय दर विषय देखो।';
+}
+
+// Path: tour.steps.notificationsInbox
+class _Translations$tour$steps$notificationsInbox$hi extends Translations$tour$steps$notificationsInbox$fr {
+	_Translations$tour$steps$notificationsInbox$hi._(TranslationsHi root) : this._root = root, super.internal(root);
+
+	final TranslationsHi _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'घोषणाएँ';
+	@override String get text => 'तुम्हारे अगुवों की खबरें यहाँ आती हैं, उनकी तस्वीरों और PDF के साथ।';
+}
+
 /// The flat map containing all translations for locale <hi>.
 /// Only for edge cases! For simple maps, use the map function of this library.
 ///
@@ -4841,6 +5417,12 @@ extension on TranslationsHi {
 			'items.goalSaved' => 'लक्ष्य सेव हो गया',
 			'items.goalRemoved' => 'लक्ष्य हटा दिया गया',
 			'items.edit' => ({required Object code}) => '${code} बदलें',
+			'items.limit.title' => 'Premium के साथ और आइटम',
+			'items.limit.text' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n, one: 'Premium के बिना तुम ${n} निजी आइटम तक बना सकते हो। जो आइटम तुम्हारे पास हैं, वे सब तुम्हारे ही रहेंगे, और किसी आइटम को आर्काइव करने से एक जगह खाली हो जाती है। Premium के साथ जितने चाहो उतने बनाओ, ताकि परमेश्वर के साथ तुम्हारी चाल में जो कुछ मायने रखता है, उस पर नज़र रख सको।', other: 'Premium के बिना तुम ${n} निजी आइटम तक बना सकते हो। जो आइटम तुम्हारे पास हैं, वे सब तुम्हारे ही रहेंगे, और किसी आइटम को आर्काइव करने से एक जगह खाली हो जाती है। Premium के साथ जितने चाहो उतने बनाओ, ताकि परमेश्वर के साथ तुम्हारी चाल में जो कुछ मायने रखता है, उस पर नज़र रख सको।', ), 
+			'items.limit.discover' => 'Premium देखो',
+			'items.limit.later' => 'बाद में',
+			'items.limit.count' => ({required Object limit, required Object used}) => '${limit} में से ${used}',
+			'items.limit.countLabel' => ({required Object limit, required Object used}) => 'निजी आइटम: ${limit} में से ${used}',
 			'newItem.title' => 'नया आइटम',
 			'newItem.code' => 'कोड',
 			'newItem.label' => 'नाम',
@@ -4904,14 +5486,14 @@ extension on TranslationsHi {
 			'authorities.add' => 'अगुवा जोड़ो',
 			'authorities.remove' => 'हटाओ',
 			'authorities.removeTitle' => ({required Object name}) => '${name} को हटाना है?',
+			_ => null,
+		} ?? switch (path) {
 			'authorities.removeText' => ({required Object name}) => '${name} को तुम्हारे आत्मिक अगुवों की सूची से हटा दिया जाएगा।',
 			'authorities.removed' => ({required Object name}) => '${name} को तुम्हारे अगुवों की सूची से हटा दिया गया।',
 			'authorities.count' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n, zero: 'अभी तक कोई नहीं', one: '${n} व्यक्ति', other: '${n} लोग', ), 
 			'authorities.form.title' => 'नया अगुवा',
 			'authorities.form.emailHint' => 'naam@example.com',
 			'authorities.form.isDiscipleMaker' => 'ये मेरे चेला बनाने वाले हैं',
-			_ => null,
-		} ?? switch (path) {
 			'authorities.form.isDiscipleMakerHelp' => 'जो व्यक्ति व्यक्तिगत रूप से तुम्हारा मार्गदर्शन करता है। ऐसा सिर्फ़ एक ही हो सकता है।',
 			'authorities.form.discipleMakerTaken' => ({required Object name}) => 'तुम्हारे चेला बनाने वाले के रूप में ${name} पहले से दर्ज हैं। किसी और को चुनने के लिए पहले उन्हें सूची से हटाओ।',
 			'authorities.form.submit' => 'जोड़ो',
@@ -5310,6 +5892,8 @@ extension on TranslationsHi {
 			'premium.widgetText' => 'ऐप खोले बिना होम स्क्रीन पर आज की रिपोर्ट और आपके लक्ष्य।',
 			'premium.statsTitle' => 'पूरे साल के तुम्हारे लक्ष्य',
 			'premium.statsText' => 'आपके साल का लेखा-जोखा और हफ़्ते-दर-हफ़्ते लक्ष्यों की प्रगति।',
+			'premium.itemsTitle' => 'असीमित आइटम',
+			'premium.itemsText' => 'अपनी रिपोर्ट में जितने चाहो उतने निजी आइटम बनाओ।',
 			'premium.supportTitle' => 'तुम सेवकाई का साथ देते हो',
 			'premium.supportText' => 'तुम्हारा सहयोग पूरे समुदाय के लिए ऐप और उसकी नई सुविधाओं को चलाए रखता है।',
 			'premium.annual' => 'सालाना',
@@ -5346,9 +5930,9 @@ extension on TranslationsHi {
 			'premium.unavailable' => 'अभी ऑफ़र उपलब्ध नहीं हैं।',
 			'premium.privacy' => 'गोपनीयता',
 			'premium.activeTitle' => 'तुम्हारे पास Premium है',
-			'premium.activeText' => 'CMFI Connect का साथ देने के लिए धन्यवाद! विजेट, आपका साल, लेखा-जोखा और ऑफ़लाइन शिक्षाएँ खुली हैं।',
+			'premium.activeText' => 'CMFI Connect का साथ देने के लिए धन्यवाद! विजेट, आपका साल, लेखा-जोखा, ऑफ़लाइन शिक्षाएँ और असीमित आइटम खुले हैं।',
 			'premium.staffText' => 'तुम CMFI Connect टीम का हिस्सा हो, इसलिए Premium तुम्हें मुफ़्त मिला है।',
-			'premium.moreSubtitle' => 'विजेट, आपका साल, शिक्षाएँ ऑफ़लाइन',
+			'premium.moreSubtitle' => 'विजेट, आपका साल, शिक्षाएँ ऑफ़लाइन, असीमित आइटम',
 			'premium.become' => 'Premium लें',
 			'premium.moreActive' => 'चालू',
 			'premium.unlock' => 'Premium से खोलो',
@@ -5416,6 +6000,8 @@ extension on TranslationsHi {
 			'ministry.missionariesSubtitle' => 'जिन्हें प्रभु राष्ट्रों में भेजता है',
 			'ministry.heroes' => 'हमारे नायक',
 			'ministry.heroesSubtitle' => 'जिनका विश्वास हमें प्रेरित करता है',
+			_ => null,
+		} ?? switch (path) {
 			'ministry.founder' => 'हमारे संस्थापक',
 			'ministry.founderSubtitle' => 'प्रो. ज़कारियस तनी फ़ोमुम',
 			'ministry.leader' => 'हमारे अगुवे',
@@ -5424,8 +6010,6 @@ extension on TranslationsHi {
 			'ministry.heroesEmpty' => 'हमारे नायकों के परिचय जल्द ही आ रहे हैं।',
 			'ministry.personGone' => 'यह परिचय अब उपलब्ध नहीं है।',
 			'ministry.photoOf' => ({required Object name}) => '${name} की फ़ोटो',
-			_ => null,
-		} ?? switch (path) {
 			'ministry.keyDates' => 'मुख्य तिथियाँ',
 			'ministry.life' => 'उनका जीवन',
 			'ministry.story' => 'उनकी कहानी',
@@ -5930,6 +6514,8 @@ extension on TranslationsHi {
 			'weekStory.emptyLead' => 'एक नया हफ़्ता तुम्हारा इंतज़ार कर रहा है',
 			'weekStory.days' => ({required num n, required Object total}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n, one: '${total} में से\n${n} दिन', other: '${total} में से\n${n} दिन', ), 
 			'weekStory.streak' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n, one: 'लगातार ${n} दिन', other: 'लगातार ${n} दिन', ), 
+			_ => null,
+		} ?? switch (path) {
 			'weekStory.streakRecord' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n, one: 'लगातार ${n} दिन: तुम्हारा रिकॉर्ड!', other: 'लगातार ${n} दिन: तुम्हारा रिकॉर्ड!', ), 
 			'weekStory.emptyText' => 'हर दिन अपनी रिपोर्ट भरो: तुम्हारा अगला हफ़्ता यहाँ लिखा जाएगा।',
 			'weekStory.prayerLead' => 'तुमने प्रार्थना की',
@@ -5938,8 +6524,6 @@ extension on TranslationsHi {
 			'weekStory.faithfulMoment' => ({required num n, required Object moment}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n, one: 'तुम्हारा सबसे वफ़ादार समय: ${moment} (${n} बार)', other: 'तुम्हारा सबसे वफ़ादार समय: ${moment} (${n} बार)', ), 
 			'weekStory.noRetreat' => 'इस हफ़्ते कोई प्रार्थना-समय नहीं',
 			'weekStory.noRetreatText' => 'दोपहर का प्रार्थना-समय तुम्हारा इंतज़ार कर रहा है: प्रभु के साथ 15 मिनट।',
-			_ => null,
-		} ?? switch (path) {
 			'weekStory.goalsLead' => 'तुम्हारे लक्ष्य',
 			'weekStory.goalsReached' => 'औसतन पूरे हुए',
 			'weekStory.bestDay' => ({required Object day, required Object percent}) => 'तुम्हारा सबसे अच्छा दिन: ${day} · ${percent}',
@@ -6444,6 +7028,8 @@ extension on TranslationsHi {
 			'journey.steps.fullDay.text' => 'दिन के 4 क़दम पूरे करो।',
 			'journey.steps.sevenFullDays.title' => 'सात पूरे दिन',
 			'journey.steps.sevenFullDays.text' => 'दिन के 4 क़दम सात बार पूरे करो।',
+			_ => null,
+		} ?? switch (path) {
 			'journey.steps.fourRetreats.title' => 'प्रार्थना का दिन',
 			'journey.steps.fourRetreats.text' => 'एक ही दिन में 4 प्रार्थना-समय पूरे करो।',
 			'journey.steps.planDone.title' => 'योजना पूरी',
@@ -6452,8 +7038,6 @@ extension on TranslationsHi {
 			'journey.steps.lyricsShared.text' => 'किसी भजन के बोल साझा करो।',
 			'journey.steps.firstSoul.title' => 'बोने वाला',
 			'journey.steps.firstSoul.text' => 'अपनी पहली आत्मा का साथ दो।',
-			_ => null,
-		} ?? switch (path) {
 			'journey.steps.tenSouls.title' => 'दस आत्माएँ',
 			'journey.steps.tenSouls.text' => 'आत्माओं की देखभाल में 10 लोगों का साथ दो।',
 			'journey.steps.soulBaptized.title' => 'एक आत्मा का बपतिस्मा',
@@ -6755,6 +7339,111 @@ extension on TranslationsHi {
 			'donation.thanksText' => ({required Object amount}) => 'तुम्हारा ${amount} का दान मिल गया। प्रभु तुम्हें सौ गुना लौटाए।',
 			'donation.verse' => '“परमेश्‍वर हर्ष से देनेवाले से प्रेम रखता है।” (2 कुरिन्थियों 9:7)',
 			'donation.done' => 'पूरा',
+			'tour.skip' => 'छोड़ें',
+			'tour.next' => 'आगे',
+			'tour.done' => 'समझ गया',
+			'tour.stepOf' => ({required Object n, required Object total}) => '${n}/${total}',
+			'tour.replay' => 'हिस्सों का परिचय फिर से देखें',
+			'tour.replayText' => 'हर हिस्सा फिर से अपना परिचय देगा',
+			'tour.replayed' => 'हो गया: अगली बार खोलने पर हर हिस्सा फिर से अपना परिचय देगा।',
+			'tour.spaces.home' => 'होम',
+			'tour.spaces.reports' => 'रिपोर्ट',
+			'tour.spaces.games' => 'खेल',
+			'tour.spaces.bible' => 'बाइबल',
+			'tour.spaces.you' => 'तुम',
+			'tour.spaces.prayer' => 'प्रार्थना',
+			'tour.spaces.hymns' => 'भजन',
+			'tour.spaces.teachings' => 'शिक्षाएँ',
+			'tour.spaces.ministry' => 'हमारी सेवकाई',
+			'tour.spaces.events' => 'कार्यक्रम',
+			'tour.spaces.donate' => 'दान दें',
+			'tour.spaces.premium' => 'Premium',
+			'tour.spaces.documents' => 'हमारे दस्तावेज़',
+			'tour.spaces.notifications' => 'सूचनाएँ',
+			'tour.steps.homeDay.title' => 'तुम्हारा दिन एक नज़र में',
+			'tour.steps.homeDay.text' => 'सुनहरा छल्ला तुम्हारी दैनिक रिपोर्ट के साथ भरता है। बगल में: तुम्हारे लक्ष्य, तुम्हारे एकांत, तुम्हारी लगातार दिनों की गिनती और तुम्हारे सप्ताह के दिन।',
+			'tour.steps.homeReport.title' => 'आज की रिपोर्ट',
+			'tour.steps.homeReport.text' => 'इसे यहाँ शुरू करो, या जहाँ छोड़ा था वहीं से जारी रखो। यह बिना नेटवर्क के भी सहेजी जाती है।',
+			'tour.steps.homeShortcuts.title' => 'भजन और प्रार्थना',
+			'tour.steps.homeShortcuts.text' => 'समुदाय की भजन-पुस्तकें और तुम्हारे 15 मिनट के एकांत बस एक स्पर्श दूर हैं।',
+			'tour.steps.homeBell.title' => 'घोषणाएँ',
+			'tour.steps.homeBell.text' => 'घंटी तुम्हें तुम्हारे अगुवों की खबरें लाती है; कुछ नया होने पर एक छोटा बिंदु दिखता है।',
+			'tour.steps.reportsViews.title' => 'आज, इतिहास, सारांश',
+			'tour.steps.reportsViews.text' => 'अपना दिन भरो, बीते दिन देखो, फिर सप्ताह, महीने या साल में अपना रास्ता देखो।',
+			'tour.steps.reportsDay.title' => 'कोई और दिन',
+			'tour.steps.reportsDay.text' => 'कल भरना भूल गए? कैलेंडर में दिन चुनो।',
+			'tour.steps.reportsStopwatch.title' => 'स्टॉपवॉच',
+			'tour.steps.reportsStopwatch.text' => 'अपनी प्रार्थना या पढ़ाई का समय मापो: मिनट अपने आप तुम्हारी रिपोर्ट में जुड़ जाते हैं।',
+			'tour.steps.reportsItems.title' => 'तुम्हारे तत्व और लक्ष्य',
+			'tour.steps.reportsItems.text' => 'अपने खुद के तत्व जोड़ो और हर एक के लिए अपनी गति से लक्ष्य तय करो।',
+			'tour.steps.reportsExport.title' => 'अपनी रिपोर्ट एक्सपोर्ट करो',
+			'tour.steps.reportsExport.text' => 'अपनी चुनी हुई अवधि के लिए, छापने या भेजने के लिए PDF, Excel के लिए स्प्रेडशीट, या WhatsApp के लिए संदेश के रूप में। यह Premium की सुविधा है।',
+			'tour.steps.gamesStats.title' => 'तुम्हारी प्रगति',
+			'tour.steps.gamesStats.text' => 'तुम्हारे लगातार दिन, तुम्हारे अंक और आज का लक्ष्य; नीचे तुम्हारे पाठों का रास्ता। अंक सिर्फ़ खेल के लिए हैं, वे कभी तुम्हारा विश्वास नहीं मापते।',
+			'tour.steps.gamesExtras.title' => 'रैंकिंग, उड़ान और ऑफ़लाइन',
+			'tour.steps.gamesExtras.text' => 'चाहो तो रैंकिंग में शामिल हो, “उड़ता वचन” के साथ कनान की ओर उड़ो, और बिना नेटवर्क के खेलने के लिए एक पाठ्यक्रम सहेज लो।',
+			'tour.steps.biblePassage.title' => 'पुस्तक और अध्याय',
+			'tour.steps.biblePassage.text' => 'कोई अंश चुनने के लिए यहाँ छुओ, या अध्याय बदलने के लिए सरकाओ। किसी वचन को हाइलाइट करने, सहेजने या साझा करने के लिए उसे छुओ।',
+			'tour.steps.bibleVersion.title' => 'संस्करण',
+			'tour.steps.bibleVersion.text' => 'अनुवाद बदलो, और बिना नेटवर्क के पढ़ने और खोजने के लिए उसे डाउनलोड करो।',
+			'tour.steps.bibleListen.title' => 'वचन सुनो',
+			'tour.steps.bibleListen.text' => 'फ़ोन की आवाज़ तुम्हें अध्याय पढ़कर सुनाती है, वचन दर वचन।',
+			'tour.steps.bibleMore.title' => 'और भी',
+			'tour.steps.bibleMore.text' => 'तुम्हारी पढ़ने की योजना, कंठस्थ करना, मेरे वचन, शब्दानुक्रमणिका और बुकमार्क यहाँ हैं।',
+			'tour.steps.youCard.title' => 'तुम्हारा कार्ड',
+			'tour.steps.youCard.text' => 'तुम्हारी फ़ोटो, नाम और यूज़रनेम: यूज़रनेम से ही तुम्हारे भाई-बहन तुम्हें ढूँढते हैं।',
+			'tour.steps.youNumbers.title' => 'तुम्हारी आत्मिक यात्रा',
+			'tour.steps.youNumbers.text' => 'इस महीने तुम्हारे लगातार दिन, तुम्हारे पड़ाव और परमेश्वर के साथ तुम्हारा समय। ये तुम्हारे हैं: क्या साझा करना है, तुम चुनते हो।',
+			'tour.steps.youDiscover.title' => 'खोजो',
+			'tour.steps.youDiscover.text' => 'कार्यक्रम, हमारी सेवकाई, ऑडियो शिक्षाएँ और समुदाय के दस्तावेज़।',
+			'tour.steps.youSettings.title' => 'सेटिंग्स',
+			'tour.steps.youSettings.text' => 'रिमाइंडर, रूप, भाषा… और जब चाहो ये परिचय फिर से देखने का तरीका।',
+			'tour.steps.prayerToday.title' => 'आज की प्रार्थना',
+			'tour.steps.prayerToday.text' => 'इस सप्ताह तुमने किन दिनों प्रार्थना की, तुम्हारा प्रार्थना का समय, और अभी शुरू करने वाला एकांत।',
+			'tour.steps.prayerReminders.title' => 'तुम्हारे रिमाइंडर',
+			'tour.steps.prayerReminders.text' => 'हर एकांत का समय चुनो: सुबह, दोपहर, शाम और रात।',
+			'tour.steps.prayerRoutine.title' => 'तुम्हारी दैनिक दिनचर्या',
+			'tour.steps.prayerRoutine.text' => '15 मिनट के चार एकांत, बिंदु दर बिंदु मार्गदर्शन के साथ। हर एक अपना समय तुम्हारी रिपोर्ट में जोड़ता है।',
+			'tour.steps.prayerTogether.title' => 'साथ मिलकर प्रार्थना',
+			'tour.steps.prayerTogether.text' => 'लगातार प्रार्थना का एक विषय बनाओ और भाई-बहनों को उसे अपने साथ उठाने के लिए आमंत्रित करो।',
+			'tour.steps.hymnsBook.title' => 'भजन-पुस्तक',
+			'tour.steps.hymnsBook.text' => 'भजन-पुस्तक बदलने के लिए कवर सरकाओ या उसका नाम छुओ। सब कुछ बिना नेटवर्क के चलता है।',
+			'tour.steps.hymnsNumber.title' => 'नंबर पर जाओ',
+			'tour.steps.hymnsNumber.text' => 'आराधना में बताया गया नंबर लिखो, और भजन खुल जाएगा।',
+			'tour.steps.hymnsSearch.title' => 'खोजो',
+			'tour.steps.hymnsSearch.text' => 'किसी भजन को उसके शीर्षक या उसके बोलों के कुछ शब्दों से ढूँढो।',
+			'tour.steps.hymnsViews.title' => 'पसंदीदा और हाल के',
+			'tour.steps.hymnsViews.text' => 'किसी भजन को रखने के लिए उसका तारा छुओ; हाल में गाए भजन यहाँ तुम्हारा इंतज़ार करते हैं।',
+			'tour.steps.teachingsSearch.title' => 'संदेश खोजो',
+			'tour.steps.teachingsSearch.text' => 'उसके शीर्षक, वक्ता या विवरण के किसी शब्द से।',
+			'tour.steps.teachingsFilters.title' => 'फ़िल्टर',
+			'tour.steps.teachingsFilters.text' => 'कोई वक्ता, साल या संस्करण चुनो।',
+			'tour.steps.teachingsCategories.title' => 'विषय',
+			'tour.steps.teachingsCategories.text' => 'एक विषय से दूसरे पर जाओ; “डाउनलोड किए गए” तुम्हारे संदेशों को बिना नेटवर्क के सुनने के लिए रखता है।',
+			'tour.steps.ministryNations.title' => 'राष्ट्र',
+			'tour.steps.ministryNations.text' => 'उन राष्ट्रों का ग्लोब घुमाओ जहाँ यह कार्य मौजूद है, और हर एक के लिए प्रार्थना करो।',
+			'tour.steps.ministryLives.title' => 'हमारे संस्थापक और अगुवा',
+			'tour.steps.ministryLives.text' => 'उनका जीवन, उनकी मुख्य तिथियाँ और परमेश्वर ने उनके द्वारा क्या किया।',
+			'tour.steps.ministryMenu.title' => 'हमारा उद्देश्य, मिशनरी, नायक',
+			'tour.steps.ministryMenu.text' => 'सेवकाई के तीन उद्देश्य, और उन लोगों का जीवन जिन्होंने इसकी सेवा की।',
+			'tour.steps.eventsNext.title' => 'समुदाय के कार्यक्रम',
+			'tour.steps.eventsNext.text' => 'अगला कार्यक्रम यहाँ दिखता है: उसका कार्यक्रम देखने, पंजीकरण करने, रिमाइंडर पाने या कैलेंडर में जोड़ने के लिए उसे छुओ।',
+			'tour.steps.donateAmounts.title' => 'तुम्हारा दान',
+			'tour.steps.donateAmounts.text' => 'कोई राशि चुनो या अपनी राशि लिखो। तुम्हारा सहयोग पूरे समुदाय के लिए ऐप को चलाए रखता है।',
+			'tour.steps.donateMethod.title' => 'भुगतान का तरीका',
+			'tour.steps.donateMethod.text' => 'Mobile Money या कार्ड, तुम्हारे देश की मुद्रा में।',
+			'tour.steps.donateGive.title' => 'दान दो',
+			'tour.steps.donateGive.text' => 'भुगतान एक सुरक्षित पेज से होता है। “परमेश्वर हर्ष से देनेवाले से प्रेम रखता है” (2 कुरिन्थियों 9:7)।',
+			'tour.steps.premiumBenefits.title' => 'Premium क्या जोड़ता है',
+			'tour.steps.premiumBenefits.text' => 'अतिरिक्त सुविधाएँ, जैसे ऑफ़लाइन शिक्षाएँ, परमेश्वर के साथ तुम्हारा साल या विजेट। ऐप का मूल हिस्सा मुफ़्त रहता है।',
+			'tour.steps.premiumPlans.title' => 'योजनाएँ',
+			'tour.steps.premiumPlans.text' => 'जो अवधि तुम्हें ठीक लगे वह चुनो: मासिक, छह महीने, सालाना या आजीवन।',
+			'tour.steps.documentsSearch.title' => 'दस्तावेज़ खोजो',
+			'tour.steps.documentsSearch.text' => 'उसके शीर्षक, विवरण या श्रेणी से। खोलने के लिए दस्तावेज़ छुओ, रखने के लिए तीर।',
+			'tour.steps.documentsCategories.title' => 'श्रेणियाँ',
+			'tour.steps.documentsCategories.text' => 'पुस्तकालय को विषय दर विषय देखो।',
+			'tour.steps.notificationsInbox.title' => 'घोषणाएँ',
+			'tour.steps.notificationsInbox.text' => 'तुम्हारे अगुवों की खबरें यहाँ आती हैं, उनकी तस्वीरों और PDF के साथ।',
 			_ => null,
 		};
 	}

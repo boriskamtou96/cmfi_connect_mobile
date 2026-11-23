@@ -24,6 +24,7 @@ import '../../../core/widgets/adaptive_dialogs.dart';
 import '../../../core/widgets/app_toast.dart';
 import '../../../core/widgets/dove_mascot.dart';
 import '../../../core/widgets/fade_slide_in.dart';
+import '../../../core/widgets/tour/space_tour.dart';
 import '../application/premium_plans.dart';
 
 /// Text on the night blue of the page.
@@ -81,175 +82,190 @@ class PremiumScreen extends HookConsumerWidget {
       }
     }
 
-    return AnnotatedRegion<SystemUiOverlayStyle>(
-      value: SystemUiOverlayStyle.light,
-      child: Scaffold(
-        backgroundColor: AppColors.primaryDeep,
-        body: Stack(
-          children: [
-            const Positioned.fill(
-              child: RepaintBoundary(
-                child: CustomPaint(painter: _StarsPainter()),
+    return SpaceTour(
+      space: TourSpace.premium,
+      child: AnnotatedRegion<SystemUiOverlayStyle>(
+        value: SystemUiOverlayStyle.light,
+        child: Scaffold(
+          backgroundColor: AppColors.primaryDeep,
+          body: Stack(
+            children: [
+              const Positioned.fill(
+                child: RepaintBoundary(
+                  child: CustomPaint(painter: _StarsPainter()),
+                ),
               ),
-            ),
-            SafeArea(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: [
-                  Expanded(
-                    child: SingleChildScrollView(
-                      padding: const EdgeInsets.fromLTRB(
-                        AppSpacing.xl,
-                        AppSpacing.md,
-                        AppSpacing.xl,
-                        AppSpacing.md,
-                      ),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.stretch,
-                        children: [
-                          const FadeSlideIn(child: _Hero()),
-                          const SizedBox(height: AppSpacing.sm),
-                          FadeSlideIn(
-                            index: 1,
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.stretch,
-                              children: [
-                                Text(
-                                  t.includes,
-                                  style: const TextStyle(
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.w800,
-                                    color: _onNight,
-                                  ),
-                                ),
-                                const SizedBox(height: AppSpacing.sm),
-                                _Benefits(
-                                  items: [
-                                    (
-                                      AppIcons.offlineTile,
-                                      t.offlineTitle,
-                                      t.offlineText,
-                                    ),
-                                    (
-                                      AppIcons.yearStoryTile,
-                                      t.yearTitle,
-                                      t.yearText,
-                                    ),
-                                    (
-                                      AppIcons.homeWidgetTile,
-                                      t.widgetTitle,
-                                      t.widgetText,
-                                    ),
-                                    (
-                                      AppIcons.progressTile,
-                                      t.statsTitle,
-                                      t.statsText,
-                                    ),
-                                    (
-                                      AppIcons.supportTile,
-                                      t.supportTitle,
-                                      t.supportText,
-                                    ),
-                                  ],
-                                ),
-                                const SizedBox(height: AppSpacing.sm),
-                                // what stays free: what Premium is not
-                                Row(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    const Icon(
-                                      AppIcons.checkCircle,
-                                      size: 18,
-                                      color: _onNightMuted,
-                                    ),
-                                    const SizedBox(width: AppSpacing.sm),
-                                    Expanded(
-                                      child: Text(
-                                        t.freeForAll,
-                                        style: const TextStyle(
-                                          fontSize: 13,
-                                          height: 1.4,
-                                          color: _onNightMuted,
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ],
-                            ),
-                          ),
-                          const SizedBox(height: AppSpacing.md),
-                          FadeSlideIn(
-                            index: 4,
-                            child: active
-                                ? _Active(offered: offered)
-                                : switch (plans) {
-                                    AsyncError() || AsyncData()
-                                        when available.isEmpty =>
-                                      _Unavailable(
-                                        onRetry: () => ref.invalidate(
-                                          premiumPlansProvider,
-                                        ),
-                                      ),
-                                    AsyncData() => _Plans(
-                                      plans: available,
-                                      selected: selected,
-                                      onChoose: (plan) =>
-                                          chosen.value = plan.period,
-                                    ),
-                                    _ => const Padding(
-                                      padding: EdgeInsets.all(AppSpacing.xl),
-                                      child: Center(
-                                        child: AppSpinner(
-                                          color: AppColors.gold,
-                                        ),
-                                      ),
-                                    ),
-                                  },
-                          ),
-                          if (!active) ...[
+              SafeArea(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    Expanded(
+                      child: SingleChildScrollView(
+                        padding: const EdgeInsets.fromLTRB(
+                          AppSpacing.xl,
+                          AppSpacing.md,
+                          AppSpacing.xl,
+                          AppSpacing.md,
+                        ),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.stretch,
+                          children: [
+                            const FadeSlideIn(child: _Hero()),
                             const SizedBox(height: AppSpacing.sm),
-                            _FinePrint(
-                              lifetime:
-                                  selected?.period == PremiumPeriod.lifetime,
+                            FadeSlideIn(
+                              index: 1,
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.stretch,
+                                children: [
+                                  Text(
+                                    t.includes,
+                                    style: const TextStyle(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.w800,
+                                      color: _onNight,
+                                    ),
+                                  ),
+                                  const SizedBox(height: AppSpacing.sm),
+                                  TourTarget(
+                                    step: TourStep.premiumBenefits,
+                                    child: _Benefits(
+                                      items: [
+                                        (
+                                          AppIcons.offlineTile,
+                                          t.offlineTitle,
+                                          t.offlineText,
+                                        ),
+                                        (
+                                          AppIcons.yearStoryTile,
+                                          t.yearTitle,
+                                          t.yearText,
+                                        ),
+                                        (
+                                          AppIcons.homeWidgetTile,
+                                          t.widgetTitle,
+                                          t.widgetText,
+                                        ),
+                                        (
+                                          AppIcons.progressTile,
+                                          t.statsTitle,
+                                          t.statsText,
+                                        ),
+                                        (
+                                          AppIcons.itemsTile,
+                                          t.itemsTitle,
+                                          t.itemsText,
+                                        ),
+                                        (
+                                          AppIcons.supportTile,
+                                          t.supportTitle,
+                                          t.supportText,
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                  const SizedBox(height: AppSpacing.sm),
+                                  // what stays free: what Premium is not
+                                  Row(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      const Icon(
+                                        AppIcons.checkCircle,
+                                        size: 18,
+                                        color: _onNightMuted,
+                                      ),
+                                      const SizedBox(width: AppSpacing.sm),
+                                      Expanded(
+                                        child: Text(
+                                          t.freeForAll,
+                                          style: const TextStyle(
+                                            fontSize: 13,
+                                            height: 1.4,
+                                            color: _onNightMuted,
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ],
+                              ),
                             ),
+                            const SizedBox(height: AppSpacing.md),
+                            FadeSlideIn(
+                              index: 4,
+                              child: active
+                                  ? _Active(offered: offered)
+                                  : switch (plans) {
+                                      AsyncError() || AsyncData()
+                                          when available.isEmpty =>
+                                        _Unavailable(
+                                          onRetry: () => ref.invalidate(
+                                            premiumPlansProvider,
+                                          ),
+                                        ),
+                                      AsyncData() => TourTarget(
+                                        step: TourStep.premiumPlans,
+                                        child: _Plans(
+                                          plans: available,
+                                          selected: selected,
+                                          onChoose: (plan) =>
+                                              chosen.value = plan.period,
+                                        ),
+                                      ),
+                                      _ => const Padding(
+                                        padding: EdgeInsets.all(AppSpacing.xl),
+                                        child: Center(
+                                          child: AppSpinner(
+                                            color: AppColors.gold,
+                                          ),
+                                        ),
+                                      ),
+                                    },
+                            ),
+                            if (!active) ...[
+                              const SizedBox(height: AppSpacing.sm),
+                              _FinePrint(
+                                lifetime:
+                                    selected?.period == PremiumPeriod.lifetime,
+                              ),
+                            ],
                           ],
-                        ],
+                        ),
                       ),
                     ),
-                  ),
-                  _Footer(
-                    active: active,
-                    plan: selected,
-                    busy: busy.value,
-                    onBuy: selected == null
-                        ? null
-                        : () => run(
-                            (store) => store.buy(selected),
-                            done: t.thanks,
-                          ),
-                    onRestore: () => run(
-                      (store) => store.restore(),
-                      done: t.restored,
-                      none: t.nothingToRestore,
+                    _Footer(
+                      active: active,
+                      plan: selected,
+                      busy: busy.value,
+                      onBuy: selected == null
+                          ? null
+                          : () => run(
+                              (store) => store.buy(selected),
+                              done: t.thanks,
+                            ),
+                      onRestore: () => run(
+                        (store) => store.restore(),
+                        done: t.restored,
+                        none: t.nothingToRestore,
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
-            ),
-            // the cross floats over the top of the page: the page holds on
-            // one screen (asked on 18/11/2026)
-            PositionedDirectional(
-              top: MediaQuery.paddingOf(context).top,
-              end: AppSpacing.xs,
-              child: IconButton(
-                tooltip: context.t.common.close,
-                color: _onNight,
-                onPressed: () => context.router.maybePop(),
-                icon: const Icon(AppIcons.close),
+              // the cross floats over the top of the page: the page holds on
+              // one screen (asked on 18/11/2026)
+              PositionedDirectional(
+                top: MediaQuery.paddingOf(context).top,
+                end: AppSpacing.xs,
+                child: IconButton(
+                  tooltip: context.t.common.close,
+                  color: _onNight,
+                  onPressed: () => context.router.maybePop(),
+                  icon: const Icon(AppIcons.close),
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

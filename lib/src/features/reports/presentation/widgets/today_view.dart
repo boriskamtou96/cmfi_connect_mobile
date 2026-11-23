@@ -26,6 +26,7 @@ import '../../../../core/widgets/skeleton.dart';
 import '../../../journey/application/journey_steps.dart';
 import '../../../journey/domain/journey_step.dart';
 import '../../application/day_report_controller.dart';
+import '../../application/item_limit.dart';
 import '../../application/reading_books.dart';
 import '../../application/report_goals.dart';
 import '../../application/report_item_texts.dart';
@@ -41,6 +42,7 @@ import '../new_item_screen.dart';
 import '../reading/book_sheets.dart';
 import 'entry_row.dart';
 import 'entry_sheet.dart';
+import 'item_limit.dart';
 import 'reminder_sheets.dart';
 import 'streak_celebration.dart';
 import 'timer_banner.dart';
@@ -353,27 +355,35 @@ class _Progress extends StatelessWidget {
   }
 }
 
-/// "Créer un élément": the row grows into the form.
-class _CreateItemRow extends StatelessWidget {
+/// "Créer un élément": the row grows into the form. Without Premium, once
+/// the free personal items are used, a small lock, and the tap explains.
+class _CreateItemRow extends ConsumerWidget {
   const _CreateItemRow();
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final scheme = Theme.of(context).colorScheme;
     final color = scheme.primary;
+    final locked = ref.watch(itemQuotaProvider)?.locked ?? false;
 
     return OpenPage(
       page: const NewItemScreen(),
       color: scheme.surface,
-      builder: (context, open) => _createRow(context, color, open),
+      builder: (context, open) => _createRow(
+        context,
+        color,
+        locked ? () => showItemLimitDialog(context) : open,
+        locked: locked,
+      ),
     );
   }
 
   static Widget _createRow(
     BuildContext context,
     Color color,
-    VoidCallback open,
-  ) {
+    VoidCallback open, {
+    required bool locked,
+  }) {
     return InkWell(
       onTap: open,
       child: SizedBox(
@@ -384,14 +394,22 @@ class _CreateItemRow extends StatelessWidget {
             children: [
               Icon(AppIcons.addCircle, size: 20, color: color),
               const SizedBox(width: 10),
-              Text(
-                context.t.reports.createItem,
-                style: TextStyle(
-                  fontSize: 14,
-                  fontWeight: FontWeight.w700,
-                  color: color,
+              Flexible(
+                child: Text(
+                  context.t.reports.createItem,
+                  style: TextStyle(
+                    fontSize: 14,
+                    fontWeight: FontWeight.w700,
+                    color: color,
+                  ),
                 ),
               ),
+              if (locked) ...[
+                const SizedBox(width: AppSpacing.xs),
+                ItemLimitLock(
+                  color: Theme.of(context).colorScheme.onSurfaceVariant,
+                ),
+              ],
             ],
           ),
         ),

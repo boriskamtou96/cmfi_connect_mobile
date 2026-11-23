@@ -563,7 +563,18 @@
     "goalRemove": "Quitar",
     "goalSaved": "Objetivo guardado",
     "goalRemoved": "Objetivo quitado",
-    "edit": "Modificar {code}"
+    "edit": "Modificar {code}",
+    "limit": {
+      "title": "Más elementos con Premium",
+      "text(plural, param=n)": {
+        "one": "Sin Premium, puedes crear hasta {n} elemento personal. Los que tienes siguen siendo todos tuyos, y archivar un elemento libera un lugar. Con Premium, crea todos los que quieras para seguir todo lo que importa en tu camino con Dios.",
+        "other": "Sin Premium, puedes crear hasta {n} elementos personales. Los que tienes siguen siendo todos tuyos, y archivar un elemento libera un lugar. Con Premium, crea todos los que quieras para seguir todo lo que importa en tu camino con Dios."
+      },
+      "discover": "Descubrir Premium",
+      "later": "Más tarde",
+      "count": "{used} de {limit}",
+      "countLabel": "Elementos personales: {used} de {limit}"
+    }
   },
   "newItem": {
     "title": "Nuevo elemento",
@@ -1123,6 +1134,8 @@
     "widgetText": "Tu informe del día y tus objetivos en la pantalla de inicio, sin abrir la app.",
     "statsTitle": "Tus objetivos durante el año",
     "statsText": "El balance de tu año y la evolución de tus objetivos, semana tras semana.",
+    "itemsTitle": "Elementos ilimitados",
+    "itemsText": "Crea todos los elementos personales que quieras en tu informe.",
     "supportTitle": "Apoyas la obra",
     "supportText": "Tu apoyo mantiene viva la app y sus novedades para toda la comunidad.",
     "annual": "Anual",
@@ -1165,9 +1178,9 @@
     "unavailable": "Las ofertas no están disponibles por ahora.",
     "privacy": "Privacidad",
     "activeTitle": "Tienes Premium",
-    "activeText": "¡Gracias por apoyar CMFI Connect! El widget, tu año, tu balance y las enseñanzas sin conexión están abiertos.",
+    "activeText": "¡Gracias por apoyar CMFI Connect! El widget, tu año, tu balance, las enseñanzas sin conexión y los elementos ilimitados están abiertos.",
     "staffText": "Tienes Premium gratis porque formas parte del equipo de CMFI Connect.",
-    "moreSubtitle": "Widget, tu año, enseñanzas sin conexión",
+    "moreSubtitle": "Widget, tu año, enseñanzas sin conexión, elementos ilimitados",
     "become": "Hazte Premium",
     "moreActive": "Activo",
     "unlock": "Desbloquear con Premium",
@@ -3140,5 +3153,200 @@
     "thanksText": "Tu ofrenda de {amount} se ha recibido. Que el Señor te lo devuelva al ciento por uno.",
     "verse": "«Dios ama el dador alegre.» (2 Corintios 9:7)",
     "done": "Terminar"
+  },
+  "tour": {
+    "skip": "Omitir",
+    "next": "Siguiente",
+    "done": "Entendido",
+    "stepOf": "{n}/{total}",
+    "replay": "Volver a ver la presentación de los espacios",
+    "replayText": "Cada espacio se presenta de nuevo",
+    "replayed": "Hecho: cada espacio se presentará de nuevo en tu próxima visita.",
+    "spaces": {
+      "home": "Inicio",
+      "reports": "Informe",
+      "games": "Juegos",
+      "bible": "Biblia",
+      "you": "Tú",
+      "prayer": "Oración",
+      "hymns": "Himnos",
+      "teachings": "Enseñanzas",
+      "ministry": "Nuestro ministerio",
+      "events": "Eventos",
+      "donate": "Donar",
+      "premium": "Premium",
+      "documents": "Nuestros documentos",
+      "notifications": "Notificaciones"
+    },
+    "steps": {
+      "homeDay": {
+        "title": "Tu día de un vistazo",
+        "text": "El anillo dorado se llena con tu informe diario. Al lado: tus metas, tus retiros, tu racha y los días de tu semana."
+      },
+      "homeReport": {
+        "title": "Tu informe de hoy",
+        "text": "Empiézalo aquí o retómalo donde lo dejaste. Se guarda incluso sin conexión."
+      },
+      "homeShortcuts": {
+        "title": "Himnos y oración",
+        "text": "Los himnarios de la comunidad y tus retiros de 15 minutos están a un toque de aquí."
+      },
+      "homeBell": {
+        "title": "Los anuncios",
+        "text": "La campana te trae las noticias de tus responsables; una marca te avisa cuando hay algo nuevo."
+      },
+      "reportsViews": {
+        "title": "Hoy, Historial, Balance",
+        "text": "Llena tu día, repasa los días pasados y mira tu camino en la semana, el mes o el año."
+      },
+      "reportsDay": {
+        "title": "Otro día",
+        "text": "¿Olvidaste llenar ayer? Elige el día en el calendario."
+      },
+      "reportsStopwatch": {
+        "title": "El cronómetro",
+        "text": "Cronometra tu oración o tu lectura: los minutos se suman solos a tu informe."
+      },
+      "reportsItems": {
+        "title": "Tus elementos y metas",
+        "text": "Añade tus propios elementos y ponte una meta para cada uno, a tu ritmo."
+      },
+      "reportsExport": {
+        "title": "Exportar tus informes",
+        "text": "En PDF para imprimir o enviar, en hoja de cálculo para Excel o en mensaje para WhatsApp, del periodo que elijas. Es una ventaja Premium."
+      },
+      "gamesStats": {
+        "title": "Tu progreso",
+        "text": "Tu racha, tus puntos y tu meta del día; más abajo, tu camino de lecciones. Los puntos son para el juego, nunca miden tu fe."
+      },
+      "gamesExtras": {
+        "title": "Clasificación, vuelo y sin conexión",
+        "text": "Únete a la clasificación si quieres, vuela hacia Canaán con «Versículo en vuelo» y guarda un curso para jugar sin conexión."
+      },
+      "biblePassage": {
+        "title": "Libro y capítulo",
+        "text": "Toca aquí para elegir un pasaje o desliza para cambiar de capítulo. Toca un versículo para resaltarlo, guardarlo o compartirlo."
+      },
+      "bibleVersion": {
+        "title": "La versión",
+        "text": "Cambia de traducción y descárgala para leer y buscar sin conexión."
+      },
+      "bibleListen": {
+        "title": "Escuchar la Palabra",
+        "text": "La voz de tu teléfono te lee el capítulo, versículo por versículo."
+      },
+      "bibleMore": {
+        "title": "Aún más",
+        "text": "Tu plan de lectura, la memorización, Mis versículos, la concordancia y el marcador están aquí."
+      },
+      "youCard": {
+        "title": "Tu ficha",
+        "text": "Tu foto, tu nombre y tu usuario: por tu usuario te encuentran tus hermanos y hermanas."
+      },
+      "youNumbers": {
+        "title": "Tu camino",
+        "text": "Tu racha, tus etapas y tu tiempo con Dios este mes. Son tuyos: tú eliges qué compartes."
+      },
+      "youDiscover": {
+        "title": "Descubrir",
+        "text": "Los eventos, nuestro ministerio, las enseñanzas en audio y los documentos de la comunidad."
+      },
+      "youSettings": {
+        "title": "Ajustes",
+        "text": "Recordatorios, apariencia, idioma… y una forma de volver a ver estas presentaciones cuando quieras."
+      },
+      "prayerToday": {
+        "title": "Tu oración de hoy",
+        "text": "Los días que oraste esta semana, tu tiempo de oración y el retiro que toca empezar."
+      },
+      "prayerReminders": {
+        "title": "Tus recordatorios",
+        "text": "Elige la hora de cada retiro: mañana, mediodía, tarde y noche."
+      },
+      "prayerRoutine": {
+        "title": "Tu rutina del día",
+        "text": "Cuatro retiros de 15 minutos, guiados punto por punto. Cada uno suma su tiempo a tu informe."
+      },
+      "prayerTogether": {
+        "title": "Orar juntos",
+        "text": "Crea un motivo de importunidad e invita a hermanos y hermanas a llevarlo contigo."
+      },
+      "hymnsBook": {
+        "title": "El himnario",
+        "text": "Desliza la portada o toca su nombre para cambiar de himnario. Todo funciona sin conexión."
+      },
+      "hymnsNumber": {
+        "title": "Ir al número",
+        "text": "Escribe el número anunciado en el culto y el himno se abre."
+      },
+      "hymnsSearch": {
+        "title": "Buscar",
+        "text": "Encuentra un himno por su título o unas palabras de su letra."
+      },
+      "hymnsViews": {
+        "title": "Favoritos y recientes",
+        "text": "Toca la estrella de un himno para guardarlo; los últimos que cantaste te esperan aquí."
+      },
+      "teachingsSearch": {
+        "title": "Buscar un mensaje",
+        "text": "Por su título, el predicador o una palabra de su descripción."
+      },
+      "teachingsFilters": {
+        "title": "Filtrar",
+        "text": "Elige un predicador, un año o una edición."
+      },
+      "teachingsCategories": {
+        "title": "Los temas",
+        "text": "Pasa de un tema a otro; «Descargados» guarda tus mensajes para escucharlos sin conexión."
+      },
+      "ministryNations": {
+        "title": "Las naciones",
+        "text": "Gira el globo de las naciones donde la obra está presente y ora por cada una."
+      },
+      "ministryLives": {
+        "title": "Nuestro fundador y nuestro líder",
+        "text": "Su vida, sus fechas clave y lo que Dios hizo a través de ellos."
+      },
+      "ministryMenu": {
+        "title": "Nuestro propósito, misioneros y héroes",
+        "text": "Los tres propósitos del ministerio y la vida de quienes lo sirvieron."
+      },
+      "eventsNext": {
+        "title": "Los eventos de la comunidad",
+        "text": "El próximo aparece aquí: tócalo para ver su programa, inscribirte, recibir un recordatorio o añadirlo a tu calendario."
+      },
+      "donateAmounts": {
+        "title": "Tu donativo",
+        "text": "Elige una cantidad o escribe la tuya. Tu apoyo mantiene viva la app para toda la comunidad."
+      },
+      "donateMethod": {
+        "title": "Tu forma de pago",
+        "text": "Mobile Money o tarjeta, en la moneda de tu país."
+      },
+      "donateGive": {
+        "title": "Donar",
+        "text": "El pago pasa por una página segura. «Dios ama al dador alegre» (2 Corintios 9:7)."
+      },
+      "premiumBenefits": {
+        "title": "Lo que añade Premium",
+        "text": "Comodidades extra, como las enseñanzas sin conexión, tu año con Dios o el widget. Lo esencial de la app sigue siendo gratis."
+      },
+      "premiumPlans": {
+        "title": "Los planes",
+        "text": "Elige la duración que te convenga: mensual, seis meses, anual o de por vida."
+      },
+      "documentsSearch": {
+        "title": "Buscar un documento",
+        "text": "Por su título, su descripción o su categoría. Toca un documento para abrirlo y la flecha para guardarlo."
+      },
+      "documentsCategories": {
+        "title": "Las categorías",
+        "text": "Recorre la biblioteca tema por tema."
+      },
+      "notificationsInbox": {
+        "title": "Los anuncios",
+        "text": "Las noticias de tus responsables llegan aquí, con sus imágenes y sus PDF."
+      }
+    }
   }
 }

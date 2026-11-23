@@ -21,6 +21,7 @@ import '../../../core/widgets/app_toast.dart';
 import '../../../core/widgets/error_view.dart';
 import '../../../core/widgets/section_card.dart';
 import '../../../core/widgets/skeleton.dart';
+import '../../../core/widgets/tour/space_tour.dart';
 import '../../../routing/app_router.dart';
 import '../../members/application/my_account.dart';
 import '../application/documents.dart';
@@ -78,74 +79,83 @@ class DocumentsScreen extends HookConsumerWidget {
       _ => const LoadingList(count: 6, card: false),
     };
 
-    return AnnotatedRegion<SystemUiOverlayStyle>(
-      value: SystemUiOverlayStyle.light,
-      child: Scaffold(
-        body: NotificationListener<ScrollNotification>(
-          // near the end: the next page
-          onNotification: (notification) {
-            final metrics = notification.metrics;
-            if (metrics.axis == Axis.vertical &&
-                metrics.pixels > metrics.maxScrollExtent - 400) {
-              ref.read(provider.notifier).loadMore();
-            }
-            return false;
-          },
-          child: RefreshIndicator.adaptive(
-            onRefresh: () async {
-              ref.invalidate(documentCategoriesProvider);
-              await ref.read(provider.notifier).refresh();
+    return SpaceTour(
+      space: TourSpace.documents,
+      child: AnnotatedRegion<SystemUiOverlayStyle>(
+        value: SystemUiOverlayStyle.light,
+        child: Scaffold(
+          body: NotificationListener<ScrollNotification>(
+            // near the end: the next page
+            onNotification: (notification) {
+              final metrics = notification.metrics;
+              if (metrics.axis == Axis.vertical &&
+                  metrics.pixels > metrics.maxScrollExtent - 400) {
+                ref.read(provider.notifier).loadMore();
+              }
+              return false;
             },
-            child: CustomScrollView(
-              physics: const AlwaysScrollableScrollPhysics(),
-              slivers: [
-                SliverToBoxAdapter(
-                  child: _Header(
-                    controller: controller,
-                    // the admins publish from here too
-                    onManage: isAdmin
-                        ? () => context.router.push(const AdminDocumentsRoute())
-                        : null,
-                  ),
-                ),
-                if (categories.isNotEmpty)
+            child: RefreshIndicator.adaptive(
+              onRefresh: () async {
+                ref.invalidate(documentCategoriesProvider);
+                await ref.read(provider.notifier).refresh();
+              },
+              child: CustomScrollView(
+                physics: const AlwaysScrollableScrollPhysics(),
+                slivers: [
                   SliverToBoxAdapter(
-                    child: _Chips(
-                      categories: categories,
-                      selected: chosen.value.category,
-                      onSelect: (value) =>
-                          chosen.value = chosen.value.copyWith(category: value),
+                    child: _Header(
+                      controller: controller,
+                      // the admins publish from here too
+                      onManage: isAdmin
+                          ? () =>
+                                context.router.push(const AdminDocumentsRoute())
+                          : null,
                     ),
                   ),
-                if (documents.value case final state? when state.total > 0)
-                  SliverToBoxAdapter(
-                    child: Padding(
-                      padding: const EdgeInsetsDirectional.fromSTEB(
-                        AppSpacing.xl,
-                        AppSpacing.md,
-                        AppSpacing.xl,
-                        AppSpacing.xs,
-                      ),
-                      child: Text(
-                        t.count(n: state.total),
-                        style: TextStyle(
-                          fontSize: 13,
-                          fontWeight: FontWeight.w700,
-                          color: Theme.of(context).colorScheme.onSurfaceVariant,
+                  if (categories.isNotEmpty)
+                    SliverToBoxAdapter(
+                      child: TourTarget(
+                        step: TourStep.documentsCategories,
+                        child: _Chips(
+                          categories: categories,
+                          selected: chosen.value.category,
+                          onSelect: (value) => chosen.value = chosen.value
+                              .copyWith(category: value),
                         ),
                       ),
                     ),
+                  if (documents.value case final state? when state.total > 0)
+                    SliverToBoxAdapter(
+                      child: Padding(
+                        padding: const EdgeInsetsDirectional.fromSTEB(
+                          AppSpacing.xl,
+                          AppSpacing.md,
+                          AppSpacing.xl,
+                          AppSpacing.xs,
+                        ),
+                        child: Text(
+                          t.count(n: state.total),
+                          style: TextStyle(
+                            fontSize: 13,
+                            fontWeight: FontWeight.w700,
+                            color: Theme.of(
+                              context,
+                            ).colorScheme.onSurfaceVariant,
+                          ),
+                        ),
+                      ),
+                    ),
+                  SliverPadding(
+                    padding: const EdgeInsets.fromLTRB(
+                      AppSpacing.lg,
+                      AppSpacing.sm,
+                      AppSpacing.lg,
+                      AppSpacing.xxl,
+                    ),
+                    sliver: SliverToBoxAdapter(child: body),
                   ),
-                SliverPadding(
-                  padding: const EdgeInsets.fromLTRB(
-                    AppSpacing.lg,
-                    AppSpacing.sm,
-                    AppSpacing.lg,
-                    AppSpacing.xxl,
-                  ),
-                  sliver: SliverToBoxAdapter(child: body),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
         ),
@@ -209,35 +219,38 @@ class _Header extends StatelessWidget {
                 start: AppSpacing.sm,
                 end: AppSpacing.sm,
               ),
-              child: TextField(
-                controller: controller,
-                textInputAction: TextInputAction.search,
-                decoration: InputDecoration(
-                  hintText: t.search,
-                  filled: true,
-                  fillColor: scheme.surface,
-                  prefixIcon: const Icon(
-                    AppIcons.search,
-                    color: AppColors.muted,
-                  ),
-                  suffixIcon: ValueListenableBuilder(
-                    valueListenable: controller,
-                    builder: (context, value, _) => value.text.isEmpty
-                        ? const SizedBox.shrink()
-                        : IconButton(
-                            tooltip: MaterialLocalizations.of(
-                              context,
-                            ).deleteButtonTooltip,
-                            onPressed: controller.clear,
-                            icon: const Icon(
-                              AppIcons.close,
-                              color: AppColors.muted,
+              child: TourTarget(
+                step: TourStep.documentsSearch,
+                child: TextField(
+                  controller: controller,
+                  textInputAction: TextInputAction.search,
+                  decoration: InputDecoration(
+                    hintText: t.search,
+                    filled: true,
+                    fillColor: scheme.surface,
+                    prefixIcon: const Icon(
+                      AppIcons.search,
+                      color: AppColors.muted,
+                    ),
+                    suffixIcon: ValueListenableBuilder(
+                      valueListenable: controller,
+                      builder: (context, value, _) => value.text.isEmpty
+                          ? const SizedBox.shrink()
+                          : IconButton(
+                              tooltip: MaterialLocalizations.of(
+                                context,
+                              ).deleteButtonTooltip,
+                              onPressed: controller.clear,
+                              icon: const Icon(
+                                AppIcons.close,
+                                color: AppColors.muted,
+                              ),
                             ),
-                          ),
-                  ),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(AppRadius.lg),
-                    borderSide: BorderSide.none,
+                    ),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(AppRadius.lg),
+                      borderSide: BorderSide.none,
+                    ),
                   ),
                 ),
               ),

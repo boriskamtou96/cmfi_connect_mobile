@@ -138,6 +138,8 @@ abstract final class AppIcons {
   static const contactTile = PhosphorIconsDuotone.envelopeSimple;
   static const privacyTile = PhosphorIconsDuotone.lockSimple;
   static const termsTile = PhosphorIconsDuotone.fileText;
+  // the tours of the spaces (Réglages › Revoir la présentation des espaces)
+  static const tourTile = PhosphorIconsDuotone.compass;
   static const signOut = PhosphorIconsRegular.signOut;
   static const copy = PhosphorIconsRegular.copy;
   static const projection = PhosphorIconsRegular.presentation;

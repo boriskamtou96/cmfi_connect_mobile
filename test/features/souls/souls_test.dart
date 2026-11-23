@@ -53,6 +53,7 @@ void main() {
       initialPreferences: preferences,
     );
     await openMenu(tester);
+    await scrollTo(tester, inMenu('Suivi des âmes'));
     await tester.tap(inMenu('Suivi des âmes'));
     await tester.pumpAndSettle();
     return app;

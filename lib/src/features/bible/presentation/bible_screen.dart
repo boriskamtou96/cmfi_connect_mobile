@@ -29,6 +29,8 @@ import '../../../core/widgets/reader/pinch_to_scale.dart';
 import '../../../core/widgets/reader/reader_palette.dart';
 import '../../../core/widgets/skeleton.dart';
 import '../../../core/widgets/tab_page.dart';
+import '../../../core/widgets/tour/seen_tours.dart';
+import '../../../core/widgets/tour/space_tour.dart';
 import '../../../core/widgets/verse_share/verse_share_sheet.dart';
 import '../../../routing/app_router.dart';
 import '../application/bible_bookmark.dart';
@@ -62,29 +64,37 @@ class BibleScreen extends ConsumerWidget {
     final t = context.t;
     final version = ref.watch(bibleVersionProvider);
     final books = ref.watch(bibleBooksProvider(version.id));
+    // the first visit: the Bible presents itself, the tab in view (once its
+    // books are there: the bar of the reader)
+    final tabs = AutoTabsRouter.of(context, watch: true);
+    final inView = tabs.current.name == context.routeData.name;
 
-    return switch (books) {
-      AsyncValue(value: final list?) when list.isNotEmpty => _Reader(
-        key: ValueKey(version.id),
-        version: version,
-        books: list,
-      ),
-      AsyncError(:final error) => TabPage(
-        title: t.bible.title,
-        actions: [
-          TextButton(
-            onPressed: () => showBibleVersions(context),
-            child: Text(version.abbreviation),
-          ),
-        ],
-        child: ErrorView(
-          error: error,
-          onRetry: () => ref.invalidate(bibleBooksProvider(version.id)),
+    return SpaceTour(
+      space: TourSpace.bible,
+      active: inView,
+      child: switch (books) {
+        AsyncValue(value: final list?) when list.isNotEmpty => _Reader(
+          key: ValueKey(version.id),
+          version: version,
+          books: list,
         ),
-      ),
-      // the book and its chapter, then the verses
-      _ => TabPage(title: t.bible.title, child: const LoadingDetail()),
-    };
+        AsyncError(:final error) => TabPage(
+          title: t.bible.title,
+          actions: [
+            TextButton(
+              onPressed: () => showBibleVersions(context),
+              child: Text(version.abbreviation),
+            ),
+          ],
+          child: ErrorView(
+            error: error,
+            onRetry: () => ref.invalidate(bibleBooksProvider(version.id)),
+          ),
+        ),
+        // the book and its chapter, then the verses
+        _ => TabPage(title: t.bible.title, child: const LoadingDetail()),
+      },
+    );
   }
 }
 
@@ -151,6 +161,12 @@ class _Reader extends HookConsumerWidget {
     // once: tell what a tap on a verse does
     useEffect(() {
       final preferences = ref.read(sharedPreferencesProvider);
+      // the tour of the Bible says it already (its first bubble)
+      if (SpaceTour.enabled &&
+          !ref.read(seenToursProvider).contains(TourSpace.bible)) {
+        unawaited(preferences.setBool(_tapHintKey, true));
+        return null;
+      }
       if (!(preferences.getBool(_tapHintKey) ?? false)) {
         WidgetsBinding.instance.addPostFrameCallback((_) {
           if (context.mounted) {
@@ -698,37 +714,43 @@ class _TopBar extends ConsumerWidget {
                     mainAxisSize: MainAxisSize.min,
                     children: [
                       Flexible(
-                        child: Semantics(
-                          button: true,
-                          label:
-                              '${t.bible.books}: ${bibleLabel(current, books)}',
-                          excludeSemantics: true,
-                          child: InkWell(
-                            onTap: onBook,
-                            child: Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
-                                16,
-                                10,
-                                10,
-                                10,
-                              ),
-                              child: Row(
-                                mainAxisSize: MainAxisSize.min,
-                                children: [
-                                  Flexible(
-                                    child: Text(
-                                      bibleLabel(current, books),
-                                      overflow: TextOverflow.ellipsis,
-                                      style: label,
+                        child: TourTarget(
+                          step: TourStep.biblePassage,
+                          round: false,
+                          radius: 999,
+                          padding: const EdgeInsets.all(2),
+                          child: Semantics(
+                            button: true,
+                            label:
+                                '${t.bible.books}: ${bibleLabel(current, books)}',
+                            excludeSemantics: true,
+                            child: InkWell(
+                              onTap: onBook,
+                              child: Padding(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                  16,
+                                  10,
+                                  10,
+                                  10,
+                                ),
+                                child: Row(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    Flexible(
+                                      child: Text(
+                                        bibleLabel(current, books),
+                                        overflow: TextOverflow.ellipsis,
+                                        style: label,
+                                      ),
                                     ),
-                                  ),
-                                  const SizedBox(width: 2),
-                                  Icon(
-                                    AppIcons.expand,
-                                    size: 16,
-                                    color: palette.muted,
-                                  ),
-                                ],
+                                    const SizedBox(width: 2),
+                                    Icon(
+                                      AppIcons.expand,
+                                      size: 16,
+                                      color: palette.muted,
+                                    ),
+                                  ],
+                                ),
                               ),
                             ),
                           ),
@@ -739,24 +761,29 @@ class _TopBar extends ConsumerWidget {
                         height: 22,
                         color: palette.text.withValues(alpha: 0.12),
                       ),
-                      Semantics(
-                        button: true,
-                        label: '${t.bible.version}: ${version.name}',
-                        excludeSemantics: true,
-                        child: InkWell(
-                          onTap: () => showBibleVersions(context),
-                          child: Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
-                              10,
-                              10,
-                              14,
-                              10,
-                            ),
-                            child: Text(
-                              version.abbreviation,
-                              style: label.copyWith(
-                                fontWeight: FontWeight.w700,
-                                color: palette.accent,
+                      TourTarget(
+                        step: TourStep.bibleVersion,
+                        radius: 999,
+                        padding: const EdgeInsets.all(2),
+                        child: Semantics(
+                          button: true,
+                          label: '${t.bible.version}: ${version.name}',
+                          excludeSemantics: true,
+                          child: InkWell(
+                            onTap: () => showBibleVersions(context),
+                            child: Padding(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
+                                10,
+                                10,
+                                14,
+                                10,
+                              ),
+                              child: Text(
+                                version.abbreviation,
+                                style: label.copyWith(
+                                  fontWeight: FontWeight.w700,
+                                  color: palette.accent,
+                                ),
                               ),
                             ),
                           ),
@@ -768,16 +795,21 @@ class _TopBar extends ConsumerWidget {
               ),
             ),
             // the chapter read aloud by the phone's voice
-            IconButton(
-              tooltip: t.bible.listen,
-              icon: Icon(
-                ref.watch(bibleListeningProvider) == null
-                    ? AppIcons.listen
-                    : AppIcons.listening,
+            TourTarget(
+              step: TourStep.bibleListen,
+              round: true,
+              padding: EdgeInsets.zero,
+              child: IconButton(
+                tooltip: t.bible.listen,
+                icon: Icon(
+                  ref.watch(bibleListeningProvider) == null
+                      ? AppIcons.listen
+                      : AppIcons.listening,
+                ),
+                onPressed: () => ref
+                    .read(bibleListeningProvider.notifier)
+                    .start([current.chapterRef]),
               ),
-              onPressed: () => ref.read(bibleListeningProvider.notifier).start([
-                current.chapterRef,
-              ]),
             ),
             IconButton(
               tooltip: t.bible.search,
@@ -789,62 +821,71 @@ class _TopBar extends ConsumerWidget {
               icon: const Icon(AppIcons.textSize),
               onPressed: () => showBibleSettings(context),
             ),
-            AdaptiveMenuButton<_MenuAction>(
-              tooltip: t.bible.more,
-              icon: Icon(AppIcons.moreOptions, color: palette.text),
-              onSelected: (action) => switch (action) {
-                _MenuAction.bookmark => toggleBookmark(),
-                _MenuAction.plan => context.router.push(const BiblePlanRoute()),
-                _MenuAction.marks => context.router.push(
-                  const BibleMarksRoute(),
-                ),
-                _MenuAction.memory => context.router.push(const MemoryRoute()),
-                _MenuAction.concordance => context.router.push(
-                  ConcordanceRoute(),
-                ),
-                _MenuAction.download => download(),
-                _MenuAction.display => showBibleSettings(context),
-              },
-              actions: [
-                AdaptiveAction(
-                  value: _MenuAction.bookmark,
-                  icon: marked
-                      ? AppIcons.readingMarkFilled
-                      : AppIcons.readingMark,
-                  label: marked ? t.bible.unmarkChapter : t.bible.markChapter,
-                ),
-                AdaptiveAction(
-                  value: _MenuAction.plan,
-                  icon: AppIcons.readingPlan,
-                  label: t.biblePlan.title,
-                ),
-                AdaptiveAction(
-                  value: _MenuAction.memory,
-                  icon: AppIcons.memorize,
-                  label: t.memorize.menu,
-                ),
-                AdaptiveAction(
-                  value: _MenuAction.marks,
-                  icon: AppIcons.bookmark,
-                  label: t.bible.marks,
-                ),
-                AdaptiveAction(
-                  value: _MenuAction.concordance,
-                  icon: AppIcons.concordance,
-                  label: t.bible.concordance,
-                ),
-                if (!downloaded)
-                  AdaptiveAction(
-                    value: _MenuAction.download,
-                    icon: AppIcons.downloadOffline,
-                    label: t.bible.download,
+            TourTarget(
+              step: TourStep.bibleMore,
+              round: true,
+              padding: EdgeInsets.zero,
+              child: AdaptiveMenuButton<_MenuAction>(
+                tooltip: t.bible.more,
+                icon: Icon(AppIcons.moreOptions, color: palette.text),
+                onSelected: (action) => switch (action) {
+                  _MenuAction.bookmark => toggleBookmark(),
+                  _MenuAction.plan => context.router.push(
+                    const BiblePlanRoute(),
                   ),
-                AdaptiveAction(
-                  value: _MenuAction.display,
-                  icon: AppIcons.textSize,
-                  label: t.bible.display,
-                ),
-              ],
+                  _MenuAction.marks => context.router.push(
+                    const BibleMarksRoute(),
+                  ),
+                  _MenuAction.memory => context.router.push(
+                    const MemoryRoute(),
+                  ),
+                  _MenuAction.concordance => context.router.push(
+                    ConcordanceRoute(),
+                  ),
+                  _MenuAction.download => download(),
+                  _MenuAction.display => showBibleSettings(context),
+                },
+                actions: [
+                  AdaptiveAction(
+                    value: _MenuAction.bookmark,
+                    icon: marked
+                        ? AppIcons.readingMarkFilled
+                        : AppIcons.readingMark,
+                    label: marked ? t.bible.unmarkChapter : t.bible.markChapter,
+                  ),
+                  AdaptiveAction(
+                    value: _MenuAction.plan,
+                    icon: AppIcons.readingPlan,
+                    label: t.biblePlan.title,
+                  ),
+                  AdaptiveAction(
+                    value: _MenuAction.memory,
+                    icon: AppIcons.memorize,
+                    label: t.memorize.menu,
+                  ),
+                  AdaptiveAction(
+                    value: _MenuAction.marks,
+                    icon: AppIcons.bookmark,
+                    label: t.bible.marks,
+                  ),
+                  AdaptiveAction(
+                    value: _MenuAction.concordance,
+                    icon: AppIcons.concordance,
+                    label: t.bible.concordance,
+                  ),
+                  if (!downloaded)
+                    AdaptiveAction(
+                      value: _MenuAction.download,
+                      icon: AppIcons.downloadOffline,
+                      label: t.bible.download,
+                    ),
+                  AdaptiveAction(
+                    value: _MenuAction.display,
+                    icon: AppIcons.textSize,
+                    label: t.bible.display,
+                  ),
+                ],
+              ),
             ),
           ],
         ),

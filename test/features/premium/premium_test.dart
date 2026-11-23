@@ -274,7 +274,7 @@ void main() {
     await openMenu(tester);
     expect(find.text('Devenir Premium'), findsOneWidget);
     expect(
-      find.text('Widget, année, enseignements hors ligne'),
+      find.text('Widget, année, enseignements hors ligne, éléments illimités'),
       findsOneWidget,
     );
     await scrollToEnd(tester);

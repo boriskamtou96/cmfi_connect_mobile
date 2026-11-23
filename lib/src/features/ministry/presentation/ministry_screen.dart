@@ -11,6 +11,7 @@ import '../../../core/theme/app_tones.dart';
 import '../../../core/widgets/app_back_button.dart';
 import '../../../core/widgets/fade_slide_in.dart';
 import '../../../core/widgets/section_card.dart';
+import '../../../core/widgets/tour/space_tour.dart';
 import '../../../routing/app_router.dart';
 import '../application/land.dart';
 import '../application/nations.dart';
@@ -60,184 +61,201 @@ class MinistryScreen extends ConsumerWidget {
       onTap: onTap,
     );
 
-    return AnnotatedRegion<SystemUiOverlayStyle>(
-      value: SystemUiOverlayStyle.light,
-      child: Scaffold(
-        body: ListView(
-          padding: EdgeInsets.zero,
-          children: [
-            Container(
-              clipBehavior: Clip.antiAlias,
-              decoration: const BoxDecoration(
-                color: AppColors.primaryDeep,
-                borderRadius: BorderRadius.vertical(
-                  bottom: Radius.circular(AppRadius.xxl),
-                ),
-              ),
-              child: SafeArea(
-                bottom: false,
-                child: Padding(
-                  padding: const EdgeInsets.fromLTRB(
-                    AppSpacing.xs,
-                    AppSpacing.xs,
-                    AppSpacing.lg,
-                    AppSpacing.xl,
+    return SpaceTour(
+      space: TourSpace.ministry,
+      child: AnnotatedRegion<SystemUiOverlayStyle>(
+        value: SystemUiOverlayStyle.light,
+        child: Scaffold(
+          body: ListView(
+            padding: EdgeInsets.zero,
+            children: [
+              Container(
+                clipBehavior: Clip.antiAlias,
+                decoration: const BoxDecoration(
+                  color: AppColors.primaryDeep,
+                  borderRadius: BorderRadius.vertical(
+                    bottom: Radius.circular(AppRadius.xxl),
                   ),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      const IconTheme(
-                        data: IconThemeData(color: Colors.white),
-                        child: AppBackButton(),
-                      ),
-                      Row(
-                        children: [
-                          const SizedBox(width: AppSpacing.md),
-                          Expanded(
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Semantics(
-                                  header: true,
-                                  child: Text(
-                                    t.title,
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .headlineSmall
-                                        ?.copyWith(color: Colors.white),
+                ),
+                child: SafeArea(
+                  bottom: false,
+                  child: Padding(
+                    padding: const EdgeInsets.fromLTRB(
+                      AppSpacing.xs,
+                      AppSpacing.xs,
+                      AppSpacing.lg,
+                      AppSpacing.xl,
+                    ),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const IconTheme(
+                          data: IconThemeData(color: Colors.white),
+                          child: AppBackButton(),
+                        ),
+                        Row(
+                          children: [
+                            const SizedBox(width: AppSpacing.md),
+                            Expanded(
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Semantics(
+                                    header: true,
+                                    child: Text(
+                                      t.title,
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .headlineSmall
+                                          ?.copyWith(color: Colors.white),
+                                    ),
                                   ),
-                                ),
-                                const SizedBox(height: AppSpacing.xs),
-                                Text(
-                                  t.tagline,
-                                  style: const TextStyle(
-                                    fontFamily: 'Lora',
-                                    fontStyle: FontStyle.italic,
-                                    fontSize: 16,
-                                    color: AppColors.goldLight,
+                                  const SizedBox(height: AppSpacing.xs),
+                                  Text(
+                                    t.tagline,
+                                    style: const TextStyle(
+                                      fontFamily: 'Lora',
+                                      fontStyle: FontStyle.italic,
+                                      fontSize: 16,
+                                      color: AppColors.goldLight,
+                                    ),
                                   ),
-                                ),
-                                const SizedBox(height: AppSpacing.md),
-                                Text(
-                                  t.count(n: nations.length),
-                                  style: const TextStyle(
-                                    fontSize: 28,
-                                    fontWeight: FontWeight.w800,
-                                    color: Colors.white,
+                                  const SizedBox(height: AppSpacing.md),
+                                  Text(
+                                    t.count(n: nations.length),
+                                    style: const TextStyle(
+                                      fontSize: 28,
+                                      fontWeight: FontWeight.w800,
+                                      color: Colors.white,
+                                    ),
                                   ),
-                                ),
-                                Text(
-                                  t.fromYaounde,
-                                  style: const TextStyle(
-                                    fontSize: 13,
-                                    color: AppColors.onPrimaryMuted,
+                                  Text(
+                                    t.fromYaounde,
+                                    style: const TextStyle(
+                                      fontSize: 13,
+                                      color: AppColors.onPrimaryMuted,
+                                    ),
                                   ),
-                                ),
-                              ],
+                                ],
+                              ),
                             ),
-                          ),
-                          // the globe in small: the nations page opens it whole
-                          SizedBox.square(
-                            dimension: 150,
-                            child: GestureDetector(
-                              onTap: () =>
-                                  context.router.push(const NationsRoute()),
-                              child: AbsorbPointer(
-                                child: NationGlobe(
-                                  nations: nations,
-                                  land: land,
-                                  selected: null,
-                                  onSelect: (_) {},
-                                  semanticLabel: t.globeLabel(
-                                    n: nations.length,
+                            // the globe in small: the nations page opens it whole
+                            TourTarget(
+                              step: TourStep.ministryNations,
+                              round: true,
+                              padding: EdgeInsets.zero,
+                              child: SizedBox.square(
+                                dimension: 150,
+                                child: GestureDetector(
+                                  onTap: () =>
+                                      context.router.push(const NationsRoute()),
+                                  child: AbsorbPointer(
+                                    child: NationGlobe(
+                                      nations: nations,
+                                      land: land,
+                                      selected: null,
+                                      onSelect: (_) {},
+                                      semanticLabel: t.globeLabel(
+                                        n: nations.length,
+                                      ),
+                                    ),
                                   ),
                                 ),
                               ),
                             ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(AppSpacing.lg),
+                child: FadeSlideIn(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      TourTarget(
+                        step: TourStep.ministryLives,
+                        radius: AppRadius.xl,
+                        child: IntrinsicHeight(
+                          child: Row(
+                            crossAxisAlignment: CrossAxisAlignment.stretch,
+                            children: [
+                              Expanded(
+                                child: _LeaderCard(
+                                  label: t.founder,
+                                  name: t.lives.founder.name,
+                                  asset: MinistryLife.founder.asset,
+                                  onTap: () =>
+                                      context.router.push(const FounderRoute()),
+                                ),
+                              ),
+                              const SizedBox(width: AppSpacing.md),
+                              Expanded(
+                                child: _LeaderCard(
+                                  label: t.leader,
+                                  name: t.lives.leader.name,
+                                  asset: MinistryLife.leader.asset,
+                                  onTap: () =>
+                                      context.router.push(const LeaderRoute()),
+                                ),
+                              ),
+                            ],
                           ),
-                        ],
+                        ),
+                      ),
+                      const SizedBox(height: AppSpacing.lg),
+                      TourTarget(
+                        step: TourStep.ministryMenu,
+                        radius: AppRadius.xl,
+                        padding: EdgeInsets.zero,
+                        child: SectionCard(
+                          children: [
+                            tile(
+                              icon: AppIcons.ministryTile,
+                              title: t.nations,
+                              subtitle: t.nationsSubtitle,
+                              onTap: () =>
+                                  context.router.push(const NationsRoute()),
+                            ),
+                            tile(
+                              icon: AppIcons.purposeTile,
+                              title: t.purpose,
+                              subtitle: t.purposeSubtitle,
+                              onTap: () =>
+                                  context.router.push(const PurposeRoute()),
+                            ),
+                            tile(
+                              icon: AppIcons.missionariesTile,
+                              title: t.missionaries,
+                              subtitle: t.missionariesSubtitle,
+                              onTap: () => context.router.push(
+                                MinistryPeopleRoute(
+                                  kind: MinistryPersonKind.missionary.name,
+                                ),
+                              ),
+                            ),
+                            tile(
+                              icon: AppIcons.heroesTile,
+                              title: t.heroes,
+                              subtitle: t.heroesSubtitle,
+                              onTap: () => context.router.push(
+                                MinistryPeopleRoute(
+                                  kind: MinistryPersonKind.hero.name,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
                     ],
                   ),
                 ),
               ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(AppSpacing.lg),
-              child: FadeSlideIn(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children: [
-                    IntrinsicHeight(
-                      child: Row(
-                        crossAxisAlignment: CrossAxisAlignment.stretch,
-                        children: [
-                          Expanded(
-                            child: _LeaderCard(
-                              label: t.founder,
-                              name: t.lives.founder.name,
-                              asset: MinistryLife.founder.asset,
-                              onTap: () =>
-                                  context.router.push(const FounderRoute()),
-                            ),
-                          ),
-                          const SizedBox(width: AppSpacing.md),
-                          Expanded(
-                            child: _LeaderCard(
-                              label: t.leader,
-                              name: t.lives.leader.name,
-                              asset: MinistryLife.leader.asset,
-                              onTap: () =>
-                                  context.router.push(const LeaderRoute()),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    const SizedBox(height: AppSpacing.lg),
-                    SectionCard(
-                      children: [
-                        tile(
-                          icon: AppIcons.ministryTile,
-                          title: t.nations,
-                          subtitle: t.nationsSubtitle,
-                          onTap: () =>
-                              context.router.push(const NationsRoute()),
-                        ),
-                        tile(
-                          icon: AppIcons.purposeTile,
-                          title: t.purpose,
-                          subtitle: t.purposeSubtitle,
-                          onTap: () =>
-                              context.router.push(const PurposeRoute()),
-                        ),
-                        tile(
-                          icon: AppIcons.missionariesTile,
-                          title: t.missionaries,
-                          subtitle: t.missionariesSubtitle,
-                          onTap: () => context.router.push(
-                            MinistryPeopleRoute(
-                              kind: MinistryPersonKind.missionary.name,
-                            ),
-                          ),
-                        ),
-                        tile(
-                          icon: AppIcons.heroesTile,
-                          title: t.heroes,
-                          subtitle: t.heroesSubtitle,
-                          onTap: () => context.router.push(
-                            MinistryPeopleRoute(
-                              kind: MinistryPersonKind.hero.name,
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
-              ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

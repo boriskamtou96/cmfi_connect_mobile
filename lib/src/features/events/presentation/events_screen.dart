@@ -12,6 +12,7 @@ import '../../../core/widgets/fade_slide_in.dart';
 import '../../../core/widgets/section_card.dart';
 import '../../../core/widgets/skeleton.dart';
 import '../../../core/widgets/sub_page.dart';
+import '../../../core/widgets/tour/space_tour.dart';
 import '../../../routing/app_router.dart';
 import '../../members/application/my_account.dart';
 import '../application/events_providers.dart';
@@ -45,109 +46,122 @@ class EventsScreen extends ConsumerWidget {
         ref.read(eventListProvider(period).notifier).refresh(),
     ]);
 
-    return SubPage(
-      title: t.title,
-      actions: [
-        if (isAdmin)
-          IconButton(
-            tooltip: t.manage,
-            icon: const Icon(AppIcons.admin),
-            onPressed: () => context.router.push(const AdminEventsRoute()),
+    return SpaceTour(
+      space: TourSpace.events,
+      child: SubPage(
+        title: t.title,
+        actions: [
+          if (isAdmin)
+            IconButton(
+              tooltip: t.manage,
+              icon: const Icon(AppIcons.admin),
+              onPressed: () => context.router.push(const AdminEventsRoute()),
+            ),
+        ],
+        child: switch (upcoming) {
+          AsyncValue(value: final events?) => RefreshIndicator.adaptive(
+            onRefresh: refresh,
+            child: ListView(
+              padding: const EdgeInsetsDirectional.fromSTEB(
+                AppSpacing.lg,
+                AppSpacing.sm,
+                AppSpacing.lg,
+                AppSpacing.xxl,
+              ),
+              children: [
+                if (events.isEmpty)
+                  const FadeSlideIn(
+                    child: TourTarget(
+                      step: TourStep.eventsNext,
+                      radius: AppRadius.xl,
+                      child: _NoUpcomingEvent(),
+                    ),
+                  )
+                else ...[
+                  FadeSlideIn(child: SectionLabel(t.featured)),
+                  const SizedBox(height: AppSpacing.md),
+                  FadeSlideIn(
+                    index: 1,
+                    child: TourTarget(
+                      step: TourStep.eventsNext,
+                      radius: AppRadius.xl,
+                      child: FeaturedEventCard(
+                        event: events.first,
+                        now: now,
+                        onTap: () => open(events.first),
+                      ),
+                    ),
+                  ),
+                  if (events.length > 1) ...[
+                    const SizedBox(height: AppSpacing.xl),
+                    FadeSlideIn(index: 2, child: SectionLabel(t.upcoming)),
+                    const SizedBox(height: AppSpacing.md),
+                    FadeSlideIn(
+                      index: 2,
+                      child: SectionCard(
+                        children: [
+                          for (final event in events.skip(1))
+                            EventRow(
+                              event: event,
+                              now: now,
+                              onTap: () => open(event),
+                            ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ],
+                if (past.isNotEmpty) ...[
+                  const SizedBox(height: AppSpacing.xl),
+                  FadeSlideIn(index: 3, child: SectionLabel(t.past)),
+                  const SizedBox(height: AppSpacing.md),
+                  FadeSlideIn(
+                    index: 3,
+                    child: SizedBox(
+                      height: EditionTile.height(context),
+                      child: ListView.separated(
+                        scrollDirection: Axis.horizontal,
+                        clipBehavior: Clip.none,
+                        itemCount: past.length,
+                        separatorBuilder: (_, _) =>
+                            const SizedBox(width: AppSpacing.md),
+                        itemBuilder: (context, index) {
+                          final event = past[index];
+                          return EditionTile(
+                            title: event.title,
+                            poster: event.poster,
+                            dates: context.eventDates(
+                              event.startsAt,
+                              event.endsAt,
+                              event.timeZone,
+                            ),
+                            onTap: () => open(event),
+                          );
+                        },
+                      ),
+                    ),
+                  ),
+                ],
+              ],
+            ),
           ),
-      ],
-      child: switch (upcoming) {
-        AsyncValue(value: final events?) => RefreshIndicator.adaptive(
-          onRefresh: refresh,
-          child: ListView(
+          AsyncValue(:final error?) => ErrorView(
+            error: error,
+            onRetry: () => ref.invalidate(eventListProvider),
+          ),
+          // the next event large: its poster (4:5), then its text
+          _ => LoadingDetail(
+            picture:
+                (MediaQuery.sizeOf(context).width - 2 * AppSpacing.lg) * 5 / 4,
             padding: const EdgeInsetsDirectional.fromSTEB(
               AppSpacing.lg,
               AppSpacing.sm,
               AppSpacing.lg,
               AppSpacing.xxl,
             ),
-            children: [
-              if (events.isEmpty)
-                const FadeSlideIn(child: _NoUpcomingEvent())
-              else ...[
-                FadeSlideIn(child: SectionLabel(t.featured)),
-                const SizedBox(height: AppSpacing.md),
-                FadeSlideIn(
-                  index: 1,
-                  child: FeaturedEventCard(
-                    event: events.first,
-                    now: now,
-                    onTap: () => open(events.first),
-                  ),
-                ),
-                if (events.length > 1) ...[
-                  const SizedBox(height: AppSpacing.xl),
-                  FadeSlideIn(index: 2, child: SectionLabel(t.upcoming)),
-                  const SizedBox(height: AppSpacing.md),
-                  FadeSlideIn(
-                    index: 2,
-                    child: SectionCard(
-                      children: [
-                        for (final event in events.skip(1))
-                          EventRow(
-                            event: event,
-                            now: now,
-                            onTap: () => open(event),
-                          ),
-                      ],
-                    ),
-                  ),
-                ],
-              ],
-              if (past.isNotEmpty) ...[
-                const SizedBox(height: AppSpacing.xl),
-                FadeSlideIn(index: 3, child: SectionLabel(t.past)),
-                const SizedBox(height: AppSpacing.md),
-                FadeSlideIn(
-                  index: 3,
-                  child: SizedBox(
-                    height: EditionTile.height(context),
-                    child: ListView.separated(
-                      scrollDirection: Axis.horizontal,
-                      clipBehavior: Clip.none,
-                      itemCount: past.length,
-                      separatorBuilder: (_, _) =>
-                          const SizedBox(width: AppSpacing.md),
-                      itemBuilder: (context, index) {
-                        final event = past[index];
-                        return EditionTile(
-                          title: event.title,
-                          poster: event.poster,
-                          dates: context.eventDates(
-                            event.startsAt,
-                            event.endsAt,
-                            event.timeZone,
-                          ),
-                          onTap: () => open(event),
-                        );
-                      },
-                    ),
-                  ),
-                ),
-              ],
-            ],
           ),
-        ),
-        AsyncValue(:final error?) => ErrorView(
-          error: error,
-          onRetry: () => ref.invalidate(eventListProvider),
-        ),
-        // the next event large: its poster (4:5), then its text
-        _ => LoadingDetail(
-          picture:
-              (MediaQuery.sizeOf(context).width - 2 * AppSpacing.lg) * 5 / 4,
-          padding: const EdgeInsetsDirectional.fromSTEB(
-            AppSpacing.lg,
-            AppSpacing.sm,
-            AppSpacing.lg,
-            AppSpacing.xxl,
-          ),
-        ),
-      },
+        },
+      ),
     );
   }
 }

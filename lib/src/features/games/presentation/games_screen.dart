@@ -17,6 +17,7 @@ import '../../../core/widgets/coming_soon_view.dart';
 import '../../../core/widgets/dove_mascot.dart';
 import '../../../core/widgets/error_view.dart';
 import '../../../core/widgets/tab_page.dart';
+import '../../../core/widgets/tour/space_tour.dart';
 import '../../../routing/app_router.dart';
 import '../application/flight_journey.dart';
 import '../application/game_downloads.dart';
@@ -38,6 +39,18 @@ class GamesScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    // the first visit: the games present themselves, the tab in view (once
+    // a path is there: its numbers and tiles)
+    final tabs = AutoTabsRouter.of(context, watch: true);
+    final inView = tabs.current.name == context.routeData.name;
+    return SpaceTour(
+      space: TourSpace.games,
+      active: inView,
+      child: _content(context, ref),
+    );
+  }
+
+  Widget _content(BuildContext context, WidgetRef ref) {
     final t = context.t;
     final path = ref.watch(gamePathProvider);
 
@@ -160,74 +173,78 @@ class _Path extends ConsumerWidget {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             // the player: streak, points, goal of the day, level
-            Padding(
-              padding: const EdgeInsetsDirectional.fromSTEB(20, 14, 20, 10),
-              // on a narrow screen (or with big letters) the line shrinks
-              child: FittedBox(
-                fit: BoxFit.scaleDown,
-                child: ConstrainedBox(
-                  constraints: BoxConstraints(
-                    minWidth: MediaQuery.sizeOf(context).width - 40,
-                  ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      GameStat(
-                        icon: AppIcons.streak,
-                        color: player.playedToday
-                            ? AppColors.gold
-                            : scheme.onSurfaceVariant,
-                        text: '${player.streakDays}',
-                        label:
-                            '${t.games.streakLabel} : '
-                            '${t.games.streak(n: player.streakDays)}',
-                      ),
-                      const SizedBox(width: 14),
-                      GameStat(
-                        icon: AppIcons.starFilled,
-                        color: AppColors.gold,
-                        text: '${player.totalPoints}',
-                        label: t.games.pointsLabel(n: player.totalPoints),
-                      ),
-                      const SizedBox(width: 14),
-                      GameStat(
-                        icon: goalReached
-                            ? AppIcons.goalReached
-                            : AppIcons.goal,
-                        color: goalReached ? AppColors.gold : scheme.primary,
-                        // past the goal, it stays « 50 sur 50 »: the points
-                        // of the day are in the star next to it
-                        text: t.games.goal(
-                          done: goalReached
-                              ? player.dailyGoal
-                              : player.pointsToday,
-                          goal: player.dailyGoal,
+            TourTarget(
+              step: TourStep.gamesStats,
+              padding: EdgeInsets.zero,
+              child: Padding(
+                padding: const EdgeInsetsDirectional.fromSTEB(20, 14, 20, 10),
+                // on a narrow screen (or with big letters) the line shrinks
+                child: FittedBox(
+                  fit: BoxFit.scaleDown,
+                  child: ConstrainedBox(
+                    constraints: BoxConstraints(
+                      minWidth: MediaQuery.sizeOf(context).width - 40,
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        GameStat(
+                          icon: AppIcons.streak,
+                          color: player.playedToday
+                              ? AppColors.gold
+                              : scheme.onSurfaceVariant,
+                          text: '${player.streakDays}',
+                          label:
+                              '${t.games.streakLabel} : '
+                              '${t.games.streak(n: player.streakDays)}',
                         ),
-                        label: t.games.goalLabel(
-                          done: player.pointsToday,
-                          goal: player.dailyGoal,
+                        const SizedBox(width: 14),
+                        GameStat(
+                          icon: AppIcons.starFilled,
+                          color: AppColors.gold,
+                          text: '${player.totalPoints}',
+                          label: t.games.pointsLabel(n: player.totalPoints),
                         ),
-                      ),
-                      const SizedBox(width: 14),
-                      Container(
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: 10,
-                          vertical: 5,
-                        ),
-                        decoration: BoxDecoration(
-                          color: scheme.primaryContainer,
-                          borderRadius: BorderRadius.circular(999),
-                        ),
-                        child: Text(
-                          t.games.level(n: player.level),
-                          style: TextStyle(
-                            fontSize: 13,
-                            fontWeight: FontWeight.w800,
-                            color: scheme.onPrimaryContainer,
+                        const SizedBox(width: 14),
+                        GameStat(
+                          icon: goalReached
+                              ? AppIcons.goalReached
+                              : AppIcons.goal,
+                          color: goalReached ? AppColors.gold : scheme.primary,
+                          // past the goal, it stays « 50 sur 50 »: the points
+                          // of the day are in the star next to it
+                          text: t.games.goal(
+                            done: goalReached
+                                ? player.dailyGoal
+                                : player.pointsToday,
+                            goal: player.dailyGoal,
+                          ),
+                          label: t.games.goalLabel(
+                            done: player.pointsToday,
+                            goal: player.dailyGoal,
                           ),
                         ),
-                      ),
-                    ],
+                        const SizedBox(width: 14),
+                        Container(
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 10,
+                            vertical: 5,
+                          ),
+                          decoration: BoxDecoration(
+                            color: scheme.primaryContainer,
+                            borderRadius: BorderRadius.circular(999),
+                          ),
+                          child: Text(
+                            t.games.level(n: player.level),
+                            style: TextStyle(
+                              fontSize: 13,
+                              fontWeight: FontWeight.w800,
+                              color: scheme.onPrimaryContainer,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ),
@@ -273,30 +290,33 @@ class _Path extends ConsumerWidget {
                 child: ListView(
                   padding: const EdgeInsets.only(bottom: AppSpacing.xl),
                   children: [
-                    _Extras(
-                      player: player,
-                      onDaily: () {
-                        if (player.dailyDone) {
-                          ref
-                              .read(toasterProvider)
-                              .of(context)
-                              .info(t.games.dailyDone);
-                          return;
-                        }
-                        context.router.push(
-                          LessonRoute(lessonId: dailyLessonId),
-                        );
-                      },
-                      onBoard: () =>
-                          context.router.push(const LeaderboardRoute()),
-                      onFlight: () =>
-                          context.router.push(const FlightJourneyRoute()),
-                      journey: ref.watch(flightJourneyProvider),
-                      offline: (
-                        kept: kept,
-                        loading: loading,
-                        lessons: lessonCount,
-                        onTap: offline,
+                    TourTarget(
+                      step: TourStep.gamesExtras,
+                      child: _Extras(
+                        player: player,
+                        onDaily: () {
+                          if (player.dailyDone) {
+                            ref
+                                .read(toasterProvider)
+                                .of(context)
+                                .info(t.games.dailyDone);
+                            return;
+                          }
+                          context.router.push(
+                            LessonRoute(lessonId: dailyLessonId),
+                          );
+                        },
+                        onBoard: () =>
+                            context.router.push(const LeaderboardRoute()),
+                        onFlight: () =>
+                            context.router.push(const FlightJourneyRoute()),
+                        journey: ref.watch(flightJourneyProvider),
+                        offline: (
+                          kept: kept,
+                          loading: loading,
+                          lessons: lessonCount,
+                          onTap: offline,
+                        ),
                       ),
                     ),
                     for (final (l, level) in path.levels.indexed) ...[

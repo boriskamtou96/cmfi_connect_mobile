@@ -18,6 +18,7 @@ import '../../../core/widgets/fade_slide_in.dart';
 import '../../../core/widgets/media_picture.dart';
 import '../../../core/widgets/photo_kit.dart';
 import '../../../core/widgets/premium_mark.dart';
+import '../../../core/widgets/tour/space_tour.dart';
 import '../../../routing/app_router.dart';
 import '../../bible/application/bible_library.dart';
 import '../../bible/application/bible_plan.dart';
@@ -106,104 +107,122 @@ class HomeScreen extends ConsumerWidget {
           .then((_) {}, onError: (_) {});
     }
 
-    return AnnotatedRegion<SystemUiOverlayStyle>(
-      // the summary is night blue, under the status bar
-      value: SystemUiOverlayStyle.light,
-      child: Scaffold(
-        body: Stack(
-          children: [
-            RefreshIndicator.adaptive(
-              onRefresh: refresh,
-              edgeOffset: top,
-              child: ListView(
-                padding: const EdgeInsets.only(bottom: 36),
-                children: [
-                  FadeSlideIn(
-                    child: _Summary(
-                      onOpen: () => openReports(ReportsView.today),
-                      onWeek: () => openReports(ReportsView.history),
+    // the first visit: the home presents itself, the tab in view
+    final tabs = AutoTabsRouter.of(context, watch: true);
+    final inView = tabs.current.name == context.routeData.name;
+
+    return SpaceTour(
+      space: TourSpace.home,
+      active: inView,
+      child: AnnotatedRegion<SystemUiOverlayStyle>(
+        // the summary is night blue, under the status bar
+        value: SystemUiOverlayStyle.light,
+        child: Scaffold(
+          body: Stack(
+            children: [
+              RefreshIndicator.adaptive(
+                onRefresh: refresh,
+                edgeOffset: top,
+                child: ListView(
+                  padding: const EdgeInsets.only(bottom: 36),
+                  children: [
+                    FadeSlideIn(
+                      child: _Summary(
+                        onOpen: () => openReports(ReportsView.today),
+                        onWeek: () => openReports(ReportsView.history),
+                      ),
                     ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 20),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.stretch,
-                      children: [
-                        // « Tes 3 pas du jour »
-                        const SizedBox(height: 20),
-                        FadeSlideIn(
-                          index: 1,
-                          child: DailyStepsCard(
-                            onReport: () => openReports(ReportsView.today),
-                          ),
-                        ),
-                        // a member who keeps their report, without Premium:
-                        // what it opens, once a month at most
-                        const _PremiumNudge(),
-                        // from 26 December to January: the year told
-                        if (storyYearAt(DateTime.now()) case final year?) ...[
-                          const SizedBox(height: 24),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 20),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.stretch,
+                        children: [
+                          // « Tes 3 pas du jour »
+                          const SizedBox(height: 20),
                           FadeSlideIn(
                             index: 1,
-                            child: _YearStoryCard(year: year),
+                            child: DailyStepsCard(
+                              onReport: () => openReports(ReportsView.today),
+                            ),
                           ),
-                        ],
-                        // Sunday evening and Monday: the week told, first
-                        if (storyWeekAt(DateTime.now()) case final week?) ...[
+                          // a member who keeps their report, without Premium:
+                          // what it opens, once a month at most
+                          const _PremiumNudge(),
+                          // from 26 December to January: the year told
+                          if (storyYearAt(DateTime.now()) case final year?) ...[
+                            const SizedBox(height: 24),
+                            FadeSlideIn(
+                              index: 1,
+                              child: _YearStoryCard(year: year),
+                            ),
+                          ],
+                          // Sunday evening and Monday: the week told, first
+                          if (storyWeekAt(DateTime.now()) case final week?) ...[
+                            const SizedBox(height: 24),
+                            FadeSlideIn(
+                              index: 1,
+                              child: _WeekStoryCard(monday: week),
+                            ),
+                          ],
+                          // the hymns and the prayer have no tab (12/11/2026)
+                          const SizedBox(height: 16),
+                          const FadeSlideIn(
+                            index: 1,
+                            child: TourTarget(
+                              step: TourStep.homeShortcuts,
+                              radius: AppRadius.xl,
+                              child: _Shortcuts(),
+                            ),
+                          ),
+                          const SizedBox(height: 28),
+                          FadeSlideIn(index: 1, child: _Title(t.home.resume)),
+                          const FadeSlideIn(index: 1, child: _Resume()),
+                          const SizedBox(height: 30),
+                          FadeSlideIn(
+                            index: 2,
+                            child: VerseOfTheDayCard(
+                              onRead: (osis) {
+                                if (BibleRef.parse(osis) case final place?) {
+                                  readVerse(place);
+                                }
+                              },
+                            ),
+                          ),
+                          const FadeSlideIn(index: 3, child: _Listen()),
                           const SizedBox(height: 24),
                           FadeSlideIn(
-                            index: 1,
-                            child: _WeekStoryCard(monday: week),
+                            index: 3,
+                            child: _Title(
+                              t.home.community,
+                              action: t.home.seeAll,
+                              onAction: () =>
+                                  context.router.push(const EventsRoute()),
+                            ),
                           ),
+                          const FadeSlideIn(index: 3, child: _Events()),
+                          // the ministry apart from the events
+                          const SizedBox(height: 24),
+                          FadeSlideIn(
+                            index: 3,
+                            child: _Title(t.ministry.title),
+                          ),
+                          const FadeSlideIn(index: 3, child: _Ministry()),
                         ],
-                        // the hymns and the prayer have no tab (12/11/2026)
-                        const SizedBox(height: 16),
-                        const FadeSlideIn(index: 1, child: _Shortcuts()),
-                        const SizedBox(height: 28),
-                        FadeSlideIn(index: 1, child: _Title(t.home.resume)),
-                        const FadeSlideIn(index: 1, child: _Resume()),
-                        const SizedBox(height: 30),
-                        FadeSlideIn(
-                          index: 2,
-                          child: VerseOfTheDayCard(
-                            onRead: (osis) {
-                              if (BibleRef.parse(osis) case final place?) {
-                                readVerse(place);
-                              }
-                            },
-                          ),
-                        ),
-                        const FadeSlideIn(index: 3, child: _Listen()),
-                        const SizedBox(height: 24),
-                        FadeSlideIn(
-                          index: 3,
-                          child: _Title(
-                            t.home.community,
-                            action: t.home.seeAll,
-                            onAction: () =>
-                                context.router.push(const EventsRoute()),
-                          ),
-                        ),
-                        const FadeSlideIn(index: 3, child: _Events()),
-                        // the ministry apart from the events
-                        const SizedBox(height: 24),
-                        FadeSlideIn(index: 3, child: _Title(t.ministry.title)),
-                        const FadeSlideIn(index: 3, child: _Ministry()),
-                      ],
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
-            ),
-            // the status bar stays on night blue when the page scrolls
-            Positioned(
-              left: 0,
-              right: 0,
-              top: 0,
-              height: top,
-              child: const ColoredBox(color: _Night.top),
-            ),
-          ],
+              // the status bar stays on night blue when the page scrolls
+              Positioned(
+                left: 0,
+                right: 0,
+                top: 0,
+                height: top,
+                child: const ColoredBox(color: _Night.top),
+              ),
+            ],
+          ),
         ),
       ),
     );
@@ -413,109 +432,120 @@ class _Summary extends ConsumerWidget {
                         ref.read(homeNumbersHiddenProvider.notifier).toggle(),
                     icon: Icon(hidden ? AppIcons.hidden : AppIcons.visible),
                   ),
-                  const IconTheme(
-                    data: IconThemeData(color: Colors.white),
-                    child: _Bell(),
+                  const TourTarget(
+                    step: TourStep.homeBell,
+                    round: true,
+                    padding: EdgeInsets.zero,
+                    child: IconTheme(
+                      data: IconThemeData(color: Colors.white),
+                      child: _Bell(),
+                    ),
                   ),
                 ],
               ),
               const SizedBox(height: 18),
               // compact (22/10/2026): the ring and the three numbers on one line
-              Row(
-                children: [
-                  Semantics(
-                    label: hidden
-                        ? '${t.home.items} : ${t.home.numbersHidden}'
-                        : '${t.home.progress(filled: filled, total: total)} '
-                              '${t.home.progressLabel}',
-                    excludeSemantics: true,
-                    child: SizedBox.square(
-                      dimension: 78,
-                      child: Stack(
-                        alignment: Alignment.center,
-                        children: [
-                          SizedBox.expand(
-                            child: TweenAnimationBuilder<double>(
-                              tween: Tween(
-                                end: total == 0 || hidden ? 0 : filled / total,
-                              ),
-                              duration: const Duration(milliseconds: 700),
-                              curve: Curves.easeOutCubic,
-                              builder: (context, value, _) => CustomPaint(
-                                painter: ProgressRingPainter(
-                                  progress: value,
-                                  color: AppColors.goldLight,
-                                  track: Colors.white.withValues(alpha: 0.12),
-                                  stroke: 7,
+              TourTarget(
+                step: TourStep.homeDay,
+                radius: AppRadius.xl,
+                child: Row(
+                  children: [
+                    Semantics(
+                      label: hidden
+                          ? '${t.home.items} : ${t.home.numbersHidden}'
+                          : '${t.home.progress(filled: filled, total: total)} '
+                                '${t.home.progressLabel}',
+                      excludeSemantics: true,
+                      child: SizedBox.square(
+                        dimension: 78,
+                        child: Stack(
+                          alignment: Alignment.center,
+                          children: [
+                            SizedBox.expand(
+                              child: TweenAnimationBuilder<double>(
+                                tween: Tween(
+                                  end: total == 0 || hidden
+                                      ? 0
+                                      : filled / total,
+                                ),
+                                duration: const Duration(milliseconds: 700),
+                                curve: Curves.easeOutCubic,
+                                builder: (context, value, _) => CustomPaint(
+                                  painter: ProgressRingPainter(
+                                    progress: value,
+                                    color: AppColors.goldLight,
+                                    track: Colors.white.withValues(alpha: 0.12),
+                                    stroke: 7,
+                                  ),
                                 ),
                               ),
                             ),
-                          ),
-                          Column(
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              Text(
-                                draft == null ? '—' : shown('$filled/$total'),
-                                style: const TextStyle(
-                                  fontSize: 21,
-                                  fontWeight: FontWeight.w800,
-                                  letterSpacing: -0.6,
-                                  height: 1,
-                                  color: Colors.white,
-                                ),
-                              ),
-                              const SizedBox(height: 2),
-                              Text(
-                                t.home.items,
-                                style: const TextStyle(
-                                  fontSize: 10.5,
-                                  fontWeight: FontWeight.w600,
-                                  color: _Night.muted,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                  const SizedBox(width: 12),
-                  Expanded(
-                    child: IntrinsicHeight(
-                      child: Row(
-                        crossAxisAlignment: CrossAxisAlignment.stretch,
-                        children: [
-                          _Stat(
-                            label: t.home.goalsTitle,
-                            value: goals == null
-                                ? '—'
-                                : shown(
-                                    '${(goals.progress * 100).round()}\u00a0%',
+                            Column(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                Text(
+                                  draft == null ? '—' : shown('$filled/$total'),
+                                  style: const TextStyle(
+                                    fontSize: 21,
+                                    fontWeight: FontWeight.w800,
+                                    letterSpacing: -0.6,
+                                    height: 1,
+                                    color: Colors.white,
                                   ),
-                            hidden: hidden,
-                            color: AppColors.goldLight,
-                          ),
-                          const _Hairline(),
-                          _Stat(
-                            label: t.home.retreatsTitle,
-                            value: shown(t.home.retreatsValue(n: retreats)),
-                            hidden: hidden,
-                            color: _Night.lavender,
-                          ),
-                          const _Hairline(),
-                          _Stat(
-                            label: t.home.streakTitle,
-                            value: shown(t.home.daysShort(n: streak)),
-                            spoken: t.home.days(n: streak),
-                            hidden: hidden,
-                            color: Colors.white,
-                            flame: !hidden && streak > 0,
-                          ),
-                        ],
+                                ),
+                                const SizedBox(height: 2),
+                                Text(
+                                  t.home.items,
+                                  style: const TextStyle(
+                                    fontSize: 10.5,
+                                    fontWeight: FontWeight.w600,
+                                    color: _Night.muted,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
                       ),
                     ),
-                  ),
-                ],
+                    const SizedBox(width: 12),
+                    Expanded(
+                      child: IntrinsicHeight(
+                        child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.stretch,
+                          children: [
+                            _Stat(
+                              label: t.home.goalsTitle,
+                              value: goals == null
+                                  ? '—'
+                                  : shown(
+                                      '${(goals.progress * 100).round()}\u00a0%',
+                                    ),
+                              hidden: hidden,
+                              color: AppColors.goldLight,
+                            ),
+                            const _Hairline(),
+                            _Stat(
+                              label: t.home.retreatsTitle,
+                              value: shown(t.home.retreatsValue(n: retreats)),
+                              hidden: hidden,
+                              color: _Night.lavender,
+                            ),
+                            const _Hairline(),
+                            _Stat(
+                              label: t.home.streakTitle,
+                              value: shown(t.home.daysShort(n: streak)),
+                              spoken: t.home.days(n: streak),
+                              hidden: hidden,
+                              color: Colors.white,
+                              flame: !hidden && streak > 0,
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
               ),
               const SizedBox(height: 12),
               Semantics(
@@ -582,29 +612,32 @@ class _Summary extends ConsumerWidget {
                 ),
               ),
               const SizedBox(height: 14),
-              SizedBox(
-                width: double.infinity,
-                child: FilledButton(
-                  onPressed: onOpen,
-                  style: FilledButton.styleFrom(
-                    backgroundColor: Colors.white,
-                    foregroundColor: AppColors.primaryDeep,
-                    minimumSize: const Size.fromHeight(48),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(16),
+              TourTarget(
+                step: TourStep.homeReport,
+                child: SizedBox(
+                  width: double.infinity,
+                  child: FilledButton(
+                    onPressed: onOpen,
+                    style: FilledButton.styleFrom(
+                      backgroundColor: Colors.white,
+                      foregroundColor: AppColors.primaryDeep,
+                      minimumSize: const Size.fromHeight(48),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(16),
+                      ),
+                      textStyle: const TextStyle(
+                        fontFamily: AppTheme.fontFamily,
+                        // the letters Onest lacks (Arabic, Chinese, Hindi)
+                        fontFamilyFallback: AppTheme.emojiFallback,
+                        fontSize: 15.5,
+                        fontWeight: FontWeight.w800,
+                      ),
                     ),
-                    textStyle: const TextStyle(
-                      fontFamily: AppTheme.fontFamily,
-                      // the letters Onest lacks (Arabic, Chinese, Hindi)
-                      fontFamilyFallback: AppTheme.emojiFallback,
-                      fontSize: 15.5,
-                      fontWeight: FontWeight.w800,
+                    child: Text(
+                      filled == 0
+                          ? t.home.startMyReport
+                          : t.home.continueMyReport,
                     ),
-                  ),
-                  child: Text(
-                    filled == 0
-                        ? t.home.startMyReport
-                        : t.home.continueMyReport,
                   ),
                 ),
               ),

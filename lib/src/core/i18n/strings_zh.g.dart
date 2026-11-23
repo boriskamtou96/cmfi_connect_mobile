@@ -93,6 +93,7 @@ class TranslationsZh extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _Translations$games$zh games = _Translations$games$zh._(_root);
 	@override late final _Translations$sheetImport$zh sheetImport = _Translations$sheetImport$zh._(_root);
 	@override late final _Translations$donation$zh donation = _Translations$donation$zh._(_root);
+	@override late final _Translations$tour$zh tour = _Translations$tour$zh._(_root);
 }
 
 // Path: app
@@ -436,6 +437,7 @@ class _Translations$items$zh extends Translations$items$fr {
 	@override String get goalSaved => '目标已保存';
 	@override String get goalRemoved => '目标已移除';
 	@override String edit({required Object code}) => '编辑 ${code}';
+	@override late final _Translations$items$limit$zh limit = _Translations$items$limit$zh._(_root);
 }
 
 // Path: newItem
@@ -757,6 +759,8 @@ class _Translations$premium$zh extends Translations$premium$fr {
 	@override String get widgetText => '无需打开应用，在主屏幕查看今日报告和目标。';
 	@override String get statsTitle => '全年的目标';
 	@override String get statsText => '你的年度回顾，以及目标逐周的变化。';
+	@override String get itemsTitle => '无限项目';
+	@override String get itemsText => '随心创建个人项目，数量不限。';
 	@override String get supportTitle => '你在支持这份事工';
 	@override String get supportText => '你的支持让应用及其新功能为整个团体持续运作。';
 	@override String get annual => '按年';
@@ -797,9 +801,9 @@ class _Translations$premium$zh extends Translations$premium$fr {
 	@override String get unavailable => '暂时无法获取订阅方案。';
 	@override String get privacy => '隐私';
 	@override String get activeTitle => '你已拥有 Premium';
-	@override String get activeText => '感谢支持 CMFI Connect！小组件、你的一年、年度回顾和离线教导已开启。';
+	@override String get activeText => '感谢支持 CMFI Connect！小组件、你的一年、年度回顾、离线教导和无限项目已开启。';
 	@override String get staffText => '你是 CMFI Connect 团队的成员，Premium 免费为你开放。';
-	@override String get moreSubtitle => '小组件、你的一年、离线教导';
+	@override String get moreSubtitle => '小组件、你的一年、离线教导、无限项目';
 	@override String get become => '成为 Premium 会员';
 	@override String get moreActive => '已开启';
 	@override String get unlock => '用 Premium 解锁';
@@ -2264,6 +2268,24 @@ class _Translations$donation$zh extends Translations$donation$fr {
 	@override String get done => '完成';
 }
 
+// Path: tour
+class _Translations$tour$zh extends Translations$tour$fr {
+	_Translations$tour$zh._(TranslationsZh root) : this._root = root, super.internal(root);
+
+	final TranslationsZh _root; // ignore: unused_field
+
+	// Translations
+	@override String get skip => '跳过';
+	@override String get next => '下一步';
+	@override String get done => '知道了';
+	@override String stepOf({required Object n, required Object total}) => '${n}/${total}';
+	@override String get replay => '重新查看各板块介绍';
+	@override String get replayText => '每个板块将再次介绍自己';
+	@override String get replayed => '好的：下次打开时，每个板块都会再次介绍自己。';
+	@override late final _Translations$tour$spaces$zh spaces = _Translations$tour$spaces$zh._(_root);
+	@override late final _Translations$tour$steps$zh steps = _Translations$tour$steps$zh._(_root);
+}
+
 // Path: welcome.seek
 class _Translations$welcome$seek$zh extends Translations$welcome$seek$fr {
 	_Translations$welcome$seek$zh._(TranslationsZh root) : this._root = root, super.internal(root);
@@ -2699,6 +2721,23 @@ class _Translations$items$measure$zh extends Translations$items$measure$fr {
 	@override String get duration => '时长';
 	@override String both({required Object unit}) => '数量（${unit}）和时长';
 	@override String get bothNoUnit => '数量和时长';
+}
+
+// Path: items.limit
+class _Translations$items$limit$zh extends Translations$items$limit$fr {
+	_Translations$items$limit$zh._(TranslationsZh root) : this._root = root, super.internal(root);
+
+	final TranslationsZh _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => '开通 Premium，添加更多项目';
+	@override String text({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n,
+		other: '没有 Premium 时，你最多可以创建 ${n} 个个人项目。你已有的项目都会保留，归档一个项目就能空出一个名额。开通 Premium，你可以随意创建，记录你与神同行中每一件重要的事。',
+	);
+	@override String get discover => '了解 Premium';
+	@override String get later => '以后再说';
+	@override String count({required Object used, required Object limit}) => '${used}/${limit}';
+	@override String countLabel({required Object used, required Object limit}) => '个人项目：${used}/${limit}';
 }
 
 // Path: authorities.form
@@ -3816,6 +3855,80 @@ class _Translations$games$journey$zh extends Translations$games$journey$fr {
 	@override String kept({required Object n, required Object total}) => '${n} / ${total}';
 }
 
+// Path: tour.spaces
+class _Translations$tour$spaces$zh extends Translations$tour$spaces$fr {
+	_Translations$tour$spaces$zh._(TranslationsZh root) : this._root = root, super.internal(root);
+
+	final TranslationsZh _root; // ignore: unused_field
+
+	// Translations
+	@override String get home => '首页';
+	@override String get reports => '汇报';
+	@override String get games => '游戏';
+	@override String get bible => '圣经';
+	@override String get you => '你';
+	@override String get prayer => '祷告';
+	@override String get hymns => '诗歌';
+	@override String get teachings => '教导';
+	@override String get ministry => '我们的事工';
+	@override String get events => '活动';
+	@override String get donate => '奉献';
+	@override String get premium => 'Premium';
+	@override String get documents => '我们的文档';
+	@override String get notifications => '通知';
+}
+
+// Path: tour.steps
+class _Translations$tour$steps$zh extends Translations$tour$steps$fr {
+	_Translations$tour$steps$zh._(TranslationsZh root) : this._root = root, super.internal(root);
+
+	final TranslationsZh _root; // ignore: unused_field
+
+	// Translations
+	@override late final _Translations$tour$steps$homeDay$zh homeDay = _Translations$tour$steps$homeDay$zh._(_root);
+	@override late final _Translations$tour$steps$homeReport$zh homeReport = _Translations$tour$steps$homeReport$zh._(_root);
+	@override late final _Translations$tour$steps$homeShortcuts$zh homeShortcuts = _Translations$tour$steps$homeShortcuts$zh._(_root);
+	@override late final _Translations$tour$steps$homeBell$zh homeBell = _Translations$tour$steps$homeBell$zh._(_root);
+	@override late final _Translations$tour$steps$reportsViews$zh reportsViews = _Translations$tour$steps$reportsViews$zh._(_root);
+	@override late final _Translations$tour$steps$reportsDay$zh reportsDay = _Translations$tour$steps$reportsDay$zh._(_root);
+	@override late final _Translations$tour$steps$reportsStopwatch$zh reportsStopwatch = _Translations$tour$steps$reportsStopwatch$zh._(_root);
+	@override late final _Translations$tour$steps$reportsItems$zh reportsItems = _Translations$tour$steps$reportsItems$zh._(_root);
+	@override late final _Translations$tour$steps$reportsExport$zh reportsExport = _Translations$tour$steps$reportsExport$zh._(_root);
+	@override late final _Translations$tour$steps$gamesStats$zh gamesStats = _Translations$tour$steps$gamesStats$zh._(_root);
+	@override late final _Translations$tour$steps$gamesExtras$zh gamesExtras = _Translations$tour$steps$gamesExtras$zh._(_root);
+	@override late final _Translations$tour$steps$biblePassage$zh biblePassage = _Translations$tour$steps$biblePassage$zh._(_root);
+	@override late final _Translations$tour$steps$bibleVersion$zh bibleVersion = _Translations$tour$steps$bibleVersion$zh._(_root);
+	@override late final _Translations$tour$steps$bibleListen$zh bibleListen = _Translations$tour$steps$bibleListen$zh._(_root);
+	@override late final _Translations$tour$steps$bibleMore$zh bibleMore = _Translations$tour$steps$bibleMore$zh._(_root);
+	@override late final _Translations$tour$steps$youCard$zh youCard = _Translations$tour$steps$youCard$zh._(_root);
+	@override late final _Translations$tour$steps$youNumbers$zh youNumbers = _Translations$tour$steps$youNumbers$zh._(_root);
+	@override late final _Translations$tour$steps$youDiscover$zh youDiscover = _Translations$tour$steps$youDiscover$zh._(_root);
+	@override late final _Translations$tour$steps$youSettings$zh youSettings = _Translations$tour$steps$youSettings$zh._(_root);
+	@override late final _Translations$tour$steps$prayerToday$zh prayerToday = _Translations$tour$steps$prayerToday$zh._(_root);
+	@override late final _Translations$tour$steps$prayerReminders$zh prayerReminders = _Translations$tour$steps$prayerReminders$zh._(_root);
+	@override late final _Translations$tour$steps$prayerRoutine$zh prayerRoutine = _Translations$tour$steps$prayerRoutine$zh._(_root);
+	@override late final _Translations$tour$steps$prayerTogether$zh prayerTogether = _Translations$tour$steps$prayerTogether$zh._(_root);
+	@override late final _Translations$tour$steps$hymnsBook$zh hymnsBook = _Translations$tour$steps$hymnsBook$zh._(_root);
+	@override late final _Translations$tour$steps$hymnsNumber$zh hymnsNumber = _Translations$tour$steps$hymnsNumber$zh._(_root);
+	@override late final _Translations$tour$steps$hymnsSearch$zh hymnsSearch = _Translations$tour$steps$hymnsSearch$zh._(_root);
+	@override late final _Translations$tour$steps$hymnsViews$zh hymnsViews = _Translations$tour$steps$hymnsViews$zh._(_root);
+	@override late final _Translations$tour$steps$teachingsSearch$zh teachingsSearch = _Translations$tour$steps$teachingsSearch$zh._(_root);
+	@override late final _Translations$tour$steps$teachingsFilters$zh teachingsFilters = _Translations$tour$steps$teachingsFilters$zh._(_root);
+	@override late final _Translations$tour$steps$teachingsCategories$zh teachingsCategories = _Translations$tour$steps$teachingsCategories$zh._(_root);
+	@override late final _Translations$tour$steps$ministryNations$zh ministryNations = _Translations$tour$steps$ministryNations$zh._(_root);
+	@override late final _Translations$tour$steps$ministryLives$zh ministryLives = _Translations$tour$steps$ministryLives$zh._(_root);
+	@override late final _Translations$tour$steps$ministryMenu$zh ministryMenu = _Translations$tour$steps$ministryMenu$zh._(_root);
+	@override late final _Translations$tour$steps$eventsNext$zh eventsNext = _Translations$tour$steps$eventsNext$zh._(_root);
+	@override late final _Translations$tour$steps$donateAmounts$zh donateAmounts = _Translations$tour$steps$donateAmounts$zh._(_root);
+	@override late final _Translations$tour$steps$donateMethod$zh donateMethod = _Translations$tour$steps$donateMethod$zh._(_root);
+	@override late final _Translations$tour$steps$donateGive$zh donateGive = _Translations$tour$steps$donateGive$zh._(_root);
+	@override late final _Translations$tour$steps$premiumBenefits$zh premiumBenefits = _Translations$tour$steps$premiumBenefits$zh._(_root);
+	@override late final _Translations$tour$steps$premiumPlans$zh premiumPlans = _Translations$tour$steps$premiumPlans$zh._(_root);
+	@override late final _Translations$tour$steps$documentsSearch$zh documentsSearch = _Translations$tour$steps$documentsSearch$zh._(_root);
+	@override late final _Translations$tour$steps$documentsCategories$zh documentsCategories = _Translations$tour$steps$documentsCategories$zh._(_root);
+	@override late final _Translations$tour$steps$notificationsInbox$zh notificationsInbox = _Translations$tour$steps$notificationsInbox$zh._(_root);
+}
+
 // Path: reports.summary.time
 class _Translations$reports$summary$time$zh extends Translations$reports$summary$time$fr {
 	_Translations$reports$summary$time$zh._(TranslationsZh root) : this._root = root, super.internal(root);
@@ -4264,6 +4377,468 @@ class _Translations$journey$steps$firstEncouragement$zh extends Translations$jou
 	// Translations
 	@override String get title => '鼓励者';
 	@override String get text => '给门徒发送一句鼓励的话。';
+}
+
+// Path: tour.steps.homeDay
+class _Translations$tour$steps$homeDay$zh extends Translations$tour$steps$homeDay$fr {
+	_Translations$tour$steps$homeDay$zh._(TranslationsZh root) : this._root = root, super.internal(root);
+
+	final TranslationsZh _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => '一眼看清你的一天';
+	@override String get text => '金色圆环随着你的每日汇报逐渐填满。旁边是你的目标、退修祷告、连续天数和本周的每一天。';
+}
+
+// Path: tour.steps.homeReport
+class _Translations$tour$steps$homeReport$zh extends Translations$tour$steps$homeReport$fr {
+	_Translations$tour$steps$homeReport$zh._(TranslationsZh root) : this._root = root, super.internal(root);
+
+	final TranslationsZh _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => '今天的汇报';
+	@override String get text => '在这里开始，或从上次停下的地方继续。没有网络也能保存。';
+}
+
+// Path: tour.steps.homeShortcuts
+class _Translations$tour$steps$homeShortcuts$zh extends Translations$tour$steps$homeShortcuts$fr {
+	_Translations$tour$steps$homeShortcuts$zh._(TranslationsZh root) : this._root = root, super.internal(root);
+
+	final TranslationsZh _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => '诗歌与祷告';
+	@override String get text => '团契的诗歌本和你的 15 分钟退修祷告，轻点一下就到。';
+}
+
+// Path: tour.steps.homeBell
+class _Translations$tour$steps$homeBell$zh extends Translations$tour$steps$homeBell$fr {
+	_Translations$tour$steps$homeBell$zh._(TranslationsZh root) : this._root = root, super.internal(root);
+
+	final TranslationsZh _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => '公告';
+	@override String get text => '铃铛为你带来负责人的消息；有新消息时会显示小圆点。';
+}
+
+// Path: tour.steps.reportsViews
+class _Translations$tour$steps$reportsViews$zh extends Translations$tour$steps$reportsViews$fr {
+	_Translations$tour$steps$reportsViews$zh._(TranslationsZh root) : this._root = root, super.internal(root);
+
+	final TranslationsZh _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => '今天、历史、总结';
+	@override String get text => '填写今天，回顾过去的日子，再按周、月或年查看你的道路。';
+}
+
+// Path: tour.steps.reportsDay
+class _Translations$tour$steps$reportsDay$zh extends Translations$tour$steps$reportsDay$fr {
+	_Translations$tour$steps$reportsDay$zh._(TranslationsZh root) : this._root = root, super.internal(root);
+
+	final TranslationsZh _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => '其他日期';
+	@override String get text => '昨天忘了填？在日历中选择那一天。';
+}
+
+// Path: tour.steps.reportsStopwatch
+class _Translations$tour$steps$reportsStopwatch$zh extends Translations$tour$steps$reportsStopwatch$fr {
+	_Translations$tour$steps$reportsStopwatch$zh._(TranslationsZh root) : this._root = root, super.internal(root);
+
+	final TranslationsZh _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => '计时器';
+	@override String get text => '为你的祷告或阅读计时：分钟会自动加入你的汇报。';
+}
+
+// Path: tour.steps.reportsItems
+class _Translations$tour$steps$reportsItems$zh extends Translations$tour$steps$reportsItems$fr {
+	_Translations$tour$steps$reportsItems$zh._(TranslationsZh root) : this._root = root, super.internal(root);
+
+	final TranslationsZh _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => '你的项目和目标';
+	@override String get text => '添加你自己的项目，并按自己的节奏为每一项设定目标。';
+}
+
+// Path: tour.steps.reportsExport
+class _Translations$tour$steps$reportsExport$zh extends Translations$tour$steps$reportsExport$fr {
+	_Translations$tour$steps$reportsExport$zh._(TranslationsZh root) : this._root = root, super.internal(root);
+
+	final TranslationsZh _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => '导出你的汇报';
+	@override String get text => '按你选择的时间段，导出为可打印或发送的 PDF、适用于 Excel 的表格，或发到 WhatsApp 的消息。这是 Premium 功能。';
+}
+
+// Path: tour.steps.gamesStats
+class _Translations$tour$steps$gamesStats$zh extends Translations$tour$steps$gamesStats$fr {
+	_Translations$tour$steps$gamesStats$zh._(TranslationsZh root) : this._root = root, super.internal(root);
+
+	final TranslationsZh _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => '你的进度';
+	@override String get text => '你的连续天数、积分和今日目标；往下是你的课程之路。积分只属于游戏，绝不衡量你的信心。';
+}
+
+// Path: tour.steps.gamesExtras
+class _Translations$tour$steps$gamesExtras$zh extends Translations$tour$steps$gamesExtras$fr {
+	_Translations$tour$steps$gamesExtras$zh._(TranslationsZh root) : this._root = root, super.internal(root);
+
+	final TranslationsZh _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => '排行榜、飞行与离线';
+	@override String get text => '愿意的话加入排行榜，用“飞翔的经文”飞往迦南，并保存一个课程以便离线游玩。';
+}
+
+// Path: tour.steps.biblePassage
+class _Translations$tour$steps$biblePassage$zh extends Translations$tour$steps$biblePassage$fr {
+	_Translations$tour$steps$biblePassage$zh._(TranslationsZh root) : this._root = root, super.internal(root);
+
+	final TranslationsZh _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => '书卷和章';
+	@override String get text => '点这里选择经文，或左右滑动切换章。点一节经文可以标亮、收藏或分享。';
+}
+
+// Path: tour.steps.bibleVersion
+class _Translations$tour$steps$bibleVersion$zh extends Translations$tour$steps$bibleVersion$fr {
+	_Translations$tour$steps$bibleVersion$zh._(TranslationsZh root) : this._root = root, super.internal(root);
+
+	final TranslationsZh _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => '译本';
+	@override String get text => '切换译本，并下载它以便离线阅读和搜索。';
+}
+
+// Path: tour.steps.bibleListen
+class _Translations$tour$steps$bibleListen$zh extends Translations$tour$steps$bibleListen$fr {
+	_Translations$tour$steps$bibleListen$zh._(TranslationsZh root) : this._root = root, super.internal(root);
+
+	final TranslationsZh _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => '聆听圣言';
+	@override String get text => '手机的语音为你逐节朗读本章。';
+}
+
+// Path: tour.steps.bibleMore
+class _Translations$tour$steps$bibleMore$zh extends Translations$tour$steps$bibleMore$fr {
+	_Translations$tour$steps$bibleMore$zh._(TranslationsZh root) : this._root = root, super.internal(root);
+
+	final TranslationsZh _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => '更多功能';
+	@override String get text => '你的读经计划、背诵、我的经文、经文汇编和书签都在这里。';
+}
+
+// Path: tour.steps.youCard
+class _Translations$tour$steps$youCard$zh extends Translations$tour$steps$youCard$fr {
+	_Translations$tour$steps$youCard$zh._(TranslationsZh root) : this._root = root, super.internal(root);
+
+	final TranslationsZh _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => '你的名片';
+	@override String get text => '你的照片、姓名和用户名：弟兄姊妹通过用户名找到你。';
+}
+
+// Path: tour.steps.youNumbers
+class _Translations$tour$steps$youNumbers$zh extends Translations$tour$steps$youNumbers$fr {
+	_Translations$tour$steps$youNumbers$zh._(TranslationsZh root) : this._root = root, super.internal(root);
+
+	final TranslationsZh _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => '你的属灵道路';
+	@override String get text => '你的连续天数、阶段和本月与神同在的时间。它们属于你：由你决定分享什么。';
+}
+
+// Path: tour.steps.youDiscover
+class _Translations$tour$steps$youDiscover$zh extends Translations$tour$steps$youDiscover$fr {
+	_Translations$tour$steps$youDiscover$zh._(TranslationsZh root) : this._root = root, super.internal(root);
+
+	final TranslationsZh _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => '发现';
+	@override String get text => '活动、我们的事工、音频教导和团契的文档。';
+}
+
+// Path: tour.steps.youSettings
+class _Translations$tour$steps$youSettings$zh extends Translations$tour$steps$youSettings$fr {
+	_Translations$tour$steps$youSettings$zh._(TranslationsZh root) : this._root = root, super.internal(root);
+
+	final TranslationsZh _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => '设置';
+	@override String get text => '提醒、外观、语言……还可以随时重新查看这些介绍。';
+}
+
+// Path: tour.steps.prayerToday
+class _Translations$tour$steps$prayerToday$zh extends Translations$tour$steps$prayerToday$fr {
+	_Translations$tour$steps$prayerToday$zh._(TranslationsZh root) : this._root = root, super.internal(root);
+
+	final TranslationsZh _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => '今天的祷告';
+	@override String get text => '本周你祷告的日子、你的祷告时间，以及现在可以开始的退修祷告。';
+}
+
+// Path: tour.steps.prayerReminders
+class _Translations$tour$steps$prayerReminders$zh extends Translations$tour$steps$prayerReminders$fr {
+	_Translations$tour$steps$prayerReminders$zh._(TranslationsZh root) : this._root = root, super.internal(root);
+
+	final TranslationsZh _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => '你的提醒';
+	@override String get text => '为每次退修祷告选择时间：早晨、中午、傍晚和夜间。';
+}
+
+// Path: tour.steps.prayerRoutine
+class _Translations$tour$steps$prayerRoutine$zh extends Translations$tour$steps$prayerRoutine$fr {
+	_Translations$tour$steps$prayerRoutine$zh._(TranslationsZh root) : this._root = root, super.internal(root);
+
+	final TranslationsZh _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => '你今天的祷告安排';
+	@override String get text => '四次 15 分钟的退修祷告，逐点带领。每一次都会把时间加入你的汇报。';
+}
+
+// Path: tour.steps.prayerTogether
+class _Translations$tour$steps$prayerTogether$zh extends Translations$tour$steps$prayerTogether$fr {
+	_Translations$tour$steps$prayerTogether$zh._(TranslationsZh root) : this._root = root, super.internal(root);
+
+	final TranslationsZh _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => '一起祷告';
+	@override String get text => '创建一个恒切祷告的题目，邀请弟兄姊妹与你一同承担。';
+}
+
+// Path: tour.steps.hymnsBook
+class _Translations$tour$steps$hymnsBook$zh extends Translations$tour$steps$hymnsBook$fr {
+	_Translations$tour$steps$hymnsBook$zh._(TranslationsZh root) : this._root = root, super.internal(root);
+
+	final TranslationsZh _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => '诗歌本';
+	@override String get text => '滑动封面或点它的名字来切换诗歌本。全部可离线使用。';
+}
+
+// Path: tour.steps.hymnsNumber
+class _Translations$tour$steps$hymnsNumber$zh extends Translations$tour$steps$hymnsNumber$fr {
+	_Translations$tour$steps$hymnsNumber$zh._(TranslationsZh root) : this._root = root, super.internal(root);
+
+	final TranslationsZh _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => '按编号打开';
+	@override String get text => '输入聚会中宣布的编号，诗歌就会打开。';
+}
+
+// Path: tour.steps.hymnsSearch
+class _Translations$tour$steps$hymnsSearch$zh extends Translations$tour$steps$hymnsSearch$fr {
+	_Translations$tour$steps$hymnsSearch$zh._(TranslationsZh root) : this._root = root, super.internal(root);
+
+	final TranslationsZh _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => '搜索';
+	@override String get text => '通过标题或几句歌词找到一首诗歌。';
+}
+
+// Path: tour.steps.hymnsViews
+class _Translations$tour$steps$hymnsViews$zh extends Translations$tour$steps$hymnsViews$fr {
+	_Translations$tour$steps$hymnsViews$zh._(TranslationsZh root) : this._root = root, super.internal(root);
+
+	final TranslationsZh _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => '收藏和最近';
+	@override String get text => '点诗歌旁的星星即可收藏；你最近唱过的诗歌在这里等你。';
+}
+
+// Path: tour.steps.teachingsSearch
+class _Translations$tour$steps$teachingsSearch$zh extends Translations$tour$steps$teachingsSearch$fr {
+	_Translations$tour$steps$teachingsSearch$zh._(TranslationsZh root) : this._root = root, super.internal(root);
+
+	final TranslationsZh _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => '查找信息';
+	@override String get text => '按标题、讲员或描述中的词语查找。';
+}
+
+// Path: tour.steps.teachingsFilters
+class _Translations$tour$steps$teachingsFilters$zh extends Translations$tour$steps$teachingsFilters$fr {
+	_Translations$tour$steps$teachingsFilters$zh._(TranslationsZh root) : this._root = root, super.internal(root);
+
+	final TranslationsZh _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => '筛选';
+	@override String get text => '选择讲员、年份或期次。';
+}
+
+// Path: tour.steps.teachingsCategories
+class _Translations$tour$steps$teachingsCategories$zh extends Translations$tour$steps$teachingsCategories$fr {
+	_Translations$tour$steps$teachingsCategories$zh._(TranslationsZh root) : this._root = root, super.internal(root);
+
+	final TranslationsZh _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => '主题';
+	@override String get text => '在主题之间切换；“已下载”会保存你的信息，供离线收听。';
+}
+
+// Path: tour.steps.ministryNations
+class _Translations$tour$steps$ministryNations$zh extends Translations$tour$steps$ministryNations$fr {
+	_Translations$tour$steps$ministryNations$zh._(TranslationsZh root) : this._root = root, super.internal(root);
+
+	final TranslationsZh _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => '列国';
+	@override String get text => '转动这项工作所在列国的地球仪，为每个国家祷告。';
+}
+
+// Path: tour.steps.ministryLives
+class _Translations$tour$steps$ministryLives$zh extends Translations$tour$steps$ministryLives$fr {
+	_Translations$tour$steps$ministryLives$zh._(TranslationsZh root) : this._root = root, super.internal(root);
+
+	final TranslationsZh _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => '我们的创始人和领袖';
+	@override String get text => '他们的生平、重要日期，以及神借着他们所成就的事。';
+}
+
+// Path: tour.steps.ministryMenu
+class _Translations$tour$steps$ministryMenu$zh extends Translations$tour$steps$ministryMenu$fr {
+	_Translations$tour$steps$ministryMenu$zh._(TranslationsZh root) : this._root = root, super.internal(root);
+
+	final TranslationsZh _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => '我们的目标、宣教士和英雄';
+	@override String get text => '事工的三大目标，以及服事它的人的生平。';
+}
+
+// Path: tour.steps.eventsNext
+class _Translations$tour$steps$eventsNext$zh extends Translations$tour$steps$eventsNext$fr {
+	_Translations$tour$steps$eventsNext$zh._(TranslationsZh root) : this._root = root, super.internal(root);
+
+	final TranslationsZh _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => '团契活动';
+	@override String get text => '下一个活动显示在这里：点它查看日程、报名、接收提醒或加入你的日历。';
+}
+
+// Path: tour.steps.donateAmounts
+class _Translations$tour$steps$donateAmounts$zh extends Translations$tour$steps$donateAmounts$fr {
+	_Translations$tour$steps$donateAmounts$zh._(TranslationsZh root) : this._root = root, super.internal(root);
+
+	final TranslationsZh _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => '你的奉献';
+	@override String get text => '选择一个金额或输入你自己的金额。你的支持让整个团契都能使用这个应用。';
+}
+
+// Path: tour.steps.donateMethod
+class _Translations$tour$steps$donateMethod$zh extends Translations$tour$steps$donateMethod$fr {
+	_Translations$tour$steps$donateMethod$zh._(TranslationsZh root) : this._root = root, super.internal(root);
+
+	final TranslationsZh _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => '付款方式';
+	@override String get text => 'Mobile Money 或银行卡，使用你所在国家的货币。';
+}
+
+// Path: tour.steps.donateGive
+class _Translations$tour$steps$donateGive$zh extends Translations$tour$steps$donateGive$fr {
+	_Translations$tour$steps$donateGive$zh._(TranslationsZh root) : this._root = root, super.internal(root);
+
+	final TranslationsZh _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => '奉献';
+	@override String get text => '付款通过安全页面完成。“捐得乐意的人是神所喜爱的”（哥林多后书 9:7）。';
+}
+
+// Path: tour.steps.premiumBenefits
+class _Translations$tour$steps$premiumBenefits$zh extends Translations$tour$steps$premiumBenefits$fr {
+	_Translations$tour$steps$premiumBenefits$zh._(TranslationsZh root) : this._root = root, super.internal(root);
+
+	final TranslationsZh _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Premium 增加了什么';
+	@override String get text => '额外的便利，如离线教导、你与神同在的一年或小组件。应用的核心功能始终免费。';
+}
+
+// Path: tour.steps.premiumPlans
+class _Translations$tour$steps$premiumPlans$zh extends Translations$tour$steps$premiumPlans$fr {
+	_Translations$tour$steps$premiumPlans$zh._(TranslationsZh root) : this._root = root, super.internal(root);
+
+	final TranslationsZh _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => '方案';
+	@override String get text => '选择适合你的期限：按月、六个月、按年或终身。';
+}
+
+// Path: tour.steps.documentsSearch
+class _Translations$tour$steps$documentsSearch$zh extends Translations$tour$steps$documentsSearch$fr {
+	_Translations$tour$steps$documentsSearch$zh._(TranslationsZh root) : this._root = root, super.internal(root);
+
+	final TranslationsZh _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => '查找文档';
+	@override String get text => '按标题、描述或类别查找。点文档即可打开，点箭头即可保存。';
+}
+
+// Path: tour.steps.documentsCategories
+class _Translations$tour$steps$documentsCategories$zh extends Translations$tour$steps$documentsCategories$fr {
+	_Translations$tour$steps$documentsCategories$zh._(TranslationsZh root) : this._root = root, super.internal(root);
+
+	final TranslationsZh _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => '类别';
+	@override String get text => '按主题浏览资料库。';
+}
+
+// Path: tour.steps.notificationsInbox
+class _Translations$tour$steps$notificationsInbox$zh extends Translations$tour$steps$notificationsInbox$fr {
+	_Translations$tour$steps$notificationsInbox$zh._(TranslationsZh root) : this._root = root, super.internal(root);
+
+	final TranslationsZh _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => '公告';
+	@override String get text => '负责人的消息会出现在这里，附带图片和 PDF。';
 }
 
 /// The flat map containing all translations for locale <zh>.
@@ -4717,6 +5292,12 @@ extension on TranslationsZh {
 			'items.goalSaved' => '目标已保存',
 			'items.goalRemoved' => '目标已移除',
 			'items.edit' => ({required Object code}) => '编辑 ${code}',
+			'items.limit.title' => '开通 Premium，添加更多项目',
+			'items.limit.text' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n, other: '没有 Premium 时，你最多可以创建 ${n} 个个人项目。你已有的项目都会保留，归档一个项目就能空出一个名额。开通 Premium，你可以随意创建，记录你与神同行中每一件重要的事。', ), 
+			'items.limit.discover' => '了解 Premium',
+			'items.limit.later' => '以后再说',
+			'items.limit.count' => ({required Object used, required Object limit}) => '${used}/${limit}',
+			'items.limit.countLabel' => ({required Object used, required Object limit}) => '个人项目：${used}/${limit}',
 			'newItem.title' => '新项目',
 			'newItem.code' => '代码',
 			'newItem.label' => '名称',
@@ -4780,14 +5361,14 @@ extension on TranslationsZh {
 			'authorities.add' => '添加带领者',
 			'authorities.remove' => '移除',
 			'authorities.removeTitle' => ({required Object name}) => '移除 ${name}？',
+			_ => null,
+		} ?? switch (path) {
 			'authorities.removeText' => ({required Object name}) => '${name} 将不再是你的属灵带领者。',
 			'authorities.removed' => ({required Object name}) => '${name} 已不再是你的带领者。',
 			'authorities.count' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n, zero: '暂时还没有', other: '${n} 人', ), 
 			'authorities.form.title' => '新的带领者',
 			'authorities.form.emailHint' => 'name@example.com',
 			'authorities.form.isDiscipleMaker' => '这是我的门训者',
-			_ => null,
-		} ?? switch (path) {
 			'authorities.form.isDiscipleMakerHelp' => '亲自带领你的那个人。你只能有一位。',
 			'authorities.form.discipleMakerTaken' => ({required Object name}) => '${name} 已经是你的门训者。若要指定其他人，请先将其从列表中移除。',
 			'authorities.form.submit' => '添加',
@@ -5186,6 +5767,8 @@ extension on TranslationsZh {
 			'premium.widgetText' => '无需打开应用，在主屏幕查看今日报告和目标。',
 			'premium.statsTitle' => '全年的目标',
 			'premium.statsText' => '你的年度回顾，以及目标逐周的变化。',
+			'premium.itemsTitle' => '无限项目',
+			'premium.itemsText' => '随心创建个人项目，数量不限。',
 			'premium.supportTitle' => '你在支持这份事工',
 			'premium.supportText' => '你的支持让应用及其新功能为整个团体持续运作。',
 			'premium.annual' => '按年',
@@ -5222,9 +5805,9 @@ extension on TranslationsZh {
 			'premium.unavailable' => '暂时无法获取订阅方案。',
 			'premium.privacy' => '隐私',
 			'premium.activeTitle' => '你已拥有 Premium',
-			'premium.activeText' => '感谢支持 CMFI Connect！小组件、你的一年、年度回顾和离线教导已开启。',
+			'premium.activeText' => '感谢支持 CMFI Connect！小组件、你的一年、年度回顾、离线教导和无限项目已开启。',
 			'premium.staffText' => '你是 CMFI Connect 团队的成员，Premium 免费为你开放。',
-			'premium.moreSubtitle' => '小组件、你的一年、离线教导',
+			'premium.moreSubtitle' => '小组件、你的一年、离线教导、无限项目',
 			'premium.become' => '成为 Premium 会员',
 			'premium.moreActive' => '已开启',
 			'premium.unlock' => '用 Premium 解锁',
@@ -5292,6 +5875,8 @@ extension on TranslationsZh {
 			'ministry.missionariesSubtitle' => '主差往万国的人',
 			'ministry.heroes' => '我们的英雄',
 			'ministry.heroesSubtitle' => '他们的信心激励着我们',
+			_ => null,
+		} ?? switch (path) {
 			'ministry.founder' => '我们的创始人',
 			'ministry.founderSubtitle' => 'Zacharias Tanee Fomum 教授',
 			'ministry.leader' => '我们的领袖',
@@ -5300,8 +5885,6 @@ extension on TranslationsZh {
 			'ministry.heroesEmpty' => '我们英雄的介绍即将推出。',
 			'ministry.personGone' => '此介绍已不再提供。',
 			'ministry.photoOf' => ({required Object name}) => '${name}的照片',
-			_ => null,
-		} ?? switch (path) {
 			'ministry.keyDates' => '重要日期',
 			'ministry.life' => '生平',
 			'ministry.story' => '故事',
@@ -5806,6 +6389,8 @@ extension on TranslationsZh {
 			'weekStory.emptyLead' => '新的一周在等着你',
 			'weekStory.days' => ({required num n, required Object total}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n, other: '${total} 天中\n有 ${n} 天', ), 
 			'weekStory.streak' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n, other: '连续 ${n} 天', ), 
+			_ => null,
+		} ?? switch (path) {
 			'weekStory.streakRecord' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n, other: '连续 ${n} 天：你的纪录！', ), 
 			'weekStory.emptyText' => '每天填写你的报告：你的下一周将写在这里。',
 			'weekStory.prayerLead' => '你祷告了',
@@ -5814,8 +6399,6 @@ extension on TranslationsZh {
 			'weekStory.faithfulMoment' => ({required num n, required Object moment}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n, other: '你最忠心的时段：${moment}（${n} 次）', ), 
 			'weekStory.noRetreat' => '本周没有退修',
 			'weekStory.noRetreatText' => '午间退修在等着你：与主同在 15 分钟。',
-			_ => null,
-		} ?? switch (path) {
 			'weekStory.goalsLead' => '你的目标',
 			'weekStory.goalsReached' => '平均达成',
 			'weekStory.bestDay' => ({required Object day, required Object percent}) => '你最好的一天：${day} · ${percent}',
@@ -6320,6 +6903,8 @@ extension on TranslationsZh {
 			'journey.steps.fullDay.text' => '完成今日四步。',
 			'journey.steps.sevenFullDays.title' => '七个完整的日子',
 			'journey.steps.sevenFullDays.text' => '完成今日四步共七次。',
+			_ => null,
+		} ?? switch (path) {
 			'journey.steps.fourRetreats.title' => '祷告的一天',
 			'journey.steps.fourRetreats.text' => '在同一天完成 4 次退修祷告。',
 			'journey.steps.planDone.title' => '计划完成',
@@ -6328,8 +6913,6 @@ extension on TranslationsZh {
 			'journey.steps.lyricsShared.text' => '分享一首诗歌的歌词。',
 			'journey.steps.firstSoul.title' => '撒种的人',
 			'journey.steps.firstSoul.text' => '跟进你的第一个灵魂。',
-			_ => null,
-		} ?? switch (path) {
 			'journey.steps.tenSouls.title' => '跟进十个灵魂',
 			'journey.steps.tenSouls.text' => '在灵魂跟进中跟进 10 个人。',
 			'journey.steps.soulBaptized.title' => '一个灵魂受洗',
@@ -6631,6 +7214,111 @@ extension on TranslationsZh {
 			'donation.thanksText' => ({required Object amount}) => '已收到你 ${amount} 的奉献。愿主百倍地报答你。',
 			'donation.verse' => '“捐得乐意的人是神所喜爱的。”（哥林多后书 9:7）',
 			'donation.done' => '完成',
+			'tour.skip' => '跳过',
+			'tour.next' => '下一步',
+			'tour.done' => '知道了',
+			'tour.stepOf' => ({required Object n, required Object total}) => '${n}/${total}',
+			'tour.replay' => '重新查看各板块介绍',
+			'tour.replayText' => '每个板块将再次介绍自己',
+			'tour.replayed' => '好的：下次打开时，每个板块都会再次介绍自己。',
+			'tour.spaces.home' => '首页',
+			'tour.spaces.reports' => '汇报',
+			'tour.spaces.games' => '游戏',
+			'tour.spaces.bible' => '圣经',
+			'tour.spaces.you' => '你',
+			'tour.spaces.prayer' => '祷告',
+			'tour.spaces.hymns' => '诗歌',
+			'tour.spaces.teachings' => '教导',
+			'tour.spaces.ministry' => '我们的事工',
+			'tour.spaces.events' => '活动',
+			'tour.spaces.donate' => '奉献',
+			'tour.spaces.premium' => 'Premium',
+			'tour.spaces.documents' => '我们的文档',
+			'tour.spaces.notifications' => '通知',
+			'tour.steps.homeDay.title' => '一眼看清你的一天',
+			'tour.steps.homeDay.text' => '金色圆环随着你的每日汇报逐渐填满。旁边是你的目标、退修祷告、连续天数和本周的每一天。',
+			'tour.steps.homeReport.title' => '今天的汇报',
+			'tour.steps.homeReport.text' => '在这里开始，或从上次停下的地方继续。没有网络也能保存。',
+			'tour.steps.homeShortcuts.title' => '诗歌与祷告',
+			'tour.steps.homeShortcuts.text' => '团契的诗歌本和你的 15 分钟退修祷告，轻点一下就到。',
+			'tour.steps.homeBell.title' => '公告',
+			'tour.steps.homeBell.text' => '铃铛为你带来负责人的消息；有新消息时会显示小圆点。',
+			'tour.steps.reportsViews.title' => '今天、历史、总结',
+			'tour.steps.reportsViews.text' => '填写今天，回顾过去的日子，再按周、月或年查看你的道路。',
+			'tour.steps.reportsDay.title' => '其他日期',
+			'tour.steps.reportsDay.text' => '昨天忘了填？在日历中选择那一天。',
+			'tour.steps.reportsStopwatch.title' => '计时器',
+			'tour.steps.reportsStopwatch.text' => '为你的祷告或阅读计时：分钟会自动加入你的汇报。',
+			'tour.steps.reportsItems.title' => '你的项目和目标',
+			'tour.steps.reportsItems.text' => '添加你自己的项目，并按自己的节奏为每一项设定目标。',
+			'tour.steps.reportsExport.title' => '导出你的汇报',
+			'tour.steps.reportsExport.text' => '按你选择的时间段，导出为可打印或发送的 PDF、适用于 Excel 的表格，或发到 WhatsApp 的消息。这是 Premium 功能。',
+			'tour.steps.gamesStats.title' => '你的进度',
+			'tour.steps.gamesStats.text' => '你的连续天数、积分和今日目标；往下是你的课程之路。积分只属于游戏，绝不衡量你的信心。',
+			'tour.steps.gamesExtras.title' => '排行榜、飞行与离线',
+			'tour.steps.gamesExtras.text' => '愿意的话加入排行榜，用“飞翔的经文”飞往迦南，并保存一个课程以便离线游玩。',
+			'tour.steps.biblePassage.title' => '书卷和章',
+			'tour.steps.biblePassage.text' => '点这里选择经文，或左右滑动切换章。点一节经文可以标亮、收藏或分享。',
+			'tour.steps.bibleVersion.title' => '译本',
+			'tour.steps.bibleVersion.text' => '切换译本，并下载它以便离线阅读和搜索。',
+			'tour.steps.bibleListen.title' => '聆听圣言',
+			'tour.steps.bibleListen.text' => '手机的语音为你逐节朗读本章。',
+			'tour.steps.bibleMore.title' => '更多功能',
+			'tour.steps.bibleMore.text' => '你的读经计划、背诵、我的经文、经文汇编和书签都在这里。',
+			'tour.steps.youCard.title' => '你的名片',
+			'tour.steps.youCard.text' => '你的照片、姓名和用户名：弟兄姊妹通过用户名找到你。',
+			'tour.steps.youNumbers.title' => '你的属灵道路',
+			'tour.steps.youNumbers.text' => '你的连续天数、阶段和本月与神同在的时间。它们属于你：由你决定分享什么。',
+			'tour.steps.youDiscover.title' => '发现',
+			'tour.steps.youDiscover.text' => '活动、我们的事工、音频教导和团契的文档。',
+			'tour.steps.youSettings.title' => '设置',
+			'tour.steps.youSettings.text' => '提醒、外观、语言……还可以随时重新查看这些介绍。',
+			'tour.steps.prayerToday.title' => '今天的祷告',
+			'tour.steps.prayerToday.text' => '本周你祷告的日子、你的祷告时间，以及现在可以开始的退修祷告。',
+			'tour.steps.prayerReminders.title' => '你的提醒',
+			'tour.steps.prayerReminders.text' => '为每次退修祷告选择时间：早晨、中午、傍晚和夜间。',
+			'tour.steps.prayerRoutine.title' => '你今天的祷告安排',
+			'tour.steps.prayerRoutine.text' => '四次 15 分钟的退修祷告，逐点带领。每一次都会把时间加入你的汇报。',
+			'tour.steps.prayerTogether.title' => '一起祷告',
+			'tour.steps.prayerTogether.text' => '创建一个恒切祷告的题目，邀请弟兄姊妹与你一同承担。',
+			'tour.steps.hymnsBook.title' => '诗歌本',
+			'tour.steps.hymnsBook.text' => '滑动封面或点它的名字来切换诗歌本。全部可离线使用。',
+			'tour.steps.hymnsNumber.title' => '按编号打开',
+			'tour.steps.hymnsNumber.text' => '输入聚会中宣布的编号，诗歌就会打开。',
+			'tour.steps.hymnsSearch.title' => '搜索',
+			'tour.steps.hymnsSearch.text' => '通过标题或几句歌词找到一首诗歌。',
+			'tour.steps.hymnsViews.title' => '收藏和最近',
+			'tour.steps.hymnsViews.text' => '点诗歌旁的星星即可收藏；你最近唱过的诗歌在这里等你。',
+			'tour.steps.teachingsSearch.title' => '查找信息',
+			'tour.steps.teachingsSearch.text' => '按标题、讲员或描述中的词语查找。',
+			'tour.steps.teachingsFilters.title' => '筛选',
+			'tour.steps.teachingsFilters.text' => '选择讲员、年份或期次。',
+			'tour.steps.teachingsCategories.title' => '主题',
+			'tour.steps.teachingsCategories.text' => '在主题之间切换；“已下载”会保存你的信息，供离线收听。',
+			'tour.steps.ministryNations.title' => '列国',
+			'tour.steps.ministryNations.text' => '转动这项工作所在列国的地球仪，为每个国家祷告。',
+			'tour.steps.ministryLives.title' => '我们的创始人和领袖',
+			'tour.steps.ministryLives.text' => '他们的生平、重要日期，以及神借着他们所成就的事。',
+			'tour.steps.ministryMenu.title' => '我们的目标、宣教士和英雄',
+			'tour.steps.ministryMenu.text' => '事工的三大目标，以及服事它的人的生平。',
+			'tour.steps.eventsNext.title' => '团契活动',
+			'tour.steps.eventsNext.text' => '下一个活动显示在这里：点它查看日程、报名、接收提醒或加入你的日历。',
+			'tour.steps.donateAmounts.title' => '你的奉献',
+			'tour.steps.donateAmounts.text' => '选择一个金额或输入你自己的金额。你的支持让整个团契都能使用这个应用。',
+			'tour.steps.donateMethod.title' => '付款方式',
+			'tour.steps.donateMethod.text' => 'Mobile Money 或银行卡，使用你所在国家的货币。',
+			'tour.steps.donateGive.title' => '奉献',
+			'tour.steps.donateGive.text' => '付款通过安全页面完成。“捐得乐意的人是神所喜爱的”（哥林多后书 9:7）。',
+			'tour.steps.premiumBenefits.title' => 'Premium 增加了什么',
+			'tour.steps.premiumBenefits.text' => '额外的便利，如离线教导、你与神同在的一年或小组件。应用的核心功能始终免费。',
+			'tour.steps.premiumPlans.title' => '方案',
+			'tour.steps.premiumPlans.text' => '选择适合你的期限：按月、六个月、按年或终身。',
+			'tour.steps.documentsSearch.title' => '查找文档',
+			'tour.steps.documentsSearch.text' => '按标题、描述或类别查找。点文档即可打开，点箭头即可保存。',
+			'tour.steps.documentsCategories.title' => '类别',
+			'tour.steps.documentsCategories.text' => '按主题浏览资料库。',
+			'tour.steps.notificationsInbox.title' => '公告',
+			'tour.steps.notificationsInbox.text' => '负责人的消息会出现在这里，附带图片和 PDF。',
 			_ => null,
 		};
 	}

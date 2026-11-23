@@ -15,6 +15,7 @@ import '../../../core/widgets/media_picture.dart';
 import '../../../core/widgets/section_card.dart';
 import '../../../core/widgets/skeleton.dart';
 import '../../../core/widgets/sub_page.dart';
+import '../../../core/widgets/tour/space_tour.dart';
 import '../../../routing/app_router.dart';
 import '../application/inbox.dart';
 import '../domain/announcement.dart';
@@ -31,66 +32,95 @@ class NotificationsScreen extends ConsumerWidget {
     final inbox = ref.watch(inboxProvider);
     final notifier = ref.read(inboxProvider.notifier);
 
-    return SubPage(
-      title: t.title,
-      child: switch (inbox) {
-        AsyncValue(value: final state?) => RefreshIndicator.adaptive(
-          onRefresh: notifier.refresh,
-          child: state.items.isEmpty
-              ? ListView(
-                  padding: const EdgeInsets.all(AppSpacing.xl),
-                  children: const [FadeSlideIn(child: _NothingYet())],
-                )
-              : NotificationListener<ScrollNotification>(
-                  // the next page, a little before the end
-                  onNotification: (scroll) {
-                    if (scroll.metrics.extentAfter < 400) {
-                      notifier.loadMore();
-                    }
-                    return false;
-                  },
-                  child: ListView(
-                    padding: const EdgeInsetsDirectional.fromSTEB(
-                      AppSpacing.lg,
-                      AppSpacing.sm,
-                      AppSpacing.lg,
-                      AppSpacing.xxl,
-                    ),
-                    children: [
+    return SpaceTour(
+      space: TourSpace.notifications,
+      child: SubPage(
+        title: t.title,
+        child: switch (inbox) {
+          AsyncValue(value: final state?) => RefreshIndicator.adaptive(
+            onRefresh: notifier.refresh,
+            child: state.items.isEmpty
+                ? ListView(
+                    padding: const EdgeInsets.all(AppSpacing.xl),
+                    children: const [
                       FadeSlideIn(
-                        child: SectionCard(
-                          children: [
-                            for (final item in state.items)
-                              _AnnouncementRow(
-                                announcement: item,
-                                onTap: () => context.router.push(
-                                  NotificationRoute(notificationId: item.id),
-                                ),
-                              ),
-                          ],
+                        child: TourTarget(
+                          step: TourStep.notificationsInbox,
+                          radius: AppRadius.xl,
+                          child: _NothingYet(),
                         ),
                       ),
-                      // the next page
-                      if (state.loadingMore)
-                        const Padding(
-                          padding: EdgeInsets.only(top: AppSpacing.md),
-                          child: Shimmer(
-                            child: SkeletonList(count: 2, leading: 8, lines: 3),
+                    ],
+                  )
+                : NotificationListener<ScrollNotification>(
+                    // the next page, a little before the end
+                    onNotification: (scroll) {
+                      if (scroll.metrics.extentAfter < 400) {
+                        notifier.loadMore();
+                      }
+                      return false;
+                    },
+                    child: ListView(
+                      padding: const EdgeInsetsDirectional.fromSTEB(
+                        AppSpacing.lg,
+                        AppSpacing.sm,
+                        AppSpacing.lg,
+                        AppSpacing.xxl,
+                      ),
+                      children: [
+                        FadeSlideIn(
+                          child: SectionCard(
+                            children: [
+                              for (final (index, item) in state.items.indexed)
+                                // the first one shows where they arrive
+                                _withTour(
+                                  first: index == 0,
+                                  child: _AnnouncementRow(
+                                    announcement: item,
+                                    onTap: () => context.router.push(
+                                      NotificationRoute(
+                                        notificationId: item.id,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                            ],
                           ),
                         ),
-                    ],
+                        // the next page
+                        if (state.loadingMore)
+                          const Padding(
+                            padding: EdgeInsets.only(top: AppSpacing.md),
+                            child: Shimmer(
+                              child: SkeletonList(
+                                count: 2,
+                                leading: 8,
+                                lines: 3,
+                              ),
+                            ),
+                          ),
+                      ],
+                    ),
                   ),
-                ),
-        ),
-        AsyncError(:final error) => ErrorView(
-          error: error,
-          onRetry: () => ref.invalidate(inboxProvider),
-        ),
-        // the notifications: the dot of the unread ones, title and text
-        _ => const LoadingList(leading: 8, lines: 3),
-      },
+          ),
+          AsyncError(:final error) => ErrorView(
+            error: error,
+            onRetry: () => ref.invalidate(inboxProvider),
+          ),
+          // the notifications: the dot of the unread ones, title and text
+          _ => const LoadingList(leading: 8, lines: 3),
+        },
+      ),
     );
   }
+
+  static Widget _withTour({required bool first, required Widget child}) => first
+      ? TourTarget(
+          step: TourStep.notificationsInbox,
+          padding: EdgeInsets.zero,
+          child: child,
+        )
+      : child;
 }
 
 class _NothingYet extends StatelessWidget {

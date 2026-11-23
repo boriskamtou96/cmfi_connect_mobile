@@ -20,6 +20,7 @@ import '../../../core/widgets/app_toast.dart';
 import '../../../core/widgets/dove_mascot.dart';
 import '../../../core/widgets/phone_field.dart';
 import '../../../core/widgets/sub_page.dart';
+import '../../../core/widgets/tour/space_tour.dart';
 import '../../members/application/my_account.dart';
 import '../domain/payment.dart';
 import '../infrastructure/payments_api.dart';
@@ -193,171 +194,193 @@ class DonationScreen extends HookConsumerWidget {
       );
     }
 
-    return SubPage(
-      title: t.donation.title,
-      bottom: paymentsOff
-          ? null
-          : SafeArea(
-              top: false,
-              child: Padding(
-                padding: const EdgeInsets.fromLTRB(
-                  AppSpacing.lg,
-                  AppSpacing.sm,
-                  AppSpacing.lg,
-                  AppSpacing.md,
-                ),
-                child: AppButton(
-                  label: amountOk
-                      ? (byCard ? t.donation.giveCard : t.donation.give)(
-                          amount: money(amount),
-                        )
-                      : t.donation.title,
-                  isLoading: sending.value,
-                  onPressed: give,
-                ),
-              ),
-            ),
-      child: ListView(
-        padding: const EdgeInsets.all(AppSpacing.lg),
-        children: [
-          Text(
-            t.donation.intro,
-            style: TextStyle(
-              fontSize: 14.5,
-              height: 1.4,
-              color: scheme.onSurfaceVariant,
-            ),
-          ),
-          if (paymentsOff) ...[
-            const SizedBox(height: AppSpacing.lg),
-            Text(t.donation.unavailable),
-          ] else ...[
-            const SizedBox(height: AppSpacing.lg),
-            Text(
-              t.donation.amount,
-              style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
-            ),
-            const SizedBox(height: AppSpacing.sm),
-            Wrap(
-              spacing: AppSpacing.sm,
-              runSpacing: AppSpacing.sm,
-              children: [
-                for (final value in rule.amounts)
-                  ChoiceChip(
-                    label: Text(money(value)),
-                    selected: typedText.trim().isEmpty && touched == value,
-                    onSelected: (_) {
-                      typed.clear();
-                      chosen.value = (currency, value);
-                    },
+    return SpaceTour(
+      space: TourSpace.donate,
+      child: SubPage(
+        title: t.donation.title,
+        bottom: paymentsOff
+            ? null
+            : SafeArea(
+                top: false,
+                child: Padding(
+                  padding: const EdgeInsets.fromLTRB(
+                    AppSpacing.lg,
+                    AppSpacing.sm,
+                    AppSpacing.lg,
+                    AppSpacing.md,
                   ),
-              ],
-            ),
-            const SizedBox(height: AppSpacing.md),
-            TextField(
-              controller: typed,
-              keyboardType: TextInputType.number,
-              inputFormatters: [
-                FilteringTextInputFormatter.digitsOnly,
-                LengthLimitingTextInputFormatter(6),
-              ],
-              decoration: InputDecoration(
-                labelText: t.donation.other,
-                suffixText: formatMoney(0, currency, locale).split(' ').last,
-                helperText: t.donation.bounds(
-                  min: money(minDonation),
-                  max: money(maxDonation),
+                  child: TourTarget(
+                    step: TourStep.donateGive,
+                    child: AppButton(
+                      label: amountOk
+                          ? (byCard ? t.donation.giveCard : t.donation.give)(
+                              amount: money(amount),
+                            )
+                          : t.donation.title,
+                      isLoading: sending.value,
+                      onPressed: give,
+                    ),
+                  ),
                 ),
-                errorText: typedText.trim().isNotEmpty && !amountOk
-                    ? t.donation.bounds(
-                        min: money(minDonation),
-                        max: money(maxDonation),
-                      )
-                    : null,
               ),
-            ),
-            const SizedBox(height: AppSpacing.xl),
+        child: ListView(
+          padding: const EdgeInsets.all(AppSpacing.lg),
+          children: [
             Text(
-              cards ? t.events.pay.how : t.events.pay.title,
-              style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
-            ),
-            const SizedBox(height: AppSpacing.md),
-            if (cards) ...[
-              SegmentedButton<PaymentMethod>(
-                // its own icons say enough: no tick in place of them
-                showSelectedIcon: false,
-                segments: [
-                  for (final way
-                      in cardFirst
-                          ? [PaymentMethod.card, PaymentMethod.mobileMoney]
-                          : [PaymentMethod.mobileMoney, PaymentMethod.card])
-                    way == PaymentMethod.card
-                        ? ButtonSegment(
-                            value: way,
-                            icon: const Icon(AppIcons.card),
-                            label: Text(t.events.pay.methodCard),
-                          )
-                        : ButtonSegment(
-                            value: way,
-                            icon: const Icon(AppIcons.mobileMoney),
-                            label: Text(t.events.pay.methodMobile),
-                          ),
-                ],
-                selected: {method},
-                onSelectionChanged: (choice) {
-                  // another currency: the amount typed meant another
-                  typed.clear();
-                  chosenMethod.value = choice.first;
-                },
+              t.donation.intro,
+              style: TextStyle(
+                fontSize: 14.5,
+                height: 1.4,
+                color: scheme.onSurfaceVariant,
               ),
-              const SizedBox(height: AppSpacing.md),
-            ],
-            if (byCard)
+            ),
+            if (paymentsOff) ...[
+              const SizedBox(height: AppSpacing.lg),
+              Text(t.donation.unavailable),
+            ] else ...[
+              const SizedBox(height: AppSpacing.lg),
               Text(
-                t.events.pay.cardNote,
-                style: TextStyle(fontSize: 14, color: scheme.onSurfaceVariant),
-              )
-            else ...[
-              PhoneField(
-                controller: phone,
-                country: phoneCountry.value,
-                onCountryChanged: (picked) => phoneCountry.value = picked,
-                textInputAction: TextInputAction.done,
-                label: t.events.pay.phone,
-                helperText: t.events.pay.phoneHelp,
-              ),
-              if (operators != null && operators.isNotEmpty) ...[
-                const SizedBox(height: AppSpacing.md),
-                Text(
-                  t.events.pay.operator,
-                  style: TextStyle(
-                    fontSize: 13,
-                    color: scheme.onSurfaceVariant,
-                  ),
+                t.donation.amount,
+                style: const TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.w600,
                 ),
-                const SizedBox(height: AppSpacing.xs),
-                Wrap(
+              ),
+              const SizedBox(height: AppSpacing.sm),
+              TourTarget(
+                step: TourStep.donateAmounts,
+                child: Wrap(
                   spacing: AppSpacing.sm,
                   runSpacing: AppSpacing.sm,
                   children: [
-                    for (final country in operators)
-                      for (final candidate in country.operators)
-                        if (candidate.isOpen)
-                          OperatorChoice(
-                            provider: candidate.provider,
-                            label: operators.length > 1
-                                ? '${candidate.name} · ${country.nameIn(locale.split('_').first)}'
-                                : candidate.name,
-                            selected: operator == candidate.provider,
-                            onTap: () =>
-                                chosenOperator.value = candidate.provider,
-                          ),
+                    for (final value in rule.amounts)
+                      ChoiceChip(
+                        label: Text(money(value)),
+                        selected: typedText.trim().isEmpty && touched == value,
+                        onSelected: (_) {
+                          typed.clear();
+                          chosen.value = (currency, value);
+                        },
+                      ),
                   ],
                 ),
+              ),
+              const SizedBox(height: AppSpacing.md),
+              TextField(
+                controller: typed,
+                keyboardType: TextInputType.number,
+                inputFormatters: [
+                  FilteringTextInputFormatter.digitsOnly,
+                  LengthLimitingTextInputFormatter(6),
+                ],
+                decoration: InputDecoration(
+                  labelText: t.donation.other,
+                  suffixText: formatMoney(0, currency, locale).split(' ').last,
+                  helperText: t.donation.bounds(
+                    min: money(minDonation),
+                    max: money(maxDonation),
+                  ),
+                  errorText: typedText.trim().isNotEmpty && !amountOk
+                      ? t.donation.bounds(
+                          min: money(minDonation),
+                          max: money(maxDonation),
+                        )
+                      : null,
+                ),
+              ),
+              const SizedBox(height: AppSpacing.xl),
+              Text(
+                cards ? t.events.pay.how : t.events.pay.title,
+                style: const TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
+              const SizedBox(height: AppSpacing.md),
+              if (cards) ...[
+                TourTarget(
+                  step: TourStep.donateMethod,
+                  radius: 999,
+                  child: SegmentedButton<PaymentMethod>(
+                    // its own icons say enough: no tick in place of them
+                    showSelectedIcon: false,
+                    segments: [
+                      for (final way
+                          in cardFirst
+                              ? [PaymentMethod.card, PaymentMethod.mobileMoney]
+                              : [PaymentMethod.mobileMoney, PaymentMethod.card])
+                        way == PaymentMethod.card
+                            ? ButtonSegment(
+                                value: way,
+                                icon: const Icon(AppIcons.card),
+                                label: Text(t.events.pay.methodCard),
+                              )
+                            : ButtonSegment(
+                                value: way,
+                                icon: const Icon(AppIcons.mobileMoney),
+                                label: Text(t.events.pay.methodMobile),
+                              ),
+                    ],
+                    selected: {method},
+                    onSelectionChanged: (choice) {
+                      // another currency: the amount typed meant another
+                      typed.clear();
+                      chosenMethod.value = choice.first;
+                    },
+                  ),
+                ),
+                const SizedBox(height: AppSpacing.md),
+              ],
+              if (byCard)
+                Text(
+                  t.events.pay.cardNote,
+                  style: TextStyle(
+                    fontSize: 14,
+                    color: scheme.onSurfaceVariant,
+                  ),
+                )
+              else ...[
+                PhoneField(
+                  controller: phone,
+                  country: phoneCountry.value,
+                  onCountryChanged: (picked) => phoneCountry.value = picked,
+                  textInputAction: TextInputAction.done,
+                  label: t.events.pay.phone,
+                  helperText: t.events.pay.phoneHelp,
+                ),
+                if (operators != null && operators.isNotEmpty) ...[
+                  const SizedBox(height: AppSpacing.md),
+                  Text(
+                    t.events.pay.operator,
+                    style: TextStyle(
+                      fontSize: 13,
+                      color: scheme.onSurfaceVariant,
+                    ),
+                  ),
+                  const SizedBox(height: AppSpacing.xs),
+                  Wrap(
+                    spacing: AppSpacing.sm,
+                    runSpacing: AppSpacing.sm,
+                    children: [
+                      for (final country in operators)
+                        for (final candidate in country.operators)
+                          if (candidate.isOpen)
+                            OperatorChoice(
+                              provider: candidate.provider,
+                              label: operators.length > 1
+                                  ? '${candidate.name} · ${country.nameIn(locale.split('_').first)}'
+                                  : candidate.name,
+                              selected: operator == candidate.provider,
+                              onTap: () =>
+                                  chosenOperator.value = candidate.provider,
+                            ),
+                    ],
+                  ),
+                ],
               ],
             ],
           ],
-        ],
+        ),
       ),
     );
   }

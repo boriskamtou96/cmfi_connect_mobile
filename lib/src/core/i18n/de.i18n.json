@@ -563,7 +563,18 @@
     "goalRemove": "Entfernen",
     "goalSaved": "Ziel gespeichert",
     "goalRemoved": "Ziel entfernt",
-    "edit": "{code} bearbeiten"
+    "edit": "{code} bearbeiten",
+    "limit": {
+      "title": "Mehr Elemente mit Premium",
+      "text(plural, param=n)": {
+        "one": "Ohne Premium kannst du bis zu {n} persönliches Element erstellen. Die du schon hast, bleiben alle dir, und ein Element zu archivieren macht einen Platz frei. Mit Premium erstellst du so viele, wie du willst, um alles zu verfolgen, was auf deinem Weg mit Gott zählt.",
+        "other": "Ohne Premium kannst du bis zu {n} persönliche Elemente erstellen. Die du schon hast, bleiben alle dir, und ein Element zu archivieren macht einen Platz frei. Mit Premium erstellst du so viele, wie du willst, um alles zu verfolgen, was auf deinem Weg mit Gott zählt."
+      },
+      "discover": "Premium entdecken",
+      "later": "Später",
+      "count": "{used} von {limit}",
+      "countLabel": "Persönliche Elemente: {used} von {limit}"
+    }
   },
   "newItem": {
     "title": "Neues Element",
@@ -1123,6 +1134,8 @@
     "widgetText": "Dein Tagesbericht und deine Ziele auf dem Startbildschirm, ohne die App zu öffnen.",
     "statsTitle": "Deine Ziele über das Jahr",
     "statsText": "Deine Jahresbilanz und die Entwicklung deiner Ziele, Woche für Woche.",
+    "itemsTitle": "Unbegrenzte Elemente",
+    "itemsText": "Erstelle so viele persönliche Elemente für deinen Bericht, wie du willst.",
     "supportTitle": "Du unterstützt das Werk",
     "supportText": "Deine Unterstützung hält die App und ihre Neuerungen für die ganze Gemeinschaft am Leben.",
     "annual": "Jährlich",
@@ -1165,9 +1178,9 @@
     "unavailable": "Die Angebote sind gerade nicht verfügbar.",
     "privacy": "Datenschutz",
     "activeTitle": "Du hast Premium",
-    "activeText": "Danke, dass du CMFI Connect unterstützt! Widget, dein Jahr, deine Bilanz und die Lehren offline sind freigeschaltet.",
+    "activeText": "Danke, dass du CMFI Connect unterstützt! Widget, dein Jahr, deine Bilanz, die Lehren offline und unbegrenzte Elemente sind freigeschaltet.",
     "staffText": "Premium ist für dich kostenlos, weil du zum Team von CMFI Connect gehörst.",
-    "moreSubtitle": "Widget, dein Jahr, Lehren offline",
+    "moreSubtitle": "Widget, dein Jahr, Lehren offline, unbegrenzte Elemente",
     "become": "Premium werden",
     "moreActive": "Aktiv",
     "unlock": "Mit Premium freischalten",
@@ -3140,5 +3153,200 @@
     "thanksText": "Deine Spende von {amount} ist angekommen. Der Herr vergelte es dir hundertfach.",
     "verse": "„Einen fröhlichen Geber hat Gott lieb.“ (2. Korinther 9,7)",
     "done": "Fertig"
+  },
+  "tour": {
+    "skip": "Überspringen",
+    "next": "Weiter",
+    "done": "Verstanden",
+    "stepOf": "{n}/{total}",
+    "replay": "Vorstellung der Bereiche erneut zeigen",
+    "replayText": "Jeder Bereich stellt sich wieder vor",
+    "replayed": "Erledigt: Jeder Bereich stellt sich bei deinem nächsten Besuch wieder vor.",
+    "spaces": {
+      "home": "Start",
+      "reports": "Bericht",
+      "games": "Spiele",
+      "bible": "Bibel",
+      "you": "Du",
+      "prayer": "Gebet",
+      "hymns": "Lieder",
+      "teachings": "Lehren",
+      "ministry": "Unser Dienst",
+      "events": "Veranstaltungen",
+      "donate": "Spenden",
+      "premium": "Premium",
+      "documents": "Unsere Dokumente",
+      "notifications": "Benachrichtigungen"
+    },
+    "steps": {
+      "homeDay": {
+        "title": "Dein Tag auf einen Blick",
+        "text": "Der goldene Ring füllt sich mit deinem Tagesbericht. Daneben: deine Ziele, deine Gebetszeiten, deine Serie und die Tage deiner Woche."
+      },
+      "homeReport": {
+        "title": "Dein Bericht für heute",
+        "text": "Beginne ihn hier oder mach dort weiter, wo du aufgehört hast. Er wird auch ohne Netz gespeichert."
+      },
+      "homeShortcuts": {
+        "title": "Lieder und Gebet",
+        "text": "Die Liederbücher der Gemeinschaft und deine 15-Minuten-Gebetszeiten sind nur einen Tipp entfernt."
+      },
+      "homeBell": {
+        "title": "Die Ankündigungen",
+        "text": "Die Glocke bringt dir Neuigkeiten deiner Verantwortlichen; ein Punkt zeigt dir, wenn es Neues gibt."
+      },
+      "reportsViews": {
+        "title": "Heute, Verlauf, Bilanz",
+        "text": "Fülle deinen Tag aus, schau dir vergangene Tage an und sieh deinen Weg über die Woche, den Monat oder das Jahr."
+      },
+      "reportsDay": {
+        "title": "Ein anderer Tag",
+        "text": "Gestern vergessen? Wähle den Tag im Kalender."
+      },
+      "reportsStopwatch": {
+        "title": "Die Stoppuhr",
+        "text": "Miss die Zeit deines Gebets oder deiner Lektüre: Die Minuten kommen von selbst in deinen Bericht."
+      },
+      "reportsItems": {
+        "title": "Deine Einträge und Ziele",
+        "text": "Füge eigene Einträge hinzu und setz dir für jeden ein Ziel, in deinem Tempo."
+      },
+      "reportsExport": {
+        "title": "Deine Berichte exportieren",
+        "text": "Als PDF zum Drucken oder Versenden, als Tabelle für Excel oder als Nachricht für WhatsApp, für den Zeitraum deiner Wahl. Das ist ein Premium-Vorteil."
+      },
+      "gamesStats": {
+        "title": "Dein Fortschritt",
+        "text": "Deine Serie, deine Punkte und dein Tagesziel; weiter unten dein Weg der Lektionen. Punkte gehören zum Spiel, sie messen nie deinen Glauben."
+      },
+      "gamesExtras": {
+        "title": "Rangliste, Flug und offline",
+        "text": "Tritt der Rangliste bei, wenn du möchtest, flieg mit „Vers im Flug“ nach Kanaan und speichere einen Kurs, um ohne Netz zu spielen."
+      },
+      "biblePassage": {
+        "title": "Buch und Kapitel",
+        "text": "Tippe hier, um eine Stelle zu wählen, oder wische, um das Kapitel zu wechseln. Tippe auf einen Vers, um ihn zu markieren, zu speichern oder zu teilen."
+      },
+      "bibleVersion": {
+        "title": "Die Übersetzung",
+        "text": "Wechsle die Übersetzung und lade sie herunter, um ohne Netz zu lesen und zu suchen."
+      },
+      "bibleListen": {
+        "title": "Das Wort hören",
+        "text": "Die Stimme deines Telefons liest dir das Kapitel vor, Vers für Vers."
+      },
+      "bibleMore": {
+        "title": "Noch mehr",
+        "text": "Dein Leseplan, das Auswendiglernen, Meine Verse, die Konkordanz und das Lesezeichen sind hier."
+      },
+      "youCard": {
+        "title": "Dein Profil",
+        "text": "Dein Foto, dein Name und dein Benutzername: Über ihn finden dich deine Brüder und Schwestern."
+      },
+      "youNumbers": {
+        "title": "Dein Weg",
+        "text": "Deine Serie, deine Etappen und deine Zeit mit Gott in diesem Monat. Sie gehören dir: Du entscheidest, was du teilst."
+      },
+      "youDiscover": {
+        "title": "Entdecken",
+        "text": "Veranstaltungen, unser Dienst, Audio-Lehren und die Dokumente der Gemeinschaft."
+      },
+      "youSettings": {
+        "title": "Einstellungen",
+        "text": "Erinnerungen, Aussehen, Sprache … und die Möglichkeit, diese Vorstellungen jederzeit wieder zu sehen."
+      },
+      "prayerToday": {
+        "title": "Dein Gebet heute",
+        "text": "Die Tage, an denen du diese Woche gebetet hast, deine Gebetszeit und die Gebetszeit, die jetzt dran ist."
+      },
+      "prayerReminders": {
+        "title": "Deine Erinnerungen",
+        "text": "Wähle die Uhrzeit für jede Gebetszeit: morgens, mittags, abends und nachts."
+      },
+      "prayerRoutine": {
+        "title": "Deine tägliche Routine",
+        "text": "Vier Gebetszeiten von 15 Minuten, Punkt für Punkt angeleitet. Jede fügt ihre Zeit deinem Bericht hinzu."
+      },
+      "prayerTogether": {
+        "title": "Gemeinsam beten",
+        "text": "Lege ein Anliegen der Beharrlichkeit an und lade Brüder und Schwestern ein, es mit dir zu tragen."
+      },
+      "hymnsBook": {
+        "title": "Das Liederbuch",
+        "text": "Wische über das Cover oder tippe auf seinen Namen, um das Liederbuch zu wechseln. Alles funktioniert offline."
+      },
+      "hymnsNumber": {
+        "title": "Zur Nummer",
+        "text": "Gib die im Gottesdienst angesagte Nummer ein, und das Lied öffnet sich."
+      },
+      "hymnsSearch": {
+        "title": "Suchen",
+        "text": "Finde ein Lied über seinen Titel oder ein paar Worte aus dem Text."
+      },
+      "hymnsViews": {
+        "title": "Favoriten und zuletzt",
+        "text": "Tippe auf den Stern eines Liedes, um es zu behalten; die zuletzt gesungenen warten hier auf dich."
+      },
+      "teachingsSearch": {
+        "title": "Eine Botschaft finden",
+        "text": "Über ihren Titel, den Sprecher oder ein Wort aus der Beschreibung."
+      },
+      "teachingsFilters": {
+        "title": "Filtern",
+        "text": "Wähle einen Sprecher, ein Jahr oder eine Ausgabe."
+      },
+      "teachingsCategories": {
+        "title": "Die Themen",
+        "text": "Wechsle von Thema zu Thema; „Heruntergeladen“ bewahrt deine Botschaften zum Hören ohne Netz."
+      },
+      "ministryNations": {
+        "title": "Die Nationen",
+        "text": "Dreh den Globus der Nationen, in denen das Werk vertreten ist, und bete für jede."
+      },
+      "ministryLives": {
+        "title": "Unser Gründer und unser Leiter",
+        "text": "Ihr Leben, ihre wichtigsten Daten und was Gott durch sie getan hat."
+      },
+      "ministryMenu": {
+        "title": "Unser Ziel, Missionare, Helden",
+        "text": "Die drei Ziele des Dienstes und das Leben derer, die ihm gedient haben."
+      },
+      "eventsNext": {
+        "title": "Veranstaltungen der Gemeinschaft",
+        "text": "Die nächste erscheint hier: Tippe darauf, um das Programm zu sehen, dich anzumelden, eine Erinnerung zu erhalten oder sie in deinen Kalender einzutragen."
+      },
+      "donateAmounts": {
+        "title": "Deine Spende",
+        "text": "Wähle einen Betrag oder gib deinen eigenen ein. Deine Unterstützung hält die App für die ganze Gemeinschaft am Leben."
+      },
+      "donateMethod": {
+        "title": "Deine Zahlungsart",
+        "text": "Mobile Money oder Karte, in der Währung deines Landes."
+      },
+      "donateGive": {
+        "title": "Spenden",
+        "text": "Die Zahlung läuft über eine sichere Seite. „Einen fröhlichen Geber hat Gott lieb“ (2. Korinther 9,7)."
+      },
+      "premiumBenefits": {
+        "title": "Was Premium hinzufügt",
+        "text": "Zusätzlicher Komfort wie Lehren offline, dein Jahr mit Gott oder das Widget. Das Wesentliche der App bleibt kostenlos."
+      },
+      "premiumPlans": {
+        "title": "Die Angebote",
+        "text": "Wähle die Dauer, die zu dir passt: monatlich, sechs Monate, jährlich oder lebenslang."
+      },
+      "documentsSearch": {
+        "title": "Ein Dokument finden",
+        "text": "Über Titel, Beschreibung oder Kategorie. Tippe auf ein Dokument, um es zu öffnen, auf den Pfeil, um es zu behalten."
+      },
+      "documentsCategories": {
+        "title": "Die Kategorien",
+        "text": "Durchstöbere die Bibliothek Thema für Thema."
+      },
+      "notificationsInbox": {
+        "title": "Die Ankündigungen",
+        "text": "Neuigkeiten deiner Verantwortlichen kommen hier an, mit ihren Bildern und PDFs."
+      }
+    }
   }
 }

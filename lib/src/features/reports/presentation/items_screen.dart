@@ -20,6 +20,7 @@ import '../../../core/widgets/section_card.dart';
 import '../../../core/widgets/skeleton.dart';
 import '../../../core/widgets/sub_page.dart';
 import '../../../routing/app_router.dart';
+import '../application/item_limit.dart';
 import '../application/report_goals.dart';
 import '../application/report_item_texts.dart';
 import '../application/reports_providers.dart';
@@ -31,6 +32,7 @@ import '../infrastructure/activities_api.dart';
 import 'new_item_screen.dart';
 import 'widgets/entry_row.dart';
 import 'widgets/entry_sheet.dart';
+import 'widgets/item_limit.dart';
 import 'widgets/measure_labels.dart';
 
 /// "My items": the standard items, the user's own (archivable), and a way to create one.
@@ -44,6 +46,7 @@ class ItemsScreen extends HookConsumerWidget {
     final scheme = Theme.of(context).colorScheme;
     final activities = ref.watch(activitiesProvider);
     final goals = ref.watch(reportGoalsProvider);
+    final quota = ref.watch(itemQuotaProvider);
     final archiving = useState<int?>(null);
 
     Future<void> editGoal(ActivityType item) async {
@@ -306,7 +309,8 @@ class ItemsScreen extends HookConsumerWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
-                    // the button grows into the form
+                    // the button grows into the form; without Premium, once
+                    // the free items are used, it explains and leads to it
                     OpenPage(
                       page: const NewItemScreen(),
                       color: scheme.primary,
@@ -314,11 +318,26 @@ class ItemsScreen extends HookConsumerWidget {
                         borderRadius: BorderRadius.circular(AppRadius.lg),
                       ),
                       builder: (context, open) => FilledButton.icon(
-                        onPressed: open,
+                        onPressed: quota?.locked ?? false
+                            ? () => showItemLimitDialog(context)
+                            : open,
                         icon: const Icon(AppIcons.add),
-                        label: Text(t.items.create),
+                        label: Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Flexible(child: Text(t.items.create)),
+                            if (quota?.locked ?? false) ...[
+                              const SizedBox(width: AppSpacing.xs),
+                              ItemLimitLock(color: scheme.onPrimary),
+                            ],
+                          ],
+                        ),
                       ),
                     ),
+                    if (quota != null && quota.counted) ...[
+                      const SizedBox(height: AppSpacing.sm),
+                      ItemQuotaCount(quota: quota),
+                    ],
                     const SizedBox(height: AppSpacing.md),
                     Padding(
                       padding: const EdgeInsets.symmetric(

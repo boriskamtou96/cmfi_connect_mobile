@@ -18,9 +18,11 @@ import '../../../core/widgets/inline_error.dart';
 import '../../../core/widgets/labeled_field.dart';
 import '../../../core/widgets/section_card.dart';
 import '../../../core/widgets/sub_page.dart';
+import '../application/item_limit.dart';
 import '../application/new_item_controller.dart';
 import '../domain/activity_type.dart';
 import '../domain/measure_format.dart';
+import 'widgets/item_limit.dart';
 import 'widgets/measure_labels.dart';
 
 /// Creates a personal item: code, name, and what it measures. With [item]:
@@ -48,6 +50,8 @@ class NewItemScreen extends HookConsumerWidget {
     final tracksQuantity = useState(item?.tracksQuantity ?? true);
     final tracksDuration = useState(item?.tracksDuration ?? false);
     final state = ref.watch(newItemControllerProvider);
+    // reached by /items/new too: the free limit is checked again on submit
+    final quota = ref.watch(itemQuotaProvider);
     // a refused request pops up at the top of the screen
     ref.listen(newItemControllerProvider, (_, next) {
       if (next case AsyncError(:final error)) {
@@ -74,6 +78,10 @@ class NewItemScreen extends HookConsumerWidget {
           toast.success(t.newItem.saved(code: renamed.code));
           await context.router.maybePop();
         }
+        return;
+      }
+      if (quota?.locked ?? false) {
+        await showItemLimitDialog(context);
         return;
       }
       final created = await ref

@@ -35,6 +35,7 @@ import 'package:cmfi_connect/src/core/storage/saved_login.dart';
 import 'package:cmfi_connect/src/core/storage/token_storage.dart';
 import 'package:cmfi_connect/src/core/widgets/app_toast.dart';
 import 'package:cmfi_connect/src/core/widgets/dove_mascot.dart';
+import 'package:cmfi_connect/src/core/widgets/tour/space_tour.dart';
 import 'package:cmfi_connect/src/features/admin/infrastructure/admin_api.dart';
 import 'package:cmfi_connect/src/features/auth/infrastructure/auth_api.dart';
 import 'package:cmfi_connect/src/features/authorities/infrastructure/authorities_api.dart';
@@ -259,12 +260,16 @@ Future<TestApp> pumpApp(
   Map<DateTime, DailyReport> reportDays = const {},
   // a boundary around the whole app, to take a picture of the screen
   GlobalKey? screenKey,
+  // the tours of the spaces (off: they would cover what the tests tap)
+  bool tours = false,
   Map<String, Object> initialPreferences = const {},
   // the app built with --flavor prod (what only the dev app shows)
   Flavor flavor = Flavor.dev,
 }) async {
   // Zoé breathes forever: still in the tests, so that they settle
   DoveMascot.lively = false;
+  // the tours of the spaces would cover the screens the tests tap
+  SpaceTour.enabled = tours;
   SharedPreferences.setMockInitialValues({
     if (onboardingSeen) 'onboarding_seen': true,
     if (reminderOffered) 'reminder_offered': true,

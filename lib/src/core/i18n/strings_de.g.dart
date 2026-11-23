@@ -93,6 +93,7 @@ class TranslationsDe extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _Translations$games$de games = _Translations$games$de._(_root);
 	@override late final _Translations$sheetImport$de sheetImport = _Translations$sheetImport$de._(_root);
 	@override late final _Translations$donation$de donation = _Translations$donation$de._(_root);
+	@override late final _Translations$tour$de tour = _Translations$tour$de._(_root);
 }
 
 // Path: app
@@ -443,6 +444,7 @@ class _Translations$items$de extends Translations$items$fr {
 	@override String get goalSaved => 'Ziel gespeichert';
 	@override String get goalRemoved => 'Ziel entfernt';
 	@override String edit({required Object code}) => '${code} bearbeiten';
+	@override late final _Translations$items$limit$de limit = _Translations$items$limit$de._(_root);
 }
 
 // Path: newItem
@@ -775,6 +777,8 @@ class _Translations$premium$de extends Translations$premium$fr {
 	@override String get widgetText => 'Dein Tagesbericht und deine Ziele auf dem Startbildschirm, ohne die App zu öffnen.';
 	@override String get statsTitle => 'Deine Ziele über das Jahr';
 	@override String get statsText => 'Deine Jahresbilanz und die Entwicklung deiner Ziele, Woche für Woche.';
+	@override String get itemsTitle => 'Unbegrenzte Elemente';
+	@override String get itemsText => 'Erstelle so viele persönliche Elemente für deinen Bericht, wie du willst.';
 	@override String get supportTitle => 'Du unterstützt das Werk';
 	@override String get supportText => 'Deine Unterstützung hält die App und ihre Neuerungen für die ganze Gemeinschaft am Leben.';
 	@override String get annual => 'Jährlich';
@@ -817,9 +821,9 @@ class _Translations$premium$de extends Translations$premium$fr {
 	@override String get unavailable => 'Die Angebote sind gerade nicht verfügbar.';
 	@override String get privacy => 'Datenschutz';
 	@override String get activeTitle => 'Du hast Premium';
-	@override String get activeText => 'Danke, dass du CMFI Connect unterstützt! Widget, dein Jahr, deine Bilanz und die Lehren offline sind freigeschaltet.';
+	@override String get activeText => 'Danke, dass du CMFI Connect unterstützt! Widget, dein Jahr, deine Bilanz, die Lehren offline und unbegrenzte Elemente sind freigeschaltet.';
 	@override String get staffText => 'Premium ist für dich kostenlos, weil du zum Team von CMFI Connect gehörst.';
-	@override String get moreSubtitle => 'Widget, dein Jahr, Lehren offline';
+	@override String get moreSubtitle => 'Widget, dein Jahr, Lehren offline, unbegrenzte Elemente';
 	@override String get become => 'Premium werden';
 	@override String get moreActive => 'Aktiv';
 	@override String get unlock => 'Mit Premium freischalten';
@@ -2353,6 +2357,24 @@ class _Translations$donation$de extends Translations$donation$fr {
 	@override String get done => 'Fertig';
 }
 
+// Path: tour
+class _Translations$tour$de extends Translations$tour$fr {
+	_Translations$tour$de._(TranslationsDe root) : this._root = root, super.internal(root);
+
+	final TranslationsDe _root; // ignore: unused_field
+
+	// Translations
+	@override String get skip => 'Überspringen';
+	@override String get next => 'Weiter';
+	@override String get done => 'Verstanden';
+	@override String stepOf({required Object n, required Object total}) => '${n}/${total}';
+	@override String get replay => 'Vorstellung der Bereiche erneut zeigen';
+	@override String get replayText => 'Jeder Bereich stellt sich wieder vor';
+	@override String get replayed => 'Erledigt: Jeder Bereich stellt sich bei deinem nächsten Besuch wieder vor.';
+	@override late final _Translations$tour$spaces$de spaces = _Translations$tour$spaces$de._(_root);
+	@override late final _Translations$tour$steps$de steps = _Translations$tour$steps$de._(_root);
+}
+
 // Path: welcome.seek
 class _Translations$welcome$seek$de extends Translations$welcome$seek$fr {
 	_Translations$welcome$seek$de._(TranslationsDe root) : this._root = root, super.internal(root);
@@ -2793,6 +2815,24 @@ class _Translations$items$measure$de extends Translations$items$measure$fr {
 	@override String get duration => 'Dauer';
 	@override String both({required Object unit}) => 'Anzahl (${unit}) und Dauer';
 	@override String get bothNoUnit => 'Anzahl und Dauer';
+}
+
+// Path: items.limit
+class _Translations$items$limit$de extends Translations$items$limit$fr {
+	_Translations$items$limit$de._(TranslationsDe root) : this._root = root, super.internal(root);
+
+	final TranslationsDe _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Mehr Elemente mit Premium';
+	@override String text({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('de'))(n,
+		one: 'Ohne Premium kannst du bis zu ${n} persönliches Element erstellen. Die du schon hast, bleiben alle dir, und ein Element zu archivieren macht einen Platz frei. Mit Premium erstellst du so viele, wie du willst, um alles zu verfolgen, was auf deinem Weg mit Gott zählt.',
+		other: 'Ohne Premium kannst du bis zu ${n} persönliche Elemente erstellen. Die du schon hast, bleiben alle dir, und ein Element zu archivieren macht einen Platz frei. Mit Premium erstellst du so viele, wie du willst, um alles zu verfolgen, was auf deinem Weg mit Gott zählt.',
+	);
+	@override String get discover => 'Premium entdecken';
+	@override String get later => 'Später';
+	@override String count({required Object used, required Object limit}) => '${used} von ${limit}';
+	@override String countLabel({required Object used, required Object limit}) => 'Persönliche Elemente: ${used} von ${limit}';
 }
 
 // Path: authorities.form
@@ -3936,6 +3976,80 @@ class _Translations$games$journey$de extends Translations$games$journey$fr {
 	@override String kept({required Object n, required Object total}) => '${n} von ${total}';
 }
 
+// Path: tour.spaces
+class _Translations$tour$spaces$de extends Translations$tour$spaces$fr {
+	_Translations$tour$spaces$de._(TranslationsDe root) : this._root = root, super.internal(root);
+
+	final TranslationsDe _root; // ignore: unused_field
+
+	// Translations
+	@override String get home => 'Start';
+	@override String get reports => 'Bericht';
+	@override String get games => 'Spiele';
+	@override String get bible => 'Bibel';
+	@override String get you => 'Du';
+	@override String get prayer => 'Gebet';
+	@override String get hymns => 'Lieder';
+	@override String get teachings => 'Lehren';
+	@override String get ministry => 'Unser Dienst';
+	@override String get events => 'Veranstaltungen';
+	@override String get donate => 'Spenden';
+	@override String get premium => 'Premium';
+	@override String get documents => 'Unsere Dokumente';
+	@override String get notifications => 'Benachrichtigungen';
+}
+
+// Path: tour.steps
+class _Translations$tour$steps$de extends Translations$tour$steps$fr {
+	_Translations$tour$steps$de._(TranslationsDe root) : this._root = root, super.internal(root);
+
+	final TranslationsDe _root; // ignore: unused_field
+
+	// Translations
+	@override late final _Translations$tour$steps$homeDay$de homeDay = _Translations$tour$steps$homeDay$de._(_root);
+	@override late final _Translations$tour$steps$homeReport$de homeReport = _Translations$tour$steps$homeReport$de._(_root);
+	@override late final _Translations$tour$steps$homeShortcuts$de homeShortcuts = _Translations$tour$steps$homeShortcuts$de._(_root);
+	@override late final _Translations$tour$steps$homeBell$de homeBell = _Translations$tour$steps$homeBell$de._(_root);
+	@override late final _Translations$tour$steps$reportsViews$de reportsViews = _Translations$tour$steps$reportsViews$de._(_root);
+	@override late final _Translations$tour$steps$reportsDay$de reportsDay = _Translations$tour$steps$reportsDay$de._(_root);
+	@override late final _Translations$tour$steps$reportsStopwatch$de reportsStopwatch = _Translations$tour$steps$reportsStopwatch$de._(_root);
+	@override late final _Translations$tour$steps$reportsItems$de reportsItems = _Translations$tour$steps$reportsItems$de._(_root);
+	@override late final _Translations$tour$steps$reportsExport$de reportsExport = _Translations$tour$steps$reportsExport$de._(_root);
+	@override late final _Translations$tour$steps$gamesStats$de gamesStats = _Translations$tour$steps$gamesStats$de._(_root);
+	@override late final _Translations$tour$steps$gamesExtras$de gamesExtras = _Translations$tour$steps$gamesExtras$de._(_root);
+	@override late final _Translations$tour$steps$biblePassage$de biblePassage = _Translations$tour$steps$biblePassage$de._(_root);
+	@override late final _Translations$tour$steps$bibleVersion$de bibleVersion = _Translations$tour$steps$bibleVersion$de._(_root);
+	@override late final _Translations$tour$steps$bibleListen$de bibleListen = _Translations$tour$steps$bibleListen$de._(_root);
+	@override late final _Translations$tour$steps$bibleMore$de bibleMore = _Translations$tour$steps$bibleMore$de._(_root);
+	@override late final _Translations$tour$steps$youCard$de youCard = _Translations$tour$steps$youCard$de._(_root);
+	@override late final _Translations$tour$steps$youNumbers$de youNumbers = _Translations$tour$steps$youNumbers$de._(_root);
+	@override late final _Translations$tour$steps$youDiscover$de youDiscover = _Translations$tour$steps$youDiscover$de._(_root);
+	@override late final _Translations$tour$steps$youSettings$de youSettings = _Translations$tour$steps$youSettings$de._(_root);
+	@override late final _Translations$tour$steps$prayerToday$de prayerToday = _Translations$tour$steps$prayerToday$de._(_root);
+	@override late final _Translations$tour$steps$prayerReminders$de prayerReminders = _Translations$tour$steps$prayerReminders$de._(_root);
+	@override late final _Translations$tour$steps$prayerRoutine$de prayerRoutine = _Translations$tour$steps$prayerRoutine$de._(_root);
+	@override late final _Translations$tour$steps$prayerTogether$de prayerTogether = _Translations$tour$steps$prayerTogether$de._(_root);
+	@override late final _Translations$tour$steps$hymnsBook$de hymnsBook = _Translations$tour$steps$hymnsBook$de._(_root);
+	@override late final _Translations$tour$steps$hymnsNumber$de hymnsNumber = _Translations$tour$steps$hymnsNumber$de._(_root);
+	@override late final _Translations$tour$steps$hymnsSearch$de hymnsSearch = _Translations$tour$steps$hymnsSearch$de._(_root);
+	@override late final _Translations$tour$steps$hymnsViews$de hymnsViews = _Translations$tour$steps$hymnsViews$de._(_root);
+	@override late final _Translations$tour$steps$teachingsSearch$de teachingsSearch = _Translations$tour$steps$teachingsSearch$de._(_root);
+	@override late final _Translations$tour$steps$teachingsFilters$de teachingsFilters = _Translations$tour$steps$teachingsFilters$de._(_root);
+	@override late final _Translations$tour$steps$teachingsCategories$de teachingsCategories = _Translations$tour$steps$teachingsCategories$de._(_root);
+	@override late final _Translations$tour$steps$ministryNations$de ministryNations = _Translations$tour$steps$ministryNations$de._(_root);
+	@override late final _Translations$tour$steps$ministryLives$de ministryLives = _Translations$tour$steps$ministryLives$de._(_root);
+	@override late final _Translations$tour$steps$ministryMenu$de ministryMenu = _Translations$tour$steps$ministryMenu$de._(_root);
+	@override late final _Translations$tour$steps$eventsNext$de eventsNext = _Translations$tour$steps$eventsNext$de._(_root);
+	@override late final _Translations$tour$steps$donateAmounts$de donateAmounts = _Translations$tour$steps$donateAmounts$de._(_root);
+	@override late final _Translations$tour$steps$donateMethod$de donateMethod = _Translations$tour$steps$donateMethod$de._(_root);
+	@override late final _Translations$tour$steps$donateGive$de donateGive = _Translations$tour$steps$donateGive$de._(_root);
+	@override late final _Translations$tour$steps$premiumBenefits$de premiumBenefits = _Translations$tour$steps$premiumBenefits$de._(_root);
+	@override late final _Translations$tour$steps$premiumPlans$de premiumPlans = _Translations$tour$steps$premiumPlans$de._(_root);
+	@override late final _Translations$tour$steps$documentsSearch$de documentsSearch = _Translations$tour$steps$documentsSearch$de._(_root);
+	@override late final _Translations$tour$steps$documentsCategories$de documentsCategories = _Translations$tour$steps$documentsCategories$de._(_root);
+	@override late final _Translations$tour$steps$notificationsInbox$de notificationsInbox = _Translations$tour$steps$notificationsInbox$de._(_root);
+}
+
 // Path: reports.summary.time
 class _Translations$reports$summary$time$de extends Translations$reports$summary$time$fr {
 	_Translations$reports$summary$time$de._(TranslationsDe root) : this._root = root, super.internal(root);
@@ -4391,6 +4505,468 @@ class _Translations$journey$steps$firstEncouragement$de extends Translations$jou
 	@override String get text => 'Einem Jünger ein ermutigendes Wort senden.';
 }
 
+// Path: tour.steps.homeDay
+class _Translations$tour$steps$homeDay$de extends Translations$tour$steps$homeDay$fr {
+	_Translations$tour$steps$homeDay$de._(TranslationsDe root) : this._root = root, super.internal(root);
+
+	final TranslationsDe _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Dein Tag auf einen Blick';
+	@override String get text => 'Der goldene Ring füllt sich mit deinem Tagesbericht. Daneben: deine Ziele, deine Gebetszeiten, deine Serie und die Tage deiner Woche.';
+}
+
+// Path: tour.steps.homeReport
+class _Translations$tour$steps$homeReport$de extends Translations$tour$steps$homeReport$fr {
+	_Translations$tour$steps$homeReport$de._(TranslationsDe root) : this._root = root, super.internal(root);
+
+	final TranslationsDe _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Dein Bericht für heute';
+	@override String get text => 'Beginne ihn hier oder mach dort weiter, wo du aufgehört hast. Er wird auch ohne Netz gespeichert.';
+}
+
+// Path: tour.steps.homeShortcuts
+class _Translations$tour$steps$homeShortcuts$de extends Translations$tour$steps$homeShortcuts$fr {
+	_Translations$tour$steps$homeShortcuts$de._(TranslationsDe root) : this._root = root, super.internal(root);
+
+	final TranslationsDe _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Lieder und Gebet';
+	@override String get text => 'Die Liederbücher der Gemeinschaft und deine 15-Minuten-Gebetszeiten sind nur einen Tipp entfernt.';
+}
+
+// Path: tour.steps.homeBell
+class _Translations$tour$steps$homeBell$de extends Translations$tour$steps$homeBell$fr {
+	_Translations$tour$steps$homeBell$de._(TranslationsDe root) : this._root = root, super.internal(root);
+
+	final TranslationsDe _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Die Ankündigungen';
+	@override String get text => 'Die Glocke bringt dir Neuigkeiten deiner Verantwortlichen; ein Punkt zeigt dir, wenn es Neues gibt.';
+}
+
+// Path: tour.steps.reportsViews
+class _Translations$tour$steps$reportsViews$de extends Translations$tour$steps$reportsViews$fr {
+	_Translations$tour$steps$reportsViews$de._(TranslationsDe root) : this._root = root, super.internal(root);
+
+	final TranslationsDe _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Heute, Verlauf, Bilanz';
+	@override String get text => 'Fülle deinen Tag aus, schau dir vergangene Tage an und sieh deinen Weg über die Woche, den Monat oder das Jahr.';
+}
+
+// Path: tour.steps.reportsDay
+class _Translations$tour$steps$reportsDay$de extends Translations$tour$steps$reportsDay$fr {
+	_Translations$tour$steps$reportsDay$de._(TranslationsDe root) : this._root = root, super.internal(root);
+
+	final TranslationsDe _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Ein anderer Tag';
+	@override String get text => 'Gestern vergessen? Wähle den Tag im Kalender.';
+}
+
+// Path: tour.steps.reportsStopwatch
+class _Translations$tour$steps$reportsStopwatch$de extends Translations$tour$steps$reportsStopwatch$fr {
+	_Translations$tour$steps$reportsStopwatch$de._(TranslationsDe root) : this._root = root, super.internal(root);
+
+	final TranslationsDe _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Die Stoppuhr';
+	@override String get text => 'Miss die Zeit deines Gebets oder deiner Lektüre: Die Minuten kommen von selbst in deinen Bericht.';
+}
+
+// Path: tour.steps.reportsItems
+class _Translations$tour$steps$reportsItems$de extends Translations$tour$steps$reportsItems$fr {
+	_Translations$tour$steps$reportsItems$de._(TranslationsDe root) : this._root = root, super.internal(root);
+
+	final TranslationsDe _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Deine Einträge und Ziele';
+	@override String get text => 'Füge eigene Einträge hinzu und setz dir für jeden ein Ziel, in deinem Tempo.';
+}
+
+// Path: tour.steps.reportsExport
+class _Translations$tour$steps$reportsExport$de extends Translations$tour$steps$reportsExport$fr {
+	_Translations$tour$steps$reportsExport$de._(TranslationsDe root) : this._root = root, super.internal(root);
+
+	final TranslationsDe _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Deine Berichte exportieren';
+	@override String get text => 'Als PDF zum Drucken oder Versenden, als Tabelle für Excel oder als Nachricht für WhatsApp, für den Zeitraum deiner Wahl. Das ist ein Premium-Vorteil.';
+}
+
+// Path: tour.steps.gamesStats
+class _Translations$tour$steps$gamesStats$de extends Translations$tour$steps$gamesStats$fr {
+	_Translations$tour$steps$gamesStats$de._(TranslationsDe root) : this._root = root, super.internal(root);
+
+	final TranslationsDe _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Dein Fortschritt';
+	@override String get text => 'Deine Serie, deine Punkte und dein Tagesziel; weiter unten dein Weg der Lektionen. Punkte gehören zum Spiel, sie messen nie deinen Glauben.';
+}
+
+// Path: tour.steps.gamesExtras
+class _Translations$tour$steps$gamesExtras$de extends Translations$tour$steps$gamesExtras$fr {
+	_Translations$tour$steps$gamesExtras$de._(TranslationsDe root) : this._root = root, super.internal(root);
+
+	final TranslationsDe _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Rangliste, Flug und offline';
+	@override String get text => 'Tritt der Rangliste bei, wenn du möchtest, flieg mit „Vers im Flug“ nach Kanaan und speichere einen Kurs, um ohne Netz zu spielen.';
+}
+
+// Path: tour.steps.biblePassage
+class _Translations$tour$steps$biblePassage$de extends Translations$tour$steps$biblePassage$fr {
+	_Translations$tour$steps$biblePassage$de._(TranslationsDe root) : this._root = root, super.internal(root);
+
+	final TranslationsDe _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Buch und Kapitel';
+	@override String get text => 'Tippe hier, um eine Stelle zu wählen, oder wische, um das Kapitel zu wechseln. Tippe auf einen Vers, um ihn zu markieren, zu speichern oder zu teilen.';
+}
+
+// Path: tour.steps.bibleVersion
+class _Translations$tour$steps$bibleVersion$de extends Translations$tour$steps$bibleVersion$fr {
+	_Translations$tour$steps$bibleVersion$de._(TranslationsDe root) : this._root = root, super.internal(root);
+
+	final TranslationsDe _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Die Übersetzung';
+	@override String get text => 'Wechsle die Übersetzung und lade sie herunter, um ohne Netz zu lesen und zu suchen.';
+}
+
+// Path: tour.steps.bibleListen
+class _Translations$tour$steps$bibleListen$de extends Translations$tour$steps$bibleListen$fr {
+	_Translations$tour$steps$bibleListen$de._(TranslationsDe root) : this._root = root, super.internal(root);
+
+	final TranslationsDe _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Das Wort hören';
+	@override String get text => 'Die Stimme deines Telefons liest dir das Kapitel vor, Vers für Vers.';
+}
+
+// Path: tour.steps.bibleMore
+class _Translations$tour$steps$bibleMore$de extends Translations$tour$steps$bibleMore$fr {
+	_Translations$tour$steps$bibleMore$de._(TranslationsDe root) : this._root = root, super.internal(root);
+
+	final TranslationsDe _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Noch mehr';
+	@override String get text => 'Dein Leseplan, das Auswendiglernen, Meine Verse, die Konkordanz und das Lesezeichen sind hier.';
+}
+
+// Path: tour.steps.youCard
+class _Translations$tour$steps$youCard$de extends Translations$tour$steps$youCard$fr {
+	_Translations$tour$steps$youCard$de._(TranslationsDe root) : this._root = root, super.internal(root);
+
+	final TranslationsDe _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Dein Profil';
+	@override String get text => 'Dein Foto, dein Name und dein Benutzername: Über ihn finden dich deine Brüder und Schwestern.';
+}
+
+// Path: tour.steps.youNumbers
+class _Translations$tour$steps$youNumbers$de extends Translations$tour$steps$youNumbers$fr {
+	_Translations$tour$steps$youNumbers$de._(TranslationsDe root) : this._root = root, super.internal(root);
+
+	final TranslationsDe _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Dein Weg';
+	@override String get text => 'Deine Serie, deine Etappen und deine Zeit mit Gott in diesem Monat. Sie gehören dir: Du entscheidest, was du teilst.';
+}
+
+// Path: tour.steps.youDiscover
+class _Translations$tour$steps$youDiscover$de extends Translations$tour$steps$youDiscover$fr {
+	_Translations$tour$steps$youDiscover$de._(TranslationsDe root) : this._root = root, super.internal(root);
+
+	final TranslationsDe _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Entdecken';
+	@override String get text => 'Veranstaltungen, unser Dienst, Audio-Lehren und die Dokumente der Gemeinschaft.';
+}
+
+// Path: tour.steps.youSettings
+class _Translations$tour$steps$youSettings$de extends Translations$tour$steps$youSettings$fr {
+	_Translations$tour$steps$youSettings$de._(TranslationsDe root) : this._root = root, super.internal(root);
+
+	final TranslationsDe _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Einstellungen';
+	@override String get text => 'Erinnerungen, Aussehen, Sprache … und die Möglichkeit, diese Vorstellungen jederzeit wieder zu sehen.';
+}
+
+// Path: tour.steps.prayerToday
+class _Translations$tour$steps$prayerToday$de extends Translations$tour$steps$prayerToday$fr {
+	_Translations$tour$steps$prayerToday$de._(TranslationsDe root) : this._root = root, super.internal(root);
+
+	final TranslationsDe _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Dein Gebet heute';
+	@override String get text => 'Die Tage, an denen du diese Woche gebetet hast, deine Gebetszeit und die Gebetszeit, die jetzt dran ist.';
+}
+
+// Path: tour.steps.prayerReminders
+class _Translations$tour$steps$prayerReminders$de extends Translations$tour$steps$prayerReminders$fr {
+	_Translations$tour$steps$prayerReminders$de._(TranslationsDe root) : this._root = root, super.internal(root);
+
+	final TranslationsDe _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Deine Erinnerungen';
+	@override String get text => 'Wähle die Uhrzeit für jede Gebetszeit: morgens, mittags, abends und nachts.';
+}
+
+// Path: tour.steps.prayerRoutine
+class _Translations$tour$steps$prayerRoutine$de extends Translations$tour$steps$prayerRoutine$fr {
+	_Translations$tour$steps$prayerRoutine$de._(TranslationsDe root) : this._root = root, super.internal(root);
+
+	final TranslationsDe _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Deine tägliche Routine';
+	@override String get text => 'Vier Gebetszeiten von 15 Minuten, Punkt für Punkt angeleitet. Jede fügt ihre Zeit deinem Bericht hinzu.';
+}
+
+// Path: tour.steps.prayerTogether
+class _Translations$tour$steps$prayerTogether$de extends Translations$tour$steps$prayerTogether$fr {
+	_Translations$tour$steps$prayerTogether$de._(TranslationsDe root) : this._root = root, super.internal(root);
+
+	final TranslationsDe _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Gemeinsam beten';
+	@override String get text => 'Lege ein Anliegen der Beharrlichkeit an und lade Brüder und Schwestern ein, es mit dir zu tragen.';
+}
+
+// Path: tour.steps.hymnsBook
+class _Translations$tour$steps$hymnsBook$de extends Translations$tour$steps$hymnsBook$fr {
+	_Translations$tour$steps$hymnsBook$de._(TranslationsDe root) : this._root = root, super.internal(root);
+
+	final TranslationsDe _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Das Liederbuch';
+	@override String get text => 'Wische über das Cover oder tippe auf seinen Namen, um das Liederbuch zu wechseln. Alles funktioniert offline.';
+}
+
+// Path: tour.steps.hymnsNumber
+class _Translations$tour$steps$hymnsNumber$de extends Translations$tour$steps$hymnsNumber$fr {
+	_Translations$tour$steps$hymnsNumber$de._(TranslationsDe root) : this._root = root, super.internal(root);
+
+	final TranslationsDe _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Zur Nummer';
+	@override String get text => 'Gib die im Gottesdienst angesagte Nummer ein, und das Lied öffnet sich.';
+}
+
+// Path: tour.steps.hymnsSearch
+class _Translations$tour$steps$hymnsSearch$de extends Translations$tour$steps$hymnsSearch$fr {
+	_Translations$tour$steps$hymnsSearch$de._(TranslationsDe root) : this._root = root, super.internal(root);
+
+	final TranslationsDe _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Suchen';
+	@override String get text => 'Finde ein Lied über seinen Titel oder ein paar Worte aus dem Text.';
+}
+
+// Path: tour.steps.hymnsViews
+class _Translations$tour$steps$hymnsViews$de extends Translations$tour$steps$hymnsViews$fr {
+	_Translations$tour$steps$hymnsViews$de._(TranslationsDe root) : this._root = root, super.internal(root);
+
+	final TranslationsDe _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Favoriten und zuletzt';
+	@override String get text => 'Tippe auf den Stern eines Liedes, um es zu behalten; die zuletzt gesungenen warten hier auf dich.';
+}
+
+// Path: tour.steps.teachingsSearch
+class _Translations$tour$steps$teachingsSearch$de extends Translations$tour$steps$teachingsSearch$fr {
+	_Translations$tour$steps$teachingsSearch$de._(TranslationsDe root) : this._root = root, super.internal(root);
+
+	final TranslationsDe _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Eine Botschaft finden';
+	@override String get text => 'Über ihren Titel, den Sprecher oder ein Wort aus der Beschreibung.';
+}
+
+// Path: tour.steps.teachingsFilters
+class _Translations$tour$steps$teachingsFilters$de extends Translations$tour$steps$teachingsFilters$fr {
+	_Translations$tour$steps$teachingsFilters$de._(TranslationsDe root) : this._root = root, super.internal(root);
+
+	final TranslationsDe _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Filtern';
+	@override String get text => 'Wähle einen Sprecher, ein Jahr oder eine Ausgabe.';
+}
+
+// Path: tour.steps.teachingsCategories
+class _Translations$tour$steps$teachingsCategories$de extends Translations$tour$steps$teachingsCategories$fr {
+	_Translations$tour$steps$teachingsCategories$de._(TranslationsDe root) : this._root = root, super.internal(root);
+
+	final TranslationsDe _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Die Themen';
+	@override String get text => 'Wechsle von Thema zu Thema; „Heruntergeladen“ bewahrt deine Botschaften zum Hören ohne Netz.';
+}
+
+// Path: tour.steps.ministryNations
+class _Translations$tour$steps$ministryNations$de extends Translations$tour$steps$ministryNations$fr {
+	_Translations$tour$steps$ministryNations$de._(TranslationsDe root) : this._root = root, super.internal(root);
+
+	final TranslationsDe _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Die Nationen';
+	@override String get text => 'Dreh den Globus der Nationen, in denen das Werk vertreten ist, und bete für jede.';
+}
+
+// Path: tour.steps.ministryLives
+class _Translations$tour$steps$ministryLives$de extends Translations$tour$steps$ministryLives$fr {
+	_Translations$tour$steps$ministryLives$de._(TranslationsDe root) : this._root = root, super.internal(root);
+
+	final TranslationsDe _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Unser Gründer und unser Leiter';
+	@override String get text => 'Ihr Leben, ihre wichtigsten Daten und was Gott durch sie getan hat.';
+}
+
+// Path: tour.steps.ministryMenu
+class _Translations$tour$steps$ministryMenu$de extends Translations$tour$steps$ministryMenu$fr {
+	_Translations$tour$steps$ministryMenu$de._(TranslationsDe root) : this._root = root, super.internal(root);
+
+	final TranslationsDe _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Unser Ziel, Missionare, Helden';
+	@override String get text => 'Die drei Ziele des Dienstes und das Leben derer, die ihm gedient haben.';
+}
+
+// Path: tour.steps.eventsNext
+class _Translations$tour$steps$eventsNext$de extends Translations$tour$steps$eventsNext$fr {
+	_Translations$tour$steps$eventsNext$de._(TranslationsDe root) : this._root = root, super.internal(root);
+
+	final TranslationsDe _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Veranstaltungen der Gemeinschaft';
+	@override String get text => 'Die nächste erscheint hier: Tippe darauf, um das Programm zu sehen, dich anzumelden, eine Erinnerung zu erhalten oder sie in deinen Kalender einzutragen.';
+}
+
+// Path: tour.steps.donateAmounts
+class _Translations$tour$steps$donateAmounts$de extends Translations$tour$steps$donateAmounts$fr {
+	_Translations$tour$steps$donateAmounts$de._(TranslationsDe root) : this._root = root, super.internal(root);
+
+	final TranslationsDe _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Deine Spende';
+	@override String get text => 'Wähle einen Betrag oder gib deinen eigenen ein. Deine Unterstützung hält die App für die ganze Gemeinschaft am Leben.';
+}
+
+// Path: tour.steps.donateMethod
+class _Translations$tour$steps$donateMethod$de extends Translations$tour$steps$donateMethod$fr {
+	_Translations$tour$steps$donateMethod$de._(TranslationsDe root) : this._root = root, super.internal(root);
+
+	final TranslationsDe _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Deine Zahlungsart';
+	@override String get text => 'Mobile Money oder Karte, in der Währung deines Landes.';
+}
+
+// Path: tour.steps.donateGive
+class _Translations$tour$steps$donateGive$de extends Translations$tour$steps$donateGive$fr {
+	_Translations$tour$steps$donateGive$de._(TranslationsDe root) : this._root = root, super.internal(root);
+
+	final TranslationsDe _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Spenden';
+	@override String get text => 'Die Zahlung läuft über eine sichere Seite. „Einen fröhlichen Geber hat Gott lieb“ (2. Korinther 9,7).';
+}
+
+// Path: tour.steps.premiumBenefits
+class _Translations$tour$steps$premiumBenefits$de extends Translations$tour$steps$premiumBenefits$fr {
+	_Translations$tour$steps$premiumBenefits$de._(TranslationsDe root) : this._root = root, super.internal(root);
+
+	final TranslationsDe _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Was Premium hinzufügt';
+	@override String get text => 'Zusätzlicher Komfort wie Lehren offline, dein Jahr mit Gott oder das Widget. Das Wesentliche der App bleibt kostenlos.';
+}
+
+// Path: tour.steps.premiumPlans
+class _Translations$tour$steps$premiumPlans$de extends Translations$tour$steps$premiumPlans$fr {
+	_Translations$tour$steps$premiumPlans$de._(TranslationsDe root) : this._root = root, super.internal(root);
+
+	final TranslationsDe _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Die Angebote';
+	@override String get text => 'Wähle die Dauer, die zu dir passt: monatlich, sechs Monate, jährlich oder lebenslang.';
+}
+
+// Path: tour.steps.documentsSearch
+class _Translations$tour$steps$documentsSearch$de extends Translations$tour$steps$documentsSearch$fr {
+	_Translations$tour$steps$documentsSearch$de._(TranslationsDe root) : this._root = root, super.internal(root);
+
+	final TranslationsDe _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Ein Dokument finden';
+	@override String get text => 'Über Titel, Beschreibung oder Kategorie. Tippe auf ein Dokument, um es zu öffnen, auf den Pfeil, um es zu behalten.';
+}
+
+// Path: tour.steps.documentsCategories
+class _Translations$tour$steps$documentsCategories$de extends Translations$tour$steps$documentsCategories$fr {
+	_Translations$tour$steps$documentsCategories$de._(TranslationsDe root) : this._root = root, super.internal(root);
+
+	final TranslationsDe _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Die Kategorien';
+	@override String get text => 'Durchstöbere die Bibliothek Thema für Thema.';
+}
+
+// Path: tour.steps.notificationsInbox
+class _Translations$tour$steps$notificationsInbox$de extends Translations$tour$steps$notificationsInbox$fr {
+	_Translations$tour$steps$notificationsInbox$de._(TranslationsDe root) : this._root = root, super.internal(root);
+
+	final TranslationsDe _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Die Ankündigungen';
+	@override String get text => 'Neuigkeiten deiner Verantwortlichen kommen hier an, mit ihren Bildern und PDFs.';
+}
+
 /// The flat map containing all translations for locale <de>.
 /// Only for edge cases! For simple maps, use the map function of this library.
 ///
@@ -4842,6 +5418,12 @@ extension on TranslationsDe {
 			'items.goalSaved' => 'Ziel gespeichert',
 			'items.goalRemoved' => 'Ziel entfernt',
 			'items.edit' => ({required Object code}) => '${code} bearbeiten',
+			'items.limit.title' => 'Mehr Elemente mit Premium',
+			'items.limit.text' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('de'))(n, one: 'Ohne Premium kannst du bis zu ${n} persönliches Element erstellen. Die du schon hast, bleiben alle dir, und ein Element zu archivieren macht einen Platz frei. Mit Premium erstellst du so viele, wie du willst, um alles zu verfolgen, was auf deinem Weg mit Gott zählt.', other: 'Ohne Premium kannst du bis zu ${n} persönliche Elemente erstellen. Die du schon hast, bleiben alle dir, und ein Element zu archivieren macht einen Platz frei. Mit Premium erstellst du so viele, wie du willst, um alles zu verfolgen, was auf deinem Weg mit Gott zählt.', ), 
+			'items.limit.discover' => 'Premium entdecken',
+			'items.limit.later' => 'Später',
+			'items.limit.count' => ({required Object used, required Object limit}) => '${used} von ${limit}',
+			'items.limit.countLabel' => ({required Object used, required Object limit}) => 'Persönliche Elemente: ${used} von ${limit}',
 			'newItem.title' => 'Neues Element',
 			'newItem.code' => 'Code',
 			'newItem.label' => 'Name',
@@ -4905,14 +5487,14 @@ extension on TranslationsDe {
 			'authorities.add' => 'Autorität hinzufügen',
 			'authorities.remove' => 'Entfernen',
 			'authorities.removeTitle' => ({required Object name}) => '${name} entfernen?',
+			_ => null,
+		} ?? switch (path) {
 			'authorities.removeText' => ({required Object name}) => '${name} gehört dann nicht mehr zu deinen geistlichen Autoritäten.',
 			'authorities.removed' => ({required Object name}) => '${name} gehört nicht mehr zu deinen Autoritäten.',
 			'authorities.count' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('de'))(n, zero: 'Noch niemand', one: '${n} Person', other: '${n} Personen', ), 
 			'authorities.form.title' => 'Neue Autorität',
 			'authorities.form.emailHint' => 'name@beispiel.de',
 			'authorities.form.isDiscipleMaker' => 'Das ist mein Jüngermacher',
-			_ => null,
-		} ?? switch (path) {
 			'authorities.form.isDiscipleMakerHelp' => 'Die Person, die dich persönlich begleitet. Du hast nur einen.',
 			'authorities.form.discipleMakerTaken' => ({required Object name}) => '${name} ist bereits dein Jüngermacher. Entferne die Person aus der Liste, um jemand anderen zu wählen.',
 			'authorities.form.submit' => 'Hinzufügen',
@@ -5311,6 +5893,8 @@ extension on TranslationsDe {
 			'premium.widgetText' => 'Dein Tagesbericht und deine Ziele auf dem Startbildschirm, ohne die App zu öffnen.',
 			'premium.statsTitle' => 'Deine Ziele über das Jahr',
 			'premium.statsText' => 'Deine Jahresbilanz und die Entwicklung deiner Ziele, Woche für Woche.',
+			'premium.itemsTitle' => 'Unbegrenzte Elemente',
+			'premium.itemsText' => 'Erstelle so viele persönliche Elemente für deinen Bericht, wie du willst.',
 			'premium.supportTitle' => 'Du unterstützt das Werk',
 			'premium.supportText' => 'Deine Unterstützung hält die App und ihre Neuerungen für die ganze Gemeinschaft am Leben.',
 			'premium.annual' => 'Jährlich',
@@ -5347,9 +5931,9 @@ extension on TranslationsDe {
 			'premium.unavailable' => 'Die Angebote sind gerade nicht verfügbar.',
 			'premium.privacy' => 'Datenschutz',
 			'premium.activeTitle' => 'Du hast Premium',
-			'premium.activeText' => 'Danke, dass du CMFI Connect unterstützt! Widget, dein Jahr, deine Bilanz und die Lehren offline sind freigeschaltet.',
+			'premium.activeText' => 'Danke, dass du CMFI Connect unterstützt! Widget, dein Jahr, deine Bilanz, die Lehren offline und unbegrenzte Elemente sind freigeschaltet.',
 			'premium.staffText' => 'Premium ist für dich kostenlos, weil du zum Team von CMFI Connect gehörst.',
-			'premium.moreSubtitle' => 'Widget, dein Jahr, Lehren offline',
+			'premium.moreSubtitle' => 'Widget, dein Jahr, Lehren offline, unbegrenzte Elemente',
 			'premium.become' => 'Premium werden',
 			'premium.moreActive' => 'Aktiv',
 			'premium.unlock' => 'Mit Premium freischalten',
@@ -5417,6 +6001,8 @@ extension on TranslationsDe {
 			'ministry.missionariesSubtitle' => 'Die, die der Herr zu den Nationen sendet',
 			'ministry.heroes' => 'Unsere Helden',
 			'ministry.heroesSubtitle' => 'Die, deren Glaube uns inspiriert',
+			_ => null,
+		} ?? switch (path) {
 			'ministry.founder' => 'Unser Gründer',
 			'ministry.founderSubtitle' => 'Prof. Zacharias Tanee Fomum',
 			'ministry.leader' => 'Unser Leiter',
@@ -5425,8 +6011,6 @@ extension on TranslationsDe {
 			'ministry.heroesEmpty' => 'Die Porträts unserer Helden kommen bald.',
 			'ministry.personGone' => 'Dieses Porträt ist nicht mehr verfügbar.',
 			'ministry.photoOf' => ({required Object name}) => 'Foto von ${name}',
-			_ => null,
-		} ?? switch (path) {
 			'ministry.keyDates' => 'Wichtige Daten',
 			'ministry.life' => 'Sein Leben',
 			'ministry.story' => 'Lebensgeschichte',
@@ -5931,6 +6515,8 @@ extension on TranslationsDe {
 			'weekStory.emptyLead' => 'Eine neue Woche wartet auf dich',
 			'weekStory.days' => ({required num n, required Object total}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('de'))(n, one: '${n} Tag\nvon ${total}', other: '${n} Tage\nvon ${total}', ), 
 			'weekStory.streak' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('de'))(n, one: '${n} Tag in Folge', other: '${n} Tage in Folge', ), 
+			_ => null,
+		} ?? switch (path) {
 			'weekStory.streakRecord' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('de'))(n, one: '${n} Tag in Folge: dein Rekord!', other: '${n} Tage in Folge: dein Rekord!', ), 
 			'weekStory.emptyText' => 'Fülle deinen Bericht jeden Tag aus: Deine nächste Woche wird hier geschrieben.',
 			'weekStory.prayerLead' => 'Du hast gebetet',
@@ -5939,8 +6525,6 @@ extension on TranslationsDe {
 			'weekStory.faithfulMoment' => ({required num n, required Object moment}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('de'))(n, one: 'Deine treueste Zeit: ${moment} (${n}-mal)', other: 'Deine treueste Zeit: ${moment} (${n}-mal)', ), 
 			'weekStory.noRetreat' => 'Keine Gebetszeit diese Woche',
 			'weekStory.noRetreatText' => 'Die Gebetszeit am Mittag wartet auf dich: 15 Minuten mit dem Herrn.',
-			_ => null,
-		} ?? switch (path) {
 			'weekStory.goalsLead' => 'Deine Ziele',
 			'weekStory.goalsReached' => 'im Durchschnitt erreicht',
 			'weekStory.bestDay' => ({required Object day, required Object percent}) => 'Dein bester Tag: ${day} · ${percent}',
@@ -6445,6 +7029,8 @@ extension on TranslationsDe {
 			'journey.steps.fullDay.text' => 'Die 4 Schritte des Tages machen.',
 			'journey.steps.sevenFullDays.title' => 'Sieben volle Tage',
 			'journey.steps.sevenFullDays.text' => 'Die 4 Schritte des Tages siebenmal machen.',
+			_ => null,
+		} ?? switch (path) {
 			'journey.steps.fourRetreats.title' => 'Ein Tag des Gebets',
 			'journey.steps.fourRetreats.text' => 'Die 4 Gebetszeiten am selben Tag machen.',
 			'journey.steps.planDone.title' => 'Plan abgeschlossen',
@@ -6453,8 +7039,6 @@ extension on TranslationsDe {
 			'journey.steps.lyricsShared.text' => 'Den Text eines Liedes teilen.',
 			'journey.steps.firstSoul.title' => 'Sämann',
 			'journey.steps.firstSoul.text' => 'Deine erste Seele begleiten.',
-			_ => null,
-		} ?? switch (path) {
 			'journey.steps.tenSouls.title' => 'Zehn begleitete Seelen',
 			'journey.steps.tenSouls.text' => '10 Menschen in der Seelenbegleitung begleiten.',
 			'journey.steps.soulBaptized.title' => 'Eine getaufte Seele',
@@ -6756,6 +7340,111 @@ extension on TranslationsDe {
 			'donation.thanksText' => ({required Object amount}) => 'Deine Spende von ${amount} ist angekommen. Der Herr vergelte es dir hundertfach.',
 			'donation.verse' => '„Einen fröhlichen Geber hat Gott lieb.“ (2. Korinther 9,7)',
 			'donation.done' => 'Fertig',
+			'tour.skip' => 'Überspringen',
+			'tour.next' => 'Weiter',
+			'tour.done' => 'Verstanden',
+			'tour.stepOf' => ({required Object n, required Object total}) => '${n}/${total}',
+			'tour.replay' => 'Vorstellung der Bereiche erneut zeigen',
+			'tour.replayText' => 'Jeder Bereich stellt sich wieder vor',
+			'tour.replayed' => 'Erledigt: Jeder Bereich stellt sich bei deinem nächsten Besuch wieder vor.',
+			'tour.spaces.home' => 'Start',
+			'tour.spaces.reports' => 'Bericht',
+			'tour.spaces.games' => 'Spiele',
+			'tour.spaces.bible' => 'Bibel',
+			'tour.spaces.you' => 'Du',
+			'tour.spaces.prayer' => 'Gebet',
+			'tour.spaces.hymns' => 'Lieder',
+			'tour.spaces.teachings' => 'Lehren',
+			'tour.spaces.ministry' => 'Unser Dienst',
+			'tour.spaces.events' => 'Veranstaltungen',
+			'tour.spaces.donate' => 'Spenden',
+			'tour.spaces.premium' => 'Premium',
+			'tour.spaces.documents' => 'Unsere Dokumente',
+			'tour.spaces.notifications' => 'Benachrichtigungen',
+			'tour.steps.homeDay.title' => 'Dein Tag auf einen Blick',
+			'tour.steps.homeDay.text' => 'Der goldene Ring füllt sich mit deinem Tagesbericht. Daneben: deine Ziele, deine Gebetszeiten, deine Serie und die Tage deiner Woche.',
+			'tour.steps.homeReport.title' => 'Dein Bericht für heute',
+			'tour.steps.homeReport.text' => 'Beginne ihn hier oder mach dort weiter, wo du aufgehört hast. Er wird auch ohne Netz gespeichert.',
+			'tour.steps.homeShortcuts.title' => 'Lieder und Gebet',
+			'tour.steps.homeShortcuts.text' => 'Die Liederbücher der Gemeinschaft und deine 15-Minuten-Gebetszeiten sind nur einen Tipp entfernt.',
+			'tour.steps.homeBell.title' => 'Die Ankündigungen',
+			'tour.steps.homeBell.text' => 'Die Glocke bringt dir Neuigkeiten deiner Verantwortlichen; ein Punkt zeigt dir, wenn es Neues gibt.',
+			'tour.steps.reportsViews.title' => 'Heute, Verlauf, Bilanz',
+			'tour.steps.reportsViews.text' => 'Fülle deinen Tag aus, schau dir vergangene Tage an und sieh deinen Weg über die Woche, den Monat oder das Jahr.',
+			'tour.steps.reportsDay.title' => 'Ein anderer Tag',
+			'tour.steps.reportsDay.text' => 'Gestern vergessen? Wähle den Tag im Kalender.',
+			'tour.steps.reportsStopwatch.title' => 'Die Stoppuhr',
+			'tour.steps.reportsStopwatch.text' => 'Miss die Zeit deines Gebets oder deiner Lektüre: Die Minuten kommen von selbst in deinen Bericht.',
+			'tour.steps.reportsItems.title' => 'Deine Einträge und Ziele',
+			'tour.steps.reportsItems.text' => 'Füge eigene Einträge hinzu und setz dir für jeden ein Ziel, in deinem Tempo.',
+			'tour.steps.reportsExport.title' => 'Deine Berichte exportieren',
+			'tour.steps.reportsExport.text' => 'Als PDF zum Drucken oder Versenden, als Tabelle für Excel oder als Nachricht für WhatsApp, für den Zeitraum deiner Wahl. Das ist ein Premium-Vorteil.',
+			'tour.steps.gamesStats.title' => 'Dein Fortschritt',
+			'tour.steps.gamesStats.text' => 'Deine Serie, deine Punkte und dein Tagesziel; weiter unten dein Weg der Lektionen. Punkte gehören zum Spiel, sie messen nie deinen Glauben.',
+			'tour.steps.gamesExtras.title' => 'Rangliste, Flug und offline',
+			'tour.steps.gamesExtras.text' => 'Tritt der Rangliste bei, wenn du möchtest, flieg mit „Vers im Flug“ nach Kanaan und speichere einen Kurs, um ohne Netz zu spielen.',
+			'tour.steps.biblePassage.title' => 'Buch und Kapitel',
+			'tour.steps.biblePassage.text' => 'Tippe hier, um eine Stelle zu wählen, oder wische, um das Kapitel zu wechseln. Tippe auf einen Vers, um ihn zu markieren, zu speichern oder zu teilen.',
+			'tour.steps.bibleVersion.title' => 'Die Übersetzung',
+			'tour.steps.bibleVersion.text' => 'Wechsle die Übersetzung und lade sie herunter, um ohne Netz zu lesen und zu suchen.',
+			'tour.steps.bibleListen.title' => 'Das Wort hören',
+			'tour.steps.bibleListen.text' => 'Die Stimme deines Telefons liest dir das Kapitel vor, Vers für Vers.',
+			'tour.steps.bibleMore.title' => 'Noch mehr',
+			'tour.steps.bibleMore.text' => 'Dein Leseplan, das Auswendiglernen, Meine Verse, die Konkordanz und das Lesezeichen sind hier.',
+			'tour.steps.youCard.title' => 'Dein Profil',
+			'tour.steps.youCard.text' => 'Dein Foto, dein Name und dein Benutzername: Über ihn finden dich deine Brüder und Schwestern.',
+			'tour.steps.youNumbers.title' => 'Dein Weg',
+			'tour.steps.youNumbers.text' => 'Deine Serie, deine Etappen und deine Zeit mit Gott in diesem Monat. Sie gehören dir: Du entscheidest, was du teilst.',
+			'tour.steps.youDiscover.title' => 'Entdecken',
+			'tour.steps.youDiscover.text' => 'Veranstaltungen, unser Dienst, Audio-Lehren und die Dokumente der Gemeinschaft.',
+			'tour.steps.youSettings.title' => 'Einstellungen',
+			'tour.steps.youSettings.text' => 'Erinnerungen, Aussehen, Sprache … und die Möglichkeit, diese Vorstellungen jederzeit wieder zu sehen.',
+			'tour.steps.prayerToday.title' => 'Dein Gebet heute',
+			'tour.steps.prayerToday.text' => 'Die Tage, an denen du diese Woche gebetet hast, deine Gebetszeit und die Gebetszeit, die jetzt dran ist.',
+			'tour.steps.prayerReminders.title' => 'Deine Erinnerungen',
+			'tour.steps.prayerReminders.text' => 'Wähle die Uhrzeit für jede Gebetszeit: morgens, mittags, abends und nachts.',
+			'tour.steps.prayerRoutine.title' => 'Deine tägliche Routine',
+			'tour.steps.prayerRoutine.text' => 'Vier Gebetszeiten von 15 Minuten, Punkt für Punkt angeleitet. Jede fügt ihre Zeit deinem Bericht hinzu.',
+			'tour.steps.prayerTogether.title' => 'Gemeinsam beten',
+			'tour.steps.prayerTogether.text' => 'Lege ein Anliegen der Beharrlichkeit an und lade Brüder und Schwestern ein, es mit dir zu tragen.',
+			'tour.steps.hymnsBook.title' => 'Das Liederbuch',
+			'tour.steps.hymnsBook.text' => 'Wische über das Cover oder tippe auf seinen Namen, um das Liederbuch zu wechseln. Alles funktioniert offline.',
+			'tour.steps.hymnsNumber.title' => 'Zur Nummer',
+			'tour.steps.hymnsNumber.text' => 'Gib die im Gottesdienst angesagte Nummer ein, und das Lied öffnet sich.',
+			'tour.steps.hymnsSearch.title' => 'Suchen',
+			'tour.steps.hymnsSearch.text' => 'Finde ein Lied über seinen Titel oder ein paar Worte aus dem Text.',
+			'tour.steps.hymnsViews.title' => 'Favoriten und zuletzt',
+			'tour.steps.hymnsViews.text' => 'Tippe auf den Stern eines Liedes, um es zu behalten; die zuletzt gesungenen warten hier auf dich.',
+			'tour.steps.teachingsSearch.title' => 'Eine Botschaft finden',
+			'tour.steps.teachingsSearch.text' => 'Über ihren Titel, den Sprecher oder ein Wort aus der Beschreibung.',
+			'tour.steps.teachingsFilters.title' => 'Filtern',
+			'tour.steps.teachingsFilters.text' => 'Wähle einen Sprecher, ein Jahr oder eine Ausgabe.',
+			'tour.steps.teachingsCategories.title' => 'Die Themen',
+			'tour.steps.teachingsCategories.text' => 'Wechsle von Thema zu Thema; „Heruntergeladen“ bewahrt deine Botschaften zum Hören ohne Netz.',
+			'tour.steps.ministryNations.title' => 'Die Nationen',
+			'tour.steps.ministryNations.text' => 'Dreh den Globus der Nationen, in denen das Werk vertreten ist, und bete für jede.',
+			'tour.steps.ministryLives.title' => 'Unser Gründer und unser Leiter',
+			'tour.steps.ministryLives.text' => 'Ihr Leben, ihre wichtigsten Daten und was Gott durch sie getan hat.',
+			'tour.steps.ministryMenu.title' => 'Unser Ziel, Missionare, Helden',
+			'tour.steps.ministryMenu.text' => 'Die drei Ziele des Dienstes und das Leben derer, die ihm gedient haben.',
+			'tour.steps.eventsNext.title' => 'Veranstaltungen der Gemeinschaft',
+			'tour.steps.eventsNext.text' => 'Die nächste erscheint hier: Tippe darauf, um das Programm zu sehen, dich anzumelden, eine Erinnerung zu erhalten oder sie in deinen Kalender einzutragen.',
+			'tour.steps.donateAmounts.title' => 'Deine Spende',
+			'tour.steps.donateAmounts.text' => 'Wähle einen Betrag oder gib deinen eigenen ein. Deine Unterstützung hält die App für die ganze Gemeinschaft am Leben.',
+			'tour.steps.donateMethod.title' => 'Deine Zahlungsart',
+			'tour.steps.donateMethod.text' => 'Mobile Money oder Karte, in der Währung deines Landes.',
+			'tour.steps.donateGive.title' => 'Spenden',
+			'tour.steps.donateGive.text' => 'Die Zahlung läuft über eine sichere Seite. „Einen fröhlichen Geber hat Gott lieb“ (2. Korinther 9,7).',
+			'tour.steps.premiumBenefits.title' => 'Was Premium hinzufügt',
+			'tour.steps.premiumBenefits.text' => 'Zusätzlicher Komfort wie Lehren offline, dein Jahr mit Gott oder das Widget. Das Wesentliche der App bleibt kostenlos.',
+			'tour.steps.premiumPlans.title' => 'Die Angebote',
+			'tour.steps.premiumPlans.text' => 'Wähle die Dauer, die zu dir passt: monatlich, sechs Monate, jährlich oder lebenslang.',
+			'tour.steps.documentsSearch.title' => 'Ein Dokument finden',
+			'tour.steps.documentsSearch.text' => 'Über Titel, Beschreibung oder Kategorie. Tippe auf ein Dokument, um es zu öffnen, auf den Pfeil, um es zu behalten.',
+			'tour.steps.documentsCategories.title' => 'Die Kategorien',
+			'tour.steps.documentsCategories.text' => 'Durchstöbere die Bibliothek Thema für Thema.',
+			'tour.steps.notificationsInbox.title' => 'Die Ankündigungen',
+			'tour.steps.notificationsInbox.text' => 'Neuigkeiten deiner Verantwortlichen kommen hier an, mit ihren Bildern und PDFs.',
 			_ => null,
 		};
 	}

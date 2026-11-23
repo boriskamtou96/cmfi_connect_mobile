@@ -563,7 +563,18 @@
     "goalRemove": "Remove",
     "goalSaved": "Goal saved",
     "goalRemoved": "Goal removed",
-    "edit": "Edit {code}"
+    "edit": "Edit {code}",
+    "limit": {
+      "title": "More items with Premium",
+      "text(plural, param=n)": {
+        "one": "Without Premium, you can create up to {n} personal item. The ones you have all stay yours, and archiving an item frees up a spot. With Premium, create as many as you like to follow everything that matters in your walk with God.",
+        "other": "Without Premium, you can create up to {n} personal items. The ones you have all stay yours, and archiving an item frees up a spot. With Premium, create as many as you like to follow everything that matters in your walk with God."
+      },
+      "discover": "Discover Premium",
+      "later": "Not now",
+      "count": "{used} of {limit}",
+      "countLabel": "Personal items: {used} of {limit}"
+    }
   },
   "newItem": {
     "title": "New item",
@@ -1124,6 +1135,8 @@
     "widgetText": "Today's report and your goals on your home screen, without opening the app.",
     "statsTitle": "Your goals over the year",
     "statsText": "Your year in review and how your goals grow, week after week.",
+    "itemsTitle": "Unlimited items",
+    "itemsText": "Create as many personal items as you like in your report.",
     "supportTitle": "You support the work",
     "supportText": "Your support keeps the app and its new features going for the whole community.",
     "annual": "Yearly",
@@ -1166,9 +1179,9 @@
     "unavailable": "The offers aren't available right now.",
     "privacy": "Privacy",
     "activeTitle": "You have Premium",
-    "activeText": "Thank you for supporting CMFI Connect! The widget, your year, your review and offline teachings are open.",
+    "activeText": "Thank you for supporting CMFI Connect! The widget, your year, your review, offline teachings and unlimited items are open.",
     "staffText": "Premium is offered to you as a member of the CMFI Connect team.",
-    "moreSubtitle": "Widget, your year, teachings offline",
+    "moreSubtitle": "Widget, your year, teachings offline, unlimited items",
     "become": "Go Premium",
     "moreActive": "Active",
     "unlock": "Unlock with Premium",
@@ -3141,5 +3154,200 @@
     "thanksText": "Your gift of {amount} has been received. May the Lord repay you a hundredfold.",
     "verse": "“God loveth a cheerful giver.” (2 Corinthians 9:7)",
     "done": "Done"
+  },
+  "tour": {
+    "skip": "Skip",
+    "next": "Next",
+    "done": "Got it",
+    "stepOf": "{n}/{total}",
+    "replay": "Show the space tours again",
+    "replayText": "Each space introduces itself again",
+    "replayed": "Done: each space will introduce itself again on your next visit.",
+    "spaces": {
+      "home": "Home",
+      "reports": "Report",
+      "games": "Games",
+      "bible": "Bible",
+      "you": "You",
+      "prayer": "Prayer",
+      "hymns": "Hymns",
+      "teachings": "Teachings",
+      "ministry": "Our ministry",
+      "events": "Events",
+      "donate": "Give",
+      "premium": "Premium",
+      "documents": "Our documents",
+      "notifications": "Notifications"
+    },
+    "steps": {
+      "homeDay": {
+        "title": "Your day at a glance",
+        "text": "The golden ring fills up with your daily report. Beside it: your goals, your retreats, your streak and the days of your week."
+      },
+      "homeReport": {
+        "title": "Today's report",
+        "text": "Start it here, or pick it up where you left off. It saves even without a connection."
+      },
+      "homeShortcuts": {
+        "title": "Hymns and prayer",
+        "text": "The community's hymnbooks and your 15-minute retreats are one tap away."
+      },
+      "homeBell": {
+        "title": "Announcements",
+        "text": "The bell brings you news from your leaders; a badge tells you when there's something new."
+      },
+      "reportsViews": {
+        "title": "Today, History, Summary",
+        "text": "Fill in your day, look back at past days, then see your path over the week, the month or the year."
+      },
+      "reportsDay": {
+        "title": "Another day",
+        "text": "Forgot to fill in yesterday? Pick the day in the calendar."
+      },
+      "reportsStopwatch": {
+        "title": "The stopwatch",
+        "text": "Time your prayer or your reading: the minutes are added to your report by themselves."
+      },
+      "reportsItems": {
+        "title": "Your items and goals",
+        "text": "Add your own items and set a goal for each one, at your own pace."
+      },
+      "reportsExport": {
+        "title": "Export your reports",
+        "text": "As a PDF to print or send, a spreadsheet for Excel, or a message for WhatsApp, over the period you choose. It's a Premium feature."
+      },
+      "gamesStats": {
+        "title": "Your progress",
+        "text": "Your streak, your points and today's goal; further down, your path of lessons. Points are for the game, never a measure of your faith."
+      },
+      "gamesExtras": {
+        "title": "Leaderboard, flight and offline",
+        "text": "Join the leaderboard if you wish, fly to Canaan with \"Verse in flight\", and keep a course to play without a connection."
+      },
+      "biblePassage": {
+        "title": "Book and chapter",
+        "text": "Tap here to choose a passage, or swipe to change chapter. Tap a verse to highlight, save or share it."
+      },
+      "bibleVersion": {
+        "title": "The version",
+        "text": "Switch translations, and download one to read and search without a connection."
+      },
+      "bibleListen": {
+        "title": "Listen to the Word",
+        "text": "Your phone's voice reads you the chapter, verse by verse."
+      },
+      "bibleMore": {
+        "title": "Even more",
+        "text": "Your reading plan, memorization, My verses, the concordance and the bookmark are here."
+      },
+      "youCard": {
+        "title": "Your card",
+        "text": "Your photo, your name and your username: your brothers and sisters find you by your username."
+      },
+      "youNumbers": {
+        "title": "Your walk",
+        "text": "Your streak, your steps and your time with God this month. They're yours: you choose what you share."
+      },
+      "youDiscover": {
+        "title": "Discover",
+        "text": "Events, our ministry, audio teachings and the community's documents."
+      },
+      "youSettings": {
+        "title": "Settings",
+        "text": "Reminders, appearance, language… and a way to see these tours again whenever you like."
+      },
+      "prayerToday": {
+        "title": "Today's prayer",
+        "text": "The days you prayed this week, your prayer time, and the retreat to start now."
+      },
+      "prayerReminders": {
+        "title": "Your reminders",
+        "text": "Choose a time for each retreat: morning, noon, evening and night."
+      },
+      "prayerRoutine": {
+        "title": "Your daily routine",
+        "text": "Four 15-minute retreats, guided point by point. Each one adds its time to your report."
+      },
+      "prayerTogether": {
+        "title": "Pray together",
+        "text": "Create an importunity topic and invite brothers and sisters to carry it with you."
+      },
+      "hymnsBook": {
+        "title": "The hymnbook",
+        "text": "Swipe the cover or tap its name to change hymnbook. Everything works offline."
+      },
+      "hymnsNumber": {
+        "title": "Go to number",
+        "text": "Type the number announced at the service, and the hymn opens."
+      },
+      "hymnsSearch": {
+        "title": "Search",
+        "text": "Find a hymn by its title or a few words of its lyrics."
+      },
+      "hymnsViews": {
+        "title": "Favorites and recent",
+        "text": "Tap a hymn's star to keep it; the last ones you sang wait for you here."
+      },
+      "teachingsSearch": {
+        "title": "Find a message",
+        "text": "By its title, the speaker or a word from its description."
+      },
+      "teachingsFilters": {
+        "title": "Filter",
+        "text": "Choose a speaker, a year or an edition."
+      },
+      "teachingsCategories": {
+        "title": "Topics",
+        "text": "Move from one topic to another; \"Downloaded\" keeps your messages to listen offline."
+      },
+      "ministryNations": {
+        "title": "The nations",
+        "text": "Spin the globe of the nations where the work is present, and pray for each one."
+      },
+      "ministryLives": {
+        "title": "Our founder and our leader",
+        "text": "Their lives, their key dates and what God has done through them."
+      },
+      "ministryMenu": {
+        "title": "Our purpose, missionaries and heroes",
+        "text": "The three goals of the ministry, and the lives of those who served it."
+      },
+      "eventsNext": {
+        "title": "Community events",
+        "text": "The next one shows here: tap it to see its program, register, get a reminder or add it to your calendar."
+      },
+      "donateAmounts": {
+        "title": "Your gift",
+        "text": "Choose an amount or enter your own. Your support keeps the app going for the whole community."
+      },
+      "donateMethod": {
+        "title": "Your payment method",
+        "text": "Mobile Money or card, in your country's currency."
+      },
+      "donateGive": {
+        "title": "Give",
+        "text": "Payment goes through a secure page. \"God loves a cheerful giver\" (2 Corinthians 9:7)."
+      },
+      "premiumBenefits": {
+        "title": "What Premium adds",
+        "text": "Extra comforts, like offline teachings, your year with God or the widget. The heart of the app stays free."
+      },
+      "premiumPlans": {
+        "title": "The plans",
+        "text": "Choose the length that suits you: monthly, six months, yearly or lifetime."
+      },
+      "documentsSearch": {
+        "title": "Find a document",
+        "text": "By its title, description or category. Tap a document to open it, the arrow to keep it."
+      },
+      "documentsCategories": {
+        "title": "Categories",
+        "text": "Browse the library topic by topic."
+      },
+      "notificationsInbox": {
+        "title": "Announcements",
+        "text": "News from your leaders arrives here, with their pictures and PDFs."
+      }
+    }
   }
 }

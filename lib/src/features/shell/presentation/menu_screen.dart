@@ -17,6 +17,7 @@ import '../../../core/widgets/cmfi_logo.dart';
 import '../../../core/widgets/menu_tile.dart';
 import '../../../core/widgets/premium_mark.dart';
 import '../../../core/widgets/section_card.dart';
+import '../../../core/widgets/tour/space_tour.dart';
 import '../../../routing/app_router.dart';
 import '../../authorities/application/authorities_controller.dart';
 import '../../disciples/application/disciples.dart';
@@ -99,408 +100,439 @@ class MenuScreen extends ConsumerWidget {
     // a page above the tabs
     void go(PageRouteInfo<Object?> route) => context.router.push(route);
 
-    return AnnotatedRegion<SystemUiOverlayStyle>(
-      // the member is on night blue, under the status bar
-      value: SystemUiOverlayStyle.light,
-      child: Scaffold(
-        body: Stack(
-          children: [
-            ListView(
-              padding: const EdgeInsets.only(bottom: AppSpacing.xl),
-              children: [
-                // the member (their card, « Mon profil ») and their numbers
-                DecoratedBox(
-                  decoration: const BoxDecoration(
-                    gradient: LinearGradient(
-                      begin: Alignment.topLeft,
-                      end: Alignment.bottomRight,
-                      colors: [_night, AppColors.primaryDeep],
+    // the first visit: « Vous » presents itself, the tab in view
+    final tabs = AutoTabsRouter.of(context, watch: true);
+    final inView = tabs.current.name == context.routeData.name;
+
+    return SpaceTour(
+      space: TourSpace.you,
+      active: inView,
+      child: AnnotatedRegion<SystemUiOverlayStyle>(
+        // the member is on night blue, under the status bar
+        value: SystemUiOverlayStyle.light,
+        child: Scaffold(
+          body: Stack(
+            children: [
+              ListView(
+                padding: const EdgeInsets.only(bottom: AppSpacing.xl),
+                children: [
+                  // the member (their card, « Mon profil ») and their numbers
+                  DecoratedBox(
+                    decoration: const BoxDecoration(
+                      gradient: LinearGradient(
+                        begin: Alignment.topLeft,
+                        end: Alignment.bottomRight,
+                        colors: [_night, AppColors.primaryDeep],
+                      ),
+                    ),
+                    child: Padding(
+                      padding: EdgeInsets.only(top: top + 8, bottom: 18),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.stretch,
+                        children: [
+                          TourTarget(
+                            step: TourStep.youCard,
+                            radius: AppRadius.xl,
+                            padding: EdgeInsets.zero,
+                            child: Material(
+                              type: MaterialType.transparency,
+                              child: Tooltip(
+                                message: t.menu.seeProfile,
+                                child: InkWell(
+                                  onTap: () => go(const ProfileRoute()),
+                                  child: Padding(
+                                    padding:
+                                        const EdgeInsetsDirectional.fromSTEB(
+                                          20,
+                                          14,
+                                          14,
+                                          14,
+                                        ),
+                                    child: Row(
+                                      children: [
+                                        PremiumMark(
+                                          size: 58,
+                                          child: MemberAvatar(
+                                            initials: profile?.initials ?? '',
+                                            photo: profile?.avatar,
+                                            size: 58,
+                                            background: Colors.white,
+                                            foreground: AppColors.primary,
+                                          ),
+                                        ),
+                                        const SizedBox(width: AppSpacing.md),
+                                        Expanded(
+                                          child: Column(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: [
+                                              Semantics(
+                                                header: true,
+                                                child: Text(
+                                                  profile?.fullName ?? '',
+                                                  maxLines: 1,
+                                                  overflow:
+                                                      TextOverflow.ellipsis,
+                                                  style: const TextStyle(
+                                                    color: Colors.white,
+                                                    fontSize: 19,
+                                                    fontWeight: FontWeight.w800,
+                                                    letterSpacing: -0.2,
+                                                  ),
+                                                ),
+                                              ),
+                                              const SizedBox(height: 2),
+                                              Text(
+                                                // their pseudo, as the others
+                                                // find them
+                                                username.isEmpty
+                                                    ? t.menu.seeProfile
+                                                    : '@$username',
+                                                style: TextStyle(
+                                                  color: Colors.white
+                                                      .withValues(alpha: 0.75),
+                                                  fontSize: 13,
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                        const Icon(
+                                          AppIcons.chevronRight,
+                                          color: Colors.white70,
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                          TourTarget(
+                            step: TourStep.youNumbers,
+                            padding: EdgeInsets.zero,
+                            child: Padding(
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: AppSpacing.lg,
+                              ),
+                              child: firstDay
+                                  ? _FirstDay(
+                                      onTap: () => context.navigateTo(
+                                        const ReportsRoute(),
+                                      ),
+                                    )
+                                  : _Numbers(
+                                      stats: [
+                                        (
+                                          value: t.home.daysShort(n: streak),
+                                          label: t.me.streak,
+                                          // gold rewards: not for a zero
+                                          gold: streak > 0,
+                                        ),
+                                        (
+                                          value:
+                                              '${reached.length}/${JourneyStep.values.length}',
+                                          label: t.me.steps,
+                                          gold: false,
+                                        ),
+                                        (
+                                          value: minutes.toDurationLabel(),
+                                          label: t.me.timeMonth,
+                                          gold: false,
+                                        ),
+                                      ],
+                                    ),
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
-                  child: Padding(
-                    padding: EdgeInsets.only(top: top + 8, bottom: 18),
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(
+                      AppSpacing.lg,
+                      AppSpacing.lg,
+                      AppSpacing.lg,
+                      0,
+                    ),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [
-                        Material(
-                          type: MaterialType.transparency,
-                          child: Tooltip(
-                            message: t.menu.seeProfile,
-                            child: InkWell(
-                              onTap: () => go(const ProfileRoute()),
-                              child: Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
-                                  20,
-                                  14,
-                                  14,
-                                  14,
-                                ),
-                                child: Row(
-                                  children: [
-                                    PremiumMark(
-                                      size: 58,
-                                      child: MemberAvatar(
-                                        initials: profile?.initials ?? '',
-                                        photo: profile?.avatar,
-                                        size: 58,
-                                        background: Colors.white,
-                                        foreground: AppColors.primary,
-                                      ),
-                                    ),
-                                    const SizedBox(width: AppSpacing.md),
-                                    Expanded(
-                                      child: Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          Semantics(
-                                            header: true,
-                                            child: Text(
-                                              profile?.fullName ?? '',
-                                              maxLines: 1,
-                                              overflow: TextOverflow.ellipsis,
-                                              style: const TextStyle(
-                                                color: Colors.white,
-                                                fontSize: 19,
-                                                fontWeight: FontWeight.w800,
-                                                letterSpacing: -0.2,
-                                              ),
-                                            ),
-                                          ),
-                                          const SizedBox(height: 2),
-                                          Text(
-                                            // their pseudo, as the others
-                                            // find them
-                                            username.isEmpty
-                                                ? t.menu.seeProfile
-                                                : '@$username',
-                                            style: TextStyle(
-                                              color: Colors.white.withValues(
-                                                alpha: 0.75,
-                                              ),
-                                              fontSize: 13,
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                    const Icon(
-                                      AppIcons.chevronRight,
-                                      color: Colors.white70,
-                                    ),
-                                  ],
-                                ),
+                        // Premium first (asked on 18/11/2026): « Devenir
+                        // Premium », or that it is on
+                        if (!premiumForEveryone) ...[
+                          SectionCard(
+                            children: [
+                              MenuTile(
+                                icon: AppIcons.premiumTile,
+                                title: premium
+                                    ? t.premium.name
+                                    : t.premium.become,
+                                subtitle: premium
+                                    ? t.premium.moreActive
+                                    : t.premium.moreSubtitle,
+                                subtitleStrong: premium,
+                                onTap: () => go(const PremiumRoute()),
                               ),
-                            ),
+                            ],
                           ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.symmetric(
-                            horizontal: AppSpacing.lg,
-                          ),
-                          child: firstDay
-                              ? _FirstDay(
-                                  onTap: () =>
-                                      context.navigateTo(const ReportsRoute()),
-                                )
-                              : _Numbers(
-                                  stats: [
-                                    (
-                                      value: t.home.daysShort(n: streak),
-                                      label: t.me.streak,
-                                      // gold rewards: not for a zero
-                                      gold: streak > 0,
-                                    ),
-                                    (
-                                      value:
-                                          '${reached.length}/${JourneyStep.values.length}',
-                                      label: t.me.steps,
-                                      gold: false,
-                                    ),
-                                    (
-                                      value: minutes.toDurationLabel(),
-                                      label: t.me.timeMonth,
-                                      gold: false,
-                                    ),
-                                  ],
-                                ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.fromLTRB(
-                    AppSpacing.lg,
-                    AppSpacing.lg,
-                    AppSpacing.lg,
-                    0,
-                  ),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    children: [
-                      // Premium first (asked on 18/11/2026): « Devenir
-                      // Premium », or that it is on
-                      if (!premiumForEveryone) ...[
-                        SectionCard(
-                          children: [
-                            MenuTile(
-                              icon: AppIcons.premiumTile,
-                              title: premium
-                                  ? t.premium.name
-                                  : t.premium.become,
-                              subtitle: premium
-                                  ? t.premium.moreActive
-                                  : t.premium.moreSubtitle,
-                              subtitleStrong: premium,
-                              onTap: () => go(const PremiumRoute()),
-                            ),
-                          ],
-                        ),
-                        const SizedBox(height: AppSpacing.lg),
-                      ],
-                      // the people they walk with (moved from « Mon profil »
-                      // on 19/11/2026: what waits for them shows here)
-                      SectionLabel(t.more.accompaniment),
-                      const SizedBox(height: AppSpacing.xs),
-                      SectionCard(
-                        children: [
-                          MenuTile(
-                            icon: AppIcons.authoritiesTile,
-                            title: t.authorities.title,
-                            subtitle: requests > 0
-                                ? t.authorities.requestsCount(n: requests)
-                                : authorities == null
-                                ? null
-                                : discipleMaker != null
-                                ? t.authorities.discipleMakerOf(
-                                    name: discipleMaker.fullName,
-                                  )
-                                : t.authorities.count(n: authorities.length),
-                            subtitleStrong: requests > 0,
-                            trailing: requests > 0 ? MenuBadge(requests) : null,
-                            onTap: () => go(const AuthoritiesRoute()),
-                          ),
-                          if (disciples > 0)
-                            MenuTile(
-                              icon: AppIcons.disciplesTile,
-                              title: t.more.disciples,
-                              subtitle: [
-                                t.disciples.count(n: disciples),
-                                if (received > 0)
-                                  t.received.unreadCount(n: received),
-                              ].join(' · '),
-                              subtitleStrong: received > 0,
-                              trailing: received > 0
-                                  ? MenuBadge(received)
-                                  : null,
-                              onTap: () => go(const DisciplesRoute()),
-                            ),
+                          const SizedBox(height: AppSpacing.lg),
                         ],
-                      ),
-                      const SizedBox(height: AppSpacing.lg),
-                      // their own way: the steps and the year (from « Mon
-                      // profil »), the souls, the fasts, the readings. The
-                      // tiles keep the neutral tone: a module color is for
-                      // its module only (DESIGN.md)
-                      SectionLabel(t.me.journey),
-                      const SizedBox(height: AppSpacing.xs),
-                      SectionCard(
-                        children: [
-                          MenuTile(
-                            icon: AppIcons.journeyTile,
-                            title: t.journey.title,
-                            subtitle: [
-                              t.journey.count(
-                                n: reached.length,
-                                total: JourneyStep.values.length,
-                              ),
-                              if (next != null)
-                                t.me.nextStep(
-                                  name: stepTexts(t, next.step).title,
-                                ),
-                            ].join(' · '),
-                            onTap: () => go(const JourneyRoute()),
-                          ),
-                          MenuTile(
-                            icon: AppIcons.yearStoryTile,
-                            title: t.yearStory.moreTitle,
-                            subtitle: storyYear < DateTime.now().year
-                                ? t.yearStory.moreDone(year: storyYear)
-                                : t.yearStory.moreSoFar(year: storyYear),
-                            onTap: () => go(YearStoryRoute(year: storyYear)),
-                          ),
-                          MenuTile(
-                            icon: AppIcons.soulsTile,
-                            title: t.souls.title,
-                            subtitle: souls.isEmpty
-                                ? t.souls.moreSubtitle
-                                : [
-                                    t.me.souls(n: souls.length),
-                                    if (due > 0) t.me.soulsDue(n: due),
-                                  ].join(' · '),
-                            onTap: () => go(const SoulsRoute()),
-                          ),
-                          MenuTile(
-                            icon: AppIcons.fastsTile,
-                            title: t.fasts.title,
-                            subtitle: t.fasts.moreSubtitle,
-                            onTap: () => go(const FastsRoute()),
-                          ),
-                          MenuTile(
-                            icon: AppIcons.readingTile,
-                            title: t.reading.title,
-                            subtitle: reading == 0
-                                ? t.reading.moreSubtitle
-                                : t.reading.moreCount(n: reading),
-                            onTap: () => go(const ReadingRoute()),
-                          ),
-                        ],
-                      ),
-                      const SizedBox(height: AppSpacing.lg),
-                      SectionLabel(t.menu.discover),
-                      const SizedBox(height: AppSpacing.xs),
-                      SectionCard(
-                        children: [
-                          MenuTile(
-                            icon: AppIcons.eventsTile,
-                            module: AppModule.events,
-                            title: t.more.events,
-                            onTap: () => go(const EventsRoute()),
-                          ),
-                          MenuTile(
-                            icon: AppIcons.ministryTile,
-                            title: t.ministry.title,
-                            onTap: () => go(const MinistryRoute()),
-                          ),
-                          MenuTile(
-                            icon: AppIcons.teachingsTile,
-                            title: t.teachings.title,
-                            onTap: () => go(const TeachingsRoute()),
-                          ),
-                          MenuTile(
-                            icon: AppIcons.documentsTile,
-                            title: t.documents.title,
-                            onTap: () => go(const DocumentsRoute()),
-                          ),
-                        ],
-                      ),
-                      if (isAdmin) ...[
-                        const SizedBox(height: AppSpacing.lg),
-                        SectionLabel(t.more.admin),
+                        // the people they walk with (moved from « Mon profil »
+                        // on 19/11/2026: what waits for them shows here)
+                        SectionLabel(t.more.accompaniment),
                         const SizedBox(height: AppSpacing.xs),
                         SectionCard(
                           children: [
                             MenuTile(
-                              icon: AppIcons.adminTile,
-                              title: t.more.staff,
-                              onTap: () => go(const AdminRoute()),
+                              icon: AppIcons.authoritiesTile,
+                              title: t.authorities.title,
+                              subtitle: requests > 0
+                                  ? t.authorities.requestsCount(n: requests)
+                                  : authorities == null
+                                  ? null
+                                  : discipleMaker != null
+                                  ? t.authorities.discipleMakerOf(
+                                      name: discipleMaker.fullName,
+                                    )
+                                  : t.authorities.count(n: authorities.length),
+                              subtitleStrong: requests > 0,
+                              trailing: requests > 0
+                                  ? MenuBadge(requests)
+                                  : null,
+                              onTap: () => go(const AuthoritiesRoute()),
+                            ),
+                            if (disciples > 0)
+                              MenuTile(
+                                icon: AppIcons.disciplesTile,
+                                title: t.more.disciples,
+                                subtitle: [
+                                  t.disciples.count(n: disciples),
+                                  if (received > 0)
+                                    t.received.unreadCount(n: received),
+                                ].join(' · '),
+                                subtitleStrong: received > 0,
+                                trailing: received > 0
+                                    ? MenuBadge(received)
+                                    : null,
+                                onTap: () => go(const DisciplesRoute()),
+                              ),
+                          ],
+                        ),
+                        const SizedBox(height: AppSpacing.lg),
+                        // their own way: the steps and the year (from « Mon
+                        // profil »), the souls, the fasts, the readings. The
+                        // tiles keep the neutral tone: a module color is for
+                        // its module only (DESIGN.md)
+                        SectionLabel(t.me.journey),
+                        const SizedBox(height: AppSpacing.xs),
+                        SectionCard(
+                          children: [
+                            MenuTile(
+                              icon: AppIcons.journeyTile,
+                              title: t.journey.title,
+                              subtitle: [
+                                t.journey.count(
+                                  n: reached.length,
+                                  total: JourneyStep.values.length,
+                                ),
+                                if (next != null)
+                                  t.me.nextStep(
+                                    name: stepTexts(t, next.step).title,
+                                  ),
+                              ].join(' · '),
+                              onTap: () => go(const JourneyRoute()),
                             ),
                             MenuTile(
-                              icon: AppIcons.eventsTile,
-                              title: t.more.manageEvents,
-                              onTap: () => go(const AdminEventsRoute()),
+                              icon: AppIcons.yearStoryTile,
+                              title: t.yearStory.moreTitle,
+                              subtitle: storyYear < DateTime.now().year
+                                  ? t.yearStory.moreDone(year: storyYear)
+                                  : t.yearStory.moreSoFar(year: storyYear),
+                              onTap: () => go(YearStoryRoute(year: storyYear)),
                             ),
                             MenuTile(
-                              icon: AppIcons.documentsTile,
-                              title: t.more.manageDocuments,
-                              onTap: () => go(const AdminDocumentsRoute()),
+                              icon: AppIcons.soulsTile,
+                              title: t.souls.title,
+                              subtitle: souls.isEmpty
+                                  ? t.souls.moreSubtitle
+                                  : [
+                                      t.me.souls(n: souls.length),
+                                      if (due > 0) t.me.soulsDue(n: due),
+                                    ].join(' · '),
+                              onTap: () => go(const SoulsRoute()),
+                            ),
+                            MenuTile(
+                              icon: AppIcons.fastsTile,
+                              title: t.fasts.title,
+                              subtitle: t.fasts.moreSubtitle,
+                              onTap: () => go(const FastsRoute()),
+                            ),
+                            MenuTile(
+                              icon: AppIcons.readingTile,
+                              title: t.reading.title,
+                              subtitle: reading == 0
+                                  ? t.reading.moreSubtitle
+                                  : t.reading.moreCount(n: reading),
+                              onTap: () => go(const ReadingRoute()),
                             ),
                           ],
                         ),
-                      ],
-                      const SizedBox(height: AppSpacing.lg),
-                      SectionCard(
-                        children: [
-                          MenuTile(
-                            icon: AppIcons.donateTile,
-                            title: t.donation.title,
-                            subtitle: t.donation.menuHint,
-                            onTap: () => go(const DonationRoute()),
+                        const SizedBox(height: AppSpacing.lg),
+                        SectionLabel(t.menu.discover),
+                        const SizedBox(height: AppSpacing.xs),
+                        TourTarget(
+                          step: TourStep.youDiscover,
+                          radius: AppRadius.xl,
+                          padding: EdgeInsets.zero,
+                          child: SectionCard(
+                            children: [
+                              MenuTile(
+                                icon: AppIcons.eventsTile,
+                                module: AppModule.events,
+                                title: t.more.events,
+                                onTap: () => go(const EventsRoute()),
+                              ),
+                              MenuTile(
+                                icon: AppIcons.ministryTile,
+                                title: t.ministry.title,
+                                onTap: () => go(const MinistryRoute()),
+                              ),
+                              MenuTile(
+                                icon: AppIcons.teachingsTile,
+                                title: t.teachings.title,
+                                onTap: () => go(const TeachingsRoute()),
+                              ),
+                              MenuTile(
+                                icon: AppIcons.documentsTile,
+                                title: t.documents.title,
+                                onTap: () => go(const DocumentsRoute()),
+                              ),
+                            ],
+                          ),
+                        ),
+                        if (isAdmin) ...[
+                          const SizedBox(height: AppSpacing.lg),
+                          SectionLabel(t.more.admin),
+                          const SizedBox(height: AppSpacing.xs),
+                          SectionCard(
+                            children: [
+                              MenuTile(
+                                icon: AppIcons.adminTile,
+                                title: t.more.staff,
+                                onTap: () => go(const AdminRoute()),
+                              ),
+                              MenuTile(
+                                icon: AppIcons.eventsTile,
+                                title: t.more.manageEvents,
+                                onTap: () => go(const AdminEventsRoute()),
+                              ),
+                              MenuTile(
+                                icon: AppIcons.documentsTile,
+                                title: t.more.manageDocuments,
+                                onTap: () => go(const AdminDocumentsRoute()),
+                              ),
+                            ],
                           ),
                         ],
-                      ),
-                      // the dev app only: Premium bought in the Test Store
-                      // forgotten, to buy it again (18/11/2026)
-                      if (devSubscription.dev &&
-                          premium &&
-                          account != null) ...[
                         const SizedBox(height: AppSpacing.lg),
                         SectionCard(
                           children: [
                             MenuTile(
-                              icon: AppIcons.close,
-                              title: t.premium.devCancel,
+                              icon: AppIcons.donateTile,
+                              title: t.donation.title,
+                              subtitle: t.donation.menuHint,
+                              onTap: () => go(const DonationRoute()),
+                            ),
+                          ],
+                        ),
+                        // the dev app only: Premium bought in the Test Store
+                        // forgotten, to buy it again (18/11/2026)
+                        if (devSubscription.dev &&
+                            premium &&
+                            account != null) ...[
+                          const SizedBox(height: AppSpacing.lg),
+                          SectionCard(
+                            children: [
+                              MenuTile(
+                                icon: AppIcons.close,
+                                title: t.premium.devCancel,
+                                destructive: true,
+                                onTap: () => _cancelDevSubscription(
+                                  context,
+                                  ref,
+                                  account.id,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ],
+                        const SizedBox(height: AppSpacing.lg),
+                        SectionCard(
+                          children: [
+                            TourTarget(
+                              step: TourStep.youSettings,
+                              radius: AppRadius.xl,
+                              padding: EdgeInsets.zero,
+                              child: MenuTile(
+                                icon: AppIcons.settings,
+                                title: t.settings.title,
+                                onTap: () => go(const SettingsRoute()),
+                              ),
+                            ),
+                            MenuTile(
+                              icon: AppIcons.signOut,
+                              title: t.more.logout,
                               destructive: true,
-                              onTap: () => _cancelDevSubscription(
-                                context,
-                                ref,
-                                account.id,
+                              // App listens to the session and goes back to
+                              // welcome
+                              onTap: () => signOut(context, ref),
+                            ),
+                          ],
+                        ),
+                        const SizedBox(height: AppSpacing.lg),
+                        // centred under the menu (asked on 13/11/2026)
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            if (dark)
+                              const CmfiLogo.onDark(size: 30)
+                            else
+                              const CmfiLogo(size: 30),
+                            const SizedBox(width: AppSpacing.sm),
+                            Flexible(
+                              child: Text(
+                                [
+                                  t.app.name,
+                                  if (version.isNotEmpty)
+                                    t.more.version(version: version),
+                                ].join(' · '),
+                                style: TextStyle(
+                                  fontSize: 12.5,
+                                  fontWeight: FontWeight.w600,
+                                  color: Theme.of(
+                                    context,
+                                  ).colorScheme.onSurfaceVariant,
+                                ),
                               ),
                             ),
                           ],
                         ),
                       ],
-                      const SizedBox(height: AppSpacing.lg),
-                      SectionCard(
-                        children: [
-                          MenuTile(
-                            icon: AppIcons.settings,
-                            title: t.settings.title,
-                            onTap: () => go(const SettingsRoute()),
-                          ),
-                          MenuTile(
-                            icon: AppIcons.signOut,
-                            title: t.more.logout,
-                            destructive: true,
-                            // App listens to the session and goes back to
-                            // welcome
-                            onTap: () => signOut(context, ref),
-                          ),
-                        ],
-                      ),
-                      const SizedBox(height: AppSpacing.lg),
-                      // centred under the menu (asked on 13/11/2026)
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          if (dark)
-                            const CmfiLogo.onDark(size: 30)
-                          else
-                            const CmfiLogo(size: 30),
-                          const SizedBox(width: AppSpacing.sm),
-                          Flexible(
-                            child: Text(
-                              [
-                                t.app.name,
-                                if (version.isNotEmpty)
-                                  t.more.version(version: version),
-                              ].join(' · '),
-                              style: TextStyle(
-                                fontSize: 12.5,
-                                fontWeight: FontWeight.w600,
-                                color: Theme.of(
-                                  context,
-                                ).colorScheme.onSurfaceVariant,
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ],
+                    ),
                   ),
-                ),
-              ],
-            ),
-            // the status bar stays on night blue when the page scrolls
-            Positioned(
-              left: 0,
-              right: 0,
-              top: 0,
-              height: top,
-              child: const ColoredBox(color: _night),
-            ),
-          ],
+                ],
+              ),
+              // the status bar stays on night blue when the page scrolls
+              Positioned(
+                left: 0,
+                right: 0,
+                top: 0,
+                height: top,
+                child: const ColoredBox(color: _night),
+              ),
+            ],
+          ),
         ),
       ),
     );

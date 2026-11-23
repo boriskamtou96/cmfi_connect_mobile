@@ -20,6 +20,7 @@ import '../../../core/widgets/app_toast.dart';
 import '../../../core/widgets/error_view.dart';
 import '../../../core/widgets/section_card.dart';
 import '../../../core/widgets/skeleton.dart';
+import '../../../core/widgets/tour/space_tour.dart';
 import '../../../routing/app_router.dart';
 import '../application/teaching_batch.dart';
 import '../application/teaching_library.dart';
@@ -230,162 +231,170 @@ class TeachingsScreen extends HookConsumerWidget {
       edition == null && chosen.value.day != null,
     ].where((on) => on).length;
 
-    return AnnotatedRegion<SystemUiOverlayStyle>(
-      value: Theme.of(context).brightness == Brightness.dark
-          ? SystemUiOverlayStyle.light
-          : SystemUiOverlayStyle.dark,
-      child: Scaffold(
-        bottomNavigationBar: const MiniPlayer(),
-        body: NotificationListener<ScrollNotification>(
-          // near the end: the next page
-          onNotification: (notification) {
-            final metrics = notification.metrics;
-            if (!onlyKept &&
-                metrics.axis == Axis.vertical &&
-                metrics.pixels > metrics.maxScrollExtent - 400) {
-              ref.read(provider.notifier).loadMore();
-            }
-            return false;
-          },
-          child: RefreshIndicator.adaptive(
-            onRefresh: () async {
-              ref.invalidate(teachingCategoriesProvider);
-              ref.invalidate(teachingFacetsProvider);
-              await ref.read(provider.notifier).refresh();
+    return SpaceTour(
+      space: TourSpace.teachings,
+      child: AnnotatedRegion<SystemUiOverlayStyle>(
+        value: Theme.of(context).brightness == Brightness.dark
+            ? SystemUiOverlayStyle.light
+            : SystemUiOverlayStyle.dark,
+        child: Scaffold(
+          bottomNavigationBar: const MiniPlayer(),
+          body: NotificationListener<ScrollNotification>(
+            // near the end: the next page
+            onNotification: (notification) {
+              final metrics = notification.metrics;
+              if (!onlyKept &&
+                  metrics.axis == Axis.vertical &&
+                  metrics.pixels > metrics.maxScrollExtent - 400) {
+                ref.read(provider.notifier).loadMore();
+              }
+              return false;
             },
-            child: CustomScrollView(
-              physics: const AlwaysScrollableScrollPhysics(),
-              slivers: [
-                SliverToBoxAdapter(
-                  child: _Header(
-                    controller: controller,
-                    searching: searching.value || typed.isNotEmpty,
-                    onSearch: () {
-                      if (searching.value || typed.isNotEmpty) {
-                        controller.clear();
-                        searching.value = false;
-                      } else {
-                        searching.value = true;
-                      }
-                    },
-                    activeFilters: advanced,
-                    onFilters: openFilters,
-                  ),
-                ),
-                if (categories.isNotEmpty || kept.isNotEmpty)
+            child: RefreshIndicator.adaptive(
+              onRefresh: () async {
+                ref.invalidate(teachingCategoriesProvider);
+                ref.invalidate(teachingFacetsProvider);
+                await ref.read(provider.notifier).refresh();
+              },
+              child: CustomScrollView(
+                physics: const AlwaysScrollableScrollPhysics(),
+                slivers: [
                   SliverToBoxAdapter(
-                    child: _Chips(
-                      categories: categories,
-                      withDownloaded: kept.isNotEmpty,
-                      selected: chosen.value.category,
-                      onSelect: selectCategory,
-                    ),
-                  ),
-                if (latest != null)
-                  SliverToBoxAdapter(
-                    child: _LatestEdition(
-                      edition: latest,
-                      onOpen: () => openEdition(latest),
-                    ),
-                  ),
-                if (edition != null)
-                  SliverToBoxAdapter(
-                    child: TeachingSequence(
-                      list: TeachingList(
-                        shown?.items ?? const [],
-                        query: query,
-                        page: shown?.page ?? 1,
-                        total: shown?.total,
-                      ),
-                      child: _EditionCard(
-                        edition: edition,
-                        items: shown?.items ?? const [],
-                        complete: shown != null && !shown.hasMore,
-                        days: facets?.days.length ?? 0,
-                        onEditions: () => switchEdition(edition),
-                      ),
-                    ),
-                  ),
-                if (edition != null && outside > 0)
-                  SliverToBoxAdapter(
-                    child: _OutsideEdition(
-                      count: outside,
-                      // all the messages of its category
-                      onTap: () => chosen.value = chosen.value.copyWith(
-                        category: edition.categorySlug.isNotEmpty
-                            ? edition.categorySlug
-                            : edition.categoryName,
-                        edition: null,
-                        day: null,
-                      ),
-                    ),
-                  ),
-                if (edition != null && (facets?.days.length ?? 0) > 1)
-                  SliverToBoxAdapter(
-                    child: _Days(
-                      days: facets!.days,
-                      selected: chosen.value.day,
-                      onSelect: (day) =>
-                          chosen.value = chosen.value.copyWith(day: day),
-                    ),
-                  ),
-                // the whole edition, or the day chosen, kept on the phone
-                if (edition != null)
-                  SliverToBoxAdapter(
-                    child: _BatchDownload(
-                      edition: edition,
-                      day: chosen.value.day,
-                      count: switch (chosen.value.day) {
-                        null => edition.count,
-                        final day =>
-                          facets?.days
-                                  .where((one) => one.day == day)
-                                  .firstOrNull
-                                  ?.count ??
-                              0,
+                    child: _Header(
+                      controller: controller,
+                      searching: searching.value || typed.isNotEmpty,
+                      onSearch: () {
+                        if (searching.value || typed.isNotEmpty) {
+                          controller.clear();
+                          searching.value = false;
+                        } else {
+                          searching.value = true;
+                        }
                       },
+                      activeFilters: advanced,
+                      onFilters: openFilters,
                     ),
                   ),
-                if (chosen.value.speaker.isNotEmpty ||
-                    chosen.value.year != null)
-                  SliverToBoxAdapter(
-                    child: _ActiveFilters(
-                      query: chosen.value,
-                      onChanged: (next) => chosen.value = next,
-                    ),
-                  ),
-                if (shown != null &&
-                    shown.total > 0 &&
-                    !onlyKept &&
-                    edition == null)
-                  SliverToBoxAdapter(
-                    child: Padding(
-                      padding: const EdgeInsetsDirectional.fromSTEB(
-                        AppSpacing.xl,
-                        AppSpacing.md,
-                        AppSpacing.xl,
-                        AppSpacing.xs,
-                      ),
-                      child: Text(
-                        t.count(n: shown.total),
-                        style: TextStyle(
-                          fontSize: 13,
-                          fontWeight: FontWeight.w700,
-                          color: Theme.of(context).colorScheme.onSurfaceVariant,
+                  if (categories.isNotEmpty || kept.isNotEmpty)
+                    SliverToBoxAdapter(
+                      child: TourTarget(
+                        step: TourStep.teachingsCategories,
+                        child: _Chips(
+                          categories: categories,
+                          withDownloaded: kept.isNotEmpty,
+                          selected: chosen.value.category,
+                          onSelect: selectCategory,
                         ),
                       ),
                     ),
+                  if (latest != null)
+                    SliverToBoxAdapter(
+                      child: _LatestEdition(
+                        edition: latest,
+                        onOpen: () => openEdition(latest),
+                      ),
+                    ),
+                  if (edition != null)
+                    SliverToBoxAdapter(
+                      child: TeachingSequence(
+                        list: TeachingList(
+                          shown?.items ?? const [],
+                          query: query,
+                          page: shown?.page ?? 1,
+                          total: shown?.total,
+                        ),
+                        child: _EditionCard(
+                          edition: edition,
+                          items: shown?.items ?? const [],
+                          complete: shown != null && !shown.hasMore,
+                          days: facets?.days.length ?? 0,
+                          onEditions: () => switchEdition(edition),
+                        ),
+                      ),
+                    ),
+                  if (edition != null && outside > 0)
+                    SliverToBoxAdapter(
+                      child: _OutsideEdition(
+                        count: outside,
+                        // all the messages of its category
+                        onTap: () => chosen.value = chosen.value.copyWith(
+                          category: edition.categorySlug.isNotEmpty
+                              ? edition.categorySlug
+                              : edition.categoryName,
+                          edition: null,
+                          day: null,
+                        ),
+                      ),
+                    ),
+                  if (edition != null && (facets?.days.length ?? 0) > 1)
+                    SliverToBoxAdapter(
+                      child: _Days(
+                        days: facets!.days,
+                        selected: chosen.value.day,
+                        onSelect: (day) =>
+                            chosen.value = chosen.value.copyWith(day: day),
+                      ),
+                    ),
+                  // the whole edition, or the day chosen, kept on the phone
+                  if (edition != null)
+                    SliverToBoxAdapter(
+                      child: _BatchDownload(
+                        edition: edition,
+                        day: chosen.value.day,
+                        count: switch (chosen.value.day) {
+                          null => edition.count,
+                          final day =>
+                            facets?.days
+                                    .where((one) => one.day == day)
+                                    .firstOrNull
+                                    ?.count ??
+                                0,
+                        },
+                      ),
+                    ),
+                  if (chosen.value.speaker.isNotEmpty ||
+                      chosen.value.year != null)
+                    SliverToBoxAdapter(
+                      child: _ActiveFilters(
+                        query: chosen.value,
+                        onChanged: (next) => chosen.value = next,
+                      ),
+                    ),
+                  if (shown != null &&
+                      shown.total > 0 &&
+                      !onlyKept &&
+                      edition == null)
+                    SliverToBoxAdapter(
+                      child: Padding(
+                        padding: const EdgeInsetsDirectional.fromSTEB(
+                          AppSpacing.xl,
+                          AppSpacing.md,
+                          AppSpacing.xl,
+                          AppSpacing.xs,
+                        ),
+                        child: Text(
+                          t.count(n: shown.total),
+                          style: TextStyle(
+                            fontSize: 13,
+                            fontWeight: FontWeight.w700,
+                            color: Theme.of(
+                              context,
+                            ).colorScheme.onSurfaceVariant,
+                          ),
+                        ),
+                      ),
+                    ),
+                  SliverPadding(
+                    padding: const EdgeInsets.fromLTRB(
+                      AppSpacing.lg,
+                      AppSpacing.sm,
+                      AppSpacing.lg,
+                      AppSpacing.xxl,
+                    ),
+                    sliver: SliverToBoxAdapter(child: body),
                   ),
-                SliverPadding(
-                  padding: const EdgeInsets.fromLTRB(
-                    AppSpacing.lg,
-                    AppSpacing.sm,
-                    AppSpacing.lg,
-                    AppSpacing.xxl,
-                  ),
-                  sliver: SliverToBoxAdapter(child: body),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
         ),
@@ -444,20 +453,30 @@ class _Header extends StatelessWidget {
                     ),
                   ),
                 ),
-                IconButton(
-                  tooltip: searching ? t.searchClose : t.searchOpen,
-                  onPressed: onSearch,
-                  icon: Icon(searching ? AppIcons.close : AppIcons.search),
+                TourTarget(
+                  step: TourStep.teachingsSearch,
+                  round: true,
+                  padding: EdgeInsets.zero,
+                  child: IconButton(
+                    tooltip: searching ? t.searchClose : t.searchOpen,
+                    onPressed: onSearch,
+                    icon: Icon(searching ? AppIcons.close : AppIcons.search),
+                  ),
                 ),
-                IconButton(
-                  tooltip: t.filters,
-                  onPressed: onFilters,
-                  icon: Badge(
-                    isLabelVisible: activeFilters > 0,
-                    label: Text('$activeFilters'),
-                    child: Icon(
-                      AppIcons.items,
-                      color: activeFilters > 0 ? AppColors.primary : null,
+                TourTarget(
+                  step: TourStep.teachingsFilters,
+                  round: true,
+                  padding: EdgeInsets.zero,
+                  child: IconButton(
+                    tooltip: t.filters,
+                    onPressed: onFilters,
+                    icon: Badge(
+                      isLabelVisible: activeFilters > 0,
+                      label: Text('$activeFilters'),
+                      child: Icon(
+                        AppIcons.items,
+                        color: activeFilters > 0 ? AppColors.primary : null,
+                      ),
                     ),
                   ),
                 ),

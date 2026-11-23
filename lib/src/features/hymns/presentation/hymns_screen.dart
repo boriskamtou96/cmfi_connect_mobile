@@ -25,6 +25,7 @@ import '../../../core/widgets/motion.dart';
 import '../../../core/widgets/section_card.dart';
 import '../../../core/widgets/skeleton.dart';
 import '../../../core/widgets/sub_page.dart';
+import '../../../core/widgets/tour/space_tour.dart';
 import '../../../routing/app_router.dart';
 import '../application/hymn_collections.dart';
 import '../application/hymn_library.dart';
@@ -95,81 +96,84 @@ class HymnsScreen extends HookConsumerWidget {
       searching.value = false;
     }
 
-    return switch (library) {
-      AsyncValue(value: final books?) when book != null => PopScope(
-        canPop: !searching.value,
-        onPopInvokedWithResult: (didPop, _) {
-          if (!didPop) {
-            closeSearch();
-          }
-        },
-        child: Scaffold(
-          // the search comes in place of the album, without a spatial link
-          body: FadeThroughSwitcher(
-            id: searching.value,
-            child: searching.value
-                ? _SearchPage(
-                    controller: searchController,
-                    query: query,
-                    book: book,
-                    books: books,
-                    onClose: closeSearch,
-                    onOpen: open,
-                  )
-                : _OnBookColor(
-                    colors: bookCoverColors(
-                      books.indexWhere((other) => other.code == book.code),
-                    ),
-                    child: RefreshIndicator.adaptive(
-                      onRefresh: refresh,
-                      child: CustomScrollView(
-                        slivers: [
-                          SliverToBoxAdapter(
-                            child: _Album(
+    return SpaceTour(
+      space: TourSpace.hymns,
+      child: switch (library) {
+        AsyncValue(value: final books?) when book != null => PopScope(
+          canPop: !searching.value,
+          onPopInvokedWithResult: (didPop, _) {
+            if (!didPop) {
+              closeSearch();
+            }
+          },
+          child: Scaffold(
+            // the search comes in place of the album, without a spatial link
+            body: FadeThroughSwitcher(
+              id: searching.value,
+              child: searching.value
+                  ? _SearchPage(
+                      controller: searchController,
+                      query: query,
+                      book: book,
+                      books: books,
+                      onClose: closeSearch,
+                      onOpen: open,
+                    )
+                  : _OnBookColor(
+                      colors: bookCoverColors(
+                        books.indexWhere((other) => other.code == book.code),
+                      ),
+                      child: RefreshIndicator.adaptive(
+                        onRefresh: refresh,
+                        child: CustomScrollView(
+                          slivers: [
+                            SliverToBoxAdapter(
+                              child: _Album(
+                                book: book,
+                                books: books,
+                                view: view.value,
+                                onSearch: () => searching.value = true,
+                                onNumberPad: openNumberPad,
+                                onRandom: openRandom,
+                                onView: (value) => view.value = value,
+                              ),
+                            ),
+                            _ViewList(
+                              view: view.value,
                               book: book,
                               books: books,
-                              view: view.value,
-                              onSearch: () => searching.value = true,
-                              onNumberPad: openNumberPad,
-                              onRandom: openRandom,
-                              onView: (value) => view.value = value,
+                              onOpen: open,
                             ),
-                          ),
-                          _ViewList(
-                            view: view.value,
-                            book: book,
-                            books: books,
-                            onOpen: open,
-                          ),
-                          const SliverPadding(
-                            padding: EdgeInsets.only(bottom: AppSpacing.xl),
-                          ),
-                        ],
+                            const SliverPadding(
+                              padding: EdgeInsets.only(bottom: AppSpacing.xl),
+                            ),
+                          ],
+                        ),
                       ),
                     ),
-                  ),
+            ),
           ),
         ),
-      ),
-      AsyncError(:final error) => SubPage(
-        title: t.nav.hymns,
-        child: ErrorView(
-          error: error,
-          onRetry: () => ref.invalidate(hymnLibraryProvider),
+        AsyncError(:final error) => SubPage(
+          title: t.nav.hymns,
+          child: ErrorView(
+            error: error,
+            onRetry: () => ref.invalidate(hymnLibraryProvider),
+          ),
         ),
-      ),
-      // the hymns: their number, then the title
-      _ => SubPage(
-        title: t.nav.hymns,
-        child: const LoadingList(
-          count: 8,
-          leading: 46,
-          round: false,
-          card: false,
-          padding: EdgeInsets.only(top: AppSpacing.sm),
+        // the hymns: their number, then the title
+        _ => SubPage(
+          title: t.nav.hymns,
+          child: const LoadingList(
+            count: 8,
+            leading: 46,
+            round: false,
+            card: false,
+            padding: EdgeInsets.only(top: AppSpacing.sm),
+          ),
         ),
-      ),
-    };
+      },
+    );
   }
 }
 
@@ -286,12 +290,17 @@ class _Album extends ConsumerWidget {
                           ),
                         ),
                       ),
-                      IconButton(
-                        tooltip: MaterialLocalizations.of(
-                          context,
-                        ).searchFieldLabel,
-                        onPressed: onSearch,
-                        icon: const Icon(AppIcons.search, size: 26),
+                      TourTarget(
+                        step: TourStep.hymnsSearch,
+                        round: true,
+                        padding: EdgeInsets.zero,
+                        child: IconButton(
+                          tooltip: MaterialLocalizations.of(
+                            context,
+                          ).searchFieldLabel,
+                          onPressed: onSearch,
+                          icon: const Icon(AppIcons.search, size: 26),
+                        ),
                       ),
                     ],
                   ),
@@ -303,105 +312,108 @@ class _Album extends ConsumerWidget {
                     20,
                     0,
                   ),
-                  child: Row(
-                    children: [
-                      Semantics(
-                        image: true,
-                        label: book.title,
-                        excludeSemantics: true,
-                        child: GestureDetector(
-                          onTap: canChoose ? pickBook : null,
-                          child: DecoratedBox(
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(12),
-                              boxShadow: const [
-                                BoxShadow(
-                                  color: Color(0x4D000000),
-                                  blurRadius: 24,
-                                  offset: Offset(0, 10),
-                                ),
-                              ],
-                            ),
-                            child: BookCover(
-                              book: book,
-                              colors: colors,
-                              size: 118,
+                  child: TourTarget(
+                    step: TourStep.hymnsBook,
+                    child: Row(
+                      children: [
+                        Semantics(
+                          image: true,
+                          label: book.title,
+                          excludeSemantics: true,
+                          child: GestureDetector(
+                            onTap: canChoose ? pickBook : null,
+                            child: DecoratedBox(
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(12),
+                                boxShadow: const [
+                                  BoxShadow(
+                                    color: Color(0x4D000000),
+                                    blurRadius: 24,
+                                    offset: Offset(0, 10),
+                                  ),
+                                ],
+                              ),
+                              child: BookCover(
+                                book: book,
+                                colors: colors,
+                                size: 118,
+                              ),
                             ),
                           ),
                         ),
-                      ),
-                      const SizedBox(width: AppSpacing.lg),
-                      Expanded(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              // "volume 1" stays on one line
-                              book.title.replaceFirstMapped(
-                                RegExp(r' (\d+)$'),
-                                (match) => '\u00A0${match[1]}',
+                        const SizedBox(width: AppSpacing.lg),
+                        Expanded(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                // "volume 1" stays on one line
+                                book.title.replaceFirstMapped(
+                                  RegExp(r' (\d+)$'),
+                                  (match) => '\u00A0${match[1]}',
+                                ),
+                                maxLines: 3,
+                                overflow: TextOverflow.ellipsis,
+                                style: const TextStyle(
+                                  fontFamily: 'Lora',
+                                  fontStyle: FontStyle.italic,
+                                  fontSize: 21,
+                                  height: 1.15,
+                                  color: Colors.white,
+                                ),
                               ),
-                              maxLines: 3,
-                              overflow: TextOverflow.ellipsis,
-                              style: const TextStyle(
-                                fontFamily: 'Lora',
-                                fontStyle: FontStyle.italic,
-                                fontSize: 21,
-                                height: 1.15,
-                                color: Colors.white,
+                              const SizedBox(height: 6),
+                              Text(
+                                t.hymns.count(n: book.hymns.length),
+                                style: TextStyle(
+                                  fontSize: 13,
+                                  fontWeight: FontWeight.w600,
+                                  color: Colors.white.withValues(alpha: 0.85),
+                                ),
                               ),
-                            ),
-                            const SizedBox(height: 6),
-                            Text(
-                              t.hymns.count(n: book.hymns.length),
-                              style: TextStyle(
-                                fontSize: 13,
-                                fontWeight: FontWeight.w600,
-                                color: Colors.white.withValues(alpha: 0.85),
-                              ),
-                            ),
-                            if (canChoose) ...[
-                              const SizedBox(height: 10),
-                              Material(
-                                color: Colors.white.withValues(alpha: 0.18),
-                                shape: const StadiumBorder(),
-                                child: InkWell(
-                                  customBorder: const StadiumBorder(),
-                                  onTap: pickBook,
-                                  child: Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                      horizontal: 12,
-                                      vertical: 6,
-                                    ),
-                                    child: Row(
-                                      mainAxisSize: MainAxisSize.min,
-                                      children: [
-                                        Flexible(
-                                          child: Text(
-                                            t.hymns.changeBook,
-                                            overflow: TextOverflow.ellipsis,
-                                            style: const TextStyle(
-                                              fontSize: 13,
-                                              fontWeight: FontWeight.w700,
-                                              color: Colors.white,
+                              if (canChoose) ...[
+                                const SizedBox(height: 10),
+                                Material(
+                                  color: Colors.white.withValues(alpha: 0.18),
+                                  shape: const StadiumBorder(),
+                                  child: InkWell(
+                                    customBorder: const StadiumBorder(),
+                                    onTap: pickBook,
+                                    child: Padding(
+                                      padding: const EdgeInsets.symmetric(
+                                        horizontal: 12,
+                                        vertical: 6,
+                                      ),
+                                      child: Row(
+                                        mainAxisSize: MainAxisSize.min,
+                                        children: [
+                                          Flexible(
+                                            child: Text(
+                                              t.hymns.changeBook,
+                                              overflow: TextOverflow.ellipsis,
+                                              style: const TextStyle(
+                                                fontSize: 13,
+                                                fontWeight: FontWeight.w700,
+                                                color: Colors.white,
+                                              ),
                                             ),
                                           ),
-                                        ),
-                                        const SizedBox(width: 4),
-                                        const Icon(
-                                          AppIcons.chevronDown,
-                                          size: 14,
-                                        ),
-                                      ],
+                                          const SizedBox(width: 4),
+                                          const Icon(
+                                            AppIcons.chevronDown,
+                                            size: 14,
+                                          ),
+                                        ],
+                                      ),
                                     ),
                                   ),
                                 ),
-                              ),
+                              ],
                             ],
-                          ],
+                          ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 ),
                 Padding(
@@ -409,19 +421,22 @@ class _Album extends ConsumerWidget {
                   child: Row(
                     children: [
                       Expanded(
-                        child: FilledButton.icon(
-                          style: FilledButton.styleFrom(
-                            backgroundColor: Colors.white,
-                            foregroundColor: colors.last,
-                            minimumSize: const Size.fromHeight(50),
-                            textStyle: theme.textTheme.labelLarge?.copyWith(
-                              fontSize: 15,
-                              fontWeight: FontWeight.w800,
+                        child: TourTarget(
+                          step: TourStep.hymnsNumber,
+                          child: FilledButton.icon(
+                            style: FilledButton.styleFrom(
+                              backgroundColor: Colors.white,
+                              foregroundColor: colors.last,
+                              minimumSize: const Size.fromHeight(50),
+                              textStyle: theme.textTheme.labelLarge?.copyWith(
+                                fontSize: 15,
+                                fontWeight: FontWeight.w800,
+                              ),
                             ),
+                            onPressed: onNumberPad,
+                            icon: const Icon(AppIcons.numberPad),
+                            label: Text(t.hymns.openNumber),
                           ),
-                          onPressed: onNumberPad,
-                          icon: const Icon(AppIcons.numberPad),
-                          label: Text(t.hymns.openNumber),
                         ),
                       ),
                       const SizedBox(width: AppSpacing.sm),
@@ -449,21 +464,24 @@ class _Album extends ConsumerWidget {
             AppSpacing.xs,
           ),
           // a long translation goes on two lines
-          child: Wrap(
-            spacing: AppSpacing.sm,
-            runSpacing: AppSpacing.sm,
-            children: [
-              for (final (index, label) in [
-                t.hymns.tabs.all,
-                t.hymns.tabs.favorites,
-                t.hymns.tabs.recent,
-              ].indexed)
-                _ViewChip(
-                  label: label,
-                  selected: view.index == index,
-                  onTap: () => onView(_HymnsView.values[index]),
-                ),
-            ],
+          child: TourTarget(
+            step: TourStep.hymnsViews,
+            child: Wrap(
+              spacing: AppSpacing.sm,
+              runSpacing: AppSpacing.sm,
+              children: [
+                for (final (index, label) in [
+                  t.hymns.tabs.all,
+                  t.hymns.tabs.favorites,
+                  t.hymns.tabs.recent,
+                ].indexed)
+                  _ViewChip(
+                    label: label,
+                    selected: view.index == index,
+                    onTap: () => onView(_HymnsView.values[index]),
+                  ),
+              ],
+            ),
           ),
         ),
       ],

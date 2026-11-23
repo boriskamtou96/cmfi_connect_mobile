@@ -548,7 +548,17 @@
     "goalRemove": "移除",
     "goalSaved": "目标已保存",
     "goalRemoved": "目标已移除",
-    "edit": "编辑 {code}"
+    "edit": "编辑 {code}",
+    "limit": {
+      "title": "开通 Premium，添加更多项目",
+      "text(plural, param=n)": {
+        "other": "没有 Premium 时，你最多可以创建 {n} 个个人项目。你已有的项目都会保留，归档一个项目就能空出一个名额。开通 Premium，你可以随意创建，记录你与神同行中每一件重要的事。"
+      },
+      "discover": "了解 Premium",
+      "later": "以后再说",
+      "count": "{used}/{limit}",
+      "countLabel": "个人项目：{used}/{limit}"
+    }
   },
   "newItem": {
     "title": "新项目",
@@ -1096,6 +1106,8 @@
     "widgetText": "无需打开应用，在主屏幕查看今日报告和目标。",
     "statsTitle": "全年的目标",
     "statsText": "你的年度回顾，以及目标逐周的变化。",
+    "itemsTitle": "无限项目",
+    "itemsText": "随心创建个人项目，数量不限。",
     "supportTitle": "你在支持这份事工",
     "supportText": "你的支持让应用及其新功能为整个团体持续运作。",
     "annual": "按年",
@@ -1136,9 +1148,9 @@
     "unavailable": "暂时无法获取订阅方案。",
     "privacy": "隐私",
     "activeTitle": "你已拥有 Premium",
-    "activeText": "感谢支持 CMFI Connect！小组件、你的一年、年度回顾和离线教导已开启。",
+    "activeText": "感谢支持 CMFI Connect！小组件、你的一年、年度回顾、离线教导和无限项目已开启。",
     "staffText": "你是 CMFI Connect 团队的成员，Premium 免费为你开放。",
-    "moreSubtitle": "小组件、你的一年、离线教导",
+    "moreSubtitle": "小组件、你的一年、离线教导、无限项目",
     "become": "成为 Premium 会员",
     "moreActive": "已开启",
     "unlock": "用 Premium 解锁",
@@ -3015,5 +3027,200 @@
     "thanksText": "已收到你 {amount} 的奉献。愿主百倍地报答你。",
     "verse": "“捐得乐意的人是神所喜爱的。”（哥林多后书 9:7）",
     "done": "完成"
+  },
+  "tour": {
+    "skip": "跳过",
+    "next": "下一步",
+    "done": "知道了",
+    "stepOf": "{n}/{total}",
+    "replay": "重新查看各板块介绍",
+    "replayText": "每个板块将再次介绍自己",
+    "replayed": "好的：下次打开时，每个板块都会再次介绍自己。",
+    "spaces": {
+      "home": "首页",
+      "reports": "汇报",
+      "games": "游戏",
+      "bible": "圣经",
+      "you": "你",
+      "prayer": "祷告",
+      "hymns": "诗歌",
+      "teachings": "教导",
+      "ministry": "我们的事工",
+      "events": "活动",
+      "donate": "奉献",
+      "premium": "Premium",
+      "documents": "我们的文档",
+      "notifications": "通知"
+    },
+    "steps": {
+      "homeDay": {
+        "title": "一眼看清你的一天",
+        "text": "金色圆环随着你的每日汇报逐渐填满。旁边是你的目标、退修祷告、连续天数和本周的每一天。"
+      },
+      "homeReport": {
+        "title": "今天的汇报",
+        "text": "在这里开始，或从上次停下的地方继续。没有网络也能保存。"
+      },
+      "homeShortcuts": {
+        "title": "诗歌与祷告",
+        "text": "团契的诗歌本和你的 15 分钟退修祷告，轻点一下就到。"
+      },
+      "homeBell": {
+        "title": "公告",
+        "text": "铃铛为你带来负责人的消息；有新消息时会显示小圆点。"
+      },
+      "reportsViews": {
+        "title": "今天、历史、总结",
+        "text": "填写今天，回顾过去的日子，再按周、月或年查看你的道路。"
+      },
+      "reportsDay": {
+        "title": "其他日期",
+        "text": "昨天忘了填？在日历中选择那一天。"
+      },
+      "reportsStopwatch": {
+        "title": "计时器",
+        "text": "为你的祷告或阅读计时：分钟会自动加入你的汇报。"
+      },
+      "reportsItems": {
+        "title": "你的项目和目标",
+        "text": "添加你自己的项目，并按自己的节奏为每一项设定目标。"
+      },
+      "reportsExport": {
+        "title": "导出你的汇报",
+        "text": "按你选择的时间段，导出为可打印或发送的 PDF、适用于 Excel 的表格，或发到 WhatsApp 的消息。这是 Premium 功能。"
+      },
+      "gamesStats": {
+        "title": "你的进度",
+        "text": "你的连续天数、积分和今日目标；往下是你的课程之路。积分只属于游戏，绝不衡量你的信心。"
+      },
+      "gamesExtras": {
+        "title": "排行榜、飞行与离线",
+        "text": "愿意的话加入排行榜，用“飞翔的经文”飞往迦南，并保存一个课程以便离线游玩。"
+      },
+      "biblePassage": {
+        "title": "书卷和章",
+        "text": "点这里选择经文，或左右滑动切换章。点一节经文可以标亮、收藏或分享。"
+      },
+      "bibleVersion": {
+        "title": "译本",
+        "text": "切换译本，并下载它以便离线阅读和搜索。"
+      },
+      "bibleListen": {
+        "title": "聆听圣言",
+        "text": "手机的语音为你逐节朗读本章。"
+      },
+      "bibleMore": {
+        "title": "更多功能",
+        "text": "你的读经计划、背诵、我的经文、经文汇编和书签都在这里。"
+      },
+      "youCard": {
+        "title": "你的名片",
+        "text": "你的照片、姓名和用户名：弟兄姊妹通过用户名找到你。"
+      },
+      "youNumbers": {
+        "title": "你的属灵道路",
+        "text": "你的连续天数、阶段和本月与神同在的时间。它们属于你：由你决定分享什么。"
+      },
+      "youDiscover": {
+        "title": "发现",
+        "text": "活动、我们的事工、音频教导和团契的文档。"
+      },
+      "youSettings": {
+        "title": "设置",
+        "text": "提醒、外观、语言……还可以随时重新查看这些介绍。"
+      },
+      "prayerToday": {
+        "title": "今天的祷告",
+        "text": "本周你祷告的日子、你的祷告时间，以及现在可以开始的退修祷告。"
+      },
+      "prayerReminders": {
+        "title": "你的提醒",
+        "text": "为每次退修祷告选择时间：早晨、中午、傍晚和夜间。"
+      },
+      "prayerRoutine": {
+        "title": "你今天的祷告安排",
+        "text": "四次 15 分钟的退修祷告，逐点带领。每一次都会把时间加入你的汇报。"
+      },
+      "prayerTogether": {
+        "title": "一起祷告",
+        "text": "创建一个恒切祷告的题目，邀请弟兄姊妹与你一同承担。"
+      },
+      "hymnsBook": {
+        "title": "诗歌本",
+        "text": "滑动封面或点它的名字来切换诗歌本。全部可离线使用。"
+      },
+      "hymnsNumber": {
+        "title": "按编号打开",
+        "text": "输入聚会中宣布的编号，诗歌就会打开。"
+      },
+      "hymnsSearch": {
+        "title": "搜索",
+        "text": "通过标题或几句歌词找到一首诗歌。"
+      },
+      "hymnsViews": {
+        "title": "收藏和最近",
+        "text": "点诗歌旁的星星即可收藏；你最近唱过的诗歌在这里等你。"
+      },
+      "teachingsSearch": {
+        "title": "查找信息",
+        "text": "按标题、讲员或描述中的词语查找。"
+      },
+      "teachingsFilters": {
+        "title": "筛选",
+        "text": "选择讲员、年份或期次。"
+      },
+      "teachingsCategories": {
+        "title": "主题",
+        "text": "在主题之间切换；“已下载”会保存你的信息，供离线收听。"
+      },
+      "ministryNations": {
+        "title": "列国",
+        "text": "转动这项工作所在列国的地球仪，为每个国家祷告。"
+      },
+      "ministryLives": {
+        "title": "我们的创始人和领袖",
+        "text": "他们的生平、重要日期，以及神借着他们所成就的事。"
+      },
+      "ministryMenu": {
+        "title": "我们的目标、宣教士和英雄",
+        "text": "事工的三大目标，以及服事它的人的生平。"
+      },
+      "eventsNext": {
+        "title": "团契活动",
+        "text": "下一个活动显示在这里：点它查看日程、报名、接收提醒或加入你的日历。"
+      },
+      "donateAmounts": {
+        "title": "你的奉献",
+        "text": "选择一个金额或输入你自己的金额。你的支持让整个团契都能使用这个应用。"
+      },
+      "donateMethod": {
+        "title": "付款方式",
+        "text": "Mobile Money 或银行卡，使用你所在国家的货币。"
+      },
+      "donateGive": {
+        "title": "奉献",
+        "text": "付款通过安全页面完成。“捐得乐意的人是神所喜爱的”（哥林多后书 9:7）。"
+      },
+      "premiumBenefits": {
+        "title": "Premium 增加了什么",
+        "text": "额外的便利，如离线教导、你与神同在的一年或小组件。应用的核心功能始终免费。"
+      },
+      "premiumPlans": {
+        "title": "方案",
+        "text": "选择适合你的期限：按月、六个月、按年或终身。"
+      },
+      "documentsSearch": {
+        "title": "查找文档",
+        "text": "按标题、描述或类别查找。点文档即可打开，点箭头即可保存。"
+      },
+      "documentsCategories": {
+        "title": "类别",
+        "text": "按主题浏览资料库。"
+      },
+      "notificationsInbox": {
+        "title": "公告",
+        "text": "负责人的消息会出现在这里，附带图片和 PDF。"
+      }
+    }
   }
 }

@@ -14,6 +14,7 @@ import '../../../core/widgets/adaptive_pickers.dart';
 import '../../../core/widgets/motion.dart';
 import '../../../core/widgets/segmented_tabs.dart';
 import '../../../core/widgets/tab_page.dart';
+import '../../../core/widgets/tour/space_tour.dart';
 import '../../../routing/app_router.dart';
 import '../application/pending_reports.dart';
 import '../application/report_timer.dart';
@@ -69,145 +70,180 @@ class ReportsScreen extends ConsumerWidget {
       ),
     );
 
-    return TabPage(
-      title: t.reports.title,
-      actions: [
-        // the stopwatch apart: choose the item, its minutes are saved alone
-        IconButton.outlined(
-          tooltip: t.reports.timer.pickButton,
-          style: squareStyle,
-          onPressed: () => showStopwatchPicker(context),
-          icon: Icon(
-            running ? AppIcons.stopwatchActive : AppIcons.stopwatch,
-            size: 22,
-            color: running ? AppColors.gold : null,
-          ),
-        ),
-        const SizedBox(width: AppSpacing.sm),
-        if (view == ReportsView.today) ...[
-          IconButton.outlined(
-            tooltip: t.reports.pickDay,
-            style: squareStyle,
-            onPressed: pickDay,
-            icon: const Icon(AppIcons.calendar, size: 22),
+    // the first visit: the report presents itself, the tab in view
+    final tabs = AutoTabsRouter.of(context, watch: true);
+    final inView = tabs.current.name == context.routeData.name;
+
+    return SpaceTour(
+      space: TourSpace.reports,
+      active: inView,
+      child: TabPage(
+        title: t.reports.title,
+        actions: [
+          // the stopwatch apart: choose the item, its minutes are saved alone
+          TourTarget(
+            step: TourStep.reportsStopwatch,
+            radius: AppSpacing.md,
+            padding: const EdgeInsets.all(AppSpacing.xs),
+            child: IconButton.outlined(
+              tooltip: t.reports.timer.pickButton,
+              style: squareStyle,
+              onPressed: () => showStopwatchPicker(context),
+              icon: Icon(
+                running ? AppIcons.stopwatchActive : AppIcons.stopwatch,
+                size: 22,
+                color: running ? AppColors.gold : null,
+              ),
+            ),
           ),
           const SizedBox(width: AppSpacing.sm),
+          if (view == ReportsView.today) ...[
+            TourTarget(
+              step: TourStep.reportsDay,
+              radius: AppSpacing.md,
+              padding: const EdgeInsets.all(AppSpacing.xs),
+              child: IconButton.outlined(
+                tooltip: t.reports.pickDay,
+                style: squareStyle,
+                onPressed: pickDay,
+                icon: const Icon(AppIcons.calendar, size: 22),
+              ),
+            ),
+            const SizedBox(width: AppSpacing.sm),
+          ],
+          TourTarget(
+            step: TourStep.reportsItems,
+            radius: AppSpacing.md,
+            padding: const EdgeInsets.all(AppSpacing.xs),
+            child: IconButton.outlined(
+              tooltip: t.reports.myItems,
+              style: squareStyle,
+              onPressed: () => context.router.push(const ItemsRoute()),
+              icon: const Icon(AppIcons.items, size: 22),
+            ),
+          ),
         ],
-        IconButton.outlined(
-          tooltip: t.reports.myItems,
-          style: squareStyle,
-          onPressed: () => context.router.push(const ItemsRoute()),
-          icon: const Icon(AppIcons.items, size: 22),
-        ),
-      ],
-      bottom: AnimatedSwitcher(
-        duration: duration,
-        switchInCurve: AppMotion.emphasized,
-        switchOutCurve: Curves.easeInCubic,
-        transitionBuilder: (child, animation) => SizeTransition(
-          sizeFactor: animation,
-          axisAlignment: 1,
-          child: child,
-        ),
-        child: view == ReportsView.today
-            ? SaveDayBar(day: day)
-            : const SizedBox.shrink(),
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          Padding(
-            padding: const EdgeInsetsDirectional.fromSTEB(
-              AppSpacing.lg,
-              AppSpacing.xs,
-              AppSpacing.lg,
-              0,
-            ),
-            child: SegmentedTabs(
-              labels: [
-                t.reports.tabs.today,
-                t.reports.tabs.history,
-                t.reports.tabs.summary,
-              ],
-              selectedIndex: view.index,
-              onChanged: (index) => ref
-                  .read(selectedReportsViewProvider.notifier)
-                  .select(ReportsView.values[index]),
-            ),
+        bottom: AnimatedSwitcher(
+          duration: duration,
+          switchInCurve: AppMotion.emphasized,
+          switchOutCurve: Curves.easeInCubic,
+          transitionBuilder: (child, animation) => SizeTransition(
+            sizeFactor: animation,
+            axisAlignment: 1,
+            child: child,
           ),
-          // days saved offline: said once here, sent by themselves
-          AnimatedSize(
-            duration: duration,
-            curve: AppMotion.standard,
-            child: pending.isEmpty
-                ? const SizedBox(width: double.infinity)
-                : _PendingBanner(
-                    count: pending.length,
-                    onRetry: ref.read(pendingReportsProvider.notifier).send,
-                  ),
-          ),
-          // History and Summary: what can be done with the days, said in
-          // words (the lone share icon of the title bar went unnoticed)
-          AnimatedSize(
-            duration: duration,
-            curve: AppMotion.standard,
-            alignment: Alignment.topCenter,
-            child: view == ReportsView.today
-                ? const SizedBox(width: double.infinity)
-                : Padding(
-                    padding: const EdgeInsetsDirectional.fromSTEB(
-                      AppSpacing.lg,
-                      AppSpacing.sm,
-                      AppSpacing.lg,
-                      0,
+          child: view == ReportsView.today
+              ? SaveDayBar(day: day)
+              : const SizedBox.shrink(),
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            Padding(
+              padding: const EdgeInsetsDirectional.fromSTEB(
+                AppSpacing.lg,
+                AppSpacing.xs,
+                AppSpacing.lg,
+                0,
+              ),
+              child: TourTarget(
+                step: TourStep.reportsViews,
+                child: SegmentedTabs(
+                  labels: [
+                    t.reports.tabs.today,
+                    t.reports.tabs.history,
+                    t.reports.tabs.summary,
+                  ],
+                  selectedIndex: view.index,
+                  onChanged: (index) => ref
+                      .read(selectedReportsViewProvider.notifier)
+                      .select(ReportsView.values[index]),
+                ),
+              ),
+            ),
+            // days saved offline: said once here, sent by themselves
+            AnimatedSize(
+              duration: duration,
+              curve: AppMotion.standard,
+              child: pending.isEmpty
+                  ? const SizedBox(width: double.infinity)
+                  : _PendingBanner(
+                      count: pending.length,
+                      onRetry: ref.read(pendingReportsProvider.notifier).send,
                     ),
-                    // the two tiles as tall as the taller one
-                    child: IntrinsicHeight(
-                      child: Row(
-                        crossAxisAlignment: CrossAxisAlignment.stretch,
-                        children: [
-                          Expanded(
-                            child: _DataTile(
-                              icon: AppIcons.share,
-                              title: t.sheetImport.exportTile,
-                              text: t.sheetImport.exportHint,
-                              label: t.reports.export,
-                              locked: !premium,
-                              onTap: () => context.router.push(
-                                const ExportReportRoute(),
+            ),
+            // History and Summary: what can be done with the days, said in
+            // words (the lone share icon of the title bar went unnoticed);
+            // the first time one of them opens, the export presents itself
+            SpaceTour(
+              space: TourSpace.reportsData,
+              active: inView && view != ReportsView.today,
+              child: AnimatedSize(
+                duration: duration,
+                curve: AppMotion.standard,
+                alignment: Alignment.topCenter,
+                child: view == ReportsView.today
+                    ? const SizedBox(width: double.infinity)
+                    : Padding(
+                        padding: const EdgeInsetsDirectional.fromSTEB(
+                          AppSpacing.lg,
+                          AppSpacing.sm,
+                          AppSpacing.lg,
+                          0,
+                        ),
+                        // the two tiles as tall as the taller one
+                        child: IntrinsicHeight(
+                          child: Row(
+                            crossAxisAlignment: CrossAxisAlignment.stretch,
+                            children: [
+                              Expanded(
+                                child: TourTarget(
+                                  step: TourStep.reportsExport,
+                                  padding: const EdgeInsets.all(AppSpacing.xs),
+                                  child: _DataTile(
+                                    icon: AppIcons.share,
+                                    title: t.sheetImport.exportTile,
+                                    text: t.sheetImport.exportHint,
+                                    label: t.reports.export,
+                                    locked: !premium,
+                                    onTap: () => context.router.push(
+                                      const ExportReportRoute(),
+                                    ),
+                                  ),
+                                ),
                               ),
-                            ),
-                          ),
-                          const SizedBox(width: AppSpacing.sm),
-                          Expanded(
-                            child: _DataTile(
-                              icon: AppIcons.download,
-                              title: t.sheetImport.importTile,
-                              text: t.sheetImport.importHint,
-                              label: t.sheetImport.title,
-                              locked: !premium,
-                              onTap: () => context.router.push(
-                                const ImportReportRoute(),
+                              const SizedBox(width: AppSpacing.sm),
+                              Expanded(
+                                child: _DataTile(
+                                  icon: AppIcons.download,
+                                  title: t.sheetImport.importTile,
+                                  text: t.sheetImport.importHint,
+                                  label: t.sheetImport.title,
+                                  locked: !premium,
+                                  onTap: () => context.router.push(
+                                    const ImportReportRoute(),
+                                  ),
+                                ),
                               ),
-                            ),
+                            ],
                           ),
-                        ],
+                        ),
                       ),
-                    ),
-                  ),
-          ),
-          Expanded(
-            // the tabs sit side by side: the view slides in from the tab tapped
-            child: SharedAxisSwitcher(
-              index: view.index,
-              child: switch (view) {
-                ReportsView.today => TodayView(day: day),
-                ReportsView.history => HistoryView(onOpenDay: openDay),
-                ReportsView.summary => const SummaryView(),
-              },
+              ),
             ),
-          ),
-        ],
+            Expanded(
+              // the tabs sit side by side: the view slides in from the tab tapped
+              child: SharedAxisSwitcher(
+                index: view.index,
+                child: switch (view) {
+                  ReportsView.today => TodayView(day: day),
+                  ReportsView.history => HistoryView(onOpenDay: openDay),
+                  ReportsView.summary => const SummaryView(),
+                },
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

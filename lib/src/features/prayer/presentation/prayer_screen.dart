@@ -20,6 +20,7 @@ import '../../../core/widgets/app_toast.dart';
 import '../../../core/widgets/photo_kit.dart';
 import '../../../core/widgets/section_card.dart';
 import '../../../core/widgets/skeleton.dart';
+import '../../../core/widgets/tour/space_tour.dart';
 import '../../../routing/app_router.dart';
 import '../../members/presentation/widgets/member_avatar.dart';
 import '../application/importunities.dart';
@@ -67,103 +68,123 @@ class PrayerScreen extends HookConsumerWidget {
       });
     }
 
-    return Scaffold(
-      body: Stack(
-        children: [
-          RefreshIndicator.adaptive(
-            onRefresh: refresh,
-            edgeOffset: top,
-            child: ListView(
-              controller: scroll,
-              padding: const EdgeInsets.only(bottom: 32),
-              children: [
-                const _Hero(),
-                Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(16, 20, 16, 0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    children: [
-                      for (final invitation in invitations) ...[
-                        _InvitationCard(topic: invitation),
-                        const SizedBox(height: AppSpacing.lg),
-                      ],
-                      const _RetreatGrid(),
-                      const SizedBox(height: AppSpacing.md),
-                      // to pray without a retreat: the time of « Prière seule »
-                      const FreePrayerCard(),
-                      const SizedBox(height: 28),
-                      PrayerSectionHeader(
-                        title: t.prayer.together,
-                        action: t.prayer.importunity.newTopic,
-                        onAction: () => showImportunityForm(context),
-                      ),
-                      const SizedBox(height: 10),
-                      if (joined.isEmpty)
-                        _ImportunityIntro(
-                          onCreate: () => showImportunityForm(context),
-                        )
-                      else
-                        for (final topic in joined) ...[
-                          _ImportunityCard(topic: topic),
-                          const SizedBox(height: 10),
+    return SpaceTour(
+      space: TourSpace.prayer,
+      child: Scaffold(
+        body: Stack(
+          children: [
+            RefreshIndicator.adaptive(
+              onRefresh: refresh,
+              edgeOffset: top,
+              child: ListView(
+                controller: scroll,
+                padding: const EdgeInsets.only(bottom: 32),
+                children: [
+                  const TourTarget(
+                    step: TourStep.prayerToday,
+                    radius: 0,
+                    padding: EdgeInsets.zero,
+                    child: _Hero(),
+                  ),
+                  Padding(
+                    padding: const EdgeInsetsDirectional.fromSTEB(
+                      16,
+                      20,
+                      16,
+                      0,
+                    ),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      children: [
+                        for (final invitation in invitations) ...[
+                          _InvitationCard(topic: invitation),
+                          const SizedBox(height: AppSpacing.lg),
                         ],
-                      const SizedBox(height: 18),
-                      PrayerSectionHeader(
-                        title: t.prayer.topics.title,
-                        action: t.prayer.topics.all,
-                        onAction: () =>
-                            context.router.push(const PrayerTopicsRoute()),
-                      ),
-                      const SizedBox(height: 10),
-                      const _CommunityTopics(),
-                      const SizedBox(height: 28),
-                      PrayerSectionHeader(
-                        title: t.prayer.lists.title,
-                        trailing: Row(
-                          children: [
-                            Icon(
-                              AppIcons.private,
-                              size: 16,
-                              color: scheme.onSurfaceVariant,
-                            ),
-                            const SizedBox(width: 4),
-                            Text(
-                              t.prayer.lists.private,
-                              style: TextStyle(
-                                fontSize: 13,
+                        const TourTarget(
+                          step: TourStep.prayerRoutine,
+                          radius: AppRadius.xl,
+                          child: _RetreatGrid(),
+                        ),
+                        const SizedBox(height: AppSpacing.md),
+                        // to pray without a retreat: the time of « Prière seule »
+                        const FreePrayerCard(),
+                        const SizedBox(height: 28),
+                        TourTarget(
+                          step: TourStep.prayerTogether,
+                          child: PrayerSectionHeader(
+                            title: t.prayer.together,
+                            action: t.prayer.importunity.newTopic,
+                            onAction: () => showImportunityForm(context),
+                          ),
+                        ),
+                        const SizedBox(height: 10),
+                        if (joined.isEmpty)
+                          _ImportunityIntro(
+                            onCreate: () => showImportunityForm(context),
+                          )
+                        else
+                          for (final topic in joined) ...[
+                            _ImportunityCard(topic: topic),
+                            const SizedBox(height: 10),
+                          ],
+                        const SizedBox(height: 18),
+                        PrayerSectionHeader(
+                          title: t.prayer.topics.title,
+                          action: t.prayer.topics.all,
+                          onAction: () =>
+                              context.router.push(const PrayerTopicsRoute()),
+                        ),
+                        const SizedBox(height: 10),
+                        const _CommunityTopics(),
+                        const SizedBox(height: 28),
+                        PrayerSectionHeader(
+                          title: t.prayer.lists.title,
+                          trailing: Row(
+                            children: [
+                              Icon(
+                                AppIcons.private,
+                                size: 16,
                                 color: scheme.onSurfaceVariant,
                               ),
-                            ),
-                          ],
+                              const SizedBox(width: 4),
+                              Text(
+                                t.prayer.lists.private,
+                                style: TextStyle(
+                                  fontSize: 13,
+                                  color: scheme.onSurfaceVariant,
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
-                      ),
-                      const SizedBox(height: 10),
-                      const _ListsCard(),
-                      const _AnsweredBanner(),
-                    ],
+                        const SizedBox(height: 10),
+                        const _ListsCard(),
+                        const _AnsweredBanner(),
+                      ],
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
-          ),
-          // under the status bar, the page once the photo has gone up
-          Positioned(
-            left: 0,
-            right: 0,
-            top: 0,
-            height: top,
-            child: ListenableBuilder(
-              listenable: scroll,
-              builder: (context, _) {
-                final offset = scroll.hasClients ? scroll.offset : 0.0;
-                return Opacity(
-                  opacity: ((offset - _Hero.height + 60) / 40).clamp(0, 1),
-                  child: ColoredBox(color: scheme.surfaceContainerLowest),
-                );
-              },
+            // under the status bar, the page once the photo has gone up
+            Positioned(
+              left: 0,
+              right: 0,
+              top: 0,
+              height: top,
+              child: ListenableBuilder(
+                listenable: scroll,
+                builder: (context, _) {
+                  final offset = scroll.hasClients ? scroll.offset : 0.0;
+                  return Opacity(
+                    opacity: ((offset - _Hero.height + 60) / 40).clamp(0, 1),
+                    child: ColoredBox(color: scheme.surfaceContainerLowest),
+                  );
+                },
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
@@ -518,11 +539,16 @@ class _Hero extends ConsumerWidget {
                           ),
                         ),
                       ),
-                      IconButton(
-                        tooltip: t.prayer.reminders.title,
-                        color: Colors.white,
-                        onPressed: () => showRetreatRemindersSheet(context),
-                        icon: const Icon(AppIcons.reminder),
+                      TourTarget(
+                        step: TourStep.prayerReminders,
+                        round: true,
+                        padding: EdgeInsets.zero,
+                        child: IconButton(
+                          tooltip: t.prayer.reminders.title,
+                          color: Colors.white,
+                          onPressed: () => showRetreatRemindersSheet(context),
+                          icon: const Icon(AppIcons.reminder),
+                        ),
                       ),
                     ],
                   ),

@@ -213,9 +213,14 @@ platform :ios do
         profile_name: ENV.fetch("sigh_#{identifier}_appstore_profile-name"),
       )
     end
-    # Flutter writes its settings (version, .env), Xcode builds and signs
-    at_root("flutter build ios --release --flavor #{flavor} --dart-define-from-file=.env #{defines} " \
-            "--dart-define=SCREEN_TIME=#{screen_time} --config-only")
+    # Flutter builds for the iPhone and writes its settings (version, .env),
+    # then Xcode archives and signs. A whole build, not --config-only: only
+    # it makes the native code of the Dart packages for the iPhone
+    # (build/native_assets/ios); Xcode's archive copies what it finds there,
+    # and without it path_provider fails on the phone (1.1.12+28: no hymns,
+    # no profile photo).
+    at_root("flutter build ios --release --no-codesign --flavor #{flavor} --dart-define-from-file=.env #{defines} " \
+            "--dart-define=SCREEN_TIME=#{screen_time}")
     build_app(
       workspace: File.join(ROOT, "ios", "Runner.xcworkspace"),
       scheme: flavor,
@@ -229,6 +234,21 @@ platform :ios do
         end,
       },
     )
+    check_native_assets(ipa: lane_context[SharedValues::IPA_OUTPUT_PATH])
+  end
+
+  # Refuses an .ipa whose native code of the Dart packages is missing or made
+  # for the simulator: the app would open, then read nothing on the phone.
+  private_lane :check_native_assets do |options|
+    ipa = options[:ipa]
+    Dir.mktmpdir do |folder|
+      sh("unzip -q #{ipa.shellescape} 'Payload/Runner.app/Frameworks/objective_c.framework/*' -d #{folder.shellescape} || true")
+      binary = File.join(folder, "Payload", "Runner.app", "Frameworks", "objective_c.framework", "objective_c")
+      UI.user_error!("#{File.basename(ipa)} : objective_c.framework manque (path_provider ne marcherait pas)") unless File.exist?(binary)
+      platform = sh("vtool -show-build #{binary.shellescape} | awk '/platform/ {print $2}'", log: false).strip
+      UI.user_error!("#{File.basename(ipa)} : objective_c.framework est fait pour #{platform}, pas pour l'iPhone") unless platform == "IOS"
+      UI.success("#{File.basename(ipa)} : objective_c.framework pour l'iPhone")
+    end
   end
 
   desc "Une fois (puis à chaque nouvelle extension) : crée certificat et profils App Store dans le dépôt de match. " \

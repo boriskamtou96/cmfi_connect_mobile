@@ -1,4 +1,8 @@
 Nouveautés de CMFI Connect
-• Premium s'achète maintenant directement dans l'app (mensuel, 6 mois, annuel ou à vie)
-• Bible : un marque-page pour retrouver le chapitre où tu t'es arrêté (menu ⋮ › Marquer ce chapitre)
-• Améliorations et corrections
+• Jeux bibliques : parcours, défi du jour, classement, « Verset en vol », voyage vers Canaan
+• Faire un don et Premium dans l'app, par Mobile Money (6 pays d'Afrique) ou carte
+• Enseignements : écoute à la suite, la croisade en premier, une édition ou un jour à télécharger
+• Bible : marque-page, plan de lecture de 1 à 730 jours, versets partagés en image
+• Compte rendu : import Excel, 4 pas du jour
+• Onglet « Vous », recueil « Ministering to the Lord »
+• Corrections

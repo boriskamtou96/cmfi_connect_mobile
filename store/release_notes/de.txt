@@ -1,4 +1,8 @@
 Neu in CMFI Connect
-• Premium lässt sich jetzt direkt in der App kaufen (monatlich, 6 Monate, jährlich oder für immer)
-• Bibel: ein Lesezeichen für das Kapitel, bei dem du aufgehört hast (Menü ⋮ › Dieses Kapitel markieren)
-• Verbesserungen und Korrekturen
+• Bibelspiele: Lernpfad, Tagesaufgabe, Rangliste, « Verset en vol » und die Reise nach Kanaan
+• Spenden, und Premium in der App, per Mobile Money (6 afrikanische Länder) oder Karte
+• Lehren: Wiedergabe am Stück, der Kreuzzug zuerst, ganze Ausgabe oder Tag herunterladen
+• Bibel: Lesezeichen, Leseplan von 1 bis 730 Tagen, Verse als Bild teilen
+• Bericht: Excel-Import, 4 Schritte des Tages
+• Tab « Du », Liederbuch « Ministering to the Lord »
+• Fehlerbehebungen

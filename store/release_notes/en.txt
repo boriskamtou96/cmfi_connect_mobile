@@ -1,4 +1,8 @@
 What's new in CMFI Connect
-• Premium can now be bought right in the app (monthly, 6 months, yearly or for life)
-• Bible: a bookmark to find the chapter where you stopped (menu ⋮ › Bookmark this chapter)
-• Improvements and fixes
+• Bible games: learning path, daily challenge, leaderboard, « Verset en vol » and the journey to Canaan
+• Give a donation, and Premium in the app, by mobile money (6 African countries) or card
+• Teachings: continuous listening, the crusade first, download a whole edition or a day
+• Bible: bookmark, reading plan from 1 to 730 days, verses shared as images
+• Report: Excel import, 4 steps of the day
+• « You » tab, « Ministering to the Lord » hymn book
+• Fixes

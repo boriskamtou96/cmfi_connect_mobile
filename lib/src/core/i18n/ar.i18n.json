@@ -81,22 +81,23 @@
       "text": "فعاليات جماعتك وإعلاناتها في مكان واحد، حتى لا يفوتك شيء."
     },
     "step": "الشاشة {current} من {total}",
-    "streak(plural, param=n)": {
-      "zero": "{n} يوم مع الله",
-      "one": "يوم واحد مع الله",
-      "two": "يومان مع الله",
-      "few": "{n} أيام مع الله",
-      "many": "{n} يومًا مع الله",
-      "other": "{n} يوم مع الله"
-    },
     "sample": {
+      "name": "نعمة",
+      "withGod": "ساعة و15 دقيقة مع الله اليوم",
+      "streakDays": "24 يومًا",
       "bibleReading": "قراءة الكتاب المقدس",
       "chapters": "10 إصحاحات",
-      "hymn": "ترنيمة",
-      "hymnNumber": "رقم 12",
+      "hymnNumber": "رقم 1",
+      "hymnTitle": "Donnons-Lui la gloire",
+      "hymnBook": "Chants d'édification, volume 1",
+      "hymnLines": "Alléluia, louez notre Dieu,\nLe Tout-Puissant qui a pris Son règne.",
+      "hymnChorus": "Donnons-Lui la gloire (2x)",
       "praying": "12 شخصًا يصلّون",
       "retreat": "خلوة الشباب",
-      "announcement": "إعلان"
+      "place": "ياوندي · 3 أيام",
+      "register": "سجّل",
+      "announcement": "إعلان",
+      "notice": "تبدأ عبادة الأحد الساعة 9."
     },
     "next": "متابعة",
     "skip": "تخطٍّ",

@@ -197,14 +197,6 @@ class _Translations$welcome$ar extends Translations$welcome$fr {
 	@override late final _Translations$welcome$worship$ar worship = _Translations$welcome$worship$ar._(_root);
 	@override late final _Translations$welcome$community$ar community = _Translations$welcome$community$ar._(_root);
 	@override String step({required Object current, required Object total}) => 'الشاشة ${current} من ${total}';
-	@override String streak({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n,
-		zero: '${n} يوم مع الله',
-		one: 'يوم واحد مع الله',
-		two: 'يومان مع الله',
-		few: '${n} أيام مع الله',
-		many: '${n} يومًا مع الله',
-		other: '${n} يوم مع الله',
-	);
 	@override late final _Translations$welcome$sample$ar sample = _Translations$welcome$sample$ar._(_root);
 	@override String get next => 'متابعة';
 	@override String get skip => 'تخطٍّ';
@@ -2749,13 +2741,22 @@ class _Translations$welcome$sample$ar extends Translations$welcome$sample$fr {
 	final TranslationsAr _root; // ignore: unused_field
 
 	// Translations
+	@override String get name => 'نعمة';
+	@override String get withGod => 'ساعة و15 دقيقة مع الله اليوم';
+	@override String get streakDays => '24 يومًا';
 	@override String get bibleReading => 'قراءة الكتاب المقدس';
 	@override String get chapters => '10 إصحاحات';
-	@override String get hymn => 'ترنيمة';
-	@override String get hymnNumber => 'رقم 12';
+	@override String get hymnNumber => 'رقم 1';
+	@override String get hymnTitle => 'Donnons-Lui la gloire';
+	@override String get hymnBook => 'Chants d\'édification, volume 1';
+	@override String get hymnLines => 'Alléluia, louez notre Dieu,\nLe Tout-Puissant qui a pris Son règne.';
+	@override String get hymnChorus => 'Donnons-Lui la gloire (2x)';
 	@override String get praying => '12 شخصًا يصلّون';
 	@override String get retreat => 'خلوة الشباب';
+	@override String get place => 'ياوندي · 3 أيام';
+	@override String get register => 'سجّل';
 	@override String get announcement => 'إعلان';
+	@override String get notice => 'تبدأ عبادة الأحد الساعة 9.';
 }
 
 // Path: auth.login
@@ -5515,14 +5516,22 @@ extension on TranslationsAr {
 			'welcome.community.after' => '',
 			'welcome.community.text' => 'فعاليات جماعتك وإعلاناتها في مكان واحد، حتى لا يفوتك شيء.',
 			'welcome.step' => ({required Object current, required Object total}) => 'الشاشة ${current} من ${total}',
-			'welcome.streak' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n, zero: '${n} يوم مع الله', one: 'يوم واحد مع الله', two: 'يومان مع الله', few: '${n} أيام مع الله', many: '${n} يومًا مع الله', other: '${n} يوم مع الله', ), 
+			'welcome.sample.name' => 'نعمة',
+			'welcome.sample.withGod' => 'ساعة و15 دقيقة مع الله اليوم',
+			'welcome.sample.streakDays' => '24 يومًا',
 			'welcome.sample.bibleReading' => 'قراءة الكتاب المقدس',
 			'welcome.sample.chapters' => '10 إصحاحات',
-			'welcome.sample.hymn' => 'ترنيمة',
-			'welcome.sample.hymnNumber' => 'رقم 12',
+			'welcome.sample.hymnNumber' => 'رقم 1',
+			'welcome.sample.hymnTitle' => 'Donnons-Lui la gloire',
+			'welcome.sample.hymnBook' => 'Chants d\'édification, volume 1',
+			'welcome.sample.hymnLines' => 'Alléluia, louez notre Dieu,\nLe Tout-Puissant qui a pris Son règne.',
+			'welcome.sample.hymnChorus' => 'Donnons-Lui la gloire (2x)',
 			'welcome.sample.praying' => '12 شخصًا يصلّون',
 			'welcome.sample.retreat' => 'خلوة الشباب',
+			'welcome.sample.place' => 'ياوندي · 3 أيام',
+			'welcome.sample.register' => 'سجّل',
 			'welcome.sample.announcement' => 'إعلان',
+			'welcome.sample.notice' => 'تبدأ عبادة الأحد الساعة 9.',
 			'welcome.next' => 'متابعة',
 			'welcome.skip' => 'تخطٍّ',
 			'welcome.createAccount' => 'إنشاء حسابي',
@@ -5952,6 +5961,8 @@ extension on TranslationsAr {
 			'more.copyright' => ({required Object year}) => '© ${year} Christian Missionary Fellowship International. جميع الحقوق محفوظة.',
 			'authorities.title' => 'مرشديّ الروحيون',
 			'authorities.intro' => 'الأشخاص الذين يرافقونك في مسيرتك مع الله: صانع التلاميذ الخاص بك وسائر مرشديك.',
+			_ => null,
+		} ?? switch (path) {
 			'authorities.discipleMaker' => 'صانع التلاميذ',
 			'authorities.discipleMakerOf' => ({required Object name}) => 'صانع التلاميذ: ${name}',
 			'authorities.noDiscipleMaker' => 'لا يوجد صانع تلاميذ بعد',
@@ -5960,8 +5971,6 @@ extension on TranslationsAr {
 			'authorities.add' => 'إضافة مرشد',
 			'authorities.remove' => 'إزالة',
 			'authorities.removeTitle' => ({required Object name}) => 'إزالة ${name}؟',
-			_ => null,
-		} ?? switch (path) {
 			'authorities.removeText' => ({required Object name}) => 'لن يكون ${name} بعد الآن ضمن مرشديك الروحيين.',
 			'authorities.removed' => ({required Object name}) => 'لم يعد ${name} ضمن مرشديك.',
 			'authorities.count' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n, zero: 'لا أحد حتى الآن', one: 'شخص واحد', two: 'شخصان', few: '${n} أشخاص', many: '${n} شخصًا', other: '${n} شخص', ), 
@@ -6466,6 +6475,8 @@ extension on TranslationsAr {
 			'ministry.purpose' => 'هدفنا',
 			'ministry.nations' => 'الأمم',
 			'ministry.search' => 'ابحث عن أمة',
+			_ => null,
+		} ?? switch (path) {
 			'ministry.none' => 'لا توجد أمة مطابقة',
 			'ministry.homeText' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n, zero: 'لا توجد أمم بعد', one: 'حاضرة في أمة واحدة', two: 'حاضرة في أمّتين', few: 'حاضرة في ${n} أمم', many: 'حاضرة في ${n} أمة', other: 'حاضرة في ${n} أمة', ), 
 			'ministry.nationsSubtitle' => 'الكرة الأرضية والرحلة من أمة إلى أمة',
@@ -6474,8 +6485,6 @@ extension on TranslationsAr {
 			'ministry.missionariesSubtitle' => 'الذين يرسلهم الرب إلى الأمم',
 			'ministry.heroes' => 'أبطالنا',
 			'ministry.heroesSubtitle' => 'الذين يلهمنا إيمانهم',
-			_ => null,
-		} ?? switch (path) {
 			'ministry.founder' => 'مؤسسنا',
 			'ministry.founderSubtitle' => 'البروفيسور زكرياس تاني فومم',
 			'ministry.leader' => 'قائدنا',
@@ -6980,6 +6989,8 @@ extension on TranslationsAr {
 			'disciples.showAll' => ({required Object n}) => 'عرض الـ ${n} الآخرين',
 			'disciples.showLess' => 'عرض أقل',
 			'disciples.overdueHidden' => ({required Object n}) => '${n} لا يشاركون تقاريرهم: لا يُعرف عنهم شيء.',
+			_ => null,
+		} ?? switch (path) {
 			'weekStory.title' => 'أسبوعك مع الله',
 			'weekStory.range' => ({required Object from, required Object to}) => 'من ${from} إلى ${to}',
 			'weekStory.intro' => 'استعد ما عشته مع الرب هذا الأسبوع.',
@@ -6988,8 +6999,6 @@ extension on TranslationsAr {
 			'weekStory.emptyLead' => 'أسبوع جديد ينتظرك',
 			'weekStory.days' => ({required num n, required Object total}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n, zero: '${n} يوم\nمن ${total}', one: 'يوم واحد\nمن ${total}', two: 'يومان\nمن ${total}', few: '${n} أيام\nمن ${total}', many: '${n} يومًا\nمن ${total}', other: '${n} يوم\nمن ${total}', ), 
 			'weekStory.streak' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n, zero: '${n} يوم على التوالي', one: 'يوم واحد على التوالي', two: 'يومان على التوالي', few: '${n} أيام على التوالي', many: '${n} يومًا على التوالي', other: '${n} يوم على التوالي', ), 
-			_ => null,
-		} ?? switch (path) {
 			'weekStory.streakRecord' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n, zero: '${n} يوم على التوالي: رقمك القياسي!', one: 'يوم واحد على التوالي: رقمك القياسي!', two: 'يومان على التوالي: رقمك القياسي!', few: '${n} أيام على التوالي: رقمك القياسي!', many: '${n} يومًا على التوالي: رقمك القياسي!', other: '${n} يوم على التوالي: رقمك القياسي!', ), 
 			'weekStory.emptyText' => 'املأ تقريرك كل يوم: سيُكتب أسبوعك القادم هنا.',
 			'weekStory.prayerLead' => 'صلّيت',
@@ -7494,6 +7503,8 @@ extension on TranslationsAr {
 			'journey.steps.streak7.text' => '7 أيام متتالية مع تقرير.',
 			'journey.steps.streak30.title' => 'شهر مع الله',
 			'journey.steps.streak30.text' => '30 يومًا متتاليًا مع تقرير.',
+			_ => null,
+		} ?? switch (path) {
 			'journey.steps.streak100.title' => 'مئة يوم',
 			'journey.steps.streak100.text' => '100 يوم متتالٍ مع تقرير.',
 			'journey.steps.streak365.title' => 'سنة كاملة',
@@ -7502,8 +7513,6 @@ extension on TranslationsAr {
 			'journey.steps.fullDay.text' => 'أنجز خطوات اليوم الأربع.',
 			'journey.steps.sevenFullDays.title' => 'سبعة أيام كاملة',
 			'journey.steps.sevenFullDays.text' => 'أنجز خطوات اليوم الأربع سبع مرات.',
-			_ => null,
-		} ?? switch (path) {
 			'journey.steps.fourRetreats.title' => 'يوم صلاة',
 			'journey.steps.fourRetreats.text' => 'أنجز الخلوات الأربع في اليوم نفسه.',
 			'journey.steps.planDone.title' => 'خطة مكتملة',

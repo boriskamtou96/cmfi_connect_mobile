@@ -197,10 +197,6 @@ class _Translations$welcome$en extends Translations$welcome$fr {
 	@override late final _Translations$welcome$worship$en worship = _Translations$welcome$worship$en._(_root);
 	@override late final _Translations$welcome$community$en community = _Translations$welcome$community$en._(_root);
 	@override String step({required Object current, required Object total}) => 'Screen ${current} of ${total}';
-	@override String streak({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n,
-		one: '${n} day with God',
-		other: '${n} days with God',
-	);
 	@override late final _Translations$welcome$sample$en sample = _Translations$welcome$sample$en._(_root);
 	@override String get next => 'Continue';
 	@override String get skip => 'Skip';
@@ -2422,13 +2418,22 @@ class _Translations$welcome$sample$en extends Translations$welcome$sample$fr {
 	final TranslationsEn _root; // ignore: unused_field
 
 	// Translations
+	@override String get name => 'Grace';
+	@override String get withGod => '1 h 15 with God today';
+	@override String get streakDays => '24 d';
 	@override String get bibleReading => 'Bible reading';
 	@override String get chapters => '10 ch.';
-	@override String get hymn => 'Hymn';
-	@override String get hymnNumber => 'No. 12';
+	@override String get hymnNumber => 'No. 1';
+	@override String get hymnTitle => 'Donnons-Lui la gloire';
+	@override String get hymnBook => 'Chants d\'édification, volume 1';
+	@override String get hymnLines => 'Alléluia, louez notre Dieu,\nLe Tout-Puissant qui a pris Son règne.';
+	@override String get hymnChorus => 'Donnons-Lui la gloire (2x)';
 	@override String get praying => '12 people are praying';
 	@override String get retreat => 'Youth retreat';
+	@override String get place => 'Yaoundé · 3 days';
+	@override String get register => 'Register';
 	@override String get announcement => 'Announcement';
+	@override String get notice => 'Sunday service starts at 9 am.';
 }
 
 // Path: auth.login
@@ -5043,14 +5048,22 @@ extension on TranslationsEn {
 			'welcome.community.after' => '',
 			'welcome.community.text' => 'Your assembly\'s events and announcements, all in one place, so you never miss a thing.',
 			'welcome.step' => ({required Object current, required Object total}) => 'Screen ${current} of ${total}',
-			'welcome.streak' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n, one: '${n} day with God', other: '${n} days with God', ), 
+			'welcome.sample.name' => 'Grace',
+			'welcome.sample.withGod' => '1 h 15 with God today',
+			'welcome.sample.streakDays' => '24 d',
 			'welcome.sample.bibleReading' => 'Bible reading',
 			'welcome.sample.chapters' => '10 ch.',
-			'welcome.sample.hymn' => 'Hymn',
-			'welcome.sample.hymnNumber' => 'No. 12',
+			'welcome.sample.hymnNumber' => 'No. 1',
+			'welcome.sample.hymnTitle' => 'Donnons-Lui la gloire',
+			'welcome.sample.hymnBook' => 'Chants d\'édification, volume 1',
+			'welcome.sample.hymnLines' => 'Alléluia, louez notre Dieu,\nLe Tout-Puissant qui a pris Son règne.',
+			'welcome.sample.hymnChorus' => 'Donnons-Lui la gloire (2x)',
 			'welcome.sample.praying' => '12 people are praying',
 			'welcome.sample.retreat' => 'Youth retreat',
+			'welcome.sample.place' => 'Yaoundé · 3 days',
+			'welcome.sample.register' => 'Register',
 			'welcome.sample.announcement' => 'Announcement',
+			'welcome.sample.notice' => 'Sunday service starts at 9 am.',
 			'welcome.next' => 'Continue',
 			'welcome.skip' => 'Skip',
 			'welcome.createAccount' => 'Create my account',
@@ -5480,6 +5493,8 @@ extension on TranslationsEn {
 			'more.copyright' => ({required Object year}) => '© ${year} Christian Missionary Fellowship International. All rights reserved.',
 			'authorities.title' => 'My spiritual leaders',
 			'authorities.intro' => 'The people who walk with you in your faith: your disciple maker and your other leaders.',
+			_ => null,
+		} ?? switch (path) {
 			'authorities.discipleMaker' => 'Disciple maker',
 			'authorities.discipleMakerOf' => ({required Object name}) => 'Disciple maker: ${name}',
 			'authorities.noDiscipleMaker' => 'No disciple maker yet',
@@ -5488,8 +5503,6 @@ extension on TranslationsEn {
 			'authorities.add' => 'Add a leader',
 			'authorities.remove' => 'Remove',
 			'authorities.removeTitle' => ({required Object name}) => 'Remove ${name}?',
-			_ => null,
-		} ?? switch (path) {
 			'authorities.removeText' => ({required Object name}) => '${name} will no longer be in your list of spiritual leaders.',
 			'authorities.removed' => ({required Object name}) => '${name} is no longer in your list.',
 			'authorities.count' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n, zero: 'Nobody yet', one: '${n} person', other: '${n} people', ), 
@@ -5994,6 +6007,8 @@ extension on TranslationsEn {
 			'ministry.purpose' => 'Our purpose',
 			'ministry.nations' => 'The nations',
 			'ministry.search' => 'Search a nation',
+			_ => null,
+		} ?? switch (path) {
 			'ministry.none' => 'No nation matches',
 			'ministry.homeText' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n, one: 'Present in ${n} nation', other: 'Present in ${n} nations', ), 
 			'ministry.nationsSubtitle' => 'The globe and the journey from nation to nation',
@@ -6002,8 +6017,6 @@ extension on TranslationsEn {
 			'ministry.missionariesSubtitle' => 'Those the Lord sends to the nations',
 			'ministry.heroes' => 'Our heroes',
 			'ministry.heroesSubtitle' => 'Those whose faith inspires us',
-			_ => null,
-		} ?? switch (path) {
 			'ministry.founder' => 'Our founder',
 			'ministry.founderSubtitle' => 'Prof. Zacharias Tanee Fomum',
 			'ministry.leader' => 'Our leader',
@@ -6508,6 +6521,8 @@ extension on TranslationsEn {
 			'disciples.showAll' => ({required Object n}) => 'See the other ${n}',
 			'disciples.showLess' => 'See less',
 			'disciples.overdueHidden' => ({required Object n}) => '${n} don\'t share their reports: nothing is known about them.',
+			_ => null,
+		} ?? switch (path) {
 			'weekStory.title' => 'Your week with God',
 			'weekStory.range' => ({required Object from, required Object to}) => '${from} to ${to}',
 			'weekStory.intro' => 'Look back on what you lived with the Lord this week.',
@@ -6516,8 +6531,6 @@ extension on TranslationsEn {
 			'weekStory.emptyLead' => 'A new week is waiting for you',
 			'weekStory.days' => ({required num n, required Object total}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n, one: '${n} day\nout of ${total}', other: '${n} days\nout of ${total}', ), 
 			'weekStory.streak' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n, one: '${n} day in a row', other: '${n} days in a row', ), 
-			_ => null,
-		} ?? switch (path) {
 			'weekStory.streakRecord' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n, one: '${n} day in a row: your record!', other: '${n} days in a row: your record!', ), 
 			'weekStory.emptyText' => 'Fill in your report every day: your next week will be written here.',
 			'weekStory.prayerLead' => 'You prayed',
@@ -7022,6 +7035,8 @@ extension on TranslationsEn {
 			'journey.steps.streak7.text' => '7 days in a row with a report.',
 			'journey.steps.streak30.title' => 'A month with God',
 			'journey.steps.streak30.text' => '30 days in a row with a report.',
+			_ => null,
+		} ?? switch (path) {
 			'journey.steps.streak100.title' => 'A hundred days',
 			'journey.steps.streak100.text' => '100 days in a row with a report.',
 			'journey.steps.streak365.title' => 'A whole year',
@@ -7030,8 +7045,6 @@ extension on TranslationsEn {
 			'journey.steps.fullDay.text' => 'Do the 4 steps of the day.',
 			'journey.steps.sevenFullDays.title' => 'Seven full days',
 			'journey.steps.sevenFullDays.text' => 'Do the 4 steps of the day seven times.',
-			_ => null,
-		} ?? switch (path) {
 			'journey.steps.fourRetreats.title' => 'A day of prayer',
 			'journey.steps.fourRetreats.text' => 'Do the 4 retreats on the same day.',
 			'journey.steps.planDone.title' => 'Plan completed',

@@ -81,18 +81,23 @@
       "text": "Les évènements et les annonces de ton assemblée, au même endroit, pour ne rien manquer."
     },
     "step": "Écran {current} sur {total}",
-    "streak(plural, param=n)": {
-      "one": "{n} jour avec Dieu",
-      "other": "{n} jours avec Dieu"
-    },
     "sample": {
+      "name": "Grâce",
+      "withGod": "1 h 15 avec Dieu aujourd'hui",
+      "streakDays": "24 j",
       "bibleReading": "Lecture biblique",
       "chapters": "10 ch.",
-      "hymn": "Cantique",
-      "hymnNumber": "N° 12",
+      "hymnNumber": "N° 1",
+      "hymnTitle": "Donnons-Lui la gloire",
+      "hymnBook": "Chants d'édification, volume 1",
+      "hymnLines": "Alléluia, louez notre Dieu,\nLe Tout-Puissant qui a pris Son règne.",
+      "hymnChorus": "Donnons-Lui la gloire (2x)",
       "praying": "12 personnes prient",
       "retreat": "Retraite des jeunes",
-      "announcement": "Annonce"
+      "place": "Yaoundé · 3 jours",
+      "register": "S'inscrire",
+      "announcement": "Annonce",
+      "notice": "Le culte de dimanche commence à 9 h."
     },
     "next": "Continuer",
     "skip": "Passer",

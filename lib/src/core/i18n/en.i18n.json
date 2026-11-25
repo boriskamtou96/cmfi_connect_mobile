@@ -81,18 +81,23 @@
       "text": "Your assembly's events and announcements, all in one place, so you never miss a thing."
     },
     "step": "Screen {current} of {total}",
-    "streak(plural, param=n)": {
-      "one": "{n} day with God",
-      "other": "{n} days with God"
-    },
     "sample": {
+      "name": "Grace",
+      "withGod": "1 h 15 with God today",
+      "streakDays": "24 d",
       "bibleReading": "Bible reading",
       "chapters": "10 ch.",
-      "hymn": "Hymn",
-      "hymnNumber": "No. 12",
+      "hymnNumber": "No. 1",
+      "hymnTitle": "Donnons-Lui la gloire",
+      "hymnBook": "Chants d'édification, volume 1",
+      "hymnLines": "Alléluia, louez notre Dieu,\nLe Tout-Puissant qui a pris Son règne.",
+      "hymnChorus": "Donnons-Lui la gloire (2x)",
       "praying": "12 people are praying",
       "retreat": "Youth retreat",
-      "announcement": "Announcement"
+      "place": "Yaoundé · 3 days",
+      "register": "Register",
+      "announcement": "Announcement",
+      "notice": "Sunday service starts at 9 am."
     },
     "next": "Continue",
     "skip": "Skip",

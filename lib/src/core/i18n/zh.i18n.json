@@ -81,17 +81,23 @@
       "text": "你所在聚会点的活动和通知都在这里，一条也不会错过。"
     },
     "step": "第 {current} 页，共 {total} 页",
-    "streak(plural, param=n)": {
-      "other": "与神同行 {n} 天"
-    },
     "sample": {
+      "name": "恩恩",
+      "withGod": "今天与神同在 1 小时 15 分",
+      "streakDays": "24 天",
       "bibleReading": "读经",
       "chapters": "10 章",
-      "hymn": "诗歌",
-      "hymnNumber": "第 12 首",
+      "hymnNumber": "第 1 首",
+      "hymnTitle": "Donnons-Lui la gloire",
+      "hymnBook": "Chants d'édification, volume 1",
+      "hymnLines": "Alléluia, louez notre Dieu,\nLe Tout-Puissant qui a pris Son règne.",
+      "hymnChorus": "Donnons-Lui la gloire (2x)",
       "praying": "12 人正在祷告",
       "retreat": "青年退修会",
-      "announcement": "通知"
+      "place": "雅温得 · 3 天",
+      "register": "报名",
+      "announcement": "通知",
+      "notice": "主日崇拜上午 9 点开始。"
     },
     "next": "继续",
     "skip": "跳过",

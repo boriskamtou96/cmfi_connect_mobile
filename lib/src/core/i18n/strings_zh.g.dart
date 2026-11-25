@@ -197,9 +197,6 @@ class _Translations$welcome$zh extends Translations$welcome$fr {
 	@override late final _Translations$welcome$worship$zh worship = _Translations$welcome$worship$zh._(_root);
 	@override late final _Translations$welcome$community$zh community = _Translations$welcome$community$zh._(_root);
 	@override String step({required Object current, required Object total}) => '第 ${current} 页，共 ${total} 页';
-	@override String streak({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n,
-		other: '与神同行 ${n} 天',
-	);
 	@override late final _Translations$welcome$sample$zh sample = _Translations$welcome$sample$zh._(_root);
 	@override String get next => '继续';
 	@override String get skip => '跳过';
@@ -2332,13 +2329,22 @@ class _Translations$welcome$sample$zh extends Translations$welcome$sample$fr {
 	final TranslationsZh _root; // ignore: unused_field
 
 	// Translations
+	@override String get name => '恩恩';
+	@override String get withGod => '今天与神同在 1 小时 15 分';
+	@override String get streakDays => '24 天';
 	@override String get bibleReading => '读经';
 	@override String get chapters => '10 章';
-	@override String get hymn => '诗歌';
-	@override String get hymnNumber => '第 12 首';
+	@override String get hymnNumber => '第 1 首';
+	@override String get hymnTitle => 'Donnons-Lui la gloire';
+	@override String get hymnBook => 'Chants d\'édification, volume 1';
+	@override String get hymnLines => 'Alléluia, louez notre Dieu,\nLe Tout-Puissant qui a pris Son règne.';
+	@override String get hymnChorus => 'Donnons-Lui la gloire (2x)';
 	@override String get praying => '12 人正在祷告';
 	@override String get retreat => '青年退修会';
+	@override String get place => '雅温得 · 3 天';
+	@override String get register => '报名';
 	@override String get announcement => '通知';
+	@override String get notice => '主日崇拜上午 9 点开始。';
 }
 
 // Path: auth.login
@@ -4916,14 +4922,22 @@ extension on TranslationsZh {
 			'welcome.community.after' => '保持联系',
 			'welcome.community.text' => '你所在聚会点的活动和通知都在这里，一条也不会错过。',
 			'welcome.step' => ({required Object current, required Object total}) => '第 ${current} 页，共 ${total} 页',
-			'welcome.streak' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n, other: '与神同行 ${n} 天', ), 
+			'welcome.sample.name' => '恩恩',
+			'welcome.sample.withGod' => '今天与神同在 1 小时 15 分',
+			'welcome.sample.streakDays' => '24 天',
 			'welcome.sample.bibleReading' => '读经',
 			'welcome.sample.chapters' => '10 章',
-			'welcome.sample.hymn' => '诗歌',
-			'welcome.sample.hymnNumber' => '第 12 首',
+			'welcome.sample.hymnNumber' => '第 1 首',
+			'welcome.sample.hymnTitle' => 'Donnons-Lui la gloire',
+			'welcome.sample.hymnBook' => 'Chants d\'édification, volume 1',
+			'welcome.sample.hymnLines' => 'Alléluia, louez notre Dieu,\nLe Tout-Puissant qui a pris Son règne.',
+			'welcome.sample.hymnChorus' => 'Donnons-Lui la gloire (2x)',
 			'welcome.sample.praying' => '12 人正在祷告',
 			'welcome.sample.retreat' => '青年退修会',
+			'welcome.sample.place' => '雅温得 · 3 天',
+			'welcome.sample.register' => '报名',
 			'welcome.sample.announcement' => '通知',
+			'welcome.sample.notice' => '主日崇拜上午 9 点开始。',
 			'welcome.next' => '继续',
 			'welcome.skip' => '跳过',
 			'welcome.createAccount' => '创建账号',
@@ -5353,6 +5367,8 @@ extension on TranslationsZh {
 			'more.copyright' => ({required Object year}) => '© ${year} Christian Missionary Fellowship International. 保留所有权利。',
 			'authorities.title' => '我的属灵带领者',
 			'authorities.intro' => '在与神同行的路上陪伴你的人：你的门训者和其他带领者。',
+			_ => null,
+		} ?? switch (path) {
 			'authorities.discipleMaker' => '门训者',
 			'authorities.discipleMakerOf' => ({required Object name}) => '门训者：${name}',
 			'authorities.noDiscipleMaker' => '还没有门训者',
@@ -5361,8 +5377,6 @@ extension on TranslationsZh {
 			'authorities.add' => '添加带领者',
 			'authorities.remove' => '移除',
 			'authorities.removeTitle' => ({required Object name}) => '移除 ${name}？',
-			_ => null,
-		} ?? switch (path) {
 			'authorities.removeText' => ({required Object name}) => '${name} 将不再是你的属灵带领者。',
 			'authorities.removed' => ({required Object name}) => '${name} 已不再是你的带领者。',
 			'authorities.count' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n, zero: '暂时还没有', other: '${n} 人', ), 
@@ -5867,6 +5881,8 @@ extension on TranslationsZh {
 			'ministry.purpose' => '我们的目标',
 			'ministry.nations' => '国家',
 			'ministry.search' => '搜索国家',
+			_ => null,
+		} ?? switch (path) {
 			'ministry.none' => '没有匹配的国家',
 			'ministry.homeText' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n, other: '遍及 ${n} 个国家', ), 
 			'ministry.nationsSubtitle' => '地球与逐国之旅',
@@ -5875,8 +5891,6 @@ extension on TranslationsZh {
 			'ministry.missionariesSubtitle' => '主差往万国的人',
 			'ministry.heroes' => '我们的英雄',
 			'ministry.heroesSubtitle' => '他们的信心激励着我们',
-			_ => null,
-		} ?? switch (path) {
 			'ministry.founder' => '我们的创始人',
 			'ministry.founderSubtitle' => 'Zacharias Tanee Fomum 教授',
 			'ministry.leader' => '我们的领袖',
@@ -6381,6 +6395,8 @@ extension on TranslationsZh {
 			'disciples.showAll' => ({required Object n}) => '查看其余 ${n} 位',
 			'disciples.showLess' => '收起',
 			'disciples.overdueHidden' => ({required Object n}) => '${n} 人未分享报告：无从得知。',
+			_ => null,
+		} ?? switch (path) {
 			'weekStory.title' => '你与神同在的一周',
 			'weekStory.range' => ({required Object from, required Object to}) => '${from}至${to}',
 			'weekStory.intro' => '回顾这一周你与主同在的点滴。',
@@ -6389,8 +6405,6 @@ extension on TranslationsZh {
 			'weekStory.emptyLead' => '新的一周在等着你',
 			'weekStory.days' => ({required num n, required Object total}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n, other: '${total} 天中\n有 ${n} 天', ), 
 			'weekStory.streak' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n, other: '连续 ${n} 天', ), 
-			_ => null,
-		} ?? switch (path) {
 			'weekStory.streakRecord' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n, other: '连续 ${n} 天：你的纪录！', ), 
 			'weekStory.emptyText' => '每天填写你的报告：你的下一周将写在这里。',
 			'weekStory.prayerLead' => '你祷告了',
@@ -6895,6 +6909,8 @@ extension on TranslationsZh {
 			'journey.steps.streak7.text' => '连续 7 天提交报告。',
 			'journey.steps.streak30.title' => '与神同行一个月',
 			'journey.steps.streak30.text' => '连续 30 天提交报告。',
+			_ => null,
+		} ?? switch (path) {
 			'journey.steps.streak100.title' => '一百天',
 			'journey.steps.streak100.text' => '连续 100 天提交报告。',
 			'journey.steps.streak365.title' => '整整一年',
@@ -6903,8 +6919,6 @@ extension on TranslationsZh {
 			'journey.steps.fullDay.text' => '完成今日四步。',
 			'journey.steps.sevenFullDays.title' => '七个完整的日子',
 			'journey.steps.sevenFullDays.text' => '完成今日四步共七次。',
-			_ => null,
-		} ?? switch (path) {
 			'journey.steps.fourRetreats.title' => '祷告的一天',
 			'journey.steps.fourRetreats.text' => '在同一天完成 4 次退修祷告。',
 			'journey.steps.planDone.title' => '计划完成',

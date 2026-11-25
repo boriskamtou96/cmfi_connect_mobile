@@ -197,10 +197,6 @@ class _Translations$welcome$de extends Translations$welcome$fr {
 	@override late final _Translations$welcome$worship$de worship = _Translations$welcome$worship$de._(_root);
 	@override late final _Translations$welcome$community$de community = _Translations$welcome$community$de._(_root);
 	@override String step({required Object current, required Object total}) => 'Seite ${current} von ${total}';
-	@override String streak({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('de'))(n,
-		one: '${n} Tag mit Gott',
-		other: '${n} Tage mit Gott',
-	);
 	@override late final _Translations$welcome$sample$de sample = _Translations$welcome$sample$de._(_root);
 	@override String get next => 'Weiter';
 	@override String get skip => 'Überspringen';
@@ -2421,13 +2417,22 @@ class _Translations$welcome$sample$de extends Translations$welcome$sample$fr {
 	final TranslationsDe _root; // ignore: unused_field
 
 	// Translations
+	@override String get name => 'Grace';
+	@override String get withGod => 'Heute 1 Std. 15 Min. mit Gott';
+	@override String get streakDays => '24 T.';
 	@override String get bibleReading => 'Bibellese';
 	@override String get chapters => '10 Kap.';
-	@override String get hymn => 'Lied';
-	@override String get hymnNumber => 'Nr. 12';
+	@override String get hymnNumber => 'Nr. 1';
+	@override String get hymnTitle => 'Donnons-Lui la gloire';
+	@override String get hymnBook => 'Chants d\'édification, volume 1';
+	@override String get hymnLines => 'Alléluia, louez notre Dieu,\nLe Tout-Puissant qui a pris Son règne.';
+	@override String get hymnChorus => 'Donnons-Lui la gloire (2x)';
 	@override String get praying => '12 Personen beten';
 	@override String get retreat => 'Jugendfreizeit';
+	@override String get place => 'Yaoundé · 3 Tage';
+	@override String get register => 'Anmelden';
 	@override String get announcement => 'Ankündigung';
+	@override String get notice => 'Der Sonntagsgottesdienst beginnt um 9 Uhr.';
 }
 
 // Path: auth.login
@@ -5042,14 +5047,22 @@ extension on TranslationsDe {
 			'welcome.community.after' => ' verbunden',
 			'welcome.community.text' => 'Die Veranstaltungen und Ankündigungen deiner Gemeinde an einem Ort, damit du nichts verpasst.',
 			'welcome.step' => ({required Object current, required Object total}) => 'Seite ${current} von ${total}',
-			'welcome.streak' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('de'))(n, one: '${n} Tag mit Gott', other: '${n} Tage mit Gott', ), 
+			'welcome.sample.name' => 'Grace',
+			'welcome.sample.withGod' => 'Heute 1 Std. 15 Min. mit Gott',
+			'welcome.sample.streakDays' => '24 T.',
 			'welcome.sample.bibleReading' => 'Bibellese',
 			'welcome.sample.chapters' => '10 Kap.',
-			'welcome.sample.hymn' => 'Lied',
-			'welcome.sample.hymnNumber' => 'Nr. 12',
+			'welcome.sample.hymnNumber' => 'Nr. 1',
+			'welcome.sample.hymnTitle' => 'Donnons-Lui la gloire',
+			'welcome.sample.hymnBook' => 'Chants d\'édification, volume 1',
+			'welcome.sample.hymnLines' => 'Alléluia, louez notre Dieu,\nLe Tout-Puissant qui a pris Son règne.',
+			'welcome.sample.hymnChorus' => 'Donnons-Lui la gloire (2x)',
 			'welcome.sample.praying' => '12 Personen beten',
 			'welcome.sample.retreat' => 'Jugendfreizeit',
+			'welcome.sample.place' => 'Yaoundé · 3 Tage',
+			'welcome.sample.register' => 'Anmelden',
 			'welcome.sample.announcement' => 'Ankündigung',
+			'welcome.sample.notice' => 'Der Sonntagsgottesdienst beginnt um 9 Uhr.',
 			'welcome.next' => 'Weiter',
 			'welcome.skip' => 'Überspringen',
 			'welcome.createAccount' => 'Konto erstellen',
@@ -5479,6 +5492,8 @@ extension on TranslationsDe {
 			'more.copyright' => ({required Object year}) => '© ${year} Christian Missionary Fellowship International. Alle Rechte vorbehalten.',
 			'authorities.title' => 'Meine geistlichen Autoritäten',
 			'authorities.intro' => 'Die Menschen, die dich auf deinem Weg mit Gott begleiten: dein Jüngermacher und deine anderen Verantwortlichen.',
+			_ => null,
+		} ?? switch (path) {
 			'authorities.discipleMaker' => 'Jüngermacher',
 			'authorities.discipleMakerOf' => ({required Object name}) => 'Jüngermacher: ${name}',
 			'authorities.noDiscipleMaker' => 'Noch kein Jüngermacher',
@@ -5487,8 +5502,6 @@ extension on TranslationsDe {
 			'authorities.add' => 'Autorität hinzufügen',
 			'authorities.remove' => 'Entfernen',
 			'authorities.removeTitle' => ({required Object name}) => '${name} entfernen?',
-			_ => null,
-		} ?? switch (path) {
 			'authorities.removeText' => ({required Object name}) => '${name} gehört dann nicht mehr zu deinen geistlichen Autoritäten.',
 			'authorities.removed' => ({required Object name}) => '${name} gehört nicht mehr zu deinen Autoritäten.',
 			'authorities.count' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('de'))(n, zero: 'Noch niemand', one: '${n} Person', other: '${n} Personen', ), 
@@ -5993,6 +6006,8 @@ extension on TranslationsDe {
 			'ministry.purpose' => 'Unser Ziel',
 			'ministry.nations' => 'Die Nationen',
 			'ministry.search' => 'Nation suchen',
+			_ => null,
+		} ?? switch (path) {
 			'ministry.none' => 'Keine Nation gefunden',
 			'ministry.homeText' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('de'))(n, one: 'In ${n} Nation vertreten', other: 'In ${n} Nationen vertreten', ), 
 			'ministry.nationsSubtitle' => 'Der Globus und die Reise von Nation zu Nation',
@@ -6001,8 +6016,6 @@ extension on TranslationsDe {
 			'ministry.missionariesSubtitle' => 'Die, die der Herr zu den Nationen sendet',
 			'ministry.heroes' => 'Unsere Helden',
 			'ministry.heroesSubtitle' => 'Die, deren Glaube uns inspiriert',
-			_ => null,
-		} ?? switch (path) {
 			'ministry.founder' => 'Unser Gründer',
 			'ministry.founderSubtitle' => 'Prof. Zacharias Tanee Fomum',
 			'ministry.leader' => 'Unser Leiter',
@@ -6507,6 +6520,8 @@ extension on TranslationsDe {
 			'disciples.showAll' => ({required Object n}) => 'Die anderen ${n} anzeigen',
 			'disciples.showLess' => 'Weniger anzeigen',
 			'disciples.overdueHidden' => ({required Object n}) => '${n} teilen ihre Berichte nicht: nichts bekannt.',
+			_ => null,
+		} ?? switch (path) {
 			'weekStory.title' => 'Deine Woche mit Gott',
 			'weekStory.range' => ({required Object from, required Object to}) => '${from} bis ${to}',
 			'weekStory.intro' => 'Schau zurück auf das, was du diese Woche mit dem Herrn erlebt hast.',
@@ -6515,8 +6530,6 @@ extension on TranslationsDe {
 			'weekStory.emptyLead' => 'Eine neue Woche wartet auf dich',
 			'weekStory.days' => ({required num n, required Object total}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('de'))(n, one: '${n} Tag\nvon ${total}', other: '${n} Tage\nvon ${total}', ), 
 			'weekStory.streak' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('de'))(n, one: '${n} Tag in Folge', other: '${n} Tage in Folge', ), 
-			_ => null,
-		} ?? switch (path) {
 			'weekStory.streakRecord' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('de'))(n, one: '${n} Tag in Folge: dein Rekord!', other: '${n} Tage in Folge: dein Rekord!', ), 
 			'weekStory.emptyText' => 'Fülle deinen Bericht jeden Tag aus: Deine nächste Woche wird hier geschrieben.',
 			'weekStory.prayerLead' => 'Du hast gebetet',
@@ -7021,6 +7034,8 @@ extension on TranslationsDe {
 			'journey.steps.streak7.text' => '7 Tage in Folge mit einem Bericht.',
 			'journey.steps.streak30.title' => 'Ein Monat mit Gott',
 			'journey.steps.streak30.text' => '30 Tage in Folge mit einem Bericht.',
+			_ => null,
+		} ?? switch (path) {
 			'journey.steps.streak100.title' => 'Hundert Tage',
 			'journey.steps.streak100.text' => '100 Tage in Folge mit einem Bericht.',
 			'journey.steps.streak365.title' => 'Ein ganzes Jahr',
@@ -7029,8 +7044,6 @@ extension on TranslationsDe {
 			'journey.steps.fullDay.text' => 'Die 4 Schritte des Tages machen.',
 			'journey.steps.sevenFullDays.title' => 'Sieben volle Tage',
 			'journey.steps.sevenFullDays.text' => 'Die 4 Schritte des Tages siebenmal machen.',
-			_ => null,
-		} ?? switch (path) {
 			'journey.steps.fourRetreats.title' => 'Ein Tag des Gebets',
 			'journey.steps.fourRetreats.text' => 'Die 4 Gebetszeiten am selben Tag machen.',
 			'journey.steps.planDone.title' => 'Plan abgeschlossen',

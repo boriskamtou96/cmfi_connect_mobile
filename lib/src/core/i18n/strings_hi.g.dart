@@ -197,10 +197,6 @@ class _Translations$welcome$hi extends Translations$welcome$fr {
 	@override late final _Translations$welcome$worship$hi worship = _Translations$welcome$worship$hi._(_root);
 	@override late final _Translations$welcome$community$hi community = _Translations$welcome$community$hi._(_root);
 	@override String step({required Object total, required Object current}) => '${total} में से स्क्रीन ${current}';
-	@override String streak({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n,
-		one: 'परमेश्वर के साथ ${n} दिन',
-		other: 'परमेश्वर के साथ ${n} दिन',
-	);
 	@override late final _Translations$welcome$sample$hi sample = _Translations$welcome$sample$hi._(_root);
 	@override String get next => 'आगे बढ़ें';
 	@override String get skip => 'छोड़ें';
@@ -2420,13 +2416,22 @@ class _Translations$welcome$sample$hi extends Translations$welcome$sample$fr {
 	final TranslationsHi _root; // ignore: unused_field
 
 	// Translations
+	@override String get name => 'ग्रेस';
+	@override String get withGod => 'आज परमेश्वर के साथ 1 घं. 15 मि.';
+	@override String get streakDays => '24 दिन';
 	@override String get bibleReading => 'बाइबल पठन';
 	@override String get chapters => '10 अध्याय';
-	@override String get hymn => 'भजन';
-	@override String get hymnNumber => 'नं. 12';
+	@override String get hymnNumber => 'नं. 1';
+	@override String get hymnTitle => 'Donnons-Lui la gloire';
+	@override String get hymnBook => 'Chants d\'édification, volume 1';
+	@override String get hymnLines => 'Alléluia, louez notre Dieu,\nLe Tout-Puissant qui a pris Son règne.';
+	@override String get hymnChorus => 'Donnons-Lui la gloire (2x)';
 	@override String get praying => '12 लोग प्रार्थना कर रहे हैं';
 	@override String get retreat => 'युवा रिट्रीट';
+	@override String get place => 'याउंडे · 3 दिन';
+	@override String get register => 'पंजीकरण करें';
 	@override String get announcement => 'घोषणा';
+	@override String get notice => 'रविवार की आराधना सुबह 9 बजे शुरू होती है।';
 }
 
 // Path: auth.login
@@ -5041,14 +5046,22 @@ extension on TranslationsHi {
 			'welcome.community.after' => ' से जुड़ाव बनाए रखो',
 			'welcome.community.text' => 'तुम्हारी सभा के कार्यक्रम और घोषणाएँ, एक ही जगह पर, ताकि कुछ भी न छूटे।',
 			'welcome.step' => ({required Object total, required Object current}) => '${total} में से स्क्रीन ${current}',
-			'welcome.streak' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n, one: 'परमेश्वर के साथ ${n} दिन', other: 'परमेश्वर के साथ ${n} दिन', ), 
+			'welcome.sample.name' => 'ग्रेस',
+			'welcome.sample.withGod' => 'आज परमेश्वर के साथ 1 घं. 15 मि.',
+			'welcome.sample.streakDays' => '24 दिन',
 			'welcome.sample.bibleReading' => 'बाइबल पठन',
 			'welcome.sample.chapters' => '10 अध्याय',
-			'welcome.sample.hymn' => 'भजन',
-			'welcome.sample.hymnNumber' => 'नं. 12',
+			'welcome.sample.hymnNumber' => 'नं. 1',
+			'welcome.sample.hymnTitle' => 'Donnons-Lui la gloire',
+			'welcome.sample.hymnBook' => 'Chants d\'édification, volume 1',
+			'welcome.sample.hymnLines' => 'Alléluia, louez notre Dieu,\nLe Tout-Puissant qui a pris Son règne.',
+			'welcome.sample.hymnChorus' => 'Donnons-Lui la gloire (2x)',
 			'welcome.sample.praying' => '12 लोग प्रार्थना कर रहे हैं',
 			'welcome.sample.retreat' => 'युवा रिट्रीट',
+			'welcome.sample.place' => 'याउंडे · 3 दिन',
+			'welcome.sample.register' => 'पंजीकरण करें',
 			'welcome.sample.announcement' => 'घोषणा',
+			'welcome.sample.notice' => 'रविवार की आराधना सुबह 9 बजे शुरू होती है।',
 			'welcome.next' => 'आगे बढ़ें',
 			'welcome.skip' => 'छोड़ें',
 			'welcome.createAccount' => 'अकाउंट बनाओ',
@@ -5478,6 +5491,8 @@ extension on TranslationsHi {
 			'more.copyright' => ({required Object year}) => '© ${year} Christian Missionary Fellowship International. सर्वाधिकार सुरक्षित।',
 			'authorities.title' => 'मेरे आत्मिक अगुवे',
 			'authorities.intro' => 'वे लोग जो परमेश्वर के साथ तुम्हारे सफ़र में तुम्हारा साथ देते हैं: तुम्हारा चेला बनाने वाला और तुम्हारे दूसरे अगुवे।',
+			_ => null,
+		} ?? switch (path) {
 			'authorities.discipleMaker' => 'चेला बनाने वाला',
 			'authorities.discipleMakerOf' => ({required Object name}) => 'चेला बनाने वाला: ${name}',
 			'authorities.noDiscipleMaker' => 'अभी तक कोई चेला बनाने वाला नहीं',
@@ -5486,8 +5501,6 @@ extension on TranslationsHi {
 			'authorities.add' => 'अगुवा जोड़ो',
 			'authorities.remove' => 'हटाओ',
 			'authorities.removeTitle' => ({required Object name}) => '${name} को हटाना है?',
-			_ => null,
-		} ?? switch (path) {
 			'authorities.removeText' => ({required Object name}) => '${name} को तुम्हारे आत्मिक अगुवों की सूची से हटा दिया जाएगा।',
 			'authorities.removed' => ({required Object name}) => '${name} को तुम्हारे अगुवों की सूची से हटा दिया गया।',
 			'authorities.count' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n, zero: 'अभी तक कोई नहीं', one: '${n} व्यक्ति', other: '${n} लोग', ), 
@@ -5992,6 +6005,8 @@ extension on TranslationsHi {
 			'ministry.purpose' => 'हमारा उद्देश्य',
 			'ministry.nations' => 'राष्ट्र',
 			'ministry.search' => 'राष्ट्र खोजो',
+			_ => null,
+		} ?? switch (path) {
 			'ministry.none' => 'कोई राष्ट्र नहीं मिला',
 			'ministry.homeText' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n, one: '${n} राष्ट्र में मौजूद', other: '${n} राष्ट्रों में मौजूद', ), 
 			'ministry.nationsSubtitle' => 'ग्लोब और एक राष्ट्र से दूसरे राष्ट्र की यात्रा',
@@ -6000,8 +6015,6 @@ extension on TranslationsHi {
 			'ministry.missionariesSubtitle' => 'जिन्हें प्रभु राष्ट्रों में भेजता है',
 			'ministry.heroes' => 'हमारे नायक',
 			'ministry.heroesSubtitle' => 'जिनका विश्वास हमें प्रेरित करता है',
-			_ => null,
-		} ?? switch (path) {
 			'ministry.founder' => 'हमारे संस्थापक',
 			'ministry.founderSubtitle' => 'प्रो. ज़कारियस तनी फ़ोमुम',
 			'ministry.leader' => 'हमारे अगुवे',
@@ -6506,6 +6519,8 @@ extension on TranslationsHi {
 			'disciples.showAll' => ({required Object n}) => 'बाकी ${n} देखो',
 			'disciples.showLess' => 'कम दिखाओ',
 			'disciples.overdueHidden' => ({required Object n}) => '${n} अपनी रिपोर्ट साझा नहीं करते: कुछ पता नहीं।',
+			_ => null,
+		} ?? switch (path) {
 			'weekStory.title' => 'परमेश्वर के साथ तुम्हारा हफ़्ता',
 			'weekStory.range' => ({required Object from, required Object to}) => '${from} से ${to} तक',
 			'weekStory.intro' => 'इस हफ़्ते प्रभु के साथ जो जिया, उसे फिर से देखो।',
@@ -6514,8 +6529,6 @@ extension on TranslationsHi {
 			'weekStory.emptyLead' => 'एक नया हफ़्ता तुम्हारा इंतज़ार कर रहा है',
 			'weekStory.days' => ({required num n, required Object total}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n, one: '${total} में से\n${n} दिन', other: '${total} में से\n${n} दिन', ), 
 			'weekStory.streak' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n, one: 'लगातार ${n} दिन', other: 'लगातार ${n} दिन', ), 
-			_ => null,
-		} ?? switch (path) {
 			'weekStory.streakRecord' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hi'))(n, one: 'लगातार ${n} दिन: तुम्हारा रिकॉर्ड!', other: 'लगातार ${n} दिन: तुम्हारा रिकॉर्ड!', ), 
 			'weekStory.emptyText' => 'हर दिन अपनी रिपोर्ट भरो: तुम्हारा अगला हफ़्ता यहाँ लिखा जाएगा।',
 			'weekStory.prayerLead' => 'तुमने प्रार्थना की',
@@ -7020,6 +7033,8 @@ extension on TranslationsHi {
 			'journey.steps.streak7.text' => 'लगातार 7 दिन रिपोर्ट।',
 			'journey.steps.streak30.title' => 'परमेश्वर के साथ एक महीना',
 			'journey.steps.streak30.text' => 'लगातार 30 दिन रिपोर्ट।',
+			_ => null,
+		} ?? switch (path) {
 			'journey.steps.streak100.title' => 'सौ दिन',
 			'journey.steps.streak100.text' => 'लगातार 100 दिन रिपोर्ट।',
 			'journey.steps.streak365.title' => 'पूरा एक साल',
@@ -7028,8 +7043,6 @@ extension on TranslationsHi {
 			'journey.steps.fullDay.text' => 'दिन के 4 क़दम पूरे करो।',
 			'journey.steps.sevenFullDays.title' => 'सात पूरे दिन',
 			'journey.steps.sevenFullDays.text' => 'दिन के 4 क़दम सात बार पूरे करो।',
-			_ => null,
-		} ?? switch (path) {
 			'journey.steps.fourRetreats.title' => 'प्रार्थना का दिन',
 			'journey.steps.fourRetreats.text' => 'एक ही दिन में 4 प्रार्थना-समय पूरे करो।',
 			'journey.steps.planDone.title' => 'योजना पूरी',

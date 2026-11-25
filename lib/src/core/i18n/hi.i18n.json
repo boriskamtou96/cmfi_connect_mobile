@@ -81,18 +81,23 @@
       "text": "तुम्हारी सभा के कार्यक्रम और घोषणाएँ, एक ही जगह पर, ताकि कुछ भी न छूटे।"
     },
     "step": "{total} में से स्क्रीन {current}",
-    "streak(plural, param=n)": {
-      "one": "परमेश्वर के साथ {n} दिन",
-      "other": "परमेश्वर के साथ {n} दिन"
-    },
     "sample": {
+      "name": "ग्रेस",
+      "withGod": "आज परमेश्वर के साथ 1 घं. 15 मि.",
+      "streakDays": "24 दिन",
       "bibleReading": "बाइबल पठन",
       "chapters": "10 अध्याय",
-      "hymn": "भजन",
-      "hymnNumber": "नं. 12",
+      "hymnNumber": "नं. 1",
+      "hymnTitle": "Donnons-Lui la gloire",
+      "hymnBook": "Chants d'édification, volume 1",
+      "hymnLines": "Alléluia, louez notre Dieu,\nLe Tout-Puissant qui a pris Son règne.",
+      "hymnChorus": "Donnons-Lui la gloire (2x)",
       "praying": "12 लोग प्रार्थना कर रहे हैं",
       "retreat": "युवा रिट्रीट",
-      "announcement": "घोषणा"
+      "place": "याउंडे · 3 दिन",
+      "register": "पंजीकरण करें",
+      "announcement": "घोषणा",
+      "notice": "रविवार की आराधना सुबह 9 बजे शुरू होती है।"
     },
     "next": "आगे बढ़ें",
     "skip": "छोड़ें",

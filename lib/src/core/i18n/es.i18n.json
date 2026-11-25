@@ -81,18 +81,23 @@
       "text": "Los eventos y los anuncios de tu asamblea, en un solo lugar, para que no te pierdas nada."
     },
     "step": "Pantalla {current} de {total}",
-    "streak(plural, param=n)": {
-      "one": "{n} día con Dios",
-      "other": "{n} días con Dios"
-    },
     "sample": {
+      "name": "Gracia",
+      "withGod": "1 h 15 con Dios hoy",
+      "streakDays": "24 d",
       "bibleReading": "Lectura bíblica",
       "chapters": "10 cap.",
-      "hymn": "Himno",
-      "hymnNumber": "N.º 12",
+      "hymnNumber": "N.º 1",
+      "hymnTitle": "Donnons-Lui la gloire",
+      "hymnBook": "Chants d'édification, volume 1",
+      "hymnLines": "Alléluia, louez notre Dieu,\nLe Tout-Puissant qui a pris Son règne.",
+      "hymnChorus": "Donnons-Lui la gloire (2x)",
       "praying": "12 personas oran",
       "retreat": "Retiro de jóvenes",
-      "announcement": "Anuncio"
+      "place": "Yaundé · 3 días",
+      "register": "Inscribirme",
+      "announcement": "Anuncio",
+      "notice": "El culto del domingo empieza a las 9 h."
     },
     "next": "Continuar",
     "skip": "Omitir",

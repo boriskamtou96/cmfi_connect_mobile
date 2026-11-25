@@ -81,18 +81,23 @@
       "text": "Die Veranstaltungen und Ankündigungen deiner Gemeinde an einem Ort, damit du nichts verpasst."
     },
     "step": "Seite {current} von {total}",
-    "streak(plural, param=n)": {
-      "one": "{n} Tag mit Gott",
-      "other": "{n} Tage mit Gott"
-    },
     "sample": {
+      "name": "Grace",
+      "withGod": "Heute 1 Std. 15 Min. mit Gott",
+      "streakDays": "24 T.",
       "bibleReading": "Bibellese",
       "chapters": "10 Kap.",
-      "hymn": "Lied",
-      "hymnNumber": "Nr. 12",
+      "hymnNumber": "Nr. 1",
+      "hymnTitle": "Donnons-Lui la gloire",
+      "hymnBook": "Chants d'édification, volume 1",
+      "hymnLines": "Alléluia, louez notre Dieu,\nLe Tout-Puissant qui a pris Son règne.",
+      "hymnChorus": "Donnons-Lui la gloire (2x)",
       "praying": "12 Personen beten",
       "retreat": "Jugendfreizeit",
-      "announcement": "Ankündigung"
+      "place": "Yaoundé · 3 Tage",
+      "register": "Anmelden",
+      "announcement": "Ankündigung",
+      "notice": "Der Sonntagsgottesdienst beginnt um 9 Uhr."
     },
     "next": "Weiter",
     "skip": "Überspringen",

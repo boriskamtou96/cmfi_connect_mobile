@@ -47,6 +47,15 @@ class PushRegistration extends _$PushRegistration {
     }
   }
 
+  /// The app language changed: the server writes its pushes (invitations,
+  /// new contents…) in the language it was given, so it gets the new one
+  /// now, not at the next start. Nothing before [start] gave an address.
+  Future<void> languageChanged() async {
+    if (_token case final token?) {
+      await _send(token);
+    }
+  }
+
   Future<void> _send(String token) async {
     _token = token;
     try {

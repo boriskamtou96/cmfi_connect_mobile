@@ -106,6 +106,9 @@ class SignedInTasks extends HookConsumerWidget {
       // Cherche d'abord Dieu: the phone gets the settings again, and what a
       // closed app says in this language
       unawaited(ref.read(seekFirstProvider.notifier).sync());
+      // the pushes the server writes come in the new language (at the first
+      // build, no address yet: the start below gives it with the language)
+      unawaited(ref.read(pushRegistrationProvider.notifier).languageChanged());
       return null;
     }, [language]);
 

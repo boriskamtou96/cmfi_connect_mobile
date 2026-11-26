@@ -44,6 +44,22 @@ void main() {
     },
   );
 
+  testWidgets('a new app language is given to the server at once, for the '
+      'pushes it writes', (tester) async {
+    final app = await pumpApp(tester, token: 't');
+    expect(app.notificationsApi.registered.single.language, 'fr');
+
+    await LocaleSettings.setLocale(AppLocale.en);
+    await tester.pumpAndSettle();
+    expect(app.notificationsApi.registered.last.language, 'en');
+    expect(app.notificationsApi.registered.last.token, 'push-token');
+    expect(app.notificationsApi.registered, hasLength(2));
+
+    await LocaleSettings.setLocale(AppLocale.fr);
+    await tester.pumpAndSettle();
+    expect(app.notificationsApi.registered.last.language, 'fr');
+  });
+
   testWidgets('refused notifications: nothing is given to the server', (
     tester,
   ) async {
